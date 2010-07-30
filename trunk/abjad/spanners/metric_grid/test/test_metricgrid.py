@@ -152,7 +152,7 @@ def test_metricgrid_06( ):
 
    t = Staff(Note(0, (1,8)) * 8)
    m = MetricGrid(t.leaves, [(3, 16)])
-   m.splitOnBar( )
+   m.split_on_bar( )
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'16 ~\n\tc'16\n\tc'8\n\tc'8\n\tc'16 ~\n\tc'16\n\tc'8\n\tc'8\n\tc'16 ~\n\tc'16\n}"
@@ -180,7 +180,7 @@ def test_metricgrid_07( ):
 
    t = Staff(Note(0, (1,8))*8)
    m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
-   m.splitOnBar( )
+   m.split_on_bar( )
 
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'16 ~\n\t\\time 2/8\n\tc'16\n\tc'8\n\tc'16 ~\n\t\\time 3/16\n\tc'16\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
 
@@ -210,9 +210,9 @@ def test_metricgrid_08( ):
 
    t = Voice([FixedMultiplierTuplet((2,3), Note(0, (1,8)) * 6)])
    m = MetricGrid(t.leaves, [(1, 8)])
-   m.splitOnBar( )
+   m.split_on_bar( )
 
-   '''MetricGrid splitOnBar works in Tuplets.'''   
+   '''MetricGrid split_on_bar works in Tuplets.'''   
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\t\\time 1/8\n\t\tc'8\n\t\tc'16 ~\n\t\tc'16\n\t\tc'8\n\t\tc'8\n\t\tc'16 ~\n\t\tc'16\n\t\tc'8\n\t}\n}"
 
    r'''
@@ -238,7 +238,7 @@ def test_metricgrid_09( ):
    t = Voice([FixedMultiplierTuplet((2,3), [Note(0, (1,8)), 
          FixedMultiplierTuplet((3,2), Note(0, (1,8)) *4)])])
    m = MetricGrid(t.leaves, [(1, 8)])
-   m.splitOnBar( )
+   m.split_on_bar( )
 
    assert t.format =="\\new Voice {\n\t\\times 2/3 {\n\t\t\\time 1/8\n\t\tc'8\n\t\t\\fraction \\times 3/2 {\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t}\n\t}\n}"
 
@@ -284,7 +284,7 @@ def test_metricgrid_10( ):
    v = Voice(Note(1, (1, 4))*3)
    v.extend(leaftools.make_rests((5, 4), tied=True))
    m = MetricGrid(v.leaves, [(4, 4)])
-   m.splitOnBar( )
+   m.split_on_bar( )
 
    assert isinstance(v[-1], Rest)
    assert v[-1].duration.prolated == Rational(4, 4)
@@ -312,8 +312,8 @@ def test_metricgrid_11( ):
       if not isinstance(leaf, Rest): return True
       else: return False
    m = MetricGrid(v.leaves, [(1, 8)])
-   m.splittingCondition = cond
-   m.splitOnBar( )
+   m.splitting_condition = cond
+   m.split_on_bar( )
 
    assert componenttools.is_well_formed_component(v)
    assert len(v) == 5

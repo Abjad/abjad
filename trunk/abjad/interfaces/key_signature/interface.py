@@ -25,21 +25,21 @@ class KeySignatureInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _selfCanContribute(self):
+   def _self_can_contribute(self):
       r'''True when self is able to contribute LilyPond stuff.'''
       return not self.suppress and (self.forced or self.change)
 
    @property
    def _selfShouldContribute(self):
       r'''True when self should contribute LilyPond staff.'''
-      return self._selfCanContribute and not self._parentCanContribute
+      return self._self_can_contribute and not self._parentCanContribute
 
    @property
    def _parentCanContribute(self):
       r'''True when any parent, other than self, can contribute LP \time.'''
       for parent in self._client.parentage.parentage[1:]:
          try:
-            if parent.key_signature._selfCanContribute:
+            if parent.key_signature._self_can_contribute:
                return True
          except AttributeError:
             pass

@@ -45,21 +45,21 @@ class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       r'''True when any parent, other than self, can contribute LP \time.'''
       for parent in self._client.parentage.parentage[1:]:
          try:
-            if parent.meter._selfCanContribute:
+            if parent.meter._self_can_contribute:
                return True
          except AttributeError:
             pass
       return False
 
    @property
-   def _selfCanContribute(self):
+   def _self_can_contribute(self):
       r'''True when self is able to contribute LilyPond \time.'''
       return not self.suppress and (self.forced or self.change)
 
    @property
    def _selfShouldContribute(self):
       r'''True when self should contribute LilyPond \time.'''
-      return self._selfCanContribute and not self._parentCanContribute
+      return self._self_can_contribute and not self._parentCanContribute
 
    ## PUBLIC ATTRIBUTES ##
 

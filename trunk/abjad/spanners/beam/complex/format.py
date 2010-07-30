@@ -9,12 +9,12 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
 
    ## PRIVATE METHODS ##
 
-   def _getLeftRightForExteriorLeaf(self, leaf):
+   def _get_left_right_for_exterior_leaf(self, leaf):
       '''Get left and right flag counts for exterior leaf in spanner.'''
       spanner = self.spanner
       # lone
       if spanner._is_my_only_leaf(leaf):
-         left, right = self._getLeftRightForLoneLeaf(leaf)
+         left, right = self._get_left_right_for_lone_leaf(leaf)
       # first
       elif spanner._is_my_first_leaf(leaf) or not leaf.prev:
          left = 0
@@ -29,7 +29,7 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
          raise ValueError('leaf must be first or last in spanner.')
       return left, right
 
-   def _getLeftRightForInteriorLeaf(self, leaf):
+   def _get_left_right_for_interior_leaf(self, leaf):
       '''Interior leaves are neither first nor last in spanner.
       Interior leaves may be surrounded by beamable leaves.
       Interior leaves may be surrounded by unbeamable leaves.
@@ -70,7 +70,7 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
             left = cur_flag_count
       return left, right
 
-   def _getLeftRightForLoneLeaf(self, leaf):
+   def _get_left_right_for_lone_leaf(self, leaf):
       '''Get left and right flag counts for only leaf in spanner.'''
       spanner = self.spanner
       left, right = None, None
@@ -103,9 +103,9 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
       spanner = self.spanner
       if leaf.beam.beamable:
          if spanner._is_exterior_leaf(leaf):
-            left, right = self._getLeftRightForExteriorLeaf(leaf)
+            left, right = self._get_left_right_for_exterior_leaf(leaf)
          else:
-            left, right = self._getLeftRightForInteriorLeaf(leaf)
+            left, right = self._get_left_right_for_interior_leaf(leaf)
          if left is not None:
             result.append(r'\set stemLeftBeamCount = #%s' % left)
          if right is not None:

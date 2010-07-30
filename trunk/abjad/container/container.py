@@ -12,7 +12,7 @@ class Container(_Component):
       '''Initialize container with music list of length zero or grater.'''
       _Component.__init__(self)
       self._spanners = _ContainerSpannerAggregator(self)
-      self._initializeMusic(music)
+      self._initialize_music(music)
       self._brackets = BracketsInterface(self)
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
@@ -169,7 +169,7 @@ class Container(_Component):
 
    ## PRIVATE METHODS ##
 
-   def _initializeMusic(self, music):
+   def _initialize_music(self, music):
       '''Insert `music` components in in container.
       Set parent of `music` components to container.'''
       from abjad.tools import componenttools
@@ -184,10 +184,10 @@ class Container(_Component):
          parent._music.insert(index, self)
          self.parentage._switch(parent)
 
-   def _isOneOfMyFirstLeaves(self, leaf):
+   def _is_one_of_my_first_leaves(self, leaf):
       return leaf in self._navigator._contemporaneousStartContents
 
-   def _isOneOfMyLastLeaves(self, leaf):
+   def _is_one_of_my_last_leaves(self, leaf):
       return leaf in self._navigator._contemporaneousStopContents
 
    ## PUBLIC METHODS ## 

@@ -26,14 +26,14 @@ class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _selfCanContribute(self):
+   def _self_can_contribute(self):
       r'''True when self is able to contribute LilyPond \clef.'''
       return not self.suppress and (self.forced or self.change)
 
    @property
    def _selfShouldContribute(self):
       r'''True when self should contribute LilyPond \clef.'''
-      return self._selfCanContribute and not self._parentCanContribute
+      return self._self_can_contribute and not self._parentCanContribute
 
    @property
    def _parentCanContribute(self):
@@ -43,7 +43,7 @@ class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       '''
       for parent in self._client.parentage.parentage[1:]:
          try:
-            if parent.clef._selfCanContribute:
+            if parent.clef._self_can_contribute:
                if self._client in \
                   parent._navigator._contemporaneousStartComponents:
                   return True

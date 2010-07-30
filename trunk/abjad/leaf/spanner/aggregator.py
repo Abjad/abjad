@@ -10,7 +10,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    def _after(self):
       result = [ ]
       leaf = self.leaf
-      for spanner in self._spannersInParentage:
+      for spanner in self._spanners_in_parentage:
          result.extend(spanner._format._after(leaf))
       return result
 
@@ -21,7 +21,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    def _before(self):
       result = [ ]
       leaf = self.leaf
-      for spanner in self._spannersInParentage:
+      for spanner in self._spanners_in_parentage:
          result.extend(spanner._format._before(leaf))
       return result
 
@@ -29,7 +29,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    def _left(self):
       result = [ ]
       leaf = self.leaf
-      for spanner in self._spannersInParentage:
+      for spanner in self._spanners_in_parentage:
          result.extend(spanner._format._left(leaf))   
       return result
 
@@ -40,7 +40,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       stop_contributions = [ ]
       other_contributions = [ ]
       leaf = self.leaf
-      for spanner in self._spannersInParentage:
+      for spanner in self._spanners_in_parentage:
          contributions = spanner._format._right(leaf)
          if contributions:
             if spanner._is_my_last_leaf(leaf):
@@ -51,7 +51,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       return result
 
    @property
-   def _spannersInParentage(self):
+   def _spanners_in_parentage(self):
       '''List of all spanners attaching either to client
          or to a component in the parentage of client,
          ordered alphabetically by spanner class name.'''

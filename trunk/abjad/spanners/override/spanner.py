@@ -67,13 +67,13 @@ class Override(_GrobHandlerSpanner):
 
    ## PRIVATE METHODS ##
 
-   def _prependContext(self, expr):
+   def _prepend_context(self, expr):
       if self._context:
          return '%s.%s' % (self._context, expr)
       else:
          return expr
 
-   def _prependCounter(self, expr):
+   def _prepend_counter(self, expr):
       if len(self.leaves) == 1:
          return r'\once ' + expr
       else:

@@ -16,7 +16,7 @@ class _DynamicMeasureMeterInterface(MeterInterface):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _selfCanContribute(self):
+   def _self_can_contribute(self):
       r'''True when self is able to contribute LilyPond \time.'''
       return not self.suppress
 

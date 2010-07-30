@@ -16,7 +16,7 @@ class MetricGrid(Spanner):
 
    ## PRIVATE METHODS ##
 
-   def _fuseTiedLeavesWithinMeasures(self):
+   def _fuse_tied_leaves_within_measures(self):
       from abjad.tools import leaftools
       ## fuse tied notes
       meters = self.meters
@@ -59,13 +59,13 @@ class MetricGrid(Spanner):
                r[0].grace.after = r[-1].grace.after
             leaftools.fuse_leaves_big_endian(r)
          
-   def _matchingMeter(self, leaf):
+   def _matching_meter(self, leaf):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''
       for m in self.meters:
          if leaf.offset.prolated.start == m.offset: 
             return m
 
-   def _slicingMeters(self, leaf):
+   def _slicing_meters(self, leaf):
       '''Return the MetricStrip(s) that slices leaf, if any.'''
       for m in self.meters:
          if leaf.offset.prolated.start < m.offset:
@@ -102,13 +102,13 @@ class MetricGrid(Spanner):
 
    ## PUBLIC METHODS ##
          
-   def splittingCondition(self, leaf):
+   def splitting_condition(self, leaf):
       '''User definable conditioning function.'''
       return True
 
-   def splitOnBar(self):
+   def split_on_bar(self):
       from abjad.tools import componenttools
-      leaves = [leaf for leaf in self.leaves if self.splittingCondition(leaf)]
+      leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
       componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
          leaves, [x.duration for x in self.meters], tie_after = True)
-      self._fuseTiedLeavesWithinMeasures( )
+      self._fuse_tied_leaves_within_measures( )

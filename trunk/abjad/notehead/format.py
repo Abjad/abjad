@@ -16,7 +16,7 @@ class _NoteHeadFormatInterface(_FormatInterface):
 #      'tiltedtriangle' : 'fa',   'square' : 'la',        'wedge' : 'ti' }
 #
 #   @property
-#   def _abjadToLilyStyle(self):
+#   def _abjad_to_lily_style(self):
 #      style = self._abjadLilyStyles.get(self.note_head.style)
 #      if style:
 #         return style
@@ -24,7 +24,7 @@ class _NoteHeadFormatInterface(_FormatInterface):
 #         return self.note_head.style
 
    @property
-   def _chordFormat(self):
+   def _chord_format(self):
       result = [ ]
       #for key, value in vars(self.note_head).items( ):
       for key, value in self.note_head._key_value_pairs:
@@ -37,18 +37,18 @@ class _NoteHeadFormatInterface(_FormatInterface):
 #            result.append(r'\tweak %s %s' % (
 #                  self.note_head._parser.format_attribute('style'),
 #                  self.note_head._parser.format_value(
-#                     self._abjadToLilyStyle)))
+#                     self._abjad_to_lily_style)))
 #         else:
 #            result.append(r"\%s" % self.note_head.style)
       return result
 
    @property
-   def _noteFormat(self):
+   def _note_format(self):
       result = [ ]
 #      if self.note_head.style:
 #         if self.note_head.style in self.stylesSupported:
 #            result.append(r"\once \override NoteHead #'style = #'%s" \
-#               % self._abjadToLilyStyle)
+#               % self._abjad_to_lily_style)
 #         else:
 #            result.append(r"\%s" % self.note_head.style)
       return result
@@ -62,9 +62,9 @@ class _NoteHeadFormatInterface(_FormatInterface):
       #client = self.note_head.client
       client = self.note_head._client
       if client and isinstance(client, Chord):
-         result.extend(self._chordFormat)
+         result.extend(self._chord_format)
       else:
-         result.extend(self._noteFormat)
+         result.extend(self._note_format)
       return result
 
    @property

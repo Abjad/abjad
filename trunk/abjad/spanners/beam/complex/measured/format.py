@@ -14,24 +14,24 @@ class _BeamComplexMeasuredFormatInterface(_BeamComplexFormatInterface):
       spanner = self.spanner
       if leaf.beam.beamable:
          if spanner._is_exterior_leaf(leaf):
-            left, right = self._getLeftRightForExteriorLeaf(leaf)
+            left, right = self._get_left_right_for_exterior_leaf(leaf)
          #elif leaf.parentage.first(_Measure) is not None:
          elif componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(leaf, _Measure) is not None:
             measure = componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(leaf, _Measure)
             # leaf at beginning of measure
-            if measure._isOneOfMyFirstLeaves(leaf):
+            if measure._is_one_of_my_first_leaves(leaf):
                assert isinstance(spanner.span, int)
                left = spanner.span
                #right = leaf.duration._flags
                right = durtools.rational_to_flag_count(leaf.duration.written)
             # leaf at end of measure
-            elif measure._isOneOfMyLastLeaves(leaf):
+            elif measure._is_one_of_my_last_leaves(leaf):
                assert isinstance(spanner.span, int)
                #left = leaf.duration._flags
                left = durtools.rational_to_flag_count(leaf.duration.written)
                right = spanner.span
          else:
-            left, right = self._getLeftRightForInteriorLeaf(leaf)
+            left, right = self._get_left_right_for_interior_leaf(leaf)
          if left is not None:
             result.append(r'\set stemLeftBeamCount = #%s' % left)
          if right is not None:

@@ -99,7 +99,7 @@ class _ComponentSpannerAggregator(_Interface):
       result = ''
       leaf = self._client
       locations = ('before', 'left', 'right', 'after')
-      spanners = list(self._spannersInParentage)
+      spanners = list(self._spanners_in_parentage)
       spanners.sort(lambda x, y:
          cmp(x.__class__.__name__, y.__class__.__name__))
       for spanner in spanners:

@@ -25,16 +25,16 @@ def test_meter_interface_self_should_contribute_01( ):
    }
    '''
 
-   assert not notes[0].meter._selfCanContribute
+   assert not notes[0].meter._self_can_contribute
    assert not notes[0].meter._selfShouldContribute
 
-   assert not tuplet.meter._selfCanContribute
+   assert not tuplet.meter._self_can_contribute
    assert not tuplet.meter._selfShouldContribute
 
-   assert measure.meter._selfCanContribute
+   assert measure.meter._self_can_contribute
    assert measure.meter._selfShouldContribute
 
-   assert not staff.meter._selfCanContribute
+   assert not staff.meter._self_can_contribute
    assert not staff.meter._selfShouldContribute
 
 
@@ -50,7 +50,7 @@ def test_meter_interface_self_should_contribute_02( ):
    c'4
    '''
 
-   assert t.meter._selfCanContribute
+   assert t.meter._self_can_contribute
    assert t.meter._selfShouldContribute
 
 
@@ -71,10 +71,10 @@ def test_meter_interface_self_should_contribute_03( ):
    }
    '''
 
-   assert t[0].meter._selfCanContribute
+   assert t[0].meter._self_can_contribute
    assert t[0].meter._selfShouldContribute
 
-   assert not t.meter._selfCanContribute
+   assert not t.meter._self_can_contribute
    assert not t.meter._selfShouldContribute
 
 
@@ -95,8 +95,8 @@ def test_meter_interface_self_should_contribute_04( ):
    }
    '''
 
-   assert not t[0].meter._selfCanContribute
+   assert not t[0].meter._self_can_contribute
    assert not t[0].meter._selfShouldContribute
 
-   assert t.meter._selfCanContribute
+   assert t.meter._self_can_contribute
    assert t.meter._selfShouldContribute

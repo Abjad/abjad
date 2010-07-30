@@ -19,7 +19,7 @@ class BeamComplexDurated(BeamComplex):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _spanPoints(self):
+   def _span_points(self):
       result = [ ]
       if self.durations is not None:
          result.append(self.durations[0])
