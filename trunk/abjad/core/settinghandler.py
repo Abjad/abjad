@@ -14,7 +14,7 @@ class _ContextSettingHandler(_Abjad):
 
    ## PRIVATE METHODS ##
 
-   def _promotedSetting(self, setting):
+   def _promoted_setting(self, setting):
       context = self._promotions.get(setting, None)
       if context is not None:
          return '%s.%s' % (str(context), setting)

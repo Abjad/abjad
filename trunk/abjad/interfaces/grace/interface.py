@@ -12,10 +12,10 @@ class GraceInterface(_Interface):
    
    ## PRIVATE METHODS ##
 
-   def _establishAfter(self):
+   def _establish_after(self):
       self.after._carrier = self._client
 
-   def _establishBefore(self):
+   def _establish_before(self):
       '''Replaced _parent with _carrier because the 
          navigation code assumes that a _parent is a Container 
          and thus has a _music list.
@@ -44,7 +44,7 @@ class GraceInterface(_Interface):
             else:
                raise ValueError('can not set after.')
          self._after.kind = 'after'
-         self._establishAfter( )
+         self._establish_after( )
       return property(**locals( ))
 
    @apply
@@ -67,5 +67,5 @@ class GraceInterface(_Interface):
             self._before.kind = arg
          else:
             raise ValueError('can not set before.')
-         self._establishBefore( )
+         self._establish_before( )
       return property(**locals( ))

@@ -33,7 +33,7 @@ class OffsetProlatedInterface(_Observer):
    @property
    def start(self):
       '''Rational-valued rhythmic start point from beginning of score.'''
-      self._makeSubjectUpdateIfNecessary( )
+      self._make_subject_update_if_necessary( )
       return self._start
 
    @property

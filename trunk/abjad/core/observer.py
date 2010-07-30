@@ -10,7 +10,7 @@ class _Observer(_Interface):
 
    ## PRIVATE METHODS ##
 
-   def _makeSubjectUpdateIfNecessary(self):
+   def _make_subject_update_if_necessary(self):
       try:
          observerSubject = self._client._update
       except AttributeError:

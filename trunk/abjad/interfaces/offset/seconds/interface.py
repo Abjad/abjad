@@ -37,7 +37,7 @@ class _OffsetSecondsInterface(_Observer):
    @property
    def start(self):
       '''Rational-valued rhythmic start point from beginning of score.'''
-      self._makeSubjectUpdateIfNecessary( )
+      self._make_subject_update_if_necessary( )
       if self._client._client.tempo.effective is None:
          raise UndefinedTempoError
       return self._start

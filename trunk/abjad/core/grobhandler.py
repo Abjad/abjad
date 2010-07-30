@@ -32,7 +32,7 @@ class _GrobHandler(_FormatContributor):
 
    ## PRIVATE METHODS ##
 
-   def _promotedGrob(self, attribute):
+   def _promoted_grob(self, attribute):
       context = self._promotions.get(attribute, None)
       if context:
          return '%s.%s' % (str(context), self._grob)
@@ -55,7 +55,7 @@ class _GrobHandler(_FormatContributor):
       return result
 
    @property
-   def _frequencyIndicator(self):
+   def _frequency_indicator(self):
       from abjad.leaf import _Leaf
       if hasattr(self, '_client') and isinstance(self._client, _Leaf):
          return r'\once '
@@ -81,8 +81,8 @@ class _GrobHandler(_FormatContributor):
       for key, value in self._key_value_pairs:
          if not key.startswith('_'):
             result.append(r'%s\override %s %s = %s' % (
-               self._frequencyIndicator,
-               self._promotedGrob(key),
+               self._frequency_indicator,
+               self._promoted_grob(key),
                self._parser.format_attribute(key),
                self._parser.format_value(value)))
       return result
@@ -96,8 +96,8 @@ class _GrobHandler(_FormatContributor):
       for key, value in vars(self).items( ):
          if not key.startswith('_'):
             result.append(r'%s\revert %s %s' % (
-               self._frequencyIndicator,
-               self._promotedGrob(key),
+               self._frequency_indicator,
+               self._promoted_grob(key),
                self._parser.format_attribute(key)))
       return result
 

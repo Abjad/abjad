@@ -14,7 +14,7 @@ class _TagParser(object):
    def _parse(self):
       pass
 
-   def _verifyTag(self):
+   def _verify_tag(self):
       '''Check for nested or incomplete tags.'''
       in_block = False
       error = SyntaxError('Mismatching %s %s tags found.' % \

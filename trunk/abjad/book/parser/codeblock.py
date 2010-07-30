@@ -14,7 +14,7 @@ class _CodeBlock(object):
       self.filterFromOutput = ['LilyPond input']
 
    @property
-   def finalOutputCode(self):
+   def final_output_code(self):
       out = _recover_commented_show_directives(self.postProcessedCode)
       out = _remove_hidden_directives(out)
       out = _remove_lines_starting_with(out, self.filterFromOutput)
@@ -26,7 +26,7 @@ class _CodeBlock(object):
       return out
 
    @property
-   def toProcessCode(self):
+   def to_process_code(self):
       '''Parses pre-processed code and return massaged raw code before 
       processing.'''
 
@@ -62,7 +62,7 @@ class _CodeBlock(object):
 
       return result
 
-   def _collectImages(self):
+   def _collect_images(self):
       for line in self.preProcessedCode:
          if line.startswith('write'):
             self.images.append(_get_image_name(line))

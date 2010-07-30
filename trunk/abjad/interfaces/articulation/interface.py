@@ -17,7 +17,7 @@ class ArticulationInterface(_Interface, _GrobHandler):
    ## OVERLOADS ##
 
    def __contains__(self, expr):
-      expr = self._makeArticulation(expr)
+      expr = self._make_articulation(expr)
       for a in self._articulations:
          if expr == a:
             return True
@@ -45,17 +45,17 @@ class ArticulationInterface(_Interface, _GrobHandler):
             j = len(self) + i
          else:
             j = i
-         expr = self._makeArticulation(expr)
+         expr = self._make_articulation(expr)
          self._articulations[j] = expr 
       # slice
       else:
          assert isinstance(expr, list)
-         expr = [self._makeArticulation(x) for x in expr]
+         expr = [self._make_articulation(x) for x in expr]
          self._articulations[i.start : i.stop] = expr
 
    ## PRIVATE METHODS ##
 
-   def _makeArticulation(self, expr):
+   def _make_articulation(self, expr):
       if isinstance(expr, Articulation):
          return expr
       elif isinstance(expr, (list, tuple)):
@@ -77,22 +77,22 @@ class ArticulationInterface(_Interface, _GrobHandler):
    ## PUBLIC METHODS ##
 
    def append(self, expr):
-      expr = self._makeArticulation(expr)
+      expr = self._make_articulation(expr)
       self._articulations.append(expr)
 
    def extend(self, expr):
-      expr = [self._makeArticulation(x) for x in expr]
+      expr = [self._make_articulation(x) for x in expr]
       self._articulations.extend(expr)
 
    def insert(self, i, expr):
-      expr = self._makeArticulation(expr)
+      expr = self._make_articulation(expr)
       self._articulations.insert(i, expr)
 
    def pop(self, i = -1):
       return self._articulations.pop(i)
       
    def remove(self, expr):
-      expr = self._makeArticulation(expr)
+      expr = self._make_articulation(expr)
       for a in self._articulations:
          if expr == a:
             self._articulations.remove(a)

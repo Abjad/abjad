@@ -13,13 +13,13 @@ class Presentation(object):
 
    ### PRIVATE METHODS ###
 
-   def _printHeader(self):
+   def _print_header(self):
       print "\n\t* * * *    %s    * * * *" % self.title
       print "\n%s" % self.subtitle
       print "\n%s" % self.abstract
       
 
-   def _isExecutable(self, arg):
+   def _is_executable(self, arg):
       kwds = ['for', 'while', 'if', 'else']
       if '=' in arg and not '==' in arg:
          return True
@@ -43,13 +43,13 @@ class Presentation(object):
       for expr in self.setup:
          exec(expr)
       ##
-      self._printHeader( )
+      self._print_header( )
       for i, statement in enumerate(self.statements):
          raw_input('\n\n%d. %s\n' % (i+1, statement.text))
          for expr in statement.code:
             print '   abjad> ' + expr
             if not live:
-               if self._isExecutable(expr):
+               if self._is_executable(expr):
                   exec(expr)
                else:
                   result = eval(expr) 

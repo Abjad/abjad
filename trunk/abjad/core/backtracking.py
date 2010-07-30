@@ -31,7 +31,7 @@ class _BacktrackingInterface(_Abjad):
 
    ## PRIVATE METHODS ##
 
-   ## TODO: _BacktrackingInterface._getEffective( ) needs extension. ##
+   ## TODO: _BacktrackingInterface._get_effective( ) needs extension. ##
    ##       The example below is incorrect and should fix. ##
    
    r'''
@@ -53,7 +53,7 @@ class _BacktrackingInterface(_Abjad):
    }
    '''
 
-   def _getEffective(self):
+   def _get_effective(self):
       '''Works for any interface with 'forced' and 'effective' attributes.
          Most such interfaces are observers.'''
       from abjad.tools import iterate
@@ -106,7 +106,7 @@ class _BacktrackingInterface(_Abjad):
    
    def _update(self):
       '''Update my score-dependent core attributes.'''
-      effective = self._getEffective( )
+      effective = self._get_effective( )
       self._effective = effective
 
    ## PUBLIC ATTRIBUTES ##
@@ -128,7 +128,7 @@ class _BacktrackingInterface(_Abjad):
       if forced is not None:
          return forced
       else:
-         self._makeSubjectUpdateIfNecessary( )
+         self._make_subject_update_if_necessary( )
          return self._effective
 
    @apply

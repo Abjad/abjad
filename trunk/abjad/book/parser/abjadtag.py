@@ -20,7 +20,7 @@ class _AbjadTag(_TagParser):
 
 
    def process(self):
-      self._verifyTag( )
+      self._verify_tag( )
 
       ## create temp directory to work in
       _create_directory('tmp_out')
@@ -32,7 +32,7 @@ class _AbjadTag(_TagParser):
       if self.skipRendering:
          print 'Skipped image rendering by request.'
       else:
-         self._renderImages( )
+         self._render_images( )
       
       ## clean up directories
       os.chdir('..')
@@ -55,9 +55,9 @@ class _AbjadTag(_TagParser):
          codeblock = self._get_next_code_block(input)
          if codeblock:
             self._handle_code_block(codeblock)
-            if codeblock.finalOutputCode:
+            if codeblock.final_output_code:
                self.output.append(self._target_open_tag)
-               self.output.extend(codeblock.finalOutputCode)
+               self.output.extend(codeblock.final_output_code)
                self.output.append(self._target_close_tag)
             if codeblock.images:
                for image in codeblock.images:
@@ -85,21 +85,21 @@ class _AbjadTag(_TagParser):
          return 'hide'
 
    def _handle_code_block(self, codeblock):
-      self._abjad_code.extend(codeblock.toProcessCode)
+      self._abjad_code.extend(codeblock.to_process_code)
       out = _execute_abjad_code(self._abjad_code)
       codeblock.postProcessedCode = _extract_code_block(out)
-      codeblock._collectImages( )
+      codeblock._collect_images( )
 
-   def _renderImages(self):
+   def _render_images(self):
       for file in os.listdir(os.curdir):
          if file.endswith('.ly'):
             print 'Rendering "%s"...' % file
             if 'latex' in self.__class__.__name__.lower( ):
-               self._renderPDFimage(file)
+               self._render_pdf_image(file)
             else:
-               self._renderPNGimage(file)
+               self._render_png_image(file)
 
-   def _renderPDFimage(self, filename):
+   def _render_pdf_image(self, filename):
       file_base = filename.replace('.ly', '')
       p = subprocess.Popen('lilypond  %s' % filename,
          shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
@@ -107,7 +107,7 @@ class _AbjadTag(_TagParser):
       output = 'pdfcrop %s.pdf %s.pdf'
       os.popen(output % (file_base, file_base))
 
-   def _renderPNGimage(self, filename):
+   def _render_png_image(self, filename):
       file_base = filename.replace('.ly', '')
       p = subprocess.Popen('lilypond --png -dresolution=300 %s' % filename,
          shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)

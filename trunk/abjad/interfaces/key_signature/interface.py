@@ -20,7 +20,7 @@ class KeySignatureInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       self._forced = None
       self._suppress = False
 
-   ## TODO: Generalize _selfShouldContribute for both _Clef and _Meter ##
+   ## TODO: Generalize _self_should_contribute for both _Clef and _Meter ##
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -30,12 +30,12 @@ class KeySignatureInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       return not self.suppress and (self.forced or self.change)
 
    @property
-   def _selfShouldContribute(self):
+   def _self_should_contribute(self):
       r'''True when self should contribute LilyPond staff.'''
-      return self._self_can_contribute and not self._parentCanContribute
+      return self._self_can_contribute and not self._parent_can_contribute
 
    @property
-   def _parentCanContribute(self):
+   def _parent_can_contribute(self):
       r'''True when any parent, other than self, can contribute LP \time.'''
       for parent in self._client.parentage.parentage[1:]:
          try:
@@ -55,7 +55,7 @@ class KeySignatureInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    def _opening(self):
       '''Format contributions at container opening or before leaf.'''
       result = [ ]
-      if self._selfShouldContribute:
+      if self._self_should_contribute:
          result.append(self.effective.format)
       return result
 

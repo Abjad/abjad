@@ -15,7 +15,7 @@ class _ComponentSpannerAggregator(_Interface):
       '''Add spanner to _spanners set.'''
       self._spanners.add(spanner)
 
-   def _collectContribution(self, location):
+   def _collect_contribution(self, location):
       '''Return unordered set of format-time contributions for location.'''
       result = set([ ])
       assert isinstance(location, str)
