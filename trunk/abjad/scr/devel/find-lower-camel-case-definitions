@@ -1,0 +1,38 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+import pprint
+import re
+
+
+def _find_lower_camel_case_definitions( ):
+   total_modules_with_lower_camel_case_definitions = 0
+   lower_camel_case_definitions = [ ]
+   lower_camel_case_definition_pattern = re.compile(r'.*def [_]*[a-z]+[A-Z]+.*')
+   for path, subdirectories, files in os.walk(ABJADPATH):
+      for f in files:
+         found_lower_camel_case_definition = False
+         if f.endswith('.py'):
+            full_file_name = os.path.join(path, f)
+            fp = file(full_file_name, 'r')
+            for line in fp:
+               if lower_camel_case_definition_pattern.match(line):
+                  lower_camel_case_definitions.append(line)
+                  if not found_lower_camel_case_definition:
+                     print full_file_name 
+                     found_lower_camel_case_definition = True
+                     total_modules_with_lower_camel_case_definitions += 1
+                  print line.strip( )
+         if found_lower_camel_case_definition:
+            print ''
+   print 'Total modules with lower camel case definitions: %s' % total_modules_with_lower_camel_case_definitions
+   print 'Total lower camel case definitions: %s' % len(lower_camel_case_definitions)
+   print ''
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   print 'Finding lower camel case definitions ...'
+   print ''
+   _find_lower_camel_case_definitions( )
