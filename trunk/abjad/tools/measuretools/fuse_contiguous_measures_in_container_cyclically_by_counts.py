@@ -83,8 +83,8 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
 
    try:
       if not container._update._current:
-         container._update._updateAll( )
-      container._update._forbidUpdate( )
+         container._update._update_all( )
+      container._update._forbid_update( )
       len_parts = len(counts)
       part_index = 0
       cur_measure = iterate.get_next_measure_from_component(container)
@@ -111,4 +111,4 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
             break
          part_index += 1 
    finally:
-      container._update._allowUpdate( )
+      container._update._allow_update( )

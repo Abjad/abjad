@@ -26,11 +26,11 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
 
    ## forbid updates because _Component.splice_left( ) and ##
    ## _Component.splice( ) call self.offset.prolated.stop  ##
-   root._update._forbidUpdate( )
+   root._update._forbid_update( )
 
    for measure in iterate.measures_forward_in_expr(expr):
       if front is not None:
-         start_components = measure._navigator._contemporaneousStartContents
+         start_components = measure._navigator._contemporaneous_start_contents
          start_leaves = [x for x in start_components if isinstance(x, _Leaf)]
          for start_leaf in start_leaves:
             if splice:
@@ -38,7 +38,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
             else:
                start_leaf.extend_left_in_parent([klass.__class__(front)])
       if back is not None:
-         stop_components = measure._navigator._contemporaneousStopContents
+         stop_components = measure._navigator._contemporaneous_stop_contents
          stop_leaves = [x for x in stop_components if isinstance(x, _Leaf)]
          for stop_leaf in stop_leaves:
             if splice:
@@ -47,4 +47,4 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
                stop_leaf.extend_in_parent([klass.__class__(back)])
 
    ## allow updates after all calls to splice( ) are done. ##
-   root._update._allowUpdate( )
+   root._update._allow_update( )

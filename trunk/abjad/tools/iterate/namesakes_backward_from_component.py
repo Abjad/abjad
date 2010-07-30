@@ -66,4 +66,4 @@ def namesakes_backward_from_component(component, start = 0, stop = None):
          else:
             yield cur_component
       total_components += 1
-      cur_component = cur_component._navigator._prevNamesake
+      cur_component = cur_component._navigator._prev_namesake

@@ -17,9 +17,9 @@ class OffsetProlatedInterface(_Observer):
 
    def _update(self):
       '''Update offset values of any one node in score.'''
-      self._updateStart( )
+      self._update_start( )
 
-   def _updateStart(self):
+   def _update_start(self):
       '''Update prolated start from score start.
          Updating stop at same time induces infinite recursion.'''
       prev = self._client._client._navigator._prev

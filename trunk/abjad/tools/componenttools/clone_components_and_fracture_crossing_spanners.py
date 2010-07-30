@@ -109,7 +109,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
    result = copy.deepcopy(components)
 
    for component in result:
-      component._update._markForUpdateToRoot( )
+      component._update._mark_for_update_to_root( )
 
    _restore(receipt)
 

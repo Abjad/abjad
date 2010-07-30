@@ -45,8 +45,8 @@ def get_spanners_that_dominate_components(components):
 #      elif subtree_begin < component.offset.prolated.start:
 #         break
 
-   start_components = first._navigator._contemporaneousStartContents
-   stop_components = set(last._navigator._contemporaneousStopContents)
+   start_components = first._navigator._contemporaneous_start_contents
+   stop_components = set(last._navigator._contemporaneous_stop_contents)
    for component in start_components:
       for spanner in component.spanners.attached:
          if set(spanner[:]) & stop_components != set([ ]):

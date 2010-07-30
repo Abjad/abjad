@@ -8,9 +8,9 @@ def _get_contemporaneous_measure(container, direction):
 
    if isinstance(container, Container):
       if direction == '_next':
-         contents = container._navigator._contemporaneousStartContents
+         contents = container._navigator._contemporaneous_start_contents
       elif direction == '_prev':
-         contents = container._navigator._contemporaneousStopContents
+         contents = container._navigator._contemporaneous_stop_contents
       else:
          raise ValueError("direction must be '_next' or '_prev'.")
       contents = [x for x in contents if isinstance(x, _Measure)]

@@ -6,7 +6,7 @@ def test_navigator_last_leaves_01( ):
    '''Return last leaf from sequential container.'''
 
    t = Voice(macros.scale(4))
-   leaves = t._navigator._lastLeaves
+   leaves = t._navigator._last_leaves
 
    assert len(leaves) == 1
    assert leaves[0] is t[-1]
@@ -18,7 +18,7 @@ def test_navigator_last_leaves_02( ):
    t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    t.parallel = True
    pitchtools.diatonicize(t)
-   leaves = t._navigator._lastLeaves
+   leaves = t._navigator._last_leaves
 
    r'''
    <<
@@ -33,7 +33,7 @@ def test_navigator_last_leaves_02( ):
    >>
    '''
 
-   leaves = t._navigator._lastLeaves
+   leaves = t._navigator._last_leaves
    
    assert len(leaves) == 2
    assert leaves[0] is t[0][-1]
@@ -44,7 +44,7 @@ def test_navigator_last_leaves_03( ):
    '''Return last leaves from empty sequential container.'''
 
    t = Voice([ ])
-   leaves = t._navigator._lastLeaves
+   leaves = t._navigator._last_leaves
 
    assert len(leaves) == 0
 
@@ -54,6 +54,6 @@ def test_navigator_last_leaves_04( ):
 
    t = Container(Voice([ ]) * 2)
    t.parallel = True
-   leaves = t._navigator._lastLeaves
+   leaves = t._navigator._last_leaves
 
    assert len(leaves) == 0

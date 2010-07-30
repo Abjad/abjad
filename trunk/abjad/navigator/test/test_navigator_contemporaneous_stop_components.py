@@ -26,7 +26,7 @@ def test_navigator_contemporaneous_stop_components_01( ):
 
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
-   result = t._navigator._contemporaneousStopComponents
+   result = t._navigator._contemporaneous_stop_components
 
    "[Voice{3}, Container(g'8, a'8), Note(a', 8)]"
 
@@ -35,7 +35,7 @@ def test_navigator_contemporaneous_stop_components_01( ):
    assert t[-1] in result
    assert t[-1][-1] in result
 
-   result = t[-1]._navigator._contemporaneousStopComponents
+   result = t[-1]._navigator._contemporaneous_stop_components
 
    "[Container(g'8, a'8), Note(a', 8), Voice{3}]"
 
@@ -44,7 +44,7 @@ def test_navigator_contemporaneous_stop_components_01( ):
    assert t[-1] in result
    assert t[-1][-1] in result
 
-   result = t[-1][-1]._navigator._contemporaneousStopComponents
+   result = t[-1][-1]._navigator._contemporaneous_stop_components
 
    "[Note(a', 8), Container(g'8, a'8), Voice{3}]"
 
@@ -79,7 +79,7 @@ def test_navigator_contemporaneous_stop_components_01( ):
 #
 #   assert t.format == "\\new Voice {\n\t<<\n\t\t{\n\t\t\tc'8\n\t\t\td'8\n\t\t}\n\t\t{\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n\tg'8\n\ta'8\n}"
 #
-#   result = t._navigator._contemporaneousStopComponents
+#   result = t._navigator._contemporaneous_stop_components
 #
 #   "[Voice{3}, Note(a', 8)]"
 #
@@ -87,7 +87,7 @@ def test_navigator_contemporaneous_stop_components_01( ):
 #   assert t in result
 #   assert t[-1] in result
 #
-#   result = t[0]._navigator._contemporaneousStopComponents
+#   result = t[0]._navigator._contemporaneous_stop_components
 #
 #   "[Container(Container(c'8, d'8), Container(e'8, f'8)), Container(c'8, d'8), Container(e'8, f'8), Note(f', 8), Note(d', 8)]"
 #

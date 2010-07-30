@@ -16,6 +16,6 @@ class _Observer(_Interface):
       except AttributeError:
          ## t.offset.prolated
          observerSubject = self._client._client._update
-      if not observerSubject._currentToRoot:
+      if not observerSubject._current_to_root:
          if getattr(_CFG, 'update', True):
-            observerSubject._updateAll( )
+            observerSubject._update_all( )

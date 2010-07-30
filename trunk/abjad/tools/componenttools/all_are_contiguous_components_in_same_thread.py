@@ -39,7 +39,7 @@ def all_are_contiguous_components_in_same_thread(expr, klasses = (_Component),
       cur_signature = cur.thread.signature
       if not cur_signature == first_signature:
          same_thread = False
-      if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
+      if not prev._navigator._is_immediate_temporal_successor_of(cur):
          strictly_contiguous = False
       if (not allow_orphans or (allow_orphans and not orphan_components)) and \
          (not same_thread or not strictly_contiguous):

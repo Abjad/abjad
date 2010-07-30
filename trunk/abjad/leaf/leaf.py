@@ -91,7 +91,7 @@ class _Leaf(_Component):
    @property
    def next(self):
       '''Read-only reference to next bead in thread.'''
-      return self._navigator._nextBead
+      return self._navigator._next_bead
 
    @property
    def number(self):
@@ -102,7 +102,7 @@ class _Leaf(_Component):
    @property
    def prev(self):
       '''Read-only reference to previous bead in thread.'''
-      return self._navigator._prevBead
+      return self._navigator._prev_bead
 
    @property
    def signature(self):

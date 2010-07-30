@@ -8,7 +8,7 @@ class _UpdateInterface(_Interface):
    UpdateInterface calls ("notifies") all observers to update themselves
    when requested by any observer.
    Observers "pull" the state of the tree from the "subject"
-   (UpdateInterface) and tell it to _updateAll( ) if tree has changed.
+   (UpdateInterface) and tell it to _update_all( ) if tree has changed.
    '''
 
    def __init__(self, client):
@@ -22,7 +22,7 @@ class _UpdateInterface(_Interface):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _currentToRoot(self):
+   def _current_to_root(self):
       '''True if all components in parentage of client are current.'''
       for x in self._client.parentage.parentage:
          if not x._update._current:
@@ -30,7 +30,7 @@ class _UpdateInterface(_Interface):
       return True
 
    @property
-   def _allowToRoot(self):
+   def _allow_to_root(self):
       '''True is all components in parent of client currently allow update.'''
       for x in self._client.parentage.parentage:
          if not x._update._allow:
@@ -39,22 +39,22 @@ class _UpdateInterface(_Interface):
       
    ## PRIVATE METHODS ## 
 
-   def _allowUpdate(self):
+   def _allow_update(self):
       '''Allow update again after having previously forbidden update.'''
       self._allow = True
 
-   def _forbidUpdate(self):
+   def _forbid_update(self):
       '''Forbid update until later explicitly allowing update again.'''
       self._allow = False
 
-   def _markForUpdateToRoot(self):
+   def _mark_for_update_to_root(self):
       '''Mark all components in parentage of client as needing update.'''
       for x in self._client.parentage.parentage:
          x._update._current = False
 
-   def _updateAll(self):
+   def _update_all(self):
       '''Iterate score and call each observer update on each score node.'''
-      if self._allowToRoot:
+      if self._allow_to_root:
          score = self._client.parentage.root._navigator._DFS( )
          for node in score:
             for observer in node._update._observers:

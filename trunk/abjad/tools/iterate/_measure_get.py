@@ -40,9 +40,9 @@ def _measure_get(component, direction):
       raise MissingMeasureError
    elif isinstance(component, _Measure):
       if direction == '_next':
-         return component._navigator._nextNamesake
+         return component._navigator._next_namesake
       elif direction == '_prev':
-         return component._navigator._prevNamesake
+         return component._navigator._prev_namesake
       else:
          raise ValueError('direction must be _next or _prev.')
    elif isinstance(component, Container):

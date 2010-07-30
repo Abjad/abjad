@@ -1,49 +1,49 @@
 from abjad import *
 from abjad.component.component import _Component
 
-## nextNamesake ##
+## next_namesake ##
 
 def test_navigator_namesake_01( ):
    '''Leaves within different anonymous parents have different  
-   parentage signatures and thus have no _nextNamesake.'''
+   parentage signatures and thus have no _next_namesake.'''
    t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
 
-   assert t.leaves[0]._navigator._nextNamesake is t.leaves[1]
-   assert t.leaves[1]._navigator._nextNamesake is None
-   assert t.leaves[2]._navigator._nextNamesake is t.leaves[3]
+   assert t.leaves[0]._navigator._next_namesake is t.leaves[1]
+   assert t.leaves[1]._navigator._next_namesake is None
+   assert t.leaves[2]._navigator._next_namesake is t.leaves[3]
 
 
 def test_navigator_namesake_02( ):
    '''Anonymous containers with the same parentage structure have  
-   different parentage signatures and thus have no _nextNamesake.'''
+   different parentage signatures and thus have no _next_namesake.'''
    t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
 
-   assert t[0]._navigator._nextNamesake is None
+   assert t[0]._navigator._next_namesake is None
 
 
 def test_navigator_namesake_03( ):
    '''Differently named containers have a different parentage signature
-   and thus do not _nextNamesake.'''
+   and thus do not _next_namesake.'''
    t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    t[0].name = 'voice'
 
-   assert t[0]._navigator._nextNamesake is None
-   assert t.leaves[0]._navigator._nextNamesake is t.leaves[1]
-   assert t.leaves[1]._navigator._nextNamesake is None
-   assert t.leaves[2]._navigator._nextNamesake is t.leaves[3]
+   assert t[0]._navigator._next_namesake is None
+   assert t.leaves[0]._navigator._next_namesake is t.leaves[1]
+   assert t.leaves[1]._navigator._next_namesake is None
+   assert t.leaves[2]._navigator._next_namesake is t.leaves[3]
 
 
 def test_navigator_namesake_04( ):
-   '''Calling _nextNamesake on a named component when another component
+   '''Calling _next_namesake on a named component when another component
    with the same type and name exists after the caller returns the first
    next namesake Component found.'''
    t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    t[0].name = 'voice'
    t[1].name = 'voice'
 
-   assert t[0]._navigator._nextNamesake is t[1]
-   assert t[1]._navigator._nextNamesake is None
-   assert t.leaves[1]._navigator._nextNamesake is t.leaves[2]
+   assert t[0]._navigator._next_namesake is t[1]
+   assert t[1]._navigator._next_namesake is None
+   assert t.leaves[1]._navigator._next_namesake is t.leaves[2]
 
 
 def test_navigator_namesake_05( ):
@@ -53,8 +53,8 @@ def test_navigator_namesake_05( ):
    t[1].name = 'voice'
    t.insert(1, Rest((1, 2)))
 
-   assert t[0]._navigator._nextNamesake is t[2]
-   assert t.leaves[1]._navigator._nextNamesake is t.leaves[3]
+   assert t[0]._navigator._next_namesake is t[2]
+   assert t.leaves[1]._navigator._next_namesake is t.leaves[3]
 
 
 
@@ -63,12 +63,12 @@ def test_navigator_namesake_06( ):
    t = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
    t[0].name = 'staff'
    t[1].name = 'staff'
-   assert t[0]._navigator._nextNamesake is t[1]
-   assert t.leaves[1]._navigator._nextNamesake is t.leaves[2]
+   assert t[0]._navigator._next_namesake is t[1]
+   assert t.leaves[1]._navigator._next_namesake is t.leaves[2]
 
 
 def test_navigator_namesake_07( ):
-   '''_nextNamesake works on parallel structures.'''
+   '''_next_namesake works on parallel structures.'''
    a = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    a[0].name = 'voiceOne'
    a[1].name = 'voiceTwo'
@@ -104,9 +104,9 @@ def test_navigator_namesake_07( ):
    }
    '''
 
-   assert a[0]._navigator._nextNamesake is b[0]
-   assert a[1]._navigator._nextNamesake is b[1]
-   assert a[0][1]._navigator._nextNamesake is b[0][0]
-   assert a[1][1]._navigator._nextNamesake is b[1][0]
+   assert a[0]._navigator._next_namesake is b[0]
+   assert a[1]._navigator._next_namesake is b[1]
+   assert a[0][1]._navigator._next_namesake is b[0][0]
+   assert a[1][1]._navigator._next_namesake is b[1][0]
 
 

@@ -7,9 +7,9 @@ def test_navigator_is_threadable_01( ):
 
    t = Voice(macros.scale(4))
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[2])
-   assert t[2]._navigator._isThreadable(t[3])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[1]._navigator._is_threadable(t[2])
+   assert t[2]._navigator._is_threadable(t[3])
 
    r'''
    \new Voice {
@@ -26,9 +26,9 @@ def test_navigator_is_threadable_02( ):
 
    t = Staff(macros.scale(4))
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[2])
-   assert t[2]._navigator._isThreadable(t[3])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[1]._navigator._is_threadable(t[2])
+   assert t[2]._navigator._is_threadable(t[3])
 
    r'''
    \new Staff {
@@ -45,9 +45,9 @@ def test_navigator_is_threadable_03( ):
 
    t = Container(macros.scale(4))
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[2])
-   assert t[2]._navigator._isThreadable(t[3])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[1]._navigator._is_threadable(t[2])
+   assert t[2]._navigator._is_threadable(t[3])
 
    r'''
    {
@@ -79,9 +79,9 @@ def test_navigator_is_threadable_03( ):
 #   t = Container(macros.scale(4))
 #   t.parallel = True
 #
-#   assert not t[0]._navigator._isThreadable(t[1])
-#   assert not t[1]._navigator._isThreadable(t[2])
-#   assert not t[2]._navigator._isThreadable(t[3])
+#   assert not t[0]._navigator._is_threadable(t[1])
+#   assert not t[1]._navigator._is_threadable(t[2])
+#   assert not t[2]._navigator._is_threadable(t[3])
 #
 #   r'''<<
 #      c'8
@@ -101,9 +101,9 @@ def test_navigator_is_threadable_03( ):
 #   t.parallel = True
 #   v = Voice([t])
 #
-#   assert t[0]._navigator._isThreadable(t[1])
-#   assert t[1]._navigator._isThreadable(t[2])
-#   assert t[2]._navigator._isThreadable(t[3])
+#   assert t[0]._navigator._is_threadable(t[1])
+#   assert t[1]._navigator._is_threadable(t[2])
+#   assert t[2]._navigator._is_threadable(t[3])
 #
 #   r'''\new Voice {
 #            <<
@@ -120,11 +120,11 @@ def test_navigator_is_threadable_06( ):
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[0])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[1]._navigator._is_threadable(t[0])
 
-   assert t[1]._navigator._isThreadable(t[2])
-   assert t[2]._navigator._isThreadable(t[1])
+   assert t[1]._navigator._is_threadable(t[2])
+   assert t[2]._navigator._is_threadable(t[1])
 
    r'''
    \times 2/3 {
@@ -158,17 +158,17 @@ def test_navigator_is_threadable_07( ):
    }
    '''
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[0])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[1]._navigator._is_threadable(t[0])
 
-   assert t[0]._navigator._isThreadable(t[1][0])
-   assert t[0]._navigator._isThreadable(t[1][1])
-   assert t[0]._navigator._isThreadable(t[1][2])
-   assert t[0]._navigator._isThreadable(t[1][3])
-   assert t[1]._navigator._isThreadable(t[0][0])
-   assert t[1]._navigator._isThreadable(t[0][1])
-   assert t[1]._navigator._isThreadable(t[0][2])
-   assert t[1]._navigator._isThreadable(t[0][3])
+   assert t[0]._navigator._is_threadable(t[1][0])
+   assert t[0]._navigator._is_threadable(t[1][1])
+   assert t[0]._navigator._is_threadable(t[1][2])
+   assert t[0]._navigator._is_threadable(t[1][3])
+   assert t[1]._navigator._is_threadable(t[0][0])
+   assert t[1]._navigator._is_threadable(t[0][1])
+   assert t[1]._navigator._is_threadable(t[0][2])
+   assert t[1]._navigator._is_threadable(t[0][3])
 
 
 def test_navigator_is_threadable_08( ):
@@ -178,15 +178,15 @@ def test_navigator_is_threadable_08( ):
    t2 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3, 6)])
    t = Voice([t1, t2])
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[0])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[1]._navigator._is_threadable(t[0])
 
-   assert t[0]._navigator._isThreadable(t[1][0])
-   assert t[0]._navigator._isThreadable(t[1][1])
-   assert t[0]._navigator._isThreadable(t[1][2])
-   assert t[1]._navigator._isThreadable(t[0][0])
-   assert t[1]._navigator._isThreadable(t[0][1])
-   assert t[1]._navigator._isThreadable(t[0][2])
+   assert t[0]._navigator._is_threadable(t[1][0])
+   assert t[0]._navigator._is_threadable(t[1][1])
+   assert t[0]._navigator._is_threadable(t[1][2])
+   assert t[1]._navigator._is_threadable(t[0][0])
+   assert t[1]._navigator._is_threadable(t[0][1])
+   assert t[1]._navigator._is_threadable(t[0][2])
 
    r'''
    \new Voice {
@@ -211,18 +211,18 @@ def test_navigator_is_threadable_09( ):
    v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
    t = Staff([v1, v2])
 
-   assert not t[0]._navigator._isThreadable(t[1])
-   assert not t[1]._navigator._isThreadable(t[0])
-   assert not t[0][0]._navigator._isThreadable(t[1][0])
-   assert not t[1][0]._navigator._isThreadable(t[0][-1])
+   assert not t[0]._navigator._is_threadable(t[1])
+   assert not t[1]._navigator._is_threadable(t[0])
+   assert not t[0][0]._navigator._is_threadable(t[1][0])
+   assert not t[1][0]._navigator._is_threadable(t[0][-1])
 
-   assert v1[0]._navigator._isThreadable(v1[1])
-   assert v1[1]._navigator._isThreadable(v1[2])
-   assert v1[2]._navigator._isThreadable(v1[3])
+   assert v1[0]._navigator._is_threadable(v1[1])
+   assert v1[1]._navigator._is_threadable(v1[2])
+   assert v1[2]._navigator._is_threadable(v1[3])
 
-   assert v2[0]._navigator._isThreadable(v2[1])
-   assert v2[1]._navigator._isThreadable(v2[2])
-   assert v2[2]._navigator._isThreadable(v2[3])
+   assert v2[0]._navigator._is_threadable(v2[1])
+   assert v2[1]._navigator._is_threadable(v2[2])
+   assert v2[2]._navigator._is_threadable(v2[3])
 
    r'''
    \new Staff {
@@ -251,17 +251,17 @@ def test_navigator_is_threadable_10( ):
    v2.name = 'foo'
    t = Staff([v1, v2])
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[0])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[1]._navigator._is_threadable(t[0])
 
-   assert t[0]._navigator._isThreadable(t[1][0])
-   assert t[0]._navigator._isThreadable(t[1][1])
-   assert t[0]._navigator._isThreadable(t[1][2])
-   assert t[0]._navigator._isThreadable(t[1][3])
-   assert t[1]._navigator._isThreadable(t[0][0])
-   assert t[1]._navigator._isThreadable(t[0][1])
-   assert t[1]._navigator._isThreadable(t[0][2])
-   assert t[1]._navigator._isThreadable(t[0][3])
+   assert t[0]._navigator._is_threadable(t[1][0])
+   assert t[0]._navigator._is_threadable(t[1][1])
+   assert t[0]._navigator._is_threadable(t[1][2])
+   assert t[0]._navigator._is_threadable(t[1][3])
+   assert t[1]._navigator._is_threadable(t[0][0])
+   assert t[1]._navigator._is_threadable(t[0][1])
+   assert t[1]._navigator._is_threadable(t[0][2])
+   assert t[1]._navigator._is_threadable(t[0][3])
 
    r'''
    \new Staff {
@@ -290,8 +290,8 @@ def test_navigator_is_threadable_11( ):
    v2.name = 'bar'
    t = Staff([v1, v2])
 
-   assert not t[0]._navigator._isThreadable(t[1])
-   assert not t[1]._navigator._isThreadable(t[0])
+   assert not t[0]._navigator._is_threadable(t[1])
+   assert not t[1]._navigator._is_threadable(t[0])
 
    r'''
    \new Staff {
@@ -320,16 +320,16 @@ def test_navigator_is_threadable_12( ):
    s2 = Staff([v2])
    seq = Container([s1, s2])
    
-   assert not seq[0]._navigator._isThreadable(seq[1])
-   assert not seq[1]._navigator._isThreadable(seq[0])
+   assert not seq[0]._navigator._is_threadable(seq[1])
+   assert not seq[1]._navigator._is_threadable(seq[0])
 
-   assert not seq[0][0]._navigator._isThreadable(seq[1][0])
-   assert not seq[1][0]._navigator._isThreadable(seq[0][0])
+   assert not seq[0][0]._navigator._is_threadable(seq[1][0])
+   assert not seq[1][0]._navigator._is_threadable(seq[0][0])
 
-   assert not seq[0]._navigator._isThreadable(seq[0][0])
-   assert not seq[0]._navigator._isThreadable(seq[1][0])
-   assert not seq[1]._navigator._isThreadable(seq[0][0])
-   assert not seq[1]._navigator._isThreadable(seq[1][0])
+   assert not seq[0]._navigator._is_threadable(seq[0][0])
+   assert not seq[0]._navigator._is_threadable(seq[1][0])
+   assert not seq[1]._navigator._is_threadable(seq[0][0])
+   assert not seq[1]._navigator._is_threadable(seq[1][0])
 
    r'''
    {
@@ -366,35 +366,35 @@ def test_navigator_is_threadable_13( ):
    s2.parallel = True
    seq = Container([s1, s2])
 
-   assert not seq[0]._navigator._isThreadable(seq[1])
-   assert not seq[0]._navigator._isThreadable(seq[1][0])
-   assert not seq[0]._navigator._isThreadable(seq[1][0][0])
-   assert not seq[0]._navigator._isThreadable(seq[1][1])
-   assert not seq[0]._navigator._isThreadable(seq[1][1][0])
+   assert not seq[0]._navigator._is_threadable(seq[1])
+   assert not seq[0]._navigator._is_threadable(seq[1][0])
+   assert not seq[0]._navigator._is_threadable(seq[1][0][0])
+   assert not seq[0]._navigator._is_threadable(seq[1][1])
+   assert not seq[0]._navigator._is_threadable(seq[1][1][0])
 
-   assert not seq[0][0]._navigator._isThreadable(seq[1])
-   assert not seq[0][0]._navigator._isThreadable(seq[1][0])
-   assert not seq[0][0]._navigator._isThreadable(seq[1][0][0])
-   assert not seq[0][0]._navigator._isThreadable(seq[1][1])
-   assert not seq[0][0]._navigator._isThreadable(seq[1][1][0])
+   assert not seq[0][0]._navigator._is_threadable(seq[1])
+   assert not seq[0][0]._navigator._is_threadable(seq[1][0])
+   assert not seq[0][0]._navigator._is_threadable(seq[1][0][0])
+   assert not seq[0][0]._navigator._is_threadable(seq[1][1])
+   assert not seq[0][0]._navigator._is_threadable(seq[1][1][0])
 
-   assert not seq[0][0][-1]._navigator._isThreadable(seq[1])
-   assert not seq[0][0][-1]._navigator._isThreadable(seq[1][0])
-   assert not seq[0][0][-1]._navigator._isThreadable(seq[1][0][0])
-   assert not seq[0][0][-1]._navigator._isThreadable(seq[1][1])
-   assert not seq[0][0][-1]._navigator._isThreadable(seq[1][1][0])
+   assert not seq[0][0][-1]._navigator._is_threadable(seq[1])
+   assert not seq[0][0][-1]._navigator._is_threadable(seq[1][0])
+   assert not seq[0][0][-1]._navigator._is_threadable(seq[1][0][0])
+   assert not seq[0][0][-1]._navigator._is_threadable(seq[1][1])
+   assert not seq[0][0][-1]._navigator._is_threadable(seq[1][1][0])
 
-   assert not seq[0][1]._navigator._isThreadable(seq[1])
-   assert not seq[0][1]._navigator._isThreadable(seq[1][0])
-   assert not seq[0][1]._navigator._isThreadable(seq[1][0][0])
-   assert not seq[0][1]._navigator._isThreadable(seq[1][1])
-   assert not seq[0][1]._navigator._isThreadable(seq[1][1][0])
+   assert not seq[0][1]._navigator._is_threadable(seq[1])
+   assert not seq[0][1]._navigator._is_threadable(seq[1][0])
+   assert not seq[0][1]._navigator._is_threadable(seq[1][0][0])
+   assert not seq[0][1]._navigator._is_threadable(seq[1][1])
+   assert not seq[0][1]._navigator._is_threadable(seq[1][1][0])
 
-   assert not seq[0][1][-1]._navigator._isThreadable(seq[1])
-   assert not seq[0][1][-1]._navigator._isThreadable(seq[1][0])
-   assert not seq[0][1][-1]._navigator._isThreadable(seq[1][0][0])
-   assert not seq[0][1][-1]._navigator._isThreadable(seq[1][1])
-   assert not seq[0][1][-1]._navigator._isThreadable(seq[1][1][0])
+   assert not seq[0][1][-1]._navigator._is_threadable(seq[1])
+   assert not seq[0][1][-1]._navigator._is_threadable(seq[1][0])
+   assert not seq[0][1][-1]._navigator._is_threadable(seq[1][0][0])
+   assert not seq[0][1][-1]._navigator._is_threadable(seq[1][1])
+   assert not seq[0][1][-1]._navigator._is_threadable(seq[1][1][0])
 
    r'''
    {
@@ -460,17 +460,17 @@ def test_navigator_is_threadable_14( ):
    }
    '''
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[0]._navigator._isThreadable(t[1][0])
-   assert t[0]._navigator._isThreadable(t[1][0][0])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[0]._navigator._is_threadable(t[1][0])
+   assert t[0]._navigator._is_threadable(t[1][0][0])
    
-   assert t[0][0]._navigator._isThreadable(t[1])
-   assert t[0][0]._navigator._isThreadable(t[1][0])
-   assert t[0][0]._navigator._isThreadable(t[1][0][0])
+   assert t[0][0]._navigator._is_threadable(t[1])
+   assert t[0][0]._navigator._is_threadable(t[1][0])
+   assert t[0][0]._navigator._is_threadable(t[1][0][0])
    
-   assert t[0][0][-1]._navigator._isThreadable(t[1])
-   assert t[0][0][-1]._navigator._isThreadable(t[1][0])
-   assert t[0][0][-1]._navigator._isThreadable(t[1][0][0])
+   assert t[0][0][-1]._navigator._is_threadable(t[1])
+   assert t[0][0][-1]._navigator._is_threadable(t[1][0])
+   assert t[0][0][-1]._navigator._is_threadable(t[1][0][0])
 
 
 def test_navigator_is_threadable_15( ):
@@ -489,8 +489,8 @@ def test_navigator_is_threadable_15( ):
    }
    '''
 
-   assert not t[0]._navigator._isThreadable(t[1])
-   assert not t[1]._navigator._isThreadable(t[0])
+   assert not t[0]._navigator._is_threadable(t[1])
+   assert not t[1]._navigator._is_threadable(t[0])
 
 
 def test_navigator_is_threadable_16( ):
@@ -526,10 +526,10 @@ def test_navigator_is_threadable_16( ):
 
    leaves = t.leaves
 
-   assert leaves[0]._navigator._isThreadable(leaves[1])
-   assert leaves[4]._navigator._isThreadable(leaves[7])
-   assert not leaves[0]._navigator._isThreadable(leaves[4])
-   assert not leaves[4]._navigator._isThreadable(leaves[0])
+   assert leaves[0]._navigator._is_threadable(leaves[1])
+   assert leaves[4]._navigator._is_threadable(leaves[7])
+   assert not leaves[0]._navigator._is_threadable(leaves[4])
+   assert not leaves[4]._navigator._is_threadable(leaves[0])
 
 
 def test_navigator_is_threadable_17( ):
@@ -564,11 +564,11 @@ def test_navigator_is_threadable_17( ):
 
    leaves = t.leaves
 
-   assert leaves[0]._navigator._isThreadable(leaves[1])
-   assert not leaves[0]._navigator._isThreadable(leaves[4])
+   assert leaves[0]._navigator._is_threadable(leaves[1])
+   assert not leaves[0]._navigator._is_threadable(leaves[4])
 
-   assert not leaves[4]._navigator._isThreadable(leaves[0])
-   assert leaves[4]._navigator._isThreadable(leaves[7])
+   assert not leaves[4]._navigator._is_threadable(leaves[0])
+   assert leaves[4]._navigator._is_threadable(leaves[7])
 
 
 def test_navigator_is_threadable_18( ):
@@ -596,11 +596,11 @@ def test_navigator_is_threadable_18( ):
    }
    '''
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[0])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert t[1]._navigator._is_threadable(t[0])
 
-   assert t[0][0]._navigator._isThreadable(t[1][0])
-   assert t[1][0]._navigator._isThreadable(t[0][1])
+   assert t[0][0]._navigator._is_threadable(t[1][0])
+   assert t[1][0]._navigator._is_threadable(t[0][1])
 
 
 def test_navigator_is_threadable_19( ):
@@ -624,13 +624,13 @@ def test_navigator_is_threadable_19( ):
    }
    '''
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert not t[0]._navigator._isThreadable(t[2][0])
-   assert t[0]._navigator._isThreadable(t[3])
+   assert t[0]._navigator._is_threadable(t[1])
+   assert not t[0]._navigator._is_threadable(t[2][0])
+   assert t[0]._navigator._is_threadable(t[3])
 
-   assert not t[2][0]._navigator._isThreadable(t[0])
-   assert t[2][0]._navigator._isThreadable(t[2][1])
-   assert not t[2][0]._navigator._isThreadable(t[3])
+   assert not t[2][0]._navigator._is_threadable(t[0])
+   assert t[2][0]._navigator._is_threadable(t[2][1])
+   assert not t[2][0]._navigator._is_threadable(t[3])
 
 
 def test_navigator_is_threadable_20( ):
@@ -658,9 +658,9 @@ def test_navigator_is_threadable_20( ):
              }
      }
    '''
-   assert v1._navigator._isThreadable(v2)
+   assert v1._navigator._is_threadable(v2)
    for n1, n2 in zip(t.leaves[0:-1], t.leaves[1:]):
-      assert n1._navigator._isThreadable(n2)
+      assert n1._navigator._is_threadable(n2)
 
 
 def test_navigator_is_threadable_21( ):
@@ -695,9 +695,9 @@ def test_navigator_is_threadable_21( ):
    }
    '''
 
-   assert v1._navigator._isThreadable(v2)
+   assert v1._navigator._is_threadable(v2)
    for n1, n2 in zip(t.leaves[0:-1], t.leaves[1:]):
-      assert n1._navigator._isThreadable(n2)
+      assert n1._navigator._is_threadable(n2)
 
 
 def test_navigator_is_threadable_22( ):
@@ -735,8 +735,8 @@ def test_navigator_is_threadable_22( ):
    }
    '''
 
-   assert not v1._navigator._isThreadable(v2)
-   assert not s1._navigator._isThreadable(s2)
+   assert not v1._navigator._is_threadable(v2)
+   assert not s1._navigator._is_threadable(s2)
 
 
 def test_navigator_is_threadable_23( ):
@@ -754,7 +754,7 @@ def test_navigator_is_threadable_23( ):
    }
    '''
 
-   assert t[0]._navigator._isThreadable(t[1])
+   assert t[0]._navigator._is_threadable(t[1])
 
 
 def test_navigator_is_threadable_24( ):
@@ -764,8 +764,8 @@ def test_navigator_is_threadable_24( ):
    t = Container(Container(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.chromaticize(t)
 
-   assert t[0][-1]._navigator._isThreadable(t[1][0])
-   assert t[1][0]._navigator._isThreadable(t[0][-1])
+   assert t[0][-1]._navigator._is_threadable(t[1][0])
+   assert t[1][0]._navigator._is_threadable(t[0][-1])
 
    r'''
    {
@@ -791,8 +791,8 @@ def test_navigator_is_threadable_25( ):
    t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.chromaticize(t)
 
-   assert not t[0][-1]._navigator._isThreadable(t[1][0])
-   assert not t[1][0]._navigator._isThreadable(t[0][-1])
+   assert not t[0][-1]._navigator._is_threadable(t[1][0])
+   assert not t[1][0]._navigator._is_threadable(t[0][-1])
 
    r'''
    {
@@ -819,14 +819,14 @@ def test_navigator_is_threadable_26( ):
    t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
    pitchtools.chromaticize(t)
    
-   assert not t[0][0][-1]._navigator._isThreadable(t[1][0][0])
-   assert not t[1][0][0]._navigator._isThreadable(t[0][0][-1])
+   assert not t[0][0][-1]._navigator._is_threadable(t[1][0][0])
+   assert not t[1][0][0]._navigator._is_threadable(t[0][0][-1])
 
-   assert not t[0][0]._navigator._isThreadable(t[1][0])
-   assert not t[1][0]._navigator._isThreadable(t[0][0])
+   assert not t[0][0]._navigator._is_threadable(t[1][0])
+   assert not t[1][0]._navigator._is_threadable(t[0][0])
 
-   assert not t[0]._navigator._isThreadable(t[1])
-   assert t[0]._navigator._isThreadable(t[0])
+   assert not t[0]._navigator._is_threadable(t[1])
+   assert t[0]._navigator._is_threadable(t[0])
 
    r'''
    {

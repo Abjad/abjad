@@ -18,9 +18,9 @@ class _OffsetSecondsInterface(_Observer):
 
    def _update(self):
       '''Update offset values of any one node in score.'''
-      self._updateStart( )
+      self._update_start( )
 
-   def _updateStart(self):
+   def _update_start(self):
       '''Update prolated start from score start.
          Updating prolated stop here induces infinite recursion.'''
       prev = self._client._client._navigator._prev

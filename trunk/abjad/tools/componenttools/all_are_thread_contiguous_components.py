@@ -62,7 +62,7 @@ def all_are_thread_contiguous_components(expr, klasses = (_Component), allow_orp
          orphan_components = False
       if not cur.thread.signature == first_thread:
          same_thread = False
-      if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
+      if not prev._navigator._is_immediate_temporal_successor_of(cur):
          if not _are_thread_proper(prev, cur):
             thread_proper = False
       if (not allow_orphans or (allow_orphans and not orphan_components)) and \

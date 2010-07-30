@@ -40,7 +40,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses = (_Component, ),
          orphan_components = False
       if not cur.parentage.parent is first_parent:
          same_parent = False
-      if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
+      if not prev._navigator._is_immediate_temporal_successor_of(cur):
          strictly_contiguous = False
       if (not allow_orphans or (allow_orphans and not orphan_components)) and \
          (not same_parent or not strictly_contiguous):

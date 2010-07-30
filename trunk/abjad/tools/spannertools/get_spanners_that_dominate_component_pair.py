@@ -25,7 +25,7 @@ def get_spanners_that_dominate_component_pair(left, right):
    assert componenttools.all_are_thread_contiguous_components([left, right])
 
    dominant_spanners = left.spanners.contained & right.spanners.contained
-   components_after_gap = right._navigator._contemporaneousStartComponents
+   components_after_gap = right._navigator._contemporaneous_start_components
    
    receipt = set([ ])
    for spanner in dominant_spanners:

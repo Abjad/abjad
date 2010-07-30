@@ -185,10 +185,10 @@ class Container(_Component):
          self.parentage._switch(parent)
 
    def _is_one_of_my_first_leaves(self, leaf):
-      return leaf in self._navigator._contemporaneousStartContents
+      return leaf in self._navigator._contemporaneous_start_contents
 
    def _is_one_of_my_last_leaves(self, leaf):
-      return leaf in self._navigator._contemporaneousStopContents
+      return leaf in self._navigator._contemporaneous_stop_contents
 
    ## PUBLIC METHODS ## 
 

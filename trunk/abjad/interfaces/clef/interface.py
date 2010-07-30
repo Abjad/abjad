@@ -45,7 +45,7 @@ class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
          try:
             if parent.clef._self_can_contribute:
                if self._client in \
-                  parent._navigator._contemporaneousStartComponents:
+                  parent._navigator._contemporaneous_start_components:
                   return True
          except AttributeError:
             pass

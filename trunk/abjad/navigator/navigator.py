@@ -10,18 +10,18 @@ class _Navigator(_Abjad):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _contemporaneousStartComponents(self):
+   def _contemporaneous_start_components(self):
       '''Return a list of all components in either the contents or
       parentage of client starting at the same moment as client,
       including client.
       '''
       result = [ ]
-      result.extend(self._contemporaneousStartContents)
-      result.extend(self._contemporaneousStartParentage)
+      result.extend(self._contemporaneous_start_contents)
+      result.extend(self._contemporaneous_start_parentage)
       return list(set(result))
    
    @property
-   def _contemporaneousStartContents(self):
+   def _contemporaneous_start_contents(self):
       '''Return a list of all components in the contents of client
       starting at the same moment as client, including client.
       '''
@@ -32,14 +32,14 @@ class _Navigator(_Abjad):
       if isinstance(client, Container):
          if client.parallel:
             for x in client:
-               result.extend(x._navigator._contemporaneousStartContents)
+               result.extend(x._navigator._contemporaneous_start_contents)
          #elif len(client) > 0:
          elif len(client):
-            result.extend(client[0]._navigator._contemporaneousStartContents)
+            result.extend(client[0]._navigator._contemporaneous_start_contents)
       return result
 
    @property
-   def _contemporaneousStartParentage(self):
+   def _contemporaneous_start_parentage(self):
       '''Return a list of all components in the parentage of client
          starting at the same moment as client, including client.'''
       client = self._client
@@ -54,17 +54,17 @@ class _Navigator(_Abjad):
       return result
 
    @property
-   def _contemporaneousStopComponents(self):
+   def _contemporaneous_stop_components(self):
       '''Return a list of all components in either the contents or
          parentage of client stopping at the same moment as client,
          including client.'''
       result = [ ]
-      result.extend(self._contemporaneousStopContents)
-      result.extend(self._contemporaneousStopParentage)
+      result.extend(self._contemporaneous_stop_contents)
+      result.extend(self._contemporaneous_stop_parentage)
       return list(set(result))
    
    @property
-   def _contemporaneousStopContents(self):
+   def _contemporaneous_stop_contents(self):
       '''Return a list of all components in the contents of client
          stopping at the same moment as client, including client.'''
       from abjad.container import Container
@@ -76,14 +76,14 @@ class _Navigator(_Abjad):
             client_duration = client.duration.preprolated
             for x in client:
                if x.duration.preprolated == client_duration:
-                  result.extend(x._navigator._contemporaneousStopContents)
+                  result.extend(x._navigator._contemporaneous_stop_contents)
          #elif len(client) > 0:
          elif len(client):
-            result.extend(client[-1]._navigator._contemporaneousStopContents)
+            result.extend(client[-1]._navigator._contemporaneous_stop_contents)
       return result
 
    @property
-   def _contemporaneousStopParentage(self):
+   def _contemporaneous_stop_parentage(self):
       '''Return a list of all components in the parentage of client
          stopping at the same moment as client, including client.'''
       client = self._client
@@ -102,7 +102,7 @@ class _Navigator(_Abjad):
 
 
    @property
-   def _firstLeaves(self):
+   def _first_leaves(self):
       '''Returns the first (leftmost) leaf or leaves 
          (in case there's a parallel structure) in a tree.'''
       from abjad.container import Container
@@ -114,16 +114,16 @@ class _Navigator(_Abjad):
          leaves = [ ]
          if self._client.parallel:
             for e in self._client:
-               leaves.extend(e._navigator._firstLeaves)
+               leaves.extend(e._navigator._first_leaves)
          #elif len(self._client) > 0:
          elif len(self._client):
-            leaves.extend(self._client[0]._navigator._firstLeaves)
+            leaves.extend(self._client[0]._navigator._first_leaves)
          else:
             return [ ]
          return leaves
    
    @property
-   def _lastLeaves(self):
+   def _last_leaves(self):
       '''Returns the last (rightmost) leaf or leaves
          (in case there's a parallel structure) in a tree.'''
       from abjad.container import Container
@@ -135,10 +135,10 @@ class _Navigator(_Abjad):
          leaves = [ ]
          if self._client.parallel:
             for e in self._client:
-               leaves.extend(e._navigator._lastLeaves)
+               leaves.extend(e._navigator._last_leaves)
          #elif len(self._client) > 0:
          elif len(self._client):
-            leaves.extend(self._client[-1]._navigator._lastLeaves)
+            leaves.extend(self._client[-1]._navigator._last_leaves)
          else:
             return [ ]
          return leaves
@@ -146,17 +146,17 @@ class _Navigator(_Abjad):
    @property
    def _next(self):
       '''Returns next Component in temporal order.'''
-      next = self._nextSibling
+      next = self._next_sibling
       if next:
          return next
       else:
          for p in self._client.parentage.parentage[1:]:
-            next = p._navigator._nextSibling
+            next = p._navigator._next_sibling
             if next:
                return next
       
    @property
-   def _nextBead(self):
+   def _next_bead(self):
       '''Returns the next Bead (time threaded Leaf), if such exists. 
          This method will search the whole (parentage) structure 
          moving forward.
@@ -167,11 +167,11 @@ class _Navigator(_Abjad):
       next = self._next
       if next is None:
          return None
-      candidates = next._navigator._firstLeaves
-      return self._findFellowBead(candidates)
+      candidates = next._navigator._first_leaves
+      return self._find_fellow_bead(candidates)
 
    @property
-   def _nextNamesake(self):
+   def _next_namesake(self):
       '''Find the next Component of the same type and with the same 
       parentage signature.'''
       next = self._next
@@ -182,11 +182,11 @@ class _Navigator(_Abjad):
             node.parentage.signature == self._client.parentage.signature:
             return node
 
-   ## TODO: Write tests for _Navigator._prevNamesake.               ##
+   ## TODO: Write tests for _Navigator._prev_namesake.               ##
    ##       Backwards DFS has always had a bug that needs fixing. ##
 
    @property
-   def _prevNamesake(self):
+   def _prev_namesake(self):
       '''Find the prev component of same type and parentage signature.'''
       prev = self._prev
       if prev is None:
@@ -197,7 +197,7 @@ class _Navigator(_Abjad):
             return node
 
    @property
-   def _nextSibling(self):
+   def _next_sibling(self):
       '''Returns the next *sequential* element in the caller's parent; 
       None otherwise'''
       rank = self._rank( )
@@ -208,7 +208,7 @@ class _Navigator(_Abjad):
          return None
          
    @property
-   def _nextThread(self):
+   def _next_thread(self):
       '''Returns the next threadable Container.'''
       from abjad.container import Container
       from abjad.leaf import _Leaf
@@ -217,25 +217,25 @@ class _Navigator(_Abjad):
       next = self._next
       if next is None or isinstance(next, _Leaf):
          return None
-      containers = next._navigator._contemporaneousStartComponents
+      containers = next._navigator._contemporaneous_start_components
       for c in containers:
-         if self._isThreadable(c):
+         if self._is_threadable(c):
             return c
 
    @property
    def _prev(self):
       '''Returns previous Component in temporal order.'''
-      prev = self._prevSibling
+      prev = self._prev_sibling
       if prev:
          return prev
       else:
          for p in self._client.parentage.parentage[1:]:
-            prev = p._navigator._prevSibling
+            prev = p._navigator._prev_sibling
             if prev:
                return prev
       
    @property
-   def _prevBead(self):
+   def _prev_bead(self):
       '''Returns the previous Bead (time threaded Leaf), if such exists. 
          This method will search the whole (parentage) structure moving back.
          This will only return if called on a Leaf.'''
@@ -245,11 +245,11 @@ class _Navigator(_Abjad):
       prev = self._prev
       if prev is None:
          return None
-      candidates = prev._navigator._lastLeaves
-      return self._findFellowBead(candidates)
+      candidates = prev._navigator._last_leaves
+      return self._find_fellow_bead(candidates)
 
    @property
-   def _prevSibling(self):
+   def _prev_sibling(self):
       '''Returns the previous *sequential* element in the caller's parent; 
          None otherwise'''
       rank = self._rank( )
@@ -278,31 +278,31 @@ class _Navigator(_Abjad):
       return iterate.depth_first(
          self._client, capped, unique, forbid, direction)
 
-   def _findFellowBead(self, candidates):
-      '''Helper method from prevBead and nextBead. 
+   def _find_fellow_bead(self, candidates):
+      '''Helper method from prev_bead and next_bead. 
          Given a list of bead candiates of self, find and return the first one
          that matches thread parentage. '''
       for candidate in candidates:
-         if self._isThreadable(candidate):
+         if self._is_threadable(candidate):
             return candidate
 
-   def _getImmediateTemporalSuccessors(self):
+   def _get_immediate_temporal_successors(self):
       '''Return Python list of components immediately after self._client.'''
       cur = self._client
       while cur is not None:
-         nextSibling = cur._navigator._nextSibling
-         if nextSibling is None:
+         next_sibling = cur._navigator._next_sibling
+         if next_sibling is None:
             cur = cur.parentage.parent
          else:
-            return nextSibling._navigator._contemporaneousStartContents
+            return next_sibling._navigator._contemporaneous_start_contents
       return [ ]
 
-   def _isImmediateTemporalSuccessorOf(self, expr):
+   def _is_immediate_temporal_successor_of(self, expr):
       '''True when client follows immediately after expr,
          otherwise False.'''
-      return expr in self._getImmediateTemporalSuccessors( )
+      return expr in self._get_immediate_temporal_successors( )
          
-   def _isThreadable(self, expr):
+   def _is_threadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
       from abjad.tools import componenttools
       return componenttools.all_are_components_in_same_thread([self._client, expr])
@@ -322,11 +322,11 @@ class _Navigator(_Abjad):
    def _traverse(self, v, depthFirst=True, leftRight=True):
       '''Traverse with visitor visiting each node in turn.'''
       if depthFirst:
-         self._traverseDepthFirst(v)
+         self._traverse_depth_first(v)
       else:
-         self._traverseBreadthFirst(v, leftRight)
+         self._traverse_breadth_first(v, leftRight)
 
-   def _traverseBreadthFirst(self, v, leftRight = True):
+   def _traverse_breadth_first(self, v, leftRight = True):
       '''Traverse breadth-first with visitor visiting each node.'''
       queue = collections.deque([self._client])
       while queue:
@@ -341,7 +341,7 @@ class _Navigator(_Abjad):
             else:
                queue.extend(reversed(node._music))
 
-   def _traverseDepthFirst(self, v):
+   def _traverse_depth_first(self, v):
       '''Traverse depth-frist with visitor visiting each node.'''
       if hasattr(v, 'visit'):
          v.visit(self._client)
