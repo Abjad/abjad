@@ -13,7 +13,7 @@ class _BeamComplexMeasuredFormatInterface(_BeamComplexFormatInterface):
       result = [ ]
       spanner = self.spanner
       if leaf.beam.beamable:
-         if spanner._isExteriorLeaf(leaf):
+         if spanner._is_exterior_leaf(leaf):
             left, right = self._getLeftRightForExteriorLeaf(leaf)
          #elif leaf.parentage.first(_Measure) is not None:
          elif componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(leaf, _Measure) is not None:

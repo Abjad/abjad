@@ -11,19 +11,19 @@ class _BeamComplexDuratedFormatInterface(_BeamComplexFormatInterface):
       result = [ ]
       spanner = self.spanner
       if leaf.beam.beamable:
-         if spanner._isExteriorLeaf(leaf):
+         if spanner._is_exterior_leaf(leaf):
             left, right = self._getLeftRightForExteriorLeaf(leaf)
          # just right of span gap
-         elif spanner._durationOffsetInMe(leaf) in spanner._spanPoints and not \
-            (spanner._durationOffsetInMe(leaf) + leaf.duration.prolated in \
+         elif spanner._duration_offset_in_me(leaf) in spanner._spanPoints and not \
+            (spanner._duration_offset_in_me(leaf) + leaf.duration.prolated in \
             spanner._spanPoints):
             assert isinstance(spanner.span, int)
             left = spanner.span
             #right = leaf.duration._flags
             right = durtools.rational_to_flag_count(leaf.duration.written)
          # just left of span gap
-         elif spanner._durationOffsetInMe(leaf) + leaf.duration.prolated in \
-            spanner._spanPoints and not spanner._durationOffsetInMe(leaf) in \
+         elif spanner._duration_offset_in_me(leaf) + leaf.duration.prolated in \
+            spanner._spanPoints and not spanner._duration_offset_in_me(leaf) in \
             spanner._spanPoints:
             assert isinstance(spanner.span, int)
             #left = leaf.duration._flags

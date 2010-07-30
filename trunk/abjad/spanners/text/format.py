@@ -13,8 +13,8 @@ class _TextSpannerFormatInterface(_PositionalSpannerFormatInterface):
       '''Spanner format contribution right of leaf.'''
       result = [ ]
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.append(r'\startTextSpan')
-      if spanner._isMyLastLeaf(leaf):
+      if spanner._is_my_last_leaf(leaf):
          result.append(r'\stopTextSpan')   
       return result

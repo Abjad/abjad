@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.parenttools.give_position_to import _give_position_to
+from abjad.tools.parenttools._give_position_to import _give_position_to
 
 
 def test_parenttools_give_position_to_01( ):

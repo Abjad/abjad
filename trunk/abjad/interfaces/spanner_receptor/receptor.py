@@ -33,17 +33,17 @@ class _SpannerReceptor(_Abjad):
    @property
    def first(self):
       '''True when client is first in spanner, otherwise False.'''
-      return self.spanned and self.spanner._isMyFirstLeaf(self._client)
+      return self.spanned and self.spanner._is_my_first_leaf(self._client)
 
    @property
    def last(self):
       '''True when client is last in spanner, otherwise False.'''
-      return self.spanned and self.spanner._isMyLastLeaf(self._client)
+      return self.spanned and self.spanner._is_my_last_leaf(self._client)
 
    @property
    def only(self):
       '''True when client is only leaf in spanner, otherwise False.'''
-      return self.spanned and self.spanner._isMyOnlyLeaf(self._client)
+      return self.spanned and self.spanner._is_my_only_leaf(self._client)
 
    @property
    def parented(self):

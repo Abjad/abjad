@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
+from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
 
 
 def test_spannertools_give_dominant_to_01( ):

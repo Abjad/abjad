@@ -25,7 +25,7 @@ class _SpannerFormatInterface(_Abjad):
       '''Spanner format contributions to output after leaf.'''
       result = [ ]
       spanner = self.spanner
-      if spanner._isMyLastLeaf(leaf):
+      if spanner._is_my_last_leaf(leaf):
          result.extend(getattr(spanner, '_reverts', [ ]))
       return result
 
@@ -33,7 +33,7 @@ class _SpannerFormatInterface(_Abjad):
       '''Spanner format contributions to output before leaf.'''
       result = [ ]
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.extend(getattr(spanner, '_overrides', [ ]))
       return result
 

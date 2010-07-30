@@ -13,7 +13,7 @@ class _OctavationSpannerFormatInterface(_SpannerFormatInterface):
       result = [ ]
       result.extend(_SpannerFormatInterface._after(self, leaf))
       spanner = self.spanner
-      if spanner._isMyLastLeaf(leaf):
+      if spanner._is_my_last_leaf(leaf):
          result.append(r'\ottava #%s' % spanner.stop)
       return result
 
@@ -22,6 +22,6 @@ class _OctavationSpannerFormatInterface(_SpannerFormatInterface):
       result = [ ]
       result.extend(_SpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.append(r'\ottava #%s' % spanner.start)
       return result

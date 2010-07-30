@@ -12,6 +12,6 @@ class _DynamicSpannerFormatInterface(_SpannerFormatInterface):
       '''Spanner format contribution to right of leaf.'''
       result = [ ]
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.append(r'\%s' % spanner.mark)
       return result

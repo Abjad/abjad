@@ -24,7 +24,7 @@ class _PositionalGrobHandlerSpanner(_GrobHandlerSpanner):
 #   def _before(self, leaf):
 #      result = [ ]
 #      result.extend(_GrobHandlerSpanner._before(self, leaf))
-#      if self._isMyFirstLeaf(leaf):
+#      if self._is_my_first_leaf(leaf):
 #         if not self.position is None:
 #            result.append(self._positions[self.position])
 #      return result

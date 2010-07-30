@@ -98,7 +98,7 @@ def clone_components_and_covered_spanners(components, n = 1):
 
    spanners = spannertools.get_spanners_that_cross_components(components) 
    for spanner in spanners:
-      spanner._blockAllComponents( )
+      spanner._block_all_components( )
 
    receipt = _ignore(components)
 
@@ -109,7 +109,7 @@ def clone_components_and_covered_spanners(components, n = 1):
    _restore(receipt)
 
    for spanner in spanners:
-      spanner._unblockAllComponents( )
+      spanner._unblock_all_components( )
 
    for i in range(n - 1):
       result += clone_components_and_covered_spanners(components)

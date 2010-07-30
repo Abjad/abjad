@@ -58,7 +58,7 @@ def label_leaves_in_expr_with_leaf_duration(expr,
                leaf.markup.down.append(label)
             if 'prolated' in show:
                leaf.markup.down.append(r'\small %s' % leaf.duration.prolated)
-         elif leaf.tie.spanner._isMyFirstLeaf(leaf):
+         elif leaf.tie.spanner._is_my_first_leaf(leaf):
             tie = leaf.tie.spanner
             if 'written' in show:
                written = sum([x.duration.written for x in tie])

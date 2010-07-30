@@ -13,15 +13,15 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
       '''Get left and right flag counts for exterior leaf in spanner.'''
       spanner = self.spanner
       # lone
-      if spanner._isMyOnlyLeaf(leaf):
+      if spanner._is_my_only_leaf(leaf):
          left, right = self._getLeftRightForLoneLeaf(leaf)
       # first
-      elif spanner._isMyFirstLeaf(leaf) or not leaf.prev:
+      elif spanner._is_my_first_leaf(leaf) or not leaf.prev:
          left = 0
          #right = leaf.duration._flags
          right = durtools.rational_to_flag_count(leaf.duration.written)
       # last
-      elif spanner._isMyLastLeaf(leaf) or not leaf.next:
+      elif spanner._is_my_last_leaf(leaf) or not leaf.next:
          #left = leaf.duration._flags
          left = durtools.rational_to_flag_count(leaf.duration.written)
          right = 0
@@ -102,7 +102,7 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
       result.extend(_BeamSpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
       if leaf.beam.beamable:
-         if spanner._isExteriorLeaf(leaf):
+         if spanner._is_exterior_leaf(leaf):
             left, right = self._getLeftRightForExteriorLeaf(leaf)
          else:
             left, right = self._getLeftRightForInteriorLeaf(leaf)
@@ -118,19 +118,19 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
       spanner = self.spanner
       if leaf.beam.beamable:
          # lone
-         if spanner._isMyOnlyLeaf(leaf):
+         if spanner._is_my_only_leaf(leaf):
             if spanner.lone:
                result.append('[')
          # otherwise
-         elif spanner._isMyFirstLeaf(leaf) or not leaf.prev or \
+         elif spanner._is_my_first_leaf(leaf) or not leaf.prev or \
             not leaf.prev.beam.beamable:
             result.append('[')
          # lone
-         if spanner._isMyOnlyLeaf(leaf):
+         if spanner._is_my_only_leaf(leaf):
             if spanner.lone:
                result.append(']')
          # otherwise
-         elif spanner._isMyLastLeaf(leaf) or not leaf.next or \
+         elif spanner._is_my_last_leaf(leaf) or not leaf.next or \
             not leaf.next.beam.beamable:
             result.append(']')
       return result

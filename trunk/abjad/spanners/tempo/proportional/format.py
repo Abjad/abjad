@@ -36,7 +36,7 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
       result = [ ]
       result.extend(_TempoSpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.append(r'\newSpacingSection')
          scorewide_spacing = spacingtools.get_scorewide_spacing(leaf)
          if scorewide_spacing is not None:

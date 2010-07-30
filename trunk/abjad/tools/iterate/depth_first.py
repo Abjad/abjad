@@ -13,16 +13,16 @@ def depth_first(component, capped = True, unique = True,
    client_parent, node, rank = component.parentage.parent, component, 0 
    queue = collections.deque([ ])
    while node is not None and not (capped and node is client_parent):
-      result = _findYield(node, rank, queue, unique)
+      result = _find_yield(node, rank, queue, unique)
       if result is not None:
          yield result
-      if _isNodeForbidden(node, forbid):
-         node, rank = _handleForbiddenNode(node, queue)
+      if _is_node_forbidden(node, forbid):
+         node, rank = _handle_forbidden_node(node, queue)
       else:
-         node, rank = _advanceNodeDF(node, rank, direction)
+         node, rank = _advance_node_depth_first(node, rank, direction)
    queue.clear( )
 
-def _nextNodeDF(component, total):
+def _next_node_depth_first(component, total):
    '''If client has unvisited music, 
       return next unvisited node in client's music.
 
@@ -43,7 +43,7 @@ def _nextNodeDF(component, total):
       else:
          return None, None
 
-def _prevNodeDF(component, total = 0):
+def _prev_node_depth_first(component, total = 0):
    '''If client has unvisited music, 
       return prev unvisited node in client's music.
 
@@ -65,7 +65,7 @@ def _prevNodeDF(component, total = 0):
       else:
          return None, None
 
-def _handleForbiddenNode(node, queue):
+def _handle_forbidden_node(node, queue):
    node_parent = node.parentage.parent
    if node_parent is not None:
       rank = node_parent.index(node) + 1
@@ -75,14 +75,14 @@ def _handleForbiddenNode(node, queue):
    queue.pop( )
    return node, rank
 
-def _advanceNodeDF(node, rank, direction):
+def _advance_node_depth_first(node, rank, direction):
    if direction == 'left':
-      node, rank = _nextNodeDF(node, rank)
+      node, rank = _next_node_depth_first(node, rank)
    else:
-      node, rank = _prevNodeDF(node, rank)
+      node, rank = _prev_node_depth_first(node, rank)
    return node, rank
 
-def _isNodeForbidden(node, forbid):
+def _is_node_forbidden(node, forbid):
    if forbid is None:
       return False
    elif forbid == 'parallel':
@@ -90,7 +90,7 @@ def _isNodeForbidden(node, forbid):
    else:
       return isinstance(node, forbid)
 
-def _findYield(node, rank, queue, unique):
+def _find_yield(node, rank, queue, unique):
    if hasattr(node, '_music'):
       try:
          visited = node is queue[-1]

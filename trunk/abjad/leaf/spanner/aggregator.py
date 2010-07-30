@@ -43,7 +43,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       for spanner in self._spannersInParentage:
          contributions = spanner._format._right(leaf)
          if contributions:
-            if spanner._isMyLastLeaf(leaf):
+            if spanner._is_my_last_leaf(leaf):
                stop_contributions.extend(contributions)
             else:
                other_contributions.extend(contributions)

@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.componenttools.give_music_to import _give_music_to
+from abjad.tools.componenttools._give_music_to import _give_music_to
 import py.test
 
 

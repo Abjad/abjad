@@ -1,6 +1,5 @@
 from abjad import *
-from abjad.tools.spannertools.withdraw_from_attached import \
-   _withdraw_from_attached
+from abjad.tools.spannertools._withdraw_from_attached import _withdraw_from_attached
 
 
 def test_spannertools_withdraw_from_attached_01( ):

@@ -17,10 +17,10 @@ class GlissandiOverlapping(_Check):
                   set(glissandi[1].leaves)
                if len(common_leaves) == 1:
                   x = list(common_leaves)[0]
-                  if (glissandi[0]._isMyFirstLeaf(x) and 
-                     glissandi[1]._isMyLastLeaf(x)) or \
-                     (glissandi[1]._isMyFirstLeaf(x) and 
-                      glissandi[0]._isMyLastLeaf(x)):
+                  if (glissandi[0]._is_my_first_leaf(x) and 
+                     glissandi[1]._is_my_last_leaf(x)) or \
+                     (glissandi[1]._is_my_first_leaf(x) and 
+                      glissandi[0]._is_my_last_leaf(x)):
                      break  
 
             for glissando in glissandi:

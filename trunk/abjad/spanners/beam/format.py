@@ -18,8 +18,8 @@ class _BeamSpannerFormatInterface(_SpannerFormatInterface):
       '''Spanner format contribution right of leaf.'''
       result = [ ]
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.append('[')
-      if spanner._isMyLastLeaf(leaf):
+      if spanner._is_my_last_leaf(leaf):
          result.append(']')   
       return result

@@ -12,7 +12,7 @@ class _PianoPedalSpannerFormatInterface(_SpannerFormatInterface):
       '''Spanner format contribution before leaf.'''
       result = [ ]
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.append(r"\set Staff.pedalSustainStyle = #'%s" % spanner.style)
       return result
 
@@ -20,8 +20,8 @@ class _PianoPedalSpannerFormatInterface(_SpannerFormatInterface):
       '''Spanner format contribution right of leaf.'''
       result = [ ]
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.append(spanner._kinds[spanner.kind][0])
-      if spanner._isMyLastLeaf(leaf):
+      if spanner._is_my_last_leaf(leaf):
          result.append(spanner._kinds[spanner.kind][1])
       return result

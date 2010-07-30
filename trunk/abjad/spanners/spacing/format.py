@@ -16,7 +16,7 @@ class _SpacingSpannerFormatInterface(_SpannerFormatInterface):
       result.extend(_SpannerFormatInterface._after(self, leaf))
       new_section = self.spanner.new_section
       if new_section:
-         if self.spanner._isMyLastLeaf(leaf):
+         if self.spanner._is_my_last_leaf(leaf):
             result.append(r'%%% spacing section ends here %%%')
       return result
 
@@ -25,7 +25,7 @@ class _SpacingSpannerFormatInterface(_SpannerFormatInterface):
       result = [ ]
       new_section = self.spanner.new_section
       if new_section:
-         if self.spanner._isMyFirstLeaf(leaf):
+         if self.spanner._is_my_first_leaf(leaf):
             result.append(r'\newSpacingSection')
             pnd = self.spanner.proportional_notation_duration
             if pnd is not None:

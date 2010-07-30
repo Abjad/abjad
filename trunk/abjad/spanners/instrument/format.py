@@ -14,7 +14,7 @@ class _InstrumentSpannerFormatInterface(_SpannerFormatInterface):
       #result.extend(Spanner._after(spanner, leaf))
       result.extend(_SpannerFormatInterface._after(self, leaf))
       spanner = self.spanner
-      if spanner._isMyLastLeaf(leaf):
+      if spanner._is_my_last_leaf(leaf):
          #staff = leaf.staff.context
          staff = 'Staff'
          if spanner.long is not None:
@@ -29,7 +29,7 @@ class _InstrumentSpannerFormatInterface(_SpannerFormatInterface):
       #result.extend(Spanner._before(spanner, leaf))
       result.extend(_SpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          #staff = leaf.staff.context
          staff = 'Staff'
          if spanner.long is not None:

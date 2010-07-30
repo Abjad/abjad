@@ -13,7 +13,7 @@ class _SlurSpannerFormatInterface(_PositionalSpannerFormatInterface):
       '''Spanner format contribution before leaf.'''
       result = [ ]
       result.extend(_PositionalSpannerFormatInterface._before(self, leaf))
-      if self.spanner._isMyFirstLeaf(leaf):
+      if self.spanner._is_my_first_leaf(leaf):
          style = self.spanner.style
          if style == 'solid':
             result.append(r'\slurSolid')
@@ -27,8 +27,8 @@ class _SlurSpannerFormatInterface(_PositionalSpannerFormatInterface):
       '''Spanner format contribution right of leaf.'''
       result = [ ]
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          result.append('(')
-      if spanner._isMyLastLeaf(leaf):
+      if spanner._is_my_last_leaf(leaf):
          result.append(')')   
       return result

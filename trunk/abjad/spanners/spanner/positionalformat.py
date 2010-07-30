@@ -14,7 +14,7 @@ class _PositionalSpannerFormatInterface(_SpannerFormatInterface):
       #result.extend(_GrobHandlerSpanner._before(self, leaf))
       result.extend(_SpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          if not spanner.position is None:
             result.append(spanner._positions[spanner.position])
       return result

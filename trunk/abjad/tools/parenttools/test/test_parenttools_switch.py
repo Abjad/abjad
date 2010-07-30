@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.parenttools.switch import _switch
+from abjad.tools.parenttools._switch import _switch
 
 
 def test_parenttools_switch_01( ):

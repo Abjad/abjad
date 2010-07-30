@@ -50,7 +50,7 @@ class TempoInterface(_Observer, _GrobHandler,
       '''Format contribution at container opening or before leaf.'''
       result =  [ ] 
       if self.forced or self.change and not (
-         self.spanned and self.spanner._isMyFirstLeaf(self._client)):
+         self.spanned and self.spanner._is_my_first_leaf(self._client)):
          result.append(self.effective.format)
       return result
 

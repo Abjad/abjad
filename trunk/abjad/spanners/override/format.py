@@ -11,8 +11,8 @@ class _OverrideSpannerFormatInterface(_SpannerFormatInterface):
    def _after(self, leaf):
       '''Spanner format contribution after leaf.'''
       spanner = self.spanner
-      if spanner._isMyLastLeaf(leaf) and \
-         not spanner._isMyOnlyLeaf(leaf) and \
+      if spanner._is_my_last_leaf(leaf) and \
+         not spanner._is_my_only_leaf(leaf) and \
          (spanner._attribute is not None):
          grob = spanner._prependContext(spanner._grob)
          attribute = spanner._parser.format_attribute(spanner._attribute)
@@ -24,7 +24,7 @@ class _OverrideSpannerFormatInterface(_SpannerFormatInterface):
    def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf) and \
+      if spanner._is_my_first_leaf(leaf) and \
          spanner._attribute and \
          (spanner._value is not None):
          grob = spanner._prependContext(spanner._grob)

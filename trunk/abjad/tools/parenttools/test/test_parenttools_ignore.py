@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.parenttools.ignore import _ignore
+from abjad.tools.parenttools._ignore import _ignore
 
 
 def test_parenttools_ignore_01( ):

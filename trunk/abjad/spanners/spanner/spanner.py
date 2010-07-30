@@ -40,7 +40,7 @@ class Spanner(_Abjad):
       self._duration = _SpannerDurationInterface(self)
       self._format = _SpannerFormatInterface(self)
       self._offset = _SpannerOffsetInterface(self)
-      self._initializeMusic(music)
+      self._initialize_music(music)
 
    ## OVERLOADS ##
 
@@ -81,50 +81,50 @@ class Spanner(_Abjad):
 
    ## PRIVATE METHODS ##
 
-   def _blockAllComponents(self):
+   def _block_all_components(self):
       for component in self:
-         self._blockComponent(component)
+         self._block_component(component)
 
-   def _blockComponent(self, component):
+   def _block_component(self, component):
       component.spanners._spanners.remove(self)
    
    ## TODO: Remove call to self.leaes ##
-   def _durationOffsetInMe(self, leaf):
+   def _duration_offset_in_me(self, leaf):
       leaves = list(self.leaves)
       assert leaf in leaves
       prev = leaves[:leaves.index(leaf)]
       return sum([leaf.duration.prolated for leaf in prev])
 
-   def _fractureLeft(self, i):
+   def _fracture_left(self, i):
       ##left = self.copy(0, i - 1)
       #left = self.copy(self[:i])
       left = self._copy(self[:i])
       ##right = self.copy(i, len(self))
       #right = self.copy(self[i:])
       right = self._copy(self[i:])
-      self._blockAllComponents( )
+      self._block_all_components( )
       return self, left, right
 
-   def _fractureRight(self, i):
+   def _fracture_right(self, i):
       ##left = self.copy(0, i)
       #left = self.copy(self[:i+1])
       left = self._copy(self[:i+1])
       ##right = self.copy(i + 1, len(self))
       #right = self.copy(self[i+1:])
       right = self._copy(self[i+1:])
-      self._blockAllComponents( )
+      self._block_all_components( )
       return self, left, right
 
-   def _fuseByReference(self, spanner):
+   def _fuse_by_reference(self, spanner):
       ##result = self.copy( )
       #result = self.copy(self[:])
       result = self._copy(self[:])
       result.extend(spanner.components)
-      self._blockAllComponents( )
-      spanner._blockAllComponents( )
+      self._block_all_components( )
+      spanner._block_all_components( )
       return [(self, spanner, result)]
   
-   def _initializeMusic(self, music):
+   def _initialize_music(self, music):
       from abjad.component import _Component
       from abjad.tools import componenttools
       from abjad.tools import iterate
@@ -144,23 +144,23 @@ class Spanner(_Abjad):
       component.spanners._add(self)
       self._components.insert(i, component)
    
-   def _isExteriorLeaf(self, leaf):
+   def _is_exterior_leaf(self, leaf):
       '''True if leaf is first or last in spanner.
       True leaf.next or leaf.prev is None.
       False otherwise.
 
-      .. todo:: Write Spanner._isExteriorLeaf( ) tests.
+      .. todo:: Write Spanner._is_exterior_leaf( ) tests.
       '''
-      if self._isMyFirstLeaf(leaf):
+      if self._is_my_first_leaf(leaf):
          return True
-      elif self._isMyLastLeaf(leaf):
+      elif self._is_my_last_leaf(leaf):
          return True
       elif not leaf.prev or not leaf.next:
          return True
       else:
          return False
 
-   def _isMyFirstLeaf(self, leaf):
+   def _is_my_first_leaf(self, leaf):
       from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
       ## ! Full-leaf traversal extremely inefficient !
       #leaves = self.leaves
@@ -171,7 +171,7 @@ class Spanner(_Abjad):
       except IndexError:
          return False
    
-   def _isMyLastLeaf(self, leaf):
+   def _is_my_last_leaf(self, leaf):
       from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
       ## ! Full-leaf traversal extremely inefficient !
       #leaves = self.leaves
@@ -182,11 +182,11 @@ class Spanner(_Abjad):
       except IndexError:
          False
 
-   def _isMyOnlyLeaf(self, leaf):
-      return self._isMyFirstLeaf(leaf) and self._isMyLastLeaf(leaf)
+   def _is_my_only_leaf(self, leaf):
+      return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
    ## TODO: Remove call to self.leaves ##
-   def _isMyFirst(self, leaf, klass):
+   def _is_my_first(self, leaf, klass):
       if isinstance(leaf, klass):
          leaves = list(self.leaves)
          i = leaves.index(leaf)
@@ -197,7 +197,7 @@ class Spanner(_Abjad):
       return False
 
    ## TODO: Remove call to self.leaves ##
-   def _isMyLast(self, leaf, klass):
+   def _is_my_last(self, leaf, klass):
       if isinstance(leaf, klass):
          leaves = list(self.leaves)
          i = leaves.index(leaf)
@@ -208,32 +208,32 @@ class Spanner(_Abjad):
       return False
 
    ## TODO: Remove call to self.leaves ##
-   def _isMyOnly(self, leaf, klass):
+   def _is_my_only(self, leaf, klass):
       return isinstance(leaf, klass) and len(self.leaves) == 1
 
    def _remove(self, component):
       '''Remove 'component' from spanner.
          Remove spanner from component's aggregator.
          Not composer-safe and may leave discontiguous spanners.'''
-      self._severComponent(component)
+      self._sever_component(component)
 
-   def _removeComponent(self, component):
+   def _remove_component(self, component):
       self._components.remove(component)
 
-   def _severAllComponents(self):
+   def _sever_all_components(self):
       for n in reversed(range(len(self))):
          component = self[n]
-         self._severComponent(component)
+         self._sever_component(component)
 
-   def _severComponent(self, component):
-      self._blockComponent(component)
-      self._removeComponent(component)
+   def _sever_component(self, component):
+      self._block_component(component)
+      self._remove_component(component)
 
-   def _unblockAllComponents(self):
+   def _unblock_all_components(self):
       for component in self:
-         self._unblockComponent(component)
+         self._unblock_component(component)
 
-   def _unblockComponent(self, component):
+   def _unblock_component(self, component):
       component.spanners._add(self)
 
    ## PUBLIC ATTRIBUTES ##
@@ -407,7 +407,7 @@ class Spanner(_Abjad):
          Spanner( )
       '''
 
-      self._severAllComponents( )
+      self._sever_all_components( )
 
    ##def copy(self, start = None, stop = None):
    #def copy(self, components):
@@ -435,7 +435,7 @@ class Spanner(_Abjad):
       for component in components:
          result._components.append(component)
       
-      result._unblockAllComponents( )
+      result._unblock_all_components( )
       return result
 
    def extend(self, components):
@@ -513,9 +513,9 @@ class Spanner(_Abjad):
       if i < 0:
          i = len(self) + i
       if direction == 'left':
-         return self._fractureLeft(i)
+         return self._fracture_left(i)
       elif direction == 'right':
-         return self._fractureRight(i)
+         return self._fracture_right(i)
       elif direction == 'both':
          ##left = self.copy(0, i - 1)
          #left = self.copy(self[:i])
@@ -526,7 +526,7 @@ class Spanner(_Abjad):
          ##center = self.copy(i, i)
          #center = self.copy(self[i:i+1])
          center = self._copy(self[i:i+1])
-         self._blockAllComponents( )
+         self._block_all_components( )
          return self, left, center, right
       else:
          raise ValueError(
@@ -569,7 +569,7 @@ class Spanner(_Abjad):
       .. todo:: Return (immutable) tuple instead of (mutable) list.
       '''
 
-      return self._fuseByReference(spanner)
+      return self._fuse_by_reference(spanner)
       
    def index(self, component):
       '''Return nonnegative integer index of `component` in spanner. ::
@@ -607,7 +607,7 @@ class Spanner(_Abjad):
       '''
 
       component = self[-1]
-      self._severComponent(component)
+      self._sever_component(component)
       return component
 
    def pop_left(self):
@@ -630,7 +630,7 @@ class Spanner(_Abjad):
       '''
 
       component = self[0]
-      self._severComponent(component)
+      self._sever_component(component)
       return component
 
 #   def trim(self, component):

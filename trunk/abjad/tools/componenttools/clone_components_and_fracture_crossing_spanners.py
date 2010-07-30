@@ -102,7 +102,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
       spanner_map.add((spanner, tuple(spanner[:])))
       for component in spanner[:]:
          if component not in selection_components:
-            spanner._removeComponent(component)
+            spanner._remove_component(component)
 
    receipt = _ignore(components)
    

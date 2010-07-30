@@ -17,7 +17,7 @@ class _TempoSpannerFormatInterface(_SpannerFormatInterface):
       result = [ ]
       result.extend(_SpannerFormatInterface._after(self, leaf))
       spanner = self.spanner
-      if spanner._isMyLastLeaf(leaf):
+      if spanner._is_my_last_leaf(leaf):
          if spanner.tempo_indication:
             result.append(
                r'%%%% %s ends here' % spanner.tempo_indication.format[1:])
@@ -28,7 +28,7 @@ class _TempoSpannerFormatInterface(_SpannerFormatInterface):
       result = [ ]
       result.extend(_SpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf):
+      if spanner._is_my_first_leaf(leaf):
          if spanner.tempo_indication:
             result.append(spanner.tempo_indication.format)
       return result

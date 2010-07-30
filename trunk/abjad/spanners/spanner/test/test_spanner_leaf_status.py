@@ -18,14 +18,14 @@ def test_spanner_leaf_status_01( ):
    }
    '''
 
-   assert p._isMyFirstLeaf(t[0])
+   assert p._is_my_first_leaf(t[0])
    for leaf in t[1 : ]:
-      assert not p._isMyFirstLeaf(leaf)
-   assert p._isMyLastLeaf(t[-1])
+      assert not p._is_my_first_leaf(leaf)
+   assert p._is_my_last_leaf(t[-1])
    for leaf in t[ : -1]:
-      assert not p._isMyLastLeaf(leaf)
+      assert not p._is_my_last_leaf(leaf)
    for leaf in t:
-      assert not p._isMyOnlyLeaf(leaf)
+      assert not p._is_my_only_leaf(leaf)
 
 
 def test_spanner_leaf_status_02( ):
@@ -49,8 +49,8 @@ def test_spanner_leaf_status_02( ):
    }
    '''
 
-   assert p._isMyFirstLeaf(t[0])
-   assert p._isMyLastLeaf(t[2][1])
+   assert p._is_my_first_leaf(t[0])
+   assert p._is_my_last_leaf(t[2][1])
 
 ## NONSTRUCTURAL in new parallel --> context model
 #def test_spanner_leaf_status_03( ):
@@ -79,5 +79,5 @@ def test_spanner_leaf_status_02( ):
 #   }'''
 #
 #   assert py.test.raises(ContiguityError, 'p = Spanner(t[:3])')
-#   #assert p._isMyFirstLeaf(t[0])
-#   #assert p._isMyLastLeaf(t[1])
+#   #assert p._is_my_first_leaf(t[0])
+#   #assert p._is_my_last_leaf(t[1])
