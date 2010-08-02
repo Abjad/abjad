@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_breaks_interface_01( ):
+def test_BreaksInterface_01( ):
    '''Line break at closing of nonempty container.'''
 
    t = Staff(macros.scale(4))
@@ -21,7 +21,7 @@ def test_breaks_interface_01( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\break\n}"
 
 
-def test_breaks_interface_02( ):
+def test_BreaksInterface_02( ):
    '''Page break at closing of nonempty container.'''
 
    t = Staff(macros.scale(4))
@@ -41,7 +41,7 @@ def test_breaks_interface_02( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\pageBreak\n}"
 
 
-def test_breaks_interface_03( ):
+def test_BreaksInterface_03( ):
    '''Both line and page break on nonempty container.'''
 
    t = Staff(Note(0, (1, 4)) * 4)
@@ -63,7 +63,7 @@ def test_breaks_interface_03( ):
    assert t.format == "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\t\\break\n\t\\pageBreak\n}"
 
 
-def test_breaks_interface_04( ):
+def test_BreaksInterface_04( ):
    '''Line break on leaf.'''
 
    t = Note(0, (1, 4))
@@ -78,7 +78,7 @@ def test_breaks_interface_04( ):
    assert t.format == "c'4\n\\break"
 
 
-def test_breaks_interface_05( ):
+def test_BreaksInterface_05( ):
    '''Page break on leaf.'''
 
    t = Note(0, (1, 4))
@@ -93,7 +93,7 @@ def test_breaks_interface_05( ):
    assert t.format == "c'4\n\\pageBreak"
 
 
-def test_breaks_interface_06( ):
+def test_BreaksInterface_06( ):
    '''Both line and page break on leaf.'''
 
    t = Note(0, (1, 4))
@@ -110,7 +110,7 @@ def test_breaks_interface_06( ):
    assert t.format == "c'4\n\\break\n\\pageBreak"
 
 
-def test_breaks_interface_07( ):
+def test_BreaksInterface_07( ):
    '''The clear( ) method clears both line and page breaks
       on containers.'''
 
@@ -131,7 +131,7 @@ def test_breaks_interface_07( ):
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 
-def test_breaks_interface_08( ):
+def test_BreaksInterface_08( ):
    '''The clear( ) method clears both line and page breaks
       on leaves.'''
 
@@ -143,7 +143,7 @@ def test_breaks_interface_08( ):
    assert t.format == "c'4"
 
 
-def test_breaks_interface_09( ):
+def test_BreaksInterface_09( ):
    '''BreaksInterface returns True when 'line' is True.'''
 
    t = Note(0, (1, 4))
@@ -152,7 +152,7 @@ def test_breaks_interface_09( ):
    assert bool(t.breaks)
    
 
-def test_breaks_interface_10( ):
+def test_BreaksInterface_10( ):
    '''BreaksInterface returns True when 'page' is True.'''
 
    t = Note(0, (1, 4))
@@ -161,7 +161,7 @@ def test_breaks_interface_10( ):
    assert bool(t.breaks)
    
 
-def test_breaks_interface_11( ):
+def test_BreaksInterface_11( ):
    '''BreaksInterface returns True when both
       'line' and 'page' are True.'''
 
@@ -172,7 +172,7 @@ def test_breaks_interface_11( ):
    assert bool(t.breaks)
    
 
-def test_breaks_interface_12( ):
+def test_BreaksInterface_12( ):
    '''BreaksInterface returns False when neither
       'line' nor 'page' are True.'''
 

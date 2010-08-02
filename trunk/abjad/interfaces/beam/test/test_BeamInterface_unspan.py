@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beam_interface_unspan_01( ):
+def test_BeamInterface_unspan_01( ):
    '''BeamInterface clone_components_and_remove_all_spanners( ) clears any beam spanner attaching to leaf t.'''
 
    t = Staff(macros.scale(4))
@@ -36,7 +36,7 @@ def test_beam_interface_unspan_01( ):
    assert not t[3].beam.spanned
 
 
-def test_beam_interface_unspan_02( ):
+def test_BeamInterface_unspan_02( ):
    '''t.beam.unspan( ) clears any beam spanner attaching to container t.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)

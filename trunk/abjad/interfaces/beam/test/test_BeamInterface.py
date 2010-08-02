@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beam_interface_01( ):
+def test_BeamInterface_01( ):
    '''Beam interface attributes on a lone note.'''
    t = Note(0, (3, 64))
    assert t.beam.counts == (None, None)
@@ -16,7 +16,7 @@ def test_beam_interface_01( ):
    '''
 
 
-def test_beam_interface_02( ):
+def test_BeamInterface_02( ):
    '''Beam interface attributes on a contained note.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    assert t[0].beam.counts == (None, None)
@@ -40,7 +40,7 @@ def test_beam_interface_02( ):
    '''
 
 
-def test_beam_interface_03( ):
+def test_BeamInterface_03( ):
    '''Beam interface attributes for a beamed note;
       first in beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -67,7 +67,7 @@ def test_beam_interface_03( ):
    '''
 
 
-def test_beam_interface_04( ):
+def test_BeamInterface_04( ):
    '''Beam interface attributes for beamed note;
       middle of beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -94,7 +94,7 @@ def test_beam_interface_04( ):
    '''
 
 
-def test_beam_interface_05( ):
+def test_BeamInterface_05( ):
    '''Beam interface attributes for beamed note;
       last of beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -121,7 +121,7 @@ def test_beam_interface_05( ):
    '''
 
 
-def test_beam_interface_06( ):
+def test_BeamInterface_06( ):
    '''Beam interface attributes for beamed note;
       lone beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -148,7 +148,7 @@ def test_beam_interface_06( ):
    '''
 
 
-def test_beam_interface_07( ):
+def test_BeamInterface_07( ):
    '''None can assign to counts.'''
    t = Note(0, (1, 32))
    t.beam.counts = None
@@ -159,7 +159,7 @@ def test_beam_interface_07( ):
    '''
 
 
-def test_beam_interface_08( ):
+def test_BeamInterface_08( ):
    '''Zero can assign to counts.'''
    t = Note(0, (1, 32))
    t.beam.counts = 0
@@ -171,7 +171,7 @@ def test_beam_interface_08( ):
    '''
 
 
-def test_beam_interface_09( ):
+def test_BeamInterface_09( ):
    '''A single positive integer can assign to counts.'''
    t = Note(0, (1, 32))
    t.beam.counts = 3
@@ -183,7 +183,7 @@ def test_beam_interface_09( ):
    '''
 
 
-def test_beam_interface_10( ):
+def test_BeamInterface_10( ):
    '''Pairs of elements can assign to counts;
       each member must be either a nonnegative integer or None.'''
    t = Note(0, (1, 32))
@@ -195,7 +195,7 @@ def test_beam_interface_10( ):
    '''
 
 
-def test_beam_interface_11( ):
+def test_BeamInterface_11( ):
    '''Pairs of elements can assign to counts;
       each member must be either a nonnegative integer or None.'''
    t = Note(0, (1, 32))
@@ -207,7 +207,7 @@ def test_beam_interface_11( ):
    '''
 
 
-def test_beam_interface_12( ):
+def test_BeamInterface_12( ):
    '''Pairs of elements can assign to counts;
       each member must be either a nonnegative integer or None.'''
    t = Note(0, (1, 32))
@@ -220,7 +220,7 @@ def test_beam_interface_12( ):
    '''
 
 
-def test_beam_interface_13( ):
+def test_BeamInterface_13( ):
    '''Composer attributes assign and format.'''
    t = Note(0, (1, 32))
    t.beam.color = 'red'
@@ -231,7 +231,7 @@ def test_beam_interface_13( ):
    '''
 
 
-def test_beam_interface_14( ):
+def test_BeamInterface_14( ):
    '''Composer attributes clear.'''
    t = Note(0, (1, 32))
    t.beam.color = 'red'
@@ -240,7 +240,7 @@ def test_beam_interface_14( ):
    assert t.format == "c'32"
 
 
-#def test_beam_interface_15( ):
+#def test_BeamInterface_15( ):
 #   '''bridge( ) fuses adjacent beams towards the right.'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)])
 #   Beam(t[0:4])
@@ -263,7 +263,7 @@ def test_beam_interface_14( ):
 #   '''
  
 
-#def test_beam_interface_16( ):
+#def test_BeamInterface_16( ):
 #   '''bridge( ) fuses adjacent beams towards the left.'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)])
 #   Beam(t[0:4])
@@ -286,7 +286,7 @@ def test_beam_interface_14( ):
 #   '''
 
 
-#def test_beam_interface_17( ):
+#def test_BeamInterface_17( ):
 #   '''subdivide( ) works towards the right.'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)]) 
 #   Beam(t[:])
@@ -308,7 +308,7 @@ def test_beam_interface_14( ):
 #   '''
 
 
-#def test_beam_interface_18( ):
+#def test_BeamInterface_18( ):
 #   '''subdivide( ) works towards the left.'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)])
 #   Beam(t[:])
@@ -330,7 +330,7 @@ def test_beam_interface_14( ):
 #   '''
 
 
-#def test_beam_interface_19( ):
+#def test_BeamInterface_19( ):
 #   '''None removes the effects of subdivide( ).'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)])
 #   Beam(t[:])
@@ -351,7 +351,7 @@ def test_beam_interface_14( ):
 #   '''
 
 
-def test_beam_interface_20( ):
+def test_BeamInterface_20( ):
    '''Counts can set agrammatically but will not check.'''
    t = Note(0, (1, 32))
    assert componenttools.is_well_formed_component(t)

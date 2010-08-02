@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_breaks_interface_y_01( ):
+def test_BreaksInterface_y_01( ):
    '''``BreaksInterface.y`` formats the \
    LilyPond ``NonMusicalPaperColumn`` prob.'''
 

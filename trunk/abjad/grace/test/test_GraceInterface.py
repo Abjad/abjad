@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_grace_interface_01( ):
+def test_GraceInterface_01( ):
    '''GraceInterface has a private client.'''
    t = Note(0, (1, 4))
    assert t.grace._client is t
 
 
-def test_grace_interface_02( ):
+def test_GraceInterface_02( ):
    '''Leaves implement a managed grace attribute;
       _Leaf.grace.before accepts None.'''
    t = Note(0, (1, 4))
@@ -15,7 +15,7 @@ def test_grace_interface_02( ):
    assert t.format == "c'4"
 
 
-def test_grace_interface_03( ):
+def test_GraceInterface_03( ):
    '''_Leaf.grace.before accepts any single leaf.'''
    t = Note(0, (1, 4))
    t.grace.before = Note(2, (1, 16))
@@ -28,7 +28,7 @@ def test_grace_interface_03( ):
    '''
 
 
-def test_grace_interface_04( ):
+def test_GraceInterface_04( ):
    '''_Leaf.grace.before accepts any single grace.'''
    t = Note(0, (1, 4))
    t.grace.before = Grace([Note(2, (1, 16))])
@@ -41,7 +41,7 @@ def test_grace_interface_04( ):
    '''
 
 
-def test_grace_interface_05( ):
+def test_GraceInterface_05( ):
    '''_Leaf.grace.before accepts a list or tuple of grace music.'''
    t = Note(0, (1, 4))
    t.grace.before = [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))]
@@ -55,7 +55,7 @@ def test_grace_interface_05( ):
    c'4
    '''
 
-def test_grace_interface_06( ):
+def test_GraceInterface_06( ):
    '''_Leaf.grace.before accepts string descriptors: "grace", "acciaccatura", "appoggiatura" '''
    t = Note(0, (1, 4)) 
    t.grace.before = Note(2, (1, 16))
@@ -85,14 +85,14 @@ def test_grace_interface_06( ):
    '''
 
  
-def test_grace_interface_07( ):
+def test_GraceInterface_07( ):
    '''_Leaf.grace.after accepts None.'''
    t = Note(0, (1, 4))
    t.grace.after = None
    assert t.format == "c'4"
 
 
-def test_grace_interface_08( ):
+def test_GraceInterface_08( ):
    '''_Leaf.grace.after accepts any single leaf.'''
    t = Note(0, (1, 4))
    t.grace.after = Note(2, (1, 16))
@@ -105,7 +105,7 @@ def test_grace_interface_08( ):
    }
    '''
 
-def test_grace_interface_09( ):
+def test_GraceInterface_09( ):
    '''_Leaf.grace.after accepts any single grace.'''
    t = Note(0, (1, 4))
    t.grace.after = Grace([Note(2, (1, 16))])
@@ -119,7 +119,7 @@ def test_grace_interface_09( ):
    '''
 
 
-def test_grace_interface_10( ):
+def test_GraceInterface_10( ):
    '''_Leaf.grace.after accepts a list or tuple of grace music.'''
    t = Note(0, (1, 4))
    t.grace.after = [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))]

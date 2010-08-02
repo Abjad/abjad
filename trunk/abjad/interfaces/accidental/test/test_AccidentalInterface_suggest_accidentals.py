@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_accidental_interface_suggest_accidentals_01( ):
+def test_AccidentalInterface_suggest_accidentals_01( ):
    '''AccidentalInterface.suggest_accidentals interfaces with
    LilyPond suggestAccidentals context setting. Formats with-block
    of contexts like staff.
@@ -25,7 +25,7 @@ def test_accidental_interface_suggest_accidentals_01( ):
    assert t.format == "\\new Staff \\with {\n\tsuggestAccidentals = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_accidental_interface_suggest_accidentals_02( ):
+def test_AccidentalInterface_suggest_accidentals_02( ):
    '''Format inline before leaves.'''
 
    t = Staff(macros.scale(4))

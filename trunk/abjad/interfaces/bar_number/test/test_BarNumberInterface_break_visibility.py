@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_bar_number_interface_break_visibility_01( ):
+def test_BarNumberInterface_break_visibility_01( ):
 
    score = Score([Staff(macros.scale(8))])
    score.bar_number.break_visibility = schemetools.SchemeFunction(

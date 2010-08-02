@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_component_spanner_aggregator_children_01( ):
+def test_ComponentSpannerAggregator_children_01( ):
    '''Return unordered set of all spanners
       attaching to any children of self.
       Do not include spaners attaching directly to self.'''
@@ -25,7 +25,7 @@ def test_component_spanner_aggregator_children_01( ):
    assert glissando in t.spanners.children
 
 
-def test_component_spanner_aggregator_children_02( ):
+def test_ComponentSpannerAggregator_children_02( ):
    '''Return empty set when no spanners attach to children.'''
 
    t = Voice(macros.scale(4))

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_harmonic_natural_cast_01( ):
+def test_HarmonicNatural_cast_01( ):
    '''It is possible to cast notes into natural harmonics.'''
 
    t = Staff(macros.scale(4))

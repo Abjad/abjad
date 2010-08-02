@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_bar_line_interface_kind_01( ):
+def test_BarLineInterface_kind_01( ):
    '''Barline after leaf.'''
 
    t = Note(0, (1, 4))
@@ -15,7 +15,7 @@ def test_bar_line_interface_kind_01( ):
    assert t.format == 'c\'4\n\\bar "|."'
 
 
-def test_bar_line_interface_kind_02( ):
+def test_BarLineInterface_kind_02( ):
    '''Barline at container closing.'''
 
    t = Staff( )
@@ -30,7 +30,7 @@ def test_bar_line_interface_kind_02( ):
    assert t.format == '\\new Staff {\n\t\\bar "|."\n}' 
 
 
-def test_bar_line_interface_kind_03( ):
+def test_BarLineInterface_kind_03( ):
    '''Empty LilyPond bar line string.'''
 
    t = Staff(macros.scale(4))

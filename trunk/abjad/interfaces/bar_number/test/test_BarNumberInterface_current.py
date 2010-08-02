@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_bar_number_interface_current_01( ):
+def test_BarNumberInterface_current_01( ):
    '''Handle LilyPond ``currentBarNumber`` context setting on note.'''
 
    t = Staff(macros.scale(4))
@@ -22,7 +22,7 @@ def test_bar_number_interface_current_01( ):
    assert t.format == "\\new Staff {\n\t\\set Score.currentBarNumber = #12\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_bar_number_interface_current_02( ):
+def test_BarNumberInterface_current_02( ):
    '''Handle LilyPond ``currentBarNumber`` context setting on measure.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_breaks_interface_alignment_distances_01( ):
+def test_BreaksInterface_alignment_distances_01( ):
    '''NonMusicalPaperColumn alignment-distances list.'''
 
    t = Score(Staff([Note(0, (1, 4))]) * 4)

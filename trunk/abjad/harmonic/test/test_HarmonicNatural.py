@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_harmonic_natural_01( ):
+def test_HarmonicNatural_01( ):
 
    t = HarmonicNatural(10, (1, 4))
 

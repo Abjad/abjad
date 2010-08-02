@@ -1,14 +1,14 @@
 from abjad.demos.presentation.presentation import *
 
 
-def test_statement_01( ):
+def test_Statement_tmp_01( ):
    '''A statement can be initialized with no arguments.'''
    t = Statement( )
    assert t.text == ' '
    assert t.code == [ ]
 
 
-def test_statement_02( ):
+def test_Statement_tmp_02( ):
    '''A statement's code can be set to an executable string.'''
    text = 'Hello!'
    code = 'x = 3'
@@ -16,7 +16,7 @@ def test_statement_02( ):
    assert t.code == [code]
 
 
-def test_statement_03( ):
+def test_Statement_tmp_03( ):
    '''A statement's code can be a list of executable strings.'''
    text = 'Hello!'
    code = ['x = 3', 'y = x * 2']

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_breaks_interface_whitespace_01( ):
+def test_BreaksInterface_whitespace_01( ):
    '''Insert whitespace measure after measure.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
@@ -67,7 +67,7 @@ def test_breaks_interface_whitespace_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ]\n\t\t{\n\t\t\t\\override Staff.TimeSignature #'stencil = ##f\n\t\t\t\\time 1/32\n\t\t\t\\stopStaff\n\t\t\ts1 * 1/32\n\t\t\t\\startStaff\n\t\t\t\\revert Staff.TimeSignature #'stencil\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ] )\n\t}\n}"
    
 
-def test_breaks_interface_whitespace_02( ):
+def test_BreaksInterface_whitespace_02( ):
    '''Whitespace after leaf raises TypographicWhitespaceError.
       Otherwise would confuse LilyPond timekeeping.'''
 

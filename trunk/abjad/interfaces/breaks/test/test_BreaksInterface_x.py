@@ -1,6 +1,6 @@
 from abjad import *
 
-def test_breaks_interface_x_01( ):
+def test_BreaksInterface_x_01( ):
    '''``BreaksInterface.x`` formats the \
    *LilyPond* ``NonMusicalPaperColumn`` prob.'''
 

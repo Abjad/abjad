@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_accidental_interface_grob_handling_01( ):
+def test_AccidentalInterface_grob_handling_01( ):
    '''
    AccidentalInterface handles the LilyPond Accidental grob.
    '''
@@ -23,7 +23,7 @@ def test_accidental_interface_grob_handling_01( ):
    assert t.format == "\\new Staff \\with {\n\t\\override Accidental #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_accidental_interface_grob_handling_02( ):
+def test_AccidentalInterface_grob_handling_02( ):
    '''
    AccidentalInterface handles the LilyPond Accidental grob.
    '''

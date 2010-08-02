@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_grace_01( ):
+def test_Grace_tmp_01( ):
    '''Grace music is a container.'''
 
    t = Grace([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
@@ -20,7 +20,7 @@ def test_grace_01( ):
    '''
 
 
-def test_grace_02( ):
+def test_Grace_tmp_02( ):
    '''Grace.kind is managed attribute. 
       Grace.kind knows about "after", "grace", 
       "acciaccatura", "appoggiatura"'''
@@ -37,7 +37,7 @@ def test_grace_02( ):
    assert py.test.raises(AssertionError, 't.kind = "blah"')
    
 
-def test_grace_03( ):
+def test_Grace_tmp_03( ):
    '''Grace formats correctly as grace.'''
 
    t = Grace(leaftools.make_repeated_notes(3))
@@ -53,7 +53,7 @@ def test_grace_03( ):
    '''
 
 
-def test_grace_04( ):
+def test_Grace_tmp_04( ):
    '''Grace formats correctly as acciaccatura.'''
 
    t = Grace(leaftools.make_repeated_notes(3))
@@ -69,7 +69,7 @@ def test_grace_04( ):
    '''
 
 
-def test_grace_05( ):
+def test_Grace_tmp_05( ):
    '''Grace formats correctly as appoggiatura.'''
 
    t = Grace(leaftools.make_repeated_notes(3))
@@ -85,7 +85,7 @@ def test_grace_05( ):
    '''
 
 
-def test_grace_06( ):
+def test_Grace_tmp_06( ):
    '''Grace formats correctly as after grace.'''
 
    t = Grace(leaftools.make_repeated_notes(3))
@@ -101,7 +101,7 @@ def test_grace_06( ):
    '''
 
 
-def test_grace_07( ):
+def test_Grace_tmp_07( ):
    '''Grace containers can be appended.'''
 
    t = Grace(leaftools.make_repeated_notes(2))
@@ -111,7 +111,7 @@ def test_grace_07( ):
    assert t[-1] is n
 
 
-def test_grace_08( ):
+def test_Grace_tmp_08( ):
    '''Grace containers can be extended.'''
 
    t = Grace(leaftools.make_repeated_notes(2))

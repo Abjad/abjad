@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_bar_number_interface_grob_handling_01( ):
+def test_BarNumberInterface_grob_handling_01( ):
    '''Handle the LilyPond BarNumber grob.'''
 
    t = Score([Staff(macros.scale(4))])

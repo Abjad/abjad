@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_breaks_interface_clear_01( ):
+def test_BreaksInterface_clear_01( ):
    '''Set line, page, x, y and alignment_offsets to None.'''
 
    t = Note(0, (1, 4))

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beam_interface_auto_beaming_01( ):
+def test_BeamInterface_auto_beaming_01( ):
    '''Interface to LilyPond autoBeaming context setting.
    Set to true or false.'''
 
@@ -23,7 +23,7 @@ def test_beam_interface_auto_beaming_01( ):
    assert t.format == "\\new Staff \\with {\n\tautoBeaming = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_beam_interface_auto_beaming_02( ):
+def test_BeamInterface_auto_beaming_02( ):
    '''Clear with none.'''
 
    t = Staff(macros.scale(4))

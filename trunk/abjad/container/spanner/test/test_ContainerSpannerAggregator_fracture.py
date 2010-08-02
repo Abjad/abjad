@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_container_spanner_fracture_01( ):
+def test_ContainerSpannerAggregator_fracture_01( ):
    '''Fracture spanner either side of container.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -49,7 +49,7 @@ def test_container_spanner_fracture_01( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_container_spanner_fracture_02( ):
+def test_ContainerSpannerAggregator_fracture_02( ):
    '''Fracture spanner to the left of container.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -99,7 +99,7 @@ def test_container_spanner_fracture_02( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_container_spanner_fracture_03( ):
+def test_ContainerSpannerAggregator_fracture_03( ):
    '''Fracture spanner to the right of container.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -149,7 +149,7 @@ def test_container_spanner_fracture_03( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_container_spanner_fracture_04( ):
+def test_ContainerSpannerAggregator_fracture_04( ):
    '''Fracturing nothing does nothing.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
