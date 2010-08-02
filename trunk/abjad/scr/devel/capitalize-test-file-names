@@ -12,7 +12,7 @@ def _capitalize_test_file_names( ):
    old, new = 'zzz', 'zzz'
    for path, subdirectories, files in os.walk(ABJADPATH):
       for f in files:
-         if uncapitalized_pattern.match(f):
+         if uncapitalized_pattern.match(f) or f.endswith('_tmp.py'):
             if not 'tools' in f and not 'debug' in f and not 'lily_voice' in f and not 'iterate' in f:
                full_file_name = os.path.join(path, f)
                old, new = _rename_test_file(f, full_file_name, old, new)
