@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_spanner_aggregator_detach_01( ):
+def test_LeafSpannerAggregator_detach_01( ):
    '''t.spanners._detach( ) detaches all spanners attached to leaf t.'''
 
    t = Staff(macros.scale(4))
@@ -32,7 +32,7 @@ def test_leaf_spanner_aggregator_detach_01( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_leaf_spanner_aggregator_detach_02( ):
+def test_LeafSpannerAggregator_detach_02( ):
    '''t.spanners._detach( ) returns a SpannersReceipt.'''
 
    t = Staff(macros.scale(4))

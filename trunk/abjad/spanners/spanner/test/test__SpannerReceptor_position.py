@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spanner_receptor_position_01( ):
+def test__SpannerReceptor_position_01( ):
    '''Return position in spanner, if spanned;
       otherwise, raise MissingSpannerError.'''
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_override_spanner_format_01( ):
+def test_OverrideSpanner_format_01( ):
    '''False is an acceptable value that formats as ##f.'''
 
    t = Staff(macros.scale(4))

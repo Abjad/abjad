@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_dynamic_measure_duration_interface_01( ):
+def test_DynamicMeasure_duration_interface_01( ):
    '''Notes as contents.'''
 
    t = DynamicMeasure(macros.scale(4))
@@ -25,7 +25,7 @@ def test_dynamic_measure_duration_interface_01( ):
    assert t.format == "{\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_dynamic_measure_duration_interface_02( ):
+def test_DynamicMeasure_duration_interface_02( ):
    '''Binary tuplet as contents.'''
 
    t = DynamicMeasure([FixedDurationTuplet((2, 8), macros.scale(3))])
@@ -50,7 +50,7 @@ def test_dynamic_measure_duration_interface_02( ):
    assert t.format == "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
 
 
-def test_dynamic_measure_duration_interface_03( ):
+def test_DynamicMeasure_duration_interface_03( ):
    '''Nonbinary tuplet as contents.'''
 
    t = DynamicMeasure([FixedMultiplierTuplet((2, 3), macros.scale(4))])

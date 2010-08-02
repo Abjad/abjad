@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_dynamic_measure_meter_assignment_01( ):
+def test_DynamicMeasure_meter_assignment_01( ):
    '''Dynamic measures block meter assignment.'''
 
    t = DynamicMeasure(macros.scale(4))

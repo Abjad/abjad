@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_rigid_measure_parallel_01( ):
+def test_RigidMeasure_parallel_01( ):
    '''Rigid measures may be hold parallel contents.'''
 
    measure = RigidMeasure((2, 8), Voice(leaftools.make_repeated_notes(2)) * 2)

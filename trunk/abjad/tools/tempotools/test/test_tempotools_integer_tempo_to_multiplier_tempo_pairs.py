@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_integer_tempo_to_multiplier_tempo_pairs_01( ):
+def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_01( ):
 
    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 8, 8)
 
@@ -11,7 +11,7 @@ def test_integer_tempo_to_multiplier_tempo_pairs_01( ):
        (Rational(2, 1), Rational(116, 1))]
 
 
-def test_integer_tempo_to_multiplier_tempo_pairs_02( ):
+def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_02( ):
 
    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 30, 30)
 
@@ -36,7 +36,7 @@ def test_integer_tempo_to_multiplier_tempo_pairs_02( ):
        (Rational(2, 1), Rational(116, 1))]
 
 
-def test_integer_tempo_to_multiplier_tempo_pairs_03( ):
+def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_03( ):
 
    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(52, 4, 4)
 
@@ -47,7 +47,7 @@ def test_integer_tempo_to_multiplier_tempo_pairs_03( ):
        (Rational(2, 1), Rational(104, 1))]
 
 
-def test_integer_tempo_to_multiplier_tempo_pairs_04( ):
+def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_04( ):
 
    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(52, 8, 8)
 

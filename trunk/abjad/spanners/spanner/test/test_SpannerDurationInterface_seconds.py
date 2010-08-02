@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_duration_seconds_01( ):
+def test_SpannerDurationInterface_seconds_01( ):
    '''Spanner duration in seconds equals sum of duration
       of all leaves in spanner, in seconds.'''
 

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_voice_interface_number_01( ):
+def test_VoiceInterface_number_01( ):
    '''Voice number defaults to None.'''
 
    t = Voice(leaftools.make_repeated_notes(4))
@@ -11,7 +11,7 @@ def test_voice_interface_number_01( ):
    assert t.format == "\\new Voice {\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_voice_interface_number_02( ):
+def test_VoiceInterface_number_02( ):
    '''Voice number can be set on leaves.'''
 
    t = Voice(leaftools.make_repeated_notes(4))
@@ -20,7 +20,7 @@ def test_voice_interface_number_02( ):
    assert t.format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_voice_interface_number_03( ):
+def test_VoiceInterface_number_03( ):
    '''Voice number can be set to 1, 2, 3, 4, or None.
       Anyhing else will throw a ValueError exception.'''
 
@@ -42,7 +42,7 @@ def test_voice_interface_number_03( ):
    assert py.test.raises(ValueError, 't[0].voice.number = 23')
 
 
-def test_voice_interface_number_04( ):
+def test_VoiceInterface_number_04( ):
    '''Voice number can be set on a Voice container.'''
 
    t = Voice(leaftools.make_repeated_notes(4))
@@ -50,7 +50,7 @@ def test_voice_interface_number_04( ):
    assert t.format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_voice_interface_number_05( ):
+def test_VoiceInterface_number_05( ):
    '''Voice number can be set on a Voice container and 
       on one of the leaves contained in it.'''
 

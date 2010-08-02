@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_getitem_01( ):
+def test_Spanner___getitem___01( ):
    '''Get at nonnegative index in spanner.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -28,7 +28,7 @@ def test_spanner_getitem_01( ):
    assert p[0] is t[0]
 
 
-def test_spanner_getitem_02( ):
+def test_Spanner___getitem___02( ):
    '''Get at negative index in spanner.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -55,7 +55,7 @@ def test_spanner_getitem_02( ):
    assert p[-1] is t[-1]
 
 
-def test_spanner_getitem_03( ):
+def test_Spanner___getitem___03( ):
    '''Get slice from spanner.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -82,7 +82,7 @@ def test_spanner_getitem_03( ):
    assert p[-2:] == t[-2:]
 
 
-def test_spanner_getitem_04( ):
+def test_Spanner___getitem___04( ):
    '''Get all spanner components.
       Equivalent to p.clear( ).'''
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tempo_proportional_spanner_01( ):
+def test_TempoSpannerProportional_01( ):
    '''Do special things with tempo and spacing.'''
 
    t = Score([Staff(macros.scale(4))])

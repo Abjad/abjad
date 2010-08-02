@@ -1,14 +1,14 @@
 from abjad import *
 
 
-def test_voice_len_01( ):
+def test_Voice___len___01( ):
    '''Voice length returns the number of elements in voice.'''
 
    t = Voice( )
    assert len(t) == 0
 
 
-def test_voice_len_02( ):
+def test_Voice___len___02( ):
    '''Voice length returns the number of elements in voice.'''
 
    t = Voice(macros.scale(4))

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_note_head_style_01( ):
+def test_NoteHead_style_01( ):
    '''Notehead styles are handled just like all other grob overrides.
    NOTE: Abjad previous managed note_head style differently.
    This explains the presence of this extra test file.'''
@@ -17,7 +17,7 @@ def test_note_head_style_01( ):
    assert t.note_head.format == "cs'"
 
 
-def test_note_head_style_02( ):
+def test_NoteHead_style_02( ):
    '''Notehead styles are handled just like all other grob overrides.'''
 
    t = Note(1, (1, 4))
@@ -30,7 +30,7 @@ def test_note_head_style_02( ):
    assert t.note_head.format == "cs'"
 
 
-def test_note_head_style_03( ):
+def test_NoteHead_style_03( ):
    '''Notehead style overrides are handled just like all other
    note_head grob overrides, even for note_heads in chords.'''
 
@@ -49,7 +49,7 @@ def test_note_head_style_03( ):
    assert t.format == "<\n\t\\tweak #'style #'harmonic\n\tcs'\n\td'\n\tef'\n>4"
 
 
-def test_note_head_style_04( ):
+def test_NoteHead_style_04( ):
    '''Notehead shape style overrides are just normal grob overrides.'''
 
    t = Note(1, (1, 4))
@@ -62,7 +62,7 @@ def test_note_head_style_04( ):
    assert t.format == "cs'4"
 
 
-def test_note_head_style_05( ):
+def test_NoteHead_style_05( ):
    '''Notehead solfege style overrides are just normal grob overrides.
    Modern versions of LilyPond now handles solfege overrides correctly.'''
 

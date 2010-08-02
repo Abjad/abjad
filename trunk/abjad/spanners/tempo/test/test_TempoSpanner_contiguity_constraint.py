@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_tempo_spanner_contiguity_constraint_01( ):
+def test_TempoSpanner_contiguity_constraint_01( ):
    '''It is possible to turn off thread-contiguity checking
    for tempo spanners.'''
 

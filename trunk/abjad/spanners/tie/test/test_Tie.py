@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tie_spanner_01( ):
+def test_Tie_01( ):
 
    t = Voice(macros.scale(8))
    p = Tie(t[4:6])

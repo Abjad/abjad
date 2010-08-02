@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beam_spanner_grob_handling_01( ):
+def test_Beam_grob_handling_01( ):
    '''
    Abjad Beam spanners handle the LilyPond Beam grob.
    '''

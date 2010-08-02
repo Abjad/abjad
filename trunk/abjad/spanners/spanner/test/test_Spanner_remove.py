@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_remove_01( ):
+def test_Spanner_remove_01( ):
    '''Remove interior component from spanner.
       Remove spanner from component's aggregator.
       Spanner is left discontiguous and score no longer checks.
@@ -38,7 +38,7 @@ def test_spanner_remove_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
    
 
-def test_spanner_remove_02( ):
+def test_Spanner_remove_02( ):
    '''Remove last component from spanner.
       Remove spanner from component's aggregator.
       Here an end element removes from spanner.

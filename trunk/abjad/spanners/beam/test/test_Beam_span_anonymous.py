@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_beam_span_anonymous_01( ):
+def test_Beam_span_anonymous_01( ):
    '''Spanned empty sequential container;
       container formats no beam indications.'''
 
@@ -20,7 +20,7 @@ def test_beam_span_anonymous_01( ):
    assert t.format == '{\n}'
 
 
-def test_beam_span_anonymous_02( ):
+def test_Beam_span_anonymous_02( ):
    '''Nonempty spanned sequential container;
       container formats beam indications on first and last leaves.'''
 
@@ -46,7 +46,7 @@ def test_beam_span_anonymous_02( ):
    assert t.format == "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
 
 
-def test_beam_span_anonymous_03( ):
+def test_Beam_span_anonymous_03( ):
    '''Contiguous nonempty spanned containers;
       first and last leaves in contiguity chain format
       beam indications.'''
@@ -78,7 +78,7 @@ def test_beam_span_anonymous_03( ):
    "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
 
 
-def test_beam_span_anonymous_04( ):
+def test_Beam_span_anonymous_04( ):
    '''Contiguous nonempty containers and leaves;
       top-level attachment;
       first and last leaves in contiguity chain format
@@ -106,7 +106,7 @@ def test_beam_span_anonymous_04( ):
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
-def test_beam_span_anonymous_05( ):
+def test_Beam_span_anonymous_05( ):
    '''Contiguous nonempty containers and leaves;
       intermediate attachment;
       first and last leaves in contiguity chain format beam indications.'''
@@ -135,7 +135,7 @@ def test_beam_span_anonymous_05( ):
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
-def test_beam_span_anonymous_06( ):
+def test_Beam_span_anonymous_06( ):
    '''Contiguous nonempty containers and leaves;
       leaf-level attachment;
       first and last leaves in contiguity chain format beam indications.'''
@@ -163,7 +163,7 @@ def test_beam_span_anonymous_06( ):
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
-def test_beam_span_anonymous_07( ):
+def test_Beam_span_anonymous_07( ):
    '''Contiguous empty containers are OK;
       no beams appear at format-time.'''
 
@@ -187,7 +187,7 @@ def test_beam_span_anonymous_07( ):
    '''
 
 
-def test_beam_span_anonymous_08( ):
+def test_Beam_span_anonymous_08( ):
    '''Intervening empty containers are OK.'''
 
    t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
@@ -220,7 +220,7 @@ def test_beam_span_anonymous_08( ):
    '''
 
 
-def test_beam_span_anonymous_09( ):
+def test_Beam_span_anonymous_09( ):
    '''Empty containers at edges are OK.'''
 
    t = Staff(Container([ ]) * 2)
@@ -249,7 +249,7 @@ def test_beam_span_anonymous_09( ):
    '''
 
    
-def test_beam_span_anonymous_10( ):
+def test_Beam_span_anonymous_10( ):
    '''Spanners group anonymous containers at 
       completely different depths just fine;
       the only requirement is that the *leaves* of all
@@ -307,7 +307,7 @@ def test_beam_span_anonymous_10( ):
    '''
 
 
-def test_beam_span_anonymous_11( ):
+def test_Beam_span_anonymous_11( ):
    '''Asymmetric structure;
       but otherwise same as immediately above.'''
 
@@ -359,7 +359,7 @@ def test_beam_span_anonymous_11( ):
    '''
 
 
-def test_beam_span_anonymous_12( ):
+def test_Beam_span_anonymous_12( ):
    '''Docs.'''
 
    s1 = Container([Note(i, (1, 8)) for i in range(2)])
@@ -391,7 +391,7 @@ def test_beam_span_anonymous_12( ):
    '''
 
 
-def test_beam_span_anonymous_13( ):
+def test_Beam_span_anonymous_13( ):
    '''Alternating sequences of tuplets and notes span correctly.'''
 
    t1 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(3)])
@@ -425,7 +425,7 @@ def test_beam_span_anonymous_13( ):
    p.clear( )
 
 
-def test_beam_span_anonymous_14( ):
+def test_Beam_span_anonymous_14( ):
    '''Asymmetrically nested tuplets span correctly.'''
 
    tinner = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
@@ -453,7 +453,7 @@ def test_beam_span_anonymous_14( ):
    assert len(p.leaves) == 5
 
 
-def test_beam_span_anonymous_15( ):
+def test_Beam_span_anonymous_15( ):
    '''Parent asymmetric structures DO NOT allow spanning.
       LilyPond will correspondingly not render the beam
       through two different anonymous voices.'''

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_octavation_spanner_grob_handling_01( ):
+def test_OctavationSpanner_grob_handling_01( ):
    '''
    The Abjad Octavation spanner handles the LilyPond OttavaBracket grob.
    Note the need to promot OttavaBracket grob overrides to the

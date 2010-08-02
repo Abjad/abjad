@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_pop_left_01( ):
+def test_Spanner_pop_left_01( ):
    '''Remove and return leftmost component in spanner.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)

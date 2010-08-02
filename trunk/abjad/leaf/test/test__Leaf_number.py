@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_number_01( ):
+def test__Leaf_number_01( ):
    '''Leaves in staff number correctly.'''
 
    t = Staff(macros.scale(3))
@@ -10,7 +10,7 @@ def test_leaf_number_01( ):
    assert t[2].number == 2
 
 
-def test_leaf_number_02( ):
+def test__Leaf_number_02( ):
    '''Leaves in measure in staff number correctly.'''
 
    t = Staff([RigidMeasure((3, 8), macros.scale(3))])
@@ -20,7 +20,7 @@ def test_leaf_number_02( ):
    assert leaves[2].number == 2
 
 
-def test_leaf_number_03( ):
+def test__Leaf_number_03( ):
    '''Leaves in multiple measures in staff number corretly.'''
 
    t = Staff(RigidMeasure((2, 8), macros.scale(2)) * 3)
@@ -33,14 +33,14 @@ def test_leaf_number_03( ):
    assert leaves[5].number == 5
 
 
-def test_leaf_number_04( ):
+def test__Leaf_number_04( ):
    '''Orphan leaves number correctly.'''
 
    t = Note(0, (1, 4))
    assert t.number == 0
 
 
-def test_leaf_number_05( ):
+def test__Leaf_number_05( ):
    '''Leaves number correctly after contents rotation.'''
 
    t = Staff(macros.scale(4))

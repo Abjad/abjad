@@ -2,7 +2,7 @@ from abjad import *
 from abjad.checks import OctavationsOverlapping
 
 
-def test_octavation_spanner_01( ):
+def test_OctavationSpanner_01( ):
    '''Octavation has default start and stop arguments set to 0.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
@@ -23,7 +23,7 @@ def test_octavation_spanner_01( ):
    assert t.format == "\\new Staff {\n\t\\ottava #0\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\t\\ottava #0\n}"
    
 
-def test_octavation_spanner_02( ):
+def test_OctavationSpanner_02( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[ : 4], 1)
@@ -47,7 +47,7 @@ def test_octavation_spanner_02( ):
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
-def test_octavation_spanner_03( ):
+def test_OctavationSpanner_03( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[ : 4], 1, 2)
@@ -72,7 +72,7 @@ def test_octavation_spanner_03( ):
 
 
 
-def test_octavation_spanner_04( ):
+def test_OctavationSpanner_04( ):
    '''One-note octavation changes are allowed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -97,7 +97,7 @@ def test_octavation_spanner_04( ):
    '''
 
 
-def test_octavation_spanner_05( ):
+def test_OctavationSpanner_05( ):
    '''Adjacent one-note octavation changes are allowed;
       TODO - check for back-to-back set-octavation at format-
              time and compress to a single set-octavation.'''
@@ -127,7 +127,7 @@ def test_octavation_spanner_05( ):
    '''
 
 
-def test_octavation_spanner_06( ):
+def test_OctavationSpanner_06( ):
    '''Overlapping octavation spanners are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])

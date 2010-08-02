@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beam_spanner_public_01( ):
+def test_Beam_public_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    beam = Beam(t.leaves[ : 4])
    assert isinstance(beam, Beam)

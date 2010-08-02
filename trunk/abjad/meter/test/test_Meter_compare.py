@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_meter_compare_01( ):
+def test_Meter_compare_01( ):
    '''Meters referentially equal compare equally.
    '''
 
@@ -15,7 +15,7 @@ def test_meter_compare_01( ):
    assert     m1 <= m2
 
 
-def test_meter_compare_02( ):
+def test_Meter_compare_02( ):
    '''Meters equal by numerator and denominator compare equally.
    '''
 
@@ -28,7 +28,7 @@ def test_meter_compare_02( ):
    assert     m1 <= m2
 
 
-def test_meter_compare_03( ):
+def test_Meter_compare_03( ):
    '''Meters unequal by numerator and denominator compare unequally.
    '''
    
@@ -41,7 +41,7 @@ def test_meter_compare_03( ):
    assert     m1 <= m2
 
 
-def test_meter_compare_04( ):
+def test_Meter_compare_04( ):
    '''Meters unequal by numerator and denominator compare unequally.
    '''
 
@@ -54,7 +54,7 @@ def test_meter_compare_04( ):
    assert     m1 <= m2
 
 
-def test_meter_compare_05( ):
+def test_Meter_compare_05( ):
    '''Meters compare unequally with other types of object.
    '''
 

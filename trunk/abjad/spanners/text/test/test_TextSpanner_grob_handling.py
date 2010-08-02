@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_text_spanner_grob_handling_01( ):
+def test_TextSpanner_grob_handling_01( ):
    '''Abjad TextSpanner handles LilyPond TextSpanner grob.'''
 
    t = Staff(leaftools.make_repeated_notes(4))

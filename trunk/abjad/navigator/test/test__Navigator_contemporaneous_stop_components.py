@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_navigator_contemporaneous_stop_components_01( ):
+def test__Navigator_contemporaneous_stop_components_01( ):
    '''Notes.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -55,7 +55,7 @@ def test_navigator_contemporaneous_stop_components_01( ):
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_navigator_contemporaneous_stop_components_02( ):
+#def test__Navigator_contemporaneous_stop_components_02( ):
 #   '''With parallel containers.'''
 #
 #   t = Voice([Container(Container(leaftools.make_repeated_notes(2)) * 2)] + leaftools.make_repeated_notes(2))

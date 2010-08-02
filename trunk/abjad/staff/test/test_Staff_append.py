@@ -2,7 +2,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_staff_append_01( ):
+def test_Staff_append_01( ):
    '''Append one note.'''
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(Note(0, (1, 4)))
@@ -11,7 +11,7 @@ def test_staff_append_01( ):
    assert t.duration.contents == Rational(5, 4)
 
 
-def test_staff_append_02( ):
+def test_Staff_append_02( ):
    '''Append one chord.'''
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(Chord([2, 3, 4], (1, 4)))
@@ -20,7 +20,7 @@ def test_staff_append_02( ):
    assert t.duration.contents == Rational(5, 4)
 
 
-def test_staff_append_03( ):
+def test_Staff_append_03( ):
    '''Append one tuplet.'''
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3))
@@ -29,7 +29,7 @@ def test_staff_append_03( ):
    assert t.duration.contents == Rational(5, 4)
 
 
-def test_staff_append_04( ):
+def test_Staff_append_04( ):
    '''Empty containers are allowed but not well-formed.'''
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(FixedDurationTuplet((2, 8), [ ]))

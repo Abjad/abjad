@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tempo_spanner_repr_01( ):
+def test_TempoSpanner___repr___01( ):
    '''Tempo spanner repr gives tempo equation when possible.'''
 
    t = Staff(macros.scale(4))
@@ -22,7 +22,7 @@ def test_tempo_spanner_repr_01( ):
    assert tempo_spanner.__repr__( ) == "TempoSpanner(8=58, c'8, d'8, e'8, f'8)"
 
 
-def test_tempo_spanner_repr_02( ):
+def test_TempoSpanner___repr___02( ):
    '''Tempo spanner repr gives no equation when no 
    tempo indication is available.'''
 

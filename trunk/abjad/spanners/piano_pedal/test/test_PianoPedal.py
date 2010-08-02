@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_pianopedal_spanner_01( ):
+def test_PianoPedal_01( ):
    t = Staff(leaftools.make_repeated_notes(4))
    p = PianoPedal(t[:])
 
@@ -22,7 +22,7 @@ def test_pianopedal_spanner_01( ):
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
 
-def test_pianopedal_spanner_02( ):
+def test_PianoPedal_02( ):
    '''PianoPedal spanner supports sostenuto pedal.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
@@ -43,7 +43,7 @@ def test_pianopedal_spanner_02( ):
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sostenutoOn\n\tc'8\n\tc'8\n\tc'8 \\sostenutoOff\n}"
 
 
-def test_pianopedal_spanner_03( ):
+def test_PianoPedal_03( ):
    '''PianoPedal spanner supports una corda pedal.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
@@ -64,7 +64,7 @@ def test_pianopedal_spanner_03( ):
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\unaCorda\n\tc'8\n\tc'8\n\tc'8 \\treCorde\n}"
 
 
-def test_pianopedal_spanner_04( ):
+def test_PianoPedal_04( ):
    '''PianoPedal spanner supports text style.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
@@ -86,7 +86,7 @@ def test_pianopedal_spanner_04( ):
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'text\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
 
-def test_pianopedal_spanner_05( ):
+def test_PianoPedal_05( ):
    '''PianoPedal spanner supports bracket style.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
@@ -108,7 +108,7 @@ def test_pianopedal_spanner_05( ):
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'bracket\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
 
-def test_pianopedal_spanner_06( ):
+def test_PianoPedal_06( ):
    '''Consecutive dovetailing PianoPedal spanners format correctly.'''
 
    t = Staff(leaftools.make_repeated_notes(8))
@@ -134,7 +134,7 @@ def test_pianopedal_spanner_06( ):
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOff \\sustainOn\n\tc'8\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
 
-def test_pianopedal_spanner_07( ):
+def test_PianoPedal_07( ):
    '''The 'kind' and 'style' attributes raise ValueError as needed.'''
 
    t = Staff(leaftools.make_repeated_notes(4))

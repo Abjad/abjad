@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_rigid_measure_number_01( ):
+def test_RigidMeasure_number_01( ):
    '''Measures in staff number correctly starting from 1.'''
 
    t = Staff(measuretools.make([(3, 16), (5, 16), (5, 16)]))
@@ -10,14 +10,14 @@ def test_rigid_measure_number_01( ):
    assert t[2].number == 3
 
 
-def test_rigid_measure_number_02( ):
+def test_RigidMeasure_number_02( ):
    '''Orphan measures number correctly starting from 1.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
    assert t.number == 1
 
 
-def test_rigid_measure_number_03( ):
+def test_RigidMeasure_number_03( ):
    '''Mesaure numbering works correctly after contents rotation.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)

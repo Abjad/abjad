@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_rest_interface_grob_handling_01( ):
+def test_RestInterface_grob_handling_01( ):
    '''
    RestInterface handles the LilyPond Rest grob.
    '''
@@ -23,7 +23,7 @@ def test_rest_interface_grob_handling_01( ):
    assert t.format == "\\new Staff \\with {\n\t\\override Rest #'transparent = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_rest_interface_grob_handling_02( ):
+def test_RestInterface_grob_handling_02( ):
    '''
    Use clear to remove rest interace grob overrides.
    '''

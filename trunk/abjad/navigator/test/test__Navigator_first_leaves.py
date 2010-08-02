@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_navigator_first_leaves_01( ):
+def test__Navigator_first_leaves_01( ):
    '''Return first leaf from sequential container.'''
 
    t = Voice(macros.scale(4))
@@ -12,7 +12,7 @@ def test_navigator_first_leaves_01( ):
    assert leaves[0] is t[0]
 
 
-def test_navigator_first_leaves_02( ):
+def test__Navigator_first_leaves_02( ):
    '''Return first leaves from parallel containers.'''
 
    t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
@@ -40,7 +40,7 @@ def test_navigator_first_leaves_02( ):
    assert leaves[1] is t[1][0]
 
 
-def test_navigator_first_leaves_03( ):
+def test__Navigator_first_leaves_03( ):
    '''Return first leaves from empty sequential container.'''
 
    t = Voice([ ])
@@ -48,7 +48,7 @@ def test_navigator_first_leaves_03( ):
    assert len(leaves) == 0
 
 
-def test_navigator_first_leaves_04( ):
+def test__Navigator_first_leaves_04( ):
    '''Return first leaves from empty parallel containes.'''
 
    t = Container(Voice([ ]) * 2)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_staff_clef_01( ):
+def test_Staff_clef_01( ):
    '''Test ClefInterface public attributes.'''
    t = Staff(Note(0, (1, 4)) * 8)
    assert t.clef.change == False
@@ -10,7 +10,7 @@ def test_staff_clef_01( ):
    assert t.clef.effective == Clef('treble')
 
 
-def test_staff_clef_02( ):
+def test_Staff_clef_02( ):
    '''Force clef on nonempty staff.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.clef.forced = Clef('bass')
@@ -30,7 +30,7 @@ def test_staff_clef_02( ):
    '''
 
 
-def test_staff_clef_03( ):
+def test_Staff_clef_03( ):
    '''Force clef on empty staff.'''
    t = Staff([ ])
    t.clef.forced = Clef('bass')
@@ -42,7 +42,7 @@ def test_staff_clef_03( ):
    '''
 
 
-def test_staff_clef_04( ):
+def test_Staff_clef_04( ):
    '''Staff clef carries over to staff-contained leaves.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.clef.forced = Clef('bass')
@@ -50,7 +50,7 @@ def test_staff_clef_04( ):
       assert x.clef.effective == Clef('bass')
 
 
-def test_staff_clef_05( ):
+def test_Staff_clef_05( ):
    '''Staff cleff carries over to staff-contained leaves,
       but leaves can reassert new clef.'''
    t = Staff(Note(0, (1, 4)) * 8)
@@ -63,7 +63,7 @@ def test_staff_clef_05( ):
          assert leaf.clef.effective == Clef('treble')
 
 
-def test_staff_clef_06( ):
+def test_Staff_clef_06( ):
    '''Staff clef clears with None.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.clef.forced = Clef('bass')
@@ -72,7 +72,7 @@ def test_staff_clef_06( ):
       assert leaf.clef.effective == Clef('treble')
 
 
-def test_staff_clef_07( ):
+def test_Staff_clef_07( ):
    '''Staff / first-leaf clef competition resolves
       in favor of first leaf.'''
    t = Staff(Note(0, (1, 4)) * 8)

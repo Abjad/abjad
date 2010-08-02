@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spanner_leaf_status_01( ):
+def test_Spanner__is_my_first_leaf_01( ):
    '''Spanner attached to flat container.'''
 
    t = Voice(leaftools.make_repeated_notes(4))
@@ -28,7 +28,7 @@ def test_spanner_leaf_status_01( ):
       assert not p._is_my_only_leaf(leaf)
 
 
-def test_spanner_leaf_status_02( ):
+def test_Spanner__is_my_first_leaf_02( ):
    '''Spanner attached to container with nested contents.'''
 
    t = Voice(leaftools.make_repeated_notes(4))
@@ -53,7 +53,7 @@ def test_spanner_leaf_status_02( ):
    assert p._is_my_last_leaf(t[2][1])
 
 ## NONSTRUCTURAL in new parallel --> context model
-#def test_spanner_leaf_status_03( ):
+#def test_Spanner__is_my_first_leaf_03( ):
 #   '''Spanner attached to container with parallel nested contents.'''
 #
 #   t = Voice(leaftools.make_repeated_notes(4))

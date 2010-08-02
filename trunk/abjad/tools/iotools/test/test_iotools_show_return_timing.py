@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_io_show_return_timing_01( ):
+def test_iotools_show_return_timing_01( ):
    '''When return_timing is True, return Abjad format time as 
    an integer number of seconds and also return LilyPond render 
    time as integer number of seconds. Otherwise, return None.

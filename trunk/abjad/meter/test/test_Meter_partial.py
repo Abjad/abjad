@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_meter_partial_01( ):
+def test_Meter_partial_01( ):
 
    t = Staff(macros.scale(4))
    meter = Meter(2, 8)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fdtuplet_init_01( ):
+def test_FixedDurationTuplet___init____01( ):
    '''Initialize typical fixed-duration tuplet.'''
    
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
@@ -15,7 +15,7 @@ def test_fdtuplet_init_01( ):
    assert t.duration.prolated == Rational(1, 4)
 
 
-def test_fdtuplet_init_02( ):
+def test_FixedDurationTuplet___init____02( ):
    '''Initialize empty fixed-duration tuplet.'''
 
    t = FixedDurationTuplet((1, 4), [ ])

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_override_spanner___init____01( ):
+def test_OverrideSpanner___init____01( ):
    '''Five-argument form uses context specification.'''
 
    t = Staff(macros.scale(8))
@@ -26,7 +26,7 @@ def test_override_spanner___init____01( ):
    assert t.format == "\\new Staff {\n\t\\override Staff.Beam #'positions = #'(8 . 8)\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.Beam #'positions\n\tg'8\n\ta'8\n\tb'8\n\tc''8\n}"
 
 
-def test_override_spanner___init____02( ):
+def test_OverrideSpanner___init____02( ):
    '''Four-argument form does not use context specification.'''
 
    t = Staff(macros.scale(8))

@@ -3,7 +3,7 @@ from abjad import *
 
 ## TODO: Externalize numbering code to a tools module. ##
 
-def test_leaf_formatter_number_01( ):
+def test__LeafFormatter_number_01( ):
    '''_LeafFormatterNumberInterface can contribute markup.'''
 
    t = Staff(macros.scale(8))
@@ -26,7 +26,7 @@ def test_leaf_formatter_number_01( ):
    assert t.format == "\\new Staff {\n\tc'8 ^ \\markup { 0 }\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n\tb'8\n\tc''8\n}"
 
 
-def test_leaf_formatter_number_02( ):
+def test__LeafFormatter_number_02( ):
    '''_LeafFormatterNumberInterface can contribute LilyPond comments.'''
 
    t = Staff(macros.scale(8))

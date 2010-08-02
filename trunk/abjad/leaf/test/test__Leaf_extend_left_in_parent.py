@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_extend_left_in_parent_01( ):
+def test__Leaf_extend_left_in_parent_01( ):
    '''Extend leaves leftwards of leaf. Do not extend edge spanners.'''
 
    t = Voice(macros.scale(3))
@@ -24,7 +24,7 @@ def test_leaf_extend_left_in_parent_01( ):
    assert t.format == "\\new Voice {\n\tc'16\n\td'16\n\te'16\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
 
-def test_leaf_extend_left_in_parent_02( ):
+def test__Leaf_extend_left_in_parent_02( ):
    '''Extend leaf leftwards of interior leaf. Do extend interior spanners.'''
 
    t = Voice(macros.scale(3))

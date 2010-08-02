@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_cast_spanned_01( ):
+def test__Leaf_cast_spanned_01( ):
    '''
    Spanned leaves cast correctly.
    '''
@@ -22,7 +22,7 @@ def test_leaf_cast_spanned_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tr8 ]\n}"
 
 
-def test_leaf_cast_spanned_02( ):
+def test__Leaf_cast_spanned_02( ):
    '''
    Spanned leaves cast correctly.
    '''

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_meter_duration_01( ):
+def test_Meter_duration_01( ):
    '''
    Meters implement a read-only duration.
    '''
@@ -13,7 +13,7 @@ def test_meter_duration_01( ):
    assert py.test.raises(AttributeError, 't.duration = (5, 16)')
 
 
-def test_meter_duration_02( ):
+def test_Meter_duration_02( ):
    '''
    Meters implement read-only duration.
    '''

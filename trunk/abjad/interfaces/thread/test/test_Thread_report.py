@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_thread_report_01( ):
+#def test_Thread_report_01( ):
 #   '''Containment signature of leaf 2.
 #      Signature contains no explicit voice, staff or score.
 #      Outermost sequentials acts as signature root.'''
@@ -43,7 +43,7 @@ import py.test
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_thread_report_02( ):
+#def test_Thread_report_02( ):
 #   '''Containment signature of leaf 2.
 #      Signature contains named voice 'foo'.
 #      Signature contains neither staff nor score.
@@ -85,7 +85,7 @@ import py.test
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_thread_report_03( ):
+#def test_Thread_report_03( ):
 #   '''Containment signature of leaf 2.
 #      Signature contains anonymous voice.
 #      Signature contains neither staff nor score.
@@ -125,7 +125,7 @@ import py.test
 #       self: Note-5358224'''
 
 
-def test_thread_report_04( ):
+def test_Thread_report_04( ):
    '''Containment signature for leaf 2.
       Signature contains innermost anonymous voice.
       Signature contains neither staff nor score.
@@ -167,7 +167,7 @@ def test_thread_report_04( ):
        self: Note-5358320'''
 
       
-def test_thread_report_05( ):
+def test_Thread_report_05( ):
    '''Containment signature for leaf 2.
       Signature contains named voice 'foo'.
       Signature contains neither staff nor score.
@@ -211,7 +211,7 @@ def test_thread_report_05( ):
        self: Note-5362480'''
 
 
-def test_thread_report_06( ):
+def test_Thread_report_06( ):
    '''Containment signature of leaf 2.
       Signature contains named 'voicefoo' and 'staff1'.
       Signature contains no score.
@@ -253,7 +253,7 @@ def test_thread_report_06( ):
        self: Note-5334832'''
 
    
-def test_thread_report_07( ):
+def test_Thread_report_07( ):
 
    t = Container(leaftools.make_repeated_notes(2))
    t[1:1] = Container(Voice(leaftools.make_repeated_notes(1)) * 2) * 2
@@ -301,7 +301,7 @@ def test_thread_report_07( ):
        self: Note-4370288'''
 
 
-def test_thread_report_08( ):
+def test_Thread_report_08( ):
    '''Unicorporated leaves carry different containment signatures.'''
 
    t = Note(0, (1, 8))
@@ -315,7 +315,7 @@ def test_thread_report_08( ):
        self: Note-5494544'''
 
 
-def test_thread_report_09( ):
+def test_Thread_report_09( ):
 
    t = Staff([Voice([Note(0, (1, 8))])])
    t.name = 'staff'

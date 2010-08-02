@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_insert_01( ):
+def test_Spanner_insert_01( ):
    '''Insert component in spanner at index i.
       Add spanner to component's aggregator.
       Component then knows about spanner and vice versa.
@@ -27,7 +27,7 @@ def test_spanner_insert_01( ):
    assert not componenttools.is_well_formed_component(t)
 
 
-def test_spanner_insert_02( ):
+def test_Spanner_insert_02( ):
    '''Insert component at index zero in spanner.
       This operation does not mangle spanner.
       Operation is still not composer-safe, however.

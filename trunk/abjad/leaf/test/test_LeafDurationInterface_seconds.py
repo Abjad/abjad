@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_leaf_duration_interface_seconds_01( ):
+def test_LeafDurationInterface_seconds_01( ):
    '''Clock duration equals prolated duration divide by effective tempo.'''
 
    t = Container(macros.scale(4))
@@ -26,7 +26,7 @@ def test_leaf_duration_interface_seconds_01( ):
    assert t[3].duration.seconds == Rational(5, 7)
 
 
-def test_leaf_duration_interface_seconds_02( ):
+def test_LeafDurationInterface_seconds_02( ):
    '''Clock duration can not calculate without tempo.'''
 
    t = Note(0, (1, 4))

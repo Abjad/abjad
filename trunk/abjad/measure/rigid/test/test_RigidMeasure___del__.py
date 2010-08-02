@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_rigid_measure_del_01( ):
+def test_RigidMeasure___del___01( ):
    '''Nonnegative indices work.'''
 
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
@@ -11,7 +11,7 @@ def test_rigid_measure_del_01( ):
    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_rigid_measure_del_02( ):
+def test_RigidMeasure___del___02( ):
    '''Negative indices work.'''
 
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
@@ -21,7 +21,7 @@ def test_rigid_measure_del_02( ):
    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
    
 
-def test_rigid_measure_del_03( ):
+def test_RigidMeasure___del___03( ):
    '''Denominator preservation in meter.'''
 
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
@@ -31,7 +31,7 @@ def test_rigid_measure_del_03( ):
    assert t.format == "{\n\t\\time 2/8\n\tc'8\n\tc'8\n}"
 
 
-def test_rigid_measure_del_04( ):
+def test_RigidMeasure___del___04( ):
    '''Denominator changes from 8 to 16.'''
 
    t = RigidMeasure((4, 8), Note(0, (1, 16)) * 2 + Note(0, (1, 8)) * 3)
@@ -41,7 +41,7 @@ def test_rigid_measure_del_04( ):
    assert t.format == "{\n\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_rigid_measure_del_05( ):
+def test_RigidMeasure___del___05( ):
    '''Trim nonbinary measure.'''
 
    t = RigidMeasure((4, 9), macros.scale(4))

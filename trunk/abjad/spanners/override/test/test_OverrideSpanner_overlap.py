@@ -3,7 +3,7 @@ from abjad import *
 
 ### TODO - make overlapping one-note overrides work ###
 
-def test_override_spanner_overlap_01( ):
+def test_OverrideSpanner_overlap_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Override(t[ : ], 'NoteHead', 'color', 'red')
 
@@ -29,7 +29,7 @@ def test_override_spanner_overlap_01( ):
    '''
 
 
-def test_override_spanner_overlap_02( ):
+def test_OverrideSpanner_overlap_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Override(t[ : ], 'NoteHead', 'color', 'red')
    Override(t[2 : 6], 'NoteHead', 'color', 'blue')
@@ -58,7 +58,7 @@ def test_override_spanner_overlap_02( ):
    '''
 
 
-def test_override_spanner_overlap_03( ):
+def test_OverrideSpanner_overlap_03( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Override(t[ : ], 'NoteHead', 'color', 'red')
    Override(t[4], 'NoteHead', 'color', 'blue')

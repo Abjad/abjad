@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_staff_engraver_removals_01( ):
+def test_Staff_engraver_removals_01( ):
 
    t = Staff(macros.scale(4))
    t.engraver_removals.add('Time_signature_engraver')

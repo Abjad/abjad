@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_Grace_parentage_tmp_01( ):
+def test_Grace_parentage_01( ):
    '''Lone Grace containers _carrier is None.'''
    t = Grace(leaftools.make_repeated_notes(4))
    assert t._carrier is None
 
 
-def test_Grace_parentage_tmp_02( ):
+def test_Grace_parentage_02( ):
    '''Grace containers in Leaf do have parent.'''
    t = Note(1, (1, 4))
    assert isinstance(t.grace.before, Grace)
@@ -15,7 +15,7 @@ def test_Grace_parentage_tmp_02( ):
    assert t.grace.after._carrier is t
 
 
-def test_Grace_parentage_tmp_03( ):
+def test_Grace_parentage_03( ):
    '''
    Grace containers in Leaf have their correct parent after assignment 
    via GraceInterface.
@@ -35,7 +35,7 @@ def test_Grace_parentage_tmp_03( ):
    assert t.grace.before._carrier is t
 
 
-def test_Grace_parentage_tmp_04( ):
+def test_Grace_parentage_04( ):
    '''
    Grace container in Leaf have their correct parent after Leaf casting.
    '''
@@ -58,13 +58,13 @@ def test_Grace_parentage_tmp_04( ):
    assert t.grace.before._carrier is t
 
 
-#def test_Grace_parentage_tmp_05( ):
+#def test_Grace_parentage_05( ):
 #   '''Lone Grace containers _parent is None.'''
 #   t = Grace(leaftools.make_repeated_notes(4))
 #   assert t._parent is None
 #
 #
-#def test_Grace_parentage_tmp_06( ):
+#def test_Grace_parentage_06( ):
 #   '''Grace containers in Leaf do have parent.'''
 #   t = Note(1, (1, 4))
 #   assert isinstance(t.grace.before, Grace)
@@ -72,7 +72,7 @@ def test_Grace_parentage_tmp_04( ):
 #   assert t.grace.after._parent is t
 #
 #
-#def test_Grace_parentage_tmp_07( ):
+#def test_Grace_parentage_07( ):
 #   '''
 #   Grace containers in Leaf have their correct parent after assignment 
 #   via GraceInterface.
@@ -92,7 +92,7 @@ def test_Grace_parentage_tmp_04( ):
 #   assert t.grace.before._parent is t
 #
 #
-#def test_Grace_parentage_tmp_08( ):
+#def test_Grace_parentage_08( ):
 #   '''
 #   Grace container in Leaf have their correct parent after Leaf casting.
 #   '''

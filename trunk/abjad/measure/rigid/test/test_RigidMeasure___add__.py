@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_rigid_measure_add_01( ):
+def test_RigidMeasure___add___01( ):
    '''Add outside-of-score rigid measures.'''
    
    t1 = RigidMeasure((1, 8), macros.scale(2, Rational(1, 16)))
@@ -44,7 +44,7 @@ def test_rigid_measure_add_01( ):
    assert new.format == "{\n\t\\time 2/8\n\tc'16 [\n\td'16 ]\n\tc'16 (\n\td'16 )\n}"
 
    
-def test_rigid_measure_add_02( ):
+def test_RigidMeasure___add___02( ):
    '''Add rigid measures in score.'''
 
    t1 = RigidMeasure((1, 8), macros.scale(2, Rational(1, 16)))

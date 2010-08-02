@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tempo_spanner_overlap_01( ):
+def test_TempoSpanner_overlap_01( ):
    '''Overlapping tempo spanners are not well formed.'''
 
    t = Staff(macros.scale(4))

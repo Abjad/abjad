@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplet_bracket_interface_tuplet_full_length_01( ):
+def test_TupletBracketInterface_tuplet_full_length_01( ):
 
    t = Staff([ ])
    t.tuplet_bracket.tuplet_full_length = True

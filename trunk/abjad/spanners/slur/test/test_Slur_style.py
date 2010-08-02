@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_slur_spanner_style_01( ):
+def test_Slur_style_01( ):
    '''Slurs may be solid, dashed or dotted.'''
 
    t = Staff(macros.scale(4))
@@ -36,7 +36,7 @@ def test_slur_spanner_style_01( ):
    assert t.format == "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
-def test_slur_spanner_style_02( ):
+def test_Slur_style_02( ):
    '''Slurs may be solid, dashed or dotted.'''
 
    t = Staff(macros.scale(4))

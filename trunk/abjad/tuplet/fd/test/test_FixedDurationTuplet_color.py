@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fdtuplet_color_01( ):
+def test_FixedDurationTuplet_color_01( ):
    '''Setting 'color' on the FixedDurationTuplet class
    both prints and colors trivial tuplets at format-time.'''
 
@@ -23,7 +23,7 @@ def test_fdtuplet_color_01( ):
    ## make sure to unset color when done
    delattr(FixedDurationTuplet, 'color')
 
-def test_fdtuplet_color_02( ):
+def test_FixedDurationTuplet_color_02( ):
    r'''Trivial tuplet coloring uses LilyPond \tweak to
    handle nested tuplets correctly.'''
 

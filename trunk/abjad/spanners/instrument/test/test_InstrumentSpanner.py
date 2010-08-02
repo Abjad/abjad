@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_instrument_spanner_01( ):
+def test_InstrumentSpanner_01( ):
    '''Instrument spanner with long and short names.'''
 
    t = Voice(macros.scale(4))
@@ -24,7 +24,7 @@ def test_instrument_spanner_01( ):
    assert t.format == "\\new Voice {\n\t\\set Staff.instrumentName = \\markup { Alto Flute in G }\n\t\\set Staff.shortInstrumentName = \\markup { Fl. G }\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\unset Staff.instrumentName\n\t\\unset Staff.shortInstrumentName\n}"
 
 
-def test_instrument_spanner_02( ):
+def test_InstrumentSpanner_02( ):
    '''Works with markup.'''
 
    t = Voice(macros.scale(4))

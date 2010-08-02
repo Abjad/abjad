@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_rest_pitched_01( ):
+def test_Rest_pitched_01( ):
    '''Rests can have pitch set with int.'''
    r = Rest((1, 4))
    r.pitch = 0
@@ -11,7 +11,7 @@ def test_rest_pitched_01( ):
    assert r.duration.written == r.duration.prolated == Rational(1, 4)
 
 
-def test_rest_pitched_02( ):
+def test_Rest_pitched_02( ):
    '''Rests can have pitch set with Pitch.'''
    r = Rest((1, 4))
    r.pitch = Pitch(0)
@@ -21,7 +21,7 @@ def test_rest_pitched_02( ):
    assert r.duration.written == r.duration.prolated == Rational(1, 4)
 
 
-def test_rest_pitched_03( ):
+def test_Rest_pitched_03( ):
    '''Rests can have pitch set to None.'''
    r = Rest((1, 4))
    r.pitch = None

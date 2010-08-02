@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_navigator_is_threadable_01( ):
+def test__Navigator_is_threadable_01( ):
    '''Voice and leaves all thread.'''
 
    t = Voice(macros.scale(4))
@@ -21,7 +21,7 @@ def test_navigator_is_threadable_01( ):
    '''
 
 
-def test_navigator_is_threadable_02( ):
+def test__Navigator_is_threadable_02( ):
    '''Staff and leaves all thread.'''
 
    t = Staff(macros.scale(4))
@@ -40,7 +40,7 @@ def test_navigator_is_threadable_02( ):
    '''
 
 
-def test_navigator_is_threadable_03( ):
+def test__Navigator_is_threadable_03( ):
    '''Paths exist between all notes in a sequential.'''
 
    t = Container(macros.scale(4))
@@ -59,7 +59,7 @@ def test_navigator_is_threadable_03( ):
    '''
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_navigator_is_threadable_04( ):
+#def test__Navigator_is_threadable_04( ):
 #   '''A path does NOT exist between leaves with a parent parallel container
 #   not contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating a separate Staff for each
@@ -92,7 +92,7 @@ def test_navigator_is_threadable_03( ):
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_navigator_is_threadable_05( ):
+#def test__Navigator_is_threadable_05( ):
 #   '''A path DOES exist between leaves with a parent parallel container
 #   contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating chords.'''
@@ -115,7 +115,7 @@ def test_navigator_is_threadable_03( ):
 #      }'''
 
 
-def test_navigator_is_threadable_06( ):
+def test__Navigator_is_threadable_06( ):
    '''Tuplets and leaves all thread.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
@@ -135,7 +135,7 @@ def test_navigator_is_threadable_06( ):
    '''
 
 
-def test_navigator_is_threadable_07( ):
+def test__Navigator_is_threadable_07( ):
    '''Voice and its noncontext contents all thread.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(4)) * 2)
@@ -171,7 +171,7 @@ def test_navigator_is_threadable_07( ):
    assert t[1]._navigator._is_threadable(t[0][3])
 
 
-def test_navigator_is_threadable_08( ):
+def test__Navigator_is_threadable_08( ):
    '''Voice and its noncontext contents all thread.'''
 
    t1 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
@@ -204,7 +204,7 @@ def test_navigator_is_threadable_08( ):
    '''
 
 
-def test_navigator_is_threadable_09( ):
+def test__Navigator_is_threadable_09( ):
    '''Can not thread across differently identified anonymous voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -242,7 +242,7 @@ def test_navigator_is_threadable_09( ):
    '''
 
 
-def test_navigator_is_threadable_10( ):
+def test__Navigator_is_threadable_10( ):
    '''Can thread across like-named voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -281,7 +281,7 @@ def test_navigator_is_threadable_10( ):
    '''
 
 
-def test_navigator_is_threadable_11( ):
+def test__Navigator_is_threadable_11( ):
    '''Can not thread across differently named voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -311,7 +311,7 @@ def test_navigator_is_threadable_11( ):
    '''
 
 
-def test_navigator_is_threadable_12( ):
+def test__Navigator_is_threadable_12( ):
    '''Can not thread across differently identified anonymous voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -353,7 +353,7 @@ def test_navigator_is_threadable_12( ):
    '''   
 
 
-def test_navigator_is_threadable_13( ):
+def test__Navigator_is_threadable_13( ):
    '''Can not thread across differently identified anonymous voices.'''
 
    vl1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -430,7 +430,7 @@ def test_navigator_is_threadable_13( ):
    '''
 
 
-def test_navigator_is_threadable_14( ):
+def test__Navigator_is_threadable_14( ):
    '''Voice threads its noncontext contents.'''
 
    s1 = Container([Note(i, (1, 8)) for i in range(4)])
@@ -473,7 +473,7 @@ def test_navigator_is_threadable_14( ):
    assert t[0][0][-1]._navigator._is_threadable(t[1][0][0])
 
 
-def test_navigator_is_threadable_15( ):
+def test__Navigator_is_threadable_15( ):
    '''Like-named staves do NOT thread.'''
 
    t = Container(Staff([ ]) * 2)
@@ -493,7 +493,7 @@ def test_navigator_is_threadable_15( ):
    assert not t[1]._navigator._is_threadable(t[0])
 
 
-def test_navigator_is_threadable_16( ):
+def test__Navigator_is_threadable_16( ):
    '''Can NOT thread across like-named voices in like-named staves.'''
 
    t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
@@ -532,7 +532,7 @@ def test_navigator_is_threadable_16( ):
    assert not leaves[4]._navigator._is_threadable(leaves[0])
 
 
-def test_navigator_is_threadable_17( ):
+def test__Navigator_is_threadable_17( ):
    '''Can thread across like-named voices.
       But can NOT thread across differently identified anonymous staves.'''
 
@@ -571,7 +571,7 @@ def test_navigator_is_threadable_17( ):
    assert leaves[4]._navigator._is_threadable(leaves[7])
 
 
-def test_navigator_is_threadable_18( ):
+def test__Navigator_is_threadable_18( ):
    '''Like-named voices thread.'''
 
    t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
@@ -603,7 +603,7 @@ def test_navigator_is_threadable_18( ):
    assert t[1][0]._navigator._is_threadable(t[0][1])
 
 
-def test_navigator_is_threadable_19( ):
+def test__Navigator_is_threadable_19( ):
    '''Can not thread from differently identified 
       anonymous and implicit voices.'''
 
@@ -633,7 +633,7 @@ def test_navigator_is_threadable_19( ):
    assert not t[2][0]._navigator._is_threadable(t[3])
 
 
-def test_navigator_is_threadable_20( ):
+def test__Navigator_is_threadable_20( ):
    '''Like-named voices thread.'''
 
    v1 = Voice(leaftools.make_repeated_notes(4))
@@ -663,7 +663,7 @@ def test_navigator_is_threadable_20( ):
       assert n1._navigator._is_threadable(n2)
 
 
-def test_navigator_is_threadable_21( ):
+def test__Navigator_is_threadable_21( ):
    '''Like-named voices thread.'''
 
    v1 = Voice(leaftools.make_repeated_notes(4))
@@ -700,7 +700,7 @@ def test_navigator_is_threadable_21( ):
       assert n1._navigator._is_threadable(n2)
 
 
-def test_navigator_is_threadable_22( ):
+def test__Navigator_is_threadable_22( ):
    '''Like-named voices in like-named staves do NOT thread.'''
 
    v1 = Voice(leaftools.make_repeated_notes(4))
@@ -739,7 +739,7 @@ def test_navigator_is_threadable_22( ):
    assert not s1._navigator._is_threadable(s2)
 
 
-def test_navigator_is_threadable_23( ):
+def test__Navigator_is_threadable_23( ):
    '''Like-name staff groups thread.'''
 
    t = Container([StaffGroup([ ]), StaffGroup([ ])])
@@ -757,7 +757,7 @@ def test_navigator_is_threadable_23( ):
    assert t[0]._navigator._is_threadable(t[1])
 
 
-def test_navigator_is_threadable_24( ):
+def test__Navigator_is_threadable_24( ):
    r'''Containers and leaves here all inhabit the same implicit voice.
       All components thread.'''
 
@@ -785,7 +785,7 @@ def test_navigator_is_threadable_24( ):
    '''
 
    
-def test_navigator_is_threadable_25( ):
+def test__Navigator_is_threadable_25( ):
    '''Differently identified anonymous voices do not thread.'''
 
    t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
@@ -812,7 +812,7 @@ def test_navigator_is_threadable_25( ):
    '''
 
 
-def test_navigator_is_threadable_26( ):
+def test__Navigator_is_threadable_26( ):
    '''Differently identified anonymous voices do not thread.
       Differently identified anonymous staves do not thread.'''
 

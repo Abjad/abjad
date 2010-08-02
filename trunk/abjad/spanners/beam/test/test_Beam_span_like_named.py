@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_beam_span_like_named_01( ):
+def test_Beam_span_like_named_01( ):
    '''Abjad lets you span liked named voices.'''
 
    t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
@@ -42,7 +42,7 @@ def test_beam_span_like_named_01( ):
    '''
 
  
-def test_beam_span_like_named_02( ):
+def test_Beam_span_like_named_02( ):
    '''
    Abjad does NOT lets you span over liked named staves.
    '''
@@ -59,7 +59,7 @@ def test_beam_span_like_named_02( ):
    assert py.test.raises(AssertionError, 'p = Beam([t[0][0], t[1][0]])')
 
 
-def test_beam_span_like_named_03( ):
+def test_Beam_span_like_named_03( ):
    '''
    Like-named containers need not be lexically contiguous.
    '''
@@ -112,7 +112,7 @@ def test_beam_span_like_named_03( ):
    '''
 
 
-def test_beam_span_like_named_04( ):
+def test_Beam_span_like_named_04( ):
    '''
    Asymmetric structures are no problem.
    '''

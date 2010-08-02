@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_staff_formatter_number_01( ):
+def test_Staff_formatter_number_01( ):
    '''Staff formatter number interface can contribute
       LilyPond comments to many measures at once.'''
 
@@ -43,7 +43,7 @@ def test_staff_formatter_number_01( ):
    assert t.format == "\\new Staff {\n\t% start measure 1\n\t{\n\t\t\\time 2/16\n\t\tc'16\n\t\tc'16\n\t}\n\t% stop measure 1\n\t% start measure 2\n\t{\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\t% stop measure 2\n\t% start measure 3\n\t{\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\t% stop measure 3\n}"
 
 
-def test_staff_formatter_number_02( ):
+def test_Staff_formatter_number_02( ):
    '''Staff formatter number interface can contribute
       markup to many leaves at once.'''
 
@@ -78,7 +78,7 @@ def test_staff_formatter_number_02( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/16\n\t\tc'16 ^ \\markup { 0 }\n\t\tc'16 ^ \\markup { 1 }\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 2 }\n\t\tc'16 ^ \\markup { 3 }\n\t\tc'16 ^ \\markup { 4 }\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 5 }\n\t\tc'16 ^ \\markup { 6 }\n\t\tc'16 ^ \\markup { 7 }\n\t}\n}"
 
 
-def test_staff_formatter_number_03( ):
+def test_Staff_formatter_number_03( ):
    '''Staff formatter number interface can contribute
       both measure comments and leaf markup at format-time.'''
 

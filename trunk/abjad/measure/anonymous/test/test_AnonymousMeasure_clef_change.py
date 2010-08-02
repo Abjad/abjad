@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_anonymous_measure_clef_change_01( ):
+def test_AnonymousMeasure_clef_change_01( ):
    '''Clef sequence: treble, bass, treble.
    Important that measure three format *only bass clef*.
    If measure three format treble *and* bass clef, there's contention.

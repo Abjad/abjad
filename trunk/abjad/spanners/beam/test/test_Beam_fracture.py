@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beam_spanner_fracture_01( ):
+def test_Beam_fracture_01( ):
    '''This test shows that fracurting beyond the *first* leaf
       effectively does nothing except to replace an existing
       spanner with an identical new spanner.'''
@@ -19,7 +19,7 @@ def test_beam_spanner_fracture_01( ):
    #assert new != old
 
 
-def test_beam_spanner_fracture_02( ):
+def test_Beam_fracture_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 4])
    assert len(t.spanners.contained) == 1
@@ -35,7 +35,7 @@ def test_beam_spanner_fracture_02( ):
    #assert right.components == t[1 : 4]
 
 
-def test_beam_spanner_fracture_03( ):
+def test_Beam_fracture_03( ):
    '''
    This test shows that fracurting beyond the *last* leaf
    effectively does nothing except to replace an existing
@@ -55,7 +55,7 @@ def test_beam_spanner_fracture_03( ):
    #assert new != old
 
 
-def test_beam_spanner_fracture_04( ):
+def test_Beam_fracture_04( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 4])
    assert len(t.spanners.contained) == 1
@@ -71,7 +71,7 @@ def test_beam_spanner_fracture_04( ):
    #assert right.components == t[2 : 4]
 
 
-def test_beam_spanner_fracture_05( ):
+def test_Beam_fracture_05( ):
    '''
    Fracture "both" fractures around leaf.
    '''
@@ -106,7 +106,7 @@ def test_beam_spanner_fracture_05( ):
    '''
 
 
-def test_beam_spanner_fracture_06( ):
+def test_Beam_fracture_06( ):
    '''
    Fracture "both" works of first spanned leaf.
    '''
@@ -138,7 +138,7 @@ def test_beam_spanner_fracture_06( ):
    '''
 
 
-def test_beam_spanner_fracture_07( ):
+def test_Beam_fracture_07( ):
    '''Fracture "both" works of last spanned leaf.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 5])
@@ -169,7 +169,7 @@ def test_beam_spanner_fracture_07( ):
    '''
 
 
-def test_beam_spanner_fracture_08( ):
+def test_Beam_fracture_08( ):
    '''
    Fracture "both" works with negative indeces.
    '''

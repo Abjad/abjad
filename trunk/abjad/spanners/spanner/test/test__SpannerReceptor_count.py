@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_receptor_count_01( ):
+def test__SpannerReceptor_count_01( ):
    '''Return 0 when no spanners attach.'''
    
    t = Staff(macros.scale(4))
@@ -11,7 +11,7 @@ def test_spanner_receptor_count_01( ):
    assert t[0].tie.count == 0
 
 
-def test_spanner_receptor_count_02( ):
+def test__SpannerReceptor_count_02( ):
    '''Return 1 when one spanner attaches.'''
    
    t = Staff(macros.scale(4))

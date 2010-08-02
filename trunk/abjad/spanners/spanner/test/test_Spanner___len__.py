@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_len_01( ):
+def test_Spanner___len___01( ):
    '''Spanner length equals length of components.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -30,7 +30,7 @@ def test_spanner_len_01( ):
    assert len(p.leaves) == 2
 
 
-def test_spanner_len_02( ):
+def test_Spanner___len___02( ):
    '''Spanner length equals length of components.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)

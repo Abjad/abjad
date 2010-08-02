@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_aggregator_clear_01( ):
+def test_LeafSpannerAggregator_clear_01( ):
    '''Clear a single spanner.'''
 
    t = Voice(macros.scale(4))
@@ -32,7 +32,7 @@ def test_leaf_aggregator_clear_01( ):
    assert t.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_leaf_aggregator_clear_02( ):
+def test_LeafSpannerAggregator_clear_02( ):
    '''Clear multiple spanners.'''
 
    t = Voice(macros.scale(4))

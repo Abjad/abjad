@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_dynamic_measure_meter_suppress_01( ):
+def test_DynamicMeasure_meter_suppress_01( ):
    '''It is possible to suppress meter from dynamic measures;
       set suppress on the meter interface.'''
 

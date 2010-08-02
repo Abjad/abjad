@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_text_script_spanner_grob_handling_01( ):
+def test_TextScriptSpanner_grob_handling_01( ):
    '''Abjad TextScriptSpanner handles the LilyPond TextScript grob.'''
 
    t = Staff(macros.scale(4))

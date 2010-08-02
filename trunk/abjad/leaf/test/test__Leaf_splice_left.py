@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_splice_left_01( ):
+def test__Leaf_splice_left_01( ):
    '''Splice leaves left of leaf.'''
 
    t = Voice(macros.scale(3))
@@ -24,7 +24,7 @@ def test_leaf_splice_left_01( ):
    assert t.format == "\\new Voice {\n\tc'16 [\n\td'16\n\te'16\n\tc'8\n\td'8\n\te'8 ]\n}"
 
 
-def test_leaf_splice_left_02( ):
+def test__Leaf_splice_left_02( ):
    '''Splice leaf left of interior leaf.'''
 
    t = Voice(macros.scale(3))

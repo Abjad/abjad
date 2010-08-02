@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_fdtuplet_add_01( ):
+def test_FixedDurationTuplet___add___01( ):
    '''Add two fixed-duration tuplets with same multiplier outside of score.'''
 
    t1 = FixedDurationTuplet((2, 8), macros.scale(3))
@@ -47,7 +47,7 @@ def test_fdtuplet_add_01( ):
    assert new.format == "\\times 2/3 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'16 (\n\td'16\n\te'16 )\n}"
 
 
-def test_fdtuplet_add_02( ):
+def test_FixedDurationTuplet___add___02( ):
    '''Add fixed-duration tuplets with same multiplier in score.'''
 
    t1 = FixedDurationTuplet((2, 8), macros.scale(3))
@@ -90,7 +90,7 @@ def test_fdtuplet_add_02( ):
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
 
 
-def test_fdtuplet_add_03( ):
+def test_FixedDurationTuplet___add___03( ):
    '''Tuplets must carry same multiplier.'''
 
    t1 = FixedDurationTuplet((4, 16), macros.scale(5))

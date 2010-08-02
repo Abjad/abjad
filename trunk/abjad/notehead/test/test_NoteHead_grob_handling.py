@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_note_head_grob_handling_01( ):
+def test_NoteHead_grob_handling_01( ):
    '''Abjad NoteHead handles LilyPond NoteHead grob.'''
 
    t = Note(13, (1, 4))
@@ -14,7 +14,7 @@ def test_note_head_grob_handling_01( ):
    assert t.format == "cs''4"
 
 
-def test_note_head_grob_handling_02( ):
+def test_NoteHead_grob_handling_02( ):
    '''From a bug fix. Pitch should never show up as a grob
    override because pitch is a fully managed note head attribute.'''
 

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_tempo_spanner_01( ):
+def test_TempoSpanner_01( ):
    '''Tempo spanner works on notes in voice.'''
 
    t = Voice(macros.scale(4))
@@ -29,7 +29,7 @@ def test_tempo_spanner_01( ):
    assert t[3].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
 
 
-def test_tempo_spanner_02( ):
+def test_TempoSpanner_02( ):
    '''Tempo spanner and forced attributes play well together.
       Tempo forced on a single spanned leaf applies only to that leaf.'''
 
@@ -60,7 +60,7 @@ def test_tempo_spanner_02( ):
    assert t[3].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
 
 
-def test_tempo_spanner_03( ):
+def test_TempoSpanner_03( ):
    '''Tempo spanner works with containers.'''
 
    t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)

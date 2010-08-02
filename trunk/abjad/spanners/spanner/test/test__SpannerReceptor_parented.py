@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spanner_receptor_parented_01( ):
+def test__SpannerReceptor_parented_01( ):
    '''Leaves are parented when spanner is attached to them.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
@@ -13,7 +13,7 @@ def test_spanner_receptor_parented_01( ):
       assert leaf.beam.parented
 
 
-def test_spanner_receptor_parented_02( ):
+def test__SpannerReceptor_parented_02( ):
    '''Leaves are parented when spanner is attached to their parent.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
@@ -24,7 +24,7 @@ def test_spanner_receptor_parented_02( ):
       assert leaf.beam.parented
 
 
-def test_spanner_receptor_parented_03( ):
+def test__SpannerReceptor_parented_03( ):
    '''Leaves and Containers are parented when spanner is attached to 
       their grandparent and parent repsectively.'''
 

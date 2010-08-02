@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fdtuplet_in_place_apply_01( ):
+def test_FixedDurationTuplet_in_place_apply_01( ):
    t = Container([Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    FixedDurationTuplet((2, 8), t[0 : 3])
@@ -16,7 +16,7 @@ def test_fdtuplet_in_place_apply_01( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_fdtuplet_in_place_apply_02( ):
+def test_FixedDurationTuplet_in_place_apply_02( ):
    t = FixedDurationTuplet((7, 8), [Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    FixedDurationTuplet((2, 8), t[0 : 3])
@@ -31,7 +31,7 @@ def test_fdtuplet_in_place_apply_02( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_fdtuplet_in_place_apply_03( ):
+def test_FixedDurationTuplet_in_place_apply_03( ):
    t = FixedMultiplierTuplet((7, 8), [Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    FixedDurationTuplet((2, 8), t[0 : 3])
@@ -46,7 +46,7 @@ def test_fdtuplet_in_place_apply_03( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_fdtuplet_in_place_apply_04( ):
+def test_FixedDurationTuplet_in_place_apply_04( ):
    t = RigidMeasure((8, 8), [Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    FixedDurationTuplet((2, 8), t[0 : 3])
@@ -62,7 +62,7 @@ def test_fdtuplet_in_place_apply_04( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_fdtuplet_in_place_apply_05( ):
+def test_FixedDurationTuplet_in_place_apply_05( ):
    t = Voice([Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    FixedDurationTuplet((2, 8), t[0 : 3])
@@ -77,7 +77,7 @@ def test_fdtuplet_in_place_apply_05( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_fdtuplet_in_place_apply_06( ):
+def test_FixedDurationTuplet_in_place_apply_06( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    FixedDurationTuplet((2, 8), t[0 : 3])

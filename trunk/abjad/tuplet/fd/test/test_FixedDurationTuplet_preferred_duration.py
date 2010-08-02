@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fdtuplet_preferred_duration_01( ):
+def test_FixedDurationTuplet_preferred_duration_01( ):
 
    t = FixedDurationTuplet((4, 8), macros.scale(6))
    t.duration.preferred_denominator = 4

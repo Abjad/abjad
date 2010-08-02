@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fdtuplet_01( ):
+def test_FixedDurationTuplet_01( ):
    '''Nest typical fdtuplet.'''
    
    t = FixedDurationTuplet((2, 4), [
@@ -22,7 +22,7 @@ def test_fdtuplet_01( ):
    assert t[0].duration.prolated == Rational(1, 5)
 
 
-def test_fdtuplet_02( ):
+def test_FixedDurationTuplet_02( ):
    '''Nest empty fdtuplet.'''
    
    t = FixedDurationTuplet((2, 4), [
@@ -43,7 +43,7 @@ def test_fdtuplet_02( ):
    assert t[0].duration.prolated == Rational(1, 5)
 
 
-def test_fdtuplet_03( ):
+def test_FixedDurationTuplet_03( ):
    '''Test 1-multiplier fdtuplet.'''
 
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 2)
@@ -52,7 +52,7 @@ def test_fdtuplet_03( ):
    assert t.format == "{\n\tc'8\n\tc'8\n}"
 
 
-def test_fdtuplet_04( ):
+def test_FixedDurationTuplet_04( ):
    '''Test 1-multiplier fdtuplet.'''
 
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
@@ -62,7 +62,7 @@ def test_fdtuplet_04( ):
    assert t.format == "{\n\tc'8\n\tc'8\n}"
 
 
-def test_fdtuplet_05( ):
+def test_FixedDurationTuplet_05( ):
    '''Tuplet.invisible formats compressed music.'''
 
    t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_meter_denominator_01( ):
+def test_Meter_denominator_01( ):
    '''
    Meters implement a read / write denominator.
    '''

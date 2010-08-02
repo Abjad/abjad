@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spacing_spanner_grob_handling_01( ):
+def test_SpacingSpanner_grob_handling_01( ):
    '''Override LilyPond SpacingSpanner grob on Abjad leaves.
       LilyPond SpacingSpanner lives at Score by default.
       Abjad SpacingSpanner overrides usually 
@@ -35,7 +35,7 @@ def test_spacing_spanner_grob_handling_01( ):
    assert t.format == "\\new Staff {\n\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\\revert Score.SpacingSpanner #'uniform-stretching\n}"
 
 
-def test_spacing_spanner_grob_handling_02( ):
+def test_SpacingSpanner_grob_handling_02( ):
    '''Override LilyPond SpacingSpanner grob on Abjad containers.
       LilyPond SpacingSpanner lives at Score by default.
       Abjad SpacingSpanner overrides usually 

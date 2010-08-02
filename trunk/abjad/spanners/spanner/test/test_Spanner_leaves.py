@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spanner_leaves_01( ):
+def test_Spanner_leaves_01( ):
    '''Spanner attaching to container knows about both container and 
       also leaves in container.'''
 
@@ -18,7 +18,7 @@ def test_spanner_leaves_01( ):
    assert p.duration.prolated == Rational(4, 8)
    
 
-def test_spanner_leaves_02( ):
+def test_Spanner_leaves_02( ):
    '''Spanner attaching only to leaves makes p.components and p.leaves
       hold the same references.'''
 
@@ -33,7 +33,7 @@ def test_spanner_leaves_02( ):
    assert p.duration.prolated == Rational(4, 8)
 
 
-def test_spanner_leaves_03( ):
+def test_Spanner_leaves_03( ):
    '''Spanner attaching to empty container knows about container
       and also about empty leaves.'''
 
@@ -46,7 +46,7 @@ def test_spanner_leaves_03( ):
    assert p.duration.prolated == Rational(0)
 
 
-def test_spanner_leaves_04( ):
+def test_Spanner_leaves_04( ):
    '''Spanner attaching to container with multidimensional contents.'''
 
    t = Voice(leaftools.make_repeated_notes(4))
@@ -79,7 +79,7 @@ def test_spanner_leaves_04( ):
    assert p.duration.prolated == Rational(8, 8)
    
 
-def test_spanner_leaves_05( ):
+def test_Spanner_leaves_05( ):
    '''Spanner spanning a mixture of containers and leaves.'''
    
    t = Voice(leaftools.make_repeated_notes(4))
@@ -115,7 +115,7 @@ def test_spanner_leaves_05( ):
    assert p.duration.prolated == Rational(4, 8)
 
 
-def test_spanner_leaves_06( ):
+def test_Spanner_leaves_06( ):
    '''Spanner attaching to container with some parallel contents.
       Spanner absolutely does not descend into parallel container.
       Spanner duration does, however, account for parallel duration.'''
@@ -155,7 +155,7 @@ def test_spanner_leaves_06( ):
 #   assert p.duration.prolated == Rational(6, 8)
 
 
-def test_spanner_leaves_07( ):
+def test_Spanner_leaves_07( ):
    '''Spanner attaching to mixture of parallel and leaf components.
       Spanner absolutely does not descend into parallel container.
       Spanner duration does, however, account for parallel duration.'''

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spacing_spanner_proportional_notation_duration_01( ):
+def test_SpacingSpanner_proportional_notation_duration_01( ):
    '''You can set LilyPond Score.proportionalNotationDuration
    directly on the Abjad spacing spanner. Make sure to start
    a new spacing section, too.'''

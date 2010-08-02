@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_glissando_spanner_01( ):
+def test_Glissando_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    gliss = Glissando(t.leaves[ : 4])
    assert isinstance(gliss, Glissando)

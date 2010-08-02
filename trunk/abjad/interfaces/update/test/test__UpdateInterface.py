@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_update_interface_01( ):
+def test__UpdateInterface_01( ):
    '''Newly instantiated notes are not current.'''
 
    t = Note(0, (1, 4))
@@ -11,7 +11,7 @@ def test_update_interface_01( ):
    assert t._update._current
    
 
-def test_update_interface_02( ):
+def test__UpdateInterface_02( ):
    '''Newly instantiated containers are not current.'''
 
    t = Voice(macros.scale(4))
@@ -21,7 +21,7 @@ def test_update_interface_02( ):
    assert t._update._current
 
 
-def test_update_interface_03( ):
+def test__UpdateInterface_03( ):
    '''Copied notes are not current.'''
 
    t = Note(0, (1, 4))
@@ -30,7 +30,7 @@ def test_update_interface_03( ):
    assert not new._update._current
 
 
-def test_update_interface_04( ):
+def test__UpdateInterface_04( ):
    '''Copied containers are not current.'''
 
    t = Voice(macros.scale(4))
@@ -39,7 +39,7 @@ def test_update_interface_04( ):
    assert not new._update._current
 
 
-def test_update_interface_05( ):
+def test__UpdateInterface_05( ):
    '''Container deletion marks all components in parentage for update.'''
 
    t = Voice(macros.scale(4))
@@ -50,7 +50,7 @@ def test_update_interface_05( ):
    assert not t._update._current
 
 
-def test_update_interface_06( ):
+def test__UpdateInterface_06( ):
    '''Container insert marks all components in parentage for update.'''
 
    t = Voice(macros.scale(4))
@@ -61,7 +61,7 @@ def test_update_interface_06( ):
    assert not t._update._current
 
 
-def test_update_interface_07( ):
+def test__UpdateInterface_07( ):
    '''Container append marks components in parentage for update.'''
 
    t = Voice(macros.scale(4))
@@ -72,7 +72,7 @@ def test_update_interface_07( ):
    assert not t._update._current
 
 
-def test_update_interface_08( ):
+def test__UpdateInterface_08( ):
    '''Container extend marks components in parentage for update.'''
 
    t = Voice(macros.scale(4))
@@ -83,7 +83,7 @@ def test_update_interface_08( ):
    assert not t._update._current
 
 
-def test_update_interface_09( ):
+def test__UpdateInterface_09( ):
    '''Container pop marks components in parentage for update.'''
 
    t = Voice(macros.scale(4))
@@ -94,7 +94,7 @@ def test_update_interface_09( ):
    assert not t._update._current
 
 
-def test_update_interface_10( ):
+def test__UpdateInterface_10( ):
    '''Container remove marks components in parentage for update.'''
 
    t = Voice(macros.scale(4))

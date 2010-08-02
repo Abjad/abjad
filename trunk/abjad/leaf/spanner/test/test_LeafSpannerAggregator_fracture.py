@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_aggregator_fracture_01( ):
+def test_LeafSpannerAggregator_fracture_01( ):
    '''
    Fracture left of t[0].
 
@@ -47,7 +47,7 @@ def test_leaf_aggregator_fracture_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_leaf_aggregator_fracture_02( ):
+def test_LeafSpannerAggregator_fracture_02( ):
    '''
    Fracture left of t[1].
    
@@ -86,7 +86,7 @@ def test_leaf_aggregator_fracture_02( ):
    assert t.format == "\\new Voice {\n\tc'8 [ ]\n\td'8 [\n\te'8\n\tf'8 ]\n}"
 
 
-def test_leaf_aggregator_fracture_03( ):
+def test_LeafSpannerAggregator_fracture_03( ):
    '''
    Fracture left of t[-1].
 
@@ -124,7 +124,7 @@ def test_leaf_aggregator_fracture_03( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8 [ ]\n}"
 
 
-def test_leaf_aggregator_fracture_04( ):
+def test_LeafSpannerAggregator_fracture_04( ):
    '''
    Fracture right of t[0].
    '''
@@ -157,7 +157,7 @@ def test_leaf_aggregator_fracture_04( ):
    assert t.format == "\\new Voice {\n\tc'8 [ ]\n\td'8 [\n\te'8\n\tf'8 ]\n}"
 
 
-def test_leaf_aggregator_fracture_05( ):
+def test_LeafSpannerAggregator_fracture_05( ):
    '''
    Fracture right of t[1].
    '''
@@ -190,7 +190,7 @@ def test_leaf_aggregator_fracture_05( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_leaf_aggregator_fracture_06( ):
+def test_LeafSpannerAggregator_fracture_06( ):
    '''
    Fracture right of t[-1].
    '''
@@ -223,7 +223,7 @@ def test_leaf_aggregator_fracture_06( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_leaf_aggregator_fracture_07( ):
+def test_LeafSpannerAggregator_fracture_07( ):
    '''
    Fracture both sides of t[0].
    '''
@@ -256,7 +256,7 @@ def test_leaf_aggregator_fracture_07( ):
    assert t.format == "\\new Voice {\n\tc'8 [ ]\n\td'8 [\n\te'8\n\tf'8 ]\n}"
 
 
-def test_leaf_aggregator_fracture_08( ):
+def test_LeafSpannerAggregator_fracture_08( ):
    '''
    Fracture both sides of t[1].
    '''
@@ -289,7 +289,7 @@ def test_leaf_aggregator_fracture_08( ):
    assert t.format == "\\new Voice {\n\tc'8 [ ]\n\td'8 [ ]\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_leaf_aggregator_fracture_09( ):
+def test_LeafSpannerAggregator_fracture_09( ):
    '''
    Fracture both sides of t[-1].
    '''
@@ -322,7 +322,7 @@ def test_leaf_aggregator_fracture_09( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8 [ ]\n}"
 
 
-def test_leaf_aggregator_fracture_10( ):
+def test_LeafSpannerAggregator_fracture_10( ):
    '''
    Fracture multiple spanners to either side of some component.
    '''
@@ -356,7 +356,7 @@ def test_leaf_aggregator_fracture_10( ):
    assert t.format == "\\new Voice {\n\tc'8 [ ] \\startTrillSpan \\stopTrillSpan\n\td'8 [ ] \\startTrillSpan \\stopTrillSpan\n\te'8 [ \\startTrillSpan\n\tf'8 ] \\stopTrillSpan\n}"
 
 
-def test_leaf_aggregator_fracture_11( ):
+def test_LeafSpannerAggregator_fracture_11( ):
    '''
    Fracturing left of a leaf doe NOT fracture 'up' into 
    spanners attaching to any containers in the parentage of leaf.

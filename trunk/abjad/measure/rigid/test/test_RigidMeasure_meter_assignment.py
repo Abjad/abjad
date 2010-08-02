@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_rigid_measure_meter_assignment_01( ):
+def test_RigidMeasure_meter_assignment_01( ):
    '''RigidMeasures allow meter reassignment.'''
 
    t = RigidMeasure((4, 8), macros.scale(4))

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_format_01( ):
+def test_Spanner_format_01( ):
    '''Base Spanner class makes no format-time contributions.
    However, base spanner causes no explosions at format-time, either.
    '''

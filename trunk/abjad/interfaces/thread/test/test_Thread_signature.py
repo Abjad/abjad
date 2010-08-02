@@ -4,7 +4,7 @@ import py.test
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_thread_signature_01( ):
+#def test_Thread_signature_01( ):
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
@@ -42,7 +42,7 @@ import py.test
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_thread_signature_02( ):
+#def test_Thread_signature_02( ):
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
@@ -81,7 +81,7 @@ import py.test
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_thread_signature_03( ):
+#def test_Thread_signature_03( ):
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
@@ -117,7 +117,7 @@ import py.test
 #   for component in iterate.naive_forward_in_expr(t, _Component):
 #      assert component.thread.signature == containment
 
-def test_thread_signature_04( ):
+def test_Thread_signature_04( ):
    '''An anonymous  Staff and it's contained unvoiced leaves share the 
    same signature.'''
    t = Staff(macros.scale(4))
@@ -127,7 +127,7 @@ def test_thread_signature_04( ):
       assert component.thread.signature == containment
 
 
-def test_thread_signature_05( ):
+def test_Thread_signature_05( ):
    '''A named Staff and it's contained unvoiced leaves share the 
    same signature.'''
 
@@ -139,7 +139,7 @@ def test_thread_signature_05( ):
       assert component.thread.signature == containment
 
 
-def test_thread_signature_06( ):
+def test_Thread_signature_06( ):
    '''Leaves inside equally named sequential voices inside a Staff 
    share the same signature.'''
 
@@ -152,7 +152,7 @@ def test_thread_signature_06( ):
       assert leaf.thread.signature == containment
 
 
-def test_thread_signature_07( ):
+def test_Thread_signature_07( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -194,7 +194,7 @@ def test_thread_signature_07( ):
    assert signatures[2] != signatures[4]
 
       
-def test_thread_signature_08( ):
+def test_Thread_signature_08( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -245,7 +245,7 @@ def test_thread_signature_08( ):
    signatures[4] == signatures[6]
 
 
-def test_thread_signature_09( ):
+def test_Thread_signature_09( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -285,7 +285,7 @@ def test_thread_signature_09( ):
    signatures[2] == signatures[3]
 
    
-def test_thread_signature_10( ):
+def test_Thread_signature_10( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -347,7 +347,7 @@ def test_thread_signature_10( ):
    signatures[2] != signatures[5]
 
 
-def test_thread_signature_11( ):
+def test_Thread_signature_11( ):
    '''Unicorporated leaves carry different containment signatures.'''
 
    t1 = Note(0, (1, 8))
@@ -356,7 +356,7 @@ def test_thread_signature_11( ):
    assert t1.thread.signature != t2.thread.signature
 
 
-def test_thread_signature_12( ):
+def test_Thread_signature_12( ):
    '''Components here carry the same containment signature EXCEPT FOR root.
       Component containment signatures do not compare True.'''
 
@@ -373,7 +373,7 @@ def test_thread_signature_12( ):
    assert t1_leaf_signature != t2_leaf_signature
 
 
-def test_thread_signature_13( ):
+def test_Thread_signature_13( ):
    '''Measure and leaves must carry same thread signature.'''
 
    t = Staff([DynamicMeasure(macros.scale(2))] + leaftools.make_repeated_notes(2))
@@ -394,7 +394,7 @@ def test_thread_signature_13( ):
    assert t[0][0].thread.signature == t[-1].thread.signature
 
 
-def test_thread_signature_14( ):
+def test_Thread_signature_14( ):
    '''Leaves inside different Staves have different thread signatures,
    even when the staves have the same name.'''
    t = Container(Staff(leaftools.make_repeated_notes(2)) * 2)

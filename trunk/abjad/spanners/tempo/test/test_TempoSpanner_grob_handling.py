@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tempo_spanner_grob_handling_01( ):
+def test_TempoSpanner_grob_handling_01( ):
    '''The Abjad Tempo spanner handles the LilyPond MetronomeMark grob.
    Note context promotion.
    '''

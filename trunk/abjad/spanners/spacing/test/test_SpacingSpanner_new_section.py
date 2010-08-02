@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spacing_spanner_new_section_01( ):
+def test_SpacingSpanner_new_section_01( ):
    r'''Apply LilyPond spacing section to Abjad leaves.'''
 
    t = Staff(macros.scale(4))
@@ -23,7 +23,7 @@ def test_spacing_spanner_new_section_01( ):
    assert t.format == "\\new Staff {\n\t\\newSpacingSection\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t%%% spacing section ends here %%%\n}"
 
 
-def test_spacing_spanner_new_section_02( ):
+def test_SpacingSpanner_new_section_02( ):
    '''Apply LilyPond spacing section to Abjad measures.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)

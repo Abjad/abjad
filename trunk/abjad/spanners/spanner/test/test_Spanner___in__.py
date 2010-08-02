@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_contains_01( ):
+def test_Spanner___in___01( ):
    '''Spanner containment tests components.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -30,7 +30,7 @@ def test_spanner_contains_01( ):
    assert t[1][1] not in p
 
 
-def test_spanner_contains_02( ):
+def test_Spanner___in___02( ):
    '''Spanner containment tests components.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)

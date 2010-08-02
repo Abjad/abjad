@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_meter_init_01( ):
+def test_Meter___init____01( ):
    '''Meter can initialize from integer numerator and integer denominator.
    '''
 
@@ -12,7 +12,7 @@ def test_meter_init_01( ):
    assert t.duration == Rational(3, 8)
 
 
-def test_meter_init_02( ):
+def test_Meter___init____02( ):
    '''Meter can initialize from a numerator / denominator pair.
    '''
 
@@ -23,7 +23,7 @@ def test_meter_init_02( ):
    assert t.duration == Rational(3, 8)
 
 
-def test_meter_init_03( ):
+def test_Meter___init____03( ):
    '''Meter can initialize from a rational.
    '''
 
@@ -34,7 +34,7 @@ def test_meter_init_03( ):
    assert t.duration == Rational(3, 8)
 
 
-def test_meter_init_04( ):
+def test_Meter___init____04( ):
    '''Meter can initialize from another meter.
    '''
 

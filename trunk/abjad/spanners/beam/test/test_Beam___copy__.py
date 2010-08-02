@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beam_spanner_copy_01( ):
+def test_Beam___copy___01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[:4])
    u = componenttools.clone_components_and_fracture_crossing_spanners(t[:1])[0]
@@ -9,14 +9,14 @@ def test_beam_spanner_copy_01( ):
    assert u.beam.spanned and u.beam.only
 
 
-def test_beam_spanner_copy_02( ):
+def test_Beam___copy___02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[:4])
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[0 : 1])
    assert u[0].beam.spanned and u[0].beam.only
 
 
-def test_beam_spanner_copy_03( ):
+def test_Beam___copy___03( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[:4])
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[0:2])
@@ -24,7 +24,7 @@ def test_beam_spanner_copy_03( ):
    assert u[1].beam.spanned and u[1].beam.last
    
 
-def test_beam_spanner_copy_04( ):
+def test_Beam___copy___04( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[:4])
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[0:4])

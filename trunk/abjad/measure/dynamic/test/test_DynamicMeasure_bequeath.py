@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_dynamic_measure_bequeath_01( ):
+def test_DynamicMeasure_bequeath_01( ):
    '''Bequeath DynamicMeasure contents to RigidMeasure.'''
 
    t = DynamicMeasure(macros.scale(4))

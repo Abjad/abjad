@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fdtuplet_formatter_number_01( ):
+def test_FixedDurationTuplet_formatter_number_01( ):
    '''Tuplet formatter number interface can contribute
       markup to many notes at format-time at once.'''
 
@@ -23,7 +23,7 @@ def test_fdtuplet_formatter_number_01( ):
    assert t.format == "\\times 4/5 {\n\tc'8 ^ \\markup { 0 }\n\td'8 ^ \\markup { 1 }\n\te'8 ^ \\markup { 2 }\n\tf'8 ^ \\markup { 3 }\n\tg'8 ^ \\markup { 4 }\n}"
 
 
-def test_fdtuplet_formatter_number_02( ):
+def test_FixedDurationTuplet_formatter_number_02( ):
    '''Tuplet formatter number interface can contribute
       LilyPond comments to many notes at format-time at once.'''
 

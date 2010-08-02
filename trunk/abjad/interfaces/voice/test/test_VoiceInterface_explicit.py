@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_voice_interface_explicit_01( ):
+def test_VoiceInterface_explicit_01( ):
    '''Return first explicit *Abjad* ``Voice`` in parentage of client.
       Otherwise ``None``.'''
 
@@ -27,7 +27,7 @@ def test_voice_interface_explicit_01( ):
    assert t.voice.explicit is None
 
 
-def test_voice_interface_explicit_02( ):
+def test_VoiceInterface_explicit_02( ):
    '''Return first explicit *Abjad* ``Voice`` in parentage of client.
       Otherwise ``None``.'''
 

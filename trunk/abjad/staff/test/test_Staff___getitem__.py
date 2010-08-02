@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_staff_getitem_01( ):
+def test_Staff___getitem___01( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
@@ -21,7 +21,7 @@ def test_staff_getitem_01( ):
    assert isinstance(t[-1], FixedDurationTuplet)
 
 
-def test_staff_getitem_02( ):
+def test_Staff___getitem___02( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
@@ -34,7 +34,7 @@ def test_staff_getitem_02( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_staff_getitem_03( ):
+def test_Staff___getitem___03( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
@@ -50,7 +50,7 @@ def test_staff_getitem_03( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_staff_getitem_04( ):
+def test_Staff___getitem___04( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
@@ -66,7 +66,7 @@ def test_staff_getitem_04( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_staff_getitem_05( ):
+def test_Staff___getitem___05( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
@@ -84,7 +84,7 @@ def test_staff_getitem_05( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_staff_getitem_06( ):
+def test_Staff___getitem___06( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
@@ -102,7 +102,7 @@ def test_staff_getitem_06( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_staff_getitem_07( ):
+def test_Staff___getitem___07( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
@@ -120,7 +120,7 @@ def test_staff_getitem_07( ):
    assert componenttools.is_well_formed_component(t)
 
 
-def test_staff_getitem_08( ):
+def test_Staff___getitem___08( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),

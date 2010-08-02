@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beam_spanner_fuse_01( ):
+def test_Beam_fuse_01( ):
    '''Fuse works by reference to the right.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])

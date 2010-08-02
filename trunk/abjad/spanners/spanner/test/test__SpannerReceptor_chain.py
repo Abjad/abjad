@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanner_receptor_chain_01( ):
+def test__SpannerReceptor_chain_01( ):
    '''Return tuple of all leaves in spanner, if spanned;
       otherwise return 1-tuple of client.'''
 

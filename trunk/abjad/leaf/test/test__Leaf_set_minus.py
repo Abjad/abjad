@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_set_minus_01( ):
+def test__Leaf_set_minus_01( ):
    '''Chords completely disjunct;
       all RH pitches preserved.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -12,7 +12,7 @@ def test_leaf_set_minus_01( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_02( ):
+def test__Leaf_set_minus_02( ):
    '''Partially intersecting chords;
       shared pitches removed from RHS.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -23,7 +23,7 @@ def test_leaf_set_minus_02( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_03( ):
+def test__Leaf_set_minus_03( ):
    '''Wholly intersecting chords;
       all pitches removed and rest returns.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -34,7 +34,7 @@ def test_leaf_set_minus_03( ):
    assert t is not u is not v
    
 
-def test_leaf_set_minus_04( ):
+def test__Leaf_set_minus_04( ):
    '''Enharmonically disjunct;
       enharmonic RHS equivalent appears;
       shared pitches disappear.'''
@@ -46,7 +46,7 @@ def test_leaf_set_minus_04( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_05( ):
+def test__Leaf_set_minus_05( ):
    '''Duration inequality;
       noncommutative operation takes duration from LHS.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -58,7 +58,7 @@ def test_leaf_set_minus_05( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_06( ):
+def test__Leaf_set_minus_06( ):
    '''Duration inequality;
       noncommutative operation takes duration from LHS.'''
    t = Chord([0, 1, 2], (1, 8))
@@ -70,7 +70,7 @@ def test_leaf_set_minus_06( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_07( ):
+def test__Leaf_set_minus_07( ):
    '''Rest from from produces rest.'''
    t = Rest((1, 4))
    u = Rest((1, 4))
@@ -80,7 +80,7 @@ def test_leaf_set_minus_07( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_08( ):
+def test__Leaf_set_minus_08( ):
    '''Note from rest produces rest.'''
    t = Rest((1, 4))
    u = Note(0, (1, 4))
@@ -90,7 +90,7 @@ def test_leaf_set_minus_08( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_09( ):
+def test__Leaf_set_minus_09( ):
    '''Note from like pitched note produces rest.'''
    t = Note(0, (1, 4))
    u = Note(0, (1, 4))
@@ -100,7 +100,7 @@ def test_leaf_set_minus_09( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_10( ):
+def test__Leaf_set_minus_10( ):
    '''Note from differently pitched note produces note.'''
    t = Note(0, (1, 4))
    u = Note(2, (1, 4))
@@ -110,7 +110,7 @@ def test_leaf_set_minus_10( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_11( ):
+def test__Leaf_set_minus_11( ):
    '''Differently pitched note from chord
       produces chord.'''
    t = Chord([0, 2], (1, 4))
@@ -121,7 +121,7 @@ def test_leaf_set_minus_11( ):
    assert t is not u is not v
 
 
-def test_leaf_set_minus_12( ):
+def test__Leaf_set_minus_12( ):
    '''Like pitched note from chord
       removes pitch.'''
    t = Chord([0, 2], (1, 4))
