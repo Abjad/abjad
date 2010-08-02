@@ -23,7 +23,10 @@ def _rename_test_file(short_file_name, full_file_name, old, new):
    print full_file_name
    if old in short_file_name:
       use_previous = raw_input('Replace %s with %s? ' % (old, new))
-   if old not in short_file_name or use_previous.lower( ) != 'y':
+   if short_file_name.endswith('_tmp.py'):
+      old = '_tmp.py'
+      new = '.py'
+   elif old not in short_file_name or use_previous.lower( ) != 'y':
       old = raw_input('Old text: ')
       new =  raw_input('New text: ')
    if old.lower( ) == new.lower( ):
