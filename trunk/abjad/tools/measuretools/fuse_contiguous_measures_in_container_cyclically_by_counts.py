@@ -1,4 +1,4 @@
-from abjad.container import Container
+from abjad.Container import Container
 from abjad.tools import iterate
 from abjad.tools.measuretools.fuse_measures import fuse_measures
 

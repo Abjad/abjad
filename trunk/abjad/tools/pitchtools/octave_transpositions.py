@@ -1,4 +1,4 @@
-from abjad.chord import Chord
+from abjad.Chord import Chord
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
 from abjad.tools.pitchtools.PitchRange import PitchRange

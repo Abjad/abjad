@@ -1,5 +1,5 @@
 from abjad.notehead import NoteHead
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
 from abjad.tools.pitchtools.PitchClassSet import PitchClassSet

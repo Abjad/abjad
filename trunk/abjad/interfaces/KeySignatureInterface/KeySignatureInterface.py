@@ -1,7 +1,7 @@
 from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
-from abjad.key_signature import KeySignature
+from abjad.KeySignature import KeySignature
 import types
 
 

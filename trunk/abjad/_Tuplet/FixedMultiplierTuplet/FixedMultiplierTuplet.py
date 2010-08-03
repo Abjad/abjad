@@ -1,6 +1,6 @@
-from abjad.rational import Rational
-from abjad.tuplet.FixedMultiplierTuplet.duration import _FMTupletDurationInterface
-from abjad.tuplet._Tuplet import _Tuplet
+from abjad.Rational import Rational
+from abjad._Tuplet.FixedMultiplierTuplet.duration import _FMTupletDurationInterface
+from abjad._Tuplet._Tuplet import _Tuplet
 
 
 class FixedMultiplierTuplet(_Tuplet):
@@ -30,6 +30,6 @@ class FixedMultiplierTuplet(_Tuplet):
 
    @property
    def duration(self):
-      ''':class:`~abjad.tuplet.FixedMultiplierTuplet.duration._FMTupletDurationInterface` \
+      ''':class:`~abjad._Tuplet.FixedMultiplierTuplet.duration._FMTupletDurationInterface` \
       duration interface.'''
       return self._duration

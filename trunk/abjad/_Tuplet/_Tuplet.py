@@ -1,6 +1,6 @@
-from abjad.container import Container
-from abjad.tuplet.duration import _TupletDurationInterface
-from abjad.tuplet.formatter import _TupletFormatter
+from abjad.Container import Container
+from abjad._Tuplet.duration import _TupletDurationInterface
+from abjad._Tuplet.formatter import _TupletFormatter
 import types
 
 

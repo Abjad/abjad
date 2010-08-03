@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 def get_first_element_starting_before_or_at_prolated_offset(container, prolated_offset):

@@ -1,9 +1,9 @@
-from abjad.meter import Meter
-from abjad.rational import Rational
+from abjad.Meter import Meter
+from abjad.Rational import Rational
 from abjad.tools import componenttools
 from abjad.tools import iterate
 from abjad.tools import mathtools
-from abjad.tuplet import _Tuplet
+from abjad._Tuplet import _Tuplet
 
 
 def subsume(expr):

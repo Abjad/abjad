@@ -1,5 +1,5 @@
-from abjad.leaf import _Leaf
-from abjad.skip.initializer import _SkipInitializer
+from abjad._Leaf import _Leaf
+from abjad.Skip.initializer import _SkipInitializer
 
 
 class Skip(_Leaf):

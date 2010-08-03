@@ -1,6 +1,6 @@
-from abjad.container.number import _ContainerFormatterNumberInterface
-from abjad.container.slots import _ContainerFormatterSlotsInterface
-from abjad.component.formatter import _ComponentFormatter
+from abjad.Container.number import _ContainerFormatterNumberInterface
+from abjad.Container.slots import _ContainerFormatterSlotsInterface
+from abjad._Component.formatter import _ComponentFormatter
 
 
 class _ContainerFormatter(_ComponentFormatter):
@@ -44,7 +44,7 @@ class _ContainerFormatter(_ComponentFormatter):
    @property
    def number(self):
       '''Read-only reference to
-      :class:`~abjad.container.number._ContainerFormatterNumberInterface`. ::
+      :class:`~abjad.Container.number._ContainerFormatterNumberInterface`. ::
 
          abjad> container = Container(macros.scale(4))
          abjad> container.formatter.number
@@ -55,7 +55,7 @@ class _ContainerFormatter(_ComponentFormatter):
    @property
    def slots(self):
       '''Read-only reference to
-      :class:`~abjad.container.slots._ContainerFormatterSlotsInterface`. ::
+      :class:`~abjad.Container.slots._ContainerFormatterSlotsInterface`. ::
 
          abjad> container = Container(macros.scale(4))
          abjad> container.formatter.slots

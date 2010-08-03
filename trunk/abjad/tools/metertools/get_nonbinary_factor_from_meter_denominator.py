@@ -1,4 +1,4 @@
-from abjad.meter import Meter
+from abjad.Meter import Meter
 from abjad.tools import mathtools
 
 

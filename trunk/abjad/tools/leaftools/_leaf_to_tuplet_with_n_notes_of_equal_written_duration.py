@@ -1,7 +1,7 @@
-from abjad.note import Note
+from abjad.Note import Note
 from abjad.tools import componenttools
 from abjad.tools import durtools
-from abjad.tuplet import FixedDurationTuplet
+from abjad._Tuplet import FixedDurationTuplet
 
 
 def _leaf_to_tuplet_with_n_notes_of_equal_written_duration(l, divisions, prolation):

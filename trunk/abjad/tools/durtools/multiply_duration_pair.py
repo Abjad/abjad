@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 def multiply_duration_pair(pair, multiplier):

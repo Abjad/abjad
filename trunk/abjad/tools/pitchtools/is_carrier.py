@@ -1,7 +1,7 @@
-from abjad.chord import Chord
-from abjad.note import Note
+from abjad.Chord import Chord
+from abjad.Note import Note
 from abjad.notehead import NoteHead
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 
 
 def is_carrier(expr):

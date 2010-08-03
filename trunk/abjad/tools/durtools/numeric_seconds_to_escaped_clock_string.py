@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 def numeric_seconds_to_escaped_clock_string(seconds):

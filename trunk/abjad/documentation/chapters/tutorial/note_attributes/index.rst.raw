@@ -24,7 +24,7 @@ We can ask Abjad directly about the pitch of our note. ::
     abjad> note.pitch
     Pitch(cs, 5)
 
-Abjad responds with a reference to the :class:`~abjad.pitch.pitch.Pitch`
+Abjad responds with a reference to the :class:`~abjad.Pitch.pitch.Pitch`
 instance bound to our note. Abjad pitch instances have many different
 attributes which will be familiar to most composers. ::
 
@@ -56,7 +56,7 @@ But Abjad implements some less familiar pitch attributes, too. ::
    abjad> note.pitch.altitude
    7
 
-The :class:`~abjad.pitch.pitch.Pitch` entry in the Abjad API
+The :class:`~abjad.Pitch.pitch.Pitch` entry in the Abjad API
 lists all pitch attributes available in Abjad.
 
 
@@ -69,7 +69,7 @@ We can also ask Abjad about the duration of our note. ::
    <_LeafDurationInterface>
 
 Abjad responds with a reference to a 
-:class:`~abjad.leaf.duration._LeafDurationInterface`.
+:class:`~abjad._Leaf.duration._LeafDurationInterface`.
 
 Duration management is a major topic in Abjad, and is covered in greater
 detail later in the docs. For now we'll look only at the

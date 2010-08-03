@@ -1,4 +1,4 @@
-from abjad.component.spanner.aggregator import _ComponentSpannerAggregator
+from abjad._Component.spanner.aggregator import _ComponentSpannerAggregator
 
 
 class _ContainerSpannerAggregator(_ComponentSpannerAggregator):

@@ -1,7 +1,7 @@
-from abjad.measure._Measure import _Measure
-from abjad.measure.RigidMeasure.duration import _RigidMeasureDurationInterface
-from abjad.measure.RigidMeasure.formatter import _RigidMeasureFormatter
-from abjad.meter import Meter
+from abjad._Measure._Measure import _Measure
+from abjad._Measure.RigidMeasure.duration import _RigidMeasureDurationInterface
+from abjad._Measure.RigidMeasure.formatter import _RigidMeasureFormatter
+from abjad.Meter import Meter
 from abjad.tools import durtools
 
 

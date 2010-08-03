@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 def is_power_of_two(expr):

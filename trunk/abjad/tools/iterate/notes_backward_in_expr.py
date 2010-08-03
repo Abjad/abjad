@@ -1,4 +1,4 @@
-from abjad.note import Note
+from abjad.Note import Note
 from abjad.tools.iterate.naive_backward_in_expr import naive_backward_in_expr
 
 

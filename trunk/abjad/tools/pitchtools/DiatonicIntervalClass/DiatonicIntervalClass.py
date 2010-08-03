@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 
 

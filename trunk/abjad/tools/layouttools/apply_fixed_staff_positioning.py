@@ -1,4 +1,4 @@
-from abjad.measure import _Measure
+from abjad._Measure import _Measure
 from abjad.tools import iterate
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
 from abjad.tools.layouttools.StaffAlignmentOffsets import StaffAlignmentOffsets

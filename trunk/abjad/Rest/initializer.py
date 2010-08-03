@@ -5,11 +5,11 @@ from abjad.interfaces import NoteHeadInterface
 class _RestInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
-      from abjad.chord import Chord
+      from abjad.Chord import Chord
       from abjad.tools.scoretools._transfer_all_attributes import _transfer_all_attributes
-      from abjad.note import Note
-      from abjad.rest import Rest
-      from abjad.skip import Skip
+      from abjad.Note import Note
+      from abjad.Rest import Rest
+      from abjad.Skip import Skip
       client.pitch = None
       if len(args) == 1 and isinstance(args[0], _Leaf):
          if isinstance(args[0], Note):

@@ -1,4 +1,4 @@
-from abjad.measure import _Measure
+from abjad._Measure import _Measure
 from abjad.spanners import Beam
 
 

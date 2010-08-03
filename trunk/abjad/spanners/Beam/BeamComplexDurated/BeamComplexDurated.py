@@ -1,7 +1,7 @@
 from abjad.spanners.Beam.BeamComplexDurated.format import \
    _BeamComplexDuratedFormatInterface
 from abjad.spanners.Beam.BeamComplex import BeamComplex
-from abjad.rational import Rational
+from abjad.Rational import Rational
 import types
 
 

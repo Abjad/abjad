@@ -1,6 +1,6 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.tools import durtools
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 class TempoIndication(_Abjad):
@@ -98,7 +98,7 @@ class TempoIndication(_Abjad):
    @property
    def _dotted(self):
       '''Dotted numeral representation of duration.'''
-      #from abjad.note import Note
+      #from abjad.Note import Note
       #return Note(0, self.duration).duration._dotted
       return durtools.assignable_rational_to_lilypond_duration_string(self.duration)
 

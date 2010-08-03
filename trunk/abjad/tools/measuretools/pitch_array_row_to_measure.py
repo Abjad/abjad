@@ -1,6 +1,6 @@
-from abjad.measure import RigidMeasure
-from abjad.meter import Meter
-from abjad.rational import Rational
+from abjad._Measure import RigidMeasure
+from abjad.Meter import Meter
+from abjad.Rational import Rational
 from abjad.tools import leaftools
 from abjad.tools.pitchtools.PitchArray.PitchArrayRow.PitchArrayRow \
    import PitchArrayRow

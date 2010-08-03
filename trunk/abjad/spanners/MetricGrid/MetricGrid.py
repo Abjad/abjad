@@ -1,4 +1,4 @@
-from abjad.meter import Meter
+from abjad.Meter import Meter
 from abjad.spanners.MetricGrid.format import _MetricGridSpannerFormatInterface
 from abjad.spanners.Spanner.spanner import Spanner
 from abjad.spanners.Tie import Tie

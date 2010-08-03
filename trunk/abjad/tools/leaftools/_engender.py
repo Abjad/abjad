@@ -1,6 +1,6 @@
-from abjad.chord import Chord
-from abjad.note import Note
-from abjad.rest import Rest
+from abjad.Chord import Chord
+from abjad.Note import Note
+from abjad.Rest import Rest
 from abjad.tools import durtools
 from abjad.tools import pitchtools
 

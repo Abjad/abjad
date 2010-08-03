@@ -1,5 +1,5 @@
-from abjad.harmonic.harmonic import _Harmonic
-from abjad.note import Note
+from abjad._Harmonic.harmonic import _Harmonic
+from abjad.Note import Note
 
 
 class HarmonicNatural(Note, _Harmonic):

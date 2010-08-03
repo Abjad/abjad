@@ -1,7 +1,7 @@
 Notehead token input
 ====================
 
-Abjad :class:`Note <abjad.note.note.Note>` and :class:`Chord <abjad.chord.chord.Chord>` instances accept both :doc:`pitch token </chapters/pitch/token/index>` instances and Abjad :class:`NoteHead <abjad.note_head.note_head.NoteHead>` instances as input.
+Abjad :class:`Note <abjad.Note.note.Note>` and :class:`Chord <abjad.Chord.chord.Chord>` instances accept both :doc:`pitch token </chapters/pitch/token/index>` instances and Abjad :class:`NoteHead <abjad.Note_head.note_head.NoteHead>` instances as input.
 
 For example:
 
@@ -13,7 +13,7 @@ measure.meter.transparent = True <hide
 write(measure, 'note_head_token1', 'oedo') <hide
 </abjad>
 
-Abjad groups :doc:`pitch token </chapters/pitch/token/index>` instances and Abjad :class:`NoteHead <abjad.note_head.note_head.NoteHead>` instances together under the heading of **note_head token input**.
+Abjad groups :doc:`pitch token </chapters/pitch/token/index>` instances and Abjad :class:`NoteHead <abjad.Note_head.note_head.NoteHead>` instances together under the heading of **note_head token input**.
 
 Examples in the documentation that ask for note_head token input accept any of the input types shown here.
 

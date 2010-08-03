@@ -1,8 +1,8 @@
-from abjad.chord import Chord
+from abjad.Chord import Chord
 from abjad.exceptions import ExtraNoteHeadError
 from abjad.exceptions import MissingNoteHeadError
-from abjad.pitch import Pitch
-from abjad.rational import Rational
+from abjad.Pitch import Pitch
+from abjad.Rational import Rational
 
 
 def get_note_head_from_chord_by_pitch(chord, pitch):

@@ -1,4 +1,4 @@
-from abjad.component import _Component
+from abjad._Component import _Component
 import types
 
 

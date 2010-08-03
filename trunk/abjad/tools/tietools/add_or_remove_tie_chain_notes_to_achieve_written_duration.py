@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.spanners import Tie
 from abjad.tools import componenttools
 from abjad.tools import durtools
@@ -8,7 +8,7 @@ from abjad.tools.tietools.get_tie_chain_preprolated_duration import get_tie_chai
 from abjad.tools.tietools.get_leaves_in_tie_chain import get_leaves_in_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import remove_all_leaves_in_tie_chain_except_first
-from abjad.tuplet import FixedMultiplierTuplet
+from abjad._Tuplet import FixedMultiplierTuplet
 
 
 ## TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( ) carefully. ##

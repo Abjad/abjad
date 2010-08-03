@@ -1,7 +1,7 @@
-from abjad.clef import Clef
-from abjad.score import Score
-from abjad.staff import Staff
-from abjad.staffgroup import PianoStaff
+from abjad.Clef import Clef
+from abjad.Score import Score
+from abjad.Staff import Staff
+from abjad.StaffGroup import PianoStaff
 
 
 def make_empty_piano_score( ):

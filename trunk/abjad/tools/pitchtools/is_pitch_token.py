@@ -1,4 +1,4 @@
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 from abjad.tools.pitchtools.is_pitch_pair import is_pitch_pair
 
 

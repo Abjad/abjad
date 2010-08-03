@@ -1,6 +1,6 @@
 from abjad.notehead.format import _NoteHeadFormatInterface
 from abjad.interfaces import NoteHeadInterface
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 import types
 
 
@@ -65,7 +65,7 @@ class NoteHead(NoteHeadInterface):
    def _unregister_if_necessary(self):
       '''Note note_heads should register as format contributors.
       Chord note_heads should not register as format contributors.'''
-      from abjad.chord import Chord
+      from abjad.Chord import Chord
       client = getattr(self, '_client', None)
       if client is not None:
          if isinstance(client, Chord):

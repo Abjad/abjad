@@ -1,4 +1,4 @@
-from abjad.staffgroup.StaffGroup import StaffGroup
+from abjad.StaffGroup.StaffGroup import StaffGroup
 
 
 #def PianoStaff(music):

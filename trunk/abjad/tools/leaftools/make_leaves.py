@@ -1,6 +1,6 @@
 from __future__ import division
-from abjad.pitch import Pitch
-from abjad.rational import Rational
+from abjad.Pitch import Pitch
+from abjad.Rational import Rational
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
@@ -8,7 +8,7 @@ from abjad.tools import pitchtools
 from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
-from abjad.tuplet import FixedMultiplierTuplet
+from abjad._Tuplet import FixedMultiplierTuplet
 
 
 ## TODO: Change leaftools.make_leaves( ) signature to allow ('c', 4) named pairs 

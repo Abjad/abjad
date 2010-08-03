@@ -1,4 +1,4 @@
-from abjad.component import _Component
+from abjad._Component import _Component
 
 
 def get_spanners_that_dominate_component_pair(left, right):

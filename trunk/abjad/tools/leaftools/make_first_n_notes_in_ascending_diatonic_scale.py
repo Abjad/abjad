@@ -1,5 +1,5 @@
-from abjad.note import Note
-from abjad.rational import Rational
+from abjad.Note import Note
+from abjad.Rational import Rational
 from abjad.tools import pitchtools
 from abjad.tools.leaftools.make_notes import make_notes
 

@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.settinghandler import _ContextSettingHandler
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
-from abjad.markup import Markup
+from abjad.Markup import Markup
 from abjad.spanners import InstrumentSpanner
 import types
 

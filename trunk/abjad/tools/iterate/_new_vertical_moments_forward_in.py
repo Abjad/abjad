@@ -1,6 +1,6 @@
-from abjad.component import _Component
-from abjad.container import Container
-from abjad.rational import Rational
+from abjad._Component import _Component
+from abjad.Container import Container
+from abjad.Rational import Rational
 
 
 def _new_vertical_moments_forward_in(expr):

@@ -1,4 +1,4 @@
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 from abjad.tools.pitchtools.get_pitch import get_pitch
 from abjad.tools.pitchtools.Accidental import Accidental
 
@@ -21,7 +21,7 @@ class NamedPitchClass(object):
    ## OVERLOADS ##
 
    def __add__(self, melodic_diatonic_interval):
-      from abjad.pitch import Pitch
+      from abjad.Pitch import Pitch
       from abjad.tools import pitchtools
       dummy = Pitch(self.name, 4)
       mdi = melodic_diatonic_interval
@@ -83,7 +83,7 @@ class NamedPitchClass(object):
    def __sub__(self, arg):
       if not isinstance(arg, type(self)):
          raise TypeError('%s must be named pitch class.' % arg)
-      from abjad.pitch import Pitch
+      from abjad.Pitch import Pitch
       from abjad.tools import pitchtools
       pitch_1 = Pitch(self, 4)
       pitch_2 = Pitch(arg, 4)
@@ -161,7 +161,7 @@ class NamedPitchClass(object):
 
    def transpose(self, mdi):
       '''Transpose pitch class by melodic diatonic interval.'''
-      from abjad.pitch import Pitch
+      from abjad.Pitch import Pitch
       from abjad.tools.pitchtools.transpose_by_melodic_diatonic_interval \
          import transpose_by_melodic_diatonic_interval
       pitch = Pitch(self, 4)

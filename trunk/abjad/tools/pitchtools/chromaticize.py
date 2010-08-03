@@ -1,5 +1,5 @@
-from abjad.chord import Chord
-from abjad.note import Note
+from abjad.Chord import Chord
+from abjad.Note import Note
 from abjad.tools import iterate
 
 

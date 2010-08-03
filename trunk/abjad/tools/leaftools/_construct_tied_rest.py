@@ -1,4 +1,4 @@
-from abjad.rest import Rest
+from abjad.Rest import Rest
 from abjad.tools.leaftools._construct_tied_leaf import _construct_tied_leaf
 
 

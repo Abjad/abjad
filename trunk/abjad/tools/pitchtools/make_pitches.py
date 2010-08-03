@@ -1,4 +1,4 @@
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 
 
 def make_pitches(pitch_tokens):

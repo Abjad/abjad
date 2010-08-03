@@ -1,4 +1,4 @@
-from abjad.component.slots import _ComponentFormatterSlotsInterface
+from abjad._Component.slots import _ComponentFormatterSlotsInterface
 
 
 class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
@@ -65,7 +65,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    ## PRIVATE METHODS ##
 
    def _wrap_preceding_measure_bar_line_reverts(self):
-      from abjad.measure import _Measure
+      from abjad._Measure import _Measure
       from abjad.tools import componenttools
       from abjad.tools import iterate
       leaf = self.formatter._client

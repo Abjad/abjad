@@ -1,4 +1,4 @@
-from abjad.leaf import _Leaf
+from abjad._Leaf import _Leaf
 
 
 def naive_backward_in_expr(expr, klass = _Leaf, start = 0, stop = None):

@@ -1,5 +1,5 @@
-from abjad.container.formatter import _ContainerFormatter
-from abjad.grace.slots import _GraceFormatterSlotsInterface
+from abjad.Container.formatter import _ContainerFormatter
+from abjad.Grace.slots import _GraceFormatterSlotsInterface
 
 
 class _GraceFormatter(_ContainerFormatter):

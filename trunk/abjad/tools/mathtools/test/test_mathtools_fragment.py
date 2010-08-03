@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.rational import Rational
+from abjad.Rational import Rational
 import py.test
 
 

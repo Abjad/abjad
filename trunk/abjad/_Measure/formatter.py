@@ -1,16 +1,16 @@
-from abjad.container.formatter import _ContainerFormatter
+from abjad.Container.formatter import _ContainerFormatter
 from abjad.exceptions import OverfullMeasureError
 from abjad.exceptions import UnderfullMeasureError
-from abjad.measure.number import _MeasureFormatterNumberInterface
-from abjad.measure.slots import _MeasureFormatterSlotsInterface
-from abjad.rational import Rational
-from abjad.tuplet import FixedMultiplierTuplet
+from abjad._Measure.number import _MeasureFormatterNumberInterface
+from abjad._Measure.slots import _MeasureFormatterSlotsInterface
+from abjad.Rational import Rational
+from abjad._Tuplet import FixedMultiplierTuplet
 
 
 class _MeasureFormatter(_ContainerFormatter):
    '''Encapsulate all
-   :class:`~abjad.measure.dynamic.measure.DynamicMeasure` and
-   :class:`~abjad.measure.anonymous.AnonymousMeasure.AnonymousMeasure` 
+   :class:`~abjad._Measure.dynamic.measure.DynamicMeasure` and
+   :class:`~abjad._Measure.anonymous.AnonymousMeasure.AnonymousMeasure` 
    format logic. ::
 
       abjad> measure = AnonymousMeasure(macros.scale(3))
@@ -23,7 +23,7 @@ class _MeasureFormatter(_ContainerFormatter):
       abjad> measure.formatter
       <_MeasureFormatter>
 
-   :class:`~abjad.measure.rigid.measure.RigidMeasure` instances implement
+   :class:`~abjad._Measure.rigid.measure.RigidMeasure` instances implement
    a special formatter which inherits from this base class. ::
 
       abjad> measure = RigidMeasure((3, 8), macros.scale(3))
@@ -41,6 +41,6 @@ class _MeasureFormatter(_ContainerFormatter):
    @property
    def slots(self):
       '''Read-only reference to 
-      :class:`~abjad.measure.slots._MeasureFormatterSlotsInterface`.'''
+      :class:`~abjad._Measure.slots._MeasureFormatterSlotsInterface`.'''
 
       return self._slots

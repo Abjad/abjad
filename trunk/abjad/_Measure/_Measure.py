@@ -1,6 +1,6 @@
-from abjad.container import Container
-from abjad.measure.duration import _MeasureDurationInterface
-from abjad.measure.formatter import _MeasureFormatter
+from abjad.Container import Container
+from abjad._Measure.duration import _MeasureDurationInterface
+from abjad._Measure.formatter import _MeasureFormatter
 
 
 class _Measure(Container):

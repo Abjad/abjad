@@ -4,7 +4,7 @@ from abjad.interfaces._Interface import _Interface
 class GraceInterface(_Interface):
 
    def __init__(self, client):
-      from abjad.grace.Grace import Grace
+      from abjad.Grace.Grace import Grace
       _Interface.__init__(self, client)
       self.before = Grace( )
       self.after = Grace( )
@@ -29,8 +29,8 @@ class GraceInterface(_Interface):
       def fget(self):
          return self._after
       def fset(self, arg):
-         from abjad.leaf import _Leaf
-         from abjad.grace.Grace import Grace
+         from abjad._Leaf import _Leaf
+         from abjad.Grace.Grace import Grace
          if arg is None:
             self._after = Grace( )
          else:
@@ -52,8 +52,8 @@ class GraceInterface(_Interface):
       def fget(self):
          return self._before
       def fset(self, arg):
-         from abjad.leaf import _Leaf
-         from abjad.grace.Grace import Grace
+         from abjad._Leaf import _Leaf
+         from abjad.Grace.Grace import Grace
          if arg is None:
             self._before = Grace( )
          elif isinstance(arg, Grace):

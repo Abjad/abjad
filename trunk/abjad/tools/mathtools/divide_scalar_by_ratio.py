@@ -1,5 +1,5 @@
 from __future__ import division
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 def divide_scalar_by_ratio(scalar, ratio):

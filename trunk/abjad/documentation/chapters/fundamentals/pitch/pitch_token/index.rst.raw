@@ -6,7 +6,7 @@ Abjad notes and chords accept all of the following as pitch input:
 
 #. Python `int` and `long` instances
 #. Python `float` instances
-#. Abjad :class:`Pitch <abjad.pitch.pitch.Pitch>` instances
+#. Abjad :class:`Pitch <abjad.Pitch.pitch.Pitch>` instances
 
 
 For example:

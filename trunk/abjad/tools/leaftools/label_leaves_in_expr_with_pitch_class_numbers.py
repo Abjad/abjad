@@ -44,7 +44,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
       ``leaftools.label_leaves_in_expr_with_pitch_class_numbers( )``.
    '''
 
-   from abjad.note import Note
+   from abjad.Note import Note
    for note in iterate.naive_forward_in_expr(expr, Note):
       if number:
          label = r'\small %s' % note.pitch.pc.number

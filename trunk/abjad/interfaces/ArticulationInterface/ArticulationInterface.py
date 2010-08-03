@@ -1,4 +1,4 @@
-from abjad.articulation.Articulation import Articulation
+from abjad.Articulation.Articulation import Articulation
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces._Interface import _Interface

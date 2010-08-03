@@ -1,4 +1,4 @@
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
 from abjad.tools.pitchtools._HarmonicIntervalClass import \
    _HarmonicIntervalClass

@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 def number_is_between_prolated_start_and_stop_offsets_of_component(timepoint, component):

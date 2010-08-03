@@ -14,7 +14,7 @@ From the `LilyPond documentation <http://lilypond.org/doc/v2.13/Documentation/us
 
 
 Many elements in Abjad are :class:`grob handlers <abjad.core.grobhandler._GrobHandler>`, which means that they support user setting of graphical properties supported by the LilyPond grobs.  
-For example, because a :class:`NoteHead <abjad.note_head.note_head.NoteHead>` is a :class:`_GrobHandler <abjad.core.grobhandler._GrobHandler>`, we can change its graphical appearance by setting any of the different properties supported by the corresponding LilyPond note_head grob to anything supported by LilyPond for that grob:
+For example, because a :class:`NoteHead <abjad.Note_head.note_head.NoteHead>` is a :class:`_GrobHandler <abjad.core.grobhandler._GrobHandler>`, we can change its graphical appearance by setting any of the different properties supported by the corresponding LilyPond note_head grob to anything supported by LilyPond for that grob:
 
 <abjad>
 n = Note(1, (1, 4))

@@ -1,4 +1,4 @@
-from abjad.measure.DynamicMeasure.DynamicMeasure import DynamicMeasure
+from abjad._Measure.DynamicMeasure.DynamicMeasure import DynamicMeasure
 
 
 ## Staff promotion works here even on new staff types.     ##

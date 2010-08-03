@@ -25,7 +25,7 @@ Abjad implements LilyPond multpliers as the settable
 
 Abjad also implements a `duration.multiplied` attribute to examine the
 duration of a note, rest, chord or skip as affected by the multiplier
-(see :class:`abjad.leaf.duration._LeafDurationInterface` for all other duration attributes available).
+(see :class:`abjad._Leaf.duration._LeafDurationInterface` for all other duration attributes available).
 
 
 <abjad>    

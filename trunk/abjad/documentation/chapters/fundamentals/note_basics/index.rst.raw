@@ -38,7 +38,7 @@ measure.meter.transparent = True <hide
 write_ly(measure, 'example3', 'oedo') <hide
 </abjad>
 
-Or with a :class:`Pitch <abjad.pitch.pitch.Pitch>` instance:
+Or with a :class:`Pitch <abjad.Pitch.pitch.Pitch>` instance:
 
 <abjad>
 note = Note(('e', 4), (1, 4))
@@ -54,7 +54,7 @@ Any `pitch token` will work.
 Pitch comparison
 ----------------
 
-To a :class:`Pitch <abjad.pitch.pitch.Pitch>` instance:
+To a :class:`Pitch <abjad.Pitch.pitch.Pitch>` instance:
 
 <abjad>
 note = Note(0, (1, 4))
@@ -111,7 +111,7 @@ print n1.pitch <= n2.pitch
 Duration initialization
 -----------------------
 
-Initialize :class:`Note <abjad.note.note.Note>` duration with a :class:`Rational <abjad.rational.rational.Rational>`.
+Initialize :class:`Note <abjad.Note.note.Note>` duration with a :class:`Rational <abjad.Rational.rational.Rational>`.
 
 <abjad>
 note = Note(0, Rational(1, 8))
@@ -127,7 +127,7 @@ You can also use a `duration token` as a shortcut.
 Duration attributes
 -------------------
 
-:class:`Note <abjad.note.note.Note>`  has a :class:`_LeafDurationInterface <abjad.leaf.duration._LeafDurationInterface>`.
+:class:`Note <abjad.Note.note.Note>`  has a :class:`_LeafDurationInterface <abjad._Leaf.duration._LeafDurationInterface>`.
 
 <abjad>
 tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
@@ -135,7 +135,7 @@ note = tuplet[0]
 print note.duration
 </abjad>
 
-:class:`_LeafDurationInterface <abjad.leaf.duration._LeafDurationInterface>` bundles six public attributes.
+:class:`_LeafDurationInterface <abjad._Leaf.duration._LeafDurationInterface>` bundles six public attributes.
 
 <abjad>
 tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
@@ -192,7 +192,7 @@ write_ly(measure, 'duration_assign1', 'oedo') <hide
 </abjad>
 
 You must use an :term:`assignable` 
-:class:`Rational <abjad.rational.rational.Rational>`.
+:class:`Rational <abjad.Rational.rational.Rational>`.
 You can also assign ``note.duration.multiplier``.
 
 <abjad>

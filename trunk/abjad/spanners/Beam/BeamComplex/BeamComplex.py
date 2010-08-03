@@ -1,6 +1,6 @@
 from abjad.spanners.Beam.BeamComplex.format import _BeamComplexFormatInterface
 from abjad.spanners.Beam.Beam import Beam
-from abjad.rational import Rational
+from abjad.Rational import Rational
 import types
 
 

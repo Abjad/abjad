@@ -1,4 +1,4 @@
-from abjad.skip import Skip
+from abjad.Skip import Skip
 from abjad.tools.layouttools._insert_measure_padding import \
    _insert_measure_padding as layout__insert_measure_padding
 

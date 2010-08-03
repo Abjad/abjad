@@ -1,6 +1,6 @@
-from abjad.rational import Rational
-from abjad.score import Score
-from abjad.staff import Staff
+from abjad.Rational import Rational
+from abjad.Score import Score
+from abjad.Staff import Staff
 from abjad.tools import componenttools
 from abjad.tools.leaftools.make_first_n_notes_in_ascending_diatonic_scale import make_first_n_notes_in_ascending_diatonic_scale
 

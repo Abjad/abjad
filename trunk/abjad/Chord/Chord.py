@@ -1,8 +1,8 @@
-from abjad.chord.formatter import _ChordFormatter
-from abjad.chord.initializer import _ChordInitializer
-from abjad.leaf import _Leaf
+from abjad.Chord.formatter import _ChordFormatter
+from abjad.Chord.initializer import _ChordInitializer
+from abjad._Leaf import _Leaf
 from abjad.notehead import NoteHead
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 
 
 class Chord(_Leaf):

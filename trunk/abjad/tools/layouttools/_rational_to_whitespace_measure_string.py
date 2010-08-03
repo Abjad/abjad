@@ -1,5 +1,5 @@
-from abjad.measure import RigidMeasure
-from abjad.skip import Skip
+from abjad._Measure import RigidMeasure
+from abjad.Skip import Skip
 from abjad.tools import measuretools
 from abjad.tools import overridetools
 

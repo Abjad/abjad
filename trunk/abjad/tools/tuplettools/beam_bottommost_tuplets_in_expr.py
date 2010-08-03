@@ -1,6 +1,6 @@
 from abjad.spanners import Beam
 from abjad.tools import iterate
-from abjad.tuplet import _Tuplet
+from abjad._Tuplet import _Tuplet
 
 
 def beam_bottommost_tuplets_in_expr(expr):

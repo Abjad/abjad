@@ -22,7 +22,7 @@ def get_scorewide_spacing(component):
       ``spacing.get_scorewide_spacing( )``.
    '''
 
-   from abjad.component._Component import _Component
+   from abjad._Component._Component import _Component
    if not isinstance(component, _Component):
       raise TypeError('must be Abjad component.')
 

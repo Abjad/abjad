@@ -1,4 +1,4 @@
-from abjad.component import _Component
+from abjad._Component import _Component
 from abjad.tools.iterate.depth_first import depth_first
 
 

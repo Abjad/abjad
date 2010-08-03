@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.tools import iterate
 from abjad.tools import listtools
 from abjad.tools import mathtools

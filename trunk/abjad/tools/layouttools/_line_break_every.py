@@ -1,5 +1,5 @@
-from abjad.measure import _Measure
-from abjad.rational import Rational
+from abjad._Measure import _Measure
+from abjad.Rational import Rational
 from abjad.tools import iterate
 
 

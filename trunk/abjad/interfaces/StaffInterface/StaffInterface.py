@@ -24,7 +24,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
       '''Register as observer, format contributor and backtracker.
       Init effective and force staff to None.
       Init hide to False.'''
-      from abjad.staff import Staff
+      from abjad.Staff import Staff
       _Observer.__init__(self, _client, _updateInterface)
       _BacktrackingInterface.__init__(self, 'staff')
       _GrobHandler.__init__(self, 'StaffSymbol')
@@ -52,7 +52,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
    @property
    def _opening(self):
       '''Format contribution at container opening or before leaf.'''
-      from abjad.leaf import _Leaf
+      from abjad._Leaf import _Leaf
       from abjad.tools import iterate
       result = [ ]
       ## if client is a leaf
@@ -91,7 +91,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
    def explicit(self):
       '''First explicit Abjad staff in parentage of client.
       Otherwise none.'''
-      from abjad.staff import Staff
+      from abjad.Staff import Staff
       for parent in self._client.parentage.parentage:
          if isinstance(parent, Staff):
             return parent

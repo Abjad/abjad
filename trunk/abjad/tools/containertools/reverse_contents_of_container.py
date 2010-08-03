@@ -1,4 +1,4 @@
-from abjad.container import Container
+from abjad.Container import Container
 
 
 def reverse_contents_of_container(container):

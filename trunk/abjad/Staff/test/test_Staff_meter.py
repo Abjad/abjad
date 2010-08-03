@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.meter import Meter
+from abjad.Meter import Meter
 
 
 def test_Staff_meter_01( ):

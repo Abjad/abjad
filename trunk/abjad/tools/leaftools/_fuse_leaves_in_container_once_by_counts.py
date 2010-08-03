@@ -1,6 +1,6 @@
-from abjad.container import Container
-from abjad.note import Note
-from abjad.rest import Rest
+from abjad.Container import Container
+from abjad.Note import Note
+from abjad.Rest import Rest
 
 
 def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = Note, 

@@ -1,5 +1,5 @@
-from abjad.note import Note
-from abjad.rational import Rational
+from abjad.Note import Note
+from abjad.Rational import Rational
 from abjad.tools import durtools
 from abjad.tools import listtools
 

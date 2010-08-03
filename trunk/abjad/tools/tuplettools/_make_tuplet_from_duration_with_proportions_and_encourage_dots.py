@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
-from abjad.note import Note
-from abjad.rational import Rational
+from abjad.Note import Note
+from abjad.Rational import Rational
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
@@ -11,7 +11,7 @@ from abjad.tools.tuplettools.change_augmented_tuplets_in_expr_to_diminished impo
    change_augmented_tuplets_in_expr_to_diminished
 from abjad.tools.tuplettools.change_diminished_tuplets_in_expr_to_augmented import \
    change_diminished_tuplets_in_expr_to_augmented
-from abjad.tuplet import FixedDurationTuplet
+from abjad._Tuplet import FixedDurationTuplet
 
 
 def _make_tuplet_from_duration_with_proportions_and_encourage_dots(

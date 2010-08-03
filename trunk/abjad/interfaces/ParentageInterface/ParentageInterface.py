@@ -1,6 +1,6 @@
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
-from abjad.rational import Rational
+from abjad.Rational import Rational
 import types
 
 
@@ -78,7 +78,7 @@ class ParentageInterface(_Interface):
          0
       '''
 
-      from abjad.tuplet import _Tuplet
+      from abjad._Tuplet import _Tuplet
       result = 0
       for parent in self.parentage[1:]:
          if isinstance(parent, _Tuplet):
@@ -131,7 +131,7 @@ class ParentageInterface(_Interface):
          to clone components with a certain part of parentage.
       '''
 
-      from abjad.container import Container
+      from abjad.Container import Container
       for component in self.parentage:
          if isinstance(component, Container) and not component.parallel:
             parent = component.parentage.parent
@@ -250,10 +250,10 @@ class ParentageInterface(_Interface):
                self: Note-18619728
       '''
 
-      from abjad.score import Score
-      from abjad.staffgroup import StaffGroup
-      from abjad.staff import Staff
-      from abjad.voice import Voice
+      from abjad.Score import Score
+      from abjad.StaffGroup import StaffGroup
+      from abjad.Staff import Staff
+      from abjad.Voice import Voice
       signature = _ContainmentSignature( )
       signature._self = self._client._ID
       for component in self._client.parentage.parentage:

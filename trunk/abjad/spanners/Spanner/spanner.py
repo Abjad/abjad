@@ -2,7 +2,7 @@ from abjad.core.abjadcore import _Abjad
 from abjad.spanners.Spanner.duration import _SpannerDurationInterface
 from abjad.spanners.Spanner.format import _SpannerFormatInterface
 from abjad.spanners.Spanner.offset import _SpannerOffsetInterface
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from copy import deepcopy as python_deepcopy
 
 
@@ -125,7 +125,7 @@ class Spanner(_Abjad):
       return [(self, spanner, result)]
   
    def _initialize_music(self, music):
-      from abjad.component import _Component
+      from abjad._Component import _Component
       from abjad.tools import componenttools
       from abjad.tools import iterate
       music = music or [ ]
@@ -306,7 +306,7 @@ class Spanner(_Abjad):
          specific iteration tools.
       '''
 
-      from abjad.leaf import _Leaf
+      from abjad._Leaf import _Leaf
       result = [ ]
       for component in self._components:
          ## EXPERIMENTAL: expand to allow staff-level spanner eventually ##

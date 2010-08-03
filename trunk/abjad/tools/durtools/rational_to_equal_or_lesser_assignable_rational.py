@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.tools import mathtools
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 from abjad.tools.durtools.rational_to_equal_or_lesser_binary_rational \

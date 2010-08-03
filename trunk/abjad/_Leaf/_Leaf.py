@@ -1,11 +1,11 @@
-from abjad.component._Component import _Component
+from abjad._Component._Component import _Component
 from abjad.interfaces import GraceInterface
 from abjad.interfaces import HarmonicInterface
 from abjad.interfaces import MarkupInterface
-from abjad.leaf.duration import _LeafDurationInterface
-from abjad.leaf.formatter import _LeafFormatter
-from abjad.leaf.spanner.aggregator import _LeafSpannerAggregator
-from abjad.rational import Rational
+from abjad._Leaf.duration import _LeafDurationInterface
+from abjad._Leaf.formatter import _LeafFormatter
+from abjad._Leaf.spanner.aggregator import _LeafSpannerAggregator
+from abjad.Rational import Rational
 import operator
 
 
@@ -54,9 +54,7 @@ class _Leaf(_Component):
    @apply
    def articulations( ):
       def fget(self):
-         '''Read-only reference to
-         :class:`~abjad.articulations.interface.ArticulationInterface`.
-         '''
+         '''Read-only reference to articulation interface.'''
          return self._articulations
       def fset(self, arg):
          if arg is None:
@@ -70,21 +68,21 @@ class _Leaf(_Component):
    @property
    def grace(self):
       '''Read-only reference to
-      :class:`~abjad.grace.interface.GraceInterface`.
+      :class:`~abjad.Grace.interface.GraceInterface`.
       '''
       return self._grace
    
    @property
    def harmonic(self):
       '''Read-only reference to
-      :class:`~abjad.harmonic.interface.HarmonicInterface`.
+      :class:`~abjad._Harmonic.interface.HarmonicInterface`.
       '''
       return self._harmonic
 
    @property
    def markup(self):
       '''Read-only reference to
-      :class:`~abjad.markup.interface.MarkupInterface`.
+      :class:`~abjad.Markup.interface.MarkupInterface`.
       '''
       return self._markup
 

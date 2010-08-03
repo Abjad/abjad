@@ -20,7 +20,7 @@ piano.append(upper_staff)
 piano.append(lower_staff)
 </abjad>
 
-Here we created an empty :class:`~abjad.staffgroup.pianostaff.PianoStaff` container and we've assigned it to the `piano` variable. Then we created two :class:`~abjad.Staff` objects and we assigned them to the `upper_staff` and `lower_staff` variables. Finally, we appended the staves to the :class:`~abjad.staffgroup.pianostaff.PianoStaff` container.  
+Here we created an empty :class:`~abjad.StaffGroup.pianostaff.PianoStaff` container and we've assigned it to the `piano` variable. Then we created two :class:`~abjad.Staff` objects and we assigned them to the `upper_staff` and `lower_staff` variables. Finally, we appended the staves to the :class:`~abjad.StaffGroup.pianostaff.PianoStaff` container.  
 
 Now let's add some measures to the framework.
 

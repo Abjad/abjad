@@ -18,7 +18,7 @@ def wrapper(container):
       }
    '''
 
-   from abjad.container.Container import Container
+   from abjad.Container.Container import Container
    assert isinstance(container, Container)
 
    result = [ ]

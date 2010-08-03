@@ -1,4 +1,4 @@
-from abjad.container.multipliedduration import \
+from abjad.Container.multipliedduration import \
    _MultipliedContainerDurationInterface
 
 

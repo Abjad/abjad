@@ -2,7 +2,7 @@ from abjad.core.formatcontributor import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import LineBreakError
 from abjad.exceptions import TypographicWhitespaceError
-from abjad.rational import Rational
+from abjad.Rational import Rational
 import types
 
 
@@ -241,7 +241,7 @@ class BreaksInterface(_Interface, _FormatContributor):
          '''
          return self._whitespace
       def fset(self, arg):
-         from abjad.leaf import _Leaf
+         from abjad._Leaf import _Leaf
          assert isinstance(arg, (int, Rational, types.NoneType))
          if isinstance(self._client, _Leaf):
             raise TypographicWhitespaceError

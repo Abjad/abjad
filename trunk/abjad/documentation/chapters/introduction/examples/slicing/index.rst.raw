@@ -22,7 +22,7 @@ print notes
 </abjad>
 
 
-Let us now put these notes inside a :class:`RhythmicSketchStaff <abjad.staff.rhythmicsketchstaff.RhythmicSketchStaff>`
+Let us now put these notes inside a :class:`RhythmicSketchStaff <abjad.Staff.rhythmicsketchstaff.RhythmicSketchStaff>`
 
 <abjad> 
 staff = RhythmicSketchStaff(notes)

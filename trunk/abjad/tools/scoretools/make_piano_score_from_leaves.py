@@ -1,5 +1,5 @@
-from abjad.measure import AnonymousMeasure
-from abjad.score import Score
+from abjad._Measure import AnonymousMeasure
+from abjad.Score import Score
 from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
 from abjad.tools.chordtools.divide_chord_by_pitch_number import divide_chord_by_pitch_number
 

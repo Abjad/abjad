@@ -54,8 +54,8 @@ from abjad.interfaces import TupletNumberInterface
 from abjad.interfaces import VerticalAlignmentInterface
 from abjad.interfaces import VerticalAxisGroupInterface
 from abjad.interfaces import VoiceInterface
-from abjad.navigator._Navigator import _Navigator
-from abjad.rational import Rational
+from abjad._Navigator._Navigator import _Navigator
+from abjad.Rational import Rational
 import copy
 import types
 
@@ -429,7 +429,7 @@ class _Component(_Abjad):
    @property
    def spanners(self):
       '''Read-only reference to
-      :class:`~abjad.component.spanner.aggregator._ComponentSpannerAggregator`.
+      :class:`~abjad._Component.spanner.aggregator._ComponentSpannerAggregator`.
 
       .. todo:: move to abjad/interfaces/spanner_aggregator directory.
       '''

@@ -1,9 +1,9 @@
 from abjad.exceptions import AssignabilityError
-from abjad.leaf import _Leaf
-from abjad.rational import Rational
+from abjad._Leaf import _Leaf
+from abjad.Rational import Rational
 from abjad.spanners import Tie
 from abjad.tools.leaftools.make_notes import make_notes
-from abjad.tuplet import FixedMultiplierTuplet
+from abjad._Tuplet import FixedMultiplierTuplet
 
    
 def change_leaf_preprolated_duration(leaf, new_preprolated_duration):

@@ -1,4 +1,4 @@
-from abjad.leaf import _Leaf
+from abjad._Leaf import _Leaf
 
 
 def is_tie_chain(expr):

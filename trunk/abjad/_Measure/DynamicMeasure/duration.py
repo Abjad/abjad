@@ -1,4 +1,4 @@
-from abjad.measure.duration import _MeasureDurationInterface
+from abjad._Measure.duration import _MeasureDurationInterface
 
 
 class _DynamicMeasureDurationInterface(_MeasureDurationInterface):

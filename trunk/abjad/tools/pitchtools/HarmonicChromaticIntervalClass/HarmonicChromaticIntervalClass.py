@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.tools.pitchtools._ChromaticIntervalClass import \
    _ChromaticIntervalClass
 from abjad.tools.pitchtools._HarmonicIntervalClass import \

@@ -1,5 +1,5 @@
 from abjad.exceptions import PartitionError
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.tools.listtools.flatten import flatten
 from abjad.tools.listtools.partition_by_weights import partition_by_weights
 from abjad.tools.listtools.weight import weight

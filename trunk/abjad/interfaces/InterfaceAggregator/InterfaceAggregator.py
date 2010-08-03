@@ -56,7 +56,7 @@ class InterfaceAggregator(_Interface):
 
    @property
    def contributors(self):
-      from abjad.chord import Chord
+      from abjad.Chord import Chord
       from abjad.notehead import NoteHead
       if not self._contributors_sorted:
          self._contributors.sort(lambda x, y:

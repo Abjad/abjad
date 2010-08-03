@@ -7,7 +7,7 @@ class ContainersEmpty(_Check):
    runtime = 'composition'
 
    def _run(self, expr):
-      from abjad.container import Container
+      from abjad.Container import Container
       violators = [ ]
       bad, total = 0, 0
       for t in iterate.naive_forward_in_expr(expr, Container):

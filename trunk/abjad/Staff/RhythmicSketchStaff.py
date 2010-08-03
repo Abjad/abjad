@@ -1,4 +1,4 @@
-from abjad.staff.Staff import Staff
+from abjad.Staff.Staff import Staff
 
 
 #def RhythmicSketchStaff(music):

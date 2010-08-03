@@ -1,11 +1,11 @@
 from abjad.exceptions import AssignabilityError
-from abjad.note import Note
-from abjad.rational import Rational
+from abjad.Note import Note
+from abjad.Rational import Rational
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.leaftools.make_notes import make_notes
-from abjad.tuplet import FixedDurationTuplet
+from abjad._Tuplet import FixedDurationTuplet
 
 
 def _leaf_to_tuplet_with_proportions(l, divisions, prolation):

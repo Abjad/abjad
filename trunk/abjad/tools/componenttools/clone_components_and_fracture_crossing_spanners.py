@@ -1,4 +1,4 @@
-from abjad.component import _Component
+from abjad._Component import _Component
 from abjad.tools import iterate
 from abjad.tools.parenttools._ignore import _ignore
 from abjad.tools.parenttools._restore import _restore

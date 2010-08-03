@@ -1,9 +1,9 @@
-from abjad.container import Container
+from abjad.Container import Container
 from abjad.exceptions import TupletFuseError
-from abjad.rational import Rational
-from abjad.tuplet import _Tuplet
-from abjad.tuplet import FixedDurationTuplet
-from abjad.tuplet import FixedMultiplierTuplet
+from abjad.Rational import Rational
+from abjad._Tuplet import _Tuplet
+from abjad._Tuplet import FixedDurationTuplet
+from abjad._Tuplet import FixedMultiplierTuplet
 
 
 def fuse_tuplets(tuplets):

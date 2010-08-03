@@ -1,5 +1,5 @@
-from abjad.container.formatter import _ContainerFormatter
-from abjad.cluster.slots import _ClusterFormatterSlotsInterface
+from abjad.Container.formatter import _ContainerFormatter
+from abjad.Cluster.slots import _ClusterFormatterSlotsInterface
 
 
 class _ClusterFormatter(_ContainerFormatter):

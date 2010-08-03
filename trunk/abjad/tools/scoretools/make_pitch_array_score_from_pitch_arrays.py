@@ -1,6 +1,6 @@
-from abjad.score import Score
-from abjad.staff import Staff
-from abjad.staffgroup import StaffGroup
+from abjad.Score import Score
+from abjad.Staff import Staff
+from abjad.StaffGroup import StaffGroup
 
 
 def make_pitch_array_score_from_pitch_arrays(pitch_arrays):

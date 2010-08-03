@@ -1,9 +1,9 @@
-from abjad.leaf import _Leaf
-from abjad.measure import _Measure
+from abjad._Leaf import _Leaf
+from abjad._Measure import _Measure
 from abjad.tools import iterate
 from abjad.tools import tietools
 from abjad.tools import tuplettools
-from abjad.tuplet import FixedDurationTuplet
+from abjad._Tuplet import FixedDurationTuplet
 
 
 def scale_contents_of_container(container, multiplier):

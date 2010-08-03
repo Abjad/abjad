@@ -1,5 +1,5 @@
-from abjad.leaf import _Leaf
-from abjad.pitch import Pitch
+from abjad._Leaf import _Leaf
+from abjad.Pitch import Pitch
 from abjad.tools.chordtools._split import _split
 
 

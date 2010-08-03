@@ -1,10 +1,10 @@
-from abjad.chord import Chord
-from abjad.component import _Component
-from abjad.leaf import _Leaf
-from abjad.measure import RigidMeasure
-from abjad.note import Note
-from abjad.tuplet import FixedDurationTuplet
-from abjad.tuplet import FixedMultiplierTuplet
+from abjad.Chord import Chord
+from abjad._Component import _Component
+from abjad._Leaf import _Leaf
+from abjad._Measure import RigidMeasure
+from abjad.Note import Note
+from abjad._Tuplet import FixedDurationTuplet
+from abjad._Tuplet import FixedMultiplierTuplet
 
 
 def component_to_pitch_and_rhythm_skeleton(component):

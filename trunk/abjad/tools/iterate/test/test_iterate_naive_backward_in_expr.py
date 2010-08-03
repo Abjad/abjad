@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.leaf import _Leaf
+from abjad._Leaf import _Leaf
 
 
 def test_iterate_naive_backward_in_expr_01( ):
@@ -19,7 +19,7 @@ def test_iterate_naive_backward_in_expr_02( ):
 def test_iterate_naive_backward_in_expr_03( ):
    '''Yield internal nodes only.'''
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   from abjad.tuplet._Tuplet import _Tuplet
+   from abjad._Tuplet._Tuplet import _Tuplet
    iter = iterate.naive_backward_in_expr(t, _Tuplet)
    assert len(list(iter)) == 3
 
@@ -34,7 +34,7 @@ def test_iterate_naive_backward_in_expr_04( ):
 def test_iterate_naive_backward_in_expr_05( ):
    '''Yield leaves based on names higher in inheritence hierarchy.'''
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   from abjad.leaf import _Leaf
+   from abjad._Leaf import _Leaf
    iter = iterate.naive_backward_in_expr(t, _Leaf)
    assert len(list(iter)) == 9
 
@@ -42,7 +42,7 @@ def test_iterate_naive_backward_in_expr_05( ):
 def test_iterate_naive_backward_in_expr_06( ):
    '''Yield all nodes in tree.'''
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   from abjad.component._Component import _Component
+   from abjad._Component._Component import _Component
    iter = iterate.naive_backward_in_expr(t, _Component)
    assert len(list(iter)) == 13
 

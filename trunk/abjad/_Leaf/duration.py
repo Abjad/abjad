@@ -1,9 +1,9 @@
-from abjad.component.duration import _ComponentDurationInterface
+from abjad._Component.duration import _ComponentDurationInterface
 from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import AssignabilityError
 from abjad.exceptions import UndefinedTempoError
 from abjad.tools import durtools
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 class _LeafDurationInterface(_ComponentDurationInterface):

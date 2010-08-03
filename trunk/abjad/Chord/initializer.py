@@ -1,4 +1,4 @@
-from abjad.chord.formatter import _ChordFormatter
+from abjad.Chord.formatter import _ChordFormatter
 from abjad.core.initializer import _Initializer
 from abjad.interfaces import NoteHeadInterface
 import re
@@ -17,10 +17,10 @@ import re
 class _ChordInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
-      from abjad.chord import Chord
-      from abjad.note import Note
-      from abjad.rest import Rest
-      from abjad.skip import Skip
+      from abjad.Chord import Chord
+      from abjad.Note import Note
+      from abjad.Rest import Rest
+      from abjad.Skip import Skip
       from abjad.tools import componenttools
       from abjad.tools.scoretools._transfer_all_attributes import _transfer_all_attributes
       client.pitches = [ ]

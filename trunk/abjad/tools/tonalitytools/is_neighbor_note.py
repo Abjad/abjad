@@ -1,4 +1,4 @@
-from abjad.note import Note
+from abjad.Note import Note
 from abjad.tools import iterate
 from abjad.tools.tonalitytools.are_scalar import are_scalar
 from abjad.tools.tonalitytools.are_stepwise import are_stepwise

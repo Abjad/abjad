@@ -1,5 +1,5 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
 from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistances
 from abjad.tools.layouttools.SystemYOffsets import SystemYOffsets

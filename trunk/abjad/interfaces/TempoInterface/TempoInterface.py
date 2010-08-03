@@ -2,7 +2,7 @@ from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.spanners import TempoSpanner
 from abjad.tools import tempotools
 import types
@@ -70,7 +70,7 @@ class TempoInterface(_Observer, _GrobHandler,
    def settings(self):
       '''Read-only list of LilyPond context settings
       picked up at format-time.'''
-      from abjad.context import _Context
+      from abjad._Context import _Context
       result = [ ]
       tempo_wholes_per_minute = self.tempo_wholes_per_minute
       if tempo_wholes_per_minute is not None:

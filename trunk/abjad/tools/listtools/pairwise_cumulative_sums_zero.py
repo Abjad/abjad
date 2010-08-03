@@ -1,4 +1,4 @@
-from abjad.rational import Rational
+from abjad.Rational import Rational
 from abjad.tools import mathtools
 from abjad.tools.listtools.cumulative_sums_zero import cumulative_sums_zero
 from abjad.tools.listtools.pairwise import pairwise

@@ -1,4 +1,4 @@
-from abjad.pitch import Pitch
+from abjad.Pitch import Pitch
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 from abjad.spanners.Trill.format import _TrillSpannerFormatInterface
 import types
@@ -41,7 +41,7 @@ class Trill(_GrobHandlerSpanner):
    
             *  Default value: ``None``.
             *  Acceptable values: \
-               :class:`Pitch <abjad.pitch.pitch.Pitch>`, ``None``.
+               :class:`Pitch <abjad.Pitch.pitch.Pitch>`, ``None``.
 
             ::
 

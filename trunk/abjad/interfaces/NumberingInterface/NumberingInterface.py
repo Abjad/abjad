@@ -1,6 +1,6 @@
 from abjad.core.observer import _Observer
 from abjad.exceptions import MeasureContiguityError
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 class NumberingInterface(_Observer):
@@ -17,8 +17,8 @@ class NumberingInterface(_Observer):
 
    def _update(self):
       '''Update number of any one node in score.'''
-      from abjad.leaf import _Leaf
-      from abjad.measure import _Measure
+      from abjad._Leaf import _Leaf
+      from abjad._Measure import _Measure
       client = self._client
       if isinstance(client, _Leaf):
          self._update_leaf_number( )
@@ -27,7 +27,7 @@ class NumberingInterface(_Observer):
 
    def _update_leaf_number(self):
       '''Update (zero-indexed) number of any one leaf in score.'''
-      from abjad.leaf import _Leaf
+      from abjad._Leaf import _Leaf
       #prevLeaf = self.client.prev
       prevLeaf = self._client.prev
       if prevLeaf:

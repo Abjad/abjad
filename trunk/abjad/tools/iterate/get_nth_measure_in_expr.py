@@ -1,4 +1,4 @@
-from abjad.measure import _Measure
+from abjad._Measure import _Measure
 from abjad.tools.iterate.get_nth_component_in_expr import get_nth_component_in_expr
 
 

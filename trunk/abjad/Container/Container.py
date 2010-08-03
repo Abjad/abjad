@@ -1,7 +1,7 @@
-from abjad.component._Component import _Component
-from abjad.container.duration import _ContainerDurationInterface
-from abjad.container.formatter import _ContainerFormatter
-from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
+from abjad._Component._Component import _Component
+from abjad.Container.duration import _ContainerDurationInterface
+from abjad.Container.formatter import _ContainerFormatter
+from abjad.Container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.interfaces import BracketsInterface
 from abjad.interfaces import NoteHeadInterface
 
@@ -159,7 +159,7 @@ class Container(_Component):
          '''Read / write boolean for paralllel / sequential containers.'''
          return self._parallel
       def fset(self, expr):
-         from abjad.context import _Context
+         from abjad._Context import _Context
          from abjad.tools import componenttools
          assert isinstance(expr, bool)
          if expr == True:

@@ -1,6 +1,6 @@
-from abjad.component.formatter import _ComponentFormatter
-from abjad.leaf.number import _LeafFormatterNumberInterface
-from abjad.leaf.slots import _LeafFormatterSlotsInterface
+from abjad._Component.formatter import _ComponentFormatter
+from abjad._Leaf.number import _LeafFormatterNumberInterface
+from abjad._Leaf.slots import _LeafFormatterSlotsInterface
 
 
 class _LeafFormatter(_ComponentFormatter):

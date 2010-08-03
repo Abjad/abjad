@@ -1,6 +1,6 @@
-from abjad.leaf import _Leaf
-from abjad.pitch import Pitch
-from abjad.rest.initializer import _RestInitializer
+from abjad._Leaf import _Leaf
+from abjad.Pitch import Pitch
+from abjad.Rest.initializer import _RestInitializer
 
 
 class Rest(_Leaf):

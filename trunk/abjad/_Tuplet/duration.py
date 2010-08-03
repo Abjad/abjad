@@ -1,4 +1,4 @@
-from abjad.container.multipliedduration import \
+from abjad.Container.multipliedduration import \
    _MultipliedContainerDurationInterface
 from abjad.tools import mathtools
 import types
@@ -95,7 +95,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
    @property
    def preprolated(self):
-      '''Read-only :class:`Rational <abjad.rational.rational.Rational>`.
+      '''Read-only :class:`Rational <abjad.Rational.rational.Rational>`.
       Duration prior to prolation.
 
       ::

@@ -1,4 +1,4 @@
-from abjad.markup import Markup
+from abjad.Markup import Markup
 from abjad.tools.tonalitytools.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalitytools.InversionIndicator import InversionIndicator
 from abjad.tools.tonalitytools.QualityIndicator import QualityIndicator

@@ -1,4 +1,4 @@
-from abjad.component.spanner.aggregator import _ComponentSpannerAggregator
+from abjad._Component.spanner.aggregator import _ComponentSpannerAggregator
 from abjad.interfaces._Interface import _Interface
 
 

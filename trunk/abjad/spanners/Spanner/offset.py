@@ -1,5 +1,5 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.rational import Rational
+from abjad.Rational import Rational
 
 
 class _SpannerOffsetInterface(_Abjad):

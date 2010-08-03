@@ -1,5 +1,5 @@
-from abjad.container import Container
-from abjad.cluster.formatter import _ClusterFormatter
+from abjad.Container import Container
+from abjad.Cluster.formatter import _ClusterFormatter
 from abjad.interfaces import ClusterInterface
 
 

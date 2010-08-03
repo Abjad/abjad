@@ -1,7 +1,7 @@
-from abjad.component import _Component
-from abjad.container import Container
-from abjad.leaf import _Leaf
-from abjad.rational import Rational
+from abjad._Component import _Component
+from abjad.Container import Container
+from abjad._Leaf import _Leaf
+from abjad.Rational import Rational
 from abjad.tools import durtools
 from abjad.tools import iterate
 

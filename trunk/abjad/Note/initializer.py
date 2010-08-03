@@ -7,10 +7,10 @@ class _NoteInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
       from abjad.tools.scoretools._transfer_all_attributes import _transfer_all_attributes
-      from abjad.rest import Rest
-      from abjad.chord import Chord
-      from abjad.note import Note
-      from abjad.skip import Skip
+      from abjad.Rest import Rest
+      from abjad.Chord import Chord
+      from abjad.Note import Note
+      from abjad.Skip import Skip
       from abjad.tools import componenttools
       client.note_head = None
       if len(args) == 1 and isinstance(args[0], _Leaf):

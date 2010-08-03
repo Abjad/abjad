@@ -1,4 +1,4 @@
-from abjad.leaf import _Leaf
+from abjad._Leaf import _Leaf
 from abjad.tools import componenttools
 from abjad.tools import iterate
 
