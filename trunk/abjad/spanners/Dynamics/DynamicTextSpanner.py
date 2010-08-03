@@ -2,7 +2,7 @@ from abjad.spanners.Dynamics.format import _DynamicSpannerFormatInterface
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 
 
-class Dynamic(_GrobHandlerSpanner):
+class DynamicTextSpanner(_GrobHandlerSpanner):
 
    def __init__(self, music, mark):
       _GrobHandlerSpanner.__init__(self, 'DynamicText', music)
