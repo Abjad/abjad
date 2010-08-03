@@ -1,10 +1,10 @@
 from abjad.markup import Markup
-from abjad.spanners.Instrument.format import _InstrumentSpannerFormatInterface
+from abjad.spanners.InstrumentSpanner.format import _InstrumentSpannerFormatInterface
 from abjad.spanners.Spanner.spanner import Spanner
 import types
 
 
-class Instrument(Spanner):
+class InstrumentSpanner(Spanner):
 
    def __init__(self, music = None, long = None, short = None):
       Spanner.__init__(self, music)

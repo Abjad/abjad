@@ -3,7 +3,7 @@ from abjad.spanners.Override.format import _OverrideSpannerFormatInterface
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 
 
-class Override(_GrobHandlerSpanner):
+class OverrideSpanner(_GrobHandlerSpanner):
    r'''Arbitrary LilyPond override spanner.
 
    Five-argument form of initializer uses context specification. ::

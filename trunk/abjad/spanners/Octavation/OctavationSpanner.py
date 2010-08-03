@@ -1,9 +1,9 @@
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
-from abjad.spanners.Octavation.format import _OctavationSpannerFormatInterface
+from abjad.spanners.OctavationSpanner.format import _OctavationSpannerFormatInterface
 import types
 
 
-class Octavation(_GrobHandlerSpanner):
+class OctavationSpanner(_GrobHandlerSpanner):
    r'''8va or 8vb spanner. Overrides the LilyPond OttavaBracket grob.
 
    ::
