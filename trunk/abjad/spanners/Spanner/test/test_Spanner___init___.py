@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Spanner___init___01( ):
+def test_Spanner___init____01( ):
    '''Init empty spanner.'''
 
    p = Beam( )
@@ -9,7 +9,7 @@ def test_Spanner___init___01( ):
    assert p[:] == [ ]
 
 
-def test_Spanner___init___02( ):
+def test_Spanner___init____02( ):
    '''Init nonempty spanner.'''
 
    t = Container(macros.scale(4))

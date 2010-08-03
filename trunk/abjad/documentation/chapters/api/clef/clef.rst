@@ -1,7 +1,7 @@
 Clef
 ====
 
-.. automodule:: abjad.clef.clef
+.. automodule:: abjad.Clef.Clef
 
 .. autoclass:: abjad.Clef
    :members:

@@ -1,7 +1,7 @@
 Pitch
 =====
 
-.. automodule:: abjad.pitch.pitch
+.. automodule:: abjad.Pitch.Pitch
 
 .. autoclass:: abjad.Pitch
    :members:

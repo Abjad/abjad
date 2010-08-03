@@ -1,7 +1,7 @@
 Spanner
 =======
 
-.. automodule:: abjad.spanners.spanner.spanner
+.. automodule:: abjad.spanners.Spanner.spanner
 
 .. autoclass:: abjad.Spanner
    :members:

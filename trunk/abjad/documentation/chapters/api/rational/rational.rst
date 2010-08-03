@@ -1,7 +1,7 @@
 Rational
 ========
 
-.. automodule:: abjad.rational.rational
+.. automodule:: abjad.Rational.Rational
 
 .. autoclass:: abjad.Rational
    :members:
