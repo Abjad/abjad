@@ -1,6 +1,6 @@
-from abjad.measure.measure import _Measure
-from abjad.measure.dynamic.duration import _DynamicMeasureDurationInterface
-from abjad.measure.dynamic.meter import _DynamicMeasureMeterInterface
+from abjad.measure._Measure import _Measure
+from abjad.measure.DynamicMeasure.duration import _DynamicMeasureDurationInterface
+from abjad.measure.DynamicMeasure.meter import _DynamicMeasureMeterInterface
 from abjad.meter import Meter
 import types
 

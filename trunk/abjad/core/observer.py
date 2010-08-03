@@ -1,4 +1,4 @@
-from abjad.cfg.session import _CFG
+from abjad.cfg._CFGSession import _CFGSession
 from abjad.interfaces._Interface import _Interface
 
 
@@ -17,5 +17,5 @@ class _Observer(_Interface):
          ## t.offset.prolated
          observerSubject = self._client._client._update
       if not observerSubject._current_to_root:
-         if getattr(_CFG, 'update', True):
+         if getattr(_CFGSession, 'update', True):
             observerSubject._update_all( )

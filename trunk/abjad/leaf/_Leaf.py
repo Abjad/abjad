@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component._Component import _Component
 from abjad.interfaces import GraceInterface
 from abjad.interfaces import HarmonicInterface
 from abjad.interfaces import MarkupInterface

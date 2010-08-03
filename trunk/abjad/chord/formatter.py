@@ -1,5 +1,5 @@
 from abjad.interfaces._Interface import _Interface
-from abjad.leaf.leaf import _LeafFormatter
+from abjad.leaf.formatter import _LeafFormatter
 
 
 class _ChordFormatter(_LeafFormatter):

@@ -1,4 +1,4 @@
-from abjad.context.context import _Context
+from abjad.context import _Context
 
 
 class Voice(_Context):

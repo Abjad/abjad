@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component._Component import _Component
 from abjad import *
 
 

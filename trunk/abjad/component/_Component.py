@@ -54,7 +54,7 @@ from abjad.interfaces import TupletNumberInterface
 from abjad.interfaces import VerticalAlignmentInterface
 from abjad.interfaces import VerticalAxisGroupInterface
 from abjad.interfaces import VoiceInterface
-from abjad.navigator.navigator import _Navigator
+from abjad.navigator._Navigator import _Navigator
 from abjad.rational import Rational
 import copy
 import types

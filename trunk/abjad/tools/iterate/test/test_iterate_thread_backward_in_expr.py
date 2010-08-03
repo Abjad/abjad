@@ -13,7 +13,7 @@ def test_iterate_thread_backward_in_expr_02( ):
    '''Yield internal nodes only.'''
 
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   from abjad.tuplet.tuplet import _Tuplet
+   from abjad.tuplet._Tuplet import _Tuplet
    iter = iterate.thread_backward_in_expr(t, _Tuplet, t[-1].thread.signature)
    assert len(list(iter)) == 3
 

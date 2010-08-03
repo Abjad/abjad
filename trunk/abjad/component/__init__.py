@@ -1,1 +1,1 @@
-from component import _Component
+from _Component import _Component
