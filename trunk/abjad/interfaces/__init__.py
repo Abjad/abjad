@@ -44,6 +44,7 @@ from ScoreInterface import ScoreInterface
 from ScriptInterface import ScriptInterface
 from SlurInterface import SlurInterface
 from SpacingInterface import SpacingInterface
+from SpacingInterface.ScoreSpacingInterface import ScoreSpacingInterface
 from SpanBarInterface import SpanBarInterface
 from StaffInterface import StaffInterface
 from StemInterface import StemInterface
