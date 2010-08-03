@@ -1,4 +1,4 @@
-from abjad.interfaces.grace.interface import GraceInterface
+from abjad.interfaces import GraceInterface
 from abjad.tools import componenttools
 
 
