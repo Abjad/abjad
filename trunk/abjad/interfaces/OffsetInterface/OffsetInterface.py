@@ -1,6 +1,6 @@
 from abjad.interfaces._Interface import _Interface
-from abjad.interfaces.OffsetInterface.prolated.OffsetProlatedInterface import OffsetProlatedInterface
-from abjad.interfaces.OffsetInterface.seconds._OffsetSecondsInterface import _OffsetSecondsInterface
+from abjad.interfaces.OffsetInterface.OffsetProlatedInterface import OffsetProlatedInterface
+from abjad.interfaces.OffsetInterface._OffsetSecondsInterface import _OffsetSecondsInterface
 from abjad.rational import Rational
 
 
