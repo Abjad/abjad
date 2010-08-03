@@ -1,4 +1,4 @@
-from abjad.spanners.spanner.format import _SpannerFormatInterface
+from abjad.spanners.Spanner.format import _SpannerFormatInterface
 
 
 class _SpacingSpannerFormatInterface(_SpannerFormatInterface):

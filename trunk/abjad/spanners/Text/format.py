@@ -1,4 +1,4 @@
-from abjad.spanners.spanner.positionalformat import \
+from abjad.spanners.Spanner.positionalformat import \
    _PositionalSpannerFormatInterface
 
 

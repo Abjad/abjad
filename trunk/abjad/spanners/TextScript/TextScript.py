@@ -1,4 +1,4 @@
-from abjad.spanners.spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 from abjad.spanners.text_script.format import _TextScriptSpannerFormatInterface
 
 

@@ -1,5 +1,5 @@
 from abjad.spanners.hairpin.format import _HairpinSpannerFormatInterface
-from abjad.spanners.spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 
 
 class Hairpin(_GrobHandlerSpanner):

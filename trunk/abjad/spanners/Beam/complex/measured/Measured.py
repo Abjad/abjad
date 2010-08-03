@@ -1,9 +1,9 @@
 #from abjad.beam.complex.measured.format import \
 #   _BeamComplexMeasuredFormatInterface
 #from abjad.beam.complex.spanner import BeamComplex
-from abjad.spanners.beam.complex.measured.format import \
+from abjad.spanners.Beam.complex.measured.format import \
    _BeamComplexMeasuredFormatInterface
-from abjad.spanners.beam.complex.spanner import BeamComplex
+from abjad.spanners.Beam.complex.spanner import BeamComplex
 from abjad.rational import Rational
 import types
 

@@ -1,5 +1,5 @@
 from abjad.spanners.dynamics.format import _DynamicSpannerFormatInterface
-from abjad.spanners.spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 
 
 class Dynamic(_GrobHandlerSpanner):

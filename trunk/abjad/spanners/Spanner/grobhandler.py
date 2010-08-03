@@ -1,5 +1,5 @@
 from abjad.core.grobhandler import _GrobHandler
-from abjad.spanners.spanner.spanner import Spanner
+from abjad.spanners.Spanner.spanner import Spanner
 
 
 class _GrobHandlerSpanner(Spanner, _GrobHandler):

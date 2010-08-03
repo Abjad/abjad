@@ -1,5 +1,5 @@
 from abjad.spanners.piano_pedal.format import _PianoPedalSpannerFormatInterface
-from abjad.spanners.spanner.spanner import Spanner
+from abjad.spanners.Spanner.spanner import Spanner
 
 
 class PianoPedal(Spanner):
