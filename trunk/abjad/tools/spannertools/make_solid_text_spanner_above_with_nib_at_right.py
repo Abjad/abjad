@@ -1,5 +1,5 @@
 from abjad.markup import Markup
-from abjad.spanners.text.spanner import TextSpanner
+from abjad.spanners.Text import TextSpanner
 
 
 def make_solid_text_spanner_above_with_nib_at_right(left_text, components = None):

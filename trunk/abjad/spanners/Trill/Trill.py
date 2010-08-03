@@ -1,6 +1,6 @@
 from abjad.pitch import Pitch
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
-from abjad.spanners.trill.format import _TrillSpannerFormatInterface
+from abjad.spanners.Trill.format import _TrillSpannerFormatInterface
 import types
 
 

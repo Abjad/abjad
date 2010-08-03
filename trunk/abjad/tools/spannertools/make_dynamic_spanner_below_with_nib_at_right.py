@@ -1,5 +1,5 @@
 from abjad.markup import Markup
-from abjad.spanners.text.spanner import TextSpanner
+from abjad.spanners.Text import TextSpanner
 
 
 def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components = None):
