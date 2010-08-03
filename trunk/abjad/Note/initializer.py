@@ -1,5 +1,5 @@
 from abjad.core.initializer import _Initializer
-from abjad.notehead import NoteHead
+from abjad.NoteHead import NoteHead
 import re
 
 

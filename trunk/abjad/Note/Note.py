@@ -1,5 +1,5 @@
 from abjad._Leaf import _Leaf
-from abjad.notehead import NoteHead
+from abjad.NoteHead import NoteHead
 from abjad.Note.initializer import _NoteInitializer
 from abjad.Pitch import Pitch
 

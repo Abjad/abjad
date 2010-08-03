@@ -2,7 +2,7 @@ from abjad.Chord import Chord
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.Note import Note
-from abjad.notehead import NoteHead
+from abjad.NoteHead import NoteHead
 from abjad.Pitch import Pitch
 
 
