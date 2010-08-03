@@ -10,7 +10,7 @@ from abjad.tuplet import FixedMultiplierTuplet
 class _MeasureFormatter(_ContainerFormatter):
    '''Encapsulate all
    :class:`~abjad.measure.dynamic.measure.DynamicMeasure` and
-   :class:`~abjad.measure.anonymous.measure.AnonymousMeasure` 
+   :class:`~abjad.measure.anonymous.AnonymousMeasure.AnonymousMeasure` 
    format logic. ::
 
       abjad> measure = AnonymousMeasure(macros.scale(3))
