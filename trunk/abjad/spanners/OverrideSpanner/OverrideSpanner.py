@@ -1,5 +1,5 @@
 from abjad.core.parser import _Parser
-from abjad.spanners.Override.format import _OverrideSpannerFormatInterface
+from abjad.spanners.OverrideSpanner.format import _OverrideSpannerFormatInterface
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 
 
@@ -9,7 +9,7 @@ class OverrideSpanner(_GrobHandlerSpanner):
    Five-argument form of initializer uses context specification. ::
 
       abjad> staff = Staff(macros.scale(8))
-      abjad> Override(staff[:4], 'Staff', 'Beam', 'positions', (8, 8))
+      abjad> OverrideSpanner(staff[:4], 'Staff', 'Beam', 'positions', (8, 8))
       abjad> print staff.format
       \new Staff {
               \override Staff.Beam #'positions = #'(8 . 8)
@@ -27,7 +27,7 @@ class OverrideSpanner(_GrobHandlerSpanner):
    Four-argument form of initializer does not use context specification. ::
 
       abjad> staff = Staff(macros.scale(8))
-      abjad> Override(staff[:4], 'Beam', 'positions', (8, 8))
+      abjad> OverrideSpanner(staff[:4], 'Beam', 'positions', (8, 8))
       abjad> print staff.format
       \new Staff {
               \override Beam #'positions = #'(8 . 8)
@@ -59,10 +59,10 @@ class OverrideSpanner(_GrobHandlerSpanner):
 
    def __repr__(self):
       if self._context:
-         return 'Override([%s], %s, %s, %s, %s)' % (self._compact_summary, 
+         return 'OverrideSpanner([%s], %s, %s, %s, %s)' % (self._compact_summary, 
             self._context, self._grob, self._attribute, self._value)
       else:
-         return 'Override([%s], %s, %s, %s)' % (self._compact_summary, 
+         return 'OverrideSpanner([%s], %s, %s, %s)' % (self._compact_summary, 
             self._grob, self._attribute, self._value)
 
    ## PRIVATE METHODS ##

@@ -1,6 +1,6 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces._Interface import _Interface
-from abjad.spanners import Dynamic
+from abjad.spanners import DynamicTextSpanner
 from abjad.spanners import Hairpin
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
@@ -10,16 +10,16 @@ from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
 class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    '''Handle LilyPond DynamicText grob.
-      Receive Abjad Dynamic and Hairpin spanners.
+      Receive Abjad DynamicTextSpanner and Hairpin spanners.
       Implement read / write 'mark' attribute.'''
    
    def __init__(self, client):
       '''Bind client, LilyPond DynamicText grob.
-         Receive Abjad Dynamic and Hairpin spanners.
+         Receive Abjad DynamicTextSpanner and Hairpin spanners.
          Set 'mark' to None.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'DynamicText')
-      _SpannerReceptor.__init__(self, (Dynamic, Hairpin))
+      _SpannerReceptor.__init__(self, (DynamicTextSpanner, Hairpin))
       self._mark = None
 
    ## PRIVATE ATTRIBUTES ##
@@ -46,7 +46,7 @@ class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
          return self.mark
       if self.spanned:
          spanner = self.spanner
-         if isinstance(spanner, Dynamic):
+         if isinstance(spanner, DynamicTextSpanner):
             return spanner.mark
          elif isinstance(spanner, Hairpin):
             return spanner.shape

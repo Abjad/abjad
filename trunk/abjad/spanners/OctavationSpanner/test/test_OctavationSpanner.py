@@ -6,7 +6,7 @@ def test_OctavationSpanner_01( ):
    '''Octavation has default start and stop arguments set to 0.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
-   o = Octavation(t[ : ])
+   o = OctavationSpanner(t[ : ])
 
    r'''
    \new Staff {
@@ -26,7 +26,7 @@ def test_OctavationSpanner_01( ):
 def test_OctavationSpanner_02( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(t[ : 4], 1)
+   OctavationSpanner(t[ : 4], 1)
 
    r'''
    \new Staff {
@@ -50,7 +50,7 @@ def test_OctavationSpanner_02( ):
 def test_OctavationSpanner_03( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(t[ : 4], 1, 2)
+   OctavationSpanner(t[ : 4], 1, 2)
 
    r'''
    \new Staff {
@@ -76,7 +76,7 @@ def test_OctavationSpanner_04( ):
    '''One-note octavation changes are allowed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(t[0], 1)
+   OctavationSpanner(t[0], 1)
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -103,8 +103,8 @@ def test_OctavationSpanner_05( ):
              time and compress to a single set-octavation.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(t[0], 1)
-   Octavation(t[1], 2)
+   OctavationSpanner(t[0], 1)
+   OctavationSpanner(t[1], 2)
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\t\\ottava #2\n\tcs'8\n\t\\ottava #0\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -131,8 +131,8 @@ def test_OctavationSpanner_06( ):
    '''Overlapping octavation spanners are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(t[ : 4], 1)
-   Octavation(t[2 : 6], 2)
+   OctavationSpanner(t[ : 4], 1)
+   OctavationSpanner(t[2 : 6], 2)
    checker = OctavationsOverlapping( )
 
    assert not checker.check(t)

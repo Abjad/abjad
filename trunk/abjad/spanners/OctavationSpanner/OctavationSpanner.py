@@ -9,7 +9,7 @@ class OctavationSpanner(_GrobHandlerSpanner):
    ::
 
       abjad> t = Staff(macros.scale(4))
-      abjad> spanner = Octavation(t[:])
+      abjad> spanner = OctavationSpanner(t[:])
       abjad> spanner.start = 1
       abjad> print t.format
       \new Staff {

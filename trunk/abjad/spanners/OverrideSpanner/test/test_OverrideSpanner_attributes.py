@@ -3,7 +3,7 @@ from abjad import *
 
 def test_OverrideSpanner_attributes_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   q = Override(t[0], 'Beam', 'positions', (8, 8))
+   q = OverrideSpanner(t[0], 'Beam', 'positions', (8, 8))
 
    r'''
    \new Staff {
@@ -19,7 +19,7 @@ def test_OverrideSpanner_attributes_01( ):
    }
    '''
 
-   assert repr(q) == "Override([c'8], Beam, positions, (8, 8))"
+   assert repr(q) == "OverrideSpanner([c'8], Beam, positions, (8, 8))"
    assert str(q) == repr(q)
    assert len(q.components) == 1
    assert q.duration.prolated == Rational(1, 8)
@@ -29,7 +29,7 @@ def test_OverrideSpanner_attributes_01( ):
 
 def test_OverrideSpanner_attributes_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   q = Override(t[ : 4], 'Beam', 'positions', (8, 8))
+   q = OverrideSpanner(t[ : 4], 'Beam', 'positions', (8, 8))
 
    r'''
    \new Staff {
@@ -46,7 +46,7 @@ def test_OverrideSpanner_attributes_02( ):
    }
    '''
 
-   assert repr(q) == "Override([c'8, cs'8, d'8, ef'8], Beam, positions, (8, 8))"
+   assert repr(q) == "OverrideSpanner([c'8, cs'8, d'8, ef'8], Beam, positions, (8, 8))"
    assert str(q) == repr(q)
    assert len(q.components) == 4
    assert q.duration.prolated == Rational(1, 2)

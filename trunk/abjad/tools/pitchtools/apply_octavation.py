@@ -1,4 +1,4 @@
-from abjad.spanners import Octavation
+from abjad.spanners import OctavationSpanner
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 
@@ -11,7 +11,7 @@ def apply_octavation(expr,
 
       abjad> t = RigidMeasure((4, 8), leaftools.make_notes([24, 26, 27, 29], [(1, 8)]))
       abjad> pitchtools.apply_octavation(t, ottava_altitude = 14)
-      Octavation(|4/8, c'''8, d'''8, ef'''8, f'''8|)
+      OctavationSpanner(|4/8, c'''8, d'''8, ef'''8, f'''8|)
 
    ::
 
@@ -31,7 +31,7 @@ def apply_octavation(expr,
 
    if ottava_altitude is not None:
       if ottava_altitude <= max_altitude:
-         octavation = Octavation(expr)   
+         octavation = OctavationSpanner(expr)   
          octavation.start = 1
          if quindecisima_altitude is not None:
             if quindecisima_altitude <= max_altitude:

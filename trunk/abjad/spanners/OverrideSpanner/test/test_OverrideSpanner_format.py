@@ -5,7 +5,7 @@ def test_OverrideSpanner_format_01( ):
    '''False is an acceptable value that formats as ##f.'''
 
    t = Staff(macros.scale(4))
-   Override(t[:], 'Staff', 'BarLine', 'stencil', False)
+   OverrideSpanner(t[:], 'Staff', 'BarLine', 'stencil', False)
 
    r'''
    \new Staff {

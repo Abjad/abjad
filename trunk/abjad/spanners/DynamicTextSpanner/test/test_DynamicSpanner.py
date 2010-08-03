@@ -5,8 +5,8 @@ def test_DynamicSpanner_01( ):
    
    t = Voice(macros.scale(4))
    Beam(t[:])
-   Dynamic(t[:2], 'f')
-   Dynamic(t[2:], 'p')
+   DynamicTextSpanner(t[:2], 'f')
+   DynamicTextSpanner(t[2:], 'p')
 
    r'''
    \new Voice {

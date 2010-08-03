@@ -1,6 +1,6 @@
 from abjad.markup import Markup
 from abjad.spanners.Bracket.format import _BracketSpannerFormatInterface
-from abjad.spanners.Text import TextSpanner
+from abjad.spanners.TextSpanner import TextSpanner
 
 
 class Bracket(TextSpanner):

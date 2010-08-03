@@ -5,7 +5,7 @@ def test_OverrideSpanner___init____01( ):
    '''Five-argument form uses context specification.'''
 
    t = Staff(macros.scale(8))
-   override = Override(t[:4], 'Staff', 'Beam', 'positions', (8, 8))
+   override = OverrideSpanner(t[:4], 'Staff', 'Beam', 'positions', (8, 8))
 
    r'''
    \new Staff {
@@ -30,7 +30,7 @@ def test_OverrideSpanner___init____02( ):
    '''Four-argument form does not use context specification.'''
 
    t = Staff(macros.scale(8))
-   override = Override(t[:4], 'Beam', 'positions', (8, 8))
+   override = OverrideSpanner(t[:4], 'Beam', 'positions', (8, 8))
 
    r'''
    \new Staff {

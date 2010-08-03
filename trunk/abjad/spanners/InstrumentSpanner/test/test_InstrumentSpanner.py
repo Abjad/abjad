@@ -5,7 +5,7 @@ def test_InstrumentSpanner_01( ):
    '''Instrument spanner with long and short names.'''
 
    t = Voice(macros.scale(4))
-   p = Instrument(t, 'Alto Flute in G', 'Fl. G')
+   p = InstrumentSpanner(t, 'Alto Flute in G', 'Fl. G')
 
    r'''
    \new Voice {
@@ -30,7 +30,7 @@ def test_InstrumentSpanner_02( ):
    t = Voice(macros.scale(4))
    long_name = Markup(r'\italic { Alto Flute in G }')
    short_name = Markup(r'\italic { Fl. G }')
-   p = Instrument(t, long_name, short_name)
+   p = InstrumentSpanner(t, long_name, short_name)
 
    r'''
    \new Voice {

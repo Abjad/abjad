@@ -5,7 +5,7 @@ def test_DynamicSpanner_grob_handling_01( ):
 
    t = Voice(macros.scale(4))
    Beam(t[:])
-   p = Dynamic(t[:], 'f')
+   p = DynamicTextSpanner(t[:], 'f')
    p.thickness = 3
 
    r'''

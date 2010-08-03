@@ -1,4 +1,4 @@
-from abjad.spanners.Dynamics.format import _DynamicSpannerFormatInterface
+from abjad.spanners.DynamicTextSpanner.format import _DynamicSpannerFormatInterface
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 
 
