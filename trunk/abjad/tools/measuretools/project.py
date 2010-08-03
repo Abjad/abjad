@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import metertools
-from abjad._Tuplet import FixedDurationTuplet
+from abjad.components._Tuplet import FixedDurationTuplet
 
 
 def project(expr):

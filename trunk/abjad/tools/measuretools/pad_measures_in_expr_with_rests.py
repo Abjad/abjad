@@ -1,4 +1,4 @@
-from abjad.Rest import Rest
+from abjad.components.Rest import Rest
 from abjad.tools.layouttools._insert_measure_padding import \
    _insert_measure_padding as layout__insert_measure_padding
 

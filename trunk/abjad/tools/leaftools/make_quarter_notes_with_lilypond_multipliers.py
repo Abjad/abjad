@@ -1,4 +1,4 @@
-from abjad.Note import Note
+from abjad.components.Note import Note
 from abjad.Rational import Rational
 from abjad.tools import durtools
 from abjad.tools import listtools

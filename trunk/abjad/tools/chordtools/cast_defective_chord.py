@@ -1,6 +1,6 @@
-from abjad.Chord import Chord
-from abjad.Note import Note
-from abjad.Rest import Rest
+from abjad.components.Chord import Chord
+from abjad.components.Note import Note
+from abjad.components.Rest import Rest
 
 
 def cast_defective_chord(chord):

@@ -1,6 +1,6 @@
-from abjad.Chord import Chord
-from abjad.Note import Note
-from abjad.NoteHead import NoteHead
+from abjad.components.Chord import Chord
+from abjad.components.Note import Note
+from abjad.components.NoteHead import NoteHead
 from abjad.Pitch import Pitch
 
 

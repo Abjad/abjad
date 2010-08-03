@@ -24,11 +24,11 @@ class VoiceInterface(_Interface, _FormatContributor):
    @property
    def explicit(self):
       '''Read-only reference to first \
-         *Abjad* :class:`Voice <abjad.Voice.voice.Voice>` \
+         *Abjad* :class:`Voice <abjad.components.Voice.voice.Voice>` \
          in parentage of client.
 
          * If no explicit *Abjad* \
-            :class:`Voice <abjad.Voice.voice.Voice>` \
+            :class:`Voice <abjad.components.Voice.voice.Voice>` \
             in parentage of client, return ``None``.
 
          ::
@@ -36,7 +36,7 @@ class VoiceInterface(_Interface, _FormatContributor):
             abjad> t.voice.explicit
             Voice{4}'''
 
-      from abjad.Voice import Voice
+      from abjad.components.Voice import Voice
       for parent in self._client.parentage.parentage:
          if isinstance(parent, Voice):
             return parent

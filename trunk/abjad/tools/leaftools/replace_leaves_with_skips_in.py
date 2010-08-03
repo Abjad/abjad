@@ -1,4 +1,4 @@
-from abjad.Skip import Skip
+from abjad.components.Skip import Skip
 from abjad.tools import iterate
 
 

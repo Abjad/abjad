@@ -8,7 +8,7 @@ from abjad.tools import pitchtools
 from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
-from abjad._Tuplet import FixedMultiplierTuplet
+from abjad.components._Tuplet import FixedMultiplierTuplet
 
 
 ## TODO: Change leaftools.make_leaves( ) signature to allow ('c', 4) named pairs 

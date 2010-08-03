@@ -1,5 +1,5 @@
 from abjad.tools import iterate
-from abjad._Tuplet import FixedDurationTuplet
+from abjad.components._Tuplet import FixedDurationTuplet
 import copy
 
 

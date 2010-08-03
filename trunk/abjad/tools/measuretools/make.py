@@ -1,5 +1,5 @@
-from abjad._Measure import RigidMeasure
-from abjad.Skip import Skip
+from abjad.components._Measure import RigidMeasure
+from abjad.components.Skip import Skip
 from abjad.tools import metertools
 from abjad.tools.measuretools.populate import populate
 

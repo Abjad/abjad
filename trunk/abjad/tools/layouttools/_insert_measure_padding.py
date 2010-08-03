@@ -1,7 +1,7 @@
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 from abjad.Rational import Rational
-from abjad.Rest import Rest
-from abjad.Skip import Skip
+from abjad.components.Rest import Rest
+from abjad.components.Skip import Skip
 from abjad.tools import iterate
 import types
 

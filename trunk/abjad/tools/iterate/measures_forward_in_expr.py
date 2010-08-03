@@ -1,4 +1,4 @@
-from abjad._Measure import _Measure
+from abjad.components._Measure import _Measure
 from abjad.tools.iterate.naive_forward_in_expr import naive_forward_in_expr
 
 

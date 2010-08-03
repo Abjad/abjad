@@ -1,4 +1,4 @@
-from abjad.Note import Note
+from abjad.components.Note import Note
 from abjad.Rational import Rational
 from abjad.tools.leaftools.make_notes import make_notes
 

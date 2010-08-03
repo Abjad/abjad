@@ -125,7 +125,7 @@ class Spanner(_Abjad):
       return [(self, spanner, result)]
   
    def _initialize_music(self, music):
-      from abjad._Component import _Component
+      from abjad.components._Component import _Component
       from abjad.tools import componenttools
       from abjad.tools import iterate
       music = music or [ ]
@@ -306,7 +306,7 @@ class Spanner(_Abjad):
          specific iteration tools.
       '''
 
-      from abjad._Leaf import _Leaf
+      from abjad.components._Leaf import _Leaf
       result = [ ]
       for component in self._components:
          ## EXPERIMENTAL: expand to allow staff-level spanner eventually ##

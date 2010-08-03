@@ -1,5 +1,5 @@
 from abjad import *
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01( ):

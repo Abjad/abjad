@@ -1,10 +1,10 @@
-from abjad._Leaf import _Leaf
-from abjad._Measure import _Measure
+from abjad.components._Leaf import _Leaf
+from abjad.components._Measure import _Measure
 from abjad.Meter import Meter
 from abjad.tools import durtools
 from abjad.tools import metertools
 from abjad.tools import spannertools
-from abjad._Tuplet import _Tuplet
+from abjad.components._Tuplet import _Tuplet
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components \
    import get_parent_and_start_stop_indices_of_components
 

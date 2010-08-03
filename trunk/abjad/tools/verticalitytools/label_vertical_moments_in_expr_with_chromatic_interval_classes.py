@@ -1,4 +1,4 @@
-from abjad.Note import Note
+from abjad.components.Note import Note
 from abjad.tools import iterate
 from abjad.tools import pitchtools
 

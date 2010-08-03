@@ -1,4 +1,4 @@
-from abjad._Tuplet import _Tuplet
+from abjad.components._Tuplet import _Tuplet
 
 
 def change_augmented_tuplets_in_expr_to_diminished(tuplet):

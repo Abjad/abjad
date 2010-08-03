@@ -1,5 +1,5 @@
-from abjad.Container import Container
-from abjad._Leaf import _Leaf
+from abjad.components.Container import Container
+from abjad.components._Leaf import _Leaf
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 
 

@@ -1,10 +1,10 @@
-from abjad._Measure import RigidMeasure
+from abjad.components._Measure import RigidMeasure
 from abjad.Meter import Meter
 from abjad.Rational import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
-from abjad._Tuplet import FixedDurationTuplet
+from abjad.components._Tuplet import FixedDurationTuplet
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):

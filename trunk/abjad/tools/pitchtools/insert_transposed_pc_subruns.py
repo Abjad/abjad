@@ -1,4 +1,4 @@
-from abjad.Note import Note
+from abjad.components.Note import Note
 from abjad.tools import componenttools
 from abjad.tools import listtools
 from abjad.tools.pitchtools.get_pitch import get_pitch
@@ -8,7 +8,7 @@ def insert_transposed_pc_subruns(notes, subrun_indicators):
    '''Insert transposed subruns according to ``subrun_indicators``.
 
    *  *pitches* must be a list of zero or more Abjad \
-      :class:`~abjad.Note.note.Note` instances.
+      :class:`~abjad.components.Note.note.Note` instances.
    *  *subrun_indicators* must be a list of zero or more \
       ``(index, length_list)`` pairs.
 

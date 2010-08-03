@@ -1,5 +1,5 @@
 from abjad import *
-from abjad._Component._Component import _Component
+from abjad.components._Component._Component import _Component
 import py.test
 
 def test_ParentageInterface_signature_01( ):

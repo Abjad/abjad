@@ -1,5 +1,5 @@
 from abjad.Rational import Rational
-from abjad.Skip import Skip
+from abjad.components.Skip import Skip
 
 
 def make_skips_with_multiplied_durations(written_duration, multiplied_durations):

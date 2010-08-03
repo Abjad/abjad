@@ -1,11 +1,11 @@
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 from abjad.Rational import Rational
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr
 from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
-from abjad._Tuplet import FixedDurationTuplet
-from abjad._Tuplet import FixedMultiplierTuplet
+from abjad.components._Tuplet import FixedDurationTuplet
+from abjad.components._Tuplet import FixedMultiplierTuplet
 
 
 def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):

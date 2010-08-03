@@ -12,9 +12,9 @@ def make_sphinx_module_listing(package_path, file):
    Chord
    ==========
 
-   .. automodule:: abjad.Chord.chord
+   .. automodule:: abjad.components.Chord.chord
 
-   .. autoclass:: abjad.Chord
+   .. autoclass:: abjad.components.Chord
       :members:
       :undoc-members:
       :show-inheritance:

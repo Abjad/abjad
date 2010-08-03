@@ -1,4 +1,4 @@
-from abjad.NoteHead import NoteHead
+from abjad.components.NoteHead import NoteHead
 from abjad.Pitch import Pitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval

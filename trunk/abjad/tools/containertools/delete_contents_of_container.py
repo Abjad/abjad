@@ -1,4 +1,4 @@
-from abjad.Container import Container
+from abjad.components.Container import Container
 
 
 def delete_contents_of_container(container):

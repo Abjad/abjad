@@ -1,10 +1,10 @@
 from abjad.exceptions import AssignabilityError
-from abjad.Note import Note
+from abjad.components.Note import Note
 from abjad.Rational import Rational
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools.tietools.get_tie_chain_preprolated_duration import get_tie_chain_preprolated_duration
-from abjad._Tuplet import FixedDurationTuplet
+from abjad.components._Tuplet import FixedDurationTuplet
 
 
 def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):

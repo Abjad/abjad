@@ -69,7 +69,7 @@ We can also ask Abjad about the duration of our note. ::
    <_LeafDurationInterface>
 
 Abjad responds with a reference to a 
-:class:`~abjad._Leaf.duration._LeafDurationInterface`.
+:class:`~abjad.components._Leaf.duration._LeafDurationInterface`.
 
 Duration management is a major topic in Abjad, and is covered in greater
 detail later in the docs. For now we'll look only at the

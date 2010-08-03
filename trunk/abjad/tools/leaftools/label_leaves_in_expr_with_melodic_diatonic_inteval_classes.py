@@ -1,5 +1,5 @@
-from abjad._Leaf import _Leaf
-from abjad.Note import Note
+from abjad.components._Leaf import _Leaf
+from abjad.components.Note import Note
 from abjad.tools import iterate
 
 

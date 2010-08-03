@@ -18,7 +18,7 @@ class ScoreInterface(_Interface):
       If no explicit ``Score`` in parentage of client, return ``None``.
       '''
 
-      from abjad.Score import Score
+      from abjad.components.Score import Score
       for parent in self._client.parentage.parentage:
          if isinstance(parent, Score):
             return parent

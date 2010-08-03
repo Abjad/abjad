@@ -1,5 +1,5 @@
-from abjad._Component import _Component
-from abjad.Container import Container
+from abjad.components._Component import _Component
+from abjad.components.Container import Container
 from abjad.Rational import Rational
 
 

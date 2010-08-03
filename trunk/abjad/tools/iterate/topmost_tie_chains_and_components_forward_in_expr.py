@@ -1,6 +1,6 @@
-from abjad.Container import Container
+from abjad.components.Container import Container
 from abjad.exceptions import TieChainError
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 
 
 def topmost_tie_chains_and_components_forward_in_expr(expr):

@@ -70,7 +70,7 @@ class TempoInterface(_Observer, _GrobHandler,
    def settings(self):
       '''Read-only list of LilyPond context settings
       picked up at format-time.'''
-      from abjad._Context import _Context
+      from abjad.components._Context import _Context
       result = [ ]
       tempo_wholes_per_minute = self.tempo_wholes_per_minute
       if tempo_wholes_per_minute is not None:

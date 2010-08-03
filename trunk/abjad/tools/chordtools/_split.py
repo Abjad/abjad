@@ -1,8 +1,8 @@
-from abjad.Chord import Chord
-from abjad._Leaf import _Leaf
-from abjad.Note import Note
+from abjad.components.Chord import Chord
+from abjad.components._Leaf import _Leaf
+from abjad.components.Note import Note
 from abjad.Pitch import Pitch
-from abjad.Rest import Rest
+from abjad.components.Rest import Rest
 from abjad.tools import componenttools
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
@@ -17,20 +17,20 @@ def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
    of the return pair.
 
    In the usual case, ``chord`` is an Abjad 
-   :class:`~abjad.Chord.chord.Chord`. But ``input`` may also
-   be an Abjad :class:`~abjad.Note.note.Note` or 
-   :class:`~abjad.Rest.rest.Rest`.
+   :class:`~abjad.components.Chord.chord.Chord`. But ``input`` may also
+   be an Abjad :class:`~abjad.components.Note.note.Note` or 
+   :class:`~abjad.components.Rest.rest.Rest`.
 
    * ``attr``: ``number``, ``alititude``. 
 
    Length treatment:
 
    * Zero-length parts return as Abjad \
-      :class:`~abjad.Rest.rest.Rest` instances.
+      :class:`~abjad.components.Rest.rest.Rest` instances.
    * Length-one parts return as Abjad \
-      :class:`~abjad.Note.note.Note` instances.
+      :class:`~abjad.components.Note.note.Note` instances.
    * Parts of length greater than ``1`` return as \
-      :class:`~abjad.Chord.chord.Chord` instances.
+      :class:`~abjad.components.Chord.chord.Chord` instances.
 
    Note that both ``treble`` and ``bass`` return parts carry \
    unique IDs. That is::

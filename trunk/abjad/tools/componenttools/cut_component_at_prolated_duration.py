@@ -1,6 +1,6 @@
-from abjad._Component import _Component
+from abjad.components._Component import _Component
 from abjad.exceptions import NegativeDurationError
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 from abjad.Rational import Rational
 from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most \
    import list_leftmost_components_with_prolated_duration_at_most

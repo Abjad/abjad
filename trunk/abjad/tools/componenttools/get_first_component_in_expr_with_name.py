@@ -1,4 +1,4 @@
-from abjad._Component import _Component
+from abjad.components._Component import _Component
 from abjad.exceptions import MissingComponentError
 from abjad.tools import iterate
 

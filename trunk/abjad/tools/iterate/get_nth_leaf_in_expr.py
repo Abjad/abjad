@@ -1,4 +1,4 @@
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 from abjad.tools.iterate.get_nth_component_in_expr import get_nth_component_in_expr
 
 

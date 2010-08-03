@@ -1,4 +1,4 @@
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 
 
 def naive_forward_in_expr(expr, klass = _Leaf, start = 0, stop = None):

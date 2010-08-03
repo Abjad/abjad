@@ -1,4 +1,4 @@
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 from abjad.tools.iterate.naive_backward_in_expr import naive_backward_in_expr
 
 

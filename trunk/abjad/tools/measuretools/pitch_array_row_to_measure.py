@@ -1,4 +1,4 @@
-from abjad._Measure import RigidMeasure
+from abjad.components._Measure import RigidMeasure
 from abjad.Meter import Meter
 from abjad.Rational import Rational
 from abjad.tools import leaftools

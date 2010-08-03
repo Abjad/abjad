@@ -1,5 +1,5 @@
 from abjad.Markup import Markup
-from abjad.Staff import Staff
+from abjad.components.Staff import Staff
 from abjad.tools import iterate
 from abjad.tools import lilyfiletools
 from abjad.tools.scoretools.make_piano_score_from_leaves import make_piano_score_from_leaves

@@ -1,4 +1,4 @@
-from abjad.Note import Note
+from abjad.components.Note import Note
 from abjad.Pitch import Pitch
 from abjad.tools.pitchtools.TwelveToneRow import TwelveToneRow
 

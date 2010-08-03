@@ -1,4 +1,4 @@
-from abjad.Chord import Chord
+from abjad.components.Chord import Chord
 from abjad.exceptions import ExtraNoteHeadError
 from abjad.exceptions import MissingNoteHeadError
 from abjad.Pitch import Pitch

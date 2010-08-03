@@ -3,7 +3,7 @@ from abjad.Rational import Rational
 from abjad.tools import componenttools
 from abjad.tools import iterate
 from abjad.tools import mathtools
-from abjad._Tuplet import _Tuplet
+from abjad.components._Tuplet import _Tuplet
 
 
 def subsume(expr):

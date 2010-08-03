@@ -20,7 +20,7 @@ piano.append(upper_staff)
 piano.append(lower_staff)
 </abjad>
 
-Here we created an empty :class:`~abjad.StaffGroup.pianostaff.PianoStaff` container and we've assigned it to the `piano` variable. Then we created two :class:`~abjad.Staff` objects and we assigned them to the `upper_staff` and `lower_staff` variables. Finally, we appended the staves to the :class:`~abjad.StaffGroup.pianostaff.PianoStaff` container.  
+Here we created an empty :class:`~abjad.components.StaffGroup.pianostaff.PianoStaff` container and we've assigned it to the `piano` variable. Then we created two :class:`~abjad.components.Staff` objects and we assigned them to the `upper_staff` and `lower_staff` variables. Finally, we appended the staves to the :class:`~abjad.components.StaffGroup.pianostaff.PianoStaff` container.  
 
 Now let's add some measures to the framework.
 
@@ -41,7 +41,7 @@ Notice that the `lower_measures` are simply copies of the `upper_measures`.
 .. note::
    The :mod:`~abjad.tools.clone` package houses the different copying functions that Abjad provides for object duplication. The difference between them resides in the way each handles spanners attached to Components during the duplication process. See XXX for details.
 
-Notice also that the measures are added to their corresponding :class:`~abjad.Staff` via the ``extend`` method. 
+Notice also that the measures are added to their corresponding :class:`~abjad.components.Staff` via the ``extend`` method. 
 
 .. note::
    Remember that ``extend`` is used for appending multiple objects that are grouped together in an iterable (i.e. a list, tuple, set, etc.) while ``append`` is used for single objects.
@@ -62,9 +62,9 @@ Let's now create the notes for the lower staff. This will be a more intricate pr
 
 .. note::
    The usual term for a melodic line is `voice`. Generally speaking, the language developed in Abjad uses the term *thread* to refer to this notion. A `thread` however, has a more concrete interpretation in Abjad. Please refer to the :doc:`/chapters/fundamentals/threads/index` section for a complete explanation of `threads`.
-   The term Voice (with upper case) we use specifically for either the :class:`~abjad.Voice` class or an instance of the class. 
+   The term Voice (with upper case) we use specifically for either the :class:`~abjad.components.Voice` class or an instance of the class. 
 
-When two or more melodic lines are simultaneously present in the same :class:`~abjad.Staff`, we need some way of grouping notes to disambiguate the paths of the possible melodic lines. We do this by creating explicit threads via the instantiation of the :class:`~abjad.Voice` class. Here we create two threads: one called `main_voice` the other called `appendix_voice`. The threads are made explicit by instantiating :class:`~abjad.Voice` classes and by naming them appropriately.  
+When two or more melodic lines are simultaneously present in the same :class:`~abjad.components.Staff`, we need some way of grouping notes to disambiguate the paths of the possible melodic lines. We do this by creating explicit threads via the instantiation of the :class:`~abjad.components.Voice` class. Here we create two threads: one called `main_voice` the other called `appendix_voice`. The threads are made explicit by instantiating :class:`~abjad.components.Voice` classes and by naming them appropriately.  
 
 Lets move measure by measure in the construction of the lower staff:
 
@@ -86,9 +86,9 @@ main_voice_m3.name = 'main_voice'
 lower_measures[2].append(main_voice_m3)
 </abjad>
 
-Notice that every :class:`~abjad.Voice`  we create is equally named `main_voice` to guarantee the existence of a continuous thread. Many transformations and score traversal operations are possible across threads, so this is another reason why threads are important.  
+Notice that every :class:`~abjad.components.Voice`  we create is equally named `main_voice` to guarantee the existence of a continuous thread. Many transformations and score traversal operations are possible across threads, so this is another reason why threads are important.  
 
-It is in the last two measures where we suddenly have two simultaneous voices in the lower staff. The new, second :class:`~abjad.Voice` that seems to appear out of nowhere we will label `appendix_voice`.
+It is in the last two measures where we suddenly have two simultaneous voices in the lower staff. The new, second :class:`~abjad.components.Voice` that seems to appear out of nowhere we will label `appendix_voice`.
 
 <abjad>
 appendix_voice_m4 = Voice([Note(-1, (1, 2))])
@@ -105,7 +105,7 @@ lower_measures[3].append(p)
 A couple important things to notice: 
 
 1. The `number` property of the `appendix_voice` is set to ``1``, and the `number` property of the `main_voice` is set to ``2``. These determine the direction of the stem for each voice.
-2. Because both voices occur simultaneously in the score, we must put them in a parallel :class:`~abjad.Container` to tell Abjad that they indeed run in parallel. Notice the setting of the boolean `parallel` property of the :class:`~abjad.Container` object. It is this :class:`~abjad.Container` that is passed to the measure.
+2. Because both voices occur simultaneously in the score, we must put them in a parallel :class:`~abjad.components.Container` to tell Abjad that they indeed run in parallel. Notice the setting of the boolean `parallel` property of the :class:`~abjad.components.Container` object. It is this :class:`~abjad.components.Container` that is passed to the measure.
 
 We now do a similar thing for the last measure:
 

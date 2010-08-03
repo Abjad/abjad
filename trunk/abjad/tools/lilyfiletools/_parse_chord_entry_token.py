@@ -1,4 +1,4 @@
-from abjad.Chord import Chord
+from abjad.components.Chord import Chord
 from abjad.exceptions import InputSpecificationError
 from abjad.tools import durtools
 import re

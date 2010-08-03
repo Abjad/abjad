@@ -4,8 +4,8 @@ Duration types
 Abjad publishes duration information about notes, rests, chords and
 skips, and also about tuplets, measures, voices, staves and the other
 containers. Abjad groups duration information about notes, rests,
-chords and skips into the :class:`_LeafDurationInterface <abjad._Leaf.duration._LeafDurationInterface>` class; duration information about tuplets, measures, voices, staves and other
-containers groups together inside some type of :class:`_ComponentDurationInterface <abjad._Component.duration._ComponentDurationInterface>` interface. 
+chords and skips into the :class:`_LeafDurationInterface <abjad.components._Leaf.duration._LeafDurationInterface>` class; duration information about tuplets, measures, voices, staves and other
+containers groups together inside some type of :class:`_ComponentDurationInterface <abjad.components._Component.duration._ComponentDurationInterface>` interface. 
 
 
 

@@ -1,4 +1,4 @@
-from abjad.Note import Note
+from abjad.components.Note import Note
 
 
 def fuse_leaves_in_container_once_by_counts_into_big_endian_notes(container, counts):

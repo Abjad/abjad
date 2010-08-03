@@ -1,7 +1,7 @@
-from abjad.Chord import Chord
-from abjad._Leaf import _Leaf
-from abjad._Measure import _Measure
-from abjad.Note import Note
+from abjad.components.Chord import Chord
+from abjad.components._Leaf import _Leaf
+from abjad.components._Measure import _Measure
+from abjad.components.Note import Note
 from abjad.Rational import Rational
 
 

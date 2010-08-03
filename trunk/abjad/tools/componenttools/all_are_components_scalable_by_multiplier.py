@@ -28,7 +28,7 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
       ``componenttools.all_are_components_scalable_by_multiplier( )``.
    '''
 
-   from abjad._Leaf import _Leaf
+   from abjad.components._Leaf import _Leaf
    for component in components:
       if isinstance(component, _Leaf):
          candidate_duration = multiplier * component.duration.written 

@@ -1,4 +1,4 @@
-from abjad._Component import _Component
+from abjad.components._Component import _Component
 from abjad.tools import iterate
 from abjad.tools.spannertools.get_spanners_that_cross_components import get_spanners_that_cross_components
 

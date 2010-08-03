@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad._Leaf import _Leaf
+from abjad.components._Leaf import _Leaf
 from abjad.spanners import TempoSpanner
 from abjad.tools import iterate
 

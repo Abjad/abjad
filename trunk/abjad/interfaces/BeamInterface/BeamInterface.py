@@ -67,8 +67,8 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler,
    @property
    def beamable(self):
       '''True when client is beamable, otherwise False.'''
-      from abjad.Chord import Chord
-      from abjad.Note import Note
+      from abjad.components.Chord import Chord
+      from abjad.components.Note import Note
       from abjad.tools import durtools
       client = self._client
       #flags = client.duration._flags

@@ -1,4 +1,4 @@
-from abjad._Component import _Component
+from abjad.components._Component import _Component
 from abjad.Rational import Rational
 from abjad.tools.iterate._new_vertical_moments_forward_in import \
    _new_vertical_moments_forward_in
