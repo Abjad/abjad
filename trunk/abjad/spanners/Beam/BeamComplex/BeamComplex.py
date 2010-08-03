@@ -1,4 +1,4 @@
-from abjad.spanners.Beam.complex.format import _BeamComplexFormatInterface
+from abjad.spanners.Beam.BeamComplex.format import _BeamComplexFormatInterface
 from abjad.spanners.Beam.Beam import Beam
 from abjad.rational import Rational
 import types
