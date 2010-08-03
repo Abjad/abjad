@@ -1,5 +1,5 @@
-from abjad.interfaces.interface.interface import _Interface
-from abjad.interfaces.parentage.containment import _ContainmentSignature
+from abjad.interfaces._Interface import _Interface
+from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
 
 
 class ThreadInterface(_Interface):

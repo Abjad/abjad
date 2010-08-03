@@ -1,5 +1,5 @@
 from abjad.cfg.session import _CFG
-from abjad.interfaces.interface.interface import _Interface
+from abjad.interfaces._Interface import _Interface
 
 
 class _Observer(_Interface):

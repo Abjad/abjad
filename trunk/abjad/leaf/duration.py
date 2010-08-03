@@ -1,5 +1,5 @@
 from abjad.component.duration import _ComponentDurationInterface
-from abjad.interfaces.interface.interface import _Interface
+from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import AssignabilityError
 from abjad.exceptions import UndefinedTempoError
 from abjad.tools import durtools

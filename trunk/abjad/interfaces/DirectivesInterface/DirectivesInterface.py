@@ -1,5 +1,5 @@
-from abjad.interfaces.interface.interface import _Interface
-from abjad.interfaces.comments.interface import CommentsInterface
+from abjad.interfaces._Interface import _Interface
+from abjad.interfaces.CommentsInterface import CommentsInterface
 
 
 class DirectivesInterface(_Interface, CommentsInterface):

@@ -1,4 +1,4 @@
-from abjad.interfaces.interface.interface import _Interface
+from abjad.interfaces._Interface import _Interface
 
 
 class GraceInterface(_Interface):

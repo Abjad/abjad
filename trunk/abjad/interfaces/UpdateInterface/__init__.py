@@ -1,1 +1,1 @@
-from interface import _UpdateInterface
+from UpdateInterface import _UpdateInterface

@@ -1,5 +1,5 @@
 from abjad.core.grobhandler import _GrobHandler
-from abjad.interfaces.interface.interface import _Interface
+from abjad.interfaces._Interface import _Interface
 
 
 class VerticalAxisGroupInterface(_Interface, _GrobHandler):

@@ -1,5 +1,5 @@
 from abjad.component.spanner.aggregator import _ComponentSpannerAggregator
-from abjad.interfaces.interface.interface import _Interface
+from abjad.interfaces._Interface import _Interface
 
 
 class _LeafSpannerAggregator(_ComponentSpannerAggregator):

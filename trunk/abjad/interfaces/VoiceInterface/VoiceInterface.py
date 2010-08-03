@@ -1,5 +1,5 @@
 from abjad.core.formatcontributor import _FormatContributor
-from abjad.interfaces.interface.interface import _Interface
+from abjad.interfaces._Interface import _Interface
 
 
 class VoiceInterface(_Interface, _FormatContributor):
