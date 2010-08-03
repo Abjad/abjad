@@ -1,4 +1,4 @@
-from abjad.checks.check import _Check
+from abjad.checks._Check import _Check
 from abjad.measure import _Measure
 from abjad.tools import iterate
 

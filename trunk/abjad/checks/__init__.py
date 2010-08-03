@@ -11,7 +11,7 @@ for _module in sorted(_modules):
 def check_cleaner(locals):
    #from types import TypeType
    import types
-   from abjad.checks.check import _Check
+   from abjad.checks._Check import _Check
    for _key, _value in locals.items( ):
       #if not isinstance(_value, types.TypeType) and _key != 'check_cleaner':
       #   del(locals[_key])

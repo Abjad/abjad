@@ -1,4 +1,4 @@
-from abjad.checks.check import _Check
+from abjad.checks._Check import _Check
 from abjad.spanners import Hairpin
 
 
