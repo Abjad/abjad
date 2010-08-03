@@ -1,5 +1,5 @@
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
-from abjad.spanners.tie.format import _TieSpannerFormatInterface
+from abjad.spanners.Tie.format import _TieSpannerFormatInterface
 
 
 class Tie(_GrobHandlerSpanner):

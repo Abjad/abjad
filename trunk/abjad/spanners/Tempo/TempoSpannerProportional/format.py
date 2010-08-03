@@ -1,4 +1,4 @@
-from abjad.spanners.tempo.format import _TempoSpannerFormatInterface
+from abjad.spanners.Tempo.format import _TempoSpannerFormatInterface
 from abjad.tools import schemetools
 
 

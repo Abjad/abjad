@@ -1,5 +1,5 @@
 from abjad.rational import Rational
-from abjad.spanners.spacing.format import _SpacingSpannerFormatInterface
+from abjad.spanners.Spacing.format import _SpacingSpannerFormatInterface
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 import types
 

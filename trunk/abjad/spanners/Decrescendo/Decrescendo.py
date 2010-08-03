@@ -1,4 +1,4 @@
-from abjad.spanners.hairpin.spanner import Hairpin
+from abjad.spanners.Hairpin import Hairpin
 
 
 class Decrescendo(Hairpin):
