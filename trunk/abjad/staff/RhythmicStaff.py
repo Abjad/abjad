@@ -1,4 +1,4 @@
-from abjad.staff.staff import Staff
+from abjad.staff.Staff import Staff
 
 
 #def RhythmicStaff(music):

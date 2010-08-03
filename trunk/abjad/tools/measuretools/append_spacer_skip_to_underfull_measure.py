@@ -1,5 +1,5 @@
 from abjad.skip import Skip
-from abjad.measure.rigid.measure import RigidMeasure
+from abjad.measure.rigid.RigidMeasure import RigidMeasure
 
 
 def append_spacer_skip_to_underfull_measure(rigid_measure):

@@ -1,5 +1,5 @@
 from abjad.tools import iterate
-from abjad.measure.rigid.measure import RigidMeasure
+from abjad.measure import RigidMeasure
 from abjad.tools.measuretools.append_spacer_skip_to_underfull_measure \
    import append_spacer_skip_to_underfull_measure
 

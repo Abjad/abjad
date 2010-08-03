@@ -1,7 +1,7 @@
 from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
-from abjad.meter.meter import Meter
+from abjad.meter.Meter import Meter
 from abjad.rational import Rational
 from abjad.tools import durtools
 import types

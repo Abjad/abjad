@@ -1,4 +1,4 @@
-from abjad.container.container import _ContainerFormatter
+from abjad.container.Container import _ContainerFormatter
 from abjad.context.slots import _ContextFormatterSlotsInterface
 
 
