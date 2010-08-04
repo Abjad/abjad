@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.components.Rest.initializer import _RestInitializer
 
 
@@ -58,10 +58,10 @@ class Rest(_Leaf):
          if isinstance(arg, type(None)):
             self._pitch = None
          elif isinstance(arg, (int, float, long)):
-            self._pitch = Pitch(arg)
+            self._pitch = NamedPitch(arg)
          elif isinstance(arg, tuple):
-            self._pitch = Pitch(*arg)
-         elif isinstance(arg, Pitch):
+            self._pitch = NamedPitch(*arg)
+         elif isinstance(arg, NamedPitch):
             self._pitch = arg
          else:
             raise ValueError('Can not set Rest.pitch from %s' % str(arg))

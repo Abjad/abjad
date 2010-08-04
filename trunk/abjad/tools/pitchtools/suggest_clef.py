@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.marks import Clef
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
@@ -7,13 +7,13 @@ def suggest_clef(pitches, clefs = ['treble', 'bass']):
    '''Suggest best clef from `clefs` for `pitches` 
    as determined by minimal ledger lines. ::
 
-      abjad> pitches = [Pitch(x) for x in (-30, 10, 20)]
+      abjad> pitches = [NamedPitch(x) for x in (-30, 10, 20)]
       abjad> pitchtools.suggest_clef(pitches)
       Clef('bass')
 
    ::
 
-      abjad> pitches = [Pitch(x) for x in (-5, 30)]
+      abjad> pitches = [NamedPitch(x) for x in (-5, 30)]
       abjad> pitchtools.suggest_clef(pitches)
       Clef('treble')
 
@@ -25,18 +25,18 @@ def suggest_clef(pitches, clefs = ['treble', 'bass']):
    '''
 
    #assert isinstance(pitches, list)
-   #assert all([isinstance(pitch, Pitch) for pitch in pitches])
+   #assert all([isinstance(pitch, NamedPitch) for pitch in pitches])
    pitches = get_pitches(pitches)
 
    altitudes = [pitch.altitude for pitch in pitches]
    max_altitude = max(altitudes)
    min_altitude = min(altitudes)
 
-   lowest_treble_line_pitch = Pitch('e', 4)
+   lowest_treble_line_pitch = NamedPitch('e', 4)
    lowest_treble_line_altitude = lowest_treble_line_pitch.altitude
    candidate_steps_below_treble = lowest_treble_line_altitude - min_altitude
 
-   highest_bass_line_pitch = Pitch('a', 3)
+   highest_bass_line_pitch = NamedPitch('a', 3)
    highest_bass_line_altitude = highest_bass_line_pitch.altitude
    candidate_steps_above_bass = max_altitude - highest_bass_line_altitude
 

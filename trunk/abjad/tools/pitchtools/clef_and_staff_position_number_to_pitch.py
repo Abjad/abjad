@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 
 
 def clef_and_staff_position_number_to_pitch(clef, staff_position_number):
@@ -35,6 +35,6 @@ def clef_and_staff_position_number_to_pitch(clef, staff_position_number):
    octave = 4 + int(n / 7) + 1
    if pitch_name == 'b':
       octave -= 1
-   pitch = Pitch(pitch_name, octave)
+   pitch = NamedPitch(pitch_name, octave)
 
    return pitch

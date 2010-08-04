@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.is_pitch_pair import is_pitch_pair
 
 
@@ -8,7 +8,7 @@ def is_pitch_token(pitch_token):
 
       abjad> pitchtools.is_pitch_token(('c', 4))
       True
-      abjad> pitchtools.is_pitch_token(Pitch('c', 4))
+      abjad> pitchtools.is_pitch_token(NamedPitch('c', 4))
       True
 
    Otherwise false. ::
@@ -17,7 +17,7 @@ def is_pitch_token(pitch_token):
       False
    '''
 
-   if isinstance(pitch_token, Pitch):
+   if isinstance(pitch_token, NamedPitch):
       return True
    elif is_pitch_pair(pitch_token):
       return True

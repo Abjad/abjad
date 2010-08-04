@@ -4,8 +4,8 @@ from abjad import *
 def test_PitchArrayCell_matches_cell_01( ):
 
    array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-   array[0].cells[0].pitches.append(Pitch(0))
-   array[0].cells[1].pitches.extend([Pitch(2), Pitch(4)])
+   array[0].cells[0].pitches.append(NamedPitch(0))
+   array[0].cells[1].pitches.extend([NamedPitch(2), NamedPitch(4)])
 
    '''
    [c'] [d' e'    ] [ ]

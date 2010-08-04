@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools import listtools
 from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import \
    HarmonicChromaticIntervalSegment
@@ -31,7 +31,7 @@ class PitchSegment(list):
    '''
 
    def __init__(self, pitch_tokens):
-      pitches = [Pitch(x) for x in pitch_tokens]
+      pitches = [NamedPitch(x) for x in pitch_tokens]
       self.extend(pitches)
 
    ## OVERLOADS ##

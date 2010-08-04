@@ -1,5 +1,5 @@
 from abjad.core import _Abjad
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 import types
 
 
@@ -169,7 +169,7 @@ class PitchArrayCell(_Abjad):
             pitches, width = [ ], cell_token
          else:
             raise ValueError('integer width token must be positive.')
-      elif isinstance(cell_token, Pitch):
+      elif isinstance(cell_token, NamedPitch):
          pitches, width = [cell_token], 1
       elif isinstance(cell_token, list):
          pitch_token, width = cell_token, 1
@@ -191,14 +191,14 @@ class PitchArrayCell(_Abjad):
 
    def _parse_pitch_token(self, pitch_token):
       pitches = [ ]
-      if isinstance(pitch_token, (int, float, Pitch)):
-         pitch = Pitch(pitch_token)
+      if isinstance(pitch_token, (int, float, NamedPitch)):
+         pitch = NamedPitch(pitch_token)
          pitches.append(pitch)
       elif isinstance(pitch_token, tuple):
-         pitches.append(Pitch(*pitch_token))
+         pitches.append(NamedPitch(*pitch_token))
       elif isinstance(pitch_token, list):
          for element in pitch_token:
-            pitch = Pitch(element)
+            pitch = NamedPitch(element)
             pitches.append(pitch)
       else:
          raise TypeError('pitch token must be number, pitch or list.')
@@ -276,8 +276,8 @@ class PitchArrayCell(_Abjad):
    def pitches( ):
       def fget(self):
          for i, pitch in enumerate(self._pitches):
-            if not isinstance(pitch, Pitch):
-               self._pitches[i] = Pitch(pitch)
+            if not isinstance(pitch, NamedPitch):
+               self._pitches[i] = NamedPitch(pitch)
          return self._pitches
       def fset(self, arg):
          if not isinstance(arg, (list, tuple)):

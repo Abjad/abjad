@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools import listtools
 
 
@@ -46,7 +46,7 @@ def get_interval_class_vector(pitches):
    numbers = [ ]
 
    for pitch in pitches:
-      if not isinstance(pitch, Pitch):
+      if not isinstance(pitch, NamedPitch):
          raise ValueError
       numbers.append(pitch.number)
 

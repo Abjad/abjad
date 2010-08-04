@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 
 
 class PitchVector(dict):
@@ -9,7 +9,7 @@ class PitchVector(dict):
 
    def __init__(self, pitch_tokens): 
       for token in pitch_tokens:
-         pitch = Pitch(token)
+         pitch = NamedPitch(token)
          try:
             self[pitch.pair] += 1
          except KeyError:
@@ -48,6 +48,6 @@ class PitchVector(dict):
 
    @property
    def pitches(self):
-      pitches = [Pitch(key) for key, value in self.items( )]
+      pitches = [NamedPitch(key) for key, value in self.items( )]
       pitches.sort( )
       return pitches

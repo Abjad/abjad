@@ -4,9 +4,8 @@ from abjad import *
 def test_Pitch__init_by_pair_01( ):
    '''Init by pair.'''
 
-   p = Pitch(('df', 5))
+   p = NamedPitch(('df', 5))
 
-   assert repr(p) == "Pitch(df, 5)"
    assert p.altitude == 8
    assert p.degree == 2
    assert p.format == "df''"

@@ -8,7 +8,7 @@ def test_pitchtools_sort_by_pc_01( ):
    sorted_pitches = pitchtools.sort_by_pc(chord.pitches)
 
    r'''
-   [Pitch(c, 3), Pitch(cs, 7), Pitch(d, 3), Pitch(ef, 6), Pitch(e, 4), Pitch(f, 5), Pitch(fs, 6), Pitch(g, 5), Pitch(af, 4), Pitch(a, 6), Pitch(bf, 3), Pitch(b, 4)]
+   [NamedPitch(c, 3), NamedPitch(cs, 7), NamedPitch(d, 3), NamedPitch(ef, 6), NamedPitch(e, 4), NamedPitch(f, 5), NamedPitch(fs, 6), NamedPitch(g, 5), NamedPitch(af, 4), NamedPitch(a, 6), NamedPitch(bf, 3), NamedPitch(b, 4)]
    '''
 
    sorted_pitch_numbers = [pitch.number for pitch in sorted_pitches]

@@ -3,23 +3,23 @@ from abjad import *
 
 def test_pitchtools_make_flat_01( ):
    '''The pitchtools.make_flat( ) helper renotates an individual pitch.'''
-   t = Pitch('cs', 4)
+   t = NamedPitch('cs', 4)
    pitchtools.make_flat(t)
-   assert t == Pitch('df', 4)
+   assert t == NamedPitch('df', 4)
 
 
 def test_pitchtools_make_flat_02( ):
    '''The pitchtools.make_flat( ) helper renotates the pitch of one note.'''
    t = Note(('cs', 4), 4)
    pitchtools.make_flat(t)
-   assert t.pitch == Pitch('df', 4)
+   assert t.pitch == NamedPitch('df', 4)
 
 
 def test_pitchtools_make_flat_03( ):
    '''The pitchtools.make_flat( ) helper renotates the pitches of all notes in a chord.'''
    t = Chord([('cs', 4), ('f', 4), ('as', 4)], (1, 4))
    pitchtools.make_flat(t)
-   assert t.pitches == (Pitch('df', 4), Pitch('f', 4), Pitch('bf', 4)) 
+   assert t.pitches == (NamedPitch('df', 4), NamedPitch('f', 4), NamedPitch('bf', 4)) 
 
 
 def test_pitchtools_make_flat_04( ):

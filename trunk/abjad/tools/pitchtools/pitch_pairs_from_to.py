@@ -11,12 +11,12 @@ def pitch_pairs_from_to(expr_1, expr_2):
       abjad> chord_2 = Chord([3, 4], (1, 4))
       abjad> for pair in pitchtools.pitch_pairs_from_to(chord_1, chord_2):
       ...      pair
-      (Pitch(c, 4), Pitch(ef, 4))
-      (Pitch(c, 4), Pitch(e, 4))
-      (Pitch(cs, 4), Pitch(ef, 4))
-      (Pitch(cs, 4), Pitch(e, 4))
-      (Pitch(d, 4), Pitch(ef, 4))
-      (Pitch(d, 4), Pitch(e, 4))
+      (NamedPitch(c, 4), NamedPitch(ef, 4))
+      (NamedPitch(c, 4), NamedPitch(e, 4))
+      (NamedPitch(cs, 4), NamedPitch(ef, 4))
+      (NamedPitch(cs, 4), NamedPitch(e, 4))
+      (NamedPitch(d, 4), NamedPitch(ef, 4))
+      (NamedPitch(d, 4), NamedPitch(e, 4))
    '''
 
    pitches_1 = sorted(get_pitches(expr_1))

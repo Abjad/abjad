@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.marks import KeySignature
 from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
@@ -104,8 +104,8 @@ class Scale(NamedPitchClassSegment):
             scale_degree_index = i
             scale_degree_number = scale_degree_index + 1
             break
-      native_pitch = Pitch(native_pitch_class, 4)
-      foreign_pitch = Pitch(foreign_pitch_class, 4)
+      native_pitch = NamedPitch(native_pitch_class, 4)
+      foreign_pitch = NamedPitch(foreign_pitch_class, 4)
       accidental = foreign_pitch.accidental - native_pitch.accidental
       return ScaleDegree(accidental, scale_degree_number)
 

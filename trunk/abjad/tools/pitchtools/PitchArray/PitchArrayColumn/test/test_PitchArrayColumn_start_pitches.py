@@ -13,7 +13,7 @@ def test_PitchArrayColumn_start_pitches_01( ):
    [g'     ] [fs'   ] [ ]
    '''
 
-   array.columns[0].start_pitches == (Pitch(7), )
-   array.columns[1].start_pitches == (Pitch(2), )
-   array.columns[2].start_pitches == (Pitch(-2), Pitch(-1.5), Pitch(6))
+   array.columns[0].start_pitches == (NamedPitch(7), )
+   array.columns[1].start_pitches == (NamedPitch(2), )
+   array.columns[2].start_pitches == (NamedPitch(-2), NamedPitch(-1.5), NamedPitch(6))
    array.columns[3].start_pitches == ( )

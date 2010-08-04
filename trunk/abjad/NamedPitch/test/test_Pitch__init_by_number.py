@@ -4,9 +4,8 @@ from abjad import *
 def test_Pitch__init_by_number_01( ):
    '''Init by number.'''
 
-   p = Pitch(13)
+   p = NamedPitch(13)
 
-   assert repr(p) == "Pitch(cs, 5)"
    assert p.altitude == 7
    assert p.degree == 1
    assert p.format == "cs''"

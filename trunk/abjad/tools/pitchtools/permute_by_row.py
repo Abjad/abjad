@@ -1,5 +1,5 @@
 from abjad.components.Note import Note
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.TwelveToneRow import TwelveToneRow
 
 
@@ -24,7 +24,7 @@ def permute_by_row(pitches, row):
    for pc in row:
       matching_pitches = [ ]
       for pitch in pitches:
-         if isinstance(pitch, Pitch):
+         if isinstance(pitch, NamedPitch):
             if pitch.pc == pc:   
                matching_pitches.append(pitch)
          elif isinstance(pitch, Note):

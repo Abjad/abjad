@@ -1,6 +1,6 @@
 from abjad.exceptions import InputSpecificationError
 from abjad.components.Note import Note
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.components.Rest import Rest
 from abjad.components.Skip import Skip
 from abjad.tools import pitchtools
@@ -46,5 +46,5 @@ def _parse_note_entry_token(note_entry_token):
       return Skip(duration_string)
    else:
       pitch_string = name + ticks
-      pitch = Pitch(pitch_string)
+      pitch = NamedPitch(pitch_string)
       return Note(pitch, duration_string)

@@ -5,7 +5,7 @@ def test_Rest_pitched_01( ):
    '''Rests can have pitch set with int.'''
    r = Rest((1, 4))
    r.pitch = 0
-   assert isinstance(r.pitch, Pitch)
+   assert isinstance(r.pitch, NamedPitch)
    assert repr(r) == 'Rest(4)'
    assert r.format == "c'4 \\rest"
    assert r.duration.written == r.duration.prolated == Rational(1, 4)
@@ -14,8 +14,8 @@ def test_Rest_pitched_01( ):
 def test_Rest_pitched_02( ):
    '''Rests can have pitch set with Pitch.'''
    r = Rest((1, 4))
-   r.pitch = Pitch(0)
-   assert isinstance(r.pitch, Pitch)
+   r.pitch = NamedPitch(0)
+   assert isinstance(r.pitch, NamedPitch)
    assert repr(r) == 'Rest(4)'
    assert r.format == "c'4 \\rest"
    assert r.duration.written == r.duration.prolated == Rational(1, 4)

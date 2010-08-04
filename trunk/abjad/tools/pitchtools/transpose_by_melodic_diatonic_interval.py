@@ -1,6 +1,6 @@
 from abjad.components.Chord import Chord
 from abjad.components.Note import Note
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools import componenttools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval
@@ -14,16 +14,16 @@ def transpose_by_melodic_diatonic_interval(
 
    Transpose `pitch_carrier` by `melodic_diatonic_interval`. ::
 
-      abjad> pitch = Pitch(12)
+      abjad> pitch = NamedPitch(12)
       abjad> mdi = pitchtools.MelodicDiatonicInterval('minor', -3)
       abjad> pitchtools.transpose_by_melodic_diatonic_interval(pitch, mdi)
-      Pitch(a, 4)
+      NamedPitch(a, 4)
    '''
 
    if not isinstance(melodic_diatonic_interval, MelodicDiatonicInterval):
       raise TypeError('must be melodic diatonic interval.')
 
-   if isinstance(pitch_carrier, Pitch):
+   if isinstance(pitch_carrier, NamedPitch):
       return _transpose_pitch_by_melodic_diatonic_interval(
          pitch_carrier, melodic_diatonic_interval)
    elif isinstance(pitch_carrier, Note):
@@ -46,9 +46,9 @@ def transpose_by_melodic_diatonic_interval(
 
 def _transpose_pitch_by_melodic_diatonic_interval(
    pitch, melodic_diatonic_interval):
-   if not isinstance(pitch, Pitch):
+   if not isinstance(pitch, NamedPitch):
       raise TypeError('must be pitch.')
    chromatic_pitch_number = pitch.number + melodic_diatonic_interval.semitones
    diatonic_scale_degree = pitch.degree + melodic_diatonic_interval.staff_spaces
    letter = diatonic_scale_degree_to_letter(diatonic_scale_degree)
-   return Pitch(chromatic_pitch_number, letter)
+   return NamedPitch(chromatic_pitch_number, letter)

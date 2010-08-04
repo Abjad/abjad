@@ -39,21 +39,21 @@ def pitch_pairs_forward_in_expr(expr):
       abjad> for pair in iterate.pitch_pairs_forward_in_expr(score):
       ...     pair
       ... 
-      (Pitch(c, 4), Pitch(c, 3))
-      (Pitch(c, 4), Pitch(d, 4))
-      (Pitch(c, 3), Pitch(d, 4))
-      (Pitch(d, 4), Pitch(e, 4))
-      (Pitch(d, 4), Pitch(a, 2))
-      (Pitch(c, 3), Pitch(e, 4))
-      (Pitch(c, 3), Pitch(a, 2))
-      (Pitch(e, 4), Pitch(a, 2))
-      (Pitch(e, 4), Pitch(f, 4))
-      (Pitch(a, 2), Pitch(f, 4))
-      (Pitch(f, 4), Pitch(g, 4))
-      (Pitch(f, 4), Pitch(g, 2))
-      (Pitch(a, 2), Pitch(g, 4))
-      (Pitch(a, 2), Pitch(g, 2))
-      (Pitch(g, 4), Pitch(g, 2))
+      (NamedPitch(c, 4), NamedPitch(c, 3))
+      (NamedPitch(c, 4), NamedPitch(d, 4))
+      (NamedPitch(c, 3), NamedPitch(d, 4))
+      (NamedPitch(d, 4), NamedPitch(e, 4))
+      (NamedPitch(d, 4), NamedPitch(a, 2))
+      (NamedPitch(c, 3), NamedPitch(e, 4))
+      (NamedPitch(c, 3), NamedPitch(a, 2))
+      (NamedPitch(e, 4), NamedPitch(a, 2))
+      (NamedPitch(e, 4), NamedPitch(f, 4))
+      (NamedPitch(a, 2), NamedPitch(f, 4))
+      (NamedPitch(f, 4), NamedPitch(g, 4))
+      (NamedPitch(f, 4), NamedPitch(g, 2))
+      (NamedPitch(a, 2), NamedPitch(g, 4))
+      (NamedPitch(a, 2), NamedPitch(g, 2))
+      (NamedPitch(g, 4), NamedPitch(g, 2))
 
    Chords are handled correctly. ::
 
@@ -73,16 +73,16 @@ def pitch_pairs_forward_in_expr(expr):
 
       abjad> for pair in iterate.pitch_pairs_forward_in_expr(staff):
       ...   print pair
-      (Pitch(c, 4), Pitch(d, 4))
-      (Pitch(c, 4), Pitch(e, 4))
-      (Pitch(d, 4), Pitch(e, 4))
-      (Pitch(c, 4), Pitch(f, 5))
-      (Pitch(c, 4), Pitch(g, 5))
-      (Pitch(d, 4), Pitch(f, 5))
-      (Pitch(d, 4), Pitch(g, 5))
-      (Pitch(e, 4), Pitch(f, 5))
-      (Pitch(e, 4), Pitch(g, 5))
-      (Pitch(f, 5), Pitch(g, 5))
+      (NamedPitch(c, 4), NamedPitch(d, 4))
+      (NamedPitch(c, 4), NamedPitch(e, 4))
+      (NamedPitch(d, 4), NamedPitch(e, 4))
+      (NamedPitch(c, 4), NamedPitch(f, 5))
+      (NamedPitch(c, 4), NamedPitch(g, 5))
+      (NamedPitch(d, 4), NamedPitch(f, 5))
+      (NamedPitch(d, 4), NamedPitch(g, 5))
+      (NamedPitch(e, 4), NamedPitch(f, 5))
+      (NamedPitch(e, 4), NamedPitch(g, 5))
+      (NamedPitch(f, 5), NamedPitch(g, 5))
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.pitch_pairs_forward_in( )`` to

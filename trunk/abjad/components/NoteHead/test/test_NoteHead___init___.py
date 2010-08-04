@@ -5,14 +5,14 @@ def test_NoteHead___init____01( ):
    '''Init note head by number.'''
 
    t = NoteHead(None, 6)
-   assert t.pitch == Pitch(6)
+   assert t.pitch == NamedPitch(6)
 
 
 def test_NoteHead___init____02( ):
    '''Init note head by LilyPond-style pitch string.'''
 
    t = NoteHead(None, 'cs,,,')
-   assert t.pitch == Pitch('cs,,,')
+   assert t.pitch == NamedPitch('cs,,,')
 
 
 def test_NoteHead___init____03( ):

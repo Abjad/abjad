@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
 from abjad.spanners.Trill.format import _TrillSpannerFormatInterface
 import types
@@ -47,7 +47,7 @@ class Trill(_GrobHandlerSpanner):
 
                abjad> t = Staff(macros.scale(4))
                abjad> trill = Trill(t[:2])
-               abjad> trill.pitch = Pitch('cs', 4)
+               abjad> trill.pitch = NamedPitch('cs', 4)
 
                abjad> print t.format
                \new Staff {
@@ -60,10 +60,10 @@ class Trill(_GrobHandlerSpanner):
 
          return self._pitch
       def fset(self, expr):
-         #assert isinstance(expr, (Pitch, types.NoneType))
+         #assert isinstance(expr, (NamedPitch, types.NoneType))
          if expr is None:
             self._pitch = expr
          else:
-            pitch = Pitch(expr)
+            pitch = NamedPitch(expr)
             self._pitch = pitch
       return property(**locals( ))

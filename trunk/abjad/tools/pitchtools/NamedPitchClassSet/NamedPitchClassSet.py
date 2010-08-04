@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools import listtools
 from abjad.tools.pitchtools.DiatonicIntervalClassVector import \
    DiatonicIntervalClassVector
@@ -72,7 +72,7 @@ class NamedPitchClassSet(frozenset):
 
    @property
    def diatonic_interval_class_vector(self):
-      pitches = [Pitch(x, 4) for x in self]
+      pitches = [NamedPitch(x, 4) for x in self]
       return DiatonicIntervalClassVector(pitches)
 
    @property

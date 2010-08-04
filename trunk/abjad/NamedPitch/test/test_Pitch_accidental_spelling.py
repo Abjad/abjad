@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Pitch_accidental_spelling_01( ):
+def test_NamedPitch_accidental_spelling_01( ):
    '''Accidentals spell mixed with sharps and flats by default.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(12)])
@@ -26,13 +26,13 @@ def test_Pitch_accidental_spelling_01( ):
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
 
 
-def test_Pitch_accidental_spelling_02( ):
+def test_NamedPitch_accidental_spelling_02( ):
    '''
    Accidentals can spell as all sharps by changing the
-   accidental_class attribute on the Abjad Pitch class.
+   accidental_class attribute on the Abjad NamedPitch class.
    '''
 
-   Pitch.accidental_spelling = 'sharps'
+   NamedPitch.accidental_spelling = 'sharps'
    t = Staff([Note(n, (1, 8)) for n in range(12)])
 
    r'''
@@ -54,16 +54,16 @@ def test_Pitch_accidental_spelling_02( ):
    
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\tgs'8\n\ta'8\n\tas'8\n\tb'8\n}"
 
-   Pitch.accidental_spelling = 'mixed'
+   NamedPitch.accidental_spelling = 'mixed'
 
 
-def test_Pitch_accidental_spelling_03( ):
+def test_NamedPitch_accidental_spelling_03( ):
    '''
    Accidentals can spell all as flats by changing the
-   accidental_spelling attribute on the Abjad Pitch class.
+   accidental_spelling attribute on the Abjad NamedPitch class.
    '''
 
-   Pitch.accidental_spelling = 'flats'
+   NamedPitch.accidental_spelling = 'flats'
    t = Staff([Note(n, (1, 8)) for n in range(12)])
 
    r'''
@@ -85,10 +85,10 @@ def test_Pitch_accidental_spelling_03( ):
 
    assert t.format == "\\new Staff {\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tgf'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
 
-   Pitch.accidental_spelling = 'mixed'
+   NamedPitch.accidental_spelling = 'mixed'
 
 
-def test_Pitch_accidental_spelling_04( ):
+def test_NamedPitch_accidental_spelling_04( ):
    '''
    You can change accidental spelling modes as many times as you
    like in a single interpreter session or script.
@@ -96,10 +96,10 @@ def test_Pitch_accidental_spelling_04( ):
 
    t = Staff( )
 
-   Pitch.accidental_spelling = 'sharps'
+   NamedPitch.accidental_spelling = 'sharps'
    t.extend([Note(n, (1, 8)) for n in range(6)])
    
-   Pitch.accidental_spelling = 'flats'
+   NamedPitch.accidental_spelling = 'flats'
    t.extend([Note(n, (1, 8)) for n in range(6)])
 
    r'''
@@ -121,4 +121,4 @@ def test_Pitch_accidental_spelling_04( ):
 
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n}"
 
-   Pitch.accidental_spelling = 'mixed'
+   NamedPitch.accidental_spelling = 'mixed'

@@ -37,10 +37,10 @@ def test_PitchClass___init____02( ):
 def test_PitchClass___init____03( ):
    '''PitchClass initialization works with pitches.'''
 
-   pc = pitchtools.PitchClass(Pitch(0))
+   pc = pitchtools.PitchClass(NamedPitch(0))
    assert pc.number == 0
 
-   pc = pitchtools.PitchClass(Pitch(12))
+   pc = pitchtools.PitchClass(NamedPitch(12))
    assert pc.number == 0
 
 

@@ -30,7 +30,7 @@ write(measure, 'pitch_token2', 'oedo') <hide
 And:
 
 <abjad>
-note = Note(Pitch(13), (1, 4))
+note = Note(NamedPitch(13), (1, 4))
 measure = RigidMeasure((1, 4), [note]) <hide
 measure.meter.transparent = True <hide
 write(measure, 'pitch_token3', 'oedo') <hide

@@ -6,5 +6,5 @@ def test_PitchSet___contains___01( ):
 
    pset = pitchtools.PitchSet([12, 14, 18, 19])
    
-   assert Pitch(14) in pset
-   assert Pitch(15) not in pset
+   assert NamedPitch(14) in pset
+   assert NamedPitch(15) not in pset

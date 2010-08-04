@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
@@ -69,7 +69,7 @@ class NamedPitchClassSegment(list):
          return False
       if not len(self) == len(arg):
          return False
-      difference = -(Pitch(arg[0], 4) - Pitch(self[0], 4))
+      difference = -(NamedPitch(arg[0], 4) - NamedPitch(self[0], 4))
       new_npcs = [x + difference for x in self]
       new_npc_seg = NamedPitchClassSegment(new_npcs)
       return arg == new_npc_seg

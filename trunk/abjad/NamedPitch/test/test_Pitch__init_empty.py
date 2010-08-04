@@ -4,9 +4,8 @@ from abjad import *
 def test_Pitch__init_empty_01( ):
    '''Init empty.'''
 
-   p = Pitch( )
+   p = NamedPitch( )
 
-   assert repr(p) == 'Pitch( )'
    assert p.altitude == None
    assert p.degree == None
    assert p.format == ''

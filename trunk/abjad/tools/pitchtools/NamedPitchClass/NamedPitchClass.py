@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.get_pitch import get_pitch
 from abjad.tools.pitchtools.Accidental import Accidental
 
@@ -21,9 +21,9 @@ class NamedPitchClass(object):
    ## OVERLOADS ##
 
    def __add__(self, melodic_diatonic_interval):
-      from abjad.NamedPitch import Pitch
+      from abjad.NamedPitch import NamedPitch
       from abjad.tools import pitchtools
-      dummy = Pitch(self.name, 4)
+      dummy = NamedPitch(self.name, 4)
       mdi = melodic_diatonic_interval
       new = pitchtools.transpose_by_melodic_diatonic_interval(dummy, mdi)
       return new.named_pitch_class
@@ -83,10 +83,10 @@ class NamedPitchClass(object):
    def __sub__(self, arg):
       if not isinstance(arg, type(self)):
          raise TypeError('%s must be named pitch class.' % arg)
-      from abjad.NamedPitch import Pitch
+      from abjad.NamedPitch import NamedPitch
       from abjad.tools import pitchtools
-      pitch_1 = Pitch(self, 4)
-      pitch_2 = Pitch(arg, 4)
+      pitch_1 = NamedPitch(self, 4)
+      pitch_2 = NamedPitch(arg, 4)
       mdi = pitchtools.melodic_diatonic_interval_from_to(pitch_1, pitch_2)
       dic = pitchtools.DiatonicIntervalClass(mdi.quality_string, mdi.number)
       return dic
@@ -138,7 +138,7 @@ class NamedPitchClass(object):
    @property
    def numeric_pitch_class(self):
       '''Read-only numeric pitch-class.'''
-      pitch = Pitch(self.name, 4)
+      pitch = NamedPitch(self.name, 4)
       return pitch.pitch_class
 
    @property
@@ -161,10 +161,10 @@ class NamedPitchClass(object):
 
    def transpose(self, mdi):
       '''Transpose pitch class by melodic diatonic interval.'''
-      from abjad.NamedPitch import Pitch
+      from abjad.NamedPitch import NamedPitch
       from abjad.tools.pitchtools.transpose_by_melodic_diatonic_interval \
          import transpose_by_melodic_diatonic_interval
-      pitch = Pitch(self, 4)
+      pitch = NamedPitch(self, 4)
       transposed_pitch = transpose_by_melodic_diatonic_interval(pitch, mdi)
       transposed_named_pitch_class = transposed_pitch.named_pitch_class
       return transposed_named_pitch_class

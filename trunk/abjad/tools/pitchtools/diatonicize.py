@@ -1,6 +1,6 @@
 from abjad.components.Chord import Chord
 from abjad.components.Note import Note
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools import iterate
 from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval
@@ -43,14 +43,14 @@ def diatonicize(expr, key_signature = None):
    length = len(dicg)
 
    octave_number = 4
-   pitch = Pitch(scale[0], octave_number)
+   pitch = NamedPitch(scale[0], octave_number)
 
    for i, tie_chain in enumerate(iterate.tie_chains_forward_in_expr(expr)):
       #pitch = int(i / length) * 12 + diatonic_residues[i % length] 
       #named_pitch_class = scale[i % length]
       #pitch_class_number = named_pitch_class.pitch_class.number
       #pitch_number = int(i / length) * 12 + pitch_class_number
-      #pitch = Pitch(pitch_number, named_pitch_class)
+      #pitch = NamedPitch(pitch_number, named_pitch_class)
       if isinstance(tie_chain[0], Note):
          for note in tie_chain:
             note.pitch = pitch

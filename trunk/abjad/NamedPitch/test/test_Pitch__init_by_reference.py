@@ -4,10 +4,9 @@ from abjad import *
 def test_Pitch__init_by_reference_01( ):
    '''Init by reference.'''
 
-   r = Pitch('df', 5)
-   p = Pitch(r)
+   r = NamedPitch('df', 5)
+   p = NamedPitch(r)
 
-   assert repr(p) == "Pitch(df, 5)"
    assert p.altitude == 8
    assert p.degree == 2
    assert p.format == "df''"

@@ -36,7 +36,7 @@ class PitchArrayRow(_Abjad):
    ::
 
       abjad> array[0].pitches
-      (Pitch(c, 4), Pitch(d, 4))
+      (NamedPitch(c, 4), NamedPitch(d, 4))
    '''
 
    def __init__(self, cells):

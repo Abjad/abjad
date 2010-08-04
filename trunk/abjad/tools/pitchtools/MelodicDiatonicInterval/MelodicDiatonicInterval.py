@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
@@ -47,7 +47,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          melodic_diatonic_interval_from_to
       if not isinstance(arg, MelodicDiatonicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
-      dummy_pitch = Pitch(0)
+      dummy_pitch = NamedPitch(0)
       new_pitch = dummy_pitch + self + arg 
       return melodic_diatonic_interval_from_to(dummy_pitch, new_pitch)
 
@@ -56,10 +56,10 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          melodic_diatonic_interval_from_to
       if not isinstance(arg, (int, long)):
          raise TypeError('%s must be int.' % arg)
-      dummy_pitch = Pitch(0)
+      dummy_pitch = NamedPitch(0)
       for i in range(arg):
          dummy_pitch += self
-      return melodic_diatonic_interval_from_to(Pitch(0), dummy_pitch)
+      return melodic_diatonic_interval_from_to(NamedPitch(0), dummy_pitch)
 
    def __neg__(self):
       return MelodicDiatonicInterval(self.quality_string, -self.number)
@@ -82,7 +82,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          melodic_diatonic_interval_from_to
       if not isinstance(arg, MelodicDiatonicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
-      dummy_pitch = Pitch(0)
+      dummy_pitch = NamedPitch(0)
       new_pitch = dummy_pitch + self - arg 
       return melodic_diatonic_interval_from_to(dummy_pitch, new_pitch)
       

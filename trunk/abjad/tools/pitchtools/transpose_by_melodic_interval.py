@@ -13,9 +13,9 @@ def transpose_by_melodic_interval(pitch_carrier, melodic_interval):
 
    Transpose `pitch_carrier` by diatonic or chromatic `melodic_interval`. ::
 
-      abjad> pitch = Pitch(12)
+      abjad> pitch = NamedPitch(12)
       abjad> pitch
-      Pitch(c, 5)
+      NamedPitch(c, 5)
 
    ::
 
@@ -23,7 +23,7 @@ def transpose_by_melodic_interval(pitch_carrier, melodic_interval):
       abjad> mdi
       DiatonicInterval(ascending minor second)
       abjad> pitchtools.transpose_by_melodic_interval(pitch, mdi)
-      Pitch(df, 5)
+      NamedPitch(df, 5)
 
    ::
 
@@ -31,7 +31,7 @@ def transpose_by_melodic_interval(pitch_carrier, melodic_interval):
       abjad> mci
       ChromaticInterval(1)
       abjad> pitchtools.transpose_by_melodic_interval(pitch, mci)
-      Pitch(cs, 5)
+      NamedPitch(cs, 5)
    '''
 
    if isinstance(melodic_interval, MelodicDiatonicInterval):

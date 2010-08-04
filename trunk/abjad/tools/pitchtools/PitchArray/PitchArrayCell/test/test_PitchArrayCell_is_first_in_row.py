@@ -24,6 +24,6 @@ def test_PitchArrayCell_is_first_in_row_01( ):
 
 def test_PitchArrayCell_is_first_in_row_02( ):
 
-   cell = PitchArrayCell([Pitch(1)])
+   cell = PitchArrayCell([NamedPitch(1)])
 
    assert not cell.is_first_in_row

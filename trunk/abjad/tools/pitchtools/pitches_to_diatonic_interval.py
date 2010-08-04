@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval
 from abjad.tools.pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval import diatonic_and_chromatic_interval_numbers_to_diatonic_interval
@@ -11,54 +11,54 @@ def pitches_to_diatonic_interval(pitch_1, pitch_2):
 
    Unison. ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('c', 4))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('c', 4))
       MelodicDiatonicInterval(perfect unison)
 
    Ascending diatonic intervals. ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('dff', 4))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('dff', 4))
       MelodicDiatonicInterval(ascending diminished second)
 
    ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('df', 4))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('df', 4))
       DiatonicInterval(ascending minor second)
 
    ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('d', 4))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('d', 4))
       MelodicDiatonicInterval(ascending major second)
 
    ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('ds', 4))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('ds', 4))
       MelodicDiatonicInterval(ascending augmented second)
 
    Descending diatonic intervals. ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('bs', 3))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('bs', 3))
       MelodicDiatonicInterval(ascending diminished second)
 
    ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('b', 3))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('b', 3))
       MelodicDiatonicInterval(descending minor second)
 
    ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('bf', 3))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('bf', 3))
       MelodicDiatonicInterval(descending major second)
 
    ::
 
-      abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('bff', 3))
+      abjad> pitchtools.pitches_to_diatonic_interval(NamedPitch('c', 4), NamedPitch('bff', 3))
       MelodicDiatonicInterval(descending augmented second)
    '''
 
-   if not isinstance(pitch_1, Pitch):
+   if not isinstance(pitch_1, NamedPitch):
       raise TypeError('must be pitch.')
 
-   if not isinstance(pitch_2, Pitch):
+   if not isinstance(pitch_2, NamedPitch):
       raise TypeError('must be pitch.')
 
    #print pitch_1, pitch_2

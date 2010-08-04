@@ -23,11 +23,11 @@ Classes
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
+   NamedPitch/NamedPitch
    components/_Harmonic/NaturalHarmonic
    components/Note/Note
    components/NoteHead/NoteHead
    components/StaffGroup/PianoStaff
-   Pitch/Pitch
    core/Rational/Rational
    components/Rest/Rest
    components/_Measure/RigidMeasure/RigidMeasure

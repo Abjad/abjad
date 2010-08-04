@@ -6,16 +6,16 @@ from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell \
 def test_PitchArrayCell_pitches_01( ):
 
    array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-   array[0].cells[0].pitches.append(Pitch(0))
-   array[0].cells[1].pitches.append(Pitch(2))
+   array[0].cells[0].pitches.append(NamedPitch(0))
+   array[0].cells[1].pitches.append(NamedPitch(2))
 
    '''
    [c'] [d'    ] [ ]
    [       ] [ ] [ ]
    '''
 
-   assert array[0].cells[0].pitches == [Pitch(0)]
-   assert array[0].cells[1].pitches == [Pitch(2)]
+   assert array[0].cells[0].pitches == [NamedPitch(0)]
+   assert array[0].cells[1].pitches == [NamedPitch(2)]
    assert array[0].cells[2].pitches == [ ]
 
    assert array[1].cells[0].pitches == [ ]
@@ -25,6 +25,6 @@ def test_PitchArrayCell_pitches_01( ):
 
 def test_PitchArrayCell_pitches_02( ):
 
-   cell = PitchArrayCell([Pitch(0)])
+   cell = PitchArrayCell([NamedPitch(0)])
 
-   assert cell.pitches == [Pitch(0)]
+   assert cell.pitches == [NamedPitch(0)]

@@ -22,7 +22,7 @@ the octave of middle C. [#]_
 We can ask Abjad directly about the pitch of our note. ::
 
     abjad> note.pitch
-    Pitch(cs, 5)
+    NamedPitch(cs, 5)
 
 Abjad responds with a reference to the :class:`~abjad.NamedPitch.pitch.Pitch`
 instance bound to our note. Abjad pitch instances have many different

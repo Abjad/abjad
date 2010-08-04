@@ -23,4 +23,4 @@ def test_PitchArray_apply_pitches_by_row_01( ):
    assert array.dimensions == (2, 4)
    assert array.cell_widths_by_row == ((1, 1, 2), (2, 1, 1))
    assert array.pitches_by_row == (
-      (Pitch('bf', 3), Pitch('bqf', 3)), (Pitch('g', 4), Pitch('fs', 4)))
+      (NamedPitch('bf', 3), NamedPitch('bqf', 3)), (NamedPitch('g', 4), NamedPitch('fs', 4)))

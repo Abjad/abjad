@@ -106,7 +106,7 @@ class NamedPitch(_Abjad):
    def __repr__(self):
       if self.name and not self.octave is None:
          if self.deviation is None:
-            return '%s(%s, %s)' % (self.__clas__.__name__, self.name, self.octave)
+            return '%s(%s, %s)' % (self.__class__.__name__, self.name, self.octave)
          else:
             return '%s(%s, %s, %s)' % (self.__class__.__name__,
                self.name, self.octave, self.deviation)

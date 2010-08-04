@@ -24,6 +24,6 @@ def test_PitchArrayCell_indices_01( ):
 
 def test_PitchArrayCell_indices_02( ):
 
-   cell = PitchArrayCell([Pitch(1)])
+   cell = PitchArrayCell([NamedPitch(1)])
 
    assert py.test.raises(IndexError, 'cell.indices')

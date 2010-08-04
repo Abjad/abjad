@@ -5,7 +5,7 @@ def is_pitch_token_collection(pitch_tokens):
    '''True when iterable `pitch_tokens` all have the form of an
    Abjad pitch token. ::
 
-      abjad> pitchtools.is_pitch_token_collection([('c', 4), ('d', 4), Pitch('e', 4)])
+      abjad> pitchtools.is_pitch_token_collection([('c', 4), ('d', 4), NamedPitch('e', 4)])
       True
       abjad> pitchtools.is_pitch_token_collection([0, 2, 4])
       True

@@ -1,5 +1,5 @@
 from abjad.core import _Abjad
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools import listtools
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell \
    import PitchArrayCell
@@ -45,7 +45,7 @@ class PitchArray(_Abjad):
          return arg in self.columns
       elif isinstance(arg, PitchArrayCell):
          return arg in self.cells
-      elif isinstance(arg, Pitch):
+      elif isinstance(arg, NamedPitch):
          for pitch in self.pitches:
             if arg == pitch:
                return True

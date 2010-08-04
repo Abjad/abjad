@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 
 
 def change_default_accidental_spelling(spelling = 'mixed'):
@@ -32,4 +32,4 @@ def change_default_accidental_spelling(spelling = 'mixed'):
    if spelling not in ('mixed', 'sharps', 'flats'):
       raise ValueError
 
-   Pitch.accidental_spelling = spelling
+   NamedPitch.accidental_spelling = spelling

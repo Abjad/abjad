@@ -30,6 +30,6 @@ def test_PitchArrayCell_prev_02( ):
 
 def test_PitchArrayCell_prev_03( ):
 
-   cell = PitchArrayCell([Pitch(1)])
+   cell = PitchArrayCell([NamedPitch(1)])
 
    assert py.test.raises(IndexError, 'cell.prev')

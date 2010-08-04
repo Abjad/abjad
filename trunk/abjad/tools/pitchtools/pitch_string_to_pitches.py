@@ -9,7 +9,7 @@ def pitch_string_to_pitches(pitch_string):
    to list of zero or more Abjad pitch instances. ::
 
       abjad> pitchtools.pitch_string_to_pitch("cs, cs cs' cs''")
-      [Pitch(c, 2), Pitch(c, 3), Pitch(c, 4), Pitch(c, 5)]
+      [NamedPitch(c, 2), NamedPitch(c, 3), NamedPitch(c, 4), NamedPitch(c, 5)]
    '''
 
    pitches = [ ]

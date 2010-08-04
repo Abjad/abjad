@@ -1,6 +1,6 @@
 from abjad.components.NoteHead.format import _NoteHeadFormatInterface
 from abjad.interfaces import NoteHeadInterface
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 import types
 
 
@@ -118,7 +118,7 @@ class NoteHead(NoteHeadInterface):
          elif isinstance(arg, NoteHead):
             self._pitch = arg.pitch
          else:
-            pitch = Pitch(arg)
+            pitch = NamedPitch(arg)
             self._pitch = pitch
       return property(**locals( ))
 

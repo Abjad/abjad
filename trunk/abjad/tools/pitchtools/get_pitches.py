@@ -11,32 +11,32 @@ def get_pitches(expr):
 
       abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> pitchtools.get_pitches(t)
-      ((Pitch(c, 4), Pitch(d, 4), Pitch(e, 4))
+      ((NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4))
 
    ::
 
       abjad> t = Staff(macros.scale(4))
       abjad> beam = Beam(t[:])
       abjad> pitchtools.get_pitches(beam)
-      ((Pitch(c, 4), Pitch(d, 4), Pitch(e, 4), Pitch(f, 4))
+      ((NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4), NamedPitch(f, 4))
 
    ::
 
-      abjad> pitch = Pitch('df', 5)
+      abjad> pitch = NamedPitch('df', 5)
       abjad> pitchtools.get_pitches(pitch)
-      (Pitch(df, 5),)
+      (NamedPitch(df, 5),)
 
    ::
 
       abjad> note = Note(('df', 5), (1, 4))
       abjad> pitchtools.get_pitches(note)
-      (Pitch(df, 5),)
+      (NamedPitch(df, 5),)
 
    ::
 
       abjad> chord = Chord([0, 2, 10], (1, 4))
       abjad> pitchtools.get_pitches(chord)
-      (Pitch(c, 4), Pitch(d, 4), Pitch(bf, 4))
+      (NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(bf, 4))
 
    ::
       
@@ -52,7 +52,7 @@ def get_pitches(expr):
 
       abjad> pitch_set = pitchtools.PitchSet([0, 2, 4, 5])
       abjad> pitchtools.get_pitches(pitch_set)
-      (Pitch(c, 4), Pitch(d, 4), Pitch(e, 4), Pitch(f, 4))
+      (NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4), NamedPitch(f, 4))
 
    Raises neither :exc:`MissingPitchError` nor :exc:`ExtraPitchError`.
 

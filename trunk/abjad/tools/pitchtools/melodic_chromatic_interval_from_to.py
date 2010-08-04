@@ -10,12 +10,12 @@ def melodic_chromatic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
    Return melodic chromatic interval from `pitch_carrier_1` to
    `pitch_carrier_2`. ::
 
-      abjad> pitchtools.melodic_chromatic_interval_from_to(Pitch(-2), Pitch(12))
+      abjad> pitchtools.melodic_chromatic_interval_from_to(NamedPitch(-2), NamedPitch(12))
       MelodicChromaticInterval(+14)
 
    ::
 
-      abjad> pitchtools.melodic_chromatic_interval_from_to(Pitch(12), Pitch(-2))
+      abjad> pitchtools.melodic_chromatic_interval_from_to(NamedPitch(12), NamedPitch(-2))
       MelodicChromaticInterval(-14)
    '''
 

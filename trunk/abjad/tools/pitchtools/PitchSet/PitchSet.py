@@ -1,5 +1,5 @@
 from abjad.components.NoteHead import NoteHead
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
 from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
@@ -21,10 +21,10 @@ class PitchSet(set):
    def __init__(self, pitch_tokens):
       for token in pitch_tokens:
          if isinstance(token, NoteHead):
-            pitch = Pitch(token.pitch)
+            pitch = NamedPitch(token.pitch)
             self.add(pitch)
          else:
-            pitch = Pitch(token)
+            pitch = NamedPitch(token)
             self.add(pitch)
 
    ## OVERLOADS ##

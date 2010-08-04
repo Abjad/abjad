@@ -3,18 +3,18 @@ from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.components.Note import Note
 from abjad.components.NoteHead import NoteHead
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 
 
 def get_pitch(pitch_carrier):
    '''Get Abjad pitch instance from pitch, note, note head
    of chord `pitch_carrier`. ::
 
-      abjad> pitch = Pitch('df', 5)
+      abjad> pitch = NamedPitch('df', 5)
       abjad> pitch
-      Pitch(df, 5)
+      NamedPitch(df, 5)
       abjad> pitchtools.get_pitch(pitch)
-      Pitch(df, 5)
+      NamedPitch(df, 5)
 
    ::
 
@@ -22,7 +22,7 @@ def get_pitch(pitch_carrier):
       abjad> note
       Note(df'', 4)
       abjad> pitchtools.get_pitch(note)
-      Pitch(df, 5)
+      NamedPitch(df, 5)
 
    ::
 
@@ -30,7 +30,7 @@ def get_pitch(pitch_carrier):
       abjad> note.note_head
       NoteHead(df'')
       abjad> pitchtools.get_pitch(note.note_head)
-      Pitch(df, 5)
+      NamedPitch(df, 5)
 
    ::
 
@@ -38,7 +38,7 @@ def get_pitch(pitch_carrier):
       abjad> chord
       Chord(df'', 4)
       abjad> pitchtools.get_pitch(chord)
-      Pitch(df, 5)
+      NamedPitch(df, 5)
 
    Raise :exc:`~abjad.exceptions.MissingPitchError` when
    `pitch_carrier` carries no pitch. ::
@@ -91,7 +91,7 @@ def get_pitch(pitch_carrier):
       TypeError
    '''
    
-   if isinstance(pitch_carrier, Pitch):
+   if isinstance(pitch_carrier, NamedPitch):
       return pitch_carrier
    elif isinstance(pitch_carrier, Note):
       pitch = pitch_carrier.pitch

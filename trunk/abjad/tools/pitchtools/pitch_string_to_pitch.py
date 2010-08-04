@@ -4,12 +4,12 @@ def pitch_string_to_pitch(pitch_string):
    Convert LilyPond-style `pitch_string` to Ajbad pitch instance. ::
 
       abjad> pitchtools.pitch_string_to_pitch("css''")
-      Pitch(css, 5)
+      NamedPitch(css, 5)
 
    Equivalent to ``Pitch(pitch_string)``.
    '''
 
-   from abjad.NamedPitch import Pitch
+   from abjad.NamedPitch import NamedPitch
 
-   pitch = Pitch(pitch_string)
+   pitch = NamedPitch(pitch_string)
    return pitch

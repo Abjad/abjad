@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools import iterate
 from abjad.tools.pitchtools.pitch_number_to_octave import \
    pitch_number_to_octave as pitchtools_pitch_number_to_octave
@@ -33,7 +33,7 @@ def make_sharp(expr):
       }
    '''
 
-   if isinstance(expr, Pitch):
+   if isinstance(expr, NamedPitch):
       _pitch_renotate_sharps(expr)
    else:
       for leaf in iterate.leaves_forward_in_expr(expr):

@@ -1,7 +1,7 @@
 from abjad.components.Chord import Chord
 from abjad.exceptions import ExtraNoteHeadError
 from abjad.exceptions import MissingNoteHeadError
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.core import Rational
 
 
@@ -36,12 +36,12 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
    if not isinstance(chord, Chord):
       raise ValueError('must be Abjad chord.')
 
-   if not isinstance(pitch, (Pitch, int, float, long, Rational)):
+   if not isinstance(pitch, (NamedPitch, int, float, long, Rational)):
       raise ValueError('must be number or Abjad pitch.')
 
    result = [ ]
    
-   if isinstance(pitch, Pitch):
+   if isinstance(pitch, NamedPitch):
       for note_head in chord.note_heads:
          if note_head.pitch == pitch:
             result.append(note_head)

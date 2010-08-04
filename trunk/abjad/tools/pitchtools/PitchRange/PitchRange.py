@@ -1,4 +1,4 @@
-from abjad.NamedPitch import Pitch
+from abjad.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 
@@ -20,9 +20,9 @@ class PitchRange(object):
 
    def __contains__(self, arg):
       if isinstance(arg, (int, long, float)):
-         pitch = Pitch(arg)
+         pitch = NamedPitch(arg)
          return self._contains_pitch(pitch)
-      elif isinstance(arg, Pitch):
+      elif isinstance(arg, NamedPitch):
          return self._contains_pitch(arg)
       else:
          pitches = get_pitches(arg)
@@ -107,13 +107,13 @@ class PitchRange(object):
          if arg is None:
             self._start = arg
          elif isinstance(arg, (int, long, float)):
-            pitch = Pitch(arg)
+            pitch = NamedPitch(arg)
             self._start = (pitch, 'inclusive')
          else:
             assert len(arg) == 2
             pitch, containment = arg
             assert containment in ('inclusive', 'exclusive')
-            pitch = Pitch(pitch)
+            pitch = NamedPitch(pitch)
             self._start = (pitch, containment)
       return property(**locals( ))
 
@@ -125,12 +125,12 @@ class PitchRange(object):
          if arg is None:
             self._stop = arg
          elif isinstance(arg, (int, long, float)):
-            pitch = Pitch(arg)
+            pitch = NamedPitch(arg)
             self._stop = (pitch, 'inclusive')
          else:
             assert len(arg) == 2
             pitch, containment = arg
             assert containment in ('inclusive', 'exclusive')
-            pitch = Pitch(pitch)
+            pitch = NamedPitch(pitch)
             self._stop = (pitch, containment)
       return property(**locals( ))
