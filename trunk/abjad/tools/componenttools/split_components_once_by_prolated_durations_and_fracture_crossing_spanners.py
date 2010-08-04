@@ -1,4 +1,4 @@
-from abjad.tools.partition._by_durations import _by_durations
+from abjad.tools.componenttools._partition_by_durations import _partition_by_durations
 
 
 def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(components, durations, tie_after = False):
@@ -55,5 +55,5 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(c
       ``componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners( )``.
    '''
 
-   return _by_durations(components, durations, 
+   return _partition_by_durations(components, durations, 
       spanners = 'fractured', tie_after = tie_after)

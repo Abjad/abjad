@@ -1,4 +1,4 @@
-from abjad.tools.partition._by_counts import _by_counts
+from abjad.tools.componenttools._partition_by_counts import _partition_by_counts
 
 
 def partition_components_once_by_counts_and_do_not_fracture_crossing_spanners(components, counts):
@@ -50,4 +50,4 @@ def partition_components_once_by_counts_and_do_not_fracture_crossing_spanners(co
       ``componenttools.partition_components_once_by_counts_and_do_not_fracture_crossing_spanners( )``.
    '''
 
-   return _by_counts(components, counts, spanners = 'unfractured')
+   return _partition_by_counts(components, counts, spanners = 'unfractured')

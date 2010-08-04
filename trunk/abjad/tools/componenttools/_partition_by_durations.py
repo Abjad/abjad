@@ -4,7 +4,7 @@ from abjad.tools.componenttools._split_component_at_duration import _split_compo
 
 ## TODO: Take care of bug that unintentionally fractures ties. ##
 
-def _by_durations(components, durations, 
+def _partition_by_durations(components, durations, 
    spanners = 'unfractured', cyclic = False, tie_after = False):
    '''Partition Python list of components according to durations.
       Interpret durations as prolated durations.

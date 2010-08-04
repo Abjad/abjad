@@ -3,7 +3,7 @@ from abjad.components._Leaf import _Leaf
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 
 
-def _by_counts(components, counts, spanners = 'unfractured', cyclic = False):
+def _partition_by_counts(components, counts, spanners = 'unfractured', cyclic = False):
    '''Partition Python list of zero or more Abjad components.
       Partition by zero or more positive integers in counts list.
       Fracture spanners or not according to keyword.
