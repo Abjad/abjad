@@ -32,7 +32,7 @@ def test_NamedPitch_accidental_spelling_02( ):
    accidental_class attribute on the Abjad NamedPitch class.
    '''
 
-   NamedPitch.accidental_spelling = 'sharps'
+   pitchtools.NamedPitch.accidental_spelling = 'sharps'
    t = Staff([Note(n, (1, 8)) for n in range(12)])
 
    r'''
@@ -54,7 +54,7 @@ def test_NamedPitch_accidental_spelling_02( ):
    
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\tgs'8\n\ta'8\n\tas'8\n\tb'8\n}"
 
-   NamedPitch.accidental_spelling = 'mixed'
+   pitchtools.NamedPitch.accidental_spelling = 'mixed'
 
 
 def test_NamedPitch_accidental_spelling_03( ):
@@ -63,7 +63,7 @@ def test_NamedPitch_accidental_spelling_03( ):
    accidental_spelling attribute on the Abjad NamedPitch class.
    '''
 
-   NamedPitch.accidental_spelling = 'flats'
+   pitchtools.NamedPitch.accidental_spelling = 'flats'
    t = Staff([Note(n, (1, 8)) for n in range(12)])
 
    r'''
@@ -85,7 +85,7 @@ def test_NamedPitch_accidental_spelling_03( ):
 
    assert t.format == "\\new Staff {\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tgf'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
 
-   NamedPitch.accidental_spelling = 'mixed'
+   pitchtools.NamedPitch.accidental_spelling = 'mixed'
 
 
 def test_NamedPitch_accidental_spelling_04( ):
@@ -96,10 +96,10 @@ def test_NamedPitch_accidental_spelling_04( ):
 
    t = Staff( )
 
-   NamedPitch.accidental_spelling = 'sharps'
+   pitchtools.NamedPitch.accidental_spelling = 'sharps'
    t.extend([Note(n, (1, 8)) for n in range(6)])
    
-   NamedPitch.accidental_spelling = 'flats'
+   pitchtools.NamedPitch.accidental_spelling = 'flats'
    t.extend([Note(n, (1, 8)) for n in range(6)])
 
    r'''
@@ -121,4 +121,4 @@ def test_NamedPitch_accidental_spelling_04( ):
 
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n}"
 
-   NamedPitch.accidental_spelling = 'mixed'
+   pitchtools.NamedPitch.accidental_spelling = 'mixed'

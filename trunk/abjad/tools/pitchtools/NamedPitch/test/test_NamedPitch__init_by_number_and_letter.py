@@ -4,7 +4,7 @@ from abjad import *
 def test_NamedPitch__init_by_number_and_letter_01( ):
    '''Init by number and letter.'''
 
-   p = NamedPitch(13, 'd')
+   p = pitchtools.NamedPitch(13, 'd')
 
    assert p.altitude == 8
    assert p.degree == 2

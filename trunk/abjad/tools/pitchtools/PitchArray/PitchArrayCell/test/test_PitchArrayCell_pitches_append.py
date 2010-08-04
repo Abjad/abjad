@@ -19,6 +19,6 @@ def test_PitchArrayCell_pitches_append_01( ):
    [       ] [ ] [  ]
    '''
 
-   assert array[0].cells[0].pitches == [NamedPitch(0)]
-   assert array[0].cells[1].pitches == [NamedPitch(2)]
-   assert array[0].cells[2].pitches == [NamedPitch(4)]
+   assert array[0].cells[0].pitches == [pitchtools.NamedPitch(0)]
+   assert array[0].cells[1].pitches == [pitchtools.NamedPitch(2)]
+   assert array[0].cells[2].pitches == [pitchtools.NamedPitch(4)]

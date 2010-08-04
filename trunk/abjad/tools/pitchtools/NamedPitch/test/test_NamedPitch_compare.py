@@ -4,7 +4,7 @@ import py.test
 
 def test_NamedPitch_compare_01( ):
    '''Referentially equal pitches compare equally.'''
-   p1 = NamedPitch('fs', 4)
+   p1 = pitchtools.NamedPitch('fs', 4)
    assert     p1 == p1
    assert not p1 != p1
    assert not p1 >  p1
@@ -15,7 +15,7 @@ def test_NamedPitch_compare_01( ):
 
 def test_NamedPitch_compare_02( ):
    '''Pitches equal by name, accidental and octave compare equally.'''
-   p1, p2 = NamedPitch('fs', 4), NamedPitch('fs', 4)
+   p1, p2 = pitchtools.NamedPitch('fs', 4), pitchtools.NamedPitch('fs', 4)
    assert     p1 == p2
    assert not p1 != p2
    assert not p1 >  p1
@@ -26,7 +26,7 @@ def test_NamedPitch_compare_02( ):
 
 def test_NamedPitch_compare_03( ):
    '''Pitches enharmonically equal compare unequally.'''
-   p1, p2 = NamedPitch('fs', 4), NamedPitch('gf', 4)
+   p1, p2 = pitchtools.NamedPitch('fs', 4), pitchtools.NamedPitch('gf', 4)
    assert not p1 == p2
    assert     p1 != p2
    assert not p1 >  p2
@@ -37,7 +37,7 @@ def test_NamedPitch_compare_03( ):
 
 def test_NamedPitch_compare_04( ):
    '''Pitches manifestly different compare unequally.'''
-   p1, p2 = NamedPitch('f', 4), NamedPitch('g', 4)
+   p1, p2 = pitchtools.NamedPitch('f', 4), pitchtools.NamedPitch('g', 4)
    assert not p1 == p2
    assert     p1 != p2
    assert not p1 >  p2
@@ -48,7 +48,7 @@ def test_NamedPitch_compare_04( ):
 
 def test_NamedPitch_compare_05( ):
    '''Pitches typographically crossed compare unequally.'''
-   p1, p2 = NamedPitch('fss', 4), NamedPitch('gff', 4)
+   p1, p2 = pitchtools.NamedPitch('fss', 4), pitchtools.NamedPitch('gff', 4)
    assert not p1 == p2
    assert     p1 != p2
    assert not p1 >  p2
@@ -60,7 +60,7 @@ def test_NamedPitch_compare_05( ):
 def test_NamedPitch_compare_06( ):
    '''Pitches test False for equality against unlike instances.
       Other pitch comparisons raise ValueError against unlike instances.'''
-   p = NamedPitch('c', 4)
+   p = pitchtools.NamedPitch('c', 4)
    n = 99
    assert not p == n
    assert     p != n
@@ -73,8 +73,8 @@ def test_NamedPitch_compare_06( ):
 def test_NamedPitch_compare_07( ):
    '''Pitches with like name, accidental, octave and deviation
       compare equally.'''
-   p1 = NamedPitch('bf', 4, -31)
-   p2 = NamedPitch('bf', 4, -31)
+   p1 = pitchtools.NamedPitch('bf', 4, -31)
+   p2 = pitchtools.NamedPitch('bf', 4, -31)
    assert     p1 == p2
    assert not p1 != p2
    assert not p1 >  p1
@@ -86,8 +86,8 @@ def test_NamedPitch_compare_07( ):
 def test_NamedPitch_compare_08( ):
    '''Pitches with like name, accidental and ocatve
       but with different deviation compare unequally.'''
-   p1 = NamedPitch('bf', 4, 0)
-   p2 = NamedPitch('bf', 4, -31)
+   p1 = pitchtools.NamedPitch('bf', 4, 0)
+   p2 = pitchtools.NamedPitch('bf', 4, -31)
    assert not p1 == p2
    assert     p1 != p2
    assert     p1 >  p2
@@ -99,8 +99,8 @@ def test_NamedPitch_compare_08( ):
 def test_NamedPitch_compare_09( ):
    '''Pitches with the same frequency but with different deviation
       do not compare equally.'''
-   p1 = NamedPitch('c', 5)
-   p2 = NamedPitch('bf', 4, 100)
+   p1 = pitchtools.NamedPitch('c', 5)
+   p2 = pitchtools.NamedPitch('bf', 4, 100)
    assert not p1 == p2
    assert     p1 != p2
    assert     p1 >  p2

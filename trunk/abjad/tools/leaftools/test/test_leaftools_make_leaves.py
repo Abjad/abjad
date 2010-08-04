@@ -88,5 +88,5 @@ def test_leaftools_make_leaves_06( ):
 def test_leaftools_make_leaves_07( ):
    '''Works with pitch instances.'''
 
-   leaves = leaftools.make_leaves([NamedPitch(0)], [(1, 8), (1, 8), (1, 4)])
+   leaves = leaftools.make_leaves([pitchtools.NamedPitch(0)], [(1, 8), (1, 8), (1, 4)])
    assert [leaf.pitch.number for leaf in leaves] == [0, 0, 0]

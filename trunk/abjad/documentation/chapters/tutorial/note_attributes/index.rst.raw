@@ -24,7 +24,7 @@ We can ask Abjad directly about the pitch of our note. ::
     abjad> note.pitch
     NamedPitch(cs, 5)
 
-Abjad responds with a reference to the :class:`~abjad.NamedPitch.pitch.Pitch`
+Abjad responds with a reference to the :class:`~abjad.tools.pitchtools.NamedPitch.NamedPitch.pitch.Pitch`
 instance bound to our note. Abjad pitch instances have many different
 attributes which will be familiar to most composers. ::
 
@@ -56,7 +56,7 @@ But Abjad implements some less familiar pitch attributes, too. ::
    abjad> note.pitch.altitude
    7
 
-The :class:`~abjad.NamedPitch.pitch.Pitch` entry in the Abjad API
+The :class:`~abjad.tools.pitchtools.NamedPitch.NamedPitch.pitch.Pitch` entry in the Abjad API
 lists all pitch attributes available in Abjad.
 
 

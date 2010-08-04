@@ -1,7 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.NoteHead import NoteHead
 from abjad.components.Note.initializer import _NoteInitializer
-from abjad.NamedPitch import NamedPitch
 
 
 class Note(_Leaf):
@@ -50,7 +49,7 @@ class Note(_Leaf):
 #         elif isinstance(arg, (int, float, long)):
 #            self._note_head = NoteHead(self, pitch = arg)
 #         elif isinstance(arg, tuple) and len(arg) == 2:
-#            pitch = NamedPitch(*arg)
+#            pitch = pitchtools.NamedPitch(*arg)
 #            self._note_head = NoteHead(self, pitch = pitch)
 #         elif isinstance(arg, NamedPitch):
 #            self._note_head = NoteHead(self, pitch = arg)
@@ -88,6 +87,7 @@ class Note(_Leaf):
          else:
             return None
       def fset(self, arg):
+         from abjad.tools import pitchtools
          if arg is None:
             if self.note_head is not None:
                self.note_head.pitch = None
@@ -95,7 +95,7 @@ class Note(_Leaf):
             if self.note_head is None:
                self.note_head = NoteHead(self, pitch = None)
             else:
-               pitch = NamedPitch(arg)
+               pitch = pitchtools.NamedPitch(arg)
                self.note_head.pitch = pitch
       return property(**locals( ))
 

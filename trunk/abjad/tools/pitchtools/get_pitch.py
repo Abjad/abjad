@@ -3,7 +3,7 @@ from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.components.Note import Note
 from abjad.components.NoteHead import NoteHead
-from abjad.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
 def get_pitch(pitch_carrier):

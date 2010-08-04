@@ -95,7 +95,7 @@ def test_Chord_08( ):
 def test_Chord_09( ):
    '''Chord pitches can be set as list or tuple of Pitches.'''
    t = Chord([], (1,4))
-   t.pitches = [NamedPitch(4), NamedPitch(3), NamedPitch(2)]
+   t.pitches = [pitchtools.NamedPitch(4), pitchtools.NamedPitch(3), pitchtools.NamedPitch(2)]
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 
@@ -103,7 +103,7 @@ def test_Chord_09( ):
 def test_Chord_10( ):
    '''Chord pitches can be set as list or tuple of both numbers and Pitches.'''
    t = Chord([], (1,4))
-   t.pitches = [4, NamedPitch(3), NamedPitch(2)]
+   t.pitches = [4, pitchtools.NamedPitch(3), pitchtools.NamedPitch(2)]
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 
@@ -119,7 +119,7 @@ def test_Chord_11( ):
 def test_Chord_12( ):
    '''Chord note_heads can be set as list or tuple of Pitches.'''
    t = Chord([], (1,4))
-   t.note_heads = [NamedPitch(4), NamedPitch(3), NamedPitch(2)]
+   t.note_heads = [pitchtools.NamedPitch(4), pitchtools.NamedPitch(3), pitchtools.NamedPitch(2)]
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 
@@ -127,7 +127,7 @@ def test_Chord_12( ):
 def test_Chord_13( ):
    '''Chord note_heads can be set as list or tuple of both numbers and Pitches.'''
    t = Chord([], (1,4))
-   t.note_heads = [NamedPitch(4), 3, NamedPitch(2)]
+   t.note_heads = [pitchtools.NamedPitch(4), 3, pitchtools.NamedPitch(2)]
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 
@@ -137,7 +137,7 @@ def test_Chord_13( ):
 def test_Chord_14( ):
    '''Noteheads can be replaced. Noteheads are sorted.'''
    t = Chord([2, 4], (1,4))
-   t[0] = NamedPitch(5)
+   t[0] = pitchtools.NamedPitch(5)
    assert repr(t) == "Chord(e' f', 4)"
    assert t.format == "<e' f'>4"
    t[0] = 7

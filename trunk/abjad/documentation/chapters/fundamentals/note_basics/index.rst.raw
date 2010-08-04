@@ -38,7 +38,7 @@ measure.meter.transparent = True <hide
 write_ly(measure, 'example3', 'oedo') <hide
 </abjad>
 
-Or with a :class:`Pitch <abjad.NamedPitch.pitch.Pitch>` instance:
+Or with a :class:`Pitch <abjad.tools.pitchtools.NamedPitch.NamedPitch.pitch.Pitch>` instance:
 
 <abjad>
 note = Note(('e', 4), (1, 4))
@@ -54,7 +54,7 @@ Any `pitch token` will work.
 Pitch comparison
 ----------------
 
-To a :class:`Pitch <abjad.NamedPitch.pitch.Pitch>` instance:
+To a :class:`Pitch <abjad.tools.pitchtools.NamedPitch.NamedPitch.pitch.Pitch>` instance:
 
 <abjad>
 note = Note(0, (1, 4))

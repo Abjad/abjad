@@ -29,11 +29,11 @@ def test_pitchtools_PitchClassColorMap_02( ):
 
    assert pcm[1] == 'blue'
    assert pcm[pitchtools.PitchClass(1)] == 'blue'
-   assert pcm[NamedPitch(1)] == 'blue'
+   assert pcm[pitchtools.NamedPitch(1)] == 'blue'
 
    assert pcm[13] == 'blue'
    assert pcm[pitchtools.PitchClass(13)] == 'blue'
-   assert pcm[NamedPitch(13)] == 'blue'
+   assert pcm[pitchtools.NamedPitch(13)] == 'blue'
 
    assert py.test.raises(Exception, "pcm['foo']")
 

@@ -17,7 +17,7 @@ def test_NoteHead_pitch_02( ):
    '''Set NoteHead pitch with Abjad Pitch object.'''
 
    t = Note(13, (1, 4))
-   t.note_head.pitch = NamedPitch(14)
+   t.note_head.pitch = pitchtools.NamedPitch(14)
 
    "NoteHead(d'')"
    assert t.note_head.format == "d''"
@@ -43,6 +43,6 @@ def test_NoteHead_pitch_04( ):
    n2 = Note(14, (1, 4))
    n1.pitch = n2.pitch
 
-   assert n1.pitch == NamedPitch(14)
-   assert n2.pitch == NamedPitch(14)
+   assert n1.pitch == pitchtools.NamedPitch(14)
+   assert n2.pitch == pitchtools.NamedPitch(14)
    assert n1.pitch is not n2.pitch

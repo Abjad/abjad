@@ -1,4 +1,4 @@
-from abjad.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import iterate
 from abjad.tools.pitchtools.pitch_number_to_octave import \
    pitch_number_to_octave as pitchtools_pitch_number_to_octave

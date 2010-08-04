@@ -4,7 +4,7 @@ from abjad import *
 def test_NamedPitch__init_empty_01( ):
    '''Init empty.'''
 
-   p = NamedPitch( )
+   p = pitchtools.NamedPitch( )
 
    assert p.altitude == None
    assert p.degree == None

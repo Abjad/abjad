@@ -9,7 +9,7 @@ def pitch_string_to_pitch(pitch_string):
    Equivalent to ``Pitch(pitch_string)``.
    '''
 
-   from abjad.NamedPitch import NamedPitch
+   from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
    pitch = NamedPitch(pitch_string)
    return pitch

@@ -1,4 +1,4 @@
-from abjad.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
 from abjad.tools.pitchtools.DiatonicIntervalClassVector import \
    DiatonicIntervalClassVector

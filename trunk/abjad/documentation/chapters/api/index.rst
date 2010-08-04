@@ -23,7 +23,6 @@ Classes
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
-   NamedPitch/NamedPitch
    components/_Harmonic/NaturalHarmonic
    components/Note/Note
    components/NoteHead/NoteHead
@@ -738,6 +737,7 @@ pitchtools
    tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
    tools/pitchtools/MelodicDiatonicIntervalSet/MelodicDiatonicIntervalSet
+   tools/pitchtools/NamedPitch/NamedPitch
    tools/pitchtools/NamedPitchClass/NamedPitchClass
    tools/pitchtools/NamedPitchClassSegment/NamedPitchClassSegment
    tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet

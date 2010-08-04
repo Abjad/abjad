@@ -3,7 +3,7 @@ from abjad import *
 
 def test_Chord__sort_01( ):
    '''Pitches manifestly different and sorted at initialization.'''
-   t = Chord([NamedPitch('c', 4), NamedPitch('d', 4)], (1, 4))
+   t = Chord([pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('d', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].altitude != t.pitches[1].altitude
    assert t.pitches[0].number != t.pitches[1].number
@@ -13,7 +13,7 @@ def test_Chord__sort_01( ):
 
 def test_Chord__sort_02( ):
    '''Pitches manifestly different but NOT sorted at initialization.'''
-   t = Chord([NamedPitch('d', 4), NamedPitch('c', 4)], (1, 4))
+   t = Chord([pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('c', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].altitude != t.pitches[1].altitude
    assert t.pitches[0].number != t.pitches[1].number
@@ -23,7 +23,7 @@ def test_Chord__sort_02( ):
 
 def test_Chord__sort_03( ):
    '''Pitches different only by accidentals but sorted at initialization.'''
-   t = Chord([NamedPitch('c', 4), NamedPitch('cs', 4)], (1, 4))
+   t = Chord([pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('cs', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].altitude == t.pitches[1].altitude
    assert t.pitches[0].number != t.pitches[1].number
@@ -33,7 +33,7 @@ def test_Chord__sort_03( ):
 
 def test_Chord__sort_04( ):
    '''Pitches different only by accidentals and NOT sorted at initialization.'''
-   t = Chord([NamedPitch('cs', 4), NamedPitch('c', 4)], (1, 4))
+   t = Chord([pitchtools.NamedPitch('cs', 4), pitchtools.NamedPitch('c', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].altitude == t.pitches[1].altitude
    assert t.pitches[0].number != t.pitches[1].number
@@ -43,7 +43,7 @@ def test_Chord__sort_04( ):
 
 def test_Chord__sort_05( ):
    '''Pitches enharmonically equivalent but sorted at initialization.'''
-   t = Chord([NamedPitch('cs', 4), NamedPitch('df', 4)], (1, 4))
+   t = Chord([pitchtools.NamedPitch('cs', 4), pitchtools.NamedPitch('df', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].altitude != t.pitches[1].altitude
    assert t.pitches[0].number == t.pitches[1].number
@@ -53,7 +53,7 @@ def test_Chord__sort_05( ):
 
 def test_Chord__sort_06( ):
    '''Pitches enharmonically equivalent and NOT sorted in initialziation.'''
-   t = Chord([NamedPitch('df', 4), NamedPitch('cs', 4)], (1, 4))
+   t = Chord([pitchtools.NamedPitch('df', 4), pitchtools.NamedPitch('cs', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].altitude != t.pitches[1].altitude
    assert t.pitches[0].number == t.pitches[1].number
@@ -63,7 +63,7 @@ def test_Chord__sort_06( ):
 
 def test_Chord__sort_07( ):
    '''Pitches typographically crossed but sorted at initialization.'''
-   t = Chord([NamedPitch('css', 4), NamedPitch('dff', 4)], (1, 4))
+   t = Chord([pitchtools.NamedPitch('css', 4), pitchtools.NamedPitch('dff', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].altitude != t.pitches[1].altitude
    assert t.pitches[0].number != t.pitches[1].number
@@ -73,7 +73,7 @@ def test_Chord__sort_07( ):
 
 def test_Chord__sort_08( ):
    '''Pitches typographically crossed and NOT sorted at initialization.'''
-   t = Chord([NamedPitch('dff', 4), NamedPitch('css', 4)], (1, 4))
+   t = Chord([pitchtools.NamedPitch('dff', 4), pitchtools.NamedPitch('css', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].altitude != t.pitches[1].altitude
    assert t.pitches[0].number != t.pitches[1].number

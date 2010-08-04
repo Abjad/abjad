@@ -4,7 +4,7 @@ import copy
 
 def test_NamedPitch___deepcopy___01( ):
 
-   pitch = NamedPitch(13)
+   pitch = pitchtools.NamedPitch(13)
    new = copy.deepcopy(pitch)
 
    assert new is not pitch

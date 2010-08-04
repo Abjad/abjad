@@ -8,4 +8,4 @@ def test_NamedPitch_max_01( ):
    pitches = [note.pitch for note in t]
    max_pitch = max(pitches)
 
-   assert max_pitch == NamedPitch('f', 4)
+   assert max_pitch == pitchtools.NamedPitch('f', 4)

@@ -6,7 +6,7 @@ def test_Trill_pitch_01( ):
 
    t = Staff(macros.scale(4))
    trill = Trill(t[:2])
-   trill.pitch = NamedPitch(1)
+   trill.pitch = pitchtools.NamedPitch(1)
 
    r'''
    \new Staff {
@@ -46,7 +46,7 @@ def test_Trill_pitch_03( ):
 
    t = Staff(macros.scale(4))
    trill = Trill(t[:2])
-   trill.pitch = NamedPitch(1)
+   trill.pitch = pitchtools.NamedPitch(1)
    trill.pitch = None
 
    r'''

@@ -3,8 +3,8 @@ from abjad import *
 
 def test_pitchtools_melodic_chromatic_interval_from_to_01( ):
 
-   pitch_1 = NamedPitch(10)
-   pitch_2 = NamedPitch(12)
+   pitch_1 = pitchtools.NamedPitch(10)
+   pitch_2 = pitchtools.NamedPitch(12)
 
    mci = pitchtools.melodic_chromatic_interval_from_to(
       pitch_1, pitch_2)
@@ -27,5 +27,5 @@ def test_pitchtools_melodic_chromatic_interval_from_to_02( ):
    '''Works with quartertones.'''
 
    mci = pitchtools.melodic_chromatic_interval_from_to(
-      NamedPitch(12), NamedPitch(9.5)) 
+      pitchtools.NamedPitch(12), pitchtools.NamedPitch(9.5)) 
    assert mci == pitchtools.MelodicChromaticInterval(-2.5)

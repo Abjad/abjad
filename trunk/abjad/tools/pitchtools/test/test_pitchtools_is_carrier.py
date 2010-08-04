@@ -3,7 +3,7 @@ from abjad import *
 
 def test_pitchtools_is_carrier_01( ):
 
-   assert pitchtools.is_carrier(NamedPitch(0))
+   assert pitchtools.is_carrier(pitchtools.NamedPitch(0))
    assert pitchtools.is_carrier(Note(0, (1, 4)))
    assert pitchtools.is_carrier(NoteHead(None, 0))
    assert pitchtools.is_carrier(Chord([0, 2, 11], (1, 4)))

@@ -10,7 +10,7 @@ def test_PitchSet___init____01( ):
 def test_PitchSet___init____02( ):
    '''Works with pitches.'''
 
-   assert len(pitchtools.PitchSet([NamedPitch(x) for x in [12, 14, 18, 19]])) == 4
+   assert len(pitchtools.PitchSet([pitchtools.NamedPitch(x) for x in [12, 14, 18, 19]])) == 4
 
 
 def test_PitchSet___init____03( ):

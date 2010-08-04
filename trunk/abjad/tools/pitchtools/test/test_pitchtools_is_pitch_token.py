@@ -4,7 +4,7 @@ from abjad import *
 def test_pitchtools_is_pitch_token_01( ):
 
    assert pitchtools.is_pitch_token(('cs', 4))
-   assert pitchtools.is_pitch_token(NamedPitch('cs', 4))
+   assert pitchtools.is_pitch_token(pitchtools.NamedPitch('cs', 4))
    assert pitchtools.is_pitch_token(1)
    assert pitchtools.is_pitch_token(1.0)
 

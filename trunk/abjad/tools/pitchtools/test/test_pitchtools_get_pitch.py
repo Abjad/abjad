@@ -4,7 +4,7 @@ import py.test
 
 def test_pitchtools_get_pitch_01( ):
 
-   pitch = NamedPitch('df', 5)
+   pitch = pitchtools.NamedPitch('df', 5)
    t = pitchtools.get_pitch(pitch)
 
    assert t.pair == ('df', 5)

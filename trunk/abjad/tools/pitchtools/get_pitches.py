@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
 def get_pitches(expr):
-   '''Get tuple of zero or more Abjad :class:`~abjad.NamedPitch` 
+   '''Get tuple of zero or more Abjad :class:`~abjad.tools.pitchtools.NamedPitch.NamedPitch` 
    instances from almost any expression. ::
 
       abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))

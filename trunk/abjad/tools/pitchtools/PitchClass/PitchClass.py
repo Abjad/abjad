@@ -15,7 +15,7 @@ class PitchClass(object):
    '''
 
    def __init__(self, arg):
-      from abjad.NamedPitch import NamedPitch
+      from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
       from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
       if isinstance(arg, (int, long, float)):
          self._number = arg % 12

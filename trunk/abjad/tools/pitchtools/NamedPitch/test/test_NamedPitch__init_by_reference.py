@@ -1,10 +1,11 @@
 from abjad import *
 
 
-def test_NamedPitch__init_by_pair_01( ):
-   '''Init by pair.'''
+def test_NamedPitch__init_by_reference_01( ):
+   '''Init by reference.'''
 
-   p = NamedPitch(('df', 5))
+   r = pitchtools.NamedPitch('df', 5)
+   p = pitchtools.NamedPitch(r)
 
    assert p.altitude == 8
    assert p.degree == 2

@@ -1,5 +1,5 @@
 from abjad.components.Note import Note
-from abjad.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.TwelveToneRow import TwelveToneRow
 
 

@@ -10,5 +10,5 @@ def test_NaturalHarmonic_01( ):
    bf'4
    '''
    
-   assert t.pitch == NamedPitch(10)
+   assert t.pitch == pitchtools.NamedPitch(10)
    assert t.format == "\\once \\override NoteHead #'style = #'harmonic\nbf'4"

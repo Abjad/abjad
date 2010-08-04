@@ -21,5 +21,5 @@ def test_PitchArrayRow_copy_subrow_01( ):
 
    assert subrow.dimensions == (1, 2)
    assert subrow.cell_widths == (1, 1)
-   assert subrow.pitches == (NamedPitch('d', 4), )
+   assert subrow.pitches == (pitchtools.NamedPitch('d', 4), )
    assert subrow.parent_array is None
