@@ -1,1 +1,1 @@
-from BeamComplexDurated import BeamComplexDurated
+from DuratedComplexBeam import DuratedComplexBeam

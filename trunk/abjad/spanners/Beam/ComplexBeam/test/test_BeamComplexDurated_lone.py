@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_BeamComplexDurated_lone_01( ):
-   '''BeamComplexDurated with lone = True applies beam 
+def test_DuratedComplexBeam_lone_01( ):
+   '''DuratedComplexBeam with lone = True applies beam 
       to a lone note at format-time.'''
 
    t = Voice(macros.scale(1))
-   BeamComplexDurated(t, lone = True)
+   DuratedComplexBeam(t, lone = True)
 
    r'''
    \new Voice {
@@ -18,12 +18,12 @@ def test_BeamComplexDurated_lone_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [ ]\n}"
 
 
-def test_BeamComplexDurated_lone_02( ):
-   '''BeamComplexDurated with lone = False does not apply beam
+def test_DuratedComplexBeam_lone_02( ):
+   '''DuratedComplexBeam with lone = False does not apply beam
       to a lone note at format-time.'''
 
    t = Voice(macros.scale(1))
-   BeamComplexDurated(t, lone = False)
+   DuratedComplexBeam(t, lone = False)
 
    r'''
    \new Voice {
@@ -35,11 +35,11 @@ def test_BeamComplexDurated_lone_02( ):
    assert t.format == "\\new Voice {\n\tc'8\n}"
 
 
-def test_BeamComplexDurated_lone_03( ):
-   '''BeamComplexDurated with multiple leaves ignores 'lone' setting.'''
+def test_DuratedComplexBeam_lone_03( ):
+   '''DuratedComplexBeam with multiple leaves ignores 'lone' setting.'''
 
    t = Voice(macros.scale(2))
-   BeamComplexDurated(t, lone = False)
+   DuratedComplexBeam(t, lone = False)
 
    r'''
    \new Voice {

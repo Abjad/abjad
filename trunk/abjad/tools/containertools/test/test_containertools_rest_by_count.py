@@ -43,7 +43,7 @@ def test_containertools_rest_by_count_02( ):
    '''Glom leftmost two 1/8th notes, then turn into rest.'''
 
    t = RigidMeasure((5, 8), macros.scale(5))
-   BeamComplexDurated(t)
+   DuratedComplexBeam(t)
    containertools.rest_by_count(t, 2, 'left')
 
    r'''
@@ -71,7 +71,7 @@ def test_containertools_rest_by_count_03( ):
       then turn into rest.'''
 
    t = RigidMeasure((5, 8), macros.scale(5))
-   BeamComplexDurated(t)
+   DuratedComplexBeam(t)
    containertools.rest_by_count(t, 2, 'right')
 
    r'''

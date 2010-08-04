@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_BeamComplexMeasured_01( ):
+def test_MeasuredComplexBeam_01( ):
 
    t = Staff(RigidMeasure((2, 16), leaftools.make_repeated_notes(2, Rational(1, 16))) * 3)
    pitchtools.diatonicize(t)
@@ -26,7 +26,7 @@ def test_BeamComplexMeasured_01( ):
    }
    '''
 
-   beam = BeamComplexMeasured(t[:])
+   beam = MeasuredComplexBeam(t[:])
 
    r'''
    \new Staff {

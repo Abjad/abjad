@@ -1,4 +1,4 @@
-from abjad.spanners import BeamComplexDurated
+from abjad.spanners import DuratedComplexBeam
 from abjad.tools import iterate
 from abjad.tools.measuretools.apply_complex_beam_spanner_to_measure \
    import apply_complex_beam_spanner_to_measure
@@ -28,7 +28,7 @@ def apply_complex_beam_spanners_to_measures_in(expr):
    ::
       
       abjad> measuretools.apply_complex_beam_spanners_to_measures_in(staff)
-      [BeamComplexDurated(|2/8(2)|), BeamComplexDurated(|2/8(2)|)]
+      [DuratedComplexBeam(|2/8(2)|), DuratedComplexBeam(|2/8(2)|)]
       
    ::
       

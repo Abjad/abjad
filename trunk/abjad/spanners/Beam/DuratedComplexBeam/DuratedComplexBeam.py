@@ -1,16 +1,15 @@
-from abjad.spanners.Beam.BeamComplexDurated.format import \
-   _BeamComplexDuratedFormatInterface
-from abjad.spanners.Beam.BeamComplex import BeamComplex
+from abjad.spanners.Beam.DuratedComplexBeam.format import _DuratedComplexBeamFormatInterface
+from abjad.spanners.Beam.ComplexBeam import ComplexBeam
 from abjad.core import Rational
 import types
 
 
-class BeamComplexDurated(BeamComplex):
+class DuratedComplexBeam(ComplexBeam):
 
    def __init__(self, leaves, 
       durations = None, span = 1, lone = False, nibs = 'neither'):
-      BeamComplex.__init__(self, leaves)
-      self._format = _BeamComplexDuratedFormatInterface(self)
+      ComplexBeam.__init__(self, leaves)
+      self._format = _DuratedComplexBeamFormatInterface(self)
       self.durations = durations
       self.lone = lone
       self.nibs = nibs

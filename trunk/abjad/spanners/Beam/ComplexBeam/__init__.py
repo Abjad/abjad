@@ -1,1 +1,1 @@
-from BeamComplex import BeamComplex
+from ComplexBeam import ComplexBeam

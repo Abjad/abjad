@@ -114,16 +114,16 @@ Spanners
    :maxdepth: 1
 
    spanners/Beam/Beam
-   spanners/Beam/BeamComplex/BeamComplex
-   spanners/Beam/BeamComplexDurated/BeamComplexDurated
-   spanners/Beam/BeamComplexMeasured/BeamComplexMeasured
    spanners/Bracket/Bracket
+   spanners/Beam/ComplexBeam/ComplexBeam
    spanners/Crescendo/Crescendo
    spanners/Decrescendo/Decrescendo
+   spanners/Beam/DuratedComplexBeam/DuratedComplexBeam
    spanners/DynamicTextSpanner/DynamicTextSpanner
    spanners/Glissando/Glissando
    spanners/Hairpin/Hairpin
    spanners/InstrumentSpanner/InstrumentSpanner
+   spanners/Beam/MeasuredComplexBeam/MeasuredComplexBeam
    spanners/MetricGrid/MetricGrid
    spanners/OctavationSpanner/OctavationSpanner
    spanners/OverrideSpanner/OverrideSpanner

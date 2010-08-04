@@ -1,14 +1,14 @@
-from abjad.spanners.Beam.BeamComplexMeasured.format import _BeamComplexMeasuredFormatInterface
-from abjad.spanners.Beam.BeamComplex import BeamComplex
+from abjad.spanners.Beam.MeasuredComplexBeam.format import _MeasuredComplexBeamFormatInterface
+from abjad.spanners.Beam.ComplexBeam import ComplexBeam
 from abjad.core import Rational
 import types
 
 
-class BeamComplexMeasured(BeamComplex):
+class MeasuredComplexBeam(ComplexBeam):
 
    def __init__(self, leaves, lone = False, nibs = 'neither', span = 1):
-      BeamComplex.__init__(self, leaves, lone = lone, nibs = nibs)
-      self._format = _BeamComplexMeasuredFormatInterface(self)
+      ComplexBeam.__init__(self, leaves, lone = lone, nibs = nibs)
+      self._format = _MeasuredComplexBeamFormatInterface(self)
       self.span = span
 
    ## PUBLIC ATTRIBUTES ##

@@ -13,7 +13,7 @@ class QuartersBeamed(_Check):
          if hasattr(leaf, 'beam'):
             if leaf.beam.spanned:
                beam = leaf.beam.spanner
-               if not beam.__class__.__name__ == 'BeamComplexDurated':
+               if not beam.__class__.__name__ == 'DuratedComplexBeam':
                   flag_count = durtools.rational_to_flag_count(
                      leaf.duration.written)
                   #if leaf.duration._flags < 1:
