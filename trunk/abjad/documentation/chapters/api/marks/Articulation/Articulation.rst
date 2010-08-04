@@ -1,7 +1,7 @@
 Articulation
 ============
 
-.. automodule:: abjad.Articulation.Articulation
+.. automodule:: abjad.marks.Articulation.Articulation
 
 .. autoclass:: abjad.Articulation
    :members:

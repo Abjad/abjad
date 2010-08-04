@@ -1,7 +1,7 @@
 Meter
 =====
 
-.. automodule:: abjad.Meter.Meter
+.. automodule:: abjad.components._Measure.Meter.Meter
 
 .. autoclass:: abjad.Meter
    :members:

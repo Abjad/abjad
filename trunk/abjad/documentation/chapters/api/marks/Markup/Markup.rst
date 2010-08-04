@@ -1,7 +1,7 @@
 Markup
 ======
 
-.. automodule:: abjad.Markup.Markup
+.. automodule:: abjad.marks.Markup.Markup
 
 .. autoclass:: abjad.Markup
    :members:
