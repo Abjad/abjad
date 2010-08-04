@@ -21,7 +21,6 @@ Classes
    components/Grace/Grace
    components/StaffGroup/GrandStaff
    components/_Harmonic/HarmonicNatural
-   components/Staff/InvisibleStaff
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
@@ -31,8 +30,6 @@ Classes
    Pitch/Pitch
    core/Rational/Rational
    components/Rest/Rest
-   components/Staff/RhythmicSketchStaff
-   components/Staff/RhythmicStaff
    components/_Measure/RigidMeasure/RigidMeasure
    components/Score/Score
    components/Skip/Skip
