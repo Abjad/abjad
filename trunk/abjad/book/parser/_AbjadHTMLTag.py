@@ -1,4 +1,4 @@
-from abjad.book.parser.abjadtag import _AbjadTag
+from abjad.book.parser._AbjadTag import _AbjadTag
 
 
 class _AbjadHTMLTag(_AbjadTag):

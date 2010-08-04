@@ -1,5 +1,5 @@
-from abjad.book.parser.codeblock import _CodeBlock
-from abjad.book.parser.tagparser import _TagParser
+from abjad.book.parser._CodeBlock import _CodeBlock
+from abjad.book.parser._TagParser import _TagParser
 import os
 import shutil
 import subprocess
@@ -147,4 +147,3 @@ def _execute_abjad_code(lines):
    #out = out.split('\n')
    out = out.splitlines( )
    return out
-

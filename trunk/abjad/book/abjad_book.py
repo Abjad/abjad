@@ -1,6 +1,6 @@
-from abjad.book.parser.abjadhtmltag import _AbjadHTMLTag
-from abjad.book.parser.abjadlatextag import _AbjadLatexTag
-from abjad.book.parser.abjadresttag import _AbjadReSTTag
+from abjad.book.parser._AbjadHTMLTag import _AbjadHTMLTag
+from abjad.book.parser._AbjadLatexTag import _AbjadLatexTag
+from abjad.book.parser._AbjadTeSTTag import _AbjadReSTTag
 import getopt
 import os
 import sys
