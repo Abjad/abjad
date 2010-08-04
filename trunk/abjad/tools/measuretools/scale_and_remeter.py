@@ -1,4 +1,4 @@
-from abjad.components._Measure.Meter import Meter
+from abjad.marks import Meter
 from abjad.core import Rational
 from abjad.tools import componenttools
 from abjad.tools import durtools

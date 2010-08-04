@@ -1,6 +1,6 @@
 from abjad.components._Measure import _Measure
 from abjad.components._Measure import RigidMeasure
-from abjad.components._Measure.Meter import Meter
+from abjad.marks import Meter
 from abjad.core import Rational
 from abjad.tools import containertools
 from abjad.tools import metertools

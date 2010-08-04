@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components._Measure import _Measure
-from abjad.components._Measure.Meter import Meter
+from abjad.marks import Meter
 from abjad.tools import durtools
 from abjad.tools import metertools
 from abjad.tools import spannertools

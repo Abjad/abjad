@@ -1,4 +1,4 @@
-from abjad.components._Measure.Meter import Meter
+from abjad.marks import Meter
 from abjad.exceptions import MeterAssignmentError
 from abjad.interfaces import MeterInterface
 from abjad.tools import durtools

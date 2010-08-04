@@ -12,7 +12,7 @@ Classes
    components/_Measure/AnonymousMeasure/AnonymousMeasure
    marks/Articulation/Articulation
    components/Chord/Chord
-   components/Staff/Clef/Clef
+   marks/Clef/Clef
    components/Cluster/Cluster
    components/Container/Container
    components/_Measure/DynamicMeasure/DynamicMeasure
@@ -22,8 +22,9 @@ Classes
    components/StaffGroup/GrandStaff
    components/_Harmonic/HarmonicNatural
    components/Staff/InvisibleStaff
+   marks/KeySignature/KeySignature
    marks/Markup/Markup
-   components/_Measure/Meter/Meter
+   marks/Meter/Meter
    components/Note/Note
    components/NoteHead/NoteHead
    components/StaffGroup/PianoStaff
@@ -953,7 +954,6 @@ tonalitytools
    tools/tonalitytools/DoublingIndicator/DoublingIndicator
    tools/tonalitytools/ExtentIndicator/ExtentIndicator
    tools/tonalitytools/InversionIndicator/InversionIndicator
-   tools/tonalitytools/KeySignature/KeySignature
    tools/tonalitytools/Mode/Mode
    tools/tonalitytools/OmissionIndicator/OmissionIndicator
    tools/tonalitytools/QualityIndicator/QualityIndicator
