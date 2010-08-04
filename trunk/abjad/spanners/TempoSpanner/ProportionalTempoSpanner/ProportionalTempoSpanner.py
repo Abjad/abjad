@@ -1,10 +1,10 @@
-from abjad.spanners.TempoSpanner.TempoSpannerProportional.format import \
+from abjad.spanners.TempoSpanner.ProportionalTempoSpanner.format import \
    _TempoProportionalFormatInterface
 from abjad.spanners.TempoSpanner.TempoSpanner import TempoSpanner
 import types
 
 
-class TempoSpannerProportional(TempoSpanner):
+class ProportionalTempoSpanner(TempoSpanner):
    r'''.. versionadded:: 1.1.1
 
    Tempo spanner aware of scorewide spacing. ::
@@ -29,12 +29,12 @@ class TempoSpannerProportional(TempoSpanner):
    ::
 
       abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)   
-      abjad> proportional_tempo_spanner = TempoSpannerProportional(t[0][:2], tempo_indication)   
+      abjad> proportional_tempo_spanner = ProportionalTempoSpanner(t[0][:2], tempo_indication)   
    
    ::
 
       abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 4), 120)
-      abjad> proportional_tempo_spanner = TempoSpannerProportional(t[0][2:], tempo_indication)   
+      abjad> proportional_tempo_spanner = ProportionalTempoSpanner(t[0][2:], tempo_indication)   
 
    ::
 

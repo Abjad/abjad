@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TempoSpannerProportional_01( ):
+def test_ProportionalTempoSpanner_01( ):
    '''Do special things with tempo and spacing.'''
 
    t = Score([Staff(macros.scale(4))])
@@ -9,9 +9,9 @@ def test_TempoSpannerProportional_01( ):
    spacing_indication = spacingtools.SpacingIndication(tempo_indication, Rational(1, 34))
    t.spacing.scorewide = spacing_indication
 
-   p = TempoSpannerProportional(t[0][:2])
+   p = ProportionalTempoSpanner(t[0][:2])
    p.tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
-   p = TempoSpannerProportional(t[0][2:])
+   p = ProportionalTempoSpanner(t[0][2:])
    p.tempo_indication = tempotools.TempoIndication(Rational(1, 4), 120)
 
    r'''

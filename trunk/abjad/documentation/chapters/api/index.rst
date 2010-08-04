@@ -20,10 +20,10 @@ Classes
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
    components/StaffGroup/GrandStaff
-   components/_Harmonic/HarmonicNatural
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
+   components/_Harmonic/NaturalHarmonic
    components/Note/Note
    components/NoteHead/NoteHead
    components/StaffGroup/PianoStaff
@@ -128,11 +128,11 @@ Spanners
    spanners/OctavationSpanner/OctavationSpanner
    spanners/OverrideSpanner/OverrideSpanner
    spanners/PianoPedal/PianoPedal
+   spanners/TempoSpanner/ProportionalTempoSpanner/ProportionalTempoSpanner
    spanners/Slur/Slur
    spanners/SpacingSpanner/SpacingSpanner
    spanners/Spanner/spanner
    spanners/TempoSpanner/TempoSpanner
-   spanners/TempoSpanner/TempoSpannerProportional/TempoSpannerProportional
    spanners/TextScriptSpanner/TextScriptSpanner
    spanners/TextSpanner/TextSpanner
    spanners/Tie/Tie

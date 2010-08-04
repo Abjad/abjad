@@ -8,9 +8,9 @@ Abjad implements a special proportional tempo spanner.
 staff = RhythmicStaff(leaftools.make_repeated_notes(8, Rational(1, 4)))
 score = Score([staff])
 tempo_indication_1 = tempotools.TempoIndication(Rational(1, 4), 60)
-proportional_tempo_spanner_1 = TempoSpannerProportional(staff[:4], tempo_indication_1)
+proportional_tempo_spanner_1 = ProportionalTempoSpanner(staff[:4], tempo_indication_1)
 tempo_indication_2 = tempotools.TempoIndication(Rational(1, 4), 120)
-proportional_tempo_spanner_2 = TempoSpannerProportional(staff[4:], tempo_indication_2)
+proportional_tempo_spanner_2 = ProportionalTempoSpanner(staff[4:], tempo_indication_2)
 </abjad>
 
 Proportional tempo spanners insert new spacing sections into LilyPond
