@@ -1,4 +1,4 @@
-from abjad.core.format import _FormatInterface
+from abjad.core import _FormatInterface
 
 
 class _NoteHeadFormatInterface(_FormatInterface):

@@ -1,5 +1,5 @@
-from abjad.core.abjadcore import _Abjad
-from abjad.core.parser import _Parser
+from abjad.core._Abjad import _Abjad
+from abjad.core._Parser import _Parser
 
 
 class _ContextSettingHandler(_Abjad):

@@ -1,4 +1,4 @@
-from abjad.core.initializer import _Initializer
+from abjad.core import _Initializer
 from abjad.components.NoteHead import NoteHead
 import re
 

@@ -1,4 +1,4 @@
-from abjad.core.observer import _Observer
+from abjad.core import _Observer
 from abjad.exceptions import MeasureContiguityError
 from abjad.Rational import Rational
 

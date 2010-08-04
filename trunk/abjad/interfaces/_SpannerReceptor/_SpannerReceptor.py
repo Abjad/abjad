@@ -1,4 +1,4 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.core import _Abjad
 from abjad.exceptions import ExtraSpannerError
 from abjad.exceptions import MissingSpannerError
 

@@ -1,4 +1,4 @@
-from abjad.core.observer import _Observer
+from abjad.core import _Observer
 from abjad.exceptions import UndefinedTempoError
 from abjad.Rational import Rational
 

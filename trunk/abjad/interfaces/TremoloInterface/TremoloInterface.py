@@ -1,4 +1,4 @@
-from abjad.core.formatcontributor import _FormatContributor
+from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.tools import mathtools
 

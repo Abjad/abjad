@@ -1,4 +1,4 @@
-from abjad.core.grobhandler import _GrobHandler
+from abjad.core import _GrobHandler
 from abjad.Rational import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools

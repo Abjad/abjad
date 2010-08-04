@@ -1,5 +1,5 @@
-from abjad.core.formatcontributor import _FormatContributor
-from abjad.core.parser import _Parser
+from abjad.core._FormatContributor import _FormatContributor
+from abjad.core._Parser import _Parser
 
 
 class _GrobHandler(_FormatContributor):

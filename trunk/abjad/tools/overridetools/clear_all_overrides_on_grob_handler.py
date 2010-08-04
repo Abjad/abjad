@@ -1,4 +1,4 @@
-from abjad.core.grobhandler import _GrobHandler
+from abjad.core import _GrobHandler
 
 
 def clear_all_overrides_on_grob_handler(grob_handler):

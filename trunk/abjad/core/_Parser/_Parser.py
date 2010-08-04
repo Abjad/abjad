@@ -1,4 +1,4 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.core._Abjad import _Abjad
 
 
 class _Parser(_Abjad):

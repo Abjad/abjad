@@ -1,4 +1,4 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.core import _Abjad
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import \
    PitchArrayCell
 from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange

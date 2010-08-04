@@ -1,4 +1,4 @@
-from abjad.core.grobhandler import _GrobHandler
+from abjad.core import _GrobHandler
 
 
 def promote_attribute_to_context_on_grob_handler(grob_handler, attribute, context):

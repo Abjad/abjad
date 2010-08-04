@@ -1,7 +1,7 @@
 from abjad.Clef.Clef import Clef
-from abjad.core.backtracking import _BacktrackingInterface
-from abjad.core.grobhandler import _GrobHandler
-from abjad.core.observer import _Observer
+from abjad.core import _BacktrackingInterface
+from abjad.core import _GrobHandler
+from abjad.core import _Observer
 import types
 
 

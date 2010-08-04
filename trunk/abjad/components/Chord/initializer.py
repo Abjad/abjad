@@ -1,5 +1,5 @@
 from abjad.components.Chord.formatter import _ChordFormatter
-from abjad.core.initializer import _Initializer
+from abjad.core import _Initializer
 from abjad.interfaces import NoteHeadInterface
 import re
 

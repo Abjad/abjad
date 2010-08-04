@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.core.parser import _Parser
+from abjad.core import _Parser
 
 
 ## FORMAT ATTRIBUTE ##

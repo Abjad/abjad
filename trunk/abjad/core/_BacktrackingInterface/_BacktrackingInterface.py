@@ -1,4 +1,4 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.core._Abjad import _Abjad
 
 
 ## TODO: The system model does not clearly define what happens

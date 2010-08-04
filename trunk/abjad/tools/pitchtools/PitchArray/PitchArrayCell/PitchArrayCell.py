@@ -1,4 +1,4 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.core import _Abjad
 from abjad.Pitch import Pitch
 import types
 

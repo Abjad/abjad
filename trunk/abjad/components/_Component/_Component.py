@@ -1,4 +1,4 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.core import _Abjad
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import AccidentalInterface
 from abjad.interfaces import ArticulationInterface

@@ -43,7 +43,7 @@ class InterfaceAggregator(_Interface):
 #   def contributors(self):
 #      '''Return alphabetized list of interface format contributors.
 #         Does not include spanner format contributors.'''
-#      from abjad.core.formatcontributor import _FormatContributor
+#      from abjad.core import _FormatContributor
 #      result = [ ]
 #      client = self._client
 #      for value in vars(client).values( ):

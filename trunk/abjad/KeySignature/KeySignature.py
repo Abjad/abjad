@@ -1,4 +1,4 @@
-from abjad.core.grobhandler import _GrobHandler
+from abjad.core import _GrobHandler
 
 
 class KeySignature(_GrobHandler):

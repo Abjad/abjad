@@ -1,5 +1,5 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.core.abjadcore import _Abjad
+from abjad.core import _Abjad
 import types
 
 

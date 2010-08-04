@@ -1,4 +1,4 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.core import _Abjad
 from abjad.spanners.Spanner.duration import _SpannerDurationInterface
 from abjad.spanners.Spanner.format import _SpannerFormatInterface
 from abjad.spanners.Spanner.offset import _SpannerOffsetInterface

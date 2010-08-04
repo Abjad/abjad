@@ -1,4 +1,4 @@
-from abjad.core.grobhandler import _GrobHandler
+from abjad.core import _GrobHandler
 from abjad.spanners.Spanner.spanner import Spanner
 
 

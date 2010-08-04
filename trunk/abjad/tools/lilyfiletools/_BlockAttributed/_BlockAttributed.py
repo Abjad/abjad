@@ -1,4 +1,4 @@
-from abjad.core.parser import _Parser
+from abjad.core import _Parser
 
 
 class _BlockAttributed(object):
