@@ -1,6 +1,6 @@
 from abjad.components.Chord import Chord
 from abjad.components.Note import Note
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 from abjad.tools import componenttools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval

@@ -1,6 +1,6 @@
 from abjad.exceptions import InputSpecificationError
 from abjad.components.Note import Note
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 from abjad.components.Rest import Rest
 from abjad.components.Skip import Skip
 from abjad.tools import pitchtools

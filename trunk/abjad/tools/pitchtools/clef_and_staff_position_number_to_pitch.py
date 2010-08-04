@@ -1,4 +1,4 @@
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 
 
 def clef_and_staff_position_number_to_pitch(clef, staff_position_number):

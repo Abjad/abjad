@@ -2,7 +2,7 @@ from abjad.components.Chord.formatter import _ChordFormatter
 from abjad.components.Chord.initializer import _ChordInitializer
 from abjad.components._Leaf import _Leaf
 from abjad.components.NoteHead import NoteHead
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 
 
 class Chord(_Leaf):

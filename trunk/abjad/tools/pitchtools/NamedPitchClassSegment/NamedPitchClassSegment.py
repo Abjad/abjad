@@ -1,4 +1,4 @@
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass

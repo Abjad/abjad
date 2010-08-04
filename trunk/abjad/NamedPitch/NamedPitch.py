@@ -5,7 +5,7 @@ import types
 
 _accidental_spelling = _read_config_file( )['accidental_spelling']
 
-class Pitch(_Abjad):
+class NamedPitch(_Abjad):
    '''Musical pitch.'''
 
    accidental_spelling = _accidental_spelling
@@ -17,7 +17,7 @@ class Pitch(_Abjad):
          self._init_empty( )
       elif len(args) == 1 and isinstance(args[0], (int, long, float)):
          self._init_by_number(*args)
-      elif len(args) == 1 and isinstance(args[0], Pitch):
+      elif len(args) == 1 and isinstance(args[0], NamedPitch):
          self._init_by_reference(*args)
       elif len(args) == 1 and pitchtools.is_pitch_pair(args[0]):
          self._init_by_pair(*args)
@@ -48,10 +48,10 @@ class Pitch(_Abjad):
 
    def __copy__(self):
       '''.. versionadded:: 1.1.2'''
-      return Pitch(self)
+      return NamedPitch(self)
 
    def __eq__(self, arg):
-      if isinstance(arg, Pitch):
+      if isinstance(arg, NamedPitch):
          if self.altitude == arg.altitude:
             if self.accidental.semitones == arg.accidental.semitones:
                if self.deviation == arg.deviation:
@@ -59,7 +59,7 @@ class Pitch(_Abjad):
       return False
 
    def __ge__(self, arg):
-      if not isinstance(arg, Pitch):
+      if not isinstance(arg, NamedPitch):
          raise ValueError
       return self.altitude > arg.altitude or \
          (self.altitude == arg.altitude and \
@@ -69,7 +69,7 @@ class Pitch(_Abjad):
          self._deviation_numeric >= arg._deviation_numeric)
 
    def __gt__(self, arg):
-      if not isinstance(arg, Pitch):
+      if not isinstance(arg, NamedPitch):
          raise ValueError
       return self.altitude > arg.altitude or \
          (self.altitude == arg.altitude and \
@@ -82,7 +82,7 @@ class Pitch(_Abjad):
       return hash(repr(self))
 
    def __le__(self, arg):
-      if not isinstance(arg, Pitch):
+      if not isinstance(arg, NamedPitch):
          raise ValueError
       if not self.altitude == arg.altitude:
          return self.altitude <= arg.altitude
@@ -91,7 +91,7 @@ class Pitch(_Abjad):
       return self._deviation_numeric <= arg._deviation_numeric
 
    def __lt__(self, arg):
-      if not isinstance(arg, Pitch):
+      if not isinstance(arg, NamedPitch):
          raise ValueError
       return self.altitude < arg.altitude or \
          (self.altitude == arg.altitude and \
@@ -106,12 +106,12 @@ class Pitch(_Abjad):
    def __repr__(self):
       if self.name and not self.octave is None:
          if self.deviation is None:
-            return 'Pitch(%s, %s)' % (self.name, self.octave)
+            return '%s(%s, %s)' % (self.__clas__.__name__, self.name, self.octave)
          else:
-            return 'Pitch(%s, %s, %s)' % (
+            return '%s(%s, %s, %s)' % (self.__class__.__name__,
                self.name, self.octave, self.deviation)
       else:
-         return 'Pitch( )'
+         return '%s( )' % self.__class__.__name__
 
    def __str__(self):
       if self.name and not self.octave is None:
@@ -121,7 +121,7 @@ class Pitch(_Abjad):
 
    def __sub__(self, arg):
       from abjad.tools import pitchtools
-      if isinstance(arg, Pitch):
+      if isinstance(arg, NamedPitch):
          return pitchtools.melodic_diatonic_interval_from_to(self, arg)
       else:
          interval = arg

@@ -1,6 +1,6 @@
 from abjad.components.NoteHead.format import _NoteHeadFormatInterface
 from abjad.interfaces import NoteHeadInterface
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 import types
 
 

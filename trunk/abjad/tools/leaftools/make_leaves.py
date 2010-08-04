@@ -1,5 +1,5 @@
 from __future__ import division
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import listtools

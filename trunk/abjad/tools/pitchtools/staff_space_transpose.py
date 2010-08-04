@@ -1,4 +1,4 @@
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 from abjad.tools.pitchtools.diatonic_scale_degree_to_letter import \
    diatonic_scale_degree_to_letter
 

@@ -1,4 +1,4 @@
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 from abjad.tools import listtools
 from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import \
    HarmonicChromaticIntervalSegment

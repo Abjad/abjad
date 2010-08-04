@@ -1,5 +1,5 @@
 from abjad.core import _Abjad
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 import types
 
 

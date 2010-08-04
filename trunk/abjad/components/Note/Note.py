@@ -1,7 +1,7 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.NoteHead import NoteHead
 from abjad.components.Note.initializer import _NoteInitializer
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 
 
 class Note(_Leaf):

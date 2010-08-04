@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.Pitch import Pitch
+from abjad.NamedPitch import Pitch
 from abjad.components.Rest.initializer import _RestInitializer
 
 
