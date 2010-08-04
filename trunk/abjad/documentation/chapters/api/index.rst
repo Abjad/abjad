@@ -909,6 +909,16 @@ spannertools
    tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
 
+stafftools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/stafftools/make_invisible_staff
+   tools/stafftools/make_rhythmic_sketch_staff
+   tools/stafftools/make_rhythmic_staff
+
+
 tempotools
 
 .. toctree::

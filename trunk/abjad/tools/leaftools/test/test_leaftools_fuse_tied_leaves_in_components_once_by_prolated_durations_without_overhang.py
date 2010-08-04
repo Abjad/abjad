@@ -124,7 +124,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    durations = zip(durations, [16] * len(durations))
 
    notes = leaftools.make_notes(0, durations)
-   t = RhythmicSketchStaff(notes)
+   t = stafftools.make_rhythmic_sketch_staff(notes)
 
    meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
    meters = [Rational(meter) for meter in meters]

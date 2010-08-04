@@ -28,9 +28,9 @@ s = Statement(text, code)
 statements.append(s)
 
 
-text = "Let's put these notes inside a RhythmicSketchStaff and see what \
+text = "Let's put these notes inside a rhythmic sketch staff and see what \
 we've got."
-code = ['s = RhythmicSketchStaff(notes)', "show(s, 'tirnaveni')"]
+code = ['s = stafftools.make_rhythmic_sketch_staff(notes)', "show(s, 'tirnaveni')"]
 s = Statement(text, code)
 statements.append(s)
 
