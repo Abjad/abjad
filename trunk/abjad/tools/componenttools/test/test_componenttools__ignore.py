@@ -1,8 +1,8 @@
 from abjad import *
-from abjad.tools.parenttools._ignore import _ignore
+from abjad.tools.componenttools._ignore import _ignore
 
 
-def test_parenttools_ignore_01( ):
+def test_componenttools__ignore_01( ):
 
    t = Voice(macros.scale(4))
    Beam(t[:])
@@ -25,4 +25,4 @@ def test_parenttools_ignore_01( ):
    assert (t[2], t) in receipt
    assert (t[3], t) in receipt
 
-   "Follow soon after with parenttools.restore(receipt)."
+   "Follow soon after with componenttools.restore(receipt)."

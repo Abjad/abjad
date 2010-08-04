@@ -566,7 +566,7 @@ class _Component(_Abjad):
       '''
 
       from abjad.tools import componenttools
-      from abjad.tools import parenttools
+      from abjad.tools import componenttools
       assert componenttools.all_are_components(components)
       parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
@@ -599,7 +599,7 @@ class _Component(_Abjad):
       '''
 
       from abjad.tools import componenttools
-      from abjad.tools import parenttools
+      from abjad.tools import componenttools
       assert componenttools.all_are_components(components)
       parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
@@ -610,7 +610,7 @@ class _Component(_Abjad):
       '''Splice `components` after `self`.
       Extend spanners rightwards to attach to all components in list.'''
       from abjad.tools import componenttools
-      from abjad.tools import parenttools
+      from abjad.tools import componenttools
       from abjad.tools import spannertools
       assert componenttools.all_are_components(components)
       insert_offset = self.offset.prolated.stop
@@ -636,7 +636,7 @@ class _Component(_Abjad):
       '''Splice `components` before `self`.
       Extend spanners leftwards to attach to all components in list.'''
       from abjad.tools import componenttools
-      from abjad.tools import parenttools
+      from abjad.tools import componenttools
       from abjad.tools import spannertools
       assert componenttools.all_are_components(components)
       offset = self.offset.prolated.start

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DuratedComplexBeam_lone_01( ):
+def test_BeamComplexDurated_lone_01( ):
    '''DuratedComplexBeam with lone = True applies beam 
       to a lone note at format-time.'''
 
@@ -18,7 +18,7 @@ def test_DuratedComplexBeam_lone_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [ ]\n}"
 
 
-def test_DuratedComplexBeam_lone_02( ):
+def test_BeamComplexDurated_lone_02( ):
    '''DuratedComplexBeam with lone = False does not apply beam
       to a lone note at format-time.'''
 
@@ -35,7 +35,7 @@ def test_DuratedComplexBeam_lone_02( ):
    assert t.format == "\\new Voice {\n\tc'8\n}"
 
 
-def test_DuratedComplexBeam_lone_03( ):
+def test_BeamComplexDurated_lone_03( ):
    '''DuratedComplexBeam with multiple leaves ignores 'lone' setting.'''
 
    t = Voice(macros.scale(2))

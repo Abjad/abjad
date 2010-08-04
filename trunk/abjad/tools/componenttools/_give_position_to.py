@@ -1,6 +1,6 @@
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import \
    get_parent_and_start_stop_indices_of_components
-from abjad.tools.parenttools._switch import _switch
+from abjad.tools.componenttools._switch import _switch
 
 
 def _give_position_to(donors, recipients):

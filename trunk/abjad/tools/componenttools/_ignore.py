@@ -4,7 +4,7 @@ def _ignore(components):
       Return receipt of unordered set of (component, parent) pairs.
       Then do some other operation, probably copy.
       Then reapply parent references.
-      Call _parenttools.restore(receipt).
+      Call _componenttools.restore(receipt).
    '''
    from abjad.tools import componenttools
 

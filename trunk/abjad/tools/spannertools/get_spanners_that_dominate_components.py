@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-from abjad.tools import parenttools
 from abjad.tools import iterate
 
 

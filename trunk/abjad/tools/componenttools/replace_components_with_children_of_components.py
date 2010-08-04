@@ -1,6 +1,3 @@
-from abjad.tools import parenttools
-
-
 def replace_components_with_children_of_components(components):
    r'''Remove arbitrary `components` from score 
    but retain children of `components` in score. ::

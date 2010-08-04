@@ -4,8 +4,8 @@ from abjad.marks import Meter
 from abjad.core import Rational
 from abjad.tools import containertools
 from abjad.tools import metertools
-from abjad.tools import parenttools
-from abjad.tools.parenttools._switch import _switch
+from abjad.tools import componenttools
+from abjad.tools.componenttools._switch import _switch
 from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
 
 

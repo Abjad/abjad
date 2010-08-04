@@ -39,4 +39,3 @@ sys.ps1 = 'abjad> '
 del sys
 del os
 del importtools
-del parenttools

@@ -1,8 +1,8 @@
 from abjad import *
-from abjad.tools.parenttools._give_position_to import _give_position_to
+from abjad.tools.componenttools._give_position_to import _give_position_to
 
 
-def test_parenttools_give_position_to_01( ):
+def test_componenttools__give_position_to_01( ):
    '''Not composer-safe.'''
 
    t = Voice(macros.scale(4))

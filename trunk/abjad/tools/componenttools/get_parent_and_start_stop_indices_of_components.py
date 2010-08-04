@@ -29,7 +29,7 @@ def get_parent_and_start_stop_indices_of_components(components):
       (Staff{6}, 4, 5)
 
    .. versionchanged:: 1.1.2
-      renamed ``parenttools.get_with_indices( )`` to
+      renamed ``componenttools.get_with_indices( )`` to
       ``componenttools.get_parent_and_start_stop_indices_of_components( )``.
    '''
    from abjad.tools import componenttools

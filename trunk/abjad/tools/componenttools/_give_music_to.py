@@ -1,7 +1,7 @@
 from abjad.components.Container import Container
 from abjad.exceptions import MusicContentsError
 from abjad.components._Leaf import _Leaf
-from abjad.tools.parenttools._switch import _switch
+from abjad.tools.componenttools._switch import _switch
 
 
 def _give_music_to(donors, recipient):

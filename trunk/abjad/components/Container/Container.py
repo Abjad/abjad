@@ -41,7 +41,7 @@ class Container(_Component):
          Detach component(s) from parentage.
          Withdraw component(s) from crossing spanners.
          Preserve spanners that component(s) cover(s).'''
-      from abjad.tools.parenttools._switch import _switch
+      from abjad.tools.componenttools._switch import _switch
       from abjad.tools.spannertools._withdraw_from_crossing import _withdraw_from_crossing
       components = self[i]
       if not isinstance(components, list):
@@ -173,8 +173,8 @@ class Container(_Component):
       '''Insert `music` components in in container.
       Set parent of `music` components to container.'''
       from abjad.tools import componenttools
-      from abjad.tools import parenttools
-      from abjad.tools.parenttools._switch import _switch
+      from abjad.tools import componenttools
+      from abjad.tools.componenttools._switch import _switch
       music = music or [ ]
       assert componenttools.all_are_contiguous_components_in_same_thread(music)
       parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(music)

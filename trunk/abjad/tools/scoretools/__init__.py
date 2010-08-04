@@ -2,7 +2,7 @@
 
    This package depends on:
 
-      * tools/parenttools
+      * tools/componenttools
       * tools/spannertools'''
 
 

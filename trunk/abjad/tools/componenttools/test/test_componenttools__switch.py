@@ -1,8 +1,8 @@
 from abjad import *
-from abjad.tools.parenttools._switch import _switch
+from abjad.tools.componenttools._switch import _switch
 
 
-def test_parenttools_switch_01( ):
+def test_componenttools__switch_01( ):
 
    t = Voice([ ])
    u = Voice(macros.scale(4))

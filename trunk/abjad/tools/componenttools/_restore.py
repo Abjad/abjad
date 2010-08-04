@@ -1,6 +1,6 @@
 def _restore(receipt):
    '''Use to restore parentage.
-      Use after call to _ignore(components), from parenttools.
+      Use after call to _ignore(components), from componenttools.
       Return None.'''
 
    for component, parent in receipt:
