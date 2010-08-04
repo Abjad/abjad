@@ -23,7 +23,7 @@ __doc__ = '''All Abjad objects should evaluate to True
              What fixes this is defining __nonzero__ explicitly
              to True on all system objects.'''
 
-def test__Abja_boolean_01( ):
+def test__Abjad_boolean_01( ):
    '''Leaves evaluate to True.'''
    assert bool(Note(0, (1, 4)))
    assert bool(Rest((1, 4)))
@@ -31,14 +31,14 @@ def test__Abja_boolean_01( ):
    assert bool(Skip((1, 4)))
 
 
-def test__Abja_boolean_02( ):
+def test__Abjad_boolean_02( ):
    '''Empty chords evaluate to True,
       even though they carry zero length.'''
    assert bool(Chord([ ], (1, 4)))
 
 
 
-def test__Abja_boolean_03( ):
+def test__Abjad_boolean_03( ):
    '''Nonempty containers evaluate to True.'''
    assert bool(Staff(Note(0, (1, 4)) * 4))
    assert bool(Voice(Note(0, (1, 4)) * 4))
@@ -47,7 +47,7 @@ def test__Abja_boolean_03( ):
    assert bool(FixedMultiplierTuplet((2, 3), Note(0, (1, 4)) * 3))
 
 
-def test__Abja_boolean_04( ):
+def test__Abjad_boolean_04( ):
    '''Empty containers evaluate to True.'''
    assert bool(Staff([ ]))
    assert bool(Voice([ ]))

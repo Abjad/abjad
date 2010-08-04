@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ClefInterface__parentCanContribute_01( ):
+def test_ClefInterface__parent_can_contribute_01( ):
    '''Leaf two starts *after* parent staff starts.
    Both forced clefs should be obeyed.
    '''
@@ -15,7 +15,7 @@ def test_ClefInterface__parentCanContribute_01( ):
    assert t[2].clef._self_should_contribute
 
 
-def test_ClefInterface__parentCanContribute_02( ):
+def test_ClefInterface__parent_can_contribute_02( ):
    '''Leaf zero starts *at the same time as* parent staff starts.
    Only parent clef should be obeyed.
    '''
