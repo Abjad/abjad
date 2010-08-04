@@ -1,8 +1,8 @@
-from abjad.components._Harmonic.harmonic import _Harmonic
+from abjad.components._Harmonic._Harmonic import _Harmonic
 from abjad.components.Note import Note
 
 
-class HarmonicNatural(Note, _Harmonic):
+class NaturalHarmonic(Note, _Harmonic):
    '''Abjad model of natural string harmonics.'''
 
    def __init__(self, *args):
@@ -11,4 +11,4 @@ class HarmonicNatural(Note, _Harmonic):
    ## OVERLOADS ##
 
    def __repr__(self):
-      return 'HarmonicNatural(%s, %s)' % (self.pitch, self.duration)
+      return 'NaturalHarmonic(%s, %s)' % (self.pitch, self.duration)

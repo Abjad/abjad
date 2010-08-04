@@ -131,8 +131,8 @@ class NoteHead(NoteHeadInterface):
          if self._style is not None:
             return self._style
          ## TODO: This is a hack. 
-         ##       Implement HarmonicNaturalNoteheadInterface instead.
-         if self._client.__class__.__name__ == 'HarmonicNatural':
+         ##       Implement NaturalHarmonicNoteheadInterface instead.
+         if self._client.__class__.__name__ == 'NaturalHarmonic':
             return 'harmonic'
       def fset(self, arg):
          if not isinstance(arg, (str, types.NoneType)):

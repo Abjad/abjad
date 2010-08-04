@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_HarmonicNatural_cast_01( ):
+def test_NaturalHarmonic_cast_01( ):
    '''It is possible to cast notes into natural harmonics.'''
 
    t = Staff(macros.scale(4))
-   HarmonicNatural(t[1])
+   NaturalHarmonic(t[1])
 
    r'''
    \new Staff {

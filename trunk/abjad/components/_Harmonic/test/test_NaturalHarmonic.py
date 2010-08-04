@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_HarmonicNatural_01( ):
+def test_NaturalHarmonic_01( ):
 
-   t = HarmonicNatural(10, (1, 4))
+   t = NaturalHarmonic(10, (1, 4))
 
    r'''
    \once \override NoteHead #'style = #'harmonic
