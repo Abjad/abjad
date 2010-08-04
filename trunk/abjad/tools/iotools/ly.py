@@ -25,7 +25,7 @@ def ly(target = -1):
 
          \version "2.12.2"
          \include "english.ly"
-         \include "/Path/to/abjad/trunk/abjad/scm/abjad.scm"
+         \include "/Path/to/abjad/trunk/abjad/cfg/abjad.scm"
 
          {
             c'4
