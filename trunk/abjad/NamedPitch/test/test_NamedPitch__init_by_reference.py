@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Pitch__init_by_reference_01( ):
+def test_NamedPitch__init_by_reference_01( ):
    '''Init by reference.'''
 
    r = NamedPitch('df', 5)

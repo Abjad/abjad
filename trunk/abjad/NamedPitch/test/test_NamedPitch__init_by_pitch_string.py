@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Pitch__init_by_pitch_string_01( ):
+def test_NamedPitch__init_by_pitch_string_01( ):
   
    assert NamedPitch("cs'''") == NamedPitch('cs', 6)
    assert NamedPitch("cs''") == NamedPitch('cs', 5)

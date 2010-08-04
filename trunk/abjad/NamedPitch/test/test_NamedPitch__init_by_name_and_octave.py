@@ -1,11 +1,10 @@
 from abjad import *
 
 
-def test_Pitch__init_by_pair_01( ):
-   '''Init by pair.'''
+def test_NamedPitch__init_by_name_and_octave_01( ):
+   '''Init by name and octave.'''
 
-   p = NamedPitch(('df', 5))
-
+   p = NamedPitch('df', 5)
    assert p.altitude == 8
    assert p.degree == 2
    assert p.format == "df''"

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Pitch__init_by_number_01( ):
+def test_NamedPitch__init_by_number_01( ):
    '''Init by number.'''
 
    p = NamedPitch(13)

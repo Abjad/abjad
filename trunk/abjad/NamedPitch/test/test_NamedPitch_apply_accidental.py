@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Pitch_apply_accidental_01( ):
+def test_NamedPitch_apply_accidental_01( ):
 
    assert NamedPitch('cs', 4).apply_accidental('sharp') == NamedPitch('css', 4)
    assert NamedPitch('cs', 4).apply_accidental('flat') == NamedPitch('c', 4)

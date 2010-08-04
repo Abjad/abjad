@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Pitch___sub___01( ):
+def test_NamedPitch___sub___01( ):
 
    pitch = NamedPitch(12)
    diatonic_interval = pitchtools.MelodicDiatonicInterval('diminished', 3)
@@ -9,7 +9,7 @@ def test_Pitch___sub___01( ):
    assert pitch - diatonic_interval == NamedPitch('as', 4)
 
 
-def test_Pitch___sub___02( ):
+def test_NamedPitch___sub___02( ):
 
    pitch = NamedPitch(12)
    chromatic_interval = pitchtools.MelodicChromaticInterval(2)
@@ -17,7 +17,7 @@ def test_Pitch___sub___02( ):
    assert pitch - chromatic_interval == NamedPitch('bf', 4)
 
 
-def test_Pitch___sub___03( ):
+def test_NamedPitch___sub___03( ):
 
    pitch_1 = NamedPitch(12)
    pitch_2 = NamedPitch(10)

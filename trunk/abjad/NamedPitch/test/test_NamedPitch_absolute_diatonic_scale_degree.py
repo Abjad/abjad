@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Pitch_absolute_diatonic_scale_degree_01( ):
+def test_NamedPitch_absolute_diatonic_scale_degree_01( ):
 
    assert NamedPitch(0).absolute_diatonic_scale_degree == 29
    assert NamedPitch(1).absolute_diatonic_scale_degree == 29

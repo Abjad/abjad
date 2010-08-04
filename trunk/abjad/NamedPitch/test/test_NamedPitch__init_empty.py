@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Pitch__init_empty_01( ):
+def test_NamedPitch__init_empty_01( ):
    '''Init empty.'''
 
    p = NamedPitch( )
