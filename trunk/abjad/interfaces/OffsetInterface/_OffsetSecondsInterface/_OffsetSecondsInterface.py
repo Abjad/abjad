@@ -1,6 +1,6 @@
 from abjad.core import _Observer
 from abjad.exceptions import UndefinedTempoError
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 class _OffsetSecondsInterface(_Observer):

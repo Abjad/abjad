@@ -111,7 +111,7 @@ print n1.pitch <= n2.pitch
 Duration initialization
 -----------------------
 
-Initialize :class:`Note <abjad.components.Note.note.Note>` duration with a :class:`Rational <abjad.Rational.rational.Rational>`.
+Initialize :class:`Note <abjad.components.Note.note.Note>` duration with a :class:`Rational <abjad.core.rational.Rational>`.
 
 <abjad>
 note = Note(0, Rational(1, 8))
@@ -192,7 +192,7 @@ write_ly(measure, 'duration_assign1', 'oedo') <hide
 </abjad>
 
 You must use an :term:`assignable` 
-:class:`Rational <abjad.Rational.rational.Rational>`.
+:class:`Rational <abjad.core.rational.Rational>`.
 You can also assign ``note.duration.multiplier``.
 
 <abjad>

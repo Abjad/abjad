@@ -1,6 +1,6 @@
 from abjad.core import _Abjad
 from abjad.tools import durtools
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 class TempoIndication(_Abjad):

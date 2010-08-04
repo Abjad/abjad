@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import iterate
 
 

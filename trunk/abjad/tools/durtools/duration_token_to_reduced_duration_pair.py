@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools.durtools.lilypond_duration_string_to_rational import \
    lilypond_duration_string_to_rational
 

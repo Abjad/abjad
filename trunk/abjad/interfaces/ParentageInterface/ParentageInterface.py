@@ -1,6 +1,6 @@
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
-from abjad.Rational import Rational
+from abjad.core import Rational
 import types
 
 

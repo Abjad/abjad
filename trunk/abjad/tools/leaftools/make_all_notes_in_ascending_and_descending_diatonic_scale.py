@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
 from abjad.tools import componenttools

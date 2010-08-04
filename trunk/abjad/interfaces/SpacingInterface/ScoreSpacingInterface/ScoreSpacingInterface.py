@@ -1,5 +1,5 @@
 from abjad.interfaces.SpacingInterface.SpacingInterface import SpacingInterface
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools.spacingtools.SpacingIndication import SpacingIndication
 import types
 

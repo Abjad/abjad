@@ -2,8 +2,8 @@
 
    Modules in this package may freely import the following:
 
-      from abjad.Rational import Rational
-      from abjad.Meter import Meter
+      from abjad.core import Rational
+      from abjad.components._Measure.Meter import Meter
       from abjad.tools import mathtools
       from abjad.tools import durtools'''
 

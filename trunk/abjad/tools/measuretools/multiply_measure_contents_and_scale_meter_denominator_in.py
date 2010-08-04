@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import iterate
 from abjad.tools.measuretools.scale_and_remeter import scale_and_remeter
 from abjad.tools.measuretools.multiply_measure_contents_in import multiply_measure_contents_in

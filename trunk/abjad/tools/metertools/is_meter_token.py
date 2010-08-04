@@ -1,5 +1,5 @@
-from abjad.Meter import Meter
-from abjad.Rational import Rational
+from abjad.components._Measure.Meter import Meter
+from abjad.core import Rational
 from abjad.tools import durtools
 
 

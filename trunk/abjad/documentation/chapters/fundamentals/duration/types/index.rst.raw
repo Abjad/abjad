@@ -51,7 +51,7 @@ available as ``duration.written``. Written duration is a user-assignable
 rational number. Users can assign and reassign the written duration of
 notes, rests, chords and skips at initialization and at any time
 during the life of the note, rest, chord or skip. Notes, rests, chords
-and skips admit a degree of input flexibility; Abjad :class:`Rational <abjad.Rational.rational.Rational>`
+and skips admit a degree of input flexibility; Abjad :class:`Rational <abjad.core.rational.Rational>`
 instances, rational tokens, and integers are all allowed; see the
 chapter on :doc:`duration initialzation <../initialization/index>` for details. 
 Written durations must always be note_head-assignable; see the chapter on

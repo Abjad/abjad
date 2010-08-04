@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools.mathtools.interpolate_cosine import interpolate_cosine
 from abjad.tools.mathtools.interpolate_exponential import interpolate_exponential
 

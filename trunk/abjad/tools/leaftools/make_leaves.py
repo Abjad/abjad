@@ -1,6 +1,6 @@
 from __future__ import division
 from abjad.Pitch import Pitch
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools

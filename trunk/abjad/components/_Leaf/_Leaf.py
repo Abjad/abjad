@@ -5,7 +5,7 @@ from abjad.interfaces import MarkupInterface
 from abjad.components._Leaf.duration import _LeafDurationInterface
 from abjad.components._Leaf.formatter import _LeafFormatter
 from abjad.components._Leaf.spanner.aggregator import _LeafSpannerAggregator
-from abjad.Rational import Rational
+from abjad.core import Rational
 import operator
 
 
@@ -82,7 +82,7 @@ class _Leaf(_Component):
    @property
    def markup(self):
       '''Read-only reference to
-      :class:`~abjad.Markup.interface.MarkupInterface`.
+      :class:`~abjad.marks.interface.MarkupInterface`.
       '''
       return self._markup
 

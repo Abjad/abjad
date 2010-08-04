@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools.durtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order import \
    yield_all_positive_integer_pairs_in_cantor_diagonalized_order
 

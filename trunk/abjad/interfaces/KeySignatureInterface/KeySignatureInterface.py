@@ -1,7 +1,6 @@
 from abjad.core import _BacktrackingInterface
 from abjad.core import _GrobHandler
 from abjad.core import _Observer
-from abjad.KeySignature import KeySignature
 import types
 
 
@@ -11,6 +10,7 @@ class KeySignatureInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    
    def __init__(self, _client, _updateInterface):
       '''Bind client, set forced to None and suppress to False.'''
+      from abjad.tools.tonalitytools import KeySignature
       _Observer.__init__(self, _client, _updateInterface)
       _GrobHandler.__init__(self, 'KeySignature')
       _BacktrackingInterface.__init__(self, 'key_signature')

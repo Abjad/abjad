@@ -4,7 +4,7 @@ Duration token
 
 Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
 
-* Abjad :class:`Rational <abjad.Rational.rational.Rational>` instances
+* Abjad :class:`Rational <abjad.core.rational.Rational>` instances
 * Python pairs
 * Python `int` and `long` instances
 

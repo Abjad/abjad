@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
 from abjad.components.Note import Note
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools

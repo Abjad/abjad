@@ -1,4 +1,4 @@
-from abjad.Meter import Meter
+from abjad.components._Measure.Meter import Meter
 from abjad.tools import durtools
 from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
    clone_components_and_fracture_crossing_spanners

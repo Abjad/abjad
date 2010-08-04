@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import mathtools
 from abjad.tools.listtools.cumulative_sums import cumulative_sums
 from abjad.tools.listtools.flatten import flatten

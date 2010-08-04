@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools.durtools.is_duration_pair import is_duration_pair
 
 

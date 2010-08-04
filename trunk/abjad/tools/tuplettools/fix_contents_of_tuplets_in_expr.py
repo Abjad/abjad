@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import leaftools
 from abjad.components._Tuplet import FixedDurationTuplet
 from abjad.components._Tuplet import FixedMultiplierTuplet

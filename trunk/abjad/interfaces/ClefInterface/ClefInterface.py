@@ -1,4 +1,3 @@
-from abjad.Clef.Clef import Clef
 from abjad.core import _BacktrackingInterface
 from abjad.core import _GrobHandler
 from abjad.core import _Observer
@@ -13,6 +12,7 @@ class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    def __init__(self, _client, updateInterface):
       '''Bind client and LilyPond Clef grob.
          Set forced to None.'''
+      from abjad.components.Staff import Clef
       _Observer.__init__(self, _client, updateInterface)
       _GrobHandler.__init__(self, 'Clef')
       _BacktrackingInterface.__init__(self, 'clef')

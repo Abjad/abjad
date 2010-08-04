@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 def rational_to_fraction_string(rational):

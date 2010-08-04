@@ -1,6 +1,6 @@
 from abjad.core import _Observer
 from abjad.exceptions import MeasureContiguityError
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 class NumberingInterface(_Observer):

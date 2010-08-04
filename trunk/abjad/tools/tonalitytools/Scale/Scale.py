@@ -1,12 +1,9 @@
-from abjad.KeySignature import KeySignature
 from abjad.Pitch import Pitch
-from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import \
-   HarmonicDiatonicIntervalSegment
-from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import \
-   MelodicDiatonicIntervalSegment
+from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
+from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
-from abjad.tools.pitchtools.NamedPitchClassSegment import \
-   NamedPitchClassSegment
+from abjad.tools.pitchtools.NamedPitchClassSegment import NamedPitchClassSegment
+from abjad.tools.tonalitytools.KeySignature import KeySignature
 from abjad.tools.tonalitytools.ScaleDegree import ScaleDegree
 import copy
 

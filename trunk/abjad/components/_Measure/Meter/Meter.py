@@ -1,5 +1,5 @@
 from abjad.core import _GrobHandler
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
 import types

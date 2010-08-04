@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 def remove_weighted_subrun_at(l, weight, i):

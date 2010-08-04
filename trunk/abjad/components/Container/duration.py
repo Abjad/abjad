@@ -1,5 +1,5 @@
 from abjad.components._Component.duration import _ComponentDurationInterface
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 class _ContainerDurationInterface(_ComponentDurationInterface):

@@ -3,7 +3,7 @@ from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import AssignabilityError
 from abjad.exceptions import UndefinedTempoError
 from abjad.tools import durtools
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 class _LeafDurationInterface(_ComponentDurationInterface):

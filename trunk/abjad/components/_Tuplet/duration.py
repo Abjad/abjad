@@ -95,7 +95,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
    @property
    def preprolated(self):
-      '''Read-only :class:`Rational <abjad.Rational.rational.Rational>`.
+      '''Read-only :class:`Rational <abjad.core.rational.Rational>`.
       Duration prior to prolation.
 
       ::

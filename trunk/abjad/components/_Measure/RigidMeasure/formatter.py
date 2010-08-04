@@ -2,7 +2,7 @@ from abjad.exceptions import NonbinaryMeterSuppressionError
 from abjad.exceptions import OverfullMeasureError
 from abjad.exceptions import UnderfullMeasureError
 from abjad.components._Measure.formatter import _MeasureFormatter
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 class _RigidMeasureFormatter(_MeasureFormatter):

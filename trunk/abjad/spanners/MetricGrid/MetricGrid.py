@@ -1,4 +1,4 @@
-from abjad.Meter import Meter
+#from abjad.components._Measure.Meter.Meter import Meter
 from abjad.spanners.MetricGrid.format import _MetricGridSpannerFormatInterface
 from abjad.spanners.Spanner.spanner import Spanner
 from abjad.spanners.Tie import Tie
@@ -79,6 +79,7 @@ class MetricGrid(Spanner):
    @apply
    def meters( ):
       def fget(self):
+         from abjad.components._Measure.Meter import Meter
          i = 0
          moffset = 0
          prev_meter = None

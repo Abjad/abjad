@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
 from abjad.components._Leaf import _Leaf
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.spanners import Tie
 from abjad.tools.leaftools.make_notes import make_notes
 from abjad.components._Tuplet import FixedMultiplierTuplet

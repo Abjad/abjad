@@ -2,7 +2,7 @@ from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import LineBreakError
 from abjad.exceptions import TypographicWhitespaceError
-from abjad.Rational import Rational
+from abjad.core import Rational
 import types
 
 

@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 def change_written_duration_and_preserve_preprolated_duration(leaf, written_duration):

@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 def list_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):

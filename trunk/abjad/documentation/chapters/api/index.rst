@@ -10,9 +10,9 @@ Classes
    :maxdepth: 1
 
    components/_Measure/AnonymousMeasure/AnonymousMeasure
-   Articulation/Articulation
+   marks/Articulation/Articulation
    components/Chord/Chord
-   Clef/Clef
+   components/Staff/Clef/Clef
    components/Cluster/Cluster
    components/Container/Container
    components/_Measure/DynamicMeasure/DynamicMeasure
@@ -22,14 +22,13 @@ Classes
    components/StaffGroup/GrandStaff
    components/_Harmonic/HarmonicNatural
    components/Staff/InvisibleStaff
-   KeySignature/KeySignature
-   Markup/Markup
-   Meter/Meter
+   marks/Markup/Markup
+   components/_Measure/Meter/Meter
    components/Note/Note
    components/NoteHead/NoteHead
    components/StaffGroup/PianoStaff
    Pitch/Pitch
-   Rational/Rational
+   core/Rational/Rational
    components/Rest/Rest
    components/Staff/RhythmicSketchStaff
    components/Staff/RhythmicStaff
@@ -954,6 +953,7 @@ tonalitytools
    tools/tonalitytools/DoublingIndicator/DoublingIndicator
    tools/tonalitytools/ExtentIndicator/ExtentIndicator
    tools/tonalitytools/InversionIndicator/InversionIndicator
+   tools/tonalitytools/KeySignature/KeySignature
    tools/tonalitytools/Mode/Mode
    tools/tonalitytools/OmissionIndicator/OmissionIndicator
    tools/tonalitytools/QualityIndicator/QualityIndicator

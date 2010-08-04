@@ -1,7 +1,7 @@
+from abjad.components._Measure.Meter import Meter
 from abjad.exceptions import MeterAssignmentError
-from abjad.tools import durtools
-from abjad.Meter import Meter
 from abjad.interfaces import MeterInterface
+from abjad.tools import durtools
 
 
 class _DynamicMeasureMeterInterface(MeterInterface):

@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
 from abjad.components.Note import Note
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools.tietools.get_tie_chain_preprolated_duration import get_tie_chain_preprolated_duration

@@ -1,6 +1,6 @@
 from abjad.components.Container import Container
 from abjad.exceptions import TupletFuseError
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.components._Tuplet import _Tuplet
 from abjad.components._Tuplet import FixedDurationTuplet
 from abjad.components._Tuplet import FixedMultiplierTuplet

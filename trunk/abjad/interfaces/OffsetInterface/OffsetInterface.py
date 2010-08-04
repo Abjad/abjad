@@ -1,7 +1,7 @@
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces.OffsetInterface.OffsetProlatedInterface import OffsetProlatedInterface
 from abjad.interfaces.OffsetInterface._OffsetSecondsInterface import _OffsetSecondsInterface
-from abjad.Rational import Rational
+from abjad.core import Rational
 
 
 class OffsetInterface(_Interface):

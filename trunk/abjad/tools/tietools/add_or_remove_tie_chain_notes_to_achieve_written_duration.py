@@ -1,4 +1,4 @@
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.spanners import Tie
 from abjad.tools import componenttools
 from abjad.tools import durtools

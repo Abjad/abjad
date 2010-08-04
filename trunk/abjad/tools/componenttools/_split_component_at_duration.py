@@ -2,7 +2,7 @@ from abjad.components.Container import Container
 from abjad.exceptions import ContainmentError
 from abjad.components._Leaf import _Leaf
 from abjad.components._Measure import RigidMeasure
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.spanners import Tie
 from abjad.tools import durtools
 from abjad.tools import iterate

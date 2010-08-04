@@ -1,5 +1,5 @@
-from abjad.Clef import Clef
 from abjad.Pitch import Pitch
+from abjad.components.Staff import Clef
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 

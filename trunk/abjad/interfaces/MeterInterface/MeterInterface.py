@@ -1,8 +1,7 @@
 from abjad.core import _BacktrackingInterface
 from abjad.core import _GrobHandler
 from abjad.core import _Observer
-from abjad.Meter.Meter import Meter
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.tools import durtools
 import types
 
@@ -15,6 +14,7 @@ class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    
    def __init__(self, _client, _updateInterface):
       '''Bind client, set forced to None and suppress to False.'''
+      from abjad.components._Measure import Meter
       _Observer.__init__(self, _client, _updateInterface)
       _GrobHandler.__init__(self, 'TimeSignature')
       _BacktrackingInterface.__init__(self, 'meter')

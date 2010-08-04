@@ -3,7 +3,7 @@ from abjad.exceptions import OverfullMeasureError
 from abjad.exceptions import UnderfullMeasureError
 from abjad.components._Measure.number import _MeasureFormatterNumberInterface
 from abjad.components._Measure.slots import _MeasureFormatterSlotsInterface
-from abjad.Rational import Rational
+from abjad.core import Rational
 from abjad.components._Tuplet import FixedMultiplierTuplet
 
 

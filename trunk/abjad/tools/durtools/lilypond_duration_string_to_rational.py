@@ -1,5 +1,5 @@
 from abjad.exceptions import DurationError
-from abjad.Rational import Rational
+from abjad.core import Rational
 import re
 
 

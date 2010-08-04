@@ -1,4 +1,6 @@
 from abjad.core import _Abjad
+from abjad.core import _Navigator
+from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import AccidentalInterface
 from abjad.interfaces import ArticulationInterface
@@ -54,8 +56,6 @@ from abjad.interfaces import TupletNumberInterface
 from abjad.interfaces import VerticalAlignmentInterface
 from abjad.interfaces import VerticalAxisGroupInterface
 from abjad.interfaces import VoiceInterface
-from abjad._Navigator._Navigator import _Navigator
-from abjad.Rational import Rational
 import copy
 import types
 
