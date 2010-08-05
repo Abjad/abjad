@@ -1,12 +1,13 @@
-from abjad.spanners.DynamicTextSpanner.format import _DynamicSpannerFormatInterface
-from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.DynamicTextSpanner._DynamicTextSpannerFormatInterface import \
+   _DynamicTextSpannerFormatInterface
+from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 
 
 class DynamicTextSpanner(_GrobHandlerSpanner):
 
    def __init__(self, music, mark):
       _GrobHandlerSpanner.__init__(self, 'DynamicText', music)
-      self._format = _DynamicSpannerFormatInterface(self)
+      self._format = _DynamicTextSpannerFormatInterface(self)
       self.mark = mark
 
    ## PUBLIC ATTRIBUTES ##

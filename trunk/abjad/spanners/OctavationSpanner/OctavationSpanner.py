@@ -1,5 +1,6 @@
-from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
-from abjad.spanners.OctavationSpanner.format import _OctavationSpannerFormatInterface
+from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.OctavationSpanner._OctavationSpannerFormatInterface import \
+   _OctavationSpannerFormatInterface
 import types
 
 

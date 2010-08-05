@@ -1,7 +1,7 @@
 from abjad.core import _Abjad
-from abjad.spanners.Spanner.duration import _SpannerDurationInterface
-from abjad.spanners.Spanner.format import _SpannerFormatInterface
-from abjad.spanners.Spanner.offset import _SpannerOffsetInterface
+from abjad.spanners.Spanner._SpannerDurationInterface import _SpannerDurationInterface
+from abjad.spanners.Spanner._SpannerFormatInterface import _SpannerFormatInterface
+from abjad.spanners.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 from abjad.core import Rational
 from copy import deepcopy as python_deepcopy
 

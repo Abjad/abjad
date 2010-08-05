@@ -1,4 +1,4 @@
-from abjad.spanners.TextSpanner.format import _TextSpannerFormatInterface
+from abjad.spanners.TextSpanner._TextSpannerFormatInterface import _TextSpannerFormatInterface
 
 
 class _BracketSpannerFormatInterface(_TextSpannerFormatInterface):

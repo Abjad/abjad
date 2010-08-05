@@ -1,6 +1,7 @@
 from abjad.marks import Markup
-from abjad.spanners.InstrumentSpanner.format import _InstrumentSpannerFormatInterface
-from abjad.spanners.Spanner.spanner import Spanner
+from abjad.spanners.InstrumentSpanner._InstrumentSpannerFormatInterface import \
+   _InstrumentSpannerFormatInterface
+from abjad.spanners.Spanner import Spanner
 import types
 
 

@@ -1,7 +1,7 @@
-from abjad.spanners.Spanner.format import _SpannerFormatInterface
+from abjad.spanners.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 
 
-class _DynamicSpannerFormatInterface(_SpannerFormatInterface):
+class _DynamicTextSpannerFormatInterface(_SpannerFormatInterface):
 
    def __init__(self, spanner):
       _SpannerFormatInterface.__init__(self, spanner)

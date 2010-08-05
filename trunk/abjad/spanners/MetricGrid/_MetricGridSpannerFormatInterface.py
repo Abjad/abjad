@@ -1,7 +1,5 @@
-#from abjad.components.Container import Container
 from abjad.core import Rational
-#from abjad.components.Skip import Skip
-from abjad.spanners.Spanner.format import _SpannerFormatInterface
+from abjad.spanners.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 
 
 class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):

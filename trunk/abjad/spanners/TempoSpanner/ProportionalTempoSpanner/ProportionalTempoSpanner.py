@@ -1,5 +1,5 @@
-from abjad.spanners.TempoSpanner.ProportionalTempoSpanner.format import \
-   _TempoProportionalFormatInterface
+from abjad.spanners.TempoSpanner.ProportionalTempoSpanner._ProportionalTempoSpannerFormatInterface \
+    import _ProportionalTempoSpannerFormatInterface
 from abjad.spanners.TempoSpanner.TempoSpanner import TempoSpanner
 import types
 
@@ -59,4 +59,4 @@ class ProportionalTempoSpanner(TempoSpanner):
 
    def __init__(self, music = None, tempo_indication = None):
       TempoSpanner.__init__(self, music, tempo_indication)
-      self._format = _TempoProportionalFormatInterface(self)
+      self._format = _ProportionalTempoSpannerFormatInterface(self)

@@ -2,7 +2,6 @@ from abjad.core import _Abjad
 from abjad.core import Rational
 
 
-
 class _SpannerDurationInterface(_Abjad):
 
    def __init__(self, _client):

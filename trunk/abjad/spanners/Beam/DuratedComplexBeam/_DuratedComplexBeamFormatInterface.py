@@ -1,4 +1,4 @@
-from abjad.spanners.Beam.ComplexBeam.format import _ComplexBeamFormatInterface
+from abjad.spanners.Beam.ComplexBeam._ComplexBeamFormatInterface import _ComplexBeamFormatInterface
 from abjad.tools import durtools
 
 

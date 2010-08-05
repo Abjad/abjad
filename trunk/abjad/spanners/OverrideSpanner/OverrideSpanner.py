@@ -1,6 +1,7 @@
 from abjad.core import _Parser
-from abjad.spanners.OverrideSpanner.format import _OverrideSpannerFormatInterface
-from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.OverrideSpanner._OverrideSpannerFormatInterface import \
+   _OverrideSpannerFormatInterface
+from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 
 
 class OverrideSpanner(_GrobHandlerSpanner):

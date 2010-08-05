@@ -1,4 +1,4 @@
-from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 
 
 class _PositionalGrobHandlerSpanner(_GrobHandlerSpanner):

@@ -1,8 +1,8 @@
-from abjad.spanners.TempoSpanner.format import _TempoSpannerFormatInterface
+from abjad.spanners.TempoSpanner._TempoSpannerFormatInterface import _TempoSpannerFormatInterface
 from abjad.tools import schemetools
 
 
-class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
+class _ProportionalTempoSpannerFormatInterface(_TempoSpannerFormatInterface):
    '''Encapsulate ``TempoProportional`` format logic.'''
   
    def __init__(self, spanner):

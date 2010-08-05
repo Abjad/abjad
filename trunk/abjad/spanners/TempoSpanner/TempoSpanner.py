@@ -1,8 +1,8 @@
 from abjad.exceptions import UndefinedSpacingError
 from abjad.exceptions import UndefinedTempoError
 from abjad.core import Rational
-from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
-from abjad.spanners.TempoSpanner.format import _TempoSpannerFormatInterface
+from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.TempoSpanner._TempoSpannerFormatInterface import _TempoSpannerFormatInterface
 from abjad.tools import tempotools
 import types
 

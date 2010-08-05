@@ -130,7 +130,7 @@ Spanners
    spanners/TempoSpanner/ProportionalTempoSpanner/ProportionalTempoSpanner
    spanners/Slur/Slur
    spanners/SpacingSpanner/SpacingSpanner
-   spanners/Spanner/spanner
+   spanners/Spanner/Spanner
    spanners/TempoSpanner/TempoSpanner
    spanners/TextScriptSpanner/TextScriptSpanner
    spanners/TextSpanner/TextSpanner

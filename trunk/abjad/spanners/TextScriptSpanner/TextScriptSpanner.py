@@ -1,5 +1,6 @@
-from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
-from abjad.spanners.TextScriptSpanner.format import _TextScriptSpannerFormatInterface
+from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.TextScriptSpanner._TextScriptSpannerFormatInterface import \
+   _TextScriptSpannerFormatInterface
 
 
 class TextScriptSpanner(_GrobHandlerSpanner):

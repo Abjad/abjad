@@ -1,6 +1,6 @@
-#from abjad.marks.Meter import Meter
-from abjad.spanners.MetricGrid.format import _MetricGridSpannerFormatInterface
-from abjad.spanners.Spanner.spanner import Spanner
+from abjad.spanners.MetricGrid._MetricGridSpannerFormatInterface import \
+   _MetricGridSpannerFormatInterface
+from abjad.spanners.Spanner import Spanner
 from abjad.spanners.Tie import Tie
 from abjad.tools import mathtools
 

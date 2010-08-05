@@ -1,5 +1,5 @@
-from abjad.spanners.Beam.format import _BeamSpannerFormatInterface
-from abjad.spanners.Spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.Beam._BeamSpannerFormatInterface import _BeamSpannerFormatInterface
+from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 
 
 class Beam(_GrobHandlerSpanner):
