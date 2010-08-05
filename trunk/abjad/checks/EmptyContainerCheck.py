@@ -2,7 +2,7 @@ from abjad.checks._Check import _Check
 from abjad.tools import iterate
 
 
-class ContainersEmpty(_Check):
+class EmptyContainerCheck(_Check):
 
    runtime = 'composition'
 

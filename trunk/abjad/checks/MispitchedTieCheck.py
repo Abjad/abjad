@@ -2,7 +2,7 @@ from abjad.checks._Check import _Check
 from abjad.tools import iterate
 
 
-class TiesMispitched(_Check):
+class MispitchedTieCheck(_Check):
 
    def _run(self, expr):
       '''Check for mispitched notes.

@@ -3,7 +3,7 @@ from abjad.components._Measure import _Measure
 from abjad.tools import iterate
 
 
-class MeasuresNested(_Check):
+class NestedMeasureCheck(_Check):
    '''Do we have any nested measures?'''
 
    def _run(self, expr):

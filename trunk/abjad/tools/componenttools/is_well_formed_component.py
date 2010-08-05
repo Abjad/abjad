@@ -17,7 +17,7 @@ def is_well_formed_component(expr, allow_empty_containers = True):
       abjad> componenttools.is_well_formed_component(staff)
       False
       
-   Beam quarter notes are not well formed.
+   Beamed quarter notes are not well formed.
    '''
    
    results = [ ]

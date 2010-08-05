@@ -1,7 +1,7 @@
 from abjad.checks._Check import _Check
 
 
-class ParentsMissing(_Check):
+class MissingParentCheck(_Check):
    '''Each node except the root needs a parent.
       Each node needs the correct parent.'''
 

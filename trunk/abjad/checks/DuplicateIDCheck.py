@@ -4,7 +4,7 @@ from abjad.tools import iterate
 from abjad.tools import listtools
 
 
-class IdsDuplicated(_Check):
+class DuplicateIDCheck(_Check):
 
    def _run(self, expr):
       violators = [ ]

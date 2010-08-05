@@ -3,7 +3,7 @@ from abjad.spanners import OctavationSpanner
 from abjad.tools import iterate
 
 
-class OctavationsOverlapping(_Check):
+class OverlappingOctavationCheck(_Check):
    '''Octavation spanners must not overlap.'''
 
    def _run(self, expr):

@@ -2,8 +2,8 @@ from abjad.checks._Check import _Check
 from abjad.spanners import Hairpin
 
 
-class HairpinsIntermarked(_Check):
-   '''Are there any dynamic marks in the middle of a hairpin?
+class ShortHairpinCheck(_Check):
+   '''Hairpins must span at least two leaves.
    '''
 
    def _run(self, expr):
@@ -12,11 +12,7 @@ class HairpinsIntermarked(_Check):
       hairpins = [
          p for p in expr.spanners.contained if isinstance(p, Hairpin)]
       for hairpin in hairpins:
-         if len(hairpin.leaves) > 2:
-            for leaf in hairpin.leaves[1 : -1]:
-               if leaf.dynamics.mark:
-                  violators.append(hairpin)
-                  bad += 1
-                  break
+         if len(hairpin.leaves) <= 1:
+            violators.append(hairpin)
          total += 1
       return violators, total

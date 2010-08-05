@@ -1,7 +1,7 @@
 from abjad.checks._Check import _Check
 
 
-class SpannersDiscontiguous(_Check):
+class DiscontiguousSpannerCheck(_Check):
    '''There are now two different types of spanner.
    Most spanners demand that spanner components be thread-contiguous.
    But a few special spanners (like Tempo) do not make such a demand.

@@ -2,7 +2,7 @@ from abjad.checks._Check import _Check
 from abjad.tools import iterate
 
 
-class MeasuresMisdurated(_Check):
+class MisduratedMeasureCheck(_Check):
    '''Does the (pre)prolated duration of the measure match its meter?'''
 
    def _run(self, expr):

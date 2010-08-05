@@ -3,7 +3,7 @@ from abjad.tools import durtools
 from abjad.tools import iterate
 
 
-class FlagsMisrepresented(_Check):
+class MisrepresentedFlagCheck(_Check):
 
    def _run(self, expr):
       violators = [ ] 

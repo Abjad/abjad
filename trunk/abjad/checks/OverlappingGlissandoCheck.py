@@ -3,7 +3,7 @@ from abjad.spanners import Glissando
 from abjad.tools import iterate
 
 
-class GlissandiOverlapping(_Check):
+class OverlappingGlissandoCheck(_Check):
    '''Glissandi must not overlap.
    Dove-tailed glissandi are OK.'''
 

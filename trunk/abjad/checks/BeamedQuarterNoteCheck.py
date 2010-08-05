@@ -3,7 +3,7 @@ from abjad.tools import durtools
 from abjad.tools import iterate
 
 
-class QuartersBeamed(_Check):
+class BeamedQuarterNoteCheck(_Check):
 
    def _run(self, expr):
       violators = [ ]

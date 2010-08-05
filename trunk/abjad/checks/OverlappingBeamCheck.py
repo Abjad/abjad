@@ -3,7 +3,7 @@ from abjad.spanners import Beam
 from abjad.tools import iterate
 
 
-class BeamsOverlapping(_Check):
+class OverlappingBeamCheck(_Check):
    '''Beams must not overlap.'''
 
    def _run(self, expr):

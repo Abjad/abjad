@@ -4,7 +4,7 @@ from abjad.spanners import TempoSpanner
 from abjad.tools import iterate
 
 
-class TempoSpannersOverlapping(_Check):
+class OverlappingTempoSpannerCheck(_Check):
    '''Tempo spanners must not overlap.'''
 
    def _run(self, expr):
