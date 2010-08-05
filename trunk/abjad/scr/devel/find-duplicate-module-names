@@ -1,0 +1,24 @@
+#! /usr/bin/env python
+
+import os
+
+
+def _find_all_duplicate_module_names( ):
+   all_filenames = [ ]
+   for dirpath, dirnames, filenames in os.walk('.'):
+      for filename in filenames:
+         if filename.endswith('.py'):
+            if not filename.startswith('test_'):
+               if not filename == '__init__.py':
+                  all_filenames.append(filename)
+   print 'Total nontest module names:        %s' % len(all_filenames)
+   unique_filenames = set(all_filenames)
+   print 'Unique nontest module names:       %s' % len(unique_filenames)
+   duplicate_filenames = len(all_filenames) - len(unique_filenames)
+   print 'Duplicate nontest module names:    %s' % duplicate_filenames
+   print ''
+   
+
+if __name__ == '__main__':
+   os.system('clear')
+   _find_all_duplicate_module_names( )
