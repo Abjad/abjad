@@ -3,14 +3,14 @@ from abjad.tools.containertools._replace_first_n_elements_in_container_with_rest
    _replace_first_n_elements_in_container_with_rests
 
 
-def rest_half(container, rested_half, bigger_half, 
+def _replace_half_of_elements_in_container_with_rests(container, rested_half, bigger_half, 
    rest_direction = 'automatic'):
    r'''Turn the left half of `container` into rests with the left
    half of `container` holding a greater number of elements
    than the right half::
 
       abjad> staff = Staff(macros.scale(9))
-      abjad> containertools.rest_half(staff, 'left', 'left')
+      abjad> containertools.replace_half_of_elements_in_container_with_rests(staff, 'left', 'left')
       abjad> f(staff)
       \new Staff {
          r8
@@ -26,7 +26,7 @@ def rest_half(container, rested_half, bigger_half,
    than the left half::
       
       abjad> staff = Staff(macros.scale(9))
-      abjad> containertools.rest_half(staff, 'left', 'right')
+      abjad> containertools.replace_half_of_elements_in_container_with_rests(staff, 'left', 'right')
       abjad> f(staff)
       \new Staff {
          r2
@@ -42,7 +42,7 @@ def rest_half(container, rested_half, bigger_half,
    than the right half::
       
       abjad> staff = Staff(macros.scale(9))
-      abjad> containertools.rest_half(staff, 'right', 'left')
+      abjad> containertools.replace_half_of_elements_in_container_with_rests(staff, 'right', 'left')
       abjad> f(staff)
       \new Staff {
          c'8
@@ -58,7 +58,7 @@ def rest_half(container, rested_half, bigger_half,
    than the left half::
       
       abjad> staff = Staff(macros.scale(9))
-      abjad> containertools.rest_half(staff, 'right', 'right')
+      abjad> containertools.replace_half_of_elements_in_container_with_rests(staff, 'right', 'right')
       abjad> f(staff)
       \new Staff {
          c'8

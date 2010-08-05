@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_replace_first_n_elements_in_container_with_rest_01( ):
+def test_containertools_replace_first_n_elements_in_container_with_rests_01( ):
    '''For positive n, replace first n elements in container with big-endian rests.'''
 
    staff = Staff(macros.scale(6))
@@ -31,7 +31,7 @@ def test_containertools_replace_first_n_elements_in_container_with_rest_01( ):
    assert staff.format == "\\new Staff {\n\tr2\n\tr8\n\ta'8\n}"
 
 
-def test_containertools_replace_first_n_elements_in_container_with_rest_02( ):
+def test_containertools_replace_first_n_elements_in_container_with_rests_02( ):
    '''For negative n replace last n elements in container with little-endian rests.'''
 
    staff = Staff(macros.scale(6))
