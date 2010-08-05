@@ -2,12 +2,12 @@ from abjad import *
 import py.test
 
 
-def test_measuretools_scale_and_remeter_01( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_01( ):
    '''Scale binary to nonbinary.
       No note_head rewriting necessary.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
-   measuretools.scale_and_remeter(t, Rational(2, 3))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(2, 3))
 
    r'''
    {
@@ -24,12 +24,12 @@ def test_measuretools_scale_and_remeter_01( ):
    assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
 
 
-def test_measuretools_scale_and_remeter_02( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_02( ):
    '''Scale nonbinary meter to binary. 
       No note_head rewriting necessary.'''
   
    t = RigidMeasure((3, 12), macros.scale(3))
-   measuretools.scale_and_remeter(t, Rational(3, 2))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(3, 2))
 
    r'''
    {
@@ -44,12 +44,12 @@ def test_measuretools_scale_and_remeter_02( ):
    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_measuretools_scale_and_remeter_03( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_03( ):
    '''Scale binary meter to binary meter. 
       Noteheads rewrite with dots.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
-   measuretools.scale_and_remeter(t, Rational(3, 2))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(3, 2))
 
    r'''
    {
@@ -64,12 +64,12 @@ def test_measuretools_scale_and_remeter_03( ):
    assert t.format == "{\n\t\\time 9/16\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_measuretools_scale_and_remeter_04( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_04( ):
    '''Scale binary meter to binary meter.
       Noteheads rewrite without dots.'''
 
    t = RigidMeasure((9, 16), macros.scale(3, Rational(3, 16)))
-   measuretools.scale_and_remeter(t, Rational(2, 3))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(2, 3))
 
    r'''
    {
@@ -84,12 +84,12 @@ def test_measuretools_scale_and_remeter_04( ):
    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_measuretools_scale_and_remeter_05( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_05( ):
    '''Scale binary meter to nonbinary meter.
       No note_head rewriting necessary.'''
 
    t = RigidMeasure((9, 16), macros.scale(9, Rational(1, 16)))
-   measuretools.scale_and_remeter(t, Rational(2, 3))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(2, 3))
 
    r'''
    {
@@ -112,12 +112,12 @@ def test_measuretools_scale_and_remeter_05( ):
    assert t.format == "{\n\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16\n\t\tb'16\n\t\tc''16\n\t\td''16\n\t}\n}"
 
 
-def test_measuretools_scale_and_remeter_06( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_06( ):
    '''Scale nonbinary meter to binary meter.
       Noteheads rewrite with double duration.'''
 
    t = RigidMeasure((3, 12), macros.scale(3))
-   measuretools.scale_and_remeter(t, Rational(3))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(3))
 
    r'''
    {
@@ -132,13 +132,13 @@ def test_measuretools_scale_and_remeter_06( ):
    assert t.format == "{\n\t\\time 3/4\n\tc'4\n\td'4\n\te'4\n}"
 
 
-def test_measuretools_scale_and_remeter_07( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_07( ):
    '''Scale binary meter by one half.
       Noteheads rewrite with half duration.
       Meter rewrites with double denominator.'''
 
    t = RigidMeasure((6, 16), macros.scale(6, Rational(1, 16)))
-   measuretools.scale_and_remeter(t, Rational(1, 2))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(1, 2))
 
    r'''
    {
@@ -156,13 +156,13 @@ def test_measuretools_scale_and_remeter_07( ):
    assert t.format == "{\n\t\\time 6/32\n\tc'32\n\td'32\n\te'32\n\tf'32\n\tg'32\n\ta'32\n}"
 
 
-def test_measuretools_scale_and_remeter_08( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_08( ):
    '''Scale binary meter by one quarter.
       Noteheads rewrite with quarter duration.
       Meter rewrites with quadruple denominator.'''
 
    t = RigidMeasure((6, 16), macros.scale(6, Rational(1, 16)))
-   measuretools.scale_and_remeter(t, Rational(1, 4))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(1, 4))
 
    r'''
    {
@@ -180,13 +180,13 @@ def test_measuretools_scale_and_remeter_08( ):
    assert t.format == "{\n\t\\time 6/64\n\tc'64\n\td'64\n\te'64\n\tf'64\n\tg'64\n\ta'64\n}"
 
 
-def test_measuretools_scale_and_remeter_09( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_09( ):
    '''Scale binary meter by two.
       Noteheads rewrite with double duration.
       Meter rewrites with half denominator.'''
 
    t = RigidMeasure((6, 16), macros.scale(6, Rational(1, 16)))
-   measuretools.scale_and_remeter(t, Rational(2))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(2))
 
    r'''
    {
@@ -204,13 +204,13 @@ def test_measuretools_scale_and_remeter_09( ):
    assert t.format == "{\n\t\\time 6/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
 
 
-def test_measuretools_scale_and_remeter_10( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_10( ):
    '''Scale binary meter by four.
       Noteheads rewrite with quadruple duration.
       Meter rewrites with quarter denominator.'''
 
    t = RigidMeasure((6, 16), macros.scale(6, Rational(1, 16)))
-   measuretools.scale_and_remeter(t, Rational(4))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(4))
 
    r'''
    {
@@ -228,8 +228,8 @@ def test_measuretools_scale_and_remeter_10( ):
    assert t.format == "{\n\t\\time 6/4\n\tc'4\n\td'4\n\te'4\n\tf'4\n\tg'4\n\ta'4\n}"
 
 
-def test_measuretools_scale_and_remeter_11( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_11( ):
    '''Raise ZeroDivisionError when multiplier equals zero.'''
 
    t = RigidMeasure((6, 16), macros.scale(6, Rational(1, 16)))
-   py.test.raises(ZeroDivisionError, 'measuretools.scale_and_remeter(t, 0)')
+   py.test.raises(ZeroDivisionError, 'measuretools.scale_measure_by_multiplier_and_adjust_meter(t, 0)')

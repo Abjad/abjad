@@ -3,7 +3,7 @@ from abjad.marks import Meter
 from abjad.tools import durtools
 
 
-def set_measure_denominator_and_multiply_numerator(measure, denominator):
+def set_measure_denominator_and_adjust_numerator(measure, denominator):
    r'''Set `measure` meter `denominator` and multiply
    meter numerator accordingly::
 
@@ -19,7 +19,7 @@ def set_measure_denominator_and_multiply_numerator(measure, denominator):
       
    ::
       
-      abjad> measuretools.set_measure_denominator_and_multiply_numerator(measure, 16) 
+      abjad> measuretools.set_measure_denominator_and_adjust_numerator(measure, 16) 
       RigidMeasure(6/16, [c'8, d'8, e'8])
       
    ::
@@ -35,6 +35,10 @@ def set_measure_denominator_and_multiply_numerator(measure, denominator):
    Leave `measure` contents unchanged.
 
    Return `measure`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.set_measure_denominator_and_multiply_numerator( )`` to
+      ``measuretools.set_measure_denominator_and_adjust_numerator( )``.
    '''
 
 

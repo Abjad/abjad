@@ -5,7 +5,7 @@ from abjad.tools import durtools
 from abjad.tools import mathtools
 
 
-def scale_and_remeter(measure, multiplier = Rational(1)):
+def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(1)):
    r'''Multiply the duration of every element in measure by multiplier.
       Then rewrite the meter of measure as appropriate.
 
@@ -16,7 +16,7 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
       Example::
 
          abjad> t = RigidMeasure((3, 8), macros.scale(3))
-         abjad> measuretools.scale_and_remeter(t, Rational(2, 3))
+         abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(2, 3))
          abjad> print t.format
 
               \time 3/12
@@ -25,6 +25,10 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
                       d'8
                       e'8
               }
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.scale_and_remeter( )`` to
+      ``measuretools.scale_measure_by_multiplier_and_adjust_meter( )``.
    '''
 
    from abjad.tools import containertools

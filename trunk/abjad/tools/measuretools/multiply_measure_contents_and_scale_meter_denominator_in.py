@@ -1,6 +1,6 @@
 from abjad.core import Rational
 from abjad.tools import iterate
-from abjad.tools.measuretools.scale_and_remeter import scale_and_remeter
+from abjad.tools.measuretools.scale_measure_by_multiplier_and_adjust_meter import scale_measure_by_multiplier_and_adjust_meter
 from abjad.tools.measuretools.multiply_measure_contents_in import multiply_measure_contents_in
 
 
@@ -50,7 +50,7 @@ def multiply_measure_contents_and_scale_meter_denominator_in(expr, concentration
       spin_count, scalar_denominator = concentration_pair
       multiply_measure_contents_in(measure, spin_count)
       multiplier = Rational(1, scalar_denominator)
-      scale_and_remeter(measure, multiplier)
+      scale_measure_by_multiplier_and_adjust_meter(measure, multiplier)
       result.append(measure)
 
    return result

@@ -2,7 +2,8 @@ from abjad.core import Rational
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
 from abjad.tools import componenttools
-from abjad.tools.leaftools.make_first_n_notes_in_ascending_diatonic_scale import make_first_n_notes_in_ascending_diatonic_scale
+from abjad.tools.leaftools.make_first_n_notes_in_ascending_diatonic_scale import \
+   make_first_n_notes_in_ascending_diatonic_scale
 
 
 

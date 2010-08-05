@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from make_html_docs import make_html_docs
+from make_html_docs import make_rigid_measures_with_full_measure_spacer_skips_html_docs
 import os
 
 

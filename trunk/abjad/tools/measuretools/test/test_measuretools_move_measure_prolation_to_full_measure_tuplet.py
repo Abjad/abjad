@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_project_01( ):
+def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
    '''Project 3/12 meter onto measure contents.'''
 
    inner = FixedDurationTuplet((2, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
@@ -9,7 +9,7 @@ def test_measuretools_project_01( ):
    outer = FixedDurationTuplet((2, 8), [inner] + notes)
    t = RigidMeasure((2, 8), [outer])
    pitchtools.diatonicize(t)
-   measuretools.subsume(t)
+   measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''
    {
@@ -28,7 +28,7 @@ def test_measuretools_project_01( ):
 
    assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
 
-   measuretools.project(t)
+   measuretools.move_measure_prolation_to_full_measure_tuplet(t)
 
    r'''
    {
@@ -49,11 +49,11 @@ def test_measuretools_project_01( ):
    assert t.format == "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
 
 
-def test_measuretools_project_02( ):
+def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
 
    t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), macros.scale(6))])
-   measuretools.subsume(t)
+   measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''
    {
@@ -77,7 +77,7 @@ def test_measuretools_project_02( ):
 
    assert t.format == "{\n\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}\n}"
 
-   measuretools.project(t)
+   measuretools.move_measure_prolation_to_full_measure_tuplet(t)
 
    r'''
    {

@@ -9,7 +9,7 @@ def replace_measure_contents_in(expr, new_contents):
 
    Replace contents of measures in `expr` with `new_contents`::
 
-      abjad> staff = Staff(measuretools.make([(1, 8), (3, 16)]))
+      abjad> staff = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (3, 16)]))
       abjad> f(staff)
       \new Staff {
          {

@@ -4,7 +4,7 @@ from abjad.tools.measuretools.scale_measure_contents_in import \
    scale_measure_contents_in
 
 
-def change_binary_measure_to_nonbinary(measure, new_denominator_factor):
+def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominator_factor):
    r'''.. versionadded:: 1.1.1
 
    Change binary `measure` to nonbinary measure
@@ -21,7 +21,7 @@ def change_binary_measure_to_nonbinary(measure, new_denominator_factor):
       
    ::
       
-      abjad> measuretools.change_binary_measure_to_nonbinary(measure, 3)
+      abjad> measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 3)
       RigidMeasure(3/12, [c'8., d'8.])
       
    ::
@@ -48,6 +48,10 @@ def change_binary_measure_to_nonbinary(measure, new_denominator_factor):
    Pick best new meter.
 
    .. todo:: implement ``measuretools.change_nonbinary_measure_to_binary( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.change_binary_measure_to_nonbinary( )`` to
+      ``measuretools.scale_measure_denominator_and_adjust_measure_contents( )``.
    '''
 
    ## save old meter duration

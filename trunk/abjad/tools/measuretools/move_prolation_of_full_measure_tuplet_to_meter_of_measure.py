@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 from abjad.components._Tuplet import _Tuplet
 
 
-def subsume(expr):
+def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
    r'''Subsume all measures in expr containing only top-level tuplet.
    Measures usually become nonbinary as as result of subsumption.
 
@@ -16,7 +16,7 @@ def subsume(expr):
 
       abjad> t = RigidMeasure((2, 8), [
          FixedDurationTuplet((2, 8), macros.scale(3))])
-      abjad> measuretools.subsume(t)
+      abjad> measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
       abjad> print t.format
 
       \time 3/12
@@ -25,6 +25,10 @@ def subsume(expr):
          d'8
          e'8
       }
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.subsume( )`` to
+      ``measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure( )``.
    '''
 
    from abjad.tools import containertools

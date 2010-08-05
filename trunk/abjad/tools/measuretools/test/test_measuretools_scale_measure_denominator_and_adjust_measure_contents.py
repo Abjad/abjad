@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_change_binary_measure_to_nonbinary_01( ):
+def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01( ):
    '''Make binary measure into equivalent nonbinary measure.
       Assignable 3/2 multiplier conserves note_heads.'''
 
@@ -16,7 +16,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_01( ):
    }
    '''
 
-   measuretools.change_binary_measure_to_nonbinary(t, 3)
+   measuretools.scale_measure_denominator_and_adjust_measure_contents(t, 3)
 
    r'''
    {
@@ -32,7 +32,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_01( ):
    assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8. [\n\t\td'8. ]\n\t}\n}"
 
    
-def test_measuretools_change_binary_measure_to_nonbinary_02( ):
+def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02( ):
    '''Make binary measure into equivalent nonbinary measure.
       Nonassignable 5/4 multiplier induces ties.'''
 
@@ -47,7 +47,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_02( ):
    }
    '''
 
-   measuretools.change_binary_measure_to_nonbinary(t, 5)
+   measuretools.scale_measure_denominator_and_adjust_measure_contents(t, 5)
 
    r'''
    {
@@ -65,7 +65,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_02( ):
    assert t.format == "{\n\t\\time 5/20\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8 [ ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32 ]\n\t}\n}"
 
 
-def test_measuretools_change_binary_measure_to_nonbinary_03( ):
+def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03( ):
    '''Make binary measure into equivalent nonbinary measure.
       Assignable 7/4 multiplier conserves note_heads.'''
 
@@ -80,7 +80,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_03( ):
    }
    '''
 
-   measuretools.change_binary_measure_to_nonbinary(t, 7)
+   measuretools.scale_measure_denominator_and_adjust_measure_contents(t, 7)
 
    r'''
    {
@@ -96,7 +96,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_03( ):
    assert t.format == "{\n\t\\time 7/28\n\t\\scaleDurations #'(4 . 7) {\n\t\tc'8.. [\n\t\td'8.. ]\n\t}\n}"
 
 
-def test_measuretools_change_binary_measure_to_nonbinary_04( ):
+def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04( ):
    '''Make binary measure into equivalent nonbinary measure.
       Nonassignable 9/8 multiplier induces ties.'''
 
@@ -111,7 +111,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_04( ):
    }
    '''
 
-   measuretools.change_binary_measure_to_nonbinary(t, 9)
+   measuretools.scale_measure_denominator_and_adjust_measure_contents(t, 9)
 
    r'''
    {

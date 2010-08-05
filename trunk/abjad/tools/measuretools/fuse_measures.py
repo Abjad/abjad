@@ -12,7 +12,7 @@ from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
 def fuse_measures(measures):
    r'''Fuse `measures`::
 
-      abjad> staff = Staff(measuretools.make([(1, 8), (2, 16)]))
+      abjad> staff = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
       abjad> measuretools.populate(staff, Rational(1, 16))
       abjad> pitchtools.diatonicize(staff)
       abjad> Beam(staff.leaves)

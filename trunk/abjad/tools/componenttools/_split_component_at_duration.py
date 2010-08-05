@@ -66,7 +66,7 @@ def _split_component_at_duration(
          nonbinary_product = 1
          for nonbinary_factor in nonbinary_factors:
             nonbinary_product *= nonbinary_factor
-         measuretools.change_binary_measure_to_nonbinary(
+         measuretools.scale_measure_denominator_and_adjust_measure_contents(
             measure, nonbinary_product)
          ## rederive duration crosses with possibly new measure contents
          contents = list_improper_contents_of_component_that_cross_prolated_offset(

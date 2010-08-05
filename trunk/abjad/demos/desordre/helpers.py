@@ -1,7 +1,7 @@
 from abjad import *
 import math
 #from abjad.tools import template
-from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
+from abjad.tools.scoretools.make_empty_piano_score import make_rigid_measures_with_full_measure_spacer_skips_empty_piano_score
 
 
 def desordre_build(pitches):
