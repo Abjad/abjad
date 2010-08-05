@@ -1,5 +1,5 @@
 from abjad.components.Container import Container
-from abjad.components._Context.formatter import _ContextFormatter
+from abjad.components._Context._ContextFormatter import _ContextFormatter
 
 
 class _Context(Container):

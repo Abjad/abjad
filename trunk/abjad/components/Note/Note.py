@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.NoteHead import NoteHead
-from abjad.components.Note.initializer import _NoteInitializer
+from abjad.components.Note._NoteInitializer import _NoteInitializer
 
 
 class Note(_Leaf):

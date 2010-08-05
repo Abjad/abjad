@@ -1,5 +1,5 @@
-from abjad.components.Chord.formatter import _ChordFormatter
-from abjad.components.Chord.initializer import _ChordInitializer
+from abjad.components.Chord._ChordFormatter import _ChordFormatter
+from abjad.components.Chord._ChordInitializer import _ChordInitializer
 from abjad.components._Leaf import _Leaf
 from abjad.components.NoteHead import NoteHead
 

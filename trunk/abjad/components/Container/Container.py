@@ -1,7 +1,7 @@
 from abjad.components._Component._Component import _Component
-from abjad.components.Container.duration import _ContainerDurationInterface
-from abjad.components.Container.formatter import _ContainerFormatter
-from abjad.components.Container.spanner.aggregator import _ContainerSpannerAggregator
+from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
+from abjad.components.Container._ContainerFormatter import _ContainerFormatter
+from abjad.components.Container._ContainerSpannerAggregator import _ContainerSpannerAggregator
 from abjad.interfaces import BracketsInterface
 from abjad.interfaces import NoteHeadInterface
 

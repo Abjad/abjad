@@ -1,5 +1,5 @@
 from abjad.components.Container import Container
-from abjad.components.Grace.formatter import _GraceFormatter
+from abjad.components.Grace._GraceFormatter import _GraceFormatter
 
 
 class Grace(Container):

@@ -1,5 +1,6 @@
 from abjad.core import Rational
-from abjad.components._Tuplet.FixedMultiplierTuplet.duration import _FMTupletDurationInterface
+from abjad.components._Tuplet.FixedMultiplierTuplet._FixedMultiplierTupletDurationInterface import \
+   _FixedMultiplierTupletDurationInterface
 from abjad.components._Tuplet._Tuplet import _Tuplet
 
 
@@ -9,7 +10,7 @@ class FixedMultiplierTuplet(_Tuplet):
    def __init__(self, multiplier, music = None):
       '''Init fixed-multiplier tuplet as type of *Abjad* tuplet.'''
       _Tuplet.__init__(self, music)
-      self._duration = _FMTupletDurationInterface(self, multiplier)
+      self._duration = _FixedMultiplierTupletDurationInterface(self, multiplier)
       self._signifier = '*'
 
    ## REPR ##
@@ -30,6 +31,6 @@ class FixedMultiplierTuplet(_Tuplet):
 
    @property
    def duration(self):
-      ''':class:`~abjad.components._Tuplet.FixedMultiplierTuplet.duration._FMTupletDurationInterface` \
+      ''':class:`~abjad.components._Tuplet.FixedMultiplierTuplet._FixedMultiplierTupletDurationInterface` \
       duration interface.'''
       return self._duration

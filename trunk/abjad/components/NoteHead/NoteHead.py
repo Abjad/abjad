@@ -1,4 +1,4 @@
-from abjad.components.NoteHead.format import _NoteHeadFormatInterface
+from abjad.components.NoteHead._NoteHeadFormaterInterface import _NoteHeadFormatInterface
 from abjad.interfaces import NoteHeadInterface
 import types
 

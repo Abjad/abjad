@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.components.Rest.initializer import _RestInitializer
+from abjad.components.Rest._RestInitializer import _RestInitializer
 
 
 class Rest(_Leaf):
