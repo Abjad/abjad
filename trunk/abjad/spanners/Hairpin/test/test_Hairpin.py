@@ -1,6 +1,6 @@
 from abjad import *
-from abjad.checks import HairpinsIntermarked
-from abjad.checks import HairpinsShort
+from abjad.checks import IntermarkedHairpinCheck
+from abjad.checks import ShortHairpinCheck
 
 
 def test_Hairpin_01( ):
@@ -31,7 +31,7 @@ def test_Hairpin_02( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Crescendo(t[0 : 1])
-   checker = HairpinsShort( )
+   checker = ShortHairpinCheck( )
 
    assert not checker.check(t)
    assert t.format == "\\new Staff {\n\tc'8 \\< \\!\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -81,7 +81,7 @@ def test_Hairpin_04( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Crescendo(t[ : 4])
    t[2].dynamics.mark = 'p'
-   checker = HairpinsIntermarked( )
+   checker = IntermarkedHairpinCheck( )
 
    assert not checker.check(t)
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8 \\p\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -208,7 +208,7 @@ def test_Hairpin_09( ):
 
    assert len(t[0].dynamics.spanner.components) == len(t)
    assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\p\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\f\n\tr8\n}"
-   checker = HairpinsIntermarked( )
+   checker = IntermarkedHairpinCheck( )
    assert checker.check(t)
 
    r'''

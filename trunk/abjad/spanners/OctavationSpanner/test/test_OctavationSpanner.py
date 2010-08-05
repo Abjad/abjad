@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.checks import OctavationsOverlapping
+from abjad.checks import OverlappingOctavationCheck
 
 
 def test_OctavationSpanner_01( ):
@@ -133,7 +133,7 @@ def test_OctavationSpanner_06( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    OctavationSpanner(t[ : 4], 1)
    OctavationSpanner(t[2 : 6], 2)
-   checker = OctavationsOverlapping( )
+   checker = OverlappingOctavationCheck( )
 
    assert not checker.check(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\t\\ottava #2\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\t\\ottava #0\n\tfs'8\n\tg'8\n}"

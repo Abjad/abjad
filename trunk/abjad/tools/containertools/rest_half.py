@@ -1,5 +1,6 @@
 from abjad.tools import mathtools
-from abjad.tools.containertools.rest_by_count import rest_by_count
+from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import \
+   _replace_first_n_elements_in_container_with_rests
 
 
 def rest_half(container, rested_half, bigger_half, 
@@ -103,7 +104,7 @@ def rest_half(container, rested_half, bigger_half,
    i = halves[0]
 
    ## rest container in place at split index
-   rest_by_count(
+   _replace_first_n_elements_in_container_with_rests(
       container, i, rested_half, direction = rest_direction)
 
    ## return rested container

@@ -271,7 +271,9 @@ containertools
    tools/containertools/remove_empty_containers_in_expr
    tools/containertools/repeat_contents_of_container
    tools/containertools/repeat_last_n_elements_of_container
-   tools/containertools/rest_by_count
+   tools/containertools/replace_first_n_elements_in_container_with_big_endian_rests
+   tools/containertools/replace_first_n_elements_in_container_with_little_endian_rests
+   tools/containertools/replace_first_n_elements_in_container_with_rests
    tools/containertools/rest_half
    tools/containertools/reverse_contents_of_container
    tools/containertools/scale_contents_of_container

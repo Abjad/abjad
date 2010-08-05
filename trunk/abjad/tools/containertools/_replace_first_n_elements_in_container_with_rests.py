@@ -2,7 +2,8 @@ from abjad.core import Rational
 from abjad.tools import leaftools
 
 
-def rest_by_count(container, i, rested_half, direction = 'automatic'):
+def _replace_first_n_elements_in_container_with_rests(container, i, rested_half, 
+   direction = 'automatic'):
    r'''Replace the `i` elements in the `rested_half` of `container` 
    with rests::
 
