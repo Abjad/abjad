@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SpannerOffsetInterface_start_01( ):
+def test__SpannerOffsetInterface_start_01( ):
    '''Return start time of spanner in score.'''
 
    t = Voice(macros.scale(4))

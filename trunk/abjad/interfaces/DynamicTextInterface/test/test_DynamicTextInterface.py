@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DynamicsInterface_01( ):
+def test_DynamicTextInterface_01( ):
    '''Dynamics default to no mark, no hairpin and no effective dynamic.'''
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
 
@@ -25,7 +25,7 @@ def test_DynamicsInterface_01( ):
       assert not note.dynamics.spanned
 
 
-def test_DynamicsInterface_02( ):
+def test_DynamicTextInterface_02( ):
    '''Marks grant an effective dynamic to notes following after.'''
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
    staff[0].dynamics.mark = 'p'
@@ -54,7 +54,7 @@ def test_DynamicsInterface_02( ):
    '''
 
 
-#def test_DynamicsInterface_03( ):
+#def test_DynamicTextInterface_03( ):
 #   '''Explicit marks show up as explicit marks;
 #      the effective dynamic of hairpinned notes shows up
 #      as a string representation of the hairpin.'''
@@ -93,7 +93,7 @@ def test_DynamicsInterface_02( ):
 #   '''
 #
 #
-#def test_DynamicsInterface_04( ):
+#def test_DynamicTextInterface_04( ):
 #   '''Hairpins with neither a start mark nor a stop mark
 #      grant no effective dynamic to notes following after.'''
 #   staff = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -122,7 +122,7 @@ def test_DynamicsInterface_02( ):
 #   '''
 #
 #
-#def test_DynamicsInterface_05( ):
+#def test_DynamicTextInterface_05( ):
 #   '''Hairpins marked with a start mark but without a stop mark
 #      grant no effective dynamic to notes following after.'''
 #   staff = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -156,7 +156,7 @@ def test_DynamicsInterface_02( ):
 #   '''
 #
 #
-#def test_DynamicsInterface_06( ):
+#def test_DynamicTextInterface_06( ):
 #   '''Hairpins with a stop mark grant an effective dynamic
 #      to notes following after.'''
 #   staff = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -190,7 +190,7 @@ def test_DynamicsInterface_02( ):
 #   '''
 
 
-def test_DynamicsInterface_07( ):
+def test_DynamicTextInterface_07( ):
    '''Dynamics interface maps to DynamicText.'''
    t = Note(0, (1, 4))
    t.dynamics.self_alignment_X = -0.5
@@ -201,7 +201,7 @@ def test_DynamicsInterface_07( ):
    '''
 
 
-def test_DynamicsInterface_08( ):
+def test_DynamicTextInterface_08( ):
    '''Dynamics interface implements first, last, only.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    #Crescendo(t)

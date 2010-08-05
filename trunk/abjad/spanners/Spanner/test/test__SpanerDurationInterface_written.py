@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SpannerDurationInterface_written_01( ):
+def test__SpanerDurationInterface_written_01( ):
    t = Voice([RigidMeasure((2, 12), macros.scale(2)), 
       RigidMeasure((2, 8), macros.scale(2))])
    beam = Beam(t.leaves)

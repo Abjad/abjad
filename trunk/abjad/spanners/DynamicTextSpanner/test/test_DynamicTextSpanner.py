@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DynamicSpanner_01( ):
+def test_DynamicTextSpanner_01( ):
    
    t = Voice(macros.scale(4))
    Beam(t[:])
