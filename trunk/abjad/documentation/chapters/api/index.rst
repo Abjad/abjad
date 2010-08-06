@@ -453,7 +453,7 @@ leaftools
    tools/leaftools/get_durations_written
    tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/label_leaves_in_expr_with_leaf_depth
-   tools/leaftools/label_leaves_in_expr_with_leaf_duration
+   tools/leaftools/label_leaves_in_expr_with_leaf_durations
    tools/leaftools/label_leaves_in_expr_with_leaf_indices
    tools/leaftools/label_leaves_in_expr_with_leaf_numbers
    tools/leaftools/label_leaves_in_expr_with_melodic_chromatic_interval_classes
@@ -464,7 +464,9 @@ leaftools
    tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_inteval_classes
    tools/leaftools/label_leaves_in_expr_with_pitch_class_numbers
    tools/leaftools/label_leaves_in_expr_with_pitch_numbers
+   tools/leaftools/label_leaves_in_expr_with_prolated_leaf_duration
    tools/leaftools/label_leaves_in_expr_with_tuplet_depth
+   tools/leaftools/label_leaves_in_expr_with_written_leaf_duration
    tools/leaftools/leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration
    tools/leaftools/leaf_to_augmented_tuplet_with_proportions
    tools/leaftools/leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration
@@ -956,6 +958,9 @@ tietools
    tools/tietools/group_leaves_in_tie_chain_by_immediate_parents
    tools/tietools/is_tie_chain
    tools/tietools/is_tie_chain_with_all_leaves_in_same_parent
+   tools/tietools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
+   tools/tietools/label_tie_chains_in_expr_with_tie_chain_durations
+   tools/tietools/label_tie_chains_in_expr_with_written_tie_chain_duration
    tools/tietools/remove_all_leaves_in_tie_chain_except_first
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots

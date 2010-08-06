@@ -1,0 +1,24 @@
+from abjad import *
+
+
+def test_tietools_label_tie_chains_in_expr_with_written_tie_chain_duration_01( ):
+
+   staff = Staff(leaftools.make_repeated_notes(4))
+   FixedDurationTuplet((2, 8), staff[:3])
+   Tie(staff.leaves[:2])
+   Tie(staff.leaves[2:])
+   tietools.label_tie_chains_in_expr_with_written_tie_chain_duration(staff)
+
+   r'''
+   \new Staff {
+      \times 2/3 {
+         c'8 _ \markup { \small 1/4 } ~
+         c'8
+         c'8 _ \markup { \small 1/4 } ~
+      }
+      c'8
+   }
+   '''
+
+   assert componenttools.is_well_formed_component(staff)
+   assert staff.format == "\\new Staff {\n\t\\times 2/3 {\n\t\tc'8 _ \\markup { \\small 1/4 } ~\n\t\tc'8\n\t\tc'8 _ \\markup { \\small 1/4 } ~\n\t}\n\tc'8\n}"

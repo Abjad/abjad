@@ -1,8 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_remove_markup_from_leaves_in_expr_01( ):
-   '''Clear multiple pieces of down-markup.'''
+def test_leaftools_label_leaves_in_expr_with_leaf_duration_03( ):
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
    leaftools.label_leaves_in_expr_with_leaf_durations(t)
@@ -15,15 +14,5 @@ def test_leaftools_remove_markup_from_leaves_in_expr_01( ):
    }
    '''
 
-   leaftools.remove_markup_from_leaves_in_expr(t)
-   
-   r'''
-   \times 2/3 {
-      c'8
-      d'8
-      e'8
-   }
-   '''
-
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+   assert t.format == "\\times 2/3 {\n\tc'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n\td'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n\te'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n}"
