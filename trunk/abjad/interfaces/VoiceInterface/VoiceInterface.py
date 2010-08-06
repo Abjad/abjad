@@ -3,7 +3,7 @@ from abjad.interfaces._Interface import _Interface
 
 
 class VoiceInterface(_Interface, _FormatContributor):
-   '''Manage *LilyPond* and *Abjad* voice settings.
+   '''Manage LilyPond and Abjad voice settings.
    
       ::
 
@@ -24,10 +24,10 @@ class VoiceInterface(_Interface, _FormatContributor):
    @property
    def explicit(self):
       '''Read-only reference to first \
-         *Abjad* :class:`Voice <abjad.components.Voice.voice.Voice>` \
+         Abjad :class:`Voice <abjad.components.Voice.voice.Voice>` \
          in parentage of client.
 
-         * If no explicit *Abjad* \
+         * If no explicit Abjad \
             :class:`Voice <abjad.components.Voice.voice.Voice>` \
             in parentage of client, return ``None``.
 
@@ -44,7 +44,7 @@ class VoiceInterface(_Interface, _FormatContributor):
    @apply
    def number( ):
       def fget(self):
-         r'''Read / write *LilyPond* number of this voice.
+         r'''Read / write LilyPond number of this voice.
 
             * Default value: ``None``.
             * Allowed values: ``1``, ``2``, ``3``, ``4``, ``None``.

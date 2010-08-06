@@ -1,6 +1,6 @@
 '''Spacing tools.
 
-   This package depends on only the core *Abjad* classes.'''
+   This package depends on only the core Abjad classes.'''
 
 from abjad.tools.importtools._package_import import _package_import
 

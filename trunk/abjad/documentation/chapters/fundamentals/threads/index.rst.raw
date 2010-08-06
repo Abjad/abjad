@@ -89,7 +89,7 @@ or
 
    abjad> Slur([vA, vC])
 
-but both throw a :class:`~abjad.exceptions.exceptions.ContiguityError`. *Abjad* needs to see an explicit connection between either `vA` and `vB` or `vA` and `vC`. 
+but both throw a :class:`~abjad.exceptions.exceptions.ContiguityError`. Abjad needs to see an explicit connection between either `vA` and `vB` or `vA` and `vC`. 
 
 Observe the behavior of the :func:`~abjad.tools.iterate.thread.thread` iterator on the `staff`.
 
@@ -111,7 +111,7 @@ print list(notes)
 In each case we are passing a different *thread signature* to the :func:`~abjad.tools.iterate.thread.thread` iterator, so each case returns a different list of Notes.
 
 .. note::
-   All *Abjad* Components have a :class:`~abjad.thread.interface.ThreadInterface`.
+   All Abjad Components have a :class:`~abjad.thread.interface.ThreadInterface`.
 
 
 We can see that the *thread signature* of each voice is indeed different by calling the ``report( )`` method on each of the Voice's :class:`~abjad.thread.interface.ThreadInterface`.
@@ -136,7 +136,7 @@ print vA.thread.signature == vC.thread.signature
 print vB.thread.signature == vC.thread.signature
 </abjad>
 
-To allow *Abjad* to treat the content of, say, voices `vA` and `vB` as belonging together, we explicitly define a thread between them. To do this  all we need to do is name these Voices equally:
+To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging together, we explicitly define a thread between them. To do this  all we need to do is name these Voices equally:
 
 <abjad>
 vA.name = 'piccolo'

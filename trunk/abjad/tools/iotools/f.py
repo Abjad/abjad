@@ -1,7 +1,7 @@
 def f(expr):
-   r'''Print the `LilyPond` input code of `Abjad` expression *expr*.
+   r'''Print the LilyPond input code of Abjad expression expr.
    
-   - *expr* can be any `Abjad` object having a ``format`` property.
+   - expr can be any Abjad object having a ``format`` property.
 
    Example::
       

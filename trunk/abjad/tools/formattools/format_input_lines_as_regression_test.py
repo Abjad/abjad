@@ -1,9 +1,9 @@
-def regression(code, tab_width = 3):
+def format_input_lines_as_regression_test(input_lines, tab_width = 3):
    r""".. versionadded:: 1.1.2
 
-   Format `code` for regression test::
+   Format `input_lines` as regression test::
 
-      abjad> code = '''
+      abjad> input_lines = '''
       ... staff = Staff(macros.scale(4))
       ... Beam(staff.leaves)
       ... f(staff)
@@ -11,7 +11,7 @@ def regression(code, tab_width = 3):
       ... FixedDurationTuplet((2, 8), staff[:3])
       ... f(staff)
       ... '''
-      abjad> formattools.regression(code)
+      abjad> formattools.format_input_lines_as_regression_test(input_lines)
 
          staff = Staff(macros.scale(4))
          Beam(staff.leaves)
@@ -52,7 +52,7 @@ def regression(code, tab_width = 3):
 
    tab = ' ' * tab_width
    start = tab
-   lines = code.split('\n')
+   lines = input_lines.split('\n')
    last_line_index = len(lines) - 1
    most = ''
    for i, line in enumerate(lines):

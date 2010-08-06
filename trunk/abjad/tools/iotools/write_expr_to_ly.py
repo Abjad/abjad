@@ -11,10 +11,10 @@ def write_expr_to_ly(expr, file_name, template = None,
 
    - `expr` : Abjad expression to format.
    - `file_name` : ``str``. The full path name (relative or absolute) of \
-      the `LilyPond` file. If only the file name is given, the file \
+      the LilyPond file. If only the file name is given, the file \
       is written to the current directory.
    - `template` : ``string``, ``None``. The name of the template to \
-      use to format the `LilyPond` file. If ``None``, no template is used.
+      use to format the LilyPond file. If ``None``, no template is used.
    - `title` : ``str``, ``None``. The title of the file.
    
    Write ``t`` to ``foo.ly`` in the current directory. ::

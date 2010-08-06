@@ -5,10 +5,10 @@ from abjad.components._Tuplet._Tuplet import _Tuplet
 
 
 class FixedMultiplierTuplet(_Tuplet):
-   '''*Abjad* model of tuplet with fixed multiplier.'''
+   '''Abjad model of tuplet with fixed multiplier.'''
 
    def __init__(self, multiplier, music = None):
-      '''Init fixed-multiplier tuplet as type of *Abjad* tuplet.'''
+      '''Init fixed-multiplier tuplet as type of Abjad tuplet.'''
       _Tuplet.__init__(self, music)
       self._duration = _FixedMultiplierTupletDurationInterface(self, multiplier)
       self._signifier = '*'

@@ -20,9 +20,9 @@ def play(expr):
 
       This input renders and then opens a one-note MIDI file.
 
-      *  *Abjad* outputs MIDI files of the format \
+      *  Abjad outputs MIDI files of the format \
          ``filename.mid`` under Windows.
-      *  *Abjad* outputs MIDI files of the format \
+      *  Abjad outputs MIDI files of the format \
          ``filename.midi`` under other operating systems.
    '''
 

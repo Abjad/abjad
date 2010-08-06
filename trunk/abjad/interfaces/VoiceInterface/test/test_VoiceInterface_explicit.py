@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_VoiceInterface_explicit_01( ):
-   '''Return first explicit *Abjad* ``Voice`` in parentage of client.
+   '''Return first explicit Abjad ``Voice`` in parentage of client.
       Otherwise ``None``.'''
 
    t = Score([Staff([Voice(macros.scale(4))])])
@@ -28,7 +28,7 @@ def test_VoiceInterface_explicit_01( ):
 
 
 def test_VoiceInterface_explicit_02( ):
-   '''Return first explicit *Abjad* ``Voice`` in parentage of client.
+   '''Return first explicit Abjad ``Voice`` in parentage of client.
       Otherwise ``None``.'''
 
    t = Note(0, (1, 4))

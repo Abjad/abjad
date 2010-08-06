@@ -1,8 +1,8 @@
 from abjad import *
 
 
-def test_formattools_report_01( ):
-   '''You can report on a heavily tweaked leaf.'''
+def test_componenttools_report_component_format_contributions_as_string_01( ):
+   '''You can report_component_format_contributions_as_string on a heavily tweaked leaf.'''
 
    t = Note(0, (1, 4))
    t.note_head.style = 'cross'
@@ -14,21 +14,21 @@ def test_formattools_report_01( ):
    t.comments.before.append('textual information before')
    t.comments.after.append('textual information after')
 
-   assert formattools.report(t, output = 'string') == "slot_1\n\tCommentsInterface.before\n\t\t% textual information before\n\tInterfaceAggregator.overrides\n\t\t\\once \\override NoteHead #'color = #red\n\t\t\\once \\override NoteHead #'style = #'cross\n\t\t\\once \\override Stem #'color = #red\nslot_2\nslot_3\nslot_4\n\t_LeafFormatter._leaf_body\n\t\tc'4 -\\staccato -\\tenuto _ \\markup { \\italic { ben. marcato } }\nslot_5\nslot_6\nslot_7\n\tCommentsInterface.after\n\t\t% textual information after\n"
+   assert componenttools.report_component_format_contributions_as_string(t) == "slot_1\n\tCommentsInterface.before\n\t\t% textual information before\n\tInterfaceAggregator.overrides\n\t\t\\once \\override NoteHead #'color = #red\n\t\t\\once \\override NoteHead #'style = #'cross\n\t\t\\once \\override Stem #'color = #red\nslot_2\nslot_3\nslot_4\n\t_LeafFormatter._leaf_body\n\t\tc'4 -\\staccato -\\tenuto _ \\markup { \\italic { ben. marcato } }\nslot_5\nslot_6\nslot_7\n\tCommentsInterface.after\n\t\t% textual information after\n"
 
 
-def test_formattools_report_02( ):
+def test_componenttools_report_component_format_contributions_as_string_02( ):
    '''You can report on spanners, too.'''
 
    t = Staff(macros.scale(4))
    spanner = Beam(t[2:])
 
-   result = formattools.report(spanner, output = 'str')
+   result = componenttools.report_component_format_contributions_as_string(spanner)
    assert result == "e'8\tbefore: []\n\t after: []\n\t  left: []\n\t right: ['[']\n\nf'8\tbefore: []\n\t after: []\n\t  left: []\n\t right: [']']\n"
 
 
-def test_formattools_report_03( ):
-   '''You can report on tuplets.'''
+def test_componenttools_report_component_format_contributions_as_string_03( ):
+   '''You can report_component_format_contributions_as_string on tuplets.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
    t.accidental.style = 'forget'
@@ -46,7 +46,7 @@ def test_formattools_report_03( ):
    }
    '''
 
-   result = formattools.report(t, output = 'string')
+   result = componenttools.report_component_format_contributions_as_string(t)
 
    r'''
    slot_1

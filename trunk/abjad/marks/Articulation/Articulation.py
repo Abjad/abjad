@@ -66,7 +66,7 @@ class Articulation(_Abjad):
    @apply
    def direction( ):
       def fget(self):
-         '''Read / write *LilyPond* direction string.
+         '''Read / write LilyPond direction string.
 
             *  Default value: ``None``.
             *  All values: ``'^'``, ``'_'``, ``'-'``, \
@@ -103,7 +103,7 @@ class Articulation(_Abjad):
 
    @property
    def format(self):
-      '''Read-only *LilyPond* format string.
+      '''Read-only LilyPond format string.
 
          ::
 
@@ -118,7 +118,7 @@ class Articulation(_Abjad):
       def fget(self):
          '''Read / write string representation of accidental.
 
-            * All values: any *LilyPond* articulation string, ``None``.
+            * All values: any LilyPond articulation string, ``None``.
 
             ::
 

@@ -2,7 +2,7 @@ from abjad.core import Rational
 
 
 def is_power_of_two(expr):
-   '''``True`` when *expr* is an integer or rational power of ``2``,
+   '''``True`` when expr is an integer or rational power of ``2``,
    otherwise ``False``.
    
    ::

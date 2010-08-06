@@ -1,9 +1,9 @@
-def docstring(code, tab_width = 3):
+def format_input_lines_as_doc_string(input_lines, tab_width = 3):
    r""".. versionadded:: 1.1.2
 
-   Format `code` for docstring::
+   Format `input_lines` as doc string::
 
-      abjad> code = '''
+      abjad> input_lines = '''
       ... staff = Staff(macros.scale(4))
       ... Beam(staff.leaves)
       ... f(staff)
@@ -12,7 +12,7 @@ def docstring(code, tab_width = 3):
 
       ... f(staff)
       ... '''
-      abjad> formattools.docstring(code)
+      abjad> formattools.format_input_lines_as_doc_string(input_lines)
 
             abjad> staff = Staff(macros.scale(4))
             abjad> Beam(staff.leaves)
@@ -52,7 +52,7 @@ def docstring(code, tab_width = 3):
 
    tab = '   '
    start = tab + tab + 'abjad> '
-   lines = code.split('\n')
+   lines = input_lines.split('\n')
    last_line_index = len(lines) - 1
    most = ''
    for i, line in enumerate(lines):

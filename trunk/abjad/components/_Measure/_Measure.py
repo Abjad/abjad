@@ -4,10 +4,10 @@ from abjad.components._Measure._MeasureFormatter import _MeasureFormatter
 
 
 class _Measure(Container):
-   '''Abstract base class of *Abjad* model of one measure in score.'''
+   '''Abstract base class of Abjad model of one measure in score.'''
 
    def __init__(self, music = None):
-      '''Init measure as a type of *Abjad* container.
+      '''Init measure as a type of Abjad container.
          Init dedicated duration interface and formatter.'''
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)

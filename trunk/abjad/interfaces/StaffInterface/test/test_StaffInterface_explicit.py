@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_StaffInterface_explicit_01( ):
-   '''Return first explicit *Abjad* ``Staff`` in parentage of client.
+   '''Return first explicit Abjad ``Staff`` in parentage of client.
       Otherwise ``None``.'''
 
    t = Score([Staff(macros.scale(4))])
@@ -24,7 +24,7 @@ def test_StaffInterface_explicit_01( ):
 
 
 def test_StaffInterface_explicit_02( ):
-   '''Return first explicit *Abjad* ``Staff`` in parentage of client.
+   '''Return first explicit Abjad ``Staff`` in parentage of client.
       Otherwise ``None``.'''
 
    t = Note(0, (1, 4))

@@ -4,7 +4,7 @@ from abjad.components.Note._NoteInitializer import _NoteInitializer
 
 
 class Note(_Leaf):
-   '''The `Abjad` model of a single note.'''
+   '''The Abjad model of a single note.'''
    
    def __init__(self, *args):
       self._initializer = _NoteInitializer(self, _Leaf, *args)
@@ -41,7 +41,7 @@ class Note(_Leaf):
    @apply
    def note_head( ):
       def fget(self):
-         '''Read / write reference to `Abjad` note_head instance.'''
+         '''Read / write reference to Abjad note_head instance.'''
          return self._note_head
       def fset(self, arg):
          if isinstance(arg, type(None)):

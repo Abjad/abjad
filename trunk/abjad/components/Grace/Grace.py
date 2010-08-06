@@ -3,10 +3,10 @@ from abjad.components.Grace._GraceFormatter import _GraceFormatter
 
 
 class Grace(Container):
-   '''*Abjad* model of before- and after-graces.'''
+   '''Abjad model of before- and after-graces.'''
 
    def __init__(self, music = None):
-      '''Init grace as type of *Abjad* container. 
+      '''Init grace as type of Abjad container. 
          Init dedicated formatter.'''
       ## self._carrier is a reference to the Note carrying the Graces.
       self._carrier = None

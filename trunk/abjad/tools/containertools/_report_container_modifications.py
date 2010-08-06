@@ -1,4 +1,4 @@
-def wrapper(container):
+def _report_container_modifications(container, output):
    r'''Read-only string representation of all parts of container
    format except container contents::
 
@@ -20,6 +20,7 @@ def wrapper(container):
 
    from abjad.components.Container.Container import Container
    assert isinstance(container, Container)
+   assert output in ('screen', 'string')
 
    result = [ ]
    result.extend(container._formatter.slots.contributions('slot_1'))
@@ -32,4 +33,8 @@ def wrapper(container):
    result.extend(container._formatter.slots.contributions('slot_6'))
    result.extend(container._formatter.slots.contributions('slot_7'))
    result = '\n'.join(result)
-   return result
+
+   if output == 'screen':
+      print result
+   else:
+      return result

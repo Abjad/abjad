@@ -4,7 +4,7 @@ from abjad.components.Rest._RestInitializer import _RestInitializer
 
 
 class Rest(_Leaf):
-   '''The `Abjad` model of a single rest.'''
+   '''The Abjad model of a single rest.'''
 
    def __init__(self, *args):
       self._initializer = _RestInitializer(self, _Leaf, *args)

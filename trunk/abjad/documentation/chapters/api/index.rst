@@ -236,6 +236,8 @@ componenttools
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/remove_tie_spanners_from_components
    tools/componenttools/replace_components_with_children_of_components
+   tools/componenttools/report_component_format_contributions_as_string
+   tools/componenttools/report_component_format_contributions_to_screen
    tools/componenttools/split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
    tools/componenttools/split_component_at_prolated_duration_and_fracture_crossing_spanners
    tools/componenttools/split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners
@@ -282,6 +284,8 @@ containertools
    tools/containertools/replace_smaller_left_half_of_elements_in_container_with_little_endian_rests
    tools/containertools/replace_smaller_right_half_of_elements_in_container_with_big_endian_rests
    tools/containertools/replace_smaller_right_half_of_elements_in_container_with_little_endian_rests
+   tools/containertools/report_container_modifications_as_string
+   tools/containertools/report_container_modifications_to_screen
    tools/containertools/reverse_contents_of_container
    tools/containertools/scale_contents_of_container
    tools/containertools/set_accidental_style_on_sequential_contexts_in_expr
@@ -335,10 +339,8 @@ formattools
 .. toctree::
    :maxdepth: 1
 
-   tools/formattools/docstring
-   tools/formattools/regression
-   tools/formattools/report
-   tools/formattools/wrapper
+   tools/formattools/format_input_lines_as_doc_string
+   tools/formattools/format_input_lines_as_regression_test
 
 
 iotools

@@ -44,7 +44,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
    @apply
    def name( ):
       def fget(self):
-         r'''Read / write *LilyPond* ``instrumentName`` context setting.
+         r'''Read / write LilyPond ``instrumentName`` context setting.
 
          *  Default value: ``None``.
          *  All values: ``str``, ``Markup``, ``None``.
@@ -75,7 +75,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
 
    @property
    def settings(self):
-      r'''Read-only list of *LilyPond* context settings
+      r'''Read-only list of LilyPond context settings
       picked up at format-time.
 
       *  Derived from ``name`` and ``short_name``.
@@ -108,7 +108,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
    @apply
    def short_name( ):
       def fget(self):
-         r'''Read / write *LilyPond* ``shortInstrumentName`` context setting.
+         r'''Read / write LilyPond ``shortInstrumentName`` context setting.
 
          *  Default value: ``None``.
          *  All values: ``str``, ``Markup``, ``None``.

@@ -1,8 +1,8 @@
 from abjad import *
 
 
-def test_formattools_wrapper_01( ):
-   '''Context formatter wrapper.'''
+def test_containertools_report_container_modifications_as_string_01( ):
+   '''Context formatter report_container_modifications_as_string.'''
 
    t = Voice(macros.scale(4))
    t.comments.before.append('Example voice')
@@ -26,8 +26,7 @@ def test_formattools_wrapper_01( ):
    }
    '''
 
-   #result = t.formatter.wrapper
-   result = formattools.wrapper(t)
+   result = containertools.report_container_modifications_as_string(t)
 
    r'''
    % Example voice
@@ -44,8 +43,8 @@ def test_formattools_wrapper_01( ):
    assert result == "% Example voice\n\\new Voice \\with {\n\t\\override NoteHead #'color = #red\n} {\n\t#(set-accidental-style 'forget)\n\n\t%%% 4 components omitted %%%\n\n}"
 
 
-def test_formattools_wrapper_02( ):
-   '''Tuplet formatter wrapper.'''
+def test_containertools_report_container_modifications_as_string_02( ):
+   '''Tuplet formatter report_container_modifications_as_string.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
    t.comments.before.append('Example tuplet')
@@ -68,8 +67,7 @@ def test_formattools_wrapper_02( ):
    \revert NoteHead #'color
    '''
 
-   #result = t.formatter.wrapper
-   result = formattools.wrapper(t)
+   result = containertools.report_container_modifications_as_string(t)
 
    r'''
    % Example tuplet
