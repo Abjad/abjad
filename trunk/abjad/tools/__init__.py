@@ -1,4 +1,3 @@
-from abjad.tools import cfgtools
 from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import containertools
@@ -10,7 +9,6 @@ from abjad.tools import markuptools
 from abjad.tools import measuretools
 from abjad.tools import metertools
 from abjad.tools import overridetools
-from abjad.tools import persistencetools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import sievetools

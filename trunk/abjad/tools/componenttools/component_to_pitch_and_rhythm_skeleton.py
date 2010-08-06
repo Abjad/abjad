@@ -22,7 +22,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
    ::
 
-      abjad> skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(score)
+      abjad> skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(score)
       abjad> print skeleton
       Score([
          Staff([
@@ -83,7 +83,11 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
    .. versionchanged:: 1.1.2
       renamed ``persistencetools.pitch_and_rhythm_skeleton( )`` to
-      ``persistencetools.component_to_pitch_and_rhythm_skeleton( )``.
+      ``componenttools.component_to_pitch_and_rhythm_skeleton( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``persistencetools.component_to_pitch_and_rhythm_skeleton( )`` to
+      ``componenttools.component_to_pitch_and_rhythm_skeleton( )``.
    '''
    
    if not isinstance(component, _Component):

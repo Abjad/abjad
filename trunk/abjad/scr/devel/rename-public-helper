@@ -47,11 +47,11 @@ def _get_new_package_and_function( ):
          print 'Error: can not find %s in Abjad packages.' % new_package
          print ''
          continue
-      if new_function in _get_functions( ):
-         print ''
-         print 'Error: %s already exists in Abjad functions.' % new_function
-         print ''
-         continue
+#      if new_function in _get_functions( ):
+#         print ''
+#         print 'Error: %s already exists in Abjad functions.' % new_function
+#         print ''
+#         continue
       return new_package, new_function
 
 

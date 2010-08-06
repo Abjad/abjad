@@ -1,29 +1,29 @@
 from abjad import *
 
 
-def test_persistencetools_component_to_pitch_and_rhythm_skeleton_01( ):
+def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
 
    note = Note(0, (1, 4))
-   skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(note)
+   skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(note)
    assert skeleton == "Note(('c', 4), Rational(1, 4))"
 
    rest = Rest((1, 4))
-   skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(rest)
+   skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(rest)
    assert skeleton == "Rest(Rational(1, 4))"
 
    chord = Chord([0, 2, 4], (1, 4))
-   skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(chord)
+   skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(chord)
    assert skeleton == "Chord((('c', 4), ('d', 4), ('e', 4)), Rational(1, 4))"
 
    skip = Skip((1, 4))
-   skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(skip)
+   skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(skip)
    assert skeleton == "Skip(Rational(1, 4))"
 
 
-def test_persistencetools_component_to_pitch_and_rhythm_skeleton_02( ):
+def test_componenttools_component_to_pitch_and_rhythm_skeleton_02( ):
 
    staff = Staff(macros.scale(4))
-   skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(staff)
+   skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(staff)
 
    r'''
    Staff([
@@ -42,7 +42,7 @@ def test_persistencetools_component_to_pitch_and_rhythm_skeleton_02( ):
    assert new.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_persistencetools_component_to_pitch_and_rhythm_skeleton_03( ):
+def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
 
 
    tuplet = FixedDurationTuplet((3, 8), macros.scale(4))
@@ -78,7 +78,7 @@ def test_persistencetools_component_to_pitch_and_rhythm_skeleton_03( ):
    >>
    '''
 
-   skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(score)
+   skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(score)
    
    r'''
    Score([

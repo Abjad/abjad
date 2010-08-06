@@ -146,14 +146,6 @@ Tools
 
 
 
-cfgtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/cfgtools/list_settings
-
-
 chordtools
 
 .. toctree::
@@ -190,6 +182,7 @@ componenttools
    tools/componenttools/clone_components_and_remove_all_spanners
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
+   tools/componenttools/component_to_pitch_and_rhythm_skeleton
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/get_first_component_in_expr_with_name
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
@@ -347,7 +340,10 @@ iotools
 .. toctree::
    :maxdepth: 1
 
+   tools/iotools/dump_pickle
    tools/iotools/f
+   tools/iotools/list_settings
+   tools/iotools/load_pickle
    tools/iotools/log
    tools/iotools/ly
    tools/iotools/pdf
@@ -707,16 +703,6 @@ overridetools
 
    tools/overridetools/clear_all_overrides_on_grob_handler
    tools/overridetools/promote_attribute_to_context_on_grob_handler
-
-
-persistencetools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/persistencetools/component_to_pitch_and_rhythm_skeleton
-   tools/persistencetools/dump_pickle
-   tools/persistencetools/load_pickle
 
 
 pitchtools
