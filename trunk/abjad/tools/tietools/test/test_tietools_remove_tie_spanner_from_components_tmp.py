@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_remove_tie_spanners_from_components_01( ):
+def test_tietools_remove_tie_spanner_from_components_tmp_01( ):
    t = Staff(leaftools.make_notes(0, [(5, 16), (5, 16)]))
 
    r'''
@@ -13,7 +13,7 @@ def test_componenttools_remove_tie_spanners_from_components_01( ):
    }
    '''
    
-   componenttools.remove_tie_spanners_from_components(t[:])
+   tietools.remove_tie_spanner_from_components_tmp(t[:])
 
    r'''
    \new Staff {
@@ -28,8 +28,8 @@ def test_componenttools_remove_tie_spanners_from_components_01( ):
    assert t.format == "\\new Staff {\n\tc'4\n\tc'16\n\tc'4\n\tc'16\n}"
 
 
-def test_componenttools_remove_tie_spanners_from_components_02( ):
+def test_tietools_remove_tie_spanner_from_components_tmp_02( ):
    '''Handles empty list without exception.'''
 
-   result = componenttools.remove_tie_spanners_from_components([ ])
+   result = tietools.remove_tie_spanner_from_components_tmp([ ])
    assert result == [ ]
