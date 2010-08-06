@@ -3,7 +3,7 @@ def _filter_directories(dirs_list):
 
    ## add newly created nondocumenting directories to this list
    dirs_remove = ['.svn', 'book', 'cfg', 'checks', 'debug', 'demos',
-      'documentation', 'exceptions', 'navigator', 'scm', 'scr', 'test',
+      'docs', 'exceptions', 'navigator', 'scm', 'scr', 'test',
       'update',
       ]
 

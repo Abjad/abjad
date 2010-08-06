@@ -1,24 +1,20 @@
 from abjad.tools.importtools._import_functions_in_package_to_namespace import \
    _import_functions_in_package_to_namespace
 
-#print '1'
 ## create list of directories to skip
 _skip = [
-   'book', 'checks', 'demos', 'documentation', 'exceptions', 
+   'book', 'checks', 'demos', 'docs', 'exceptions', 
    'scr', '.svn', 'test', 'tools',
    ]
 
-#print '2'
 ## import all public classes, including interfaces
 _import_functions_in_package_to_namespace(__path__[0], globals( ), _skip)
 
-#print '3'
 ## remove AccidentalInterface, BeamInterface and other interfaces.
 for _key in globals( ).keys( ):
    if _key.endswith('Interface') or _key.endswith('Aggregator'):
       del(globals( )[_key])
 
-#print '4'
 ## reimport import tools since they were removed after previous import
 from abjad.tools.importtools._import_functions_in_package_to_namespace import \
    _import_functions_in_package_to_namespace

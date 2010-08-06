@@ -10,7 +10,7 @@ def make_sphinx_tocs(interactive = None):
 
    ## determine interactivity
    os.system('clear')
-   api_doc_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
+   api_doc_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
    modules_visited = [ ]
    if interactive is None:
       interactive = raw_input('Run script in interactive mode? [Y/n]: ')
