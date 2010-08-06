@@ -2,7 +2,7 @@ from abjad.marks import Markup
 import types
 
 
-def big_centered_page_number(text = None):
+def make_big_centered_page_number_markup(text = None):
    r'''.. versionadded:: 1.1.1
 
    Make big centered page number markup::
@@ -16,6 +16,10 @@ def big_centered_page_number(text = None):
          \fromproperty #'page:page-number-string } }
 
    Return markup.
+
+   .. versionchanged:: 1.1.2
+      renamed ``markuptools.big_centered_page_number( )`` to
+      ``markuptools.make_big_centered_page_number_markup( )``.
    '''
 
    assert isinstance(text, (str, types.NoneType))

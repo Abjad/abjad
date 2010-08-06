@@ -378,8 +378,9 @@ iterate
    tools/iterate/get_prev_measure_from_component
    tools/iterate/get_vertical_moment_at_prolated_offset_in_expr
    tools/iterate/get_vertical_moment_starting_with_component
-   tools/iterate/group_by_type_and_yield_groups
    tools/iterate/group_by_type_and_yield_groups_of_klass
+   tools/iterate/group_topmost_components_in_expr_by_type_and_yield_groups
+   tools/iterate/group_topmost_components_in_expr_by_type_and_yield_groups_of_klass
    tools/iterate/leaf_pairs_forward_in_expr
    tools/iterate/leaves_backward_in_expr
    tools/iterate/leaves_forward_in_expr
@@ -451,6 +452,7 @@ leaftools
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
    tools/leaftools/is_bar_line_crossing_leaf
+   tools/leaftools/label_leaves_in_expr_with_leaf_depth
    tools/leaftools/label_leaves_in_expr_with_leaf_duration
    tools/leaftools/label_leaves_in_expr_with_leaf_indices
    tools/leaftools/label_leaves_in_expr_with_leaf_numbers
@@ -462,7 +464,6 @@ leaftools
    tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_inteval_classes
    tools/leaftools/label_leaves_in_expr_with_pitch_class_numbers
    tools/leaftools/label_leaves_in_expr_with_pitch_numbers
-   tools/leaftools/label_leaves_in_expr_with_score_depth
    tools/leaftools/label_leaves_in_expr_with_tuplet_depth
    tools/leaftools/leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration
    tools/leaftools/leaf_to_augmented_tuplet_with_proportions
@@ -502,8 +503,8 @@ lilyfiletools
    tools/lilyfiletools/ScoreBlock/ScoreBlock
    tools/lilyfiletools/make_basic_lily_file
    tools/lilyfiletools/parse_note_entry_string
-   tools/lilyfiletools/save_ly_as
-   tools/lilyfiletools/save_pdf_as
+   tools/lilyfiletools/save_last_ly_as
+   tools/lilyfiletools/save_last_pdf_as
 
 
 listtools
@@ -603,7 +604,7 @@ markuptools
 .. toctree::
    :maxdepth: 1
 
-   tools/markuptools/big_centered_page_number
+   tools/markuptools/make_big_centered_page_number_markup
 
 
 mathtools

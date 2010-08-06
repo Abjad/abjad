@@ -36,11 +36,6 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
               }
       }
 
-
-   .. note:: This function should probably be called ``scale_contents_and_bequeath( )``.
-
-   .. note:: ``bequeath( )`` should probably be called something else, too.
-
    .. versionchanged:: 1.1.2
       renamed ``tuplettools.subsume( )`` to
       ``tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet( )``.

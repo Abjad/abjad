@@ -1,14 +1,14 @@
 from abjad.tools import iterate
 
 
-def label_leaves_in_expr_with_score_depth(expr):
+def label_leaves_in_expr_with_leaf_depth(expr):
    r'''Label the depth of every leaf in `expr`.
 
    ::
 
       abjad> staff = Staff(macros.scale(5))
       abjad> FixedDurationTuplet((2, 8), staff[-3:])
-      abjad> leaftools.label_leaves_in_expr_with_score_depth(staff)
+      abjad> leaftools.label_leaves_in_expr_with_leaf_depth(staff)
       \new Staff {
               c'8 _ \markup { \small 1 }
               d'8 _ \markup { \small 1 }
@@ -21,7 +21,11 @@ def label_leaves_in_expr_with_score_depth(expr):
 
    .. versionchanged:: 1.1.2
       renamed ``label.leaf_depth( )`` to
-      ``leaftools.label_leaves_in_expr_with_score_depth( )``.
+      ``leaftools.label_leaves_in_expr_with_leaf_depth( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``leaftools.label_leaves_in_expr_with_score_depth( )`` to
+      ``leaftools.label_leaves_in_expr_with_leaf_depth( )``.
    '''
 
    for leaf in iterate.leaves_forward_in_expr(expr):
