@@ -5,7 +5,8 @@ def test_measuretools_tupletize_01( ):
    '''Tupletize one measure, supplement one note.'''
 
    t = RigidMeasure((4, 8), leaftools.make_repeated_notes(4))
-   measuretools.tupletize(t, leaftools.make_repeated_notes(1))
+   measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(
+      t, leaftools.make_repeated_notes(1))
 
    r'''
    {
@@ -28,7 +29,8 @@ def test_measuretools_tupletize_02( ):
    '''Tupletize one measure, supplement one rest.'''
 
    t = RigidMeasure((4, 8), leaftools.make_repeated_notes(4))
-   measuretools.tupletize(t, [Rest((1, 4))])
+   measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(
+      t, [Rest((1, 4))])
 
    r'''
    {
