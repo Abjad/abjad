@@ -32,7 +32,7 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
    if durtools.is_assignable_rational(multiplier):
       for component in tuplet[:]:
          if isinstance(component, _Leaf):
-            leaftools.scale_leaf_preprolated_duration(component, multiplier)
+            leaftools.scale_preprolated_leaf_duration(component, multiplier)
 
    # otherwise doctor up tuplet multiplier, if necessary
    elif not is_proper_tuplet_multiplier(tuplet.duration.multiplier):

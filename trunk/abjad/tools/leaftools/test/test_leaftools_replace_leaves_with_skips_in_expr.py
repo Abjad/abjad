@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_leaftools_replace_leaves_with_skips_in_01( ):
+def test_leaftools_replace_leaves_with_skips_in_expr_01( ):
    '''Works on Abjad components.'''
 
    t = Staff(macros.scale(4))
-   leaftools.replace_leaves_with_skips_in(t)
+   leaftools.replace_leaves_with_skips_in_expr(t)
 
    r'''
    \new Staff {
@@ -20,11 +20,11 @@ def test_leaftools_replace_leaves_with_skips_in_01( ):
    assert t.format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'
 
 
-def test_leaftools_replace_leaves_with_skips_in_02( ):
+def test_leaftools_replace_leaves_with_skips_in_expr_02( ):
    '''Works on Python lists of Abjad components.'''
 
    t = Staff(macros.scale(4))
-   leaftools.replace_leaves_with_skips_in(t[:])
+   leaftools.replace_leaves_with_skips_in_expr(t[:])
 
    r'''
    \new Staff {

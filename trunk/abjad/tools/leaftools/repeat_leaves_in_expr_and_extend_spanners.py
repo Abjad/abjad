@@ -1,8 +1,8 @@
 from abjad.tools import iterate
-from abjad.tools.leaftools.clone_and_splice_leaf import clone_and_splice_leaf
+from abjad.tools.leaftools.repeat_leaf_and_extend_spanners import repeat_leaf_and_extend_spanners
 
 
-def clone_and_splice_leaves_in_expr(expr, total = 1):
+def repeat_leaves_in_expr_and_extend_spanners(expr, total = 1):
    r'''.. versionadded:: 1.1.1
 
    Clone and splice leaves in `expr` `total` times::
@@ -19,7 +19,7 @@ def clone_and_splice_leaves_in_expr(expr, total = 1):
       
    ::
       
-      abjad> result = leaftools.clone_and_splice_leaves_in_expr(staff[2:], total = 3)
+      abjad> result = leaftools.repeat_leaves_in_expr_and_extend_spanners(staff[2:], total = 3)
       
    ::
       
@@ -43,12 +43,16 @@ def clone_and_splice_leaves_in_expr(expr, total = 1):
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.multiply( )`` to
-      ``leaftools.clone_and_splice_leaves_in_expr( )``.
+      ``leaftools.repeat_leaves_in_expr_and_extend_spanners( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.clone_and_splice_leaves_in( )`` to
-      ``leaftools.clone_and_splice_leaves_in_expr( )``.
+      ``leaftools.repeat_leaves_in_expr_and_extend_spanners( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``leaftools.clone_and_splice_leaves_in_expr( )`` to
+      ``leaftools.repeat_leaves_in_expr_and_extend_spanners( )``.
    '''
 
    for leaf in iterate.leaves_backward_in_expr(expr):
-      clone_and_splice_leaf(leaf, total)
+      repeat_leaf_and_extend_spanners(leaf, total)

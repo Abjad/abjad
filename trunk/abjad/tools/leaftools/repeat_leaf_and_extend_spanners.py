@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 from abjad.tools import iterate
 
 
-def clone_and_splice_leaf(leaf, total = 1):
+def repeat_leaf_and_extend_spanners(leaf, total = 1):
    r'''.. versionadded:: 1.1.1
 
    Clone and splice `leaf` `total` times::
@@ -20,7 +20,7 @@ def clone_and_splice_leaf(leaf, total = 1):
       
    ::
       
-      abjad> leaftools.clone_and_splice_leaf(staff[0], total = 3)
+      abjad> leaftools.repeat_leaf_and_extend_spanners(staff[0], total = 3)
       
    ::
       
@@ -39,6 +39,10 @@ def clone_and_splice_leaf(leaf, total = 1):
    Preserve parentage and spanners.
 
    Return none.
+
+   .. versionchanged:: 1.1.2
+      renamed ``leaftools.clone_and_splice_leaf( )`` to
+      ``leaftools.repeat_leaf_and_extend_spanners( )``.
    '''
 
    leaf.splice(componenttools.clone_components_and_remove_all_spanners([leaf], total - 1))

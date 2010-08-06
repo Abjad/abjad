@@ -2,7 +2,7 @@ from abjad.components._Leaf import _Leaf
 from abjad.core import Rational
 
 
-def copy_written_duration_and_multiplier_from_to(source_leaf, target_leaf):
+def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_leaf):
    r'''.. versionadded:: 1.1.2
 
    Copy written duration and multiplier from `source_leaf` to `target_leaf`::
@@ -10,10 +10,14 @@ def copy_written_duration_and_multiplier_from_to(source_leaf, target_leaf):
       abjad> note = Note(0, (1, 4))
       abjad> note.duration.multiplier = Rational(1, 2)
       abjad> rest = Rest((1, 64))
-      abjad> leaftools.copy_written_duration_and_multiplier_from_to(note, rest)
+      abjad> leaftools.copy_written_duration_and_multiplier_from_leaf_to_leaf(note, rest)
       Rest(4 * 1/2)
 
    Return `target_leaf`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``leaftools.copy_written_duration_and_multiplier_from_to( )`` to
+      ``leaftools.copy_written_duration_and_multiplier_from_leaf_to_leaf( )``.
    '''
 
    ## check source leaf type

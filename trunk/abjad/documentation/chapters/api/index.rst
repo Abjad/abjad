@@ -432,11 +432,9 @@ leaftools
    tools/leaftools/add_artificial_harmonic_to_note
    tools/leaftools/change_leaf_preprolated_duration
    tools/leaftools/change_written_duration_and_preserve_preprolated_duration
-   tools/leaftools/clone_and_splice_leaf
-   tools/leaftools/clone_and_splice_leaves_in_expr
    tools/leaftools/color_leaf
    tools/leaftools/color_leaves_in_expr
-   tools/leaftools/copy_written_duration_and_multiplier_from_to
+   tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
    tools/leaftools/divide_leaf_meiotically
    tools/leaftools/divide_leaves_in_expr_meiotically
    tools/leaftools/expr_has_leaf_with_dotted_written_duration
@@ -447,10 +445,10 @@ leaftools
    tools/leaftools/fuse_leaves_in_container_once_by_counts_into_little_endian_rests
    tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
    tools/leaftools/fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang
-   tools/leaftools/get_composite_offset_difference_series
-   tools/leaftools/get_composite_offset_series
-   tools/leaftools/get_durations_prolated
-   tools/leaftools/get_durations_written
+   tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
+   tools/leaftools/get_composite_offset_series_from_leaves_in_expr
+   tools/leaftools/get_prolated_durations_from_leaves_in_expr
+   tools/leaftools/get_written_durations_from_leaves_in_expr
    tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/label_leaves_in_expr_with_leaf_depth
    tools/leaftools/label_leaves_in_expr_with_leaf_durations
@@ -484,8 +482,10 @@ leaftools
    tools/leaftools/make_skips_with_multiplied_durations
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
    tools/leaftools/remove_markup_from_leaves_in_expr
-   tools/leaftools/replace_leaves_with_skips_in
-   tools/leaftools/scale_leaf_preprolated_duration
+   tools/leaftools/repeat_leaf_and_extend_spanners
+   tools/leaftools/repeat_leaves_in_expr_and_extend_spanners
+   tools/leaftools/replace_leaves_with_skips_in_expr
+   tools/leaftools/scale_preprolated_leaf_duration
    tools/leaftools/show_leaves
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_clone_and_splice_leaf_01( ):
+def test_leaftools_repeat_leaf_and_extend_spanners_01( ):
 
    staff = Staff(macros.scale(4))
    Beam(staff.leaves)
@@ -15,7 +15,7 @@ def test_leaftools_clone_and_splice_leaf_01( ):
    }
    '''
 
-   leaftools.clone_and_splice_leaf(staff[0], total = 3)
+   leaftools.repeat_leaf_and_extend_spanners(staff[0], total = 3)
 
    r'''
    \new Staff {

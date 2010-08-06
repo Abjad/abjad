@@ -58,7 +58,7 @@ def leaf_iterables_to_pitch_array_empty(leaf_iterables):
 #
 #   tokens = leaftools.make_quarter_notes_with_lilypond_multipliers([0], time_intervals)
 #   for leaf_list, pitch_array_row in zip(leaf_iterables, pitch_array.rows):
-#      durations = leaftools.get_durations_prolated(leaf_list)
+#      durations = leaftools.get_prolated_durations_from_leaves_in_expr(leaf_list)
 #      parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(tokens, durations)
 #      part_lengths = [len(part) for part in parts]
 #      cells = pitch_array_row.cells
