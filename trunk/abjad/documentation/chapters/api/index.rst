@@ -661,6 +661,11 @@ measuretools
    tools/measuretools/color_measure
    tools/measuretools/color_nonbinary_measures_in
    tools/measuretools/comment_measures_in_container_with_measure_numbers
+   tools/measuretools/fill_measures_in_expr_with_big_endian_notes
+   tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
+   tools/measuretools/fill_measures_in_expr_with_little_endian_notes
+   tools/measuretools/fill_measures_in_expr_with_meter_denominator_notes
+   tools/measuretools/fill_measures_in_expr_with_repeated_notes
    tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
    tools/measuretools/fuse_measures
    tools/measuretools/make_rigid_measures_with_full_measure_spacer_skips
@@ -672,7 +677,6 @@ measuretools
    tools/measuretools/pad_measures_in_expr_with_skips
    tools/measuretools/pitch_array_row_to_measure
    tools/measuretools/pitch_array_to_measures
-   tools/measuretools/populate
    tools/measuretools/replace_measure_contents_in
    tools/measuretools/report_meter_distribution
    tools/measuretools/scale_measure_by_multiplier_and_adjust_meter

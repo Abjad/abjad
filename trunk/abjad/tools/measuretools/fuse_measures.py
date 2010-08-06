@@ -13,7 +13,7 @@ def fuse_measures(measures):
    r'''Fuse `measures`::
 
       abjad> staff = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-      abjad> measuretools.populate(staff, Rational(1, 16))
+      abjad> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Rational(1, 16))
       abjad> pitchtools.diatonicize(staff)
       abjad> Beam(staff.leaves)
       abjad> f(staff)

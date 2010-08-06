@@ -51,7 +51,7 @@ def test_measuretools_fuse_measures_02( ):
       Beams are OK because they attach to leaves rather than containers.'''
 
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-   measuretools.populate(t, Rational(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
@@ -94,7 +94,7 @@ def test_measuretools_fuse_measures_03( ):
       Beam attaches to container rather than leaves.'''
 
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-   measuretools.populate(t, Rational(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    pitchtools.diatonicize(t)
    Beam(t[0])
 
@@ -195,7 +195,7 @@ def test_measuretools_fuse_measures_07( ):
    '''Fuse three measures.'''
 
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
-   measuretools.populate(t, Rational(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
@@ -284,7 +284,7 @@ def test_measuretools_fuse_measures_09( ):
    t = Staff([
       RigidMeasure((9, 80), [ ]),
       RigidMeasure((2, 16), [ ])])
-   measuretools.populate(t, 'meter series')
+   measuretools.fill_measures_in_expr_with_meter_denominator_notes(t)
 
    r'''
    \new Staff {

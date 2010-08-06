@@ -36,6 +36,9 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
    Return `measure`.
 
+   .. todo::
+      implement ``measuretools.set_measure_denominator_and_adjust_contents( )``.
+
    .. versionchanged:: 1.1.2
       renamed ``measuretools.set_measure_denominator_and_multiply_numerator( )`` to
       ``measuretools.set_measure_denominator_and_adjust_numerator( )``.

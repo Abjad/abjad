@@ -5,9 +5,9 @@ def test_RigidMeasure_formatter_number_01( ):
    '''_MeasureFormatterNumberInterface can contribute 
       LilyPond comments to one measure at a time.'''
 
-   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(2, 16), (3, 16), (3, 16)]))
-   measuretools.populate(t, Rational(1, 16))
-   #t[0].formatter.number.self = 'comment'
+   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips(
+      [(2, 16), (3, 16), (3, 16)]))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    t[0]._formatter.number.self = 'comment'
 
    r'''
@@ -43,7 +43,7 @@ def test_RigidMeasure_formatter_number_02( ):
       LilyPond comments to many leaves at once.'''
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(2, 16), (3, 16), (3, 16)]))
-   measuretools.populate(t, Rational(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    #t[0].formatter.number.leaves = 'markup'
    t[0]._formatter.number.leaves = 'markup'
 
@@ -78,10 +78,9 @@ def test_RigidMeasure_formatter_number_03( ):
       LilyPond comments to one measure and markup
       to many leaves, all at the same time.'''
 
-   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(2, 16), (3, 16), (3, 16)]))
-   measuretools.populate(t, Rational(1, 16))
-   #t[0].formatter.number.self = 'comment'
-   #t[0].formatter.number.leaves = 'markup'
+   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips(
+      [(2, 16), (3, 16), (3, 16)]))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    t[0]._formatter.number.self = 'comment'
    t[0]._formatter.number.leaves = 'markup'
 

@@ -40,9 +40,8 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
 
    Return list of fused notes by parent.
 
-   .. todo:: rename ``fuse.tied_leaves_by_parent( )``.
-
-   .. todo:: rename ``tietools.fuse_tied_leaves_by_parent( )``?
+   .. todo::
+      implement corresponding little-endian function.
 
    .. versionchanged:: 1.1.2
       renamed ``fuse.leaves_in_tie_chain( )`` to
