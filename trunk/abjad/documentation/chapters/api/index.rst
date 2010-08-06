@@ -234,7 +234,6 @@ componenttools
    tools/componenttools/partition_components_once_by_prolated_durations_le_with_overhang
    tools/componenttools/partition_components_once_by_prolated_durations_le_without_overhang
    tools/componenttools/remove_component_subtree_from_score_and_spanners
-   tools/componenttools/remove_tie_spanners_from_components
    tools/componenttools/replace_components_with_children_of_components
    tools/componenttools/report_component_format_contributions_as_string
    tools/componenttools/report_component_format_contributions_to_screen
@@ -968,6 +967,7 @@ tietools
    tools/tietools/label_tie_chains_in_expr_with_tie_chain_durations
    tools/tietools/label_tie_chains_in_expr_with_written_tie_chain_duration
    tools/tietools/remove_all_leaves_in_tie_chain_except_first
+   tools/tietools/remove_tie_spanners_from_components
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots

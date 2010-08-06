@@ -1,4 +1,4 @@
-def remove_tie_spanner_from_components_tmp(components):
+def remove_tie_spanners_from_components(components):
    r'''Untie thread-contiguous `components`. ::
 
       abjad> staff = Staff(macros.scale(2, (5, 16)))
@@ -12,7 +12,7 @@ def remove_tie_spanner_from_components_tmp(components):
       
    ::
       
-      abjad> tietools.remove_tie_spanner_from_components_tmp(staff[:])
+      abjad> tietools.remove_tie_spanners_from_components(staff[:])
       abjad> f(staff)
       \new Staff {
          c'4
@@ -27,11 +27,15 @@ def remove_tie_spanner_from_components_tmp(components):
 
    .. versionchanged:: 1.1.2
       renamed ``componenttools.untie_shallow( )`` to
-      ``tietools.remove_tie_spanner_from_components_tmp( )``.
+      ``tietools.remove_tie_spanners_from_components( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``componenttools.remove_tie_spanners_from_components( )`` to
-      ``tietools.remove_tie_spanner_from_components_tmp( )``.
+      ``tietools.remove_tie_spanners_from_components( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``tietools.remove_tie_spanner_from_components_tmp( )`` to
+      ``tietools.remove_tie_spanners_from_components( )``.
    '''
    from abjad.tools import componenttools
 
