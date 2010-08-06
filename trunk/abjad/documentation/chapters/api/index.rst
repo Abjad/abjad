@@ -678,7 +678,8 @@ measuretools
    tools/measuretools/pitch_array_row_to_measure
    tools/measuretools/pitch_array_to_measures
    tools/measuretools/replace_measure_contents_in
-   tools/measuretools/report_meter_distribution
+   tools/measuretools/report_meter_distribution_as_string
+   tools/measuretools/report_meter_distribution_to_screen
    tools/measuretools/scale_measure_by_multiplier_and_adjust_meter
    tools/measuretools/scale_measure_contents_in
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents

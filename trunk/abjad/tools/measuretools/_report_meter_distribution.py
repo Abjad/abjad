@@ -2,7 +2,7 @@ from abjad.tools import iterate
 import itertools
 
 
-def report_meter_distribution(expr, delivery = 'screen'):
+def _report_meter_distribution(expr, delivery = 'screen'):
    r'''Inventory meters in `expr` with frequency count of each.
 
    When ``delivery = 'screen'`` print results to stdout. ::

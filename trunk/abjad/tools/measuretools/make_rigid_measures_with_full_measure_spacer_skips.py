@@ -1,11 +1,12 @@
 from abjad.components._Measure import RigidMeasure
 from abjad.components.Skip import Skip
 from abjad.tools import metertools
-from abjad.tools.measuretools.populate import populate
+from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_skips import \
+   fill_measures_in_expr_with_full_measure_spacer_skips
 
 
 def make_rigid_measures_with_full_measure_spacer_skips(meters):
-   r'''Make list of skip-populated rigid measures.
+   r'''Make list of rigid measures with full-measure spacer skips.
 
    `meters` must be an iterable of Abjad meter tokens. ::
 
@@ -37,7 +38,7 @@ def make_rigid_measures_with_full_measure_spacer_skips(meters):
 
    ## make measures
    measures = [RigidMeasure(meter, [ ]) for meter in meters]
-   populate(measures, 'skip')
+   fill_measures_in_expr_with_full_measure_spacer_skips(measures)
    
    ## return measures
    return measures
