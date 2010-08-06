@@ -658,9 +658,11 @@ measuretools
    tools/measuretools/apply_complex_beam_spanner_to_measure
    tools/measuretools/apply_complex_beam_spanners_to_measures_in
    tools/measuretools/apply_durated_complex_beam_spanner_to_measures
+   tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
    tools/measuretools/color_measure
    tools/measuretools/color_nonbinary_measures_in
    tools/measuretools/comment_measures_in_container_with_measure_numbers
+   tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents
    tools/measuretools/fill_measures_in_expr_with_big_endian_notes
    tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
    tools/measuretools/fill_measures_in_expr_with_little_endian_notes
@@ -684,7 +686,6 @@ measuretools
    tools/measuretools/scale_measure_contents_in
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
    tools/measuretools/set_measure_denominator_and_adjust_numerator
-   tools/measuretools/tupletize
 
 
 metertools
