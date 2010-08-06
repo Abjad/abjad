@@ -484,7 +484,7 @@ leaftools
    tools/leaftools/remove_markup_from_leaves_in_expr
    tools/leaftools/repeat_leaf_and_extend_spanners
    tools/leaftools/repeat_leaves_in_expr_and_extend_spanners
-   tools/leaftools/replace_leaves_with_skips_in_expr
+   tools/leaftools/replace_leaves_in_expr_with_skips
    tools/leaftools/scale_preprolated_leaf_duration
    tools/leaftools/show_leaves
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
