@@ -1,0 +1,1 @@
+from InversionEquivalentDiatonicIntervalClass import InversionEquivalentDiatonicIntervalClass

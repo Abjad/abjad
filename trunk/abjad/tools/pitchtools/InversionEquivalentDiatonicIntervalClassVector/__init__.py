@@ -1,0 +1,2 @@
+from InversionEquivalentDiatonicIntervalClassVector import \
+   InversionEquivalentDiatonicIntervalClassVector

@@ -1,0 +1,2 @@
+from InversionEquivalentDiatonicIntervalClassSegment import \
+   InversionEquivalentDiatonicIntervalClassSegment

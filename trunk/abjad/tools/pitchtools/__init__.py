@@ -4,9 +4,6 @@ _package_import(__path__[0], globals( ))
 
 from Accidental import Accidental
 from ChromaticIntervalVector import ChromaticIntervalVector
-from DiatonicIntervalClass import DiatonicIntervalClass
-from DiatonicIntervalClassSegment import DiatonicIntervalClassSegment
-from DiatonicIntervalClassVector import DiatonicIntervalClassVector
 from HarmonicChromaticInterval import HarmonicChromaticInterval
 from HarmonicChromaticIntervalClass import HarmonicChromaticIntervalClass
 from HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
@@ -18,6 +15,11 @@ from HarmonicDiatonicIntervalClass import HarmonicDiatonicIntervalClass
 from HarmonicDiatonicIntervalClassSet import HarmonicDiatonicIntervalClassSet
 from HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
 from HarmonicDiatonicIntervalSet import HarmonicDiatonicIntervalSet
+from InversionEquivalentDiatonicIntervalClass import InversionEquivalentDiatonicIntervalClass
+from InversionEquivalentDiatonicIntervalClassSegment import \
+   InversionEquivalentDiatonicIntervalClassSegment
+from InversionEquivalentDiatonicIntervalClassVector import \
+   InversionEquivalentDiatonicIntervalClassVector
 from IntervalClass import IntervalClass
 from IntervalClassSegment import IntervalClassSegment
 from IntervalClassSet import IntervalClassSet
