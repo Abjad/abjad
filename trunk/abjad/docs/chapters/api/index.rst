@@ -647,15 +647,15 @@ measuretools
    :maxdepth: 1
 
    tools/measuretools/append_spacer_skip_to_underfull_measure
-   tools/measuretools/append_spacer_skips_to_underfull_measures_in
+   tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
    tools/measuretools/apply_beam_spanner_to_measure
-   tools/measuretools/apply_beam_spanners_to_measures_in
+   tools/measuretools/apply_beam_spanners_to_measures_in_expr
    tools/measuretools/apply_complex_beam_spanner_to_measure
-   tools/measuretools/apply_complex_beam_spanners_to_measures_in
+   tools/measuretools/apply_complex_beam_spanners_to_measures_in_expr
    tools/measuretools/apply_durated_complex_beam_spanner_to_measures
    tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
    tools/measuretools/color_measure
-   tools/measuretools/color_nonbinary_measures_in
+   tools/measuretools/color_nonbinary_measures_in_expr
    tools/measuretools/comment_measures_in_container_with_measure_numbers
    tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents
    tools/measuretools/fill_measures_in_expr_with_big_endian_notes
@@ -668,17 +668,17 @@ measuretools
    tools/measuretools/make_rigid_measures_with_full_measure_spacer_skips
    tools/measuretools/move_measure_prolation_to_full_measure_tuplet
    tools/measuretools/move_prolation_of_full_measure_tuplet_to_meter_of_measure
-   tools/measuretools/multiply_measure_contents_and_scale_meter_denominator_in
-   tools/measuretools/multiply_measure_contents_in
+   tools/measuretools/multiply_contents_of_measures_in_expr
+   tools/measuretools/multiply_contents_of_measures_in_expr_and_scale_meter_denominators
    tools/measuretools/pad_measures_in_expr_with_rests
    tools/measuretools/pad_measures_in_expr_with_skips
    tools/measuretools/pitch_array_row_to_measure
    tools/measuretools/pitch_array_to_measures
-   tools/measuretools/replace_measure_contents_in
+   tools/measuretools/replace_contents_of_measures_in_expr
    tools/measuretools/report_meter_distribution_as_string
    tools/measuretools/report_meter_distribution_to_screen
+   tools/measuretools/scale_contents_of_measures_in_expr
    tools/measuretools/scale_measure_by_multiplier_and_adjust_meter
-   tools/measuretools/scale_measure_contents_in
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
    tools/measuretools/set_measure_denominator_and_adjust_numerator
 
@@ -689,10 +689,10 @@ metertools
    :maxdepth: 1
 
    tools/metertools/duration_and_possible_denominators_to_meter
-   tools/metertools/extract_meters_from_measures_in_expr
    tools/metertools/get_nonbinary_factor_from_meter_denominator
    tools/metertools/is_meter_token
    tools/metertools/is_meter_with_equivalent_binary_representation
+   tools/metertools/list_meters_of_measures_in_expr
    tools/metertools/meter_to_binary_meter
 
 

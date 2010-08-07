@@ -105,7 +105,7 @@ def scale_contents_of_container(container, multiplier):
       elif isinstance(expr, _Measure):
          ## TODO: Move import to higher level of scope? ##
          from abjad.tools import measuretools
-         measuretools.scale_measure_contents_in(expr, multiplier)
+         measuretools.scale_contents_of_measures_in_expr(expr, multiplier)
       else:
          raise Exception(NotImplemented)
 

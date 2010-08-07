@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_color_nonbinary_measures_in_01( ):
+def test_measuretools_color_nonbinary_measures_in_expr_01( ):
 
    staff = Staff(RigidMeasure((2, 8), macros.scale(2)) * 2)
    measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
@@ -23,7 +23,7 @@ def test_measuretools_color_nonbinary_measures_in_01( ):
    }
    '''
 
-   measuretools.color_nonbinary_measures_in(staff, 'red')
+   measuretools.color_nonbinary_measures_in_expr(staff, 'red')
 
 
    r'''

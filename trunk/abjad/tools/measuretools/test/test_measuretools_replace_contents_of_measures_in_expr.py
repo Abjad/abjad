@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_measuretools_replace_measure_contents_in_01( ):
+def test_measuretools_replace_contents_of_measures_in_expr_01( ):
    '''Contents duration less than sum of duration of measures.
    Note spacer skip at end of second measure.
    '''
@@ -23,7 +23,7 @@ def test_measuretools_replace_measure_contents_in_01( ):
    '''
 
    notes = macros.scale(4, Rational(1, 16)) 
-   measuretools.replace_measure_contents_in(t, notes)
+   measuretools.replace_contents_of_measures_in_expr(t, notes)
 
    r'''
    \new Staff {
@@ -45,7 +45,7 @@ def test_measuretools_replace_measure_contents_in_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'16\n\t\td'16\n\t}\n\t{\n\t\t\\time 3/16\n\t\te'16\n\t\tf'16\n\t\ts1 * 1/16\n\t}\n}"
 
 
-def test_measuretools_replace_measure_contents_in_02( ):
+def test_measuretools_replace_contents_of_measures_in_expr_02( ):
    '''Some contents too big for some measures.
    Small measures skipped.
    '''
@@ -74,7 +74,7 @@ def test_measuretools_replace_measure_contents_in_02( ):
    '''
 
    notes = macros.scale(2)
-   measuretools.replace_measure_contents_in(t, notes)   
+   measuretools.replace_contents_of_measures_in_expr(t, notes)   
 
    r'''
    \new Staff {
@@ -103,7 +103,7 @@ def test_measuretools_replace_measure_contents_in_02( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'8\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 1/16\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8\n\t\ts1 * 1/16\n\t}\n}"
 
 
-def test_measuretools_replace_measure_contents_in_03( ):
+def test_measuretools_replace_contents_of_measures_in_expr_03( ):
    '''Raise MissingMeasureError when input expression 
    contains no measures.'''
 
@@ -111,27 +111,27 @@ def test_measuretools_replace_measure_contents_in_03( ):
    notes = macros.scale(2)
 
    assert py.test.raises(MissingMeasureError, 
-      'measuretools.replace_measure_contents_in(t, notes)')
+      'measuretools.replace_contents_of_measures_in_expr(t, notes)')
 
 
-def test_measuretools_replace_measure_contents_in_04( ):
+def test_measuretools_replace_contents_of_measures_in_expr_04( ):
    '''Raise StopIteration when not enough measures.'''
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
    notes = macros.scale(6, Rational(1, 16))
 
    assert py.test.raises(StopIteration, 
-      'measuretools.replace_measure_contents_in(t, notes)')
+      'measuretools.replace_contents_of_measures_in_expr(t, notes)')
 
 
-def test_measuretools_replace_measure_contents_in_05( ):
+def test_measuretools_replace_contents_of_measures_in_expr_05( ):
    '''Populate measures even when not enough total measures.'''
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
    notes = macros.scale(6, Rational(1, 16))
 
    try:
-      measuretools.replace_measure_contents_in(t, notes)
+      measuretools.replace_contents_of_measures_in_expr(t, notes)
    except StopIteration:
       pass
 

@@ -1,7 +1,7 @@
 from abjad.tools import iterate
 
 
-def extract_meters_from_measures_in_expr(components):
+def list_meters_of_measures_in_expr(components):
    '''Extract ordered list of meter pairs from ``components``.
 
    Example::
@@ -10,14 +10,18 @@ def extract_meters_from_measures_in_expr(components):
          RigidMeasure((3, 8), macros.scale(3)),
          RigidMeasure((4, 8), macros.scale(4))])
 
-      abjad> metertools.extract_meters_from_measures_in_expr(t[:])
+      abjad> metertools.list_meters_of_measures_in_expr(t[:])
       [(2, 8), (3, 8), (4, 8)]
 
    Useful as input to some rhythmic transforms.
 
    .. versionchanged:: 1.1.2
       renamed ``metertools.extract_meter_list( )`` to
-      ``metertools.extract_meters_from_measures_in_expr( )``.
+      ``metertools.list_meters_of_measures_in_expr( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``metertools.extract_meters_from_measures_in_expr( )`` to
+      ``metertools.list_meters_of_measures_in_expr( )``.
    '''
    from abjad.tools import componenttools
 

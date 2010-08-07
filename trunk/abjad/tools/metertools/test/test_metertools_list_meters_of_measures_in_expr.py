@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_metertools_extract_meters_from_measures_in_expr_01( ):
+def test_metertools_list_meters_of_measures_in_expr_01( ):
    '''Extract ordered list of meter pairs from components.'''
 
    t = Staff([RigidMeasure((2, 8), macros.scale(2)),
@@ -25,11 +25,11 @@ def test_metertools_extract_meters_from_measures_in_expr_01( ):
    }
    '''
 
-   meter_list = metertools.extract_meters_from_measures_in_expr(t[:])
+   meter_list = metertools.list_meters_of_measures_in_expr(t[:])
    assert meter_list == [(2, 8), (3, 8), (4, 8)]
 
 
-def test_metertools_extract_meters_from_measures_in_expr_02( ):
+def test_metertools_list_meters_of_measures_in_expr_02( ):
    '''Extract ordered list of meter pairs from components.'''
 
    t = Staff(macros.scale(4))
@@ -43,5 +43,5 @@ def test_metertools_extract_meters_from_measures_in_expr_02( ):
    }
    '''
 
-   meter_list = metertools.extract_meters_from_measures_in_expr(t[:])
+   meter_list = metertools.list_meters_of_measures_in_expr(t[:])
    assert meter_list == [ ]

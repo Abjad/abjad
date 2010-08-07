@@ -1,10 +1,10 @@
 from abjad.core import Rational
 from abjad.tools import iterate
 from abjad.tools.measuretools.scale_measure_by_multiplier_and_adjust_meter import scale_measure_by_multiplier_and_adjust_meter
-from abjad.tools.measuretools.multiply_measure_contents_in import multiply_measure_contents_in
+from abjad.tools.measuretools.multiply_contents_of_measures_in_expr import multiply_contents_of_measures_in_expr
 
 
-def multiply_measure_contents_and_scale_meter_denominator_in(expr, concentration_pairs):
+def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, concentration_pairs):
    '''Expr may be any Abjad expression.
    Concentration_pairs a Python list of pairs,
    each of the form (spin_count, scalar_denominator).
@@ -19,24 +19,28 @@ def multiply_measure_contents_and_scale_meter_denominator_in(expr, concentration
    Example::
 
       abjad> t = RigidMeasure((3, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
-      abjad> print(measuretools.multiply_measure_contents_and_scale_meter_denominator_in(t, [(3, 3)])[0])
+      abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])[0])
       |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
    Example::
 
       abjad> t = RigidMeasure((3, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
-      abjad> print(measuretools.multiply_measure_contents_and_scale_meter_denominator_in(t, [(3, 2)])[0])
+      abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 2)])[0])
       |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
    
    Example::
 
       abjad> t = RigidMeasure((3, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
-      abjad> print(measuretools.multiply_measure_contents_and_scale_meter_denominator_in(t, [(3, 1)])[0])
+      abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 1)])[0])
       |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.concentrate( )`` to
-      ``measuretools.multiply_measure_contents_and_scale_meter_denominator_in( )``.
+      ``measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.multiply_measure_contents_and_scale_meter_denominator_in( )`` to
+      ``measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators( )``.
    '''
 
    assert isinstance(concentration_pairs, list)
@@ -48,7 +52,7 @@ def multiply_measure_contents_and_scale_meter_denominator_in(expr, concentration
       concentration_pair = concentration_pairs[i % num_pairs]
       assert isinstance(concentration_pair, tuple)
       spin_count, scalar_denominator = concentration_pair
-      multiply_measure_contents_in(measure, spin_count)
+      multiply_contents_of_measures_in_expr(measure, spin_count)
       multiplier = Rational(1, scalar_denominator)
       scale_measure_by_multiplier_and_adjust_meter(measure, multiplier)
       result.append(measure)

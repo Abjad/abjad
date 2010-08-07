@@ -2,7 +2,7 @@ from abjad.tools import iterate
 from abjad.tools.measuretools.color_measure import color_measure
 
 
-def color_nonbinary_measures_in(expr, color = 'red'):
+def color_nonbinary_measures_in_expr(expr, color = 'red'):
    r'''.. versionadded:: 1.1.2
 
    Color nonbinary measures in `expr` with `color`::
@@ -27,7 +27,7 @@ def color_nonbinary_measures_in(expr, color = 'red'):
       
    ::
       
-      abjad> measuretools.color_nonbinary_measures_in(staff, 'red')
+      abjad> measuretools.color_nonbinary_measures_in_expr(staff, 'red')
       [RigidMeasure(3/12(2))]
       
    ::
@@ -61,6 +61,10 @@ def color_nonbinary_measures_in(expr, color = 'red'):
    Return list of measures colored.
 
    Color names appear in LilyPond Learning Manual appendix B.5.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.color_nonbinary_measures_in( )`` to
+      ``measuretools.color_nonbinary_measures_in_expr( )``.
    '''
 
    ## init measures colored

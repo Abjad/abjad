@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_apply_beam_spanners_to_measures_in_01( ):
+def test_measuretools_apply_beam_spanners_to_measures_in_expr_01( ):
    '''Beam all measures in expr with plain old Beam spanner.'''
 
    staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
@@ -22,7 +22,7 @@ def test_measuretools_apply_beam_spanners_to_measures_in_01( ):
    }
    '''
 
-   measuretools.apply_beam_spanners_to_measures_in(staff)
+   measuretools.apply_beam_spanners_to_measures_in_expr(staff)
 
 
    r'''

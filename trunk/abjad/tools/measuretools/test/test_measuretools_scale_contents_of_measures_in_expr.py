@@ -1,14 +1,14 @@
 from abjad import *
 
 
-def test_measuretools_scale_measure_contents_in_01( ):
+def test_measuretools_scale_contents_of_measures_in_expr_01( ):
    '''Quadruple binary meter.
       Meter denominator adjust appropriately.'''
 
    t = RigidMeasure((3, 32), macros.scale(3, Rational(1, 32)))
    Beam(t[:])
 
-   measuretools.scale_measure_contents_in(t, Rational(4))
+   measuretools.scale_contents_of_measures_in_expr(t, Rational(4))
 
    r'''
    {
@@ -23,13 +23,13 @@ def test_measuretools_scale_measure_contents_in_01( ):
    assert t.format == "{\n\t\\time 3/8\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
 
-def test_measuretools_scale_measure_contents_in_02( ):
+def test_measuretools_scale_contents_of_measures_in_expr_02( ):
    '''Triple binary meter.'''
 
    t = RigidMeasure((3, 32), macros.scale(3, Rational(1, 32)))
    Beam(t[:])
 
-   measuretools.scale_measure_contents_in(t, Rational(3))
+   measuretools.scale_contents_of_measures_in_expr(t, Rational(3))
 
    r'''
    {
@@ -44,13 +44,13 @@ def test_measuretools_scale_measure_contents_in_02( ):
    assert t.format == "{\n\t\\time 9/32\n\tc'16. [\n\td'16.\n\te'16. ]\n}"
 
 
-def test_measuretools_scale_measure_contents_in_03( ):
+def test_measuretools_scale_contents_of_measures_in_expr_03( ):
    '''Multiply binary measure by 2/3.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
    Beam(t[:])
 
-   measuretools.scale_measure_contents_in(t, Rational(2, 3))
+   measuretools.scale_contents_of_measures_in_expr(t, Rational(2, 3))
 
    r'''
    {

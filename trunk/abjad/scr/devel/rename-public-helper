@@ -94,7 +94,7 @@ def _confirm_name_changes(old_package, old_function, new_package, new_module):
 
 def _rename_old_api_page(old_package, old_function, new_package, new_module):
    print 'Renaming old API page ...'
-   api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
+   api_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
    api_path = os.path.join(api_path, 'tools')
    old_rst_file = old_function + '.rst'
    old_api_path = os.path.join(api_path, old_package, old_rst_file)
@@ -108,7 +108,7 @@ def _rename_old_api_page(old_package, old_function, new_package, new_module):
 def _make_new_api_page(new_package, new_function):
    print 'Making new API page ...'
    content_lines = [ ]
-   api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
+   api_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
    api_path = os.path.join(api_path, 'tools')
    new_helper = '%s.%s' % (new_package, new_function)
    content_lines.append(new_helper)
@@ -129,7 +129,7 @@ def _make_new_api_page(new_package, new_function):
 
 def _update_api_toc(old_package, old_function, new_package, new_function):
    print 'Updating API TOC ...'
-   api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
+   api_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
    api_toc_file_name = os.path.join(api_path, 'index.rst')
    api_toc_file = file(api_toc_file_name, 'r')
    new_lines = [ ]

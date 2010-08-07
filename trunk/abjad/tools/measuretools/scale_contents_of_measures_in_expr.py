@@ -5,7 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools import metertools
 
 
-def scale_measure_contents_in(expr, multiplier = Rational(1)):
+def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
    '''Iterate expr. For every measure in expr:
 
       1. multiply measure's meter by multiplier
@@ -18,7 +18,11 @@ def scale_measure_contents_in(expr, multiplier = Rational(1)):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.scale( )`` to
-      ``measuretools.scale_measure_contents_in( )``.
+      ``measuretools.scale_contents_of_measures_in_expr( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.scale_measure_contents_in( )`` to
+      ``measuretools.scale_contents_of_measures_in_expr( )``.
    '''
 
    from abjad.tools import containertools

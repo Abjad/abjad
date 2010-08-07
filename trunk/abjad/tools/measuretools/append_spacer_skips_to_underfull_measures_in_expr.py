@@ -4,7 +4,7 @@ from abjad.tools.measuretools.append_spacer_skip_to_underfull_measure \
    import append_spacer_skip_to_underfull_measure
 
 
-def append_spacer_skips_to_underfull_measures_in(expr):
+def append_spacer_skips_to_underfull_measures_in_expr(expr):
    r'''.. versionadded:: 1.1.1
 
    Append spacer skips to underfull measures in `expr`::
@@ -19,7 +19,7 @@ def append_spacer_skips_to_underfull_measures_in(expr):
       
    ::
       
-      abjad> measuretools.append_spacer_skips_to_underfull_measures_in(staff) 
+      abjad> measuretools.append_spacer_skips_to_underfull_measures_in_expr(staff) 
       [RigidMeasure(4/8, [c'8, d'8, e'8, s1 * 1/8]), RigidMeasure(5/8, [c'8, d'8, e'8, s1 * 1/4])]
       
    ::
@@ -52,7 +52,11 @@ def append_spacer_skips_to_underfull_measures_in(expr):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.remedy_underfull_measures( )`` to
-      ``measuretools.append_spacer_skips_to_underfull_measures_in( )``.
+      ``measuretools.append_spacer_skips_to_underfull_measures_in_expr( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.append_spacer_skips_to_underfull_measures_in( )`` to
+      ``measuretools.append_spacer_skips_to_underfull_measures_in_expr( )``.
    '''
 
    treated_measures = [ ]

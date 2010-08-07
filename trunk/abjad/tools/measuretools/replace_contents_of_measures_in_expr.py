@@ -1,10 +1,10 @@
 from abjad.components._Measure import RigidMeasure
 from abjad.tools import iterate
-from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in \
-   import append_spacer_skips_to_underfull_measures_in
+from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in_expr \
+   import append_spacer_skips_to_underfull_measures_in_expr
 
 
-def replace_measure_contents_in(expr, new_contents):
+def replace_contents_of_measures_in_expr(expr, new_contents):
    r'''.. versionadded:: 1.1.1
 
    Replace contents of measures in `expr` with `new_contents`::
@@ -25,7 +25,7 @@ def replace_measure_contents_in(expr, new_contents):
    ::
       
       abjad> notes = macros.scale(4, Rational(1, 16))
-      abjad> measuretools.replace_measure_contents_in(staff, notes) 
+      abjad> measuretools.replace_contents_of_measures_in_expr(staff, notes) 
       [RigidMeasure(1/8, [c'16, d'16]), RigidMeasure(3/16, [e'16, f'16, s1 * 1/16])]
       
    ::
@@ -57,7 +57,11 @@ def replace_measure_contents_in(expr, new_contents):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.overwrite_contents( )`` to
-      ``measuretools.replace_measure_contents_in( )``.
+      ``measuretools.replace_contents_of_measures_in_expr( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.replace_measure_contents_in( )`` to
+      ``measuretools.replace_contents_of_measures_in_expr( )``.
    '''
 
    ## init return list
@@ -87,7 +91,7 @@ def replace_measure_contents_in(expr, new_contents):
       ## otherwise restore currene measure and advance to next measure
       else:
          cur_measure.meter.forced = cur_meter
-         append_spacer_skips_to_underfull_measures_in([cur_measure])
+         append_spacer_skips_to_underfull_measures_in_expr([cur_measure])
          cur_measure = iterate.get_next_measure_from_component(cur_measure)
          if cur_measure is None:
             raise StopIteration
@@ -97,7 +101,7 @@ def replace_measure_contents_in(expr, new_contents):
 
    ## restore last iterated measure
    cur_measure.meter.forced = cur_meter
-   append_spacer_skips_to_underfull_measures_in(cur_measure)
+   append_spacer_skips_to_underfull_measures_in_expr(cur_measure)
 
    ## return iterated measures
    return result

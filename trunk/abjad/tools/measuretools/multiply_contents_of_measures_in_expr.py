@@ -4,7 +4,7 @@ from abjad.tools import durtools
 from abjad.tools import iterate
 
 
-def multiply_measure_contents_in(expr, n):
+def multiply_contents_of_measures_in_expr(expr, n):
    r'''Multiply contents ``n - 1`` times and adjust meter
    of every measure in `expr`::
 
@@ -20,7 +20,7 @@ def multiply_measure_contents_in(expr, n):
       
    ::
       
-      abjad> measuretools.multiply_measure_contents_in(measure, 3) 
+      abjad> measuretools.multiply_contents_of_measures_in_expr(measure, 3) 
       
    ::
       
@@ -40,7 +40,11 @@ def multiply_measure_contents_in(expr, n):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.spin( )`` to
-      ``measuretools.multiply_measure_contents_in( )``.
+      ``measuretools.multiply_contents_of_measures_in_expr( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.multiply_measure_contents_in( )`` to
+      ``measuretools.multiply_contents_of_measures_in_expr( )``.
    '''
 
    from abjad.tools import containertools

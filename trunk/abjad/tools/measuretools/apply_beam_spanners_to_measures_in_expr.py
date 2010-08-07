@@ -4,7 +4,7 @@ from abjad.tools.measuretools.apply_beam_spanner_to_measure import \
    apply_beam_spanner_to_measure
 
 
-def apply_beam_spanners_to_measures_in(expr):
+def apply_beam_spanners_to_measures_in_expr(expr):
    r'''.. versionadded:: 1.1.1
 
    Apply beam spanners to measures in `expr`::
@@ -27,7 +27,7 @@ def apply_beam_spanners_to_measures_in(expr):
       
    ::
       
-      abjad> measuretools.apply_beam_spanners_to_measures_in(staff)
+      abjad> measuretools.apply_beam_spanners_to_measures_in_expr(staff)
       [Beam(|2/8(2)|), Beam(|2/8(2)|)]
       
    ::
@@ -50,7 +50,11 @@ def apply_beam_spanners_to_measures_in(expr):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.beam( )`` to
-      ``measuretools.apply_beam_spanners_to_measures_in( )``.
+      ``measuretools.apply_beam_spanners_to_measures_in_expr( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.apply_beam_spanners_to_measures_in( )`` to
+      ``measuretools.apply_beam_spanners_to_measures_in_expr( )``.
    '''
 
    ## init beams created
