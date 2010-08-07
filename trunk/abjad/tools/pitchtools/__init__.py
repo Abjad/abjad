@@ -40,11 +40,11 @@ from NamedPitchClassSegment import NamedPitchClassSegment
 from NamedPitchClassSet import NamedPitchClassSet
 from NumericPitch import NumericPitch
 from NumericPitchClass import NumericPitchClass
+from NumericPitchClassColorMap import NumericPitchClassColorMap
+from NumericPitchClassSegment import NumericPitchClassSegment
+from NumericPitchClassSet import NumericPitchClassSet
+from NumericPitchClassVector import NumericPitchClassVector
 from PitchArray import PitchArray
-from PitchClassColorMap import PitchClassColorMap
-from PitchClassSegment import PitchClassSegment
-from PitchClassSet import PitchClassSet
-from PitchClassVector import PitchClassVector
 from PitchRange import PitchRange
 from PitchSegment import PitchSegment
 from PitchSet import PitchSet
