@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.PitchClass import PitchClass
+from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 import copy
 
@@ -10,7 +10,7 @@ class PitchClassSegment(list):
    '''
 
    def __init__(self, pitch_class_tokens):
-      pitch_classes = [PitchClass(x) for x in pitch_class_tokens]
+      pitch_classes = [NumericPitchClass(x) for x in pitch_class_tokens]
       self.extend(pitch_classes)
 
    ## OVERLOADS ##

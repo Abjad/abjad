@@ -14,5 +14,5 @@ def test_NamedPitch__init_by_pair_01( ):
    assert p.number == 13
    assert p.octave == 5
    assert p.pair == ('df', 5)
-   assert p.pc == pitchtools.PitchClass(1)
+   assert p.pc == pitchtools.NumericPitchClass(1)
    assert p.ticks == "''"

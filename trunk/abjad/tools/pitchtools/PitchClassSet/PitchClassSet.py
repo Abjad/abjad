@@ -1,7 +1,7 @@
 from abjad.tools import listtools
 from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
 from abjad.tools.pitchtools.IntervalClassVector import IntervalClassVector
-from abjad.tools.pitchtools.PitchClass import PitchClass
+from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 
 
@@ -20,14 +20,14 @@ class PitchClassSet(frozenset):
       try:
          for x in expr:
             try:
-               pcs.append(PitchClass(x))
+               pcs.append(NumericPitchClass(x))
             except TypeError:
                pcs.extend(get_pitch_classes(x))
       ## if expr is not iterable
       except TypeError:
          ## assume expr can be turned into a single pc
          try:
-            pc = PitchClass(expr)
+            pc = NumericPitchClass(expr)
             pcs.append(pc)
          ## expr is a Rest or non-PC type
          except TypeError:

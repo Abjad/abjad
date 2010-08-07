@@ -747,11 +747,11 @@ pitchtools
    tools/pitchtools/NamedPitchClassSegment/NamedPitchClassSegment
    tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet
    tools/pitchtools/NumericPitch/NumericPitch
+   tools/pitchtools/NumericPitchClass/NumericPitchClass
    tools/pitchtools/PitchArray/PitchArray
    tools/pitchtools/PitchArray/PitchArrayCell/PitchArrayCell
    tools/pitchtools/PitchArray/PitchArrayColumn/PitchArrayColumn
    tools/pitchtools/PitchArray/PitchArrayRow/PitchArrayRow
-   tools/pitchtools/PitchClass/PitchClass
    tools/pitchtools/PitchClassColorMap/PitchClassColorMap
    tools/pitchtools/PitchClassSegment/PitchClassSegment
    tools/pitchtools/PitchClassSet/PitchClassSet

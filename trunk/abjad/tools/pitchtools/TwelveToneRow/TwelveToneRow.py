@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.PitchClass import PitchClass
+from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 
 
 class TwelveToneRow(object):
@@ -7,7 +7,7 @@ class TwelveToneRow(object):
    '''
 
    def __init__(self, pitch_classes):
-      pitch_classes = [PitchClass(pc) for pc in pitch_classes]
+      pitch_classes = [NumericPitchClass(pc) for pc in pitch_classes]
       self._validate_pitch_classes(pitch_classes)
       self._pitch_classes = pitch_classes
 

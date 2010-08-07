@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.PitchClass import PitchClass
+from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 
 
 class PitchClassVector(dict):
@@ -12,7 +12,7 @@ class PitchClassVector(dict):
          self[pcn] = 0
          self[pcn + 0.5] = 0
       for token in pitch_class_tokens:
-         pitch_class = PitchClass(token)
+         pitch_class = NumericPitchClass(token)
          self[pitch_class.number] += 1
 
    ## OVERLOADS ##
@@ -112,6 +112,6 @@ class PitchClassVector(dict):
       pitch_classes = [ ]
       for pitch_class_number, count in self.items( ):
          if 0 < count:
-            pitch_class = PitchClass(pitch_class_number)
+            pitch_class = NumericPitchClass(pitch_class_number)
             pitch_classes.append(pitch_class)
       return pitch_classes

@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.get_pitch import get_pitch
-from abjad.tools.pitchtools.PitchClass import PitchClass
+from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 
 
 def get_pitch_class(pitch_carrier):
@@ -9,13 +9,13 @@ def get_pitch_class(pitch_carrier):
 
       abjad> note = Note(13, (1, 4))
       abjad> pitchtools.get_pitch_class(note)
-      PitchClass(1)
+      NumericPitchClass(1)
 
    One-note chords work fine. ::
 
       abjad> one_note_chord = Chord([13], (1, 4))
       abjad> pitchtools.get_pitch_class(one_note_chord)
-      PitchClass(1)
+      NumericPitchClass(1)
 
    Empty chords Raise :exc:`MissingPitchError`. ::
 
@@ -31,5 +31,5 @@ def get_pitch_class(pitch_carrier):
    '''
 
    pitch = get_pitch(pitch_carrier)
-   pitch_class = PitchClass(pitch)
+   pitch_class = NumericPitchClass(pitch)
    return pitch_class

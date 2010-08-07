@@ -11,7 +11,7 @@ def test_PitchClassSet___init____02( ):
    '''Works with pitch classes.'''
 
    assert len(pitchtools.PitchClassSet(
-      [pitchtools.PitchClass(x) for x in [0, 2, 6, 7]])) == 4
+      [pitchtools.NumericPitchClass(x) for x in [0, 2, 6, 7]])) == 4
 
 
 def test_PitchClassSet___init____03( ):

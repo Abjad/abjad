@@ -1,1 +1,1 @@
-from PitchClass import PitchClass
+from NumericPitchClass import NumericPitchClass

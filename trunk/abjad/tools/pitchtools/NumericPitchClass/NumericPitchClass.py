@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
 
 
-class PitchClass(object):
+class NumericPitchClass(object):
    '''.. versionadded:: 1.1.2
 
    Numeric 12-ET pitch-class ranging from [0, 12).
@@ -35,13 +35,13 @@ class PitchClass(object):
    ## OVERLOADS ##
 
    def __abs__(self):
-      return PitchClass(abs(self.semitones))
+      return NumericPitchClass(abs(self.semitones))
 
    def __add__(self, arg):
       '''Addition defined against melodic chromatic intervals only.'''
       if not isinstance(arg, MelodicChromaticInterval):
          raise TypeError('must be melodic chromatic interval.')
-      return PitchClass(self.number + arg.number % 12)
+      return NumericPitchClass(self.number + arg.number % 12)
       
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
@@ -75,7 +75,7 @@ class PitchClass(object):
       return not self == arg
 
    def __neg__(self):
-      return PitchClass(-self.semitones)
+      return NumericPitchClass(-self.semitones)
    
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self.number)
@@ -92,7 +92,7 @@ class PitchClass(object):
             interval_class_number = 12 - interval_class_number
          return IntervalClass(interval_class_number)
       elif isinstance(arg, IntervalClass):
-         return PitchClass(self.number - arg.number % 12)
+         return NumericPitchClass(self.number - arg.number % 12)
       else:
          raise TypeError('must be pitch class or interval class.')
      
@@ -114,16 +114,16 @@ class PitchClass(object):
       '''Emit new numeric pitch class as sum of self and accidental.'''
       accidental = Accidental(accidental)
       semitones = self.semitones + accidental.semitones
-      return PitchClass(semitones)
+      return NumericPitchClass(semitones)
 
    def invert(self):
       '''Invert pitch class.'''
-      return PitchClass(12 - self.number)
+      return NumericPitchClass(12 - self.number)
 
    def multiply(self, n):
       '''Multiply pitch class by n.'''
-      return PitchClass(self.number * n)
+      return NumericPitchClass(self.number * n)
 
    def transpose(self, n):
       '''Transpose pitch class by n.'''
-      return PitchClass(self.number + n)
+      return NumericPitchClass(self.number + n)

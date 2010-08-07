@@ -24,10 +24,8 @@ from IntervalClassSet import IntervalClassSet
 from IntervalClassVector import IntervalClassVector
 from MelodicChromaticInterval import MelodicChromaticInterval
 from MelodicChromaticIntervalClass import MelodicChromaticIntervalClass
-from MelodicChromaticIntervalClassSegment import \
-   MelodicChromaticIntervalClassSegment
-from MelodicChromaticIntervalClassVector import \
-   MelodicChromaticIntervalClassVector
+from MelodicChromaticIntervalClassSegment import MelodicChromaticIntervalClassSegment
+from MelodicChromaticIntervalClassVector import MelodicChromaticIntervalClassVector
 from MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
 from MelodicChromaticIntervalSet import MelodicChromaticIntervalSet
 from MelodicCounterpointInterval import MelodicCounterpointInterval
@@ -41,8 +39,8 @@ from NamedPitchClass import NamedPitchClass
 from NamedPitchClassSegment import NamedPitchClassSegment
 from NamedPitchClassSet import NamedPitchClassSet
 from NumericPitch import NumericPitch
+from NumericPitchClass import NumericPitchClass
 from PitchArray import PitchArray
-from PitchClass import PitchClass
 from PitchClassColorMap import PitchClassColorMap
 from PitchClassSegment import PitchClassSegment
 from PitchClassSet import PitchClassSet

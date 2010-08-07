@@ -317,7 +317,7 @@ class NamedPitch(_Abjad):
       from abjad.tools import pitchtools
       number = self.number
       if number is not None:
-         return pitchtools.PitchClass(number % 12)
+         return pitchtools.NumericPitchClass(number % 12)
       else:
          return None
       
@@ -331,7 +331,7 @@ class NamedPitch(_Abjad):
       from abjad.tools import pitchtools
       number = self.number
       if number is not None:
-         return pitchtools.PitchClass(number % 12)
+         return pitchtools.NumericPitchClass(number % 12)
       else:
          return None
 

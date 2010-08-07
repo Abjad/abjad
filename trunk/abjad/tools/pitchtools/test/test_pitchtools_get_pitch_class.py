@@ -6,14 +6,14 @@ def test_pitchtools_get_pitch_class_01( ):
    '''Works on notes.'''
 
    note = Note(13, (1, 4))
-   assert pitchtools.get_pitch_class(note) == pitchtools.PitchClass(1)
+   assert pitchtools.get_pitch_class(note) == pitchtools.NumericPitchClass(1)
 
 
 def test_pitchtools_get_pitch_class_02( ):
    '''Works on one-note chords.'''
 
    chord = Chord([13], (1, 4))
-   assert pitchtools.get_pitch_class(chord) == pitchtools.PitchClass(1)
+   assert pitchtools.get_pitch_class(chord) == pitchtools.NumericPitchClass(1)
 
 
 def test_pitchtools_get_pitch_class_03( ):
