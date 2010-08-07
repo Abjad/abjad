@@ -68,7 +68,7 @@ class  NumericPitchClassSet(frozenset):
 
    @property
    def interval_class_set(self):
-      interval_class_set = IntervalClassSet([ ])
+      interval_class_set = InversionEquivalentChromaticIntervalClassSet([ ])
       for first_pc, second_pc in listtools.get_unordered_pairs(self):
          interval_class = first_pc - second_pc
          interval_class_set.add(interval_class)
@@ -80,7 +80,7 @@ class  NumericPitchClassSet(frozenset):
       for first_pc, second_pc in listtools.get_unordered_pairs(self):
          interval_class = first_pc - second_pc
          interval_classes.append(interval_class)
-      return IntervalClassVector(interval_classes)
+      return InversionEquivalentChromaticIntervalClassVector(interval_classes)
 
    @property
    def pitch_classes(self):

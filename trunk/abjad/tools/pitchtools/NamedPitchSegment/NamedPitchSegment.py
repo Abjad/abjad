@@ -64,19 +64,19 @@ class NamedPitchSegment(list):
    def interval_class_segment(self):
       pitch_classes = self.pitch_class_segment
       interval_classes = listtools.difference_series(pitch_classes)
-      return IntervalClassSegment(interval_classes)
+      return InversionEquivalentChromaticIntervalClassSegment(interval_classes)
 
    @property
    def interval_class_set(self):
       pitch_classes = self.pitch_class_segment
       interval_classes = listtools.difference_series(pitch_classes)
-      return IntervalClassSet(interval_classes)
+      return InversionEquivalentChromaticIntervalClassSet(interval_classes)
       
    @property
    def interval_class_vector(self):
       pitch_classes = self.pitch_class_segment
       interval_classes = listtools.difference_series(pitch_classes)
-      return IntervalClassVector(interval_classes)
+      return InversionEquivalentChromaticIntervalClassVector(interval_classes)
       
    @property
    def local_minima(self):

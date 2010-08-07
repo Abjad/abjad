@@ -10,13 +10,13 @@ class InversionEquivalentChromaticIntervalClassSet(set):
    def __init__(self, interval_class_tokens):
       self._interval_classes = [ ] ## can this line be deleted?
       for token in interval_class_tokens:
-         interval_class = IntervalClass(token)
+         interval_class = InversionEquivalentChromaticIntervalClass(token)
          self.add(interval_class)
 
    ## OVERLOADS ##
 
    def __copy__(self):
-      return IntervalClassSet(self.numbers)
+      return InversionEquivalentChromaticIntervalClassSet(self.numbers)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)

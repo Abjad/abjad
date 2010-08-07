@@ -90,8 +90,8 @@ class NumericPitchClass(object):
          interval_class_number = abs(self.number - arg.number)
          if 6 < interval_class_number:
             interval_class_number = 12 - interval_class_number
-         return IntervalClass(interval_class_number)
-      elif isinstance(arg, IntervalClass):
+         return InversionEquivalentChromaticIntervalClass(interval_class_number)
+      elif isinstance(arg, InversionEquivalentChromaticIntervalClass):
          return NumericPitchClass(self.number - arg.number % 12)
       else:
          raise TypeError('must be pitch class or interval class.')

@@ -8,7 +8,7 @@ class InversionEquivalentChromaticIntervalClass(object):
    '''
 
    def __init__(self, interval_class_token):
-      if isinstance(interval_class_token, IntervalClass):
+      if isinstance(interval_class_token, InversionEquivalentChromaticIntervalClass):
          self._number = interval_class_token.number
       elif isinstance(interval_class_token, (int, float, long, Rational)):
          if not 0 <= interval_class_token <= 6:
@@ -20,13 +20,13 @@ class InversionEquivalentChromaticIntervalClass(object):
    ## OVERLOADS ##
 
    def __abs__(self):
-      return IntervalClass(abs(self.number))
+      return InversionEquivalentChromaticIntervalClass(abs(self.number))
 
    def __copy__(self):
-      return IntervalClass(self.number)
+      return InversionEquivalentChromaticIntervalClass(self.number)
 
    def __eq__(self, arg):
-      if isinstance(arg, IntervalClass):
+      if isinstance(arg, InversionEquivalentChromaticIntervalClass):
          if self.number == arg.number:
             return True
       return False
@@ -38,7 +38,7 @@ class InversionEquivalentChromaticIntervalClass(object):
       return not self == arg
 
    def __neg__(self):
-      return IntervalClass(self.number)
+      return InversionEquivalentChromaticIntervalClass(self.number)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)

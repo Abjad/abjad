@@ -32,7 +32,7 @@ class NumericPitchClassSegment(list):
    @property
    def interval_class_segment(self):
       interval_classes = list(listtools.difference_series(self.pitch_classes))
-      return IntervalClassSegment(interval_classes)
+      return InversionEquivalentChromaticIntervalClassSegment(interval_classes)
 
    @property
    def pitch_class_set(self):

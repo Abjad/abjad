@@ -13,7 +13,7 @@ class InversionEquivalentChromaticIntervalClassVector(dict):
          self[icn + 0.5] = 0
       del(self[6.5])
       for token in interval_class_tokens:
-         interval_class = IntervalClass(token)
+         interval_class = InversionEquivalentChromaticIntervalClass(token)
          self[interval_class.number] += 1
 
    ## OVERLOADS ##
