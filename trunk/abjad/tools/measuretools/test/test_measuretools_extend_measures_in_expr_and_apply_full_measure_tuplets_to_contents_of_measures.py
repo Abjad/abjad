@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_tupletize_01( ):
+def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_contents_of_measures_01( ):
    '''Tupletize one measure, supplement one note.'''
 
    t = RigidMeasure((4, 8), leaftools.make_repeated_notes(4))
@@ -25,7 +25,7 @@ def test_measuretools_tupletize_01( ):
    assert t.format == "{\n\t\\time 4/8\n\t\\times 4/5 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
 
 
-def test_measuretools_tupletize_02( ):
+def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_contents_of_measures_02( ):
    '''Tupletize one measure, supplement one rest.'''
 
    t = RigidMeasure((4, 8), leaftools.make_repeated_notes(4))

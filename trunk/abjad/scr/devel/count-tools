@@ -20,14 +20,14 @@ def _count_public_tools_functions( ):
                         private_function_definition_lines.append(line)
                      else:
                         public_function_definition_lines.append(line)
-   print ''
-   pprint.pprint(private_function_definition_lines)
-   pprint.pprint(public_function_definition_lines)
-   print ''
+   #print ''
+   #pprint.pprint(private_function_definition_lines)
+   #pprint.pprint(public_function_definition_lines)
+   #print ''
    total_private = len(private_function_definition_lines)
    total_public = len(public_function_definition_lines)
    print 'Total private tools function definitions: %s' % total_private
-   print 'Total public tools function definitions: %s' % total_public
+   print 'Total public tools function definitions:  %s' % total_public
    print ''
       
 

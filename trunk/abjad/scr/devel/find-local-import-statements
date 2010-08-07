@@ -8,7 +8,7 @@ import pprint
 def _find_local_import_statements( ):
    total_local_import_statements = 0
    for path, subdirectories, files in os.walk(ABJADPATH):
-      if '.svn' not in path and 'documentation' not in path:
+      if '.svn' not in path and 'docs' not in path:
          for f in files:
             if f.endswith('.py') and not f == '__init__.py':
                full_file_name = os.path.join(path, f)

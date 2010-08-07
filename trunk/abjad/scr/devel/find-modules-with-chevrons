@@ -23,6 +23,7 @@ def _find_modules_with_chevrons( ):
    if 0 < total:
       pprint.pprint(modules_with_chevrons)
       print ''
+   print ''
    print 'Total modules with chevrons: %s' % total
    print ''
 
@@ -38,4 +39,5 @@ def _has_python_prompt_chevrons(path, f):
 
 if __name__ == '__main__':
    os.system('clear')
+   print 'Finding modules with chevrons ...'
    _find_modules_with_chevrons( )

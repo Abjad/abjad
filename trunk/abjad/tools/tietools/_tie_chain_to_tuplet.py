@@ -3,7 +3,7 @@ from abjad.components.Note import Note
 from abjad.core import Rational
 from abjad.tools import componenttools
 from abjad.tools import durtools
-from abjad.tools.tietools.get_tie_chain_preprolated_duration import get_tie_chain_preprolated_duration
+from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
 from abjad.components._Tuplet import FixedDurationTuplet
 
 
@@ -15,7 +15,7 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
 
    # find target duration of fixed-duration tuplet
    tie_chain = chain[0].tie.chain
-   target_duration = get_tie_chain_preprolated_duration(tie_chain)
+   target_duration = get_preprolated_tie_chain_duration(tie_chain)
 
    # find prolated duration of each note in tuplet
    prolated_duration = target_duration / sum(divisions)

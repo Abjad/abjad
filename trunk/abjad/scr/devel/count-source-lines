@@ -28,16 +28,15 @@ def _count_source_lines( ):
 
 def _report(source_modules, source_lines, test_modules, test_lines):
 
-   print ''
    print 'source_modules: %s' % source_modules
-   print 'test_modules: %s' % test_modules
+   print 'test_modules:   %s' % test_modules
 
    print ''
-   print 'source_lines: %s' % source_lines
-   print 'test_lines: %s' % test_lines
+   print 'source_lines:   %s' % source_lines
+   print 'test_lines:     %s' % test_lines
 
    print ''
-   print 'total lines: %s' % (source_lines + test_lines)
+   print 'total lines:    %s' % (source_lines + test_lines)
    try:
       ratio = test_lines / float(source_lines)
    except ZeroDivisionError:
@@ -46,4 +45,5 @@ def _report(source_modules, source_lines, test_modules, test_lines):
    print ''
 
 if __name__ == '__main__':
+   os.system('clear')
    _report(*_count_source_lines( ))

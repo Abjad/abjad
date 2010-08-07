@@ -24,13 +24,14 @@ def _find_misnamed_private_modules( ):
                            token = '%s in %s' % (function_name, medium_name)
                            offending_definition_lines.append(token)
    print ''
-   pprint.pprint(offending_definition_lines)
-   print ''
+   #pprint.pprint(offending_definition_lines)
+   #print ''
    total_offending_definitions = len(offending_definition_lines)
-   print 'Total private tools function definitions in public modules: %s' % total_offending_definitions
+   print 'Total tools defined as private in public modules: %s' % total_offending_definitions
    print ''
       
 
 if __name__ == '__main__':
    os.system('clear')
+   print 'Finding misnamed private modules ...'
    _find_misnamed_private_modules( )

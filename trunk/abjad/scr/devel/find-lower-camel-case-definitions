@@ -27,7 +27,7 @@ def _find_lower_camel_case_definitions( ):
          if found_lower_camel_case_definition:
             print ''
    print 'Total modules with lower camel case definitions: %s' % total_modules_with_lower_camel_case_definitions
-   print 'Total lower camel case definitions: %s' % len(lower_camel_case_definitions)
+   print 'Total lower camel case definitions:              %s' % len(lower_camel_case_definitions)
    print ''
 
 

@@ -941,11 +941,11 @@ tietools
    tools/tietools/apply_tie_spanner_to_leaf_pair
    tools/tietools/are_components_in_same_tie_spanner
    tools/tietools/get_leaves_in_tie_chain
+   tools/tietools/get_preprolated_tie_chain_duration
+   tools/tietools/get_prolated_tie_chain_duration
    tools/tietools/get_tie_chain_duration_in_seconds
-   tools/tietools/get_tie_chain_preprolated_duration
-   tools/tietools/get_tie_chain_prolated_duration
-   tools/tietools/get_tie_chain_written_duration
    tools/tietools/get_tie_chains_in_expr
+   tools/tietools/get_written_tie_chain_duration
    tools/tietools/group_leaves_in_tie_chain_by_immediate_parents
    tools/tietools/is_tie_chain
    tools/tietools/is_tie_chain_with_all_leaves_in_same_parent
@@ -981,10 +981,10 @@ tonalitytools
    tools/tonalitytools/analyze_incomplete_chord
    tools/tonalitytools/analyze_incomplete_tonal_function
    tools/tonalitytools/analyze_tonal_function
-   tools/tonalitytools/are_scalar
-   tools/tonalitytools/are_stepwise
-   tools/tonalitytools/are_stepwise_ascending
-   tools/tonalitytools/are_stepwise_descending
+   tools/tonalitytools/are_scalar_notes
+   tools/tonalitytools/are_stepwise_ascending_notes
+   tools/tonalitytools/are_stepwise_descending_notes
+   tools/tonalitytools/are_stepwise_notes
    tools/tonalitytools/chord_class_cardinality_to_extent
    tools/tonalitytools/chord_class_extent_to_cardinality
    tools/tonalitytools/chord_class_extent_to_extent_name

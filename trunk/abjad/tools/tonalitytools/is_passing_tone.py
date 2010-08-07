@@ -1,6 +1,6 @@
 from abjad.components.Note import Note
 from abjad.tools import iterate
-from abjad.tools.tonalitytools.are_scalar import are_scalar
+from abjad.tools.tonalitytools.are_scalar_notes import are_scalar_notes
 
 
 def is_passing_tone(note):
@@ -28,4 +28,4 @@ def is_passing_tone(note):
    except IndexError:
       return False
 
-   return are_scalar(prev_note, note, next_note)
+   return are_scalar_notes(prev_note, note, next_note)
