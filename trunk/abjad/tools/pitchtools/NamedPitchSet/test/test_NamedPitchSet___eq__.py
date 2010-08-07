@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_PitchSet___eq___01( ):
+def test_NamedPitchSet___eq___01( ):
    '''Pitch set equality works as expected.'''
 
    pset1 = pitchtools.NamedPitchSet([12, 14, 18, 19])
