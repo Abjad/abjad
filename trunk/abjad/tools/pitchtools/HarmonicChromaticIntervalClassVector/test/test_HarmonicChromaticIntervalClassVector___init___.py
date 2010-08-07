@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ChromaticIntervalVector___init____01( ):
+def test_HarmonicChromaticIntervalClassVector___init____01( ):
 
    staff = Staff(macros.scale(5))
 
