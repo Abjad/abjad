@@ -19,7 +19,7 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):
 
    tokens = leaftools.make_quarter_notes_with_lilypond_multipliers([0], time_intervals)
    for leaf_iterable, pitch_array_row in zip(leaf_iterables, pitch_array.rows):
-      durations = leaftools.get_prolated_durations_from_leaves_in_expr(leaf_iterable)
+      durations = leaftools.list_prolated_durations_of_leaves_in_expr(leaf_iterable)
       parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(
          tokens, durations)
       part_lengths = [len(part) for part in parts]

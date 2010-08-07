@@ -1,4 +1,4 @@
-from abjad.tools.mathtools.binary_string import binary_string
+from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_string
 from abjad.tools.mathtools.sign import sign
 
 
@@ -80,7 +80,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
    
    result = [ ]
    prev_empty = True
-   binary_n = binary_string(abs(n))
+   binary_n = integer_to_binary_string(abs(n))
    binary_length = len(binary_n)
 
    for i, x in enumerate(binary_n):

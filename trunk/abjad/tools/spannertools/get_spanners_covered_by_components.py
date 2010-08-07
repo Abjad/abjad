@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.get_contained import get_contained
+from abjad.tools.spannertools.get_spanners_contained_by_components import get_spanners_contained_by_components
 
 
 def get_spanners_covered_by_components(components):
@@ -23,7 +23,7 @@ def get_spanners_covered_by_components(components):
    components_begin = first.offset.prolated.start
    components_end = last.offset.prolated.stop
 
-   result = get_contained(components)
+   result = get_spanners_contained_by_components(components)
    for spanner in list(result):
       if spanner.offset.start < components_begin or \
          components_end < spanner.offset.stop:

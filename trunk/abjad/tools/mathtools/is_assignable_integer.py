@@ -1,5 +1,5 @@
-from abjad.tools.mathtools.binary_string import binary_string \
-   as mathtools_binary_string
+from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_string \
+   as mathtools_integer_to_binary_string
 
 
 def is_assignable_integer(n):
@@ -36,6 +36,6 @@ def is_assignable_integer(n):
 
    if isinstance(n, int):
       if 0 < n:
-         if not '01' in mathtools_binary_string(n):
+         if not '01' in mathtools_integer_to_binary_string(n):
             return True
    return False

@@ -132,7 +132,7 @@ def _scopy_leaf(leaf, start, stop):
    if total == 0:
       return None
    new = clone_components_and_fracture_crossing_spanners([leaf])[0]
-   leaftools.change_leaf_preprolated_duration(new, total)
+   leaftools.set_preprolated_leaf_duration(new, total)
    return new
 
 

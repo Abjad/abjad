@@ -13,8 +13,7 @@ def _split_leaf_at_duration(
    '''
    from abjad.tools import componenttools
    from abjad.tools import tietools
-   from abjad.tools.leaftools.change_leaf_preprolated_duration import \
-      change_leaf_preprolated_duration
+   from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_leaf_duration
 
    assert isinstance(leaf, _Leaf)
    assert isinstance(split_dur, Rational)
@@ -35,8 +34,8 @@ def _split_leaf_at_duration(
    new_leaf.dynamics.mark = None
    leaf.grace.after = None
 
-   left_leaf_list = change_leaf_preprolated_duration(leaf, unprolated_split_dur)
-   right_leaf_list = change_leaf_preprolated_duration(
+   left_leaf_list = set_preprolated_leaf_duration(leaf, unprolated_split_dur)
+   right_leaf_list = set_preprolated_leaf_duration(
       new_leaf, leaf_multiplied_duration - unprolated_split_dur)
 
    leaf_left_of_split = left_leaf_list[-1]

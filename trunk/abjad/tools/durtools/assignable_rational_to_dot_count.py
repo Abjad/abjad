@@ -39,7 +39,7 @@ def assignable_rational_to_dot_count(rational):
    if not is_assignable_rational(rational):
       raise AssignabilityError
 
-   binary_string = mathtools.binary_string(rational._n)
+   binary_string = mathtools.integer_to_binary_string(rational._n)
    digit_sum = sum([int(x) for x in list(binary_string)])
    dot_count = digit_sum - 1
    

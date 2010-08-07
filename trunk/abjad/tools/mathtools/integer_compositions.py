@@ -1,4 +1,4 @@
-from abjad.tools.mathtools.binary_string import binary_string
+from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_string
 import itertools
 
 
@@ -39,7 +39,7 @@ def integer_compositions(n):
    x = 0
    string_length = n
    while x < 2 ** (n - 1):
-      string = binary_string(x)
+      string = integer_to_binary_string(x)
       string = string.zfill(string_length)
       l = [int(c) for c in list(string)]
       partition = [ ]

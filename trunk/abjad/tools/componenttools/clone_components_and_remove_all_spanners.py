@@ -90,7 +90,7 @@ def clone_components_and_remove_all_spanners(components, n = 1):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   spanners = spannertools.get_contained(components) 
+   spanners = spannertools.get_spanners_contained_by_components(components) 
    for spanner in spanners:
       spanner._block_all_components( )
 

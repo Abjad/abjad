@@ -44,7 +44,7 @@ def yield_all_subchords_of_chord(chord):
    len_chord = len(chord)
    for i in range(2 ** len_chord):
       new_chord = componenttools.clone_components_and_remove_all_spanners([chord])[0]
-      binary_string = mathtools.binary_string(i)
+      binary_string = mathtools.integer_to_binary_string(i)
       binary_string = binary_string.zfill(len_chord)
       for j, digit in enumerate(reversed(binary_string)):
          if digit == '0':

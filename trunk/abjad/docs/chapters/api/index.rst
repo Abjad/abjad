@@ -194,7 +194,7 @@ componenttools
    tools/componenttools/list_badly_formed_components_in_expr
    tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
    tools/componenttools/list_leftmost_components_with_prolated_duration_at_most
-   tools/componenttools/move_component_subtree_to_right_in_score_and_spanners
+   tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
    tools/componenttools/number_is_between_prolated_start_and_stop_offsets_of_component
    tools/componenttools/number_is_between_start_and_stop_offsets_of_component_in_seconds
@@ -265,13 +265,13 @@ containertools
    tools/containertools/remove_empty_containers_in_expr
    tools/containertools/repeat_contents_of_container
    tools/containertools/repeat_last_n_elements_of_container
-   tools/containertools/replace_first_n_elements_in_container_with_big_endian_rests
-   tools/containertools/replace_first_n_elements_in_container_with_little_endian_rests
-   tools/containertools/replace_first_n_elements_in_container_with_rests
    tools/containertools/replace_larger_left_half_of_elements_in_container_with_big_endian_rests
    tools/containertools/replace_larger_left_half_of_elements_in_container_with_little_endian_rests
    tools/containertools/replace_larger_right_half_of_elements_in_container_with_big_endian_rests
    tools/containertools/replace_larger_right_half_of_elements_in_container_with_little_endian_rests
+   tools/containertools/replace_n_edge_elements_in_container_with_big_endian_rests
+   tools/containertools/replace_n_edge_elements_in_container_with_little_endian_rests
+   tools/containertools/replace_n_edge_elements_in_container_with_rests
    tools/containertools/replace_smaller_left_half_of_elements_in_container_with_big_endian_rests
    tools/containertools/replace_smaller_left_half_of_elements_in_container_with_little_endian_rests
    tools/containertools/replace_smaller_right_half_of_elements_in_container_with_big_endian_rests
@@ -296,7 +296,7 @@ durtools
    tools/durtools/duration_pair_to_prolation_string
    tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
    tools/durtools/duration_token_to_reduced_duration_pair
-   tools/durtools/group_duration_tokens_by_like_implied_prolation
+   tools/durtools/group_duration_tokens_by_implied_prolation
    tools/durtools/is_assignable_rational
    tools/durtools/is_binary_rational
    tools/durtools/is_duration_pair
@@ -425,8 +425,7 @@ leaftools
    :maxdepth: 1
 
    tools/leaftools/add_artificial_harmonic_to_note
-   tools/leaftools/change_leaf_preprolated_duration
-   tools/leaftools/change_written_duration_and_preserve_preprolated_duration
+   tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
    tools/leaftools/color_leaf
    tools/leaftools/color_leaves_in_expr
    tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
@@ -442,8 +441,6 @@ leaftools
    tools/leaftools/fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang
    tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
    tools/leaftools/get_composite_offset_series_from_leaves_in_expr
-   tools/leaftools/get_prolated_durations_from_leaves_in_expr
-   tools/leaftools/get_written_durations_from_leaves_in_expr
    tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/label_leaves_in_expr_with_leaf_depth
    tools/leaftools/label_leaves_in_expr_with_leaf_durations
@@ -464,6 +461,8 @@ leaftools
    tools/leaftools/leaf_to_augmented_tuplet_with_proportions
    tools/leaftools/leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration
    tools/leaftools/leaf_to_diminished_tuplet_with_proportions
+   tools/leaftools/list_prolated_durations_of_leaves_in_expr
+   tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_accelerating_notes_with_lilypond_multipliers
    tools/leaftools/make_all_notes_in_ascending_and_descending_diatonic_scale
    tools/leaftools/make_first_n_notes_in_ascending_diatonic_scale
@@ -481,6 +480,7 @@ leaftools
    tools/leaftools/repeat_leaves_in_expr_and_extend_spanners
    tools/leaftools/replace_leaves_in_expr_with_skips
    tools/leaftools/scale_preprolated_leaf_duration
+   tools/leaftools/set_preprolated_leaf_duration
    tools/leaftools/show_leaves
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
 
@@ -609,7 +609,6 @@ mathtools
 .. toctree::
    :maxdepth: 1
 
-   tools/mathtools/binary_string
    tools/mathtools/divide_scalar_by_ratio
    tools/mathtools/divisors
    tools/mathtools/factors
@@ -619,6 +618,7 @@ mathtools
    tools/mathtools/greatest_power_of_two_less_equal
    tools/mathtools/integer_compositions
    tools/mathtools/integer_partitions
+   tools/mathtools/integer_to_binary_string
    tools/mathtools/interpolate_cosine
    tools/mathtools/interpolate_divide
    tools/mathtools/interpolate_divide_multiple
@@ -891,11 +891,11 @@ spannertools
 .. toctree::
    :maxdepth: 1
 
-   tools/spannertools/find_component_at_score_offset
-   tools/spannertools/find_index_at_score_offset
-   tools/spannertools/fracture_crossing
-   tools/spannertools/get_contained
+   tools/spannertools/find_index_of_spanner_component_at_score_offset
+   tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
+   tools/spannertools/fracture_spanners_that_cross_components
    tools/spannertools/get_nth_leaf_in_spanner
+   tools/spannertools/get_spanners_contained_by_components
    tools/spannertools/get_spanners_covered_by_components
    tools/spannertools/get_spanners_on_components_or_component_children
    tools/spannertools/get_spanners_that_cross_components

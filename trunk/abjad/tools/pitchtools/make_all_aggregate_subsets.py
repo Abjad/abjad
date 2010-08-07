@@ -44,7 +44,7 @@ def make_all_aggregate_subsets( ):
    result = [ ]
 
    for x in range(4096):
-      subset = ''.join(list(reversed(mathtools.binary_string(x).zfill(12))))
+      subset = ''.join(list(reversed(mathtools.integer_to_binary_string(x).zfill(12))))
       subset = _helper(subset)
       subset = PitchClassSet(subset)
       result.append(subset)

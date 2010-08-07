@@ -29,7 +29,7 @@ def sublists(l, min_length = None, max_length = None):
 
    len_l = len(l)
    for i in range(2 ** len_l):
-      binary_string = mathtools.binary_string(i)
+      binary_string = mathtools.integer_to_binary_string(i)
       binary_string = binary_string.zfill(len_l)
       sublist = [ ]
       for j, digit in enumerate(reversed(binary_string)):

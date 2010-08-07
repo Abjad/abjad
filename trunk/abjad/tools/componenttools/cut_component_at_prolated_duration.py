@@ -74,7 +74,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       new_prolated_duration = component.duration.prolated - prolated_duration
       prolation = component.duration.prolation
       new_written_duration = new_prolated_duration / prolation
-      result = leaftools.change_leaf_preprolated_duration(
+      result = leaftools.set_preprolated_leaf_duration(
          component, new_written_duration)
    else:
       container = component

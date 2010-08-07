@@ -29,7 +29,7 @@ def all_ordered_sublists(l):
 
    len_l_minus_1 = len(l) - 1
    for i in range(2 ** len_l_minus_1):
-      binary_string = mathtools.binary_string(i)
+      binary_string = mathtools.integer_to_binary_string(i)
       binary_string = binary_string.zfill(len_l_minus_1)
       part = l[0:1]
       partition = [part]

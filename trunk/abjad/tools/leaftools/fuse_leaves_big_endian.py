@@ -35,5 +35,5 @@ def fuse_leaves_big_endian(leaves):
 
    total_preprolated = componenttools.sum_preprolated_duration_of_components(leaves)
    componenttools.remove_component_subtree_from_score_and_spanners(leaves[1:])
-   return leaftools.change_leaf_preprolated_duration(
+   return leaftools.set_preprolated_leaf_duration(
       leaves[0], total_preprolated)

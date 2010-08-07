@@ -118,7 +118,7 @@ class _SpannerReceptor(_Abjad):
       any component in the contents of client, including client.'''
       from abjad.tools import spannertools
       contained = set([ ])
-      for spanner in spannertools.get_contained([self._client]):
+      for spanner in spannertools.get_spanners_contained_by_components([self._client]):
          for klass in self._klasses:
             if isinstance(spanner, klass):
                contained.add(spanner)

@@ -1,5 +1,4 @@
-from abjad.tools.leaftools.change_leaf_preprolated_duration import \
-   change_leaf_preprolated_duration
+from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_leaf_duration
 
 
 def scale_preprolated_leaf_duration(leaf, multiplier):
@@ -75,4 +74,4 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
    new_preprolated_duration = multiplier * leaf.duration.written
 
    # assign new leaf written duration and return structure
-   return change_leaf_preprolated_duration(leaf, new_preprolated_duration)
+   return set_preprolated_leaf_duration(leaf, new_preprolated_duration)
