@@ -2,7 +2,7 @@ from abjad.components.NoteHead import NoteHead
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
-from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
+from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 from abjad.tools.pitchtools.get_pitches import get_pitches
 from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import \
    transpose_by_melodic_chromatic_interval
@@ -70,7 +70,7 @@ class PitchSet(set):
          if pitch_class in pitch_classes:
             duplicate_pitch_classes.append(pitch_class)
          pitch_classes.append(pitch_class)
-      return PitchClassSet(duplicate_pitch_classes)
+      return NumericPitchClassSet(duplicate_pitch_classes)
 
    @property
    def is_pitch_class_unique(self):
@@ -86,7 +86,7 @@ class PitchSet(set):
 
    @property
    def pitch_class_set(self):
-      return PitchClassSet(self)
+      return NumericPitchClassSet(self)
       
    @property
    def pitches(self):

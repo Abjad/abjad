@@ -3,7 +3,7 @@ from abjad import *
 
 def test_PitchClassSet_pitch_classes_01( ):
 
-   pcset = pitchtools.PitchClassSet([0, 6, 10, 4, 9, 2])
+   pcset = pitchtools.NumericPitchClassSet([0, 6, 10, 4, 9, 2])
    pitch_classes = pcset.pitch_classes
 
    assert isinstance(pitch_classes, tuple)

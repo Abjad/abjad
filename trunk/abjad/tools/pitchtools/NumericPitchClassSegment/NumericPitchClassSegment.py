@@ -1,12 +1,12 @@
 from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
-from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
+from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 import copy
 
 
-class PitchClassSegment(list):
+class NumericPitchClassSegment(list):
    '''.. versionadded:: 1.1.2
 
-   Ordered collection of pitch class instances. ::
+   Ordered collection of pitch class instances.
    '''
 
    def __init__(self, pitch_class_tokens):
@@ -36,7 +36,7 @@ class PitchClassSegment(list):
 
    @property
    def pitch_class_set(self):
-      return PitchClassSet(self)
+      return NumericPitchClassSet(self)
 
    @property
    def pitch_classes(self):
@@ -45,18 +45,18 @@ class PitchClassSegment(list):
    ## PUBLIC METHODS ##
 
    def invert(self):
-      return PitchClassSegment([pc.invert( ) for pc in self])
+      return NumericPitchClassSegment([pc.invert( ) for pc in self])
       
    def multiply(self, n):
-      return PitchClassSegment([pc.multiply(n) for pc in self])
+      return NumericPitchClassSegment([pc.multiply(n) for pc in self])
 
    def retrograde(self):
-      return PitchClassSegment(reversed(self))
+      return NumericPitchClassSegment(reversed(self))
 
    def rotate(self, n):
       from abjad.tools import listtools
       pitch_classes = listtools.rotate(self.pitch_classes, n)
-      return PitchClassSegment(pitch_classes)
+      return NumericPitchClassSegment(pitch_classes)
       
    def transpose(self, n):
-      return PitchClassSegment([pc.transpose(n) for pc in self])
+      return NumericPitchClassSegment([pc.transpose(n) for pc in self])

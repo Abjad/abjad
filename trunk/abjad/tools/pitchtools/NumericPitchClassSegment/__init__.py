@@ -1,1 +1,1 @@
-from PitchClassSegment import PitchClassSegment
+from NumericPitchClassSegment import NumericPitchClassSegment

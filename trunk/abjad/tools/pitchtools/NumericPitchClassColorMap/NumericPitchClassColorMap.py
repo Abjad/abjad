@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 
 
-class PitchClassColorMap(object):
+class NumericPitchClassColorMap(object):
    '''Color pitch-classes according to colors.'''
 
    def __init__(self, pitch_iterables, colors):

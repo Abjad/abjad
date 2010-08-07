@@ -1,1 +1,1 @@
-from PitchClassVector import PitchClassVector
+from NumericPitchClassVector import NumericPitchClassVector

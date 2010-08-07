@@ -748,14 +748,14 @@ pitchtools
    tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet
    tools/pitchtools/NumericPitch/NumericPitch
    tools/pitchtools/NumericPitchClass/NumericPitchClass
+   tools/pitchtools/NumericPitchClassColorMap/NumericPitchClassColorMap
+   tools/pitchtools/NumericPitchClassSegment/NumericPitchClassSegment
+   tools/pitchtools/NumericPitchClassSet/NumericPitchClassSet
+   tools/pitchtools/NumericPitchClassVector/NumericPitchClassVector
    tools/pitchtools/PitchArray/PitchArray
    tools/pitchtools/PitchArray/PitchArrayCell/PitchArrayCell
    tools/pitchtools/PitchArray/PitchArrayColumn/PitchArrayColumn
    tools/pitchtools/PitchArray/PitchArrayRow/PitchArrayRow
-   tools/pitchtools/PitchClassColorMap/PitchClassColorMap
-   tools/pitchtools/PitchClassSegment/PitchClassSegment
-   tools/pitchtools/PitchClassSet/PitchClassSet
-   tools/pitchtools/PitchClassVector/PitchClassVector
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/PitchSegment/PitchSegment
    tools/pitchtools/PitchSet/PitchSet

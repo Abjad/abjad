@@ -14,8 +14,8 @@ from abjad.tools.pitchtools.IntervalClassVector import \
    IntervalClassVector
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import \
    MelodicDiatonicIntervalSegment
-from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
-from abjad.tools.pitchtools.PitchClassVector import PitchClassVector
+from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
+from abjad.tools.pitchtools.NumericPitchClassVector import NumericPitchClassVector
 from abjad.tools.pitchtools.PitchSet import PitchSet
 from abjad.tools.pitchtools.PitchVector import PitchVector
 
@@ -130,12 +130,12 @@ class PitchSegment(list):
 
    @property
    def pitch_class_segment(self):
-      from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
-      return PitchClassSegment([pitch.pitch_class for pitch in self])
+      from abjad.tools.pitchtools.NumericPitchClassSegment import NumericPitchClassSegment
+      return NumericPitchClassSegment([pitch.pitch_class for pitch in self])
 
    @property
    def pitch_class_set(self):
-      return PitchClassSet([pitch.pitch_class for pitch in self])
+      return NumericPitchClassSet([pitch.pitch_class for pitch in self])
 
    @property
    def pitch_class_vector(self):

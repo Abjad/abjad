@@ -5,10 +5,10 @@ from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 
 
-## TODO: Make PitchClassSet and PitchSet both inherit ##
+## TODO: Make NumericPitchClassSet and PitchSet both inherit ##
 ## from a shared base class. ##
 
-class PitchClassSet(frozenset):
+class  NumericPitchClassSet(frozenset):
    '''.. versionadded:: 1.1.2
 
    12-ET pitch-class set from American pitch-class theory.
@@ -38,7 +38,7 @@ class PitchClassSet(frozenset):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, PitchClassSet):
+      if isinstance(arg, NumericPitchClassSet):
          for element in arg:
             if element not in self:
                return False
@@ -95,7 +95,7 @@ class PitchClassSet(frozenset):
    
    def invert(self):
       '''Invert all pcs in self.'''
-      return PitchClassSet([pc.invert( ) for pc in self])
+      return NumericPitchClassSet([pc.invert( ) for pc in self])
 
    def is_transposed_subset(self, pcset):
       for n in range(12):
@@ -111,8 +111,8 @@ class PitchClassSet(frozenset):
 
    def multiply(self, n):
       '''Transpose all pcs in self by n.'''
-      return PitchClassSet([pc.multiply(n) for pc in self])
+      return NumericPitchClassSet([pc.multiply(n) for pc in self])
 
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
-      return PitchClassSet([pc.transpose(n) for pc in self])
+      return NumericPitchClassSet([pc.transpose(n) for pc in self])

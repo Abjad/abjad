@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
-from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
+from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 
 
 def has_duplicate_pitch_class(expr):
@@ -20,5 +20,5 @@ def has_duplicate_pitch_class(expr):
    '''
  
    pitch_classes = get_pitch_classes(expr)
-   pitch_class_set = PitchClassSet(expr)
+   pitch_class_set = NumericPitchClassSet(expr)
    return not len(pitch_classes) == len(pitch_class_set) 

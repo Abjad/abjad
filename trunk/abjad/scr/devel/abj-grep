@@ -8,6 +8,6 @@ import sys
 start_directory = os.path.abspath('.')
 os.chdir(ABJADPATH)
 os.system('clear')
-os.system('grep -Irn "%s" * | grep -v svn | grep -v documentation' % 
+os.system('grep -Irn "%s" * | grep -v svn | grep -v docs' % 
    sys.argv[1])
 os.chdir(start_directory)

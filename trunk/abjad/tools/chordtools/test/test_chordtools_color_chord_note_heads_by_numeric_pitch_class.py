@@ -6,7 +6,7 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_01( ):
 
    pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]] 
    colors = ['red', 'blue', 'green']
-   color_map = pitchtools.PitchClassColorMap(pitches, colors)
+   color_map = pitchtools.NumericPitchClassColorMap(pitches, colors)
 
    chord = Chord([12, 14, 18, 21, 23], (1, 4))
    chordtools.color_chord_note_heads_by_numeric_pitch_class(chord, color_map)
@@ -35,7 +35,7 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_02( ):
 
    pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]] 
    colors = ['red', 'blue', 'green']
-   color_map = pitchtools.PitchClassColorMap(pitches, colors)
+   color_map = pitchtools.NumericPitchClassColorMap(pitches, colors)
 
    note = Note(0, (1, 4))
    chordtools.color_chord_note_heads_by_numeric_pitch_class(note, color_map)

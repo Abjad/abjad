@@ -1,1 +1,1 @@
-from PitchClassColorMap import PitchClassColorMap
+from NumericPitchClassColorMap import NumericPitchClassColorMap

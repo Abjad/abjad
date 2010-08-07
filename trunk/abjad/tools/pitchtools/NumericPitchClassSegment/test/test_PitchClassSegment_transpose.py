@@ -3,8 +3,8 @@ from abjad import *
 
 def test_PitchClassSegment_transpose_01( ):
 
-   pcseg = pitchtools.PitchClassSegment([0, 6, 10, 4, 9, 2])
-   PCSeg = pitchtools.PitchClassSegment
+   pcseg = pitchtools.NumericPitchClassSegment([0, 6, 10, 4, 9, 2])
+   PCSeg = pitchtools.NumericPitchClassSegment
 
    assert pcseg.transpose(0) == PCSeg([0, 6, 10, 4, 9, 2])
    assert pcseg.transpose(1) == PCSeg([1, 7, 11, 5, 10, 3])

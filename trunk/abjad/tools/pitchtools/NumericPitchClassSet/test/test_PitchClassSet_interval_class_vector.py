@@ -3,7 +3,7 @@ from abjad import *
 
 def test_PitchClassSet_interval_class_vector_01( ):
    
-   pcset = pitchtools.PitchClassSet([0, 6, 10, 4, 9, 2])
+   pcset = pitchtools.NumericPitchClassSet([0, 6, 10, 4, 9, 2])
    icvector = pitchtools.IntervalClassVector([
       1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 4, 5, 5, 6, 6])
    "IntervalClassVector(0 | 1 4 2 4 2 2)"

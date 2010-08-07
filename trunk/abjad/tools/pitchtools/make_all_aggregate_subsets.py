@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
+from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 
 
 def make_all_aggregate_subsets( ):
@@ -12,26 +12,26 @@ def make_all_aggregate_subsets( ):
       4096 
       abjad> for pcset in U_star[:20]:
          pcset
-      PitchClassSet([])
-      PitchClassSet([PitchClass(0)])
-      PitchClassSet([PitchClass(1)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(1)])
-      PitchClassSet([PitchClass(2)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(2)])
-      PitchClassSet([PitchClass(1), NumericPitchClass(2)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(2)])
-      PitchClassSet([PitchClass(3)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(3)])
-      PitchClassSet([PitchClass(1), NumericPitchClass(3)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(3)])
-      PitchClassSet([PitchClass(2), NumericPitchClass(3)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(2), NumericPitchClass(3)])
-      PitchClassSet([PitchClass(1), NumericPitchClass(2), NumericPitchClass(3)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(2), NumericPitchClass(3)])
-      PitchClassSet([PitchClass(4)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(4)])
-      PitchClassSet([PitchClass(1), NumericPitchClass(4)])
-      PitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(4)])
+      NumericPitchClassSet([])
+      NumericPitchClassSet([PitchClass(0)])
+      NumericPitchClassSet([PitchClass(1)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1)])
+      NumericPitchClassSet([PitchClass(2)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(2)])
+      NumericPitchClassSet([PitchClass(1), NumericPitchClass(2)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(2)])
+      NumericPitchClassSet([PitchClass(3)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(3)])
+      NumericPitchClassSet([PitchClass(1), NumericPitchClass(3)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(3)])
+      NumericPitchClassSet([PitchClass(2), NumericPitchClass(3)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(2), NumericPitchClass(3)])
+      NumericPitchClassSet([PitchClass(1), NumericPitchClass(2), NumericPitchClass(3)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(2), NumericPitchClass(3)])
+      NumericPitchClassSet([PitchClass(4)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(4)])
+      NumericPitchClassSet([PitchClass(1), NumericPitchClass(4)])
+      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(4)])
 
    This is ``U*`` in [Morris 1987].
    '''
@@ -46,7 +46,7 @@ def make_all_aggregate_subsets( ):
    for x in range(4096):
       subset = ''.join(list(reversed(mathtools.integer_to_binary_string(x).zfill(12))))
       subset = _helper(subset)
-      subset = PitchClassSet(subset)
+      subset = NumericPitchClassSet(subset)
       result.append(subset)
 
    return result

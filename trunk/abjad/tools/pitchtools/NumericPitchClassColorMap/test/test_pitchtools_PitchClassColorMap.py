@@ -7,7 +7,7 @@ def test_pitchtools_PitchClassColorMap_01( ):
 
    pitches = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
    colors = ['red', 'green', 'blue']
-   pcm = pitchtools.PitchClassColorMap(pitches, colors)
+   pcm = pitchtools.NumericPitchClassColorMap(pitches, colors)
 
    "PitchClassColorMap([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])"
 
@@ -23,7 +23,7 @@ def test_pitchtools_PitchClassColorMap_02( ):
 
    pitches = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
    colors = ['red', 'green', 'blue']
-   pcm = pitchtools.PitchClassColorMap(pitches, colors)
+   pcm = pitchtools.NumericPitchClassColorMap(pitches, colors)
 
    "PitchClassColorMap([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])"
 

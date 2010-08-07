@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 
 
-class PitchClassVector(dict):
+class NumericPitchClassVector(dict):
    '''.. versionadded:: 1.1.2
 
    Tallies by pitch class.
