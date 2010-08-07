@@ -91,10 +91,10 @@ class _DiatonicInterval(_Interval):
 
    @property
    def diatonic_interval_class(self):
-      from abjad.tools.pitchtools.DiatonicIntervalClass import \
-         DiatonicIntervalClass
+      from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import \
+         InversionEquivalentDiatonicIntervalClass
       quality_string, number = self._quality_string, self.number
-      return DiatonicIntervalClass(quality_string, number)
+      return InversionEquivalentDiatonicIntervalClass(quality_string, number)
 
    @property
    def interval_class(self):

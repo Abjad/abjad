@@ -4,14 +4,14 @@ from abjad.tools.pitchtools.list_all_diatonic_interval_classes import \
    list_all_diatonic_interval_classes
 
 
-class DiatonicIntervalClassVector(dict):
+class InversionEquivalentDiatonicIntervalClassVector(dict):
    '''.. versionadded:: 1.1.2
 
    Diatonic interval class vector::
 
       abjad> staff = Staff(macros.scale(5))
-      abjad> pitchtools.DiatonicIntervalClassVector(staff) 
-      DiatonicIntervalClassVector(P1: 0, aug1: 0, m2: 1, M2: 3, aug2: 0, dim3: 0, m3: 2, M3: 1, dim4: 0, P4: 3, aug4: 0)
+      abjad> pitchtools.InversionEquivalentDiatonicIntervalClassVector(staff) 
+      InversionEquivalentDiatonicIntervalClassVector(P1: 0, aug1: 0, m2: 1, M2: 3, aug2: 0, dim3: 0, m3: 2, M3: 1, dim4: 0, P4: 3, aug4: 0)
 
    Vector is not quatertone-aware.
    '''

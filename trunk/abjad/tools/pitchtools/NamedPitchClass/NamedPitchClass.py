@@ -88,7 +88,7 @@ class NamedPitchClass(object):
       pitch_1 = NamedPitch(self, 4)
       pitch_2 = NamedPitch(arg, 4)
       mdi = pitchtools.melodic_diatonic_interval_from_to(pitch_1, pitch_2)
-      dic = pitchtools.DiatonicIntervalClass(mdi.quality_string, mdi.number)
+      dic = pitchtools.InversionEquivalentDiatonicIntervalClass(mdi.quality_string, mdi.number)
       return dic
 
    ## PRIVATE ATTRIBUTES ##

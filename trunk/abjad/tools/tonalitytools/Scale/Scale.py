@@ -58,7 +58,7 @@ class Scale(NamedPitchClassSegment):
       for left, right in listtools.pairwise(self, mode = 'wrap'):
          dic = left - right
          dics.append(dic)
-      dicg = pitchtools.DiatonicIntervalClassSegment(dics)
+      dicg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment(dics)
       return dicg
 
    @property

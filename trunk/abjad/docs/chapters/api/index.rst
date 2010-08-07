@@ -712,9 +712,6 @@ pitchtools
 
    tools/pitchtools/Accidental/Accidental
    tools/pitchtools/ChromaticIntervalVector/ChromaticIntervalVector
-   tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
-   tools/pitchtools/DiatonicIntervalClassSegment/DiatonicIntervalClassSegment
-   tools/pitchtools/DiatonicIntervalClassVector/DiatonicIntervalClassVector
    tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
    tools/pitchtools/HarmonicChromaticIntervalClass/HarmonicChromaticIntervalClass
    tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
@@ -730,6 +727,9 @@ pitchtools
    tools/pitchtools/IntervalClassSegment/IntervalClassSegment
    tools/pitchtools/IntervalClassSet/IntervalClassSet
    tools/pitchtools/IntervalClassVector/IntervalClassVector
+   tools/pitchtools/InversionEquivalentDiatonicIntervalClass/InversionEquivalentDiatonicIntervalClass
+   tools/pitchtools/InversionEquivalentDiatonicIntervalClassSegment/InversionEquivalentDiatonicIntervalClassSegment
+   tools/pitchtools/InversionEquivalentDiatonicIntervalClassVector/InversionEquivalentDiatonicIntervalClassVector
    tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
    tools/pitchtools/MelodicChromaticIntervalClass/MelodicChromaticIntervalClass
    tools/pitchtools/MelodicChromaticIntervalClassSegment/MelodicChromaticIntervalClassSegment

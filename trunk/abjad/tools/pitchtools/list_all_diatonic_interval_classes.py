@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
+from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import InversionEquivalentDiatonicIntervalClass
 
 
 def list_all_diatonic_interval_classes( ):
@@ -9,34 +9,34 @@ def list_all_diatonic_interval_classes( ):
       abjad> for dic in pitchtools.list_all_diatonic_interval_classes( ):
       ...     dic
       ... 
-      DiatonicIntervalClass(perfect unison)
-      DiatonicIntervalClass(augmented unison)
-      DiatonicIntervalClass(minor second)
-      DiatonicIntervalClass(major second)
-      DiatonicIntervalClass(augmented second)
-      DiatonicIntervalClass(diminished third)
-      DiatonicIntervalClass(minor third)
-      DiatonicIntervalClass(major third)
-      DiatonicIntervalClass(diminished fourth)
-      DiatonicIntervalClass(perfect fourth)
-      DiatonicIntervalClass(augmented fourth)
+      InversionEquivalentDiatonicIntervalClass(perfect unison)
+      InversionEquivalentDiatonicIntervalClass(augmented unison)
+      InversionEquivalentDiatonicIntervalClass(minor second)
+      InversionEquivalentDiatonicIntervalClass(major second)
+      InversionEquivalentDiatonicIntervalClass(augmented second)
+      InversionEquivalentDiatonicIntervalClass(diminished third)
+      InversionEquivalentDiatonicIntervalClass(minor third)
+      InversionEquivalentDiatonicIntervalClass(major third)
+      InversionEquivalentDiatonicIntervalClass(diminished fourth)
+      InversionEquivalentDiatonicIntervalClass(perfect fourth)
+      InversionEquivalentDiatonicIntervalClass(augmented fourth)
 
    It is an open question as to whether octaves should be included.
    '''
 
    return [
-      DiatonicIntervalClass('perfect', 1),
-      DiatonicIntervalClass('augmented', 1),
+      InversionEquivalentDiatonicIntervalClass('perfect', 1),
+      InversionEquivalentDiatonicIntervalClass('augmented', 1),
 
-      DiatonicIntervalClass('minor', 2),
-      DiatonicIntervalClass('major', 2),
-      DiatonicIntervalClass('augmented', 2),
+      InversionEquivalentDiatonicIntervalClass('minor', 2),
+      InversionEquivalentDiatonicIntervalClass('major', 2),
+      InversionEquivalentDiatonicIntervalClass('augmented', 2),
 
-      DiatonicIntervalClass('diminished', 3),
-      DiatonicIntervalClass('minor', 3),
-      DiatonicIntervalClass('major', 3),
+      InversionEquivalentDiatonicIntervalClass('diminished', 3),
+      InversionEquivalentDiatonicIntervalClass('minor', 3),
+      InversionEquivalentDiatonicIntervalClass('major', 3),
 
-      DiatonicIntervalClass('diminished', 4),
-      DiatonicIntervalClass('perfect', 4),
-      DiatonicIntervalClass('augmented', 4),
+      InversionEquivalentDiatonicIntervalClass('diminished', 4),
+      InversionEquivalentDiatonicIntervalClass('perfect', 4),
+      InversionEquivalentDiatonicIntervalClass('augmented', 4),
       ]

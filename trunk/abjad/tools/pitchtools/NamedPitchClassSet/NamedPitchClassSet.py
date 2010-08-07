@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
-from abjad.tools.pitchtools.DiatonicIntervalClassVector import \
-   DiatonicIntervalClassVector
+from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector import \
+   InversionEquivalentDiatonicIntervalClassVector
 from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.get_harmonic_diatonic_intervals_in import \
@@ -73,7 +73,7 @@ class NamedPitchClassSet(frozenset):
    @property
    def diatonic_interval_class_vector(self):
       pitches = [NamedPitch(x, 4) for x in self]
-      return DiatonicIntervalClassVector(pitches)
+      return InversionEquivalentDiatonicIntervalClassVector(pitches)
 
    @property
    def named_pitch_classes(self):

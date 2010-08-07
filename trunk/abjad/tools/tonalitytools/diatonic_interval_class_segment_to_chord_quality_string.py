@@ -8,9 +8,9 @@ def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
    Convert diatonic interval class segment `dic_seg` to chord
    quality string. ::
 
-      abjad> dic_seg = pitchtools.DiatonicIntervalClassSegment([
-      ...   pitchtools.DiatonicIntervalClass('major', 3),
-      ...   pitchtools.DiatonicIntervalClass('minor', 3),])
+      abjad> dic_seg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+      ...   pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
+      ...   pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),])
       abjad> tonalitytools.diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
       'major'
 
@@ -30,45 +30,45 @@ def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
 
    dic_seg_to_quality_string = {
       ## triads
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),])): 'diminished',
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('major', 3),])): 'minor',
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('major', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),])): 'major',
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('major', 3),
-         pitchtools.DiatonicIntervalClass('major', 3),])): 'augmented',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),])): 'diminished',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),])): 'minor',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),])): 'major',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),])): 'augmented',
       ## seventh chords
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),])): 'diminished',
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('major', 3),])): 'half diminished',
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('major', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),])): 'minor',
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('major', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),])): 'dominant',
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('major', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('major', 3),])): 'major',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),])): 'diminished',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),])): 'half diminished',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),])): 'minor',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),])): 'dominant',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),])): 'major',
       ## ninth chords
-      repr(pitchtools.DiatonicIntervalClassSegment([
-         pitchtools.DiatonicIntervalClass('major', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('minor', 3),
-         pitchtools.DiatonicIntervalClass('major', 3),])): 'dominant',
+      repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),])): 'dominant',
       }
 
    try:

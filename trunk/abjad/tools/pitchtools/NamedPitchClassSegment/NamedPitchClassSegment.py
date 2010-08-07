@@ -1,6 +1,5 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-   MelodicDiatonicInterval
+from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.NamedPitchClassSet import NamedPitchClassSet
 from abjad.tools.pitchtools.NumericPitchClassSegment import NumericPitchClassSegment
@@ -37,10 +36,10 @@ class NamedPitchClassSegment(list):
    @property
    def diatonic_interval_class_segment(self):
       from abjad.tools import listtools
-      from abjad.tools.pitchtools.DiatonicIntervalClassSegment import \
-         DiatonicIntervalClassSegment
+      from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment import \
+         InversionEquivalentDiatonicIntervalClassSegment
       dics = listtools.difference_series(self)
-      return DiatonicIntervalClassSegment(dics)
+      return InversionEquivalentDiatonicIntervalClassSegment(dics)
 
    @property
    def named_pitch_class_set(self):

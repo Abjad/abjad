@@ -3,7 +3,7 @@ from abjad import *
 
 def test_DiatonicIntervalClassSegment___init____01( ):
 
-   dicg = pitchtools.DiatonicIntervalClassSegment([
+   dicg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
       ('major', 2), ('major', 2), ('minor', 2),
       ('major', 2), ('major', 2), ('major', 2), ('minor', 2)])
 
