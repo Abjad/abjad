@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools.get_pitch import get_pitch
 from abjad.tools.pitchtools.Accidental import Accidental
-from abjad.tools.pitchtools.IntervalClass import IntervalClass
+from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import InversionEquivalentChromaticIntervalClass
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
 

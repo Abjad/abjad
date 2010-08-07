@@ -1,7 +1,7 @@
 from abjad.core import Rational
 
 
-class IntervalClass(object):
+class InversionEquivalentChromaticIntervalClass(object):
    '''.. versionadded:: 1.1.2
 
    Inversion-equivalent interval class.

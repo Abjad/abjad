@@ -1,6 +1,6 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
-from abjad.tools.pitchtools.IntervalClassVector import IntervalClassVector
+from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet import InversionEquivalentChromaticIntervalClassSet
+from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector import InversionEquivalentChromaticIntervalClassVector
 from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 

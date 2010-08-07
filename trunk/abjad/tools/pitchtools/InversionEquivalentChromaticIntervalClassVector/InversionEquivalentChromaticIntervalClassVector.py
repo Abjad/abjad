@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools.IntervalClass import IntervalClass
+from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import InversionEquivalentChromaticIntervalClass
 
 
-class IntervalClassVector(dict):
+class InversionEquivalentChromaticIntervalClassVector(dict):
    '''.. versionadded:: 1.1.2
 
    Tallies by interval class.
