@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_PitchClassSet_is_transposed_subset_01( ):
+def test_NumericPitchClassSet_is_transposed_subset_01( ):
 
    small = pitchtools.NumericPitchClassSet([9, 10, 11])
    big = pitchtools.NumericPitchClassSet([0, 1, 2, 3])
@@ -10,7 +10,7 @@ def test_PitchClassSet_is_transposed_subset_01( ):
    assert not big.is_transposed_subset(small)
 
 
-def test_PitchClassSet_is_transposed_subset_02( ):
+def test_NumericPitchClassSet_is_transposed_subset_02( ):
 
    small = pitchtools.NumericPitchClassSet([5, 7, 9])
    big = pitchtools.NumericPitchClassSet([0, 1, 2, 3])

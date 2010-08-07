@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_PitchClass_apply_accidental_01( ):
+def test_NumericPitchClass_apply_accidental_01( ):
 
    pc = pitchtools.NumericPitchClass(11)
 

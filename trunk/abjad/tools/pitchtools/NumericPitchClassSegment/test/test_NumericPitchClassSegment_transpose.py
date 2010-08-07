@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_PitchClassSegment_transpose_01( ):
+def test_NumericPitchClassSegment_transpose_01( ):
 
    pcseg = pitchtools.NumericPitchClassSegment([0, 6, 10, 4, 9, 2])
    PCSeg = pitchtools.NumericPitchClassSegment

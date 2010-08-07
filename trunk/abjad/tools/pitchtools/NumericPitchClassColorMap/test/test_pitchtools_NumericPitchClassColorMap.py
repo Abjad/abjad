@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_pitchtools_PitchClassColorMap_01( ):
+def test_pitchtools_NumericPitchClassColorMap_01( ):
    '''Test basic pc color map attributes.'''
 
    pitches = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
@@ -18,7 +18,7 @@ def test_pitchtools_PitchClassColorMap_01( ):
    assert not pcm.twenty_four_tone_complete
 
 
-def test_pitchtools_PitchClassColorMap_02( ):
+def test_pitchtools_NumericPitchClassColorMap_02( ):
    '''Test pc color map get item variations.'''
 
    pitches = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]

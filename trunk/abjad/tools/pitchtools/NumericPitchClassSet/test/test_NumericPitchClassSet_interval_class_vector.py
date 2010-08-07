@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_PitchClassSet_interval_class_vector_01( ):
+def test_NumericPitchClassSet_interval_class_vector_01( ):
    
    pcset = pitchtools.NumericPitchClassSet([0, 6, 10, 4, 9, 2])
    icvector = pitchtools.IntervalClassVector([

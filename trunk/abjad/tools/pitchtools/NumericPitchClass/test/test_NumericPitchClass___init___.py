@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_PitchClass___init____01( ):
+def test_NumericPitchClass___init____01( ):
    '''Pitch class initialization works with numbers.'''
 
    pc = pitchtools.NumericPitchClass(0)
@@ -24,7 +24,7 @@ def test_PitchClass___init____01( ):
    assert pc.number == 1.5
 
 
-def test_PitchClass___init____02( ):
+def test_NumericPitchClass___init____02( ):
    '''Pitch class initialization works with other pitch classes.'''
 
    pc = pitchtools.NumericPitchClass(pitchtools.NumericPitchClass(0))
@@ -34,7 +34,7 @@ def test_PitchClass___init____02( ):
    assert pc.number == 0
 
 
-def test_PitchClass___init____03( ):
+def test_NumericPitchClass___init____03( ):
    '''PitchClass initialization works with pitches.'''
 
    pc = pitchtools.NumericPitchClass(pitchtools.NamedPitch(0))
@@ -44,7 +44,7 @@ def test_PitchClass___init____03( ):
    assert pc.number == 0
 
 
-def test_PitchClass___init____04( ):
+def test_NumericPitchClass___init____04( ):
    '''Pitch class initialization works with notes.'''
 
    note = Note(13, (1, 4))
@@ -52,7 +52,7 @@ def test_PitchClass___init____04( ):
    assert pc == pitchtools.NumericPitchClass(1)
 
 
-def test_PitchClass___init____05( ):
+def test_NumericPitchClass___init____05( ):
    '''Pitch class initialization works with one-note chords.'''
 
    chord = Chord([13], (1, 4))
@@ -60,7 +60,7 @@ def test_PitchClass___init____05( ):
    assert pc == pitchtools.NumericPitchClass(1)
 
 
-def test_PitchClass___init____06( ):
+def test_NumericPitchClass___init____06( ):
    '''Init with named pitch class instance.'''
 
    npc = pitchtools.NamedPitchClass('cs')
@@ -68,27 +68,27 @@ def test_PitchClass___init____06( ):
    assert pc == pitchtools.NumericPitchClass(1)
 
 
-def test_PitchClass___init____07( ):
+def test_NumericPitchClass___init____07( ):
    '''PitchClass initialization raises ValueError.'''
 
    assert py.test.raises(ValueError, "pitchtools.NumericPitchClass('foo')")
 
 
-def test_PitchClass___init____08( ):
+def test_NumericPitchClass___init____08( ):
    '''PitchClass initialization raises TypeError on rest.'''
 
    rest = Rest((1, 4))
    assert py.test.raises(TypeError, 'pitchtools.NumericPitchClass(rest)')
 
 
-def test_PitchClass___init____09( ):
+def test_NumericPitchClass___init____09( ):
    '''PitchClass initialization raises MissingPitchError on empty chord.''' 
 
    chord = Chord([ ], (1, 4))
    assert py.test.raises(MissingPitchError, 'pitchtools.NumericPitchClass(chord)')
 
 
-def test_PitchClass___init____10( ):
+def test_NumericPitchClass___init____10( ):
    '''Init from named pitch class string.'''
 
    assert pitchtools.NumericPitchClass('c').number == 0
