@@ -1,1 +1,1 @@
-from ChromaticIntervalVector import ChromaticIntervalVector
+from HarmonicChromaticIntervalClassVector import HarmonicChromaticIntervalClassVector

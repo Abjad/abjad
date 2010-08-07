@@ -15,7 +15,7 @@ def test_ChromaticIntervalVector___init____01( ):
    }
    '''
 
-   CIV = pitchtools.ChromaticIntervalVector(staff)
+   CIV = pitchtools.HarmonicChromaticIntervalClassVector(staff)
 
    '''
    0 1 3 2 1 2 0 1 0 0 0 0

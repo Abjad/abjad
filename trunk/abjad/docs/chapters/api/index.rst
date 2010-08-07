@@ -711,9 +711,9 @@ pitchtools
    :maxdepth: 1
 
    tools/pitchtools/Accidental/Accidental
-   tools/pitchtools/ChromaticIntervalVector/ChromaticIntervalVector
    tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
    tools/pitchtools/HarmonicChromaticIntervalClass/HarmonicChromaticIntervalClass
+   tools/pitchtools/HarmonicChromaticIntervalClassVector/HarmonicChromaticIntervalClassVector
    tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
    tools/pitchtools/HarmonicChromaticIntervalSet/HarmonicChromaticIntervalSet
    tools/pitchtools/HarmonicCounterpointInterval/HarmonicCounterpointInterval

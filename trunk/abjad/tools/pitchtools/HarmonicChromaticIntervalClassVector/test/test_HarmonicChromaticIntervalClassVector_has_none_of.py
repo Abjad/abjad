@@ -3,7 +3,7 @@ from abjad import *
 
 def test_ChromaticIntervalVector_has_none_of_01( ):
 
-   civ = pitchtools.ChromaticIntervalVector(Staff(macros.scale(5)))
+   civ = pitchtools.HarmonicChromaticIntervalClassVector(Staff(macros.scale(5)))
 
    "0 1 3 2 1 2 0 1 0 0 0 0"
 
