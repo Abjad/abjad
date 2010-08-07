@@ -1,0 +1,2 @@
+from InversionEquivalentChromaticIntervalClassSegment import \
+   InversionEquivalentChromaticIntervalClassSegment

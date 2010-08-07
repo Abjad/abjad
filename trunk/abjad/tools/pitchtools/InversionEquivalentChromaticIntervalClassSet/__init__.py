@@ -1,0 +1,2 @@
+from InversionEquivalentChromaticIntervalClassSet import \
+   InversionEquivalentChromaticIntervalClassSet

@@ -1,0 +1,2 @@
+from InversionEquivalentChromaticIntervalClassVector import \
+   InversionEquivalentChromaticIntervalClassVector
