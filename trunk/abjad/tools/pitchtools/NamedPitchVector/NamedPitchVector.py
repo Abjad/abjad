@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
-class PitchVector(dict):
+class NamedPitchVector(dict):
    '''.. versionadded:: 1.1.2
 
    Tallies by pitch.

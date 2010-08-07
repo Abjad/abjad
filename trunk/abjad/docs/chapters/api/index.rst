@@ -746,6 +746,9 @@ pitchtools
    tools/pitchtools/NamedPitchClass/NamedPitchClass
    tools/pitchtools/NamedPitchClassSegment/NamedPitchClassSegment
    tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet
+   tools/pitchtools/NamedPitchSegment/NamedPitchSegment
+   tools/pitchtools/NamedPitchSet/NamedPitchSet
+   tools/pitchtools/NamedPitchVector/NamedPitchVector
    tools/pitchtools/NumericPitch/NumericPitch
    tools/pitchtools/NumericPitchClass/NumericPitchClass
    tools/pitchtools/NumericPitchClassColorMap/NumericPitchClassColorMap
@@ -757,9 +760,6 @@ pitchtools
    tools/pitchtools/PitchArray/PitchArrayColumn/PitchArrayColumn
    tools/pitchtools/PitchArray/PitchArrayRow/PitchArrayRow
    tools/pitchtools/PitchRange/PitchRange
-   tools/pitchtools/PitchSegment/PitchSegment
-   tools/pitchtools/PitchSet/PitchSet
-   tools/pitchtools/PitchVector/PitchVector
    tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/pitchtools/apply_octavation
    tools/pitchtools/are_in_octave_order

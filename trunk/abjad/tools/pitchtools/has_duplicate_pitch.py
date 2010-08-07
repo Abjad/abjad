@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.get_pitches import get_pitches
-from abjad.tools.pitchtools.PitchSet import PitchSet
+from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
 
 
 def has_duplicate_pitch(expr):
@@ -20,5 +20,5 @@ def has_duplicate_pitch(expr):
    '''
 
    pitches = get_pitches(expr)
-   pitch_set = PitchSet(pitches)
+   pitch_set = NamedPitchSet(pitches)
    return not len(pitches) == len(pitch_set)

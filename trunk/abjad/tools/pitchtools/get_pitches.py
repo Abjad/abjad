@@ -50,7 +50,7 @@ def get_pitches(expr):
 
    Works with pitch sets. ::
 
-      abjad> pitch_set = pitchtools.PitchSet([0, 2, 4, 5])
+      abjad> pitch_set = pitchtools.NamedPitchSet([0, 2, 4, 5])
       abjad> pitchtools.get_pitches(pitch_set)
       (NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4), NamedPitch(f, 4))
 
@@ -59,7 +59,7 @@ def get_pitches(expr):
    .. note:: The logic implemented here to iterate over the contents of \
       spanners is unusual but useful.
    '''
-   from abjad.tools.pitchtools.PitchSet import PitchSet
+   from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
 
    try:
       result = get_pitch(expr)
@@ -71,7 +71,7 @@ def get_pitches(expr):
       elif isinstance(expr, Spanner):
          for leaf in expr.leaves:
             result.extend(leaf.pitches)
-      elif isinstance(expr, PitchSet):
+      elif isinstance(expr, NamedPitchSet):
          pitches = list(expr)
          pitches.sort( )
          pitches = tuple(pitches)

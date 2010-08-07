@@ -23,7 +23,7 @@ def test_pitchtools_get_pitches_02( ):
 def test_pitchtools_get_pitches_03( ):
    '''Works with pitch sets.'''
 
-   pitch_set = pitchtools.PitchSet([0, 2, 4, 5])
+   pitch_set = pitchtools.NamedPitchSet([0, 2, 4, 5])
    t = pitchtools.get_pitches(pitch_set)
 
    assert t == (pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('e', 4), pitchtools.NamedPitch('f', 4))

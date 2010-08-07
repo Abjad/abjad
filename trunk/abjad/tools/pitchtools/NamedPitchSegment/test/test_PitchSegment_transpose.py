@@ -4,7 +4,7 @@ from abjad import *
 def test_PitchSegment_transpose_01( ):
    '''Transpose pitch segment by melodic chromatic interval.'''
 
-   pitch_segment = pitchtools.PitchSegment([-2, -1, 6, 7, -1, 7])
+   pitch_segment = pitchtools.NamedPitchSegment([-2, -1, 6, 7, -1, 7])
    mci = pitchtools.MelodicChromaticInterval(-15)
    new_pitch_segment = pitch_segment.transpose(mci)
 
@@ -16,7 +16,7 @@ def test_PitchSegment_transpose_01( ):
 def test_PitchSegment_transpose_02( ):
    '''Transpose pitch segment by melodic diatonic interval.'''
 
-   pitch_segment = pitchtools.PitchSegment([-2, -1, 6, 7, -1, 7])
+   pitch_segment = pitchtools.NamedPitchSegment([-2, -1, 6, 7, -1, 7])
    mdi = pitchtools.MelodicDiatonicInterval('major', 2)
    new_pitch_segment = pitch_segment.transpose(mdi)
 

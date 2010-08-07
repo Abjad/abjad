@@ -12,7 +12,7 @@ from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import \
 
 ## TODO: Make PitchSet inherit from frozenset instead of set. ##
 
-class PitchSet(set):
+class NamedPitchSet(set):
    '''.. versionadded:: 1.1.2
 
    12-ET pitch set from American pitch-class theory.
@@ -30,7 +30,7 @@ class PitchSet(set):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, PitchSet):
+      if isinstance(arg, NamedPitchSet):
          for element in arg:
             if element not in self:
                return False
@@ -103,5 +103,5 @@ class PitchSet(set):
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
       interval = MelodicChromaticInterval(n)
-      return PitchSet(
+      return NamedPitchSet(
          [transpose_by_chromatic_interval(pitch, interval) for pitch in self])

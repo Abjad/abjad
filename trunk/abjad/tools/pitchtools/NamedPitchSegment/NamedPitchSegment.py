@@ -1,33 +1,26 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
-from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import \
-   HarmonicChromaticIntervalSegment
-from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import \
-   MelodicChromaticIntervalSegment
-from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import \
-   HarmonicDiatonicIntervalSegment
-from abjad.tools.pitchtools.IntervalClassSegment import \
-   IntervalClassSegment
-from abjad.tools.pitchtools.IntervalClassSet import \
-   IntervalClassSet
-from abjad.tools.pitchtools.IntervalClassVector import \
-   IntervalClassVector
-from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import \
-   MelodicDiatonicIntervalSegment
+from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
+from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
+from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
+from abjad.tools.pitchtools.IntervalClassSegment import IntervalClassSegment
+from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
+from abjad.tools.pitchtools.IntervalClassVector import IntervalClassVector
+from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 from abjad.tools.pitchtools.NumericPitchClassVector import NumericPitchClassVector
-from abjad.tools.pitchtools.PitchSet import PitchSet
-from abjad.tools.pitchtools.PitchVector import PitchVector
+from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
+from abjad.tools.pitchtools.NamedPitchVector import NamedPitchVector
 
 
-class PitchSegment(list):
+class NamedPitchSegment(list):
    '''.. versionadded:: 1.1.2
 
    Ordered collection of pitch instances. ::
 
-      abjad> pitch_segment = pitchtools.PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
+      abjad> pitch_segment = pitchtools.NamedPitchSegment([-2, -1.5, 6, 7, -1.5, 7])
       abjad> pitch_segment
-      PitchSegment(bf, bqf, fs', g', bqf, g')
+      NamedPitchSegment(bf, bqf, fs', g', bqf, g')
    '''
 
    def __init__(self, pitch_tokens):
@@ -143,7 +136,7 @@ class PitchSegment(list):
 
    @property
    def pitch_set(self):
-      return PitchSet(self[:])
+      return NamedPitchSet(self[:])
 
    @property
    def pitch_vector(self):
@@ -159,4 +152,4 @@ class PitchSegment(list):
       '''Transpose pitches in pitch segment by melodic interval
       and emit new pitch segment.'''
       pitches = [pitch + melodic_interval for pitch in self]
-      return PitchSegment(pitches)
+      return NamedPitchSegment(pitches)
