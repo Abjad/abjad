@@ -46,7 +46,7 @@ from NumericPitchClassSet import NumericPitchClassSet
 from NumericPitchClassVector import NumericPitchClassVector
 from PitchArray import PitchArray
 from PitchRange import PitchRange
-from PitchSegment import PitchSegment
-from PitchSet import PitchSet
-from PitchVector import PitchVector
+from NamedPitchSegment import NamedPitchSegment
+from NamedPitchSet import NamedPitchSet
+from NamedPitchVector import NamedPitchVector
 from TwelveToneRow import TwelveToneRow
