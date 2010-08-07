@@ -1,12 +1,14 @@
 from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
-from abjad.tools.pitchtools.DiatonicIntervalClass import \
-   DiatonicIntervalClass
+from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
 
 
 class DiatonicIntervalClassSegment(_IntervalSegment):
    '''.. versionadded:: 1.1.2
 
-   Ordered collection of diatonic interval class instances.
+   Ordered collection of diatonic interval classes::
+
+      abjad> pitchtools.DiatonicIntervalClassSegment([('major', 2), ('major', 9), ('minor', -2), ('minor', -9)]) 
+      DiatonicIntervalClassSegment(M2, M2, m2, m2)
    '''
 
    def __init__(self, diatonic_interval_class_tokens):
@@ -23,7 +25,16 @@ class DiatonicIntervalClassSegment(_IntervalSegment):
 
    @property
    def is_tertian(self):
-      '''Read-only boolean indicator of all tertian interval classes.'''
+      '''True when all diatonic interval classes in segment are tertian:
+
+      ::
+
+         abjad> dics = pitchtools.DiatonicIntervalClassSegment([('major', 3), ('minor', 6), ('major', 6)])
+         abjad> dics.is_tertian 
+         True
+
+      Otherwise false.
+      '''
       for dic in self:
          if not dic.number == 3:
             return False

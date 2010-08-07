@@ -5,7 +5,7 @@ from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 class DiatonicIntervalClass(_DiatonicInterval):
    '''.. versionadded:: 1.1.2
 
-   Inversion-equivalent diatonic interval class. ::
+   Inversion-equivalent diatonic interval class::
 
       abjad> pitchtools.DiatonicIntervalClass('major', 2)
       DiatonicIntervalClass(major second)
