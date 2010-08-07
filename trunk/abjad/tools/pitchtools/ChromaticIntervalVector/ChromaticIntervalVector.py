@@ -5,22 +5,18 @@ from abjad.tools.pitchtools.get_harmonic_chromatic_intervals_in import \
 class ChromaticIntervalVector(dict):
    '''.. versionadded:: 1.1.2
 
-   Chromatic interval vector. ::
+   Chromatic interval vector::
 
       abjad> staff = Staff(macros.scale(5))
-      abjad> CIV = pitchtools.ChromaticIntervalVector(staff)
-      abjad> CIV
-      ChromaticIntervalVector(0: 0, 1: 1, 2: 3, 3: 2, 4: 1, 5: 2, 6: 0, 7: 1, 8: 0, 9: 0, 10: 0, 11: 0)
-      abjad> print CIV
+      abjad> civ = pitchtools.ChromaticIntervalVector(staff)
+      abjad> print civ
       0 1 3 2 1 2 0 1 0 0 0 0
 
-   Vector is quartertone-aware. ::
+   Vector is quartertone-aware::
 
       abjad> staff.append(Note(1.5, (1, 4)))
-      abjad> CIV = pitchtools.ChromaticIntervalVector(staff)
-      abjad> CIV
-      ChromaticIntervalVector(0: 0, 0.5: 1, 1: 1, 1.5: 1, 2: 3, 2.5: 1, 3: 2, 3.5: 1, 4: 1, 4.5: 0, 5: 2, 5.5: 1, 6: 0, 6.5: 0, 7: 1, 7.5: 0, 8: 0, 8.5: 0, 9: 0, 9.5: 0, 10: 0, 10.5: 0, 11: 0, 11.5: 0)
-      abjad> print CIV
+      abjad> civ = pitchtools.ChromaticIntervalVector(staff)
+      abjad> print civ
       0 1 3 2 1 2 0 1 0 0 0 0
       1 1 1 1 0 1 0 0 0 0 0 0
    '''
@@ -72,6 +68,20 @@ class ChromaticIntervalVector(dict):
    ## PUBLIC METHODS ##
 
    def has_none_of(self, chromatic_interval_numbers):
+      '''True when chromatic interval vector contains none of `chromatic_interval_numbers`:
+
+      ::
+
+         abjad> civ = pitchtools.ChromaticIntervalVector(Staff(macros.scale(5)))
+         abjad> civ.has_none_of([9, 10, 11]) 
+         True
+
+      Otherwise false::
+         
+         abjad> civ = pitchtools.ChromaticIntervalVector(Staff(macros.scale(5)))
+         abjad> civ.has_none_of([0, 1, 2]) 
+         False
+      ''' 
       for chromatic_interval_number in chromatic_interval_numbers:
          if self[chromatic_interval_number]:
             return False

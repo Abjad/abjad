@@ -96,6 +96,7 @@ class DiatonicIntervalClass(_DiatonicInterval):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def interval_class(self):
-      pass
+   ## TODO: implement inversion-equivalent ChromaticIntervalClass
+   #@property
+   #def chromatic_interval_class(self):
+   #   pass

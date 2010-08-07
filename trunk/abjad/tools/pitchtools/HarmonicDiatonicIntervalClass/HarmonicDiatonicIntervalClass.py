@@ -1,19 +1,34 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
-from abjad.tools.pitchtools._HarmonicIntervalClass import \
-   _HarmonicIntervalClass
+from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 
 
-class HarmonicDiatonicIntervalClass(
-   _DiatonicIntervalClass, _HarmonicIntervalClass):
+class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Harmonic diatonic interval class.
+   Harmonic diatonic interval class::
+
+      abjad> pitchtools.HarmonicDiatonicIntervalClass('major', 2) 
+      HarmonicDiatonicIntervalClass(major second)
+
+   ::
+
+      abjad> pitchtools.HarmonicDiatonicIntervalClass('major', -2) 
+      HarmonicDiatonicIntervalClass(major second)
+
+   ::
+
+      abjad> pitchtools.HarmonicDiatonicIntervalClass('major', 9) 
+      HarmonicDiatonicIntervalClass(major second)
+
+   ::
+
+      abjad> pitchtools.HarmonicDiatonicIntervalClass('major', -9) 
+      HarmonicDiatonicIntervalClass(major second)
    '''
 
    def __init__(self, *args):
-      from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
-         HarmonicDiatonicInterval
+      from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
       if len(args) == 1:
          if isinstance(args[0], HarmonicDiatonicInterval):
             quality_string = args[0]._quality_string
@@ -64,8 +79,15 @@ class HarmonicDiatonicIntervalClass(
    ## PUBLIC METHODS ##
 
    def invert(self):
-      from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-         MelodicDiatonicInterval
+      '''Read-only inversion of harmonic diatonic interval class:
+
+      ::
+
+         abjad> hdic = pitchtools.HarmonicDiatonicIntervalClass('major', -9)
+         abjad> hdic.invert( ) 
+         HarmonicDiatonicIntervalClass(minor seventh)
+      '''
+      from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
       from abjad.tools.pitchtools.harmonic_diatonic_interval_class_from_to \
          import harmonic_diatonic_interval_class_from_to
       low = NamedPitch('c', 4)

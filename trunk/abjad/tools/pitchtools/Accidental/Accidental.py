@@ -2,12 +2,11 @@ from abjad.core import _Abjad
 
 
 class Accidental(_Abjad):
-   '''Any sharp, quarter-sharp, flat, quarter-flat, etc.
+   '''Abjad model of the accidental:
 
    ::
 
-      abjad> t = pitchtools.Accidental('sharp')
-      abjad> t
+      abjad> pitchtools.Accidental('s')
       Accidental(sharp)
    '''
 
@@ -159,67 +158,79 @@ class Accidental(_Abjad):
    @apply
    def alphabetic_string( ):
       def fget(self):
-         '''Read / write LilyPond accidental string.
+         '''Read / write alphabetic string of accidental:
       
          ::
       
-            abjad> t = pitchtools.Accidental('s')
-            abjad> t.alphabetic_string
+            abjad> accidental = pitchtools.Accidental('s')
+            abjad> accidental.alphabetic_string
             's'
-
-         ::
-
-            abjad> t = pitchtools.Accidental('f')
-            abjad> t.alphabetic_string
-            'f' 
          '''
          return self._alphabetic_string
       return property(**locals( ))
 
    @property
    def format(self):
-      '''Read-only LilyPond format of accidental.
+      '''Read-only LilyPond format of accidental:
 
       ::
    
-         abjad> t = pitchtools.Accidental('s')
-         abjad> t.format
+         abjad> accidental = pitchtools.Accidental('s')
+         abjad> accidental.format
          's' 
 
-      ::
-
-         abjad> t = pitchtools.Accidental('f')
-         abjad> t.format
-         'f'
+      Defined equal to the alphabetic string of accidental.
       '''
       return self.alphabetic_string
 
    @property
    def is_adjusted(self):
+      '''Read-only adjustment indicator of accidental:
+
+      ::
+
+         abjad> accidental = pitchtools.Accidental('s')
+         abjad> accidental.is_adjusted
+         True
+
+      True for all accidentals equal to a nonzero number of semitones.
+      '''
       return not self.semitones == 0
 
    @property
    def name(self):
+      '''Read-only name of accidental:
+
+      ::
+
+         abjad> accidental = pitchtools.Accidental('s')
+         abjad> accidental.name
+         'sharp'
+      '''
       return self._alphabetic_string_to_name[self.alphabetic_string]
 
    @property
    def semitones(self):
-      '''Read-only number of semitones to which this accidental is equal.
+      '''Read-only number of semitones to which accidental is equal:
 
       ::
 
-         abjad> pitchtools.Accidental('s').semitones
+         abjad> accidental = pitchtools.Accidental('s')
+         abjad> accidental.semitones
          1
-
-      ::
-
-         abjad> pitchtools.Accidental('f').semitones
-         -1
       '''
       return self._alphabetic_string_to_semitones[self.alphabetic_string]
 
    @property
    def symbolic_string(self):
+      '''Read-only symbolic string of accidental:
+
+      ::
+
+         abjad> accidental = pitchtools.Accidental('s')
+         abjad> accidental.symbolic_string
+         '#'
+      '''
       symbolic_string = self._alphabetic_string_to_symbolic_string[
          self.alphabetic_string]
       return symbolic_string
