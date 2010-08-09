@@ -1,6 +1,6 @@
-pitchtools.nearest_neighbor
-===========================
+pitchtools.transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number
+=====================================================================================
 
-.. automodule:: abjad.tools.pitchtools.nearest_neighbor
+.. automodule:: abjad.tools.pitchtools.transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number
 
-.. autofunction:: abjad.tools.pitchtools.nearest_neighbor
+.. autofunction:: abjad.tools.pitchtools.transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number

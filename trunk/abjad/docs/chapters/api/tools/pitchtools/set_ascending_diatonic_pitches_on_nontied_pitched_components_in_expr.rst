@@ -1,6 +1,6 @@
-pitchtools.diatonicize
-======================
+pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr
+===============================================================================
 
-.. automodule:: abjad.tools.pitchtools.diatonicize
+.. automodule:: abjad.tools.pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr
 
-.. autofunction:: abjad.tools.pitchtools.diatonicize
+.. autofunction:: abjad.tools.pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr

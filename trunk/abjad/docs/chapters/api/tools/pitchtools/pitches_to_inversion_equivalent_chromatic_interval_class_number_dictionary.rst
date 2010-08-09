@@ -1,6 +1,6 @@
-pitchtools.get_interval_class_vector
-====================================
+pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary
+=====================================================================================
 
-.. automodule:: abjad.tools.pitchtools.get_interval_class_vector
+.. automodule:: abjad.tools.pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary
 
-.. autofunction:: abjad.tools.pitchtools.get_interval_class_vector
+.. autofunction:: abjad.tools.pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary

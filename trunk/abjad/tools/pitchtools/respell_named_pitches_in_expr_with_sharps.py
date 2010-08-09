@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import iterate
-from abjad.tools.pitchtools.pitch_number_to_octave import pitch_number_to_octave
-from abjad.tools.pitchtools.pc_to_pitch_name_sharps import pc_to_pitch_name_sharps
+from abjad.tools.pitchtools.pitch_number_to_octave_number import pitch_number_to_octave_number
+from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_sharps import pitch_class_number_to_pitch_name_with_sharps
 
 
 def respell_named_pitches_in_expr_with_sharps(expr):
@@ -45,7 +45,7 @@ def respell_named_pitches_in_expr_with_sharps(expr):
 
 
 def _pitch_renotate_sharps(pitch):
-   octave = pitch_number_to_octave(pitch.number)
-   name = pc_to_pitch_name_sharps(pitch.pc)
+   octave = pitch_number_to_octave_number(pitch.number)
+   name = pitch_class_number_to_pitch_name_with_sharps(pitch.pc)
    pitch.octave = octave
    pitch.name = name

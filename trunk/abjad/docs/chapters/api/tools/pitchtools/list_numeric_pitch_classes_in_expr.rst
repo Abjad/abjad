@@ -1,6 +1,6 @@
-pitchtools.get_pitch_classes
-============================
+pitchtools.list_numeric_pitch_classes_in_expr
+=============================================
 
-.. automodule:: abjad.tools.pitchtools.get_pitch_classes
+.. automodule:: abjad.tools.pitchtools.list_numeric_pitch_classes_in_expr
 
-.. autofunction:: abjad.tools.pitchtools.get_pitch_classes
+.. autofunction:: abjad.tools.pitchtools.list_numeric_pitch_classes_in_expr

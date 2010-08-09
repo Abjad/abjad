@@ -1,4 +1,4 @@
-def pc_to_pitch_name_flats(pc):
+def pitch_class_number_to_pitch_name_with_flats(pc):
    '''Return pitch name string corresponding to `pc` spelled
    with zero or more flats. ::
 
@@ -20,6 +20,10 @@ def pc_to_pitch_name_flats(pc):
       5.0   f
       5.5   gtqf
       6.0   gf
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.pc_to_pitch_name_flats( )`` to
+      ``pitchtools.pitch_class_number_to_pitch_name_with_flats( )``.
    '''
   
    try:

@@ -1,6 +1,6 @@
-pitchtools.get_pitch_class
-==========================
+pitchtools.get_numeric_pitch_class_from_pitch_carrier
+=====================================================
 
-.. automodule:: abjad.tools.pitchtools.get_pitch_class
+.. automodule:: abjad.tools.pitchtools.get_numeric_pitch_class_from_pitch_carrier
 
-.. autofunction:: abjad.tools.pitchtools.get_pitch_class
+.. autofunction:: abjad.tools.pitchtools.get_numeric_pitch_class_from_pitch_carrier

@@ -1,6 +1,6 @@
-pitchtools.array_to_nonspanning_subarrays
-=========================================
+pitchtools.list_nonspanning_subarrays_of_pitch_array
+====================================================
 
-.. automodule:: abjad.tools.pitchtools.array_to_nonspanning_subarrays
+.. automodule:: abjad.tools.pitchtools.list_nonspanning_subarrays_of_pitch_array
 
-.. autofunction:: abjad.tools.pitchtools.array_to_nonspanning_subarrays
+.. autofunction:: abjad.tools.pitchtools.list_nonspanning_subarrays_of_pitch_array

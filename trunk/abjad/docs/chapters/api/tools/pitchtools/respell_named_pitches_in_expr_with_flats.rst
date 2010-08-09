@@ -1,6 +1,6 @@
-pitchtools.make_flat
-====================
+pitchtools.respell_named_pitches_in_expr_with_flats
+===================================================
 
-.. automodule:: abjad.tools.pitchtools.make_flat
+.. automodule:: abjad.tools.pitchtools.respell_named_pitches_in_expr_with_flats
 
-.. autofunction:: abjad.tools.pitchtools.make_flat
+.. autofunction:: abjad.tools.pitchtools.respell_named_pitches_in_expr_with_flats

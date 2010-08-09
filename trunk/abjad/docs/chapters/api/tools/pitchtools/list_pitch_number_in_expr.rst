@@ -1,6 +1,6 @@
-pitchtools.get_pitch_numbers
-============================
+pitchtools.list_pitch_number_in_expr
+====================================
 
-.. automodule:: abjad.tools.pitchtools.get_pitch_numbers
+.. automodule:: abjad.tools.pitchtools.list_pitch_number_in_expr
 
-.. autofunction:: abjad.tools.pitchtools.get_pitch_numbers
+.. autofunction:: abjad.tools.pitchtools.list_pitch_number_in_expr

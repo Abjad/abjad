@@ -1,6 +1,6 @@
-pitchtools.apply_octavation
-===========================
+pitchtools.apply_octavation_spanner_to_pitched_components
+=========================================================
 
-.. automodule:: abjad.tools.pitchtools.apply_octavation
+.. automodule:: abjad.tools.pitchtools.apply_octavation_spanner_to_pitched_components
 
-.. autofunction:: abjad.tools.pitchtools.apply_octavation
+.. autofunction:: abjad.tools.pitchtools.apply_octavation_spanner_to_pitched_components

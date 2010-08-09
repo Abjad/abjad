@@ -93,16 +93,16 @@ def pitch_pairs_forward_in_expr(expr):
    for leaf_pair in leaf_pairs_forward_in_expr(expr):
       leaf_pair_list = list(leaf_pair)
       ## iterate chord pitches if first leaf is chord
-      for pair in pitchtools.pitch_pairs_within(leaf_pair_list[0]):
+      for pair in pitchtools.list_unordered_pitch_pairs_in_expr(leaf_pair_list[0]):
          yield pair
       if isinstance(leaf_pair, set):
-         for pair in pitchtools.pitch_pairs_within(leaf_pair):
+         for pair in pitchtools.list_unordered_pitch_pairs_in_expr(leaf_pair):
             yield pair
       elif isinstance(leaf_pair, tuple):
-         for pair in pitchtools.pitch_pairs_from_to(*leaf_pair):
+         for pair in pitchtools.list_ordered_pitch_pairs_from_expr_cross_to_expr(*leaf_pair):
             yield pair
       else:
          raise TypeError('leaf pair must be set or tuple.')
       ## iterate chord pitches if last leaf is chord
-      for pair in pitchtools.pitch_pairs_within(leaf_pair_list[1]):
+      for pair in pitchtools.list_unordered_pitch_pairs_in_expr(leaf_pair_list[1]):
          yield pair

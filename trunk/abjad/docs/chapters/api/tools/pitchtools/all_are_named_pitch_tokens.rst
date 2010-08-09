@@ -1,6 +1,6 @@
-pitchtools.is_pitch_token_collection
-====================================
+pitchtools.all_are_named_pitch_tokens
+=====================================
 
-.. automodule:: abjad.tools.pitchtools.is_pitch_token_collection
+.. automodule:: abjad.tools.pitchtools.all_are_named_pitch_tokens
 
-.. autofunction:: abjad.tools.pitchtools.is_pitch_token_collection
+.. autofunction:: abjad.tools.pitchtools.all_are_named_pitch_tokens

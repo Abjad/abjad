@@ -1,6 +1,6 @@
-pitchtools.letter_to_diatonic_scale_degree
-==========================================
+pitchtools.pitch_letter_to_one_indexed_diatonic_scale_degree_number
+===================================================================
 
-.. automodule:: abjad.tools.pitchtools.letter_to_diatonic_scale_degree
+.. automodule:: abjad.tools.pitchtools.pitch_letter_to_one_indexed_diatonic_scale_degree_number
 
-.. autofunction:: abjad.tools.pitchtools.letter_to_diatonic_scale_degree
+.. autofunction:: abjad.tools.pitchtools.pitch_letter_to_one_indexed_diatonic_scale_degree_number

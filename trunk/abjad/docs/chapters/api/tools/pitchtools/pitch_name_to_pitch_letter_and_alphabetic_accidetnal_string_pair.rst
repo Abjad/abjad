@@ -1,6 +1,6 @@
-pitchtools.name_to_letter_accidental
-====================================
+pitchtools.pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair
+===========================================================================
 
-.. automodule:: abjad.tools.pitchtools.name_to_letter_accidental
+.. automodule:: abjad.tools.pitchtools.pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair
 
-.. autofunction:: abjad.tools.pitchtools.name_to_letter_accidental
+.. autofunction:: abjad.tools.pitchtools.pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair

@@ -44,7 +44,7 @@ class NamedPitch(_Abjad):
    def __add__(self, melodic_interval):
       '''.. versionadded:: 1.1.2'''
       from abjad.tools import pitchtools
-      return pitchtools.transpose_by_melodic_interval(self, melodic_interval)
+      return pitchtools.transpose_pitch_by_melodic_interval(self, melodic_interval)
 
    def __copy__(self):
       '''.. versionadded:: 1.1.2'''
@@ -125,7 +125,7 @@ class NamedPitch(_Abjad):
          return pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(self, arg)
       else:
          interval = arg
-         return pitchtools.transpose_by_melodic_interval(self, -interval)
+         return pitchtools.transpose_pitch_by_melodic_interval(self, -interval)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -185,8 +185,8 @@ class NamedPitch(_Abjad):
 
    def _init_by_pitch_string(self, pitch_string):
       from abjad.tools import pitchtools
-      name = pitchtools.pitch_string_to_name(pitch_string)
-      octave_number = pitchtools.pitch_string_to_octave_number(pitch_string)
+      name = pitchtools.pitch_name_to_pitch_class_name(pitch_string)
+      octave_number = pitchtools.pitch_name_to_octave_number(pitch_string)
       self._init_by_name_and_octave(name, octave_number)
 
    def _init_by_reference(self, pitch):

@@ -50,7 +50,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr):
       upper_notes = notes[:-1]
       diatonic_intervals = [ ]
       for upper_note in upper_notes:
-         diatonic_interval = pitchtools.pitches_to_diatonic_interval(
+         diatonic_interval = pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
             bass_note.pitch, upper_note.pitch)
          diatonic_intervals.append(diatonic_interval)    
       intervals = [x.number for x in diatonic_intervals]

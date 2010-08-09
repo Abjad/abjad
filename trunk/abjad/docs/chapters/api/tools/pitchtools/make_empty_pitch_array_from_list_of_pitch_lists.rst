@@ -1,6 +1,6 @@
-pitchtools.leaf_iterables_to_pitch_array_empty
-==============================================
+pitchtools.make_empty_pitch_array_from_list_of_pitch_lists
+==========================================================
 
-.. automodule:: abjad.tools.pitchtools.leaf_iterables_to_pitch_array_empty
+.. automodule:: abjad.tools.pitchtools.make_empty_pitch_array_from_list_of_pitch_lists
 
-.. autofunction:: abjad.tools.pitchtools.leaf_iterables_to_pitch_array_empty
+.. autofunction:: abjad.tools.pitchtools.make_empty_pitch_array_from_list_of_pitch_lists

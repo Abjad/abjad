@@ -1,6 +1,6 @@
-pitchtools.get_signed_interval_series
-=====================================
+pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitches
+===========================================================================
 
-.. automodule:: abjad.tools.pitchtools.get_signed_interval_series
+.. automodule:: abjad.tools.pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitches
 
-.. autofunction:: abjad.tools.pitchtools.get_signed_interval_series
+.. autofunction:: abjad.tools.pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitches

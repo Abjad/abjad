@@ -1,6 +1,6 @@
-pitchtools.leaf_iterables_to_pitch_array_populated
-==================================================
+pitchtools.make_populated_pitch_array_from_list_of_pitch_lists
+==============================================================
 
-.. automodule:: abjad.tools.pitchtools.leaf_iterables_to_pitch_array_populated
+.. automodule:: abjad.tools.pitchtools.make_populated_pitch_array_from_list_of_pitch_lists
 
-.. autofunction:: abjad.tools.pitchtools.leaf_iterables_to_pitch_array_populated
+.. autofunction:: abjad.tools.pitchtools.make_populated_pitch_array_from_list_of_pitch_lists

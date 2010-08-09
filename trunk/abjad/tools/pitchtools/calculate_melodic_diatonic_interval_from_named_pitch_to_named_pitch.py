@@ -19,6 +19,10 @@ def calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(pitch_ca
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.melodic_diatonic_interval_from_to( )`` to
       ``pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.pitches_to_diatonic_interval( )`` to
+      ``pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch( )``.
    '''
 
    pitch_1 = get_named_pitch_from_pitch_carrier(pitch_carrier_1)

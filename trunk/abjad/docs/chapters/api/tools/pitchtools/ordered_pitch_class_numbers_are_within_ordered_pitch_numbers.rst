@@ -1,6 +1,6 @@
-pitchtools.are_in_octave_order
-==============================
+pitchtools.ordered_pitch_class_numbers_are_within_ordered_pitch_numbers
+=======================================================================
 
-.. automodule:: abjad.tools.pitchtools.are_in_octave_order
+.. automodule:: abjad.tools.pitchtools.ordered_pitch_class_numbers_are_within_ordered_pitch_numbers
 
-.. autofunction:: abjad.tools.pitchtools.are_in_octave_order
+.. autofunction:: abjad.tools.pitchtools.ordered_pitch_class_numbers_are_within_ordered_pitch_numbers

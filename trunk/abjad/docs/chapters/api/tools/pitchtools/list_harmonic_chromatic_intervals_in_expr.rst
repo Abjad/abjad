@@ -1,6 +1,6 @@
-pitchtools.get_harmonic_chromatic_intervals_in
-==============================================
+pitchtools.list_harmonic_chromatic_intervals_in_expr
+====================================================
 
-.. automodule:: abjad.tools.pitchtools.get_harmonic_chromatic_intervals_in
+.. automodule:: abjad.tools.pitchtools.list_harmonic_chromatic_intervals_in_expr
 
-.. autofunction:: abjad.tools.pitchtools.get_harmonic_chromatic_intervals_in
+.. autofunction:: abjad.tools.pitchtools.list_harmonic_chromatic_intervals_in_expr

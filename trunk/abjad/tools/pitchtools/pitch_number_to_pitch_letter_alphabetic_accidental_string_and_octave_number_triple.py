@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools.pitch_class_number_to_pitch_name import pitch_class_number_to_pitch_name
-from abjad.tools.pitchtools.pc_to_pitch_name_flats import pc_to_pitch_name_flats
-from abjad.tools.pitchtools.pc_to_pitch_name_sharps import pc_to_pitch_name_sharps
+from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_flats import pitch_class_number_to_pitch_name_with_flats
+from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_sharps import pitch_class_number_to_pitch_name_with_sharps
 import math
 
 
@@ -36,9 +36,9 @@ def pitch_number_to_pitch_letter_alphabetic_accidental_string_and_octave_number_
    if spelling == 'mixed':
       pitch_name = pitch_class_number_to_pitch_name(pc)
    elif spelling == 'sharps':
-      pitch_name = pc_to_pitch_name_sharps(pc)
+      pitch_name = pitch_class_number_to_pitch_name_with_sharps(pc)
    elif spelling == 'flats':
-      pitch_name = pc_to_pitch_name_flats(pc)
+      pitch_name = pitch_class_number_to_pitch_name_with_flats(pc)
    else:
       raise ValueError('unknown accidental spelling.')
 

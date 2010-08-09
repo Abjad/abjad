@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import pitch_letter_to_pitch_class_number as pitchtools_pitch_letter_to_pitch_class_number
 from abjad.tools.pitchtools.transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number import transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number as pitchtools_transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number
-from abjad.tools.pitchtools.pitch_number_and_accidental_semitones_to_octave import pitch_number_and_accidental_semitones_to_octave
+from abjad.tools.pitchtools.pitch_number_and_accidental_semitones_to_octave_number import pitch_number_and_accidental_semitones_to_octave_number
 
 
 def number_letter_to_accidental_octave(number, letter):
@@ -43,7 +43,7 @@ def number_letter_to_accidental_octave(number, letter):
    alphabetic_string = Accidental._semitones_to_alphabetic_string[semitones]
    
    ## find octave
-   octave = pitch_number_and_accidental_semitones_to_octave(
+   octave = pitch_number_and_accidental_semitones_to_octave_number(
       number, semitones)
 
    ## return unique pair of accidental string and octave
