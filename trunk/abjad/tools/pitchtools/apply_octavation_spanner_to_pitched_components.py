@@ -1,5 +1,5 @@
 from abjad.spanners import OctavationSpanner
-from abjad.tools.pitchtools.get_pitches import get_pitches
+from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
 
 
 def apply_octavation_spanner_to_pitched_components(expr, 
@@ -25,7 +25,7 @@ def apply_octavation_spanner_to_pitched_components(expr,
          \ottava #0
    """
 
-   pitches = get_pitches(expr)
+   pitches = list_named_pitches_in_expr(expr)
    max_pitch = max(pitches)
    max_altitude = max_pitch.altitude
 

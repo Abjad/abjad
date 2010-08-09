@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.get_pitches import get_pitches
+from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
 
 
 class PitchRange(object):
@@ -25,7 +25,7 @@ class PitchRange(object):
       elif isinstance(arg, NamedPitch):
          return self._contains_pitch(arg)
       else:
-         pitches = get_pitches(arg)
+         pitches = list_named_pitches_in_expr(arg)
          if pitches:
             return all([self._contains_pitch(x) for x in pitches])
       return False

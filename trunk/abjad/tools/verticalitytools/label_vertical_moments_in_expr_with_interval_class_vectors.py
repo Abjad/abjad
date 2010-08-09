@@ -40,10 +40,10 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr):
 
    for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):
       leaves = vertical_moment.leaves
-      pitches = pitchtools.get_pitches(leaves)
+      pitches = pitchtools.list_named_pitches_in_expr(leaves)
       if not pitches:
          continue
-      interval_class_vector = pitchtools.get_interval_class_vector(pitches)
+      interval_class_vector = pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches)
       formatted = _format_interval_class_vector(interval_class_vector)
       vertical_moment.start_leaves[-1].markup.down.append(formatted)
 

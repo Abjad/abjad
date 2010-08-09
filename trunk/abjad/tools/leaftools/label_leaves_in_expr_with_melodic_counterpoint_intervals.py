@@ -35,7 +35,7 @@ def label_leaves_in_expr_with_melodic_counterpoint_intervals(expr):
             #mdi = note.pitch - next_leaf.pitch
             #counterpoint_interval_number = mdi.staff_spaces
             #note.markup.up.append(counterpoint_interval_number)
-            cpi = pitchtools.melodic_counterpoint_interval_from_to(
+            cpi = pitchtools.calculate_melodic_counterpoint_interval_from_named_pitch_to_named_pitch(
                note, next_leaf)
             note.markup.up.append(cpi)
       except StopIteration:

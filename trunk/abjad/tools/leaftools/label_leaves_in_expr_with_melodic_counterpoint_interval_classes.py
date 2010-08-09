@@ -33,7 +33,7 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr):
          thread_iterator.next( )
          next_leaf = thread_iterator.next( )
          if isinstance(next_leaf, Note):
-            cpi = pitchtools.melodic_counterpoint_interval_from_to(
+            cpi = pitchtools.calculate_melodic_counterpoint_interval_from_named_pitch_to_named_pitch(
                note, next_leaf)
             note.markup.up.append(cpi.interval_class)
       except StopIteration:

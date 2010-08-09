@@ -39,7 +39,7 @@ def make_notes(pitches, durations, direction='big-endian'):
       ``leaftools.make_notes( )``.
    '''
 
-   if pitchtools.is_pitch_token(pitches):
+   if pitchtools.is_named_pitch_token(pitches):
       pitches = [pitches]
    
    if durtools.is_duration_token(durations):

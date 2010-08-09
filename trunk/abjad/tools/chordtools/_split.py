@@ -48,7 +48,7 @@ def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
       (Chord(fs' g' af' a' bf' b', 4), Chord(c' cs' d' ef' e' f', 4))'''
 
    assert isinstance(chord, _Leaf)
-   assert pitchtools.is_pitch_token(pitch)
+   assert pitchtools.is_named_pitch_token(pitch)
    assert attr in ('number', 'altitude')
 
    pitch = NamedPitch(pitch)

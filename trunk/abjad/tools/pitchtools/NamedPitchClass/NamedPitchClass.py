@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.get_pitch import get_pitch
+from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
 from abjad.tools.pitchtools.Accidental import Accidental
 
 
@@ -15,7 +15,7 @@ class NamedPitchClass(object):
       elif isinstance(arg, NamedPitchClass):
          self._init_by_name_string(arg.name)
       else:
-         pitch = get_pitch(arg)
+         pitch = get_named_pitch_from_pitch_carrier(arg)
          self._name = pitch.name
 
    ## OVERLOADS ##
@@ -87,7 +87,7 @@ class NamedPitchClass(object):
       from abjad.tools import pitchtools
       pitch_1 = NamedPitch(self, 4)
       pitch_2 = NamedPitch(arg, 4)
-      mdi = pitchtools.melodic_diatonic_interval_from_to(pitch_1, pitch_2)
+      mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(pitch_1, pitch_2)
       dic = pitchtools.InversionEquivalentDiatonicIntervalClass(mdi.quality_string, mdi.number)
       return dic
 

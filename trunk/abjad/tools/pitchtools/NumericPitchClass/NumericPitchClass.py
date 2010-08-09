@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.get_pitch import get_pitch
+from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import InversionEquivalentChromaticIntervalClass
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
@@ -28,7 +28,7 @@ class NumericPitchClass(object):
       elif isinstance(arg, NamedPitchClass):
          self._number = arg.numeric_pitch_class.number
       else:
-         pitch = get_pitch(arg)
+         pitch = get_named_pitch_from_pitch_carrier(arg)
          self._number = pitch.number % 12
 
    ## OVERLOADS ##

@@ -1,7 +1,7 @@
 from abjad.exceptions import MissingPitchError
 from abjad.exceptions import ExtraPitchError
 from abjad.tools import schemetools
-from abjad.tools.pitchtools.get_pitch import get_pitch
+from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
 
 
 def color_note_head_by_numeric_pitch_class_color_map(pitch_carrier):
@@ -36,7 +36,7 @@ def color_note_head_by_numeric_pitch_class_color_map(pitch_carrier):
       ``pitchtools.color_note_head_by_numeric_pitch_class_color_map( )``.
    '''
    
-   pitch = get_pitch(pitch_carrier)
+   pitch = get_named_pitch_from_pitch_carrier(pitch_carrier)
    color = _pc_number_to_color(pitch.pc.number)
    if color is not None:
       pitch_carrier.note_head.color = color

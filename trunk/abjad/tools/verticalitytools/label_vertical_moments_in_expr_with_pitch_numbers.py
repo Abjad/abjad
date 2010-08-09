@@ -40,7 +40,7 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr):
 
    for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):
       leaves = vertical_moment.leaves
-      pitches = pitchtools.get_pitches(leaves)
+      pitches = pitchtools.list_named_pitches_in_expr(leaves)
       if not pitches:
          continue
       pitch_numbers = [pitch.number for pitch in pitches]

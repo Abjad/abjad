@@ -1,5 +1,5 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.get_pitches import get_pitches
+from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
 
 
 def pitch_pairs_from_to(expr_1, expr_2):

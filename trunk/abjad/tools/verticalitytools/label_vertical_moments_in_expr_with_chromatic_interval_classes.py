@@ -51,7 +51,7 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr):
       upper_notes = notes[:-1]
       hcics = [ ]
       for upper_note in upper_notes:
-         hcic = pitchtools.harmonic_chromatic_interval_class_from_to(
+         hcic = pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_to_pitch(
             bass_note, upper_note)
          hcics.append(hcic)
       hcics = ' '.join([str(hcic) for hcic in hcics])

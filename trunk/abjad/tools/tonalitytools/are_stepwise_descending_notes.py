@@ -26,7 +26,7 @@ def are_stepwise_descending_notes(*expr):
    for left, right in listtools.pairwise(iterate.naive_forward_in_expr(expr, Note)):
       try:
          assert not (left.pitch == right.pitch)
-         mdi = pitchtools.melodic_diatonic_interval_from_to(left, right)
+         mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(left, right)
          assert mdi.number == -2
       except AssertionError:
          return False

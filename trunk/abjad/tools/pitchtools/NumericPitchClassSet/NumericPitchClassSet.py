@@ -2,7 +2,7 @@ from abjad.tools import listtools
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet import InversionEquivalentChromaticIntervalClassSet
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector import InversionEquivalentChromaticIntervalClassVector
 from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
-from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
+from abjad.tools.pitchtools.list_numeric_pitch_classes_in_expr import list_numeric_pitch_classes_in_expr
 
 
 ## TODO: Make NumericPitchClassSet and PitchSet both inherit ##

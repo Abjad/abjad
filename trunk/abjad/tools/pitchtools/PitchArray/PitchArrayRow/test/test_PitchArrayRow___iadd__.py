@@ -22,4 +22,4 @@ def test_PitchArrayRow___iadd___01( ):
 
    assert row.cell_widths == (1, 2, 1, 1, 2, 1)
    assert row.dimensions == (1, 8)
-   assert row.pitches == tuple(pitchtools.make_pitches([0, 2, 0, 2]))
+   assert row.pitches == tuple(pitchtools.make_named_pitches_from_pitch_tokens([0, 2, 0, 2]))

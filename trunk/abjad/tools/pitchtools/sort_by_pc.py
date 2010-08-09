@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.get_pitches import get_pitches
+from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
 
 
 def sort_by_pc(pitch_carriers):
@@ -18,7 +18,7 @@ def sort_by_pc(pitch_carriers):
 
    result = list(pitch_carriers[:])
    result.sort(lambda x, y: cmp(
-         get_pitches(x)[0].pc.number, 
-         get_pitches(y)[0].pc.number))
+         list_named_pitches_in_expr(x)[0].pc.number, 
+         list_named_pitches_in_expr(y)[0].pc.number))
 
    return result

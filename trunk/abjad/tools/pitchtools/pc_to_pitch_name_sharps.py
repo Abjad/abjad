@@ -4,7 +4,7 @@ def pc_to_pitch_name_sharps(pc):
 
       abjad> for n in range(13):
       ...     pc = n / 2.0
-      ...     name = pitchtools.pc_to_pitch_name_sharps(pc)
+      ...     name = pitchtools.pitch_class_number_to_pitch_name_with_flats_sharps(pc)
       ...     print '%s\\t%s' % (pc, name)
       ... 
       0.0   c

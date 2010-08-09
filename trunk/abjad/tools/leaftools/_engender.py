@@ -12,7 +12,7 @@ def _engender(pitches, duration):
       ``construct.leaves( )``.
    '''
 
-   assert pitchtools.is_pitch_token_collection(pitches)
+   assert pitchtools.is_named_pitch_token_collection(pitches)
    assert durtools.is_duration_token(duration)
    if len(pitches) == 0:
       return Rest(duration)

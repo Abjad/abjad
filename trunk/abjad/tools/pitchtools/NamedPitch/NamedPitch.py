@@ -19,7 +19,7 @@ class NamedPitch(_Abjad):
          self._init_by_number(*args)
       elif len(args) == 1 and isinstance(args[0], NamedPitch):
          self._init_by_reference(*args)
-      elif len(args) == 1 and pitchtools.is_pitch_pair(args[0]):
+      elif len(args) == 1 and pitchtools.is_named_pitch_pair(args[0]):
          self._init_by_pair(*args)
       elif len(args) == 1 and isinstance(args[0], str):
          self._init_by_pitch_string(*args)
@@ -122,7 +122,7 @@ class NamedPitch(_Abjad):
    def __sub__(self, arg):
       from abjad.tools import pitchtools
       if isinstance(arg, NamedPitch):
-         return pitchtools.melodic_diatonic_interval_from_to(self, arg)
+         return pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(self, arg)
       else:
          interval = arg
          return pitchtools.transpose_by_melodic_interval(self, -interval)
@@ -156,7 +156,7 @@ class NamedPitch(_Abjad):
    def _init_by_number(self, number):
       from abjad.tools import pitchtools
       spelling = self.accidental_spelling
-      triple = pitchtools.number_to_letter_accidental_octave(number, spelling)
+      triple = pitchtools.pitch_number_to_pitch_letter_alphabetic_accidental_string_and_octave_number_triple(number, spelling)
       letter, accidental_string, octave = triple
       self.letter = letter
       self.accidental = pitchtools.Accidental(accidental_string)
@@ -235,10 +235,10 @@ class NamedPitch(_Abjad):
    @property
    def degree(self):
       '''Diatonic scale degree with ``1`` for C, ``2`` for D, etc.'''
-      from abjad.tools.pitchtools.letter_to_diatonic_scale_degree \
-         import letter_to_diatonic_scale_degree
+      from abjad.tools.pitchtools.pitch_letter_to_one_indexed_diatonic_scale_degree_number \
+         import pitch_letter_to_one_indexed_diatonic_scale_degree_number
       if self.letter:
-         return letter_to_diatonic_scale_degree(self.letter)
+         return pitch_letter_to_one_indexed_diatonic_scale_degree_number(self.letter)
       else:
          return None
 
@@ -268,9 +268,9 @@ class NamedPitch(_Abjad):
          else:
             return None
       def fset(self, name):
-         from abjad.tools.pitchtools.name_to_letter_accidental \
-            import name_to_letter_accidental
-         letter, accidental = name_to_letter_accidental(name)
+         from abjad.tools.pitchtools.pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair \
+            import pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair
+         letter, accidental = pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair(name)
          self.letter = letter
          self.accidental = accidental
       return property(**locals( ))
@@ -285,12 +285,12 @@ class NamedPitch(_Abjad):
       def fget(self):
          '''Read / write numeric value of pitch
          with middle C equal to ``0``.'''
-         from abjad.tools.pitchtools.letter_to_pc import letter_to_pc
+         from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import pitch_letter_to_pitch_class_number
          if not self.octave is None:
             if self.letter:
                if self.accidental:
                   octave = 12 * (self.octave - 4)
-                  pc = letter_to_pc(self.letter)
+                  pc = pitch_letter_to_pitch_class_number(self.letter)
                   semitones = self.accidental.semitones
                   return octave + pc + semitones
          else:

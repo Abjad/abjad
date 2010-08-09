@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector impor
 from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
-from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
+from abjad.tools.pitchtools.list_numeric_pitch_classes_in_expr import list_numeric_pitch_classes_in_expr
 
 
 ## TODO: Make NamedPitchClassSet and PitchSet both inherit ##

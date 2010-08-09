@@ -36,21 +36,21 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          self.quality_string, abs(self.number))
 
    def __add__(self, arg):
-      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import melodic_diatonic_interval_from_to
+      from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch import calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch
       if not isinstance(arg, MelodicDiatonicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
       dummy_pitch = NamedPitch(0)
       new_pitch = dummy_pitch + self + arg 
-      return melodic_diatonic_interval_from_to(dummy_pitch, new_pitch)
+      return calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(dummy_pitch, new_pitch)
 
    def __mul__(self, arg):
-      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import melodic_diatonic_interval_from_to
+      from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch import calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch
       if not isinstance(arg, (int, long)):
          raise TypeError('%s must be int.' % arg)
       dummy_pitch = NamedPitch(0)
       for i in range(arg):
          dummy_pitch += self
-      return melodic_diatonic_interval_from_to(NamedPitch(0), dummy_pitch)
+      return calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(NamedPitch(0), dummy_pitch)
 
    def __neg__(self):
       return MelodicDiatonicInterval(self.quality_string, -self.number)
@@ -69,12 +69,12 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          abs(self.number))
 
    def __sub__(self, arg):
-      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import melodic_diatonic_interval_from_to
+      from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch import calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch
       if not isinstance(arg, MelodicDiatonicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
       dummy_pitch = NamedPitch(0)
       new_pitch = dummy_pitch + self - arg 
-      return melodic_diatonic_interval_from_to(dummy_pitch, new_pitch)
+      return calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(dummy_pitch, new_pitch)
       
    ## PUBLIC ATTRIBUTES ##
 
