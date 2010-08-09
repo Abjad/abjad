@@ -1,10 +1,8 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._HarmonicInterval import _HarmonicInterval
-from abjad.tools.pitchtools.HarmonicCounterpointInterval import \
-   HarmonicCounterpointInterval
-from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass import \
-   HarmonicDiatonicIntervalClass
+from abjad.tools.pitchtools.HarmonicCounterpointInterval import HarmonicCounterpointInterval
+from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass import HarmonicDiatonicIntervalClass
 
 
 class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
@@ -78,8 +76,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
 
    @property
    def melodic_diatonic_interval_ascending(self):
-      from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-         MelodicDiatonicInterval
+      from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
       return MelodicDiatonicInterval(self.quality_string, self.number)
 
    @property

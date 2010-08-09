@@ -9,7 +9,7 @@ def get_prev_measure_from_component(component):
    in `component`. This starts the process of backwards measure iteration. ::
 
       abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.diatonicize(staff)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> iterate.get_prev_measure_from_component(staff)
       RigidMeasure(2/8, [e'8, f'8])
 
@@ -25,7 +25,7 @@ def get_prev_measure_from_component(component):
    preceeding `component`, return measure immediately preceeding component. ::
 
       abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.diatonicize(staff)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> iterate.get_prev_measure_from_component(staff[-1])
       RigidMeasure(2/8, [c'8, d'8])
 
@@ -33,7 +33,7 @@ def get_prev_measure_from_component(component):
    preceeding `component`, return ``None``. ::
 
       abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.diatonicize(staff)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> iterate.get_prev_measure_from_component(staff[0])
       (None)
 
@@ -41,7 +41,7 @@ def get_prev_measure_from_component(component):
    of `component`, return the measure in the parentage of `component`. ::
 
       abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.diatonicize(staff)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> iterate.get_prev_measure_from_component(staff.leaves[0])
       RigidMeasure(2/8, [c'8, d'8])
 

@@ -1,20 +1,16 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools._CounterpointIntervalClass import \
-   _CounterpointIntervalClass
-from abjad.tools.pitchtools._MelodicIntervalClass import \
-   _MelodicIntervalClass
+from abjad.tools.pitchtools._CounterpointIntervalClass import _CounterpointIntervalClass
+from abjad.tools.pitchtools._MelodicIntervalClass import _MelodicIntervalClass
 
 
-class MelodicCounterpointIntervalClass(_CounterpointIntervalClass,
-   _MelodicIntervalClass):
+class MelodicCounterpointIntervalClass(_CounterpointIntervalClass, _MelodicIntervalClass):
    '''.. versionadded:: 1.1.2
 
    Melodic counterpoint interval class.
    '''
 
    def __init__(self, token):
-      from abjad.tools.pitchtools._CounterpointInterval import \
-         _CounterpointInterval
+      from abjad.tools.pitchtools._CounterpointInterval import _CounterpointInterval
       if isinstance(token, int):
          number = token
       elif isinstance(token, _CounterpointInterval):

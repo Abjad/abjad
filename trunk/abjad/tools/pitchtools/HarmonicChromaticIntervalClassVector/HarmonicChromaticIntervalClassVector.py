@@ -1,5 +1,4 @@
-from abjad.tools.pitchtools.get_harmonic_chromatic_intervals_in import \
-   get_harmonic_chromatic_intervals_in
+from abjad.tools.pitchtools.list_harmonic_chromatic_intervals_in_expr import list_harmonic_chromatic_intervals_in_expr
 
 
 class HarmonicChromaticIntervalClassVector(dict):
@@ -25,7 +24,7 @@ class HarmonicChromaticIntervalClassVector(dict):
       for interval_number in range(12):
          self[interval_number] = 0
          self[interval_number + 0.5] = 0
-      for chromatic_interval in get_harmonic_chromatic_intervals_in(expr):
+      for chromatic_interval in list_harmonic_chromatic_intervals_in_expr(expr):
          self[chromatic_interval.interval_class.number] += 1
 
    ## OVERLOADS ##

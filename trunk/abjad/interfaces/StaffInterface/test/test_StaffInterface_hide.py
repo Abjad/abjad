@@ -5,7 +5,7 @@ def test_StaffInterface_hide_01( ):
    '''Hide staff around one measure.'''
 
    t = Staff(RigidMeasure((2, 8), macros.scale(2)) * 3)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

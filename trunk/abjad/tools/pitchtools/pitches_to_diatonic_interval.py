@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-from abjad.tools.pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval import diatonic_and_chromatic_interval_numbers_to_diatonic_interval
+from abjad.tools.pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval import diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
 
 
 def pitches_to_diatonic_interval(pitch_1, pitch_2):
@@ -65,7 +65,7 @@ def pitches_to_diatonic_interval(pitch_1, pitch_2):
    diatonic_interval_number = abs(pitch_2.altitude - pitch_1.altitude) + 1
    chromatic_interval_number = pitch_2.number - pitch_1.number
    diatonic_interval = \
-      diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
+      diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(
       diatonic_interval_number, chromatic_interval_number)
    
    return diatonic_interval

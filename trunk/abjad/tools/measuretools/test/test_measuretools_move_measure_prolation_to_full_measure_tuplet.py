@@ -8,7 +8,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
    notes = leaftools.make_repeated_notes(2)
    outer = FixedDurationTuplet((2, 8), [inner] + notes)
    t = RigidMeasure((2, 8), [outer])
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''

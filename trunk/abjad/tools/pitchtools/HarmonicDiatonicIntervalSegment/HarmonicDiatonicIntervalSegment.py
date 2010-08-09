@@ -1,6 +1,5 @@
 from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
-from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
-   HarmonicDiatonicInterval
+from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
 
 
 class HarmonicDiatonicIntervalSegment(_IntervalSegment):
@@ -23,18 +22,15 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
 
    @property
    def harmonic_chromatic_interval_segment(self):
-      from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import \
-         HarmonicChromaticIntervalSegment
+      from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
       return HarmonicChromaticIntervalSegment(self)
 
    @property
    def melodic_chromatic_interval_segment(self):
-      from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import \
-         MelodicChromaticIntervalSegment
+      from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
       return MelodicChromaticIntervalSegment(self)
 
    @property
    def melodic_diatonic_interval_segment(self):
-      from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import \
-         MelodicDiatonicIntervalSegment
+      from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
       return MelodicDiatonicIntervalSegment(self)

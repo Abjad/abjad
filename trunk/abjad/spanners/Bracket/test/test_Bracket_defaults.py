@@ -6,7 +6,7 @@ def test_Bracket_defaults_01( ):
    and with no nibs at left and right broken edges.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Bracket(t[1])
 
    r'''

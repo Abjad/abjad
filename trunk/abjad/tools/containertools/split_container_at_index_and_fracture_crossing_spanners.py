@@ -9,7 +9,7 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
 
       abjad> t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
       abjad> tuplet = t[1]
-      abjad> pitchtools.diatonicize(t)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> Beam(t[:])
       abjad> f(t)
       \new Voice {

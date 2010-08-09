@@ -1,11 +1,9 @@
 from abjad.core import Rational
 from abjad.tools import mathtools
-from abjad.tools.pitchtools._ChromaticIntervalClass import \
-   _ChromaticIntervalClass
+from abjad.tools.pitchtools._ChromaticIntervalClass import _ChromaticIntervalClass
 from abjad.tools.pitchtools._Interval import _Interval
 from abjad.tools.pitchtools._IntervalClass import _IntervalClass
-from abjad.tools.pitchtools._MelodicIntervalClass import \
-   _MelodicIntervalClass
+from abjad.tools.pitchtools._MelodicIntervalClass import _MelodicIntervalClass
 
 
 class MelodicChromaticIntervalClass(_ChromaticIntervalClass,

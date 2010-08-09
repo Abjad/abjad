@@ -5,7 +5,7 @@ def test_tuplettools_beam_bottommost_tuplets_in_expr_01( ):
    '''Beam nonnested tuplets.'''
 
    t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    tuplettools.beam_bottommost_tuplets_in_expr(t)
 
    r'''
@@ -34,7 +34,7 @@ def test_tuplettools_beam_bottommost_tuplets_in_expr_02( ):
    inner = FixedDurationTuplet((2, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
    outer = FixedDurationTuplet((3, 16), inner * 2)
    t = Voice(outer * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    
    r'''
    \new Voice {

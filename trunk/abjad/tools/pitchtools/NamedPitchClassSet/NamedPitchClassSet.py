@@ -1,11 +1,9 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
-from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector import \
-   InversionEquivalentDiatonicIntervalClassVector
+from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector import InversionEquivalentDiatonicIntervalClassVector
 from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
-from abjad.tools.pitchtools.get_harmonic_diatonic_intervals_in import \
-   get_harmonic_diatonic_intervals_in
+from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
 from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 
 
@@ -90,8 +88,7 @@ class NamedPitchClassSet(frozenset):
    ## PUBLIC METHODS ##
    
    def order_by(self, npc_seg):
-      from abjad.tools.pitchtools.NamedPitchClassSegment import \
-         NamedPitchClassSegment
+      from abjad.tools.pitchtools.NamedPitchClassSegment import NamedPitchClassSegment
       if not len(self) == len(npc_seg):
          raise ValueError('set and segment must be of equal length.')
       for npcs in listtools.permutations(self.named_pitch_classes):

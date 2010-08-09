@@ -129,7 +129,7 @@ def test_Container___setitem___slice_06( ):
    '''Donor and recipient container are the same.'''
    
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
    r'''
@@ -168,7 +168,7 @@ def test_Container___setitem___slice_07( ):
    '''Donor and recipient container are the same.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
    r'''
@@ -208,7 +208,7 @@ def test_Container___setitem___slice_08( ):
    '''Donor and recipient container are the same.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
    r'''
@@ -246,7 +246,7 @@ def test_Container___setitem___slice_09( ):
    '''Donor and recipient container are the same.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
    r'''
@@ -287,7 +287,7 @@ def test_Container___setitem___slice_10( ):
    '''Donor and recipient container are the same.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
    r'''

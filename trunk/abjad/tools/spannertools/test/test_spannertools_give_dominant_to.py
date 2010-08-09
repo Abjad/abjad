@@ -72,7 +72,7 @@ def test_spannertools_give_dominant_to_02( ):
    '''Not composer-safe.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[:])
 
    r'''

@@ -17,7 +17,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
    Return Python list of copied components. ::
 
       abjad> voice = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
-      abjad> pitchtools.diatonicize(voice)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       abjad> beam = Beam(voice.leaves[:4])
       abjad> f(voice)
       \new Voice {

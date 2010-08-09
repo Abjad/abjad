@@ -6,7 +6,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -56,7 +56,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -108,7 +108,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -164,7 +164,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -263,7 +263,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
    measures = RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2
    Beam(measures[0])
    Beam(measures[1])
-   pitchtools.diatonicize(measures)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(measures)
 
    durations = [Rational(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(measures, durations)
@@ -318,7 +318,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Fracture spanners but add tie after each split.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -372,7 +372,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Fracture spanners but add tie after each split.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -426,7 +426,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Fracture spanners but add tie after each split.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -488,7 +488,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Fracture spanners but add tie after each split.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)

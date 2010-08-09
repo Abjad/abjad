@@ -2,14 +2,14 @@ from abjad.tools import listtools
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 
-def get_harmonic_diatonic_intervals_in(expr):
+def list_harmonic_diatonic_intervals_in_expr(expr):
    '''.. versionadded:: 1.1.2
 
    Return unordered set of diatonic intervals in `expr`. ::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> pitchtools.get_harmonic_diatonic_intervals_in(staff)
-      abjad> for interval in pitchtools.get_harmonic_diatonic_intervals_in(staff):
+      abjad> pitchtools.list_harmonic_diatonic_intervals_in_expr(staff)
+      abjad> for interval in pitchtools.list_harmonic_diatonic_intervals_in_expr(staff):
       ...     interval
       ... 
       HarmonicDiatonicInterval(minor third)
@@ -17,6 +17,10 @@ def get_harmonic_diatonic_intervals_in(expr):
       HarmonicDiatonicInterval(major second)
       HarmonicDiatonicInterval(major third)
       HarmonicDiatonicInterval(perfect fourth)
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.get_harmonic_diatonic_intervals_in( )`` to
+      ``pitchtools.list_harmonic_diatonic_intervals_in_expr( )``.
    '''
    
    diatonic_intervals = [ ]

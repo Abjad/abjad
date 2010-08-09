@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval import diatonic_and_chromatic_interval_numbers_to_diatonic_interval
+from abjad.tools.pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval import diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
 from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
@@ -28,7 +28,7 @@ def melodic_diatonic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
    chromatic_interval_number = abs(pitch_1.number - pitch_2.number)
 
    absolute_diatonic_interval = \
-      diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
+      diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(
       diatonic_interval_number, chromatic_interval_number)
 
    if pitch_2 < pitch_1:

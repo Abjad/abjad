@@ -1,7 +1,5 @@
-from abjad.tools.pitchtools.get_harmonic_diatonic_intervals_in import \
-   get_harmonic_diatonic_intervals_in
-from abjad.tools.pitchtools.list_all_diatonic_interval_classes import \
-   list_all_diatonic_interval_classes
+from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
+from abjad.tools.pitchtools.list_all_diatonic_interval_classes import list_all_diatonic_interval_classes
 
 
 class InversionEquivalentDiatonicIntervalClassVector(dict):
@@ -20,7 +18,7 @@ class InversionEquivalentDiatonicIntervalClassVector(dict):
       self.all_dics = list_all_diatonic_interval_classes( )
       for dic in self.all_dics:
          self[dic] = 0
-      for hdi in get_harmonic_diatonic_intervals_in(expr):
+      for hdi in list_harmonic_diatonic_intervals_in_expr(expr):
          dic = hdi.diatonic_interval_class
          self[dic] += 1
 

@@ -10,7 +10,7 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
    ::
 
       abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
-      abjad> pitchtools.diatonicize(t)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> tempo_spanner = TempoSpanner(t[:])
       abjad> tempo_indication = TempoIndication(Rational(1, 8), 44)
       abjad> tempo_spanner.tempo_indication = tempo_indication

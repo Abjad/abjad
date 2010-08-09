@@ -6,7 +6,7 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
    Do not fracture spanners. ::
 
       abjad> t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.diatonicize(t)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> Beam(t[0])
       abjad> Beam(t[1])
       abjad> Slur(t.leaves)

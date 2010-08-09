@@ -8,7 +8,7 @@ def comment_measures_in_container_with_measure_numbers(container, style = 'comme
    Turn measure number labels on with ``style = 'comment'``. ::
 
       abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
-      abjad> pitchtools.diatonicize(staff)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> measuretools.comment_measures_in_container_with_measure_numbers(staff, style = 'comment')
       abjad> print staff.format
       \new Staff {

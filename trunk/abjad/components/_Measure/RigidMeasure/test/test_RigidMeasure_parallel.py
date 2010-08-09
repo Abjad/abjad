@@ -9,7 +9,7 @@ def test_RigidMeasure_parallel_01( ):
    measure[0].voice.number = 1
    measure[1].voice.number = 2
    t = Staff([measure])
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

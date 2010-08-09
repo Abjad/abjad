@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.diatonic_scale_degree_to_letter import diatonic_scale_degree_to_letter
+from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_pitch_class_name import one_indexed_diatonic_scale_degree_number_to_pitch_class_name
 
 
 def staff_space_transpose(pitch, staff_spaces, absolute_interval):
@@ -15,5 +15,5 @@ def staff_space_transpose(pitch, staff_spaces, absolute_interval):
 
    pitch_number = pitch.number + absolute_interval
    diatonic_scale_degree = pitch.degree + staff_spaces
-   letter = diatonic_scale_degree_to_letter(diatonic_scale_degree)
+   letter = one_indexed_diatonic_scale_degree_number_to_pitch_class_name(diatonic_scale_degree)
    return NamedPitch(pitch_number, letter)

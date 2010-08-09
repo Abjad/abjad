@@ -6,7 +6,7 @@ def test_ParentageInterface_parentage_01( ):
       in the parentage of leaf t, including t.'''
 
    t = Score([Staff(Container(leaftools.make_repeated_notes(2)) * 2)])
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Score <<
@@ -39,7 +39,7 @@ def test_ParentageInterface_parentage_02( ):
       in the parentage of container t, including t.'''
 
    t = Score([Staff(Container(leaftools.make_repeated_notes(2)) * 2)])
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Score <<

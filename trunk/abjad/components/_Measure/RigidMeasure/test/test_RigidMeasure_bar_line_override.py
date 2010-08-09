@@ -7,7 +7,7 @@ def test_RigidMeasure_bar_line_override_01( ):
    draws new bar_lines during the LilyPond interpretation process.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    #t.formatter.number.measures = 'comment'
    t._formatter.number.measures = 'comment'
    t[0].bar_line.kind = '||'

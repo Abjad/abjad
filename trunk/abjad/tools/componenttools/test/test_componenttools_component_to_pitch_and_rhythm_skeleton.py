@@ -49,7 +49,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
    measure = RigidMeasure((6, 16), [tuplet])
    staff = Staff([measure])
    score = Score(staff * 2)
-   pitchtools.diatonicize(score)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
 
    r'''
    \new Score <<

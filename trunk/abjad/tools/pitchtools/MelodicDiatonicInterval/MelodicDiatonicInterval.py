@@ -2,18 +2,12 @@ from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
-from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
-   HarmonicDiatonicInterval
-from abjad.tools.pitchtools.HarmonicChromaticInterval import \
-   HarmonicChromaticInterval
-from abjad.tools.pitchtools.HarmonicCounterpointInterval import \
-   HarmonicCounterpointInterval
-from abjad.tools.pitchtools.MelodicChromaticInterval import \
-   MelodicChromaticInterval
-from abjad.tools.pitchtools.MelodicCounterpointInterval import \
-   MelodicCounterpointInterval
-from abjad.tools.pitchtools.MelodicDiatonicIntervalClass import \
-   MelodicDiatonicIntervalClass
+from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
+from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
+from abjad.tools.pitchtools.HarmonicCounterpointInterval import HarmonicCounterpointInterval
+from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
+from abjad.tools.pitchtools.MelodicCounterpointInterval import MelodicCounterpointInterval
+from abjad.tools.pitchtools.MelodicDiatonicIntervalClass import MelodicDiatonicIntervalClass
 
 
 class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
@@ -37,14 +31,12 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
    ## OVERLOADS ##
 
    def __abs__(self):
-      from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
-         HarmonicDiatonicInterval
+      from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
       return HarmonicDiatonicInterval(
          self.quality_string, abs(self.number))
 
    def __add__(self, arg):
-      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
-         melodic_diatonic_interval_from_to
+      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import melodic_diatonic_interval_from_to
       if not isinstance(arg, MelodicDiatonicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
       dummy_pitch = NamedPitch(0)
@@ -52,8 +44,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       return melodic_diatonic_interval_from_to(dummy_pitch, new_pitch)
 
    def __mul__(self, arg):
-      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
-         melodic_diatonic_interval_from_to
+      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import melodic_diatonic_interval_from_to
       if not isinstance(arg, (int, long)):
          raise TypeError('%s must be int.' % arg)
       dummy_pitch = NamedPitch(0)
@@ -78,8 +69,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          abs(self.number))
 
    def __sub__(self, arg):
-      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
-         melodic_diatonic_interval_from_to
+      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import melodic_diatonic_interval_from_to
       if not isinstance(arg, MelodicDiatonicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
       dummy_pitch = NamedPitch(0)

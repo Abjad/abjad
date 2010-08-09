@@ -58,7 +58,7 @@ def test_iterate_naive_backward_in_expr_08( ):
    '''From backward start index.'''
 
    t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {
@@ -86,7 +86,7 @@ def test_iterate_naive_backward_in_expr_09( ):
    '''To backward stop index.'''
 
    t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {
@@ -115,7 +115,7 @@ def test_iterate_naive_backward_in_expr_10( ):
    '''From backward start index to backward stop index.'''
 
    t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

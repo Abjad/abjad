@@ -19,7 +19,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
          f'8 _ \markup { \small 5 }
       }
 
-   When ``color = True`` call :func:`~abjad.tools.pitchtools.color_by_pc`.
+   When ``color = True`` call :func:`~abjad.tools.pitchtools.color_note_head_by_numeric_pitch_class_color_map`.
 
    ::
 
@@ -50,4 +50,4 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
          label = r'\small %s' % note.pitch.pc.number
          note.markup.down.append(label)
       if color:
-         pitchtools.color_by_pc(note)
+         pitchtools.color_note_head_by_numeric_pitch_class_color_map(note)

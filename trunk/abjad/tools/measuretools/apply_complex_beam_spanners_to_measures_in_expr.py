@@ -10,7 +10,7 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
    Apply complex beam spanners to measures in `expr`::
 
       abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.diatonicize(staff)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {
          {

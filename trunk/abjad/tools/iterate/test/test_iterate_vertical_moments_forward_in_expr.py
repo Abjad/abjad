@@ -10,7 +10,7 @@ def test_iterate_vertical_moments_forward_in_expr_01( ):
    piano_staff.append(Staff(leaftools.make_repeated_notes(4)))
    piano_staff[1].clef.forced = Clef('bass')
    score.append(piano_staff)
-   pitchtools.diatonicize(list(reversed(score.leaves)))
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
 
    r'''
    \new Score <<
@@ -70,7 +70,7 @@ def test_iterate_vertical_moments_forward_in_expr_02( ):
    piano_staff.append(Staff(leaftools.make_repeated_notes(4)))
    piano_staff[1].clef.forced = Clef('bass')
    score.append(piano_staff)
-   pitchtools.diatonicize(list(reversed(score.leaves)))
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
 
    ## see above for formatted score ##
 

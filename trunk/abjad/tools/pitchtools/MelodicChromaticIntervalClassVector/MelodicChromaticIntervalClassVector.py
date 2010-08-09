@@ -1,5 +1,4 @@
-from abjad.tools.pitchtools.MelodicChromaticIntervalClass import \
-   MelodicChromaticIntervalClass
+from abjad.tools.pitchtools.MelodicChromaticIntervalClass import MelodicChromaticIntervalClass
 
 
 class MelodicChromaticIntervalClassVector(dict):

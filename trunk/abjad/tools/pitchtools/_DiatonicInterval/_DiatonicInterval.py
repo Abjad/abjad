@@ -28,8 +28,7 @@ class _DiatonicInterval(_Interval):
    ## OVERLOADS ##
 
    def __abs__(self):
-      from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
-         HarmonicDiatonicInterval
+      from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
       return HarmonicDiatonicInterval(self.quality_string, self.number)
 
    def __eq__(self, arg):
@@ -91,8 +90,7 @@ class _DiatonicInterval(_Interval):
 
    @property
    def diatonic_interval_class(self):
-      from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import \
-         InversionEquivalentDiatonicIntervalClass
+      from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import InversionEquivalentDiatonicIntervalClass
       quality_string, number = self._quality_string, self.number
       return InversionEquivalentDiatonicIntervalClass(quality_string, number)
 

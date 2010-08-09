@@ -1,14 +1,14 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
-def clef_and_staff_position_number_to_pitch(clef, staff_position_number):
+def clef_and_staff_position_number_to_named_pitch(clef, staff_position_number):
    r'''.. versionadded:: 1.1.2
 
    Convert `clef` and `staff_position_number` to pitch. ::
 
       abjad> clef = Clef('treble')
       abjad> for n in range(-6, 6):
-      ...   pitch = pitchtools.clef_and_staff_position_number_to_pitch(clef, n)
+      ...   pitch = pitchtools.clef_and_staff_position_number_to_named_pitch(clef, n)
       ...   print '%s\t%s\t%s' % (clef.name, n, pitch)
       treble   -6 c'
       treble   -5 d'
@@ -22,6 +22,10 @@ def clef_and_staff_position_number_to_pitch(clef, staff_position_number):
       treble   3  e''
       treble   4  f''
       treble   5  g''
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.clef_and_staff_position_number_to_pitch( )`` to
+      ``pitchtools.clef_and_staff_position_number_to_named_pitch( )``.
    '''
 
    position_residue_to_pitch_name = {

@@ -6,7 +6,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
 
    t = RigidMeasure((4, 4), 
       FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -52,7 +52,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02( ):
 
    t = RigidMeasure((4, 4), 
       FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -109,7 +109,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03( ):
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
    
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -173,7 +173,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
 
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \time 5/6
@@ -249,7 +249,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
    t = RigidMeasure((5, 6), 
       [FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(7))] + 
          leaftools.make_repeated_notes(3, (1, 4)))
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \time 5/6
@@ -323,7 +323,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
    t = RigidMeasure((5, 6), 
       [FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(7))] + 
          leaftools.make_repeated_notes(3, (1, 4)))
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \time 5/6
@@ -669,7 +669,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21( ):
       FixedDurationTuplet((1, 4), [
          FixedDurationTuplet((1, 4), [Note(0, (1, 4))])])])
 
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \times 2/3 {
@@ -705,7 +705,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
       FixedDurationTuplet((1, 4), [
          FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 2)])])
 
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \times 2/3 {

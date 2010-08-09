@@ -52,7 +52,7 @@ def test_measuretools_fuse_measures_02( ):
 
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
    measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
    r'''
@@ -95,7 +95,7 @@ def test_measuretools_fuse_measures_03( ):
 
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
    measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
 
    r'''
@@ -139,7 +139,7 @@ def test_measuretools_fuse_measures_04( ):
    m1 = RigidMeasure((1, 8), leaftools.make_repeated_notes(1))
    m2 = RigidMeasure((1, 12), leaftools.make_repeated_notes(1))
    t = Voice([m1, m2])
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
    r'''
@@ -196,7 +196,7 @@ def test_measuretools_fuse_measures_07( ):
 
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
    measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
    r'''
@@ -243,7 +243,7 @@ def test_measuretools_fuse_measures_08( ):
    '''Measure fusion across intervening container boundaries is undefined.'''
 
    t = Voice(Container(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {

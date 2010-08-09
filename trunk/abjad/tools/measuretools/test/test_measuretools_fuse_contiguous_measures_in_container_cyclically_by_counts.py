@@ -5,7 +5,7 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
    '''Docs.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 5)
-   pitchtools.diatonicize(t) 
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t) 
 
    r'''
    \new Staff {
@@ -72,7 +72,7 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
    '''Docs.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 5)
-   pitchtools.diatonicize(t) 
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t) 
 
    r'''
    \new Staff {

@@ -1,7 +1,6 @@
 from abjad.tools.pitchtools._CounterpointInterval import _CounterpointInterval
 from abjad.tools.pitchtools._HarmonicInterval import _HarmonicInterval
-from abjad.tools.pitchtools.HarmonicCounterpointIntervalClass import \
-   HarmonicCounterpointIntervalClass
+from abjad.tools.pitchtools.HarmonicCounterpointIntervalClass import HarmonicCounterpointIntervalClass
 
 
 class HarmonicCounterpointInterval(_CounterpointInterval, _HarmonicInterval):

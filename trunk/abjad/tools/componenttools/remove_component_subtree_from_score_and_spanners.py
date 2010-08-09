@@ -7,7 +7,7 @@ def remove_component_subtree_from_score_and_spanners(components):
 
       abjad> score = Voice(leaftools.make_repeated_notes(2))
       abjad> score.insert(1, Container(leaftools.make_repeated_notes(2)))
-      abjad> pitchtools.diatonicize(score)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
       abjad> Beam(score.leaves)
       abjad> Glissando(score.leaves)
 

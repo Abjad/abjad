@@ -36,8 +36,7 @@ class NamedPitchClassSegment(list):
    @property
    def diatonic_interval_class_segment(self):
       from abjad.tools import listtools
-      from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment import \
-         InversionEquivalentDiatonicIntervalClassSegment
+      from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment import InversionEquivalentDiatonicIntervalClassSegment
       dics = listtools.difference_series(self)
       return InversionEquivalentDiatonicIntervalClassSegment(dics)
 

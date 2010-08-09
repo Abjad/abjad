@@ -7,7 +7,7 @@ def test_spannertools_get_spanners_covered_by_components_01( ):
       by the time bounds of thread-contiguous components.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)

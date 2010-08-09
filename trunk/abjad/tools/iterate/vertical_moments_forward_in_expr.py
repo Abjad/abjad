@@ -16,7 +16,7 @@ def vertical_moments_forward_in_expr(governor):
       abjad> piano_staff.append(Staff(leaftools.make_repeated_notes(4)))
       abjad> piano_staff[1].clef.forced = Clef('bass')
       abjad> score.append(piano_staff)
-      abjad> pitchtools.diatonicize(list(reversed(score.leaves)))
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
       abjad> f(score)
       \new Score <<
               \new Staff {

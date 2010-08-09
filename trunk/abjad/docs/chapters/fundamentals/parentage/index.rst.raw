@@ -23,7 +23,7 @@ Consider this score beginning with c'8.
 tuplet = FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3))
 staff = Staff(tuplet * 2)
 score = Score([staff])
-pitchtools.diatonicize(score)
+pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
 score.leaves[0]
 show(score)
 write_ly(score, 'parentage-example-1', 'oedo') <hide

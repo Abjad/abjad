@@ -3,12 +3,12 @@ from abjad.components.Note import Note
 from abjad.tools import iterate
 
 
-def chromaticize(expr):
+def set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
    r'''Apply ascending chromatic pitches 
    to the notes and chords in `expr`. ::
 
       abjad> staff = Voice(leaftools.make_notes(0, [(5, 32)] * 4))
-      abjad> pitchtools.chromaticize(staff)
+      abjad> pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Voice {
               c'8 ~
@@ -22,6 +22,10 @@ def chromaticize(expr):
       }
 
    Used primarily in generating test file examples.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.chromaticize( )`` to
+      ``pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr( )``.
    '''
 
    for i, x in enumerate(iterate.tie_chains_forward_in_expr(expr)):

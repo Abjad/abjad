@@ -7,7 +7,7 @@ import py.test
 t = Staff(leaftools.make_repeated_notes(4))
 t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
 t[2].parallel = True
-pitchtools.chromaticize(t)
+pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
 r'''
 \new Staff {

@@ -1,6 +1,5 @@
 from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
-from abjad.tools.pitchtools.HarmonicChromaticInterval import \
-   HarmonicChromaticInterval
+from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
 
 
 class HarmonicChromaticIntervalSegment(_IntervalSegment):

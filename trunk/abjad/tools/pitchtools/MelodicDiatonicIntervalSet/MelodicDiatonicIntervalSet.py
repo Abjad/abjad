@@ -1,11 +1,7 @@
-from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-   MelodicDiatonicInterval
-from abjad.tools.pitchtools.HarmonicDiatonicIntervalSet import \
-   HarmonicDiatonicIntervalSet
-from abjad.tools.pitchtools.HarmonicChromaticIntervalSet import \
-   HarmonicChromaticIntervalSet
-from abjad.tools.pitchtools.MelodicChromaticIntervalSet import \
-   MelodicChromaticIntervalSet
+from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
+from abjad.tools.pitchtools.HarmonicDiatonicIntervalSet import HarmonicDiatonicIntervalSet
+from abjad.tools.pitchtools.HarmonicChromaticIntervalSet import HarmonicChromaticIntervalSet
+from abjad.tools.pitchtools.MelodicChromaticIntervalSet import MelodicChromaticIntervalSet
 
 
 class MelodicDiatonicIntervalSet(set):

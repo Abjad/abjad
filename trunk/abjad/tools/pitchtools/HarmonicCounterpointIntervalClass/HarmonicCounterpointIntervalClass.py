@@ -1,7 +1,6 @@
 from abjad.tools.pitchtools._CounterpointInterval import _CounterpointInterval
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
-from abjad.tools.pitchtools._CounterpointIntervalClass import \
-   _CounterpointIntervalClass
+from abjad.tools.pitchtools._CounterpointIntervalClass import _CounterpointIntervalClass
 from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 
 

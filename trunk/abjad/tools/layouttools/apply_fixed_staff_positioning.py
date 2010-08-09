@@ -12,7 +12,7 @@ def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
    ::
 
       abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
-      abjad> pitchtools.diatonicize(t)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> layout.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))      
       abjad> print t.format
       \new Staff {

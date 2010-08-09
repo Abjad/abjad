@@ -31,5 +31,5 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = Rat
    '''
 
    result = make_notes([0] * count, [written_duration])
-   pitchtools.diatonicize(result, key_signature)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(result, key_signature)
    return result

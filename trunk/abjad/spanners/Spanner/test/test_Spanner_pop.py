@@ -5,7 +5,7 @@ def test_Spanner_pop_01( ):
    '''Remove and return rightmost component in spanner.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[:])
    
    r'''

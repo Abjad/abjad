@@ -6,7 +6,7 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01( ):
 
    t = Voice(leaftools.make_repeated_notes(2))
    t.insert(1, Container(leaftools.make_repeated_notes(2)))
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
    Glissando(t.leaves)
 
@@ -41,7 +41,7 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_02( ):
 
    t = Voice(leaftools.make_repeated_notes(2))
    t.insert(1, Container(leaftools.make_repeated_notes(2)))
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
    Glissando(t.leaves)
 

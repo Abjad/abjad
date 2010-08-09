@@ -13,7 +13,7 @@ def all_are_thread_contiguous_components(expr, klasses = (_Component), allow_orp
          t.insert(2, Voice(leaftools.make_repeated_notes(2)))
          Container(t[:2])
          Container(t[-2:])
-         pitchtools.diatonicize(t)
+         pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
          \new Voice {
             {

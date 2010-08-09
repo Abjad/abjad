@@ -363,7 +363,7 @@ def test_LeafSpannerAggregator_fracture_11( ):
    '''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[ : ])
 
    r'''

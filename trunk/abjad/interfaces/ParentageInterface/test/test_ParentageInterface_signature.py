@@ -44,7 +44,7 @@ def test_ParentageInterface_signature_04( ):
    t = Voice(leaftools.make_repeated_notes(4))
    t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.note_head.color = 'red'
 
    r'''

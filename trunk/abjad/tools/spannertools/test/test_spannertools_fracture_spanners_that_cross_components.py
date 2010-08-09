@@ -56,7 +56,7 @@ def test_spannertools_fracture_spanners_that_cross_components_04( ):
    '''Fractures around components at only top level of list.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 3)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Crescendo(t)
    Beam(t[:])
    
@@ -104,7 +104,7 @@ def test_spannertools_fracture_spanners_that_cross_components_05( ):
    '''Fractures around components at only top level of list.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 3)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Crescendo(t)
    Beam(t[:])
    Trill(t.leaves)

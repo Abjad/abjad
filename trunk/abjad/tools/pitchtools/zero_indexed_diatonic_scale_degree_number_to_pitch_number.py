@@ -1,14 +1,14 @@
 from abjad.tools import listtools
 
 
-def diatonic_to_chromatic(diatonic_scale_degree, transpose=0, phase=0):
+def zero_indexed_diatonic_scale_degree_number_to_pitch_number(diatonic_scale_degree, transpose=0, phase=0):
    '''Return integer chromatic pitch number corresponding to integer
    `diatonic_scale_degree`.
 
    Defaults to the white keys on the piano in Ionian mode. ::
 
       abjad> for diatonic_scale_degree in range(9):
-      ...     chromatic_pitch_number = pitchtools.diatonic_to_chromatic(diatonic_scale_degree)
+      ...     chromatic_pitch_number = pitchtools.zero_indexed_diatonic_scale_degree_number_to_pitch_number(diatonic_scale_degree)
       ...     print '%s\\t%s' % (diatonic_scale_degree, chromatic_pitch_number)
       ... 
       0  0
@@ -24,7 +24,7 @@ def diatonic_to_chromatic(diatonic_scale_degree, transpose=0, phase=0):
    Diatonic scale degrees may be negative. ::
 
       abjad> for diatonic_scale_degree in range(-1, -9, -1):
-      ...     chromatic_pitch_number = pitchtools.diatonic_to_chromatic(diatonic_scale_degree)
+      ...     chromatic_pitch_number = pitchtools.zero_indexed_diatonic_scale_degree_number_to_pitch_number(diatonic_scale_degree)
       ...     print '%s\\t%s' % (diatonic_scale_degree, chromatic_pitch_number)
       ... 
       -1 -1
@@ -35,6 +35,10 @@ def diatonic_to_chromatic(diatonic_scale_degree, transpose=0, phase=0):
       -6 -10
       -7 -12
       -8 -13
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.diatonic_to_chromatic( )`` to
+      ``pitchtools.zero_indexed_diatonic_scale_degree_number_to_pitch_number( )``.
    '''
 
    assert isinstance(diatonic_scale_degree, int)

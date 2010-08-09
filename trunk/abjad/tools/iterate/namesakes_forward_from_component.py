@@ -9,7 +9,7 @@ def namesakes_forward_from_component(component, start = 0, stop = None):
       abjad> score = Score([ ])
       abjad> score.parallel = False
       abjad> score.extend(container * 2)
-      abjad> pitchtools.diatonicize(score)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
       abjad> print score.format
       \new Score {
               <<

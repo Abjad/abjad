@@ -50,7 +50,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
       abjad> measure = DynamicMeasure(Voice(leaftools.make_repeated_notes(2)) * 2)
       abjad> measure.parallel = True
       abjad> t = Staff(measure * 2)
-      abjad> pitchtools.diatonicize(t)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> measuretools.pad_measures_in_expr_with_rests(t, Rational(1, 32), Rational(1, 64))
 
    ::

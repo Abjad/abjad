@@ -59,7 +59,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_02( ):
    measure = DynamicMeasure(Voice(leaftools.make_repeated_notes(2)) * 2)
    measure.parallel = True
    t = Staff(measure * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    
    r'''
    \new Staff {

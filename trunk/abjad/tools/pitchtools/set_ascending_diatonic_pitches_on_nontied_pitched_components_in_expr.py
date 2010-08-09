@@ -5,12 +5,12 @@ from abjad.tools import iterate
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 
 
-def diatonicize(expr, key_signature = None):
+def set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(expr, key_signature = None):
    r'''Apply ascending diatonic pitches to the notes
    and chords in `expr`. ::
 
       abjad> staff = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
-      abjad> pitchtools.diatonicize(staff)
+      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {
          c'8 ~
@@ -27,6 +27,10 @@ def diatonicize(expr, key_signature = None):
 
    .. versionadded:: 1.1.2
       Optional `key_signature` keyword argument.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.diatonicize( )`` to
+      ``pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr( )``.
    '''
    from abjad.tools import tonalitytools
 

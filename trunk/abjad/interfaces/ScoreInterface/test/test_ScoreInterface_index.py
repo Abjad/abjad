@@ -9,7 +9,7 @@ def test_ScoreInterface_index_01( ):
    staff_1 = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    staff_2 = Staff([FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3))])
    score = Score([staff_1, staff_2])
-   pitchtools.diatonicize(score)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
 
    r'''
    \new Score <<

@@ -6,7 +6,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
    Add line break after every total less than or equal to line_duration.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    tempo_spanner = TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 8), 44)

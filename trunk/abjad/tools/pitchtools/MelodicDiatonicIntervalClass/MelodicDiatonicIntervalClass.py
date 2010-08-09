@@ -1,20 +1,16 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools._DiatonicIntervalClass import \
-   _DiatonicIntervalClass
-from abjad.tools.pitchtools._MelodicIntervalClass import \
-   _MelodicIntervalClass
+from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
+from abjad.tools.pitchtools._MelodicIntervalClass import _MelodicIntervalClass
 
 
-class MelodicDiatonicIntervalClass(_DiatonicIntervalClass,
-   _MelodicIntervalClass):
+class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass):
    '''.. versionadded:: 1.1.2
 
    Melodic diatonic interval class.
    '''
 
    def __init__(self, *args):
-      from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-         MelodicDiatonicInterval
+      from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
       if len(args) == 1:
          if isinstance(args[0], MelodicDiatonicInterval):
             quality_string = args[0]._quality_string

@@ -19,8 +19,7 @@ class _ChromaticInterval(_Interval):
    ## OVERLOADS ##
 
    def __abs__(self):
-      from abjad.tools.pitchtools.HarmonicChromaticInterval import \
-         HarmonicChromaticInterval
+      from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
       return HarmonicChromaticInterval(abs(self._number))
 
    def __add__(self, arg):

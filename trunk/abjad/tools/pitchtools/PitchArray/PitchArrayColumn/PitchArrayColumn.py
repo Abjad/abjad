@@ -1,7 +1,6 @@
 from abjad.core import _Abjad
 from abjad.tools import listtools
-from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import \
-   PitchArrayCell
+from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
 
 
 class PitchArrayColumn(_Abjad):

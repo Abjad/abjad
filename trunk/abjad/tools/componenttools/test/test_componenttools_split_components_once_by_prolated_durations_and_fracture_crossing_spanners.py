@@ -5,7 +5,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''Duration partition one container in score, and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -60,7 +60,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
       and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -120,7 +120,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
       Spanners do not apply outside of score.'''
 
    t = Container(leaftools.make_repeated_notes(2)) * 2
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    "[{c'8, d'8}, {e'8, f'8}]"
 

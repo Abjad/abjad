@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_partition_components_cyclically_by_prolated_durations_exactly_without_overhang_01( ):
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

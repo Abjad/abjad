@@ -1,10 +1,7 @@
 from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
-from abjad.tools.pitchtools.MelodicChromaticInterval import \
-   MelodicChromaticInterval
-from abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment import \
-   MelodicChromaticIntervalClassSegment
-from abjad.tools.pitchtools.MelodicChromaticIntervalClassVector import \
-   MelodicChromaticIntervalClassVector
+from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
+from abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment import MelodicChromaticIntervalClassSegment
+from abjad.tools.pitchtools.MelodicChromaticIntervalClassVector import MelodicChromaticIntervalClassVector
 
 
 class MelodicChromaticIntervalSegment(_IntervalSegment):
@@ -26,8 +23,7 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
 
    @property
    def harmonic_chromatic_interval_segment(self):
-      from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import \
-         HarmonicChromaticIntervalSegment
+      from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
       return HarmonicChromaticIntervalSegment(self)
 
    @property

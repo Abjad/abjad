@@ -10,7 +10,7 @@ def test_Container___delitem___01( ):
    '''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[:])
    Slur(t[0][:])
    Slur(t[1][:])

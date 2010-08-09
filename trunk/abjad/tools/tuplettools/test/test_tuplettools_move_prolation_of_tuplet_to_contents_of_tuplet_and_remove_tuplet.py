@@ -43,7 +43,7 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
       of tuplet to contents.'''
    
    t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {

@@ -5,7 +5,7 @@ def test__Navigator_contemporaneous_stop_components_01( ):
    '''Notes.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {
@@ -60,7 +60,7 @@ def test__Navigator_contemporaneous_stop_components_01( ):
 #
 #   t = Voice([Container(Container(leaftools.make_repeated_notes(2)) * 2)] + leaftools.make_repeated_notes(2))
 #   t[0].parallel = True
-#   pitchtools.diatonicize(t)
+#   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 #
 #   r'''\new Voice {
 #      <<

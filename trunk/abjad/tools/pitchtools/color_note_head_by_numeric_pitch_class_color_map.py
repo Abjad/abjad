@@ -4,13 +4,13 @@ from abjad.tools import schemetools
 from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
-def color_by_pc(pitch_carrier):
+def color_note_head_by_numeric_pitch_class_color_map(pitch_carrier):
    r'''Color `pitch_carrier` by pitch-class.
 
    ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> pitchtools.color_by_pc(t)
+      abjad> pitchtools.color_note_head_by_numeric_pitch_class_color_map(t)
       abjad> print t.format
       \once \override NoteHead #'color = #(x11-color 'red)
       c'4
@@ -30,6 +30,10 @@ def color_by_pc(pitch_carrier):
    * 10: CadetBlue
    * 11: SeaGreen
    * 12: LimeGreen
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.color_by_pc( )`` to
+      ``pitchtools.color_note_head_by_numeric_pitch_class_color_map( )``.
    '''
    
    pitch = get_pitch(pitch_carrier)

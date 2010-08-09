@@ -7,7 +7,7 @@ def test_Spanner_leaves_01( ):
       also leaves in container.'''
 
    t = Voice(leaftools.make_repeated_notes(4))
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t)
 
    assert len(p.components) == 1
@@ -23,7 +23,7 @@ def test_Spanner_leaves_02( ):
       hold the same references.'''
 
    t = Voice(leaftools.make_repeated_notes(4))
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t[:])
    
    assert len(p.components) == 4
@@ -52,7 +52,7 @@ def test_Spanner_leaves_04( ):
    t = Voice(leaftools.make_repeated_notes(4))
    t.insert(1, Container(leaftools.make_repeated_notes(2)))
    t.insert(3, Container(leaftools.make_repeated_notes(2)))
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t)
 
    r'''
@@ -85,7 +85,7 @@ def test_Spanner_leaves_05( ):
    t = Voice(leaftools.make_repeated_notes(4))
    t.insert(1, Container(leaftools.make_repeated_notes(2)))
    t.insert(3, Container(leaftools.make_repeated_notes(2)))
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t[0:3])
 
    r'''
@@ -123,7 +123,7 @@ def test_Spanner_leaves_06( ):
    t = Staff(leaftools.make_repeated_notes(4))
    t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {
@@ -163,7 +163,7 @@ def test_Spanner_leaves_07( ):
    t = Staff(leaftools.make_repeated_notes(4))
    t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
-   pitchtools.chromaticize(t)
+   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

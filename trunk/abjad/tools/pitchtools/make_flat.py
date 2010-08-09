@@ -10,7 +10,7 @@ def make_flat(expr):
    ::
 
       abjad> staff = Staff(leaftools.make_repeated_notes(6))
-      abjad> pitchtools.chromaticize(staff)
+      abjad> pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {
          c'8

@@ -8,7 +8,7 @@ def test_ParentageInterface_governor_01( ):
 
    t = Voice([Container(Voice(leaftools.make_repeated_notes(2)) * 2)])
    t[0].parallel = True
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0][0].name = 'voice 1'
    t[0][1].name = 'voice 2'
 

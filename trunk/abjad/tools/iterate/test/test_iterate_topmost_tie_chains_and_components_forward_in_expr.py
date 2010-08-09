@@ -6,7 +6,7 @@ def test_iterate_topmost_tie_chains_and_components_forward_in_expr_01( ):
 
    t = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
    t.insert(4, FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)))
-   pitchtools.diatonicize(t)
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {
