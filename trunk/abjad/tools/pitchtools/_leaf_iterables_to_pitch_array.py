@@ -30,6 +30,6 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):
       leaves = iterate.leaves_forward_in_expr(leaf_iterable)
       if populate:
          for cell, leaf in zip(pitch_array_row.cells, leaves):
-            cell.pitches.extend(get_pitches(leaf))
+            cell.pitches.extend(list_named_pitches_in_expr(leaf))
 
    return pitch_array

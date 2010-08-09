@@ -19,7 +19,7 @@ def pitch_pairs_from_to(expr_1, expr_2):
       (NamedPitch(d, 4), NamedPitch(e, 4))
    '''
 
-   pitches_1 = sorted(get_pitches(expr_1))
-   pitches_2 = sorted(get_pitches(expr_2))
+   pitches_1 = sorted(list_named_pitches_in_expr(expr_1))
+   pitches_2 = sorted(list_named_pitches_in_expr(expr_2))
    for pair in listtools.pairs_from_to(pitches_1, pitches_2):
       yield pair

@@ -18,5 +18,5 @@ def pitch_pairs_within(expr):
       (NamedPitch(d, 4), NamedPitch(ef, 4))
    '''
 
-   for pair in listtools.get_unordered_pairs(sorted(get_pitches(expr))):
+   for pair in listtools.get_unordered_pairs(sorted(list_named_pitches_in_expr(expr))):
       yield pair

@@ -82,7 +82,7 @@ def list_named_pitches_in_expr(expr):
          return pitches
       elif isinstance(expr, (list, tuple, set)):
          for x in expr:
-            result.extend(get_pitches(x))
+            result.extend(list_named_pitches_in_expr(x))
       else:
          for leaf in iterate.leaves_forward_in_expr(expr):
             result.extend(leaf.pitches)
