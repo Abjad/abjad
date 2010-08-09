@@ -1,5 +1,4 @@
-from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
-   melodic_diatonic_interval_from_to
+from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import melodic_diatonic_interval_from_to
 
 
 def harmonic_counterpoint_interval_class_from_to(

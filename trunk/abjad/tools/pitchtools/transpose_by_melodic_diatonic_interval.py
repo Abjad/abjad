@@ -2,14 +2,11 @@ from abjad.components.Chord import Chord
 from abjad.components.Note import Note
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import componenttools
-from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-   MelodicDiatonicInterval
-from abjad.tools.pitchtools.diatonic_scale_degree_to_letter import \
-   diatonic_scale_degree_to_letter
+from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
+from abjad.tools.pitchtools.diatonic_scale_degree_to_letter import diatonic_scale_degree_to_letter
 
 
-def transpose_by_melodic_diatonic_interval(
-   pitch_carrier, melodic_diatonic_interval):
+def transpose_by_melodic_diatonic_interval(pitch_carrier, melodic_diatonic_interval):
    '''.. versionadded:: 1.1.2
 
    Transpose `pitch_carrier` by `melodic_diatonic_interval`. ::

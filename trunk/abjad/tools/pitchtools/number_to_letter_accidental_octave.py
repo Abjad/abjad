@@ -1,9 +1,6 @@
-from abjad.tools.pitchtools.pc_to_pitch_name import \
-   pc_to_pitch_name as pitchtools_pc_to_pitch_name
-from abjad.tools.pitchtools.pc_to_pitch_name_flats import \
-   pc_to_pitch_name_flats as pitchtools_pc_to_pitch_name_flats
-from abjad.tools.pitchtools.pc_to_pitch_name_sharps import \
-   pc_to_pitch_name_sharps as pitchtools_pc_to_pitch_name_sharps
+from abjad.tools.pitchtools.pc_to_pitch_name import pc_to_pitch_name as pitchtools_pc_to_pitch_name
+from abjad.tools.pitchtools.pc_to_pitch_name_flats import pc_to_pitch_name_flats as pitchtools_pc_to_pitch_name_flats
+from abjad.tools.pitchtools.pc_to_pitch_name_sharps import pc_to_pitch_name_sharps as pitchtools_pc_to_pitch_name_sharps
 import math
 
 

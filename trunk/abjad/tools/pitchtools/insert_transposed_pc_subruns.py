@@ -7,9 +7,9 @@ from abjad.tools.pitchtools.get_pitch import get_pitch
 def insert_transposed_pc_subruns(notes, subrun_indicators):
    '''Insert transposed subruns according to ``subrun_indicators``.
 
-   *  *pitches* must be a list of zero or more Abjad \
+   *  *pitches* must be a list of zero or more Abjad
       :class:`~abjad.components.Note.note.Note` instances.
-   *  *subrun_indicators* must be a list of zero or more \
+   *  *subrun_indicators* must be a list of zero or more
       ``(index, length_list)`` pairs.
 
    For each ``(index, length_list)`` pair in *subrun_indicators* 
@@ -35,11 +35,11 @@ def insert_transposed_pc_subruns(notes, subrun_indicators):
       abjad> t
       [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]
 
-   .. note:: New subruns are wrapped with lists. \
-      These wrapper lists are designed \
-      to allow inspection of the structural changes to *notes* \
-      immediately after the function returns. \
-      For this reason most calls to this function will be followed \
+   .. note:: New subruns are wrapped with lists.
+      These wrapper lists are designed 
+      to allow inspection of the structural changes to *notes*
+      immediately after the function returns.
+      For this reason most calls to this function will be followed
       by ``notes = listtools.flatten(notes)``.
 
    ::
@@ -48,12 +48,12 @@ def insert_transposed_pc_subruns(notes, subrun_indicators):
       abjad> notes
       [0, 5, 7, 2, 4, 0, 6, 11, 7, 9, 5, 10, 6, 8, 11, 7, 4]
 
-   .. note:: This function is designed to work on a built-in Python list \
-      of notes. This function is **not** designed to work on Abjad \
-      voices, staves or other containers because the function currently \
-      implements no spanner-handling. \
-      Specifically, this function is designed to be used during \
-      precomposition when other, similar abstract pitch transforms \
+   .. note:: This function is designed to work on a built-in Python list
+      of notes. This function is **not** designed to work on Abjad
+      voices, staves or other containers because the function currently
+      implements no spanner-handling.
+      Specifically, this function is designed to be used during
+      precomposition when other, similar abstract pitch transforms
       may be common.
    '''
 

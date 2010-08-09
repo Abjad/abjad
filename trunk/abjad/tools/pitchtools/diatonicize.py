@@ -2,8 +2,7 @@ from abjad.components.Chord import Chord
 from abjad.components.Note import Note
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import iterate
-from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-   MelodicDiatonicInterval
+from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 
 
 def diatonicize(expr, key_signature = None):

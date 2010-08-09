@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_pitchtools_apply_octavation_01( ):
+def test_pitchtools_apply_octavation_spanner_to_pitched_components_01( ):
 
    t = Staff(leaftools.make_notes([24, 26, 27, 29], [(1, 8)]))
-   pitchtools.apply_octavation(t, ottava_altitude = 14)
+   pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_altitude = 14)
 
    r"""\new Staff {
       \ottava #1
@@ -19,11 +19,11 @@ def test_pitchtools_apply_octavation_01( ):
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'''8\n\td'''8\n\tef'''8\n\tf'''8\n\t\\ottava #0\n}"
 
 
-def test_pitchtools_apply_octavation_02( ):
+def test_pitchtools_apply_octavation_spanner_to_pitched_components_02( ):
 
    t = Voice([Note(31, (1, 4))])
    assert t[0].pitch.altitude == 18
-   pitchtools.apply_octavation(t,
+   pitchtools.apply_octavation_spanner_to_pitched_components(t,
       ottava_altitude = 15, quindecisima_altitude = 19)
 
    r"""

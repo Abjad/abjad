@@ -1,10 +1,8 @@
 from abjad.components.Chord import Chord
-from abjad.tools.pitchtools.MelodicChromaticInterval import \
-   MelodicChromaticInterval
+from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.PitchRange import PitchRange
 from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
-from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import \
-   transpose_by_melodic_chromatic_interval
+from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import transpose_by_melodic_chromatic_interval
 
 
 ## TODO: Reimplement pitchtools.octave_transpositions( ) to work on Abjad PitchSet, Note and Chord objects only. ##

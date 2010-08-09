@@ -1,5 +1,4 @@
-from abjad.tools.pitchtools._leaf_iterables_to_pitch_array import \
-   _leaf_iterables_to_pitch_array
+from abjad.tools.pitchtools._leaf_iterables_to_pitch_array import _leaf_iterables_to_pitch_array
 
 
 def leaf_iterables_to_pitch_array_empty(leaf_iterables):

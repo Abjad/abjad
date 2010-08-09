@@ -1,10 +1,7 @@
 from abjad.tools.pitchtools.Accidental import Accidental
-from abjad.tools.pitchtools.letter_to_pc import \
-   letter_to_pc as pitchtools_letter_to_pc
-from abjad.tools.pitchtools.nearest_neighbor import \
-   nearest_neighbor as pitchtools_nearest_neighbor
-from abjad.tools.pitchtools.pitch_number_and_accidental_semitones_to_octave \
-   import pitch_number_and_accidental_semitones_to_octave
+from abjad.tools.pitchtools.letter_to_pc import letter_to_pc as pitchtools_letter_to_pc
+from abjad.tools.pitchtools.nearest_neighbor import nearest_neighbor as pitchtools_nearest_neighbor
+from abjad.tools.pitchtools.pitch_number_and_accidental_semitones_to_octave import pitch_number_and_accidental_semitones_to_octave
 
 
 def number_letter_to_accidental_octave(number, letter):

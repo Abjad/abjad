@@ -1,5 +1,4 @@
-from abjad.tools.pitchtools.pitch_string_to_pitch import \
-   pitch_string_to_pitch
+from abjad.tools.pitchtools.pitch_string_to_pitch import pitch_string_to_pitch
 
 
 def pitch_string_to_pitches(pitch_string):

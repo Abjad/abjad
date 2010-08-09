@@ -1,7 +1,6 @@
 from abjad.exceptions import IntervalError
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-   MelodicDiatonicInterval
+from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 
 
 def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(

@@ -1,9 +1,7 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import \
-   MelodicChromaticIntervalSegment
+from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
 from abjad.tools.pitchtools.get_pitches import get_pitches
-from abjad.tools.pitchtools.melodic_chromatic_interval_from_to import \
-   melodic_chromatic_interval_from_to
+from abjad.tools.pitchtools.melodic_chromatic_interval_from_to import melodic_chromatic_interval_from_to
 
 
 def expr_to_melodic_chromatic_interval_segment(expr):

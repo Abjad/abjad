@@ -1,11 +1,7 @@
-from abjad.tools.pitchtools.MelodicChromaticInterval import \
-   MelodicChromaticInterval
-from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-   MelodicDiatonicInterval
-from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import \
-   transpose_by_melodic_chromatic_interval
-from abjad.tools.pitchtools.transpose_by_melodic_diatonic_interval import \
-   transpose_by_melodic_diatonic_interval
+from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
+from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
+from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import transpose_by_melodic_chromatic_interval
+from abjad.tools.pitchtools.transpose_by_melodic_diatonic_interval import transpose_by_melodic_diatonic_interval
 
 
 def transpose_by_melodic_interval(pitch_carrier, melodic_interval):

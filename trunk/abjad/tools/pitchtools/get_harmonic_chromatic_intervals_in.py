@@ -1,6 +1,5 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.HarmonicChromaticInterval import \
-   HarmonicChromaticInterval
+from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 

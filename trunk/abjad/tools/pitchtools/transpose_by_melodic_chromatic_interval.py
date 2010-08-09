@@ -2,12 +2,10 @@ from abjad.components.Chord import Chord
 from abjad.components.Note import Note
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import componenttools
-from abjad.tools.pitchtools.MelodicChromaticInterval import \
-   MelodicChromaticInterval
+from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 
 
-def transpose_by_melodic_chromatic_interval(
-   pitch_carrier, melodic_chromatic_interval):
+def transpose_by_melodic_chromatic_interval(pitch_carrier, melodic_chromatic_interval):
    '''.. versionadded:: 1.1.2
 
    Transpose `pitch_carrier` by `melodic_chromatic_interval`. ::

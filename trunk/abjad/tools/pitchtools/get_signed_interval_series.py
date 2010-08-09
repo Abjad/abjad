@@ -9,9 +9,9 @@ def get_signed_interval_series(pitch_carriers, wrap = False):
    
    Behavior of ``wrap``:
 
-   *  When ``wrap = False`` do not return \
+   *  When ``wrap = False`` do not return
       ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
-   *  When ``wrap = True`` do return \
+   *  When ``wrap = True`` do return
       ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
    *  Default to ``False``.
 

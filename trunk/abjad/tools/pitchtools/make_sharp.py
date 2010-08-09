@@ -1,9 +1,7 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import iterate
-from abjad.tools.pitchtools.pitch_number_to_octave import \
-   pitch_number_to_octave as pitchtools_pitch_number_to_octave
-from abjad.tools.pitchtools.pc_to_pitch_name_sharps import \
-   pc_to_pitch_name_sharps as pitchtools_pc_to_pitch_name_sharps
+from abjad.tools.pitchtools.pitch_number_to_octave import pitch_number_to_octave as pitchtools_pitch_number_to_octave
+from abjad.tools.pitchtools.pc_to_pitch_name_sharps import pc_to_pitch_name_sharps as pitchtools_pc_to_pitch_name_sharps
 
 
 def make_sharp(expr):
