@@ -1,5 +1,5 @@
 from abjad.components.Note import Note
-from abjad.tools import iterate
+from abjad.tools import componenttools
 from abjad.tools import listtools
 from abjad.tools import pitchtools
 

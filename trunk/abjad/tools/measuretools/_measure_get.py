@@ -5,8 +5,7 @@ from abjad.components._Leaf import _Leaf
 from abjad.components._Measure import _Measure
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
-from abjad.tools.iterate._get_contemporaneous_measure import \
-   _get_contemporaneous_measure
+from abjad.tools.measuretools._get_contemporaneous_measure import _get_contemporaneous_measure
 
 
 def _measure_get(component, direction):

@@ -370,14 +370,6 @@ iotools
    tools/iotools/write_expr_to_pdf
 
 
-iterate
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/iterate/group_by_type_and_yield_groups_of_klass
-
-
 layouttools
 
 .. toctree::

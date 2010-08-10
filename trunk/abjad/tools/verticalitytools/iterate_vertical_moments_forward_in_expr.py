@@ -1,7 +1,6 @@
 from abjad.components._Component import _Component
 from abjad.core import Rational
-from abjad.tools.iterate._new_vertical_moments_forward_in import \
-   _new_vertical_moments_forward_in
+from abjad.tools.verticalitytools._new_vertical_moments_forward_in import _new_vertical_moments_forward_in
 
 
 def iterate_vertical_moments_forward_in_expr(governor):

@@ -1,5 +1,5 @@
 from abjad.components.Note import Note
-from abjad.tools import iterate
+from abjad.tools import componenttools
 from abjad.tools.tonalitytools.are_scalar_notes import are_scalar_notes
 
 
