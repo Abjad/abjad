@@ -34,7 +34,7 @@ def get_spanners_that_dominate_components(components):
 #   subtree_begin = first.offset.prolated.start
 #   subtree_end = last.offset.prolated.stop
 
-#   for component in iterate.naive_forward_in_expr(first, _Component):
+#   for component in componenttools.iterate_components_forward_in_expr(first, _Component):
 #      if component.offset.prolated.start == subtree_begin:
 #         for spanner in component.spanners.attached:
 #            if spanner.offset.start <= subtree_begin:

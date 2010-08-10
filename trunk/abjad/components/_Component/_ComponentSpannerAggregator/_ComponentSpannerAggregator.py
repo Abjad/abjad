@@ -53,9 +53,9 @@ class _ComponentSpannerAggregator(_Interface):
          attaching to any children of self.
          Do not include spanners attaching directly to self.'''
       from abjad.components._Component._Component import _Component
-      from abjad.tools import iterate
+      from abjad.tools import componenttools
       result = set([ ])
-      components = iterate.naive_forward_in_expr(self._client, _Component)
+      components = componenttools.iterate_components_forward_in_expr(self._client, _Component)
       components.next( )
       for component in components:
          result.update(set(component.spanners.attached))
@@ -66,9 +66,9 @@ class _ComponentSpannerAggregator(_Interface):
       '''Return unordered set of all spanners attaching to 
          components in client, including client.'''
       from abjad.components._Component._Component import _Component
-      from abjad.tools import iterate
+      from abjad.tools import componenttools
       result = set([ ])
-      for component in iterate.naive_forward_in_expr(self._client, _Component):
+      for component in componenttools.iterate_components_forward_in_expr(self._client, _Component):
          result.update(set(component.spanners.attached))
       return result
 

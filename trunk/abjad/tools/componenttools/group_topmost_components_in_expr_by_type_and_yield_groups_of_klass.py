@@ -20,11 +20,15 @@ def group_topmost_components_in_expr_by_type_and_yield_groups_of_klass(expr, kla
       ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``iterate.group_by_type_and_yield_groups_of_klass( )`` to
+      renamed ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )`` to
       ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )`` to
+      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``iterate.group_by_type_and_yield_groups_of_klass( )`` to
       ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
    '''
 

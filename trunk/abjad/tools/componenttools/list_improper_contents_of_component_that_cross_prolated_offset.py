@@ -1,6 +1,6 @@
 from abjad.components._Component import _Component
 from abjad.core import Rational
-from abjad.tools import iterate
+from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
 def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
@@ -64,7 +64,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
 
    boundary_time = component.offset.prolated.start + prolated_offset
 
-   for x in iterate.naive_forward_in_expr(component, _Component):
+   for x in iterate_components_forward_in_expr(component, _Component):
       x_start = x.offset.prolated.start
       x_stop = x.offset.prolated.stop
       if x_start < boundary_time < x_stop:

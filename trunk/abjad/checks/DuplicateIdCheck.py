@@ -6,9 +6,9 @@ from abjad.tools import listtools
 class DuplicateIDCheck(_Check):
 
    def _run(self, expr):
-      from abjad.tools import iterate
+      from abjad.tools import componenttools
       violators = [ ]
-      components = iterate.naive_forward_in_expr(expr, _Component)
+      components = componenttools.iterate_components_forward_in_expr(expr, _Component)
       total_ids = [id(x) for x in components]
       unique_ids = listtools.unique(total_ids)
       if len(total_ids) > len(unique_ids):

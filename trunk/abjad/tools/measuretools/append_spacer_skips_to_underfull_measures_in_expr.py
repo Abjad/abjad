@@ -1,7 +1,6 @@
-from abjad.tools import iterate
+from abjad.tools import componenttools
 from abjad.components._Measure import RigidMeasure
-from abjad.tools.measuretools.append_spacer_skip_to_underfull_measure \
-   import append_spacer_skip_to_underfull_measure
+from abjad.tools.measuretools.append_spacer_skip_to_underfull_measure import append_spacer_skip_to_underfull_measure
 
 
 def append_spacer_skips_to_underfull_measures_in_expr(expr):
@@ -60,7 +59,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
    '''
 
    treated_measures = [ ]
-   for rigid_measure in iterate.naive_forward_in_expr(expr, RigidMeasure):
+   for rigid_measure in componenttools.iterate_components_forward_in_expr(expr, RigidMeasure):
       if rigid_measure.duration.is_underfull:
          #spacer_skip = append_spacer_skip_to_underfull_measure(rigid_measure)
          #rigid_measure.append(spacer_skip)

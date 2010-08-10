@@ -7,11 +7,11 @@ class MispitchedTieCheck(_Check):
       '''Check for mispitched notes.
          Do not check tied rests or skips.
          Implement chord-checking later.'''
-      from abjad.tools import iterate
+      from abjad.tools import componenttools
       from abjad.components.Note import Note
       violators = [ ]
       total = 0
-      for leaf in iterate.naive_forward_in_expr(expr, Note):
+      for leaf in componenttools.iterate_components_forward_in_expr(expr, Note):
          total += 1
          if leaf.tie.spanned and not leaf.tie.last and leaf.next:
             if leaf.pitch != leaf.next.pitch:

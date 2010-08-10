@@ -6,8 +6,8 @@ def test_VerticalMoment___hash___01( ):
 
    t = Staff(macros.scale(4))
    vms = [ ]
-   vms.extend(list(iterate.vertical_moments_forward_in_expr(t)))
-   vms.extend(list(iterate.vertical_moments_forward_in_expr(t)))
+   vms.extend(list(verticalitytools.iterate_vertical_moments_forward_in_expr(t)))
+   vms.extend(list(verticalitytools.iterate_vertical_moments_forward_in_expr(t)))
 
    assert len(vms) == 8
    assert len(set(vms)) == 4

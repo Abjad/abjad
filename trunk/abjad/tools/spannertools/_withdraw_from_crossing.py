@@ -20,7 +20,7 @@ def _withdraw_from_crossing(components):
    crossing_spanners = get_spanners_that_cross_components(components) 
 
    components_including_children = list(
-      iterate.naive_forward_in_expr(components, _Component))
+      componenttools.iterate_components_forward_in_expr(components, _Component))
 
    for crossing_spanner in list(crossing_spanners):
       spanner_components = crossing_spanner._components[:]

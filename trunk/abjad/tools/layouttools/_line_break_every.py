@@ -1,6 +1,6 @@
 from abjad.components._Measure import _Measure
 from abjad.core import Rational
-from abjad.tools import iterate
+from abjad.tools import componenttools
 
 
 def _line_break_every(expr, line_duration, klass = _Measure, 
@@ -19,7 +19,7 @@ def _line_break_every(expr, line_duration, klass = _Measure,
 
    prev = None
    cum_duration = Rational(0)
-   for cur in iterate.naive_forward_in_expr(expr, klass):
+   for cur in componenttools.iterate_components_forward_in_expr(expr, klass):
       cur_duration = getattr(cur.duration, kind)
       candidate_duration = cum_duration + cur_duration
       if candidate_duration < line_duration:

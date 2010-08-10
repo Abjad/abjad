@@ -1,4 +1,5 @@
 from abjad.components.Note import Note
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 
 
 def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr):
@@ -37,10 +38,9 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr):
       renamed ``label.vertical_moment_chromatic_interval_classes( )`` to
       ``verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes( )``.
    '''
-   from abjad.tools import iterate
    from abjad.tools import pitchtools
 
-   for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):
+   for vertical_moment in iterate_vertical_moments_forward_in_expr(expr):
       leaves = vertical_moment.leaves
       notes = [leaf for leaf in leaves if isinstance(leaf, Note)]
       if not notes:

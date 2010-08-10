@@ -1,5 +1,5 @@
 from abjad.tools import listtools
-from abjad.tools.iterate.vertical_moments_forward_in_expr import vertical_moments_forward_in_expr
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 
 
 def iterate_leaf_pairs_forward_in_expr(expr):
@@ -62,7 +62,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
       ``leaftools.iterate_leaf_pairs_forward_in_expr( )``.
    '''
 
-   vertical_moments = vertical_moments_forward_in_expr(expr)
+   vertical_moments = iterate_vertical_moments_forward_in_expr(expr)
    for moment_1, moment_2 in listtools.pairwise(vertical_moments):
       for pair in listtools.get_unordered_pairs(moment_1.start_leaves):
          yield pair

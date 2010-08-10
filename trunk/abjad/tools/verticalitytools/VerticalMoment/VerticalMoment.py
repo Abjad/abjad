@@ -108,13 +108,13 @@ class VerticalMoment(object):
    @property
    def next_vertical_moment(self):
       '''Read-only reference to next vertical moment forward in time.'''
-      from abjad.tools import iterate
+      from abjad.tools import componenttools
       from abjad.tools import verticalitytools
       candidate_shortest_leaf = self.leaves[0] 
       for leaf in self.leaves[1:]:
          if leaf.offset.prolated.stop < candidate_shortest_leaf.offset.prolated.stop:
             candidate_shortest_leaf = leaf
-      next_leaf = iterate.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
+      next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
       next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(next_leaf)
       return next_vertical_moment
 
@@ -132,13 +132,13 @@ class VerticalMoment(object):
    @property
    def next_vertical_moment(self):
       '''Read-only reference to next vertical moment forward in time.'''
-      from abjad.tools import iterate
+      from abjad.tools import componenttools
       from abjad.tools import verticalitytools
       candidate_shortest_leaf = self.leaves[0] 
       for leaf in self.leaves[1:]:
          if leaf.offset.prolated.stop < candidate_shortest_leaf.offset.prolated.stop:
             candidate_shortest_leaf = leaf
-      next_leaf = iterate.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
+      next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
       next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
          next_leaf)
       return next_vertical_moment
@@ -181,7 +181,7 @@ class VerticalMoment(object):
    @property
    def prev_vertical_moment(self):
       '''Read-only reference to prev vertical moment backward in time.'''
-      from abjad.tools import iterate
+      from abjad.tools import componenttools
       from abjad.tools import verticalitytools
       if self.prolated_offset == 0:
          raise IndexError
@@ -199,7 +199,7 @@ class VerticalMoment(object):
          else:
             #print 'found leaf starting on this moment ...'
             try:
-               prev_leaf = iterate.get_nth_namesake_from_component(leaf, -1)
+               prev_leaf = componenttools.get_nth_namesake_from_component(leaf, -1)
                start = prev_leaf.offset.prolated.start
                #print prev_leaf, start
                if most_recent_start_offset <= start:

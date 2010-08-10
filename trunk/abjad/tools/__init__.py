@@ -8,6 +8,7 @@ from abjad.tools import lilyfiletools
 from abjad.tools import markuptools
 from abjad.tools import measuretools
 from abjad.tools import metertools
+from abjad.tools import notetools
 from abjad.tools import overridetools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
@@ -15,6 +16,7 @@ from abjad.tools import sievetools
 from abjad.tools import spacingtools
 from abjad.tools import spannertools
 from abjad.tools import stafftools
+from abjad.tools import threadtools
 from abjad.tools import tietools
 from abjad.tools import tonalitytools
 from abjad.tools import verticalitytools

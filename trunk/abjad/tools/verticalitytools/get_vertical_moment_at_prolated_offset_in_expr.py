@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.tools.iterate.naive_forward_in_expr import naive_forward_in_expr
+from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
 def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
@@ -73,7 +73,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
 
    components = [ ] 
    for governor in governors:
-      for component in naive_forward_in_expr(governor, _Component):
+      for component in iterate_components_forward_in_expr(governor, _Component):
          if component.offset.prolated.start <= prolated_offset:
             if prolated_offset < component.offset.prolated.stop:
                components.append(component)

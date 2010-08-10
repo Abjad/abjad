@@ -27,7 +27,7 @@ def test_componenttools_all_are_components_in_same_thread_02( ):
    }
    '''
 
-   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_03( ):
@@ -43,7 +43,7 @@ def test_componenttools_all_are_components_in_same_thread_03( ):
    }
    '''
 
-   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 ## nonstructural in new parallel --> context model.
 #def test_componenttools_all_are_components_in_same_thread_04( ):
@@ -62,7 +62,7 @@ def test_componenttools_all_are_components_in_same_thread_03( ):
 #      f'8
 #   >>'''
 #
-#   assert not componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+#   assert not componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_05( ):
@@ -79,7 +79,7 @@ def test_componenttools_all_are_components_in_same_thread_05( ):
    }
    '''
 
-   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_06( ):
@@ -96,7 +96,7 @@ def test_componenttools_all_are_components_in_same_thread_06( ):
    }
    '''
 
-   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_07( ):
@@ -122,7 +122,7 @@ def test_componenttools_all_are_components_in_same_thread_07( ):
    }
    '''
 
-   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_08( ):
@@ -146,7 +146,7 @@ def test_componenttools_all_are_components_in_same_thread_08( ):
    }
    '''
 
-   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_09( ):
@@ -985,7 +985,7 @@ def test_componenttools_all_are_components_in_same_thread_36( ):
    }
    '''
 
-   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_37( ):
@@ -1019,7 +1019,7 @@ def test_componenttools_all_are_components_in_same_thread_37( ):
    }
    '''
 
-   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_38( ):
@@ -1226,7 +1226,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #      f'8
 #   >>'''
 #
-#   assert not componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+#   assert not componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1271,7 +1271,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #      g'8
 #   }'''
 #
-#   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+#   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1297,7 +1297,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #      g'8
 #   }'''
 #
-#   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+#   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1357,7 +1357,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #      b'8
 #   }'''
 #
-#   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in_expr(t, _Component)))
+#   assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_49( ):

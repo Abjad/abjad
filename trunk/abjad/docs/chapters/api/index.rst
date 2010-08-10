@@ -188,6 +188,7 @@ componenttools
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
    tools/componenttools/get_likely_multiplier_of_components
    tools/componenttools/get_nth_component_in_expr
+   tools/componenttools/get_nth_namesake_from_component
    tools/componenttools/get_parent_and_start_stop_indices_of_components
    tools/componenttools/group_components_by_like_preprolated_duration
    tools/componenttools/group_components_by_like_prolated_duration
@@ -195,7 +196,15 @@ componenttools
    tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups_of_klass
    tools/componenttools/is_well_formed_component
    tools/componenttools/iterate_components_and_grace_containers_forward_in_expr
+   tools/componenttools/iterate_components_backward_in_expr
    tools/componenttools/iterate_components_depth_first
+   tools/componenttools/iterate_components_forward_in_expr
+   tools/componenttools/iterate_namesakes_backward_from_component
+   tools/componenttools/iterate_namesakes_forward_from_component
+   tools/componenttools/iterate_timeline_backward_from_component
+   tools/componenttools/iterate_timeline_backward_in_expr
+   tools/componenttools/iterate_timeline_forward_from_component
+   tools/componenttools/iterate_timeline_forward_in_expr
    tools/componenttools/list_badly_formed_components_in_expr
    tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
    tools/componenttools/list_leftmost_components_with_prolated_duration_at_most
@@ -366,27 +375,7 @@ iterate
 .. toctree::
    :maxdepth: 1
 
-   tools/iterate/get_nth_namesake_from_component
    tools/iterate/group_by_type_and_yield_groups_of_klass
-   tools/iterate/naive_backward_in_expr
-   tools/iterate/naive_forward_in_expr
-   tools/iterate/namesakes_backward_from_component
-   tools/iterate/namesakes_forward_from_component
-   tools/iterate/notes_backward_in_expr
-   tools/iterate/notes_forward_in_expr
-   tools/iterate/pitch_pairs_forward_in_expr
-   tools/iterate/thread_backward_from_component
-   tools/iterate/thread_backward_in_expr
-   tools/iterate/thread_forward_from_component
-   tools/iterate/thread_forward_in_expr
-   tools/iterate/tie_chains_backward_in_expr
-   tools/iterate/tie_chains_forward_in_expr
-   tools/iterate/timeline_backward_from_component
-   tools/iterate/timeline_backward_in_expr
-   tools/iterate/timeline_forward_from_component
-   tools/iterate/timeline_forward_in_expr
-   tools/iterate/vertical_moments_backward_in_expr
-   tools/iterate/vertical_moments_forward_in_expr
 
 
 layouttools
@@ -693,6 +682,15 @@ metertools
    tools/metertools/meter_to_binary_meter
 
 
+notetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/notetools/iterate_notes_backward_in_expr
+   tools/notetools/iterate_notes_forward_in_expr
+
+
 overridetools
 
 .. toctree::
@@ -788,6 +786,7 @@ pitchtools
    tools/pitchtools/is_named_pitch_token
    tools/pitchtools/is_pitch_carrier
    tools/pitchtools/is_pitch_name
+   tools/pitchtools/iterate_pitch_pairs_forward_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
    tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_pitches
@@ -927,6 +926,17 @@ tempotools
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
 
 
+threadtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/threadtools/iterate_thread_backward_from_component
+   tools/threadtools/iterate_thread_backward_in_expr
+   tools/threadtools/iterate_thread_forward_from_component
+   tools/threadtools/iterate_thread_forward_in_expr
+
+
 tietools
 
 .. toctree::
@@ -945,6 +955,8 @@ tietools
    tools/tietools/group_leaves_in_tie_chain_by_immediate_parents
    tools/tietools/is_tie_chain
    tools/tietools/is_tie_chain_with_all_leaves_in_same_parent
+   tools/tietools/iterate_tie_chains_backward_in_expr
+   tools/tietools/iterate_tie_chains_forward_in_expr
    tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr
    tools/tietools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
    tools/tietools/label_tie_chains_in_expr_with_tie_chain_durations
@@ -1020,6 +1032,8 @@ verticalitytools
    tools/verticalitytools/VerticalMoment/VerticalMoment
    tools/verticalitytools/get_vertical_moment_at_prolated_offset_in_expr
    tools/verticalitytools/get_vertical_moment_starting_with_component
+   tools/verticalitytools/iterate_vertical_moments_backward_in_expr
+   tools/verticalitytools/iterate_vertical_moments_forward_in_expr
    tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_interval_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_intervals
    tools/verticalitytools/label_vertical_moments_in_expr_with_counterpoint_intervals

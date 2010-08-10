@@ -1,5 +1,6 @@
-from abjad.tools import iterate
+from abjad.tools import componenttools
 from abjad.tools import pitchtools
+from abjad.tools import threadtools
 
 
 def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = False):
@@ -45,7 +46,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
    '''
 
    from abjad.components.Note import Note
-   for note in iterate.naive_forward_in_expr(expr, Note):
+   for note in componenttools.iterate_components_forward_in_expr(expr, Note):
       if number:
          label = r'\small %s' % note.pitch.pc.number
          note.markup.down.append(label)

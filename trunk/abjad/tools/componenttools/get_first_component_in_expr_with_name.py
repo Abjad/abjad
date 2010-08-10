@@ -1,9 +1,8 @@
 from abjad.components._Component import _Component
 from abjad.exceptions import MissingComponentError
-from abjad.tools import iterate
+from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
-#def get_first_component_in_expr_with_name(expr, name = None, klass = None, context = None):
 def get_first_component_in_expr_with_name(expr, name):
    '''Get first component in `expr` with `name`::
 
@@ -37,7 +36,7 @@ def get_first_component_in_expr_with_name(expr, name):
 
    result = [ ]
 
-   for component in iterate.naive_forward_in_expr(expr, _Component):
+   for component in iterate_components_forward_in_expr(expr, _Component):
       if name is None or component.name == name:
 #         if klass is None or isinstance(component, klass):
 #            if context is None or \

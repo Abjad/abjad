@@ -23,7 +23,7 @@ def are_stepwise_notes(*expr):
       ``tonalitytools.are_stepwise_notes( )``.
    '''
 
-   for left, right in listtools.pairwise(iterate.naive_forward_in_expr(expr, Note)):
+   for left, right in listtools.pairwise(componenttools.iterate_components_forward_in_expr(expr, Note)):
       try:
          assert not (left.pitch == right.pitch)
          hdi = pitchtools.calculate_harmonic_diatonic_interval_from_named_pitch_to_named_pitch(left, right)

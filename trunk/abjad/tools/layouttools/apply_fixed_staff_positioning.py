@@ -1,5 +1,5 @@
 from abjad.components._Measure import _Measure
-from abjad.tools import iterate
+from abjad.tools import componenttools
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
 from abjad.tools.layouttools.StaffAlignmentOffsets import StaffAlignmentOffsets
 from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistances
@@ -90,7 +90,7 @@ def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
 
    line_breaks_found = 0
    prev = None
-   for cur in iterate.naive_forward_in_expr(expr, klass):
+   for cur in componenttools.iterate_components_forward_in_expr(expr, klass):
       if prev is None or prev.breaks.line:
          system_on_page = line_breaks_found + starting_system
          system_on_page %= systems_per_page

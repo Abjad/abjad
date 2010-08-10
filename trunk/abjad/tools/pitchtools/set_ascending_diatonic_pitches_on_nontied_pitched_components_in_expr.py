@@ -1,7 +1,6 @@
 from abjad.components.Chord import Chord
 from abjad.components.Note import Note
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools import iterate
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 
 
@@ -32,6 +31,7 @@ def set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(expr, k
       renamed ``pitchtools.diatonicize( )`` to
       ``pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr( )``.
    '''
+   from abjad.tools import tietools
    from abjad.tools import tonalitytools
 
    #diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
@@ -48,7 +48,7 @@ def set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(expr, k
    octave_number = 4
    pitch = NamedPitch(scale[0], octave_number)
 
-   for i, tie_chain in enumerate(iterate.tie_chains_forward_in_expr(expr)):
+   for i, tie_chain in enumerate(tietools.iterate_tie_chains_forward_in_expr(expr)):
       #pitch = int(i / length) * 12 + diatonic_residues[i % length] 
       #named_pitch_class = scale[i % length]
       #pitch_class_number = named_pitch_class.pitch_class.number

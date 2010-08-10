@@ -37,7 +37,7 @@ import py.test
 #
 #   signature = t.thread.signature
 #
-#   for component in iterate.naive_forward_in_expr(t, _Component):
+#   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
 #      assert component.thread.signature == signature
 
 
@@ -76,7 +76,7 @@ import py.test
 #
 #   signature = t.thread.signature
 #
-#   for component in iterate.naive_forward_in_expr(t, _Component):
+#   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
 #      assert component.thread.signature == signature
 
 
@@ -114,7 +114,7 @@ import py.test
 #
 #   containment = t.thread.signature
 #
-#   for component in iterate.naive_forward_in_expr(t, _Component):
+#   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
 #      assert component.thread.signature == containment
 
 def test_Thread_signature_04( ):
@@ -123,7 +123,7 @@ def test_Thread_signature_04( ):
    t = Staff(macros.scale(4))
 
    containment = t.thread.signature
-   for component in iterate.naive_forward_in_expr(t, _Component):
+   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
       assert component.thread.signature == containment
 
 
@@ -135,7 +135,7 @@ def test_Thread_signature_05( ):
    t.name = 'foo'
 
    containment = t.thread.signature
-   for component in iterate.naive_forward_in_expr(t, _Component):
+   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
       assert component.thread.signature == containment
 
 

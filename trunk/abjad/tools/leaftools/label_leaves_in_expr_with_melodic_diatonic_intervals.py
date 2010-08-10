@@ -1,6 +1,7 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Note import Note
-from abjad.tools import iterate
+from abjad.tools import componenttools
+from abjad.tools import threadtools
 
 
 def label_leaves_in_expr_with_melodic_diatonic_intervals(expr):
@@ -26,8 +27,8 @@ def label_leaves_in_expr_with_melodic_diatonic_intervals(expr):
    """
    from abjad.tools import pitchtools
 
-   for note in iterate.naive_forward_in_expr(expr, Note):
-      thread_iterator = iterate.thread_forward_from_component(note, _Leaf)
+   for note in componenttools.iterate_components_forward_in_expr(expr, Note):
+      thread_iterator = threadtools.iterate_thread_forward_from_component(note, _Leaf)
       try:
          thread_iterator.next( )
          next_leaf = thread_iterator.next( )

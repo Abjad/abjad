@@ -2,7 +2,7 @@ from abjad.tools.componenttools.group_topmost_components_in_expr_by_type_and_yie
    group_topmost_components_in_expr_by_type_and_yield_groups
 
 
-def group_by_type_and_yield_groups_of_klass(expr, klass):
+def group_topmost_components_in_expr_by_type_and_yield_groups_of_klass(expr, klass):
    '''.. versionadded:: 1.1.2
 
    Group elements in `expr` by type and yield only those

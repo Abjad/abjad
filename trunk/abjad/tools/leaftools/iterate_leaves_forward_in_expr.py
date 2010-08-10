@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.tools.iterate.naive_forward_in_expr import naive_forward_in_expr
+from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
 def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
@@ -78,4 +78,4 @@ def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
       ``leaftools.iterate_leaves_forward_in_expr( )``.
    '''
 
-   return naive_forward_in_expr(expr, _Leaf, start = start, stop = stop)
+   return iterate_components_forward_in_expr(expr, _Leaf, start = start, stop = stop)

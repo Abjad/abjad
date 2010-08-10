@@ -1,3 +1,6 @@
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
+
+
 def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr):
    r'''.. versionadded:: 1.1.2
 
@@ -33,10 +36,9 @@ def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr):
       renamed ``label.vertical_moment_pitch_classes( )`` to
       ``verticalitytools.label_vertical_moments_in_expr_with_numeric_pitch_classes( )``.
    '''
-   from abjad.tools import iterate
    from abjad.tools import pitchtools
 
-   for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):
+   for vertical_moment in iterate_vertical_moments_forward_in_expr(expr):
       leaves = vertical_moment.leaves
       pitches = pitchtools.list_named_pitches_in_expr(leaves)
       if not pitches:

@@ -1,6 +1,5 @@
 from abjad.components.Chord import Chord
 from abjad.components.Note import Note
-from abjad.tools import iterate
 
 
 def set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
@@ -27,8 +26,9 @@ def set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
       renamed ``pitchtools.chromaticize( )`` to
       ``pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr( )``.
    '''
+   from abjad.tools import tietools 
 
-   for i, x in enumerate(iterate.tie_chains_forward_in_expr(expr)):
+   for i, x in enumerate(tietools.iterate_tie_chains_forward_in_expr(expr)):
       pitch = i
       if isinstance(x[0], Note):
          for note in x:

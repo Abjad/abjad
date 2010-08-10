@@ -1,5 +1,5 @@
 from abjad.components._Measure import _Measure
-from abjad.tools.iterate.naive_forward_in_expr import naive_forward_in_expr
+from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
 def iterate_measures_forward_in_expr(expr, start = 0, stop = None):
@@ -65,4 +65,4 @@ def iterate_measures_forward_in_expr(expr, start = 0, stop = None):
       ``measuretools.iterate_measures_forward_in_expr( )``.
    '''
 
-   return naive_forward_in_expr(expr, _Measure, start = start, stop = stop)
+   return iterate_components_forward_in_expr(expr, _Measure, start = start, stop = stop)
