@@ -44,8 +44,6 @@ def test_OffsetInterface_leaf_06( ):
       assert x.offset.prolated.start == i * Rational(1, 8)
 
 
-### tuplets ###
-
 def test_OffsetInterface_leaf_07( ):
    t = FixedDurationTuplet((1,4), leaftools.make_repeated_notes(3))
    for i, x in enumerate(t):

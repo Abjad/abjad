@@ -1,6 +1,5 @@
 from abjad import * 
 
-### FORMATTING ###
 
 def test_TremoloInterface_01( ):
    '''Tremolo formats correctly on Note.'''
@@ -27,4 +26,3 @@ def test_TremoloInterface_03( ):
    assert t.format == "r4 :8"
    t.tremolo.subdivision = None
    assert t.format == "r4"
-

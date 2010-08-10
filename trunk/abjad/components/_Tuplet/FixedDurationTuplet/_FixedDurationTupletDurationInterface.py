@@ -8,7 +8,7 @@ class _FixedDurationTupletDurationInterface(_TupletDurationInterface):
       _TupletDurationInterface.__init__(self, _client)
       self.target = target
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def multiplied(self):

@@ -5,8 +5,7 @@ class Statement(object):
       self.text = text or ' '
       self.code = code
 
-
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def text( ):
@@ -17,7 +16,6 @@ class Statement(object):
             raise TypeError('%s must be a string.' % arg)
          self._text = arg
       return property(**locals( ))
-         
 
    @apply
    def code( ):

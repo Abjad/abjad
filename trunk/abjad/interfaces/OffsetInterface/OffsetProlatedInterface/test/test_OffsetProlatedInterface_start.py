@@ -51,7 +51,7 @@ def test_OffsetProlatedInterface_start_06( ):
    assert t[2].offset.prolated.start == Rational(2, 6)
 
 
-### nested contexts ###
+## nested contexts ##
 
 def test_OffsetProlatedInterface_start_07( ):
    '''Prolated offsets work on nested contexts.'''

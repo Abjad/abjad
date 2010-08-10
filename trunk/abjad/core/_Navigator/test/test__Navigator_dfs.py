@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-### NOTE: all tests operate on the following expression ###
+## NOTE: all tests operate on the following expression ##
 
 t = Staff(leaftools.make_repeated_notes(4))
 t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
@@ -37,7 +37,7 @@ def test__Navigator_dfs_01( ):
       * no classes forbidden means all containers entered
    '''
   
-   ### LEFT-TO-RIGHT ###
+   ## LEFT-TO-RIGHT ##
 
    g = t[2]._navigator._DFS( )
 
@@ -60,7 +60,7 @@ def test__Navigator_dfs_01( ):
    f'8
    '''
    
-   ### RIGHT-TO-LEFT ###
+   ## RIGHT-TO-LEFT ##
 
    g = t[2]._navigator._DFS(direction = 'right')
 
@@ -90,7 +90,7 @@ def test__Navigator_dfs_02( ):
       * uncapped iteration returns all elements above self._client
    '''
   
-   ### LEFT-TO-RIGHT ###
+   ## LEFT-TO-RIGHT ##
 
    g = t[2]._navigator._DFS(capped = False)
 
@@ -119,7 +119,7 @@ def test__Navigator_dfs_02( ):
    g'8
    '''
    
-   ### RIGHT-TO-LEFT ###
+   ## RIGHT-TO-LEFT ##
 
    g = t[2]._navigator._DFS(capped = False, direction = 'right')
 
@@ -155,7 +155,7 @@ def test__Navigator_dfs_03( ):
       * nodes yield every time they are traversed
    '''
   
-   ### LEFT-TO-RIGHT ###
+   ## LEFT-TO-RIGHT ##
 
    g = t[2]._navigator._DFS(unique = False)
 
@@ -190,7 +190,7 @@ def test__Navigator_dfs_03( ):
    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
    '''
    
-   ### RIGHT-TO-LEFT ###
+   ## RIGHT-TO-LEFT ##
 
    g = t[2]._navigator._DFS(unique = False, direction = 'right')
 
@@ -232,7 +232,7 @@ def test__Navigator_dfs_04( ):
       * iteration will yield -- but will not enter -- forbidden classes.
    '''
 
-   ### LEFT-TO-RIGHT ###
+   ## LEFT-TO-RIGHT ##
 
    g = t._navigator._DFS(forbid = 'parallel')
 
@@ -253,7 +253,7 @@ def test__Navigator_dfs_04( ):
    g'8
    '''
    
-   ### RIGHT-TO-LEFT ###
+   ## RIGHT-TO-LEFT ##
 
    g = t._navigator._DFS(forbid = 'parallel', direction = 'right')
    
@@ -280,7 +280,7 @@ def test__Navigator_dfs_05( ):
    Uncapped depth-first search with duplicates allowed.
    '''
 
-   ### LEFT-TO-RIGHT ###
+   ## LEFT-TO-RIGHT ##
 
    g = t[2]._navigator._DFS(capped = False, unique = False)
 
@@ -325,7 +325,7 @@ def test__Navigator_dfs_05( ):
    Staff{5}
    '''
 
-   ### RIGHT-TO-LEFT ###
+   ## RIGHT-TO-LEFT ##
 
    g = t[2]._navigator._DFS(
       capped = False, unique = False, direction = 'right')
@@ -377,7 +377,7 @@ def test__Navigator_dfs_06( ):
    Uncapped and restricted depth-first search.
    '''
 
-   ### LEFT-TO-RIGHT ###
+   ## LEFT-TO-RIGHT ##
 
    g = t[2]._navigator._DFS(capped = False, forbid = 'parallel')
    
@@ -393,7 +393,7 @@ def test__Navigator_dfs_06( ):
    g'8
    '''
 
-   ### RIGHT-TO-LEFT ###
+   ## RIGHT-TO-LEFT ##
    
    g = t[2]._navigator._DFS(
       capped = False, forbid = 'parallel', direction = 'right')
@@ -416,7 +416,7 @@ def test__Navigator_dfs_07( ):
    Restricted depth-first search with duplicates allowed.
    '''
 
-   ### LEFT-TO-RIGHT
+   ## LEFT-TO-RIGHT
 
    g = t._navigator._DFS(forbid = 'parallel', unique = False)
 
@@ -447,7 +447,7 @@ def test__Navigator_dfs_07( ):
    Staff{5}
    '''
 
-   ### RIGHT-TO-LEFT ###
+   ## RIGHT-TO-LEFT ##
 
    g = t._navigator._DFS(
       forbid = 'parallel', unique = False, direction = 'right')
@@ -485,7 +485,7 @@ def test__Navigator_dfs_08( ):
    Uncapped but restricted depth-first serach with duplicates allowed.
    '''
   
-   ### LEFT-TO-RIGHT ###
+   ## LEFT-TO-RIGHT ##
 
    g = t[2]._navigator._DFS(
       capped = False, forbid = 'parallel', unique = False)
@@ -507,7 +507,7 @@ def test__Navigator_dfs_08( ):
    Staff{5}
    '''
 
-   ### RIGHT-TO-LEFT ###
+   ## RIGHT-TO-LEFT ##
 
    g = t[2]._navigator._DFS(
       capped = False, forbid = 'parallel', unique = False, direction = 'right')

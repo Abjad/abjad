@@ -1,9 +1,8 @@
 from abjad import *
 
 
-### TEST DEMO SKIP PUBLIC INTERFACE ###
-
 def test_Skip_01( ):
+   '''Skip public interface.'''
    s = Skip((1, 8))
    assert repr(s) == 'Skip(8)'
    assert str(s) == 's8'
@@ -19,14 +18,12 @@ def test_Skip_02( ):
    assert s.duration.written == s.duration.prolated == Rational(3, 16)
 
 
-### TEST CAST SKIP AS NOTE ###
-
 def test_Skip_03( ):
+   '''Cast skip as note.'''
    s = Skip((1, 8))
    d = s.duration.written
    n = Note(s)
    assert isinstance(n, Note)
-   # check that attributes have not been removed or added.
    assert dir(s) == dir(Skip((1, 4)))
    assert dir(n) == dir(Note(0, (1, 4)))
    assert n.parentage.parent is None
@@ -69,15 +66,12 @@ def test_Skip_07( ):
    assert t[1].parentage.parent is t
    
 
-
-### TEST CAST SKIP AS REST ###
-
 def test_Skip_08( ):
+   '''Cast skip as rest.'''
    s = Skip((1, 8))
    d = s.duration.written
    r = Rest(s)
    assert isinstance(r, Rest)
-   # check that attributes have not been removed or added.
    assert dir(s) == dir(Skip((1, 4)))
    assert dir(r) == dir(Rest((1, 4)))
    assert r.parentage.parent is None
@@ -120,14 +114,12 @@ def test_Skip_12( ):
    assert t[1].parentage.parent is t
 
 
-### TEST CAST REST AS CHORD ###
-
 def test_Skip_13( ):
+   '''Cast skip as chord.'''
    s = Skip((1, 8))
    d = s.duration.written
    c = Chord(s)
    assert isinstance(c, Chord)
-   # check that attributes have not been removed or added.
    assert dir(s) == dir(Skip((1, 4)))
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert c.parentage.parent is None

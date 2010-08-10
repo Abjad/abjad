@@ -8,7 +8,7 @@ class _FixedMultiplierTupletDurationInterface(_TupletDurationInterface):
       _TupletDurationInterface.__init__(self, _client)
       self.multiplier = multiplier
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _duration(self):
@@ -17,7 +17,7 @@ class _FixedMultiplierTupletDurationInterface(_TupletDurationInterface):
       else:
          return Rational(0)
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def multiplied(self):

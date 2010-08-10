@@ -100,7 +100,6 @@ class _Navigator(_Abjad):
          prev = parent
       return result
 
-
    @property
    def _first_leaves(self):
       '''Returns the first (leftmost) leaf or leaves 

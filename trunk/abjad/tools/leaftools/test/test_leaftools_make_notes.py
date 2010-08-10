@@ -93,7 +93,7 @@ def test_leaftools_make_notes_09( ):
    assert t[1].duration.written == Rational(4, 16)
 
 
-### PROLATED NOTES ###
+## PROLATED NOTES ##
 
 def test_leaftools_make_notes_10( ):
    '''

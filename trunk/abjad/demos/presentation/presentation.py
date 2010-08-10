@@ -1,5 +1,6 @@
 from abjad.demos.presentation.statement import Statement
 
+
 class Presentation(object):
 
    def __init__(self, title, abstract, statements, subtitle=' '):
@@ -10,8 +11,7 @@ class Presentation(object):
       self.title = title
       self.setup = [ ]
 
-
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _print_header(self):
       print "\n\t* * * *    %s    * * * *" % self.title
@@ -28,8 +28,7 @@ class Presentation(object):
             return True
       return False
 
-      
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def make_repeated_notes(self, live=False):
       '''
@@ -38,8 +37,8 @@ class Presentation(object):
       are not executed, only displayed. 
       '''
       ## run setup code
-      ### TODO: there must be a better way to insert imports and variables
-      ### into the scope of this function.
+      ## TODO: there must be a better way to insert imports and variables
+      ## into the scope of this function.
       for expr in self.setup:
          exec(expr)
       ##
@@ -56,5 +55,3 @@ class Presentation(object):
                   if result:
                      print '   %s' % result
       print "\n\t* * * End of presentation. * * *\n"
-
-

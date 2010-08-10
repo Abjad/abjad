@@ -11,7 +11,7 @@ class FixedDurationTuplet(_Tuplet):
       self._duration = _FixedDurationTupletDurationInterface(self, duration)
       self._signifier = '@'
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
  
    def __repr__(self):
       return 'FixedDurationTuplet(%s, [%s])' % (
@@ -25,7 +25,7 @@ class FixedDurationTuplet(_Tuplet):
          return '{%s %s %s}' % (
             self._signifier, self.duration.target, self._signifier)
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def trim(self, start, stop = 'unused'):
       if stop != 'unused':

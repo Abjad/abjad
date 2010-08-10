@@ -3,7 +3,7 @@ from abjad.components._Measure._MeasureDurationInterface import _MeasureDuration
 
 class _DynamicMeasureDurationInterface(_MeasureDurationInterface):
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def preprolated(self):

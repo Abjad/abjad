@@ -1,7 +1,7 @@
 from abjad import *
 
 
-### TODO - make overlapping one-note overrides work ###
+## TODO - make overlapping one-note overrides work ##
 
 def test_OverrideSpanner_overlap_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
