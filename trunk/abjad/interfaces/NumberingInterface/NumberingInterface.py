@@ -28,7 +28,6 @@ class NumberingInterface(_Observer):
    def _update_leaf_number(self):
       '''Update (zero-indexed) number of any one leaf in score.'''
       from abjad.components._Leaf import _Leaf
-      #prevLeaf = self.client.prev
       prevLeaf = self._client.prev
       if prevLeaf:
          assert isinstance(prevLeaf, _Leaf)
@@ -38,13 +37,8 @@ class NumberingInterface(_Observer):
 
    def _update_measure_number(self):
       '''Update (one-indexed) number of any one measure in score.'''
-      from abjad.tools import iterate
-#      try:
-#         prev = iterate.get_prev_measure_from_component(self._client)
-#         self._measure = prev._numbering._measure + 1
-#      except StopIteration:
-#         self._measure = 1
-      prevMeasure = iterate.get_prev_measure_from_component(self._client)
+      from abjad.tools import measuretools
+      prevMeasure = measuretools.get_prev_measure_from_component(self._client)
       if prevMeasure is not None:
          self._measure = prevMeasure._numbering._measure + 1
       else:

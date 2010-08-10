@@ -1,4 +1,4 @@
-from abjad.tools import iterate
+from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
 def expr_has_leaf_with_dotted_written_duration(expr):
@@ -21,7 +21,7 @@ def expr_has_leaf_with_dotted_written_duration(expr):
       ``leaftools.expr_has_leaf_with_dotted_written_duration( )``.
    '''
 
-   for leaf in iterate.leaves_forward_in_expr(expr):
+   for leaf in iterate_leaves_forward_in_expr(expr):
       if not leaf.duration.written._numerator == 1:
          return True
    return False

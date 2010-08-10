@@ -1,4 +1,4 @@
-from abjad.tools import iterate
+from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
 def label_leaves_in_expr_with_leaf_indices(expr, direction = 'below'):
@@ -23,7 +23,7 @@ def label_leaves_in_expr_with_leaf_indices(expr, direction = 'below'):
       ``leaftools.label_leaves_in_expr_with_leaf_indices( )``.
    '''
 
-   for i, leaf in enumerate(iterate.leaves_forward_in_expr(expr)):
+   for i, leaf in enumerate(iterate_leaves_forward_in_expr(expr)):
       label = r'\small %s' % i
       if direction == 'below':
          leaf.markup.down.append(label)

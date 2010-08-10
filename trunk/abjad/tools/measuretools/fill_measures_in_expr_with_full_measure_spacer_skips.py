@@ -1,12 +1,12 @@
 from abjad.components.Skip import Skip
-from abjad.tools import iterate
+from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
    '''Fill measures in `expr` with full-measure spacer skips.'''
    if iterctrl is None:
       iterctrl = lambda measure, i: True
-   for i, measure in enumerate(iterate.measures_forward_in_expr(expr)):
+   for i, measure in enumerate(iterate_measures_forward_in_expr(expr)):
       if iterctrl(measure, i):
          skip = Skip(1)
          ## allow zero-update iteration

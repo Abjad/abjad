@@ -1,4 +1,4 @@
-from abjad.tools import iterate
+from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
 def remove_markup_from_leaves_in_expr(expr):
@@ -31,6 +31,6 @@ def remove_markup_from_leaves_in_expr(expr):
       ``leaftools.remove_markup_from_leaves_in_expr( )``.
    '''
 
-   for leaf in iterate.leaves_forward_in_expr(expr):
+   for leaf in iterate_leaves_forward_in_expr(expr):
       leaf.markup.up = [ ]
       leaf.markup.down = [ ]   

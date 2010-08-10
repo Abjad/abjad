@@ -1,6 +1,5 @@
 from abjad.checks._Check import _Check
 from abjad.spanners import Glissando
-from abjad.tools import iterate
 
 
 class OverlappingGlissandoCheck(_Check):
@@ -8,10 +7,11 @@ class OverlappingGlissandoCheck(_Check):
    Dove-tailed glissandi are OK.'''
 
    def _run(self, expr):
+      from abjad.tools import leaftools
       violators = [ ] 
-      for leaf in iterate.leaves_forward_in_expr(expr):
+      for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
          glissandi = leaf.glissando.spanners
-         if len(glissandi) > 1:
+         if 1 < len(glissandi):
             if len(glissandi) == 2:
                common_leaves = set(glissandi[0].leaves) & \
                   set(glissandi[1].leaves)

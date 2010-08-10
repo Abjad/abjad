@@ -127,14 +127,14 @@ class Spanner(_Abjad):
    def _initialize_music(self, music):
       from abjad.components._Component import _Component
       from abjad.tools import componenttools
-      from abjad.tools import iterate
+      from abjad.tools import leaftools
       music = music or [ ]
       if isinstance(music, _Component):
          music = [music]
       ## TODO: Author staff-level contiguity check in tools/check. ##
       ##       Include optional staff-level contiguity check here. ##
       if self._contiguity_constraint == 'thread':
-         leaves = list(iterate.leaves_forward_in_expr(music))
+         leaves = list(leaftools.iterate_leaves_forward_in_expr(music))
          assert componenttools.all_are_thread_contiguous_components(leaves)
       self.extend(music)
 

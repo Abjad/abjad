@@ -56,7 +56,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
       expr = [expr]
    expr = Container(expr)
 
-   g = iterate.depth_first(expr, direction = 'right')
+   g = componenttools.iterate_components_depth_first(expr, direction = 'right')
    for cmp in g:
       next = cmp._navigator._next_namesake
       if isinstance(next, Container) and not next.parallel and \

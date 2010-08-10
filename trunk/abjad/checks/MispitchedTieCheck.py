@@ -1,5 +1,4 @@
 from abjad.checks._Check import _Check
-from abjad.tools import iterate
 
 
 class MispitchedTieCheck(_Check):
@@ -8,6 +7,7 @@ class MispitchedTieCheck(_Check):
       '''Check for mispitched notes.
          Do not check tied rests or skips.
          Implement chord-checking later.'''
+      from abjad.tools import iterate
       from abjad.components.Note import Note
       violators = [ ]
       total = 0

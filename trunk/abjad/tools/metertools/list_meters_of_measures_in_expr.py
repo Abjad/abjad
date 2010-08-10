@@ -1,6 +1,3 @@
-from abjad.tools import iterate
-
-
 def list_meters_of_measures_in_expr(components):
    '''Extract ordered list of meter pairs from ``components``.
 
@@ -24,6 +21,7 @@ def list_meters_of_measures_in_expr(components):
       ``metertools.list_meters_of_measures_in_expr( )``.
    '''
    from abjad.tools import componenttools
+   from abjad.tools import measuretools
 
    ## make sure components is a Python list of Abjad components
    assert componenttools.all_are_components(components)
@@ -32,7 +30,7 @@ def list_meters_of_measures_in_expr(components):
    result = [ ]
 
    ## iterate measures and store meter pairs
-   for measure in iterate.measures_forward_in_expr(components):
+   for measure in measuretools.iterate_measures_forward_in_expr(components):
       meter = measure.meter.effective
       pair = (meter.numerator, meter.denominator)
       result.append(pair)

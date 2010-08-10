@@ -1,5 +1,4 @@
 from abjad.checks._Check import _Check
-from abjad.tools import iterate
 
 
 class MisfilledMeasureCheck(_Check):
@@ -7,7 +6,7 @@ class MisfilledMeasureCheck(_Check):
       does effective meter duration equal preprolated duration?'''
 
    def _run(self, expr):
-      #from abjad.components._Measure import RigidMeasure
+      from abjad.tools import iterate
       from abjad.components._Measure import RigidMeasure
       violators = [ ]
       total, bad = 0, 0

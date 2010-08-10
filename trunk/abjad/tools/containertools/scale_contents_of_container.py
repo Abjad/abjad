@@ -1,6 +1,5 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components._Measure import _Measure
-from abjad.tools import iterate
 from abjad.tools import tietools
 from abjad.tools import tuplettools
 from abjad.components._Tuplet import FixedDurationTuplet
@@ -97,7 +96,7 @@ def scale_contents_of_container(container, multiplier):
       ``containertools.scale_contents_of_container( )``.
    '''
 
-   for expr in iterate.topmost_tie_chains_and_components_forward_in_expr(container[:]):
+   for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(container[:]):
       if tietools.is_tie_chain(expr):
          tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(expr, multiplier)
       elif isinstance(expr, FixedDurationTuplet):

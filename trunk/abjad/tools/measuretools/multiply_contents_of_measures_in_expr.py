@@ -1,7 +1,7 @@
 from abjad.marks import Meter
 from abjad.core import Rational
 from abjad.tools import durtools
-from abjad.tools import iterate
+from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
 def multiply_contents_of_measures_in_expr(expr, n):
@@ -51,7 +51,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
    assert isinstance(n, int)
    assert n > 0
 
-   for measure in iterate.measures_forward_in_expr(expr):
+   for measure in iterate_measures_forward_in_expr(expr):
       old_meter = measure.meter.effective
       containertools.repeat_contents_of_container(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)

@@ -1,7 +1,3 @@
-from abjad.tools import iterate
-from abjad.tools import pitchtools
-
-
 def label_vertical_moments_in_expr_with_pitch_numbers(expr):
    r'''.. versionadded:: 1.1.2
 
@@ -37,6 +33,8 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr):
       renamed ``label.vertical_moment_pitch_numbers( )`` to
       ``verticalitytools.label_vertical_moments_in_expr_with_pitch_numbers( )``.
    '''
+   from abjad.tools import iterate
+   from abjad.tools import pitchtools
 
    for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):
       leaves = vertical_moment.leaves

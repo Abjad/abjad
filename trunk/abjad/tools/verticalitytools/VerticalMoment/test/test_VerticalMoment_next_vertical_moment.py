@@ -37,7 +37,7 @@ def test_VerticalMoment_next_vertical_moment_01( ):
    >>
    '''
 
-   vertical_moment = iterate.get_vertical_moment_at_prolated_offset_in_expr(
+   vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
       score, Rational(0))
    assert vertical_moment.prolated_offset == Rational(0)
 

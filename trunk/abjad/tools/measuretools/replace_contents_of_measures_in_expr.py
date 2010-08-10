@@ -1,7 +1,6 @@
 from abjad.components._Measure import RigidMeasure
-from abjad.tools import iterate
-from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in_expr \
-   import append_spacer_skips_to_underfull_measures_in_expr
+from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in_expr import append_spacer_skips_to_underfull_measures_in_expr
+from abjad.tools.measuretools.get_next_measure_from_component import get_next_measure_from_component
 
 
 def replace_contents_of_measures_in_expr(expr, new_contents):
@@ -68,7 +67,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
    result = [ ]
 
    ## get first measure and first meter
-   cur_measure = iterate.get_next_measure_from_component(expr) 
+   cur_measure = get_next_measure_from_component(expr) 
    result.append(cur_measure)
    cur_meter = cur_measure.meter.effective
    del(cur_measure[:])
@@ -92,7 +91,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
       else:
          cur_measure.meter.forced = cur_meter
          append_spacer_skips_to_underfull_measures_in_expr([cur_measure])
-         cur_measure = iterate.get_next_measure_from_component(cur_measure)
+         cur_measure = get_next_measure_from_component(cur_measure)
          if cur_measure is None:
             raise StopIteration
          result.append(cur_measure)

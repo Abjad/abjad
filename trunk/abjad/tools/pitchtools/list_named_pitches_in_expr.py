@@ -1,7 +1,6 @@
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.spanners import Spanner
-from abjad.tools import iterate
 from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
 
 
@@ -56,13 +55,14 @@ def list_named_pitches_in_expr(expr):
 
    Raises neither :exc:`MissingPitchError` nor :exc:`ExtraPitchError`.
 
-   .. note:: The logic implemented here to iterate over the contents of \
+   .. note:: The logic implemented here to iterate over the contents of
       spanners is unusual but useful.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.get_named_pitch_from_pitch_carrieres( )`` to
       ``pitchtools.list_named_pitches_in_expr( )``.
    '''
+   from abjad.tools import leaftools
    from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
 
    try:
@@ -84,6 +84,6 @@ def list_named_pitches_in_expr(expr):
          for x in expr:
             result.extend(list_named_pitches_in_expr(x))
       else:
-         for leaf in iterate.leaves_forward_in_expr(expr):
+         for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
             result.extend(leaf.pitches)
       return tuple(result)

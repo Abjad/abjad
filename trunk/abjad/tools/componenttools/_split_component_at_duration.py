@@ -97,7 +97,7 @@ def _split_component_at_duration(
    ## in order to start upward crawl through containers
    else:
       containers = contents[:]
-      for leaf in iterate.leaves_forward_in_expr(bottom):
+      for leaf in leaftools.iterate_leaves_forward_in_expr(bottom):
          if leaf.offset.prolated.start == global_split_point:
             right = leaf
             leaf_right_of_split = right

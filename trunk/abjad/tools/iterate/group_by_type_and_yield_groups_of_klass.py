@@ -1,4 +1,4 @@
-from abjad.tools.iterate.group_topmost_components_in_expr_by_type_and_yield_groups import \
+from abjad.tools.componenttools.group_topmost_components_in_expr_by_type_and_yield_groups import \
    group_topmost_components_in_expr_by_type_and_yield_groups
 
 
@@ -17,7 +17,7 @@ def group_by_type_and_yield_groups_of_klass(expr, klass):
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.subruns_of_type( )`` to
-      ``iterate.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
+      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
    '''
 
    for group in group_topmost_components_in_expr_by_type_and_yield_groups(expr):

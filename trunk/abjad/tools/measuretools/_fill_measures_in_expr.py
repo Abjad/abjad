@@ -53,7 +53,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 
 
 #def _measures_populate_big_endian(expr, iterctrl):
-#   for i, measure in enumerate(iterate.measures_forward_in_expr(expr)):
+#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
 #      if iterctrl(measure, i):
 #         meter = measure.meter.effective
 #         written_duration = ~meter.multiplier * meter.duration
@@ -62,7 +62,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 #
 #
 #def _measures_populate_little_endian(expr, iterctrl):
-#   for i, measure in enumerate(iterate.measures_forward_in_expr(expr)):
+#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
 #      if iterctrl(measure, i):
 #         meter = measure.meter.effective
 #         written_duration = ~meter.multiplier * meter.duration
@@ -73,7 +73,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 #
 #def _measures_populate_duration_train(expr, written_duration, iterctrl):
 #   written_duration = Rational(written_duration)
-#   for i, measure in enumerate(iterate.measures_forward_in_expr(expr)):
+#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
 #      if iterctrl(measure, i):
 #         meter = measure.meter.effective
 #         total_duration = meter.duration
@@ -84,7 +84,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 #
 #
 #def _measures_populate_meter_series(expr, iterctrl):
-#   for i, measure in enumerate(iterate.measures_forward_in_expr(expr)):
+#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
 #      if iterctrl(measure, i):
 #         meter = measure.meter.effective
 #         denominator = mathtools.greatest_power_of_two_less_equal(
@@ -95,13 +95,13 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 #
 #
 #def _measures_populate_none(expr, iterctrl):
-#   for i, measure in enumerate(iterate.measures_forward_in_expr(expr)):
+#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
 #      if iterctrl(measure, i):
 #         measure[:] = [ ]
 #
 #
 #def _measures_populate_skip(expr, iterctrl):
-#   for i, measure in enumerate(iterate.measures_forward_in_expr(expr)):
+#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
 #      if iterctrl(measure, i):
 #         skip = Skip(1)
 #         ## allow zero-update iteration

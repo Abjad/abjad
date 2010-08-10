@@ -300,8 +300,8 @@ class _Component(_Abjad):
       '''Read-only tuple of all leaves in `self`.
 
       .. versionchanged:: 1.1.1'''
-      from abjad.tools import iterate
-      return tuple(iterate.leaves_forward_in_expr(self))
+      from abjad.tools import leaftools
+      return tuple(leaftools.iterate_leaves_forward_in_expr(self))
 
    @property
    def lily_file(self):

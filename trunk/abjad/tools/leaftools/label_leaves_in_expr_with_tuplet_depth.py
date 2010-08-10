@@ -24,6 +24,6 @@ def label_leaves_in_expr_with_tuplet_depth(expr):
       ``leaftools.label_leaves_in_expr_with_tuplet_depth( )``.
    '''
 
-   for leaf in iterate.leaves_forward_in_expr(expr):
+   for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
       label = r'\small %s' % leaf.parentage.depth_tuplet
       leaf.markup.down.append(label)

@@ -1,8 +1,8 @@
 from abjad.marks import Meter
 from abjad.core import Rational
-from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import metertools
+from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
 def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
@@ -26,7 +26,8 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
    '''
 
    from abjad.tools import containertools
-   for measure in iterate.measures_forward_in_expr(expr):
+   
+   for measure in iterate_measures_forward_in_expr(expr):
 
       if multiplier == Rational(1):
          continue

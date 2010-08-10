@@ -1,17 +1,17 @@
 from abjad.checks._Check import _Check
 from abjad.spanners import OctavationSpanner
-from abjad.tools import iterate
 
 
 class OverlappingOctavationCheck(_Check):
    '''Octavation spanners must not overlap.'''
 
    def _run(self, expr):
+      from abjad.tools import leaftools
       violators = [ ]
-      for leaf in iterate.leaves_forward_in_expr(expr):
+      for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
          octavations = leaf.spanners.contained
          octavations = [p for p in octavations if isinstance(p, OctavationSpanner)]
-         if len(octavations) > 1:
+         if 1 < len(octavations):
             for octavation in octavations:
               if octavation not in violators:
                   violators.append(octavation)

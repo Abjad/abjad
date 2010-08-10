@@ -1,8 +1,7 @@
-from abjad.components._Leaf import _Leaf
 from abjad.core import Rational
+from abjad.components._Leaf import _Leaf
 from abjad.components.Rest import Rest
 from abjad.components.Skip import Skip
-from abjad.tools import iterate
 import types
 
 
@@ -12,6 +11,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    Generalizes measuretools.pad_measures_in_expr_with_rests( ) and
    measuretools.pad_measures_in_expr_with_skips( ).
    '''
+   from abjad.tools import measuretools
 
    if not isinstance(front, (Rational, types.NoneType)):
       raise ValueError
@@ -28,7 +28,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    ## _Component.splice( ) call self.offset.prolated.stop  ##
    root._update._forbid_update( )
 
-   for measure in iterate.measures_forward_in_expr(expr):
+   for measure in measuretools.iterate_measures_forward_in_expr(expr):
       if front is not None:
          start_components = measure._navigator._contemporaneous_start_contents
          start_leaves = [x for x in start_components if isinstance(x, _Leaf)]

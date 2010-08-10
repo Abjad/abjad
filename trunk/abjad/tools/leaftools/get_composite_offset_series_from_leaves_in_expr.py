@@ -1,4 +1,4 @@
-from abjad.tools import iterate
+from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
 def get_composite_offset_series_from_leaves_in_expr(expr):
@@ -36,7 +36,7 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
 
    offsets = [ ]
 
-   for leaf in iterate.leaves_forward_in_expr(expr):
+   for leaf in iterate_leaves_forward_in_expr(expr):
       start_offset = leaf.offset.prolated.start
       if start_offset not in offsets:
          offsets.append(start_offset)

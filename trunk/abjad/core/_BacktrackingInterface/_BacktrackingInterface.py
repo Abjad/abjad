@@ -83,7 +83,7 @@ class _BacktrackingInterface(_Abjad):
             ##       component is a container that happens to contain
             ##       a leaf as its last contained element.
             ##       The logic here needs to be truly backwards recursive.
-            ## TODO: Using iterate.depth_first( ) here *backwards* should work.
+            ## TODO: Using componenttools.iterate_components_depth_first( ) here *backwards* should work.
             try:
                last_contained = prevComponent[-1]
             except IndexError:

@@ -1,8 +1,9 @@
+from abjad.components._Tuplet import FixedDurationTuplet
 from abjad.tools import componenttools
-from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import metertools
-from abjad.components._Tuplet import FixedDurationTuplet
+from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
@@ -21,7 +22,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
    '''
 
    from abjad.tools import containertools
-   for measure in iterate.measures_forward_in_expr(expr):
+   for measure in iterate_measures_forward_in_expr(expr):
       if measure.meter.effective.nonbinary:
 
          # find meter and contents multipliers

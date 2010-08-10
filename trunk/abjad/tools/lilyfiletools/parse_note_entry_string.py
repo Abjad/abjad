@@ -1,9 +1,7 @@
 from abjad.components.Container import Container
 from abjad.exceptions import MissingSpannerError
 from abjad.spanners import Tie
-from abjad.tools import iterate
-from abjad.tools.lilyfiletools._parse_note_entry_token import \
-   _parse_note_entry_token
+from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
 from abjad.components.Voice import Voice
 import re
 
@@ -21,6 +19,7 @@ def parse_note_entry_string(note_entry_string):
 
    Do not parse tuplets, measures or other complex LilyPond input.
    '''
+   from abjad.tools import leaftools
 
    container = Container([ ])
    tokens = note_entry_string.split( ) 
@@ -30,13 +29,13 @@ def parse_note_entry_string(note_entry_string):
       if re.match('\w+', token) is not None: 
          leaf = _parse_note_entry_token(token)
          if tie_next_leaf:
-            last_leaf = iterate.get_nth_leaf_in_expr(container, -1)
+            last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
             last_leaf.splice([leaf])
             tie_next_leaf = False
          else:
             container.append(leaf) 
       elif token == '~':
-         last_leaf = iterate.get_nth_leaf_in_expr(container, -1)
+         last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
          try:
             tie_spanner = last_leaf.tie.spanner
          except MissingSpannerError:
@@ -46,11 +45,11 @@ def parse_note_entry_string(note_entry_string):
          waiting_on_bar_string = True
       elif token.startswith('"'):
          bar_string = eval(token)
-         last_leaf = iterate.get_nth_leaf_in_expr(container, -1)
+         last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
          last_leaf.bar_line.kind = bar_string
          waiting_on_bar_string = False
       elif token.startswith('\\'):
-         last_leaf = iterate.get_nth_leaf_in_expr(container, -1)
+         last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
          articulation_string = token.strip('\\')
          last_leaf.articulations.append(articulation_string)
       else:

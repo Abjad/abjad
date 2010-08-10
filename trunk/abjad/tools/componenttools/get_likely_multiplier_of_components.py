@@ -60,7 +60,7 @@ def get_likely_multiplier_of_components(components):
    assert componenttools.all_are_components(components)
 
    chain_duration_numerators = [ ]
-   for expr in iterate.topmost_tie_chains_and_components_forward_in_expr(components):
+   for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(components):
       if tietools.is_tie_chain(expr):
          chain_duration = tietools.get_preprolated_tie_chain_duration(expr)   
          chain_duration_numerators.append(chain_duration._n)

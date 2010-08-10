@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.tools.iterate.depth_first import depth_first
+from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
 
 
 def thread_forward_from_component(component, klass = None):
@@ -92,7 +92,7 @@ def thread_forward_from_component(component, klass = None):
    component_thread_signature = component.thread.signature
 
    ## iterate component depth-first allowing to crawl UP into score
-   for x in depth_first(component, capped = False):
+   for x in iterate_components_depth_first(component, capped = False):
       if isinstance(x, klass):
          if x.thread.signature == component_thread_signature:
             yield x

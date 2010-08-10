@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools import iterate
 from abjad.tools.pitchtools.pitch_number_to_octave_number import pitch_number_to_octave_number
 from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_sharps import pitch_class_number_to_pitch_name_with_sharps
 
@@ -34,11 +33,12 @@ def respell_named_pitches_in_expr_with_sharps(expr):
       renamed ``pitchtools.make_sharp( )`` to
       ``pitchtools.respell_named_pitches_in_expr_with_sharps( )``.
    '''
+   from abjad.tools import leaftools
 
    if isinstance(expr, NamedPitch):
       _pitch_renotate_sharps(expr)
    else:
-      for leaf in iterate.leaves_forward_in_expr(expr):
+      for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
          if hasattr(leaf, 'pitches'):
             for pitch in leaf.pitches:
                _pitch_renotate_sharps(pitch)

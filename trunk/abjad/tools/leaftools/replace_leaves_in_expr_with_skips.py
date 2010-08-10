@@ -1,5 +1,5 @@
 from abjad.components.Skip import Skip
-from abjad.tools import iterate
+from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
 def replace_leaves_in_expr_with_skips(expr):
@@ -30,5 +30,5 @@ def replace_leaves_in_expr_with_skips(expr):
       ``leaftools.replace_leaves_in_expr_with_skips( )``.
    '''
 
-   for leaf in iterate.leaves_forward_in_expr(expr):
+   for leaf in iterate_leaves_forward_in_expr(expr):
       Skip(leaf)

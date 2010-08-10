@@ -1,6 +1,4 @@
 from abjad.tools import listtools
-from abjad.tools.iterate.leaf_pairs_forward_in_expr import \
-   leaf_pairs_forward_in_expr
 
 
 def pitch_pairs_forward_in_expr(expr):
@@ -88,9 +86,10 @@ def pitch_pairs_forward_in_expr(expr):
       renamed ``iterate.pitch_pairs_forward_in( )`` to
       ``iterate.pitch_pairs_forward_in_expr( )``.
    '''
+   from abjad.tools.leaftools.iterate_leaf_pairs_forward_in_expr import iterate_leaf_pairs_forward_in_expr
 
    from abjad.tools import pitchtools
-   for leaf_pair in leaf_pairs_forward_in_expr(expr):
+   for leaf_pair in iterate_leaf_pairs_forward_in_expr(expr):
       leaf_pair_list = list(leaf_pair)
       ## iterate chord pitches if first leaf is chord
       for pair in pitchtools.list_unordered_pitch_pairs_in_expr(leaf_pair_list[0]):

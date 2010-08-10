@@ -1,4 +1,4 @@
-from abjad.tools import iterate
+from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
 def list_written_durations_of_leaves_in_expr(expr):
@@ -21,7 +21,7 @@ def list_written_durations_of_leaves_in_expr(expr):
 
    durations = [ ]
 
-   for leaf in iterate.leaves_forward_in_expr(expr):
+   for leaf in iterate_leaves_forward_in_expr(expr):
       durations.append(leaf.duration.written)
 
    return durations

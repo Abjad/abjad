@@ -1,5 +1,4 @@
 from abjad.checks._Check import _Check
-from abjad.tools import iterate
 
 
 class EmptyContainerCheck(_Check):
@@ -7,6 +6,7 @@ class EmptyContainerCheck(_Check):
    runtime = 'composition'
 
    def _run(self, expr):
+      from abjad.tools import iterate
       from abjad.components.Container import Container
       violators = [ ]
       bad, total = 0, 0

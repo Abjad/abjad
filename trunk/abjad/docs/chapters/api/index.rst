@@ -187,10 +187,15 @@ componenttools
    tools/componenttools/get_first_component_in_expr_with_name
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
    tools/componenttools/get_likely_multiplier_of_components
+   tools/componenttools/get_nth_component_in_expr
    tools/componenttools/get_parent_and_start_stop_indices_of_components
    tools/componenttools/group_components_by_like_preprolated_duration
    tools/componenttools/group_components_by_like_prolated_duration
+   tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups
+   tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups_of_klass
    tools/componenttools/is_well_formed_component
+   tools/componenttools/iterate_components_and_grace_containers_forward_in_expr
+   tools/componenttools/iterate_components_depth_first
    tools/componenttools/list_badly_formed_components_in_expr
    tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
    tools/componenttools/list_leftmost_components_with_prolated_duration_at_most
@@ -361,26 +366,8 @@ iterate
 .. toctree::
    :maxdepth: 1
 
-   tools/iterate/components_and_grace_containers_forward_in_expr
-   tools/iterate/depth_first
-   tools/iterate/get_leaf_at_index_from_measure_number_in_expr
-   tools/iterate/get_measure_number_in_expr
-   tools/iterate/get_next_measure_from_component
-   tools/iterate/get_nth_component_in_expr
-   tools/iterate/get_nth_leaf_in_expr
-   tools/iterate/get_nth_measure_in_expr
    tools/iterate/get_nth_namesake_from_component
-   tools/iterate/get_prev_measure_from_component
-   tools/iterate/get_vertical_moment_at_prolated_offset_in_expr
-   tools/iterate/get_vertical_moment_starting_with_component
    tools/iterate/group_by_type_and_yield_groups_of_klass
-   tools/iterate/group_topmost_components_in_expr_by_type_and_yield_groups
-   tools/iterate/group_topmost_components_in_expr_by_type_and_yield_groups_of_klass
-   tools/iterate/leaf_pairs_forward_in_expr
-   tools/iterate/leaves_backward_in_expr
-   tools/iterate/leaves_forward_in_expr
-   tools/iterate/measures_backward_in_expr
-   tools/iterate/measures_forward_in_expr
    tools/iterate/naive_backward_in_expr
    tools/iterate/naive_forward_in_expr
    tools/iterate/namesakes_backward_from_component
@@ -398,7 +385,6 @@ iterate
    tools/iterate/timeline_backward_in_expr
    tools/iterate/timeline_forward_from_component
    tools/iterate/timeline_forward_in_expr
-   tools/iterate/topmost_tie_chains_and_components_forward_in_expr
    tools/iterate/vertical_moments_backward_in_expr
    tools/iterate/vertical_moments_forward_in_expr
 
@@ -441,7 +427,12 @@ leaftools
    tools/leaftools/fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang
    tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
    tools/leaftools/get_composite_offset_series_from_leaves_in_expr
+   tools/leaftools/get_leaf_at_index_in_measure_number_in_expr
+   tools/leaftools/get_nth_leaf_in_expr
    tools/leaftools/is_bar_line_crossing_leaf
+   tools/leaftools/iterate_leaf_pairs_forward_in_expr
+   tools/leaftools/iterate_leaves_backward_in_expr
+   tools/leaftools/iterate_leaves_forward_in_expr
    tools/leaftools/label_leaves_in_expr_with_leaf_depth
    tools/leaftools/label_leaves_in_expr_with_leaf_durations
    tools/leaftools/label_leaves_in_expr_with_leaf_indices
@@ -665,6 +656,12 @@ measuretools
    tools/measuretools/fill_measures_in_expr_with_repeated_notes
    tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
    tools/measuretools/fuse_measures
+   tools/measuretools/get_next_measure_from_component
+   tools/measuretools/get_nth_measure_in_expr
+   tools/measuretools/get_one_indexed_measure_number_in_expr
+   tools/measuretools/get_prev_measure_from_component
+   tools/measuretools/iterate_measures_backward_in_expr
+   tools/measuretools/iterate_measures_forward_in_expr
    tools/measuretools/make_rigid_measures_with_full_measure_spacer_skips
    tools/measuretools/move_measure_prolation_to_full_measure_tuplet
    tools/measuretools/move_prolation_of_full_measure_tuplet_to_meter_of_measure
@@ -948,6 +945,7 @@ tietools
    tools/tietools/group_leaves_in_tie_chain_by_immediate_parents
    tools/tietools/is_tie_chain
    tools/tietools/is_tie_chain_with_all_leaves_in_same_parent
+   tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr
    tools/tietools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
    tools/tietools/label_tie_chains_in_expr_with_tie_chain_durations
    tools/tietools/label_tie_chains_in_expr_with_written_tie_chain_duration
@@ -1020,6 +1018,8 @@ verticalitytools
    :maxdepth: 1
 
    tools/verticalitytools/VerticalMoment/VerticalMoment
+   tools/verticalitytools/get_vertical_moment_at_prolated_offset_in_expr
+   tools/verticalitytools/get_vertical_moment_starting_with_component
    tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_interval_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_intervals
    tools/verticalitytools/label_vertical_moments_in_expr_with_counterpoint_intervals

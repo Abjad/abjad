@@ -1,16 +1,15 @@
 from abjad.checks._Check import _Check
 from abjad.tools import durtools
-from abjad.tools import iterate
 
 
 class MisrepresentedFlagCheck(_Check):
 
    def _run(self, expr):
+      from abjad.tools import leaftools
       violators = [ ] 
       total = 0
-      for leaf in iterate.leaves_forward_in_expr(expr):
+      for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
          total += 1
-         #flags = leaf.duration._flags
          flags = durtools.rational_to_flag_count(leaf.duration.written)
          left, right = leaf.beam.counts
          if left is not None:
