@@ -1,4 +1,3 @@
-from abjad.tools import iterate
 from abjad.tools.measuretools.color_measure import color_measure
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 

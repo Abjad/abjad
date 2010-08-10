@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-from abjad.tools import iterate
 
 
 def get_spanners_that_dominate_components(components):

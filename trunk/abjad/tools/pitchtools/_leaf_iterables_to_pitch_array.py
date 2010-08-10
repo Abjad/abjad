@@ -1,4 +1,3 @@
-from abjad.tools import iterate
 from abjad.tools import listtools
 from abjad.tools.pitchtools.PitchArray import PitchArray
 from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr

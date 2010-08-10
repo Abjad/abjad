@@ -1,6 +1,5 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools import componenttools
-from abjad.tools import iterate
 
 
 def repeat_leaf_and_extend_spanners(leaf, total = 1):

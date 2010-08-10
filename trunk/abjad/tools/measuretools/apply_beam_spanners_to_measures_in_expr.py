@@ -1,5 +1,4 @@
 from abjad.spanners import Beam
-from abjad.tools import iterate
 from abjad.tools.measuretools.apply_beam_spanner_to_measure import apply_beam_spanner_to_measure
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 

@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-from abjad.tools import iterate
 
 
 def _withdraw_from_contained(components):

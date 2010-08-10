@@ -2,7 +2,6 @@ from abjad.components.Note import Note
 from abjad.core import Rational
 from abjad.components.Skip import Skip
 from abjad.tools import durtools
-from abjad.tools import iterate
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 

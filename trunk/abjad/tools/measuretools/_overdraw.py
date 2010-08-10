@@ -1,5 +1,4 @@
 from abjad.tools import componenttools
-from abjad.tools import iterate
 
 
 ## TODO: Finish implementation ##

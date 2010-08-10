@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-from abjad.tools import iterate
 from abjad.tools.componenttools._ignore import _ignore
 from abjad.tools.componenttools._restore import _restore
 from abjad.tools import spannertools

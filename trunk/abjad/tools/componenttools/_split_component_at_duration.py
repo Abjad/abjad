@@ -5,7 +5,6 @@ from abjad.components._Measure import RigidMeasure
 from abjad.core import Rational
 from abjad.spanners import Tie
 from abjad.tools import durtools
-from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 

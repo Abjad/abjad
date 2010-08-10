@@ -56,7 +56,6 @@ class _BacktrackingInterface(_Abjad):
    def _get_effective(self):
       '''Works for any interface with 'forced' and 'effective' attributes.
          Most such interfaces are observers.'''
-      from abjad.tools import iterate
       from abjad.components._Leaf import _Leaf
       myForced = self.forced
       if myForced is not None:

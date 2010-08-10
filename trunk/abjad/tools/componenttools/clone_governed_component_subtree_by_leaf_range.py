@@ -1,7 +1,6 @@
 from abjad.components.Container import Container
 from abjad.exceptions import ContiguityError
 from abjad.components._Leaf import _Leaf
-from abjad.tools import iterate
 
 
 def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = None):

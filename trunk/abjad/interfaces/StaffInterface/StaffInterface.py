@@ -53,7 +53,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
    def _opening(self):
       '''Format contribution at container opening or before leaf.'''
       from abjad.components._Leaf import _Leaf
-      from abjad.tools import iterate
+      from abjad.tools import measuretools
       result = [ ]
       ## if client is a leaf
       if isinstance(self._client, _Leaf):

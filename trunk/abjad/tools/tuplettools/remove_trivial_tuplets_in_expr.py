@@ -1,5 +1,4 @@
 from abjad.tools import componenttools
-from abjad.tools import iterate
 from abjad.components._Tuplet import _Tuplet
 
 

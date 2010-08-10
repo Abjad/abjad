@@ -1,4 +1,3 @@
-from abjad.tools import iterate
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
