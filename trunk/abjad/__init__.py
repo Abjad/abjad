@@ -29,6 +29,7 @@ from abjad.tools.iotools import f
 from abjad.tools.iotools import play
 from abjad.tools.iotools import show
 from abjad.tools import *
+import macros
 
 import sys
 sys.ps1 = 'abjad> '

@@ -19,6 +19,3 @@ from abjad.tools import threadtools
 from abjad.tools import tietools
 from abjad.tools import tonalitytools
 from abjad.tools import verticalitytools
-
-## import macros last to alias other tools
-from abjad.tools import macros
