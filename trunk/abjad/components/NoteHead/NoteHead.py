@@ -84,19 +84,19 @@ class NoteHead(NoteHeadInterface):
          abjad> note.nothead.format
          "cs'"
       '''
-      return self.formatter.format
+      return self._formatter.format
 
-   @property
-   def formatter(self):
-      '''Read-only reference to note head formatter.
-
-      ::
-
-         abjad> note = Note(1, (1, 4))
-         abjad> note.note_head.formatter
-         <_NoteHeadFormatInterface>
-      '''
-      return self._formatter
+#   @property
+#   def formatter(self):
+#      '''Read-only reference to note head formatter.
+#
+#      ::
+#
+#         abjad> note = Note(1, (1, 4))
+#         abjad> note.note_head.formatter
+#         <_NoteHeadFormatInterface>
+#      '''
+#      return self._formatter
 
    @apply
    def pitch( ):

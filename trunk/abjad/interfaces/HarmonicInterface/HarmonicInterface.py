@@ -6,10 +6,10 @@ class HarmonicInterface(_Interface, _FormatContributor):
    r'''Interface to LilyPond \flageolet command.'''
 
    def __init__(self, client):
-      '''Bind client and set natural to False.'''
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
-      self.natural = False
+      #self.natural = False
+      self._natural = None
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -29,6 +29,6 @@ class HarmonicInterface(_Interface, _FormatContributor):
       def fget(self):
          return self._natural
       def fset(self, arg):
-         assert isinstance(arg, bool)
+         assert isinstance(arg, (bool, type(None)))
          self._natural = arg
       return property(**locals( ))

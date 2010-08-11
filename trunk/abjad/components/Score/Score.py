@@ -7,13 +7,14 @@ import types
 class Score(_Context):
    '''Abjad model of the musical score.'''
 
-   def __init__(self, music = None):
+   def __init__(self, music = None, **kwargs):
       '''Init score as type of Abjad container.
       Init ``context`` to ``Score`` and ``parallel`` to ``True``.'''
       _Context.__init__(self, music)
       self._spacing = ScoreSpacingInterface(self)
       self.context = 'Score'
       self.parallel = True
+      self._initialize_keyword_values(**kwargs)
 
    ## PUBLIC ATTRIBUTES ##
 

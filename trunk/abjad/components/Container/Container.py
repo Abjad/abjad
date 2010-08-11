@@ -8,7 +8,7 @@ from abjad.interfaces import NoteHeadInterface
 
 class Container(_Component):
 
-   def __init__(self, music = None):
+   def __init__(self, music = None, **kwargs):
       '''Initialize container with music list of length zero or grater.'''
       _Component.__init__(self)
       self._spanners = _ContainerSpannerAggregator(self)
@@ -16,7 +16,9 @@ class Container(_Component):
       self._brackets = BracketsInterface(self)
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
-      self.parallel = False
+      #self.parallel = False
+      self._parallel = None
+      self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
 
@@ -161,7 +163,7 @@ class Container(_Component):
       def fset(self, expr):
          from abjad.components._Context import _Context
          from abjad.tools import componenttools
-         assert isinstance(expr, bool)
+         assert isinstance(expr, (bool, type(None)))
          if expr == True:
             assert componenttools.all_are_components(self._music, klasses = (_Context, ))
          self._parallel = expr

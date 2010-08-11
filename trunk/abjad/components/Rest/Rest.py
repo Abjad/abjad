@@ -6,8 +6,9 @@ from abjad.components.Rest._RestInitializer import _RestInitializer
 class Rest(_Leaf):
    '''The Abjad model of a single rest.'''
 
-   def __init__(self, *args):
+   def __init__(self, *args, **kwargs):
       self._initializer = _RestInitializer(self, _Leaf, *args)
+      self._initialize_keyword_values(**kwargs)
    
    ## OVERLOADS ##
 

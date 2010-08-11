@@ -5,7 +5,7 @@ from abjad.components.Grace._GraceFormatter import _GraceFormatter
 class Grace(Container):
    '''Abjad model of before- and after-graces.'''
 
-   def __init__(self, music = None):
+   def __init__(self, music = None, **kwargs):
       '''Init grace as type of Abjad container. 
          Init dedicated formatter.'''
       ## self._carrier is a reference to the Note carrying the Graces.
@@ -13,6 +13,7 @@ class Grace(Container):
       Container.__init__(self, music)
       self._formatter = _GraceFormatter(self)
       self.kind = 'grace'
+      self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
 

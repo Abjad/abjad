@@ -42,6 +42,9 @@ class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    @property
    def effective(self):
       '''Effective dynamic.'''
+      from abjad.components.Container import Container
+      if isinstance(self._client, Container):
+         return None
       if self.mark:
          return self.mark
       if self.spanned:

@@ -8,11 +8,12 @@ from abjad.tools import durtools
 
 class RigidMeasure(_Measure):
 
-   def __init__(self, meter, music = None):
+   def __init__(self, meter, music = None, **kwargs):
       _Measure.__init__(self, music)
       self._duration = _RigidMeasureDurationInterface(self)
       self._formatter = _RigidMeasureFormatter(self)
       self.meter.forced = Meter(meter)
+      self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
 

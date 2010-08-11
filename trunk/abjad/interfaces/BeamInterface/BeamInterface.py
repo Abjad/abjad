@@ -21,7 +21,8 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, _SpannerRe
       _GrobHandler.__init__(self, 'Beam')
       _SpannerReceptor.__init__(self, (Beam, ))
       self.auto_beaming = None
-      self._counts = (None, None)
+      #self._counts = (None, None)
+      self._counts = None
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -30,10 +31,11 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, _SpannerRe
       '''Format contribution before leaf.'''
       result = [ ]
       result.extend(_GrobHandler._before.fget(self))
-      if self.counts[0] is not None:
-         result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
-      if self.counts[1] is not None:
-         result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
+      if self.counts is not None:
+         if self.counts[0] is not None:
+            result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
+         if self.counts[1] is not None:
+            result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
       return result
 
    ## PUBLIC ATTRIBUTES ##
@@ -67,9 +69,12 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, _SpannerRe
    def beamable(self):
       '''True when client is beamable, otherwise False.'''
       from abjad.components.Chord import Chord
+      from abjad.components.Container import Container
       from abjad.components.Note import Note
       from abjad.tools import durtools
       client = self._client
+      if isinstance(client, Container):
+         return False
       #flags = client.duration._flags
       flag_count = durtools.rational_to_flag_count(client.duration.written)
       #return isinstance(client, (Note, Chord)) and 0 < flags
@@ -83,7 +88,8 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, _SpannerRe
          return self._counts
       def fset(self, expr):
          if expr is None:
-            self._counts = (None, None)
+            #self._counts = (None, None)
+            self._counts = None
          elif isinstance(expr, int):
             self._counts = (expr, expr)
          elif isinstance(expr, (tuple, list)):

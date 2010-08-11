@@ -4,8 +4,9 @@ from abjad.components.Skip._SkipInitializer import _SkipInitializer
 
 class Skip(_Leaf):
 
-   def __init__(self, *args):
+   def __init__(self, *args, **kwargs):
       self._initializer = _SkipInitializer(self, _Leaf, *args)
+      self._initialize_keyword_values(**kwargs)
       
    ## OVERLOADS ##
 

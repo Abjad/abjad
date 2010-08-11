@@ -6,9 +6,9 @@ from abjad.components.NoteHead import NoteHead
 
 class Chord(_Leaf):
 
-   def __init__(self, *args):
+   def __init__(self, *args, **kwargs):
       self._initializer = _ChordInitializer(self, _Leaf, *args)
-
+      self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
 

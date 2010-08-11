@@ -4,7 +4,8 @@ from abjad import *
 def test_BeamInterface_01( ):
    '''Beam interface attributes on a lone note.'''
    t = Note(0, (3, 64))
-   assert t.beam.counts == (None, None)
+   #assert t.beam.counts == (None, None)
+   assert t.beam.counts is None
    assert not t.beam.spanned
    assert t.beam.spanners == set([ ])
    assert t.beam.beamable
@@ -19,7 +20,8 @@ def test_BeamInterface_01( ):
 def test_BeamInterface_02( ):
    '''Beam interface attributes on a contained note.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   assert t[0].beam.counts == (None, None)
+   #assert t[0].beam.counts == (None, None)
+   assert t[0].beam.counts is None
    assert not t[0].beam.spanned
    assert t[0].beam.spanners == set([ ])
    assert t[0].beam.beamable
@@ -45,7 +47,8 @@ def test_BeamInterface_03( ):
       first in beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t.leaves[ : 4])
-   assert t[0].beam.counts == (None, None)
+   #assert t[0].beam.counts == (None, None)
+   assert t[0].beam.counts is None
    assert t[0].beam.spanned
    assert len(t[0].beam.spanners) == 1
    assert t[0].beam.beamable
@@ -72,7 +75,8 @@ def test_BeamInterface_04( ):
       middle of beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t.leaves[ : 4])
-   assert t[1].beam.counts == (None, None)
+   #assert t[1].beam.counts == (None, None)
+   assert t[1].beam.counts is None
    assert t[1].beam.spanned
    assert len(t[1].beam.spanners) == 1
    assert t[1].beam.beamable
@@ -99,7 +103,8 @@ def test_BeamInterface_05( ):
       last of beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t.leaves[ : 4])
-   assert t[3].beam.counts == (None, None)
+   #assert t[3].beam.counts == (None, None)
+   assert t[3].beam.counts is None
    assert t[3].beam.spanned
    assert len(t[3].beam.spanners) == 1
    assert t[3].beam.beamable
@@ -126,7 +131,8 @@ def test_BeamInterface_06( ):
       lone beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[3])
-   assert t[3].beam.counts == (None, None)
+   #assert t[3].beam.counts == (None, None)
+   assert t[3].beam.counts is None
    assert t[3].beam.spanned
    assert len(t[3].beam.spanners) == 1
    assert t[3].beam.beamable
@@ -152,7 +158,8 @@ def test_BeamInterface_07( ):
    '''None can assign to counts.'''
    t = Note(0, (1, 32))
    t.beam.counts = None
-   assert t.beam.counts == (None, None)
+   #assert t.beam.counts == (None, None)
+   assert t.beam.counts is None
    assert t.format == "c'32"
    '''
    c'32

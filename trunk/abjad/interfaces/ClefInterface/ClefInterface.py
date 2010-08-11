@@ -19,7 +19,8 @@ class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       self._acceptableTypes = (Clef, )
       self._default = Clef('treble')
       self._forced = None
-      self._suppress = False
+      #self._suppress = False
+      self._suppress = None
 
    ## TODO: Generalize _self_should_contribute for both _Clef and _Meter ##
 
