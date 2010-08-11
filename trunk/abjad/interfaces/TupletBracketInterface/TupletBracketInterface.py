@@ -28,6 +28,7 @@ class TupletBracketInterface(_Interface, _GrobHandler, _ContextSettingHandler):
       '''Bind to client and handle LilyPond TupletBracket grob.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TupletBracket')
+      self._tuplet_full_length = None
 
    ## PUBLIC ATTRIBUTES ##
 

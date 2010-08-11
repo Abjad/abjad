@@ -539,6 +539,21 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.voice.interface.VoiceInterface`.'''
       return self._voice
 
+   ## PRIVATE METHODS ##
+
+   def _initialize_keyword_values(self, **kwargs):
+      for key, value in kwargs.iteritems( ):
+         self._set_keyword_value(key, value)
+
+   def _set_keyword_value(self, key, value):
+      attribute_chain = key.split('__')
+      most_attributes = attribute_chain[:-1]
+      last_attribute = attribute_chain[-1]
+      target_object = self
+      for attribute in most_attributes:
+         target_object = getattr(target_object, attribute)
+      setattr(target_object, last_attribute, value)
+
    ## PUBLIC METHODS ##
 
    def extend_in_parent(self, components):

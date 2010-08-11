@@ -30,6 +30,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
       _GrobHandler.__init__(self, 'StaffSymbol')
       self._acceptableTypes = (Staff, )
       self._effective = None
+      self._font_size = None
       self._forced = None
       self._hide = None
       self._show = None

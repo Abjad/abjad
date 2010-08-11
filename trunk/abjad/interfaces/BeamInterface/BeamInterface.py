@@ -6,8 +6,7 @@ from abjad.spanners import Beam
 import types
 
 
-class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, 
-   _SpannerReceptor):
+class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, _SpannerReceptor):
    '''Handle LilyPond Beam grob.
 
    Interface to LilyPond \setStemLeftBeamCount, \setStemRightBeamCount.

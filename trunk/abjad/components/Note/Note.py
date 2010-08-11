@@ -6,8 +6,9 @@ from abjad.components.Note._NoteInitializer import _NoteInitializer
 class Note(_Leaf):
    '''The Abjad model of a single note.'''
    
-   def __init__(self, *args):
+   def __init__(self, *args, **kwargs):
       self._initializer = _NoteInitializer(self, _Leaf, *args)
+      self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
 

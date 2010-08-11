@@ -1,10 +1,7 @@
-from abjad.components.Chord import Chord
 from abjad.components._Component import _Component
 from abjad.components._Leaf import _Leaf
-from abjad.components._Measure import RigidMeasure
-from abjad.components.Note import Note
-from abjad.components._Tuplet import FixedDurationTuplet
-from abjad.components._Tuplet import FixedMultiplierTuplet
+from abjad.tools.componenttools._container_to_pitch_and_rhythm_skeleton import _container_to_pitch_and_rhythm_skeleton
+from abjad.tools.componenttools._leaf_to_pitch_and_rhythm_skeleton import _leaf_to_pitch_and_rhythm_skeleton
 
 
 def component_to_pitch_and_rhythm_skeleton(component):
@@ -94,40 +91,6 @@ def component_to_pitch_and_rhythm_skeleton(component):
       raise TypeError('must be Abjad component.')
 
    if isinstance(component, _Leaf):
-      return _leaf_skeleton(component)
+      return _leaf_to_pitch_and_rhythm_skeleton(component)
    else:
-      return _container_skeleton(component)
-
-   
-def _leaf_skeleton(leaf):
-   class_name = leaf.__class__.__name__
-   duration = repr(leaf.duration.written)
-   if isinstance(leaf, Note):
-      return '%s(%s, %s)' % (class_name, leaf.pitch.pair, duration)
-   elif isinstance(leaf, Chord):
-      return '%s(%s, %s)' % (class_name, leaf.pairs, duration)
-   else:
-      return '%s(%s)' % (class_name, duration)
-
-
-def _container_skeleton(container):
-   class_name = container.__class__.__name__
-   contents = [ ]
-   for x in container:
-      skeleton = component_to_pitch_and_rhythm_skeleton(x)
-      skeleton = skeleton.split('\n')
-      skeleton = ['\t' + line for line in skeleton]
-      skeleton = '\n'.join(skeleton)
-      contents.append(skeleton)
-   contents = ',\n'.join(contents)
-   if isinstance(container, RigidMeasure):
-      meter= repr(container.meter.effective)
-      return '%s(%s, [\n%s\n])' % (class_name, meter, contents)
-   elif isinstance(container, FixedDurationTuplet):
-      duration = repr(container.duration.target)
-      return '%s(%s, [\n%s\n])' % (class_name, duration, contents)
-   elif isinstance(container, FixedMultiplierTuplet):
-      multiplier = repr(container.duration.multiplier)
-      return '%s(%s, [\n%s\n])' % (class_name, multiplier, contents)
-   else:
-      return '%s([\n%s\n])' % (class_name, contents)
+      return _container_to_pitch_and_rhythm_skeleton(component)
