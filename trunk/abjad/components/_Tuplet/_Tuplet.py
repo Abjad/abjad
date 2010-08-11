@@ -14,7 +14,7 @@ class _Tuplet(Container):
       self._duration = _TupletDurationInterface(self)
       self._force_fraction = None
       self._formatter = _TupletFormatter(self) 
-      self._invisible = False
+      self._invisible = None
 
    ## OVERLOADS ##
 
@@ -64,7 +64,7 @@ class _Tuplet(Container):
          '''Read / write boolean to render tuplet invisible.'''
          return self._invisible
       def fset(self, arg):
-         assert isinstance(arg, bool)
+         assert isinstance(arg, (bool, type(None)))
          self._invisible = arg
       return property(**locals())
 

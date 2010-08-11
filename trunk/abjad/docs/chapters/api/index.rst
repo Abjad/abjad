@@ -183,6 +183,7 @@ componenttools
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
    tools/componenttools/component_to_pitch_and_rhythm_skeleton
+   tools/componenttools/component_to_pitch_and_rhythm_skeleton_with_interface_attributes
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/get_first_component_in_expr_with_name
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component

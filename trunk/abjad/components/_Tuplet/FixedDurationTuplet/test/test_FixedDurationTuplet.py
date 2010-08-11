@@ -66,7 +66,7 @@ def test_FixedDurationTuplet_05( ):
    '''Tuplet.invisible formats compressed music.'''
 
    t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-   assert t.invisible == False
+   assert t.invisible is None
    t.invisible = True
    assert t.format == "\\scaleDurations #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"
 
