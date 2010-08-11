@@ -29,7 +29,7 @@ class KeySignature(_Abjad):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s, %s)' % (self.__class__.__name__, self.tonic, self.mode)
+      return '%s("%s", "%s")' % (self.__class__.__name__, self.tonic, self.mode)
 
    def __setattr__(self, *args):
       raise AttributeError('%s objects are immutable.' % self.__class__.__name__)

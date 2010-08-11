@@ -16,7 +16,7 @@ class Clef(_Abjad):
       return arg == self.name
    
    def __repr__(self):
-      return 'Clef(%s)' % self.name
+      return 'Clef("%s")' % self.name
 
    def __setattr__(self, attribute, value):
       raise AttributeError('%s objects are read-only.' % self.__class__.__name__)

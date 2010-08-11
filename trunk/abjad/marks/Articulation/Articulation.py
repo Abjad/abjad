@@ -12,9 +12,36 @@ class Articulation(_Abjad):
          -\staccato
    '''
 
-   def __init__(self, string = None, direction = None):
-      self.string = string
-      self.direction = direction
+   def __init__(self, *args):
+      assert len(args) in range(3)
+      if len(args) >= 2:
+         assert isinstance(args[0], (str, types.NoneType))
+         assert isinstance(args[1], (str, types.NoneType))
+         self.string = args[0]
+         self.direction = args[1]
+      elif len(args) == 1:
+         assert isinstance(args[0], (str, types.NoneType))
+         if args[0]:
+            splits = args[0].split('\\')
+            assert len(splits) in (1, 2)
+            if len(splits) == 1:
+               self.string = args[0]
+               self.direction = None
+            elif len(splits) == 2:
+               self.string = splits[1]
+               if splits[0]:
+                  self.direction = splits[0]
+               else:
+                  self.direction = None
+         else:
+            self.string = None
+            self.direction = None
+      else:
+         self.string = None
+         self.direction = None
+
+      #self.string = string
+      #self.direction = direction
       #super(Articulation, self).__setattr__('string', string)
       #super(Articulation, self).__setattr__('direction', direction)
 
@@ -31,7 +58,7 @@ class Articulation(_Abjad):
          return False
 
    def __repr__(self):
-      return 'Articulation(%s)' % self
+      return 'Articulation("%s")' % self
 
    #def __setattr__(self, *args):
    #   raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
