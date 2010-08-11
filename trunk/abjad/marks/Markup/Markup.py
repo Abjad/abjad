@@ -20,13 +20,17 @@ class Markup(_Abjad):
    Markup contents must be set by hand.
    '''
 
-   def __init__(self, arg):
+   def __init__(self, arg, style = 'backslash'):
       if isinstance(arg, str):
-         self._contents = arg
-         self.style = 'backslash'
+         #self._contents = arg
+         #self.style = 'backslash'
+         super(Markup, self).__setattr__('contents', arg)
+         super(Markup, self).__setattr__('style', style)
       elif isinstance(self, Markup):
-         self._contents = arg.contents
-         self.style = arg.style
+         #self._contents = arg.contents
+         #self.style = arg.style
+         super(Markup, self).__setattr__('contents', arg.contents)
+         super(Markup, self).__setattr__('style', arg.style)
       else:
          raise TypeError('must be string or other markup instance.')
 
@@ -35,6 +39,9 @@ class Markup(_Abjad):
    _styles = ('backslash', 'scheme')
 
    ## OVERLOADS ##
+
+   def __delattr__(self, *args):
+      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __eq__(self, arg):
       if isinstance(arg, Markup):
@@ -48,15 +55,18 @@ class Markup(_Abjad):
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self.contents)
 
+   def __setattr__(self, *args):
+      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
+
    def __str__(self):
       return self.format
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def contents(self):
-      '''Read-only content string.'''
-      return self._contents
+#   @property
+#   def contents(self):
+#      '''Read-only content string.'''
+#      return self._contents
 
    @property
    def format(self):
@@ -75,20 +85,20 @@ class Markup(_Abjad):
       else:
          raise ValueError('unknown markup style.')
 
-   @apply
-   def style( ):
-      def fget(self):
-         '''Read / write attribute set to either 
-         ``'backslash'`` or ``'scheme'``.
-
-         Default to 'backslash'. ::
-
-            abjad> markup = Markup('"This is markup text."')
-            abjad> markup.style
-            'backslash'
-         '''
-         return self._style
-      def fset(self, arg):
-         assert arg in self._styles
-         self._style = arg
-      return property(**locals( ))
+#   @apply
+#   def style( ):
+#      def fget(self):
+#         '''Read / write attribute set to either 
+#         ``'backslash'`` or ``'scheme'``.
+#
+#         Default to 'backslash'. ::
+#
+#            abjad> markup = Markup('"This is markup text."')
+#            abjad> markup.style
+#            'backslash'
+#         '''
+#         return self._style
+#      def fset(self, arg):
+#         assert arg in self._styles
+#         self._style = arg
+#      return property(**locals( ))

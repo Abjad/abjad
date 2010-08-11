@@ -1,17 +1,22 @@
-from abjad.core import _GrobHandler
+from abjad.core import _Abjad
 
 
-class KeySignature(_GrobHandler):
+class KeySignature(_Abjad):
 
    def __init__(self, tonic, mode):
       from abjad.tools import pitchtools
       from abjad.tools import tonalitytools
-      _GrobHandler.__init__(self, 'KeySignature')
-      tonic = pitchtools.NamedPitchClass(tonic)
-      self._tonic = tonic
-      self._mode = tonalitytools.Mode(mode)
+      #self._tonic = pitchtools.NamedPitchClass(tonic)
+      #self._mode = tonalitytools.Mode(mode)
+      _tonic = pitchtools.NamedPitchClass(tonic)
+      _mode = tonalitytools.Mode(mode)
+      super(KeySignature, self).__setattr__('_tonic', _tonic)
+      super(KeySignature, self).__setattr__('_mode', _mode)
 
    ## OVERLOADS ##
+
+   def __delattr__(self, *args):
+      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __eq__(self, arg):
       if isinstance(arg, KeySignature):
@@ -24,7 +29,10 @@ class KeySignature(_GrobHandler):
       return not self == arg
 
    def __repr__(self):
-      return 'KeySignature(%s, %s)' % (self.tonic, self.mode)
+      return '%s(%s, %s)' % (self.__class__.__name__, self.tonic, self.mode)
+
+   def __setattr__(self, *args):
+      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __str__(self):
       return '%s-%s' % (self.tonic, self.mode)

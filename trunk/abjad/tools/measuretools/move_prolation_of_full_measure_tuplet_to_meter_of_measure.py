@@ -38,8 +38,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
             tuplet = measure[0]
             tuplet_multiplier = tuplet.duration.multiplier
             tuplet_denominator = tuplet_multiplier._d
-            reduced_denominator = mathtools.remove_powers_of_two(
-               tuplet_denominator)
+            reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
             meter = measure.meter.effective
             meter_rational = Rational(meter.numerator, meter.denominator)
             numerator = meter_rational._n * reduced_denominator

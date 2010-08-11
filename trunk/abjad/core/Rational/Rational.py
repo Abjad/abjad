@@ -3,14 +3,17 @@ class Rational(object):
 
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], (int, long)):
-         self._numerator = args[0]
-         self._denominator = 1
+         #self._numerator = args[0]
+         #self._denominator = 1
+         numerator, denominator = args[0], 1
       elif len(args) == 1 and isinstance(args[0], Rational):
          rational = args[0]
-         self._numerator = rational._numerator
-         self._denominator = rational._denominator
+         #self._numerator = rational._numerator
+         #self._denominator = rational._denominator
+         numerator, denominator = rational._numerator, rational._denominator
       elif len(args) == 1 and isinstance(args[0], tuple):
-         self.__init__(*args[0])
+         #self.__init__(*args[0])
+         numerator, denominator = args[0]
       elif len(args) == 2:
          n, d = args
          if not isinstance(n, (int, long)):
@@ -20,22 +23,32 @@ class Rational(object):
          if d == 0:
             raise ZeroDivisionError
          gcd = self._gcd(n, d)
-         self._numerator = n / gcd
-         self._denominator = d / gcd
+         #self._numerator = n / gcd
+         #self._denominator = d / gcd
+         numerator = n / gcd
+         denominator = d / gcd
       else:
          raise TypeError
+      super(Rational, self).__setattr__('_numerator', numerator)
+      super(Rational, self).__setattr__('_denominator', denominator)
 
-   ## INIT UTILS ##
+   ## PRIVATE METHODS ##
 
    def _gcd(self, a, b):
        if b == 0: 
          return a
        return self._gcd(b, a % b)
 
-   ## REPR ##
+   ## OVERLOADS ##
+
+   def __delattr__(self, *args):
+      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __repr__(self):
-      return 'Rational(%s, %s)' % (self._n, self._d)
+      return '%s(%s, %s)' % (self.__class__.__name__, self._n, self._d)
+
+   def __setattr__(self, *args):
+      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __str__(self):
       if self._d == 1:

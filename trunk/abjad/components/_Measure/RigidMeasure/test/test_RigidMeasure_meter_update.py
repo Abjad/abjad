@@ -17,7 +17,8 @@ def test_RigidMeasure_meter_update_01( ):
    '''
 
    t.pop( )
-   t.meter.forced.numerator = 3
+   #t.meter.forced.numerator = 3
+   t.meter.forced = Meter(3, 8)
 
    r'''
    {

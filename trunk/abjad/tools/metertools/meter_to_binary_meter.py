@@ -17,14 +17,14 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Rational(1)):
       ``metertools.meter_to_binary_meter( )``.
    '''
    
-   # check input
+   ## check input
    assert isinstance(nonbinary_meter, Meter)
    assert isinstance(contents_multiplier, Rational)
 
-   # save nonbinary meter and denominator
+   ## save nonbinary meter and denominator
    nonbinary_denominator = nonbinary_meter.denominator
 
-   # find binary denominator
+   ## find binary denominator
    if contents_multiplier == Rational(1):
       binary_denominator = mathtools.greatest_power_of_two_less_equal(
          nonbinary_denominator)
@@ -32,13 +32,17 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Rational(1)):
       binary_denominator = mathtools.greatest_power_of_two_less_equal(
          nonbinary_denominator, 1)
 
-   # find binary pair
+   ## find binary pair
    nonbinary_pair = (nonbinary_meter.numerator, nonbinary_meter.denominator)
-   binary_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(nonbinary_pair, binary_denominator)
+   binary_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+      nonbinary_pair, binary_denominator)
 
-   # update meter numerator and denominator
-   nonbinary_meter.numerator = binary_pair[0]
-   nonbinary_meter.denominator = binary_pair[1]
+#   ## update meter numerator and denominator
+#   nonbinary_meter.numerator = binary_pair[0]
+#   nonbinary_meter.denominator = binary_pair[1]
+#
+#   # return meter
+#   return nonbinary_meter
 
-   # return meter
-   return nonbinary_meter
+   ## return new binary meter
+   return Meter(*binary_pair)

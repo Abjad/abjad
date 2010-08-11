@@ -2,8 +2,7 @@ from abjad import *
 
 
 def test_Meter_numerator_01( ):
-   '''
-   Meters implement a read / write numerator.
+   '''Meters are immutable.
    '''
 
    t = Meter(3, 8)
@@ -12,8 +11,8 @@ def test_Meter_numerator_01( ):
    assert t.denominator == 8
    assert t.duration == Rational(3, 8)
 
-   t.numerator = 4
-
-   assert t.numerator == 4
-   assert t.denominator == 8
-   assert t.duration == Rational(1, 2)
+#   t.numerator = 4
+#
+#   assert t.numerator == 4
+#   assert t.denominator == 8
+#   assert t.duration == Rational(1, 2)

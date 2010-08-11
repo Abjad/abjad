@@ -25,18 +25,20 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
    for measure in iterate_measures_forward_in_expr(expr):
       if measure.meter.effective.nonbinary:
 
-         # find meter and contents multipliers
+         ## find meter and contents multipliers
          meter_multiplier = measure.meter.effective.multiplier
          contents_multiplier = componenttools.get_likely_multiplier_of_components(measure[:])
 
-         # update nonbinary meter to binary
-         metertools.meter_to_binary_meter(measure.meter.effective, contents_multiplier)
+         ## update nonbinary meter to binary
+         #metertools.meter_to_binary_meter(measure.meter.effective, contents_multiplier)
+         binary_meter = metertools.meter_to_binary_meter(
+            measure.meter.effective, contents_multiplier)
+         measure.meter.forced = binary_meter
 
-         # find target duration and create tuplet
+         ## find target duration and create tuplet
          target_duration = meter_multiplier * measure.duration.contents
          tuplet = FixedDurationTuplet(target_duration, measure[:])
 
-         # scale tuplet contents, if helpful
+         ## scale tuplet contents, if helpful
          if contents_multiplier is not None:
-            containertools.scale_contents_of_container(
-               tuplet, ~contents_multiplier)
+            containertools.scale_contents_of_container(tuplet, ~contents_multiplier)

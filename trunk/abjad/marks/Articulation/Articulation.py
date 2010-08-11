@@ -3,21 +3,25 @@ import types
 
 
 class Articulation(_Abjad):
-   '''Any staccato, tenuto, portato, etc.
+   '''Any staccato, tenuto, portato or other articulation:
 
       ::
 
          abjad> t = Articulation('staccato')
          abjad> print t.format
-         -\staccato'''
+         -\staccato
+   '''
 
    def __init__(self, string = None, direction = None):
-      '''Init ``string`` and ``direction`` both to ``None``.'''
-
       self.string = string
       self.direction = direction
+      #super(Articulation, self).__setattr__('string', string)
+      #super(Articulation, self).__setattr__('direction', direction)
 
    ## OVERLOADS ##
+
+   #def __delattr__(self, *args):
+   #   raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __eq__(self, expr):
       assert isinstance(expr, Articulation)
@@ -28,6 +32,9 @@ class Articulation(_Abjad):
 
    def __repr__(self):
       return 'Articulation(%s)' % self
+
+   #def __setattr__(self, *args):
+   #   raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __str__(self):
       if self.string:

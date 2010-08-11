@@ -31,19 +31,28 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
       result = [ ]
       spanner = self.spanner
       if not spanner.hide:
-         meter = spanner._matching_meter(leaf)
-         if meter and not getattr(meter, '_temp_hide', False):
+         #meter = spanner._matching_meter(leaf)
+         matching_meter = spanner._matching_meter(leaf)
+         if matching_meter is None:
+            meter = None
+         else:
+            meter, temp_hide = matching_meter
+         #if meter and not getattr(meter, '_temp_hide', False):
+         if meter and not temp_hide:
             result.append(meter.format)
+         #m = spanner._slicing_meters(leaf)
          m = spanner._slicing_meters(leaf)
-         m = [meter for meter in m if not getattr(meter, '_temp_hide', False)]
+         #m = [meter for meter in m if not getattr(meter, '_temp_hide', False)]
+         m = [triple for triple in m if not triple[-1]]
          if m:
             ## set spanner._slicing_metersFound as temporary flag so that 
             ## spanner._after does not have to recompute _slicing_meters( )
             spanner._slicing_metersFound = True
             result.append('<<')
-            for meter in m:
+            for meter, moffset, temp_hide in m:
                s = Skip(Rational(1))
-               s.duration.multiplier = meter.offset - leaf.offset.prolated.start
+               #s.duration.multiplier = meter.offset - leaf.offset.prolated.start
+               s.duration.multiplier = moffset - leaf.offset.prolated.start
                s.meter.forced = meter
                container = Container([s])
                result.append(container.format)

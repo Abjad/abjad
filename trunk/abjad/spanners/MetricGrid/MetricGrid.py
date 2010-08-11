@@ -1,5 +1,4 @@
-from abjad.spanners.MetricGrid._MetricGridSpannerFormatInterface import \
-   _MetricGridSpannerFormatInterface
+from abjad.spanners.MetricGrid._MetricGridSpannerFormatInterface import _MetricGridSpannerFormatInterface
 from abjad.spanners.Spanner import Spanner
 from abjad.spanners.Tie import Tie
 from abjad.tools import mathtools
@@ -20,17 +19,20 @@ class MetricGrid(Spanner):
       from abjad.tools import leaftools
       ## fuse tied notes
       meters = self.meters
-      meter = meters.next( )
+      #meter = meters.next( )
+      meter, moffset, temp_hide = meters.next( )
       leaves_in_meter = [[]]
       leaf = self.leaves[0]
       ## group leaves by measure.
       while leaf:
-         if leaf.offset.prolated.start < meter.offset + meter.duration:
+         #if leaf.offset.prolated.start < meter.offset + meter.duration:
+         if leaf.offset.prolated.start < moffset + meter.duration:
             leaves_in_meter[-1].append(leaf)
             leaf = leaf.next
          else:
             try:
-               meter = meters.next( )
+               #meter = meters.next( )
+               meter, moffset, temp_hide = meters.next( )
                leaves_in_meter.append([])
             except StopIteration:
                break
@@ -61,16 +63,21 @@ class MetricGrid(Spanner):
          
    def _matching_meter(self, leaf):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''
-      for m in self.meters:
-         if leaf.offset.prolated.start == m.offset: 
-            return m
+      #for m in self.meters:
+      for m, moffset, temp_hide in self.meters:
+         #if leaf.offset.prolated.start == m.offset: 
+         if leaf.offset.prolated.start == moffset: 
+            return m, temp_hide
 
    def _slicing_meters(self, leaf):
       '''Return the MetricStrip(s) that slices leaf, if any.'''
-      for m in self.meters:
-         if leaf.offset.prolated.start < m.offset:
-            if leaf.offset.prolated.stop > m.offset:
-               yield m 
+      #for m in self.meters:
+      for m, moffset, temp_hide in self.meters:
+         #if leaf.offset.prolated.start < m.offset:
+         if leaf.offset.prolated.start < moffset:
+            #if leaf.offset.prolated.stop > m.offset:
+            if leaf.offset.prolated.stop > moffset:
+               yield m, moffset, temp_hide
             else:
                break
 
@@ -88,11 +95,15 @@ class MetricGrid(Spanner):
             m = self._meters[i % len(self._meters)]
             m = Meter(*m)
             ## new attribute
-            m.offset = moffset
+            #m.offset = moffset
             if prev_meter and prev_meter == m:
                #m.hide = True
-               m._temp_hide = True
-            yield m
+               #m._temp_hide = True
+               temp_hide = True
+            else:
+               temp_hide = False
+            #yield m
+            yield m, moffset, temp_hide
             moffset += m.duration
             i += 1
             prev_meter = m
@@ -111,5 +122,5 @@ class MetricGrid(Spanner):
       from abjad.tools import componenttools
       leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
       componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
-         leaves, [x.duration for x in self.meters], tie_after = True)
+         leaves, [x[0].duration for x in self.meters], tie_after = True)
       self._fuse_tied_leaves_within_measures( )

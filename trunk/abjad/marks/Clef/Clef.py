@@ -4,15 +4,22 @@ from abjad.core import _Abjad
 class Clef(_Abjad):
 
    def __init__(self, name = 'treble'):
-      self.name = name
+      #self.name = name
+      super(Clef, self).__setattr__('name', name)
 
    ## OVERLOADS ##
+
+   def __delattr__(self, *args):
+      raise AttributeError('%s objects are read-only.' % self.__class__.__name__)
 
    def __eq__(self, arg):
       return arg == self.name
    
    def __repr__(self):
       return 'Clef(%s)' % self.name
+
+   def __setattr__(self, attribute, value):
+      raise AttributeError('%s objects are read-only.' % self.__class__.__name__)
 
    def __str__(self):
       return self.name

@@ -22,8 +22,8 @@ def test_Markup___eq___02( ):
    '''Markup compare equal when they format the same.'''
 
    markup_1 = Markup('foo')
-   markup_2 = Markup('foo')
-   markup_2.style = 'scheme'
+   markup_2 = Markup('foo', style = 'scheme')
+   #markup_2.style = 'scheme'
 
    assert not markup_1 == markup_2
    assert not markup_2 == markup_1

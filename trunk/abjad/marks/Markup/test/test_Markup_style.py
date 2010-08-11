@@ -17,6 +17,6 @@ def test_Markup_style_03( ):
 
 
 def test_Markup_style_04( ):
-   t = Markup("(markup #:draw-line '(0 . -1))")
-   t.style = 'scheme'
+   t = Markup("(markup #:draw-line '(0 . -1))", style = 'scheme')
+   #t.style = 'scheme'
    assert t.format == "#(markup #:draw-line '(0 . -1))"
