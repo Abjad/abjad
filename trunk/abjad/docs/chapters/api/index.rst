@@ -113,30 +113,30 @@ Spanners
 .. toctree::
    :maxdepth: 1
 
-   spanners/Beam/Beam
-   spanners/Bracket/Bracket
-   spanners/Beam/ComplexBeam/ComplexBeam
-   spanners/Crescendo/Crescendo
-   spanners/Decrescendo/Decrescendo
-   spanners/Beam/DuratedComplexBeam/DuratedComplexBeam
+   spanners/BeamSpanner/BeamSpanner
+   spanners/BracketSpanner/BracketSpanner
+   spanners/BeamSpanner/ComplexBeamSpanner/ComplexBeamSpanner
+   spanners/CrescendoSpanner/CrescendoSpanner
+   spanners/DecrescendoSpanner/DecrescendoSpanner
+   spanners/BeamSpanner/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
    spanners/DynamicTextSpanner/DynamicTextSpanner
-   spanners/Glissando/Glissando
-   spanners/Hairpin/Hairpin
+   spanners/GlissandoSpanner/GlissandoSpanner
+   spanners/HairpinSpanner/HairpinSpanner
    spanners/InstrumentSpanner/InstrumentSpanner
-   spanners/Beam/MeasuredComplexBeam/MeasuredComplexBeam
-   spanners/MetricGrid/MetricGrid
+   spanners/BeamSpanner/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
+   spanners/MetricGridSpanner/MetricGridSpanner
    spanners/OctavationSpanner/OctavationSpanner
    spanners/OverrideSpanner/OverrideSpanner
-   spanners/PianoPedal/PianoPedal
+   spanners/PianoPedalSpanner/PianoPedalSpanner
    spanners/TempoSpanner/ProportionalTempoSpanner/ProportionalTempoSpanner
-   spanners/Slur/Slur
+   spanners/SlurSpanner/SlurSpanner
    spanners/SpacingSpanner/SpacingSpanner
    spanners/Spanner/Spanner
    spanners/TempoSpanner/TempoSpanner
    spanners/TextScriptSpanner/TextScriptSpanner
    spanners/TextSpanner/TextSpanner
-   spanners/Tie/Tie
-   spanners/Trill/Trill
+   spanners/TieSpanner/TieSpanner
+   spanners/TrillSpanner/TrillSpanner
 
 
 Tools
