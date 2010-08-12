@@ -1,6 +1,6 @@
 from abjad import *
 
-def test_Slur_01( ):
+def test_SlurSpanner_01( ):
    '''Slur spanner can attach to a container.'''
    t = Voice(macros.scale(4))
    s = SlurSpanner(t)
@@ -15,7 +15,7 @@ def test_Slur_01( ):
    }
    '''
 
-def test_Slur_02( ):
+def test_SlurSpanner_02( ):
    '''Slur spanner can attach to leaves.'''
    t = Voice(macros.scale(4))
    s = SlurSpanner(t[:])
@@ -25,7 +25,7 @@ def test_Slur_02( ):
    assert t.format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
-def test_Slur_03( ):
+def test_SlurSpanner_03( ):
    '''Position may be set to None, 'neutral', 'up' or 'down'. '''
    t = Staff(notetools.make_repeated_notes(4))
    p = SlurSpanner(t[:])

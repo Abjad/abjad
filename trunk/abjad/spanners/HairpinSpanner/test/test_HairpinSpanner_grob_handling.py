@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Hairpin_grob_handling_01( ):
+def test_HairpinSpanner_grob_handling_01( ):
    '''
    The Abjad Hairpin handles the LilyPond DynamicLineSpanner grob.
    '''

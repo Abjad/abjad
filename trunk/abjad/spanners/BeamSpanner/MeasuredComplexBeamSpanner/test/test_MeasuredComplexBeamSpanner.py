@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MeasuredComplexBeam_01( ):
+def test_MeasuredComplexBeamSpanner_01( ):
 
    t = Staff(RigidMeasure((2, 16), notetools.make_repeated_notes(2, Rational(1, 16))) * 3)
    macros.diatonicize(t)

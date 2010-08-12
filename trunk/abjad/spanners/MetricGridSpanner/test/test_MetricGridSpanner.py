@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MetricGrid_01( ):
+def test_MetricGridSpanner_01( ):
    t = Staff(Note(0, (1, 8)) * 8)
    m = MetricGridSpanner(t.leaves, [(2, 8)])
 
@@ -22,7 +22,7 @@ def test_MetricGrid_01( ):
    '''
    
 
-def test_MetricGrid_02( ):
+def test_MetricGridSpanner_02( ):
    t = Staff(Note(0, (1,8)) * 8)
    m = MetricGridSpanner(t.leaves, [(3, 16)])
 
@@ -43,7 +43,7 @@ def test_MetricGrid_02( ):
    '''
    
 
-def test_MetricGrid_03( ):
+def test_MetricGridSpanner_03( ):
    '''MetricGrid cycles throught given meters to cover spanner's duration.''' 
 
    t = Staff(Note(0, (1,8)) * 8)
@@ -71,7 +71,7 @@ def test_MetricGrid_03( ):
    '''
 
 
-def test_MetricGrid_04( ):
+def test_MetricGridSpanner_04( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
 
    t = Staff(notetools.make_repeated_notes(8))
@@ -108,7 +108,7 @@ def test_MetricGrid_04( ):
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\t<<\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t<<\n\t{\n\t\t\\time 3/16\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
 
 
-def test_MetricGrid_05( ):
+def test_MetricGridSpanner_05( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
 
    t = Staff(Note(0, (1,2)) * 2)
@@ -147,7 +147,7 @@ def test_MetricGrid_05( ):
    assert t.format == "\\new Staff {\n\t\\time 1/8\n\t<<\n\t{\n\t\t\\time 1/4\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 1/8\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n\t\\time 1/4\n\t<<\n\t{\n\t\t\\time 1/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 1/4\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n}"
 
 
-def test_MetricGrid_06( ):
+def test_MetricGridSpanner_06( ):
    '''MetricGrid splits notes on bar lines.'''
 
    t = Staff(Note(0, (1,8)) * 8)
@@ -175,7 +175,7 @@ def test_MetricGrid_06( ):
    '''
 
 
-def test_MetricGrid_07( ):
+def test_MetricGridSpanner_07( ):
    '''MetricGrid splits notes on bar lines.'''
 
    t = Staff(Note(0, (1,8))*8)
@@ -205,7 +205,7 @@ def test_MetricGrid_07( ):
    '''
 
 
-def test_MetricGrid_08( ):
+def test_MetricGridSpanner_08( ):
    '''MetricGrid split works with tuplets.'''
 
    t = Voice([FixedMultiplierTuplet((2,3), Note(0, (1,8)) * 6)])
@@ -232,7 +232,7 @@ def test_MetricGrid_08( ):
    '''
 
 
-def test_MetricGrid_09( ):
+def test_MetricGridSpanner_09( ):
    '''MetricGrid split works with nested tuplets.'''
 
    t = Voice([FixedMultiplierTuplet((2,3), [Note(0, (1,8)), 
@@ -278,7 +278,7 @@ def test_MetricGrid_09( ):
    '''
 
 
-def test_MetricGrid_10( ):
+def test_MetricGridSpanner_10( ):
    '''MetricGrid split fuses correctly tied leaves in last measure.'''
 
    v = Voice(Note(1, (1, 4))*3)
@@ -304,7 +304,7 @@ def test_MetricGrid_10( ):
    '''
 
 
-def test_MetricGrid_11( ):
+def test_MetricGridSpanner_11( ):
    '''MetricGrid can split conditionally.'''
 
    v = Voice([Note(1, (1, 4)), Rest((1, 4)), Note(1, (1, 4))])

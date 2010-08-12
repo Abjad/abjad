@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Tie_grob_handling_01( ):
+def test_TieSpanner_grob_handling_01( ):
    '''
    The Abjad Tie spanner handles the LilyPond Tie grob.
    '''

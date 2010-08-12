@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Trill_grob_handling_01( ):
+def test_TrillSpanner_grob_handling_01( ):
    '''
    The Abjad Trill spanner handles the LilyPond TrillSpanner grob.
    '''

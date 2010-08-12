@@ -1,7 +1,7 @@
 from abjad import *
 
 
-#def test_Hairpin___copy___01( ):
+#def test_HairpinSpanner___copy___01( ):
 #   '''Do not copy incomplete hairpins.'''
 #   staff = Staff([Note(n, (1, 8)) for n in range(8)])
 #   CrescendoSpanner(staff[ : 4])
@@ -23,7 +23,7 @@ from abjad import *
 #   '''
 
 
-def test_Hairpin___copy___02( ):
+def test_HairpinSpanner___copy___02( ):
    '''Do copy complete hairpins.'''
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
    CrescendoSpanner(staff[ : 4])
