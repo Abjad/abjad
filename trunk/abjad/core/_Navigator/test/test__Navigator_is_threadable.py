@@ -762,7 +762,7 @@ def test__Navigator_is_threadable_24( ):
       All components thread.'''
 
    t = Container(Container(notetools.make_repeated_notes(4)) * 2)
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
 
    assert t[0][-1]._navigator._is_threadable(t[1][0])
    assert t[1][0]._navigator._is_threadable(t[0][-1])
@@ -789,7 +789,7 @@ def test__Navigator_is_threadable_25( ):
    '''Differently identified anonymous voices do not thread.'''
 
    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
 
    assert not t[0][-1]._navigator._is_threadable(t[1][0])
    assert not t[1][0]._navigator._is_threadable(t[0][-1])
@@ -817,7 +817,7 @@ def test__Navigator_is_threadable_26( ):
       Differently identified anonymous staves do not thread.'''
 
    t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    
    assert not t[0][0][-1]._navigator._is_threadable(t[1][0][0])
    assert not t[1][0][0]._navigator._is_threadable(t[0][0][-1])

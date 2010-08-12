@@ -7,7 +7,7 @@ def set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
    to the notes and chords in `expr`. ::
 
       abjad> staff = Voice(notetools.make_notes(0, [(5, 32)] * 4))
-      abjad> pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
+      abjad> macros.chromaticize(staff)
       abjad> f(staff)
       \new Voice {
               c'8 ~
@@ -24,7 +24,7 @@ def set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.chromaticize( )`` to
-      ``pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr( )``.
+      ``macros.chromaticize( )``.
    '''
    from abjad.tools import tietools 
 

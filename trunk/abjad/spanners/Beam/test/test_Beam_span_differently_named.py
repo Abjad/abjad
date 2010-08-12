@@ -10,7 +10,7 @@ def test_Beam_span_differently_named_01( ):
    v2 = Voice(notetools.make_repeated_notes(4))
    v2.name = 'bar'
    t = Staff([v1, v2])
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
 
    r'''
    \new Staff {
@@ -64,7 +64,7 @@ def test_Beam_span_differently_named_02( ):
    t[0].name, t[1].name = 'foo', 'foo'
    t[0][0].name, t[1][0].name = 'first', 'first'
    t[0][1].name, t[1][1].name = 'second', 'second'
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
 
    r'''
    {

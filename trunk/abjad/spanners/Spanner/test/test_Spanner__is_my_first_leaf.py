@@ -6,7 +6,7 @@ def test_Spanner__is_my_first_leaf_01( ):
    '''Spanner attached to flat container.'''
 
    t = Voice(notetools.make_repeated_notes(4))
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    p = Spanner(t)
 
    r'''
@@ -33,7 +33,7 @@ def test_Spanner__is_my_first_leaf_02( ):
 
    t = Voice(notetools.make_repeated_notes(4))
    t.insert(2, Container(notetools.make_repeated_notes(2)))
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    p = Spanner(t[ : 3])
 
    r'''
@@ -59,7 +59,7 @@ def test_Spanner__is_my_first_leaf_02( ):
 #   t = Voice(notetools.make_repeated_notes(4))
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
-#   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+#   macros.chromaticize(t)
 #
 #   r'''\new Voice {
 #      c'8

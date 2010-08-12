@@ -5,7 +5,7 @@ def test_ClefInterface_copy_01( ):
    '''Forced clefs copy.'''
 
    t = Staff(notetools.make_repeated_notes(8))
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
    t.extend(componenttools.clone_components_and_immediate_parent_of_first_component(t[:2]))
@@ -47,7 +47,7 @@ def test_ClefInterface_copy_02( ):
    '''Implicit clefs do not copy.'''
 
    t = Staff(notetools.make_repeated_notes(8))
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
    t.extend(componenttools.clone_components_and_immediate_parent_of_first_component(t[2:4]))

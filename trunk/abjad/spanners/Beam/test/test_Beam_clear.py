@@ -5,7 +5,7 @@ def test_Beam_clear_01( ):
    '''Clear length-one spanner.'''
 
    t = Staff(notetools.make_repeated_notes(8))
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    Beam(t[0])
 
    r'''
@@ -44,7 +44,7 @@ def test_Beam_clear_02( ):
    '''Clear length-four spanner.'''
 
    t = Staff(notetools.make_repeated_notes(8))
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    Beam(t[:4])
 
    r'''

@@ -8,7 +8,7 @@ def test_Beam_span_like_named_01( ):
    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
 
    p = Beam(t)
    assert len(p.components) == 1
@@ -50,7 +50,7 @@ def test_Beam_span_like_named_02( ):
    t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
    t[0].name, t[1].name = 'foo', 'foo'
    t[0][0].name, t[1][0].name = 'bar', 'bar'
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    
    assert py.test.raises(AssertionError, 'p = Beam(t)')
 
@@ -69,7 +69,7 @@ def test_Beam_span_like_named_03( ):
    t[1].parallel = True
    t[0][0].name, t[1][1].name = 'first', 'first'
    t[0][1].name, t[1][0].name = 'second', 'second'
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    
    p = Beam([t[0][0], t[1][1]])
    assert len(p.components) == 2
@@ -123,7 +123,7 @@ def test_Beam_span_like_named_04( ):
    t[0][0].name, t[1][0].name = 'first', 'first'
    t[0][1].name, t[1][1].name = 'second', 'second'
    del(t[1][1])
-   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.chromaticize(t)
    p = Beam([t[0][0], t[1][0]])
    
    assert len(p.components) == 2
