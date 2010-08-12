@@ -39,7 +39,7 @@ class MetricGrid(Spanner):
       ## group together leaves in same measure that are tied together.
       for leaves in leaves_in_meter:
          result = [[ ]]
-         if len(leaves) > 0:
+         if 0 < len(leaves):
             if leaves[0].tie.spanned:
                sp = leaves[0].tie.spanner
             else:
@@ -57,7 +57,7 @@ class MetricGrid(Spanner):
          for r in result:
             ## keep last after graces, if any
             ## TODO: this is very hacky. Find better solution
-            if len(r) > 0:
+            if 0 < len(r):
                r[0].grace.after = r[-1].grace.after
             leaftools.fuse_leaves_big_endian(r)
          
@@ -75,8 +75,8 @@ class MetricGrid(Spanner):
       for m, moffset, temp_hide in self.meters:
          #if leaf.offset.prolated.start < m.offset:
          if leaf.offset.prolated.start < moffset:
-            #if leaf.offset.prolated.stop > m.offset:
-            if leaf.offset.prolated.stop > moffset:
+            #if m.offset < leaf.offset.prolated.stop:
+            if moffset < leaf.offset.prolated.stop:
                yield m, moffset, temp_hide
             else:
                break

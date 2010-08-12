@@ -16,7 +16,7 @@ class _FixedDurationTupletDurationInterface(_TupletDurationInterface):
 
    @property
    def multiplier(self):
-      if len(self._client) > 0:
+      if 0 < len(self._client):
          return self.target / self.contents
       else:
          return None
@@ -35,7 +35,7 @@ class _FixedDurationTupletDurationInterface(_TupletDurationInterface):
          else:
             raise ValueError('Can not set tuplet rational from %s.' % 
                str(expr))
-         if rational > 0:
+         if 0 < rational:
             self._target = rational
          else:
             raise ValueError('Tuplet rational %s must be positive.' %

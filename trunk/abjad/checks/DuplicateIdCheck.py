@@ -11,8 +11,8 @@ class DuplicateIDCheck(_Check):
       components = componenttools.iterate_components_forward_in_expr(expr, _Component)
       total_ids = [id(x) for x in components]
       unique_ids = listtools.unique(total_ids)
-      if len(total_ids) > len(unique_ids):
+      if len(unique_ids) < len(total_ids):
          for cur_id in unique_ids:
-            if total_ids.count(cur_id) > 1:
+            if 1 < total_ids.count(cur_id):
                violators.extend([x for x in components if id(x) == cur_id])
       return violators, len(total_ids)

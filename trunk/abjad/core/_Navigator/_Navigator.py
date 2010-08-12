@@ -33,7 +33,6 @@ class _Navigator(_Abjad):
          if client.parallel:
             for x in client:
                result.extend(x._navigator._contemporaneous_start_contents)
-         #elif len(client) > 0:
          elif len(client):
             result.extend(client[0]._navigator._contemporaneous_start_contents)
       return result
@@ -77,7 +76,6 @@ class _Navigator(_Abjad):
             for x in client:
                if x.duration.preprolated == client_duration:
                   result.extend(x._navigator._contemporaneous_stop_contents)
-         #elif len(client) > 0:
          elif len(client):
             result.extend(client[-1]._navigator._contemporaneous_stop_contents)
       return result
@@ -114,7 +112,6 @@ class _Navigator(_Abjad):
          if self._client.parallel:
             for e in self._client:
                leaves.extend(e._navigator._first_leaves)
-         #elif len(self._client) > 0:
          elif len(self._client):
             leaves.extend(self._client[0]._navigator._first_leaves)
          else:
@@ -135,7 +132,6 @@ class _Navigator(_Abjad):
          if self._client.parallel:
             for e in self._client:
                leaves.extend(e._navigator._last_leaves)
-         #elif len(self._client) > 0:
          elif len(self._client):
             leaves.extend(self._client[-1]._navigator._last_leaves)
          else:
@@ -250,10 +246,10 @@ class _Navigator(_Abjad):
    @property
    def _prev_sibling(self):
       '''Returns the previous *sequential* element in the caller's parent; 
-         None otherwise'''
+      None otherwise'''
       rank = self._rank( )
       if (not rank is None) and (not self._client.parentage.parent.parallel): 
-         if rank - 1 >= 0:
+         if 0 <= rank - 1:
             return self._client.parentage.parent._music[rank - 1]
       else:
          return None
@@ -262,7 +258,7 @@ class _Navigator(_Abjad):
 
    def _advance(self, rank):
       '''Advance to self._client._music[rank], if possible,
-         otherwise ascend.'''
+      otherwise ascend.'''
       if hasattr(self._client, '_music'):
          if rank < len(self._client._music):
             return self._client._music[rank]

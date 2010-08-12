@@ -122,9 +122,9 @@ def _scopy_leaf(leaf, start, stop):
    from abjad.tools import leaftools
    from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
       clone_components_and_fracture_crossing_spanners
-   if start >= leaf.duration.prolated:
+   if leaf.duration.prolated <= start:
       return None
-   if stop > leaf.duration.prolated:
+   if leaf.duration.prolated < stop:
       stop = leaf.duration.prolated
    total = stop - start
    if total == 0:
@@ -166,11 +166,11 @@ def _get_lcopy(container, start, stop):
       if total_dur == start and start_leaf is None:
          start_leaf = i
          first_dif = 0
-      elif total_dur > start and start_leaf is None:
+      elif start < total_dur and start_leaf is None:
          start_leaf = i
          first_dif = leaf.duration.prolated - (total_dur - start)
          #print first_dif
-      if total_dur >= stop and stop_leaf is None:
+      if stop <= total_dur and stop_leaf is None:
          stop_leaf = i + 1
          #second_dif = leaf.duration.prolated - (total_dur - stop)
          flamingo = total_dur - stop

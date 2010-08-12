@@ -36,7 +36,7 @@ def get_parent_and_start_stop_indices_of_components(components):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   if len(components) > 0:
+   if 0 < len(components):
       first, last = components[0], components[-1]
       parent = first.parentage.parent
       if parent is not None:

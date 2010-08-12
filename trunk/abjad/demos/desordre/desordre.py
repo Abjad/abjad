@@ -135,7 +135,7 @@ os.path.join('demos', 'desordre', 'desordre_pitches.txt')")
 
 if __name__ == '__main__':
    import sys
-   if len(sys.argv) > 1:
+   if 1 < len(sys.argv):
       p.run(sys.argv[1])
    else:
       p.run( )

@@ -14,7 +14,7 @@ class Articulation(_Abjad):
 
    def __init__(self, *args):
       assert len(args) in range(3)
-      if len(args) >= 2:
+      if 2 <= len(args):
          assert isinstance(args[0], (str, types.NoneType))
          assert isinstance(args[1], (str, types.NoneType))
          self.string = args[0]

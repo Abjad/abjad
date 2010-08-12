@@ -16,11 +16,11 @@ class MisrepresentedFlagCheck(_Check):
          else:
             left, right = leaf.beam.counts
          if left is not None:
-            if left > flags or (left < flags and right not in (flags, None)):
+            if flags < left or (left < flags and right not in (flags, None)):
                if leaf not in violators:
                   violators.append(leaf)
          if right is not None:
-            if right > flags or (right < flags and left not in (flags, None)):
+            if flags < right or (right < flags and left not in (flags, None)):
                if leaf not in violators:
                   violators.append(leaf)
       return violators, total

@@ -99,7 +99,7 @@ class ArticulationInterface(_Interface, _GrobHandler):
       def cmp(x, y):
          if x.string < y.string:
             return -1
-         elif x.string > y.string:
+         elif y.string < x.string:
             return 1
          else:
             return 0

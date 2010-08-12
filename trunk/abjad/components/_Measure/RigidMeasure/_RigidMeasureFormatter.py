@@ -34,7 +34,7 @@ class _RigidMeasureFormatter(_MeasureFormatter):
       client = self._client
       if client.meter.effective.nonbinary and client.meter.suppress:
          raise NonbinaryMeterSuppressionError
-      if client.duration.preprolated > client.meter.effective.duration:
+      if client.meter.effective.duration < client.duration.preprolated:
          raise OverfullMeasureError
       if client.duration.preprolated < client.meter.effective.duration:
          raise UnderfullMeasureError

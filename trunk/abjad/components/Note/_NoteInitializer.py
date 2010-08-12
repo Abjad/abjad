@@ -27,11 +27,11 @@ class _NoteInitializer(_Initializer):
             chord = args[0]
             _Leaf.__init__(client, chord.duration.written)
             # must copy chord BEFORE _transfer_all_attributes
-            if len(chord) > 0:
+            if 0 < len(chord):
                copy = componenttools.clone_components_and_fracture_crossing_spanners([chord])[0]
             _transfer_all_attributes(chord, client)
             del client._note_heads
-            if len(chord) > 0:
+            if 0 < len(chord):
                client.note_head = copy.note_heads[0]
          elif isinstance(args[0], Skip):
             skip = args[0]

@@ -210,7 +210,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
 
 def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_06( ):
-   '''Split container at index > len(container).
+   '''Split container at index greater than len(container).
       Lefthand part instantiates with all contents.
       Righthand part instantiates empty.
       Original container empties contents.'''

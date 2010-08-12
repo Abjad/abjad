@@ -3,16 +3,11 @@ class Rational(object):
 
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], (int, long)):
-         #self._numerator = args[0]
-         #self._denominator = 1
          numerator, denominator = args[0], 1
       elif len(args) == 1 and isinstance(args[0], Rational):
          rational = args[0]
-         #self._numerator = rational._numerator
-         #self._denominator = rational._denominator
          numerator, denominator = rational._numerator, rational._denominator
       elif len(args) == 1 and isinstance(args[0], tuple):
-         #self.__init__(*args[0])
          numerator, denominator = args[0]
       elif len(args) == 2:
          n, d = args
@@ -23,8 +18,6 @@ class Rational(object):
          if d == 0:
             raise ZeroDivisionError
          gcd = self._gcd(n, d)
-         #self._numerator = n / gcd
-         #self._denominator = d / gcd
          numerator = n / gcd
          denominator = d / gcd
       else:
@@ -177,7 +170,7 @@ class Rational(object):
 
    def __pow__(self, arg):
       assert isinstance(arg, int)
-      if arg > 0:
+      if 0 < arg:
          result = Rational(self._n, self._d)
          for i in range(arg - 1):
             result *= self
@@ -197,7 +190,7 @@ class Rational(object):
 
    def __int__(self):
       result = abs(self._n) // abs(self._d)
-      if self >= 0:
+      if 0 <= self:
          return result
       else:
          return -result

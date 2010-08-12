@@ -26,7 +26,7 @@ class _Tuplet(Container):
       return new
       
    def __repr__(self):
-      if len(self) > 0:
+      if 0 < len(self):
          return '_Tuplet(%s)' % self._summary
       else:
          return '_Tuplet( )'
@@ -35,7 +35,7 @@ class _Tuplet(Container):
 
    @property
    def _summary(self):
-      if len(self) > 0:
+      if 0 < len(self):
          return ', '.join([str(x) for x in self._music])
       else:
          return ' '

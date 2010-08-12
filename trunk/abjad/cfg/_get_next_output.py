@@ -11,6 +11,6 @@ def _get_next_output( ):
       last_number = int(last_output.split('.')[0])
       next_number = last_number + 1
       next_output = '%04d.ly' % next_number
-   if next_number > 9000:
+   if 9000 < next_number:
       _warn_almost_full(last_number)
    return next_output

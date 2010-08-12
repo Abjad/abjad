@@ -51,7 +51,7 @@ class _AbjadTag(_TagParser):
    def _parse(self):
       print 'Parsing file...'
       input = self._input[:]
-      while len(input) > 0:
+      while 0 < len(input):
          codeblock = self._get_next_code_block(input)
          if codeblock:
             self._handle_code_block(codeblock)

@@ -17,16 +17,14 @@ class FixedMultiplierTuplet(_Tuplet):
    ## REPR ##
 
    def __repr__(self):
-      return 'FixedMultiplierTuplet(%s, [%s])' % ( 
-         self.duration.multiplier, self._summary)
+      return '%s(%s, [%s])' % ( 
+         self.__class__.__name__, self.duration.multiplier, self._summary)
 
    def __str__(self):
-      if len(self) > 0:
-         return '{%s %s %s %s}' % (
-            self._signifier, self.ratio, self._summary, self._signifier)
+      if 0 < len(self):
+         return '{%s %s %s %s}' % (self._signifier, self.ratio, self._summary, self._signifier)
       else:
-         return '{%s %s %s}' % (
-            self._signifier, self.duration.multiplier, self._signifier)
+         return '{%s %s %s}' % (self._signifier, self.duration.multiplier, self._signifier)
 
    ## PROPERTIES ##
 

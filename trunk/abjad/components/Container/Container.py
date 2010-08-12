@@ -142,7 +142,7 @@ class Container(_Component):
    @property
    def _summary(self):
       '''Formatted summary of container contents for repr output.'''
-      if len(self) > 0:
+      if 0 < len(self):
          return ', '.join([str(x) for x in self._music])
       else:
          return ' '

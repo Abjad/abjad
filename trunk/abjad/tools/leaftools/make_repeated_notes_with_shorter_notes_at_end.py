@@ -60,7 +60,7 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
       result.append(Note(pitch, written_duration))
       current_duration += prolated_duration
    remainder_duration = total_duration - current_duration
-   if remainder_duration > Rational(0):
+   if Rational(0) < remainder_duration:
       multiplied_remainder = ~prolation * remainder_duration
       result.extend(make_notes(pitch, [multiplied_remainder]))
    return result

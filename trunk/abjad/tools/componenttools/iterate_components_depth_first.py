@@ -37,8 +37,7 @@ def _next_node_depth_first(component, total):
       return None. '''
 
    client = component
-   if hasattr(client, '_music') and len(client) > 0 and \
-      total < len(client):
+   if hasattr(client, '_music') and 0 < len(client) and total < len(client):
       return client[total], 0 
    else:
       parent = client.parentage.parent
@@ -59,8 +58,7 @@ def _prev_node_depth_first(component, total = 0):
       '''
 
    client = component
-   if hasattr(client, '_music') and len(client) > 0 and \
-      total < len(client):
+   if hasattr(client, '_music') and 0 < len(client) and total < len(client):
       return client[len(client) - 1 - total], 0
    else:
       parent = client.parentage.parent

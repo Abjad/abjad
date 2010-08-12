@@ -76,7 +76,7 @@ class _ComponentSpannerAggregator(_Interface):
    def spanned(self):
       '''Return True when any spanners attach to self, 
          False otherwise.'''
-      return len(self.attached) > 0
+      return 0 < len(self.attached)
 
    ## PUBLIC METHODS ##
 

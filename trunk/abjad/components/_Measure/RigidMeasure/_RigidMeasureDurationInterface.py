@@ -13,7 +13,7 @@ class _RigidMeasureDurationInterface(_MeasureDurationInterface):
       effective meter duration.
       '''
 
-      return self.prolated > self._client.meter.effective.duration
+      return self._client.meter.effective.duration < self.prolated
 
    @property
    def is_underfull(self):

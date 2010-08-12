@@ -12,7 +12,7 @@ class IntermarkedHairpinCheck(_Check):
       hairpins = [
          p for p in expr.spanners.contained if isinstance(p, Hairpin)]
       for hairpin in hairpins:
-         if len(hairpin.leaves) > 2:
+         if 2 < len(hairpin.leaves):
             for leaf in hairpin.leaves[1 : -1]:
                if leaf.dynamics.mark:
                   violators.append(hairpin)

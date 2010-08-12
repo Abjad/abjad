@@ -15,7 +15,7 @@ class _Context(Container):
    def __repr__(self):
       '''.. versionchanged:: 1.1.2
       Named contexts now print name at the interpreter.'''
-      if len(self) > 0:
+      if 0 < len(self):
          summary = str(len(self))
       else:
          summary = ' '
