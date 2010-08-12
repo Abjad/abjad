@@ -1,7 +1,8 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class StaffAlignmentOffsets(_Abjad):
+class StaffAlignmentOffsets(_Abjad, _Immutable):
    '''Class to model distances between staves in a system.
    Specify distances by hand when initializing the class.
    Distances may be even or uneven. LilyPond reads distances going
@@ -16,7 +17,8 @@ class StaffAlignmentOffsets(_Abjad):
    def __init__(self, *args):
       if any([0 < x for x in args]):
          print 'WARNING: use nonpositive values for staff alignment offsets.'
-      self.alignment_offsets = list(args)
+      #self.alignment_offsets = list(args)
+      object.__setattr__(self, 'alignment_offsets', list(args))
 
    ## OVERLOADS ##
 

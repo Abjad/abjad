@@ -1,9 +1,10 @@
 from abjad.core import _Abjad
-from abjad.tools import durtools
+from abjad.core import _Immutable
 from abjad.core import Rational
+from abjad.tools import durtools
 
 
-class TempoIndication(_Abjad):
+class TempoIndication(_Abjad, _Immutable):
    r'''Tempo indication token. 
    
    Assign to :class:`~abjad.TempoSpanner` spanner ``indication``. ::
@@ -29,25 +30,27 @@ class TempoIndication(_Abjad):
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], TempoIndication):
          tempo_indication = args[0]
-         self.duration = Rational(tempo_indication.duration)
-         self.units_per_minute = tempo_indication.units_per_minute
+         duration = Rational(tempo_indication.duration)
+         units_per_minute = tempo_indication.units_per_minute
       elif len(args) == 2:
          duration, units_per_minute = args
          assert isinstance(duration, Rational)
          assert isinstance(units_per_minute, (int, long, float, Rational))
-         self.duration = duration
-         self.units_per_minute = units_per_minute
+         duration = duration
+         units_per_minute = units_per_minute
       else:
          raise ValueError('can not initialize tempo indication.')
+      object.__setattr__(self, '_duration', duration)
+      object.__setattr__(self, '_units_per_minute', units_per_minute)
 
    ## OVERLOADS ##
 
    def __add__(self, expr):
       if isinstance(expr, TempoIndication):
-         new_quarters_per_minute = \
-            self.quarters_per_minute + expr.quarters_per_minute
+         new_quarters_per_minute = self.quarters_per_minute + expr.quarters_per_minute
          minimum_denominator = min((self.duration._d, expr.duration._d))
-         new_units_per_minute, new_duration_denominator = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+         new_units_per_minute, new_duration_denominator = \
+            durtools.rational_to_duration_pair_with_specified_integer_denominator(
             new_quarters_per_minute / 4, minimum_denominator)
          new_duration = Rational(1, new_duration_denominator)
          new_tempo_indication = TempoIndication(
@@ -70,8 +73,7 @@ class TempoIndication(_Abjad):
       if isinstance(multiplier, (int, float, Rational)):
          new_units_per_minute = multiplier * self.units_per_minute
          new_duration = Rational(self.duration)
-         new_tempo_indication = TempoIndication(
-            new_duration, new_units_per_minute)
+         new_tempo_indication = TempoIndication(new_duration, new_units_per_minute)
          return new_tempo_indication
 
    def __ne__(self, expr):
@@ -83,14 +85,13 @@ class TempoIndication(_Abjad):
 
    def __sub__(self, expr):
       if isinstance(expr, TempoIndication):
-         new_quarters_per_minute = \
-            self.quarters_per_minute - expr.quarters_per_minute
+         new_quarters_per_minute = self.quarters_per_minute - expr.quarters_per_minute
          minimum_denominator = min((self.duration._d, expr.duration._d))
-         new_units_per_minute, new_duration_denominator = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+         new_units_per_minute, new_duration_denominator = \
+            durtools.rational_to_duration_pair_with_specified_integer_denominator(
             new_quarters_per_minute / 4, minimum_denominator)
          new_duration = Rational(1, new_duration_denominator)
-         new_tempo_indication = TempoIndication(
-            new_duration, new_units_per_minute)
+         new_tempo_indication = TempoIndication(new_duration, new_units_per_minute)
          return new_tempo_indication
 
    ## PRIVATE ATTRIBUTES ##
@@ -98,8 +99,6 @@ class TempoIndication(_Abjad):
    @property
    def _dotted(self):
       '''Dotted numeral representation of duration.'''
-      #from abjad.components.Note import Note
-      #return Note(0, self.duration).duration._dotted
       return durtools.assignable_rational_to_lilypond_duration_string(self.duration)
 
    @property
@@ -109,15 +108,10 @@ class TempoIndication(_Abjad):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @apply
-   def duration( ):
-      def fget(self):
-         '''Duration of tempo indication.'''
-         return self._duration
-      def fset(self, arg):
-         assert durtools.is_assignable_rational(arg)
-         self._duration = arg
-      return property(**locals( ))
+   @property
+   def duration(self):
+      '''Duration of tempo indication.'''
+      return self._duration
 
    @property
    def format(self):
@@ -129,15 +123,7 @@ class TempoIndication(_Abjad):
       '''Read-only number of quarters per minute.'''
       return Rational(1, 4) / self.duration * self.units_per_minute
 
-   @apply
-   #def mark( ):
-   def units_per_minute( ):
-      def fget(self):
-         '''Units per minute.'''
-         return self._units_per_minute
-      def fset(self, arg):
-         if not isinstance(arg, (int, float, long, Rational)):
-            raise TypeError('must be int or float.')
-         #assert 0 < arg
-         self._units_per_minute = arg
-      return property(**locals( ))
+   @property
+   def units_per_minute(self):
+      '''Units per minute of tempo indication.'''
+      return self._units_per_minute

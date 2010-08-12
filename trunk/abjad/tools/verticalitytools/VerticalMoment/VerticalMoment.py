@@ -3,9 +3,10 @@ from abjad.components._Leaf import _Leaf
 from abjad.components._Measure import _Measure
 from abjad.components.Note import Note
 from abjad.core import Rational
+from abjad.core import _Immutable
 
 
-class VerticalMoment(object):
+class VerticalMoment(_Immutable):
    r'''.. versionadded: 1.1.2
 
    Everything happening at a single moment in musical time.
@@ -15,11 +16,14 @@ class VerticalMoment(object):
       prolated_offset = Rational(prolated_offset)
       assert isinstance(governors, tuple)
       assert isinstance(components, tuple)
-      self._prolated_offset = prolated_offset
-      self._governors = tuple(governors)
+      #self._prolated_offset = prolated_offset
+      object.__setattr__(self, '_prolated_offset', prolated_offset)
+      #self._governors = tuple(governors)
+      object.__setattr__(self, '_governors', tuple(governors))
       components = list(components)
       components.sort(lambda x, y: cmp(x.score.index, y.score.index))
-      self._components = tuple(components)
+      #self._components = tuple(components)
+      object.__setattr__(self, '_components', tuple(components))
 
    ## OVERLOADS ##
 

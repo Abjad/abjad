@@ -1,7 +1,8 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class SchemeColor(_Abjad):
+class SchemeColor(_Abjad, _Immutable):
    '''Wrapper for names of X-11 colors known to LilyPond.
 
    ::
@@ -14,7 +15,7 @@ class SchemeColor(_Abjad):
    '''
 
    def __init__(self, name):
-      self.name = name
+      object.__setattr__(self, 'name', name)
 
    ## PUBLIC ATTRIBUTES ##
    

@@ -1,20 +1,25 @@
+from abjad.core import _Immutable
 from abjad.tools import mathtools
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 import operator
 
 
-class ResidueClassExpression(_BaseResidueClass):
+class ResidueClassExpression(_BaseResidueClass, _Immutable):
 
    def __init__(self, rcs, operator = 'or'):
       ## init from other rc expression
       if isinstance(rcs, ResidueClassExpression):
-         self.rcs = rcs.rcs[:]
-         self.operator = rcs.operator
+         #self.rcs = rcs.rcs[:]
+         #self.operator = rcs.operator
+         object.__setattr__(self, '_rcs', rcs.rcs[:])
+         object.__setattr__(self, '_operator', rcs.operator)
       ## init from rcs and operator
       else:
-         self.rcs = rcs[:]
-         self.operator = operator
+         #self.rcs = rcs[:]
+         #self.operator = operator
+         object.__setattr__(self, '_rcs', rcs[:])
+         object.__setattr__(self, '_operator', operator)
       ## sort rcs
       self._sort_rcs( )
 
@@ -51,6 +56,11 @@ class ResidueClassExpression(_BaseResidueClass):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def operator(self):
+      '''Operator of residue class expression.'''
+      return self._operator
+
+   @property
    def period(self):
       rc_periods = [ ]
       for rc in self.rcs:
@@ -60,6 +70,11 @@ class ResidueClassExpression(_BaseResidueClass):
       else:
          period = 1
       return period
+
+   @property
+   def rcs(self):
+      '''Residue classes of expression.'''
+      return self._rcs
 
    @property
    def representative_boolean_train(self):

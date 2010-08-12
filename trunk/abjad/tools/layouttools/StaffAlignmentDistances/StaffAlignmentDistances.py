@@ -1,7 +1,8 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class StaffAlignmentDistances(_Abjad):
+class StaffAlignmentDistances(_Abjad, _Immutable):
    '''Class to model distances between staves in a system.
    Specify distances by hand when initializing the class.
    Distances may be even or uneven. ::
@@ -15,7 +16,8 @@ class StaffAlignmentDistances(_Abjad):
    def __init__(self, *args):
       if any([x < 0 for x in args]):
          print 'WARNING: use positive values for staff alignment distances.'
-      self.alignment_distances = list(args)
+      #self.alignment_distances = list(args)
+      object.__setattr__(self, 'alignment_distances', list(args))
 
    ## OVERLOADS ##
 

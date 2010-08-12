@@ -1,12 +1,13 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class SchemeFunction(_Abjad):
+class SchemeFunction(_Abjad, _Immutable):
    '''Wrapper for names of Scheme functions known to LilyPond.'''
 
    def __init__(self, name = '', *args):
-      self.name = name
-      self.args = [ ]
+      object.__setattr__(self, 'name', name)
+      object.__setattr__(self, 'args', [ ])
       self.args.extend(args)
 
    ## PUBLIC ATTRIBUTES ##

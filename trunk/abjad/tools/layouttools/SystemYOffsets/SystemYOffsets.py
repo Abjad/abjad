@@ -1,7 +1,8 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class SystemYOffsets(_Abjad):
+class SystemYOffsets(_Abjad, _Immutable):
    '''Used to specify systems starting at even intervals running
    down every page.
 
@@ -16,11 +17,13 @@ class SystemYOffsets(_Abjad):
    Pass instances of this class to other layout functions.
    '''
 
-   def __init__(self, interval, systems_per_page, 
-      skip_systems_on_first_page = 1):
-      self.interval = interval
-      self.systems_per_page = systems_per_page
-      self.skip_systems_on_first_page = skip_systems_on_first_page
+   def __init__(self, interval, systems_per_page, skip_systems_on_first_page = 1):
+      #self.interval = interval
+      #self.systems_per_page = systems_per_page
+      #self.skip_systems_on_first_page = skip_systems_on_first_page
+      object.__setattr__(self, 'interval', interval)
+      object.__setattr__(self, 'systems_per_page', systems_per_page)
+      object.__setattr__(self, 'skip_systems_on_first_page', skip_systems_on_first_page)
 
    ## OVERLOADS ##
 

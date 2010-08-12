@@ -1,7 +1,8 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class Accidental(_Abjad):
+class Accidental(_Abjad, _Immutable):
    '''Abjad model of the accidental:
 
    ::
@@ -11,23 +12,39 @@ class Accidental(_Abjad):
    '''
 
    def __init__(self, arg = ''):
-      if arg in self._alphabetic_strings:
-         self._alphabetic_string = arg
-      elif arg in self._symbolic_strings:
-         alphabetic_string = self._symbolic_string_to_alphabetic_string[arg]
-         self._alphabetic_string = alphabetic_string
-      elif arg in self._names:
-         alphabetic_string = self._name_to_alphabetic_string[arg]
-         self._alphabetic_string = alphabetic_string
-      elif arg in self._semitones:
-         alphabetic_string = self._semitones_to_alphabetic_string[arg]
-         self._alphabetic_string = alphabetic_string
+   
+      ## initializer symbolic string from arg
+      if arg in self._all_accidental_alphabetic_strings:
+         #self._alphabetic_string = arg
+         _alphabetic_string = arg
+      elif arg in self._all_accidental_symbolic_strings:
+         _alphabetic_string = self._symbolic_string_to_alphabetic_string[arg]
+         #self._alphabetic_string = _alphabetic_string
+      elif arg in self._all_accidental_names:
+         _alphabetic_string = self._name_to_alphabetic_string[arg]
+         #self._alphabetic_string = _alphabetic_string
+      elif arg in self._all_accidental_semitone_values:
+         _alphabetic_string = self._semitones_to_alphabetic_string[arg]
+         #self._alphabetic_string = _alphabetic_string
       elif isinstance(arg, Accidental):
-         self._alphabetic_string = arg.alphabetic_string 
+         #self._alphabetic_string = arg.alphabetic_string 
+         _alphabetic_string = arg.alphabetic_string 
       elif isinstance(arg, type(None)):
-         self._alphabetic_string = ''
+         #self._alphabetic_string = ''
+         _alphabetic_string = ''
       else:
          raise ValueError('can not initialize accidental from value: %s' % arg)
+      object.__setattr__(self, '_alphabetic_string', _alphabetic_string)
+
+      ## initialize derived attributes
+      _semitones = self._alphabetic_string_to_semitones[self.alphabetic_string]
+      object.__setattr__(self, '_semitones', _semitones)
+      _name = self._alphabetic_string_to_name[self.alphabetic_string]
+      object.__setattr__(self, '_name', _name)
+      _is_adjusted = not self.semitones == 0
+      object.__setattr__(self, '_is_adjusted', _is_adjusted)
+      _symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
+      object.__setattr__(self, '_symbolic_string', _symbolic_string)
 
    ## OVERLOADS ##
 
@@ -65,7 +82,7 @@ class Accidental(_Abjad):
       return True
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.name)
+      return "%s('%s')" % (self.__class__.__name__, self.alphabetic_string)
 
    def __str__(self):
       return self.alphabetic_string
@@ -79,7 +96,7 @@ class Accidental(_Abjad):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _alphabetic_strings(self):
+   def _all_accidental_alphabetic_strings(self):
       return self._alphabetic_string_to_symbolic_string.keys( )
 
    _alphabetic_string_to_name = {
@@ -142,32 +159,37 @@ class Accidental(_Abjad):
    }
 
    @property
-   def _names(self):
+   def _all_accidental_names(self):
       return self._name_to_alphabetic_string.keys( )
 
    @property
-   def _semitones(self):
+   def _all_accidental_semitone_values(self):
       return self._semitones_to_alphabetic_string.keys( )
 
    @property
-   def _symbolic_strings(self):
+   def _all_accidental_symbolic_strings(self):
       return self._symbolic_string_to_alphabetic_string.keys( )
 
    ## PUBLIC ATTRIBUTES ##
 
-   @apply
-   def alphabetic_string( ):
-      def fget(self):
-         '''Read / write alphabetic string of accidental:
-      
-         ::
-      
-            abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.alphabetic_string
-            's'
-         '''
-         return self._alphabetic_string
-      return property(**locals( ))
+#   @apply
+#   def alphabetic_string( ):
+#      def fget(self):
+#         '''Read / write alphabetic string of accidental:
+#      
+#         ::
+#      
+#            abjad> accidental = pitchtools.Accidental('s')
+#            abjad> accidental.alphabetic_string
+#            's'
+#         '''
+#         return self._alphabetic_string
+#      return property(**locals( ))
+
+   @property
+   def alphabetic_string(self):
+      '''Alphabetic string of accidental.'''
+      return self._alphabetic_string
 
    @property
    def format(self):
@@ -181,7 +203,7 @@ class Accidental(_Abjad):
 
       Defined equal to the alphabetic string of accidental.
       '''
-      return self.alphabetic_string
+      return self._alphabetic_string
 
    @property
    def is_adjusted(self):
@@ -195,7 +217,8 @@ class Accidental(_Abjad):
 
       True for all accidentals equal to a nonzero number of semitones.
       '''
-      return not self.semitones == 0
+      #return not self.semitones == 0
+      return self._is_adjusted
 
    @property
    def name(self):
@@ -207,7 +230,8 @@ class Accidental(_Abjad):
          abjad> accidental.name
          'sharp'
       '''
-      return self._alphabetic_string_to_name[self.alphabetic_string]
+      #return self._alphabetic_string_to_name[self.alphabetic_string]
+      return self._name
 
    @property
    def semitones(self):
@@ -219,7 +243,7 @@ class Accidental(_Abjad):
          abjad> accidental.semitones
          1
       '''
-      return self._alphabetic_string_to_semitones[self.alphabetic_string]
+      return self._semitones
 
    @property
    def symbolic_string(self):
@@ -231,6 +255,6 @@ class Accidental(_Abjad):
          abjad> accidental.symbolic_string
          '#'
       '''
-      symbolic_string = self._alphabetic_string_to_symbolic_string[
-         self.alphabetic_string]
-      return symbolic_string
+      #symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
+      #return symbolic_string
+      return self._symbolic_string

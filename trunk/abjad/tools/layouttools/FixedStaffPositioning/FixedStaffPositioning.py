@@ -1,7 +1,8 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class FixedStaffPositioning(_Abjad):
+class FixedStaffPositioning(_Abjad, _Immutable):
    r'''Indicator object to model fixed-systems layout across an entire score.
    Instantiate a :class:`~abjad.layouttools.systemsindicator.FixedStaffPositioning`
    object with numeric indication of fixed distances between systems.
@@ -63,8 +64,10 @@ class FixedStaffPositioning(_Abjad):
 
    def __init__(self, system_y_offsets, staff_alignment_offsets = None):
       '''Set system y offsets and staff alignment offsets.'''
-      self.system_y_offsets = system_y_offsets
-      self.staff_alignment_offsets = staff_alignment_offsets
+      #self.system_y_offsets = system_y_offsets
+      #self.staff_alignment_offsets = staff_alignment_offsets
+      object.__setattr__(self, '_system_y_offsets', system_y_offsets)
+      object.__setattr__(self, '_staff_alignment_offsets', staff_alignment_offsets)
 
    ## OVERLOADS ##
 
@@ -78,28 +81,12 @@ class FixedStaffPositioning(_Abjad):
    def __ne__(self, expr):
       return not self == expr
 
-#   ## PUBLIC ATTRIBUTES ##
-#
-#   @apply
-#   def starting_system( ):
-#      def fget(self):
-#         '''Read / write zero-based index of *system_y_offsets* to apply
-#         to first system in score.'''
-#         return self._starting_system
-#      def fset(self, arg):
-#         if not isinstance(arg, int):
-#            raise TypeError
-#         self._starting_system = arg
-#      return property(**locals( ))
-#
-#   @apply
-#   def system_y_offsets( ):
-#      def fget(self):
-#         '''Read / write tuple of one or more fixed numeric distances
-#         to lay out between staves within each system.'''
-#         return self._system_y_offsets
-#      def fset(self, arg):
-#         if not isinstance(arg, tuple):
-#            raise TypeError
-#         self._system_y_offsets = arg
-#      return property(**locals( ))
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def staff_alignment_offsets(self):
+      return self._staff_alignment_offsets
+
+   @property
+   def system_y_offsets(self):
+      return self._system_y_offsets

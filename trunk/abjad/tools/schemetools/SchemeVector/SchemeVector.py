@@ -1,4 +1,7 @@
-class SchemeVector(list):
+from abjad.core import _Immutable
+
+
+class SchemeVector(list, _Immutable):
    '''Abjad representation of Scheme vector.'''
 
    def __init__(self, *args):

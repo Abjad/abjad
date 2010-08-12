@@ -1,8 +1,9 @@
+from abjad.core import _Immutable
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
 
-class ResidueClass(_BaseResidueClass):
+class ResidueClass(_BaseResidueClass, _Immutable):
    '''Residue class (or congruence class). 
    Residue classes form the basis of Xenakis sieves. They can be used to 
    construct any complex periodic integer (or boolean) sequence as a 
@@ -89,16 +90,32 @@ class ResidueClass(_BaseResidueClass):
    def _init_by_rc_instance(self, rc):
       if not isinstance(rc, ResidueClass):
          raise TypeError('must be rc instance.')
-      self.modulo = rc.modulo # period
-      self.residue = rc.residue # phase
+      #self.modulo = rc.modulo # period
+      #self.residue = rc.residue # phase
+      object.__setattr__(self, '_modulo', rc.modulo) ## period
+      object.__setattr__(self, '_residue', rc.residue) ## phase
 
    def _init_by_modulo_and_residue(self, modulo, residue):
       if not 0 < modulo:
          raise ValueError('modulo must be positive.')
       if not 0 <= residue < modulo:
          raise ValueError('abs(residue) must be < modulo')
-      self.modulo = modulo # period
-      self.residue = residue # phase
+      #self.modulo = modulo # period
+      #self.residue = residue # phase
+      object.__setattr__(self, '_modulo', modulo) ## period
+      object.__setattr__(self, '_residue', residue) ## phase
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def modulo(self):
+      '''Period of residue class.'''
+      return self._modulo
+
+   @property
+   def residue(self):
+      '''Residue of residue class.'''
+      return self._residue
 
    ## PUBLIC METHODS ##
 
