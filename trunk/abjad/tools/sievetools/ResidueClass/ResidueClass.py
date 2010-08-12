@@ -54,15 +54,15 @@ class ResidueClass(_BaseResidueClass):
       if not isinstance(expr, ResidueClass):
          raise TypeError('must be residue class.')
       if self.modulo == expr.modulo:
-         return self.residue > expr.residue
-      return self.modulo > expr.modulo
+         return expr.residue < self.residue
+      return expr.modulo < self.modulo
 
    def __ge__(self, expr):
       if not isinstance(expr, ResidueClass):
          raise TypeError('must be residue class.')
       if self.modulo == expr.modulo:
-         return self.residue >= expr.residue
-      return self.modulo >= expr.modulo
+         return expr.residue <= self.residue
+      return expr.modulo <= self.modulo
 
    def __lt__(self, expr):
       if not isinstance(expr, ResidueClass):

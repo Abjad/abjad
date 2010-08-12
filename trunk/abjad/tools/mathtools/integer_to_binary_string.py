@@ -39,7 +39,7 @@ def integer_to_binary_string(n):
       raise TypeError
 
    result = ''
-   while n > 0:
+   while 0 < n:
       result = str(n % 2) + result
       n = n >> 1
 

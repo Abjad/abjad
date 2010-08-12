@@ -35,10 +35,10 @@ def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
    '''
 
    if total <=0 :
-      raise ValueError("'total' must be > 0.")
+      raise ValueError("'total' must be positive.")
    if start_frac <= 0 or stop_frac <= 0:
-      raise ValueError("Both 'start_frac' and 'stop_frac' must be > 0.")
-   if (stop_frac + start_frac) > total:
+      raise ValueError("Both 'start_frac' and 'stop_frac' must be positive.")
+   if total < (stop_frac + start_frac):
       raise ValueError("'start_frac' + 'stop_frac' must be < 'total'.")
 
    result = [ ]

@@ -52,7 +52,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
    total_duration = Rational(*durtools.duration_token_to_reduced_duration_pair(total_duration))
    max_note_duration = Rational(*durtools.duration_token_to_reduced_duration_pair(max_note_duration))
 
-   if total_duration > max_note_duration:
+   if max_note_duration < total_duration:
       rest_duration = total_duration - max_note_duration
       r = _construct_tied_rest(rest_duration)
       n = _construct_tied_note(pitch, max_note_duration)
@@ -60,7 +60,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
       #n = _construct_tied_note(pitch, total_duration)
       n = _construct_tied_leaf(Note, total_duration, 
          pitches = pitch, tied = False)
-      if len(n) > 1:
+      if 1 < len(n):
          for i in range(1, len(n)):
             n[i] = Rest(n[i])
       r = [ ]

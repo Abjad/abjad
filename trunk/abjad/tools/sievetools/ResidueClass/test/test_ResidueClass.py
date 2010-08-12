@@ -5,7 +5,7 @@ import py.test
 RC = ResidueClass
 
 def test_ResidueClass_01( ):
-   '''modulo must be > 0.'''
+   '''modulo must be positive.'''
 
    py.test.raises(ValueError, 't = RC(0, 1)')
 

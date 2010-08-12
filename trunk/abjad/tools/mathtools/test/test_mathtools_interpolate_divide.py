@@ -31,7 +31,7 @@ def test_mathtools_interpolate_divide_04( ):
    t = mathtools.interpolate_divide(Rational(1, 2), Rational(1, 8), Rational(1, 16))
 
    assert t[0] <= Rational(1, 8) ## 1/8 is approximated
-   assert t[0] > t[-2]
+   assert t[-2] < t[0]
 
 
 def test_mathtools_interpolate_divide_05( ):

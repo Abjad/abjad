@@ -61,9 +61,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
    while parent is not None and not parent.parallel:
       cur_prolation *= prolations[i]
       if isinstance(parent, FixedDurationTuplet):
-         candidate_new_parent_dur = parent.duration.target - \
-            cur_prolation * leaf.duration.written
-         if candidate_new_parent_dur > Rational(0):
+         candidate_new_parent_dur = parent.duration.target - cur_prolation * leaf.duration.written
+         if Rational(0) < candidate_new_parent_dur:
             parent.duration.target = candidate_new_parent_dur
       elif isinstance(parent, RigidMeasure):
          old_denominator = parent.meter.forced.denominator

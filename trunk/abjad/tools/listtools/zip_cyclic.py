@@ -2,10 +2,6 @@ from __future__ import division
 import math
 
 
-#def zip_cyclic(first, second):
-#   '''Like Python :func:`zip`, but return a list of length 
-#   ``max(len(first), len(second))`` and cycle over the elements of the
-#   shorter list. ::
 def zip_cyclic(*iterables):
    '''Like Python :func:`zip`, but return a list of length equal
    to the iterable of greatest length in `iterables` and cycle
@@ -25,19 +21,6 @@ def zip_cyclic(*iterables):
       abjad> listtools.zip_cyclic(a, b, c)
       [(10, 20, 30), (11, 21, 31), (12, 20, 32), (10, 21, 33)]
    '''
-
-#   if not isinstance(first, (list, tuple)):
-#      first = [first]
-#   if not isinstance(second, (list, tuple)):
-#      second = [second]
-#
-#   if len(first) > len(second):
-#      m = int(math.ceil(len(first) / len(second)))
-#      second *= m
-#   elif len(first) < len(second):
-#      m = int(math.ceil(len(second) / len(first)))
-#      first *= m
-#   return zip(first, second)
 
    ## make sure iterables are, in fact, all iterables
    new_iterables = [ ]

@@ -54,10 +54,10 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
    duration = (n, d)
 
    if len(l) == 0:
-      raise ValueError('must divide list l of length > 0.')
+      raise ValueError('must divide list l of poisitive length.')
 
    if len(l) == 1:
-      if l[0] > 0:
+      if 0 < l[0]:
          try:
             return Container([Note(0, duration)])
          except AssignabilityError:
@@ -70,14 +70,14 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
       else:
          raise ValueError('no divide zero values.')
 
-   if len(l) > 1:
+   if 1 < len(l):
       exponent = int(math.log(listtools.weight(l), 2) - math.log(n, 2))
       denominator = int(d * 2 ** exponent)
       music = [ ]
       for x in l:
          if not x:
             raise ValueError('no divide zero values.')
-         if x > 0:
+         if 0 < x:
             try:
                music.append(Note(0, (x, denominator)))
             except AssignabilityError:

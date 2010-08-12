@@ -16,7 +16,7 @@ def test_leaftools_make_percussion_note_01( ):
 
 
 def test_leaftools_make_percussion_note_02( ):
-   '''tied total_duration > max_note_duration.'''
+   '''max_note_duration < tied total_duration.'''
 
    t = leaftools.make_percussion_note(1, (5, 64), (1, 64))
 
@@ -40,7 +40,7 @@ def test_leaftools_make_percussion_note_03( ):
 
 
 def test_leaftools_make_percussion_note_04( ):
-   '''non-tied total_duration > max_note_duration.'''
+   '''max_note_duration < non-tied total_duration.'''
 
    t = leaftools.make_percussion_note(1, (3, 64), (1, 64))
 

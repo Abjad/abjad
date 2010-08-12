@@ -37,7 +37,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
          leaf.duration.written = token.duration.written
       if len(tie_chain) == len(duration_tokens):
          pass
-      elif len(tie_chain) > len(duration_tokens):
+      elif len(duration_tokens) < len(tie_chain):
          for leaf in tie_chain[len(duration_tokens):]:
             componenttools.remove_component_subtree_from_score_and_spanners([leaf])
       elif len(tie_chain) < len(duration_tokens):

@@ -56,7 +56,7 @@ def fracture_spanners_that_cross_components(components):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   if len(components) > 0:
+   if 0 < len(components):
 
       leftmost_component = components[0]
       leftmost_component.spanners.fracture(direction = 'left')

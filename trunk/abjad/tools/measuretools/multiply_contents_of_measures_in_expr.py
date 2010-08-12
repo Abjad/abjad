@@ -49,7 +49,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
 
    from abjad.tools import containertools
    assert isinstance(n, int)
-   assert n > 0
+   assert 0 < n
 
    for measure in iterate_measures_forward_in_expr(expr):
       old_meter = measure.meter.effective
