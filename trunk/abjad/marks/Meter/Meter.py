@@ -1,47 +1,44 @@
 from abjad.core import _Abjad
-#from abjad.core import _GrobHandler
+from abjad.core import _Immutable
 from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
 import types
 
 
-#class Meter(_GrobHandler):
-class Meter(_Abjad):
+class Meter(_Abjad, _Immutable):
 
    def __init__(self, *args, **kwargs):
-      #_GrobHandler.__init__(self, 'TimeSignature')
+
+      ## initialize numerator and denominator from *args
       if len(args) == 1 and isinstance(args[0], Meter):
          meter = args[0]
-         #self.numerator = meter.numerator
-         #self.denominator = meter.denominator
          numerator, denominator = meter.numerator, meter.denominator
       elif len(args) == 1 and isinstance(args[0], Rational):
-         #self.numerator = args[0]._n
-         #self.denominator = args[0]._d
          numerator, denominator = args[0]._n, args[0]._d
       elif len(args) == 1 and isinstance(args[0], tuple):
          numerator, denominator = args[0][0], args[0][1]
-         #self.numerator = numerator
-         #self.denominator = denominator
       elif len(args) == 2 and all([isinstance(x, int) for x in args]):
-         #self.numerator = args[0]
-         #self.denominator = args[1]
          numerator, denominator = args[0], args[1]
       else:
          raise TypeError('invalid %s meter initialization.' % str(args))
-      super(Meter, self).__setattr__('numerator', numerator)
-      super(Meter, self).__setattr__('denominator', denominator)
-      #self._partial = None
+      object.__setattr__(self, '_numerator', numerator)
+      object.__setattr__(self, '_denominator', denominator)
+
+      ## initialize partial from **kwargs
       partial = kwargs.get('partial', None)
       if not isinstance(partial, (type(None), Rational)):
          raise TypeError
-      super(Meter, self).__setattr__('partial', partial)
+      object.__setattr__(self, '_partial', partial)
+
+      ## initialize derived attributes
+      object.__setattr__(self, '_duration', Rational(numerator, denominator))
+      object.__setattr__(self, '_format', r'\time %s/%s' % (numerator, denominator))
+      _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
+      object.__setattr__(self, '_multiplier', _multiplier)
+      object.__setattr__(self, '_nonbinary', not mathtools.is_power_of_two(self.denominator))
 
    ## OVERLOADS ##
-
-   def __delattr__(self, *args):
-      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __eq__(self, arg):
       if isinstance(arg, Meter):
@@ -82,57 +79,44 @@ class Meter(_Abjad):
       return True
    
    def __repr__(self):
-      return 'Meter(%s, %s)' % (self.numerator, self.denominator)
-
-   def __setattr__(self, *args):
-      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
+      return '%s(%s, %s)' % (self.__class__.__name__, self.numerator, self.denominator)
 
    def __str__(self):
       return '%s/%s' % (self.numerator, self.denominator)
 
    ## PUBLIC ATTRIBUTES ##
 
-#   @apply
-#   def denominator( ):
-#      def fget(self):
-#         return self._denominator
-#      def fset(self, arg):
-#         assert isinstance(arg, int)
-#         self._denominator = arg
-#      return property(**locals( ))
+   @property
+   def denominator(self):
+      '''Integer denominator of meter.'''
+      return self._denominator
 
    @property
    def duration(self):
-      return Rational(self.numerator, self.denominator)
+      '''Rational duration of meter.'''
+      return self._duration
 
    @property
    def format(self):
-      return r'\time %s/%s' % (self.numerator, self.denominator)
+      '''LilyPond input format of meter.'''
+      return self._format
 
    @property
    def multiplier(self):
-      return durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
+      '''Rational prolation multiplier of meter.'''
+      return self._multiplier
+
+   @property
+   def numerator(self):
+      '''Integer numerator of meter.'''
+      return self._numerator
 
    @property
    def nonbinary(self):
-      return not mathtools.is_power_of_two(self.denominator)
+      '''Boolean indicator of nonbinary meter.'''
+      return self._nonbinary
 
-#   @apply
-#   def numerator( ):
-#      def fget(self):
-#         return self._numerator
-#      def fset(self, arg):
-#         assert isinstance(arg, int)
-#         self._numerator = arg
-#      return property(**locals( ))
-
-#   @apply
-#   def partial( ):
-#      r'''Rational-valued duration of pick-up at beginning of score.'''
-#      def fget(self):
-#         return self._partial
-#      def fset(self, arg):
-#         if not isinstance(arg, (Rational, types.NoneType)):
-#            raise TypeError('%s must be rational.' % arg)
-#         self._partial = arg
-#      return property(**locals( ))
+   @property
+   def partial(self):
+      '''Rational partial-measure pickup prior to meter.'''
+      return self._partial

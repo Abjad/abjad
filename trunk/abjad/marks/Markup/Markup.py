@@ -1,8 +1,9 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 import types
 
 
-class Markup(_Abjad):
+class Markup(_Abjad, _Immutable):
    r'''Abjad wrapper around LilyPond markup.
 
    Class inserts ``\markup { }`` wrapper around contents at format time. ::
@@ -24,24 +25,23 @@ class Markup(_Abjad):
       if isinstance(arg, str):
          #self._contents = arg
          #self.style = 'backslash'
-         super(Markup, self).__setattr__('contents', arg)
-         super(Markup, self).__setattr__('style', style)
+         contents = arg
+         style = style
       elif isinstance(self, Markup):
          #self._contents = arg.contents
          #self.style = arg.style
-         super(Markup, self).__setattr__('contents', arg.contents)
-         super(Markup, self).__setattr__('style', arg.style)
+         contents = arg.contents
+         style = arg.style
       else:
          raise TypeError('must be string or other markup instance.')
-
+      object.__setattr__(self, 'contents', contents)
+      object.__setattr__(self, 'style', style)
+      
    ## PRIVATE ATTRIBUTES ##
 
    _styles = ('backslash', 'scheme')
 
    ## OVERLOADS ##
-
-   def __delattr__(self, *args):
-      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __eq__(self, arg):
       if isinstance(arg, Markup):
@@ -54,9 +54,6 @@ class Markup(_Abjad):
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self.contents)
-
-   def __setattr__(self, *args):
-      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __str__(self):
       return self.format

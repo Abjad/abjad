@@ -1,25 +1,20 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class Clef(_Abjad):
+class Clef(_Abjad, _Immutable):
 
    def __init__(self, name = 'treble'):
       #self.name = name
-      super(Clef, self).__setattr__('name', name)
+      object.__setattr__(self, 'name', name)
 
    ## OVERLOADS ##
-
-   def __delattr__(self, *args):
-      raise AttributeError('%s objects are read-only.' % self.__class__.__name__)
 
    def __eq__(self, arg):
       return arg == self.name
    
    def __repr__(self):
-      return 'Clef("%s")' % self.name
-
-   def __setattr__(self, attribute, value):
-      raise AttributeError('%s objects are read-only.' % self.__class__.__name__)
+      return "Clef('%s')" % self.name
 
    def __str__(self):
       return self.name
