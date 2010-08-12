@@ -70,6 +70,6 @@ class BarLineInterface(_Interface, _GrobHandler):
 
          return self._kind
       def fset(self, expr):
-         assert isinstance(expr, (str, types.NoneType))
+         assert isinstance(expr, (str, type(None)))
          self._kind = expr
       return property(**locals( ))

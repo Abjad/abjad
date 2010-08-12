@@ -66,6 +66,6 @@ class LilyFile(list):
       def fget(self):
          return self._global_staff_size
       def fset(self, arg):
-         assert isinstance(arg, (int, float, long, types.NoneType)) 
+         assert isinstance(arg, (int, float, long, type(None))) 
          self._global_staff_size = arg
       return property(**locals( ))

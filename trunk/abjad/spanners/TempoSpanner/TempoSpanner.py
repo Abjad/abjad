@@ -88,7 +88,7 @@ class TempoSpanner(_GrobHandlerSpanner):
          If set, scale durations at format-time.'''
          return self._reference
       def fset(self, arg):
-         assert isinstance(arg, (tempotools.TempoIndication, types.NoneType))
+         assert isinstance(arg, (tempotools.TempoIndication, type(None)))
          self._reference = arg 
       return property(**locals( ))
 
@@ -106,10 +106,10 @@ class TempoSpanner(_GrobHandlerSpanner):
          '''Read / write tempo indication.'''
          return self._tempo_indication
       def fset(self, arg):
-         assert isinstance(arg, (tempotools.TempoIndication, types.NoneType))
+         assert isinstance(arg, (tempotools.TempoIndication, type(None)))
          if isinstance(arg, tempotools.TempoIndication):
             self._tempo_indication = tempotools.TempoIndication(arg)
-         elif isinstance(arg, types.NoneType):
+         elif isinstance(arg, type(None)):
             self._tempo_indication = arg 
          else:
             raise ValueError('must be Abjad TempoIndication or None.')

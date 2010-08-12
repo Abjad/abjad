@@ -30,7 +30,7 @@ def sum_slices_at(l, pairs, period = None, overhang = True):
 
    assert isinstance(l, list)
    assert all([isinstance(x, (int, float, Rational)) for x in l])
-   assert isinstance(period, (int, types.NoneType))
+   assert isinstance(period, (int, type(None)))
    assert isinstance(overhang, bool)
 
    if not _check_sum_slices_at_specification(pairs):

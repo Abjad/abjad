@@ -22,7 +22,7 @@ def make_big_centered_page_number_markup(text = None):
       ``markuptools.make_big_centered_page_number_markup( )``.
    '''
 
-   assert isinstance(text, (str, types.NoneType))
+   assert isinstance(text, (str, type(None)))
 
    contents = r'''
    \fill-line {

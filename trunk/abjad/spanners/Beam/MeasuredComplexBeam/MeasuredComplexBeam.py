@@ -19,6 +19,6 @@ class MeasuredComplexBeam(ComplexBeam):
       def fget(self):
          return self._span
       def fset(self, arg):
-         assert isinstance(arg, (int, types.NoneType))
+         assert isinstance(arg, (int, type(None)))
          self._span = arg 
       return property(**locals( ))

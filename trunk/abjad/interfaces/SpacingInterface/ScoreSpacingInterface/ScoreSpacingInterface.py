@@ -51,6 +51,6 @@ class ScoreSpacingInterface(SpacingInterface):
          '''
          return self._scorewide
       def fset(self, expr):
-         assert isinstance(expr, (SpacingIndication, types.NoneType))
+         assert isinstance(expr, (SpacingIndication, type(None)))
          self._scorewide = expr
       return property(**locals( ))

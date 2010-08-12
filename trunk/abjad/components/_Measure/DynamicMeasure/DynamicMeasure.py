@@ -23,6 +23,6 @@ class DynamicMeasure(_Measure):
       def fget(self):
          return self._denominator
       def fset(self, arg):
-         assert isinstance(arg, (int, long, types.NoneType))
+         assert isinstance(arg, (int, long, type(None)))
          self._denominator = arg
       return property(**locals( ))

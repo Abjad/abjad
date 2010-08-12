@@ -114,7 +114,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
          '''
          return self._font_size
       def fset(self, expr):
-         assert isinstance(expr, (int, float, long, types.NoneType))
+         assert isinstance(expr, (int, float, long, type(None)))
          self._font_size = expr
       return property(**locals( ))
 
@@ -125,7 +125,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
       def fget(self):
          return self._hide
       def fset(self, arg):
-         assert isinstance(arg, (types.BooleanType, types.NoneType))
+         assert isinstance(arg, (types.BooleanType, type(None)))
          if self.show is not None:
             raise ValueError('can not set hide and show at same time.')
          self._hide = arg
@@ -149,7 +149,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
       def fget(self):
          return self._show
       def fset(self, arg):
-         assert isinstance(arg, (types.BooleanType, types.NoneType))
+         assert isinstance(arg, (types.BooleanType, type(None)))
          if self.hide is not None:
             raise ValueError('can not set show and hide at same time.')
          self._show = arg

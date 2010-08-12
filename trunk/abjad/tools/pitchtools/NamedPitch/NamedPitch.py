@@ -249,7 +249,7 @@ class NamedPitch(_Abjad):
             from 12-ET intonation.'''
          return self._deviation
       def fset(self, arg):
-         assert isinstance(arg, (int, float, types.NoneType))
+         assert isinstance(arg, (int, float, type(None)))
          self._deviation = arg
       return property(**locals( ))
 

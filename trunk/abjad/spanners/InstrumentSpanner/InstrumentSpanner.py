@@ -22,7 +22,7 @@ class InstrumentSpanner(Spanner):
       def fset(self, arg):
          #assert isinstance(arg, str) or arg is None
          #self._long = arg
-         if isinstance(arg, types.NoneType):
+         if isinstance(arg, type(None)):
             self._long = arg
          else:
             markup = Markup(arg)
@@ -36,7 +36,7 @@ class InstrumentSpanner(Spanner):
       def fset(self, arg):
          #assert isinstance(arg, str) or arg is None
          #self._short = arg
-         if isinstance(arg, types.NoneType):
+         if isinstance(arg, type(None)):
             self._short = arg
          else:
             markup = Markup(arg)

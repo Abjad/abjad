@@ -42,7 +42,7 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
          '''
          return self._current
       def fset(self, expr):
-         assert isinstance(expr, (int, types.NoneType))
+         assert isinstance(expr, (int, type(None)))
          self._current = expr
       return property(**locals( ))
 

@@ -29,7 +29,7 @@ class PaperBlock(_BlockAttributed):
       def fget(self):
          return self._minimal_page_breaking
       def fset(self, expr):
-         if isinstance(expr, (bool, types.NoneType)):
+         if isinstance(expr, (bool, type(None))):
             self._minimal_page_breaking = expr
          else:
             raise TypeError('must be boolean or none')

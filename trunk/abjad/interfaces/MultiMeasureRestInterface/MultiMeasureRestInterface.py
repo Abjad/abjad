@@ -44,7 +44,7 @@ class MultiMeasureRestInterface(_Interface, _GrobHandler, _ContextSettingHandler
          '''
          return self._compress_full_bar_rests
       def fset(self, arg):
-         if not isinstance(arg, (bool, types.NoneType)):
+         if not isinstance(arg, (bool, type(None))):
             raise TypeError('must be true, false or none.')
          self._compress_full_bar_rests = arg
       return property(**locals( ))

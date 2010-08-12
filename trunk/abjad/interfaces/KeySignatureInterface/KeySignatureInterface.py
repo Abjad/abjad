@@ -67,6 +67,6 @@ class KeySignatureInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       def fget(self):
          return self._suppress
       def fset(self, arg):
-         assert isinstance(arg, (bool, types.NoneType))
+         assert isinstance(arg, (bool, type(None)))
          self._suppress = arg
       return property(**locals( ))

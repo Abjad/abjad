@@ -88,7 +88,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          if isinstance(arg, (int, long)):
             if not 0 < arg:
                raise ValueError
-         elif not isinstance(arg, types.NoneType):
+         elif not isinstance(arg, type(None)):
             raise TypeError
          self._preferred_denominator = arg
       return property(**locals( ))

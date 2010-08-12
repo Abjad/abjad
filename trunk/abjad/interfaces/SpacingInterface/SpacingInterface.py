@@ -88,6 +88,6 @@ class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
          '''
          return self._proportional_notation_duration
       def fset(self, expr):
-         assert isinstance(expr, (Rational, types.NoneType))
+         assert isinstance(expr, (Rational, type(None)))
          self._proportional_notation_duration = expr
       return property(**locals( ))

@@ -52,7 +52,7 @@ class _Tuplet(Container):
       def fget(self):
          return self._force_fraction
       def fset(self, arg):
-         if isinstance(arg, (bool, types.NoneType)):
+         if isinstance(arg, (bool, type(None))):
             self._force_fraction = arg
          else:
             raise TypeError

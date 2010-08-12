@@ -135,7 +135,7 @@ class NoteHead(NoteHeadInterface):
          if self._client.__class__.__name__ == 'NaturalHarmonic':
             return 'harmonic'
       def fset(self, arg):
-         if not isinstance(arg, (str, types.NoneType)):
+         if not isinstance(arg, (str, type(None))):
             raise TypeError
          self._style = arg
       return property(**locals( ))      

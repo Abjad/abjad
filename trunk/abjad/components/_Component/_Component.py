@@ -337,7 +337,7 @@ class _Component(_Abjad):
          '''Read-write name of component. Must be string or none.'''
          return self._name
       def fset(self, arg):
-         assert isinstance(arg, (str, types.NoneType))
+         assert isinstance(arg, (str, type(None)))
          self._name = arg
       return property(**locals( ))
 

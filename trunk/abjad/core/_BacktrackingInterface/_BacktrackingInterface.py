@@ -136,7 +136,7 @@ class _BacktrackingInterface(_Abjad):
       def fget(self):
          return self._forced
       def fset(self, arg):
-         assert isinstance(arg, (self._acceptableTypes, types.NoneType))
+         assert isinstance(arg, (self._acceptableTypes, type(None)))
          self._forced = arg
          self._client._update._mark_for_update_to_root( )
       return property(**locals( ))

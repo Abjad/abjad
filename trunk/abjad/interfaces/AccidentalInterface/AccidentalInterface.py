@@ -88,7 +88,7 @@ class AccidentalInterface(_Interface, _GrobHandler, _ContextSettingHandler):
          '''
          return self._style
       def fset(self, arg):
-         assert isinstance(arg, (str, types.NoneType))
+         assert isinstance(arg, (str, type(None)))
          self._style = arg
       return property(**locals( ))
 
@@ -99,7 +99,7 @@ class AccidentalInterface(_Interface, _GrobHandler, _ContextSettingHandler):
          '''
          return self._suggest_accidentals
       def fset(self, arg):
-         if not isinstance(arg, (bool, types.NoneType)):
+         if not isinstance(arg, (bool, type(None))):
             raise TypeError('must be true, false or none.')
          self._suggest_accidentals = arg
       return property(**locals( ))

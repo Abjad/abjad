@@ -189,7 +189,7 @@ class BreaksInterface(_Interface, _FormatContributor):
          '''
          return self._eol_adjustment
       def fset(self, arg):
-         assert isinstance(arg, (bool, types.NoneType))
+         assert isinstance(arg, (bool, type(None)))
          if arg == True and not self.line:
             raise LineBreakError('missing line break.')
          self._eol_adjustment = arg
@@ -242,7 +242,7 @@ class BreaksInterface(_Interface, _FormatContributor):
          return self._whitespace
       def fset(self, arg):
          from abjad.components._Leaf import _Leaf
-         assert isinstance(arg, (int, Rational, types.NoneType))
+         assert isinstance(arg, (int, Rational, type(None)))
          if isinstance(self._client, _Leaf):
             raise TypographicWhitespaceError
          self._whitespace = arg
@@ -257,7 +257,7 @@ class BreaksInterface(_Interface, _FormatContributor):
          '''
          return self._x
       def fset(self, arg):
-         assert isinstance(arg, (int, long, float, types.NoneType))
+         assert isinstance(arg, (int, long, float, type(None)))
          self._x = arg
       return property(**locals( ))
 
@@ -270,7 +270,7 @@ class BreaksInterface(_Interface, _FormatContributor):
          '''
          return self._y
       def fset(self, arg):
-         assert isinstance(arg, (int, long, float, types.NoneType))
+         assert isinstance(arg, (int, long, float, type(None)))
          self._y = arg
       return property(**locals( ))
 

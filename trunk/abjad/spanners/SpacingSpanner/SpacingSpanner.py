@@ -91,7 +91,7 @@ class SpacingSpanner(_GrobHandlerSpanner):
          '''
          return self._new_section
       def fset(self, expr):
-         assert isinstance(expr, (bool, types.NoneType))
+         assert isinstance(expr, (bool, type(None)))
          self._new_section = expr
       return property(**locals( ))
 
@@ -124,6 +124,6 @@ class SpacingSpanner(_GrobHandlerSpanner):
          '''
          return self._proportional_notation_duration
       def fset(self, expr):
-         assert isinstance(expr, (Rational, types.NoneType))
+         assert isinstance(expr, (Rational, type(None)))
          self._proportional_notation_duration = expr
       return property(**locals( ))

@@ -42,13 +42,13 @@ def replace_elements_cyclic(l, indices, material):
    index_values, index_period = indices
 
    assert isinstance(index_values, list)
-   assert isinstance(index_period, (int, long, types.NoneType))
+   assert isinstance(index_period, (int, long, type(None)))
 
    assert isinstance(material, tuple) and len(material) == 2
    material_values, material_period = material
 
    assert isinstance(material_values, list)
-   assert isinstance(material_period, (int, long, types.NoneType))
+   assert isinstance(material_period, (int, long, type(None)))
 
    if index_period is None:
       index_period = sys.maxint

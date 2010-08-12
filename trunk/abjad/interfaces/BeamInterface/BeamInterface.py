@@ -61,7 +61,7 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, _SpannerRe
          '''
          return self._auto_beaming
       def fset(self, expr):
-         assert isinstance(expr, (bool, types.NoneType))
+         assert isinstance(expr, (bool, type(None)))
          self._auto_beaming = expr
       return property(**locals( ))
 

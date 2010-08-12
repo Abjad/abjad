@@ -42,7 +42,7 @@ class OctavationSpanner(_GrobHandlerSpanner):
          Defaults to ``0``.'''
          return self._start
       def fset(self, arg):
-         assert isinstance(arg, (int, types.NoneType))
+         assert isinstance(arg, (int, type(None)))
          self._start = arg
       return property(**locals( ))
 
@@ -53,6 +53,6 @@ class OctavationSpanner(_GrobHandlerSpanner):
          Defaults to ``0``.'''
          return self._stop
       def fset(self, arg):
-         assert isinstance(arg, (int, types.NoneType))
+         assert isinstance(arg, (int, type(None)))
          self._stop = arg
       return property(**locals( ))

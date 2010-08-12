@@ -69,7 +69,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
          '''
          return self._name
       def fset(self, expr):
-         assert isinstance(expr, (str, Markup, types.NoneType))
+         assert isinstance(expr, (str, Markup, type(None)))
          self._name = expr
       return property(**locals( ))
 
@@ -133,6 +133,6 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
          '''
          return self._short_name
       def fset(self, expr):
-         assert isinstance(expr, (str, Markup, types.NoneType))
+         assert isinstance(expr, (str, Markup, type(None)))
          self._short_name = expr
       return property(**locals( ))

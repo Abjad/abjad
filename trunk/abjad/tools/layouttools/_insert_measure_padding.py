@@ -13,10 +13,10 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    '''
    from abjad.tools import measuretools
 
-   if not isinstance(front, (Rational, types.NoneType)):
+   if not isinstance(front, (Rational, type(None))):
       raise ValueError
 
-   if not isinstance(back, (Rational, types.NoneType)):
+   if not isinstance(back, (Rational, type(None))):
       raise ValueError
 
    if not isinstance(klass, (Rest, Skip)):

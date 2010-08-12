@@ -53,7 +53,7 @@ class TupletBracketInterface(_Interface, _GrobHandler, _ContextSettingHandler):
          '''
          return self._tuplet_full_length
       def fset(self, expr):
-         assert isinstance(expr, (bool, types.NoneType))
+         assert isinstance(expr, (bool, type(None)))
          self._tuplet_full_length = expr
       return property(**locals( ))
       
