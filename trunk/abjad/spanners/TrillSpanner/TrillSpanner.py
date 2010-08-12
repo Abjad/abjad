@@ -1,9 +1,9 @@
 from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
-from abjad.spanners.Trill._TrillSpannerFormatInterface import _TrillSpannerFormatInterface
+from abjad.spanners.TrillSpanner._TrillSpannerFormatInterface import _TrillSpannerFormatInterface
 import types
 
 
-class Trill(_GrobHandlerSpanner):
+class TrillSpanner(_GrobHandlerSpanner):
    r'''Trill with continuation line.
 
    *  Interfaces to LilyPond ``startTrillSpan``, ``stopTrillSpan`` commands.

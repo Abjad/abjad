@@ -2,7 +2,7 @@ from abjad.spanners.Hairpin._HairpinSpannerFormatInterface import _HairpinSpanne
 from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 
 
-class Hairpin(_GrobHandlerSpanner):
+class HairpinSpanner(_GrobHandlerSpanner):
 
    def __init__(self, music, descriptor, trim = False):
       _GrobHandlerSpanner.__init__(self, 'DynamicLineSpanner', music)

@@ -2,7 +2,7 @@ from abjad.spanners.Spanner._PositionalGrobHandlerSpanner import _PositionalGrob
 from abjad.spanners.Slur._SlurSpannerFormatInterface import _SlurSpannerFormatInterface
 
 
-class Slur(_PositionalGrobHandlerSpanner):
+class SlurSpanner(_PositionalGrobHandlerSpanner):
 
    def __init__(self, music = None):
       _PositionalGrobHandlerSpanner.__init__(self, 'Slur', music)

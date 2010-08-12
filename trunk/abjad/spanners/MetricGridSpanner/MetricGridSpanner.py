@@ -1,10 +1,10 @@
 from abjad.spanners.MetricGrid._MetricGridSpannerFormatInterface import _MetricGridSpannerFormatInterface
 from abjad.spanners.Spanner import Spanner
-from abjad.spanners.Tie import Tie
+#from abjad.spanners.TieSpanner import TieSpanner
 from abjad.tools import mathtools
 
 
-class MetricGrid(Spanner):
+class MetricGridSpanner(Spanner):
    '''MetricGrid is a list of MetricStrips.'''
 
    def __init__(self, music, meters):

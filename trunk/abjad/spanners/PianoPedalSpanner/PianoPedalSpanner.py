@@ -1,9 +1,8 @@
-from abjad.spanners.PianoPedal._PianoPedalSpannerFormatInterface import \
-   _PianoPedalSpannerFormatInterface
+from abjad.spanners.PianoPedal._PianoPedalSpannerFormatInterface import _PianoPedalSpannerFormatInterface
 from abjad.spanners.Spanner import Spanner
 
 
-class PianoPedal(Spanner):
+class PianoPedalSpanner(Spanner):
 
    def __init__(self, music = None):
       Spanner.__init__(self, music)

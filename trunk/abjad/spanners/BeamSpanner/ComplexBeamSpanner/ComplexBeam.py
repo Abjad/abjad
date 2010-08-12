@@ -1,14 +1,14 @@
-from abjad.spanners.Beam.ComplexBeam._ComplexBeamFormatInterface import _ComplexBeamFormatInterface
-from abjad.spanners.Beam.Beam import Beam
+from abjad.spanners.BeamSpanner.ComplexBeamSpanner._ComplexBeamSpannerFormatInterface import _ComplexBeamSpannerFormatInterface
+from abjad.spanners.BeamSpanner.BeamSpanner import BeamSpanner
 from abjad.core import Rational
 import types
 
 
-class ComplexBeam(Beam):
+class ComplexBeamSpanner(BeamSpanner):
 
    def __init__(self, leaves, lone = False, nibs = 'neither'):
-      Beam.__init__(self, leaves)
-      self._format = _ComplexBeamFormatInterface(self)
+      BeamSpanner.__init__(self, leaves)
+      self._format = _ComplexBeamSpannerFormatInterface(self)
       self.lone = lone
       self.nibs = nibs
    

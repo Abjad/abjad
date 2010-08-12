@@ -2,7 +2,7 @@ from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 from abjad.spanners.Tie._TieSpannerFormatInterface import _TieSpannerFormatInterface
 
 
-class Tie(_GrobHandlerSpanner):
+class TieSpanner(_GrobHandlerSpanner):
    r'''Musical tie between two or more notes, rests or chords.
 
    ::
