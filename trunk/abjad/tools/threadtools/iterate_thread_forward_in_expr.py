@@ -4,7 +4,7 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
    Yield left-to-right instances of `klass` in `expr` with
    `thread_signature`. ::
 
-      abjad> container = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+      abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> container.parallel = True
       abjad> container[0].name = 'voice 1'
       abjad> container[1].name = 'vocie 2'

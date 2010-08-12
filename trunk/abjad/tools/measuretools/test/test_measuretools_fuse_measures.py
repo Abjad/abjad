@@ -136,8 +136,8 @@ def test_measuretools_fuse_measures_04( ):
       Helpers selects least common multiple of denominators.
       Beams are OK because they attach to leaves rather than containers.'''
 
-   m1 = RigidMeasure((1, 8), leaftools.make_repeated_notes(1))
-   m2 = RigidMeasure((1, 12), leaftools.make_repeated_notes(1))
+   m1 = RigidMeasure((1, 8), notetools.make_repeated_notes(1))
+   m2 = RigidMeasure((1, 12), notetools.make_repeated_notes(1))
    t = Voice([m1, m2])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
@@ -242,7 +242,7 @@ def test_measuretools_fuse_measures_07( ):
 def test_measuretools_fuse_measures_08( ):
    '''Measure fusion across intervening container boundaries is undefined.'''
 
-   t = Voice(Container(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) * 2)
+   t = Voice(Container(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

@@ -10,8 +10,8 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
    sequential parentage of `component` from prolated duration `start`
    to prolated duration `stop`::
 
-      abjad> voice = Voice(leaftools.make_repeated_notes(2))
-      abjad> voice.append(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)))
+      abjad> voice = Voice(notetools.make_repeated_notes(2))
+      abjad> voice.append(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       abjad> f(voice)
       \new Voice {

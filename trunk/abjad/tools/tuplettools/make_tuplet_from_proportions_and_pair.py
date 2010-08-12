@@ -61,12 +61,12 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
          try:
             return Container([Note(0, duration)])
          except AssignabilityError:
-            return Container(leaftools.make_notes(0, duration))
+            return Container(notetools.make_notes(0, duration))
       elif l[0] < 0:
          try:
             return Container([Rest(duration)])
          except AssignabilityError:
-            return Container(leaftools.make_rests(duration))
+            return Container(resttools.make_rests(duration))
       else:
          raise ValueError('no divide zero values.')
 
@@ -81,7 +81,7 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
             try:
                music.append(Note(0, (x, denominator)))
             except AssignabilityError:
-               music.extend(leaftools.make_notes(0, (x, denominator)))
+               music.extend(notetools.make_notes(0, (x, denominator)))
          else:
             music.append(Rest((-x, denominator)))
       return FixedDurationTuplet(duration, music)

@@ -3,7 +3,7 @@ from abjad import *
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_01( ):
    '''Tied leaves inside containers can be fused.''' 
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    tie = Tie(t.leaves)
    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)])
 
@@ -30,7 +30,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_02( ):
    '''Tied leaves inside containers can be fused.''' 
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    tie = Tie(t.leaves[1:])
    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)])
 
@@ -60,7 +60,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_03( ):
    '''multiple ties inside the same duration span are independently fused.''' 
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    tie1 = Tie(t.leaves[0:2])
    tie2 = Tie(t.leaves[2:])
    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)] * 2)
@@ -85,7 +85,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_04( ):
    '''multiple ties inside the same duration span are independently fused.''' 
 
-   t = Voice(leaftools.make_repeated_notes(8))
+   t = Voice(notetools.make_repeated_notes(8))
    Tie(t.leaves[0:4])
    Tie(t.leaves[4:])
 
@@ -123,7 +123,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    durations = [5, 7, 2, 11, 13, 5, 13, 3]
    durations = zip(durations, [16] * len(durations))
 
-   notes = leaftools.make_notes(0, durations)
+   notes = notetools.make_notes(0, durations)
    t = stafftools.make_rhythmic_sketch_staff(notes)
 
    meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]

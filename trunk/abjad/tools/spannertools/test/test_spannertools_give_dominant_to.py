@@ -23,7 +23,7 @@ def test_spannertools_give_dominant_to_01( ):
    }
    '''
 
-   recipient = Voice(leaftools.make_repeated_notes(3, Rational(1, 16)))
+   recipient = Voice(notetools.make_repeated_notes(3, Rational(1, 16)))
    Beam(recipient)
 
    r'''
@@ -71,7 +71,7 @@ def test_spannertools_give_dominant_to_01( ):
 def test_spannertools_give_dominant_to_02( ):
    '''Not composer-safe.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[:])
 

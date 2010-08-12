@@ -5,7 +5,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
    '''Duration partition one container in score
       Do no fracture spanners.'''
 
-   t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -55,7 +55,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
    '''Duration partition multiple containers in score.
       Do not fracture spanners.'''
 
-   t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])

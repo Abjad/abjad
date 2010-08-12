@@ -7,8 +7,8 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
    r'''Yield the left-to-right, top-level contents of `expr`
    with chain-wrapped leaves. ::
 
-      t = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
-      t.insert(4, FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)))
+      t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
+      t.insert(4, FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
       pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> print t.format
       \new Staff {

@@ -5,7 +5,7 @@ import py.test
 def test_Beam_span_like_named_01( ):
    '''Abjad lets you span liked named voices.'''
 
-   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
+   t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -47,7 +47,7 @@ def test_Beam_span_like_named_02( ):
    Abjad does NOT lets you span over liked named staves.
    '''
 
-   t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
+   t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
    t[0].name, t[1].name = 'foo', 'foo'
    t[0][0].name, t[1][0].name = 'bar', 'bar'
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -64,7 +64,7 @@ def test_Beam_span_like_named_03( ):
    Like-named containers need not be lexically contiguous.
    '''
 
-   t = Container(Container(Voice(leaftools.make_repeated_notes(4)) * 2) * 2)
+   t = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
    t[0].parallel = True
    t[1].parallel = True
    t[0][0].name, t[1][1].name = 'first', 'first'
@@ -117,7 +117,7 @@ def test_Beam_span_like_named_04( ):
    Asymmetric structures are no problem.
    '''
 
-   t = Container(Container(Voice(leaftools.make_repeated_notes(4)) * 2) * 2)
+   t = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
    t[0].parallel = True
    t[1].parallel = True
    t[0][0].name, t[1][0].name = 'first', 'first'

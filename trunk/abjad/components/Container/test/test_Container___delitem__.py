@@ -9,7 +9,7 @@ def test_Container___delitem___01( ):
    Operation always leaves all expressions in tact.
    '''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[:])
    Slur(t[0][:])

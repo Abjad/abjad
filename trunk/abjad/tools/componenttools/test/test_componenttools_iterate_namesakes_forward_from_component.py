@@ -4,7 +4,7 @@ import py.test
 
 def test_componenttools_iterate_namesakes_forward_from_component_01( ):
 
-   container = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
+   container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
    container.parallel = True
    container[0].name = 'staff 1'
    container[1].name = 'staff 2'
@@ -51,7 +51,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_01( ):
 
 def test_componenttools_iterate_namesakes_forward_from_component_02( ):
 
-   container = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
+   container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
    container.parallel = True
    container[0].name = 'staff 1'
    container[1].name = 'staff 2'
@@ -98,7 +98,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_02( ):
 def test_componenttools_iterate_namesakes_forward_from_component_03( ):
    '''Optional start and stop keywords.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -127,7 +127,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_03( ):
 def test_componenttools_iterate_namesakes_forward_from_component_04( ):
    '''Optional start and stop keywords.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

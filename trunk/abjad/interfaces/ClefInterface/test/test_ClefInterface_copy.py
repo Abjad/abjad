@@ -4,7 +4,7 @@ from abjad import *
 def test_ClefInterface_copy_01( ):
    '''Forced clefs copy.'''
 
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
@@ -46,7 +46,7 @@ def test_ClefInterface_copy_01( ):
 def test_ClefInterface_copy_02( ):
    '''Implicit clefs do not copy.'''
 
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')

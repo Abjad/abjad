@@ -4,7 +4,7 @@ from abjad import *
 def test_TextSpanner_grob_handling_01( ):
    '''Abjad TextSpanner handles LilyPond TextSpanner grob.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
    p.font_shape = 'italic'
 

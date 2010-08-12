@@ -8,8 +8,8 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Container(leaftools.make_repeated_notes(4))
-#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
+#   t = Container(notetools.make_repeated_notes(4))
+#   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 #   t.note_head.color = 'red'
@@ -46,9 +46,9 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Voice(leaftools.make_repeated_notes(4))
+#   t = Voice(notetools.make_repeated_notes(4))
 #   t.name = 'foo'
-#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
+#   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 #   t.note_head.color = 'red'
@@ -85,8 +85,8 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Voice(leaftools.make_repeated_notes(4))
-#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
+#   t = Voice(notetools.make_repeated_notes(4))
+#   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 #   t.note_head.color = 'red'
@@ -156,8 +156,8 @@ def test_Thread_signature_07( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.note_head.color = 'red'
@@ -198,9 +198,9 @@ def test_Thread_signature_08( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    t.name = 'foo'
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -289,8 +289,8 @@ def test_Thread_signature_10( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Container(leaftools.make_repeated_notes(2))
-   t[1:1] = Container(Voice(leaftools.make_repeated_notes(1)) * 2) * 2
+   t = Container(notetools.make_repeated_notes(2))
+   t[1:1] = Container(Voice(notetools.make_repeated_notes(1)) * 2) * 2
    t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'
@@ -376,7 +376,7 @@ def test_Thread_signature_12( ):
 def test_Thread_signature_13( ):
    '''Measure and leaves must carry same thread signature.'''
 
-   t = Staff([DynamicMeasure(macros.scale(2))] + leaftools.make_repeated_notes(2))
+   t = Staff([DynamicMeasure(macros.scale(2))] + notetools.make_repeated_notes(2))
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -397,7 +397,7 @@ def test_Thread_signature_13( ):
 def test_Thread_signature_14( ):
    '''Leaves inside different Staves have different thread signatures,
    even when the staves have the same name.'''
-   t = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
+   t = Container(Staff(notetools.make_repeated_notes(2)) * 2)
    t[0].name = t[1].name = 'staff'
 
    r'''

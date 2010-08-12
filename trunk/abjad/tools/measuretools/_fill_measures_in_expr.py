@@ -56,7 +56,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 #      if iterctrl(measure, i):
 #         meter = measure.meter.effective
 #         written_duration = ~meter.multiplier * meter.duration
-#         notes = leaftools.make_notes(0, written_duration)
+#         notes = notetools.make_notes(0, written_duration)
 #         measure[:] = notes
 #
 #
@@ -65,7 +65,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 #      if iterctrl(measure, i):
 #         meter = measure.meter.effective
 #         written_duration = ~meter.multiplier * meter.duration
-#         notes = leaftools.make_notes(
+#         notes = notetools.make_notes(
 #            0, written_duration, direction = 'little-endian')
 #         measure[:] = notes
 #
@@ -77,7 +77,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 #         meter = measure.meter.effective
 #         total_duration = meter.duration
 #         prolation = meter.multiplier
-#         notes = leaftools.make_repeated_notes_with_shorter_notes_at_end(
+#         notes = notetools.make_repeated_notes_with_shorter_notes_at_end(
 #            0, written_duration, total_duration, prolation)
 #         measure[:] = notes
 #

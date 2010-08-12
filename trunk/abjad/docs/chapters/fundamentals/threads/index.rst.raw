@@ -60,8 +60,8 @@ In Abjad, the ambiguity is resolved through the explicit use of named Voices, i.
 The above musical fragment is constructed with the following code:
 
 <abjad>
-vA = Voice(leaftools.make_notes([5, 7, 9, 11], [(1, 8)] * 4))
-vB = Voice(leaftools.make_notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
+vA = Voice(notetools.make_notes([5, 7, 9, 11], [(1, 8)] * 4))
+vB = Voice(notetools.make_notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
 vC = Voice(Note(12, (1, 4)) * 2)
 vA.voice.number = 1
 vB.voice.number = 1
@@ -200,7 +200,7 @@ Incidentally, we could have constructed this score in a simpler way with only tw
 
 
 <abjad>
-vX = Voice(leaftools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
+vX = Voice(notetools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
 vY = Voice([Skip((2, 4))] + Note(12, (1, 4)) * 2)
 vX.voice.number = 1
 vY.voice.number = 2

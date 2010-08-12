@@ -4,7 +4,7 @@ from abjad import *
 def test_tietools_remove_all_leaves_in_tie_chain_except_first_01( ):
    '''Keep and unspan first note in tie chain only.'''
 
-   t = Staff(leaftools.make_notes(0, [(5, 16)]))
+   t = Staff(notetools.make_notes(0, [(5, 16)]))
 
    r'''
    \new Staff {
@@ -28,7 +28,7 @@ def test_tietools_remove_all_leaves_in_tie_chain_except_first_01( ):
 def test_tietools_remove_all_leaves_in_tie_chain_except_first_02( ):
    '''No effect on length-1 tie chains.'''
 
-   t = Staff(leaftools.make_repeated_notes(1))
+   t = Staff(notetools.make_repeated_notes(1))
 
    tietools.remove_all_leaves_in_tie_chain_except_first(t[0].tie.chain)
 

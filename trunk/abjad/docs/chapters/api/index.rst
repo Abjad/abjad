@@ -392,7 +392,6 @@ leaftools
 .. toctree::
    :maxdepth: 1
 
-   tools/leaftools/add_artificial_harmonic_to_note
    tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
    tools/leaftools/color_leaf
    tools/leaftools/color_leaves_in_expr
@@ -436,22 +435,11 @@ leaftools
    tools/leaftools/leaf_to_diminished_tuplet_with_proportions
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
-   tools/leaftools/make_accelerating_notes_with_lilypond_multipliers
-   tools/leaftools/make_all_notes_in_ascending_and_descending_diatonic_scale
-   tools/leaftools/make_first_n_notes_in_ascending_diatonic_scale
    tools/leaftools/make_leaves
-   tools/leaftools/make_notes
-   tools/leaftools/make_percussion_note
-   tools/leaftools/make_quarter_notes_with_lilypond_multipliers
-   tools/leaftools/make_repeated_notes
-   tools/leaftools/make_repeated_notes_with_shorter_notes_at_end
-   tools/leaftools/make_rests
-   tools/leaftools/make_skips_with_multiplied_durations
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
    tools/leaftools/remove_markup_from_leaves_in_expr
    tools/leaftools/repeat_leaf_and_extend_spanners
    tools/leaftools/repeat_leaves_in_expr_and_extend_spanners
-   tools/leaftools/replace_leaves_in_expr_with_skips
    tools/leaftools/scale_preprolated_leaf_duration
    tools/leaftools/set_preprolated_leaf_duration
    tools/leaftools/show_leaves
@@ -680,8 +668,15 @@ notetools
 .. toctree::
    :maxdepth: 1
 
+   tools/notetools/add_artificial_harmonic_to_note
    tools/notetools/iterate_notes_backward_in_expr
    tools/notetools/iterate_notes_forward_in_expr
+   tools/notetools/make_accelerating_notes_with_lilypond_multipliers
+   tools/notetools/make_notes
+   tools/notetools/make_percussion_note
+   tools/notetools/make_quarter_notes_with_lilypond_multipliers
+   tools/notetools/make_repeated_notes
+   tools/notetools/make_repeated_notes_with_shorter_notes_at_end
 
 
 overridetools
@@ -832,6 +827,14 @@ pitchtools
    tools/pitchtools/zero_indexed_pentatonic_scale_degree_number_to_pitch_number
 
 
+resttools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/resttools/make_rests
+
+
 schemetools
 
 .. toctree::
@@ -863,6 +866,15 @@ sievetools
    tools/sievetools/ResidueClass/ResidueClass
    tools/sievetools/ResidueClassExpression/ResidueClassExpression
    tools/sievetools/cycle_tokens_to_sieve
+
+
+skiptools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/skiptools/make_skips_with_multiplied_durations
+   tools/skiptools/replace_leaves_in_expr_with_skips
 
 
 spacingtools
@@ -994,6 +1006,8 @@ tonalitytools
    tools/tonalitytools/is_neighbor_note
    tools/tonalitytools/is_passing_tone
    tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
+   tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
+   tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
 
 
 tuplettools

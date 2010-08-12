@@ -9,8 +9,8 @@ def test_lily_voice_resolution_01( ):
    How does LilyPond resolve voices?
    '''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.note_head.color = 'red'
@@ -50,9 +50,9 @@ def test_lily_voice_resolution_02( ):
    How does LilyPond resolve voices?
    '''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    t.name = 'foo'
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -107,8 +107,8 @@ def test_lily_voice_resolution_04( ):
    Two like-structured parallels in the middle of the run.
    '''
 
-   t = Container(leaftools.make_repeated_notes(2))
-   t[1:1] = Container(Voice(leaftools.make_repeated_notes(2)) * 2) * 2
+   t = Container(notetools.make_repeated_notes(2))
+   t[1:1] = Container(Voice(notetools.make_repeated_notes(2)) * 2) * 2
    t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'

@@ -7,7 +7,7 @@ def test_componenttools_partition_components_once_by_durations_in_seconds_exactl
    Do not return overhang group.
    '''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    tempo_spanner = TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)

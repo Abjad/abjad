@@ -4,7 +4,7 @@ from abjad import *
 def test_tietools_apply_tie_spanner_to_leaf_pair_01( ):
    '''Span left leaf with spanner and right leaf without spanner.'''
    
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    Tie(t[:2])
 
    r'''
@@ -34,7 +34,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_01( ):
 def test_tietools_apply_tie_spanner_to_leaf_pair_02( ):
    '''Span left leaf with spanner and right leaf with spanner.'''
    
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    Tie(t[:2])
    Tie(t[2:])
 
@@ -65,7 +65,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_02( ):
 def test_tietools_apply_tie_spanner_to_leaf_pair_03( ):
    '''Span left leaves with no spanner.'''
    
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
 
    r'''
    \new Voice {

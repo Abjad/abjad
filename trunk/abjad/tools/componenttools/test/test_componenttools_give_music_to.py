@@ -7,7 +7,7 @@ def test_componenttools_give_music_to_01( ):
    '''Give spanned music from donor to recipient.
       Helper is not composer-safe and results here in bad spanners.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 

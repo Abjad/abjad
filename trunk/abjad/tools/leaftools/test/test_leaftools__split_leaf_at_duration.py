@@ -68,7 +68,7 @@ def test_leaftools__split_leaf_at_duration_03( ):
    '''Notehead-assignable duration produces two notes.
       This test comes from a container-crossing spanner bug.'''
 
-   t = Voice(leaftools.make_repeated_notes(1) + [FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3))])
+   t = Voice(notetools.make_repeated_notes(1) + [FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
@@ -208,7 +208,7 @@ def test_leaftools__split_leaf_at_duration_09( ):
 def test_leaftools__split_leaf_at_duration_10( ):
    '''Spanners are unaffected by leaf split.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    b = Beam(t.leaves)
    halves = _split_leaf_at_duration(t[0], Rational(1, 16))
 
@@ -240,7 +240,7 @@ def test_leaftools__split_leaf_at_duration_12( ):
    '''Split leaf is not tied again when a Container 
       containing it is already Tie-spanned.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    s = Tie(t)
    halves = _split_leaf_at_duration(t[0], Rational(5, 64))
 
@@ -255,7 +255,7 @@ def test_leaftools__split_leaf_at_duration_13( ):
    '''Split leaf is not tied again when a Container containing it is 
       already Tie-spanned.'''
 
-   t = Staff(Container(leaftools.make_repeated_notes(4)) * 2)
+   t = Staff(Container(notetools.make_repeated_notes(4)) * 2)
    s = Tie(t[:])
    halves = _split_leaf_at_duration(t[0][0], Rational(5, 64))
 

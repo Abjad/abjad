@@ -4,7 +4,7 @@ from abjad import *
 def test_Spanner_fracture_01( ):
    '''Fracture container spanner to the right of index 1.'''
 
-   t = Staff(Container(leaftools.make_repeated_notes(4)) * 3)
+   t = Staff(Container(notetools.make_repeated_notes(4)) * 3)
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[ : ])
    original, left, right = p.fracture(1, 'right')

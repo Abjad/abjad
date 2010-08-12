@@ -15,7 +15,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    equals the tuplet multiplier of the parent of the 
    first element in `components`. ::
 
-      voice = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 3)
+      voice = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 3)
       pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       beam = Beam(voice.leaves[:4])
       f(voice)

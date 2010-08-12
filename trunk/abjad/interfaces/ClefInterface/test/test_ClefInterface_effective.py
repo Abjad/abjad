@@ -60,7 +60,7 @@ def test_ClefInterface_effective_06( ):
 def test_ClefInterface_effective_07( ):
    '''Redudant clefs are allowed.'''
 
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('treble')
@@ -87,7 +87,7 @@ def test_ClefInterface_effective_07( ):
 def test_ClefInterface_effective_08( ):
    '''Clefs with transposition are allowed and work as expected.'''
 
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].clef.forced = Clef('treble_8')
    t[4].clef.forced = Clef('treble')

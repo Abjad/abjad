@@ -40,7 +40,7 @@ def test_Grace_02( ):
 def test_Grace_03( ):
    '''Grace formats correctly as grace.'''
 
-   t = Grace(leaftools.make_repeated_notes(3))
+   t = Grace(notetools.make_repeated_notes(3))
    t.kind = 'grace'
    assert t.format == "\\grace {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -56,7 +56,7 @@ def test_Grace_03( ):
 def test_Grace_04( ):
    '''Grace formats correctly as acciaccatura.'''
 
-   t = Grace(leaftools.make_repeated_notes(3))
+   t = Grace(notetools.make_repeated_notes(3))
    t.kind = 'acciaccatura'
    assert t.format == "\\acciaccatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -72,7 +72,7 @@ def test_Grace_04( ):
 def test_Grace_05( ):
    '''Grace formats correctly as appoggiatura.'''
 
-   t = Grace(leaftools.make_repeated_notes(3))
+   t = Grace(notetools.make_repeated_notes(3))
    t.kind = 'appoggiatura'
    assert t.format == "\\appoggiatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -88,7 +88,7 @@ def test_Grace_05( ):
 def test_Grace_06( ):
    '''Grace formats correctly as after grace.'''
 
-   t = Grace(leaftools.make_repeated_notes(3))
+   t = Grace(notetools.make_repeated_notes(3))
    t.kind = 'after'
    assert t.format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -104,7 +104,7 @@ def test_Grace_06( ):
 def test_Grace_07( ):
    '''Grace containers can be appended.'''
 
-   t = Grace(leaftools.make_repeated_notes(2))
+   t = Grace(notetools.make_repeated_notes(2))
    n = Note(1, (1, 4))
    t.append(n)
    assert len(t) == 3
@@ -114,7 +114,7 @@ def test_Grace_07( ):
 def test_Grace_08( ):
    '''Grace containers can be extended.'''
 
-   t = Grace(leaftools.make_repeated_notes(2))
+   t = Grace(notetools.make_repeated_notes(2))
    ns = Note(1, (1, 4)) * 2
    t.extend(ns)
    assert len(t) == 4

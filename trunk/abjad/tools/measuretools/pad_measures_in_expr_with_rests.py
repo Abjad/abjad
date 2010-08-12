@@ -47,7 +47,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
 
    Works when measures contain stacked voices. ::
 
-      abjad> measure = DynamicMeasure(Voice(leaftools.make_repeated_notes(2)) * 2)
+      abjad> measure = DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> measure.parallel = True
       abjad> t = Staff(measure * 2)
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)

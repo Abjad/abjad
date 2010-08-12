@@ -6,7 +6,7 @@ def test_spannertools_get_spanners_contained_by_components_01( ):
    '''Return unordered set of spanners contained
       within any of the list of thread-contiguous components.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])

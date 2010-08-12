@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_01( ):
    '''Duration partition one container in score, and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -59,7 +59,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''Duration partition multiple containers in score, 
       and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -119,7 +119,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
       This example includes no spanners.
       Spanners do not apply outside of score.'''
 
-   t = Container(leaftools.make_repeated_notes(2)) * 2
+   t = Container(notetools.make_repeated_notes(2)) * 2
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    "[{c'8, d'8}, {e'8, f'8}]"

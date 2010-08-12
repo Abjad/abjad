@@ -8,7 +8,7 @@ class FixedStaffPositioning(_Abjad, _Immutable):
    object with numeric indication of fixed distances between systems.
    Then pass to :func:`~abjad.tools.layouttools.apply_fixed_staff_positioning.apply_fixed_staff_positioning`. ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
+      abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))      
 

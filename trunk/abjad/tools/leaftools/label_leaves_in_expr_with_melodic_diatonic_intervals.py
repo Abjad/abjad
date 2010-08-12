@@ -9,7 +9,7 @@ def label_leaves_in_expr_with_melodic_diatonic_intervals(expr):
 
    Label the melodic diatonic interval of every leaf in `expr`. ::
 
-      abjad> staff = Staff(leaftools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Rational(1, 8)]))
+      abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Rational(1, 8)]))
       abjad> leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals(staff)
       abjad> f(staff)
       \new Staff {

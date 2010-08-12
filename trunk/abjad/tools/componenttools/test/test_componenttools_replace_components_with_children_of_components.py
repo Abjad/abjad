@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_replace_components_with_children_of_components_01( ):
    '''Containers can 'slip out' of score structure.'''
 
-   t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t.leaves)
 
@@ -94,7 +94,7 @@ def test_componenttools_replace_components_with_children_of_components_03( ):
 def test_componenttools_replace_components_with_children_of_components_04( ):
    '''Slip multiple containers.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
    Glissando(t.leaves)

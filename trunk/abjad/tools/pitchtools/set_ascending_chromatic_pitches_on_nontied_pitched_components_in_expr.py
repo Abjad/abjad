@@ -6,7 +6,7 @@ def set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
    r'''Apply ascending chromatic pitches 
    to the notes and chords in `expr`. ::
 
-      abjad> staff = Voice(leaftools.make_notes(0, [(5, 32)] * 4))
+      abjad> staff = Voice(notetools.make_notes(0, [(5, 32)] * 4))
       abjad> pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Voice {

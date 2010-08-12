@@ -34,7 +34,7 @@ def test_tonalitytools_are_scalar_notes_04( ):
 def test_tonalitytools_are_scalar_notes_05( ):
    '''Contour changes in note sequence qualifies as nonscalar.'''
 
-   notes = leaftools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
+   notes = notetools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
    t = Staff(notes)
 
    assert not tonalitytools.are_scalar_notes(t)

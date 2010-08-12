@@ -6,8 +6,8 @@ def test_ScoreInterface_index_01( ):
    a tuple of zero or more nonnegative integers.
    '''
 
-   staff_1 = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
-   staff_2 = Staff([FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3))])
+   staff_1 = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   staff_2 = Staff([FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))])
    score = Score([staff_1, staff_2])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
 

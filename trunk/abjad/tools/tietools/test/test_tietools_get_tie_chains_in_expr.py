@@ -3,7 +3,7 @@ from abjad import *
 def test_tietools_get_tie_chains_in_expr_01( ):
    '''returns an empty list on a list of untied leaves.'''
 
-   t = leaftools.make_repeated_notes(4)
+   t = notetools.make_repeated_notes(4)
    chains = tietools.get_tie_chains_in_expr(t)
 
    assert chains == [ ]
@@ -12,7 +12,7 @@ def test_tietools_get_tie_chains_in_expr_01( ):
 def test_tietools_get_tie_chains_in_expr_02( ):
    '''returns an empty list on a list of untied containers.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    chains = tietools.get_tie_chains_in_expr([t])
 
    assert chains == [ ]
@@ -21,7 +21,7 @@ def test_tietools_get_tie_chains_in_expr_02( ):
 def test_tietools_get_tie_chains_in_expr_03( ):
    '''returns an list of leaves on a list of tied leaves.'''
 
-   t = leaftools.make_repeated_notes(4)
+   t = notetools.make_repeated_notes(4)
    Tie(t[0:2])
    chains = tietools.get_tie_chains_in_expr(t)
 
@@ -31,7 +31,7 @@ def test_tietools_get_tie_chains_in_expr_03( ):
 def test_tietools_get_tie_chains_in_expr_04( ):
    '''returns an list of leaves on a list of tied containers.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    Tie(t)
    chains = tietools.get_tie_chains_in_expr([t])
 

@@ -4,7 +4,7 @@ from abjad.components._Leaf import _Leaf
 def iterate_components_forward_in_expr(expr, klass = _Leaf, start = 0, stop = None):
    r'''Yield left-to-right instances of `klass` in `expr`. ::
 
-      abjad> container = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+      abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> container.parallel = True
       abjad> container[0].name = 'voice 1'
       abjad> container[1].name = 'vocie 2'

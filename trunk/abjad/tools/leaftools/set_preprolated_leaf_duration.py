@@ -2,7 +2,7 @@ from abjad.exceptions import AssignabilityError
 from abjad.components._Leaf import _Leaf
 from abjad.core import Rational
 from abjad.spanners import Tie
-from abjad.tools.leaftools.make_notes import make_notes
+from abjad.tools.notetools.make_notes import make_notes
 from abjad.components._Tuplet import FixedMultiplierTuplet
 
    
@@ -127,6 +127,6 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          tuplet_multiplier = fmtuplet.duration.multiplier
          FixedMultiplierTuplet(tuplet_multiplier, all_leaves)
       else:
-         raise ValueError('unexpected output from leaftools.make_notes.')
+         raise ValueError('unexpected output from notetools.make_notes.')
 
    return all_leaves

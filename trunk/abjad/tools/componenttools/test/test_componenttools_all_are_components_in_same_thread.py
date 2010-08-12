@@ -102,7 +102,7 @@ def test_componenttools_all_are_components_in_same_thread_06( ):
 def test_componenttools_all_are_components_in_same_thread_07( ):
    '''Voice, sequential and leaves all thread.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(4)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -128,7 +128,7 @@ def test_componenttools_all_are_components_in_same_thread_07( ):
 def test_componenttools_all_are_components_in_same_thread_08( ):
    '''Anonymous voice, tuplets and leaves all thread.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -152,7 +152,7 @@ def test_componenttools_all_are_components_in_same_thread_08( ):
 def test_componenttools_all_are_components_in_same_thread_09( ):
    '''Can not thread across anonymous voices.'''
 
-   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
+   t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -181,7 +181,7 @@ def test_componenttools_all_are_components_in_same_thread_09( ):
 def test_componenttools_all_are_components_in_same_thread_10( ):
    '''Can thread across like-named voices.'''
 
-   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
+   t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].name = 'foo'
    t[1].name = 'foo'
@@ -209,7 +209,7 @@ def test_componenttools_all_are_components_in_same_thread_10( ):
 def test_componenttools_all_are_components_in_same_thread_11( ):
    '''Can not thread across differently named voices.'''
 
-   t = Staff(Voice(leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].name = 'foo'
    t[1].name = 'bar'
@@ -234,7 +234,7 @@ def test_componenttools_all_are_components_in_same_thread_12( ):
    '''Can not thread across anonymous voices.
       Can not thread across anonymous staves.'''
 
-   t = Container(Staff([Voice(leaftools.make_repeated_notes(2))]) * 2)
+   t = Container(Staff([Voice(notetools.make_repeated_notes(2))]) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    
    r'''
@@ -261,7 +261,7 @@ def test_componenttools_all_are_components_in_same_thread_13( ):
    '''Can not thread across anonymous voices.
       Can not thread across anonymous staves.'''
 
-   t = Container(Staff(Voice(leaftools.make_repeated_notes(2)) * 2) * 2)
+   t = Container(Staff(Voice(notetools.make_repeated_notes(2)) * 2) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].parallel = True
    t[1].parallel = True
@@ -297,7 +297,7 @@ def test_componenttools_all_are_components_in_same_thread_13( ):
 def test_componenttools_all_are_components_in_same_thread_14( ):
    '''Anonymous voice, sequentials and leaves all thread.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -349,7 +349,7 @@ def test_componenttools_all_are_components_in_same_thread_15( ):
 def test_componenttools_all_are_components_in_same_thread_16( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(leaftools.make_repeated_notes(4)), Voice(leaftools.make_repeated_notes(4))])
+   t = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    
    r'''
@@ -377,7 +377,7 @@ def test_componenttools_all_are_components_in_same_thread_16( ):
 def test_componenttools_all_are_components_in_same_thread_17( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Voice(leaftools.make_repeated_notes(4)), Container(leaftools.make_repeated_notes(4))])
+   t = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -405,7 +405,7 @@ def test_componenttools_all_are_components_in_same_thread_17( ):
 def test_componenttools_all_are_components_in_same_thread_18( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(leaftools.make_repeated_notes(4)), Voice(leaftools.make_repeated_notes(4))])
+   t = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
    t[1].name = 'foo'
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -434,7 +434,7 @@ def test_componenttools_all_are_components_in_same_thread_18( ):
 def test_componenttools_all_are_components_in_same_thread_19( ):
    '''Can not thread over differently named IMPLICIT voices.'''
 
-   t = Container([Voice(leaftools.make_repeated_notes(4)), Container(leaftools.make_repeated_notes(4))])
+   t = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
    t[0].name = 'foo'
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -463,7 +463,7 @@ def test_componenttools_all_are_components_in_same_thread_19( ):
 def test_componenttools_all_are_components_in_same_thread_20( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(leaftools.make_repeated_notes(4)), Staff(leaftools.make_repeated_notes(4))])
+   t = Container([Container(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -655,8 +655,8 @@ def test_componenttools_all_are_components_in_same_thread_26( ):
 def test_componenttools_all_are_components_in_same_thread_27( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container(leaftools.make_repeated_notes(4))
-   t.insert(0, Staff(leaftools.make_repeated_notes(4)))
+   t = Container(notetools.make_repeated_notes(4))
+   t.insert(0, Staff(notetools.make_repeated_notes(4)))
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -1180,8 +1180,8 @@ def test_componenttools_all_are_components_in_same_thread_41( ):
 def test_componenttools_all_are_components_in_same_thread_42( ):
    '''Can not thread across differently named anonymous voices.'''
 
-   t = Container(leaftools.make_repeated_notes(4))
-   t[0:0] = Voice(leaftools.make_repeated_notes(4)) * 2
+   t = Container(notetools.make_repeated_notes(4))
+   t[0:0] = Voice(notetools.make_repeated_notes(4)) * 2
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

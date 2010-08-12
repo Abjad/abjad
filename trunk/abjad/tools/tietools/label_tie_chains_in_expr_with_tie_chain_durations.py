@@ -6,7 +6,7 @@ def label_tie_chains_in_expr_with_tie_chain_durations(expr):
    r'''Label tie chains in `expr` with both written tie chain duration
    and prolated tie chain duration::
 
-      abjad> staff = Staff(leaftools.make_repeated_notes(4))
+      abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> FixedDurationTuplet((2, 8), staff[:3])
       abjad> Tie(staff.leaves[:2])
       abjad> Tie(staff.leaves[2:])

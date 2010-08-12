@@ -2,7 +2,7 @@ from abjad.core import Rational
 from abjad.spanners import Tie
 from abjad.tools import componenttools
 from abjad.tools import durtools
-from abjad.tools import leaftools
+from abjad.tools import notetools
 from abjad.tools.spannertools._withdraw_from_attached import _withdraw_from_attached
 from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_leaves_in_tie_chain import get_leaves_in_tie_chain
@@ -32,7 +32,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
       tie_chain[0].duration.written = new_written_duration
       remove_all_leaves_in_tie_chain_except_first(tie_chain)
    elif durtools.is_binary_rational(new_written_duration):
-      duration_tokens = leaftools.make_notes(0, [new_written_duration])
+      duration_tokens = notetools.make_notes(0, [new_written_duration])
       for leaf, token in zip(tie_chain, duration_tokens):
          leaf.duration.written = token.duration.written
       if len(tie_chain) == len(duration_tokens):
@@ -52,7 +52,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
             Tie(list(tie_chain))
          tie_chain[-1].splice(extra_leaves)
    else:
-      duration_tokens = leaftools.make_notes(0, new_written_duration)
+      duration_tokens = notetools.make_notes(0, new_written_duration)
       assert isinstance(duration_tokens[0], FixedMultiplierTuplet)
       fmtuplet = duration_tokens[0]
       new_chain_written = get_preprolated_tie_chain_duration(

@@ -29,7 +29,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01( ):
 def test_measuretools_multiply_contents_of_measures_in_expr_02( ):
    '''Spin multiples measures out twice each.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    
    r'''

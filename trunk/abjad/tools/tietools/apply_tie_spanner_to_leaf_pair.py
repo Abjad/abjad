@@ -7,7 +7,7 @@ from abjad.tools.tietools.are_components_in_same_tie_spanner import are_componen
 def apply_tie_spanner_to_leaf_pair(left, right):
    r'''Apply tie spanner to `left` leaf and `right` leaf::
 
-      abjad> staff = Staff(leaftools.make_repeated_notes(4))
+      abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> Tie(staff[:2])
       abjad> f(staff)
       \new Staff {

@@ -46,7 +46,7 @@ def test_Spanner_remove_02( ):
       Still not composer-safe.
       Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[:])
    

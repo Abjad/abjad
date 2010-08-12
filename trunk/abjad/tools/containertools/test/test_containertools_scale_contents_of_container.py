@@ -107,7 +107,7 @@ def test_containertools_scale_contents_of_container_05( ):
    '''Scale mixed notes and tuplets.'''
 
    t = Voice([Note(0, (3, 16)),
-      FixedDurationTuplet((3, 8), leaftools.make_repeated_notes(4))])
+      FixedDurationTuplet((3, 8), notetools.make_repeated_notes(4))])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -179,7 +179,7 @@ def test_containertools_scale_contents_of_container_06( ):
 def test_containertools_scale_contents_of_container_07( ):
    '''Double all contents, including measure.'''
 
-   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -221,7 +221,7 @@ def test_containertools_scale_contents_of_container_07( ):
 def test_containertools_scale_contents_of_container_08( ):
    '''Multiply all contents by 5/4, including measure.'''
 
-   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

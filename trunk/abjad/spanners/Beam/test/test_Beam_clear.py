@@ -4,7 +4,7 @@ from abjad import *
 def test_Beam_clear_01( ):
    '''Clear length-one spanner.'''
 
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
 
@@ -43,7 +43,7 @@ def test_Beam_clear_01( ):
 def test_Beam_clear_02( ):
    '''Clear length-four spanner.'''
 
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[:4])
 

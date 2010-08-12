@@ -53,7 +53,7 @@ Example:
       This is an <b>HTML</b> document. Here is Abjad code:
 
       <abjad>
-      v = Voice(leaftools.make_repeated_notes(8))
+      v = Voice(notetools.make_repeated_notes(8))
       Beam(v)
       write_expr_to_ly(v, 'example1') <hide ## this will insert an image. 
       show(v)

@@ -25,7 +25,7 @@ def test_BarNumberInterface_current_01( ):
 def test_BarNumberInterface_current_02( ):
    '''Handle LilyPond ``currentBarNumber`` context setting on measure.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].bar_number.current = 12
    overridetools.promote_attribute_to_context_on_grob_handler(t[0].bar_number, 'current', 'Score')

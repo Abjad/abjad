@@ -4,7 +4,7 @@ from abjad import *
 def test_ContainerSpannerAggregator_clear_01( ):
    '''Clear one spanner attaching to container.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[:])
 
@@ -53,7 +53,7 @@ def test_ContainerSpannerAggregator_clear_01( ):
 def test_ContainerSpannerAggregator_clear_02( ):
    '''Clear multiple spanners attaaching to container.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p1 = Beam(t[:])
    p2 = Trill(t[ : ])

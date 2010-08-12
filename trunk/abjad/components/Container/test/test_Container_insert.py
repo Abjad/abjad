@@ -139,7 +139,7 @@ def test_Container_insert_07( ):
       switches note parent from first container to second.'''
 
    v = Voice(macros.scale(4))
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    note = v[0]
    t.insert(1, v[0])
 

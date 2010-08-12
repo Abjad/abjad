@@ -34,7 +34,7 @@ def test_tonalitytools_are_stepwise_notes_04( ):
 def test_tonalitytools_are_stepwise_notes_05( ):
    '''Contour changes in note sequence qualifies as tepwise.'''
 
-   notes = leaftools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
+   notes = notetools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
    t = Staff(notes)
 
    assert tonalitytools.are_stepwise_notes(t)

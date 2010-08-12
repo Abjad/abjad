@@ -138,7 +138,7 @@ def test__Navigator_is_threadable_06( ):
 def test__Navigator_is_threadable_07( ):
    '''Voice and its noncontext contents all thread.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(4)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -496,7 +496,7 @@ def test__Navigator_is_threadable_15( ):
 def test__Navigator_is_threadable_16( ):
    '''Can NOT thread across like-named voices in like-named staves.'''
 
-   t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
+   t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
    t[0].name = 'staff'
    t[0][0].name = 'voice'
    t[1].name = 'staff'
@@ -536,7 +536,7 @@ def test__Navigator_is_threadable_17( ):
    '''Can thread across like-named voices.
       But can NOT thread across differently identified anonymous staves.'''
 
-   t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
+   t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
    t[0][0].name = 'voice'
    t[1][0].name = 'voice'
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -574,7 +574,7 @@ def test__Navigator_is_threadable_17( ):
 def test__Navigator_is_threadable_18( ):
    '''Like-named voices thread.'''
 
-   t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
+   t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -607,8 +607,8 @@ def test__Navigator_is_threadable_19( ):
    '''Can not thread from differently identified 
       anonymous and implicit voices.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
-   t.insert(2, Voice(leaftools.make_repeated_notes(2)))
+   t = Staff(notetools.make_repeated_notes(4))
+   t.insert(2, Voice(notetools.make_repeated_notes(2)))
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -636,8 +636,8 @@ def test__Navigator_is_threadable_19( ):
 def test__Navigator_is_threadable_20( ):
    '''Like-named voices thread.'''
 
-   v1 = Voice(leaftools.make_repeated_notes(4))
-   v2 = Voice(leaftools.make_repeated_notes(4))
+   v1 = Voice(notetools.make_repeated_notes(4))
+   v2 = Voice(notetools.make_repeated_notes(4))
    v1.name = v2.name = 'voiceOne'
    t = Container([v1, v2])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -666,8 +666,8 @@ def test__Navigator_is_threadable_20( ):
 def test__Navigator_is_threadable_21( ):
    '''Like-named voices thread.'''
 
-   v1 = Voice(leaftools.make_repeated_notes(4))
-   v2 = Voice(leaftools.make_repeated_notes(4))
+   v1 = Voice(notetools.make_repeated_notes(4))
+   v2 = Voice(notetools.make_repeated_notes(4))
    v1.name = v2.name = 'voiceOne'
    t = Container([Container([v1]), Container([v2])])
    t[0].parallel = True
@@ -703,8 +703,8 @@ def test__Navigator_is_threadable_21( ):
 def test__Navigator_is_threadable_22( ):
    '''Like-named voices in like-named staves do NOT thread.'''
 
-   v1 = Voice(leaftools.make_repeated_notes(4))
-   v2 = Voice(leaftools.make_repeated_notes(4))
+   v1 = Voice(notetools.make_repeated_notes(4))
+   v2 = Voice(notetools.make_repeated_notes(4))
    v1.name = v2.name = 'voiceOne'
    s1 = Staff([v1])
    s2 = Staff([v2])
@@ -761,7 +761,7 @@ def test__Navigator_is_threadable_24( ):
    r'''Containers and leaves here all inhabit the same implicit voice.
       All components thread.'''
 
-   t = Container(Container(leaftools.make_repeated_notes(4)) * 2)
+   t = Container(Container(notetools.make_repeated_notes(4)) * 2)
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    assert t[0][-1]._navigator._is_threadable(t[1][0])
@@ -788,7 +788,7 @@ def test__Navigator_is_threadable_24( ):
 def test__Navigator_is_threadable_25( ):
    '''Differently identified anonymous voices do not thread.'''
 
-   t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
+   t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    assert not t[0][-1]._navigator._is_threadable(t[1][0])
@@ -816,7 +816,7 @@ def test__Navigator_is_threadable_26( ):
    '''Differently identified anonymous voices do not thread.
       Differently identified anonymous staves do not thread.'''
 
-   t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
+   t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    
    assert not t[0][0][-1]._navigator._is_threadable(t[1][0][0])

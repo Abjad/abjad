@@ -8,7 +8,7 @@ def respell_named_pitches_in_expr_with_flats(expr):
 
    ::
 
-      abjad> staff = Staff(leaftools.make_repeated_notes(6))
+      abjad> staff = Staff(notetools.make_repeated_notes(6))
       abjad> pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {

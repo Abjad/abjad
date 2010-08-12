@@ -31,7 +31,7 @@ def test_Container_splice_01( ):
 def test_Container_splice_02( ):
    '''Splice after container with underspanners.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    Beam(t.leaves)
    result = t[0].splice([Note(2.5, (1, 8))])
 

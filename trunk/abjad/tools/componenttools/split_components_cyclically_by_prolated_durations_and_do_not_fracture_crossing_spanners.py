@@ -5,7 +5,7 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
    r'''Partition `components` cyclically by `durations`
    but do not fracture spanners in the process::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> Beam(staff[0])
       abjad> Beam(staff[1])

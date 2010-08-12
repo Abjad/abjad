@@ -91,7 +91,7 @@ class ParentageInterface(_Interface):
       in the parentage of `component` such that 
       the parent of `Q` is either a parallel container or ``None``. ::
 
-         abjad> t = Voice([Container(Voice(leaftools.make_repeated_notes(2)) * 2)])
+         abjad> t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
          abjad> t[0].parallel = True
          abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
          abjad> t[0][0].name = 'voice 1'

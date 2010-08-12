@@ -18,19 +18,19 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
 
    Example::
 
-      abjad> t = RigidMeasure((3, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
+      abjad> t = RigidMeasure((3, 16), notetools.make_repeated_notes(3, Rational(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])[0])
       |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
    Example::
 
-      abjad> t = RigidMeasure((3, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
+      abjad> t = RigidMeasure((3, 16), notetools.make_repeated_notes(3, Rational(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 2)])[0])
       |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
    
    Example::
 
-      abjad> t = RigidMeasure((3, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
+      abjad> t = RigidMeasure((3, 16), notetools.make_repeated_notes(3, Rational(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 1)])[0])
       |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
 

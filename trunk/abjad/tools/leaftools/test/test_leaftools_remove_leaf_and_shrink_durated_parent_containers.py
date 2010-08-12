@@ -247,8 +247,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
       trigger tuplet insertion.'''
 
    t = RigidMeasure((5, 6), 
-      [FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(7))] + 
-         leaftools.make_repeated_notes(3, (1, 4)))
+      [FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
+         notetools.make_repeated_notes(3, (1, 4)))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -321,8 +321,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
       does not trigger trivial 1:1 tuplet insertion.'''
 
    t = RigidMeasure((5, 6), 
-      [FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(7))] + 
-         leaftools.make_repeated_notes(3, (1, 4)))
+      [FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
+         notetools.make_repeated_notes(3, (1, 4)))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

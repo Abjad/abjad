@@ -24,7 +24,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02( )
    '''Populate measures conditionally.
       Iteration control tests index of iteration.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

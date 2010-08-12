@@ -2,8 +2,8 @@ from abjad.exceptions import AssignabilityError
 from abjad.components.Note import Note
 from abjad.core import Rational
 from abjad.tools import durtools
-from abjad.tools import leaftools
 from abjad.tools import mathtools
+from abjad.tools import notetools
 from abjad.tools import scoretools
 from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import \
    fix_contents_of_tuplets_in_expr
@@ -40,7 +40,7 @@ def _make_tuplet_from_duration_with_proportions_and_encourage_dots(
    except AssignabilityError:
       denominator = duration._denominator
       note_durations = [Rational(x, denominator) for x in divisions]
-      notes = leaftools.make_notes(0, note_durations)
+      notes = notetools.make_notes(0, note_durations)
 
    ## make tuplet
    tuplet = FixedDurationTuplet(duration, notes)

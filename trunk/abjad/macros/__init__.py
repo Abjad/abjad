@@ -1,3 +1,3 @@
 from abjad.tools.formattools import format_input_lines_as_doc_string as docstring
 from abjad.tools.formattools import format_input_lines_as_regression_test as regtest
-from abjad.tools.leaftools import make_first_n_notes_in_ascending_diatonic_scale as scale
+from abjad.tools.tonalitytools import make_first_n_notes_in_ascending_diatonic_scale as scale

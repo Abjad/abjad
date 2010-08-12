@@ -39,7 +39,7 @@ def _make_tuplet_from_duration_with_proportions_and_avoid_dots(
    except AssignabilityError:
       denominator = duration._denominator
       note_durations = [Rational(x, denominator) for x in divisions]
-      notes = leaftools.make_notes(0, note_durations)
+      notes = notetools.make_notes(0, note_durations)
 
    ## make tuplet
    tuplet = FixedDurationTuplet(duration, notes)

@@ -6,7 +6,7 @@ from abjad.components._Component._Component import _Component
 def test__Navigator_namesake_01( ):
    '''Leaves within different anonymous parents have different  
    parentage signatures and thus have no _next_namesake.'''
-   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
 
    assert t.leaves[0]._navigator._next_namesake is t.leaves[1]
    assert t.leaves[1]._navigator._next_namesake is None
@@ -16,7 +16,7 @@ def test__Navigator_namesake_01( ):
 def test__Navigator_namesake_02( ):
    '''Anonymous containers with the same parentage structure have  
    different parentage signatures and thus have no _next_namesake.'''
-   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
 
    assert t[0]._navigator._next_namesake is None
 
@@ -24,7 +24,7 @@ def test__Navigator_namesake_02( ):
 def test__Navigator_namesake_03( ):
    '''Differently named containers have a different parentage signature
    and thus do not _next_namesake.'''
-   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    t[0].name = 'voice'
 
    assert t[0]._navigator._next_namesake is None
@@ -37,7 +37,7 @@ def test__Navigator_namesake_04( ):
    '''Calling _next_namesake on a named component when another component
    with the same type and name exists after the caller returns the first
    next namesake Component found.'''
-   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    t[0].name = 'voice'
    t[1].name = 'voice'
 
@@ -48,7 +48,7 @@ def test__Navigator_namesake_04( ):
 
 def test__Navigator_namesake_05( ):
    '''Components need not be strictly contiguous.'''
-   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    t[0].name = 'voice'
    t[1].name = 'voice'
    t.insert(1, Rest((1, 2)))
@@ -60,7 +60,7 @@ def test__Navigator_namesake_05( ):
 
 def test__Navigator_namesake_06( ):
    '''Components need not thread (Staves don't thread).'''
-   t = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
+   t = Container(Staff(notetools.make_repeated_notes(2)) * 2)
    t[0].name = 'staff'
    t[1].name = 'staff'
    assert t[0]._navigator._next_namesake is t[1]
@@ -69,11 +69,11 @@ def test__Navigator_namesake_06( ):
 
 def test__Navigator_namesake_07( ):
    '''_next_namesake works on parallel structures.'''
-   a = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   a = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    a[0].name = 'voiceOne'
    a[1].name = 'voiceTwo'
    a.parallel = True
-   b = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   b = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    b[0].name = 'voiceOne'
    b[1].name = 'voiceTwo'
    b.parallel = True

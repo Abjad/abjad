@@ -5,7 +5,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    '''Cyclically duration partition one leaf in score.
       Do not fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -56,7 +56,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    '''Cyclically duration partition multiple leaves in score.
       Do not fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -108,7 +108,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    '''Cyclically duration partition one measure in score.
       Do not fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -164,7 +164,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    '''Cyclically duration partition multiple measures in score.
       Do not fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -263,7 +263,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    '''Cyclically duration partition list of measures outside of score.
       Do not fracture spanners.'''
 
-   measures = RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2
+   measures = RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2
    Beam(measures[0])
    Beam(measures[1])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(measures)
@@ -320,7 +320,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Read durations cyclically in list.
       Do not fracture spanners. Do add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -373,7 +373,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Read durations cyclically in list.
       Do not fracture spanners. Do add tie after each leaf split.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -427,7 +427,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Read durations cyclically in list.
       Do not fracture spanners. Do add tie after each leaf split.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -488,7 +488,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Read durations cyclically in list.
       Do not fracture spanners. Do add tie after each leaf split.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])

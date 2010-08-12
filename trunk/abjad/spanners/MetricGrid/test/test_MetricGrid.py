@@ -74,7 +74,7 @@ def test_MetricGrid_03( ):
 def test_MetricGrid_04( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
 
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
 
    r'''
@@ -282,7 +282,7 @@ def test_MetricGrid_10( ):
    '''MetricGrid split fuses correctly tied leaves in last measure.'''
 
    v = Voice(Note(1, (1, 4))*3)
-   v.extend(leaftools.make_rests((5, 4), tied=True))
+   v.extend(resttools.make_rests((5, 4), tied=True))
    m = MetricGrid(v.leaves, [(4, 4)])
    m.split_on_bar( )
 

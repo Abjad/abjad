@@ -136,7 +136,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_07( ):
       switches note parent from first container to second.'''
 
    v = Voice(macros.scale(4))
-   t = Staff(leaftools.make_repeated_notes(8))
+   t = Staff(notetools.make_repeated_notes(8))
    note = v[0]
    containertools.insert_component_and_fracture_crossing_spanners(t, 1, v[0])
 

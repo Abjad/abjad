@@ -84,7 +84,7 @@ def test_Beam_span_anonymous_04( ):
       first and last leaves in contiguity chain format
       beam indications.'''
 
-   t = Staff([Container(leaftools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t)
 
    r'''
@@ -111,7 +111,7 @@ def test_Beam_span_anonymous_05( ):
       intermediate attachment;
       first and last leaves in contiguity chain format beam indications.'''
 
-   t = Staff([Container(leaftools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t[ : ])
 
    r'''
@@ -140,7 +140,7 @@ def test_Beam_span_anonymous_06( ):
       leaf-level attachment;
       first and last leaves in contiguity chain format beam indications.'''
 
-   t = Staff([Container(leaftools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t.leaves)
 
    r'''

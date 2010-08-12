@@ -10,8 +10,8 @@ def iterate_timeline_forward_from_component(expr, klass = _Leaf):
    starting from `expr`. ::
 
       abjad> score = Score([ ])
-      abjad> score.append(Staff(leaftools.make_repeated_notes(4, Rational(1, 4))))
-      abjad> score.append(Staff(leaftools.make_repeated_notes(4)))
+      abjad> score.append(Staff(notetools.make_repeated_notes(4, Rational(1, 4))))
+      abjad> score.append(Staff(notetools.make_repeated_notes(4)))
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
       abjad> f(score)
       \new Score <<

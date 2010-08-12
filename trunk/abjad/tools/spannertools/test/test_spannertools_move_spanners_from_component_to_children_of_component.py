@@ -4,7 +4,7 @@ from abjad import *
 def test_spannertools_move_spanners_from_component_to_children_of_component_01( ):
    '''From parent to children.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = Beam(t[:])
 

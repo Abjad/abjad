@@ -20,7 +20,7 @@ def test_RigidMeasure_number_02( ):
 def test_RigidMeasure_number_03( ):
    '''Mesaure numbering works correctly after contents rotation.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    
    assert t[0].number == 1

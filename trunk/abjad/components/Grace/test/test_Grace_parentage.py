@@ -3,7 +3,7 @@ from abjad import *
 
 def test_Grace_parentage_01( ):
    '''Lone Grace containers _carrier is None.'''
-   t = Grace(leaftools.make_repeated_notes(4))
+   t = Grace(notetools.make_repeated_notes(4))
    assert t._carrier is None
 
 
@@ -60,7 +60,7 @@ def test_Grace_parentage_04( ):
 
 #def test_Grace_parentage_05( ):
 #   '''Lone Grace containers _parent is None.'''
-#   t = Grace(leaftools.make_repeated_notes(4))
+#   t = Grace(notetools.make_repeated_notes(4))
 #   assert t._parent is None
 #
 #

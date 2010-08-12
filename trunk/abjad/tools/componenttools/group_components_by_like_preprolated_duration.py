@@ -4,7 +4,7 @@ def group_components_by_like_preprolated_duration(components):
    Yield successive tuples from `components` with like
    preprolated duration. ::
 
-      abjad> notes = leaftools.make_notes([0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
+      abjad> notes = notetools.make_notes([0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
       abjad> for x in componenttools.group_components_by_like_preprolated_duration(notes):
       ...     x
       ... 

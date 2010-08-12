@@ -4,7 +4,7 @@ from abjad.core import Rational
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.tools.leaftools.make_notes import make_notes
+from abjad.tools.notetools.make_notes import make_notes
 from abjad.components._Tuplet import FixedDurationTuplet
 
 

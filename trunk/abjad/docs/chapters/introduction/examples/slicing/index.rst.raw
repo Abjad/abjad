@@ -17,7 +17,7 @@ print durations
 Let us now create a list of notes from these durations.
 
 <abjad> 
-notes = leaftools.make_notes(0, durations)
+notes = notetools.make_notes(0, durations)
 print notes
 </abjad>
 

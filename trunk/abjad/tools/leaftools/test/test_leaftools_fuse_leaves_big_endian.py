@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_fuse_leaves_big_endian_01( ):
    '''Wokrs with list of leaves.'''
-   fused = leaftools.fuse_leaves_big_endian(leaftools.make_repeated_notes(8, Rational(1, 4)))
+   fused = leaftools.fuse_leaves_big_endian(notetools.make_repeated_notes(8, Rational(1, 4)))
    assert len(fused) == 1 
    assert fused[0].duration.written == Rational(2)
 

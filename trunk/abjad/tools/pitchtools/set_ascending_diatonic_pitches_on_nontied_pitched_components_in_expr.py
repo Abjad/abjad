@@ -8,7 +8,7 @@ def set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(expr, k
    r'''Apply ascending diatonic pitches to the notes
    and chords in `expr`. ::
 
-      abjad> staff = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
+      abjad> staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {

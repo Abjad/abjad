@@ -31,7 +31,7 @@ def test_Container_splice_left_01( ):
 def test_Container_splice_left_02( ):
    '''Splice left of container with underspanners.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
    result = t[1].splice_left([Note(2.5, (1, 8))])

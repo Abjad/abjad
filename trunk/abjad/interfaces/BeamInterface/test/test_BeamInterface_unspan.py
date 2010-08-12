@@ -39,7 +39,7 @@ def test_BeamInterface_unspan_01( ):
 def test_BeamInterface_unspan_02( ):
    '''t.beam.unspan( ) clears any beam spanner attaching to container t.'''
 
-   t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[ : ]) 
 

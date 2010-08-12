@@ -3,7 +3,7 @@ from abjad import *
 
 def test_notetools_iterate_notes_backward_in_expr_01( ):
 
-   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    r'''
@@ -40,7 +40,7 @@ def test_notetools_iterate_notes_backward_in_expr_01( ):
 def test_notetools_iterate_notes_backward_in_expr_02( ):
    '''Optional start and stop keyword parameters.'''
 
-   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    notes = list(notetools.iterate_notes_backward_in_expr(staff, start = 3))

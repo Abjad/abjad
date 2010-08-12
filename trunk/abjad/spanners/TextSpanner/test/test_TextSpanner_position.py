@@ -4,7 +4,7 @@ from py.test import raises
 
 def test_TextSpanner_position_01( ):
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
 
    r'''
@@ -22,7 +22,7 @@ def test_TextSpanner_position_01( ):
 
 def test_TextSpanner_position_02( ):
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
    p.position = 'neutral'
 
@@ -41,7 +41,7 @@ def test_TextSpanner_position_02( ):
 
 def test_TextSpanner_position_03( ):
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
    p.position = 'up'
 
@@ -60,7 +60,7 @@ def test_TextSpanner_position_03( ):
 
 def test_TextSpanner_position_04( ):
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
    p.position = 'down'
 
@@ -80,7 +80,7 @@ def test_TextSpanner_position_04( ):
 def test_TextSpanner_position_05( ):
    '''Setting unknown position raises ValueError.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
 
    assert raises(ValueError, 'p.position = "xxx"')
@@ -89,7 +89,7 @@ def test_TextSpanner_position_05( ):
 def test_TextSpanner_position_06( ):
    '''TextSpanner attaching to container formats correctly.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t)
 
    r'''

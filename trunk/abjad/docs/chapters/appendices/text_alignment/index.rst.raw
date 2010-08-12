@@ -11,7 +11,7 @@ Default alignment
 LilyPond LEFT aligns markup relative to the LEFT edge-of-note_head by default.
 
 <abjad>
-notes = leaftools.make_repeated_notes(1, Rational(1, 4))
+notes = notetools.make_repeated_notes(1, Rational(1, 4))
 staff = RhythmicStaff(notes)
 leaves = staff.leaves
 leaves[0].markup.up.append('XX')
@@ -31,7 +31,7 @@ relative to the LEFT edge-of-note_head.
    LEFT edge-of-note_head.
 
 <abjad>
-notes = leaftools.make_repeated_notes(3, Rational(1, 4))
+notes = notetools.make_repeated_notes(3, Rational(1, 4))
 staff = RhythmicStaff(notes)
 leaves = staff.leaves
 leaves[0].markup.up.append('XX')
@@ -60,7 +60,7 @@ in the horizontal direction.
    LEFT edge-of-note_head.
 
 <abjad>
-notes = leaftools.make_repeated_notes(4, Rational(1, 4))
+notes = notetools.make_repeated_notes(4, Rational(1, 4))
 staff = RhythmicStaff(notes)
 leaves = staff.leaves
 leaves[0].markup.up.append('XX')

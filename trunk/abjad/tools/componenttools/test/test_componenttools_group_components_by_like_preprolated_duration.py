@@ -4,7 +4,7 @@ import py.test
 
 def test_componenttools_group_components_by_like_preprolated_duration_01( ):
 
-   notes = leaftools.make_notes(
+   notes = notetools.make_notes(
       [0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
    groups = componenttools.group_components_by_like_preprolated_duration(notes)
 

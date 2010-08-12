@@ -5,9 +5,9 @@ import py.test
 def test_Container_append_01( ):
    '''Append sequential to voice.'''
 
-   t = Voice(leaftools.make_repeated_notes(2))
+   t = Voice(notetools.make_repeated_notes(2))
    Beam(t[:])
-   t.append(Container(leaftools.make_repeated_notes(2)))
+   t.append(Container(notetools.make_repeated_notes(2)))
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

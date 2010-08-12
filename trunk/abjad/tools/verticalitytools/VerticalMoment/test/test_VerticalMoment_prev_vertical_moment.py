@@ -4,10 +4,10 @@ from abjad import *
 def test_VerticalMoment_prev_vertical_moment_01( ):
 
    score = Score([ ])
-   score.append(Staff([FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(3))]))
+   score.append(Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = PianoStaff([ ])
-   piano_staff.append(Staff(leaftools.make_repeated_notes(2, Rational(1, 4))))
-   piano_staff.append(Staff(leaftools.make_repeated_notes(4)))
+   piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
+   piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    piano_staff[1].clef.forced = Clef('bass')
    score.append(piano_staff)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))

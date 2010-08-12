@@ -5,7 +5,7 @@ import py.test
 def test_Spanner__is_my_first_leaf_01( ):
    '''Spanner attached to flat container.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t)
 
@@ -31,8 +31,8 @@ def test_Spanner__is_my_first_leaf_01( ):
 def test_Spanner__is_my_first_leaf_02( ):
    '''Spanner attached to container with nested contents.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(2, Container(leaftools.make_repeated_notes(2)))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(2, Container(notetools.make_repeated_notes(2)))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t[ : 3])
 
@@ -56,8 +56,8 @@ def test_Spanner__is_my_first_leaf_02( ):
 #def test_Spanner__is_my_first_leaf_03( ):
 #   '''Spanner attached to container with parallel nested contents.'''
 #
-#   t = Voice(leaftools.make_repeated_notes(4))
-#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
+#   t = Voice(notetools.make_repeated_notes(4))
+#   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 #

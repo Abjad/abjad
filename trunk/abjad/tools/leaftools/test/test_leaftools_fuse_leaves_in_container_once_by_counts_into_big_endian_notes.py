@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes_01( ):
    '''Glom voice.'''
 
-   t = Voice(leaftools.make_repeated_notes(5, Rational(1, 16)))
+   t = Voice(notetools.make_repeated_notes(5, Rational(1, 16)))
    Slur(t[:])
    #fuse.contents_by_counts(t, [1, 2, 2])
    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes(t, [1, 2, 2])
@@ -24,7 +24,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes
 def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes_02( ):
    '''Glom voice and render big-endian tied values.'''
 
-   t = Voice(leaftools.make_repeated_notes(5))
+   t = Voice(notetools.make_repeated_notes(5))
    Slur(t[:])
    #fuse.contents_by_counts(t, [5], direction = 'big-endian')
    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes(t, [5])

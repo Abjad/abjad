@@ -32,7 +32,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
    ::
 
-      abjad> voice = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+      abjad> voice = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> Beam(voice.leaves[:4])
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       abjad> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[0])

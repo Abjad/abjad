@@ -14,7 +14,7 @@ class SpacingSpanner(_GrobHandlerSpanner):
 
    Handle LilyPond ``SpacingSpanner`` grob. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> spacing_spanner = SpacingSpanner(staff[1:])
       abjad> spacing_spanner.new_section = True

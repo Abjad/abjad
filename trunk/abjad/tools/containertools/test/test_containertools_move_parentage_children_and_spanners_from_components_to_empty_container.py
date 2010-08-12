@@ -5,7 +5,7 @@ import py.test
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_01( ):
    '''Move parentage, children and spanners from multiple containers to empty tuplet.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 
@@ -51,7 +51,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_02( ):
    '''Move parentage, children and spanners from container to empty voice.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    t.name = 'foo'
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Glissando(t[:])
@@ -102,7 +102,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_03( ):
    '''Move parentage, children and spanners from container to empty tuplet.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Glissando(t[:])
    Beam(t.leaves)
@@ -152,7 +152,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04( ):
    '''Trying to move parentage, children and spanners to noncontainer raises type error.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    Beam(t[:])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -164,7 +164,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    '''Trying to move parentage, children and spanners from nonempty container
    to nonempty container raises music contents error.'''
    
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    Beam(t[:])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -177,7 +177,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    '''Trying to move parentage, children and spanners from components that are not parent-contiguous
    raises exception.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 

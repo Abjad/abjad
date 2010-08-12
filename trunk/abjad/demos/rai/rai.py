@@ -23,7 +23,7 @@ statements.append(s)
 
 
 text = 'From these duration tokens we now create a list of Notes.'
-code = 'notes = leaftools.make_notes(0, durations)'
+code = 'notes = notetools.make_notes(0, durations)'
 s = Statement(text, code)
 statements.append(s)
 

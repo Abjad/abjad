@@ -36,7 +36,7 @@ def test_leaftools_set_preprolated_leaf_duration_02( ):
    '''Change tied leaf to tied value.
       Duplicate ties are not created.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    Tie(t[:2])
    Beam(t[:2])
 

@@ -24,7 +24,7 @@ def test_pitchtools_respell_named_pitches_in_expr_with_sharps_03( ):
 
 def test_pitchtools_respell_named_pitches_in_expr_with_sharps_04( ):
    '''The pitchtools.respell_named_pitches_in_expr_with_sharps( ) helper renotates all pitches in any arbirary expression.'''
-   t = Staff(leaftools.make_repeated_notes(12))
+   t = Staff(notetools.make_repeated_notes(12))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    pitchtools.respell_named_pitches_in_expr_with_sharps(t)
 

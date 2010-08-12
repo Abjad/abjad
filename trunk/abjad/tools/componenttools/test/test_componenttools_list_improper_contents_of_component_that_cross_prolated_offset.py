@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_list_improper_contents_of_component_that_cross_prolated_offset_01( ):
    '''Staff and first measure cross offset at 1/8.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -26,7 +26,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
 def test_componenttools_list_improper_contents_of_component_that_cross_prolated_offset_02( ):
    '''Staff, first measure and first note cross 1/16.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -48,7 +48,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
 def test_componenttools_list_improper_contents_of_component_that_cross_prolated_offset_03( ):
    '''Nothing crosses 0.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -70,7 +70,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
 def test_componenttools_list_improper_contents_of_component_that_cross_prolated_offset_04( ):
    '''Nothing crosses 100.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

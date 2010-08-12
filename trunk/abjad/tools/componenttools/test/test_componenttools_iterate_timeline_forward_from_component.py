@@ -7,8 +7,8 @@ def test_componenttools_iterate_timeline_forward_from_component_01( ):
    and starting from expr.
    '''
 
-   staff_1 = Staff(leaftools.make_repeated_notes(4, Rational(1, 4)))
-   staff_2 = Staff(leaftools.make_repeated_notes(4, Rational(1, 8)))
+   staff_1 = Staff(notetools.make_repeated_notes(4, Rational(1, 4)))
+   staff_2 = Staff(notetools.make_repeated_notes(4, Rational(1, 8)))
    score_1 = Score([staff_1, staff_2])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score_1)   
 
@@ -44,8 +44,8 @@ def test_componenttools_iterate_timeline_forward_from_component_02( ):
    and starting from expr.
    '''
 
-   staff_1 = Staff(leaftools.make_repeated_notes(4, Rational(1, 8)))
-   staff_2 = Staff(leaftools.make_repeated_notes(4, Rational(1, 4)))
+   staff_1 = Staff(notetools.make_repeated_notes(4, Rational(1, 8)))
+   staff_2 = Staff(notetools.make_repeated_notes(4, Rational(1, 4)))
    score = Score([staff_1, staff_2])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)   
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_pitchtools_set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr_01( ):
    '''Appictation works on tie chains.'''
 
-   t = Voice(leaftools.make_notes(0, [(5, 32)] * 4))
+   t = Voice(notetools.make_notes(0, [(5, 32)] * 4))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

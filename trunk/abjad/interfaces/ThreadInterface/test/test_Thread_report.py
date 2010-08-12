@@ -8,8 +8,8 @@ import py.test
 #      Signature contains no explicit voice, staff or score.
 #      Outermost sequentials acts as signature root.'''
 #
-#   t = Container(leaftools.make_repeated_notes(4))
-#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
+#   t = Container(notetools.make_repeated_notes(4))
+#   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 #   t.note_head.color = 'red'
@@ -49,9 +49,9 @@ import py.test
 #      Signature contains neither staff nor score.
 #      Named voice 'foo' acts as signature root.'''
 #
-#   t = Voice(leaftools.make_repeated_notes(4))
+#   t = Voice(notetools.make_repeated_notes(4))
 #   t.name = 'foo'
-#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
+#   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 #   t.note_head.color = 'red'
@@ -91,8 +91,8 @@ import py.test
 #      Signature contains neither staff nor score.
 #      Anonymous voice acts as signature root.'''
 #
-#   t = Voice(leaftools.make_repeated_notes(4))
-#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
+#   t = Voice(notetools.make_repeated_notes(4))
+#   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 #   t.note_head.color = 'red'
@@ -131,8 +131,8 @@ def test_Thread_report_04( ):
       Signature contains neither staff nor score.
       Outermost anonymous voice acts as signature root.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.note_head.color = 'red'
@@ -173,9 +173,9 @@ def test_Thread_report_05( ):
       Signature contains neither staff nor score.
       Outermost instance of named voice 'foo' acts as signature root.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    t.name = 'foo'
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -255,8 +255,8 @@ def test_Thread_report_06( ):
    
 def test_Thread_report_07( ):
 
-   t = Container(leaftools.make_repeated_notes(2))
-   t[1:1] = Container(Voice(leaftools.make_repeated_notes(1)) * 2) * 2
+   t = Container(notetools.make_repeated_notes(2))
+   t[1:1] = Container(Voice(notetools.make_repeated_notes(1)) * 2) * 2
    t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'

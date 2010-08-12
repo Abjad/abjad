@@ -6,8 +6,8 @@ def test_componenttools_all_are_thread_contiguous_components_01( ):
    '''True for thread contiguous components even when
       components are not strictly contiguous.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(2, Voice(leaftools.make_repeated_notes(2)))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(2, Voice(notetools.make_repeated_notes(2)))
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -32,8 +32,8 @@ def test_componenttools_all_are_thread_contiguous_components_02( ):
       So long as gaps are filled with foreign components
       that do not belong to thread.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(2, Voice(leaftools.make_repeated_notes(2)))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(2, Voice(notetools.make_repeated_notes(2)))
    Container(t[:2])
    Container(t[-2:])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -65,8 +65,8 @@ def test_componenttools_all_are_thread_contiguous_components_03( ):
    '''Components that start at the same moment are bad.
       Even if components are all part of the same thread.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(2, Voice(leaftools.make_repeated_notes(2)))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(2, Voice(notetools.make_repeated_notes(2)))
    Container(t[:2])
    Container(t[-2:])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -150,7 +150,7 @@ def test_componenttools_all_are_thread_contiguous_components_09( ):
 def test_componenttools_all_are_thread_contiguous_components_10( ):
    '''False when components belonging to same thread are ommitted.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t.leaves)
 

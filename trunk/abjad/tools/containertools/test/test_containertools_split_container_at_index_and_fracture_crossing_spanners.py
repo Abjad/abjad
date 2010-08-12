@@ -5,7 +5,7 @@ import py.test
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_01( ):
    '''Index split triplet, and fracture spanners.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    tuplet = t[1]
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[:])
@@ -54,7 +54,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_02( ):
    '''Index split binary measure, and fracture spanners.'''
 
-   t = Voice(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Voice(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
    Beam(t[:])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -108,7 +108,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_03( ):
    '''Index split nonbinary measure, and fracture spanners.'''
 
-   t = Voice(RigidMeasure((3, 9), leaftools.make_repeated_notes(3)) * 2)
+   t = Voice(RigidMeasure((3, 9), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
    Beam(t[:])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -277,7 +277,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_07( ):
    '''Index split measure in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -325,7 +325,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_08( ):
    '''Index split left of leaf in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])
@@ -373,7 +373,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_09( ):
    '''Index split right of leaf in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])

@@ -6,7 +6,7 @@ def test_BreaksInterface_eol_adjustment_01( ):
    '''Apply rightwards extra-offset to LilyPond TimeSignature
    and BarLine grobs.'''
 
-   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    Beam(t[0])
    Beam(t[1])

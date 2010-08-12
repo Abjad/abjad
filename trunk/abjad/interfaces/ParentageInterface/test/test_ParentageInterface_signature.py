@@ -41,8 +41,8 @@ def test_ParentageInterface_signature_04( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.note_head.color = 'red'
@@ -91,7 +91,7 @@ def test_ParentageInterface_signature_05( ):
 def test_ParentageInterface_signature_06( ):
    '''Leaves inside different Staves with the same name have the same
    parentage signature.'''
-   t = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
+   t = Container(Staff(notetools.make_repeated_notes(2)) * 2)
    t[0].name = t[1].name = 'staff'
 
    r'''

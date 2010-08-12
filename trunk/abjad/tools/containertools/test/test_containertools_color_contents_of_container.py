@@ -3,7 +3,7 @@ from abjad import *
 
 def test_containertools_color_contents_of_container_01( ):
 
-   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
    containertools.color_contents_of_container(staff[1], 'blue')
 

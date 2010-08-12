@@ -7,7 +7,7 @@ class Tie(_GrobHandlerSpanner):
 
    ::
 
-      abjad> staff = Staff(leaftools.make_repeated_notes(4))
+      abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> Tie(staff[:])
       Tie(c'8, c'8, c'8, c'8)
       abjad> f(staff)

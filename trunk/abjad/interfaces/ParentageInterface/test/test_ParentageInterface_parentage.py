@@ -5,7 +5,7 @@ def test_ParentageInterface_parentage_01( ):
    '''t.parentage.parentage return a list of the elements
       in the parentage of leaf t, including t.'''
 
-   t = Score([Staff(Container(leaftools.make_repeated_notes(2)) * 2)])
+   t = Score([Staff(Container(notetools.make_repeated_notes(2)) * 2)])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -38,7 +38,7 @@ def test_ParentageInterface_parentage_02( ):
    '''t.parentage.parentage returns a list of the elements
       in the parentage of container t, including t.'''
 
-   t = Score([Staff(Container(leaftools.make_repeated_notes(2)) * 2)])
+   t = Score([Staff(Container(notetools.make_repeated_notes(2)) * 2)])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

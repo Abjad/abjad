@@ -9,7 +9,8 @@ def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = No
    instances of `target_type`.
    '''
    from abjad.tools import componenttools
-   from abjad.tools import leaftools
+   from abjad.tools import notetools
+   from abjad.tools import resttools
 
    ## assert input types
    assert isinstance(container, Container)
@@ -25,11 +26,9 @@ def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = No
 
    ## construct new notes or rests
    if target_type == Note:
-      new_material = leaftools.make_notes(
-         0, durations, direction = direction)
+      new_material = notetools.make_notes(0, durations, direction = direction)
    elif target_type == Rest:
-      new_material = leaftools.make_rests(
-         durations, direction = direction)
+      new_material = resttools.make_rests(durations, direction = direction)
    else:
       raise ValueError('unknown type of material to construct.')
 

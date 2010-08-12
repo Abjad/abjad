@@ -6,7 +6,7 @@ def test_Spanner_leaves_01( ):
    '''Spanner attaching to container knows about both container and 
       also leaves in container.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t)
 
@@ -22,7 +22,7 @@ def test_Spanner_leaves_02( ):
    '''Spanner attaching only to leaves makes p.components and p.leaves
       hold the same references.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
+   t = Voice(notetools.make_repeated_notes(4))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t[:])
    
@@ -49,9 +49,9 @@ def test_Spanner_leaves_03( ):
 def test_Spanner_leaves_04( ):
    '''Spanner attaching to container with multidimensional contents.'''
 
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(1, Container(leaftools.make_repeated_notes(2)))
-   t.insert(3, Container(leaftools.make_repeated_notes(2)))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(1, Container(notetools.make_repeated_notes(2)))
+   t.insert(3, Container(notetools.make_repeated_notes(2)))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t)
 
@@ -82,9 +82,9 @@ def test_Spanner_leaves_04( ):
 def test_Spanner_leaves_05( ):
    '''Spanner spanning a mixture of containers and leaves.'''
    
-   t = Voice(leaftools.make_repeated_notes(4))
-   t.insert(1, Container(leaftools.make_repeated_notes(2)))
-   t.insert(3, Container(leaftools.make_repeated_notes(2)))
+   t = Voice(notetools.make_repeated_notes(4))
+   t.insert(1, Container(notetools.make_repeated_notes(2)))
+   t.insert(3, Container(notetools.make_repeated_notes(2)))
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Spanner(t[0:3])
 
@@ -120,8 +120,8 @@ def test_Spanner_leaves_06( ):
       Spanner absolutely does not descend into parallel container.
       Spanner duration does, however, account for parallel duration.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t = Staff(notetools.make_repeated_notes(4))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -160,8 +160,8 @@ def test_Spanner_leaves_07( ):
       Spanner absolutely does not descend into parallel container.
       Spanner duration does, however, account for parallel duration.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
-   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
+   t = Staff(notetools.make_repeated_notes(4))
+   t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 

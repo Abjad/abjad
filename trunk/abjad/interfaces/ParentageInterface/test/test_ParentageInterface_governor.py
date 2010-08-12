@@ -6,7 +6,7 @@ def test_ParentageInterface_governor_01( ):
       such that the next element in the parentage of client is
       either a parallel container or None.'''
 
-   t = Voice([Container(Voice(leaftools.make_repeated_notes(2)) * 2)])
+   t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
    t[0].parallel = True
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0][0].name = 'voice 1'

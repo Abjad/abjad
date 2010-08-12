@@ -20,7 +20,7 @@ def test_pitchtools_expr_has_duplicate_named_pitch_02( ):
 def test_pitchtools_expr_has_duplicate_named_pitch_03( ):
    '''Works with containers.'''
 
-   staff = Staff(leaftools.make_repeated_notes(4))
+   staff = Staff(notetools.make_repeated_notes(4))
    assert pitchtools.expr_has_duplicate_named_pitch(staff)
 
    staff = Staff(macros.scale(4))

@@ -48,7 +48,7 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
    except AssignabilityError:
       denominator = target_duration._denominator
       note_durations = [Rational(x, denominator) for x in divisions]
-      notes = leaftools.make_notes(0, note_durations)
+      notes = notetools.make_notes(0, note_durations)
 
    # make tuplet
    tuplet = FixedDurationTuplet(target_duration, notes)

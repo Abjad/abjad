@@ -9,7 +9,7 @@ def apply_octavation_spanner_to_pitched_components(expr,
    Apply octavation spanner to `expr` according to the altitude
    of the maximum pitch in `expr`. ::
 
-      abjad> t = RigidMeasure((4, 8), leaftools.make_notes([24, 26, 27, 29], [(1, 8)]))
+      abjad> t = RigidMeasure((4, 8), notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
       abjad> pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_altitude = 14)
       OctavationSpanner(|4/8, c'''8, d'''8, ef'''8, f'''8|)
 

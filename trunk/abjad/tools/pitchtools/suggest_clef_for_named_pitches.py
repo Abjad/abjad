@@ -19,7 +19,7 @@ def suggest_clef_for_named_pitches(pitches, clefs = ['treble', 'bass']):
 
    Works for arbitrary input expression. ::
 
-      abjad> staff = Staff(leaftools.make_notes(range(-12, -6), [(1, 4)]))
+      abjad> staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))
       abjad> pitchtools.suggest_clef_for_named_pitches(staff)
       Clef('bass')
 

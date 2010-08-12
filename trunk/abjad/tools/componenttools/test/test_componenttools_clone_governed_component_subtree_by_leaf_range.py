@@ -5,7 +5,7 @@ import py.test
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_01( ):
    '''Copy consecutive notes across tuplet boundary, in staff.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -46,7 +46,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_01( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_02( ):
    '''Copy consecutive notes across tuplet boundary, in voice and staff.'''
 
-   t = Staff([Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)])
+   t = Staff([Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)])
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -91,7 +91,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_02( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_03( ):
    '''Copy leaves from sequential containers only.'''
 
-   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
+   t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.parallel = True
 
@@ -102,7 +102,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_03( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_04( ):
    '''Works fine on voices nested inside parallel context.'''
 
-   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
+   t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    t.parallel = True
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -260,7 +260,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
    '''RigidMeasures shrink down when we copy a partial tuplet.'''
 
-   t = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -306,7 +306,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_10( ):
    '''Copy consecutive leaves across measure boundary.'''
 
-   t = Staff(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Staff(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -350,7 +350,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_11( ):
    '''Copy consecutive leaves from tuplet in staff;
       pass start and stop indices local to tuplet.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -388,7 +388,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_12( ):
    '''Copy consecutive leaves from measure in staff;
       pass start and stop indices local to measure.'''
 
-   t = Staff(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
+   t = Staff(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -429,7 +429,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_13( ):
    '''Copy consecutive leaves from nonbinary measure in staff;
       pass start and stop indices local to measure.'''
 
-   t = Staff(RigidMeasure((3, 9), leaftools.make_repeated_notes(3)) * 2)
+   t = Staff(RigidMeasure((3, 9), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

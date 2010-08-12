@@ -34,7 +34,7 @@ def get_likely_multiplier_of_components(components):
 
    Return none on more than one likely multiplier. ::
 
-      abjad> staff = Staff(leaftools.make_notes([0, 2, 4, 5], [(3, 16), (7, 32)]))
+      abjad> staff = Staff(notetools.make_notes([0, 2, 4, 5], [(3, 16), (7, 32)]))
       abjad> f(staff)
       \new Staff {
          c'8.

@@ -59,7 +59,7 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
 #
 #   pitch_array = PitchArray(array_depth, array_width)
 #
-#   tokens = leaftools.make_quarter_notes_with_lilypond_multipliers([0], time_intervals)
+#   tokens = notetools.make_quarter_notes_with_lilypond_multipliers([0], time_intervals)
 #   for leaf_list, pitch_array_row in zip(leaf_iterables, pitch_array.rows):
 #      durations = leaftools.list_prolated_durations_of_leaves_in_expr(leaf_list)
 #      parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(tokens, durations)

@@ -4,7 +4,7 @@ from abjad import *
 def test_Spanner_extend_01( ):
    '''Extend spanner to the right.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[1])
 
@@ -51,7 +51,7 @@ def test_Spanner_extend_01( ):
 def test_Spanner_extend_02( ):
    '''Extend spanner to the right.'''
    
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[1])
 

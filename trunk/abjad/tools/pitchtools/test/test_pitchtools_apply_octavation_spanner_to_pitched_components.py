@@ -3,7 +3,7 @@ from abjad import *
 
 def test_pitchtools_apply_octavation_spanner_to_pitched_components_01( ):
 
-   t = Staff(leaftools.make_notes([24, 26, 27, 29], [(1, 8)]))
+   t = Staff(notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
    pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_altitude = 14)
 
    r"""\new Staff {

@@ -4,7 +4,7 @@ from abjad import *
 def test_Spanner___getitem___01( ):
    '''Get at nonnegative index in spanner.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[:])
 
@@ -31,7 +31,7 @@ def test_Spanner___getitem___01( ):
 def test_Spanner___getitem___02( ):
    '''Get at negative index in spanner.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[:])
 
@@ -58,7 +58,7 @@ def test_Spanner___getitem___02( ):
 def test_Spanner___getitem___03( ):
    '''Get slice from spanner.'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[:])
 
@@ -86,7 +86,7 @@ def test_Spanner___getitem___04( ):
    '''Get all spanner components.
       Equivalent to p.clear( ).'''
 
-   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = Beam(t[:])
 

@@ -6,7 +6,7 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(c
    Fracture all spanners attached to any component at
    any duration split-point.  ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
+      abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> Beam(t[0])
       abjad> Beam(t[1])

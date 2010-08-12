@@ -7,7 +7,7 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_01( ):
    Fracture spanners that attach to components not in 'components'.
    Return Python list of copied components.'''
 
-   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    slur = Slur(t[:])
    trill = Trill(t.leaves)
@@ -45,7 +45,7 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_01( ):
 def test_componenttools_clone_components_and_fracture_crossing_spanners_02( ):
    '''Copy one measure and fracture spanners.'''
 
-   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    slur = Slur(t[:])
    trill = Trill(t.leaves)
@@ -92,7 +92,7 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_02( ):
 def test_componenttools_clone_components_and_fracture_crossing_spanners_03( ):
    '''Three notes crossing measure boundaries.'''
 
-   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    slur = Slur(t[:])
    trill = Trill(t.leaves)
@@ -137,7 +137,7 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_03( ):
 def test_componenttools_clone_components_and_fracture_crossing_spanners_04( ):
    '''Optional 'n' argument for multiple copies.'''
 
-   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    slur = Slur(t[:])
    trill = Trill(t.leaves)

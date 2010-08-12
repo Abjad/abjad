@@ -53,5 +53,5 @@ def test_componenttools_get_likely_multiplier_of_components_06( ):
 def test_componenttools_get_likely_multiplier_of_components_07( ):
    '''Return none when more than one likely multiplier.'''
 
-   t = Staff(leaftools.make_notes([0], [(1, 8), (7, 32)]))
+   t = Staff(notetools.make_notes([0], [(1, 8), (7, 32)]))
    assert componenttools.get_likely_multiplier_of_components(t[:]) is None

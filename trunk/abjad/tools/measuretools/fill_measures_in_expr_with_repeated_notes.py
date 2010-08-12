@@ -1,5 +1,5 @@
 from abjad.core.Rational import Rational
-from abjad.tools import leaftools
+from abjad.tools import notetools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
@@ -13,6 +13,6 @@ def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl =
          meter = measure.meter.effective
          total_duration = meter.duration
          prolation = meter.multiplier
-         notes = leaftools.make_repeated_notes_with_shorter_notes_at_end(
+         notes = notetools.make_repeated_notes_with_shorter_notes_at_end(
             0, written_duration, total_duration, prolation)
          measure[:] = notes

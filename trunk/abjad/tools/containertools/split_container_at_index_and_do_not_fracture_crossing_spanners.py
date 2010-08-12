@@ -7,7 +7,7 @@ def split_container_at_index_and_do_not_fracture_crossing_spanners(container, in
    preserve container multiplier, preserve meter denominator.
    Return split parts. ::
 
-      abjad> t = Voice(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
+      abjad> t = Voice(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> p = Beam(t[:])
       abjad> f(t)

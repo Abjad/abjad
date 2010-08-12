@@ -3,7 +3,7 @@ from abjad import *
 
 def test_threadtools_iterate_thread_forward_from_component_01( ):
 
-   container = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    container.parallel = True
    container[0].name = 'voice 1'
    container[1].name = 'vocie 2'
@@ -49,7 +49,7 @@ def test_threadtools_iterate_thread_forward_from_component_01( ):
 
 def test_threadtools_iterate_thread_forward_from_component_02( ):
 
-   container = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
+   container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    container.parallel = True
    container[0].name = 'voice 1'
    container[1].name = 'vocie 2'

@@ -4,7 +4,7 @@ from abjad import *
 def test_tietools_iterate_tie_chains_forward_in_expr_01( ):
    '''Yield successive tie chains.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    Tie(t[:2])
    Tie(t[2:])
 
@@ -26,7 +26,7 @@ def test_tietools_iterate_tie_chains_forward_in_expr_01( ):
 def test_tietools_iterate_tie_chains_forward_in_expr_02( ):
    '''Yield successive tie chains.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
 
    r'''
    \new Staff {

@@ -2,7 +2,7 @@ def iterate_namesakes_forward_from_component(component, start = 0, stop = None):
    r'''Yield left-to-right namesakes of `component` starting
    from `component`. ::
 
-      abjad> container = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
+      abjad> container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
       abjad> container.parallel = True
       abjad> container[0].name = 'staff 1'
       abjad> container[1].name = 'staff 2'

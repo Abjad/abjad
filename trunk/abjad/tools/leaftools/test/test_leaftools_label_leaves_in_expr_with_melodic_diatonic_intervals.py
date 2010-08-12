@@ -24,7 +24,7 @@ def test_leaftools_label_leaves_in_expr_with_melodic_diatonic_intervals_01( ):
 
 def test_leaftools_label_leaves_in_expr_with_melodic_diatonic_intervals_02( ):
 
-   staff = Staff(leaftools.make_notes([0, 13, 11, 8, 2, 3, 9, 10, 6, 5], [Rational(1, 8)]))
+   staff = Staff(notetools.make_notes([0, 13, 11, 8, 2, 3, 9, 10, 6, 5], [Rational(1, 8)]))
    leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals(staff)
 
    r'''

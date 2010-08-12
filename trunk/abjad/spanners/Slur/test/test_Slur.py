@@ -27,7 +27,7 @@ def test_Slur_02( ):
 
 def test_Slur_03( ):
    '''Position may be set to None, 'neutral', 'up' or 'down'. '''
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    p = Slur(t[:])
    p.position = None
    assert t.format == "\\new Staff {\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"

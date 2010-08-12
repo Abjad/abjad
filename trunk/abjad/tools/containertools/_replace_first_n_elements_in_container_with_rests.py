@@ -1,5 +1,5 @@
 from abjad.core import Rational
-from abjad.tools import leaftools
+from abjad.tools import resttools
 
 
 def _replace_first_n_elements_in_container_with_rests(container, i, rested_half, 
@@ -111,7 +111,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
       duration = sum([x.duration.preprolated for x in elements_to_replace])
 
       ## construct rest chain equal in preprolated duration to replace
-      rests = leaftools.make_rests(duration, direction)
+      rests = resttools.make_rests(duration, direction)
 
       ## replace elements in rested_half of container with rest chain
       if rested_half == 'left':

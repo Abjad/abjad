@@ -5,7 +5,7 @@ import py.test
 def test__SpannerReceptor_parented_01( ):
    '''Leaves are parented when spanner is attached to them.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    b = Beam(t.leaves)
 
    assert not t.beam.parented
@@ -16,7 +16,7 @@ def test__SpannerReceptor_parented_01( ):
 def test__SpannerReceptor_parented_02( ):
    '''Leaves are parented when spanner is attached to their parent.'''
 
-   t = Staff(leaftools.make_repeated_notes(4))
+   t = Staff(notetools.make_repeated_notes(4))
    b = Beam(t)
 
    assert t.beam.parented
@@ -28,7 +28,7 @@ def test__SpannerReceptor_parented_03( ):
    '''Leaves and Containers are parented when spanner is attached to 
       their grandparent and parent repsectively.'''
 
-   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
+   t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
 
    assert py.test.raises(AssertionError, 'b = Beam(t)')
 #   assert t.beam.parented

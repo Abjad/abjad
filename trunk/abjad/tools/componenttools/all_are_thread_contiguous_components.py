@@ -9,8 +9,8 @@ def all_are_thread_contiguous_components(expr, klasses = (_Component), allow_orp
 
       Thread-contiguous components are definitionally spannable::
 
-         t = Voice(leaftools.make_repeated_notes(4))
-         t.insert(2, Voice(leaftools.make_repeated_notes(2)))
+         t = Voice(notetools.make_repeated_notes(4))
+         t.insert(2, Voice(notetools.make_repeated_notes(2)))
          Container(t[:2])
          Container(t[-2:])
          pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
