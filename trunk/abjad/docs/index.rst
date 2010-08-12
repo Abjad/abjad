@@ -113,6 +113,7 @@ Appendices
    chapters/appendices/templates/index
    chapters/appendices/abjad_book/index
    chapters/appendices/colors/index
+   chapters/appendices/parallel_processing/index
    chapters/appendices/glossary/index
    chapters/appendices/bibliography/index
 
