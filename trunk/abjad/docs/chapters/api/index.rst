@@ -23,6 +23,7 @@ Classes
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
+   components/Rest/MultiMeasureRest/MultiMeasureRest
    components/_Harmonic/NaturalHarmonic
    components/Note/Note
    components/NoteHead/NoteHead

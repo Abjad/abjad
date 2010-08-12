@@ -19,6 +19,14 @@ class MultiMeasureRestInterface(_Interface, _GrobHandler, _ContextSettingHandler
          \compressFullBarRests
          c'4
       }
+      abjad> staff[0].multi_measure_rest.compress_full_bar_rests = False
+      abjad> f(staff)
+      \new Staff \with {
+         \override MultiMeasureRest #'expand-limit = #12
+      } {
+         \expandFullBarRests
+         c'4
+      }
    '''
 
    def __init__(self, client):
@@ -35,12 +43,15 @@ class MultiMeasureRestInterface(_Interface, _GrobHandler, _ContextSettingHandler
       result = [ ] 
       if self.compress_full_bar_rests == True:
          result.append(r'\compressFullBarRests')
+      elif self.compress_full_bar_rests == False:
+         result.append(r'\expandFullBarRests')
       return result
 
    @apply
    def compress_full_bar_rests( ):
       def fget(self):
-         r'''Read / write LilyPond ``compressFullBarRests`` context setting.
+         r'''Read / write LilyPond ``compressFullBarRests`` /
+         ``expandFullBarRests`` context setting.
          '''
          return self._compress_full_bar_rests
       def fset(self, arg):

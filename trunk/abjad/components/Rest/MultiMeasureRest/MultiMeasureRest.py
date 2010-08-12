@@ -1,0 +1,40 @@
+from abjad.components._Leaf import _Leaf
+from abjad.components.Rest.Rest import Rest
+from abjad.components.Rest.MultiMeasureRest._MultiMeasureRestInitializer \
+   import _MultiMeasureRestInitializer
+
+
+class MultiMeasureRest(Rest):
+   '''The Abjad model of a multi-measure rest.'''
+   
+   def __init__(self, *args, **kwargs):
+      self._initializer = _MultiMeasureRestInitializer(self, _Leaf, *args)
+      self._initialize_keyword_values(**kwargs)
+
+   ## OVERLOADS ##
+
+   def __repr__(self):
+      return 'MultiMeasureRest(%s)' % self.duration
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _compact_representation(self):
+      return 'R%s' % self.duration
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def _body(self):
+      '''Read-only list of string representation of body of rest.  
+      Picked up as format contribution at format-time.'''
+      result = 'R' + str(self.duration)
+      return [result]
+
+   @property
+   def pitch(self):
+      '''Read-only empty tuple.
+      Multi-measure rests do not support so-called pitched rest.
+      To change a multi-measure rest's staff position,
+      override the grob's staff-position property instead.'''
+      return ( )
