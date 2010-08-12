@@ -5,7 +5,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
    '''Staff and first measure cross offset at 1/8.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -27,7 +27,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
    '''Staff, first measure and first note cross 1/16.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -49,7 +49,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
    '''Nothing crosses 0.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -71,7 +71,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
    '''Nothing crosses 100.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {

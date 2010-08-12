@@ -11,7 +11,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_01( ):
    score = Score([ ])
    score.parallel = False
    score.extend(container * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+   macros.diatonicize(score)
 
    r'''
     
@@ -58,7 +58,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_02( ):
    score = Score([ ])
    score.parallel = False
    score.extend(container * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+   macros.diatonicize(score)
 
    r'''
     
@@ -99,7 +99,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_03( ):
    '''Optional start and stop keywords.'''
 
    t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -128,7 +128,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_04( ):
    '''Optional start and stop keywords.'''
 
    t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {

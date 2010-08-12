@@ -9,7 +9,7 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
 
       t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
       t.insert(4, FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
-      pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+      macros.diatonicize(t)
       abjad> print t.format
       \new Staff {
          c'8 ~

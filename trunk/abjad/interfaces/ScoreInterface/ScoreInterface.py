@@ -31,7 +31,7 @@ class ScoreInterface(_Interface):
          abjad> staff_1 = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
          abjad> staff_2 = Staff([FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))])
          abjad> score = Score([staff_1, staff_2])
-         abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)      
+         abjad> macros.diatonicize(score)      
          abjad> f(score)
          \new Score <<
                  \new Staff {

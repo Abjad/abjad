@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_iterate_measures_backward_in_expr_01( ):
 
    staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+   macros.diatonicize(staff)
 
    r'''
    \new Staff {
@@ -37,7 +37,7 @@ def test_measuretools_iterate_measures_backward_in_expr_02( ):
    '''Optional start and stop keyword paramters.'''
 
    staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+   macros.diatonicize(staff)
 
    measures = list(measuretools.iterate_measures_backward_in_expr(staff, start = 1))
    assert measures[0] is staff[1]

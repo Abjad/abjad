@@ -10,7 +10,7 @@ def iterate_tie_chains_forward_in_expr(expr):
       abjad> notes notetools.make_notes([0], [(5, 16), (1, 8), (1, 8), (5, 16)])
       abjad> staff = Staff(notes)
       abjad> tuplet = FixedDurationTuplet((2, 16), staff[1:3])
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+      abjad> macros.diatonicize(staff)
       abjad> print staff.format
       \new Staff {
               c'4 ~

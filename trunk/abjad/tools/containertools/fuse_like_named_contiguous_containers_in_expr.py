@@ -7,7 +7,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
    r'''Fuse like-named contiguous containers in `expr`::
 
       abjad> staff = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff.leaves)
+      abjad> macros.diatonicize(staff.leaves)
       abjad> staff[0].name = 'soprano'
       abjad> staff[1].name = 'soprano'
       abjad> f(staff)

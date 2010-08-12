@@ -9,7 +9,7 @@ def test_componenttools_iterate_timeline_forward_in_expr_01( ):
    staff_1 = Staff(notetools.make_repeated_notes(4, Rational(1, 4)))
    staff_2 = Staff(notetools.make_repeated_notes(4, Rational(1, 8)))
    score_1 = Score([staff_1, staff_2])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score_1)   
+   macros.diatonicize(score_1)   
 
    r'''
    \new Score <<
@@ -49,7 +49,7 @@ def test_componenttools_iterate_timeline_forward_in_expr_02( ):
    staff_1 = Staff(notetools.make_repeated_notes(4, Rational(1, 8)))
    staff_2 = Staff(notetools.make_repeated_notes(4, Rational(1, 4)))
    score = Score([staff_1, staff_2])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)   
+   macros.diatonicize(score)   
 
    r'''
    \new Score <<

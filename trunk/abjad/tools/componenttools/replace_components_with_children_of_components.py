@@ -3,7 +3,7 @@ def replace_components_with_children_of_components(components):
    but retain children of `components` in score. ::
 
       abjad> staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+      abjad> macros.diatonicize(staff)
       abjad> Slur(staff[:])
       abjad> Beam(staff.leaves)
       abjad> f(staff)

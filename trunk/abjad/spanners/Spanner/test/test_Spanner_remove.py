@@ -9,7 +9,7 @@ def test_Spanner_remove_01( ):
       Follow immediately with operation to remove component from score.'''
 
    t = Voice(macros.scale(4))
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p = Beam(t[:])
    
    r'''
@@ -47,7 +47,7 @@ def test_Spanner_remove_02( ):
       Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p = Beam(t[:])
    
    r'''

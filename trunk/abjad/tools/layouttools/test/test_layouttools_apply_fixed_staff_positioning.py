@@ -4,7 +4,7 @@ from abjad import *
 def test_layouttools_apply_fixed_staff_positioning_01( ):
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))      
 
    r'''
@@ -82,7 +82,7 @@ def test_layouttools_apply_fixed_staff_positioning_02( ):
    staff alignment offsets.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))      
 
    r'''

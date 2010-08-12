@@ -34,7 +34,7 @@ def test_Spanner_insert_02( ):
       Note that p.append( ) and p.append_left( ) are composer-safe.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p = Beam(t[1])
 
    r'''

@@ -60,7 +60,7 @@ def test_componenttools_iterate_components_forward_in_expr_08( ):
    '''From start index.'''
 
    t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -88,7 +88,7 @@ def test_componenttools_iterate_components_forward_in_expr_09( ):
    '''To stop index.'''
 
    t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -117,7 +117,7 @@ def test_componenttools_iterate_components_forward_in_expr_10( ):
    '''From start index to stop index.'''
 
    t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {

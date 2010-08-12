@@ -15,7 +15,7 @@ def component_to_pitch_and_rhythm_skeleton_with_interface_attributes(component):
       abjad> measure = RigidMeasure((6, 16), [tuplet])   
       abjad> staff = Staff([measure])   
       abjad> score = Score(staff * 2)   
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+      abjad> macros.diatonicize(score)
       abjad> note = score.leaves[0]
       abjad> note.beam.thickness = 3
       abjad> note.duration.multiplier = Rational(1, 2)

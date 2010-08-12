@@ -10,7 +10,7 @@ def test_spannertools_get_spanners_that_dominate_components_01( ):
       component in list.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -45,7 +45,7 @@ def test_spannertools_get_spanners_that_dominate_components_02( ):
    '''Beam, glissando and trill all dominante second container.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -62,7 +62,7 @@ def test_spannertools_get_spanners_that_dominate_components_03( ):
    '''Glissando and trill dominate last container.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -78,7 +78,7 @@ def test_spannertools_get_spanners_that_dominate_components_04( ):
    '''Beam and trill dominate first two containers.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -94,7 +94,7 @@ def test_spannertools_get_spanners_that_dominate_components_05( ):
    '''Glissando and trill dominate last two containers.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -110,7 +110,7 @@ def test_spannertools_get_spanners_that_dominate_components_06( ):
    '''Only trill dominates all three containers.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -125,7 +125,7 @@ def test_spannertools_get_spanners_that_dominate_components_07( ):
    '''Only trill dominates voice.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -142,7 +142,7 @@ def test_spannertools_get_spanners_that_dominate_components_08( ):
       Note that beam and glissando attach to containers.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)

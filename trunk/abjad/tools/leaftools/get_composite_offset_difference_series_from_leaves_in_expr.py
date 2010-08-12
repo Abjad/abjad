@@ -12,7 +12,7 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
       abjad> staff_1 = Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))])
       abjad> staff_2 = Staff(notetools.make_repeated_notes(4))
       abjad> score = Score([staff_1, staff_2])
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+      abjad> macros.diatonicize(score)
       abjad> f(score)
          \new Score <<
                  \new Staff {

@@ -42,7 +42,7 @@ def test_SpacingSpanner_grob_handling_02( ):
       require context promotion.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p = SpacingSpanner(t[:])
    p.strict_grace_spacing = True
    p.strict_note_spacing = True

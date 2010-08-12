@@ -17,7 +17,7 @@ def test__Navigator_last_leaves_02( ):
 
    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    t.parallel = True
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    leaves = t._navigator._last_leaves
 
    r'''

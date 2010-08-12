@@ -10,7 +10,7 @@ def set_line_breaks_cyclically_by_line_duration_ge(expr, line_duration, klass = 
    ::
 
       abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+      abjad> macros.diatonicize(t)
       abjad> print t.format
       \new Staff {
                       \time 2/8

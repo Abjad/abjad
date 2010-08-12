@@ -6,7 +6,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_01( ):
    '''Copy consecutive notes across tuplet boundary, in staff.'''
 
    t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -47,7 +47,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_02( ):
    '''Copy consecutive notes across tuplet boundary, in voice and staff.'''
 
    t = Staff([Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -92,7 +92,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_03( ):
    '''Copy leaves from sequential containers only.'''
 
    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    t.parallel = True
 
    assert py.test.raises(ContiguityError, 
@@ -104,7 +104,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_04( ):
 
    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    t.parallel = True
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff <<
@@ -261,7 +261,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
    '''RigidMeasures shrink down when we copy a partial tuplet.'''
 
    t = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    {
@@ -307,7 +307,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_10( ):
    '''Copy consecutive leaves across measure boundary.'''
 
    t = Staff(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -351,7 +351,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_11( ):
       pass start and stop indices local to tuplet.'''
 
    t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -389,7 +389,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_12( ):
       pass start and stop indices local to measure.'''
 
    t = Staff(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -430,7 +430,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_13( ):
       pass start and stop indices local to measure.'''
 
    t = Staff(RigidMeasure((3, 9), notetools.make_repeated_notes(3)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {

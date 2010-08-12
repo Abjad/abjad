@@ -5,7 +5,7 @@ def test_ContainerSpannerAggregator_detach_01( ):
    '''t.spanners._detach( ) detaches all spanners attaching to container t.'''
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p1 = Beam(t[:])
    p2 = Glissando(t[:])
 

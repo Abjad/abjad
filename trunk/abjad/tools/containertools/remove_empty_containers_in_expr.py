@@ -7,7 +7,7 @@ def remove_empty_containers_in_expr(expr):
    r'''Remove empty containers in `expr`::
 
       abjad> staff = Staff(Container(notetools.make_repeated_notes(2)) * 4)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff.leaves)
+      abjad> macros.diatonicize(staff.leaves)
       abjad> Beam(staff[:])
       abjad> containertools.delete_contents_of_container(staff[1])
       abjad> containertools.delete_contents_of_container(staff[-1])

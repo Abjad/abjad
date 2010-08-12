@@ -6,7 +6,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    '''Move parentage, children and spanners from multiple containers to empty tuplet.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t.leaves)
 
    r'''
@@ -53,7 +53,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    t.name = 'foo'
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)
    
@@ -103,7 +103,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    '''Move parentage, children and spanners from container to empty tuplet.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)
    
@@ -154,7 +154,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    Beam(t[:])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    assert py.test.raises(TypeError, 
       'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], Note(4, (1, 4)))')
@@ -166,7 +166,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    Beam(t[:])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
    assert py.test.raises(MusicContentsError, 
@@ -178,7 +178,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    raises exception.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t.leaves)
 
    r'''

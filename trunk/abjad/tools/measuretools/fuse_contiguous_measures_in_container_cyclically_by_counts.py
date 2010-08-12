@@ -7,7 +7,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
    r'''Fuse `container` measures cyclically by `counts`::
 
       abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 5)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+      abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {
          {

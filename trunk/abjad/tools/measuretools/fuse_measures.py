@@ -14,7 +14,7 @@ def fuse_measures(measures):
 
       abjad> staff = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
       abjad> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Rational(1, 16))
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+      abjad> macros.diatonicize(staff)
       abjad> Beam(staff.leaves)
       abjad> f(staff)
       \new Staff {

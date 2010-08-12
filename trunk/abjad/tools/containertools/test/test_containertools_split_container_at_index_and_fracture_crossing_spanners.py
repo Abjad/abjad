@@ -7,7 +7,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    tuplet = t[1]
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[:])
 
    r'''
@@ -57,7 +57,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    t = Voice(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
    Beam(t[:])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Voice {
@@ -111,7 +111,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    t = Voice(RigidMeasure((3, 9), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
    Beam(t[:])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Voice {
@@ -278,7 +278,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    '''Index split measure in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    slur = Slur(t.leaves)
@@ -326,7 +326,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    '''Index split left of leaf in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    slur = Slur(t.leaves)
@@ -374,7 +374,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    '''Index split right of leaf in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    slur = Slur(t.leaves)

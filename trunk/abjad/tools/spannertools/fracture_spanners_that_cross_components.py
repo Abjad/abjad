@@ -12,7 +12,7 @@ def fracture_spanners_that_cross_components(components):
    Example::
 
       t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
-      pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+      macros.diatonicize(t)
       Crescendo(t)
       Beam(t[:])
       Trill(t.leaves)

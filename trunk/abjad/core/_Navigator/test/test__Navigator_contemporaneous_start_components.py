@@ -5,7 +5,7 @@ def test__Navigator_contemporaneous_start_components_01( ):
    '''Notes.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Voice {
@@ -60,7 +60,7 @@ def test__Navigator_contemporaneous_start_components_01( ):
 #
 #   t = Voice([Container(Container(notetools.make_repeated_notes(2)) * 2)] + notetools.make_repeated_notes(2))
 #   t[0].parallel = True
-#   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+#   macros.diatonicize(t)
 #
 #   r'''\new Voice {
 #      <<

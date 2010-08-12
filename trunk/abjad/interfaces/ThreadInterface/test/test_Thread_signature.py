@@ -11,7 +11,7 @@ import py.test
 #   t = Container(notetools.make_repeated_notes(4))
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
-#   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+#   macros.diatonicize(t)
 #   t.note_head.color = 'red'
 #
 #   r'''{
@@ -50,7 +50,7 @@ import py.test
 #   t.name = 'foo'
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
-#   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+#   macros.diatonicize(t)
 #   t.note_head.color = 'red'
 #
 #   r'''\context Voice = "foo" \with {
@@ -88,7 +88,7 @@ import py.test
 #   t = Voice(notetools.make_repeated_notes(4))
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
-#   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+#   macros.diatonicize(t)
 #   t.note_head.color = 'red'
 #
 #   r'''\new Voice \with {
@@ -159,7 +159,7 @@ def test_Thread_signature_07( ):
    t = Voice(notetools.make_repeated_notes(4))
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    t.note_head.color = 'red'
 
    r'''
@@ -203,7 +203,7 @@ def test_Thread_signature_08( ):
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    t.note_head.color = 'red'
 
    r'''
@@ -254,7 +254,7 @@ def test_Thread_signature_09( ):
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    assert py.test.raises(AssertionError, 'Beam(t.leaves)')
    Beam(t.leaves[:2])
    Beam(t.leaves[2:])
@@ -296,7 +296,7 @@ def test_Thread_signature_10( ):
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'
    t[2][1].name = 'soprano'
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
    t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")
@@ -377,7 +377,7 @@ def test_Thread_signature_13( ):
    '''Measure and leaves must carry same thread signature.'''
 
    t = Staff([DynamicMeasure(macros.scale(2))] + notetools.make_repeated_notes(2))
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {

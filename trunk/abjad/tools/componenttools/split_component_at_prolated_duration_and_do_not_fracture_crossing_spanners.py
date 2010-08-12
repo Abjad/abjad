@@ -7,7 +7,7 @@ def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(c
    Return split parts. ::
 
       abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+      abjad> macros.diatonicize(t)
       abjad> Beam(t[0])
       abjad> Beam(t[1])
       abjad> Slur(t.leaves)

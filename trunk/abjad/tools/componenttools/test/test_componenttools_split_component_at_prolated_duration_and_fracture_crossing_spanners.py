@@ -6,7 +6,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split leaf in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -56,7 +56,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split measure in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -108,7 +108,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split staff outside of score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -169,7 +169,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Test comes from a bug fix.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -217,7 +217,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Test results from bug fix.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -266,7 +266,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split container between leaves and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -335,7 +335,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Tie leaves after split.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -387,7 +387,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Tie leaves after split.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -441,7 +441,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Do fracture spanners but do not tie leaves after split.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -498,7 +498,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Do fracture spanners and do tie leaves after split.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -660,7 +660,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Leaves remain unaltered.'''
 
    t = Staff(RigidMeasure((2, 16), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
    Beam(t[0])
@@ -713,7 +713,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Leaf written durations stay the same but multipliers change.'''
 
    t = Staff(RigidMeasure((2, 16), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
    Beam(t[0])
@@ -768,7 +768,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Leaf multipliers also change.'''
 
    t = Staff(RigidMeasure((2, 16), notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
    Beam(t[0])
@@ -868,7 +868,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff([RigidMeasure((15, 80), notetools.make_notes(
       0, [Rational(1, 32)] * 7 + [Rational(1, 64)]))])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Slur(t.leaves)
 

@@ -10,7 +10,7 @@ def clone_and_partition_governed_component_subtree_by_leaf_counts(container, lea
       abjad> voice = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> Beam(voice[0].leaves)
       abjad> Beam(voice[1].leaves)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+      abjad> macros.diatonicize(voice)
       abjad> f(voice)
       \new Voice {
         \times 2/3 {

@@ -5,7 +5,7 @@ def test_ContainerSpannerAggregator_clear_01( ):
    '''Clear one spanner attaching to container.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p = Beam(t[:])
 
    r'''
@@ -54,7 +54,7 @@ def test_ContainerSpannerAggregator_clear_02( ):
    '''Clear multiple spanners attaaching to container.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p1 = Beam(t[:])
    p2 = Trill(t[ : ])
    

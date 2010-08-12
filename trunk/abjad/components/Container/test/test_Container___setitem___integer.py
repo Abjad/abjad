@@ -73,7 +73,7 @@ def test_Container___setitem___integer_03( ):
       Note here that only the sequentials are initially spanned.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)   
+   macros.diatonicize(t)   
    Beam(t[:])
    Glissando(t[:])
  
@@ -111,7 +111,7 @@ def test_Container___setitem___integer_04( ):
       Notice here that only LEAVES are initially spanned.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)   
+   macros.diatonicize(t)   
    Beam(t.leaves)
    Glissando(t.leaves)
  
@@ -148,7 +148,7 @@ def test_Container___setitem___integer_05( ):
    '''Directly spanned containers hand over to other containers correctly.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)   
+   macros.diatonicize(t)   
    Beam(t[:])
    Glissando(t[:])
  
@@ -189,7 +189,7 @@ def test_Container___setitem___integer_06( ):
    '''Indirectly spanned containers hand over correctly to a single leaf.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)   
+   macros.diatonicize(t)   
    Beam(t.leaves)
    Glissando(t.leaves)
  
@@ -227,7 +227,7 @@ def test_Container___setitem___integer_07( ):
    single leaf. WOW!'''
 
    t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)   
+   macros.diatonicize(t)   
    Beam(t.leaves[0:6])
    r'''
    \new Voice {

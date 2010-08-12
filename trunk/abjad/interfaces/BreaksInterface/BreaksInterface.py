@@ -14,7 +14,7 @@ class BreaksInterface(_Interface, _FormatContributor):
    Handle no LilyPond grob. ::
 
       abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+      abjad> macros.diatonicize(t)
       abjad> t[0].formatter.number.self = 'comment'
       abjad> t[1].formatter.number.self = 'comment'
 

@@ -139,7 +139,7 @@ def test__Navigator_is_threadable_07( ):
    '''Voice and its noncontext contents all thread.'''
 
    t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Voice {
@@ -501,7 +501,7 @@ def test__Navigator_is_threadable_16( ):
    t[0][0].name = 'voice'
    t[1].name = 'staff'
    t[1][0].name = 'voice'
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    {
@@ -539,7 +539,7 @@ def test__Navigator_is_threadable_17( ):
    t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
    t[0][0].name = 'voice'
    t[1][0].name = 'voice'
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    {
@@ -577,7 +577,7 @@ def test__Navigator_is_threadable_18( ):
    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    {
@@ -609,7 +609,7 @@ def test__Navigator_is_threadable_19( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    t.insert(2, Voice(notetools.make_repeated_notes(2)))
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Staff {
@@ -640,7 +640,7 @@ def test__Navigator_is_threadable_20( ):
    v2 = Voice(notetools.make_repeated_notes(4))
    v1.name = v2.name = 'voiceOne'
    t = Container([v1, v2])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
      {
@@ -672,7 +672,7 @@ def test__Navigator_is_threadable_21( ):
    t = Container([Container([v1]), Container([v2])])
    t[0].parallel = True
    t[1].parallel = True
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    {
@@ -712,7 +712,7 @@ def test__Navigator_is_threadable_22( ):
    s1.parallel = True
    s2.parallel = True
    t = Container([s1, s2])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    {

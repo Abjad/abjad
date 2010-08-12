@@ -12,7 +12,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
 
       abjad> voice = Voice(notetools.make_repeated_notes(2))
       abjad> voice.append(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+      abjad> macros.diatonicize(voice)
       abjad> f(voice)
       \new Voice {
         c'8

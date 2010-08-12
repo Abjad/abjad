@@ -6,7 +6,7 @@ def test_BreaksInterface_whitespace_01( ):
    '''Insert whitespace measure after measure.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
    Beam(t[2])

@@ -7,7 +7,7 @@ def iterate_components_backward_in_expr(expr, klass = _Leaf, start = 0, stop = N
    ::
 
       abjad> staff = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+      abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {
               \times 2/3 {

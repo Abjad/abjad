@@ -16,7 +16,7 @@ def clone_components_and_covered_spanners(components, n = 1):
    Return copied components with covered spanners. ::
 
       abjad> voice = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+      abjad> macros.diatonicize(voice)
       abjad> beam = Beam(voice.leaves[:4])
       abjad> f(voice)
       \new Voice {

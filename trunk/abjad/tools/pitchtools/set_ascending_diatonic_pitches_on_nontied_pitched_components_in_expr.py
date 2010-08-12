@@ -9,7 +9,7 @@ def set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(expr, k
    and chords in `expr`. ::
 
       abjad> staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
-      abjad> pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+      abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {
          c'8 ~
@@ -29,7 +29,7 @@ def set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(expr, k
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.diatonicize( )`` to
-      ``pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr( )``.
+      ``macros.diatonicize( )``.
    '''
    from abjad.tools import tietools
    from abjad.tools import tonalitytools

@@ -5,7 +5,7 @@ def test_Spanner_append_left_01( ):
    '''Append container to the left.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p = Beam(t[1])
 
    r'''
@@ -52,7 +52,7 @@ def test_Spanner_append_left_02( ):
    '''Spanner appends one leaf to the right.'''
    
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
    p = Beam(t[1])
 
    r'''

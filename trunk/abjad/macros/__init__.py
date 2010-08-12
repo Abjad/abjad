@@ -1,3 +1,5 @@
 from abjad.tools.formattools import format_input_lines_as_doc_string as docstring
 from abjad.tools.formattools import format_input_lines_as_regression_test as regtest
+from abjad.tools.pitchtools import set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr as diatonicize
 from abjad.tools.tonalitytools import make_first_n_notes_in_ascending_diatonic_scale as scale
+

@@ -6,7 +6,7 @@ def test_leaftools_get_composite_offset_series_from_leaves_in_expr_01( ):
    staff_1 = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    staff_2 = Staff(notetools.make_repeated_notes(4))
    score = Score([staff_1, staff_2])
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+   macros.diatonicize(score)
 
    r'''
    \new Score <<

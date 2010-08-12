@@ -8,7 +8,7 @@ def test_Container_append_01( ):
    t = Voice(notetools.make_repeated_notes(2))
    Beam(t[:])
    t.append(Container(notetools.make_repeated_notes(2)))
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+   macros.diatonicize(t)
 
    r'''
    \new Voice {
