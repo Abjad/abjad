@@ -5,7 +5,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
    '''Flip leaf under continuous spanner.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -35,8 +35,8 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
    '''Flip leaf across spanner boundaries.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:2])
-   Beam(t[2:])
+   BeamSpanner(t[:2])
+   BeamSpanner(t[2:])
 
    r'''
    \new Voice {
@@ -66,7 +66,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
    '''Flip leaf from within to without spanner.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:2])
+   BeamSpanner(t[:2])
 
    r'''
    \new Voice {
@@ -96,8 +96,8 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
    '''Donate from empty container to leaf.'''
 
    t = Voice([Container(macros.scale(2)), Container([ ])])
-   Glissando(t[:])
-   Beam(t[:])
+   GlissandoSpanner(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -132,8 +132,8 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
    '''Donate from empty container to nonempty container.'''
 
    t = Voice([Container(macros.scale(2)), Container([ ])])
-   Glissando(t[:])
-   Beam(t[:])
+   GlissandoSpanner(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -173,7 +173,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   Beam(t.leaves)   
+   BeamSpanner(t.leaves)   
 
    r'''
    \new Voice {
@@ -223,8 +223,8 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   Glissando(t[:])
-   Beam(t.leaves)   
+   GlissandoSpanner(t[:])
+   BeamSpanner(t.leaves)   
 
    r'''
    \new Voice {

@@ -6,7 +6,7 @@ from abjad.tools.componenttools._restore import _restore
 def test_componenttools__restore_01( ):
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {

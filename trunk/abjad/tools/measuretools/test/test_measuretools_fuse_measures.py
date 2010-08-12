@@ -6,9 +6,9 @@ def test_measuretools_fuse_measures_01( ):
    '''Fuse unicorporated binary measures.'''
 
    t1 = RigidMeasure((1, 8), macros.scale(2, Rational(1, 16)))
-   Beam(t1[:])
+   BeamSpanner(t1[:])
    t2 = RigidMeasure((2, 16), macros.scale(2, Rational(1, 16)))
-   Slur(t2[:])
+   SlurSpanner(t2[:])
 
    r'''
    {
@@ -53,7 +53,7 @@ def test_measuretools_fuse_measures_02( ):
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
    measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    macros.diatonicize(t)
-   Beam(t.leaves)
+   BeamSpanner(t.leaves)
 
    r'''
    \new Voice {
@@ -96,7 +96,7 @@ def test_measuretools_fuse_measures_03( ):
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
    measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    macros.diatonicize(t)
-   Beam(t[0])
+   BeamSpanner(t[0])
 
    r'''
    \new Voice {
@@ -140,7 +140,7 @@ def test_measuretools_fuse_measures_04( ):
    m2 = RigidMeasure((1, 12), notetools.make_repeated_notes(1))
    t = Voice([m1, m2])
    macros.diatonicize(t)
-   Beam(t.leaves)
+   BeamSpanner(t.leaves)
 
    r'''
    \new Voice {
@@ -197,7 +197,7 @@ def test_measuretools_fuse_measures_07( ):
    t = Voice(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
    measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
    macros.diatonicize(t)
-   Beam(t.leaves)
+   BeamSpanner(t.leaves)
 
    r'''
    \new Voice {

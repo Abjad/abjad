@@ -10,8 +10,8 @@ def test_componenttools_clone_components_and_covered_spanners_01( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   beam = Beam(t.leaves[:4])
-   slur = Slur(t[-2:])
+   beam = BeamSpanner(t.leaves[:4])
+   slur = SlurSpanner(t[-2:])
 
    r'''
    \new Voice {
@@ -63,8 +63,8 @@ def test_componenttools_clone_components_and_covered_spanners_02( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   beam = Beam(t.leaves[:4])
-   slur = Slur(t[-2:])
+   beam = BeamSpanner(t.leaves[:4])
+   slur = SlurSpanner(t[-2:])
 
    r'''
    \new Voice {
@@ -124,8 +124,8 @@ def test_componenttools_clone_components_and_covered_spanners_03( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   beam = Beam(t.leaves[:4])
-   slur = Slur(t[-2:])
+   beam = BeamSpanner(t.leaves[:4])
+   slur = SlurSpanner(t[-2:])
 
    r'''
    \new Voice {

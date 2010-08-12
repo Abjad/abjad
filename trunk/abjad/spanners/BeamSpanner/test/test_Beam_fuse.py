@@ -5,8 +5,8 @@ def test_Beam_fuse_01( ):
    '''Fuse works by reference to the right.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   left = Beam(t[ : 2])
-   right = Beam(t[2 : 4])
+   left = BeamSpanner(t[ : 2])
+   right = BeamSpanner(t[2 : 4])
 
    assert len(t.spanners.contained)
    assert left[ : ] == t[ : 2]

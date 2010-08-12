@@ -14,7 +14,7 @@ def test_pitchtools_list_named_pitches_in_expr_02( ):
    '''Works with spanners.'''
 
    staff = Staff(macros.scale(4))
-   beam = Beam(staff[:])
+   beam = BeamSpanner(staff[:])
    t = pitchtools.list_named_pitches_in_expr(beam)
 
    assert t == (pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('e', 4), pitchtools.NamedPitch('f', 4))

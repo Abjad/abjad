@@ -6,8 +6,8 @@ def test_ContainerSpannerAggregator_detach_01( ):
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   p1 = Beam(t[:])
-   p2 = Glissando(t[:])
+   p1 = BeamSpanner(t[:])
+   p2 = GlissandoSpanner(t[:])
 
    r'''
    \new Staff {

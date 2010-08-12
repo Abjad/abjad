@@ -7,7 +7,7 @@ def test_ContainerSpannerAggregator_fracture_01( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -54,7 +54,7 @@ def test_ContainerSpannerAggregator_fracture_02( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -104,7 +104,7 @@ def test_ContainerSpannerAggregator_fracture_03( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
 
    r'''
    \new Voice {

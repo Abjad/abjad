@@ -12,8 +12,8 @@ class TrillSpanner(_GrobHandlerSpanner):
    ::
 
       abjad> t = Staff(macros.scale(4))
-      abjad> Trill(t[:])
-      Trill(c'8, d'8, e'8, f'8)
+      abjad> TrillSpanner(t[:])
+      TrillSpanner(c'8, d'8, e'8, f'8)
       abjad> print t.format
       \new Staff {
          c'8 \startTrillSpan
@@ -45,7 +45,7 @@ class TrillSpanner(_GrobHandlerSpanner):
             ::
 
                abjad> t = Staff(macros.scale(4))
-               abjad> trill = Trill(t[:2])
+               abjad> trill = TrillSpanner(t[:2])
                abjad> trill.pitch = pitchtools.NamedPitch('cs', 4)
 
                abjad> print t.format

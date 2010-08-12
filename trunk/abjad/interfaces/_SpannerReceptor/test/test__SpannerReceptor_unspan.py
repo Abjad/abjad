@@ -5,7 +5,7 @@ def test__SpannerReceptor_unspan_01( ):
    '''Unspan a spanned leaf.'''
 
    t = Note(0, (1, 8))
-   Beam(t)
+   BeamSpanner(t)
    t.beam.unspan( )
 
    r'''

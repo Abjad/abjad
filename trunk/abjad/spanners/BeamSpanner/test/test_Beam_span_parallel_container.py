@@ -7,7 +7,7 @@ def test_Beam_span_parallel_container_01( ):
 
    t = Container([ ])
    t.parallel = True
-   p = Beam(t)
+   p = BeamSpanner(t)
 
    assert len(p.components) == 1
    assert p.components[0] is t
@@ -22,7 +22,7 @@ def test_Beam_span_parallel_container_02( ):
    t.parallel = True
    macros.chromaticize(t)
 
-   assert py.test.raises(AssertionError, 'p = Beam(t)')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner(t)')
 
 #   assert len(p.components) == 1
 #   assert p.components[0] is t
@@ -52,7 +52,7 @@ def test_Beam_span_parallel_container_03( ):
    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
    t.parallel = True
    macros.chromaticize(t)
-   p = Beam(t[0])
+   p = BeamSpanner(t[0])
 
    assert len(p.components) == 1
    assert isinstance(p.components[0], Container)
@@ -84,7 +84,7 @@ def test_Beam_span_parallel_container_04( ):
    t.insert(2, new)
    macros.chromaticize(t)
 
-   assert py.test.raises(AssertionError, 'p = Beam(t)')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner(t)')
 
 
 def test_Beam_span_parallel_container_05( ):
@@ -96,7 +96,7 @@ def test_Beam_span_parallel_container_05( ):
    new.parallel = True
    t.insert(2, new)
    macros.chromaticize(t)
-   p = Beam(t)
+   p = BeamSpanner(t)
 
    assert len(p.components) == 1
    assert len(p.leaves) == 4
@@ -126,7 +126,7 @@ def test_Beam_span_parallel_container_06( ):
    t[1][0].name = 'foo'
    t[1][1].name = 'bar'
    macros.chromaticize(t)
-   p = Beam([t[0], t[1][0], t[2]])
+   p = BeamSpanner([t[0], t[1][0], t[2]])
 
    assert len(p.components) == 3
    assert p.components[0] is t[0]

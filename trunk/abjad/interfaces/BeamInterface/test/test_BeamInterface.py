@@ -46,7 +46,7 @@ def test_BeamInterface_03( ):
    '''Beam interface attributes for a beamed note;
       first in beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t.leaves[ : 4])
+   BeamSpanner(t.leaves[ : 4])
    #assert t[0].beam.counts == (None, None)
    assert t[0].beam.counts is None
    assert t[0].beam.spanned
@@ -74,7 +74,7 @@ def test_BeamInterface_04( ):
    '''Beam interface attributes for beamed note;
       middle of beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t.leaves[ : 4])
+   BeamSpanner(t.leaves[ : 4])
    #assert t[1].beam.counts == (None, None)
    assert t[1].beam.counts is None
    assert t[1].beam.spanned
@@ -102,7 +102,7 @@ def test_BeamInterface_05( ):
    '''Beam interface attributes for beamed note;
       last of beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t.leaves[ : 4])
+   BeamSpanner(t.leaves[ : 4])
    #assert t[3].beam.counts == (None, None)
    assert t[3].beam.counts is None
    assert t[3].beam.spanned
@@ -130,7 +130,7 @@ def test_BeamInterface_06( ):
    '''Beam interface attributes for beamed note;
       lone beam.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[3])
+   BeamSpanner(t[3])
    #assert t[3].beam.counts == (None, None)
    assert t[3].beam.counts is None
    assert t[3].beam.spanned
@@ -250,8 +250,8 @@ def test_BeamInterface_14( ):
 #def test_BeamInterface_15( ):
 #   '''bridge( ) fuses adjacent beams towards the right.'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)])
-#   Beam(t[0:4])
-#   Beam(t[4:])
+#   BeamSpanner(t[0:4])
+#   BeamSpanner(t[4:])
 #   t[3].beam.bridge(1,'right')
 #   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\t\\set stemRightBeamCount = #1\n\tef'16\n\t\\set stemLeftBeamCount = #1\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
 #   '''
@@ -273,8 +273,8 @@ def test_BeamInterface_14( ):
 #def test_BeamInterface_16( ):
 #   '''bridge( ) fuses adjacent beams towards the left.'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)])
-#   Beam(t[0:4])
-#   Beam(t[4:])
+#   BeamSpanner(t[0:4])
+#   BeamSpanner(t[4:])
 #   t[4].beam.bridge(1,'left')
 #   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\t\\set stemRightBeamCount = #1\n\tef'16\n\t\\set stemLeftBeamCount = #1\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
 #   '''
@@ -296,7 +296,7 @@ def test_BeamInterface_14( ):
 #def test_BeamInterface_17( ):
 #   '''subdivide( ) works towards the right.'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)]) 
-#   Beam(t[:])
+#   BeamSpanner(t[:])
 #   t[4].beam.subdivide(1, 'right')
 #   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\tef'16\n\t\\set stemRightBeamCount = #1\n\te'16\n\t\\set stemLeftBeamCount = #1\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
 #   '''
@@ -318,7 +318,7 @@ def test_BeamInterface_14( ):
 #def test_BeamInterface_18( ):
 #   '''subdivide( ) works towards the left.'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)])
-#   Beam(t[:])
+#   BeamSpanner(t[:])
 #   t[3].beam.subdivide(1, 'left')
 #   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\t\\set stemRightBeamCount = #1\n\td'16\n\t\\set stemLeftBeamCount = #1\n\tef'16\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
 #   '''
@@ -340,7 +340,7 @@ def test_BeamInterface_14( ):
 #def test_BeamInterface_19( ):
 #   '''None removes the effects of subdivide( ).'''
 #   t = Staff([Note(i,(1,16)) for i in range(8)])
-#   Beam(t[:])
+#   BeamSpanner(t[:])
 #   t[3].beam.subdivide(1, 'left')
 #   t[3].beam.subdivide(None, 'left')
 #   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\tef'16\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"

@@ -6,7 +6,7 @@ def test_Spanner___getitem___01( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -33,7 +33,7 @@ def test_Spanner___getitem___02( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -60,7 +60,7 @@ def test_Spanner___getitem___03( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -88,7 +88,7 @@ def test_Spanner___getitem___04( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
 
    r'''
    \new Voice {

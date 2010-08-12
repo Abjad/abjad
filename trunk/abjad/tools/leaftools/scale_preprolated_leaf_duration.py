@@ -5,7 +5,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
    r'''Scale `leaf` preprolated duration by dotted `multiplier`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Rational(3, 2))
       abjad> f(staff)
       \new Staff {
@@ -18,7 +18,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
    Scale `leaf` preprolated duration by tied `multiplier`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Rational(5, 4))
       abjad> f(staff)
       \new Staff {
@@ -32,7 +32,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
    Scale `leaf` preprolated duration by nonbinary `multiplier`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Rational(2, 3))
       abjad> f(staff)
       \new Staff {
@@ -47,7 +47,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
    Scale `leaf` preprolated duration by tied nonbinary `multiplier`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Rational(5, 6))
       abjad> f(staff)
       \new Staff {

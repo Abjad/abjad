@@ -4,7 +4,7 @@ from abjad import *
 def test_DynamicTextSpanner_grob_handling_01( ):
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    p = DynamicTextSpanner(t[:], 'f')
    p.thickness = 3
 

@@ -5,7 +5,7 @@ def test_UserDirectives_contributions_01( ):
    '''Container user directives contributions.'''
 
    t = Container(macros.scale(4))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
@@ -44,7 +44,7 @@ def test_UserDirectives_contributions_02( ):
    '''Context user directives contributions.'''
 
    t = Voice(macros.scale(4))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
@@ -83,7 +83,7 @@ def test_UserDirectives_contributions_03( ):
    '''Tuplet user directives contributions.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
@@ -121,7 +121,7 @@ def test_UserDirectives_contributions_04( ):
    '''Measure user directives contributions.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")

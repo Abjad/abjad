@@ -6,7 +6,7 @@ def test_spannertools_move_spanners_from_component_to_children_of_component_01( 
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
 
    r'''
    \new Voice {

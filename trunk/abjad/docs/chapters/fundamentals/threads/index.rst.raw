@@ -81,13 +81,13 @@ To see this more clearly, suppose we want to add a :class:`~abjad.slur.spanner.S
 
 ::
 
-   abjad> Slur([vA, vB])
+   abjad> SlurSpanner([vA, vB])
 
 or
 
 ::
 
-   abjad> Slur([vA, vC])
+   abjad> SlurSpanner([vA, vC])
 
 but both throw a :class:`~abjad.exceptions.exceptions.ContiguityError`. Abjad needs to see an explicit connection between either `vA` and `vB` or `vA` and `vC`. 
 
@@ -175,13 +175,13 @@ Now the :class:`~abjad.slur.spanner.Slur` spanner can be applied to Voices `vA` 
 
 ::
 
-   abjad> Slur([vA, vB])
+   abjad> SlurSpanner([vA, vB])
 
 or directly to the Notes returned by the :func:`~abjad.tools.iterate.thread.thread` iteration tool, which are the Notes belonging to both `vA` and `vB`:
 
 <abjad>
 notes = iterate.thread(staff, Note, vA.thread.signature)
-Slur(list(notes))
+SlurSpanner(list(notes))
 </abjad>
 
 <abjad>

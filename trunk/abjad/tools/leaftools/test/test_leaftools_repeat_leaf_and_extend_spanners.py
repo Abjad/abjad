@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_repeat_leaf_and_extend_spanners_01( ):
 
    staff = Staff(macros.scale(4))
-   Beam(staff.leaves)
+   BeamSpanner(staff.leaves)
 
    r'''
    \new Staff {

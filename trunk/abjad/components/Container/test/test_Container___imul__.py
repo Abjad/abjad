@@ -4,7 +4,7 @@ from abjad import *
 def test_Container___imul___01( ):
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t *= 2
 
    r'''
@@ -23,7 +23,7 @@ def test_Container___imul___01( ):
 def test_Container___imul___02( ):
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t *= 1
 
    r'''
@@ -40,7 +40,7 @@ def test_Container___imul___02( ):
 def test_Container___imul___03( ):
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t *= 0
 
    r'''

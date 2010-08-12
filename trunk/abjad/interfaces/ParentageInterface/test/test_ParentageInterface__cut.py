@@ -29,7 +29,7 @@ def test_ParentageInterface__cut_02( ):
       Spanners continue to attach to parentage-cut leaves.'''
 
    t = Voice([Container(macros.scale(4))])
-   p = Beam(t.leaves)
+   p = BeamSpanner(t.leaves)
    leaf = t.leaves[0]
 
    r'''
@@ -116,7 +116,7 @@ def test_ParentageInterface__cut_04( ):
 
    t = Voice([Container(FixedDurationTuplet((2, 8), macros.scale(3)) * 2)])
    tuplet = t[0][0]
-   p = Beam(t[0][:])
+   p = BeamSpanner(t[0][:])
 
    r'''
    \new Voice {

@@ -33,8 +33,8 @@ def make_rests(durations, direction='big-endian', tied=False):
       ...     print r.tie.spanners
       ... 
       set([])
-      set([Tie(r16, r4)])
-      set([Tie(r16, r4)])
+      set([TieSpanner(r16, r4)])
+      set([TieSpanner(r16, r4)])
       set([])
 
    .. versionchanged:: 1.1.2

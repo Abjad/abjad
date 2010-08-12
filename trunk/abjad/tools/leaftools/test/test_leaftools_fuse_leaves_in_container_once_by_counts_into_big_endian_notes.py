@@ -5,7 +5,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes
    '''Glom voice.'''
 
    t = Voice(notetools.make_repeated_notes(5, Rational(1, 16)))
-   Slur(t[:])
+   SlurSpanner(t[:])
    #fuse.contents_by_counts(t, [1, 2, 2])
    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes(t, [1, 2, 2])
 
@@ -25,7 +25,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes
    '''Glom voice and render big-endian tied values.'''
 
    t = Voice(notetools.make_repeated_notes(5))
-   Slur(t[:])
+   SlurSpanner(t[:])
    #fuse.contents_by_counts(t, [5], direction = 'big-endian')
    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes(t, [5])
 

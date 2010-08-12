@@ -5,7 +5,7 @@ def test__Leaf_extend_left_in_parent_01( ):
    '''Extend leaves leftwards of leaf. Do not extend edge spanners.'''
 
    t = Voice(macros.scale(3))
-   Beam(t[:])
+   BeamSpanner(t[:])
    result = t[0].extend_left_in_parent(macros.scale(3, Rational(1, 16)))
 
    r'''
@@ -28,7 +28,7 @@ def test__Leaf_extend_left_in_parent_02( ):
    '''Extend leaf leftwards of interior leaf. Do extend interior spanners.'''
 
    t = Voice(macros.scale(3))
-   Beam(t[:])
+   BeamSpanner(t[:])
    result = t[1].extend_left_in_parent([Note(1.5, (1, 8))])
 
    r'''

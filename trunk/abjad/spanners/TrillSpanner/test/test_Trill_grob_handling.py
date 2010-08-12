@@ -7,7 +7,7 @@ def test_Trill_grob_handling_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Trill(t[ : ])
+   p = TrillSpanner(t[ : ])
    p.color = 'red'   
 
    r'''

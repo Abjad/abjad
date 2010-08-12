@@ -10,9 +10,9 @@ def test_spannertools_give_dominant_to_01( ):
       Remove donor_components from parentage immediately after.'''
 
    t = Voice(macros.scale(4))
-   Crescendo(t[:])
-   Beam(t[:2])
-   Slur(t[1:3])
+   CrescendoSpanner(t[:])
+   BeamSpanner(t[:2])
+   SlurSpanner(t[1:3])
 
    r'''
    \new Voice {
@@ -24,7 +24,7 @@ def test_spannertools_give_dominant_to_01( ):
    '''
 
    recipient = Voice(notetools.make_repeated_notes(3, Rational(1, 16)))
-   Beam(recipient)
+   BeamSpanner(recipient)
 
    r'''
    \new Voice {
@@ -73,7 +73,7 @@ def test_spannertools_give_dominant_to_02( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {

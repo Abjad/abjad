@@ -4,7 +4,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    '''Tied leaves inside containers can be fused.''' 
 
    t = Voice(notetools.make_repeated_notes(4))
-   tie = Tie(t.leaves)
+   tie = TieSpanner(t.leaves)
    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)])
 
    r'''
@@ -31,7 +31,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    '''Tied leaves inside containers can be fused.''' 
 
    t = Voice(notetools.make_repeated_notes(4))
-   tie = Tie(t.leaves[1:])
+   tie = TieSpanner(t.leaves[1:])
    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)])
 
    r'''
@@ -61,8 +61,8 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    '''multiple ties inside the same duration span are independently fused.''' 
 
    t = Voice(notetools.make_repeated_notes(4))
-   tie1 = Tie(t.leaves[0:2])
-   tie2 = Tie(t.leaves[2:])
+   tie1 = TieSpanner(t.leaves[0:2])
+   tie2 = TieSpanner(t.leaves[2:])
    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)] * 2)
 
    r'''
@@ -86,8 +86,8 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    '''multiple ties inside the same duration span are independently fused.''' 
 
    t = Voice(notetools.make_repeated_notes(8))
-   Tie(t.leaves[0:4])
-   Tie(t.leaves[4:])
+   TieSpanner(t.leaves[0:4])
+   TieSpanner(t.leaves[4:])
 
    r'''
    \new Voice {

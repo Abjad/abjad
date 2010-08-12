@@ -31,8 +31,8 @@ The two "layers" of the *cell* we will model with two Voices inside a parallel C
 <abjad>
 pitches = [1,2,3]
 notes = notetools.make_notes(pitches, [(1, 8)])
-Beam(notes)
-Slur(notes)
+BeamSpanner(notes)
+SlurSpanner(notes)
 notes[0].dynamics.mark = 'f'
 notes[1].dynamics.mark = 'p'
 </abjad>
@@ -82,8 +82,8 @@ Because this *cell* appears over and over again, we want to reuse this code to g
          - `pitches` is a list of numbers or, more generally, pitch tokens.
       '''
       notes = [Note(p, (1, 8)) for p in pitches]
-      Beam(notes)
-      Slur(notes)
+      BeamSpanner(notes)
+      SlurSpanner(notes)
       notes[0].dynamics.mark = 'f'
       notes[1].dynamics.mark = 'p'
       v_lower = Voice(notes)

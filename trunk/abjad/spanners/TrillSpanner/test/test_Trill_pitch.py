@@ -5,7 +5,7 @@ def test_Trill_pitch_01( ):
    '''Assign Abjad pitch instance to create a pitched trill.'''
 
    t = Staff(macros.scale(4))
-   trill = Trill(t[:2])
+   trill = TrillSpanner(t[:2])
    trill.pitch = pitchtools.NamedPitch(1)
 
    r'''
@@ -25,7 +25,7 @@ def test_Trill_pitch_02( ):
    '''Any pitch init value will work.'''
 
    t = Staff(macros.scale(4))
-   trill = Trill(t[:2])
+   trill = TrillSpanner(t[:2])
    trill.pitch = 1
 
    r'''
@@ -45,7 +45,7 @@ def test_Trill_pitch_03( ):
    '''Clear with None.'''
 
    t = Staff(macros.scale(4))
-   trill = Trill(t[:2])
+   trill = TrillSpanner(t[:2])
    trill.pitch = pitchtools.NamedPitch(1)
    trill.pitch = None
 

@@ -7,7 +7,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
       Numerator and denominator both triple.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
-   Beam(t[:])
+   BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])
 
    r'''
@@ -37,7 +37,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
       Numerator quadruples and denominator quintuples.'''
 
    t = RigidMeasure((3, 16), macros.scale(3, Rational(1, 16)))
-   Beam(t[:])
+   BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(4, 5)])
 
    r'''
@@ -70,7 +70,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
       Numerator and denominator both quadruple.'''
 
    t = RigidMeasure((3, 16), macros.scale(3, Rational(1, 16)))
-   Beam(t[:])
+   BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(4, 4)])
 
    r'''
@@ -101,7 +101,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
          Numerator doubles and denominator quadruples.'''
 
    t = RigidMeasure((3, 16), macros.scale(3, Rational(1, 16)))
-   Beam(t[:])
+   BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(2, 4)])
 
    r'''

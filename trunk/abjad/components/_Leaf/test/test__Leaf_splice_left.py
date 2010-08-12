@@ -5,7 +5,7 @@ def test__Leaf_splice_left_01( ):
    '''Splice leaves left of leaf.'''
 
    t = Voice(macros.scale(3))
-   Beam(t[:])
+   BeamSpanner(t[:])
    result = t[0].splice_left(macros.scale(3, Rational(1, 16)))
 
    r'''
@@ -28,7 +28,7 @@ def test__Leaf_splice_left_02( ):
    '''Splice leaf left of interior leaf.'''
 
    t = Voice(macros.scale(3))
-   Beam(t[:])
+   BeamSpanner(t[:])
    result = t[1].splice_left([Note(1.5, (1, 8))])
 
    r'''

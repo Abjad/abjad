@@ -8,7 +8,7 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
    Divide leaves meiotically in `expr` `n` times::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [

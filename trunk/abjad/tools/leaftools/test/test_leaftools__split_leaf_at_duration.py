@@ -6,7 +6,7 @@ def test_leaftools__split_leaf_at_duration_01( ):
    '''Notehead-assignable split duration produces two notes.'''
 
    t = Staff(macros.scale(3))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Staff {
@@ -35,7 +35,7 @@ def test_leaftools__split_leaf_at_duration_02( ):
    '''Nonbinary denominator produces two one-note tuplets.'''
 
    t = Staff(macros.scale(3))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Staff {
@@ -70,7 +70,7 @@ def test_leaftools__split_leaf_at_duration_03( ):
 
    t = Voice(notetools.make_repeated_notes(1) + [FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))])
    macros.diatonicize(t)
-   Beam(t.leaves)
+   BeamSpanner(t.leaves)
 
    r'''
    \new Voice {
@@ -195,7 +195,7 @@ def test_leaftools__split_leaf_at_duration_09( ):
    '''Lone spanned Leaf results in two spanned leaves.'''
 
    t = Staff([Note(0, (1, 4))])
-   s = Tie(t.leaves)
+   s = TieSpanner(t.leaves)
    halves = _split_leaf_at_duration(t[0], Rational(1, 8))
 
    assert len(t) == 2
@@ -209,7 +209,7 @@ def test_leaftools__split_leaf_at_duration_10( ):
    '''Spanners are unaffected by leaf split.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   b = Beam(t.leaves)
+   b = BeamSpanner(t.leaves)
    halves = _split_leaf_at_duration(t[0], Rational(1, 16))
 
    assert len(t) == 5
@@ -224,7 +224,7 @@ def test_leaftools__split_leaf_at_duration_11( ):
       Spanner is shared by all 3 leaves.'''
 
    t = Staff([Note(0, (1, 4))])
-   s = Tie(t.leaves)
+   s = TieSpanner(t.leaves)
    halves = _split_leaf_at_duration(t[0], Rational(5, 32))
 
    assert len(halves) == 2
@@ -241,7 +241,7 @@ def test_leaftools__split_leaf_at_duration_12( ):
       containing it is already Tie-spanned.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   s = Tie(t)
+   s = TieSpanner(t)
    halves = _split_leaf_at_duration(t[0], Rational(5, 64))
 
    assert t.tie.spanner is s
@@ -256,7 +256,7 @@ def test_leaftools__split_leaf_at_duration_13( ):
       already Tie-spanned.'''
 
    t = Staff(Container(notetools.make_repeated_notes(4)) * 2)
-   s = Tie(t[:])
+   s = TieSpanner(t[:])
    halves = _split_leaf_at_duration(t[0][0], Rational(5, 64))
 
    assert s.components == tuple(t[:])

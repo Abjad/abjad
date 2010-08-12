@@ -5,7 +5,7 @@ def test_UserComments_opening_01( ):
    '''Opening comments in container.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t.comments.opening.append('Voice opening comments here.')
    t.comments.opening.append('More voice opening comments.')
 

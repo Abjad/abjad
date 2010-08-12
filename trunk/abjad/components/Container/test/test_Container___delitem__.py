@@ -11,9 +11,9 @@ def test_Container___delitem___01( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[:])
-   Slur(t[0][:])
-   Slur(t[1][:])
+   BeamSpanner(t[:])
+   SlurSpanner(t[0][:])
+   SlurSpanner(t[1][:])
 
    r'''
    \new Voice {
@@ -63,7 +63,7 @@ def test_Container___delitem___02( ):
    Spanner structure is preserved.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    del(t[1])
 
@@ -83,7 +83,7 @@ def test_Container___delitem___03( ):
    '''Delete slice in middle of container.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    del(t[1:3])
 
@@ -102,7 +102,7 @@ def test_Container___delitem___04( ):
    '''Delete slice from beginning to middle of container.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    del(t[:2])
 
@@ -121,7 +121,7 @@ def test_Container___delitem___05( ):
    '''Delete slice from middle to end of container.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    del(t[2:])
 
@@ -140,7 +140,7 @@ def test_Container___delitem___06( ):
    '''Delete slice from beginning to end of container.'''
 
    t = Voice(macros.scale(4)) 
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    del(t[:])
 
@@ -157,7 +157,7 @@ def test_Container___delitem___07( ):
    '''Detach leaf from tuplet and spanner.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    del(t[1])
 

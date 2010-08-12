@@ -89,10 +89,10 @@ notated durations:
       hide> m1 = RigidMeasure((1, 4), [Note(0, (1, 4))])
       hide> m1.meter.transparent = True
       hide> m2 = RigidMeasure((1, 4), Note(0, (1, 8)) * 2)
-      hide> Tie(m2)
+      hide> TieSpanner(m2)
       hide> m2.meter.transparent = True
       hide> m3 = RigidMeasure((1, 4), [Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
-      hide> Tie(m3)
+      hide> TieSpanner(m3)
       hide> m3.meter.transparent = True
       hide> r = RhythmicStaff([m1, m2, m3])
       hide> write(r, 'example1')

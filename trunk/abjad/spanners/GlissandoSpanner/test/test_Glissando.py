@@ -3,8 +3,8 @@ from abjad import *
 
 def test_Glissando_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   gliss = Glissando(t.leaves[ : 4])
-   assert isinstance(gliss, Glissando)
+   gliss = GlissandoSpanner(t.leaves[:4])
+   assert isinstance(gliss, GlissandoSpanner)
    assert t.format =="\\new Staff {\n\tc'8 \\glissando\n\tcs'8 \\glissando\n\td'8 \\glissando\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    '''
    \new Staff {

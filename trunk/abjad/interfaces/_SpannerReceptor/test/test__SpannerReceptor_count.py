@@ -15,7 +15,7 @@ def test__SpannerReceptor_count_02( ):
    '''Return 1 when one spanner attaches.'''
    
    t = Staff(macros.scale(4))
-   Crescendo(t[:])
+   CrescendoSpanner(t[:])
    assert t[0].beam.count == 0
    assert t[0].dynamics.count == 1
    assert t[0].glissando.count == 0

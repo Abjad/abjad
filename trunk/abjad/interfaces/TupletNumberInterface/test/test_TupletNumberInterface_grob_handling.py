@@ -25,7 +25,7 @@ def test_TupletNumberInterface_grob_handling_02( ):
    '''Override LilyPond TupletNumber grob on Abjad voice.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t.tuplet_number.fraction = True
 
    r'''
@@ -46,7 +46,7 @@ def test_TupletNumberInterface_grob_handling_03( ):
    '''Override LilyPond TupletNumber grob on Abjad leaf.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t[1].tuplet_number.fraction = True
 
    r'''
@@ -67,7 +67,7 @@ def test_TupletNumberInterface_grob_handling_04( ):
    '''Override LilyPond TupletNumber text attribute.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t.tuplet_number.text = Markup('"6:4"')
 
    r'''

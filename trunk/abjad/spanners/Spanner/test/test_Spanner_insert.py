@@ -9,7 +9,7 @@ def test_Spanner_insert_01( ):
       Inserting into middle of spanner may leave discontiguous spanner.'''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[:2])
+   p = BeamSpanner(t[:2])
 
    r'''
    \new Voice {
@@ -22,7 +22,7 @@ def test_Spanner_insert_01( ):
 
    p._insert(1, t.leaves[-1])
 
-   "Interior insert leaves discontiguous spanner: Beam(c'8, f'8, d'8)."
+   "Interior insert leaves discontiguous spanner: BeamSpanner(c'8, f'8, d'8)."
 
    assert not componenttools.is_well_formed_component(t)
 
@@ -35,7 +35,7 @@ def test_Spanner_insert_02( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[1])
+   p = BeamSpanner(t[1])
 
    r'''
    \new Voice {

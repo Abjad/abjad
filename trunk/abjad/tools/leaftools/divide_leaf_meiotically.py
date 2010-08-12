@@ -11,7 +11,7 @@ def divide_leaf_meiotically(leaf, n = 2):
    Divide `leaf` meiotically `n` times::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [

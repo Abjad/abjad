@@ -6,7 +6,7 @@ def test_Container_extend_01( ):
    '''Extend container with list of leaves.'''
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -34,7 +34,7 @@ def test_Container_extend_02( ):
    '''Extend container with contents of other container.'''
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -44,7 +44,7 @@ def test_Container_extend_02( ):
    '''
 
    u = Voice([Note(4, (1, 8)), Note(5, (1, 8))])
-   Beam(u[:])
+   BeamSpanner(u[:])
    t.extend(u)
 
    r'''
@@ -64,7 +64,7 @@ def test_Container_extend_03( ):
    '''Extending container with empty list leaves container unchanged.'''
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t.extend([ ])
 
    r'''
@@ -83,7 +83,7 @@ def test_Container_extend_04( ):
       leaves both containers unchanged.'''
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t.extend(Voice([ ]))
 
    r'''
@@ -101,7 +101,7 @@ def test_Container_extend_05( ):
    '''Trying to extend container with noncomponent raises TypeError.'''
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    assert py.test.raises(TypeError, 't.extend(7)')
    assert py.test.raises(TypeError, "t.extend('foo')")
@@ -111,7 +111,7 @@ def test_Container_extend_06( ):
    '''Trying to extend container with noncontainer raises TypeError.'''
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
    assert py.test.raises(AssertionError, "t.extend(Chord([2, 3, 5], (1, 4)))")
@@ -122,7 +122,7 @@ def test_Container_extend_07( ):
       spanned contents of other container.'''
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -132,7 +132,7 @@ def test_Container_extend_07( ):
    '''
 
    u = Voice(macros.scale(4))
-   Beam(u[:])
+   BeamSpanner(u[:])
 
    r'''
    \new Voice {
@@ -178,7 +178,7 @@ def test_Container_extend_08( ):
       Covered span comes with components from donor container.'''
 
    t = Voice(macros.scale(2))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -188,8 +188,8 @@ def test_Container_extend_08( ):
    '''
 
    u = Voice(macros.scale(4))
-   Beam(u[:])
-   Slur(u[-2:])
+   BeamSpanner(u[:])
+   SlurSpanner(u[-2:])
 
    r'''
    \new Voice {

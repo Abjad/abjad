@@ -7,8 +7,8 @@ def test_spannertools_withdraw_from_contained_01( ):
       Navigate down into components and traverse deeply.'''
 
    t = Staff(macros.scale(4))
-   Beam(t)
-   Crescendo(t[:])
+   BeamSpanner(t)
+   CrescendoSpanner(t[:])
 
    _withdraw_from_contained([t])
 
@@ -30,8 +30,8 @@ def test_spannertools_withdraw_from_contained_02( ):
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   Beam(t.leaves[:3])
-   Beam(t.leaves[3:])
+   BeamSpanner(t.leaves[:3])
+   BeamSpanner(t.leaves[3:])
 
    r'''
    \new Staff {

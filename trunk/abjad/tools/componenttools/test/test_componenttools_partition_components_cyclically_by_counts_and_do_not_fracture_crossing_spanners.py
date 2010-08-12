@@ -8,8 +8,8 @@ def test_componenttools_partition_components_cyclically_by_counts_and_do_not_fra
       Leave spanner attaching to container contents untouched.'''
 
    t = Voice([Container(macros.scale(8))])
-   Beam(t[0])
-   Slur(t[0].leaves)
+   BeamSpanner(t[0])
+   SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {
@@ -58,8 +58,8 @@ def test_componenttools_partition_components_cyclically_by_counts_and_do_not_fra
    '''Cyclic by [1] splits all elements in container.'''
 
    t = Voice([Container(macros.scale(4))])
-   Beam(t[0])
-   Slur(t[0].leaves)
+   BeamSpanner(t[0])
+   SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {

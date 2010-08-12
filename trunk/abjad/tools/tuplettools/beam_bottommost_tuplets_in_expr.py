@@ -11,4 +11,4 @@ def beam_bottommost_tuplets_in_expr(expr):
          if isinstance(component, _Tuplet):
             break
       else:
-         Beam(tuplet)
+         BeamSpanner(tuplet)

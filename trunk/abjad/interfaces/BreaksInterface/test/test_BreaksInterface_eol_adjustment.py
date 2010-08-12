@@ -8,9 +8,9 @@ def test_BreaksInterface_eol_adjustment_01( ):
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {

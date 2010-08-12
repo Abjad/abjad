@@ -5,7 +5,7 @@ def test_UserComments_contributions_01( ):
    '''Context comments contributions.'''
 
    t = Voice(macros.scale(4))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')
    t.comments.opening.append('Comments opening.')
@@ -74,7 +74,7 @@ def test_UserComments_contributions_03( ):
    '''Tuplet comments contributions.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')
    t.comments.opening.append('Comments opening.')
@@ -110,7 +110,7 @@ def test_UserComments_contributions_04( ):
    '''Measure comments contributions.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')
    t.comments.opening.append('Comments opening.')

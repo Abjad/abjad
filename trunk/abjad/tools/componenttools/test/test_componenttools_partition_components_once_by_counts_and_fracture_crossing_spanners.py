@@ -8,8 +8,8 @@ def test_componenttools_partition_components_once_by_counts_and_fracture_crossin
    Leave spanner attaching to container contents untouched.'''
 
    t = Voice([Container(macros.scale(8))])
-   Beam(t[0])
-   Slur(t[0].leaves)
+   BeamSpanner(t[0])
+   SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {
@@ -58,8 +58,8 @@ def test_componenttools_partition_components_once_by_counts_and_fracture_crossin
    Expression appears unaltered.'''
 
    t = Voice([Container(macros.scale(4))])
-   Beam(t[0])
-   Slur(t[0].leaves)
+   BeamSpanner(t[0])
+   SlurSpanner(t[0].leaves)
    container = t[0]
 
    r'''
@@ -98,8 +98,8 @@ def test_componenttools_partition_components_once_by_counts_and_fracture_crossin
    Result contains no empty parts.'''
 
    t = Voice([Container(macros.scale(4))])
-   Beam(t[0])
-   Slur(t[0].leaves)
+   BeamSpanner(t[0])
+   SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {
@@ -137,8 +137,8 @@ def test_componenttools_partition_components_once_by_counts_and_fracture_crossin
    Input container returns within one-element result list.'''
 
    t = Voice([Container(macros.scale(4))])
-   Beam(t[0])
-   Slur(t[0].leaves)
+   BeamSpanner(t[0])
+   SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {

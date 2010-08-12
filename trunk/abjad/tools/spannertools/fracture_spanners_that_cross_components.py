@@ -13,9 +13,9 @@ def fracture_spanners_that_cross_components(components):
 
       t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
       macros.diatonicize(t)
-      Crescendo(t)
-      Beam(t[:])
-      Trill(t.leaves)
+      CrescendoSpanner(t)
+      BeamSpanner(t[:])
+      TrillSpanner(t.leaves)
 
       \new Staff {
          {

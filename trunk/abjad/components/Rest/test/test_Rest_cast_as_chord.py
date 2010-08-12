@@ -43,7 +43,7 @@ def test_Rest_cast_as_chord_04( ):
 def test_Rest_cast_as_chord_05( ):
    '''Works fine when rest is beamed.'''
    t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-   Beam(t[ : ])
+   BeamSpanner(t[ : ])
    Chord(t[1])
    assert isinstance(t[1], Chord)
    assert t[1].parentage.parent is t

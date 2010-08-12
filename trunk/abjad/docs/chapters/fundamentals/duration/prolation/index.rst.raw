@@ -19,7 +19,7 @@ Fixed-duration tuplets and fixed-multiplier tuplets both **prolate** their conte
 <abjad>
 tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
 staff = RhythmicStaff([RigidMeasure((5, 8), [tuplet])])
-Beam(tuplet)
+BeamSpanner(tuplet)
 print tuplet.duration.augmentation
 write(staff, 'example1', 'oedo') <hide
 </abjad>
@@ -62,7 +62,7 @@ Such **nonbinary meters** prolate the music they contain.
 
 <abjad>
 measure = RigidMeasure((4, 10), Note(0, (1, 8)) * 4)
-Beam(measure)
+BeamSpanner(measure)
 staff = RhythmicStaff([measure])
 note = staff.leaves[0]
 print note.duration.prolation
@@ -91,7 +91,7 @@ Tuplets nest. And tuplet prolation and meter prolation combine freely. When two 
 
 <abjad>
 tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
-Beam(tuplet)
+BeamSpanner(tuplet)
 measure = RigidMeasure((4, 10), [tuplet])
 staff = RhythmicStaff([measure])
 print tuplet.duration.multiplier

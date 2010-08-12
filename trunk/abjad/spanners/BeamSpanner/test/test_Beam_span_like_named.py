@@ -10,14 +10,14 @@ def test_Beam_span_like_named_01( ):
    t[1].name = 'foo'
    macros.chromaticize(t)
 
-   p = Beam(t)
+   p = BeamSpanner(t)
    assert len(p.components) == 1
    assert isinstance(p.components[0], Staff)
    assert len(p.leaves) == 8
    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
    p.clear( )
 
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
    assert len(p.components) == 2
    for x in p.components:
       assert isinstance(x, Voice)
@@ -52,11 +52,11 @@ def test_Beam_span_like_named_02( ):
    t[0][0].name, t[1][0].name = 'bar', 'bar'
    macros.chromaticize(t)
    
-   assert py.test.raises(AssertionError, 'p = Beam(t)')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner(t)')
 
-   assert py.test.raises(AssertionError, 'p = Beam(t[ : ])')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner(t[ : ])')
 
-   assert py.test.raises(AssertionError, 'p = Beam([t[0][0], t[1][0]])')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner([t[0][0], t[1][0]])')
 
 
 def test_Beam_span_like_named_03( ):
@@ -71,7 +71,7 @@ def test_Beam_span_like_named_03( ):
    t[0][1].name, t[1][0].name = 'second', 'second'
    macros.chromaticize(t)
    
-   p = Beam([t[0][0], t[1][1]])
+   p = BeamSpanner([t[0][0], t[1][1]])
    assert len(p.components) == 2
    assert isinstance(p.components[0], Voice)
    assert isinstance(p.components[1], Voice)
@@ -124,7 +124,7 @@ def test_Beam_span_like_named_04( ):
    t[0][1].name, t[1][1].name = 'second', 'second'
    del(t[1][1])
    macros.chromaticize(t)
-   p = Beam([t[0][0], t[1][0]])
+   p = BeamSpanner([t[0][0], t[1][0]])
    
    assert len(p.components) == 2
    assert len(p.leaves) == 8

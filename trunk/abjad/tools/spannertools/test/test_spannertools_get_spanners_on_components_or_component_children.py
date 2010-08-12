@@ -5,9 +5,9 @@ def test_spannertools_get_spanners_on_components_or_component_children_01( ):
    '''Get all spanners attaching directly to any component in list.'''
 
    t = Staff(macros.scale(4))
-   b1 = Beam(t[:2])
-   b2 = Beam(t[2:])
-   crescendo = Crescendo(t)
+   b1 = BeamSpanner(t[:2])
+   b2 = BeamSpanner(t[2:])
+   crescendo = CrescendoSpanner(t)
 
    r'''
    \new Staff {

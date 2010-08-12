@@ -7,7 +7,7 @@ def test_Hairpin_grob_handling_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Hairpin(t[ : ], 'p < f')
+   p = HairpinSpanner(t[ : ], 'p < f')
    p.staff_padding = 4
 
    r'''

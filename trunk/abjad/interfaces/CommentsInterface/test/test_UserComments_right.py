@@ -5,7 +5,7 @@ def test_UserComments_right_01( ):
    '''Context comments right.'''
 
    t = Voice(macros.scale(4))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.comments.right.append('Voice right comments here.')
    t.comments.right.append('More voice right comments.')

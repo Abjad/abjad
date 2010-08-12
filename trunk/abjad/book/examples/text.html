@@ -10,7 +10,7 @@ f(v)
 <p>Another line of text. More Abjad code follows. Notice that in the second block of Abjad code we can reference objects and variables created in previous blocks:</p>
 
 <abjad>
-Beam(v)
+BeamSpanner(v)
 show(v)
 write_ly(v, 'example1') <hide
 </abjad>
@@ -20,7 +20,7 @@ write_ly(v, 'example1') <hide
 <abjad>
 macros.diatonicize(v)
 for leaf in v: print leaf
-Trill(v[2:])
+TrillSpanner(v[2:])
 show(v)
 write_ly(v, 'example2') <hide
 </abjad>
@@ -28,7 +28,7 @@ write_ly(v, 'example2') <hide
 <p>And a final paragraph. Here all the code is hidden:</p>
 
 <abjad>[hide = True]
-PianoPedal(v[:])
+PianoPedalSpanner(v[:])
 write_ly(v, "example4")
 </abjad>
 

@@ -21,7 +21,7 @@ def test_componenttools_report_component_format_contributions_as_string_02( ):
    '''You can report on spanners, too.'''
 
    t = Staff(macros.scale(4))
-   spanner = Beam(t[2:])
+   spanner = BeamSpanner(t[2:])
 
    result = componenttools.report_component_format_contributions_as_string(spanner)
    assert result == "e'8\tbefore: []\n\t after: []\n\t  left: []\n\t right: ['[']\n\nf'8\tbefore: []\n\t after: []\n\t  left: []\n\t right: [']']\n"

@@ -20,7 +20,7 @@ def test_LeafSpannerAggregator_fracture_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -59,7 +59,7 @@ def test_LeafSpannerAggregator_fracture_02( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -97,7 +97,7 @@ def test_LeafSpannerAggregator_fracture_03( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -130,7 +130,7 @@ def test_LeafSpannerAggregator_fracture_04( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -163,7 +163,7 @@ def test_LeafSpannerAggregator_fracture_05( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -196,7 +196,7 @@ def test_LeafSpannerAggregator_fracture_06( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -229,7 +229,7 @@ def test_LeafSpannerAggregator_fracture_07( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -262,7 +262,7 @@ def test_LeafSpannerAggregator_fracture_08( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -295,7 +295,7 @@ def test_LeafSpannerAggregator_fracture_09( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -328,8 +328,8 @@ def test_LeafSpannerAggregator_fracture_10( ):
    '''
 
    t = Voice(macros.scale(4))
-   p1 = Beam(t[ : ])
-   p2 = Trill(t[ : ])
+   p1 = BeamSpanner(t[ : ])
+   p2 = TrillSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -364,7 +364,7 @@ def test_LeafSpannerAggregator_fracture_11( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Voice {

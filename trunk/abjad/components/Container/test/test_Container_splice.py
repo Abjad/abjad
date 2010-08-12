@@ -5,7 +5,7 @@ def test_Container_splice_01( ):
    '''Splice tuplet after tuplet.'''
 
    t = Voice([FixedDurationTuplet((2, 8), macros.scale(3))])
-   Beam(t[0])
+   BeamSpanner(t[0])
    result = t[-1].splice([FixedDurationTuplet((2, 8), macros.scale(3))])
 
    r'''
@@ -32,7 +32,7 @@ def test_Container_splice_02( ):
    '''Splice after container with underspanners.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   Beam(t.leaves)
+   BeamSpanner(t.leaves)
    result = t[0].splice([Note(2.5, (1, 8))])
 
    r'''

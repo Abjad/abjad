@@ -8,8 +8,8 @@ class BracketSpanner(TextSpanner):
    composition-time. Defaults to red. ::
    
       abjad> t = Staff(macros.scale(4))
-      abjad> Bracket(t[:])
-      Bracket(c'8, d'8, e'8, f'8)
+      abjad> BracketSpanner(t[:])
+      BracketSpanner(c'8, d'8, e'8, f'8)
 
       abjad> print t.format
       \new Staff {

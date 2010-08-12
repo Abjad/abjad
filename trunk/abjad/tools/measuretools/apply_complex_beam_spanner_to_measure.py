@@ -18,7 +18,7 @@ def apply_complex_beam_spanner_to_measure(measure):
    ::
       
       abjad> measuretools.apply_complex_beam_spanner_to_measure(measure)
-      DuratedComplexBeam(|2/8(2)|)
+      DuratedComplexBeamSpanner(|2/8(2)|)
       
    ::
       
@@ -42,7 +42,7 @@ def apply_complex_beam_spanner_to_measure(measure):
       raise TypeError('must be measure: %s' % measure)
 
    ## apply complex beam spanner to measure
-   beam = DuratedComplexBeam(measure)
+   beam = DuratedComplexBeamSpanner(measure)
 
    ## return beam spanner
    return beam

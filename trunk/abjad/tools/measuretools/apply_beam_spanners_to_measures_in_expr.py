@@ -27,7 +27,7 @@ def apply_beam_spanners_to_measures_in_expr(expr):
    ::
       
       abjad> measuretools.apply_beam_spanners_to_measures_in_expr(staff)
-      [Beam(|2/8(2)|), Beam(|2/8(2)|)]
+      [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
       
    ::
       

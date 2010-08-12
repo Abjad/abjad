@@ -29,9 +29,9 @@ def test_Beam_span_differently_named_01( ):
    }
    '''
 
-   assert py.test.raises(AssertionError, 'p = Beam(t)')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner(t)')
 
-   p = Beam(t[0])
+   p = BeamSpanner(t[0])
 
    r'''
    \new Staff {
@@ -99,5 +99,5 @@ def test_Beam_span_differently_named_02( ):
    }
    '''
 
-   assert py.test.raises(AssertionError, 'p = Beam([t[0][0], t[1][0]])')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner([t[0][0], t[1][0]])')
 

@@ -7,7 +7,7 @@ def test_Beam_grob_handling_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
    p.positions = (4, 4)
 
    r'''

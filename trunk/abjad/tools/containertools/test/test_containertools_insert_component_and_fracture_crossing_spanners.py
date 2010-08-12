@@ -10,7 +10,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_01( ):
    "Insert works just before a spanner."
 
    t = Staff([Note(n, (1, 8)) for n in range(4)])
-   Beam(t[:])
+   BeamSpanner(t[:])
    containertools.insert_component_and_fracture_crossing_spanners(t, 0, Rest((1, 4)))
 
    r'''
@@ -30,7 +30,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_02( ):
    '''Insert works inside a spanner.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)])
-   Beam(t[:])
+   BeamSpanner(t[:])
    containertools.insert_component_and_fracture_crossing_spanners(t, 1, Rest((1, 4)))
 
    r'''
@@ -51,7 +51,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_03( ):
    '''Insert works just after a spanner.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)])
-   Beam(t[:])
+   BeamSpanner(t[:])
    containertools.insert_component_and_fracture_crossing_spanners(t, 4, Rest((1, 4)))
 
    r'''
@@ -72,7 +72,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_04( ):
    '''Insert works with really big positive values.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)])
-   Beam(t[:])
+   BeamSpanner(t[:])
    containertools.insert_component_and_fracture_crossing_spanners(t, 1000, Rest((1, 4)))
 
    r'''
@@ -93,7 +93,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_05( ):
    '''Insert works with negative values.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)])
-   Beam(t[:])
+   BeamSpanner(t[:])
    containertools.insert_component_and_fracture_crossing_spanners(t, -1, Rest((1, 4)))
 
    r'''
@@ -114,7 +114,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_06( ):
    '''Insert works with really big negative values.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)])
-   Beam(t[:])
+   BeamSpanner(t[:])
    containertools.insert_component_and_fracture_crossing_spanners(t, -1000, Rest((1, 4)))
 
    r'''

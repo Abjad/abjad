@@ -26,7 +26,7 @@ def test_MeasuredComplexBeam_01( ):
    }
    '''
 
-   beam = MeasuredComplexBeam(t[:])
+   beam = MeasuredComplexBeamSpanner(t[:])
 
    r'''
    \new Staff {

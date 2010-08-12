@@ -18,7 +18,7 @@ def apply_beam_spanner_to_measure(measure):
    ::
       
       abjad> measuretools.apply_beam_spanner_to_measure(measure)
-      Beam(|2/8(2)|)
+      BeamSpanner(|2/8(2)|)
       
    ::
       
@@ -37,7 +37,7 @@ def apply_beam_spanner_to_measure(measure):
       raise TypeError('must be measure: %s' % measure)
 
    ## apply beam spanner to measure
-   beam = Beam(measure)
+   beam = BeamSpanner(measure)
 
    ## return beam spanner
    return beam

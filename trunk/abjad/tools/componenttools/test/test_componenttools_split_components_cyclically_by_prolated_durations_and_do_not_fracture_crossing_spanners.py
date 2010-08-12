@@ -7,9 +7,9 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -58,9 +58,9 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -110,9 +110,9 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -166,9 +166,9 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -264,8 +264,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners.'''
 
    measures = RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2
-   Beam(measures[0])
-   Beam(measures[1])
+   BeamSpanner(measures[0])
+   BeamSpanner(measures[1])
    macros.diatonicize(measures)
 
    durations = [Rational(3, 32)]
@@ -322,9 +322,9 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -375,9 +375,9 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -429,9 +429,9 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -490,9 +490,9 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {

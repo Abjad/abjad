@@ -11,7 +11,7 @@ def scale_contents_of_container(container, multiplier):
    Scale `container` contents by dot `multiplier`::
 
       abjad> staff = Staff(macros.scale(2))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -34,7 +34,7 @@ def scale_contents_of_container(container, multiplier):
    Scale `container` contents by tie `multiplier`::
 
       abjad> staff = Staff(macros.scale(2))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -59,7 +59,7 @@ def scale_contents_of_container(container, multiplier):
    Scale `container` contents by nonbinary `multiplier`::
 
       abjad> staff = Staff(macros.scale(2))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [

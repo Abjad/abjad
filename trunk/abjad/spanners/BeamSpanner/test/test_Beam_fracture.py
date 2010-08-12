@@ -6,7 +6,7 @@ def test_Beam_fracture_01( ):
       effectively does nothing except to replace an existing
       spanner with an identical new spanner.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[ : 4])
+   BeamSpanner(t[ : 4])
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
    #assert old[ : ] == t[ : 4]
@@ -21,7 +21,7 @@ def test_Beam_fracture_01( ):
 
 def test_Beam_fracture_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[ : 4])
+   BeamSpanner(t[ : 4])
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
    #assert old[ : ] == t[ : 4]
@@ -42,7 +42,7 @@ def test_Beam_fracture_03( ):
    spanner with an identical new spanner.
    '''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[ : 4])
+   BeamSpanner(t[ : 4])
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
    #assert old[ : ] == t[ : 4]
@@ -57,7 +57,7 @@ def test_Beam_fracture_03( ):
 
 def test_Beam_fracture_04( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[ : 4])
+   BeamSpanner(t[ : 4])
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
    #assert old[ : ] == t[ : 4]
@@ -76,7 +76,7 @@ def test_Beam_fracture_05( ):
    Fracture "both" fractures around leaf.
    '''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[ : 5])
+   BeamSpanner(t[ : 5])
    old = list(t.spanners.contained)[0]
    old.fracture(2, 'both')
    assert len(t.spanners.contained) == 3
@@ -111,7 +111,7 @@ def test_Beam_fracture_06( ):
    Fracture "both" works of first spanned leaf.
    '''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[ : 5])
+   BeamSpanner(t[ : 5])
    old = list(t.spanners.contained)[0]
    old.fracture(0, 'both')
    assert len(t.spanners.contained) == 2
@@ -141,7 +141,7 @@ def test_Beam_fracture_06( ):
 def test_Beam_fracture_07( ):
    '''Fracture "both" works of last spanned leaf.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[ : 5])
+   BeamSpanner(t[ : 5])
    old = list(t.spanners.contained)[0]
    old.fracture(4, 'both')
    assert len(t.spanners.contained) == 2
@@ -175,7 +175,7 @@ def test_Beam_fracture_08( ):
    '''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Beam(t[ : 5])
+   BeamSpanner(t[ : 5])
    old = list(t.spanners.contained)[0]
    old.fracture(-1, 'both')
    assert len(t.spanners.contained) == 2

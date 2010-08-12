@@ -3,7 +3,7 @@ from abjad import *
 def test_Slur_01( ):
    '''Slur spanner can attach to a container.'''
    t = Voice(macros.scale(4))
-   s = Slur(t)
+   s = SlurSpanner(t)
    assert t.spanners.attached == set([s])
    assert t.format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
    r'''
@@ -18,7 +18,7 @@ def test_Slur_01( ):
 def test_Slur_02( ):
    '''Slur spanner can attach to leaves.'''
    t = Voice(macros.scale(4))
-   s = Slur(t[:])
+   s = SlurSpanner(t[:])
    assert len(t.spanners.attached) == 0
    for leaf in t.leaves:
       assert leaf.spanners.attached == set([s])
@@ -28,7 +28,7 @@ def test_Slur_02( ):
 def test_Slur_03( ):
    '''Position may be set to None, 'neutral', 'up' or 'down'. '''
    t = Staff(notetools.make_repeated_notes(4))
-   p = Slur(t[:])
+   p = SlurSpanner(t[:])
    p.position = None
    assert t.format == "\\new Staff {\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
    p.position = 'up'

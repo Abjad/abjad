@@ -19,7 +19,7 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, _SpannerRe
       Set 'counts' to (None, None).'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Beam')
-      _SpannerReceptor.__init__(self, (Beam, ))
+      _SpannerReceptor.__init__(self, (BeamSpanner, ))
       self.auto_beaming = None
       #self._counts = (None, None)
       self._counts = None

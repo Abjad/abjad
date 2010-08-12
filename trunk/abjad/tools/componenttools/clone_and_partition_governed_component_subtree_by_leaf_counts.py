@@ -8,8 +8,8 @@ def clone_and_partition_governed_component_subtree_by_leaf_counts(container, lea
    r'''Clone `container` and partition clone according to `leaf_counts`. ::
 
       abjad> voice = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-      abjad> Beam(voice[0].leaves)
-      abjad> Beam(voice[1].leaves)
+      abjad> BeamSpanner(voice[0].leaves)
+      abjad> BeamSpanner(voice[1].leaves)
       abjad> macros.diatonicize(voice)
       abjad> f(voice)
       \new Voice {

@@ -10,7 +10,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    r'''Change `leaf` to dotted `preprolated_duration`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Rational(3, 16))
       [Note(d', 8.)]
       abjad> f(staff)
@@ -24,7 +24,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    Change `leaf` to tied `preprolated_duration`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Rational(5, 32))
       [Note(d', 8), Note(d', 32)]
       abjad> f(staff)
@@ -39,7 +39,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    Change `leaf` to nonbinary `preprolated_duration`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Rational(1, 12))
       [Note(d', 8)]
       abjad> f(staff)
@@ -55,7 +55,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    Change `leaf` to tied nonbinary `preprolated_duration`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Rational(5, 48))
       [Note(d', 8), Note(d', 32)]
       abjad> f(staff)
@@ -110,7 +110,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             x.duration.written = token.duration.written
          leaf.splice(tied_leaves)
          if not leaf.tie.parented:
-            Tie(all_leaves)
+            TieSpanner(all_leaves)
       elif isinstance(duration_tokens[0], FixedMultiplierTuplet):
          #print 'debug duration_tokens %s' % duration_tokens
          fmtuplet = duration_tokens[0]
@@ -123,7 +123,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             x.duration.written = token.duration.written
          leaf.splice(tied_leaves)
          if not leaf.tie.spanned:
-            Tie(all_leaves) 
+            TieSpanner(all_leaves) 
          tuplet_multiplier = fmtuplet.duration.multiplier
          FixedMultiplierTuplet(tuplet_multiplier, all_leaves)
       else:

@@ -26,7 +26,7 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
       
       abjad> measures = staff[:]
       abjad> measuretools.apply_durated_complex_beam_spanner_to_measures(measures)
-      DuratedComplexBeam(|2/8(2)|, |2/8(2)|)
+      DuratedComplexBeamSpanner(|2/8(2)|, |2/8(2)|)
       
    ::
       
@@ -64,5 +64,5 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
    for measure in measures:
       measure.beam.unspan( )
       durations.append(measure.duration.preprolated)
-   beam = DuratedComplexBeam(measures, durations = durations, span = 1)
+   beam = DuratedComplexBeamSpanner(measures, durations = durations, span = 1)
    return beam

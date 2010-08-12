@@ -39,7 +39,7 @@ def parse_note_entry_string(note_entry_string):
          try:
             tie_spanner = last_leaf.tie.spanner
          except MissingSpannerError:
-            Tie([last_leaf])
+            TieSpanner([last_leaf])
          tie_next_leaf = True
       elif token == r'\bar':
          waiting_on_bar_string = True

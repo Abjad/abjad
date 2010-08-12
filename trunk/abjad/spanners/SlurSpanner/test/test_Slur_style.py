@@ -5,7 +5,7 @@ def test_Slur_style_01( ):
    '''Slurs may be solid, dashed or dotted.'''
 
    t = Staff(macros.scale(4))
-   slur = Slur(t[:])
+   slur = SlurSpanner(t[:])
    slur.style = 'solid'
 
    r'''
@@ -40,7 +40,7 @@ def test_Slur_style_02( ):
    '''Slurs may be solid, dashed or dotted.'''
 
    t = Staff(macros.scale(4))
-   slur = Slur(t[:])
+   slur = SlurSpanner(t[:])
    slur.style = 'dotted'
 
    r'''

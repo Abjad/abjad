@@ -37,7 +37,7 @@ We now apply a :class:`MetricGrid <abjad.metricgrid.spanner.MetricGrid>` spanner
 to our staff.
 
 <abjad>
-MetricGrid(staff, [(4, 4), (4, 4), (4, 4), (11, 16)])
+MetricGridSpanner(staff, [(4, 4), (4, 4), (4, 4), (11, 16)])
 staff.meter.clear( )
 staff.barline.clear( )
 write(staff, 'example2') <hide

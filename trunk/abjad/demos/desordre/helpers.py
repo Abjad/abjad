@@ -45,8 +45,8 @@ def desordre_cell(pitches):
    '''Returns a parallel container encapsulating a Ligeti "cell".'''
    Pitch.accidental_spelling = 'sharps'
    notes = [Note(p, (1, 8)) for p in pitches]
-   Beam(notes)
-   Slur(notes)
+   BeamSpanner(notes)
+   SlurSpanner(notes)
    notes[0].dynamics.mark = 'f'
    notes[1].dynamics.mark = 'p'
    v_lower = Voice(notes)

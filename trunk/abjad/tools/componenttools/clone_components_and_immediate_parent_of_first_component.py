@@ -17,7 +17,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
 
       voice = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 3)
       macros.diatonicize(voice)
-      beam = Beam(voice.leaves[:4])
+      beam = BeamSpanner(voice.leaves[:4])
       f(voice)
       \new Voice {
               \times 2/3 {

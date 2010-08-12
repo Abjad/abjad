@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_delete_contents_of_container_starting_before_or_at_prolated_offset_01( ):
    
    staff = Staff(macros.scale(4))
-   Beam(staff.leaves)
+   BeamSpanner(staff.leaves)
    containertools.delete_contents_of_container_starting_before_or_at_prolated_offset(staff, Rational(1, 8))
 
    r'''
@@ -21,7 +21,7 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_prola
 def test_containertools_delete_contents_of_container_starting_before_or_at_prolated_offset_02( ):
 
    staff = Staff(macros.scale(4))
-   Beam(staff.leaves)
+   BeamSpanner(staff.leaves)
    containertools.delete_contents_of_container_starting_before_or_at_prolated_offset(staff, Rational(3, 16))
 
    r'''
@@ -39,7 +39,7 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_prola
    '''Delete nothing when no contents start after prolated offset.'''
 
    staff = Staff(macros.scale(4))
-   Beam(staff.leaves)
+   BeamSpanner(staff.leaves)
    containertools.delete_contents_of_container_starting_before_or_at_prolated_offset(staff, -99)
 
    r'''
@@ -59,7 +59,7 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_prola
    '''Delete everything when all contents start after prolated offset.'''
 
    staff = Staff(macros.scale(4))
-   Beam(staff.leaves)
+   BeamSpanner(staff.leaves)
    containertools.delete_contents_of_container_starting_before_or_at_prolated_offset(staff, 99)
 
    r'''

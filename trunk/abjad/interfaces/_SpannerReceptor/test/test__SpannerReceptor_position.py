@@ -7,7 +7,7 @@ def test__SpannerReceptor_position_01( ):
       otherwise, raise MissingSpannerError.'''
 
    t = Staff(macros.scale(4))
-   Beam(t[2:])
+   BeamSpanner(t[2:])
 
    r'''
    \new Staff {

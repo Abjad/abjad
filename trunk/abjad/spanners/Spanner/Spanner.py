@@ -490,14 +490,14 @@ class Spanner(_Abjad):
       Return original, left and right spanners. ::
 
          abjad> voice = Voice(macros.scale(4))
-         abjad> beam = Beam(voice[:])
+         abjad> beam = BeamSpanner(voice[:])
          abjad> beam
-         Beam(c'8, d'8, e'8, f'8)
+         BeamSpanner(c'8, d'8, e'8, f'8)
 
       ::
 
          abjad> beam.fracture(1, direction = 'left')
-         (Beam(c'8, d'8, e'8, f'8), Beam(c'8), Beam(d'8, e'8, f'8))
+         (BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8), BeamSpanner(d'8, e'8, f'8))
 
       ::
 
@@ -538,8 +538,8 @@ class Spanner(_Abjad):
       Return new spanner. ::
 
          abjad> voice = Voice(macros.scale(4))
-         abjad> left_beam = Beam(t[:2])
-         abjad> right_beam = Beam(t[2:])
+         abjad> left_beam = BeamSpanner(t[:2])
+         abjad> right_beam = BeamSpanner(t[2:])
 
       ::
 
@@ -554,7 +554,7 @@ class Spanner(_Abjad):
       ::
          
          abjad> left_beam.fuse(right_beam)
-         [(Beam(c'8, d'8), Beam(e'8, f'8), Beam(c'8, d'8, e'8, f'8))]
+         [(BeamSpanner(c'8, d'8), BeamSpanner(e'8, f'8), BeamSpanner(c'8, d'8, e'8, f'8))]
 
       ::
 

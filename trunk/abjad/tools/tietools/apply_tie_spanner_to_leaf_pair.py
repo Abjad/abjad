@@ -8,7 +8,7 @@ def apply_tie_spanner_to_leaf_pair(left, right):
    r'''Apply tie spanner to `left` leaf and `right` leaf::
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
-      abjad> Tie(staff[:2])
+      abjad> TieSpanner(staff[:2])
       abjad> f(staff)
       \new Staff {
          c'8 ~
@@ -63,4 +63,4 @@ def apply_tie_spanner_to_leaf_pair(left, right):
    elif left_tie_spanner is None and right_tie_spanner is not None:
       right_tie_spanner.append_left(left)
    elif left_tie_spanner is None and right_tie_spanner is None:
-      Tie([left, right])
+      TieSpanner([left, right])

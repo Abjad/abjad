@@ -5,8 +5,8 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_01
    '''Get dominant spanners over zero-length 'crack'.'''
 
    t = Voice(macros.scale(4))
-   beam = Beam(t[:2])
-   glissando = Glissando(t[:])
+   beam = BeamSpanner(t[:2])
+   glissando = GlissandoSpanner(t[:])
 
    r'''
    \new Voice {
@@ -27,8 +27,8 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_02
    '''Get dominant spanners over one-component slice.'''
 
    t = Voice(macros.scale(4))
-   beam = Beam(t[:2])
-   glissando = Glissando(t[:])
+   beam = BeamSpanner(t[:2])
+   glissando = GlissandoSpanner(t[:])
 
    r'''
    \new Voice {
@@ -50,8 +50,8 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_03
    '''Get dominant spanners over four-component slice.'''
 
    t = Voice(macros.scale(4))
-   beam = Beam(t[:2])
-   glissando = Glissando(t[:])
+   beam = BeamSpanner(t[:2])
+   glissando = GlissandoSpanner(t[:])
 
    r'''
    \new Voice {

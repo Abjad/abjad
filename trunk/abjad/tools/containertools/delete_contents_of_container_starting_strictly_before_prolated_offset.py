@@ -9,7 +9,7 @@ def delete_contents_of_container_starting_strictly_before_prolated_offset(
    Delete `container` contents starting before `prolated_offset`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [

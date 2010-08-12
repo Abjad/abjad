@@ -7,9 +7,9 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
 
       abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
-      abjad> Beam(staff[0])
-      abjad> Beam(staff[1])
-      abjad> Slur(staff.leaves)
+      abjad> BeamSpanner(staff[0])
+      abjad> BeamSpanner(staff[1])
+      abjad> SlurSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          {

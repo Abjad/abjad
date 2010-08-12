@@ -5,7 +5,7 @@ def test_UserComments_clear_01( ):
    '''Clear context comments.'''
 
    t = Voice(macros.scale(4))
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')
    t.comments.opening.append('Comments opening.')

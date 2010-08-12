@@ -49,7 +49,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
          for leaf, token in zip(extra_leaves, extra_tokens):
             leaf.duration.written = token.duration.written
          if not tie_chain[-1].tie.spanned:
-            Tie(list(tie_chain))
+            TieSpanner(list(tie_chain))
          tie_chain[-1].splice(extra_leaves)
    else:
       duration_tokens = notetools.make_notes(0, new_written_duration)

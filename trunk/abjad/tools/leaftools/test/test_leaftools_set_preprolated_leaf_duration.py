@@ -5,7 +5,7 @@ def test_leaftools_set_preprolated_leaf_duration_01( ):
    '''Change leaf to tied duration.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:2])
+   BeamSpanner(t[:2])
 
    r'''
    \new Voice {
@@ -37,8 +37,8 @@ def test_leaftools_set_preprolated_leaf_duration_02( ):
       Duplicate ties are not created.'''
 
    t = Voice(notetools.make_repeated_notes(4))
-   Tie(t[:2])
-   Beam(t[:2])
+   TieSpanner(t[:2])
+   BeamSpanner(t[:2])
 
    r'''
    \new Voice {
@@ -70,7 +70,7 @@ def test_leaftools_set_preprolated_leaf_duration_03( ):
       Same as t.duration.written = Rational(3, 16).'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:2])
+   BeamSpanner(t[:2])
 
    r'''
    \new Voice {
@@ -101,7 +101,7 @@ def test_leaftools_set_preprolated_leaf_duration_04( ):
       FixedMultiplierTuplet inserted over new tied notes.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:2])
+   BeamSpanner(t[:2])
 
    r'''
    \new Voice {
@@ -135,7 +135,7 @@ def test_leaftools_set_preprolated_leaf_duration_05( ):
       FixedMultiplierTuplet inserted over input leaf.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:2])
+   BeamSpanner(t[:2])
 
    r'''
    \new Voice {

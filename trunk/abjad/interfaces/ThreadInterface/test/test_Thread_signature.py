@@ -255,9 +255,9 @@ def test_Thread_signature_09( ):
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
    macros.diatonicize(t)
-   assert py.test.raises(AssertionError, 'Beam(t.leaves)')
-   Beam(t.leaves[:2])
-   Beam(t.leaves[2:])
+   assert py.test.raises(AssertionError, 'BeamSpanner(t.leaves)')
+   BeamSpanner(t.leaves[:2])
+   BeamSpanner(t.leaves[2:])
 
    r'''
    {

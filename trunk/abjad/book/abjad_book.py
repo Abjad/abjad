@@ -54,7 +54,7 @@ Example:
 
       <abjad>
       v = Voice(notetools.make_repeated_notes(8))
-      Beam(v)
+      BeamSpanner(v)
       write_expr_to_ly(v, 'example1') <hide ## this will insert an image. 
       show(v)
       </abjad>

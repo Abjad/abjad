@@ -5,8 +5,8 @@ def test_LeafSpannerAggregator_detach_01( ):
    '''t.spanners._detach( ) detaches all spanners attached to leaf t.'''
 
    t = Staff(macros.scale(4))
-   p1 = Beam(t[ : ])
-   p2 = Glissando(t[ : ])
+   p1 = BeamSpanner(t[ : ])
+   p2 = GlissandoSpanner(t[ : ])
 
    r'''
    \new Staff {
@@ -36,8 +36,8 @@ def test_LeafSpannerAggregator_detach_02( ):
    '''t.spanners._detach( ) returns a SpannersReceipt.'''
 
    t = Staff(macros.scale(4))
-   beam = Beam(t[ : ])
-   glissando = Glissando(t[ : ])
+   beam = BeamSpanner(t[ : ])
+   glissando = GlissandoSpanner(t[ : ])
 
    r'''
    \new Staff {

@@ -8,7 +8,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    tuplet = t[1]
    macros.diatonicize(t)
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -56,7 +56,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Voice(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
-   Beam(t[:])
+   BeamSpanner(t[:])
    macros.diatonicize(t)
 
    r'''
@@ -110,7 +110,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Voice(RigidMeasure((3, 9), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
-   Beam(t[:])
+   BeamSpanner(t[:])
    macros.diatonicize(t)
 
    r'''
@@ -174,7 +174,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Fracture spanners.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -213,7 +213,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Staff([Voice(macros.scale(4))])
    v = t[0]
-   Beam(v)
+   BeamSpanner(v)
 
    r'''
    \new Staff {
@@ -253,7 +253,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Staff([Voice(macros.scale(4))])
    v = t[0]
-   Beam(v)
+   BeamSpanner(v)
 
    left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(v, 10)
 
@@ -279,9 +279,9 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   slur = Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   slur = SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -327,9 +327,9 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   slur = Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   slur = SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -375,9 +375,9 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    macros.diatonicize(t)
-   Beam(t[0])
-   Beam(t[1])
-   slur = Slur(t.leaves)
+   BeamSpanner(t[0])
+   BeamSpanner(t[1])
+   slur = SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -424,8 +424,8 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Measure contents necessitate denominator change.'''
 
    t = Staff([RigidMeasure((3, 12), macros.scale(2, Rational(3, 16)))])
-   Beam(t[0])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -469,8 +469,8 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Measure contents necessitate denominator change.'''
 
    t = Staff([RigidMeasure((3, 8), macros.scale(2, Rational(3, 16)))])
-   Beam(t[0])
-   Slur(t.leaves)
+   BeamSpanner(t[0])
+   SlurSpanner(t.leaves)
 
    r'''
    \new Staff {

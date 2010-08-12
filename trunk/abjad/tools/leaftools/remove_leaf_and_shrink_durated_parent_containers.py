@@ -12,7 +12,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
       abjad> measure = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> macros.diatonicize(measure)
-      abjad> Beam(measure.leaves)
+      abjad> BeamSpanner(measure.leaves)
       abjad> f(measure)
       {
          \time 4/8

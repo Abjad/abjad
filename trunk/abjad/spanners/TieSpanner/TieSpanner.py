@@ -8,8 +8,8 @@ class TieSpanner(_GrobHandlerSpanner):
    ::
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
-      abjad> Tie(staff[:])
-      Tie(c'8, c'8, c'8, c'8)
+      abjad> TieSpanner(staff[:])
+      TieSpanner(c'8, c'8, c'8, c'8)
       abjad> f(staff)
       \new Staff {
          c'8 ~

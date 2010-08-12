@@ -4,7 +4,7 @@ import py.test
 
 def test_PianoPedal_01( ):
    t = Staff(notetools.make_repeated_notes(4))
-   p = PianoPedal(t[:])
+   p = PianoPedalSpanner(t[:])
 
    r'''
    \new Staff {
@@ -26,7 +26,7 @@ def test_PianoPedal_02( ):
    '''PianoPedal spanner supports sostenuto pedal.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   p = PianoPedal(t[:])
+   p = PianoPedalSpanner(t[:])
    p.kind = 'sostenuto'
 
    r'''
@@ -47,7 +47,7 @@ def test_PianoPedal_03( ):
    '''PianoPedal spanner supports una corda pedal.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   p = PianoPedal(t[:])
+   p = PianoPedalSpanner(t[:])
    p.kind = 'corda'
 
    r'''
@@ -68,7 +68,7 @@ def test_PianoPedal_04( ):
    '''PianoPedal spanner supports text style.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   p = PianoPedal(t[:])
+   p = PianoPedalSpanner(t[:])
    assert p.kind == 'sustain'
    p.style = 'text'
 
@@ -90,7 +90,7 @@ def test_PianoPedal_05( ):
    '''PianoPedal spanner supports bracket style.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   p = PianoPedal(t[:])
+   p = PianoPedalSpanner(t[:])
    assert p.kind == 'sustain'
    p.style = 'bracket'
 
@@ -112,8 +112,8 @@ def test_PianoPedal_06( ):
    '''Consecutive dovetailing PianoPedal spanners format correctly.'''
 
    t = Staff(notetools.make_repeated_notes(8))
-   PianoPedal(t[:4])
-   PianoPedal(t[3:])
+   PianoPedalSpanner(t[:4])
+   PianoPedalSpanner(t[3:])
 
    r'''
    \new Staff {
@@ -138,7 +138,7 @@ def test_PianoPedal_07( ):
    '''The 'kind' and 'style' attributes raise ValueError as needed.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   p = PianoPedal(t)
+   p = PianoPedalSpanner(t)
 
    assert py.test.raises(ValueError, 'p.kind = "abc"')
    assert py.test.raises(ValueError, 'p.style = "abc"')

@@ -9,7 +9,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
    of every measure in `expr`::
 
       abjad> measure = RigidMeasure((3, 8), macros.scale(3))
-      abjad> Beam(measure.leaves)
+      abjad> BeamSpanner(measure.leaves)
       abjad> f(measure)
       {
          \time 3/8

@@ -6,7 +6,7 @@ def test_DuratedComplexBeam_lone_01( ):
       to a lone note at format-time.'''
 
    t = Voice(macros.scale(1))
-   DuratedComplexBeam(t, lone = True)
+   DuratedComplexBeamSpanner(t, lone = True)
 
    r'''
    \new Voice {
@@ -23,7 +23,7 @@ def test_DuratedComplexBeam_lone_02( ):
       to a lone note at format-time.'''
 
    t = Voice(macros.scale(1))
-   DuratedComplexBeam(t, lone = False)
+   DuratedComplexBeamSpanner(t, lone = False)
 
    r'''
    \new Voice {
@@ -39,7 +39,7 @@ def test_DuratedComplexBeam_lone_03( ):
    '''DuratedComplexBeam with multiple leaves ignores 'lone' setting.'''
 
    t = Voice(macros.scale(2))
-   DuratedComplexBeam(t, lone = False)
+   DuratedComplexBeamSpanner(t, lone = False)
 
    r'''
    \new Voice {

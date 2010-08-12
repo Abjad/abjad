@@ -89,7 +89,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
    spanners over newly inserted rests. ::
 
       abjad> t = DynamicMeasure(macros.scale(2))
-      abjad> Beam(t[:])
+      abjad> BeamSpanner(t[:])
       abjad> t.formatter.number.self = 'comment'
       abjad> measuretools.pad_measures_in_expr_with_rests(t, Rational(1, 32), Rational(1, 64), splice = True)
 

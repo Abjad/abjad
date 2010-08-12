@@ -7,7 +7,7 @@ def test_Hairpin_01( ):
    '''Hairpins span adjacent leaves.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Crescendo(t[:4])
+   CrescendoSpanner(t[:4])
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -30,7 +30,7 @@ def test_Hairpin_02( ):
    '''Hairpins spanning a single leaf are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Crescendo(t[0 : 1])
+   CrescendoSpanner(t[0 : 1])
    checker = ShortHairpinCheck( )
 
    assert not checker.check(t)
@@ -54,7 +54,7 @@ def test_Hairpin_03( ):
    '''Hairpins and dynamics apply separately.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Crescendo(t[ : 4])
+   CrescendoSpanner(t[ : 4])
    t[0].dynamics.mark = 'p'
    t[3].dynamics.mark = 'f'
 
@@ -79,7 +79,7 @@ def test_Hairpin_04( ):
    '''Internal marks are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Crescendo(t[ : 4])
+   CrescendoSpanner(t[ : 4])
    t[2].dynamics.mark = 'p'
    checker = IntermarkedHairpinCheck( )
 
@@ -105,11 +105,11 @@ def test_Hairpin_05( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    t[0].dynamics.mark = 'p'
-   Crescendo(t[0 : 3])
+   CrescendoSpanner(t[0 : 3])
    t[2].dynamics.mark = 'f'
-   Decrescendo(t[2 : 5])
+   DecrescendoSpanner(t[2 : 5])
    t[4].dynamics.mark = 'p'
-   Crescendo(t[4 : 7])
+   CrescendoSpanner(t[4 : 7])
    t[6].dynamics.mark = 'f'
 
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
@@ -133,7 +133,7 @@ def test_Hairpin_06( ):
    '''Hairpins format rests.'''
 
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-   Crescendo(t[ : ])
+   CrescendoSpanner(t[ : ])
 
    assert t.format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
    assert componenttools.is_well_formed_component(t)
@@ -156,7 +156,7 @@ def test_Hairpin_07( ):
    '''Trim hairpins format only notes and chords.'''
 
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-   Crescendo(t[:], trim = True)
+   CrescendoSpanner(t[:], trim = True)
 
    r'''
    \new Staff {
@@ -179,7 +179,7 @@ def test_Hairpin_08( ):
    '''Trim hairpins format only notes and chords.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-   Crescendo(t[ : ], trim = True)
+   CrescendoSpanner(t[ : ], trim = True)
 
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"
    assert componenttools.is_well_formed_component(t)
@@ -204,7 +204,7 @@ def test_Hairpin_09( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Rest(t[0])
    Rest(t[-1])
-   Hairpin(t.leaves, 'p < f', trim = True)
+   HairpinSpanner(t.leaves, 'p < f', trim = True)
 
    assert len(t[0].dynamics.spanner.components) == len(t)
    assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\p\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\f\n\tr8\n}"

@@ -15,7 +15,7 @@ def list_named_pitches_in_expr(expr):
    ::
 
       abjad> t = Staff(macros.scale(4))
-      abjad> beam = Beam(t[:])
+      abjad> beam = BeamSpanner(t[:])
       abjad> pitchtools.list_named_pitches_in_expr(beam)
       ((NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4), NamedPitch(f, 4))
 

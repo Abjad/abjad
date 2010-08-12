@@ -10,7 +10,7 @@ def test_Spanner_remove_01( ):
 
    t = Voice(macros.scale(4))
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
    
    r'''
    \new Voice {
@@ -23,7 +23,7 @@ def test_Spanner_remove_01( ):
 
    p._remove(p.components[1])
 
-   "Spanner is now discontiguous: Beam(c'8, e'8, f'8)."
+   "Spanner is now discontiguous: BeamSpanner(c'8, e'8, f'8)."
 
    r'''
    \new Voice {
@@ -48,7 +48,7 @@ def test_Spanner_remove_02( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = Beam(t[:])
+   p = BeamSpanner(t[:])
    
    r'''
    \new Voice {

@@ -7,7 +7,7 @@ def test_Tie_grob_handling_01( ):
    '''
 
    t = Voice(notetools.make_repeated_notes(4))
-   p = Tie(t[ : ])
+   p = TieSpanner(t[ : ])
    p.thickness = 3
 
    r'''

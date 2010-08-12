@@ -7,7 +7,7 @@ def test_Bracket_defaults_01( ):
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   Bracket(t[1])
+   BracketSpanner(t[1])
 
    r'''
    \new Staff {

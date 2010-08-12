@@ -3,7 +3,7 @@ from abjad import *
 
 def test_MetricGrid_01( ):
    t = Staff(Note(0, (1, 8)) * 8)
-   m = MetricGrid(t.leaves, [(2, 8)])
+   m = MetricGridSpanner(t.leaves, [(2, 8)])
 
    assert t.format == "\\new Staff {\n\t\\time 2/8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -24,7 +24,7 @@ def test_MetricGrid_01( ):
 
 def test_MetricGrid_02( ):
    t = Staff(Note(0, (1,8)) * 8)
-   m = MetricGrid(t.leaves, [(3, 16)])
+   m = MetricGridSpanner(t.leaves, [(3, 16)])
 
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -47,7 +47,7 @@ def test_MetricGrid_03( ):
    '''MetricGrid cycles throught given meters to cover spanner's duration.''' 
 
    t = Staff(Note(0, (1,8)) * 8)
-   m = MetricGrid(t.leaves, [(1, 8), (1, 4)])
+   m = MetricGridSpanner(t.leaves, [(1, 8), (1, 4)])
 
    assert t.format == "\\new Staff {\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n}"
 
@@ -75,7 +75,7 @@ def test_MetricGrid_04( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
 
    t = Staff(notetools.make_repeated_notes(8))
-   m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
+   m = MetricGridSpanner(t.leaves, [(3, 16), (2, 8)])
 
    r'''
    \new Staff {
@@ -112,7 +112,7 @@ def test_MetricGrid_05( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
 
    t = Staff(Note(0, (1,2)) * 2)
-   m = MetricGrid(t.leaves, [(1, 8), (1, 4)])
+   m = MetricGridSpanner(t.leaves, [(1, 8), (1, 4)])
 
    r'''
    \new Staff {
@@ -151,7 +151,7 @@ def test_MetricGrid_06( ):
    '''MetricGrid splits notes on bar lines.'''
 
    t = Staff(Note(0, (1,8)) * 8)
-   m = MetricGrid(t.leaves, [(3, 16)])
+   m = MetricGridSpanner(t.leaves, [(3, 16)])
    m.split_on_bar( )
 
    assert componenttools.is_well_formed_component(t)
@@ -179,7 +179,7 @@ def test_MetricGrid_07( ):
    '''MetricGrid splits notes on bar lines.'''
 
    t = Staff(Note(0, (1,8))*8)
-   m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
+   m = MetricGridSpanner(t.leaves, [(3, 16), (2, 8)])
    m.split_on_bar( )
 
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'16 ~\n\t\\time 2/8\n\tc'16\n\tc'8\n\tc'16 ~\n\t\\time 3/16\n\tc'16\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
@@ -209,7 +209,7 @@ def test_MetricGrid_08( ):
    '''MetricGrid split works with tuplets.'''
 
    t = Voice([FixedMultiplierTuplet((2,3), Note(0, (1,8)) * 6)])
-   m = MetricGrid(t.leaves, [(1, 8)])
+   m = MetricGridSpanner(t.leaves, [(1, 8)])
    m.split_on_bar( )
 
    '''MetricGrid split_on_bar works in Tuplets.'''   
@@ -237,7 +237,7 @@ def test_MetricGrid_09( ):
 
    t = Voice([FixedMultiplierTuplet((2,3), [Note(0, (1,8)), 
          FixedMultiplierTuplet((3,2), Note(0, (1,8)) *4)])])
-   m = MetricGrid(t.leaves, [(1, 8)])
+   m = MetricGridSpanner(t.leaves, [(1, 8)])
    m.split_on_bar( )
 
    assert t.format =="\\new Voice {\n\t\\times 2/3 {\n\t\t\\time 1/8\n\t\tc'8\n\t\t\\fraction \\times 3/2 {\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t}\n\t}\n}"
@@ -283,7 +283,7 @@ def test_MetricGrid_10( ):
 
    v = Voice(Note(1, (1, 4))*3)
    v.extend(resttools.make_rests((5, 4), tied=True))
-   m = MetricGrid(v.leaves, [(4, 4)])
+   m = MetricGridSpanner(v.leaves, [(4, 4)])
    m.split_on_bar( )
 
    assert isinstance(v[-1], Rest)
@@ -311,7 +311,7 @@ def test_MetricGrid_11( ):
    def cond(leaf):
       if not isinstance(leaf, Rest): return True
       else: return False
-   m = MetricGrid(v.leaves, [(1, 8)])
+   m = MetricGridSpanner(v.leaves, [(1, 8)])
    m.splitting_condition = cond
    m.split_on_bar( )
 
@@ -320,4 +320,4 @@ def test_MetricGrid_11( ):
    assert v[0].duration.written == v[1].duration.written == Rational(1, 8)
    assert v[3].duration.written == v[3].duration.written == Rational(1, 8)
    assert v[2].duration.written == Rational(1, 4)
-   ties = len([p for p in v.spanners.contained if isinstance(p, Tie)]) == 2
+   ties = len([p for p in v.spanners.contained if isinstance(p, TieSpanner)]) == 2

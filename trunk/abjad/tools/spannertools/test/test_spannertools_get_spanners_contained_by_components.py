@@ -8,9 +8,9 @@ def test_spannertools_get_spanners_contained_by_components_01( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   beam = Beam(t[0][:])
-   slur = Slur(t[1][:])
-   trill = Trill(t.leaves)
+   beam = BeamSpanner(t[0][:])
+   slur = SlurSpanner(t[1][:])
+   trill = TrillSpanner(t.leaves)
 
    r'''
    \new Voice {

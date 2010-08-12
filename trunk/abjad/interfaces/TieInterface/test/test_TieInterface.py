@@ -46,7 +46,7 @@ def test_TieInterface_04( ):
 #def test_TieInterface_06( ):
 #   '''Leaf.tail if last in Tie spanner.'''
 #   t = Voice(Note(0, (1,4)) * 3)
-#   Tie(t[1:])
+#   TieSpanner(t[1:])
 #   assert not t[0].tie.tail
 #   assert not t[1].tie.tail
 #   assert t[2].tie.tail
@@ -65,7 +65,7 @@ def test_TieInterface_04( ):
 #def test_TieInterface_08( ):
 #   '''Leaf.head if first in Tie spanner.'''
 #   t = Voice(Note(0, (1,4)) * 3)
-#   Tie(t[1:])
+#   TieSpanner(t[1:])
 #   assert not t[0].tie.head
 #   assert t[1].tie.head
 #   assert not t[2].tie.head

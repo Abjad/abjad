@@ -4,7 +4,7 @@ from abjad import *
 def test_Tie_01( ):
 
    t = Voice(macros.scale(8))
-   p = Tie(t[4:6])
+   p = TieSpanner(t[4:6])
 
    assert len(p) == 2
 

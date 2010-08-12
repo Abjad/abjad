@@ -8,9 +8,9 @@ def test_spannertools_get_spanners_that_cross_components_01( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   beam = Beam(t[0][:])
-   slur = Slur(t[1][:])
-   trill = Trill(t.leaves)
+   beam = BeamSpanner(t[0][:])
+   slur = SlurSpanner(t[1][:])
+   trill = TrillSpanner(t.leaves)
 
    r'''
    \new Voice {
@@ -46,7 +46,7 @@ def test_spannertools_get_spanners_that_cross_components_02( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   beam = Beam(t[1:2] + t[2][0:1])
+   beam = BeamSpanner(t[1:2] + t[2][0:1])
 
    r'''
    \new Voice {

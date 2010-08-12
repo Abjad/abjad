@@ -5,8 +5,8 @@ def test__SpannerOffsetInterface_start_01( ):
    '''Return start time of spanner in score.'''
 
    t = Voice(macros.scale(4))
-   beam = Beam(t[1:3])
-   glissando = Glissando([t])
+   beam = BeamSpanner(t[1:3])
+   glissando = GlissandoSpanner([t])
 
    r'''
    \new Voice {

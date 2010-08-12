@@ -5,9 +5,9 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''Move parentage and spanners from two old notes to five new notes.'''
    
    t = Staff(macros.scale(4))
-   b1 = Beam(t[:2])
-   b2 = Beam(t[2:])
-   crescendo = Crescendo(t[:])
+   b1 = BeamSpanner(t[:2])
+   b2 = BeamSpanner(t[2:])
+   crescendo = CrescendoSpanner(t[:])
 
    r'''
    \new Staff {
@@ -44,9 +44,9 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''Move parentage and spanners from one old note to five new notes.'''
    
    t = Staff(macros.scale(4))
-   b1 = Beam(t[:2])
-   b2 = Beam(t[2:])
-   crescendo = Crescendo(t[:])
+   b1 = BeamSpanner(t[:2])
+   b2 = BeamSpanner(t[2:])
+   crescendo = CrescendoSpanner(t[:])
 
    r'''
    \new Staff {
@@ -84,9 +84,9 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''Move parentage and spanners from two old notes to five new notes.'''
 
    t = Staff(macros.scale(4))
-   b1 = Beam(t[:2])
-   b2 = Beam(t[2:])
-   crescendo = Crescendo(t[:])
+   b1 = BeamSpanner(t[:2])
+   b2 = BeamSpanner(t[2:])
+   crescendo = CrescendoSpanner(t[:])
 
    r'''
    \new Staff {
@@ -123,9 +123,9 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''Move parentage and spanners from three old notes to five new notes.'''
 
    t = Staff(macros.scale(4))
-   b1 = Beam(t[:2])
-   b2 = Beam(t[2:])
-   crescendo = Crescendo(t[:])
+   b1 = BeamSpanner(t[:2])
+   b2 = BeamSpanner(t[2:])
+   crescendo = CrescendoSpanner(t[:])
 
    r'''
    \new Staff {
@@ -161,9 +161,9 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''Move parentage and spanners from four old notes to five new notes.'''
 
    t = Staff(macros.scale(4))
-   b1 = Beam(t[:2])
-   b2 = Beam(t[2:])
-   crescendo = Crescendo(t[:])
+   b1 = BeamSpanner(t[:2])
+   b2 = BeamSpanner(t[2:])
+   crescendo = CrescendoSpanner(t[:])
 
    r'''
    \new Staff {
@@ -198,7 +198,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''Move parentage and spanners from container to children of container.'''
 
    t = Staff([Voice(macros.scale(4))])
-   Beam(t[0])
+   BeamSpanner(t[0])
 
    r'''
    \new Staff {

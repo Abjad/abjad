@@ -5,7 +5,7 @@ def test_Glissando_grob_handling_01( ):
    '''The Abjad Glissando spanner handles the LilyPond Glissando grob.'''
 
    t = Voice(macros.scale(4))
-   p = Glissando(t[ : ])
+   p = GlissandoSpanner(t[ : ])
    p.thickness = 3
 
    r'''

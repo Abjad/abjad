@@ -5,7 +5,7 @@ def test_DuratedComplexBeam_span_01( ):
    '''1-beam span between adjacent groups of 1/16th notes.'''
 
    t = Voice(macros.scale(4, (1, 16)))
-   DuratedComplexBeam(t, durations = [(1, 8), (1, 8)], span = 1)
+   DuratedComplexBeamSpanner(t, durations = [(1, 8), (1, 8)], span = 1)
 
    r'''
    \new Voice {
@@ -33,7 +33,7 @@ def test_DuratedComplexBeam_span_02( ):
    '''2-beam span between adjacent groups of 1/16th notes.'''
 
    t = Voice(macros.scale(4, (1, 16)))
-   DuratedComplexBeam(t, durations = [(1, 8), (1, 8)], span = 2)
+   DuratedComplexBeamSpanner(t, durations = [(1, 8), (1, 8)], span = 2)
 
    r'''
    \new Voice {

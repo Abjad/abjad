@@ -5,7 +5,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_little_endian_no
    '''Glom voice and render big-endian tied values.'''
 
    t = Voice(notetools.make_repeated_notes(5))
-   Slur(t)
+   SlurSpanner(t)
    #fuse.contents_by_counts(t, [5], direction = 'little-endian')
    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_notes(t, [5])
 

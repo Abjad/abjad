@@ -4,7 +4,7 @@ from abjad import *
 def test_DynamicTextSpanner_01( ):
    
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    DynamicTextSpanner(t[:2], 'f')
    DynamicTextSpanner(t[2:], 'p')
 

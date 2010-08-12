@@ -8,7 +8,7 @@ def test_containertools_report_container_modifications_as_string_01( ):
    t.comments.before.append('Example voice')
    t.note_head.color = 'red'
    t.accidental.style = 'forget'
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
 
    r'''
@@ -50,7 +50,7 @@ def test_containertools_report_container_modifications_as_string_02( ):
    t.comments.before.append('Example tuplet')
    t.note_head.color = 'red'
    t.accidental.style = 'forget'
-   beam = Beam(t[:])
+   beam = BeamSpanner(t[:])
    beam.thickness = 3
 
    r'''

@@ -4,7 +4,7 @@ from abjad.tools.spannertools._withdraw_from_attached import _withdraw_from_atta
 
 def test_spannertools_withdraw_from_attached_01( ):
    t = Staff(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    _withdraw_from_attached(t[:])
 
    r'''
@@ -22,7 +22,7 @@ def test_spannertools_withdraw_from_attached_01( ):
 
 def test_spannertools_withdraw_from_attached_02( ):
    t = Staff(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    _withdraw_from_attached(t[0:2])
 
    r'''

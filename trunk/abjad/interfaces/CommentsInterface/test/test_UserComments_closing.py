@@ -5,7 +5,7 @@ def test_UserComments_closing_01( ):
    '''Test container comments closing.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:])
+   BeamSpanner(t[:])
    t.comments.closing.append('Voice closing comments here.')
    t.comments.closing.append('More voice closing comments.')
 

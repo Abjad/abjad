@@ -5,8 +5,8 @@ def test_spannertools_withdraw_components_from_spanners_covered_by_components_01
    '''Withdraw from all spanners covered by components.'''
 
    t = Voice(macros.scale(4))
-   Beam(t[:2])
-   Slur(t[:])
+   BeamSpanner(t[:2])
+   SlurSpanner(t[:])
 
    r'''
    \new Voice {

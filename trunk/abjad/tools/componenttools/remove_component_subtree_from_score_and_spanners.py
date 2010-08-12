@@ -8,8 +8,8 @@ def remove_component_subtree_from_score_and_spanners(components):
       abjad> score = Voice(notetools.make_repeated_notes(2))
       abjad> score.insert(1, Container(notetools.make_repeated_notes(2)))
       abjad> macros.diatonicize(score)
-      abjad> Beam(score.leaves)
-      abjad> Glissando(score.leaves)
+      abjad> BeamSpanner(score.leaves)
+      abjad> GlissandoSpanner(score.leaves)
 
    ::
 

@@ -5,7 +5,7 @@ def format_input_lines_as_doc_string(input_lines, tab_width = 3):
 
       abjad> input_lines = '''
       ... staff = Staff(macros.scale(4))
-      ... Beam(staff.leaves)
+      ... BeamSpanner(staff.leaves)
       ... f(staff)
       ... 
       ... FixedDurationTuplet((2, 8), staff[:3]) ##
@@ -15,7 +15,7 @@ def format_input_lines_as_doc_string(input_lines, tab_width = 3):
       abjad> formattools.format_input_lines_as_doc_string(input_lines)
 
             abjad> staff = Staff(macros.scale(4))
-            abjad> Beam(staff.leaves)
+            abjad> BeamSpanner(staff.leaves)
             abjad> f(staff)
             \new Staff {
                c'8 [

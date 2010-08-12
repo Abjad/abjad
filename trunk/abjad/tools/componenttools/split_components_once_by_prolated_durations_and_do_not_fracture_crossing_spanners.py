@@ -7,9 +7,9 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
 
       abjad> t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(t)
-      abjad> Beam(t[0])
-      abjad> Beam(t[1])
-      abjad> Slur(t.leaves)
+      abjad> BeamSpanner(t[0])
+      abjad> BeamSpanner(t[1])
+      abjad> SlurSpanner(t.leaves)
       abjad> f(t)
       \new Staff {
          {

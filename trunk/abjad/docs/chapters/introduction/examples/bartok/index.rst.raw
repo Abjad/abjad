@@ -159,13 +159,13 @@ show(piano)
 Notice that the beams of the eighth and sixteenth notes appear as you would usually expect: grouped by beat. We get this for free thanks to LilyPond's default rendering algorithm. This is not, however, the way Bartok notated his score. Let's set the beams as Bartok did, running some across the bar lines: 
 
 <abjad>
-Beam(upper_measures[0])
-#Beam(upper_measures[1][1:]) <hide 
-#Beam(upper_measures[2][0:3]) <hide 
-#Beam(upper_measures[2][3:]) <hide 
-Beam(lower_staff.leaves[1:5])
-Beam(lower_staff.leaves[6:10])
-#Beam(lower_staff.leaves[10:13]) <hide 
+BeamSpanner(upper_measures[0])
+#BeamSpanner(upper_measures[1][1:]) <hide 
+#BeamSpanner(upper_measures[2][0:3]) <hide 
+#BeamSpanner(upper_measures[2][3:]) <hide 
+BeamSpanner(lower_staff.leaves[1:5])
+BeamSpanner(lower_staff.leaves[6:10])
+#BeamSpanner(lower_staff.leaves[10:13]) <hide 
 </abjad>
 
 <abjad>
@@ -176,10 +176,10 @@ show(piano)
 Now some slurs: 
 
 <abjad>
-Slur(upper_staff.leaves[0:5])
-Slur(upper_staff.leaves[5:])
-Slur(lower_staff.leaves[1:6])
-slr = Slur(lower_staff.leaves[6:13] + (main_voice_m4, main_voice_m5))
+SlurSpanner(upper_staff.leaves[0:5])
+SlurSpanner(upper_staff.leaves[5:])
+SlurSpanner(lower_staff.leaves[1:6])
+slr = SlurSpanner(lower_staff.leaves[6:13] + (main_voice_m4, main_voice_m5))
 slr.position = 'down'
 </abjad>
 
@@ -188,8 +188,8 @@ Notice that we store the last slur in the `slr` variable to change its ``positio
 Now dynamic wedges:
 
 <abjad>
-Crescendo(upper_staff.leaves[-7:-2])
-Decrescendo(upper_staff.leaves[-2:])
+CrescendoSpanner(upper_staff.leaves[-7:-2])
+DecrescendoSpanner(upper_staff.leaves[-2:])
 </abjad>
 
 ...and a `ritardando` marking above the last seven notes of the upper staff:
@@ -202,8 +202,8 @@ tx.bound_details__left__text = Markup('ritard.')
 And, we almost forgot! Two ties connecting the last notes in the upper and lower staves:
 
 <abjad>
-Tie(upper_staff[-2:])
-Tie([appendix_voice_m4[0], appendix_voice_m5[0]])
+TieSpanner(upper_staff[-2:])
+TieSpanner([appendix_voice_m4[0], appendix_voice_m5[0]])
 </abjad>
 
 The final result:

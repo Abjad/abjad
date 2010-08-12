@@ -3,8 +3,8 @@ from abjad import *
 
 def test_Beam_public_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   beam = Beam(t.leaves[ : 4])
-   assert isinstance(beam, Beam)
+   beam = BeamSpanner(t.leaves[ : 4])
+   assert isinstance(beam, BeamSpanner)
    assert len(beam.components) == 4
    for x in t[ : 4]:
       assert x.beam.spanned

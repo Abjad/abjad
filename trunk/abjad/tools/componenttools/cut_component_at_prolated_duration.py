@@ -10,7 +10,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
    r'''Cut `component` by dotted `prolated_duration`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(1, 32))
       abjad> f(staff)
       \new Staff {
@@ -23,7 +23,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
    Cut `component` by tied `prolated_duration`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(3, 64))
       abjad> f(staff)
       \new Staff {
@@ -37,7 +37,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
    Cut `component` by nonbinary `prolated_duration`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> Beam(staff.leaves)
+      abjad> BeamSpanner(staff.leaves)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(1, 24))
       abjad> f(staff)
       \new Staff {

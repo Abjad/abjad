@@ -6,7 +6,7 @@ def test_Beam_clear_01( ):
 
    t = Staff(notetools.make_repeated_notes(8))
    macros.chromaticize(t)
-   Beam(t[0])
+   BeamSpanner(t[0])
 
    r'''
    \new Staff {
@@ -45,7 +45,7 @@ def test_Beam_clear_02( ):
 
    t = Staff(notetools.make_repeated_notes(8))
    macros.chromaticize(t)
-   Beam(t[:4])
+   BeamSpanner(t[:4])
 
    r'''
    \new Staff {

@@ -7,7 +7,7 @@ def test_Beam_span_anonymous_01( ):
       container formats no beam indications.'''
 
    t = Container([ ])
-   p = Beam(t)
+   p = BeamSpanner(t)
 
    r'''
    {
@@ -25,7 +25,7 @@ def test_Beam_span_anonymous_02( ):
       container formats beam indications on first and last leaves.'''
 
    t = Container(Note(0, (1, 8)) * 8)
-   p = Beam(t)
+   p = BeamSpanner(t)
 
    r'''
    {
@@ -52,7 +52,7 @@ def test_Beam_span_anonymous_03( ):
       beam indications.'''
 
    t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Staff {
@@ -85,7 +85,7 @@ def test_Beam_span_anonymous_04( ):
       beam indications.'''
 
    t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
-   p = Beam(t)
+   p = BeamSpanner(t)
 
    r'''
    \new Staff {
@@ -112,7 +112,7 @@ def test_Beam_span_anonymous_05( ):
       first and last leaves in contiguity chain format beam indications.'''
 
    t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    r'''
    \new Staff {
@@ -141,7 +141,7 @@ def test_Beam_span_anonymous_06( ):
       first and last leaves in contiguity chain format beam indications.'''
 
    t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
-   p = Beam(t.leaves)
+   p = BeamSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -168,7 +168,7 @@ def test_Beam_span_anonymous_07( ):
       no beams appear at format-time.'''
 
    t = Staff(Container([ ]) * 3)
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    assert len(p.components) == 3
    for x in p.components:
@@ -192,7 +192,7 @@ def test_Beam_span_anonymous_08( ):
 
    t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
    t.insert(1, Container([ ]))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    assert len(p.components) == 3
    for x in p.components:
@@ -225,7 +225,7 @@ def test_Beam_span_anonymous_09( ):
 
    t = Staff(Container([ ]) * 2)
    t.insert(1, Container(Note(0, (1, 8)) * 4))
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
 
    assert len(p.components) == 3
    for x in p.components:
@@ -253,7 +253,7 @@ def test_Beam_span_anonymous_10( ):
    '''Spanners group anonymous containers at 
       completely different depths just fine;
       the only requirement is that the *leaves* of all
-      arguments passed to Beam( ) be *temporarly contiguous*.
+      arguments passed to BeamSpanner( ) be *temporarly contiguous*.
       Ie, there's a *leaf temporal contiguity* requirement.'''
 
    s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -261,27 +261,27 @@ def test_Beam_span_anonymous_10( ):
    s2 = Container([Note(i, (1,8)) for i in range(4,8)])
    s2 = Container([s2])
    t = Voice([s1, s2])
-   p = Beam(t)
+   p = BeamSpanner(t)
    assert len(p.components) == 1
    assert len(p.leaves) == 8
 
    p.clear( )
-   p = Beam([t[0], t[1]])
+   p = BeamSpanner([t[0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
 
    p.clear( )
-   p = Beam([t[0][0], t[1][0]])
+   p = BeamSpanner([t[0][0], t[1][0]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
 
    p.clear( )
-   p = Beam([t[0], t[1][0]])
+   p = BeamSpanner([t[0], t[1][0]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
 
    p.clear( )
-   p = Beam([t[0][0], t[1]])
+   p = BeamSpanner([t[0][0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
 
@@ -317,22 +317,22 @@ def test_Beam_span_anonymous_11( ):
    s2 = Container([Note(i, (1,8)) for i in range(4,8)])
    t = Voice([s1, s2])
 
-   p = Beam(t)
+   p = BeamSpanner(t)
    assert len(p.components) == 1
    assert len(p.leaves) == 8
    p.clear( )
 
-   p = Beam([t[0], t[1]])
+   p = BeamSpanner([t[0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.clear( )
 
-   p = Beam([t[0][0], t[1]])
+   p = BeamSpanner([t[0][0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.clear( )
 
-   p = Beam([t[0][0][0], t[1]])
+   p = BeamSpanner([t[0][0][0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.clear( )
@@ -366,12 +366,12 @@ def test_Beam_span_anonymous_12( ):
    s2 = Container([Note(i, (1, 8)) for i in range(3, 5)])
    v = Voice([s1, Note(2, (1, 8)), s2])
 
-   p = Beam(v)
+   p = BeamSpanner(v)
    assert len(p.components) == 1
    assert len(p.leaves) == 5
    p.clear( )
 
-   p = Beam(v[ : ])
+   p = BeamSpanner(v[ : ])
    assert len(p.components) == 3
    assert len(p.leaves) == 5
    p.clear( )
@@ -414,12 +414,12 @@ def test_Beam_span_anonymous_13( ):
    }
    '''
 
-   p = Beam(v)
+   p = BeamSpanner(v)
    assert len(p.components) == 1
    assert len(p.leaves) == 7
    p.clear( )
 
-   p = Beam(v[ : ])
+   p = BeamSpanner(v[ : ])
    assert len(p.components) == 3
    assert len(p.leaves) == 7
    p.clear( )
@@ -443,12 +443,12 @@ def test_Beam_span_anonymous_14( ):
    }
    '''
 
-   p = Beam(t)
+   p = BeamSpanner(t)
    assert len(p.components) == 1
    assert len(p.leaves) == 5
    p.clear( )
 
-   p = Beam(t[ : ])
+   p = BeamSpanner(t[ : ])
    assert len(p.components) == 3
    assert len(p.leaves) == 5
 
@@ -480,5 +480,5 @@ def test_Beam_span_anonymous_15( ):
    }
    '''
 
-   assert py.test.raises(AssertionError, 'p = Beam([t[0], t[1]])')
-   assert py.test.raises(AssertionError, 'p = Beam([t[1], t[2]])')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner([t[0], t[1]])')
+   assert py.test.raises(AssertionError, 'p = BeamSpanner([t[1], t[2]])')

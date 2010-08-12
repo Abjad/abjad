@@ -8,9 +8,9 @@ def test__SpannerDurationInterface_seconds_01( ):
    t = Voice([RigidMeasure((2, 12), macros.scale(2)), 
       RigidMeasure((2, 8), macros.scale(2))])
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 42)
-   beam = Beam(t.leaves)
-   crescendo = Crescendo(t[0][:])
-   decrescendo = Decrescendo(t[1][:])
+   beam = BeamSpanner(t.leaves)
+   crescendo = CrescendoSpanner(t[0][:])
+   decrescendo = DecrescendoSpanner(t[1][:])
 
    r'''
    \new Voice {

@@ -17,10 +17,10 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
    tupletted notes to carry dots. ::
 
       abjad> staff = Staff([Note(0, (1, 8)), Note(0, (1, 16)), Note(0, (1, 16))])
-      abjad> Tie(staff[:2])
-      Tie(c'8, c'16)
-      abjad> Beam(staff[:])
-      Beam(c'8, c'16, c'16)
+      abjad> TieSpanner(staff[:2])
+      TieSpanner(c'8, c'16)
+      abjad> BeamSpanner(staff[:])
+      BeamSpanner(c'8, c'16, c'16)
       abjad> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(staff[0].tie.chain, [1])
       FixedDurationTuplet(3/16, [c'8.])
       abjad> f(staff)
@@ -34,10 +34,10 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
    ::
 
       abjad> staff = Staff([Note(0, (1, 8)), Note(0, (1, 16)), Note(0, (1, 16))])
-      abjad> Tie(staff[:2])
-      Tie(c'8, c'16)
-      abjad> Beam(staff[:])
-      Beam(c'8, c'16, c'16)
+      abjad> TieSpanner(staff[:2])
+      TieSpanner(c'8, c'16)
+      abjad> BeamSpanner(staff[:])
+      BeamSpanner(c'8, c'16, c'16)
       abjad> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(staff[0].tie.chain, [1, 2])
       FixedDurationTuplet(3/16, [c'16, c'8])
       abjad> f(staff)
@@ -52,10 +52,10 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
    ::
 
       abjad> staff = Staff([Note(0, (1, 8)), Note(0, (1, 16)), Note(0, (1, 16))])
-      abjad> Tie(staff[:2])
-      Tie(c'8, c'16)
-      abjad> Beam(staff[:])
-      Beam(c'8, c'16, c'16)
+      abjad> TieSpanner(staff[:2])
+      TieSpanner(c'8, c'16)
+      abjad> BeamSpanner(staff[:])
+      BeamSpanner(c'8, c'16, c'16)
       abjad> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(staff[0].tie.chain, [1, 2, 2])
       FixedDurationTuplet(3/16, [c'64., c'32., c'32.])
       abjad> f(staff)
