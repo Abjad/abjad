@@ -1,5 +1,5 @@
 from abjad.spanners.Spanner._PositionalGrobHandlerSpanner import _PositionalGrobHandlerSpanner
-from abjad.spanners.Slur._SlurSpannerFormatInterface import _SlurSpannerFormatInterface
+from abjad.spanners.SlurSpanner._SlurSpannerFormatInterface import _SlurSpannerFormatInterface
 
 
 class SlurSpanner(_PositionalGrobHandlerSpanner):

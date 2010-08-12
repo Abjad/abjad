@@ -1,7 +1,7 @@
 from abjad.core import _GrobHandler
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
-from abjad.spanners import Slur
+from abjad.spanners import SlurSpanner
 
 
 class SlurInterface(_Interface, _GrobHandler, _SpannerReceptor):
@@ -12,4 +12,4 @@ class SlurInterface(_Interface, _GrobHandler, _SpannerReceptor):
          Receive Abjad Slur spanner.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Slur')
-      _SpannerReceptor.__init__(self, (Slur, ))
+      _SpannerReceptor.__init__(self, (SlurSpanner, ))

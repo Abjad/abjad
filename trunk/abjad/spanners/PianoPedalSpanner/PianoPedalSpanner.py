@@ -1,4 +1,4 @@
-from abjad.spanners.PianoPedal._PianoPedalSpannerFormatInterface import _PianoPedalSpannerFormatInterface
+from abjad.spanners.PianoPedalSpanner._PianoPedalSpannerFormatInterface import _PianoPedalSpannerFormatInterface
 from abjad.spanners.Spanner import Spanner
 
 

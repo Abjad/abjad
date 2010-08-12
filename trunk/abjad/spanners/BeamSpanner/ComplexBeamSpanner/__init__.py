@@ -1,1 +1,1 @@
-from ComplexBeam import ComplexBeam
+from ComplexBeamSpanner import ComplexBeamSpanner

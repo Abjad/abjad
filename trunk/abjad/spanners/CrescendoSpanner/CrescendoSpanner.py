@@ -1,7 +1,7 @@
 from abjad.spanners.HairpinSpanner import HairpinSpanner
 
 
-class CrescendoSpanner(Hairpin):
+class CrescendoSpanner(HairpinSpanner):
    '''Abjad model of crescendo hairpin.'''
 
    def __init__(self, music, trim = False):

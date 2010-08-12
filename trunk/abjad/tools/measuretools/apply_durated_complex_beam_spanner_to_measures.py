@@ -1,4 +1,4 @@
-from abjad.spanners import DuratedComplexBeam
+from abjad.spanners import DuratedComplexBeamSpanner
 
 
 def apply_durated_complex_beam_spanner_to_measures(measures):

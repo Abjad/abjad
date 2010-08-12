@@ -1,5 +1,5 @@
 from abjad.marks import Markup
-from abjad.spanners.Bracket._BracketSpannerFormatInterface import _BracketSpannerFormatInterface
+from abjad.spanners.BracketSpanner._BracketSpannerFormatInterface import _BracketSpannerFormatInterface
 from abjad.spanners.TextSpanner import TextSpanner
 
 

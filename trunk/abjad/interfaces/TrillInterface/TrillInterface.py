@@ -1,7 +1,7 @@
 from abjad.core import _GrobHandler
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
-from abjad.spanners import Trill
+from abjad.spanners import TrillSpanner
 
 
 class TrillInterface(_Interface, _GrobHandler, _SpannerReceptor):
@@ -12,4 +12,4 @@ class TrillInterface(_Interface, _GrobHandler, _SpannerReceptor):
       Receive Abjad Trill spanner.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TrillSpanner')
-      _SpannerReceptor.__init__(self, (Trill, ))
+      _SpannerReceptor.__init__(self, (TrillSpanner, ))

@@ -3,7 +3,7 @@ from abjad.exceptions import ContainmentError
 from abjad.components._Leaf import _Leaf
 from abjad.components._Measure import RigidMeasure
 from abjad.core import Rational
-from abjad.spanners import Tie
+from abjad.spanners import TieSpanner
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
@@ -134,7 +134,7 @@ def _split_component_at_duration(
                leaf_left_of_split.tie.spanner.fuse(
                   leaf_right_of_split.tie.spanner)
             else:
-               Tie(leaves_at_split)
+               TieSpanner(leaves_at_split)
          
    ## return pair of left and right list-wrapped halves of container
    return ([left], [right])

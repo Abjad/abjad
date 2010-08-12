@@ -2,7 +2,7 @@ from abjad.core import _GrobHandler
 from abjad.core import _ContextSettingHandler
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
-from abjad.spanners import Beam
+from abjad.spanners import BeamSpanner
 import types
 
 

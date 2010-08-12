@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.spanners import Glissando
+from abjad.spanners import GlissandoSpanner
 
 
 class OverlappingGlissandoCheck(_Check):
@@ -26,5 +26,5 @@ class OverlappingGlissandoCheck(_Check):
             for glissando in glissandi:
                if glissando not in violators:
                   violators.append(glissando)
-      total = [p for p in expr.spanners.contained if isinstance(p, Glissando)]
+      total = [p for p in expr.spanners.contained if isinstance(p, GlissandoSpanner)]
       return violators, len(total)

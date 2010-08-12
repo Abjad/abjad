@@ -1,5 +1,5 @@
 from abjad.core import Rational
-from abjad.spanners import Tie
+from abjad.spanners import TieSpanner
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import notetools

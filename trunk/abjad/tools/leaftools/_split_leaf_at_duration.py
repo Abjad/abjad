@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.core import Rational
-from abjad.spanners import Tie
+from abjad.spanners import TieSpanner
 
 
 def _split_leaf_at_duration(

@@ -1,4 +1,4 @@
-from abjad.spanners.Glissando._GlissandoSpannerFormatInterface import _GlissandoSpannerFormatInterface
+from abjad.spanners.GlissandoSpanner._GlissandoSpannerFormatInterface import _GlissandoSpannerFormatInterface
 from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 
 

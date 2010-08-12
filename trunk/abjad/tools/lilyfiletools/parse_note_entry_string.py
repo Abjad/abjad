@@ -1,6 +1,6 @@
 from abjad.components.Container import Container
 from abjad.exceptions import MissingSpannerError
-from abjad.spanners import Tie
+from abjad.spanners import TieSpanner
 from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
 from abjad.components.Voice import Voice
 import re

@@ -1,1 +1,1 @@
-from MeasuredComplexBeam import MeasuredComplexBeam
+from MeasuredComplexBeamSpanner import MeasuredComplexBeamSpanner

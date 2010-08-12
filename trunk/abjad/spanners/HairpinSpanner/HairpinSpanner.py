@@ -1,4 +1,4 @@
-from abjad.spanners.Hairpin._HairpinSpannerFormatInterface import _HairpinSpannerFormatInterface
+from abjad.spanners.HairpinSpanner._HairpinSpannerFormatInterface import _HairpinSpannerFormatInterface
 from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 
 

@@ -1,8 +1,8 @@
-from abjad.spanners.Beam.ComplexBeam._ComplexBeamFormatInterface import _ComplexBeamFormatInterface
+from abjad.spanners.BeamSpanner.ComplexBeamSpanner._ComplexBeamSpannerFormatInterface import _ComplexBeamSpannerFormatInterface
 from abjad.tools import durtools
 
 
-class _MeasuredComplexBeamFormatInterface(_ComplexBeamFormatInterface):
+class _MeasuredComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterface):
 
    ## PUBLIC ATTRIBUTES ##
 

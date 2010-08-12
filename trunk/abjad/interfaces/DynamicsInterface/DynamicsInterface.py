@@ -1,7 +1,7 @@
 from abjad.core import _GrobHandler
 from abjad.interfaces._Interface import _Interface
 from abjad.spanners import DynamicTextSpanner
-from abjad.spanners import Hairpin
+from abjad.spanners import HairpinSpanner
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
 
@@ -19,7 +19,7 @@ class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
          Set 'mark' to None.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'DynamicText')
-      _SpannerReceptor.__init__(self, (DynamicTextSpanner, Hairpin))
+      _SpannerReceptor.__init__(self, (DynamicTextSpanner, HairpinSpanner))
       self._mark = None
 
    ## PRIVATE ATTRIBUTES ##
@@ -51,7 +51,7 @@ class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
          spanner = self.spanner
          if isinstance(spanner, DynamicTextSpanner):
             return spanner.mark
-         elif isinstance(spanner, Hairpin):
+         elif isinstance(spanner, HairpinSpanner):
             return spanner.shape
          else:
             raise Exception

@@ -1,8 +1,8 @@
-from abjad.spanners.Beam._BeamSpannerFormatInterface import _BeamSpannerFormatInterface
+from abjad.spanners.BeamSpanner._BeamSpannerFormatInterface import _BeamSpannerFormatInterface
 from abjad.tools import durtools
 
 
-class _ComplexBeamFormatInterface(_BeamSpannerFormatInterface):
+class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
 
    def __init__(self, spanner):
       _BeamSpannerFormatInterface.__init__(self, spanner)

@@ -1,5 +1,5 @@
 from abjad.components._Measure import _Measure
-from abjad.spanners import Beam
+from abjad.spanners import BeamSpanner
 
 
 def apply_beam_spanner_to_measure(measure):

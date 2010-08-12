@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.spanners import Beam
+from abjad.spanners import BeamSpanner
 
 
 class OverlappingBeamCheck(_Check):
@@ -10,10 +10,10 @@ class OverlappingBeamCheck(_Check):
       violators = [ ]
       for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
          beams = [p for p in leaf.spanners.attached
-            if isinstance(p, Beam)]
+            if isinstance(p, BeamSpanner)]
          if 1 < len(beams):
             for beam in beams:
                if beam not in violators:
                   violators.append(beam)
-      total = len([p for p in expr.spanners.contained if isinstance(p, Beam)])
+      total = len([p for p in expr.spanners.contained if isinstance(p, BeamSpanner)])
       return violators, total

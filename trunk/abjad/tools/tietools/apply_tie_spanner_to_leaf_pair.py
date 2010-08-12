@@ -1,6 +1,6 @@
 from abjad.exceptions import MissingSpannerError
 from abjad.components._Leaf import _Leaf
-from abjad.spanners import Tie
+from abjad.spanners import TieSpanner
 from abjad.tools.tietools.are_components_in_same_tie_spanner import are_components_in_same_tie_spanner
 
 

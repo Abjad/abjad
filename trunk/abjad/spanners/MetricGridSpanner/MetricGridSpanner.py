@@ -1,4 +1,4 @@
-from abjad.spanners.MetricGrid._MetricGridSpannerFormatInterface import _MetricGridSpannerFormatInterface
+from abjad.spanners.MetricGridSpanner._MetricGridSpannerFormatInterface import _MetricGridSpannerFormatInterface
 from abjad.spanners.Spanner import Spanner
 #from abjad.spanners.TieSpanner import TieSpanner
 from abjad.tools import mathtools

@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.spanners import Hairpin
+from abjad.spanners import HairpinSpanner
 
 
 class IntermarkedHairpinCheck(_Check):
@@ -10,7 +10,7 @@ class IntermarkedHairpinCheck(_Check):
       violators = [ ]
       total, bad = 0, 0
       hairpins = [
-         p for p in expr.spanners.contained if isinstance(p, Hairpin)]
+         p for p in expr.spanners.contained if isinstance(p, HairpinSpanner)]
       for hairpin in hairpins:
          if 2 < len(hairpin.leaves):
             for leaf in hairpin.leaves[1 : -1]:

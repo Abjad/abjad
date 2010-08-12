@@ -1,1 +1,1 @@
-from DuratedComplexBeam import DuratedComplexBeam
+from DuratedComplexBeamSpanner import DuratedComplexBeamSpanner
