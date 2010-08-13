@@ -1,7 +1,8 @@
+from abjad.tools.pitchtools._Vector import _Vector
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
-class NamedPitchVector(dict):
+class NamedPitchVector(_Vector):
    '''.. versionadded:: 1.1.2
 
    Tallies by pitch.
@@ -11,9 +12,11 @@ class NamedPitchVector(dict):
       for token in pitch_tokens:
          pitch = NamedPitch(token)
          try:
-            self[pitch.pair] += 1
+            #self[pitch.pair] += 1
+            dict.__setitem__(self, pitch.pair, self[pitch.pair] + 1)
          except KeyError:
-            self[pitch.pair] = 1
+            #self[pitch.pair] = 1
+            dict.__setitem__(self, pitch.pair, 1)
 
    ## OVERLOADS ##
 

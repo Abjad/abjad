@@ -1,7 +1,8 @@
+from abjad.tools.pitchtools._Vector import _Vector
 from abjad.tools.pitchtools.list_harmonic_chromatic_intervals_in_expr import list_harmonic_chromatic_intervals_in_expr
 
 
-class HarmonicChromaticIntervalClassVector(dict):
+class HarmonicChromaticIntervalClassVector(_Vector):
    '''.. versionadded:: 1.1.2
 
    Harmonic chromatic interval class vector::
@@ -22,15 +23,23 @@ class HarmonicChromaticIntervalClassVector(dict):
 
    def __init__(self, expr):
       for interval_number in range(12):
-         self[interval_number] = 0
-         self[interval_number + 0.5] = 0
+         #self[interval_number] = 0
+         #self[interval_number + 0.5] = 0
+         dict.__setitem__(self, interval_number, 0)
+         dict.__setitem__(self, interval_number + 0.5, 0)
       for chromatic_interval in list_harmonic_chromatic_intervals_in_expr(expr):
-         self[chromatic_interval.interval_class.number] += 1
+         #self[chromatic_interval.interval_class.number] += 1
+         interval_number = chromatic_interval.interval_class.number
+         current_tally = self[interval_number]
+         dict.__setitem__(self, interval_number, current_tally + 1)
 
    ## OVERLOADS ##
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._contents_string)
+   
+   def __setitem__(self, *args):
+      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
    def __str__(self):
       items = self.items( )

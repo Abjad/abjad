@@ -1,7 +1,8 @@
+from abjad.tools.pitchtools._Vector import _Vector
 from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 
 
-class NumericPitchClassVector(dict):
+class NumericPitchClassVector(_Vector):
    '''.. versionadded:: 1.1.2
 
    Tallies by pitch class.
@@ -9,12 +10,15 @@ class NumericPitchClassVector(dict):
 
    def __init__(self, pitch_class_tokens):
       for pcn in range(12):
-         self[pcn] = 0
-         self[pcn + 0.5] = 0
+         #self[pcn] = 0
+         #self[pcn + 0.5] = 0
+         dict.__setitem__(self, pcn, 0)
+         dict.__setitem__(self, pcn + 0.5, 0)
       for token in pitch_class_tokens:
          pitch_class = NumericPitchClass(token)
-         self[pitch_class.number] += 1
-
+         #self[pitch_class.number] += 1
+         dict.__setitem__(self, pitch_class.number, self[pitch_class.number] + 1)
+         
    ## OVERLOADS ##
 
    def __repr__(self):

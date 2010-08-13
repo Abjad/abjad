@@ -1,7 +1,8 @@
+from abjad.tools.pitchtools._Vector import _Vector
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import InversionEquivalentChromaticIntervalClass
 
 
-class InversionEquivalentChromaticIntervalClassVector(dict):
+class InversionEquivalentChromaticIntervalClassVector(_Vector):
    '''.. versionadded:: 1.1.2
 
    Tallies by interval class.
@@ -9,12 +10,16 @@ class InversionEquivalentChromaticIntervalClassVector(dict):
 
    def __init__(self, interval_class_tokens):
       for icn in range(7):
-         self[icn] = 0
-         self[icn + 0.5] = 0
-      del(self[6.5])
+         #self[icn] = 0
+         #self[icn + 0.5] = 0
+         dict.__setitem__(self, icn, 0)
+         dict.__setitem__(self, icn + 0.5, 0)
+      #del(self[6.5])
+      dict.__delitem__(self, self[6.5])
       for token in interval_class_tokens:
          interval_class = InversionEquivalentChromaticIntervalClass(token)
-         self[interval_class.number] += 1
+         #self[interval_class.number] += 1
+         dict.__setitem__(self, self[interval_class.number], self[interval_class.number] + 1)
 
    ## OVERLOADS ##
 
