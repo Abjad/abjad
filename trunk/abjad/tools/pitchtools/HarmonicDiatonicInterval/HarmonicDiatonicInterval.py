@@ -17,12 +17,12 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
 
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], _DiatonicInterval):
-         quality_string = args[0].quality_string
-         number = abs(args[0].number)
+         _quality_string = args[0].quality_string
+         _number = abs(args[0].number)
       elif len(args) == 2:
-         quality_string = args[0]
-         number = abs(args[1])
-      _DiatonicInterval.__init__(self, quality_string, number)
+         _quality_string = args[0]
+         _number = abs(args[1])
+      _DiatonicInterval.__init__(self, _quality_string, _number)
 
    ## OVERLOADS ##
 

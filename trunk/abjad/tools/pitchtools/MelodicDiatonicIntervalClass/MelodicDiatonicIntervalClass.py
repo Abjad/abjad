@@ -21,7 +21,8 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
          quality_string, number = args
       if quality_string not in self._acceptable_quality_strings:
          raise ValueError('not acceptable quality string.')
-      self._quality_string = quality_string
+      #self._quality_string = quality_string
+      object.__setattr__(self, '_quality_string', quality_string)
       if not isinstance(number, int):
          raise TypeError('must be integer.')
       if number == 0:
@@ -36,7 +37,8 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
             number = 7
       if not number == 1:
          number *= sign
-      self._number = number
+      #self._number = number
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
 

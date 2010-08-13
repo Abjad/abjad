@@ -4,8 +4,7 @@ from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 from abjad.tools.pitchtools._Interval import _Interval
 
 
-class HarmonicChromaticIntervalClass(_ChromaticIntervalClass,
-   _HarmonicIntervalClass):
+class HarmonicChromaticIntervalClass(_ChromaticIntervalClass, _HarmonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
    Harmonic chromatic interval class.
@@ -22,7 +21,8 @@ class HarmonicChromaticIntervalClass(_ChromaticIntervalClass,
          number = 12
       else:
          number = abs(number) % 12
-      self._number = number
+      #self._number = number
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
 

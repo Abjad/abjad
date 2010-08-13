@@ -4,8 +4,7 @@ from abjad.tools.pitchtools._CounterpointIntervalClass import _CounterpointInter
 from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 
 
-class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass,
-   _HarmonicIntervalClass):
+class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
    Harmonic counterpoint interval class.
@@ -13,20 +12,22 @@ class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass,
 
    def __init__(self, token):
       if isinstance(token, int):
-         number = token
+         _number = token
       elif isinstance(token, (_DiatonicInterval, _CounterpointInterval)):
-         number = token.number
-      if number == 0:
+         _number = token.number
+      if _number == 0:
          raise ValueError('must be nonzero.')
-      if abs(number) == 1:
-         self._number = 1
+      if abs(_number) == 1:
+         #self._number = 1
+         _number = 1
       else:
-         number = abs(number) % 7
-         if number == 0:
-            number = 7
-         elif number == 1:
-            number = 8
-         self._number = number
+         _number = abs(_number) % 7
+         if _number == 0:
+            _number = 7
+         elif _number == 1:
+            _number = 8
+         #self._number = number
+      object.__setattr__(self, '_number', _number)
 
    ## OVERLOADS ##
 

@@ -41,7 +41,8 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
          quality_string, number = args   
       if quality_string not in self._acceptable_quality_strings:
          raise ValueError('not acceptable quality string.')
-      self._quality_string = quality_string
+      #self._quality_string = quality_string
+      object.__setattr__(self, '_quality_string', quality_string)
       if not isinstance(number, int):
          raise TypeError('must be integer.')
       if number == 0:
@@ -53,7 +54,8 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
          number = abs_number % 7
          if number == 0:
             number = 7
-      self._number = number
+      #self._number = number
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
 
@@ -88,8 +90,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
          HarmonicDiatonicIntervalClass(minor seventh)
       '''
       from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-      from abjad.tools.pitchtools.calculate_harmonic_diatonic_interval_class_from_named_pitch_to_named_pitch \
-         import calculate_harmonic_diatonic_interval_class_from_named_pitch_to_named_pitch
+      from abjad.tools.pitchtools.calculate_harmonic_diatonic_interval_class_from_named_pitch_to_named_pitch import calculate_harmonic_diatonic_interval_class_from_named_pitch_to_named_pitch
       low = NamedPitch('c', 4)
       quality_string, number = self._quality_string, self.number
       mdi = MelodicDiatonicInterval(quality_string, number)

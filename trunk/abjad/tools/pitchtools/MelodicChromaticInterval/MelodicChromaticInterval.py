@@ -17,11 +17,14 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
 
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
-         self._number = arg
+         #self._number = arg
+         number = arg
       elif isinstance(arg, _Interval):
-         self._number = arg.semitones
+         #self._number = arg.semitones
+         number = arg.semitones
       else:
          raise TypeError('%s must be number or interval.' % arg)
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
 

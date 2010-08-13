@@ -14,7 +14,9 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
 
    def __init__(self, number):
       _ChromaticInterval.__init__(self, number)
-      self._number = abs(self.number)
+      #self._number = abs(self.number)
+      _number = abs(self.number)
+      object.__setattr__(self, '_number', _number)
 
    ## OVERLOADS ##
 

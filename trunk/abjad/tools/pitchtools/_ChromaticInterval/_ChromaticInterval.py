@@ -10,11 +10,14 @@ class _ChromaticInterval(_Interval):
 
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
-         self._number = arg
+         #self._number = arg
+         _number = arg
       elif isinstance(arg, _Interval):
-         self._number = arg.semitones
+         #self._number = arg.semitones
+         _number = arg.semitones
       else:
          raise TypeError('%s must be number or interval.' % arg)
+      object.__setattr__(self, '_number', _number)
 
    ## OVERLOADS ##
 
@@ -59,6 +62,10 @@ class _ChromaticInterval(_Interval):
       raise TypeError('must be %s' % self.__class__)
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def number(self):
+      return self._number
 
    @property
    def semitones(self):

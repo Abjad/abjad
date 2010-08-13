@@ -18,7 +18,8 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
          raise ValueError('must be nonzero integer.')
       if abs(number) == 1:
          number = 1
-      self._number = number
+      #self._number = number
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
   

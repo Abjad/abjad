@@ -1,7 +1,8 @@
+from abjad.core import _Immutable
 from abjad.core import Rational
 
 
-class InversionEquivalentChromaticIntervalClass(object):
+class InversionEquivalentChromaticIntervalClass(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Inversion-equivalent interval class.
@@ -9,13 +10,17 @@ class InversionEquivalentChromaticIntervalClass(object):
 
    def __init__(self, interval_class_token):
       if isinstance(interval_class_token, InversionEquivalentChromaticIntervalClass):
-         self._number = interval_class_token.number
+         #self._number = interval_class_token.number
+         _number = interval_class_token.number
+
       elif isinstance(interval_class_token, (int, float, long, Rational)):
          if not 0 <= interval_class_token <= 6:
             raise ValueError('must be between 0 and 6, inclusive.')
-         self._number = interval_class_token
+         #self._number = interval_class_token
+         _number = interval_class_token
       else:
          raise TypeError('must be interval class instance or number.')
+      object.__setattr__(self, '_number', _number)
    
    ## OVERLOADS ##
 

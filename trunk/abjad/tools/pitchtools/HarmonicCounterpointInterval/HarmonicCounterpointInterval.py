@@ -16,11 +16,14 @@ class HarmonicCounterpointInterval(_CounterpointInterval, _HarmonicInterval):
       if isinstance(token, int):
          if not 0 < token:
             raise ValueError('must be positive integer.')
-         self._number = token
+         #self._number = token
+         _number = token
       elif isinstance(token, _DiatonicInterval):
-         self._number = abs(token.number)
+         #self._number = abs(token.number)
+         _number = abs(token.number)
       else:
          raise TypeError('must be number or diatonic interval.')
+      object.__setattr__(self, '_number', _number)
 
    ## OVERLOADS ##
    

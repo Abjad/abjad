@@ -70,13 +70,15 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicInterval):
       else:
          number = abs(number) % 7
       if self._is_representative_number(number):
-         self._quality_string = quality_string
-         self._number = number
+         quality_string = quality_string
+         number = number
       else:
          quality_string = self._invert_quality_string(quality_string)
          number = 9 - number
-         self._quality_string = quality_string
-         self._number = number
+         #self._quality_string = quality_string
+         #self._number = number
+      object.__setattr__(self, '_quality_string', quality_string)
+      object.__setattr__(self, '_number', number)
 
    def _init_by_self_reference(self, reference):
       quality_string = reference.quality_string
