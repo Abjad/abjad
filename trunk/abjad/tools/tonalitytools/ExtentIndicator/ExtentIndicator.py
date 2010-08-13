@@ -1,4 +1,7 @@
-class ExtentIndicator(object):
+from abjad.core import _Immutable
+
+
+class ExtentIndicator(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Indicator of chord extent, such as triad, seventh chord, ninth chord,
@@ -11,9 +14,12 @@ class ExtentIndicator(object):
       if isinstance(arg, (int, long)):
          if arg not in self._acceptable_number:
             raise ValueError('can not initialize extent indicator: %s' % arg)
-         self._number = arg
+         #self._number = arg
+         number = arg
       elif isinstance(arg, type(self)):
-         self._number = arg.number
+         #self._number = arg.number
+         number = arg.number
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
 
@@ -33,9 +39,7 @@ class ExtentIndicator(object):
 
    _acceptable_number = (5, 7, 9)
 
-   _extent_number_to_extent_name = {
-      5: 'triad', 7: 'seventh', 9: 'ninth',
-   }
+   _extent_number_to_extent_name = {5: 'triad', 7: 'seventh', 9: 'ninth', } 
 
    ## PUBLIC ATTRIBUTES ##
 

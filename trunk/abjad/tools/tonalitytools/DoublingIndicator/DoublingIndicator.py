@@ -1,4 +1,7 @@
-class DoublingIndicator(object):
+from abjad.core import _Immutable
+
+
+class DoublingIndicator(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Indicator of chord doubling.
@@ -7,7 +10,7 @@ class DoublingIndicator(object):
    '''
 
    def __init__(self, doublings):
-      self._doublings = doublings
+      object.__setattr__(self, '_doublings', doublings)
 
    ## PUBLIC ATTRIBUTES ##
 

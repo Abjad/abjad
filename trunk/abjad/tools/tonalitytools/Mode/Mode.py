@@ -1,9 +1,10 @@
+from abjad.core import _Immutable
 from abjad.tools import listtools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 
 
-class Mode(object):
+class Mode(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Diatonic mode. Can be extended for nondiatonic mode.
@@ -13,12 +14,17 @@ class Mode(object):
 
    def __init__(self, arg):
       if isinstance(arg, str):
-         self._init_with_mode_name_string(arg)
+         #self._init_with_mode_name_string(arg)
+         mode_name_string = arg
       elif isinstance(arg, Mode):
-         self._init_with_mode_name_string(arg.mode_name_string)
+         #self._init_with_mode_name_string(arg.mode_name_string)
+         mode_name_string = arg.mode_name_string
       else:
          raise TypeError('%s must be mode instance or mode name string.' % arg)
-
+      mdi_segment = self._init_with_mode_name_string(mode_name_string)
+      object.__setattr__(self, '_melodic_diatonic_interval_segment', mdi_segment)
+      object.__setattr__(self, '_mode_name_string', mode_name_string)
+      
    ## OVERLOADS ##
 
    def __eq__(self, arg):
@@ -62,8 +68,9 @@ class Mode(object):
          mdi_segment.extend(listtools.rotate(dorian, -6))
       else:
          raise ValueError("unknown mode name string '%s'." % mode_name_string)
-      self._mode_name_string = mode_name_string
-      self._melodic_diatonic_interval_segment = MelodicDiatonicIntervalSegment(mdi_segment)
+      #self._mode_name_string = mode_name_string
+      #self._melodic_diatonic_interval_segment = MelodicDiatonicIntervalSegment(mdi_segment)
+      return MelodicDiatonicIntervalSegment(mdi_segment)
 
    ## PUBLIC ATTRIBUTES ##
 

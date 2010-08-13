@@ -19,7 +19,7 @@ class Scale(NamedPitchClassSegment):
       if len(args) == 1 and isinstance(args[0], KeySignature):
          #self._init_by_key_signature(args[0])
          key_signature = args[0]
-      elif len(args) == 1 and isinstance(args[0], type(self)):
+      elif len(args) == 1 and isinstance(args[0], Scale):
          #self._init_by_key_signature(args[0].key_signature)
          key_signature = args[0].key_signature
       elif len(args) == 2:

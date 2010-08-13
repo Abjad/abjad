@@ -1,3 +1,4 @@
+from abjad.core import _Immutable
 from abjad.marks import Markup
 from abjad.tools.tonalitytools.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalitytools.InversionIndicator import InversionIndicator
@@ -7,7 +8,7 @@ from abjad.tools.tonalitytools.SuspensionIndicator import SuspensionIndicator
 import re
 
 
-class TonalFunction(object):
+class TonalFunction(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Abjad model of functions in tonal harmony: I, I6, I64, V, V7, V43, V42,
@@ -18,15 +19,24 @@ class TonalFunction(object):
 
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], type(self)):
-         self._init_by_reference(args[0])
+         scale_degree, quality, extent, inversion, suspension = \
+            self._init_by_reference(args[0])
       elif len(args) == 1 and isinstance(args[0], str):
-         self._init_by_symbolic_string(args[0])
+         scale_degree, quality, extent, inversion, suspension = \
+            self._init_by_symbolic_string(args[0])
       elif len(args) == 4:
-         self._init_by_scale_degree_quality_extent_and_inversion(*args)
+         scale_degree, quality, extent, inversion, suspension = \
+            self._init_by_scale_degree_quality_extent_and_inversion(*args)
       elif len(args) == 5:
-         self._init_with_suspension(*args)
+         scale_degree, quality, extent, inversion, suspension = \
+            self._init_with_suspension(*args)
       else:
          raise ValueError('can not initialize tonal function.')
+      object.__setattr__(self, '_scale_degree', scale_degree)
+      object.__setattr__(self, '_quality', quality)
+      object.__setattr__(self, '_extent', extent)
+      object.__setattr__(self, '_inversion', inversion)
+      object.__setattr__(self, '_suspension', suspension)
 
    ## OVERLOADS ##
 
@@ -140,39 +150,41 @@ class TonalFunction(object):
    def _init_by_reference(self, tonal_function):
       args = (tonal_function.scale_degree, tonal_function.quality,
          tonal_function.extent, tonal_function.inversion)
-      self._init_by_scale_degree_quality_extent_and_inversion(self, *args)
+      return self._init_by_scale_degree_quality_extent_and_inversion(self, *args)
 
    def _init_by_scale_degree_quality_extent_and_inversion(self, *args):
       scale_degree, quality, extent, inversion = args
       scale_degree = ScaleDegree(scale_degree)
-      self._scale_degree = scale_degree
+      #self._scale_degree = scale_degree
       quality = QualityIndicator(quality)
-      self._quality = quality
+      #self._quality = quality
       extent = ExtentIndicator(extent)
-      self._extent = extent
+      #self._extent = extent
       inversion = InversionIndicator(inversion)
-      self._inversion = inversion
-      self._suspension = SuspensionIndicator( )
+      #self._inversion = inversion
+      #self._suspension = SuspensionIndicator( )
+      suspension = SuspensionIndicator( )
+      return scale_degree, quality, extent, inversion, suspension
 
    def _init_by_symbolic_string(self, symbolic_string):
       groups = self._symbolic_string_regex.match(symbolic_string).groups( )
       #print groups
       accidental, roman_numeral, quality, figured_bass = groups
       scale_degree = ScaleDegree(accidental + roman_numeral)
-      self._scale_degree = scale_degree
+      #self._scale_degree = scale_degree
       figured_bass_parts = figured_bass.split('/')
       naive_figured_bass = [x for x in figured_bass_parts if not '-' in x]
       naive_figured_bass = '/'.join(naive_figured_bass)
       extent = self._figured_bass_string_to_extent[naive_figured_bass]
       extent = ExtentIndicator(extent)
-      self._extent = extent
+      #self._extent = extent
       uppercase = roman_numeral == roman_numeral.upper( )
       quality = self._get_quality_name(uppercase, quality, extent.number)
       quality = QualityIndicator(quality)
-      self._quality = quality
+      #self._quality = quality
       inversion = self._figured_bass_string_to_inversion[naive_figured_bass]
       inversion = InversionIndicator(inversion)
-      self._inversion = inversion
+      #self._inversion = inversion
       suspension = [x for x in figured_bass_parts if '-' in x]
       if not suspension:
          suspension = SuspensionIndicator( )
@@ -180,12 +192,16 @@ class TonalFunction(object):
          raise NotImplementedError('no multiple suspensions yet.')
       else:
          suspension = SuspensionIndicator(suspension[0])
-      self._suspension = suspension
+      #self._suspension = suspension
+      return scale_degree, quality, extent, inversion, suspension
 
    def _init_with_suspension(self, *args):
-      self._init_by_scale_degree_quality_extent_and_inversion(*args[:-1])
+      scale_degree, quality, extent, inversion, suspension = \
+         self._init_by_scale_degree_quality_extent_and_inversion(*args[:-1])
       suspension = args[-1]
-      self._suspension = SuspensionIndicator(suspension)
+      #self._suspension = SuspensionIndicator(suspension)
+      suspension = SuspensionIndicator(suspension)
+      return scale_degree, quality, extent, inversion, suspension
 
    def _get_quality_name(self, uppercase, quality_string, extent):
       if quality_string == 'o':

@@ -1,8 +1,9 @@
+from abjad.core import _Immutable
 from abjad.tools.pitchtools import Accidental
 import re
 
 
-class ScaleDegree(object):
+class ScaleDegree(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Abjad model of diatonic scale degrees 1, 2, 3, 4, 5, 6, 7 and
@@ -11,18 +12,20 @@ class ScaleDegree(object):
 
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], type(self)):
-         self._init_by_scale_degree(*args)
+         accidental, number = self._init_by_scale_degree(*args)
       elif len(args) == 1 and args[0] in self._acceptable_numbers:
-         self._init_by_number(*args)
+         accidental, number = self._init_by_number(*args)
       elif len(args) == 1 and isinstance(args[0], tuple):
-         self._init_by_pair(*args)
+         accidental, number = self._init_by_pair(*args)
       elif len(args) == 1 and isinstance(args[0], str):
-         self._init_by_symbolic_string(*args)
+         accidental, number = self._init_by_symbolic_string(*args)
       elif len(args) == 2 and args[1] in self._acceptable_numbers:
-         self._init_by_accidental_and_number(*args)
+         accidental, number = self._init_by_accidental_and_number(*args)
       else:
          arg_string = ', '.join([str(x) for x in args])
          raise ValueError('can not initialize scale degree: %s.' % arg_string)
+      object.__setattr__(self, '_accidental', accidental)
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
    
@@ -90,34 +93,37 @@ class ScaleDegree(object):
 
    def _init_by_accidental_and_number(self, accidental, number):
       accidental = Accidental(accidental)
-      self._accidental = accidental
-      self._number = number   
+      #self._accidental = accidental
+      #self._number = number   
+      return accidental, number
 
    def _init_by_number(self, number):
-      self._number = number
-      self._accidental = Accidental(None)
+      #self._number = number
+      #self._accidental = Accidental(None)
+      accidental = Accidental(None)
+      return accidental, number
    
    def _init_by_pair(self, pair):
       accidental, number = pair
-      self._init_by_accidental_and_number(accidental, number)
+      return self._init_by_accidental_and_number(accidental, number)
 
    def _init_by_scale_degree(self, scale_degree):
       accidental = scale_degree.accidental
       number = scale_degree.number
-      self._init_by_accidental_and_number(accidental, number)
+      return self._init_by_accidental_and_number(accidental, number)
 
    def _init_by_symbolic_string(self, symbolic_string):
       groups = self._symbolic_string_regex.match(symbolic_string).groups( )
       accidental, roman_numeral = groups
       accidental = Accidental(accidental)
-      self._accidental = accidental
+      #self._accidental = accidental
       roman_numeral = roman_numeral.upper( )
       try:
-         number = self._roman_numeral_string_to_scale_degree_number[
-            roman_numeral]
+         number = self._roman_numeral_string_to_scale_degree_number[roman_numeral]
       except KeyError:
          number = int(roman_numeral)
-      self._number = number
+      #self._number = number
+      return accidental, number
 
    ## PUBLIC ATTRIBUTES ##
 

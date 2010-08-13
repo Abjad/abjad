@@ -1,4 +1,7 @@
-class OmissionIndicator(object):
+from abjad.core import _Immutable
+
+
+class OmissionIndicator(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Indicator of missing chord tones.

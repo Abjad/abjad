@@ -1,4 +1,7 @@
-class QualityIndicator(object):
+from abjad.core import _Immutable
+
+
+class QualityIndicator(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Indicator of chord quality, such as major, minor, dominant,
@@ -10,7 +13,8 @@ class QualityIndicator(object):
    def __init__(self, quality_string):
       if quality_string not in self._acceptable_quality_strings:
          raise ValueError('can not initialize quality indicator.')
-      self._quality_string = quality_string
+      #self._quality_string = quality_string
+      object.__setattr__(self, '_quality_string', quality_string)
    
    ## OVERLOADS ##
 
