@@ -4,8 +4,8 @@ from abjad import *
 def test_pitchtools_respell_named_pitches_in_expr_with_flats_01( ):
    '''The pitchtools.respell_named_pitches_in_expr_with_flats( ) helper renotates an individual pitch.'''
    t = pitchtools.NamedPitch('cs', 4)
-   pitchtools.respell_named_pitches_in_expr_with_flats(t)
-   assert t == pitchtools.NamedPitch('df', 4)
+   #assert t == pitchtools.NamedPitch('df', 4)
+   assert pitchtools.respell_named_pitches_in_expr_with_flats(t) == pitchtools.NamedPitch('df', 4)
 
 
 def test_pitchtools_respell_named_pitches_in_expr_with_flats_02( ):

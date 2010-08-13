@@ -1,10 +1,11 @@
-from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
+from abjad.tools.pitchtools._PitchClass import _PitchClass
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import InversionEquivalentChromaticIntervalClass
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
+from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
 
 
-class NumericPitchClass(object):
+class NumericPitchClass(_PitchClass):
    '''.. versionadded:: 1.1.2
 
    Numeric 12-ET pitch-class ranging from [0, 12).
@@ -14,22 +15,29 @@ class NumericPitchClass(object):
    '''
 
    def __init__(self, arg):
-      from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+      from abjad.tools.pitchtools.NamedPitch import NamedPitch
       from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
       if isinstance(arg, (int, long, float)):
-         self._number = arg % 12
+         #self._number = arg % 12
+         number = arg % 12
       elif isinstance(arg, type(self)):
-         self._number = arg.number
+         #self._number = arg.number
+         number = arg.number
       elif isinstance(arg, str):
          named_pitch_class = NamedPitchClass(arg)
-         self._number = named_pitch_class.numeric_pitch_class.number
+         #self._number = named_pitch_class.numeric_pitch_class.number
+         number = named_pitch_class.numeric_pitch_class.number
       elif isinstance(arg, NamedPitch):
-         self._number = arg.number % 12
+         #self._number = arg.number % 12
+         number = arg.number % 12
       elif isinstance(arg, NamedPitchClass):
-         self._number = arg.numeric_pitch_class.number
+         #self._number = arg.numeric_pitch_class.number
+         number = arg.numeric_pitch_class.number
       else:
          pitch = get_named_pitch_from_pitch_carrier(arg)
-         self._number = pitch.number % 12
+         #self._number = pitch.number % 12
+         number = pitch.number % 12
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
 

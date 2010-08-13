@@ -1,3 +1,4 @@
+from abjad.components.Chord import Chord
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.pitch_number_to_octave_number import pitch_number_to_octave_number
 from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_flats import pitch_class_number_to_pitch_name_with_flats
@@ -38,16 +39,29 @@ def respell_named_pitches_in_expr_with_flats(expr):
 
 
    if isinstance(expr, NamedPitch):
-      _pitch_renotate_flats(expr)
+      #_pitch_renotate_flats(expr)
+      return _new_pitch_with_flats(expr)
    else:
       for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-         if hasattr(leaf, 'pitches'):
-            for pitch in leaf.pitches:
-               _pitch_renotate_flats(pitch)
+         #if hasattr(leaf, 'pitches'):
+         #   for pitch in leaf.pitches:
+         #      _pitch_renotate_flats(pitch)
+         if isinstance(leaf, Chord):
+            for note_head in leaf.note_heads:
+               note_head.pitch = _new_pitch_with_flats(note_head.pitch)
+         elif hasattr(leaf, 'pitch'):
+            leaf.pitch = _new_pitch_with_flats(leaf.pitch)           
 
 
-def _pitch_renotate_flats(pitch):
+#def _pitch_renotate_flats(pitch):
+#   octave = pitch_number_to_octave_number(pitch.number)
+#   name = pitch_class_number_to_pitch_name_with_flats(pitch.pc)
+#   pitch.octave = octave
+#   pitch.name = name
+
+
+def _new_pitch_with_flats(pitch):
    octave = pitch_number_to_octave_number(pitch.number)
    name = pitch_class_number_to_pitch_name_with_flats(pitch.pc)
-   pitch.octave = octave
-   pitch.name = name
+   pitch = type(pitch)(name, octave)
+   return pitch

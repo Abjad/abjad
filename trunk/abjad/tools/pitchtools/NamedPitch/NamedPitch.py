@@ -1,18 +1,20 @@
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.core import _Abjad
+from abjad.tools.pitchtools._Pitch import _Pitch
 import types
 
 
 _accidental_spelling = _read_config_file( )['accidental_spelling']
 
-class NamedPitch(_Abjad):
+class NamedPitch(_Abjad, _Pitch):
    '''Musical pitch.'''
 
    accidental_spelling = _accidental_spelling
 
    def __init__(self, *args):
       from abjad.tools import pitchtools
-      self._deviation = None
+      #self._deviation = None
+      object.__setattr__(self, '_deviation', None)
       if not args:
          self._init_empty( )
       elif len(args) == 1 and isinstance(args[0], (int, long, float)):
@@ -122,7 +124,8 @@ class NamedPitch(_Abjad):
    def __sub__(self, arg):
       from abjad.tools import pitchtools
       if isinstance(arg, NamedPitch):
-         return pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(self, arg)
+         return pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
+            self, arg)
       else:
          interval = arg
          return pitchtools.transpose_pitch_by_melodic_interval(self, -interval)
@@ -142,13 +145,17 @@ class NamedPitch(_Abjad):
       from abjad.tools import pitchtools
       letter = name[0]
       accidental_string = name[1:]
-      self.letter = letter
-      self.accidental = pitchtools.Accidental(accidental_string)
-      self.octave = octave
+      #self.letter = letter
+      #self.accidental = pitchtools.Accidental(accidental_string)
+      #self.octave = octave
+      object.__setattr__(self, '_letter', letter)
+      object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
+      object.__setattr__(self, '_octave', octave)
 
    def _init_by_name_octave_and_deviation(self, name, octave, deviation):
       self._init_by_name_and_octave(name, octave)
-      self.deviation = deviation
+      #self.deviation = deviation
+      object.__setattr__(self, '_deviation', deviation)
 
    def _init_by_named_pitch_class_and_octave_number(self, npc, octave_number):
       self._init_by_name_and_octave(npc.name, octave_number)
@@ -158,17 +165,23 @@ class NamedPitch(_Abjad):
       spelling = self.accidental_spelling
       triple = pitchtools.pitch_number_to_pitch_letter_alphabetic_accidental_string_and_octave_number_triple(number, spelling)
       letter, accidental_string, octave = triple
-      self.letter = letter
-      self.accidental = pitchtools.Accidental(accidental_string)
-      self.octave = octave
+      #self.letter = letter
+      #self.accidental = pitchtools.Accidental(accidental_string)
+      #self.octave = octave
+      object.__setattr__(self, '_letter', letter)
+      object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
+      object.__setattr__(self, '_octave', octave)
 
    def _init_by_number_and_letter(self, number, letter):
       from abjad.tools import pitchtools
       pair = pitchtools.number_letter_to_accidental_octave(number, letter)
       accidental_string, octave = pair
-      self.letter = letter
-      self.accidental = pitchtools.Accidental(accidental_string)
-      self.octave = octave
+      #self.letter = letter
+      #self.accidental = pitchtools.Accidental(accidental_string)
+      #self.octave = octave
+      object.__setattr__(self, '_letter', letter)
+      object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
+      object.__setattr__(self, '_octave', octave)
 
    def _init_by_number_and_named_pitch_class(self, pitch_number, npc):
       letter = npc.name[:1]
@@ -179,9 +192,12 @@ class NamedPitch(_Abjad):
       name, octave = pair
       letter = name[0]
       accidental_string = name[1:]
-      self.letter = letter
-      self.accidental = pitchtools.Accidental(accidental_string)
-      self.octave = octave
+      #self.letter = letter
+      #self.accidental = pitchtools.Accidental(accidental_string)
+      #self.octave = octave
+      object.__setattr__(self, '_letter', letter)
+      object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
+      object.__setattr__(self, '_octave', octave)
 
    def _init_by_pitch_string(self, pitch_string):
       from abjad.tools import pitchtools
@@ -191,15 +207,21 @@ class NamedPitch(_Abjad):
 
    def _init_by_reference(self, pitch):
       from abjad.tools import pitchtools
-      self.letter = pitch.letter
-      self.accidental = pitchtools.Accidental(
-         pitch.accidental.alphabetic_string)
-      self.octave = pitch.octave
+      #self.letter = pitch.letter
+      #self.accidental = pitchtools.Accidental(pitch.accidental.alphabetic_string)
+      #self.octave = pitch.octave
+      object.__setattr__(self, '_letter', pitch.letter)
+      accidental = pitchtools.Accidental(pitch.accidental.alphabetic_string)
+      object.__setattr__(self, '_accidental', accidental)
+      object.__setattr__(self, '_octave', pitch.octave)
 
    def _init_empty(self):
-      self.letter = None
-      self.accidental = None
-      self.octave = None
+      #self.letter = None
+      #self.accidental = None
+      #self.octave = None
+      object.__setattr__(self, '_letter', None)
+      object.__setattr__(self, '_accidental', None)
+      object.__setattr__(self, '_octave', None)
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -207,22 +229,26 @@ class NamedPitch(_Abjad):
    def absolute_diatonic_scale_degree(self):
       return 7 * self.octave + self.degree
 
-   @apply
-   def accidental( ):
-      def fget(self):
-         '''Read / write reference to any accidental attaching to pitch.'''
-         return self._accidental
-      def fset(self, expr):
-         from abjad.tools import pitchtools
-         if expr is None:
-            self._accidental = pitchtools.Accidental('')
-         elif isinstance(expr, str):
-            self._accidental = pitchtools.Accidental(expr)
-         elif isinstance(expr, pitchtools.Accidental):
-            self._accidental = expr
-         else:
-            raise ValueError('can not set accidental.')
-      return property(**locals( ))
+#   @apply
+#   def accidental( ):
+#      def fget(self):
+#         '''Read / write reference to any accidental attaching to pitch.'''
+#         return self._accidental
+#      def fset(self, expr):
+#         from abjad.tools import pitchtools
+#         if expr is None:
+#            self._accidental = pitchtools.Accidental('')
+#         elif isinstance(expr, str):
+#            self._accidental = pitchtools.Accidental(expr)
+#         elif isinstance(expr, pitchtools.Accidental):
+#            self._accidental = expr
+#         else:
+#            raise ValueError('can not set accidental.')
+#      return property(**locals( ))
+
+   @property
+   def accidental(self):
+      return self._accidental
 
    @property
    def altitude(self):
@@ -242,62 +268,95 @@ class NamedPitch(_Abjad):
       else:
          return None
 
-   @apply
-   def deviation( ):
-      def fget(self):
-         '''Read / write number of cents by which pitch deviates
-            from 12-ET intonation.'''
-         return self._deviation
-      def fset(self, arg):
-         assert isinstance(arg, (int, float, type(None)))
-         self._deviation = arg
-      return property(**locals( ))
+#   @apply
+#   def deviation( ):
+#      def fget(self):
+#         '''Read / write number of cents by which pitch deviates
+#            from 12-ET intonation.'''
+#         return self._deviation
+#      def fset(self, arg):
+#         assert isinstance(arg, (int, float, type(None)))
+#         self._deviation = arg
+#      return property(**locals( ))
+
+   @property
+   def deviation(self):
+      return self._deviation
 
    @property
    def format(self):
       '''Read-only LilyPond format of pitch.'''
       return str(self)
 
-   @apply
-   def name( ):
-      def fget(self):
-         '''Read / write letter and accidental of pitch concatenated
-         as a single string.'''
-         if self.letter and self.accidental:
-            return '%s%s' % (self.letter, self.accidental)
-         else:
-            return None
-      def fset(self, name):
-         from abjad.tools.pitchtools.pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair \
-            import pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair
-         letter, accidental = pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair(name)
-         self.letter = letter
-         self.accidental = accidental
-      return property(**locals( ))
+   @property
+   def letter(self):
+      return self._letter
+
+#   @apply
+#   def name( ):
+#      def fget(self):
+#         '''Read / write letter and accidental of pitch concatenated
+#         as a single string.'''
+#         if self.letter and self.accidental:
+#            return '%s%s' % (self.letter, self.accidental)
+#         else:
+#            return None
+#      def fset(self, name):
+#         from abjad.tools.pitchtools.pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair \
+#            import pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair
+#         letter, accidental = pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair(name)
+#         self.letter = letter
+#         self.accidental = accidental
+#      return property(**locals( ))
+
+   @property
+   def name(self):
+      if self.letter and self.accidental:
+         return '%s%s' % (self.letter, self.accidental)
+      else:
+         return None
 
    @property
    def named_pitch_class(self):
       from abjad.tools import pitchtools
       return pitchtools.NamedPitchClass(self.name)
 
-   @apply
-   def number( ):
-      def fget(self):
-         '''Read / write numeric value of pitch
-         with middle C equal to ``0``.'''
-         from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import pitch_letter_to_pitch_class_number
-         if not self.octave is None:
-            if self.letter:
-               if self.accidental:
-                  octave = 12 * (self.octave - 4)
-                  pc = pitch_letter_to_pitch_class_number(self.letter)
-                  semitones = self.accidental.semitones
-                  return octave + pc + semitones
-         else:
-            return None
-      def fset(self, arg):
-         self.__init__(arg)
-      return property(**locals( ))
+#   @apply
+#   def number( ):
+#      def fget(self):
+#         '''Read / write numeric value of pitch
+#         with middle C equal to ``0``.'''
+#         from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import pitch_letter_to_pitch_class_number
+#         if not self.octave is None:
+#            if self.letter:
+#               if self.accidental:
+#                  octave = 12 * (self.octave - 4)
+#                  pc = pitch_letter_to_pitch_class_number(self.letter)
+#                  semitones = self.accidental.semitones
+#                  return octave + pc + semitones
+#         else:
+#            return None
+#      def fset(self, arg):
+#         self.__init__(arg)
+#      return property(**locals( ))
+
+   @property
+   def number(self):
+      '''Read / write numeric value of pitch with middle C equal to ``0``.'''
+      from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import pitch_letter_to_pitch_class_number
+      if not self.octave is None:
+         if self.letter:
+            if self.accidental:
+               octave = 12 * (self.octave - 4)
+               pc = pitch_letter_to_pitch_class_number(self.letter)
+               semitones = self.accidental.semitones
+               return octave + pc + semitones
+      else:
+         return None
+
+   @property
+   def octave(self):
+      return self._octave
 
    @property
    def pair(self):

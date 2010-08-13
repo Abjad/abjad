@@ -1,7 +1,9 @@
+from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.Accidental import Accidental
 
 
-class NumericPitch(object):
+
+class NumericPitch(_Pitch):
    '''.. versionadded:: 1.1.2
 
    Numeric pitch with middle C defined equal to 0.
@@ -11,11 +13,14 @@ class NumericPitch(object):
 
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
-         self._number = arg
+         #self._number = arg
+         number = arg
       elif isinstance(arg, NumericPitch):
-         self._number = arg.number
+         #self._number = arg.number
+         number = arg.number
       else:
          raise TypeError('can not initialize numeric pitch from %s.' % arg)
+      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
 
