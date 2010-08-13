@@ -1,17 +1,22 @@
+from abjad.tools.pitchtools._IntervalClassSet import _IntervalClassSet
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import InversionEquivalentChromaticIntervalClass
 
 
-class InversionEquivalentChromaticIntervalClassSet(set):
+class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
    '''.. versionadded:: 1.1.2
 
    Unordered collection of interval class instances.
    '''
 
-   def __init__(self, interval_class_tokens):
-      self._interval_classes = [ ] ## can this line be deleted?
+   #def __init__(self, interval_class_tokens):
+   def __new__(self, interval_class_tokens):
+      #self._interval_classes = [ ] ## can this line be deleted?
+      iecics = [ ]
       for token in interval_class_tokens:
-         interval_class = InversionEquivalentChromaticIntervalClass(token)
-         self.add(interval_class)
+         iecic = InversionEquivalentChromaticIntervalClass(token)
+         #self.add(interval_class)
+         iecics.append(iecic)
+      return frozenset.__new__(self, iecics)
 
    ## OVERLOADS ##
 

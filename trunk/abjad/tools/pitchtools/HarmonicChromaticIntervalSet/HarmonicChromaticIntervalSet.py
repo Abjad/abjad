@@ -1,14 +1,21 @@
+from abjad.tools.pitchtools._IntervalSet import _IntervalSet
 from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
 
 
-class HarmonicChromaticIntervalSet(set):
+class HarmonicChromaticIntervalSet(_IntervalSet):
    '''.. versionadded:: 1.1.2
 
    Unordered collection of harmonic chromatic interval instances.
    '''
 
-   def __init__(self, interval_tokens):
-      self.update(interval_tokens)
+   #def __init__(self, interval_tokens):
+   def __new__(self, interval_tokens):
+      #self.update(interval_tokens)
+      hcis = [ ]      
+      for token in interval_tokens:
+         hci = HarmonicChromaticInterval(token)
+         hcis.append(hci)
+      return frozenset.__new__(self, hcis)
 
    ## OVERLOADS ##
 
@@ -37,12 +44,12 @@ class HarmonicChromaticIntervalSet(set):
    def numbers(self):
       return set([interval.number for interval in self])
 
-   ## PUBLIC METHODS ##
-
-   def add(self, arg):
-      interval = HarmonicChromaticInterval(arg)
-      set.add(self, interval)
-
-   def update(self, expr):
-      for x in expr:
-         self.add(x)
+#   ## PUBLIC METHODS ##
+#
+#   def add(self, arg):
+#      interval = HarmonicChromaticInterval(arg)
+#      set.add(self, interval)
+#
+#   def update(self, expr):
+#      for x in expr:
+#         self.add(x)

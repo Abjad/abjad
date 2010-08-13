@@ -1,8 +1,9 @@
+from abjad.core import _Immutable
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
 
 
-class PitchRange(object):
+class PitchRange(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Model a range of pitches.
@@ -13,8 +14,32 @@ class PitchRange(object):
    '''
 
    def __init__(self, start = None, stop = None):
-      self.start = start
-      self.stop = stop
+      #self.start = start
+      #self.stop = stop
+      if start is None:
+         start = start
+      elif isinstance(start, (int, long, float)):
+         pitch = NamedPitch(start)
+         start = (pitch, 'inclusive')
+      else:
+         assert len(start) == 2
+         pitch, containment = start
+         assert containment in ('inclusive', 'exclusive')
+         pitch = NamedPitch(pitch)
+         start = (pitch, containment)
+      object.__setattr__(self, '_start', start)
+      if stop is None:
+         stop = stop
+      elif isinstance(stop, (int, long, float)):
+         pitch = NamedPitch(stop)
+         stop = (pitch, 'inclusive')
+      else:
+         assert len(stop) == 2
+         pitch, containment = stop
+         assert containment in ('inclusive', 'exclusive')
+         pitch = NamedPitch(pitch)
+         stop = (pitch, containment)
+      object.__setattr__(self, '_stop', stop)
    
    ## OVERLOADS ##
 
@@ -41,8 +66,7 @@ class PitchRange(object):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s, %s)' % (
-         self.__class__.__name__, self.start, self.stop)
+      return '%s(%s, %s)' % (self.__class__.__name__, self.start, self.stop)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -99,38 +123,46 @@ class PitchRange(object):
 
    ## PUBLIC ATTRIBUTES ##
    
-   @apply
-   def start( ):
-      def fget(self):
-         return self._start
-      def fset(self, arg):
-         if arg is None:
-            self._start = arg
-         elif isinstance(arg, (int, long, float)):
-            pitch = NamedPitch(arg)
-            self._start = (pitch, 'inclusive')
-         else:
-            assert len(arg) == 2
-            pitch, containment = arg
-            assert containment in ('inclusive', 'exclusive')
-            pitch = NamedPitch(pitch)
-            self._start = (pitch, containment)
-      return property(**locals( ))
+#   @apply
+#   def start( ):
+#      def fget(self):
+#         return self._start
+#      def fset(self, arg):
+#         if arg is None:
+#            self._start = arg
+#         elif isinstance(arg, (int, long, float)):
+#            pitch = NamedPitch(arg)
+#            self._start = (pitch, 'inclusive')
+#         else:
+#            assert len(arg) == 2
+#            pitch, containment = arg
+#            assert containment in ('inclusive', 'exclusive')
+#            pitch = NamedPitch(pitch)
+#            self._start = (pitch, containment)
+#      return property(**locals( ))
+#
+#   @apply
+#   def stop( ):
+#      def fget(self):
+#         return self._stop
+#      def fset(self, arg):
+#         if arg is None:
+#            self._stop = arg
+#         elif isinstance(arg, (int, long, float)):
+#            pitch = NamedPitch(arg)
+#            self._stop = (pitch, 'inclusive')
+#         else:
+#            assert len(arg) == 2
+#            pitch, containment = arg
+#            assert containment in ('inclusive', 'exclusive')
+#            pitch = NamedPitch(pitch)
+#            self._stop = (pitch, containment)
+#      return property(**locals( ))
 
-   @apply
-   def stop( ):
-      def fget(self):
-         return self._stop
-      def fset(self, arg):
-         if arg is None:
-            self._stop = arg
-         elif isinstance(arg, (int, long, float)):
-            pitch = NamedPitch(arg)
-            self._stop = (pitch, 'inclusive')
-         else:
-            assert len(arg) == 2
-            pitch, containment = arg
-            assert containment in ('inclusive', 'exclusive')
-            pitch = NamedPitch(pitch)
-            self._stop = (pitch, containment)
-      return property(**locals( ))
+   @property
+   def start(self):
+      return self._start
+
+   @property
+   def stop(self):
+      return self._stop

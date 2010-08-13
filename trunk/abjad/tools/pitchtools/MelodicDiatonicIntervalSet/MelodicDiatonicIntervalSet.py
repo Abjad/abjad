@@ -1,17 +1,21 @@
+from abjad.tools.pitchtools._IntervalSet import _IntervalSet
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.HarmonicDiatonicIntervalSet import HarmonicDiatonicIntervalSet
 from abjad.tools.pitchtools.HarmonicChromaticIntervalSet import HarmonicChromaticIntervalSet
 from abjad.tools.pitchtools.MelodicChromaticIntervalSet import MelodicChromaticIntervalSet
 
 
-class MelodicDiatonicIntervalSet(set):
+class MelodicDiatonicIntervalSet(_IntervalSet):
    '''.. versionadded:: 1.1.2
 
    Unordered collection of melodic diatonic interval instances.
    '''
 
-   def __init__(self, interval_tokens):
-      self.update(interval_tokens)
+   #def __init__(self, interval_tokens):
+   def __new__(self, interval_tokens):
+      #self.update(interval_tokens)
+      mdis = [MelodicDiatonicInterval(x) for x in interval_tokens]
+      return frozenset.__new__(self, mdis)
 
    ## OVERLOADS ##
 
@@ -54,12 +58,12 @@ class MelodicDiatonicIntervalSet(set):
    def numbers(self):
       return set([interval.number for interval in self])
 
-   ## PUBLIC METHODS ##
-
-   def add(self, arg):
-      interval = MelodicDiatonicInterval(arg)
-      set.add(self, interval)
-
-   def update(self, expr):
-      for x in expr:
-         self.add(x)
+#   ## PUBLIC METHODS ##
+#
+#   def add(self, arg):
+#      interval = MelodicDiatonicInterval(arg)
+#      set.add(self, interval)
+#
+#   def update(self, expr):
+#      for x in expr:
+#         self.add(x)

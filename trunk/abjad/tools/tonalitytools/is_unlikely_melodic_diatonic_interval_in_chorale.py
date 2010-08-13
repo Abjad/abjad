@@ -20,8 +20,7 @@ def is_unlikely_melodic_diatonic_interval_in_chorale(mdi):
    hdi = mdi.harmonic_diatonic_interval
    hcpi = mdi.harmonic_counterpoint_interval
 
-   acceptable_hdis = pitchtools.HarmonicDiatonicIntervalSet([ ])
-   acceptable_hdis.update([
+   acceptable_hdis = pitchtools.HarmonicDiatonicIntervalSet([
       pitchtools.HarmonicDiatonicInterval('augmented', 1),
       pitchtools.HarmonicDiatonicInterval('diminished', 5),
       ])

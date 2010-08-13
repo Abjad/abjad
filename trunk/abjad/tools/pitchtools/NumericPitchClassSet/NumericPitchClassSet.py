@@ -1,3 +1,4 @@
+from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
 from abjad.tools import listtools
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet import InversionEquivalentChromaticIntervalClassSet
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector import InversionEquivalentChromaticIntervalClassVector
@@ -5,10 +6,7 @@ from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 from abjad.tools.pitchtools.list_numeric_pitch_classes_in_expr import list_numeric_pitch_classes_in_expr
 
 
-## TODO: Make NumericPitchClassSet and PitchSet both inherit ##
-## from a shared base class. ##
-
-class  NumericPitchClassSet(frozenset):
+class  NumericPitchClassSet(_PitchClassSet):
    '''.. versionadded:: 1.1.2
 
    12-ET pitch-class set from American pitch-class theory.
@@ -68,10 +66,12 @@ class  NumericPitchClassSet(frozenset):
 
    @property
    def interval_class_set(self):
-      interval_class_set = InversionEquivalentChromaticIntervalClassSet([ ])
+      #interval_class_set = InversionEquivalentChromaticIntervalClassSet([ ])
+      interval_class_set = set([ ])
       for first_pc, second_pc in listtools.get_unordered_pairs(self):
          interval_class = first_pc - second_pc
          interval_class_set.add(interval_class)
+      interval_class_set = InversionEquivalentChromaticIntervalClassSet(interval_class_set)
       return interval_class_set
 
    @property

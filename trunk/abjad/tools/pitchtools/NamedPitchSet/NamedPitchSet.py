@@ -1,3 +1,4 @@
+from abjad.tools.pitchtools._PitchSet import _PitchSet
 from abjad.components.NoteHead import NoteHead
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
@@ -10,20 +11,25 @@ from abjad.tools.pitchtools.transpose_pitch_by_melodic_chromatic_interval import
 
 ## TODO: Make PitchSet inherit from frozenset instead of set. ##
 
-class NamedPitchSet(set):
+class NamedPitchSet(_PitchSet):
    '''.. versionadded:: 1.1.2
 
    12-ET pitch set from American pitch-class theory.
    '''
 
-   def __init__(self, pitch_tokens):
+   #def __init__(self, pitch_tokens):
+   def __new__(self, pitch_tokens):
+      pitches = [ ]
       for token in pitch_tokens:
          if isinstance(token, NoteHead):
             pitch = NamedPitch(token.pitch)
-            self.add(pitch)
+            #self.add(pitch)
+            pitches.append(pitch)
          else:
             pitch = NamedPitch(token)
-            self.add(pitch)
+            #self.add(pitch)
+            pitches.append(pitch)
+      return frozenset.__new__(self, pitches)
 
    ## OVERLOADS ##
 
@@ -101,5 +107,4 @@ class NamedPitchSet(set):
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
       interval = MelodicChromaticInterval(n)
-      return NamedPitchSet(
-         [transpose_by_chromatic_interval(pitch, interval) for pitch in self])
+      return NamedPitchSet([transpose_by_chromatic_interval(pitch, interval) for pitch in self])

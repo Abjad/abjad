@@ -1,3 +1,4 @@
+from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
 from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector import InversionEquivalentDiatonicIntervalClassVector
@@ -10,7 +11,7 @@ from abjad.tools.pitchtools.list_numeric_pitch_classes_in_expr import list_numer
 ## TODO: Make NamedPitchClassSet and PitchSet both inherit ##
 ## from a shared base class. ##
 
-class NamedPitchClassSet(frozenset):
+class NamedPitchClassSet(_PitchClassSet):
    '''.. versionadded:: 1.1.2
 
    Unordered set of named pitch-classes.

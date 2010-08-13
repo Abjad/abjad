@@ -1,15 +1,21 @@
 from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
+from abjad.tools.pitchtools.NumericPitchClassSegment import NumericPitchClassSegment
 
 
-class TwelveToneRow(object):
+class TwelveToneRow(NumericPitchClassSegment):
    '''.. versionadded:: 1.1.2
 
+   Twelve tone row.
    '''
 
-   def __init__(self, pitch_classes):
+   #def __init__(self, pitch_classes):
+   def __new__(self, pitch_classes):
+      from abjad.tools.pitchtools.TwelveToneRow._validate_pitch_classes import \
+         _validate_pitch_classes
       pitch_classes = [NumericPitchClass(pc) for pc in pitch_classes]
-      self._validate_pitch_classes(pitch_classes)
-      self._pitch_classes = pitch_classes
+      _validate_pitch_classes(pitch_classes)
+      #self._pitch_classes = pitch_classes
+      return NumericPitchClassSegment.__new__(self, pitch_classes)
 
    ## OVERLOADS ##
 
@@ -51,20 +57,20 @@ class TwelveToneRow(object):
    def _contents_string(self):
       return ', '.join([str(pc.number) for pc in self.pitch_classes])
 
-   ## PRIVATE METHODS ##
-
-   def _validate_pitch_classes(self, pitch_classes):
-      numbers = [pc.number for pc in pitch_classes]
-      numbers.sort( )
-      if not numbers == range(12):
-         raise ValueError('must contain all twelve pitch classes.')
+#   ## PRIVATE METHODS ##
+#
+#   def _validate_pitch_classes(self, pitch_classes):
+#      numbers = [pc.number for pc in pitch_classes]
+#      numbers.sort( )
+#      if not numbers == range(12):
+#         raise ValueError('must contain all twelve pitch classes.')
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def pitch_classes(self):
-      '''Read-only tuple of pitch-classes in row.'''
-      return tuple(self._pitch_classes)
+#   @property
+#   def pitch_classes(self):
+#      '''Read-only tuple of pitch-classes in row.'''
+#      return tuple(self._pitch_classes)
 
    ## PUBLIC METHODS ##
 
