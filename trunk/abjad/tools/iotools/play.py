@@ -34,7 +34,7 @@ def play(expr):
    _write_preamble(outfile, None)
    outfile.write(_wrap_format_in_score_block(expr.format, midi=True))
    outfile.close( )
-   _run_lilypond(name)
+   _run_lilypond(name, _read_config_file( )['lilypond_path'])
    if os.name == 'nt':
       extension = 'mid'
    else:

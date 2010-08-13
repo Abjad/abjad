@@ -41,7 +41,7 @@ def redo(target = -1, lily_time = 10):
 
    ## render
    start_time = time.time( )
-   _run_lilypond(target_ly)
+   _run_lilypond(target_ly, _read_config_file( )['lilypond_path'])
    stop_time = time.time( )
    actual_lily_time = int(stop_time - start_time)
 

@@ -52,7 +52,7 @@ def _log_render_lilypond_input(expr, template = None,
 
    ## render
    start_time = time.time( )
-   _run_lilypond(name)
+   _run_lilypond(name, _read_config_file( )['lilypond_path'])
    stop_time = time.time( )
    actual_lily_time = int(stop_time - start_time)
 

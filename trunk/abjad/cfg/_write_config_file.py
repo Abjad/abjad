@@ -23,6 +23,9 @@ def _write_config_file(path):
    f.write("# Live debugging. Set for live debugging during development.\n")  
    f.write("DEBUG = False\n\n")
 
+   f.write("# Lilypond executable path.  Set to override dynamic lookup.\n")
+   f.write("lilypond_path = ''\n\n")
+
    f.write("# Set to the one directory you wish all Abjad generate files\n")
    f.write("# (such as PDFs, LilyPond, MIDI or log files) to be saved.\n") 
    f.write("abjad_output = '%s'\n\n" % \

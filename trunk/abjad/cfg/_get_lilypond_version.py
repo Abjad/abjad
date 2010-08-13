@@ -1,3 +1,4 @@
+from abjad.cfg._read_config_file import _read_config_file
 import os
 import subprocess
 
@@ -12,7 +13,9 @@ def _get_lilypond_version( ):
       if lilypond == '':
          raise SystemError('LilyPond not found on your Windowz box.')
    else:
-      lilypond = 'lilypond'
+      lilypond = _read_config_file( )['lilypond_path']
+      if not lilypond:
+         lilypond = 'lilypond'
 
    command = lilypond + ' --version'
    proc = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
