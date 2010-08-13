@@ -113,7 +113,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
       result.duration.target = parent_multiplier * result.duration.contents
    elif result.__class__.__name__ == 'RigidMeasure':
       new_duration = parent_multiplier * result.duration.contents
-      result.meter.forced = Meter(new_duration._n, new_duration._d)
+      result.meter.forced = Meter(new_duration.numerator, new_duration.denominator)
 
    # new: rewrite result denominator, if available
    if parent_denominator is not None:

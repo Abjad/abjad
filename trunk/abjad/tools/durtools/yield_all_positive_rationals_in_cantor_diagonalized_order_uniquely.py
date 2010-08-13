@@ -44,5 +44,5 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( ):
    while True:
       integer_pair = generator.next( )
       rational = Rational(*integer_pair)
-      if (rational._n, rational._d) == integer_pair:
+      if (rational.numerator, rational.denominator) == integer_pair:
          yield rational 

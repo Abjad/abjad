@@ -29,5 +29,5 @@ class SchemeMoment(_Abjad, _Immutable):
    @property
    def format(self):
       '''LilyPond input representation of moment.'''
-      numerator, denominator = self.duration._n, self.duration._d
+      numerator, denominator = self.duration.numerator, self.duration.denominator
       return '#(ly:make-moment %s %s)' % (numerator, denominator)

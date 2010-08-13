@@ -3,4 +3,3 @@ from abjad.tools.formattools import format_input_lines_as_regression_test as reg
 from abjad.tools.pitchtools import set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr as chromaticize
 from abjad.tools.pitchtools import set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr as diatonicize
 from abjad.tools.tonalitytools import make_first_n_notes_in_ascending_diatonic_scale as scale
-

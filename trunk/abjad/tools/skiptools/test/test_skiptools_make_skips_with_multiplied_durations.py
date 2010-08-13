@@ -3,8 +3,9 @@ from abjad import *
 
 def test_skiptools_make_skips_with_multiplied_durations_01( ):
 
-   staff = Staff(skiptools.make_skips_with_multiplied_durations(
-      Rational(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)]))
+   durations = [(1, 2), (1, 3), (1, 4), (1, 5)]
+   durations = [Rational(*x) for x in durations]
+   staff = Staff(skiptools.make_skips_with_multiplied_durations(Rational(1, 4), durations))
 
    r'''
    \new Staff {

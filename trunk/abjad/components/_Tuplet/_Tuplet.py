@@ -73,7 +73,7 @@ class _Tuplet(Container):
       '''Tuplet multiplier formatted with colon as ratio.'''
       multiplier = self.duration.multiplier
       if multiplier is not None:
-         return '%s:%s' % (multiplier._d, multiplier._n)
+         return '%s:%s' % (multiplier.denominator, multiplier.numerator)
       else:
          return None
 

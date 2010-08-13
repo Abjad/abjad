@@ -30,7 +30,8 @@ class _FixedDurationTupletDurationInterface(_TupletDurationInterface):
             rational = Rational(expr)
          elif isinstance(expr, tuple):
             rational = Rational(*expr)
-         elif isinstance(expr, Rational):
+         #elif isinstance(expr, Rational):
+         elif hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
             rational = Rational(expr)
          else:
             raise ValueError('Can not set tuplet rational from %s.' % 

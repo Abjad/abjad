@@ -22,8 +22,11 @@ def test_Rational___init____03( ):
 
 
 def test_Rational___init____04( ):
-   '''Rational can NOT initialize with zero arguments.'''
-   assert py.test.raises(TypeError, 'Rational( )')
+   #'''Rational can NOT initialize with zero arguments.'''
+   #assert py.test.raises(TypeError, 'Rational( )')
+   '''Rational with zero arguments initializes to zero.'''
+   r = Rational( )
+   assert r == Rational(0)
 
 
 def test_Rational___init____05( ):
@@ -37,8 +40,12 @@ def test_Rational___init____06( ):
 
 
 def test_Rational___init____07( ):
-   '''Rational can initialize from integer pair.'''
+   #'''Rational can initialize from integer pair.'''
+   '''Rational can NOT initialize from integer pair.'''
 
-   assert Rational((1, 2)) == Rational(1, 2)
-   assert Rational((-1, 2)) == Rational(-1, 2)
-   assert Rational((1, -2)) == Rational(-1, 2)
+   #assert Rational((1, 2)) == Rational(1, 2)
+   #assert Rational((-1, 2)) == Rational(-1, 2)
+   #assert Rational((1, -2)) == Rational(-1, 2)
+   assert py.test.raises(TypeError, 'Rational((1, 2))')
+   assert py.test.raises(TypeError, 'Rational((-1, 2))')
+   assert py.test.raises(TypeError, 'Rational((1, -2))')

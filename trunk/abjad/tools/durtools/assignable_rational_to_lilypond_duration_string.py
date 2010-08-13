@@ -29,7 +29,7 @@ def assignable_rational_to_lilypond_duration_string(rational):
 
    undotted_rational = rational_to_equal_or_lesser_binary_rational(rational)
    if undotted_rational <= 1:
-      undotted_duration_string = str(undotted_rational._d)
+      undotted_duration_string = str(undotted_rational.denominator)
    elif undotted_rational == Rational(2, 1):
       undotted_duration_string = r'\breve'
    elif undotted_rational == Rational(4, 1):

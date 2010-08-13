@@ -25,14 +25,14 @@ def multiply_duration_pair_and_reduce_factors(pair, multiplier):
    assert isinstance(multiplier, Rational)
 
    pair_numerator_factors = mathtools.factors(pair[0])   
-   multiplier_denominator_factors = mathtools.factors(multiplier._d)
+   multiplier_denominator_factors = mathtools.factors(multiplier.denominator)
    for factor in multiplier_denominator_factors[:]:
       if factor in pair_numerator_factors:
          pair_numerator_factors.remove(factor)
          multiplier_denominator_factors.remove(factor)
    
    pair_denominator_factors = mathtools.factors(pair[1])
-   multiplier_numerator_factors = mathtools.factors(multiplier._n)
+   multiplier_numerator_factors = mathtools.factors(multiplier.numerator)
    for factor in multiplier_numerator_factors[:]:
       if factor in pair_denominator_factors:
          pair_denominator_factors.remove(factor)

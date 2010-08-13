@@ -11,7 +11,7 @@ def rational_to_flag_count(rational):
       3
    '''
 
-   flag_count = max(-int(math.floor(math.log(float(rational._n) /
-      rational._d, 2))) - 2, 0)
+   flag_count = max(-int(math.floor(math.log(float(rational.numerator) /
+      rational.denominator, 2))) - 2, 0)
 
    return flag_count

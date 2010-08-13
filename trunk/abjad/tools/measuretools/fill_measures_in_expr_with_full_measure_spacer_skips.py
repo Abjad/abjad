@@ -15,6 +15,7 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
             meter = forced_meter
          else:
             meter = measure.meter.effective
-         skip.duration.multiplier = meter.duration * ~meter.multiplier
+         #skip.duration.multiplier = meter.duration * ~meter.multiplier
+         skip.duration.multiplier = meter.duration / meter.multiplier
          measure[:] = [skip]
          measure.spanners._detach( )

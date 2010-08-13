@@ -26,4 +26,4 @@ def set_container_multiplier(container, multiplier):
       container.duration.multiplier = multiplier
    elif container.__class__.__name__ == 'RigidMeasure':
       new_duration = multiplier * container.duration.contents
-      container.meter.forced = Meter(new_duration._n, new_duration._d)
+      container.meter.forced = Meter(new_duration.numerator, new_duration.denominator)

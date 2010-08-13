@@ -23,4 +23,4 @@ def multiply_duration_pair(pair, multiplier):
    assert isinstance(pair, tuple)
    assert isinstance(multiplier, Rational)
 
-   return pair[0] * multiplier._n, pair[1] * multiplier._d
+   return pair[0] * multiplier.numerator, pair[1] * multiplier.denominator

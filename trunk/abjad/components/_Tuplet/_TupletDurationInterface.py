@@ -1,5 +1,5 @@
-from abjad.components.Container._MultipliedContainerDurationInterface import \
-   _MultipliedContainerDurationInterface
+from abjad.core import Rational
+from abjad.components.Container._MultipliedContainerDurationInterface import _MultipliedContainerDurationInterface
 from abjad.tools import mathtools
 import types
 
@@ -22,7 +22,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       '''True when multiplier numerator is power of two,
       otherwise False.'''
       if self.multiplier:
-         return mathtools.is_power_of_two(self.multiplier._n)
+         return mathtools.is_power_of_two(self.multiplier.numerator)
       else:
          return True
    
@@ -30,10 +30,13 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    def _multiplier_fraction_string(self):
       from abjad.tools import durtools
       if self.preferred_denominator is not None:
+         #d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+         #   ~self.multiplier, self.preferred_denominator)
+         inverse_multiplier = Rational(self.multiplier.denominator, self.multiplier.numerator)
          d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
-            ~self.multiplier, self.preferred_denominator)
+            inverse_multiplier, self.preferred_denominator)
       else:
-         n, d = self.multiplier._n, self.multiplier._d
+         n, d = self.multiplier.numerator, self.multiplier.denominator
       return '%s/%s' % (n, d)
 
    @property

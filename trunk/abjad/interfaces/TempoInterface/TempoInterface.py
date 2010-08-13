@@ -74,8 +74,8 @@ class TempoInterface(_Observer, _GrobHandler,
       result = [ ]
       tempo_wholes_per_minute = self.tempo_wholes_per_minute
       if tempo_wholes_per_minute is not None:
-         numerator = tempo_wholes_per_minute._n
-         denominator = tempo_wholes_per_minute._d
+         numerator = tempo_wholes_per_minute.numerator
+         denominator = tempo_wholes_per_minute.denominator
          if isinstance(self._client, _Context):
             setting = 'tempoWholesPerMinute = '
          else:

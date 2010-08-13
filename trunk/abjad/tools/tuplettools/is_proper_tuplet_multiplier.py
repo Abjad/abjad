@@ -38,8 +38,8 @@ def is_proper_tuplet_multiplier(multiplier):
       ``tuplettools.is_proper_tuplet_multiplier( )``.
    '''
 
-   if not isinstance(multiplier, Rational):
-      raise TypeError('multiplier must be rational.')
+   #if not isinstance(multiplier, Rational):
+   #   raise TypeError('must be rational.')
 
    if Rational(1, 2) < multiplier < Rational(2):
       return True   

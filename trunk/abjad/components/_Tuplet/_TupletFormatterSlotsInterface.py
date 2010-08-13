@@ -1,5 +1,4 @@
-from abjad.components.Container._ContainerFormatterSlotsInterface import \
-   _ContainerFormatterSlotsInterface
+from abjad.components.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
 from abjad.tools import durtools
 
 
@@ -163,7 +162,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       if tuplet.duration.multiplier:
          if tuplet.invisible:
             multiplier = tuplet.duration.multiplier
-            n, d = multiplier._n, multiplier._d
+            n, d = multiplier.numerator, multiplier.denominator
             contributor = (tuplet, 'invisible')
             contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
             result.append([contributor, contributions])

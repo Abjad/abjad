@@ -28,4 +28,4 @@ def rational_to_fraction_string(rational):
    if not isinstance(rational, Rational):
       raise TypeError('must be rational.')
 
-   return '%s/%s' % (rational._n, rational._d)
+   return '%s/%s' % (rational.numerator, rational.denominator)

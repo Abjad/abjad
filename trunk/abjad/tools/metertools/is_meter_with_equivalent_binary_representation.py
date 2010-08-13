@@ -16,4 +16,4 @@ def is_meter_with_equivalent_binary_representation(meter):
    meter_as_rational = Rational(meter.numerator, meter.denominator)
 
    # return True if reduced meter denominator is power of two
-   return mathtools.is_power_of_two(meter_as_rational._d)
+   return mathtools.is_power_of_two(meter_as_rational.denominator)

@@ -127,7 +127,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    t = stafftools.make_rhythmic_sketch_staff(notes)
 
    meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
-   meters = [Rational(meter) for meter in meters]
+   meters = [Rational(*meter) for meter in meters]
 
    componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t.leaves, meters, tie_after=True)
 

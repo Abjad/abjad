@@ -62,7 +62,7 @@ def get_likely_multiplier_of_components(components):
    for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(components):
       if tietools.is_tie_chain(expr):
          chain_duration = tietools.get_preprolated_tie_chain_duration(expr)   
-         chain_duration_numerators.append(chain_duration._n)
+         chain_duration_numerators.append(chain_duration.numerator)
        
    if len(listtools.unique(chain_duration_numerators)) == 1:
       numerator = chain_duration_numerators[0]

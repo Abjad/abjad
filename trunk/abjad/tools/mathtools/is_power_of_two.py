@@ -37,6 +37,6 @@ def is_power_of_two(expr):
    if isinstance(expr, (int, long)):
       return not bool(expr & (expr - 1))
    elif isinstance(expr, Rational):
-      return is_power_of_two(expr._n * expr._d)
+      return is_power_of_two(expr.numerator * expr.denominator)
    else:
       return False

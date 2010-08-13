@@ -47,6 +47,6 @@ def is_assignable_rational(duration):
    '''
 
    duration = Rational(duration)
-   return mathtools.is_power_of_two(duration._d) and \
+   return mathtools.is_power_of_two(duration.denominator) and \
       (0 < duration < 16) and \
-      mathtools.is_assignable_integer(duration._n)
+      mathtools.is_assignable_integer(duration.numerator)

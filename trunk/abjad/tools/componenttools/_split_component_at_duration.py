@@ -50,9 +50,8 @@ def _split_component_at_duration(
    ## code that crawls and splits later on will be happier
    if len(measures) == 1:
       measure = measures[0]
-      split_point_in_measure = \
-         global_split_point - measure.offset.prolated.start
-      split_point_denominator = split_point_in_measure._d
+      split_point_in_measure = global_split_point - measure.offset.prolated.start
+      split_point_denominator = split_point_in_measure.denominator
       if measure.duration.nonbinary:
          measure_multiplier = measure.duration.multiplier
          split_point_multiplier = durtools.positive_integer_to_implied_prolation_multipler(

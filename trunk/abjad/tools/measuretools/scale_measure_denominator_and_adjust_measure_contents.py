@@ -1,3 +1,4 @@
+from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.scale_contents_of_measures_in_expr import \
@@ -66,7 +67,10 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
       new_denominator_factor) 
 
    ## inverse scale measure ... but throw away resultant meter
-   scale_contents_of_measures_in_expr(measure, ~new_measure_multiplier)
+   #scale_contents_of_measures_in_expr(measure, ~new_measure_multiplier)
+   numerator, denominator = new_measure_multiplier.numerator, new_measure_multiplier.denominator
+   inverse_measure_multiplier = Rational(denominator, numerator)
+   scale_contents_of_measures_in_expr(measure, inverse_measure_multiplier)
 
    ## assign new meter
    measure.meter.forced = new_meter

@@ -32,9 +32,9 @@ def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
    pair_denominator = pair[1]
    candidate_result_denominator = pair_denominator / multiplier
    
-   if candidate_result_denominator._d == 1:
-      return pair[0], candidate_result_denominator._n
+   if candidate_result_denominator.denominator == 1:
+      return pair[0], candidate_result_denominator.numerator
    else:
-      result_numerator = pair[0] * candidate_result_denominator._d
-      result_denominator = candidate_result_denominator._n
+      result_numerator = pair[0] * candidate_result_denominator.denominator
+      result_denominator = candidate_result_denominator.numerator
       return result_numerator, result_denominator

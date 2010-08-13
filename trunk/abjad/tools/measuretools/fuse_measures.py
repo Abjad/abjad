@@ -94,12 +94,14 @@ def fuse_measures(measures):
       old_denominators.append(effective_meter.denominator)
       new_duration += effective_meter.duration
 
-   new_meter = metertools.duration_and_possible_denominators_to_meter(new_duration, old_denominators)
+   new_meter = metertools.duration_and_possible_denominators_to_meter(
+      new_duration, old_denominators)
 
    music = [ ]
    for measure in measures:
       ## scale before reassignment to prevent tie chain scale drama
-      multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
+      #multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
+      multiplier = measure.meter.effective.multiplier / new_meter.multiplier
       containertools.scale_contents_of_container(measure, multiplier)
       measure_music = measure[:]
       _switch(measure_music, None)

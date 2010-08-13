@@ -39,10 +39,9 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(
    old_meter = measure.meter.effective
    old_pair = (old_meter.numerator, old_meter.denominator)
    old_multiplier = old_meter.multiplier
-   old_multiplier_pair = (old_multiplier._n, old_multiplier._d)
+   old_multiplier_pair = (old_multiplier.numerator, old_multiplier.denominator)
 
-   multiplied_pair = durtools.multiply_duration_pair(
-      old_multiplier_pair, multiplier)
+   multiplied_pair = durtools.multiply_duration_pair(old_multiplier_pair, multiplier)
    reduced_pair = durtools.multiply_duration_pair_and_reduce_factors(
       old_multiplier_pair, multiplier)
 

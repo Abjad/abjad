@@ -35,7 +35,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
       if mathtools.is_power_of_two(multiplier) and 1 <= multiplier:
          old_numerator = measure.meter.effective.numerator
          old_denominator = measure.meter.effective.denominator
-         new_denominator = old_denominator / multiplier._n
+         new_denominator = old_denominator / multiplier.numerator
          new_meter = Meter(old_numerator, new_denominator)
       else:
          old_meter = measure.meter.effective
@@ -43,11 +43,11 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
          old_duration = old_meter.duration
          new_duration = multiplier * old_duration
          new_meter = metertools.duration_and_possible_denominators_to_meter(
-            new_duration, [old_denominator], multiplier._d)
+            new_duration, [old_denominator], multiplier.denominator)
       measure.meter.forced = new_meter
 
       contents_multiplier_denominator = \
-         mathtools.greatest_power_of_two_less_equal(multiplier._d)
+         mathtools.greatest_power_of_two_less_equal(multiplier.denominator)
       contents_multiplier = Rational(
-         multiplier._n, contents_multiplier_denominator)
+         multiplier.numerator, contents_multiplier_denominator)
       containertools.scale_contents_of_container(measure, contents_multiplier)

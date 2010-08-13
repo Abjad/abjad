@@ -42,11 +42,11 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
             return Meter(candidate_pair)
 
    if factor is not None:
-      if factor in mathtools.factors(duration._d):
+      if factor in mathtools.factors(duration.denominator):
          return Meter(duration)
       else:
-         meter_numerator = factor * duration._n
-         meter_denominator = factor * duration._d
+         meter_numerator = factor * duration.numerator
+         meter_denominator = factor * duration.denominator
          return Meter(meter_numerator, meter_denominator)
    else:
       return Meter(duration)

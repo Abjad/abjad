@@ -42,7 +42,7 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, desir
    multiplier = Rational(desired_denominator, d)
    new_numerator = multiplier * n
    new_denominator = multiplier * d
-   if new_numerator._d == 1 and new_denominator._d == 1:
-      return (new_numerator._n, new_denominator._n)
+   if new_numerator.denominator == 1 and new_denominator.denominator == 1:
+      return (new_numerator.numerator, new_denominator.numerator)
    else:
       return (n, d)

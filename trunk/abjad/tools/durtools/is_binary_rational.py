@@ -30,5 +30,5 @@ def is_binary_rational(rational):
    '''
 
    assert isinstance(rational, Rational)
-   exponent = math.log(rational._d, 2)
+   exponent = math.log(rational.denominator, 2)
    return int(exponent) == exponent

@@ -27,4 +27,4 @@ def rational_to_prolation_string(rational):
       2/5     5:2
    '''
 
-   return '%s:%s' % (rational._d, rational._n)
+   return '%s:%s' % (rational.denominator, rational.numerator)

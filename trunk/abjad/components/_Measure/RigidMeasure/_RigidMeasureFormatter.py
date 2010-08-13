@@ -18,8 +18,8 @@ class _RigidMeasureFormatter(_MeasureFormatter):
       client = self._client
       if client.duration.nonbinary:
          result.append("\t\\scaleDurations #'(%s . %s) {" % (
-            client.duration.multiplier._n,
-            client.duration.multiplier._d))
+            client.duration.multiplier.numerator,
+            client.duration.multiplier.denominator))
          result.extend(
             ['\t' + x for x in _MeasureFormatter._contents.fget(self)])
          result.append('\t}')

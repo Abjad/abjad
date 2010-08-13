@@ -48,7 +48,7 @@ class TempoIndication(_Abjad, _Immutable):
    def __add__(self, expr):
       if isinstance(expr, TempoIndication):
          new_quarters_per_minute = self.quarters_per_minute + expr.quarters_per_minute
-         minimum_denominator = min((self.duration._d, expr.duration._d))
+         minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
          new_units_per_minute, new_duration_denominator = \
             durtools.rational_to_duration_pair_with_specified_integer_denominator(
             new_quarters_per_minute / 4, minimum_denominator)
@@ -86,7 +86,7 @@ class TempoIndication(_Abjad, _Immutable):
    def __sub__(self, expr):
       if isinstance(expr, TempoIndication):
          new_quarters_per_minute = self.quarters_per_minute - expr.quarters_per_minute
-         minimum_denominator = min((self.duration._d, expr.duration._d))
+         minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
          new_units_per_minute, new_duration_denominator = \
             durtools.rational_to_duration_pair_with_specified_integer_denominator(
             new_quarters_per_minute / 4, minimum_denominator)

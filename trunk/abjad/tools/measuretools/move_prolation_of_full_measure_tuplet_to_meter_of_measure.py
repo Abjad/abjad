@@ -37,14 +37,15 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
          if isinstance(measure[0], _Tuplet):
             tuplet = measure[0]
             tuplet_multiplier = tuplet.duration.multiplier
-            tuplet_denominator = tuplet_multiplier._d
+            tuplet_denominator = tuplet_multiplier.denominator
             reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
             meter = measure.meter.effective
             meter_rational = Rational(meter.numerator, meter.denominator)
-            numerator = meter_rational._n * reduced_denominator
-            denominator = meter_rational._d * reduced_denominator
+            numerator = meter_rational.numerator * reduced_denominator
+            denominator = meter_rational.denominator * reduced_denominator
             measure.meter.forced = Meter(numerator, denominator)
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
-            componenttools.move_parentage_and_spanners_from_components_to_components([tuplet], tuplet[:])
+            componenttools.move_parentage_and_spanners_from_components_to_components(
+               [tuplet], tuplet[:])
             containertools.scale_contents_of_container(measure, written_adjustment)

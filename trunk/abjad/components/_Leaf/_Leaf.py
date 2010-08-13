@@ -106,4 +106,4 @@ class _Leaf(_Component):
    def signature(self):
       '''Read-only signature of `self`.'''
       return (self.pairs, 
-         (self.duration.written._n, self.duration.written._d))
+         (self.duration.written.numerator, self.duration.written.denominator))

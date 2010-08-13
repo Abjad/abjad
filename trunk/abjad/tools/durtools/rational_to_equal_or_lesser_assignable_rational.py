@@ -51,10 +51,9 @@ def rational_to_equal_or_lesser_assignable_rational(prolated_duration):
 #      return durtools_rational_to_equal_or_lesser_binary_rational(
 #         prolated_duration)
 
-   good_denominator = mathtools.least_power_of_two_greater_equal(
-      prolated_duration._d)
+   good_denominator = mathtools.least_power_of_two_greater_equal(prolated_duration.denominator)
 
-   cur_numerator = prolated_duration._n
+   cur_numerator = prolated_duration.numerator
    candidate = Rational(cur_numerator, good_denominator)
 
    while not is_assignable_rational(candidate):

@@ -49,7 +49,8 @@ class _LeafDurationInterface(_ComponentDurationInterface):
          if expr is None:
             self._multiplier = None
          else:
-            if isinstance(expr, Rational):
+            #if isinstance(expr, Rational):
+            if hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
                rational = expr
             elif isinstance(expr, (int, long)):
                rational = Rational(expr)
@@ -77,7 +78,8 @@ class _LeafDurationInterface(_ComponentDurationInterface):
       def fget(self):
          return self._written
       def fset(self, expr):
-         if isinstance(expr, Rational):
+         #if isinstance(expr, Rational):
+         if hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
             rational = expr
          elif isinstance(expr, (int, long)):
             rational = Rational(expr)
