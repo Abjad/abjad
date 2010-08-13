@@ -14,16 +14,28 @@ class Scale(NamedPitchClassSegment):
    Abjad model of diatonic scale.
    '''
 
-   def __init__(self, *args):
+   #def __init__(self, *args):
+   def __new__(self, *args):
       if len(args) == 1 and isinstance(args[0], KeySignature):
-         self._init_by_key_signature(args[0])
+         #self._init_by_key_signature(args[0])
+         key_signature = args[0]
       elif len(args) == 1 and isinstance(args[0], type(self)):
-         self._init_by_key_signature(args[0].key_signature)
+         #self._init_by_key_signature(args[0].key_signature)
+         key_signature = args[0].key_signature
       elif len(args) == 2:
          key_signature = KeySignature(*args)
-         self._init_by_key_signature(key_signature)
+         #self._init_by_key_signature(key_signature)
       else:
          raise TypeError
+      #self._key_signature = key_signature
+      npcs = [key_signature.tonic]
+      for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
+         named_pitch_class = npcs[-1] + mdi
+         npcs.append(named_pitch_class)
+      #self.extend(npcs)
+      new = tuple.__new__(self, npcs)
+      tuple.__setattr__(new, '_key_signature', key_signature)
+      return new
 
    ## OVERLOADS ##
 
@@ -38,15 +50,15 @@ class Scale(NamedPitchClassSegment):
       mode = self.key_signature.mode.mode_name_string.title( )
       return '%s%s' % (letter, mode)
 
-   ## PRIVATE METHODS ##
-
-   def _init_by_key_signature(self, key_signature):
-      self._key_signature = key_signature
-      npcs = [key_signature.tonic]
-      for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
-         named_pitch_class = npcs[-1] + mdi
-         npcs.append(named_pitch_class)
-      self.extend(npcs)
+#   ## PRIVATE METHODS ##
+#
+#   def _init_by_key_signature(self, key_signature):
+#      self._key_signature = key_signature
+#      npcs = [key_signature.tonic]
+#      for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
+#         named_pitch_class = npcs[-1] + mdi
+#         npcs.append(named_pitch_class)
+#      self.extend(npcs)
 
    ## PUBLIC ATTRIBUTES ##
 

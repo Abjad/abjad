@@ -8,10 +8,14 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
    Ordered collection of harmonic diatonic intervals.
    '''
 
-   def __init__(self, harmonic_diatonic_interval_tokens):
+   #def __init__(self, harmonic_diatonic_interval_tokens):
+   def __new__(self, harmonic_diatonic_interval_tokens):
+      hdis = [ ]
       for token in harmonic_diatonic_interval_tokens:
          hdi = HarmonicDiatonicInterval(token)
-         self.append(hdi)
+         #self.append(hdi)
+         hdis.append(hdi)
+      return tuple.__new__(self, hdis)
 
    ## OVERLOADS ##
 

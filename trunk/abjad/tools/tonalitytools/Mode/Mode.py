@@ -1,8 +1,6 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.MelodicDiatonicInterval import \
-   MelodicDiatonicInterval
-from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import \
-   MelodicDiatonicIntervalSegment
+from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
+from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 
 
 class Mode(object):
@@ -43,7 +41,8 @@ class Mode(object):
    ## PRIVATE METHODS ##
 
    def _init_with_mode_name_string(self, mode_name_string):
-      mdi_segment = MelodicDiatonicIntervalSegment([ ])
+      #mdi_segment = MelodicDiatonicIntervalSegment([ ])
+      mdi_segment = [ ]
       m2 = MelodicDiatonicInterval('minor', 2)
       M2 = MelodicDiatonicInterval('major', 2)
       dorian = [M2, m2, M2, M2, M2, m2, M2]
@@ -64,7 +63,7 @@ class Mode(object):
       else:
          raise ValueError("unknown mode name string '%s'." % mode_name_string)
       self._mode_name_string = mode_name_string
-      self._melodic_diatonic_interval_segment = mdi_segment
+      self._melodic_diatonic_interval_segment = MelodicDiatonicIntervalSegment(mdi_segment)
 
    ## PUBLIC ATTRIBUTES ##
 

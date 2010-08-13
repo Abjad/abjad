@@ -7,7 +7,11 @@ class MelodicChromaticIntervalClassSegment(_IntervalClassSegment):
 
    '''
 
-   def __init__(self, mcic_tokens):
+   #def __init__(self, mcic_tokens):
+   def __new__(self, mcic_tokens):
+      mcics = [ ]
       for mcic_token in mcic_tokens:
          mcic = MelodicChromaticIntervalClass(mcic_token)
-         self.append(mcic)
+         #self.append(mcic)
+         mcics.append(mcic)
+      return tuple.__new__(self, mcics)

@@ -1,4 +1,7 @@
-class _IntervalSegment(list):
+from abjad.tools.pitchtools._Segment import _Segment
+
+
+class _IntervalSegment(_Segment):
    '''.. versionadded:: 1.1.2
 
    Class of abstract ordered collection of interval instances 
@@ -32,4 +35,5 @@ class _IntervalSegment(list):
    ## PUBLIC METHODS ##
 
    def rotate(self, n):
-      self[:] = self[-n:] + self[:-n]
+      #self[:] = self[-n:] + self[:-n]
+      return type(self)(self[-n:] + self[:-n])

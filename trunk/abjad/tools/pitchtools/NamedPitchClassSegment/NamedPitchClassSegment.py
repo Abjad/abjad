@@ -1,3 +1,4 @@
+from abjad.tools.pitchtools._PitchClassSegment import _PitchClassSegment
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
@@ -7,15 +8,17 @@ from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 import copy
 
 
-class NamedPitchClassSegment(list):
+class NamedPitchClassSegment(_PitchClassSegment):
    '''.. versionadded:: 1.1.2
 
    Ordered collection of named pitch-class instances.
    '''
 
-   def __init__(self, named_pitch_class_tokens):
+   #def __init__(self, named_pitch_class_tokens):
+   def __new__(self, named_pitch_class_tokens):
       npcs = [NamedPitchClass(x) for x in named_pitch_class_tokens]
-      self.extend(npcs)
+      #self.extend(npcs)
+      return tuple.__new__(self, npcs)
 
    ## OVERLOADS ##
 

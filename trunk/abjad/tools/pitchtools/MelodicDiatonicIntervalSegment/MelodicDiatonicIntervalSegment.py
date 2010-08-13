@@ -8,10 +8,14 @@ class MelodicDiatonicIntervalSegment(_IntervalSegment):
    Ordered collection of melodic diatonic intervals.
    '''
 
-   def __init__(self, melodic_diatonic_interval_tokens):
+   #def __init__(self, melodic_diatonic_interval_tokens):
+   def __new__(self, melodic_diatonic_interval_tokens):
+      mdis = [ ]
       for token in melodic_diatonic_interval_tokens:
          mdi = MelodicDiatonicInterval(token)
-         self.append(mdi)
+         #self.append(mdi)
+         mdis.append(mdi)
+      return tuple.__new__(self, mdis)
 
    ## OVERLOADS ##
 

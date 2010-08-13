@@ -1,17 +1,20 @@
+from abjad.tools.pitchtools._PitchClassSegment import _PitchClassSegment
 from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
 from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 import copy
 
 
-class NumericPitchClassSegment(list):
+class NumericPitchClassSegment(_PitchClassSegment):
    '''.. versionadded:: 1.1.2
 
    Ordered collection of pitch class instances.
    '''
 
-   def __init__(self, pitch_class_tokens):
+   #def __init__(self, pitch_class_tokens):
+   def __new__(self, pitch_class_tokens):
       pitch_classes = [NumericPitchClass(x) for x in pitch_class_tokens]
-      self.extend(pitch_classes)
+      #self.extend(pitch_classes)
+      return tuple.__new__(self, pitch_classes)
 
    ## OVERLOADS ##
 

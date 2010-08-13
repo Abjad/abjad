@@ -9,10 +9,14 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
 
    '''
 
-   def __init__(self, mci_tokens):
+   #def __init__(self, mci_tokens):
+   def __new__(self, mci_tokens):
+      mcis = [ ]
       for token in mci_tokens:
          mci = MelodicChromaticInterval(token)
-         self.append(mci)
+         #self.append(mci)
+         mcis.append(mci)
+      return tuple.__new__(self, mcis)
 
    ## OVERLOADS ##
 

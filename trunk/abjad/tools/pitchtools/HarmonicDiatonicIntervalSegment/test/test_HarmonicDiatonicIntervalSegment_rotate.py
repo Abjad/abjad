@@ -10,7 +10,7 @@ def test_HarmonicDiatonicIntervalSegment_rotate_01( ):
       pitchtools.HarmonicDiatonicInterval('minor', 3),
       pitchtools.HarmonicDiatonicInterval('major', 3)])
 
-   hdig.rotate(1)
+   rotated = hdig.rotate(1)
 
    new = pitchtools.HarmonicDiatonicIntervalSegment([
       pitchtools.HarmonicDiatonicInterval('major', 3),
@@ -18,7 +18,7 @@ def test_HarmonicDiatonicIntervalSegment_rotate_01( ):
       pitchtools.HarmonicDiatonicInterval('major', 2),
       pitchtools.HarmonicDiatonicInterval('minor', 3)])
 
-   assert hdig == new
+   assert rotated == new
 
 
 def test_HarmonicDiatonicIntervalSegment_rotate_02( ):
@@ -30,7 +30,7 @@ def test_HarmonicDiatonicIntervalSegment_rotate_02( ):
       pitchtools.HarmonicDiatonicInterval('minor', 3),
       pitchtools.HarmonicDiatonicInterval('major', 3)])
 
-   hdig.rotate(-1)
+   rotated = hdig.rotate(-1)
 
    new = pitchtools.HarmonicDiatonicIntervalSegment([
       pitchtools.HarmonicDiatonicInterval('major', 2),
@@ -38,4 +38,4 @@ def test_HarmonicDiatonicIntervalSegment_rotate_02( ):
       pitchtools.HarmonicDiatonicInterval('major', 3),
       pitchtools.HarmonicDiatonicInterval('minor', 2)])
 
-   assert hdig == new
+   assert rotated == new

@@ -7,7 +7,11 @@ class HarmonicChromaticIntervalSegment(_IntervalSegment):
 
    '''
 
-   def __init__(self, hci_tokens):
+   #def __init__(self, hci_tokens):
+   def __new__(self, hci_tokens):
+      hcis = [ ]
       for token in hci_tokens:
          hci = HarmonicChromaticInterval(token)
-         self.append(hci)
+         #self.append(hci)
+         hcis.append(hci)
+      return tuple.__new__(self, hcis)

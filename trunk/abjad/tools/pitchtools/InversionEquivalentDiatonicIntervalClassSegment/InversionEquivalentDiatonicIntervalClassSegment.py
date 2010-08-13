@@ -11,10 +11,14 @@ class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):
       InversionEquivalentDiatonicIntervalClassSegment(M2, M2, m2, m2)
    '''
 
-   def __init__(self, diatonic_interval_class_tokens):
+   #def __init__(self, diatonic_interval_class_tokens):
+   def __new__(self, diatonic_interval_class_tokens):
+      dics = [ ]
       for token in diatonic_interval_class_tokens:
          dic = InversionEquivalentDiatonicIntervalClass(token)
-         self.append(dic)
+         #self.append(dic)
+         dics.append(dic)
+      return tuple.__new__(self, dics)
 
    ## OVERLOADS ##
 

@@ -1,5 +1,6 @@
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
+from abjad.tools.pitchtools._PitchSegment import _PitchSegment
+from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
 from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
 from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
@@ -13,7 +14,7 @@ from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
 from abjad.tools.pitchtools.NamedPitchVector import NamedPitchVector
 
 
-class NamedPitchSegment(list):
+class NamedPitchSegment(_PitchSegment):
    '''.. versionadded:: 1.1.2
 
    Ordered collection of pitch instances. ::
@@ -23,9 +24,11 @@ class NamedPitchSegment(list):
       NamedPitchSegment(bf, bqf, fs', g', bqf, g')
    '''
 
-   def __init__(self, pitch_tokens):
+   #def __init__(self, pitch_tokens):
+   def __new__(self, pitch_tokens):
       pitches = [NamedPitch(x) for x in pitch_tokens]
-      self.extend(pitches)
+      #self.extend(pitches)
+      return tuple.__new__(self, pitches)
 
    ## OVERLOADS ##
 
