@@ -16,7 +16,7 @@ def _get_public_abjad_names( ):
    ##       in the __init__.py of the directory.
    ##       The enumeration below can then be removed.
    forbidden_directories = ['.svn', 'book', 'cfg', 'checks', 'demos',
-      'docs', 'scm', 'scr', 'test', ]
+      'docs', 'optimization', 'scm', 'scr', 'test', ]
 
    for name in _get_all_abjad_names( ):
       for forbidden_directory in forbidden_directories:

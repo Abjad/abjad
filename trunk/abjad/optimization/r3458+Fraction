@@ -1,0 +1,64 @@
+r3458+Fraction:
+
+#1 timer = timeit.Timer('Note(0, (1, 4))', 'from __main__ import Note')
+   print timer.timeit(10)
+   print timer.timeit(100)
+   print timer.timeit(1000)
+   r3458:             r3458+Fraction:
+   0.0534009933472    0.0542531013489
+   0.544013023376     0.549149036407
+   5.43860316277      5.4941380024
+   ## Fraction no faster on Note creation
+
+
+#2 note = Note(0, (1, 4))
+   timer = timeit.Timer('note.format', 'from __main__ import note')
+   print timer.timeit(10)
+   print timer.timeit(100)
+   print timer.timeit(1000)
+   r3458:
+   0.0200870037079
+   0.195698022842
+   1.93302893639
+   r3458+Fraction:
+   0.0206418037415
+   0.199695110321
+   1.99831104279
+   ## Fraction no faster on Note format
+
+
+#3 iotools.profile_expr('Note(0, (1, 4))')
+   2998 function calls (2971 primitive calls) in 0.011 CPU seconds
+   r3458+Fraction:
+   3086 function calls (3059 primitive calls) in 0.012 CPU seconds
+
+#4 note = Note(0, (1, 4))
+   iotools.profile_expr('note.format')
+   2336 function calls (1926 primitive calls) in 0.004 CPU seconds
+   r3458+Fraction:
+   2410 function calls (1993 primitive calls) in 0.004 CPU seconds
+
+#6 notes = [Note(0, (1, 4)) for x in range(1)]
+   Partition of a set of 921 objects. Total size = 91028 bytes.
+   Partition of a set of 907 objects. Total size = 89052 bytes. (with opt)
+
+   notes = [Note(0, (1, 4)) for x in range(10)]
+   Partition of a set of 8185 objects. Total size = 854628 bytes.
+   Partition of a set of 7999 objects. Total size = 830012 bytes. (with opt)
+
+   notes = [Note(0, (1, 4)) for x in range(100)]
+   Partition of a set of 80815 objects. Total size = 8489860 bytes.
+   Partition of a set of 78919 objects. Total size = 8239524 bytes. (with opt)
+
+   notes = [Note(0, (1, 4)) for x in range(1000)]
+   Partition of a set of 807116 objects. Total size = 84842352 bytes.
+   Partition of a set of 788120 objects. Total size = 82334816 bytes. (with opt)
+
+## CONCLUSION:
+## Using built-in Python 2.6 Fraction in place of Abjad Rational
+## isn't any faster but does save a small but measurable amount of memory.
+## Memory usage goes from 84.8M (r3458) to 82.3M (r3458 + Fraction optimization).
+## This represents a memory savings of about 9.7 %.
+
+
+(TEST NODE OS 10.6.4 2-core Intel iMac 1.85 GHz / 1.5 GB RAM.)

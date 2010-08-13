@@ -30,6 +30,9 @@ from abjad.tools.iotools import play
 from abjad.tools.iotools import show
 from abjad.tools import *
 import macros
+from fractions import Fraction
+Rational = Fraction
+del Fraction
 
 import sys
 sys.ps1 = 'abjad> '

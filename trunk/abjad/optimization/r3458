@@ -1,0 +1,67 @@
+r3458:
+
+#1 timer = timeit.Timer('Note(0, (1, 4))', 'from __main__ import Note')
+   print timer.timeit(10)
+   print timer.timeit(100)
+   print timer.timeit(1000)
+   0.0534009933472
+   0.544013023376
+   5.43860316277
+
+#2 note = Note(0, (1, 4))
+   timer = timeit.Timer('note.format', 'from __main__ import note')
+   print timer.timeit(10)
+   print timer.timeit(100)
+   print timer.timeit(1000)
+   0.0200870037079
+   0.195698022842
+   1.93302893639
+
+#3 iotools.profile_expr('Note(0, (1, 4))')
+   2998 function calls (2971 primitive calls) in 0.011 CPU seconds
+
+#4 note = Note(0, (1, 4))
+   iotools.profile_expr('note.format')
+   2336 function calls (1926 primitive calls) in 0.004 CPU seconds
+
+#5 class Foo(object): pass
+   iotools.profile_expr('Foo( )')
+   2 function calls in 0.000 CPU seconds
+   ## conclusion: toy classes are extremely thin
+   ## conclusion: the heaviness of custom classes matters
+
+#6 notes = [Note(0, (1, 4)) for x in range(1)]
+   Partition of a set of 921 objects. Total size = 91028 bytes.
+   notes = [Note(0, (1, 4)) for x in range(10)]
+   Partition of a set of 8185 objects. Total size = 854628 bytes.
+   notes = [Note(0, (1, 4)) for x in range(100)]
+   Partition of a set of 80815 objects. Total size = 8489860 bytes.
+   notes = [Note(0, (1, 4)) for x in range(1000)]
+   Partition of a set of 807116 objects. Total size = 84842352 bytes.
+   ## conclusion: 85k memory per Note object
+   ## conclusion: way too much memory usage for Note objects
+
+#7 rationals = [Rational(17, 16) for x in range(1)]
+   Partition of a set of 4 objects. Total size = 600 bytes.
+   rationals = [Rational(17, 16) for x in range(10)]
+   Partition of a set of 22 objects. Total size = 2180 bytes.
+   rationals = [Rational(17, 16) for x in range(100)]
+   Partition of a set of 202 objects. Total size = 18012 bytes.
+   rationals = [Rational(17, 16) for x in range(1000)]
+   Partition of a set of 2003 objects. Total size = 176504 bytes.
+   ## conclusion: linear
+
+#8 fractions = [Fraction(17, 16) for x in range(1)]
+   Partition of a set of 8 objects. Total size = 676 bytes.
+   fractions = [Fraction(17, 16) for x in range(10)]
+   Partition of a set of 17 objects. Total size = 1068 bytes.
+   fractions = [Fraction(17, 16) for x in range(100)]
+   Partition of a set of 107 objects. Total size = 5020 bytes.
+   fractions = [Fraction(17, 16) for x in range(1000)]
+   Partition of a set of 1008 objects. Total size = 44712 bytes.
+   ## conclusion:
+   ## 1000 Rationals: 176k memory
+   ## 1000 Fractions:  44k memory
+
+
+TEST NODE: r3458 on OS 10.6.4 2-core Intel iMac 1.85 GHz / 1.5 GB RAM

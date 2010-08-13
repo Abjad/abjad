@@ -68,6 +68,6 @@ def _get_title_type_members(source_full_path):
 
    ## or else contains only non-documenting helper functions
    else:
-      raise ValueError('unkonwn type of module content.')
+      raise ValueError('unkonwn type of module content: %s.' % source_full_path)
 
    return page_title, auto_type, members
