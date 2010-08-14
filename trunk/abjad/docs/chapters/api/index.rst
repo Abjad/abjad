@@ -22,6 +22,7 @@ Classes
    components/StaffGroup/GrandStaff
    core/GrobNamespace/GrobNamespace
    marks/KeySignature/KeySignature
+   core/LilyPondContextNamespace/LilyPondContextNamespace
    core/LilyPondContextSettingNamespace/LilyPondContextSettingNamespace
    marks/Markup/Markup
    marks/Meter/Meter

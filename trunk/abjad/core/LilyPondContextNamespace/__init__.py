@@ -1,0 +1,1 @@
+from LilyPondContextNamespace import LilyPondContextNamespace

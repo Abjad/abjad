@@ -5,7 +5,8 @@ def test_BarNumberInterface_grob_handling_01( ):
    '''Handle the LilyPond BarNumber grob.'''
 
    t = Score([Staff(macros.scale(4))])
-   t.bar_number.color = 'red'
+   #t.bar_number.color = 'red'
+   t.override.bar_number.color = 'red'
 
    r'''
    \new Score \with {

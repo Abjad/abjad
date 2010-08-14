@@ -4,8 +4,8 @@ from abjad import *
 def test_BarNumberInterface_break_visibility_01( ):
 
    score = Score([Staff(macros.scale(8))])
-   score.bar_number.break_visibility = schemetools.SchemeFunction(
-      'end-of-line-invisible')
+   #score.bar_number.break_visibility = schemetools.SchemeFunction('end-of-line-invisible')
+   score.override.bar_number.break_visibility = schemetools.SchemeFunction('end-of-line-invisible')
 
    r'''
    \new Score \with {

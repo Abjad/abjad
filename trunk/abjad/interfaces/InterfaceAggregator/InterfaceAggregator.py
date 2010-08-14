@@ -137,16 +137,26 @@ class InterfaceAggregator(_Interface):
       for contributor in self.contributors:
          result.extend(getattr(contributor, 'settings', [ ]))
       from abjad.components._Leaf import _Leaf
+      from abjad.components._Measure import _Measure
       from abjad.tools.lilyfiletools._format_lilypond_context_setting_inline import \
          _format_lilypond_context_setting_inline
       from abjad.tools.lilyfiletools._format_lilypond_context_setting_in_with_block import \
          _format_lilypond_context_setting_in_with_block
-      if isinstance(self._client, _Leaf):
-         for item in vars(self._client.set).iteritems( ):
-            result.append(_format_lilypond_context_setting_inline(*item))
+      if isinstance(self._client, (_Leaf, _Measure)):
+         for name, value in vars(self._client.set).iteritems( ):
+            ## if we've found a leaf LilyPondContextNamespace
+            if name.startswith('_'):
+               ## parse all the public names in the LilyPondContextNamespace
+               for x, y in vars(value).iteritems( ):
+                  if not x.startswith('_'):
+                     result.append(_format_lilypond_context_setting_inline(x, y, name))
+            ## otherwise we've found a default leaf context setting
+            else:
+               ## parse default context setting
+               result.append(_format_lilypond_context_setting_inline(name, value))
       else:
-         for item in vars(self._client.set).iteritems( ):
-            result.append(_format_lilypond_context_setting_in_with_block(*item))
+         for name, value in vars(self._client.set).iteritems( ):
+            result.append(_format_lilypond_context_setting_in_with_block(name, value))
       result.sort( )
       return result
 

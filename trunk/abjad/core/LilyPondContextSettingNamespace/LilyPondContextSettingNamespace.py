@@ -1,3 +1,6 @@
+from abjad.core.LilyPondContextNamespace.LilyPondContextNamespace import LilyPondContextNamespace
+
+
 class LilyPondContextSettingNamespace(object):
    '''.. versionadded:: 1.1.2
 
@@ -17,10 +20,23 @@ class LilyPondContextSettingNamespace(object):
 
    ## OVERLOADS ##
 
-#   def __getattr__(self, name):
-#      if name.startswith('_'):
-#         return vars(self)[name]
-#      vars(self).setdefault(name, value)
+   def __getattr__(self, name):
+      if name.startswith('_'):
+         try:
+            return vars(self)[name]
+         except KeyError:
+            raise AttributeError('%s object has no attribute %s.' % (
+               self.__class__.__name__, name))
+      elif name in type(self)._known_lilypond_contexts:
+         try:
+            return vars(self)['_' + name]
+         except KeyError:
+            context = LilyPondContextNamespace(name)
+            vars(self)['_' + name] = context
+            return context
+      else:
+         return vars(self)[name]
+      #vars(self).setdefault(name, value)
 
    def __repr__(self):
       return '<%s>' % self.__class__.__name__
