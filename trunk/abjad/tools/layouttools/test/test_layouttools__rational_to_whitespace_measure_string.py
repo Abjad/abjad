@@ -2,6 +2,8 @@ from abjad import *
 from abjad.tools.layouttools._rational_to_whitespace_measure_string import \
    _rational_to_whitespace_measure_string as \
    layouttools__rational_to_whitespace_measure_string
+import py
+py.test.skip('skipping until clean way to pass multiline format contributions.')
 
 
 def test_layouttools__rational_to_whitespace_measure_string_01( ):

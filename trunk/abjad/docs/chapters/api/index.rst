@@ -20,6 +20,7 @@ Classes
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
    components/StaffGroup/GrandStaff
+   core/GrobNamespace/GrobNamespace
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
@@ -27,6 +28,7 @@ Classes
    components/_Harmonic/NaturalHarmonic
    components/Note/Note
    components/NoteHead/NoteHead
+   core/OverrideNamespace/OverrideNamespace
    components/StaffGroup/PianoStaff
    core/Rational/Rational
    components/Rest/Rest

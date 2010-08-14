@@ -27,7 +27,7 @@ def test_ArticulationsInterface_04( ):
    t = Note(0, (1, 4))
    t.articulations = ['staccato', 'marcato']
    assert len(t.articulations) == 2
-   assert t.format == "c'4 -\\staccato -\\marcato"
+   assert t.format == "c'4 -\\marcato -\\staccato"
 
 
 def test_ArticulationsInterface_05( ):
@@ -43,7 +43,7 @@ def test_ArticulationsInterface_06( ):
    t = Note(0, (1, 4))
    t.articulations = [('staccato', 'up'), 'marcato']
    assert len(t.articulations) == 2
-   assert t.format == "c'4 ^\\staccato -\\marcato"
+   assert t.format == "c'4 -\\marcato ^\\staccato"
 
 
 def test_ArticulationsInterface_07( ):
@@ -59,7 +59,7 @@ def test_ArticulationsInterface_08( ):
    t = Note(0, (1, 4))
    t.articulations.extend(['staccato', 'marcato'])
    assert len(t.articulations) == 2
-   assert t.format == "c'4 -\\staccato -\\marcato"
+   assert t.format == "c'4 -\\marcato -\\staccato"
 
 
 def test_ArticulationsInterface_09( ):

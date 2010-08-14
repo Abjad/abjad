@@ -10,4 +10,5 @@ from _Initializer import _Initializer
 from _Navigator import _Navigator
 from _Observer import _Observer
 from _Parser import _Parser
+from OverrideNamespace import OverrideNamespace
 from Rational import Rational

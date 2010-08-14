@@ -1,5 +1,6 @@
 from abjad.core import _Abjad
 from abjad.core import _Navigator
+from abjad.core import OverrideNamespace
 from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import AccidentalInterface
@@ -77,6 +78,7 @@ class _Component(_Abjad):
 #      '_vertical_axis_group')
 
    def __init__(self):
+      self._override = OverrideNamespace( )
       self._interfaces = InterfaceAggregator(self)
       self._accidental = AccidentalInterface(self)
       self._articulations = ArticulationInterface(self)
@@ -365,6 +367,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.offset.interface.OffsetInterface`.'''
       return self._offset
+
+   @property
+   def override(self):
+      '''Read-only reference to override namespace.
+      '''
+      return self._override
 
    @property
    def ottava_bracket(self):

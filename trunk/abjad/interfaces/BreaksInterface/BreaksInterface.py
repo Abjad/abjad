@@ -93,6 +93,8 @@ class BreaksInterface(_Interface, _FormatContributor):
             temp.append('(alignment-offsets . (%s))' % value_vector)
          temp_str = ' '.join(temp)
          result.append("#'(%s)" % temp_str)
+         result = '\n\t'.join(result)
+         result = [result]
       return result
 
    ## PUBLIC ATTRIBUTES ##
@@ -161,7 +163,9 @@ class BreaksInterface(_Interface, _FormatContributor):
             _rational_to_whitespace_measure_string as \
             layout__rational_to_whitespace_measure_string
          string = layout__rational_to_whitespace_measure_string(whitespace)
-         result.extend(string.split('\n'))
+         ## TODO: come up with a clean way of passing multi-line overrides like below
+         #result.extend(string.split('\n'))
+         result.append(string)
       if self.eol_adjustment:
          result.append(r'\adjustEOLMeterBarlineExtraOffset')
       if self.line == True:

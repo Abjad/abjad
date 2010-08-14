@@ -21,6 +21,7 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_after', [ ]))
+      result.sort( )
       return result
 
    @property
@@ -29,6 +30,7 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_before', [ ]))
+      result.sort( )
       return result
 
    @property
@@ -37,22 +39,8 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_closing', [ ]))
+      result.sort( )
       return result
-
-#   @property
-#   def contributors(self):
-#      '''Return alphabetized list of interface format contributors.
-#         Does not include spanner format contributors.'''
-#      from abjad.core import _FormatContributor
-#      result = [ ]
-#      client = self._client
-#      for value in vars(client).values( ):
-#         if isinstance(value, _Interface) and \
-#            isinstance(value, _FormatContributor):
-#            result.append(value)
-#      result.sort(lambda x, y: 
-#         cmp(x.__class__.__name__, y.__class__.__name__))
-#      return result
 
    @property
    def contributors(self):
@@ -85,62 +73,78 @@ class InterfaceAggregator(_Interface):
    
    @property
    def left(self):
-      '''Ordered list of format-time contributions for left format slot.'''
+      '''Ordered list of format-time contributions for left format slot.
+      '''
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_left', [ ]))
+      result.sort( )
       return result
 
    @property
    def opening(self):
-      '''Ordered list of format-time contributions for opening format slot.'''
+      '''Ordered list of format-time contributions for opening format slot.
+      '''
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_opening', [ ]))
+      result.sort( )
       return result
 
    ## OPTIMIZATION: Maybe better to derive at attr assignment time. ##
 
    @property
    def overrides(self):
-      '''Ordered data structure of format-time grob overrides.'''
+      '''Ordered data structure of format-time grob overrides.
+      '''
       result = [ ]
       for contributor in self.contributors:
          #print contributor.__repr__( ), getattr(contributor, '_overrides', [ ])
          result.extend(getattr(contributor, '_overrides', [ ]))
+      result.extend(self._client.override._overrides)
+      ## guarantee predictable order of override statements
+      result.sort( )
       return result
 
    ## OPTIMIZATION: Maybe better to derive at attr assignment time. ##
 
    @property
    def reverts(self):
-      '''Ordered data structure of format-time grob reverts.'''
+      '''Ordered data structure of format-time grob reverts.
+      '''
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_reverts', [ ]))
+      ## guarantee predictable order of revert statements
+      result.sort( )
       return result
 
    @property
    def right(self):
-      '''Ordered list of format-time contributions for right format slot.'''
+      '''Ordered list of format-time contributions for right format slot.
+      '''
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_right', [ ]))
+      result.sort( )
       return result
 
    @property
    def settings(self):
-      '''Ordered data structure of format-time context settings.'''
+      '''Ordered data structure of format-time context settings.
+      '''
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, 'settings', [ ]))
+      result.sort( )
       return result
 
    ## PUBLIC METHODS ##
 
    def report(self, output = 'screen'):
       '''Deliver report of format-time contributions.
-         Order by interface, location, contribution.'''
+      Order by interface, location, contribution.
+      '''
       result = ''
       for ((contributor, location), contributions) in self.contributions:
          result += '%s\n' % contributor.__class__.__name__
