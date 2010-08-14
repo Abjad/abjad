@@ -136,6 +136,17 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, 'settings', [ ]))
+      from abjad.components._Leaf import _Leaf
+      from abjad.tools.lilyfiletools._format_lilypond_context_setting_inline import \
+         _format_lilypond_context_setting_inline
+      from abjad.tools.lilyfiletools._format_lilypond_context_setting_in_with_block import \
+         _format_lilypond_context_setting_in_with_block
+      if isinstance(self._client, _Leaf):
+         for item in vars(self._client.set).iteritems( ):
+            result.append(_format_lilypond_context_setting_inline(*item))
+      else:
+         for item in vars(self._client.set).iteritems( ):
+            result.append(_format_lilypond_context_setting_in_with_block(*item))
       result.sort( )
       return result
 

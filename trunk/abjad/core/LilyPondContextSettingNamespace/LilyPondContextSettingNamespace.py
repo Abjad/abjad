@@ -17,8 +17,13 @@ class LilyPondContextSettingNamespace(object):
 
    ## OVERLOADS ##
 
-   def __getattr__(self, name, value):
-      vars(self).setdefault(name, value)
+#   def __getattr__(self, name):
+#      if name.startswith('_'):
+#         return vars(self)[name]
+#      vars(self).setdefault(name, value)
+
+   def __repr__(self):
+      return '<%s>' % self.__class__.__name__
    
    ## PUBLIC PROPERTIES ##
 
