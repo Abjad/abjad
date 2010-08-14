@@ -66,9 +66,11 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
                  c'8
                  d'8
       '''
+      from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
       result = [ ]
       if self.current is not None:
-         formatted_value = self._parser.format_value(self.current)
+         #formatted_value = self._parser.format_value(self.current)
+         formatted_value = _format_lilypond_value(self.current)
          context = getattr(self._client, 'context', None)
          if context is not None:
             result.append(r'currentBarNumber = %s' %

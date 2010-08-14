@@ -2,7 +2,11 @@ from abjad.core._Abjad import _Abjad
 
 
 class _Parser(_Abjad):
-   '''Utility class to format Abjad values as LilyPond-style Scheme.'''
+   '''Utility class to format Abjad values as LilyPond-style Scheme.
+   '''
+
+   def __init__(self):
+      raise NotImplementedError('_Parser is now completely deprecated. Do not use.')
 
    ## PRIVATE METHODS ##
 

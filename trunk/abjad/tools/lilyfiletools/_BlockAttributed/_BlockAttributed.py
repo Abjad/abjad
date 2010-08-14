@@ -1,11 +1,13 @@
-from abjad.core import _Parser
+#from abjad.core import _Parser
 
 
 class _BlockAttributed(object):
-   '''Model of attribute block in LilyPond input file.'''
+   '''Model of attribute block in LilyPond input file.
+   '''
 
    def __init__(self):
-      self._parser = _Parser( )
+      #self._parser = _Parser( )
+      pass
 
    ## OVERLOADS ##
 
@@ -13,8 +15,7 @@ class _BlockAttributed(object):
       if not len(self._user_attributes):
          return '%s( )' % self.__class__.__name__
       else:
-         return '%s(%s)' % (
-            self.__class__.__name__, len(self._user_attributes))
+         return '%s(%s)' % (self.__class__.__name__, len(self._user_attributes))
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -38,11 +39,13 @@ class _BlockAttributed(object):
 
    @property
    def _formatted_user_attributes(self):
+      from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
       result = [ ]
       for key, value in sorted(vars(self).items( )):
          if not key.startswith('_'):
             formatted_key = key.replace('_', '-')
-            formatted_value = self._parser.format_value(value)
+            #formatted_value = self._parser.format_value(value)
+            formatted_value = _format_lilypond_value(value)
             setting = '%s = %s' % (formatted_key, formatted_value)
             result.append(setting)
       return result

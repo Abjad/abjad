@@ -22,16 +22,17 @@ class _NoteHeadFormatInterface(_FormatInterface):
 
    @property
    def _chord_format(self):
+      from abjad.tools.lilyfiletools._format_lilypond_attribute import _format_lilypond_attribute
+      from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
       result = [ ]
-      #for key, value in self.interface._key_value_pairs:
       for key, value in self._client._key_value_pairs:
          if not key.startswith('_'):
             #result.append(r'\tweak %s %s' % (
-            #   self.interface._parser.format_attribute(key),
-            #   self.interface._parser.format_value(value)))
+            #   self._client._parser.format_attribute(key),
+            #   self._client._parser.format_value(value)))
             result.append(r'\tweak %s %s' % (
-               self._client._parser.format_attribute(key),
-               self._client._parser.format_value(value)))
+               _format_lilypond_attribute(key),
+               _format_lilypond_value(value)))
       return result
 
    @property

@@ -46,9 +46,11 @@ class AccidentalInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
       * Derived from `suggest_accidentals`.
       '''
+      from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
       result = [ ]
       if self.suggest_accidentals is not None:
-         formatted_value = self._parser.format_value(self.suggest_accidentals)
+         #formatted_value = self._parser.format_value(self.suggest_accidentals)
+         formatted_value = _format_lilypond_value(self.suggest_accidentals)
          context = getattr(self._client, 'context', None)
          if context is not None:
             result.append(r'suggestAccidentals = %s' % formatted_value)

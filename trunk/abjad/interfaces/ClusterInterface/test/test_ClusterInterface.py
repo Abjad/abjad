@@ -2,8 +2,7 @@ from abjad import *
 
 
 def test_ClusterInterface_01( ):
-   '''
-   Clusters handle grob overrides.
+   '''Clusters handle grob overrides.
    '''
 
    t = Cluster(Note(1, (1, 4)) * 4)
@@ -23,9 +22,8 @@ def test_ClusterInterface_01( ):
    }
    '''
 
-   assert t.format == "\\makeClusters {\n\t\\override ClusterSpanner #'padding = #0.1\n\t\\override ClusterSpanner #'style = #'ramp\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\n\t\\revert ClusterSpanner #'style\n\t\\revert ClusterSpanner #'padding\n}"
+   assert t.format == "\\makeClusters {\n\t\\override ClusterSpanner #'padding = #0.1\n\t\\override ClusterSpanner #'style = #'ramp\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\n\t\\revert ClusterSpanner #'padding\n\t\\revert ClusterSpanner #'style\n}"
 
-   #t.cluster.clear( )
    overridetools.clear_all_overrides_on_grob_handler(t.cluster)
 
    r'''

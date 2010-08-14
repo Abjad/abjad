@@ -1,6 +1,5 @@
-from abjad.core import _Parser
-from abjad.spanners.OverrideSpanner._OverrideSpannerFormatInterface import \
-   _OverrideSpannerFormatInterface
+#from abjad.core import _Parser
+from abjad.spanners.OverrideSpanner._OverrideSpannerFormatInterface import _OverrideSpannerFormatInterface
 from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
 
 
@@ -54,7 +53,7 @@ class OverrideSpanner(_GrobHandlerSpanner):
       else:
          raise ValueError('need 3 or 4 args, not %s.' % len(args))
       self._format = _OverrideSpannerFormatInterface(self)
-      self._parser = _Parser( )
+      #self._parser = _Parser( )
 
    ## OVERLOADS ##
 

@@ -1,5 +1,5 @@
 from abjad.core._FormatContributor import _FormatContributor
-from abjad.core._Parser import _Parser
+#from abjad.core._Parser import _Parser
 
 
 class _GrobHandler(_FormatContributor):
@@ -13,7 +13,7 @@ class _GrobHandler(_FormatContributor):
    def __init__(self, grob):
       _FormatContributor.__init__(self)
       self._grob = grob
-      self._parser = _Parser( )
+      #self._parser = _Parser( )
       self._promotions = { }
 
    ## OVERLOADS ##
@@ -74,31 +74,47 @@ class _GrobHandler(_FormatContributor):
    def _overrides(self):
       r'''Read-only, alphabetized list of LilyPond \override strings 
       to contribute at format time.'''
+      from abjad.tools.lilyfiletools._format_lilypond_attribute import _format_lilypond_attribute
+      from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
 
       result = [ ]
          
-      #for key, value in sorted(vars(self).items( )):
       for key, value in self._key_value_pairs:
          if not key.startswith('_'):
+            #result.append(r'%s\override %s %s = %s' % (
+            #   self._frequency_indicator,
+            #   self._promoted_grob(key),
+            #   self._parser.format_attribute(key),
+            #   self._parser.format_value(value)))
             result.append(r'%s\override %s %s = %s' % (
                self._frequency_indicator,
                self._promoted_grob(key),
-               self._parser.format_attribute(key),
-               self._parser.format_value(value)))
+               _format_lilypond_attribute(key),
+               _format_lilypond_value(value)))
+      ## to ensure predictable (alphabetic) output of output
+      result.sort( )
       return result
 
    @property
    def _reverts(self):
-      r'''Read-only list of LilyPond \revert strings to contribute
-      at format time.'''
+      r'''Read-only list of LilyPond revert strings to contribute
+      at format time.
+      '''
+      from abjad.tools.lilyfiletools._format_lilypond_attribute import _format_lilypond_attribute
 
       result = [ ]
       for key, value in vars(self).items( ):
          if not key.startswith('_'):
+            #result.append(r'%s\revert %s %s' % (
+            #   self._frequency_indicator,
+            #   self._promoted_grob(key),
+            #   self._parser.format_attribute(key)))
             result.append(r'%s\revert %s %s' % (
                self._frequency_indicator,
                self._promoted_grob(key),
-               self._parser.format_attribute(key)))
+               _format_lilypond_attribute(key)))
+      ## to ensure predictable (alphabetic) output of output
+      result.sort( )
       return result
 
    ## PUBLIC ATTRIBUTES ##
