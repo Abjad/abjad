@@ -24,13 +24,14 @@ Classes
    marks/KeySignature/KeySignature
    core/LilyPondContextNamespace/LilyPondContextNamespace
    core/LilyPondContextSettingNamespace/LilyPondContextSettingNamespace
+   core/LilyPondGrobOverrideContextWrapper/LilyPondGrobOverrideContextWrapper
+   core/LilyPondOverrideNamespace/LilyPondOverrideNamespace
    marks/Markup/Markup
    marks/Meter/Meter
    components/Rest/MultiMeasureRest/MultiMeasureRest
    components/_Harmonic/NaturalHarmonic
    components/Note/Note
    components/NoteHead/NoteHead
-   core/OverrideNamespace/OverrideNamespace
    components/StaffGroup/PianoStaff
    core/Rational/Rational
    components/Rest/Rest

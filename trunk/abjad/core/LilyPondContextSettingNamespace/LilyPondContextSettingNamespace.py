@@ -36,13 +36,6 @@ class LilyPondContextSettingNamespace(object):
             return context
       else:
          return vars(self)[name]
-      #vars(self).setdefault(name, value)
 
    def __repr__(self):
-      return '<%s>' % self.__class__.__name__
-   
-   ## PUBLIC PROPERTIES ##
-
-   @property
-   def known_lilypond_contexts(self):
-      return self._known_lilypond_contexts
+      return '%s( )' % self.__class__.__name__

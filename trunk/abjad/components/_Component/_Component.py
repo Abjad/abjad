@@ -1,6 +1,7 @@
 from abjad.core import _Abjad
 from abjad.core import _Navigator
 from abjad.core import LilyPondContextSettingNamespace
+from abjad.core import LilyPondOverrideNamespace
 from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import AccidentalInterface
@@ -103,6 +104,7 @@ class _Component(_Abjad):
       #self._non_musical_paper_column = NonMusicalPaperColumnInterface(self)
       #self._note_column = NoteColumnInterface(self)
       self._note_head = NoteHeadInterface(self)
+      self._override = LilyPondOverrideNamespace( )
       self._ottava_bracket = OttavaBracketInterface(self)
       self._parentage = ParentageInterface(self)
       self._piano_pedal = PianoPedalInterface(self)
@@ -370,7 +372,7 @@ class _Component(_Abjad):
 
    @property
    def override(self):
-      '''Read-only reference to override namespace.
+      '''Read-only reference to LilyPond override namespace.
       '''
       return self._override
 

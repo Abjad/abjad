@@ -10,4 +10,4 @@ class LilyPondContextNamespace(object):
    ## OVERLOADS ##
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._lilypond_context)
+      return "%s('%s')" % (self.__class__.__name__, self._lilypond_context)

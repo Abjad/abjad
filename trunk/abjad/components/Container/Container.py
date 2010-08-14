@@ -2,7 +2,6 @@ from abjad.components._Component._Component import _Component
 from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
 from abjad.components.Container._ContainerFormatter import _ContainerFormatter
 from abjad.components.Container._ContainerSpannerAggregator import _ContainerSpannerAggregator
-from abjad.core import OverrideNamespace
 from abjad.interfaces import BracketsInterface
 from abjad.interfaces import NoteHeadInterface
 
@@ -10,15 +9,12 @@ from abjad.interfaces import NoteHeadInterface
 class Container(_Component):
 
    def __init__(self, music = None, **kwargs):
-      '''Initialize container with music list of length zero or grater.'''
       _Component.__init__(self)
       self._spanners = _ContainerSpannerAggregator(self)
       self._initialize_music(music)
       self._brackets = BracketsInterface(self)
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
-      self._override = OverrideNamespace(False)
-      #self.parallel = False
       self._parallel = None
       self._initialize_keyword_values(**kwargs)
 

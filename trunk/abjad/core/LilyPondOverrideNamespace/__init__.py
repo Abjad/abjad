@@ -1,1 +1,1 @@
-from OverrideNamespace import OverrideNamespace
+from LilyPondOverrideNamespace import LilyPondOverrideNamespace

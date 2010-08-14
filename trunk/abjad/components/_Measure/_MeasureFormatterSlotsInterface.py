@@ -1,5 +1,4 @@
-from abjad.components.Container._ContainerFormatterSlotsInterface import \
-   _ContainerFormatterSlotsInterface
+from abjad.components.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
 
 
 class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -85,13 +84,15 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    ## PRIVATE METHODS ##
 
+   ## FIXME: make work with new grob override pattern ##
    def _wrap_bar_line_interface_overrides(self):
       measure = self.formatter.container
       bar_line_overrides = [ ]
       #bar_line_overrides.extend(measure.bar_line._overrides)
       #bar_line_overrides.extend(measure.span_bar._overrides)
-      bar_line_overrides.extend(measure.override.bar_line._overrides)
-      bar_line_overrides.extend(measure.override.span_bar._overrides)
+      ## FIXME ##
+      #bar_line_overrides.extend(measure.override.bar_line._overrides)
+      #bar_line_overrides.extend(measure.override.span_bar._overrides)
       return [('BarLine / SpanBar', 'overrides'), bar_line_overrides]
       
    def _wrap_measure_interface_overrides(self):

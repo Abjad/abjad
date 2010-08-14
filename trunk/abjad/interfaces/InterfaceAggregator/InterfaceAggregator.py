@@ -91,26 +91,46 @@ class InterfaceAggregator(_Interface):
       result.sort( )
       return result
 
-   ## OPTIMIZATION: Maybe better to derive at attr assignment time. ##
-
    @property
    def overrides(self):
-      '''Ordered data structure of format-time grob overrides.
+      '''Alphabetized list of LilyPond grob overrides.
       '''
+      from abjad.components._Leaf import _Leaf
+      from abjad.core.GrobNamespace import GrobNamespace
+      from abjad.core.LilyPondGrobOverrideContextWrapper import LilyPondGrobOverrideContextWrapper
+      from abjad.tools.lilyfiletools._make_lilypond_override_string import \
+         _make_lilypond_override_string
       result = [ ]
       for contributor in self.contributors:
-         #print contributor.__repr__( ), getattr(contributor, '_overrides', [ ])
          result.extend(getattr(contributor, '_overrides', [ ]))
-      result.extend(self._client.override._overrides)
+      if isinstance(self._client, _Leaf):
+         is_once = True
+      else:
+         is_once = False
+      for name, value in vars(self._client.override).iteritems( ):
+         #print name, value
+         if isinstance(value, LilyPondGrobOverrideContextWrapper):
+            context_name, context_wrapper = name.lstrip('_'), value
+            #print context_name, context_wrapper
+            for grob_name, grob_override_namespace in vars(context_wrapper).iteritems( ):
+               #print grob_name, grob_override_namespace
+               for grob_attribute, grob_value in vars(grob_override_namespace).iteritems( ):
+                  #print grob_attribute, grob_value
+                  result.append(_make_lilypond_override_string(grob_name, grob_attribute, 
+                     grob_value, context_name = context_name, is_once = is_once))
+         elif isinstance(value, GrobNamespace):
+            grob_name, grob_namespace = name, value
+            for grob_attribute, grob_value in vars(grob_namespace).iteritems( ):
+               result.append(_make_lilypond_override_string(grob_name, grob_attribute, 
+                  grob_value, is_once = is_once))
+         #print ''
       ## guarantee predictable order of override statements
       result.sort( )
       return result
 
-   ## OPTIMIZATION: Maybe better to derive at attr assignment time. ##
-
    @property
    def reverts(self):
-      '''Ordered data structure of format-time grob reverts.
+      '''Alphabetized list of LilyPond grob reverts.
       '''
       result = [ ]
       for contributor in self.contributors:
