@@ -7,7 +7,8 @@ def test_componenttools_report_component_format_contributions_as_string_01( ):
    t = Note(0, (1, 4))
    t.note_head.style = 'cross'
    t.note_head.color = 'red'
-   t.stem.color = 'red'
+   #t.stem.color = 'red'
+   t.override.stem.color = 'red'
    t.articulations.append('staccato')
    t.articulations.append('tenuto')
    t.markup.down.append(r'\italic { ben. marcato }')

@@ -4,7 +4,8 @@ from abjad import *
 def test_NoteColumnInterface_grob_handling_01( ):
 
    t = Note(0, (1, 4))
-   t.note_column.ignore_collision = True
+   #t.note_column.ignore_collision = True
+   t.override.note_column.ignore_collision = True
 
    r'''
    \once \override NoteColumn #'ignore-collision = ##t
@@ -18,7 +19,8 @@ def test_NoteColumnInterface_grob_handling_01( ):
 def test_NoteColumnInterface_grob_handling_02( ):
 
    t = Staff(macros.scale(4))
-   t.note_column.ignore_collision = True
+   #t.note_column.ignore_collision = True
+   t.override.note_column.ignore_collision = True
 
    r'''
    \new Staff \with {

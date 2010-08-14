@@ -4,8 +4,10 @@ from abjad import *
 def test_RehearsalMarkInterface_grob_handling_01( ):
 
    t = Staff(macros.scale(4))
-   t.rehearsal_mark.staff_padding = 2
-   t.rehearsal_mark.Y_extent = (-1.5, 1.5)
+   #t.rehearsal_mark.staff_padding = 2
+   #t.rehearsal_mark.Y_extent = (-1.5, 1.5)
+   t.override.rehearsal_mark.staff_padding = 2
+   t.override.rehearsal_mark.Y_extent = (-1.5, 1.5)
 
    r'''
    \new Staff \with {

@@ -4,8 +4,10 @@ from abjad import *
 def test_ScriptInterface_grob_handling_01( ):
 
    t = Staff(macros.scale(4))
-   t.script.staff_padding = 2
-   t.script.Y_extent = (-1.5, 1.5)
+   #t.script.staff_padding = 2
+   #t.script.Y_extent = (-1.5, 1.5)
+   t.override.script.staff_padding = 2
+   t.override.script.Y_extent = (-1.5, 1.5)
 
    r'''
    \new Staff \with {

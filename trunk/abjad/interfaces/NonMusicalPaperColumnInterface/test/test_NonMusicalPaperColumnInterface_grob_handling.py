@@ -6,8 +6,10 @@ def test_NonMusicalPaperColumnInterface_grob_handling_01( ):
    NonMusicalPaperColumn grob.'''
 
    t = Score([Staff(macros.scale(4))])
-   t.non_musical_paper_column.line_break_permission = False
-   t.non_musical_paper_column.page_break_permission = False
+   #t.non_musical_paper_column.line_break_permission = False
+   #t.non_musical_paper_column.page_break_permission = False
+   t.override.non_musical_paper_column.line_break_permission = False
+   t.override.non_musical_paper_column.page_break_permission = False
 
    r'''
    \new Score \with {

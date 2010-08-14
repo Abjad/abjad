@@ -7,8 +7,8 @@ class OverrideNamespace(object):
    Override namespace.
    '''
 
-   def __init__(self):
-      pass
+   def __init__(self, _is_leaf_client):
+      self._is_leaf_client = _is_leaf_client
 
    ## OVERLOADS ##
 
@@ -27,7 +27,11 @@ class OverrideNamespace(object):
    def _overrides(self):
       result = [ ]
       for grob_name, grob_namespace in vars(self).iteritems( ):
-         result.extend(grob_namespace._overrides)
+         if not grob_name.startswith('_'):
+            result.extend(grob_namespace._overrides)
+      if not self._is_leaf_client:
+         for i, override in enumerate(result):
+            result[i] = override.replace(r'\once ', '')
       result.sort( )
       return result   
 

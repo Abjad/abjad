@@ -1,4 +1,5 @@
 from abjad.components._Component._Component import _Component
+from abjad.core import OverrideNamespace
 from abjad.interfaces import GraceInterface
 from abjad.interfaces import HarmonicInterface
 from abjad.interfaces import MarkupInterface
@@ -22,6 +23,7 @@ class _Leaf(_Component):
       self._grace = GraceInterface(self)
       self._harmonic = HarmonicInterface(self)
       self._markup = MarkupInterface(self)
+      self._override = OverrideNamespace(True)
       self._spanners = _LeafSpannerAggregator(self)
 
    ## OVERLOADS ##

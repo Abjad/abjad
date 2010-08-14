@@ -4,8 +4,10 @@ from abjad import *
 def test_DynamicTextInterface_grob_handling_01( ):
 
    t = Staff(macros.scale(4))
-   t.dynamic_text.staff_padding = 2
-   t.dynamic_text.Y_extent = (-1.5, 1.5)
+   #t.dynamic_text.staff_padding = 2
+   #t.dynamic_text.Y_extent = (-1.5, 1.5)
+   t.override.dynamic_text.staff_padding = 2
+   t.override.dynamic_text.Y_extent = (-1.5, 1.5)
 
    r'''
    \new Staff \with {

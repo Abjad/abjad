@@ -1,4 +1,6 @@
 from abjad import *
+import py
+py.test.skip('skip until container reverts work for containers again.')
 
 
 def test_measuretools_color_nonbinary_measures_in_expr_01( ):

@@ -15,6 +15,7 @@ class GrobNamespace(object):
 
    ## PRIVATE ATTRIBUTES ##
 
+   ## TODO: make work for containers ##
    @property
    def _overrides(self):
       from abjad.tools.lilyfiletools._grob_attribute_and_value_to_lilypond_override \
@@ -26,6 +27,13 @@ class GrobNamespace(object):
             result.append(override)
       result.sort( )
       return result
+
+   ## TODO: make work for containers ##
+   @property
+   def _reverts(self):
+      result = [ ]
+      result.sort( )
+      return [ ]
 
    ## PRIVATE METHODS ##
 
@@ -40,4 +48,3 @@ class GrobNamespace(object):
    @property
    def grob_name(self):
       return self._grob_name
-

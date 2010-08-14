@@ -5,8 +5,10 @@ def test_SystemStartBarInterface_grob_handling_01( ):
 
 
    score = Score([StaffGroup([Staff(notetools.make_repeated_notes(8))])])
-   score.system_start_bar.collapse_height = 0
-   score.system_start_bar.color = 'red'
+   #score.system_start_bar.collapse_height = 0
+   #score.system_start_bar.color = 'red'
+   score.override.system_start_bar.collapse_height = 0
+   score.override.system_start_bar.color = 'red'
 
    r'''
    \new Score \with {

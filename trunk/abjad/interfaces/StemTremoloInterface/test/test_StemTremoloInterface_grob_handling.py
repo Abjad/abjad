@@ -4,8 +4,10 @@ from abjad import *
 def test_StemTremoloInterface_grob_handling_01( ):
 
    t = Staff(macros.scale(4))
-   t.stem_tremolo.staff_padding = 2
-   t.stem_tremolo.Y_extent = (-1.5, 1.5)
+   #t.stem_tremolo.staff_padding = 2
+   #t.stem_tremolo.Y_extent = (-1.5, 1.5)
+   t.override.stem_tremolo.staff_padding = 2
+   t.override.stem_tremolo.Y_extent = (-1.5, 1.5)
 
    r'''
    \new Staff \with {

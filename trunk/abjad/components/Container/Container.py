@@ -2,6 +2,7 @@ from abjad.components._Component._Component import _Component
 from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
 from abjad.components.Container._ContainerFormatter import _ContainerFormatter
 from abjad.components.Container._ContainerSpannerAggregator import _ContainerSpannerAggregator
+from abjad.core import OverrideNamespace
 from abjad.interfaces import BracketsInterface
 from abjad.interfaces import NoteHeadInterface
 
@@ -16,6 +17,7 @@ class Container(_Component):
       self._brackets = BracketsInterface(self)
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
+      self._override = OverrideNamespace(False)
       #self.parallel = False
       self._parallel = None
       self._initialize_keyword_values(**kwargs)

@@ -36,10 +36,12 @@ def color_contents_of_container(container, color):
 
    container.accidental.color = color
    container.beam.color = color
-   container.dots.color = color
+   #container.dots.color = color
+   container.override.dots.color = color
    container.note_head.color = color
    container.rest.color = color
-   container.stem.color = color
+   #container.stem.color = color
+   container.override.stem.color = color
    container.tuplet_bracket.color = color
    container.tuplet_number.color = color
 
