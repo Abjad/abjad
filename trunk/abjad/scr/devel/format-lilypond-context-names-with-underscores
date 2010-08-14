@@ -1,0 +1,60 @@
+#! /usr/bin/env python
+import os
+
+
+def format_lilypond_context_names_with_underscores(lilypond_context_names):
+   context_names_with_underscores = [ ]
+   for line in lilypond_context_names.split('\n'):
+      try:
+         context = line.split(' ')[1]
+      except IndexError:
+         continue
+      context = context.strip('\n')
+      new_context_name = context[0].lower( )
+      for x in context[1:]:
+         if x.isupper( ):
+            new_context_name += '_'
+            new_context_name += x.lower( )
+         else:
+            new_context_name += x
+      context_names_with_underscores.append(new_context_name)
+   return context_names_with_underscores
+
+
+## from lilypond 2.13 internals reference on 2010-08-14
+lilypond_context_names = '''
+2.1.1 ChoirStaff     
+2.1.2 ChordNames     
+2.1.3 CueVoice    
+2.1.4 Devnull     
+2.1.5 DrumStaff      
+2.1.6 DrumVoice      
+2.1.7 Dynamics    
+2.1.8 FiguredBass    
+2.1.9 FretBoards     
+2.1.10 Global     
+2.1.11 GrandStaff    
+2.1.12 GregorianTranscriptionStaff     
+2.1.13 GregorianTranscriptionVoice     
+2.1.14 Lyrics     
+2.1.15 MensuralStaff    
+2.1.16 MensuralVoice    
+2.1.17 NoteNames     
+2.1.18 PianoStaff    
+2.1.19 RhythmicStaff    
+2.1.20 Score      
+2.1.21 Staff      
+2.1.22 StaffGroup    
+2.1.23 TabStaff      
+2.1.24 TabVoice      
+2.1.25 VaticanaStaff    
+2.1.26 VaticanaVoice    
+2.1.27 Voice      
+'''
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   print 'Formatting LilyPond context names with underscores ...\n'
+   print format_lilypond_context_names_with_underscores(lilypond_context_names)
+   print ''
