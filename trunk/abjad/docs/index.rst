@@ -86,6 +86,10 @@ Development
    chapters/devel/documentation/index
    chapters/devel/tests/index
    chapters/devel/scripts/index
+   chapters/devel/optimization/timing/index
+   chapters/devel/optimization/profiling/index
+   chapters/devel/optimization/memory/index
+   chapters/devel/optimization/class_attributes/index
    chapters/devel/todo/index
    chapters/devel/versions/index
 

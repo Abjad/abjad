@@ -1,5 +1,6 @@
 from abjad.core import _Abjad
 from abjad.core import _Navigator
+from abjad.core import LilyPondContextSettingNamespace
 from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import AccidentalInterface
@@ -107,6 +108,7 @@ class _Component(_Abjad):
       self._piano_pedal = PianoPedalInterface(self)
       #self._rehearsal_mark = RehearsalMarkInterface(self)
       self._rest = RestInterface(self)
+      self._set = LilyPondContextSettingNamespace( )
       self._score = ScoreInterface(self)
       #self._script = ScriptInterface(self)
       self._slur = SlurInterface(self)
@@ -401,6 +403,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.rest.interface.RestInterface`.'''
       return self._rest
+
+   @property
+   def set(self):
+      '''Read-only reference LilyPond context setting namespace.
+      '''
+      return self._set
 
    @property
    def score(self):
