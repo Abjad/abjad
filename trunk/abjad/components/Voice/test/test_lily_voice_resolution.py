@@ -13,7 +13,7 @@ def test_lily_voice_resolution_01( ):
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    macros.diatonicize(t)
-   t.note_head.color = 'red'
+   t.override.note_head.color = 'red'
 
    r'''
    \new Voice \with {
@@ -56,7 +56,7 @@ def test_lily_voice_resolution_02( ):
    t[2].parallel = True
    t[2][0].name = 'foo'
    macros.diatonicize(t)
-   t.note_head.color = 'red'
+   t.override.note_head.color = 'red'
 
    r'''
    \context Voice = "foo" \with {

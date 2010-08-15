@@ -8,8 +8,8 @@ def report_container_modifications_to_screen(container):
    ::
 
       abjad> container = Container(macros.scale(12))
-      abjad> container.note_head.color = 'red'
-      abjad> container.note_head.style = 'harmonic'
+      abjad> container.override.note_head.color = 'red'
+      abjad> container.override.note_head.style = 'harmonic'
       abjad> container.comments.before.append('Container comments')
       abjad> print formattools.wrapper(container)
       {

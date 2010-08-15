@@ -8,9 +8,9 @@ def _report_component_format_contributions(component, verbose = False, output = 
    system plumbing::
 
       abjad> t = Note(0, (1, 4))
-      abjad> t.note_head.style = 'cross'
-      abjad> t.note_head.color = 'red'
-      abjad> t.stem.color = 'red'
+      abjad> t.override.note_head.style = 'cross'
+      abjad> t.override.note_head.color = 'red'
+      abjad> t.override.stem.color = 'red'
       abjad> t.articulations.append('staccato')
       abjad> t.articulations.append('tenuto')
       abjad> t.markup.down.append(r'\italic { ben. marcato }')

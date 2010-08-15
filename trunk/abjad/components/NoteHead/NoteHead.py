@@ -14,7 +14,7 @@ class NoteHead(NoteHeadInterface):
 
    The Abjad NoteHead overrides the LilyPond NoteHead grob. ::
 
-      abjad> note.note_head.color = 'red'
+      abjad> note.override.note_head.color = 'red'
       abjad> print note.format
       \once \override NoteHead #'color = #red
       cs'4
@@ -85,18 +85,6 @@ class NoteHead(NoteHeadInterface):
          "cs'"
       '''
       return self._formatter.format
-
-#   @property
-#   def formatter(self):
-#      '''Read-only reference to note head formatter.
-#
-#      ::
-#
-#         abjad> note = Note(1, (1, 4))
-#         abjad> note.note_head.formatter
-#         <_NoteHeadFormatInterface>
-#      '''
-#      return self._formatter
 
    @apply
    def pitch( ):

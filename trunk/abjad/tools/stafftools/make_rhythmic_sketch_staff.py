@@ -6,7 +6,7 @@ def make_rhythmic_sketch_staff(music):
 
    staff = Staff(music)
    staff.context = 'RhythmicStaff'
-   staff.meter.transparent = True
-   staff.bar_line.transparent = True
+   staff.override.time_signature.transparent = True
+   staff.override.bar_line.transparent = True
 
    return staff

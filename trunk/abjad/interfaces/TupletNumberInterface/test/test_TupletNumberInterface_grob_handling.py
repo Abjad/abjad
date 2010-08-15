@@ -5,7 +5,8 @@ def test_TupletNumberInterface_grob_handling_01( ):
    '''Abjad tuplets wrap grob overrides at before and after.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
-   t.tuplet_number.fraction = True
+   #t.tuplet_number.fraction = True
+   t.override.tuplet_number.fraction = True
 
    r'''
    \override TupletNumber #'fraction = ##t
@@ -26,7 +27,8 @@ def test_TupletNumberInterface_grob_handling_02( ):
 
    t = Voice(macros.scale(4))
    BeamSpanner(t[:])
-   t.tuplet_number.fraction = True
+   #t.tuplet_number.fraction = True
+   t.override.tuplet_number.fraction = True
 
    r'''
    \new Voice \with {
@@ -47,7 +49,8 @@ def test_TupletNumberInterface_grob_handling_03( ):
 
    t = Voice(macros.scale(4))
    BeamSpanner(t[:])
-   t[1].tuplet_number.fraction = True
+   #t[1].tuplet_number.fraction = True
+   t[1].override.tuplet_number.fraction = True
 
    r'''
    \new Voice {
@@ -68,7 +71,8 @@ def test_TupletNumberInterface_grob_handling_04( ):
 
    t = Voice(macros.scale(4))
    BeamSpanner(t[:])
-   t.tuplet_number.text = Markup('"6:4"')
+   #t.tuplet_number.text = Markup('"6:4"')
+   t.override.tuplet_number.text = Markup('"6:4"')
 
    r'''
    \new Voice \with {

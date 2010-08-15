@@ -45,8 +45,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       format contributions to slot 1. ::
 
          abjad> t.comments.append('This is a tuplet')
-         abjad> t.note_head.color = 'red'
-         abjad> t.dots.color = 'red'
+         abjad> t.override.note_head.color = 'red'
+         abjad> t.override.dots.color = 'red'
          abjad> import pprint
          abjad> pprint.pprint(t.formatter.slots.slot_1)
          ([(<CommentsInterface>, 'before'), ['% This is a tuplet']],

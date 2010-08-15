@@ -52,7 +52,7 @@ def color_measure(measure, color = 'red'):
    measure.beam.color = color
    measure.override.dots.color = color
    measure.override.staff.time_signature.color = color
-   measure.note_head.color = color
+   measure.override.note_head.color = color
    measure.override.stem.color = color
 
    ## return measure

@@ -8,7 +8,7 @@ class SchemeColor(_Abjad, _Immutable):
    ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> t.note_head.color = schemetools.SchemeColor('ForestGreen')
+      abjad> t.override.note_head.color = schemetools.SchemeColor('ForestGreen')
       abjad> print t.format
       \once \override NoteHead #'color = #(x11-color 'ForestGreen)
       c'4

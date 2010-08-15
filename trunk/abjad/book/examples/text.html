@@ -2,7 +2,7 @@
 
 <abjad>
 v = Voice(notetools.make_repeated_notes(8))
-v[0].note_head.color = 'red'
+v[0].override.note_head.color = 'red'
 print v
 f(v)
 </abjad>

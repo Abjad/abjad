@@ -4,8 +4,8 @@ class LilyPondMiscellaneousCommandComponentPlugIn(object):
       pass
 
    _known_lilypond_miscellaneous_commands = {
-      'set_accidental_style': (
-         r"#(set-accidental-style '%s)", 'opening')
+      'bar': (r'\bar "%s"', 'closing'),
+      'set_accidental_style': (r"#(set-accidental-style '%s)", 'opening'),
    }
 
    ## OVERLOADS ##

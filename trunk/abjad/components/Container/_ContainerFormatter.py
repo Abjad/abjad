@@ -64,36 +64,3 @@ class _ContainerFormatter(_ComponentFormatter):
          <_ContainerFormatterSlotsInterface>'''
 
       return self._slots
-
-#   @property
-#   def wrapper(self):
-#      r'''Read-only string representation of all parts of container
-#      format except container contents. ::
-#
-#         abjad> container = Container(macros.scale(12))
-#         abjad> container.note_head.color = 'red'
-#         abjad> container.note_head.style = 'harmonic'
-#         abjad> container.comments.before.append('Container comments')
-#         abjad> print container.formatter.wrapper
-#         {
-#                 \override NoteHead #'style = #'harmonic
-#                 \override NoteHead #'color = #red
-#
-#                 %%% 12 components omitted %%%
-#
-#                 \revert NoteHead #'style
-#                 \revert NoteHead #'color
-#         }
-#      '''
-#
-#      result = [ ]
-#      result.extend(self.slots.contributions('slot_1'))
-#      result.extend(self.slots.contributions('slot_2'))
-#      result.extend(self.slots.contributions('slot_3'))
-#      heart = '\t%%%%%% %s components omitted %%%%%%' % len(self.container)
-#      result.extend(['', heart, ''])
-#      result.extend(self.slots.contributions('slot_5'))
-#      result.extend(self.slots.contributions('slot_6'))
-#      result.extend(self.slots.contributions('slot_7'))
-#      result = '\n'.join(result)
-#      return result

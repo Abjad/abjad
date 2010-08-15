@@ -47,17 +47,8 @@ class Note(_Leaf):
       def fset(self, arg):
          if isinstance(arg, type(None)):
             self._note_head = None
-#         elif isinstance(arg, (int, float, long)):
-#            self._note_head = NoteHead(self, pitch = arg)
-#         elif isinstance(arg, tuple) and len(arg) == 2:
-#            pitch = pitchtools.NamedPitch(*arg)
-#            self._note_head = NoteHead(self, pitch = pitch)
-#         elif isinstance(arg, NamedPitch):
-#            self._note_head = NoteHead(self, pitch = arg)
          elif isinstance(arg, NoteHead):
             self._note_head = arg
-#         else:
-#            print 'Can not bind %s to Note.note_head.' % arg
          else:
             note_head = NoteHead(self, pitch = arg)
             self._note_head = note_head

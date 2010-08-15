@@ -6,7 +6,8 @@ def test_TupletBracketInterface_grob_handling_01( ):
 
    t = Voice(macros.scale(4))
    BeamSpanner(t[:])
-   t.tuplet_bracket.direction = 'down'
+   #t.tuplet_bracket.direction = 'down'
+   t.override.tuplet_bracket.direction = 'down'
 
    r'''
    \new Voice \with {
@@ -28,7 +29,8 @@ def test_TupletBracketInterface_grob_handling_02( ):
 
    t = Voice(macros.scale(4))
    BeamSpanner(t[:])
-   t[1].tuplet_bracket.direction = 'down'
+   #t[1].tuplet_bracket.direction = 'down'
+   t[1].override.tuplet_bracket.direction = 'down'
 
    r'''
    \new Voice {

@@ -45,7 +45,8 @@ def test_ParentageInterface_signature_04( ):
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    macros.diatonicize(t)
-   t.note_head.color = 'red'
+   #t.note_head.color = 'red'
+   t.override.note_head.color = 'red'
 
    r'''
    \new Voice \with {

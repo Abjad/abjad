@@ -12,7 +12,7 @@ import py.test
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   macros.diatonicize(t)
-#   t.note_head.color = 'red'
+#   t.override.note_head.color = 'red'
 #
 #   r'''{
 #           \override NoteHead #'color = #red
@@ -54,7 +54,7 @@ import py.test
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   macros.diatonicize(t)
-#   t.note_head.color = 'red'
+#   t.override.note_head.color = 'red'
 #
 #   r'''\context Voice = "foo" \with {
 #           \override NoteHead #'color = #red
@@ -95,7 +95,7 @@ import py.test
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   macros.diatonicize(t)
-#   t.note_head.color = 'red'
+#   t.override.note_head.color = 'red'
 #
 #   r'''\new Voice \with {
 #           \override NoteHead #'color = #red
@@ -135,7 +135,7 @@ def test_Thread_report_04( ):
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    macros.diatonicize(t)
-   t.note_head.color = 'red'
+   t.override.note_head.color = 'red'
 
    r'''
    \new Voice \with {
@@ -179,7 +179,7 @@ def test_Thread_report_05( ):
    t[2].parallel = True
    t[2][0].name = 'foo'
    macros.diatonicize(t)
-   t.note_head.color = 'red'
+   t.override.note_head.color = 'red'
 
    r'''
    \context Voice = "foo" \with {

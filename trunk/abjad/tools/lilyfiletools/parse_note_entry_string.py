@@ -46,7 +46,7 @@ def parse_note_entry_string(note_entry_string):
       elif token.startswith('"'):
          bar_string = eval(token)
          last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-         last_leaf.bar_line.kind = bar_string
+         last_leaf.misc.bar = bar_string
          waiting_on_bar_string = False
       elif token.startswith('\\'):
          last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)

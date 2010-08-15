@@ -5,8 +5,8 @@ def test_componenttools_report_component_format_contributions_as_string_01( ):
    '''You can report_component_format_contributions_as_string on a heavily tweaked leaf.'''
 
    t = Note(0, (1, 4))
-   t.note_head.style = 'cross'
-   t.note_head.color = 'red'
+   t.override.note_head.style = 'cross'
+   t.override.note_head.color = 'red'
    t.override.stem.color = 'red'
    t.articulations.append('staccato')
    t.articulations.append('tenuto')
@@ -32,7 +32,7 @@ def test_componenttools_report_component_format_contributions_as_string_03( ):
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
    t.misc.set_accidental_style = 'forget'
-   t.bar_line.kind = '|.'
+   t.misc.bar = '|.'
    t.clef.forced = Clef('treble')
 
    r'''

@@ -8,12 +8,12 @@ def test_NoteHead_style_01( ):
    This explains the presence of this extra test file.'''
 
    t = Note(1, (1, 4))
-   t.note_head.style = 'cross'
+   t.override.note_head.style = 'cross'
 
-   assert t.note_head.style == 'cross'
+   assert t.override.note_head.style == 'cross'
    assert t.format == "\\once \\override NoteHead #'style = #'cross\ncs'4"
 
-   t.note_head.style = None
+   del(t.override.note_head.style)
    assert t.note_head.format == "cs'"
 
 
@@ -21,12 +21,13 @@ def test_NoteHead_style_02( ):
    '''Notehead styles are handled just like all other grob overrides.'''
 
    t = Note(1, (1, 4))
-   t.note_head.style = 'mystrangehead'
+   t.override.note_head.style = 'mystrangehead'
 
-   assert t.note_head.style == 'mystrangehead'
+   assert t.override.note_head.style == 'mystrangehead'
    assert t.format == "\\once \\override NoteHead #'style = #'mystrangehead\ncs'4"
 
-   t.note_head.style = None
+   #t.note_head.style = None
+   del(t.override.note_head.style)
    assert t.note_head.format == "cs'"
 
 
@@ -53,12 +54,12 @@ def test_NoteHead_style_04( ):
    '''Notehead shape style overrides are just normal grob overrides.'''
 
    t = Note(1, (1, 4))
-   t.note_head.style = 'triangle'
+   t.override.note_head.style = 'triangle'
 
-   assert t.note_head.style == 'triangle'
+   assert t.override.note_head.style == 'triangle'
    assert t.format == "\\once \\override NoteHead #'style = #'triangle\ncs'4"
 
-   t.note_head.style = None
+   del(t.override.note_head.style)
    assert t.format == "cs'4"
 
 
@@ -67,10 +68,10 @@ def test_NoteHead_style_05( ):
    Modern versions of LilyPond now handles solfege overrides correctly.'''
 
    t = Note(1, (1, 4))
-   t.note_head.style = 'do'
+   t.override.note_head.style = 'do'
 
-   assert t.note_head.style == 'do'
+   assert t.override.note_head.style == 'do'
    assert t.format == "\\once \\override NoteHead #'style = #'do\ncs'4"
 
-   t.note_head.style = None
+   del(t.override.note_head.style)
    assert t.format == "cs'4"

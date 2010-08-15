@@ -1,0 +1,12 @@
+r3474+ (ie, this is what will be checked in as r3475)
+
+1. memory usage to create 1000 notes:
+   Partition of a set of 475101 objects. Total size = 54349980 bytes.
+
+2. create one note: 1807 function calls (1797 primitive calls) in 0.005 CPU seconds
+
+3. format one note: 1561 function calls (1320 primitive calls) in 0.005 CPU seconds
+
+4. create 1000 notes: 3.29780912399 sec
+
+5. format 1000 notes: 1.80329012871 sec

@@ -1,5 +1,7 @@
 from abjad import *
 from py.test import raises
+import py
+py.test.skip('make casting work before deprecating casting.')
 
 
 def test_Note_cast_as_skip_01( ):

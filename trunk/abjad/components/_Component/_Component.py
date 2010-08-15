@@ -7,7 +7,7 @@ from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
 #from abjad.interfaces import AccidentalInterface
 from abjad.interfaces import ArticulationInterface
-from abjad.interfaces import BarLineInterface
+#from abjad.interfaces import BarLineInterface
 #from abjad.interfaces import BarNumberInterface
 from abjad.interfaces import BeamInterface
 from abjad.interfaces import BreaksInterface
@@ -29,14 +29,14 @@ from abjad.interfaces import MeterInterface
 from abjad.interfaces import MultiMeasureRestInterface
 #from abjad.interfaces import NonMusicalPaperColumnInterface
 #from abjad.interfaces import NoteColumnInterface
-from abjad.interfaces import NoteHeadInterface
+#from abjad.interfaces import NoteHeadInterface
 from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
 from abjad.interfaces import OttavaBracketInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import PianoPedalInterface
 #from abjad.interfaces import RehearsalMarkInterface
-from abjad.interfaces import RestInterface
+#from abjad.interfaces import RestInterface
 from abjad.interfaces import ScoreInterface
 #from abjad.interfaces import ScriptInterface
 from abjad.interfaces import SlurInterface
@@ -54,8 +54,8 @@ from abjad.interfaces import TieInterface
 from abjad.interfaces import TremoloInterface
 from abjad.interfaces import TrillInterface
 #from abjad.interfaces import TrillPitchAccidentalInterface
-from abjad.interfaces import TupletBracketInterface
-from abjad.interfaces import TupletNumberInterface
+#from abjad.interfaces import TupletBracketInterface
+#from abjad.interfaces import TupletNumberInterface
 #from abjad.interfaces import VerticalAlignmentInterface
 #from abjad.interfaces import VerticalAxisGroupInterface
 from abjad.interfaces import VoiceInterface
@@ -83,7 +83,7 @@ class _Component(_Abjad):
       self._interfaces = InterfaceAggregator(self)
       #self._accidental = AccidentalInterface(self)
       self._articulations = ArticulationInterface(self)
-      self._bar_line = BarLineInterface(self)
+      #self._bar_line = BarLineInterface(self)
       #self._bar_number = BarNumberInterface(self)
       self._beam = BeamInterface(self)
       self._breaks = BreaksInterface(self)
@@ -105,13 +105,13 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
       #self._non_musical_paper_column = NonMusicalPaperColumnInterface(self)
       #self._note_column = NoteColumnInterface(self)
-      self._note_head = NoteHeadInterface(self)
+      #self._note_head = NoteHeadInterface(self)
       self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._ottava_bracket = OttavaBracketInterface(self)
       self._parentage = ParentageInterface(self)
       self._piano_pedal = PianoPedalInterface(self)
       #self._rehearsal_mark = RehearsalMarkInterface(self)
-      self._rest = RestInterface(self)
+      #self._rest = RestInterface(self)
       self._set = LilyPondContextSettingComponentPlugIn( )
       self._score = ScoreInterface(self)
       #self._script = ScriptInterface(self)
@@ -128,8 +128,8 @@ class _Component(_Abjad):
       self._tremolo = TremoloInterface(self)
       self._trill = TrillInterface(self)
       #self._trill_pitch_accidental = TrillPitchAccidentalInterface(self)
-      self._tuplet_bracket = TupletBracketInterface(self)
-      self._tuplet_number = TupletNumberInterface(self)
+      #self._tuplet_bracket = TupletBracketInterface(self)
+      #self._tuplet_number = TupletNumberInterface(self)
       self._update = _UpdateInterface(self)
       #self._vertical_alignment = VerticalAlignmentInterface(self)
       #self._vertical_axis_group = VerticalAxisGroupInterface(self)
@@ -182,11 +182,11 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.articulation.interface.ArticulationInterface`.'''
       return self._articulations
    
-   @property
-   def bar_line(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.bar_line.interface.BarLineInterface`.'''
-      return self._bar_line
+#   @property
+#   def bar_line(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.bar_line.interface.BarLineInterface`.'''
+#      return self._bar_line
 
 #   @property
 #   def bar_number(self):
@@ -366,11 +366,11 @@ class _Component(_Abjad):
 #      :class:`~abjad.interfaces.note_column.interface.NoteColumnInterface`.'''
 #      return self._note_column
 
-   @property
-   def note_head(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.note_head.interface.NoteHeadInterface`.'''
-      return self._note_head
+#   @property
+#   def note_head(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.note_head.interface.NoteHeadInterface`.'''
+#      return self._note_head
 
    @property
    def offset(self):
@@ -408,11 +408,11 @@ class _Component(_Abjad):
 #      :class:`~abjad.interfaces.rehearsal_mark.interface.RestInterface`.'''
 #      return self._rehearsal_mark
 
-   @property
-   def rest(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.rest.interface.RestInterface`.'''
-      return self._rest
+#   @property
+#   def rest(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.rest.interface.RestInterface`.'''
+#      return self._rest
 
    @property
    def set(self):
@@ -533,17 +533,17 @@ class _Component(_Abjad):
 #      :class:`~abjad.interfaces.trill_pitch_accidental.interface.TrillPitchAccidentalInterface`.'''
 #      return self._trill_pitch_accidental
    
-   @property
-   def tuplet_bracket(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.tuplet_bracket.interface.TupletBracketInterface`.'''
-      return self._tuplet_bracket
+#   @property
+#   def tuplet_bracket(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.tuplet_bracket.interface.TupletBracketInterface`.'''
+#      return self._tuplet_bracket
 
-   @property
-   def tuplet_number(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.tuplet_number.interface.TupletNumberInterface`.'''
-      return self._tuplet_number
+#   @property
+#   def tuplet_number(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.tuplet_number.interface.TupletNumberInterface`.'''
+#      return self._tuplet_number
 
 #   @property
 #   def vertical_alignment(self):
