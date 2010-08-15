@@ -1,11 +1,11 @@
-from abjad.core.GrobNamespace import GrobNamespace
-from abjad.core.LilyPondGrobOverrideContextWrapper import LilyPondGrobOverrideContextWrapper
+from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
+from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
 
 
-class LilyPondOverrideNamespace(object):
+class LilyPondGrobOverrideComponentPlugIn(object):
    '''.. versionadded:: 1.1.2
 
-   LilyPond grob override namespace.
+   LilyPond grob override component plug-in..
    '''
 
    def __init__(self):
@@ -51,12 +51,6 @@ class LilyPondOverrideNamespace(object):
 
    ## OVERLOADS ##
 
-#   def __getattr__(self, attribute_name):
-#      if attribute_name.startswith('_'):
-#         return getattr(self.__class__, attribute_name).fget(self)
-#      else:
-#         return vars(self).setdefault(attribute_name, GrobNamespace(attribute_name))
-
    def __getattr__(self, name):
       if name.startswith('_'):
          try:
@@ -68,14 +62,14 @@ class LilyPondOverrideNamespace(object):
          try:
             return vars(self)['_' + name]
          except KeyError:
-            context = LilyPondGrobOverrideContextWrapper( )
+            context = LilyPondGrobProxyContextWrapper( )
             vars(self)['_' + name] = context
             return context
       elif name in type(self)._known_lilypond_grob_names:
          try:
             return vars(self)[name]
          except KeyError:
-            vars(self)[name] = GrobNamespace( )
+            vars(self)[name] = LilyPondGrobProxy( )
             return vars(self)[name]
       else:
          return vars(self)[name]

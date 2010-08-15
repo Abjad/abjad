@@ -1,7 +1,7 @@
 from abjad.core import _Abjad
 from abjad.core import _Navigator
-from abjad.core import LilyPondContextSettingNamespace
-from abjad.core import LilyPondOverrideNamespace
+from abjad.core import LilyPondContextSettingComponentPlugIn
+from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import AccidentalInterface
@@ -104,13 +104,13 @@ class _Component(_Abjad):
       #self._non_musical_paper_column = NonMusicalPaperColumnInterface(self)
       #self._note_column = NoteColumnInterface(self)
       self._note_head = NoteHeadInterface(self)
-      self._override = LilyPondOverrideNamespace( )
+      self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._ottava_bracket = OttavaBracketInterface(self)
       self._parentage = ParentageInterface(self)
       self._piano_pedal = PianoPedalInterface(self)
       #self._rehearsal_mark = RehearsalMarkInterface(self)
       self._rest = RestInterface(self)
-      self._set = LilyPondContextSettingNamespace( )
+      self._set = LilyPondContextSettingComponentPlugIn( )
       self._score = ScoreInterface(self)
       #self._script = ScriptInterface(self)
       self._slur = SlurInterface(self)
@@ -372,7 +372,7 @@ class _Component(_Abjad):
 
    @property
    def override(self):
-      '''Read-only reference to LilyPond override namespace.
+      '''Read-only reference to LilyPond grob override component plug-in.
       '''
       return self._override
 
@@ -408,7 +408,7 @@ class _Component(_Abjad):
 
    @property
    def set(self):
-      '''Read-only reference LilyPond context setting namespace.
+      '''Read-only reference LilyPond context setting component plug-in..
       '''
       return self._set
 

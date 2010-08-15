@@ -10,6 +10,6 @@ from _Initializer import _Initializer
 from _Navigator import _Navigator
 from _Observer import _Observer
 from _Parser import _Parser
-from LilyPondContextSettingNamespace import LilyPondContextSettingNamespace
-from LilyPondOverrideNamespace import LilyPondOverrideNamespace
+from LilyPondContextSettingComponentPlugIn import LilyPondContextSettingComponentPlugIn
+from LilyPondGrobOverrideComponentPlugIn import LilyPondGrobOverrideComponentPlugIn
 from Rational import Rational

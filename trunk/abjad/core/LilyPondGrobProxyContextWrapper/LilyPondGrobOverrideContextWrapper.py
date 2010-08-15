@@ -1,7 +1,7 @@
-from abjad.core.GrobNamespace import GrobNamespace
+from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
 
 
-class LilyPondGrobOverrideContextWrapper(object):
+class LilyPondGrobProxyContextWrapper(object):
    '''.. versionadded:: 1.1.2
 
    Context wrapper for LilyPond grob overrides.
@@ -44,7 +44,7 @@ class LilyPondGrobOverrideContextWrapper(object):
          return vars(self)[name]      
       except KeyError:
          if name in type(self)._known_lilypond_grob_names:
-            vars(self)[name] = GrobNamespace( )
+            vars(self)[name] = LilyPondGrobProxy( )
             return vars(self)[name]
          else:
             raise AttributeError('%s object can have only LilyPond grob attributes.' %
