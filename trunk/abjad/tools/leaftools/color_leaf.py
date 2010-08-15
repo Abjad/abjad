@@ -41,12 +41,10 @@ def color_leaf(leaf, color):
 
    ## color leaf
    if isinstance(leaf, (Note, Chord)):
-      leaf.accidental.color = color
-      #leaf.dots.color = color
+      leaf.override.accidental.color = color
       leaf.override.dots.color = color
       leaf.note_head.color = color
    elif isinstance(leaf, Rest):
-      #leaf.dots.color = color
       leaf.override.dots.color = color
       leaf.rest.color = color
 

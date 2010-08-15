@@ -19,6 +19,7 @@ class AccidentalInterface(_Interface, _GrobHandler, _ContextSettingHandler):
    '''
 
    def __init__(self, _client):
+      raise Exception('DEPRECATED')
       _Interface.__init__(self, _client)
       _GrobHandler.__init__(self, 'Accidental')
       self.style = None

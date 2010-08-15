@@ -2,9 +2,10 @@ from abjad.core import _Abjad
 from abjad.core import _Navigator
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
+from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
-from abjad.interfaces import AccidentalInterface
+#from abjad.interfaces import AccidentalInterface
 from abjad.interfaces import ArticulationInterface
 from abjad.interfaces import BarLineInterface
 #from abjad.interfaces import BarNumberInterface
@@ -80,7 +81,7 @@ class _Component(_Abjad):
 
    def __init__(self):
       self._interfaces = InterfaceAggregator(self)
-      self._accidental = AccidentalInterface(self)
+      #self._accidental = AccidentalInterface(self)
       self._articulations = ArticulationInterface(self)
       self._bar_line = BarLineInterface(self)
       #self._bar_number = BarNumberInterface(self)
@@ -98,6 +99,7 @@ class _Component(_Abjad):
       self._history = HistoryInterface(self)
       self._instrument = InstrumentInterface(self)
       self._lily_file = None
+      self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       self._multi_measure_rest = MultiMeasureRestInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
@@ -168,11 +170,11 @@ class _Component(_Abjad):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def accidental(self):
-      '''Read-only reference to 
-      :class:`~abjad.interfaces.accidental.interface.AccidentalInterface`.'''
-      return self._accidental
+#   @property
+#   def accidental(self):
+#      '''Read-only reference to 
+#      :class:`~abjad.interfaces.accidental.interface.AccidentalInterface`.'''
+#      return self._accidental
 
    @property
    def articulations(self):
@@ -320,6 +322,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.meter.interface.MeterInterface`.''' 
       return self._meter
+
+   @property
+   def misc(self):
+      '''Read-only reference LilyPond miscellaneous command component plug-in.
+      '''
+      return self._misc
 
    @property
    def multi_measure_rest(self):

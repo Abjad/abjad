@@ -27,6 +27,7 @@ def make_piano_sketch_score_from_leaves(leaves):
    score.span_bar.stencil = False
 
    for staff in componenttools.iterate_components_forward_in_expr(score, klass = Staff):
-      staff.accidental.style = 'forget'
+      #staff.accidental.style = 'forget'
+      staff.misc.set_accidental_style = 'forget'
 
    return score, treble_staff, bass_staff

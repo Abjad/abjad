@@ -7,7 +7,7 @@ def test_containertools_report_container_modifications_as_string_01( ):
    t = Voice(macros.scale(4))
    t.comments.before.append('Example voice')
    t.note_head.color = 'red'
-   t.accidental.style = 'forget'
+   t.misc.set_accidental_style = 'forget'
    beam = BeamSpanner(t[:])
    beam.thickness = 3
 
@@ -49,7 +49,7 @@ def test_containertools_report_container_modifications_as_string_02( ):
    t = FixedDurationTuplet((2, 8), macros.scale(3))
    t.comments.before.append('Example tuplet')
    t.note_head.color = 'red'
-   t.accidental.style = 'forget'
+   t.misc.set_accidental_style = 'forget'
    beam = BeamSpanner(t[:])
    beam.thickness = 3
 

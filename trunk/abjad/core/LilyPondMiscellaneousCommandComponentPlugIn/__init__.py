@@ -1,0 +1,1 @@
+from LilyPondMiscellaneousCommandComponentPlugIn import LilyPondMiscellaneousCommandComponentPlugIn

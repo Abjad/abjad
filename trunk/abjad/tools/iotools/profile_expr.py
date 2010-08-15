@@ -1,3 +1,6 @@
+import os
+
+
 def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
    '''Profile `expr` with the built-in Python ``cProfile`` module.
 
@@ -59,24 +62,9 @@ def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
       else:
          p.sort_stats(sort_by).print_stats(num_lines)
 
+      os.remove('_tmp_abj_profile')
+
    except ImportError:
       msg = "Python 'pstats' package not installed in your system.\n"
       msg +="Please install before running the profiler."
       print msg
-      
-
-#import cProfile
-#import pstats
-#
-#
-#def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
-#   '''Profile expr, sort stats, print 12 lines.
-#      Set strip_dirs to True to strip directory path names.
-#      Sort by values include 'cum', 'time', 'calls'.'''
-#
-#   cProfile.run(expr, '_tmp_abj_profile')
-#   p = pstats.Stats('_tmp_abj_profile')
-#   if strip_dirs:
-#      p.strip_dirs( ).sort_stats(sort_by).print_stats(num_lines)
-#   else:
-#      p.sort_stats(sort_by).print_stats(num_lines)

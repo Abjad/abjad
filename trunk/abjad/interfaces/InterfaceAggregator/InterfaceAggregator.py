@@ -21,6 +21,7 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_after', [ ]))
+      result.extend(self._client.misc._get_formatted_commands_for_target_slot('after'))
       result.sort( )
       return result
 
@@ -30,6 +31,7 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_before', [ ]))
+      result.extend(self._client.misc._get_formatted_commands_for_target_slot('before'))
       result.sort( )
       return result
 
@@ -39,6 +41,7 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_closing', [ ]))
+      result.extend(self._client.misc._get_formatted_commands_for_target_slot('closing'))
       result.sort( )
       return result
 
@@ -78,6 +81,7 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_left', [ ]))
+      result.extend(self._client.misc._get_formatted_commands_for_target_slot('left'))
       result.sort( )
       return result
 
@@ -88,6 +92,7 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_opening', [ ]))
+      result.extend(self._client.misc._get_formatted_commands_for_target_slot('opening'))
       result.sort( )
       return result
 
@@ -167,6 +172,7 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_right', [ ]))
+      result.extend(self._client.misc._get_formatted_commands_for_target_slot('right'))
       result.sort( )
       return result
 

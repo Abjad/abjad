@@ -34,7 +34,7 @@ def color_contents_of_container(container, color):
       ``containertools.color_contents_of_container( )``.
    '''
 
-   container.accidental.color = color
+   container.override.accidental.color = color
    container.beam.color = color
    #container.dots.color = color
    container.override.dots.color = color

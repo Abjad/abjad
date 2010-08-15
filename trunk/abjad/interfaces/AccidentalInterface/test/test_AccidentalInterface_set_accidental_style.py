@@ -1,12 +1,13 @@
 from abjad import *
 
 
-def test_AccidentalInterface_style_01( ):
+def test_AccidentalInterface_set_accidental_style_01( ):
    '''AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
    t = Staff(macros.scale(4))
-   t.accidental.style = 'forget'
+   #t.accidental.style = 'forget'
+   t.misc.set_accidental_style = 'forget'
 
    r'''
    \new Staff {
@@ -21,12 +22,13 @@ def test_AccidentalInterface_style_01( ):
    assert t.format == "\\new Staff {\n\t#(set-accidental-style 'forget)\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_AccidentalInterface_style_02( ):
+def test_AccidentalInterface_set_accidental_style_02( ):
    '''AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
    t = Staff(macros.scale(4))
-   t[1].accidental.style = 'forget'
+   #t[1].accidental.style = 'forget'
+   t[1].misc.set_accidental_style = 'forget'
 
    r'''
    \new Staff {

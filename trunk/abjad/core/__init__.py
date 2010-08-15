@@ -12,4 +12,5 @@ from _Observer import _Observer
 from _Parser import _Parser
 from LilyPondContextSettingComponentPlugIn import LilyPondContextSettingComponentPlugIn
 from LilyPondGrobOverrideComponentPlugIn import LilyPondGrobOverrideComponentPlugIn
+from LilyPondMiscellaneousCommandComponentPlugIn import LilyPondMiscellaneousCommandComponentPlugIn
 from Rational import Rational

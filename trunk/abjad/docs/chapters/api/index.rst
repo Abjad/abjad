@@ -26,6 +26,7 @@ Classes
    core/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
    core/LilyPondGrobProxy/LilyPondGrobProxy
    core/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
+   core/LilyPondMiscellaneousCommandComponentPlugIn/LilyPondMiscellaneousCommandComponentPlugIn
    marks/Markup/Markup
    marks/Meter/Meter
    components/Rest/MultiMeasureRest/MultiMeasureRest

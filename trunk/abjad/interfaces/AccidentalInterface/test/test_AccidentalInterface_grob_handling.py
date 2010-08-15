@@ -2,12 +2,11 @@ from abjad import *
 
 
 def test_AccidentalInterface_grob_handling_01( ):
-   '''
-   AccidentalInterface handles the LilyPond Accidental grob.
+   '''AccidentalInterface handles the LilyPond Accidental grob.
    '''
 
    t = Staff(macros.scale(4))
-   t.accidental.color = 'red'
+   t.override.accidental.color = 'red'
 
    r'''
    \new Staff \with {
@@ -29,7 +28,7 @@ def test_AccidentalInterface_grob_handling_02( ):
    '''
 
    t = Staff(macros.scale(4))
-   t[1].accidental.color = 'red'
+   t[1].override.accidental.color = 'red'
 
    r'''
    \new Staff {

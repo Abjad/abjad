@@ -8,7 +8,6 @@ def test_AccidentalInterface_suggest_accidentals_01( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.accidental.suggest_accidentals = True
    t.set.suggest_accidentals = True
 
    r'''
@@ -30,7 +29,6 @@ def test_AccidentalInterface_suggest_accidentals_02( ):
    '''Format inline before leaves.'''
 
    t = Staff(macros.scale(4))
-   #t[1].accidental.suggest_accidentals = True
    t[1].set.suggest_accidentals = True
    
    r'''

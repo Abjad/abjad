@@ -35,4 +35,5 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
 
    for context in componenttools.iterate_components_forward_in_expr(expr, _Context):
       if not context.parallel:
-         context.accidental.style = accidental_style
+         #context.accidental.style = accidental_style
+         context.misc.set_accidental_style = accidental_style
