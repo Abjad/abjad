@@ -20,12 +20,12 @@ Classes
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
    components/StaffGroup/GrandStaff
-   core/GrobNamespace/GrobNamespace
    marks/KeySignature/KeySignature
-   core/LilyPondContextNamespace/LilyPondContextNamespace
-   core/LilyPondContextSettingNamespace/LilyPondContextSettingNamespace
-   core/LilyPondGrobOverrideContextWrapper/LilyPondGrobOverrideContextWrapper
-   core/LilyPondOverrideNamespace/LilyPondOverrideNamespace
+   core/LilyPondContextProxy/LilyPondContextProxy
+   core/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
+   core/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
+   core/LilyPondGrobProxy/LilyPondGrobProxy
+   core/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
    marks/Markup/Markup
    marks/Meter/Meter
    components/Rest/MultiMeasureRest/MultiMeasureRest

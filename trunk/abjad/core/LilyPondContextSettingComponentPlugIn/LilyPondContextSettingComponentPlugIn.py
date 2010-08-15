@@ -1,5 +1,4 @@
-from abjad.core.LilyPondContextProxy.LilyPondContextNamespace import LilyPondContextProxy
-#from abjad.core.LilyPondContextProxy.LilyPondContextProxy import LilyPondContextProxy
+from abjad.core.LilyPondContextProxy.LilyPondContextProxy import LilyPondContextProxy
 
 
 class LilyPondContextSettingComponentPlugIn(object):
@@ -32,7 +31,7 @@ class LilyPondContextSettingComponentPlugIn(object):
          try:
             return vars(self)['_' + name]
          except KeyError:
-            context = LilyPondContextProxy(name)
+            context = LilyPondContextProxy( )
             vars(self)['_' + name] = context
             return context
       else:

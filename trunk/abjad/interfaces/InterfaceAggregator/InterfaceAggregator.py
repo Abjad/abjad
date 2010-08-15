@@ -96,8 +96,8 @@ class InterfaceAggregator(_Interface):
       '''Alphabetized list of LilyPond grob overrides.
       '''
       from abjad.components._Leaf import _Leaf
-      from abjad.core.GrobNamespace import GrobNamespace
-      from abjad.core.LilyPondGrobOverrideContextWrapper import LilyPondGrobOverrideContextWrapper
+      from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
+      from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
       from abjad.tools.lilyfiletools._make_lilypond_override_string import \
          _make_lilypond_override_string
       result = [ ]
@@ -109,7 +109,7 @@ class InterfaceAggregator(_Interface):
          is_once = False
       for name, value in vars(self._client.override).iteritems( ):
          #print name, value
-         if isinstance(value, LilyPondGrobOverrideContextWrapper):
+         if isinstance(value, LilyPondGrobProxyContextWrapper):
             context_name, context_wrapper = name.lstrip('_'), value
             #print context_name, context_wrapper
             for grob_name, grob_override_namespace in vars(context_wrapper).iteritems( ):
@@ -118,7 +118,7 @@ class InterfaceAggregator(_Interface):
                   #print grob_attribute, grob_value
                   result.append(_make_lilypond_override_string(grob_name, grob_attribute, 
                      grob_value, context_name = context_name, is_once = is_once))
-         elif isinstance(value, GrobNamespace):
+         elif isinstance(value, LilyPondGrobProxy):
             grob_name, grob_namespace = name, value
             for grob_attribute, grob_value in vars(grob_namespace).iteritems( ):
                result.append(_make_lilypond_override_string(grob_name, grob_attribute, 
@@ -133,8 +133,8 @@ class InterfaceAggregator(_Interface):
       '''Alphabetized list of LilyPond grob reverts.
       '''
       from abjad.components._Leaf import _Leaf
-      from abjad.core.GrobNamespace import GrobNamespace
-      from abjad.core.LilyPondGrobOverrideContextWrapper import LilyPondGrobOverrideContextWrapper
+      from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
+      from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
       from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
          _make_lilypond_revert_string
       result = [ ]
@@ -143,7 +143,7 @@ class InterfaceAggregator(_Interface):
       if not isinstance(self._client, _Leaf):
          for name, value in vars(self._client.override).iteritems( ):
             #print name, value
-            if isinstance(value, LilyPondGrobOverrideContextWrapper):
+            if isinstance(value, LilyPondGrobProxyContextWrapper):
                context_name, context_wrapper = name.lstrip('_'), value
                #print context_name, context_wrapper
                for grob_name, grob_override_namespace in vars(context_wrapper).iteritems( ):
@@ -152,7 +152,7 @@ class InterfaceAggregator(_Interface):
                      #print grob_attribute, grob_value
                      result.append(_make_lilypond_revert_string(
                         grob_name, grob_attribute, context_name = context_name))
-            elif isinstance(value, GrobNamespace):
+            elif isinstance(value, LilyPondGrobProxy):
                grob_name, grob_namespace = name, value
                for grob_attribute, grob_value in vars(grob_namespace).iteritems( ):
                   result.append(_make_lilypond_revert_string(grob_name, grob_attribute))
