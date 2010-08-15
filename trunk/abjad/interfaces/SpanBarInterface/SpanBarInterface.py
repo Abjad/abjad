@@ -16,9 +16,7 @@ class SpanBarInterface(_Interface, _GrobHandler):
 
    ::
 
-      abjad> t.span_bar.color = 'red'
-      abjad> overridetools.promote_attribute_to_context_on_grob_handler(t.span_bar, 'color', 'Score')
-      abjad> print t.format
+      abjad> t.override.score.span_bar.color = 'red'
       \once \override Score.SpanBar #'color = #red
       c'4
    '''

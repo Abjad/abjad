@@ -1,12 +1,10 @@
 from abjad.components._Measure.DynamicMeasure.DynamicMeasure import DynamicMeasure
 
 
-## Staff promotion works here even on new staff types.     ##
-## So long as your .ly \layout { } specification           ##
-## causes new staff types to inherit from Staff somewhere. ##
- 
 class AnonymousMeasure(DynamicMeasure):
-   r'''Dynamic measure with no time signature.  ::
+   r'''Dynamic measure with no time signature:
+   
+   ::
 
       abjad> measure = AnonymousMeasure(macros.scale(4))
       abjad> f(measure)
@@ -38,10 +36,11 @@ class AnonymousMeasure(DynamicMeasure):
    '''
 
    def __init__(self, music = None, **kwargs):
-      '''Initialize music and hide TimeSignature stencil.'''
-      from abjad.tools import overridetools
+      '''Initialize music and hide TimeSignature stencil.
+      '''
+      #from abjad.tools import overridetools
       DynamicMeasure.__init__(self, music = music)
-      self.meter.stencil = False
-      #self.meter.promote('stencil', 'Staff')
-      overridetools.promote_attribute_to_context_on_grob_handler(self.meter, 'stencil', 'Staff')
+      #self.meter.stencil = False
+      #overridetools.promote_attribute_to_context_on_grob_handler(self.meter, 'stencil', 'Staff')
+      self.override.staff.time_signature.stencil = False
       self._initialize_keyword_values(**kwargs)

@@ -5,7 +5,7 @@ def test_TextScriptInterface_grob_handling_01( ):
    '''Text override on leaf without context promotion.'''
 
    t = Note(0, (1, 4))
-   t.text_script.color = 'red'
+   t.override.text_script.color = 'red'
 
    r'''
    \once \override TextScript #'color = #red
@@ -19,8 +19,7 @@ def test_TextScriptInterface_grob_handling_02( ):
    '''Text override on leaf with context promotion.'''
 
    t = Note(0, (1, 4))
-   t.text_script.color = 'red'
-   overridetools.promote_attribute_to_context_on_grob_handler(t.text_script, 'color', 'Staff')
+   t.override.staff.text_script.color = 'red'
 
    r'''
    \once \override Staff.TextScript #'color = #red
@@ -34,7 +33,7 @@ def test_TextScriptInterface_grob_handling_03( ):
    '''Override text on context.'''
 
    t = Staff(macros.scale(4))
-   t.text_script.color = 'red'
+   t.override.text_script.color = 'red'
 
    r'''
       \new Staff \with {
@@ -51,12 +50,12 @@ def test_TextScriptInterface_grob_handling_03( ):
 
 
 def test_TextScriptInterface_grob_handling_04( ):
-   '''Clear all overrides.'''
+   '''Clear all overrides.
+   '''
 
    t = Note(0, (1, 4))
-   t.text_script.color = 'red'
-   t.text_script.size = 4
-   #t.text.clear( )
-   overridetools.clear_all_overrides_on_grob_handler(t.text_script)
+   t.override.text_script.color = 'red'
+   t.override.text_script.size = 4
+   del(t.override.text_script)
 
    assert t.format == "c'4"

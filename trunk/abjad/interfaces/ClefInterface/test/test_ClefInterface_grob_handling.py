@@ -3,10 +3,11 @@ import py.test
 
 
 def test_ClefInterface_grob_handling_01( ):
-   '''Leaf override without context promotion.'''
+   '''Leaf override without context promotion.
+   '''
 
    t = Note(0, (1, 4))
-   t.clef.color = 'red'
+   t.override.clef.color = 'red'
 
    r'''
    \once \override Clef #'color = #red
@@ -17,12 +18,11 @@ def test_ClefInterface_grob_handling_01( ):
 
 
 def test_ClefInterface_grob_handling_02( ):
-   '''Leaf override with context promotion.'''
+   '''Leaf override with context promotion.
+   '''
 
    t = Note(0, (1, 4))
-   t.clef.color = 'red'
-   #t.clef.promote('color', 'Staff')
-   overridetools.promote_attribute_to_context_on_grob_handler(t.clef, 'color', 'Staff')
+   t.override.staff.clef.color = 'red'
 
    assert t.format == "\\once \\override Staff.Clef #'color = #red\nc'4"
    r'''
@@ -32,19 +32,11 @@ def test_ClefInterface_grob_handling_02( ):
 
 
 def test_ClefInterface_grob_handling_03( ):
-   '''Context promotion before assignment raises an exception.'''
-   t = Note(0, (1, 4))
-   #assert py.test.raises(AttributeError, "t.clef.promote('color', 'Staff')")
-   assert py.test.raises(AttributeError, "overridetools.promote_attribute_to_context_on_grob_handler(t.clef, 'color', 'Staff')")
-
-
-def test_ClefInterface_grob_handling_04( ):
-   '''
-   Clef override on staff.
+   '''Clef override on staff.
    '''
 
    t = Staff(macros.scale(4))
-   t.clef.color = 'red'
+   t.override.clef.color = 'red'
 
    r'''
    \new Staff \with {

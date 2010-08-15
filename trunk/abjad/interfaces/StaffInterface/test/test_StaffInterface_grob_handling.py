@@ -2,10 +2,9 @@ from abjad import *
 
 
 def test_StaffInterface_grob_handling_01( ):
-   '''Grob handling on Staff.'''
 
    t = Staff(macros.scale(4))
-   t.staff.color = 'red'
+   t.override.staff_symbol.color = 'red'
 
    r'''
    \new Staff \with {
@@ -29,11 +28,9 @@ def test_StaffInterface_grob_handling_01( ):
 ## contribution IFF the contributor is not a Staff?
 
 def test_StaffInterface_grob_handling_02( ):
-   '''grob handling on Leaf.'''
 
    t = Staff(macros.scale(4))
-   t[2].staff.color = 'red'
-   overridetools.promote_attribute_to_context_on_grob_handler(t[2].staff, 'color', 'Staff')
+   t[2].override.staff.staff_symbol.color = 'red'
 
    r'''
    \new Staff {

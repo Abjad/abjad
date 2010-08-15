@@ -3,6 +3,9 @@ from abjad.core import _GrobHandler
 
 def promote_attribute_to_context_on_grob_handler(grob_handler, attribute, context):
    r'''Promote `attribute` to LilyPond `context`.
+
+   DEPRECATED. DO NOT USE.
+
    Both `attribute` and `context` must be strings. ::
 
       abjad> staff = Staff(macros.scale(4))

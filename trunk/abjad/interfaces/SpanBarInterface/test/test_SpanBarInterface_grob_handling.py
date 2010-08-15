@@ -4,7 +4,6 @@ from abjad import *
 def test_SpanBarInterface_grob_handling_01( ):
 
    score, treble, bass = scoretools.make_empty_piano_score( )
-   #score.span_bar.color = 'red'
    score.override.span_bar.color = 'red'
 
    r'''

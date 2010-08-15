@@ -2,12 +2,11 @@ from abjad import *
 
 
 def test_RestInterface_grob_handling_01( ):
-   '''
-   RestInterface handles the LilyPond Rest grob.
+   '''RestInterface handles the LilyPond Rest grob.
    '''
 
    t = Staff(macros.scale(4))
-   t.rest.transparent = True
+   t.override.rest.transparent = True
 
    r'''
    \new Staff \with {
@@ -24,14 +23,12 @@ def test_RestInterface_grob_handling_01( ):
 
 
 def test_RestInterface_grob_handling_02( ):
-   '''
-   Use clear to remove rest interace grob overrides.
+   '''Use del to remove rest interace grob overrides.
    '''
 
    t = Staff(macros.scale(4))
-   t.rest.transparent = True
-   #t.rest.clear( )
-   overridetools.clear_all_overrides_on_grob_handler(t.rest)
+   t.override.rest.transparent = True
+   del(t.override.rest)
 
    r'''
    \new Staff {

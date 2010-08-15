@@ -5,7 +5,7 @@ def test_MeterInterface_grob_handling_01( ):
    '''Transparent meter on staff.'''
 
    t = Staff(macros.scale(4))
-   t.meter.transparent = True
+   t.override.time_signature.transparent = True
 
    r'''
    \new Staff \with {
@@ -25,7 +25,7 @@ def test_MeterInterface_grob_handling_02( ):
    '''(Nonpromoted) transparent meter on measure.'''
 
    t = RigidMeasure((4, 8), macros.scale(4))
-   t.meter.transparent = True
+   t.override.time_signature.transparent = True
 
    r'''
    {
@@ -46,9 +46,7 @@ def test_MeterInterface_grob_handling_03( ):
    '''Promoted transarent meter on measure.'''
 
    t = RigidMeasure((4, 8), macros.scale(4))
-   t.meter.transparent = True
-   #t.meter.promote('transparent', 'Staff')
-   overridetools.promote_attribute_to_context_on_grob_handler(t.meter, 'transparent', 'Staff')
+   t.override.staff.time_signature.transparent = True
 
    r'''
    {
@@ -69,8 +67,8 @@ def test_MeterInterface_grob_handling_04( ):
    '''Clear all meter overrides.'''
 
    t = Note(0, (1, 4))
-   t.meter.color = 'red'
-   t.meter.transparent = True
-   overridetools.clear_all_overrides_on_grob_handler(t.meter)
+   t.override.time_signature.color = 'red'
+   t.override.time_signature.transparent = True
+   del(t.override.time_signature)
 
    assert t.format == "c'4"

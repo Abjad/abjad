@@ -50,12 +50,9 @@ def color_measure(measure, color = 'red'):
 
    ## color measure
    measure.beam.color = color
-   #measure.dots.color = color
    measure.override.dots.color = color
-   measure.meter.color = color
-   overridetools.promote_attribute_to_context_on_grob_handler(measure.meter, 'color', 'Staff')
+   measure.override.staff.time_signature.color = color
    measure.note_head.color = color
-   #measure.stem.color = color
    measure.override.stem.color = color
 
    ## return measure
