@@ -195,6 +195,7 @@ componenttools
    tools/componenttools/group_components_by_like_prolated_duration
    tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups
    tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups_of_klass
+   tools/componenttools/is_beamable_component
    tools/componenttools/is_well_formed_component
    tools/componenttools/iterate_components_and_grace_containers_forward_in_expr
    tools/componenttools/iterate_components_backward_in_expr
