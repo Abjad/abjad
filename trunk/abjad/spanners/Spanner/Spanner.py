@@ -1,4 +1,5 @@
 from abjad.core import _Abjad
+from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.spanners.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.spanners.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.spanners.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
@@ -40,6 +41,7 @@ class Spanner(_Abjad):
       self._duration = _SpannerDurationInterface(self)
       self._format = _SpannerFormatInterface(self)
       self._offset = _SpannerOffsetInterface(self)
+      self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._initialize_music(music)
 
    ## OVERLOADS ##
@@ -342,6 +344,10 @@ class Spanner(_Abjad):
       '''
          
       return self._offset
+
+   @property
+   def override(self):
+      return self._override
 
    ## PUBLIC METHODS ##
 
