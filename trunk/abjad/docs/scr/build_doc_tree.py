@@ -1,6 +1,6 @@
 from _create_subdirs_interactive import _create_subdirs_interactive
-from _filter_directories import  _filter_directories
-from _filter_files import _filter_files
+#from _filter_directories import  _filter_directories
+#from _filter_files import _filter_files
 from _get_documenting_directories import _get_documenting_directories
 from populate_sphinx_directory import populate_sphinx_directory
 import os
@@ -24,7 +24,12 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
                directories.remove(directory)
          directories.sort( )
       
-         _filter_files(files)
+         #_filter_files(files)
+         for file in files[:]:
+            if file.startswith('_'):
+               files.remove(file)
+            elif not file.endswith('.py'):
+               files.remove(file)
          files.sort( )
 
          ## make subdirectories in docs if needed
