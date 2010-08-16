@@ -11,8 +11,10 @@ def _format_lilypond_value(value):
       return '#%s' % value
    elif isinstance(value, tuple):
       return "#'(%s . %s)" % value
-   elif isinstance(value, str):
+   elif isinstance(value, str) and ' ' not in value:
       return "#'%s" % value
+   elif isinstance(value, str) and ' ' in value:
+     return '"%s"' % value
    elif hasattr(value, 'format'):
       return value.format
    else:

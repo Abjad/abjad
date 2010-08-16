@@ -8,7 +8,7 @@ def test_InstrumentInterface_short_name_01( ):
    '''
 
    t = Staff(macros.scale(4))
-   t.instrument.short_name = 'Vni. I'
+   t.set.short_instrument_name = 'Vni. I'
 
    r'''
    \new Staff \with {
@@ -29,7 +29,7 @@ def test_InstrumentInterface_short_name_02( ):
    '''Works with Markup.'''
 
    t = Staff(macros.scale(4))
-   t.instrument.short_name = Markup(r'\circle { V }')
+   t.set.short_instrument_name = Markup(r'\circle { V }')
 
    r'''
    \new Staff \with {

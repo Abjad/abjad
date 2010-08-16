@@ -1,21 +1,19 @@
 from abjad.core import _BacktrackingInterface
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.core import _Observer
 from abjad.marks import Clef
 import types
 
 
-class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
-   '''Handle LilyPond Clef grob.
-      Observe score structure to find effective clef.
-      Manage forced clef changes.'''
+class ClefInterface(_Observer, _BacktrackingInterface, _FormatContributor):
+   '''Observe score structure to find effective clef.
+   Manage forced clef changes.
+   '''
    
    def __init__(self, _client, updateInterface):
-      '''Bind client and LilyPond Clef grob.
-         Set forced to None.'''
       _Observer.__init__(self, _client, updateInterface)
-      _GrobHandler.__init__(self, 'Clef')
       _BacktrackingInterface.__init__(self, 'clef')
+      _FormatContributor.__init__(self)
       self._acceptableTypes = (Clef, )
       self._default = Clef('treble')
       self._forced = None

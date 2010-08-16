@@ -1,24 +1,18 @@
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.spanners import DynamicTextSpanner
 from abjad.spanners import HairpinSpanner
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
 
-## TODO: Dynamics by spanner only? ##
-## TODO: Multistage dynamic spanner? ##
-
-class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
-   '''Handle LilyPond DynamicText grob.
-      Receive Abjad DynamicTextSpanner and Hairpin spanners.
-      Implement read / write 'mark' attribute.'''
+class DynamicsInterface(_Interface, _FormatContributor, _SpannerReceptor):
+   '''Receive Abjad DynamicTextSpanner and Hairpin spanners.
+   Implement read / write 'mark' attribute.
+   '''
    
    def __init__(self, client):
-      '''Bind client, LilyPond DynamicText grob.
-         Receive Abjad DynamicTextSpanner and Hairpin spanners.
-         Set 'mark' to None.'''
       _Interface.__init__(self, client)
-      _GrobHandler.__init__(self, 'DynamicText')
+      _FormatContributor.__init__(self)
       _SpannerReceptor.__init__(self, (DynamicTextSpanner, HairpinSpanner))
       self._mark = None
 

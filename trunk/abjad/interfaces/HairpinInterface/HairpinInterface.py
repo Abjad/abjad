@@ -1,8 +1,8 @@
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 
 
-class HairpinInterface(_Interface, _GrobHandler):
+class HairpinInterface(_Interface, _FormatContributor):
    r'''.. versionadded:: 1.1.2
 
    Handle LilyPond Hairpin grob. ::
@@ -23,4 +23,4 @@ class HairpinInterface(_Interface, _GrobHandler):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _GrobHandler.__init__(self, 'Hairpin')
+      _FormatContributor.__init__(self)

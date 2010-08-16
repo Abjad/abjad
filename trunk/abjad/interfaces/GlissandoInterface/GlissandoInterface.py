@@ -1,16 +1,14 @@
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.spanners import GlissandoSpanner
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
 
-class GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
-   '''Handle LilyPond ``Glissando`` grob.
-   Receive Abjad ``Glissando`` spanner.'''
+class GlissandoInterface(_Interface, _FormatContributor, _SpannerReceptor):
+   '''Receive Abjad GlissandoSpanner.
+   '''
 
    def __init__(self, _client):
-      '''Bind to client. Handle LilyPond ``Glissando`` grob.
-      Receive Ajbad ``Glissando`` spanner.'''
       _Interface.__init__(self, _client)
-      _GrobHandler.__init__(self, 'Glissando')
+      _FormatContributor.__init__(self)
       _SpannerReceptor.__init__(self, (GlissandoSpanner, ))

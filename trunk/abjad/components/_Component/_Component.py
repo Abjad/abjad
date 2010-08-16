@@ -20,7 +20,7 @@ from abjad.interfaces import DynamicsInterface
 #from abjad.interfaces import DynamicTextInterface
 #from abjad.interfaces import DynamicTextSpannerInterface
 from abjad.interfaces import GlissandoInterface
-from abjad.interfaces import HairpinInterface
+#from abjad.interfaces import HairpinInterface
 from abjad.interfaces import HistoryInterface
 from abjad.interfaces import InstrumentInterface
 from abjad.interfaces import InterfaceAggregator
@@ -95,7 +95,7 @@ class _Component(_Abjad):
       #self._dynamic_text = DynamicTextInterface(self)
       #self._dynamic_text_spanner = DynamicTextSpannerInterface(self)
       self._glissando = GlissandoInterface(self)
-      self._hairpin = HairpinInterface(self)
+      #self._hairpin = HairpinInterface(self)
       self._history = HistoryInterface(self)
       self._instrument = InstrumentInterface(self)
       self._lily_file = None
@@ -270,11 +270,11 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.glissando.interface.GlissandoInterface`.'''
       return self._glissando
 
-   @property
-   def hairpin(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.hairpin.interface.HairpinInterface`.'''
-      return self._hairpin
+#   @property
+#   def hairpin(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.hairpin.interface.HairpinInterface`.'''
+#      return self._hairpin
 
    @property
    def history(self):

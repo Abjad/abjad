@@ -4,8 +4,8 @@ from abjad import *
 def test_HairpinInterface_grob_handling_01( ):
 
    t = Staff(macros.scale(4))
-   t.hairpin.staff_padding = 2
-   t.hairpin.Y_extent = (-1.5, 1.5)
+   t.override.hairpin.staff_padding = 2
+   t.override.hairpin.Y_extent = (-1.5, 1.5)
 
    r'''
    \new Staff \with {

@@ -6,7 +6,7 @@ def test_Context_grob_override_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   t.glissando.thickness = 3
+   t.override.glissando.thickness = 3
 
    r'''
    \new Voice \with {

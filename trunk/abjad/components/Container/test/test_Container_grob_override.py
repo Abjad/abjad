@@ -5,7 +5,7 @@ def test_Container_grob_override_01( ):
    '''Noncontext containers bracket grob overrides at opening and closing.'''
 
    t = Container(macros.scale(4))
-   t.glissando.thickness = 3
+   t.override.glissando.thickness = 3
 
    r'''
    {
