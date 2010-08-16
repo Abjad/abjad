@@ -48,7 +48,7 @@ def test_UserComments_clear_02( ):
    '''Clear leaf comments.'''
 
    t = Note(0, (1, 8))
-   t.beam.thickness = 3
+   t.override.beam.thickness = 3
    t.comments.before.append('Comments before.')
    t.comments.opening.append('Comments opening.')
    t.comments.right.append('Comments right.')

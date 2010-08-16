@@ -7,9 +7,10 @@ import os
 def _get_api_files( ):
    for current_root, dirs, files in os.walk(ABJADPATH):
       ## removed unwanted dirs and files.
-      filtered_dirs = ['.svn', 'cfg', 'checks', 'demos', 'docs',
-         'optimization', 'scm', 'scr', 'test', ]
-      _filter_directories(dirs, filtered_dirs)
+      #filtered_dirs = ['.svn', 'cfg', 'checks', 'demos', 'docs',
+      #   'optimization', 'scm', 'scr', 'test', ]
+      #_filter_directories(dirs, filtered_dirs)
+      dirs = _filter_directories(dirs)
       _filter_files(files)
       dirs.sort( )
       files.sort( )

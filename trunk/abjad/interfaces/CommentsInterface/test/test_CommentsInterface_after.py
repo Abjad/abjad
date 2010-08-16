@@ -30,7 +30,7 @@ def test_UserComments_after_02( ):
    '''Leaf comments after.'''
 
    t = Note(0, (1, 8))
-   t.beam.thickness = 3
+   t.override.beam.thickness = 3
    t.comments.after.append('Leaf comments after here.')
    t.comments.after.append('More comments after.')
    

@@ -9,7 +9,6 @@ def test_UserDirectives_contributions_01( ):
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
@@ -48,7 +47,6 @@ def test_UserDirectives_contributions_02( ):
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
@@ -87,7 +85,6 @@ def test_UserDirectives_contributions_03( ):
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
@@ -125,7 +122,6 @@ def test_UserDirectives_contributions_04( ):
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
@@ -158,10 +154,9 @@ def test_UserDirectives_contributions_05( ):
    '''Leaf user directives contributions.'''
 
    t = Note(0, (1, 8))
-   t.beam.thickness = 3
+   t.override.beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")

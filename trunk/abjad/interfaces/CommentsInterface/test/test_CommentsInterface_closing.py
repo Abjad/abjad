@@ -28,7 +28,7 @@ def test_UserComments_closing_02( ):
    '''Test leaf comments closing.'''
 
    t = Note(0, (1, 8))
-   t.beam.thickness = 3
+   t.override.beam.thickness = 3
    t.comments.closing.append('Leaf closing comments here.')
    t.comments.closing.append('More leaf closing comments.')
 

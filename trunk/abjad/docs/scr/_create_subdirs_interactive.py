@@ -2,8 +2,9 @@ import os
 
 
 def _create_subdirs_interactive(root_dir, dirs, interactive):
-   '''Create directories `dirs` in directory `root_dir`.
-      If user specifies interactive mode, prompt before each.'''
+   '''Create dirs in root_dir.
+   If user specifies interactive mode, prompt before each.
+   '''
 
    for dir in dirs:
       new_dir = os.path.join(root_dir, dir)

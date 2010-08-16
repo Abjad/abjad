@@ -8,9 +8,11 @@ class _DuratedComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterfa
 
    def _before(self, leaf):
       '''Spanner format contribution to output before leaf.'''
+      from abjad.tools import componenttools
       result = [ ]
       spanner = self.spanner
-      if leaf.beam.beamable:
+      #if leaf.beam.beamable:
+      if componenttools.is_beamable_component(leaf):
          if spanner._is_exterior_leaf(leaf):
             left, right = self._get_left_right_for_exterior_leaf(leaf)
          # just right of span gap

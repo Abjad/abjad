@@ -1,4 +1,5 @@
-from _get_public_abjad_names import _get_public_abjad_names
+#from _get_public_abjad_names import _get_public_abjad_names
+from _get_documenting_names import _get_documenting_names
 from _module_path_to_doc_path import _module_path_to_doc_path
 import os
 
@@ -6,9 +7,12 @@ import os
 def make_sphinx_toc( ):
    '''Make table of contents for Abjad API.
    Divide TOC into classes, interfaces, spanners and tools.
-   Divide tools into classes and functions.'''
+   Divide tools into classes and functions.
+   '''
 
-   names = _get_public_abjad_names( )
+   print 'Now making Sphinx TOC ...'
+   #names = _get_public_abjad_names( )
+   names = _get_documenting_names( )
    klasses, interfaces, spanners, exceptions, tools = [ ], [ ], [ ], [ ], [ ]
    for name in names:
       if name['kind'] == 'class':

@@ -31,7 +31,7 @@ def test_UserComments_right_02( ):
    '''Leaf comments right.'''
 
    t = Note(0, (1, 8))
-   t.beam.thickness = 3
+   t.override.beam.thickness = 3
    t.comments.right.append('Leaf comments right here.')
    t.comments.right.append('More comments right.')
    

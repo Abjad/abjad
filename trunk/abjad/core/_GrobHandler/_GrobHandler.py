@@ -11,6 +11,9 @@ class _GrobHandler(_FormatContributor):
    See :term:`grob` for information on the core LilyPond concept.'''
 
    def __init__(self, grob):
+
+      ##raise DeprecationWarning('_GrobHandler is now deprecated.')
+
       _FormatContributor.__init__(self)
       self._grob = grob
       #self._parser = _Parser( )

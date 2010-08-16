@@ -1,9 +1,11 @@
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
+#from abjad.core import _GrobHandler
 from abjad.interfaces._Interface import _Interface
 import types
 
 
-class BarLineInterface(_Interface, _GrobHandler):
+#class BarLineInterface(_Interface, _GrobHandler):
+class BarLineInterface(_Interface, _FormatContributor):
    '''Manage bar lines.
 
       ::
@@ -22,10 +24,12 @@ class BarLineInterface(_Interface, _GrobHandler):
          c'4'''
    
    def __init__(self, _client):
-      '''Bind to client and set ``kind`` to ``None``.'''
+
+      raise DeprecationWarning
 
       _Interface.__init__(self, _client)
-      _GrobHandler.__init__(self, 'BarLine')
+      #_GrobHandler.__init__(self, 'BarLine')
+      _FormatContributor.__init__(self)
       self._kind = None
 
    ## PRIVATE ATTRIBUTES ##

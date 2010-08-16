@@ -1,18 +1,15 @@
-from _get_all_abjad_modules import _get_all_abjad_modules
+from _get_documenting_modules import _get_documenting_modules
 
 
-def _get_all_abjad_names( ):
-   '''Return a list of all Abjad function and class names.
-   Include names in nondocumenting directories. Include private names.
+def _get_documenting_names( ):
+   '''Return a list of Abjad classes and functions to document in public API.
    Sort list alphabetically by name.
    Each list entry has the form of a dictionary with three items.
    The dictionary keys are 'name', 'kind' and 'module'.
    '''
 
-   raise DeprecationWarning('use _get_documenting_names( ) instead.')
-
    names = [ ]
-   for module in _get_all_abjad_modules( ):
+   for module in _get_documenting_modules( ):
       f = open(module, 'r')
       lines = f.readlines( )
       f.close( )
@@ -27,6 +24,6 @@ def _get_all_abjad_names( ):
    return names
 
 if __name__ == '__main__':
-   names = _get_all_abjad_names( )
+   names = _get_documenting_names( )
    for name in names:
       print name

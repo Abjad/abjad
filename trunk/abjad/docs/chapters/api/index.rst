@@ -21,12 +21,6 @@ Classes
    components/Grace/Grace
    components/StaffGroup/GrandStaff
    marks/KeySignature/KeySignature
-   core/LilyPondContextProxy/LilyPondContextProxy
-   core/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
-   core/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
-   core/LilyPondGrobProxy/LilyPondGrobProxy
-   core/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
-   core/LilyPondMiscellaneousCommandComponentPlugIn/LilyPondMiscellaneousCommandComponentPlugIn
    marks/Markup/Markup
    marks/Meter/Meter
    components/Rest/MultiMeasureRest/MultiMeasureRest
@@ -34,7 +28,6 @@ Classes
    components/Note/Note
    components/NoteHead/NoteHead
    components/StaffGroup/PianoStaff
-   core/Rational/Rational
    components/Rest/Rest
    components/_Measure/RigidMeasure/RigidMeasure
    components/Score/Score

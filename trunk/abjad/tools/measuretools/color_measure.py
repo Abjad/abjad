@@ -49,7 +49,7 @@ def color_measure(measure, color = 'red'):
       raise TypeError('must be measure: %s' % measure)
 
    ## color measure
-   measure.beam.color = color
+   measure.override.beam.color = color
    measure.override.dots.color = color
    measure.override.staff.time_signature.color = color
    measure.override.note_head.color = color

@@ -11,6 +11,8 @@ def _get_public_abjad_names( ):
    The dictionary keys are 'name', 'kind', 'module'.
    '''
 
+   raise Exception('use _get_documenting_names( ) instead.')
+
    public_names = [ ]
    ## TODO: nondocumeting directories should be identified as such
    ##       in the __init__.py of the directory.

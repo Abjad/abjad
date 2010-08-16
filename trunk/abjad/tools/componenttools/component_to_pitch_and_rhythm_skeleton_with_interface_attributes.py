@@ -17,7 +17,7 @@ def component_to_pitch_and_rhythm_skeleton_with_interface_attributes(component):
       abjad> score = Score(staff * 2)   
       abjad> macros.diatonicize(score)
       abjad> note = score.leaves[0]
-      abjad> note.beam.thickness = 3
+      abjad> note.override.beam.thickness = 3
       abjad> note.duration.multiplier = Rational(1, 2)
       abjad> note.harmonic.natural = True
       abjad> note.name = 'custom name'

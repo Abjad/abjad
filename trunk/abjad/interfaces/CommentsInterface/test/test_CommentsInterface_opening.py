@@ -28,7 +28,7 @@ def test_UserComments_opening_02( ):
    '''Opening comments on leaf.'''
 
    t = Note(0, (1, 8))
-   t.beam.thickness = 3
+   t.override.beam.thickness = 3
    t.comments.opening.append('Leaf opening comments here.')
    t.comments.opening.append('More leaf opening comments.')
 

@@ -31,7 +31,7 @@ def test_UserComments_before_02( ):
    '''Leaf comments before.'''
 
    t = Note(0, (1, 8))
-   t.beam.thickness = 3
+   t.override.beam.thickness = 3
    t.comments.before.append('Leaf comments before here.')
    t.comments.before.append('More comments before.')
    

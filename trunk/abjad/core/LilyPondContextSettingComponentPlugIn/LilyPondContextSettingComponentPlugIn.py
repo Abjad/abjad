@@ -20,6 +20,7 @@ class LilyPondContextSettingComponentPlugIn(object):
 
    ## OVERLOADS ##
 
+   #def __getattr__(self, name, *args):
    def __getattr__(self, name):
       if name.startswith('_'):
          try:
@@ -35,7 +36,11 @@ class LilyPondContextSettingComponentPlugIn(object):
             vars(self)['_' + name] = context
             return context
       else:
-         return vars(self)[name]
+         try:
+            return vars(self)[name]
+         except KeyError:
+            raise AttributeError('%s object has no attribute %s.' % (
+               self.__class__.__name__, name))
 
    def __repr__(self):
       return '%s( )' % self.__class__.__name__

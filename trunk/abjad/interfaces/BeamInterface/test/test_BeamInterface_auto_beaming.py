@@ -6,7 +6,7 @@ def test_BeamInterface_auto_beaming_01( ):
    Set to true or false.'''
 
    t = Staff(macros.scale(4))
-   t.beam.auto_beaming = True
+   t.set.auto_beaming = True
 
    r'''
    \new Staff \with {
@@ -27,8 +27,8 @@ def test_BeamInterface_auto_beaming_02( ):
    '''Clear with none.'''
 
    t = Staff(macros.scale(4))
-   t.beam.auto_beaming = True
-   t.beam.auto_beaming = None
+   t.set.auto_beaming = True
+   del(t.set.auto_beaming)
 
    r'''
    \new Staff {
