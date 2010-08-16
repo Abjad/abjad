@@ -1,5 +1,4 @@
 from abjad.core._FormatContributor import _FormatContributor
-#from abjad.core._Parser import _Parser
 
 
 class _GrobHandler(_FormatContributor):
@@ -16,7 +15,6 @@ class _GrobHandler(_FormatContributor):
 
       _FormatContributor.__init__(self)
       self._grob = grob
-      #self._parser = _Parser( )
       self._promotions = { }
 
    ## OVERLOADS ##
