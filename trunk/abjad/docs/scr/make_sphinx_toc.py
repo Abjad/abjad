@@ -1,4 +1,3 @@
-#from _get_public_abjad_names import _get_public_abjad_names
 from _get_documenting_names import _get_documenting_names
 from _module_path_to_doc_path import _module_path_to_doc_path
 import os
@@ -11,7 +10,6 @@ def make_sphinx_toc( ):
    '''
 
    print 'Now making Sphinx TOC ...'
-   #names = _get_public_abjad_names( )
    names = _get_documenting_names( )
    klasses, interfaces, spanners, exceptions, tools = [ ], [ ], [ ], [ ], [ ]
    for name in names:
