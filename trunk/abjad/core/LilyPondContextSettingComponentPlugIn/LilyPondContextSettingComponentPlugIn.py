@@ -20,7 +20,6 @@ class LilyPondContextSettingComponentPlugIn(object):
 
    ## OVERLOADS ##
 
-   #def __getattr__(self, name, *args):
    def __getattr__(self, name):
       if name.startswith('_'):
          try:

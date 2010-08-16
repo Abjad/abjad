@@ -1,18 +1,18 @@
 from abjad.core import _BacktrackingInterface
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.core import _Observer
 from abjad.marks import KeySignature
 import types
 
 
-class KeySignatureInterface(_Observer, _GrobHandler, _BacktrackingInterface):
-   '''Handle LilyPond KeySignature grob.
-   Publish information about effective and forced key_signature.'''
+class KeySignatureInterface(_Observer, _FormatContributor, _BacktrackingInterface):
+   '''Publish information about effective and forced key_signature.
+   '''
    
    def __init__(self, _client, _updateInterface):
       '''Bind client, set forced to None and suppress to False.'''
       _Observer.__init__(self, _client, _updateInterface)
-      _GrobHandler.__init__(self, 'KeySignature')
+      _FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'key_signature')
       self._acceptableTypes = (KeySignature, )
       #self._default = KeySignature('c', 'major')

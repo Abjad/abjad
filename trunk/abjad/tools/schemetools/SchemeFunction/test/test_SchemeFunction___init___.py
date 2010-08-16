@@ -5,8 +5,7 @@ def test_SchemeFunction___init____01( ):
    '''Scheme function with only a name and no arguments.'''
 
    t = Staff(macros.scale(4))
-   t.meter.break_visibility = schemetools.SchemeFunction(
-      'end-of-line-invisible')
+   t.override.time_signature.break_visibility = schemetools.SchemeFunction('end-of-line-invisible')
 
    r'''
    \new Staff \with {
@@ -26,8 +25,8 @@ def test_SchemeFunction___init____02( ):
    '''Scheme function with a name and a single numeric argument.'''
 
    staff = Staff(macros.scale(4))
-   staff.staff.staff_space = schemetools.SchemeFunction('magstep', -3)
-   staff.staff.thickness = schemetools.SchemeFunction('magstep', -3)
+   staff.override.staff_symbol.staff_space = schemetools.SchemeFunction('magstep', -3)
+   staff.override.staff_symbol.thickness = schemetools.SchemeFunction('magstep', -3)
 
    r'''
    \new Staff \with {

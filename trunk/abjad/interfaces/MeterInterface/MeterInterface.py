@@ -1,5 +1,5 @@
 from abjad.core import _BacktrackingInterface
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.core import _Observer
 from abjad.core import Rational
 from abjad.marks import Meter
@@ -7,16 +7,13 @@ from abjad.tools import durtools
 import types
 
 
-## TODO: rename to TimeSignatureInterface ##
-
-class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
-   '''Handle LilyPond TimeSignature grob.
-      Publish information about effective and forced meter.'''
+class MeterInterface(_Observer, _FormatContributor, _BacktrackingInterface):
+   '''Publish information about effective and forced meter.
+   '''
    
    def __init__(self, _client, _updateInterface):
-      '''Bind client, set forced to None and suppress to False.'''
       _Observer.__init__(self, _client, _updateInterface)
-      _GrobHandler.__init__(self, 'TimeSignature')
+      _FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'meter')
       self._acceptableTypes = (Meter, )
       self._default = Meter(4, 4)

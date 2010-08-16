@@ -19,15 +19,26 @@ class LilyPondMiscellaneousCommandComponentPlugIn(object):
       elif name in type(self)._known_lilypond_miscellaneous_commands.keys( ):
          vars(self)[name] = value
       else:
-         raise AttributeError("unkown LilyPond command '%s'." % name)
+         #raise AttributeError("unkown LilyPond command '%s'." % name)
+         vars(self)[name] = value
 
    ## PRIVATE METHODS ##
 
    def _get_formatted_commands_for_target_slot(self, target_slot):
+      from abjad.tools.lilyfiletools._underscore_delimited_lowercase_to_lowercamelcase import \
+         _underscore_delimited_lowercase_to_lowercamelcase
       result = [ ]
       for command_name, command_value in vars(self).iteritems( ):
-         format_string, command_slot = \
-            type(self)._known_lilypond_miscellaneous_commands[command_name]
-         if command_slot == target_slot:
-            result.append(format_string % command_value)
+         ## known LilyPond command with known formatting and slot
+         try:
+            format_string, command_slot = \
+               type(self)._known_lilypond_miscellaneous_commands[command_name]
+            if command_slot == target_slot:
+               result.append(format_string % command_value)
+         ## unknown LilyPond command
+         except KeyError:
+            ## put unkonwn command in opening slot
+            if target_slot == 'opening':
+               formatted_command = _underscore_delimited_lowercase_to_lowercamelcase(command_name)
+               result.append(r'\%s' % formatted_command)
       return result

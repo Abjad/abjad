@@ -5,7 +5,7 @@ def test_MultiMeasureRestInterface_grob_handling_01( ):
    '''Override LilyPond MultiMeasureRestGrob.'''
 
    staff = Staff([Note(0, (1, 4))])
-   staff.multi_measure_rest.expand_limit = 12
+   staff.override.multi_measure_rest.expand_limit = 12
 
    r'''
    \new Staff \with {

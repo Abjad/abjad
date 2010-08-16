@@ -26,7 +26,7 @@ from abjad.interfaces import InstrumentInterface
 from abjad.interfaces import InterfaceAggregator
 from abjad.interfaces import KeySignatureInterface
 from abjad.interfaces import MeterInterface
-from abjad.interfaces import MultiMeasureRestInterface
+#from abjad.interfaces import MultiMeasureRestInterface
 #from abjad.interfaces import NonMusicalPaperColumnInterface
 #from abjad.interfaces import NoteColumnInterface
 #from abjad.interfaces import NoteHeadInterface
@@ -59,8 +59,6 @@ from abjad.interfaces import TrillInterface
 #from abjad.interfaces import VerticalAlignmentInterface
 #from abjad.interfaces import VerticalAxisGroupInterface
 from abjad.interfaces import VoiceInterface
-import copy
-import types
 
 
 class _Component(_Abjad):
@@ -100,7 +98,7 @@ class _Component(_Abjad):
       self._instrument = InstrumentInterface(self)
       self._lily_file = None
       self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
-      self._multi_measure_rest = MultiMeasureRestInterface(self)
+      #self._multi_measure_rest = MultiMeasureRestInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
       #self._non_musical_paper_column = NonMusicalPaperColumnInterface(self)
@@ -329,11 +327,11 @@ class _Component(_Abjad):
       '''
       return self._misc
 
-   @property
-   def multi_measure_rest(self):
-      '''Read-only reference to
-      :clas:`~abjad.interfaces.multi_measure_rest.interface.MultiMeasureRestInterface`.'''
-      return self._multi_measure_rest
+#   @property
+#   def multi_measure_rest(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.multi_measure_rest.interface.MultiMeasureRestInterface`.'''
+#      return self._multi_measure_rest
 
    @property
    def music(self):
