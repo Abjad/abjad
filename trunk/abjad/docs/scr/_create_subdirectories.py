@@ -1,7 +1,7 @@
 import os
 
 
-def _create_subdirs_interactive(root_dir, dirs, interactive):
+def _create_subdirectories(root_dir, dirs, interactive):
    '''Create dirs in root_dir.
    If user specifies interactive mode, prompt before each.
    '''
