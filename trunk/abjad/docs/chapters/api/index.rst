@@ -43,25 +43,16 @@ Interfaces
 .. toctree::
    :maxdepth: 1
 
-   interfaces/AccidentalInterface/AccidentalInterface
    interfaces/ArticulationInterface/ArticulationInterface
-   interfaces/BarLineInterface/BarLineInterface
-   interfaces/BarNumberInterface/BarNumberInterface
    interfaces/BeamInterface/BeamInterface
    interfaces/BracketsInterface/BracketsInterface
    interfaces/BreaksInterface/BreaksInterface
    interfaces/ClefInterface/ClefInterface
-   interfaces/ClusterInterface/ClusterInterface
    interfaces/CommentsInterface/CommentsInterface
    interfaces/DirectivesInterface/DirectivesInterface
-   interfaces/DotsInterface/DotsInterface
-   interfaces/DynamicLineSpannerInterface/DynamicLineSpannerInterface
-   interfaces/DynamicTextInterface/DynamicTextInterface
-   interfaces/DynamicTextSpannerInterface/DynamicTextSpannerInterface
    interfaces/DynamicsInterface/DynamicsInterface
    interfaces/GlissandoInterface/GlissandoInterface
    interfaces/GraceInterface/GraceInterface
-   interfaces/HairpinInterface/HairpinInterface
    interfaces/HarmonicInterface/HarmonicInterface
    interfaces/HistoryInterface/HistoryInterface
    interfaces/InstrumentInterface/InstrumentInterface
@@ -69,9 +60,6 @@ Interfaces
    interfaces/KeySignatureInterface/KeySignatureInterface
    interfaces/MarkupInterface/MarkupInterface
    interfaces/MeterInterface/MeterInterface
-   interfaces/MultiMeasureRestInterface/MultiMeasureRestInterface
-   interfaces/NonMusicalPaperColumnInterface/NonMusicalPaperColumnInterface
-   interfaces/NoteColumnInterface/NoteColumnInterface
    interfaces/NoteHeadInterface/NoteHeadInterface
    interfaces/NumberingInterface/NumberingInterface
    interfaces/OffsetInterface/OffsetInterface
@@ -79,18 +67,11 @@ Interfaces
    interfaces/OttavaBracketInterface/OttavaBracketInterface
    interfaces/ParentageInterface/ParentageInterface
    interfaces/PianoPedalInterface/PianoPedalInterface
-   interfaces/RehearsalMarkInterface/RehearsalMarkInterface
-   interfaces/RestInterface/RestInterface
    interfaces/ScoreInterface/ScoreInterface
    interfaces/SpacingInterface/ScoreSpacingInterface/ScoreSpacingInterface
-   interfaces/ScriptInterface/ScriptInterface
    interfaces/SlurInterface/SlurInterface
    interfaces/SpacingInterface/SpacingInterface
-   interfaces/SpanBarInterface/SpanBarInterface
    interfaces/StaffInterface/StaffInterface
-   interfaces/StemInterface/StemInterface
-   interfaces/StemTremoloInterface/StemTremoloInterface
-   interfaces/SystemStartBarInterface/SystemStartBarInterface
    interfaces/TempoInterface/TempoInterface
    interfaces/TextScriptInterface/TextScriptInterface
    interfaces/TextSpannerInterface/TextSpannerInterface
@@ -98,11 +79,6 @@ Interfaces
    interfaces/TieInterface/TieInterface
    interfaces/TremoloInterface/TremoloInterface
    interfaces/TrillInterface/TrillInterface
-   interfaces/TrillPitchAccidentalInterface/TrillPitchAccidentalInterface
-   interfaces/TupletBracketInterface/TupletBracketInterface
-   interfaces/TupletNumberInterface/TupletNumberInterface
-   interfaces/VerticalAlignmentInterface/VerticalAlignmentInterface
-   interfaces/VerticalAxisGroupInterface/VerticalAxisGroupInterface
    interfaces/VoiceInterface/VoiceInterface
 
 
