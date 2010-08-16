@@ -5,7 +5,7 @@ def test_TextSpannerInterface_grob_handling_01( ):
    '''Abjad TextSpannerInterface handles LilyPond TextSpanner grob.'''
 
    t = Staff(macros.scale(4))
-   t.text_spanner.staff_padding = 6
+   t.override.text_spanner.staff_padding = 6
    TextSpanner(t[:])
 
    r'''

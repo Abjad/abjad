@@ -1,10 +1,10 @@
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 from abjad.spanners import TextScriptSpanner
 
 
-class TextScriptInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class TextScriptInterface(_Interface, _FormatContributor, _SpannerReceptor):
    r'''.. versionadded:: 1.1.2
    
    Handle LilyPond TextScript grob.
@@ -28,5 +28,5 @@ class TextScriptInterface(_Interface, _GrobHandler, _SpannerReceptor):
       '''Bind client and LilyPond TextScript grob.
       Receive Abjad Text spanner.'''
       _Interface.__init__(self, client)
-      _GrobHandler.__init__(self, 'TextScript')
+      _FormatContributor.__init__(self)
       _SpannerReceptor.__init__(self, (TextScriptSpanner, ))

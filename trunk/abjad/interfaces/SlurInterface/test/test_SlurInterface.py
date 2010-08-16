@@ -5,7 +5,7 @@ def test_SlurInterface_01( ):
    '''Abjad SlurInterface handles the LilyPond Slur grob.'''
 
    t = Voice(macros.scale(4))
-   t.slur.color = 'red'
+   t.override.slur.color = 'red'
 
    r'''
    \new Voice \with {

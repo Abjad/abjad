@@ -1,4 +1,4 @@
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 from abjad.core import Rational
@@ -6,7 +6,7 @@ from abjad.spanners import SpacingSpanner
 import types
 
 
-class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class SpacingInterface(_Interface, _FormatContributor, _SpannerReceptor):
    r'''Handle LilyPond ``SpacingSpanner`` grob.
 
    Receive Abjad ``SpacingSpanner``.
@@ -37,7 +37,7 @@ class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
       '''Bind to client. Handle LilyPond ``SpacingSpanner`` grob.
          Receive Abjad ``SpacingSpanner`` spanner.'''
       _Interface.__init__(self, _client)
-      _GrobHandler.__init__(self, 'SpacingSpanner')
+      _FormatContributor.__init__(self)
       _SpannerReceptor.__init__(self, (SpacingSpanner, ))
       self.proportional_notation_duration = None
 
@@ -47,7 +47,7 @@ class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def _overrides(self):
       '''Read-only list of with-block context overrides.'''
       result = [ ]
-      result.extend(_GrobHandler._overrides.fget(self))
+      #result.extend(_GrobHandler._overrides.fget(self))
       pnd = self.proportional_notation_duration
       if pnd is not None:
          setting = r'proportionalNotationDuration = ' + \

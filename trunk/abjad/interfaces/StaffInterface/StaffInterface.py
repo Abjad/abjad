@@ -1,7 +1,6 @@
 from abjad.core import _BacktrackingInterface
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.core import _Observer
-from abjad.core import _ContextSettingHandler
 import types
 
 
@@ -12,8 +11,7 @@ import types
 ## formating and add a \stopStaff \startStaff immediately before the staff 
 ## contribution IFF the contributor is not a Staff?
 
-class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler, 
-   _ContextSettingHandler):
+class StaffInterface(_Observer, _BacktrackingInterface, _FormatContributor):
    r'''Report on Abjad staff in parentage of client.
    Interface to LilyPond \stopStaff, \startStaff hiding commands.
    Interface to LilyPond fontSize context setting.
@@ -27,7 +25,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
       from abjad.components.Staff import Staff
       _Observer.__init__(self, _client, _updateInterface)
       _BacktrackingInterface.__init__(self, 'staff')
-      _GrobHandler.__init__(self, 'StaffSymbol')
+      _FormatContributor.__init__(self)
       self._acceptableTypes = (Staff, )
       self._effective = None
       self._font_size = None
@@ -97,26 +95,26 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
          if isinstance(parent, Staff):
             return parent
 
-   @apply
-   def font_size( ):
-      def fget(self):
-         r'''Read / write LilyPond fontSize context setting.
-
-         ::
-
-            abjad> staff = Staff([ ])
-            abjad> staff.staff.font_size = -3
-            abjad> f(staff)
-            \new Staff \with {
-                    fontSize = #-3
-            } {
-            }
-         '''
-         return self._font_size
-      def fset(self, expr):
-         assert isinstance(expr, (int, float, long, type(None)))
-         self._font_size = expr
-      return property(**locals( ))
+#   @apply
+#   def font_size( ):
+#      def fget(self):
+#         r'''Read / write LilyPond fontSize context setting.
+#
+#         ::
+#
+#            abjad> staff = Staff([ ])
+#            abjad> staff.staff.font_size = -3
+#            abjad> f(staff)
+#            \new Staff \with {
+#                    fontSize = #-3
+#            } {
+#            }
+#         '''
+#         return self._font_size
+#      def fset(self, expr):
+#         assert isinstance(expr, (int, float, long, type(None)))
+#         self._font_size = expr
+#      return property(**locals( ))
 
    @apply
    def hide( ):
@@ -131,16 +129,16 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
          self._hide = arg
       return property(**locals( ))
    
-   @property
-   def settings(self):
-      r'''Read-only list of LilyPond context settings
-      picked up at format-time.
-      '''
-      result = [ ]
-      font_size = self.font_size
-      if font_size is not None:
-         result.append('fontSize = #%s' % font_size)
-      return result
+#   @property
+#   def settings(self):
+#      r'''Read-only list of LilyPond context settings
+#      picked up at format-time.
+#      '''
+#      result = [ ]
+#      font_size = self.font_size
+#      if font_size is not None:
+#         result.append('fontSize = #%s' % font_size)
+#      return result
 
    @apply
    def show( ):

@@ -1,5 +1,5 @@
 from abjad.core import _BacktrackingInterface
-from abjad.core import _GrobHandler
+from abjad.core import _FormatContributor
 from abjad.core import _Observer
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 from abjad.core import Rational
@@ -8,10 +8,7 @@ from abjad.tools import tempotools
 import types
 
 
-## TODO: Rename MetronomeMarkInterface ##
-
-class TempoInterface(_Observer, _GrobHandler, 
-   _BacktrackingInterface, _SpannerReceptor):
+class TempoInterface(_Observer, _FormatContributor, _BacktrackingInterface, _SpannerReceptor):
    '''Handle LilyPond MetronomeMark grob and Abjad TempoSpanner.
 
    The implementation of `effective` given here allows for
@@ -35,7 +32,7 @@ class TempoInterface(_Observer, _GrobHandler,
       '''Bind to client and LilyPond MetronomMark grob.
          Receive Abjad TempoSpanner.'''
       _Observer.__init__(self, _client, _updateInterface)
-      _GrobHandler.__init__(self, 'MetronomeMark')
+      _FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'tempo')
       _SpannerReceptor.__init__(self, (TempoSpanner, ))
       self._acceptableTypes = (tempotools.TempoIndication, )

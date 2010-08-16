@@ -1,13 +1,9 @@
 from abjad.core import _FormatContributor
-#from abjad.core import _GrobHandler
-#from abjad.core import _ContextSettingHandler
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 from abjad.spanners import BeamSpanner
 
 
-#class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, _SpannerReceptor):
-#class BeamInterface(_Interface, _FormatContributor, _ContextSettingHandler, _SpannerReceptor):
 class BeamInterface(_Interface, _FormatContributor, _SpannerReceptor):
    '''Receive Abjad BeamSpanner.
    '''
@@ -16,7 +12,6 @@ class BeamInterface(_Interface, _FormatContributor, _SpannerReceptor):
       '''Bind to client, LilyPond Beam grob and Abjad Beam spanner.
       Set 'counts' to (None, None).'''
       _Interface.__init__(self, client)
-      #_GrobHandler.__init__(self, 'Beam')
       _FormatContributor.__init__(self)
       _SpannerReceptor.__init__(self, (BeamSpanner, ))
       #self.auto_beaming = None

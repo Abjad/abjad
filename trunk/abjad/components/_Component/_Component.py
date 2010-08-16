@@ -20,7 +20,7 @@ from abjad.interfaces import KeySignatureInterface
 from abjad.interfaces import MeterInterface
 from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
-from abjad.interfaces import OttavaBracketInterface
+#from abjad.interfaces import OttavaBracketInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import PianoPedalInterface
 from abjad.interfaces import ScoreInterface
@@ -69,7 +69,7 @@ class _Component(_Abjad):
       self._name = None
       self._navigator = _Navigator(self)
       self._override = LilyPondGrobOverrideComponentPlugIn( )
-      self._ottava_bracket = OttavaBracketInterface(self)
+      #self._ottava_bracket = OttavaBracketInterface(self)
       self._parentage = ParentageInterface(self)
       self._piano_pedal = PianoPedalInterface(self)
       self._set = LilyPondContextSettingComponentPlugIn( )
@@ -260,11 +260,11 @@ class _Component(_Abjad):
       '''
       return self._override
 
-   @property
-   def ottava_bracket(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.ottava_bracket.interface.OttavaBracketInterface`.'''
-      return self._ottava_bracket
+#   @property
+#   def ottava_bracket(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.ottava_bracket.interface.OttavaBracketInterface`.'''
+#      return self._ottava_bracket
 
    @property
    def parentage(self):

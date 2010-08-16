@@ -4,7 +4,7 @@ from abjad import *
 def test_StaffInterface_font_size_01( ):
 
    t = Staff(macros.scale(4))
-   t.staff.font_size = -3
+   t.set.font_size = -3
 
    r'''
    \new Staff \with {

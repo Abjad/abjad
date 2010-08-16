@@ -129,6 +129,9 @@ class InterfaceAggregator(_Interface):
                result.append(_make_lilypond_override_string(grob_name, grob_attribute, 
                   grob_value, is_once = is_once))
          #print ''
+      for override in result[:]:
+         if 'NoteHead' in override and 'pitch' in override:
+            result.remove(override)
       ## guarantee predictable order of override statements
       result.sort( )
       return result

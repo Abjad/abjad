@@ -64,7 +64,6 @@ Interfaces
    interfaces/NumberingInterface/NumberingInterface
    interfaces/OffsetInterface/OffsetInterface
    interfaces/OffsetInterface/OffsetProlatedInterface/OffsetProlatedInterface
-   interfaces/OttavaBracketInterface/OttavaBracketInterface
    interfaces/ParentageInterface/ParentageInterface
    interfaces/PianoPedalInterface/PianoPedalInterface
    interfaces/ScoreInterface/ScoreInterface

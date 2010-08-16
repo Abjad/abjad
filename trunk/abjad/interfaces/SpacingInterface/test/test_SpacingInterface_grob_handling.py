@@ -8,9 +8,9 @@ def test_SpacingInterface_grob_handling_01( ):
    '''
 
    t = Score([ ])
-   t.spacing.strict_grace_spacing = True
-   t.spacing.strict_note_spacing = True
-   t.spacing.uniform_stretching = True
+   t.override.spacing_spanner.strict_grace_spacing = True
+   t.override.spacing_spanner.strict_note_spacing = True
+   t.override.spacing_spanner.uniform_stretching = True
 
    r'''
    \new Score \with {

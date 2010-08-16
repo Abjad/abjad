@@ -4,7 +4,7 @@ from abjad import *
 def test_StaffInterface_line_positions_01( ):
 
    staff = Staff(macros.scale(4))
-   staff.staff.line_positions = schemetools.SchemeVector(-4, -2, 2, 4)
+   staff.override.staff_symbol.line_positions = schemetools.SchemeVector(-4, -2, 2, 4)
 
    r'''
    \new Staff \with {
