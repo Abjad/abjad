@@ -1,6 +1,6 @@
 from abjad.components.Container import Container
 from abjad.components.Cluster._ClusterFormatter import _ClusterFormatter
-from abjad.interfaces import ClusterInterface
+#from abjad.interfaces import ClusterInterface
 
 
 class Cluster(Container):
@@ -9,7 +9,7 @@ class Cluster(Container):
       Container.__init__(self, music)
       self.parallel = False
       self._formatter = _ClusterFormatter(self)
-      self._cluster = ClusterInterface(self)
+      #self._cluster = ClusterInterface(self)
       self._initialize_keyword_values(**kwargs)
    
    ## OVERLOADS ##
@@ -19,6 +19,6 @@ class Cluster(Container):
    
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def cluster(self):
-      return self._cluster
+#   @property
+#   def cluster(self):
+#      return self._cluster
