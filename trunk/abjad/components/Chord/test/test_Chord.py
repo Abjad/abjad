@@ -19,12 +19,12 @@ def test_Chord_01( ):
 
 def test_Chord_02( ):
    t = Chord([2, 3, 4], (1, 4))
-   t[0].style = 'harmonic'
+   t[0].tweak.style = 'harmonic'
    assert t.format == "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
 
 def test_Chord_03( ):
    t = Chord([2, 3, 4], (1, 4))
-   t[0].transparent = True
+   t[0].tweak.transparent = True
    assert t.format == "<\n\t\\tweak #'transparent ##t\n\td'\n\tef'\n\te'\n>4"
 
 

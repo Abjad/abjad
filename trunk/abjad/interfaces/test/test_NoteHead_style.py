@@ -26,7 +26,6 @@ def test_NoteHead_style_02( ):
    assert t.override.note_head.style == 'mystrangehead'
    assert t.format == "\\once \\override NoteHead #'style = #'mystrangehead\ncs'4"
 
-   #t.note_head.style = None
    del(t.override.note_head.style)
    assert t.note_head.format == "cs'"
 
@@ -36,7 +35,7 @@ def test_NoteHead_style_03( ):
    note_head grob overrides, even for note_heads in chords.'''
 
    t = Chord([1, 2, 3], (1, 4))
-   t.note_heads[0].style = 'harmonic'
+   t.note_heads[0].tweak.style = 'harmonic'
 
    r'''
    <

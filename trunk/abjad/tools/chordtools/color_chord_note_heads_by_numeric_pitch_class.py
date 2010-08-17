@@ -61,12 +61,13 @@ def color_chord_note_heads_by_numeric_pitch_class(chord, color_map):
          pc = note_head.pitch.pc
          color = color_map.get(pc, None)
          if color is not None:
-            note_head.color = color
+            note_head.tweak.color = color
    elif isinstance(chord, Note):
-      note_head = chord.note_head
+      note = chord
+      note_head = note.note_head
       pc = note_head.pitch.pc
       color = color_map.get(pc, None)
       if color is not None:
-         note_head.color = color 
+         note.override.note_head.color = color
 
    return chord

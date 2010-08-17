@@ -1,5 +1,7 @@
 from abjad import *
 import os
+import py
+py.test.skip('pickling not supported.')
 
 
 def test_iotools_dump_pickle_01( ):

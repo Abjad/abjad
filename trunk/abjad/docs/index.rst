@@ -90,6 +90,7 @@ Development
    chapters/devel/optimization/profiling/index
    chapters/devel/optimization/memory/index
    chapters/devel/optimization/class_attributes/index
+   chapters/devel/optimization/slots/index
    chapters/devel/todo/index
    chapters/devel/versions/index
 

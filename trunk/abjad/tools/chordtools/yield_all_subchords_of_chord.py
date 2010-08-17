@@ -46,11 +46,11 @@ def yield_all_subchords_of_chord(chord):
       new_chord = componenttools.clone_components_and_remove_all_spanners([chord])[0]
       binary_string = mathtools.integer_to_binary_string(i)
       binary_string = binary_string.zfill(len_chord)
+      note_heads_to_remove = [ ]
       for j, digit in enumerate(reversed(binary_string)):
          if digit == '0':
-            new_chord[j]._remove_me = True
-      for note_head in new_chord.note_heads:
-         if getattr(note_head, '_remove_me', False):
+            note_heads_to_remove.append(new_chord[j])
+      for note_head in note_heads_to_remove:
             new_chord.remove(note_head)
       new_chord = cast_defective_chord(new_chord)
       yield new_chord

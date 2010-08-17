@@ -60,7 +60,6 @@ Interfaces
    interfaces/KeySignatureInterface/KeySignatureInterface
    interfaces/MarkupInterface/MarkupInterface
    interfaces/MeterInterface/MeterInterface
-   interfaces/NoteHeadInterface/NoteHeadInterface
    interfaces/NumberingInterface/NumberingInterface
    interfaces/OffsetInterface/OffsetInterface
    interfaces/OffsetInterface/OffsetProlatedInterface/OffsetProlatedInterface
@@ -331,10 +330,8 @@ iotools
 .. toctree::
    :maxdepth: 1
 
-   tools/iotools/dump_pickle
    tools/iotools/f
    tools/iotools/list_settings
-   tools/iotools/load_pickle
    tools/iotools/log
    tools/iotools/ly
    tools/iotools/pdf
@@ -810,8 +807,10 @@ schemetools
    tools/schemetools/SchemeColor/SchemeColor
    tools/schemetools/SchemeFunction/SchemeFunction
    tools/schemetools/SchemeMoment/SchemeMoment
+   tools/schemetools/SchemePair/SchemePair
    tools/schemetools/SchemeString/SchemeString
    tools/schemetools/SchemeVector/SchemeVector
+   tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
 
 
 scoretools

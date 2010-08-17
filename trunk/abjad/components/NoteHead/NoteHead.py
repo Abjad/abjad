@@ -1,8 +1,8 @@
 from abjad.components.NoteHead._NoteHeadFormatInterface import _NoteHeadFormatInterface
-from abjad.interfaces import NoteHeadInterface
+from abjad.core import LilyPondTweakReservoir
 
 
-class NoteHead(NoteHeadInterface):
+class NoteHead(object):
    r'''Note or chord note head:
 
    ::
@@ -12,11 +12,14 @@ class NoteHead(NoteHeadInterface):
       NoteHead(cs')
    '''
 
+   __slots__ = ('_client', '_formatter', '_pitch', 'tweak')
+
    def __init__(self, client, pitch = None):
-      NoteHeadInterface.__init__(self, client)
+      self._client = client
+      self.tweak = LilyPondTweakReservoir( )
       self._formatter = _NoteHeadFormatInterface(self)
       self.pitch = pitch
-      self._unregister_if_necessary( )
+      #self._unregister_if_necessary( )
 
    ## OVERLOADS ##
 
@@ -46,16 +49,16 @@ class NoteHead(NoteHeadInterface):
          return str(self.pitch)
       return ' '
 
-   ## PRIVATE METHODS ##
-
-   def _unregister_if_necessary(self):
-      '''Note note_heads should register as format contributors.
-      Chord note_heads should not register as format contributors.'''
-      from abjad.components.Chord import Chord
-      client = getattr(self, '_client', None)
-      if client is not None:
-         if isinstance(client, Chord):
-            client.interfaces._contributors.remove(self)
+#   ## PRIVATE METHODS ##
+#
+#   def _unregister_if_necessary(self):
+#      '''Note note_heads should register as format contributors.
+#      Chord note_heads should not register as format contributors.'''
+#      from abjad.components.Chord import Chord
+#      client = getattr(self, '_client', None)
+#      if client is not None:
+#         if isinstance(client, Chord):
+#            client.interfaces._contributors.remove(self)
 
    ## PUBLIC ATTRIBUTES ##
 

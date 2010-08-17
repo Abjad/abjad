@@ -122,10 +122,10 @@ def test_chordtools_divide_chord_by_pitch_number_10( ):
    '''Split copies over note_head coloring.'''
 
    t = Chord([0, 1, 2, 3], (1, 4))
-   t[0].color = 'red'
-   t[1].color = 'red'
-   t[2].color = 'blue'
-   t[3].color = 'blue'
+   t[0].tweak.color = 'red'
+   t[1].tweak.color = 'red'
+   t[2].tweak.color = 'blue'
+   t[3].tweak.color = 'blue'
    
    r'''
    <
