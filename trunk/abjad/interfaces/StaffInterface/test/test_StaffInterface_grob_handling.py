@@ -20,13 +20,6 @@ def test_StaffInterface_grob_handling_01( ):
    assert t.format == "\\new Staff \\with {\n\t\\override StaffSymbol #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-## TODO: note that this is the expected formatting but that it will not change
-## the color of the Staff lines. For this to work the Staff must be stopped 
-## and restarted before the change for this to have an effect. 
-## Should the GrobHandler be smart enough to see who is contributing the 
-## formating and add a \stopStaff\startStaff immediately before the staff 
-## contribution IFF the contributor is not a Staff?
-
 def test_StaffInterface_grob_handling_02( ):
 
    t = Staff(macros.scale(4))

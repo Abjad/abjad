@@ -3,23 +3,14 @@ from abjad.core._FormatContributor import _FormatContributor
 
 class _GrobHandler(_FormatContributor):
    '''Abstract class from which all concrete Abjad grob handlers inherit.
-
-   Concrete Abjad grob handlers include the accidentals interface, dots
-   interface, text interface and tuplet bracket interface.
-
-   See :term:`grob` for information on the core LilyPond concept.'''
+   '''
 
    def __init__(self, grob):
-
-      ##raise DeprecationWarning('_GrobHandler is now deprecated.')
-
       _FormatContributor.__init__(self)
       self._grob = grob
       self._promotions = { }
 
    ## OVERLOADS ##
-
-   ## TODO: Deprecate _GrobHandler.__len__ because not semantic. ##
 
    def __len__(self):
       return len([kvp for kvp in vars(self).items( ) 

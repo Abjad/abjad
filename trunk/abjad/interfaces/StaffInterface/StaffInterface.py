@@ -4,13 +4,6 @@ from abjad.core import _Observer
 import types
 
 
-## TODO: note that this is the expected formatting but that it will not change
-## the color of the Staff lines. For this to work the Staff must be stopped 
-## and restarted before the change for this to have an effect. 
-## Should the GrobHandler be smart enough to see who is contributing the 
-## formating and add a \stopStaff \startStaff immediately before the staff 
-## contribution IFF the contributor is not a Staff?
-
 class StaffInterface(_Observer, _BacktrackingInterface, _FormatContributor):
    r'''Report on Abjad staff in parentage of client.
    Interface to LilyPond \stopStaff, \startStaff hiding commands.
