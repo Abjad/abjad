@@ -7,8 +7,9 @@ class NaturalHarmonic(Note, _Harmonic):
 
    def __init__(self, *args):
       Note.__init__(self, *args)
+      self.override.note_head.style = 'harmonic'
          
    ## OVERLOADS ##
 
    def __repr__(self):
-      return 'NaturalHarmonic(%s, %s)' % (self.pitch, self.duration)
+      return '%s(%s, %s)' % (self.__class__.__name__, self.pitch, self.duration)

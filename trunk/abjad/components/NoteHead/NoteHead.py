@@ -1,6 +1,5 @@
-from abjad.components.NoteHead._NoteHeadFormaterInterface import _NoteHeadFormatInterface
+from abjad.components.NoteHead._NoteHeadFormatInterface import _NoteHeadFormatInterface
 from abjad.interfaces import NoteHeadInterface
-import types
 
 
 class NoteHead(NoteHeadInterface):
@@ -16,7 +15,6 @@ class NoteHead(NoteHeadInterface):
    def __init__(self, client, pitch = None):
       NoteHeadInterface.__init__(self, client)
       self._formatter = _NoteHeadFormatInterface(self)
-      self._style = None
       self.pitch = pitch
       self._unregister_if_necessary( )
 
@@ -32,10 +30,7 @@ class NoteHead(NoteHeadInterface):
       return not self == expr
 
    def __repr__(self):
-      if self.pitch:
-         return 'NoteHead(%s)' % self.pitch
-      else:
-         return 'NoteHead( )'
+      return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
    def __str__(self):
       if self.pitch:
@@ -46,11 +41,10 @@ class NoteHead(NoteHeadInterface):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _dynamic_key_value_pairs(self):
-      result = [ ]
-      if self.style is not None:
-         result.append(('style', self.style))
-      return result
+   def _format_string(self):
+      if self.pitch:
+         return str(self.pitch)
+      return ' '
 
    ## PRIVATE METHODS ##
 
@@ -102,21 +96,3 @@ class NoteHead(NoteHeadInterface):
             pitch = pitchtools.NamedPitch(arg)
             self._pitch = pitch
       return property(**locals( ))
-
-   @apply
-   def style( ):
-      def fget(self):
-         '''Read / write note_head style.
-            Assign a string to override default nothead style.
-            Assign None to remove the override.'''
-         if self._style is not None:
-            return self._style
-         ## TODO: This is a hack. 
-         ##       Implement NaturalHarmonicNoteheadInterface instead.
-         if self._client.__class__.__name__ == 'NaturalHarmonic':
-            return 'harmonic'
-      def fset(self, arg):
-         if not isinstance(arg, (str, type(None))):
-            raise TypeError
-         self._style = arg
-      return property(**locals( ))      

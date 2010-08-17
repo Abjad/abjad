@@ -5,7 +5,6 @@ def test_NoteHeadInterface_grob_handling_01( ):
    '''Override LilyPond NoteHead grob on voice.'''
 
    t = Voice(macros.scale(4))
-   #t.note_head.color = 'red'
    t.override.note_head.color = 'red'
 
    r'''
