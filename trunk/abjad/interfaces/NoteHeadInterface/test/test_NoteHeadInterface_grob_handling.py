@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NoteHeadInterface_01( ):
+def test_NoteHeadInterface_grob_handling_01( ):
    '''Override LilyPond NoteHead grob on voice.'''
 
    t = Voice(macros.scale(4))

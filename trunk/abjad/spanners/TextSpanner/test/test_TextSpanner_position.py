@@ -79,7 +79,7 @@ def test_TextSpanner_position_04( ):
    assert t.format == "\\new Staff {\n\t\\textSpannerDown\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
-def test_TextSpanner_position_06( ):
+def test_TextSpanner_position_05( ):
    '''TextSpanner attaching to container formats correctly.'''
 
    t = Staff(notetools.make_repeated_notes(4))

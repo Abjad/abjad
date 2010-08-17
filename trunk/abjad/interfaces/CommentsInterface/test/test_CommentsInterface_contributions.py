@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_UserComments_contributions_01( ):
+def test_CommentsInterface_contributions_01( ):
    '''Context comments contributions.'''
 
    t = Voice(macros.scale(4))
@@ -39,7 +39,7 @@ def test_UserComments_contributions_01( ):
    assert result == (('before', ('Comments before.',)), ('opening', ('Comments opening.',)), ('right', ('Unacknowledged comments right.',)), ('closing', ('Comments closing.',)), ('after', ('Comments after.',)))
 
 
-def test_UserComments_contributions_02( ):
+def test_CommentsInterface_contributions_02( ):
    '''Leaf comments contributions.'''
 
    t = Note(0, (1, 8))
@@ -70,7 +70,7 @@ def test_UserComments_contributions_02( ):
    assert result == (('before', ('Comments before.',)), ('opening', ('Comments opening.',)), ('right', ('Comments right.',)), ('closing', ('Comments closing.',)), ('after', ('Comments after.',)))
 
 
-def test_UserComments_contributions_03( ):
+def test_CommentsInterface_contributions_03( ):
    '''Tuplet comments contributions.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
@@ -106,7 +106,7 @@ def test_UserComments_contributions_03( ):
    assert result == (('before', ('Comments before.',)), ('opening', ('Comments opening.',)), ('right', ('Unacknowledged comments right.',)), ('closing', ('Comments closing.',)), ('after', ('Comments after.',)))
 
 
-def test_UserComments_contributions_04( ):
+def test_CommentsInterface_contributions_04( ):
    '''Measure comments contributions.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))

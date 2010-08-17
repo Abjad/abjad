@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_UserDirectives_contributions_01( ):
+def test_DirectivesInterface_contributions_01( ):
    '''Container user directives contributions.'''
 
    t = Container(macros.scale(4))
@@ -39,7 +39,7 @@ def test_UserDirectives_contributions_01( ):
    assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
 
 
-def test_UserDirectives_contributions_02( ):
+def test_DirectivesInterface_contributions_02( ):
    '''Context user directives contributions.'''
 
    t = Voice(macros.scale(4))
@@ -77,7 +77,7 @@ def test_UserDirectives_contributions_02( ):
    assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
 
 
-def test_UserDirectives_contributions_03( ):
+def test_DirectivesInterface_contributions_03( ):
    '''Tuplet user directives contributions.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
@@ -114,7 +114,7 @@ def test_UserDirectives_contributions_03( ):
    assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
 
 
-def test_UserDirectives_contributions_04( ):
+def test_DirectivesInterface_contributions_04( ):
    '''Measure user directives contributions.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
@@ -150,7 +150,7 @@ def test_UserDirectives_contributions_04( ):
    assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
 
 
-def test_UserDirectives_contributions_05( ):
+def test_DirectivesInterface_contributions_05( ):
    '''Leaf user directives contributions.'''
 
    t = Note(0, (1, 8))

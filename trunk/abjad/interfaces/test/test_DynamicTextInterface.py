@@ -54,7 +54,7 @@ def test_DynamicTextInterface_02( ):
    '''
 
 
-def test_DynamicTextInterface_07( ):
+def test_DynamicTextInterface_03( ):
    '''Dynamics interface maps to DynamicText.'''
 
    t = Note(0, (1, 4))
@@ -67,7 +67,7 @@ def test_DynamicTextInterface_07( ):
    '''
 
 
-def test_DynamicTextInterface_08( ):
+def test_DynamicTextInterface_04( ):
    '''Dynamics interface implements first, last, only.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])

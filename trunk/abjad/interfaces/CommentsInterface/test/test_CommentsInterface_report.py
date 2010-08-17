@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_UserComments_report_01( ):
+def test_CommentsInterface_report_01( ):
    '''Report container comments.'''
 
    t = Voice(macros.scale(4))

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ClusterInterface_01( ):
+def test_ClusterInterface_grob_handling_01( ):
    '''Clusters handle grob overrides.
    '''
 
