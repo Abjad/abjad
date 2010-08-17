@@ -9,13 +9,11 @@ Classes
 .. toctree::
    :maxdepth: 1
 
-   components/_Measure/AnonymousMeasure/AnonymousMeasure
    marks/Articulation/Articulation
    components/Chord/Chord
    marks/Clef/Clef
    components/Cluster/Cluster
    components/Container/Container
-   components/_Measure/DynamicMeasure/DynamicMeasure
    components/_Tuplet/FixedDurationTuplet/FixedDurationTuplet
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
@@ -73,14 +71,6 @@ Interfaces
    interfaces/TremoloInterface/TremoloInterface
    interfaces/TrillInterface/TrillInterface
    interfaces/VoiceInterface/VoiceInterface
-
-
-Spanners
---------
-
-.. toctree::
-   :maxdepth: 1
-
 
 
 Tools
@@ -551,6 +541,8 @@ measuretools
 .. toctree::
    :maxdepth: 1
 
+   tools/measuretools/AnonymousMeasure/AnonymousMeasure
+   tools/measuretools/DynamicMeasure/DynamicMeasure
    tools/measuretools/append_spacer_skip_to_underfull_measure
    tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
    tools/measuretools/apply_beam_spanner_to_measure

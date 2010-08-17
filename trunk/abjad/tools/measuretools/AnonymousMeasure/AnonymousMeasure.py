@@ -1,4 +1,4 @@
-from abjad.components._Measure.DynamicMeasure.DynamicMeasure import DynamicMeasure
+from abjad.tools.measuretools.DynamicMeasure.DynamicMeasure import DynamicMeasure
 
 
 class AnonymousMeasure(DynamicMeasure):

@@ -5,7 +5,7 @@ import py.test
 def test_DynamicMeasure_bequeath_01( ):
    '''Bequeath DynamicMeasure contents to RigidMeasure.'''
 
-   t = DynamicMeasure(macros.scale(4))
+   t = measuretools.DynamicMeasure(macros.scale(4))
 
    r'''
    {

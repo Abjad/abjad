@@ -376,7 +376,7 @@ def test_Thread_signature_12( ):
 def test_Thread_signature_13( ):
    '''Measure and leaves must carry same thread signature.'''
 
-   t = Staff([DynamicMeasure(macros.scale(2))] + notetools.make_repeated_notes(2))
+   t = Staff([measuretools.DynamicMeasure(macros.scale(2))] + notetools.make_repeated_notes(2))
    macros.diatonicize(t)
 
    r'''

@@ -9,8 +9,6 @@ from Skip import Skip
 from Staff import Staff
 from Voice import Voice
 from _Harmonic import NaturalHarmonic
-from _Measure import AnonymousMeasure
-from _Measure import DynamicMeasure
 from _Measure import RigidMeasure
 from _Tuplet import FixedDurationTuplet
 from _Tuplet import FixedMultiplierTuplet

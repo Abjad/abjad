@@ -1,7 +1,7 @@
 from abjad.components._Measure._Measure import _Measure
-from abjad.components._Measure.DynamicMeasure._DynamicMeasureDurationInterface import \
+from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface import \
    _DynamicMeasureDurationInterface
-from abjad.components._Measure.DynamicMeasure._DynamicMeasureMeterInterface import \
+from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureMeterInterface import \
    _DynamicMeasureMeterInterface
 from abjad.marks import Meter
 import types

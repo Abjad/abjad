@@ -68,17 +68,17 @@ def make_sphinx_toc( ):
          result += '   %s\n' % doc_path
    result += '\n\n'
   
-   result += 'Spanners\n'
-   result += '-' * (len('Spanners'))
-   result += '\n\n'
-   result += '.. toctree::\n'
-   result += '   :maxdepth: 1\n'
-   result += '\n'
-   for name in spanners:
-      if not name['name'].startswith('_'):
-         doc_path = _module_path_to_doc_path(name['module'])
-         result += '   %s\n' % doc_path
-   result += '\n\n'
+#   result += 'Spanners\n'
+#   result += '-' * (len('Spanners'))
+#   result += '\n\n'
+#   result += '.. toctree::\n'
+#   result += '   :maxdepth: 1\n'
+#   result += '\n'
+#   for name in spanners:
+#      if not name['name'].startswith('_'):
+#         doc_path = _module_path_to_doc_path(name['module'])
+#         result += '   %s\n' % doc_path
+#   result += '\n\n'
   
    tools.sort(lambda x, y: cmp(x['module'], y['module']))
 

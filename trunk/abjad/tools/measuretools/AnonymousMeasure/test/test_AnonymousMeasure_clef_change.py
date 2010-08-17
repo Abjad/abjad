@@ -8,11 +8,11 @@ def test_AnonymousMeasure_clef_change_01( ):
    Contention as to whether leaf or measure should format clef.'''
 
    t = Staff([ ])
-   t.append(AnonymousMeasure(macros.scale(2)))
+   t.append(measuretools.AnonymousMeasure(macros.scale(2)))
    t[-1].clef.forced = Clef('treble')
-   t.append(AnonymousMeasure(macros.scale(2)))
+   t.append(measuretools.AnonymousMeasure(macros.scale(2)))
    t[-1].clef.forced = Clef('bass')
-   t.append(AnonymousMeasure(macros.scale(2)))
+   t.append(measuretools.AnonymousMeasure(macros.scale(2)))
    t[-1].clef.forced = Clef('treble')
 
    r'''

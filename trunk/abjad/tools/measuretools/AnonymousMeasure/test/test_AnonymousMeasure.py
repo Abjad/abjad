@@ -7,7 +7,7 @@ def test_AnonymousMeasure_01( ):
    Anonymous measures print no meter.
    '''
 
-   t = AnonymousMeasure(macros.scale(4))
+   t = measuretools.AnonymousMeasure(macros.scale(4))
    
    r'''
    {
@@ -34,7 +34,7 @@ def test_AnonymousMeasure_02( ):
    Anonymous measures print no meter.
    '''
 
-   t = AnonymousMeasure(macros.scale(3))
+   t = measuretools.AnonymousMeasure(macros.scale(3))
    
    r'''
    {

@@ -8,9 +8,9 @@ def test_AnonymousMeasure_meter_change_01( ):
    Contention between leaf and measure as to who should format meter.'''
 
    t = Staff([ ])
-   t.append(AnonymousMeasure(macros.scale(2)))
-   t.append(AnonymousMeasure(macros.scale(3)))
-   t.append(AnonymousMeasure(macros.scale(2)))
+   t.append(measuretools.AnonymousMeasure(macros.scale(2)))
+   t.append(measuretools.AnonymousMeasure(macros.scale(3)))
+   t.append(measuretools.AnonymousMeasure(macros.scale(2)))
 
    r'''
    \new Staff {

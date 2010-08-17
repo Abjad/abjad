@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_pad_measures_in_expr_with_skips_01( ):
 
-   t = Staff(AnonymousMeasure(macros.scale(2)) * 2)
+   t = Staff(measuretools.AnonymousMeasure(macros.scale(2)) * 2)
 
    r'''
    \new Staff {
@@ -56,7 +56,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_01( ):
 def test_measuretools_pad_measures_in_expr_with_skips_02( ):
    '''Works when measures contain stacked voices.'''
 
-   measure = DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
+   measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
    measure.parallel = True
    t = Staff(measure * 2)
    macros.diatonicize(t)
@@ -132,7 +132,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_02( ):
 def test_measuretools_pad_measures_in_expr_with_skips_03( ):
    '''Set splice = True to extend edge spanners over newly insert rests.'''
 
-   t = DynamicMeasure(macros.scale(2))
+   t = measuretools.DynamicMeasure(macros.scale(2))
    spannertools.BeamSpanner(t[:])
    measuretools.comment_measures_in_container_with_measure_numbers(t)
    measuretools.pad_measures_in_expr_with_skips(
