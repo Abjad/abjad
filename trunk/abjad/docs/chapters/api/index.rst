@@ -22,7 +22,6 @@ Classes
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
-   components/Rest/MultiMeasureRest/MultiMeasureRest
    components/_Harmonic/NaturalHarmonic
    components/Note/Note
    components/Rest/Rest
@@ -792,6 +791,7 @@ resttools
 .. toctree::
    :maxdepth: 1
 
+   tools/resttools/MultiMeasureRest/MultiMeasureRest
    tools/resttools/make_rests
 
 
