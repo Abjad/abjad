@@ -8,7 +8,8 @@ def test_TieSpanner_grob_handling_01( ):
 
    t = Voice(notetools.make_repeated_notes(4))
    p = TieSpanner(t[ : ])
-   p.thickness = 3
+   #p.thickness = 3
+   p.override.tie.thickness = 3
 
    r'''
    \new Voice {

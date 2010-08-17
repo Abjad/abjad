@@ -2,13 +2,13 @@ from abjad import *
 
 
 def test_BeamSpanner_grob_handling_01( ):
-   '''
-   Abjad Beam spanners handle the LilyPond Beam grob.
+   '''Abjad Beam spanners handle the LilyPond Beam grob.
    '''
 
    t = Voice(macros.scale(4))
    p = BeamSpanner(t[ : ])
-   p.positions = (4, 4)
+   #p.positions = (4, 4)
+   p.override.beam.positions = (4, 4)
 
    r'''
    \new Voice {

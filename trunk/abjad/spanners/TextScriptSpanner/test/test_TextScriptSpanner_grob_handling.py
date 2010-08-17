@@ -6,7 +6,8 @@ def test_TextScriptSpanner_grob_handling_01( ):
 
    t = Staff(macros.scale(4))
    text_script_spanner = TextScriptSpanner(t[:])
-   text_script_spanner.color = 'red'
+   #text_script_spanner.color = 'red'
+   text_script_spanner.override.text_script.color = 'red'
 
    r'''
    \new Staff {

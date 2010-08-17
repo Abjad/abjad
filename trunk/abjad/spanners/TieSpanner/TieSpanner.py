@@ -1,8 +1,8 @@
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 from abjad.spanners.TieSpanner._TieSpannerFormatInterface import _TieSpannerFormatInterface
 
 
-class TieSpanner(_GrobHandlerSpanner):
+class TieSpanner(Spanner):
    r'''Musical tie between two or more notes, rests or chords.
 
    ::
@@ -20,5 +20,5 @@ class TieSpanner(_GrobHandlerSpanner):
    '''
 
    def __init__(self, music = None):
-      _GrobHandlerSpanner.__init__(self, 'Tie', music)
+      Spanner.__init__(self, music)
       self._format = _TieSpannerFormatInterface(self)

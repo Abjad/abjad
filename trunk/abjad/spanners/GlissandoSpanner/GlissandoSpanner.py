@@ -1,11 +1,11 @@
 from abjad.spanners.GlissandoSpanner._GlissandoSpannerFormatInterface import _GlissandoSpannerFormatInterface
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 
 
-class GlissandoSpanner(_GrobHandlerSpanner):
+class GlissandoSpanner(Spanner):
    '''Model glissando covering two or more notes.
    Handle LilyPond Glissando grob.'''
 
    def __init__(self, music = None):
-      _GrobHandlerSpanner.__init__(self, 'Glissando', music)
+      Spanner.__init__(self, music)
       self._format = _GlissandoSpannerFormatInterface(self)

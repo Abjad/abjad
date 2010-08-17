@@ -8,7 +8,8 @@ def test_TrillSpanner_grob_handling_01( ):
 
    t = Voice(macros.scale(4))
    p = TrillSpanner(t[ : ])
-   p.color = 'red'   
+   #p.color = 'red'   
+   p.override.trill_spanner.color = 'red'
 
    r'''
    \new Voice {

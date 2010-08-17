@@ -31,12 +31,15 @@ def test_SlurSpanner_03( ):
    p = SlurSpanner(t[:])
    p.position = None
    assert t.format == "\\new Staff {\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
-   p.position = 'up'
+   p.misc.slur_up = None
    assert t.format == "\\new Staff {\n\t\\slurUp\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
-   p.position = 'down'
+   del(p.misc.slur_up)
+   p.misc.slur_down = None
    assert t.format == "\\new Staff {\n\t\\slurDown\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
-   p.position = 'neutral'
+   del(p.misc.slur_down)
+   p.misc.slur_neutral = None
    assert t.format == "\\new Staff {\n\t\\slurNeutral\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
+
    r'''
    \new Staff {
            \slurNeutral

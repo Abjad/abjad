@@ -1,10 +1,9 @@
 from abjad.core import Rational
 from abjad.spanners.SpacingSpanner._SpacingSpannerFormatInterface import _SpacingSpannerFormatInterface
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
-import types
+from abjad.spanners.Spanner import Spanner
 
 
-class SpacingSpanner(_GrobHandlerSpanner):
+class SpacingSpanner(Spanner):
    r'''Model a spacing section of musical score.
 
    Interface to LilyPond ``\newSpacingSection`` command.
@@ -60,7 +59,7 @@ class SpacingSpanner(_GrobHandlerSpanner):
       Init ``new_section`` as ``None``.
       '''
 
-      _GrobHandlerSpanner.__init__(self, 'SpacingSpanner', music)
+      Spanner.__init__(self, music)
       self._format = _SpacingSpannerFormatInterface(self)
       self.new_section = None
       self.proportional_notation_duration = None

@@ -6,7 +6,7 @@ def test_GlissandoSpanner_grob_handling_01( ):
 
    t = Voice(macros.scale(4))
    p = GlissandoSpanner(t[ : ])
-   p.thickness = 3
+   p.override.glissando.thickness = 3
 
    r'''
    \new Voice {

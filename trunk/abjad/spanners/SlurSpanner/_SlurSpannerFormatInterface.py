@@ -1,18 +1,17 @@
-from abjad.spanners.Spanner._PositionalSpannerFormatInterface import \
-   _PositionalSpannerFormatInterface
+from abjad.spanners.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 
 
-class _SlurSpannerFormatInterface(_PositionalSpannerFormatInterface):
+class _SlurSpannerFormatInterface(_SpannerFormatInterface):
 
    def __init__(self, spanner):
-      _PositionalSpannerFormatInterface.__init__(self, spanner)
+      _SpannerFormatInterface.__init__(self, spanner)
 
    ## PRIVATE METHODS ##
 
    def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       result = [ ]
-      result.extend(_PositionalSpannerFormatInterface._before(self, leaf))
+      result.extend(_SpannerFormatInterface._before(self, leaf))
       if self.spanner._is_my_first_leaf(leaf):
          style = self.spanner.style
          if style == 'solid':

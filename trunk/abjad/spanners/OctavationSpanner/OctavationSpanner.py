@@ -1,10 +1,8 @@
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
-from abjad.spanners.OctavationSpanner._OctavationSpannerFormatInterface import \
-   _OctavationSpannerFormatInterface
-import types
+from abjad.spanners.Spanner import Spanner
+from abjad.spanners.OctavationSpanner._OctavationSpannerFormatInterface import _OctavationSpannerFormatInterface
 
 
-class OctavationSpanner(_GrobHandlerSpanner):
+class OctavationSpanner(Spanner):
    r'''8va or 8vb spanner. Overrides the LilyPond OttavaBracket grob.
 
    ::
@@ -28,7 +26,7 @@ class OctavationSpanner(_GrobHandlerSpanner):
    ## TODO: Set start to 1 (and stop to 0) by default. ##
 
    def __init__(self, music = None, start = 0, stop = 0):
-      _GrobHandlerSpanner.__init__(self, 'OttavaBracket', music)
+      Spanner.__init__(self, music)
       self._format = _OctavationSpannerFormatInterface(self)
       self.start = start
       self.stop = stop

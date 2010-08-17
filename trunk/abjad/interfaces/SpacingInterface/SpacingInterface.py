@@ -47,7 +47,6 @@ class SpacingInterface(_Interface, _FormatContributor, _SpannerReceptor):
    def _overrides(self):
       '''Read-only list of with-block context overrides.'''
       result = [ ]
-      #result.extend(_GrobHandler._overrides.fget(self))
       pnd = self.proportional_notation_duration
       if pnd is not None:
          setting = r'proportionalNotationDuration = ' + \

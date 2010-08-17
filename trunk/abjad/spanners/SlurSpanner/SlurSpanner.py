@@ -1,19 +1,13 @@
-from abjad.spanners.Spanner._PositionalGrobHandlerSpanner import _PositionalGrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 from abjad.spanners.SlurSpanner._SlurSpannerFormatInterface import _SlurSpannerFormatInterface
 
 
-class SlurSpanner(_PositionalGrobHandlerSpanner):
+class SlurSpanner(Spanner):
 
    def __init__(self, music = None):
-      _PositionalGrobHandlerSpanner.__init__(self, 'Slur', music)
+      Spanner.__init__(self, music)
       self._format = _SlurSpannerFormatInterface(self)
-      self.position = None
       self.style = None
-
-   ## PRIVATE ATTRIBUTES ##
-
-   _positions = {'neutral':r'\slurNeutral', 'up':r'\slurUp', 
-                 'down':r'\slurDown', None:None}
 
    ## PUBLIC ATTRIBUTES ##
 

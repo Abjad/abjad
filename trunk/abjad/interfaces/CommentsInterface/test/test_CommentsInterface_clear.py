@@ -6,7 +6,7 @@ def test_UserComments_clear_01( ):
 
    t = Voice(macros.scale(4))
    beam = BeamSpanner(t[:])
-   beam.thickness = 3
+   beam.override.beam.thickness = 3
    t.comments.before.append('Comments before.')
    t.comments.opening.append('Comments opening.')
    t.comments.right.append('Unacknowledged comments right.')

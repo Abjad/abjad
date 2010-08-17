@@ -1,9 +1,9 @@
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 from abjad.spanners.TrillSpanner._TrillSpannerFormatInterface import _TrillSpannerFormatInterface
 import types
 
 
-class TrillSpanner(_GrobHandlerSpanner):
+class TrillSpanner(Spanner):
    r'''Trill with continuation line.
 
    *  Interfaces to LilyPond ``startTrillSpan``, ``stopTrillSpan`` commands.
@@ -24,10 +24,7 @@ class TrillSpanner(_GrobHandlerSpanner):
    '''
 
    def __init__(self, music = None):
-      '''Initialize as type of grob-handling spanner.
-      Set ``pitch`` to ``None``.'''
-
-      _GrobHandlerSpanner.__init__(self, 'TrillSpanner', music)
+      Spanner.__init__(self, music)
       self._format = _TrillSpannerFormatInterface(self)
       self._pitch = None
 

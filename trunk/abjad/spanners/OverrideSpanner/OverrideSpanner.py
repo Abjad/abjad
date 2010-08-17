@@ -1,9 +1,9 @@
-#from abjad.core import _Parser
 from abjad.spanners.OverrideSpanner._OverrideSpannerFormatInterface import _OverrideSpannerFormatInterface
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 
 
-class OverrideSpanner(_GrobHandlerSpanner):
+## DEPRECATED ##
+class OverrideSpanner(Spanner):
    r'''Arbitrary LilyPond override spanner.
 
    Five-argument form of initializer uses context specification. ::
@@ -44,7 +44,7 @@ class OverrideSpanner(_GrobHandlerSpanner):
    '''
 
    def __init__(self, music, *args):
-      _GrobHandlerSpanner.__init__(self, 'TemporaryGrob', music)
+      Spanner.__init__(self, music)
       if len(args) == 3:
          self._context = None
          self._grob, self._attribute, self._value  = args
@@ -53,7 +53,6 @@ class OverrideSpanner(_GrobHandlerSpanner):
       else:
          raise ValueError('need 3 or 4 args, not %s.' % len(args))
       self._format = _OverrideSpannerFormatInterface(self)
-      #self._parser = _Parser( )
 
    ## OVERLOADS ##
 

@@ -1,13 +1,13 @@
 from abjad.exceptions import UndefinedSpacingError
 from abjad.exceptions import UndefinedTempoError
 from abjad.core import Rational
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 from abjad.spanners.TempoSpanner._TempoSpannerFormatInterface import _TempoSpannerFormatInterface
 from abjad.tools import tempotools
 import types
 
 
-class TempoSpanner(_GrobHandlerSpanner):
+class TempoSpanner(Spanner):
    r'''Apply tempo indication to zero or more contiguous components.
 
    Handle LilyPond ``MetronomeMark`` grob.
@@ -31,7 +31,7 @@ class TempoSpanner(_GrobHandlerSpanner):
    '''
 
    def __init__(self, music = None, tempo_indication = None):
-      _GrobHandlerSpanner.__init__(self, 'MetronomeMark', music)
+      Spanner.__init__(self, music)
       self._format = _TempoSpannerFormatInterface(self)
       self._proportional_notation_duration_effective = None
       self._proportional_notation_duration_reference = None

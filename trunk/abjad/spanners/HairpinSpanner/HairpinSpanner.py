@@ -1,11 +1,11 @@
 from abjad.spanners.HairpinSpanner._HairpinSpannerFormatInterface import _HairpinSpannerFormatInterface
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 
 
-class HairpinSpanner(_GrobHandlerSpanner):
+class HairpinSpanner(Spanner):
 
    def __init__(self, music, descriptor, trim = False):
-      _GrobHandlerSpanner.__init__(self, 'DynamicLineSpanner', music)
+      Spanner.__init__(self, music)
       self._format = _HairpinSpannerFormatInterface(self)
       start, shape, stop = self._parse_descriptor(descriptor)
       self.shape = shape

@@ -2,13 +2,12 @@ from abjad import *
 
 
 def test_HairpinSpanner_grob_handling_01( ):
-   '''
-   The Abjad Hairpin handles the LilyPond DynamicLineSpanner grob.
+   '''The Abjad Hairpin handles the LilyPond DynamicLineSpanner grob.
    '''
 
    t = Voice(macros.scale(4))
    p = HairpinSpanner(t[ : ], 'p < f')
-   p.staff_padding = 4
+   p.override.dynamic_line_spanner.staff_padding = 4
 
    r'''
    \new Voice {

@@ -23,7 +23,6 @@ class BeamInterface(_Interface, _FormatContributor, _SpannerReceptor):
 #   def _before(self):
 #      '''Format contribution before leaf.'''
 #      result = [ ]
-#      #result.extend(_GrobHandler._before.fget(self))
 #      if self.counts is not None:
 #         if self.counts[0] is not None:
 #            result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])

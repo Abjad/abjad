@@ -1,9 +1,9 @@
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 from abjad.spanners.TextScriptSpanner._TextScriptSpannerFormatInterface import \
    _TextScriptSpannerFormatInterface
 
 
-class TextScriptSpanner(_GrobHandlerSpanner):
+class TextScriptSpanner(Spanner):
    r'''.. versionadded:: 1.1.2
 
    Handle Lilypond TextScript grob.
@@ -26,5 +26,5 @@ class TextScriptSpanner(_GrobHandlerSpanner):
    '''
 
    def __init__(self, music = None):
-      _GrobHandlerSpanner.__init__(self, 'TextScript', music)
+      Spanner.__init__(self, music)
       self._format = _TextScriptSpannerFormatInterface(self)

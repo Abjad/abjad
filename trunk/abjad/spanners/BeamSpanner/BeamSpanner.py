@@ -1,9 +1,9 @@
 from abjad.spanners.BeamSpanner._BeamSpannerFormatInterface import _BeamSpannerFormatInterface
-from abjad.spanners.Spanner._GrobHandlerSpanner import _GrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 
 
-class BeamSpanner(_GrobHandlerSpanner):
+class BeamSpanner(Spanner):
 
    def __init__(self, music = None):
-      _GrobHandlerSpanner.__init__(self, 'Beam', music)
+      Spanner.__init__(self, music)
       self._format = _BeamSpannerFormatInterface(self)

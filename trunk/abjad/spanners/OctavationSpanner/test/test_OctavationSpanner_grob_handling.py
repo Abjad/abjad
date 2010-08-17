@@ -10,8 +10,7 @@ def test_OctavationSpanner_grob_handling_01( ):
 
    t = Voice(macros.scale(4))
    p = OctavationSpanner(t[ : ], 1)
-   p.staff_position = 4
-   overridetools.promote_attribute_to_context_on_grob_handler(p, 'staff_position', 'Staff')
+   p.override.staff.ottava_bracket.staff_position = 4
 
    r'''
    \new Voice {
@@ -21,9 +20,9 @@ def test_OctavationSpanner_grob_handling_01( ):
       d'8
       e'8
       f'8
-      \revert Staff.OttavaBracket #'staff-position
       \ottava #0
+      \revert Staff.OttavaBracket #'staff-position
    }
    '''
 
-   assert t.format == "\\new Voice {\n\t\\override Staff.OttavaBracket #'staff-position = #4\n\t\\ottava #1\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.OttavaBracket #'staff-position\n\t\\ottava #0\n}"
+   assert t.format == "\\new Voice {\n\t\\override Staff.OttavaBracket #'staff-position = #4\n\t\\ottava #1\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\ottava #0\n\t\\revert Staff.OttavaBracket #'staff-position\n}"

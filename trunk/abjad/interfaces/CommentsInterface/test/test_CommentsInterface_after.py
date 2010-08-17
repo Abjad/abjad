@@ -6,7 +6,7 @@ def test_UserComments_after_01( ):
 
    t = Voice(macros.scale(4))
    beam = BeamSpanner(t[:])
-   beam.thickness = 3
+   beam.override.beam.thickness = 3
    t.comments.after.append('Voice after comments here.')
    t.comments.after.append('More voice after comments.')
 

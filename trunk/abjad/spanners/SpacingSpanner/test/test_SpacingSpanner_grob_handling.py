@@ -10,12 +10,9 @@ def test_SpacingSpanner_grob_handling_01( ):
 
    t = Staff(macros.scale(4))
    p = SpacingSpanner(t[:])
-   p.strict_grace_spacing = True
-   p.strict_note_spacing = True
-   p.uniform_stretching = True
-   overridetools.promote_attribute_to_context_on_grob_handler(p, 'strict_grace_spacing', 'Score')
-   overridetools.promote_attribute_to_context_on_grob_handler(p, 'strict_note_spacing', 'Score')
-   overridetools.promote_attribute_to_context_on_grob_handler(p, 'uniform_stretching', 'Score')
+   p.override.score.spacing_spanner.strict_grace_spacing = True
+   p.override.score.spacing_spanner.strict_note_spacing = True
+   p.override.score.spacing_spanner.uniform_stretching = True
 
    r'''
    \new Staff {
@@ -46,12 +43,10 @@ def test_SpacingSpanner_grob_handling_02( ):
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    p = SpacingSpanner(t[:])
-   p.strict_grace_spacing = True
-   p.strict_note_spacing = True
-   p.uniform_stretching = True
-   overridetools.promote_attribute_to_context_on_grob_handler(p, 'strict_grace_spacing', 'Score')
-   overridetools.promote_attribute_to_context_on_grob_handler(p, 'strict_note_spacing', 'Score')
-   overridetools.promote_attribute_to_context_on_grob_handler(p, 'uniform_stretching', 'Score')
+   p.override.score.spacing_spanner.strict_grace_spacing = True
+   p.override.score.spacing_spanner.strict_note_spacing = True
+   p.override.score.spacing_spanner.uniform_stretching = True
+   
 
    r'''
    \new Staff {

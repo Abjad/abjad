@@ -15,7 +15,6 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       result = [ ]
       leaf = self.leaf
       for spanner in self._spanners_in_parentage:
-         #result.extend(spanner._format._after(leaf))
          spanner_contributions = [ ]
          spanner_contributions.extend(spanner._format._after(leaf))
          if spanner._is_my_last_leaf(leaf):
@@ -42,7 +41,6 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
                spanner.misc._get_formatted_commands_for_target_slot('closing'))
             spanner_contributions.extend(
                spanner.misc._get_formatted_commands_for_target_slot('after'))
-         #spanner_contributions.sort( )
          result.extend(spanner_contributions)
       return result
 
@@ -60,7 +58,6 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       for spanner in self._spanners_in_parentage:
          #result.extend(spanner._format._before(leaf))
          spanner_contributions = [ ]
-         spanner_contributions.extend(spanner._format._before(leaf))
          if spanner._is_my_first_leaf(leaf):
             spanner_override_contributions = [ ]
             for name, value in vars(spanner.override).iteritems( ):
@@ -87,7 +84,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
                spanner.misc._get_formatted_commands_for_target_slot('before'))
             spanner_contributions.extend(
                spanner.misc._get_formatted_commands_for_target_slot('opening'))
-         #spanner_contributions.sort( )
+         spanner_contributions.extend(spanner._format._before(leaf))
          result.extend(spanner_contributions)
       return result
 
