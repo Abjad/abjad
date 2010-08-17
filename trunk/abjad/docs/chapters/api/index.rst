@@ -81,29 +81,6 @@ Spanners
 .. toctree::
    :maxdepth: 1
 
-   spanners/BeamSpanner/BeamSpanner
-   spanners/BracketSpanner/BracketSpanner
-   spanners/BeamSpanner/ComplexBeamSpanner/ComplexBeamSpanner
-   spanners/CrescendoSpanner/CrescendoSpanner
-   spanners/DecrescendoSpanner/DecrescendoSpanner
-   spanners/BeamSpanner/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
-   spanners/DynamicTextSpanner/DynamicTextSpanner
-   spanners/GlissandoSpanner/GlissandoSpanner
-   spanners/HairpinSpanner/HairpinSpanner
-   spanners/InstrumentSpanner/InstrumentSpanner
-   spanners/BeamSpanner/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
-   spanners/MetricGridSpanner/MetricGridSpanner
-   spanners/OctavationSpanner/OctavationSpanner
-   spanners/PianoPedalSpanner/PianoPedalSpanner
-   spanners/TempoSpanner/ProportionalTempoSpanner/ProportionalTempoSpanner
-   spanners/SlurSpanner/SlurSpanner
-   spanners/SpacingSpanner/SpacingSpanner
-   spanners/Spanner/Spanner
-   spanners/TempoSpanner/TempoSpanner
-   spanners/TextScriptSpanner/TextScriptSpanner
-   spanners/TextSpanner/TextSpanner
-   spanners/TieSpanner/TieSpanner
-   spanners/TrillSpanner/TrillSpanner
 
 
 Tools
@@ -856,6 +833,29 @@ spannertools
 .. toctree::
    :maxdepth: 1
 
+   tools/spannertools/BeamSpanner/BeamSpanner
+   tools/spannertools/BracketSpanner/BracketSpanner
+   tools/spannertools/ComplexBeamSpanner/ComplexBeamSpanner
+   tools/spannertools/CrescendoSpanner/CrescendoSpanner
+   tools/spannertools/DecrescendoSpanner/DecrescendoSpanner
+   tools/spannertools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
+   tools/spannertools/DynamicTextSpanner/DynamicTextSpanner
+   tools/spannertools/GlissandoSpanner/GlissandoSpanner
+   tools/spannertools/HairpinSpanner/HairpinSpanner
+   tools/spannertools/InstrumentSpanner/InstrumentSpanner
+   tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
+   tools/spannertools/MetricGridSpanner/MetricGridSpanner
+   tools/spannertools/OctavationSpanner/OctavationSpanner
+   tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
+   tools/spannertools/ProportionalTempoSpanner/ProportionalTempoSpanner
+   tools/spannertools/SlurSpanner/SlurSpanner
+   tools/spannertools/SpacingSpanner/SpacingSpanner
+   tools/spannertools/Spanner/Spanner
+   tools/spannertools/TempoSpanner/TempoSpanner
+   tools/spannertools/TextScriptSpanner/TextScriptSpanner
+   tools/spannertools/TextSpanner/TextSpanner
+   tools/spannertools/TieSpanner/TieSpanner
+   tools/spannertools/TrillSpanner/TrillSpanner
    tools/spannertools/find_index_of_spanner_component_at_score_offset
    tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
    tools/spannertools/fracture_spanners_that_cross_components
