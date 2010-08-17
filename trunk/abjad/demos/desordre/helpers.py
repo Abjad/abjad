@@ -10,7 +10,7 @@ def desordre_build(pitches):
    #piano = make_empty_piano_score( )[0]
    piano = scoretools.PianoStaff([ ])
    ## set tempo indication...
-   TempoSpanner(piano, tempotools.TempoIndication(Rational(1, 1), 60))
+   spannertools.TempoSpanner(piano, tempotools.TempoIndication(Rational(1, 1), 60))
    ## build music...
    for hand in pitches:
       seq = staff_build(hand)
@@ -45,8 +45,8 @@ def desordre_cell(pitches):
    '''Returns a parallel container encapsulating a Ligeti "cell".'''
    Pitch.accidental_spelling = 'sharps'
    notes = [Note(p, (1, 8)) for p in pitches]
-   BeamSpanner(notes)
-   SlurSpanner(notes)
+   spannertools.BeamSpanner(notes)
+   spannertools.SlurSpanner(notes)
    notes[0].dynamics.mark = 'f'
    notes[1].dynamics.mark = 'p'
    v_lower = Voice(notes)

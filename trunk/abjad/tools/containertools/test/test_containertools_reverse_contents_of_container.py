@@ -18,7 +18,7 @@ def test_containertools_reverse_contents_of_container_02( ):
       one spanner attached and no parent.'''
 
    t = Staff(macros.scale(8))
-   beam = BeamSpanner(t)
+   beam = spannertools.BeamSpanner(t)
    leaves_rev = reversed(t.leaves)
    containertools.reverse_contents_of_container(t)
 
@@ -32,7 +32,7 @@ def test_containertools_reverse_contents_of_container_03( ):
       with one spanner attached to its leaves and with no parent.'''
 
    t = Staff(macros.scale(8))
-   beam = BeamSpanner(t.leaves)
+   beam = spannertools.BeamSpanner(t.leaves)
    leaves_rev = reversed(t.leaves)
    containertools.reverse_contents_of_container(t)
 
@@ -46,7 +46,7 @@ def test_containertools_reverse_contents_of_container_04( ):
       attached to itself and with a parent.'''
 
    t = Staff([DynamicMeasure(macros.scale(8))] + notetools.make_repeated_notes(2))
-   beam = BeamSpanner(t[0])
+   beam = spannertools.BeamSpanner(t[0])
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
@@ -59,7 +59,7 @@ def test_containertools_reverse_contents_of_container_05( ):
       attached to its leaves and with a parent.'''
 
    t = Staff([DynamicMeasure(macros.scale(8))] + notetools.make_repeated_notes(2))
-   beam = BeamSpanner(t[0].leaves)
+   beam = spannertools.BeamSpanner(t[0].leaves)
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
@@ -72,7 +72,7 @@ def test_containertools_reverse_contents_of_container_06( ):
       attached to its parent.'''
 
    t = Staff([DynamicMeasure(macros.scale(8))] + macros.scale(2))
-   beam = BeamSpanner(t)
+   beam = spannertools.BeamSpanner(t)
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
@@ -87,7 +87,7 @@ def test_containertools_reverse_contents_of_container_07( ):
    notes = macros.scale(2)
    measure = DynamicMeasure(macros.scale(8))
    t = Staff([measure] + notes)
-   beam = BeamSpanner(t[:])
+   beam = spannertools.BeamSpanner(t[:])
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
@@ -103,7 +103,7 @@ def test_containertools_reverse_contents_of_container_08( ):
    notes = macros.scale(2)
    measure = DynamicMeasure(macros.scale(8))
    t = Staff([measure] + notes)
-   beam = BeamSpanner(t[:])
+   beam = spannertools.BeamSpanner(t[:])
 
    r'''
    \new Staff {
@@ -134,11 +134,11 @@ def test_containertools_reverse_contents_of_container_09( ):
    m1 = DynamicMeasure(macros.scale(4)) 
    m2 = DynamicMeasure(macros.scale(3))
    staff = Staff([m1, m2])
-   pedal = PianoPedalSpanner(staff)
-   trill = TrillSpanner(staff[:])
-   beam1 = BeamSpanner(staff[0])
-   beam2 = BeamSpanner(staff[1])
-   gliss = GlissandoSpanner(staff.leaves)
+   pedal = spannertools.PianoPedalSpanner(staff)
+   trill = spannertools.TrillSpanner(staff[:])
+   beam1 = spannertools.BeamSpanner(staff[0])
+   beam2 = spannertools.BeamSpanner(staff[1])
+   gliss = spannertools.GlissandoSpanner(staff.leaves)
    containertools.reverse_contents_of_container(staff)
    assert staff[0] is m2
    assert staff[1] is m1

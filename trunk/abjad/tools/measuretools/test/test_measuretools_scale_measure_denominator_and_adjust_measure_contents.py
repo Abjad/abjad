@@ -6,7 +6,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01( 
       Assignable 3/2 multiplier conserves note_heads.'''
 
    t = RigidMeasure((2, 8), macros.scale(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    {
@@ -37,7 +37,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02( 
       Nonassignable 5/4 multiplier induces ties.'''
 
    t = RigidMeasure((2, 8), macros.scale(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    {
@@ -70,7 +70,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03( 
       Assignable 7/4 multiplier conserves note_heads.'''
 
    t = RigidMeasure((2, 8), macros.scale(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    {
@@ -101,7 +101,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04( 
       Nonassignable 9/8 multiplier induces ties.'''
 
    t = RigidMeasure((2, 8), macros.scale(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    {

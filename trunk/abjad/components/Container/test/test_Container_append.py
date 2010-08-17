@@ -6,7 +6,7 @@ def test_Container_append_01( ):
    '''Append sequential to voice.'''
 
    t = Voice(notetools.make_repeated_notes(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.append(Container(notetools.make_repeated_notes(2)))
    macros.diatonicize(t)
 
@@ -29,7 +29,7 @@ def test_Container_append_02( ):
    '''Append leaf to tuplet.'''
 
    t = FixedDurationTuplet((2, 8), macros.scale(3))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.append(Note(5, (1, 16)))
 
    r'''
@@ -50,7 +50,7 @@ def test_Container_append_03( ):
       raises TypeError.'''
 
    t = Voice(macros.scale(3))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    assert py.test.raises(AssertionError, "t.append('foo')")
    assert py.test.raises(AssertionError, "t.append(99)")
@@ -62,7 +62,7 @@ def test_Container_append_04( ):
    '''Append spanned leaf from donor container to recipient container.'''
 
    t = Voice(macros.scale(3))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -73,7 +73,7 @@ def test_Container_append_04( ):
    '''
 
    u = Voice(macros.scale(4))
-   BeamSpanner(u[:])
+   spannertools.BeamSpanner(u[:])
 
    r'''
    \new Voice {
@@ -119,7 +119,7 @@ def test_Container_append_05( ):
       Donor and recipient containers are the same.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    \new Voice {

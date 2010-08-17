@@ -133,7 +133,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_03( ):
    '''Set splice = True to extend edge spanners over newly insert rests.'''
 
    t = DynamicMeasure(macros.scale(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    measuretools.comment_measures_in_container_with_measure_numbers(t)
    measuretools.pad_measures_in_expr_with_skips(
       t, Rational(1, 32), Rational(1, 64), splice = True)

@@ -1,5 +1,5 @@
 from abjad.components._Measure import _Measure
-from abjad.spanners import BeamSpanner
+from abjad.tools.spannertools import BeamSpanner
 
 
 def apply_beam_spanner_to_measure(measure):
@@ -18,7 +18,7 @@ def apply_beam_spanner_to_measure(measure):
    ::
       
       abjad> measuretools.apply_beam_spanner_to_measure(measure)
-      BeamSpanner(|2/8(2)|)
+      spannertools.BeamSpanner(|2/8(2)|)
       
    ::
       

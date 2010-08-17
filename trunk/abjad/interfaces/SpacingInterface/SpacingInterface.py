@@ -2,7 +2,6 @@ from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 from abjad.core import Rational
-from abjad.spanners import SpacingSpanner
 import types
 
 
@@ -36,6 +35,7 @@ class SpacingInterface(_Interface, _FormatContributor, _SpannerReceptor):
    def __init__(self, _client):
       '''Bind to client. Handle LilyPond ``SpacingSpanner`` grob.
          Receive Abjad ``SpacingSpanner`` spanner.'''
+      from abjad.tools.spannertools import SpacingSpanner
       _Interface.__init__(self, _client)
       _FormatContributor.__init__(self)
       _SpannerReceptor.__init__(self, (SpacingSpanner, ))

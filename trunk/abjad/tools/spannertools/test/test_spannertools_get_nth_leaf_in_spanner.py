@@ -6,7 +6,7 @@ def test_spannertools_get_nth_leaf_in_spanner_01( ):
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   p = BeamSpanner(t[:])
+   p = spannertools.BeamSpanner(t[:])
 
    r'''
    \new Staff {

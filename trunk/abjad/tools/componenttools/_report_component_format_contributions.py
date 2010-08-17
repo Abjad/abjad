@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.spanners import Spanner
+from abjad.tools.spannertools import Spanner
 
 
 def _report_component_format_contributions(component, verbose = False, output = 'screen'):

@@ -5,7 +5,7 @@ def test_CommentsInterface_before_01( ):
    '''Test context comments before.'''
 
    t = Voice(macros.scale(4))
-   beam = BeamSpanner(t[:])
+   beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
    t.comments.before.append('Voice before comments here.')
    t.comments.before.append('More voice before comments.')

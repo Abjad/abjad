@@ -5,7 +5,7 @@ def test_componenttools_cut_component_at_prolated_duration_01( ):
    '''Cut component by prolated duration.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    componenttools.cut_component_at_prolated_duration(t, Rational(1, 8) + Rational(1, 20))
 
@@ -26,7 +26,7 @@ def test_componenttools_cut_component_at_prolated_duration_01( ):
 def test_componenttools_cut_component_at_prolated_duration_02( ):
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    componenttools.cut_component_at_prolated_duration(t, Rational(3, 16))
 

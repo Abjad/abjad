@@ -5,7 +5,7 @@ from abjad.tools.componenttools._ignore import _ignore
 def test_componenttools__ignore_01( ):
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    \new Voice {

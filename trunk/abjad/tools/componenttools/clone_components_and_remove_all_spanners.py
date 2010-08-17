@@ -14,7 +14,7 @@ def clone_components_and_remove_all_spanners(components, n = 1):
    
       abjad> voice = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(voice)
-      abjad> beam = BeamSpanner(voice.leaves[:4])
+      abjad> beam = spannertools.BeamSpanner(voice.leaves[:4])
       abjad> f(voice)
       \new Voice {
               {

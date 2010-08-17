@@ -5,7 +5,7 @@ def insert_component_and_do_not_fracture_crossing_spanners(container, i, compone
    and do not fracture spanners::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [

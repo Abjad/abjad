@@ -6,7 +6,7 @@ def test_componenttools__give_position_to_01( ):
    '''Not composer-safe.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    notes = macros.scale(2, Rational(1, 16))
 
    _give_position_to(t[0:1], notes)

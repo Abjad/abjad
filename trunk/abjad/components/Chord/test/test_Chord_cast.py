@@ -47,7 +47,7 @@ def test_Chord_cast_04( ):
 def test_Chord_cast_05( ):
    '''Cast beamed chord as note.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[ : ])
    Note(t[0])
    assert isinstance(t[0], Note)
    assert t[0].parentage.parent is t
@@ -99,7 +99,7 @@ def test_Chord_cast_09( ):
 def test_Chord_cast_10( ):
    '''Cast beamed chord as rest.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[ : ])
    Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0].parentage.parent is t
@@ -151,7 +151,7 @@ def test_Chord_cast_14( ):
 def test_Chord_cast_15( ):
    '''Cast beamed chord as skip.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[ : ])
    Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0].parentage.parent is t

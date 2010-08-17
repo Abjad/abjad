@@ -6,7 +6,7 @@ def test_containertools_delete_contents_of_container_01( ):
    '''Eject container contents.'''
 
    t = Staff(macros.scale(4))
-   BeamSpanner(t)
+   spannertools.BeamSpanner(t)
 
    contents = containertools.delete_contents_of_container(t)
 

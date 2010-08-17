@@ -8,8 +8,8 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
       Leave spanner attaching to container contents untouched.'''
 
    t = Voice([Container(macros.scale(8))])
-   BeamSpanner(t[0])
-   SlurSpanner(t[0].leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {
@@ -58,8 +58,8 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
    '''Cyclic by [1] splits all elements in container.'''
 
    t = Voice([Container(macros.scale(4))])
-   BeamSpanner(t[0])
-   SlurSpanner(t[0].leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {
@@ -102,8 +102,8 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
       Expression appears unaltered.'''
 
    t = Voice([Container(macros.scale(4))])
-   BeamSpanner(t[0])
-   SlurSpanner(t[0].leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.SlurSpanner(t[0].leaves)
    container = t[0]
 
    r'''
@@ -142,8 +142,8 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
       Result contains no empty parts.'''
 
    t = Voice([Container(macros.scale(4))])
-   BeamSpanner(t[0])
-   SlurSpanner(t[0].leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {
@@ -181,8 +181,8 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
       Empty list returns and expression remains unaltered.'''
 
    t = Voice([Container(macros.scale(4))])
-   BeamSpanner(t[0])
-   SlurSpanner(t[0].leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.SlurSpanner(t[0].leaves)
 
    r'''
    \new Voice {

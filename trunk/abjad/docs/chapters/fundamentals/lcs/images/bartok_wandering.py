@@ -75,17 +75,17 @@ lower_measures[4].append(p)
 ## upper staff
 
 upper_measures[0][0].dynamics.mark = 'pp'
-BeamSpanner(upper_measures[0])
+spannertools.BeamSpanner(upper_measures[0])
 
 upper_measures[1][1].dynamics.mark = 'mp'
-BeamSpanner(upper_measures[1][1:])
+spannertools.BeamSpanner(upper_measures[1][1:])
 
-BeamSpanner(upper_measures[2][0:3])
-BeamSpanner(upper_measures[2][3:])
+spannertools.BeamSpanner(upper_measures[2][0:3])
+spannertools.BeamSpanner(upper_measures[2][3:])
 
-TieSpanner(upper_staff[-2:])
-SlurSpanner(upper_staff.leaves[0:5])
-SlurSpanner(upper_staff.leaves[5:])
+spannertools.TieSpanner(upper_staff[-2:])
+spannertools.SlurSpanner(upper_staff.leaves[0:5])
+spannertools.SlurSpanner(upper_staff.leaves[5:])
 CrescendoSpanner(upper_staff.leaves[-7:-2])
 DecrescendoSpanner(upper_staff.leaves[-2:])
 tx = Text(upper_staff.leaves[-7:])
@@ -95,14 +95,14 @@ tx.bound_details__left__text = Markup('ritard.')
 
 lower_staff.clef.forced = Clef('bass')
 
-TieSpanner([v1a[0], v1b[0]])
+spannertools.TieSpanner([v1a[0], v1b[0]])
 
-BeamSpanner(lower_staff.leaves[1:5])
-BeamSpanner(lower_staff.leaves[6:10])
-BeamSpanner(lower_staff.leaves[10:13])
+spannertools.BeamSpanner(lower_staff.leaves[1:5])
+spannertools.BeamSpanner(lower_staff.leaves[6:10])
+spannertools.BeamSpanner(lower_staff.leaves[10:13])
 
-SlurSpanner(lower_staff.leaves[1:6])
-slr = SlurSpanner(lower_staff.leaves[6:13] + [v2a, v2b])
+spannertools.SlurSpanner(lower_staff.leaves[1:6])
+slr = spannertools.SlurSpanner(lower_staff.leaves[6:13] + [v2a, v2b])
 slr.position = 'down'
 
 lower_staff.barline.kind = '||'
@@ -116,24 +116,24 @@ show(piano)
 #s = Staff([ ])
 #m = RigidMeasure((2, 4), [Note(i, (1, 8)) for i in [9, 7, 5, 4]])
 #m[0].dynamics.mark = 'pp'
-#BeamSpanner(m)
+#spannertools.BeamSpanner(m)
 #s.append(m)
 #m = RigidMeasure((3, 4), notetools.make_notes([2,7,5,4,2], [(1, 4)]+[(1, 8)]*4))
 #m[1].dynamics.mark = 'mp'
-#BeamSpanner(m[1:])
+#spannertools.BeamSpanner(m[1:])
 #s.append(m)
 #m = RigidMeasure((2, 4), 
 #   notetools.make_notes([0,2,4,5,4], [(1, 8), (1, 16), (1, 16), (1, 8), (1, 8)]))
-#BeamSpanner(m[0:3])
-#BeamSpanner(m[3:])
+#spannertools.BeamSpanner(m[0:3])
+#spannertools.BeamSpanner(m[3:])
 #s.append(m)
 #m = RigidMeasure((2, 4), [Note(2, (1, 2))])
 #s.append(m)
 #m = RigidMeasure((2, 4), [Note(2, (1, 2))])
 #s.append(m)
-#TieSpanner(s[-2:])
-#SlurSpanner(s.leaves[0:5])
-#SlurSpanner(s.leaves[5:])
+#spannertools.TieSpanner(s[-2:])
+#spannertools.SlurSpanner(s.leaves[0:5])
+#spannertools.SlurSpanner(s.leaves[5:])
 #CrescendoSpanner(s.leaves[-7:-2])
 #DecrescendoSpanner(s.leaves[-2:])
 #ts = Text(s.leaves[-7:])
@@ -182,14 +182,14 @@ show(piano)
 ##m = RigidMeasure((2, 4), [v1b, v2b])
 #s.append(m)
 #s.barline.kind = '||'
-#TieSpanner([v1a[0], v1b[0]])
+#spannertools.TieSpanner([v1a[0], v1b[0]])
 #
-#BeamSpanner(s.leaves[1:5])
-#BeamSpanner(s.leaves[6:10])
-#BeamSpanner(s.leaves[10:13])
+#spannertools.BeamSpanner(s.leaves[1:5])
+#spannertools.BeamSpanner(s.leaves[6:10])
+#spannertools.BeamSpanner(s.leaves[10:13])
 #
-#SlurSpanner(s.leaves[1:6])
-#slr = SlurSpanner(s.leaves[6:13] + [v2a, v2b])
+#spannertools.SlurSpanner(s.leaves[1:6])
+#slr = spannertools.SlurSpanner(s.leaves[6:13] + [v2a, v2b])
 #slr.position = 'down'
 #
 #ps.append(s)

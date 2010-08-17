@@ -7,7 +7,7 @@ def test_OffsetInterface_score_with_structural_change_01( ):
    '''Insert note in voice.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    note = t[2]
    assert note.offset.prolated.start == Rational(1, 4)
 
@@ -19,7 +19,7 @@ def test_OffsetInterface_score_with_structural_change_02( ):
    '''Delete note in voice.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    note = t[2]
    assert note.offset.prolated.start == Rational(1, 4)
 

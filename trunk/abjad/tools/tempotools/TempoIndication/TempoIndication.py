@@ -10,7 +10,7 @@ class TempoIndication(_Abjad, _Immutable):
    Assign to :class:`~abjad.TempoSpanner` spanner ``indication``. ::
 
       abjad> t = Staff(macros.scale(4))
-      abjad> tempo_spanner = TempoSpanner(t[:])
+      abjad> tempo_spanner = spannertools.TempoSpanner(t[:])
       abjad> tempo_indication = TempoIndication(Rational(1, 8), 44)
       abjad> tempo_spanner.tempo_indication = tempo_indication
 

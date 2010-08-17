@@ -17,13 +17,6 @@ class _ChordFormatter(_LeafFormatter):
       result =  [ ]
       chord = self.leaf
       note_heads = chord.note_heads
-#      if any([(len(x) or x.style) for x in note_heads]):
-#         for note_head in note_heads:
-#            result.extend(['\t' + x for x in note_head.format.split('\n')])
-#         result = ['\n' + '\n'.join(result) + '\n']
-#      else:
-#         for note_head in note_heads:
-#            result.extend([x for x in note_head.format.split('\n')])
       if any(['\n' in x.format for x in note_heads]):
          #print 'overrides!'
          for note_head in note_heads:

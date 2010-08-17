@@ -9,7 +9,7 @@ def test_componenttools_give_music_to_01( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t.leaves)
+   spannertools.BeamSpanner(t.leaves)
 
    r'''
    \new Voice {

@@ -71,7 +71,7 @@ def test_DynamicTextInterface_04( ):
    '''Dynamics interface implements first, last, only.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   CrescendoSpanner(t.leaves)
+   spannertools.CrescendoSpanner(t.leaves)
    assert t[0].dynamics.first
    assert t[-1].dynamics.last
    assert not t[0].dynamics.only

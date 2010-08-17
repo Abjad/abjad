@@ -7,9 +7,9 @@ def test_ComponentSpannerAggregator_children_01( ):
       Do not include spaners attaching directly to self.'''
 
    t = Voice(macros.scale(4))
-   trill = TrillSpanner(t)
-   beam = BeamSpanner(t[:2])
-   glissando = GlissandoSpanner(t[2:])
+   trill = spannertools.TrillSpanner(t)
+   beam = spannertools.BeamSpanner(t[:2])
+   glissando = spannertools.GlissandoSpanner(t[2:])
 
    r'''
    \new Voice {

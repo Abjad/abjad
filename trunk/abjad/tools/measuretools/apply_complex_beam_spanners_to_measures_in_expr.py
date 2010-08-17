@@ -1,4 +1,4 @@
-from abjad.spanners import DuratedComplexBeamSpanner
+from abjad.tools.spannertools import DuratedComplexBeamSpanner
 from abjad.tools.measuretools.apply_complex_beam_spanner_to_measure import apply_complex_beam_spanner_to_measure
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
@@ -27,7 +27,7 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
    ::
       
       abjad> measuretools.apply_complex_beam_spanners_to_measures_in_expr(staff)
-      [DuratedComplexBeamSpanner(|2/8(2)|), DuratedComplexBeamSpanner(|2/8(2)|)]
+      [DuratedComplexspannertools.BeamSpanner(|2/8(2)|), DuratedComplexspannertools.BeamSpanner(|2/8(2)|)]
       
    ::
       

@@ -7,7 +7,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   BeamSpanner(t.leaves)
+   spannertools.BeamSpanner(t.leaves)
 
    r'''
    \new Voice {
@@ -54,8 +54,8 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    t.name = 'foo'
    macros.diatonicize(t)
-   GlissandoSpanner(t[:])
-   BeamSpanner(t.leaves)
+   spannertools.GlissandoSpanner(t[:])
+   spannertools.BeamSpanner(t.leaves)
    
    r'''
    \context Voice = "foo" {
@@ -104,8 +104,8 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   GlissandoSpanner(t[:])
-   BeamSpanner(t.leaves)
+   spannertools.GlissandoSpanner(t[:])
+   spannertools.BeamSpanner(t.leaves)
    
    r'''
    \new Voice {
@@ -153,7 +153,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    '''Trying to move parentage, children and spanners to noncontainer raises type error.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    macros.diatonicize(t)
 
    assert py.test.raises(TypeError, 
@@ -165,7 +165,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    to nonempty container raises music contents error.'''
    
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    macros.diatonicize(t)
 
    tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
@@ -179,7 +179,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   BeamSpanner(t.leaves)
+   spannertools.BeamSpanner(t.leaves)
 
    r'''
    \new Voice {

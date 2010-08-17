@@ -5,7 +5,7 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_01( 
    '''Change length-1 tie chain to length-2 tie chain.'''
 
    t = Staff(notetools.make_repeated_notes(1))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(t[0].tie.chain, Rational(5, 32))
 
    r'''
@@ -23,7 +23,7 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_02( 
    '''Change length-2 tie chain to length-1 tie chain.'''
 
    t = Staff(notetools.make_notes(0, [(5, 32)]))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(t[0].tie.chain, Rational(4, 32))
 
    r'''

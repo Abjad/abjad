@@ -9,8 +9,8 @@ def test_componenttools_clone_components_and_remove_all_spanners_01( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   beam = BeamSpanner(t[:2] + t[2][:] + t[3][:])
-   slur = SlurSpanner(t[0][:] + t[1][:] + t[2:])
+   beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+   slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
    r'''
    \new Voice {
@@ -78,8 +78,8 @@ def test_componenttools_clone_components_and_remove_all_spanners_02( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   beam = BeamSpanner(t[:2] + t[2][:] + t[3][:])
-   slur = SlurSpanner(t[0][:] + t[1][:] + t[2:])
+   beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+   slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
    r'''
    \new Voice {
@@ -142,8 +142,8 @@ def test_componenttools_clone_components_and_remove_all_spanners_03( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   beam = BeamSpanner(t[:2] + t[2][:] + t[3][:])
-   slur = SlurSpanner(t[0][:] + t[1][:] + t[2:])
+   beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+   slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
    r'''
    \new Voice {
@@ -197,8 +197,8 @@ def test_componenttools_clone_components_and_remove_all_spanners_04( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   beam = BeamSpanner(t[:2] + t[2][:] + t[3][:])
-   slur = SlurSpanner(t[0][:] + t[1][:] + t[2:])
+   beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+   slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
    r'''
    \new Voice {
@@ -257,8 +257,8 @@ def test_componenttools_clone_components_and_remove_all_spanners_05( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   beam = BeamSpanner(t[:2] + t[2][:] + t[3][:])
-   slur = SlurSpanner(t[0][:] + t[1][:] + t[2:])
+   beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+   slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
    r'''
    \new Voice {

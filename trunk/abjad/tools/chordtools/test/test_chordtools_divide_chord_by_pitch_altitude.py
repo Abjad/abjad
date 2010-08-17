@@ -52,7 +52,7 @@ def test_chordtools_divide_chord_by_pitch_altitude_04( ):
 def test_chordtools_divide_chord_by_pitch_altitude_05( ):
    '''Spanned chord DOES NOT copy spanner to resultant split parts.'''
    staff = Staff(Chord([2, 4, 5], (1, 4)) * 3)
-   BeamSpanner(staff)
+   spannertools.BeamSpanner(staff)
    t = staff[1]
    treble, bass = chordtools.divide_chord_by_pitch_altitude(t, pitchtools.NamedPitch('e', 4))
    assert isinstance(treble, Chord)

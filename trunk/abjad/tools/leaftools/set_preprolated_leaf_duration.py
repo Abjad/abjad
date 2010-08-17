@@ -1,7 +1,7 @@
 from abjad.exceptions import AssignabilityError
 from abjad.components._Leaf import _Leaf
 from abjad.core import Rational
-from abjad.spanners import TieSpanner
+from abjad.tools.spannertools import TieSpanner
 from abjad.tools.notetools.make_notes import make_notes
 from abjad.components._Tuplet import FixedMultiplierTuplet
 
@@ -10,7 +10,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    r'''Change `leaf` to dotted `preprolated_duration`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Rational(3, 16))
       [Note(d', 8.)]
       abjad> f(staff)
@@ -24,7 +24,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    Change `leaf` to tied `preprolated_duration`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Rational(5, 32))
       [Note(d', 8), Note(d', 32)]
       abjad> f(staff)
@@ -39,7 +39,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    Change `leaf` to nonbinary `preprolated_duration`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Rational(1, 12))
       [Note(d', 8)]
       abjad> f(staff)
@@ -55,7 +55,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    Change `leaf` to tied nonbinary `preprolated_duration`::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Rational(5, 48))
       [Note(d', 8), Note(d', 32)]
       abjad> f(staff)

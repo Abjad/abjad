@@ -7,9 +7,9 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -57,9 +57,9 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {

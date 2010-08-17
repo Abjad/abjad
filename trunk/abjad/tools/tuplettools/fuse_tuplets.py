@@ -10,9 +10,9 @@ def fuse_tuplets(tuplets):
    r'''Fuse parent-contiguous `tuplets`::
 
       abjad> t1 = FixedDurationTuplet((2, 8), macros.scale(3))
-      abjad> BeamSpanner(t1[:])
+      abjad> spannertools.BeamSpanner(t1[:])
       abjad> t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
-      abjad> SlurSpanner(t2[:])
+      abjad> spannertools.SlurSpanner(t2[:])
       abjad> staff = Staff([t1, t2])
       abjad> f(staff)
       \new Staff {

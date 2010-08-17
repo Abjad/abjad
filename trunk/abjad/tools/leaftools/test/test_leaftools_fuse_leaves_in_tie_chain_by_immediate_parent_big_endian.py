@@ -5,7 +5,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_01( )
    '''Fuse leaves in tie chain with same immediate parent.'''
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   TieSpanner(t.leaves)
+   spannertools.TieSpanner(t.leaves)
    
    r'''
    \new Staff {
@@ -46,7 +46,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02( )
    '''Fuse leaves in tie chain with same immediate parent.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   TieSpanner(t.leaves)
+   spannertools.TieSpanner(t.leaves)
    
    r'''
    \new Staff {

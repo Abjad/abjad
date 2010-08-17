@@ -2,8 +2,8 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
    r'''Flip `component` one index to the right in parent and spanners. ::
 
       abjad> t = Voice(macros.scale(4))
-      abjad> BeamSpanner(t[:2])
-      abjad> BeamSpanner(t[2:])
+      abjad> spannertools.BeamSpanner(t[:2])
+      abjad> spannertools.BeamSpanner(t[2:])
       abjad> f(t)
       \new Voice {
          c'8 [
@@ -33,7 +33,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
    ::
 
       abjad> voice = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-      abjad> BeamSpanner(voice.leaves[:4])
+      abjad> spannertools.BeamSpanner(voice.leaves[:4])
       abjad> macros.diatonicize(voice)
       abjad> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[0])
       abjad> f(voice)

@@ -8,7 +8,7 @@ def remove_empty_containers_in_expr(expr):
 
       abjad> staff = Staff(Container(notetools.make_repeated_notes(2)) * 4)
       abjad> macros.diatonicize(staff.leaves)
-      abjad> BeamSpanner(staff[:])
+      abjad> spannertools.BeamSpanner(staff[:])
       abjad> containertools.delete_contents_of_container(staff[1])
       abjad> containertools.delete_contents_of_container(staff[-1])
       abjad> f(staff)

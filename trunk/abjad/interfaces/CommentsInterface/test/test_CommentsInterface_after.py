@@ -5,7 +5,7 @@ def test_CommentsInterface_after_01( ):
    '''Test context comments after.'''
 
    t = Voice(macros.scale(4))
-   beam = BeamSpanner(t[:])
+   beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
    t.comments.after.append('Voice after comments here.')
    t.comments.after.append('More voice after comments.')

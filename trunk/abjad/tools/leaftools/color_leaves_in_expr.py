@@ -8,7 +8,7 @@ def color_leaves_in_expr(expr, color):
    Color leaves in `expr` with `color`::
 
       abjad> staff = Staff([Note(1, (3, 16)), Rest((3, 16)), Skip((3, 16)), Chord([0, 1, 9], (3, 16))])
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          cs'8. [

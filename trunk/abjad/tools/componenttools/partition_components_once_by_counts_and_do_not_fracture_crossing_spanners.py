@@ -8,8 +8,8 @@ def partition_components_once_by_counts_and_do_not_fracture_crossing_spanners(co
    Return Python list of partitioned parts. ::
 
       abjad> t = Voice([Container(macros.scale(8))])
-      abjad> BeamSpanner(t[0])
-      abjad> SlurSpanner(t[0].leaves)
+      abjad> spannertools.BeamSpanner(t[0])
+      abjad> spannertools.SlurSpanner(t[0].leaves)
       abjad> f(t)
       \new Voice {
          {

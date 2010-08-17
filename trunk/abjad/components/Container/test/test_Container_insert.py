@@ -11,7 +11,7 @@ def test_Container_insert_01( ):
    "Insert works just before a spanner."
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.insert(0, Rest((1, 8)))
 
    r'''
@@ -32,7 +32,7 @@ def test_Container_insert_02( ):
    '''Insert works inside a spanner.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.insert(1, Note(1, (1, 8)))
 
    r'''
@@ -54,7 +54,7 @@ def test_Container_insert_03( ):
    '''Insert works just after a spanner.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)])
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.insert(4, Rest((1, 4)))
 
    r'''
@@ -75,7 +75,7 @@ def test_Container_insert_04( ):
    '''Insert works with really big positive values.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)])
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.insert(1000, Rest((1, 4)))
 
    r'''
@@ -96,7 +96,7 @@ def test_Container_insert_05( ):
    '''Insert works with negative values.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.insert(-1, Note(4.5, (1, 8)))
 
    r'''
@@ -117,7 +117,7 @@ def test_Container_insert_06( ):
    '''Insert works with really big negative values.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.insert(-1000, Rest((1, 8)))
 
    r'''

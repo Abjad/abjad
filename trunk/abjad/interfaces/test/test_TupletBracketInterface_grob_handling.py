@@ -5,7 +5,7 @@ def test_TupletBracketInterface_grob_handling_01( ):
    '''Override LilyPond TupletBracket grob on Abjad voice.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    #t.tuplet_bracket.direction = 'down'
    t.override.tuplet_bracket.direction = 'down'
 
@@ -28,7 +28,7 @@ def test_TupletBracketInterface_grob_handling_02( ):
    '''Override LilyPond TupletBracket grob on Abjad leaf.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    #t[1].tuplet_bracket.direction = 'down'
    t[1].override.tuplet_bracket.direction = 'down'
 

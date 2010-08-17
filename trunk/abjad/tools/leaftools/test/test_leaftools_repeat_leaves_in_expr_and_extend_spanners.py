@@ -5,7 +5,7 @@ def test_leaftools_repeat_leaves_in_expr_and_extend_spanners_01( ):
    '''Multiply each leaf in voice by 1.'''
 
    t = Voice(macros.scale(3))
-   p = BeamSpanner(t[:])
+   p = spannertools.BeamSpanner(t[:])
    leaftools.repeat_leaves_in_expr_and_extend_spanners(t, total = 2)
 
    r'''
@@ -27,7 +27,7 @@ def test_leaftools_repeat_leaves_in_expr_and_extend_spanners_02( ):
    '''Multiply each leaf in voice by 2.'''
 
    t = Voice(macros.scale(3))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    leaftools.repeat_leaves_in_expr_and_extend_spanners(t, total = 3)
 
    r'''

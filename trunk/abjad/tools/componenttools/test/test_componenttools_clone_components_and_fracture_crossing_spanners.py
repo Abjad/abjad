@@ -9,9 +9,9 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_01( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   slur = SlurSpanner(t[:])
-   trill = TrillSpanner(t.leaves)
-   beam = BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+   slur = spannertools.SlurSpanner(t[:])
+   trill = spannertools.TrillSpanner(t.leaves)
+   beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
    r'''
    \new Voice {
@@ -47,9 +47,9 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_02( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   slur = SlurSpanner(t[:])
-   trill = TrillSpanner(t.leaves)
-   beam = BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+   slur = spannertools.SlurSpanner(t[:])
+   trill = spannertools.TrillSpanner(t.leaves)
+   beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
    r'''
    \new Voice {
@@ -94,9 +94,9 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_03( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   slur = SlurSpanner(t[:])
-   trill = TrillSpanner(t.leaves)
-   beam = BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+   slur = spannertools.SlurSpanner(t[:])
+   trill = spannertools.TrillSpanner(t.leaves)
+   beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
    r'''
    \new Voice {
@@ -139,9 +139,9 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_04( ):
 
    t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   slur = SlurSpanner(t[:])
-   trill = TrillSpanner(t.leaves)
-   beam = BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+   slur = spannertools.SlurSpanner(t[:])
+   trill = spannertools.TrillSpanner(t.leaves)
+   beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
    r'''
    \new Voice {

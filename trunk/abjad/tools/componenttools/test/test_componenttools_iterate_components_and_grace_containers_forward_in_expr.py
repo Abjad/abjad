@@ -5,7 +5,7 @@ def test_componenttools_iterate_components_and_grace_containers_forward_in_expr_
    '''Yield before-gracenotes and after-gracenotes.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    notes = macros.scale(4, Rational(1, 16))
    t[1].grace.before.extend(notes[:2])
    t[1].grace.after.extend(notes[2:])

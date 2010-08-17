@@ -5,7 +5,7 @@ def test_containertools_repeat_contents_of_container_01( ):
    '''Multiply notes in voice.'''
 
    t = Voice(macros.scale(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    containertools.repeat_contents_of_container(t, total = 3)
 
    r'''
@@ -27,7 +27,7 @@ def test_containertools_repeat_contents_of_container_02( ):
    '''Multiplication by one leaves contents unchanged.'''
 
    t = Voice(macros.scale(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    containertools.repeat_contents_of_container(t, total = 1)
 
    r'''
@@ -45,7 +45,7 @@ def test_containertools_repeat_contents_of_container_03( ):
    '''Multiplication by zero empties container.'''
    
    t = Voice(macros.scale(2))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    containertools.repeat_contents_of_container(t, total = 0)
 
    r'''

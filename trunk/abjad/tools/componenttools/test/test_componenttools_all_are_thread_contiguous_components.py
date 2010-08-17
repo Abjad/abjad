@@ -131,7 +131,7 @@ def test_componenttools_all_are_thread_contiguous_components_09( ):
    '''False when components belonging to same thread are ommitted.'''
 
    t = Voice(macros.scale(6))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -152,7 +152,7 @@ def test_componenttools_all_are_thread_contiguous_components_10( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   BeamSpanner(t.leaves)
+   spannertools.BeamSpanner(t.leaves)
 
    r'''
    \new Voice {

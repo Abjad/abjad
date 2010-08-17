@@ -1,4 +1,4 @@
-from abjad.spanners import OctavationSpanner
+from abjad.tools.spannertools import OctavationSpanner
 from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
 
 
@@ -11,7 +11,7 @@ def apply_octavation_spanner_to_pitched_components(expr,
 
       abjad> t = RigidMeasure((4, 8), notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
       abjad> pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_altitude = 14)
-      OctavationSpanner(|4/8, c'''8, d'''8, ef'''8, f'''8|)
+      spannertools.OctavationSpanner(|4/8, c'''8, d'''8, ef'''8, f'''8|)
 
    ::
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_color_leaf_01( ):
 
    staff = Staff(macros.scale(4))
-   BeamSpanner(staff.leaves)
+   spannertools.BeamSpanner(staff.leaves)
 
    r'''
    \new Staff {

@@ -9,8 +9,8 @@ def test_Container_remove_01( ):
       Leaf returns after removal.'''
 
    t = Voice(macros.scale(4))
-   SlurSpanner(t[:])
-   BeamSpanner(t[1])
+   spannertools.SlurSpanner(t[:])
+   spannertools.BeamSpanner(t[1])
 
    r'''
    \new Voice {
@@ -50,7 +50,7 @@ def test_Container_remove_02( ):
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    sequential = t[0]
-   p = BeamSpanner(t[:])
+   p = spannertools.BeamSpanner(t[:])
 
    r'''
    \new Staff {

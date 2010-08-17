@@ -7,7 +7,7 @@ def test__Leaf_cast_spanned_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[ : ])
    Rest(t[-1])
 
    r'''
@@ -28,7 +28,7 @@ def test__Leaf_cast_spanned_02( ):
    '''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[ : ])
    for note in t:
       Rest(note)
 

@@ -9,7 +9,7 @@ def color_leaf(leaf, color):
    Color `leaf` with `color`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [

@@ -10,7 +10,7 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
       abjad> t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> tuplet = t[1]
       abjad> macros.diatonicize(t)
-      abjad> BeamSpanner(t[:])
+      abjad> spannertools.BeamSpanner(t[:])
       abjad> f(t)
       \new Voice {
               \times 2/3 {

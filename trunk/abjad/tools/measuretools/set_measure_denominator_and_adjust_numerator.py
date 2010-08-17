@@ -8,7 +8,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
    meter numerator accordingly::
 
       abjad> measure = RigidMeasure((3, 8), macros.scale(3))
-      abjad> BeamSpanner(measure.leaves)
+      abjad> spannertools.BeamSpanner(measure.leaves)
       abjad> f(measure)
       {
          \time 3/8

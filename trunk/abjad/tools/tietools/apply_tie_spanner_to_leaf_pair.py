@@ -1,6 +1,6 @@
 from abjad.exceptions import MissingSpannerError
 from abjad.components._Leaf import _Leaf
-from abjad.spanners import TieSpanner
+from abjad.tools.spannertools import TieSpanner
 from abjad.tools.tietools.are_components_in_same_tie_spanner import are_components_in_same_tie_spanner
 
 
@@ -8,7 +8,7 @@ def apply_tie_spanner_to_leaf_pair(left, right):
    r'''Apply tie spanner to `left` leaf and `right` leaf::
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
-      abjad> TieSpanner(staff[:2])
+      abjad> spannertools.TieSpanner(staff[:2])
       abjad> f(staff)
       \new Staff {
          c'8 ~

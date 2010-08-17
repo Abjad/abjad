@@ -6,7 +6,7 @@ def test__SpannerReceptor_parented_01( ):
    '''Leaves are parented when spanner is attached to them.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   b = BeamSpanner(t.leaves)
+   b = spannertools.BeamSpanner(t.leaves)
 
    assert not t.beam.parented
    for leaf in t.leaves:
@@ -17,7 +17,7 @@ def test__SpannerReceptor_parented_02( ):
    '''Leaves are parented when spanner is attached to their parent.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   b = BeamSpanner(t)
+   b = spannertools.BeamSpanner(t)
 
    assert t.beam.parented
    for leaf in t.leaves:
@@ -30,7 +30,7 @@ def test__SpannerReceptor_parented_03( ):
 
    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
 
-   assert py.test.raises(AssertionError, 'b = BeamSpanner(t)')
+   assert py.test.raises(AssertionError, 'b = spannertools.BeamSpanner(t)')
 #   assert t.beam.parented
 #   for v in t:
 #      assert v.beam.parented

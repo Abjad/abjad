@@ -8,10 +8,10 @@ def test_BreaksInterface_whitespace_01( ):
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   BeamSpanner(t[2])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.BeamSpanner(t[2])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {

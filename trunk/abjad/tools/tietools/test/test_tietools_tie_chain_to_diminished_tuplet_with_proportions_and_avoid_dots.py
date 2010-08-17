@@ -4,8 +4,8 @@ from abjad import *
 def test_tietools_tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots_01( ):
 
    t = Staff([Note(0, (1, 8)), Note(0, (1, 16)), Note(0, (1, 16))])
-   TieSpanner(t[:2])
-   BeamSpanner(t[:])
+   spannertools.TieSpanner(t[:2])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    \new Staff {
@@ -33,8 +33,8 @@ def test_tietools_tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
 def test_tietools_tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots_02( ):
 
    t = Staff([Note(0, (1, 8)), Note(0, (1, 16)), Note(0, (1, 16))])
-   TieSpanner(t[:2])
-   BeamSpanner(t[:])
+   spannertools.TieSpanner(t[:2])
+   spannertools.BeamSpanner(t[:])
    tietools.tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(t[0].tie.chain, [1, 2])
 
    r'''
@@ -54,8 +54,8 @@ def test_tietools_tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
 def test_tietools_tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots_03( ):
 
    t = Staff([Note(0, (1, 8)), Note(0, (1, 16)), Note(0, (1, 16))])
-   TieSpanner(t[:2])
-   BeamSpanner(t[:])
+   spannertools.TieSpanner(t[:2])
+   spannertools.BeamSpanner(t[:])
    tietools.tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(
       t[0].tie.chain, [1, 2, 2])
 

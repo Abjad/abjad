@@ -8,7 +8,7 @@ def repeat_leaves_in_expr_and_extend_spanners(expr, total = 1):
    Clone and splice leaves in `expr` `total` times::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [

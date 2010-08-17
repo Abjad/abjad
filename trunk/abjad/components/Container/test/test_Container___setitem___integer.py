@@ -6,8 +6,8 @@ def test_Container___setitem___integer_01( ):
    '''Spanned leaves exchange correctly.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:2])
-   GlissandoSpanner(t.leaves)
+   spannertools.BeamSpanner(t[:2])
+   spannertools.GlissandoSpanner(t.leaves)
 
    r'''
    \new Voice {
@@ -37,8 +37,8 @@ def test_Container___setitem___integer_02( ):
    '''Spanned leaf hands position over to container correctly.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:2])
-   GlissandoSpanner(t.leaves)
+   spannertools.BeamSpanner(t[:2])
+   spannertools.GlissandoSpanner(t.leaves)
 
    r'''
    \new Voice {
@@ -74,8 +74,8 @@ def test_Container___setitem___integer_03( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)   
-   BeamSpanner(t[:])
-   GlissandoSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
+   spannertools.GlissandoSpanner(t[:])
  
    r'''
    \new Voice {
@@ -112,8 +112,8 @@ def test_Container___setitem___integer_04( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)   
-   BeamSpanner(t.leaves)
-   GlissandoSpanner(t.leaves)
+   spannertools.BeamSpanner(t.leaves)
+   spannertools.GlissandoSpanner(t.leaves)
  
    r'''
    \new Voice {
@@ -149,8 +149,8 @@ def test_Container___setitem___integer_05( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)   
-   BeamSpanner(t[:])
-   GlissandoSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
+   spannertools.GlissandoSpanner(t[:])
  
    r'''
    \new Voice {
@@ -190,8 +190,8 @@ def test_Container___setitem___integer_06( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)   
-   BeamSpanner(t.leaves)
-   GlissandoSpanner(t.leaves)
+   spannertools.BeamSpanner(t.leaves)
+   spannertools.GlissandoSpanner(t.leaves)
  
    r'''
    \new Voice {
@@ -228,7 +228,7 @@ def test_Container___setitem___integer_07( ):
 
    t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
    macros.diatonicize(t)   
-   BeamSpanner(t.leaves[0:6])
+   spannertools.BeamSpanner(t.leaves[0:6])
    r'''
    \new Voice {
         {
@@ -272,7 +272,7 @@ def test_Container___setitem___integer_08( ):
    notes = macros.scale(6)
 
    t = Voice(notes[:3])
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -283,7 +283,7 @@ def test_Container___setitem___integer_08( ):
    '''
 
    u = Voice(notes[3:])
-   BeamSpanner(u[:])
+   spannertools.BeamSpanner(u[:])
 
    r'''
    \new Voice {
@@ -329,7 +329,7 @@ def test_Container___setitem___integer_09( ):
    notes = macros.scale(7)
 
    t = Voice(notes[:3])
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -341,8 +341,8 @@ def test_Container___setitem___integer_09( ):
 
    u = Voice(notes[3:])
    Container(u[1:3])
-   GlissandoSpanner(u.leaves)
-   SlurSpanner(u[1].leaves)
+   spannertools.GlissandoSpanner(u.leaves)
+   spannertools.SlurSpanner(u[1].leaves)
 
    r'''
    \new Voice {

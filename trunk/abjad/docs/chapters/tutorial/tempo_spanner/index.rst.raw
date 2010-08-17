@@ -20,7 +20,7 @@ to the first four notes in staff.
 
 <abjad>
 tempo_indication = tempotools.TempoIndication(Rational(1, 8), 72)
-tempo_spanner = TempoSpanner(staff[:4], tempo_indication)
+tempo_spanner = spannertools.TempoSpanner(staff[:4], tempo_indication)
 f(score)
 show(score)
 write_ly(score, '2', 'oedo') <hide
@@ -30,7 +30,7 @@ This tempo spanner below attaches to the last four notes in staff.
 
 <abjad>
 tempo_indication = tempotools.TempoIndication(Rational(1, 8), 84)
-tempo_spanner = TempoSpanner(staff[4:], tempo_indication)
+tempo_spanner = spannertools.TempoSpanner(staff[4:], tempo_indication)
 f(score)
 show(score)
 write_ly(score, '3', 'oedo') <hide

@@ -7,9 +7,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -57,9 +57,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -109,9 +109,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -170,9 +170,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -218,9 +218,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -267,9 +267,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -317,7 +317,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split leaf outside of score and fracture spanners.'''
 
    t = Note(0, (1, 8))
-   BeamSpanner(t)
+   spannertools.BeamSpanner(t)
 
    "c'8 [ ]"
 
@@ -336,9 +336,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -388,9 +388,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -442,9 +442,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -499,9 +499,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -557,9 +557,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       What's being tested here is contents rederivation.'''
 
    t = Staff(RigidMeasure((3, 8), macros.scale(3)) * 2)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -663,9 +663,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    macros.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -716,9 +716,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    macros.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -771,9 +771,9 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    macros.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -869,8 +869,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    t = Staff([RigidMeasure((15, 80), notetools.make_notes(
       0, [Rational(1, 32)] * 7 + [Rational(1, 64)]))])
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {

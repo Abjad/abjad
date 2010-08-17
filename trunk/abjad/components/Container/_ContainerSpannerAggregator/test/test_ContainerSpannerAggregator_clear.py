@@ -6,7 +6,7 @@ def test_ContainerSpannerAggregator_clear_01( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p = BeamSpanner(t[:])
+   p = spannertools.BeamSpanner(t[:])
 
    r'''
    \new Voice {
@@ -55,8 +55,8 @@ def test_ContainerSpannerAggregator_clear_02( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   p1 = BeamSpanner(t[:])
-   p2 = TrillSpanner(t[ : ])
+   p1 = spannertools.BeamSpanner(t[:])
+   p2 = spannertools.TrillSpanner(t[ : ])
    
    r'''
    \new Voice {

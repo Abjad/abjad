@@ -6,9 +6,9 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -61,9 +61,9 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   BeamSpanner(t[0])
-   BeamSpanner(t[1])
-   SlurSpanner(t.leaves)
+   spannertools.BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[1])
+   spannertools.SlurSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -151,7 +151,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''Duration partition leaf in score and fracture spanners.'''
 
    t = Staff([Note(0, (1, 8))])
-   BeamSpanner(t[0])
+   spannertools.BeamSpanner(t[0])
 
    r'''
    \new Staff {

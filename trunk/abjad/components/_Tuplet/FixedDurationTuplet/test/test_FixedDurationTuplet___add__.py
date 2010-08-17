@@ -6,9 +6,9 @@ def test_FixedDurationTuplet___add___01( ):
    '''Add two fixed-duration tuplets with same multiplier outside of score.'''
 
    t1 = FixedDurationTuplet((2, 8), macros.scale(3))
-   BeamSpanner(t1[:])
+   spannertools.BeamSpanner(t1[:])
    t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
-   SlurSpanner(t2[:])
+   spannertools.SlurSpanner(t2[:])
 
    r'''
    \times 2/3 {
@@ -51,9 +51,9 @@ def test_FixedDurationTuplet___add___02( ):
    '''Add fixed-duration tuplets with same multiplier in score.'''
 
    t1 = FixedDurationTuplet((2, 8), macros.scale(3))
-   BeamSpanner(t1[:])
+   spannertools.BeamSpanner(t1[:])
    t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
-   SlurSpanner(t2[:])
+   spannertools.SlurSpanner(t2[:])
    t = Voice([t1, t2])
 
    r'''

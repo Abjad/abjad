@@ -1,4 +1,4 @@
-from abjad.spanners import BeamSpanner
+from abjad.tools.spannertools import BeamSpanner
 from abjad.tools import componenttools
 from abjad.components._Tuplet import _Tuplet
 

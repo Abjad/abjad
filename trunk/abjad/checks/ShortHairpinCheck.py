@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.spanners import HairpinSpanner
+from abjad.tools.spannertools import HairpinSpanner
 
 
 class ShortHairpinCheck(_Check):

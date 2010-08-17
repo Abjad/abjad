@@ -1,6 +1,6 @@
 from abjad.checks._Check import _Check
 from abjad.components._Leaf import _Leaf
-from abjad.spanners import TempoSpanner
+from abjad.tools.spannertools import TempoSpanner
 
 
 class OverlappingTempoSpannerCheck(_Check):

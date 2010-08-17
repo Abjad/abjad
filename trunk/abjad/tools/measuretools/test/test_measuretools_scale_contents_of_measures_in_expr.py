@@ -6,7 +6,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_01( ):
       Meter denominator adjust appropriately.'''
 
    t = RigidMeasure((3, 32), macros.scale(3, Rational(1, 32)))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    measuretools.scale_contents_of_measures_in_expr(t, Rational(4))
 
@@ -27,7 +27,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_02( ):
    '''Triple binary meter.'''
 
    t = RigidMeasure((3, 32), macros.scale(3, Rational(1, 32)))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    measuretools.scale_contents_of_measures_in_expr(t, Rational(3))
 
@@ -48,7 +48,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_03( ):
    '''Multiply binary measure by 2/3.'''
 
    t = RigidMeasure((3, 8), macros.scale(3))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
 
    measuretools.scale_contents_of_measures_in_expr(t, Rational(2, 3))
 

@@ -29,7 +29,7 @@ Another example: `Glissandi` are usually represented with straight lines, but ma
 <abjad>
 s = Staff([Note(0, (1, 4)), Note(12, (1, 4))])
 s.meter.transparent = True <hide
-g = GlissandoSpanner(s.leaves)
+g = spannertools.GlissandoSpanner(s.leaves)
 g.style = 'zigzag'
 write_ly(s, 'glissando_style', 'oedo') <hide
 </abjad>

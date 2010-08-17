@@ -4,7 +4,7 @@ from abjad import *
 def test_TextSpannerInterface_spanner_reception_01( ):
 
    t = Staff(macros.scale(4))
-   text_spanner = TextSpanner(t[:])
+   text_spanner = spannertools.TextSpanner(t[:])
 
    r'''
    \new Staff {

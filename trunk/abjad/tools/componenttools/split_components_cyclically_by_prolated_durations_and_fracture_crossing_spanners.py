@@ -7,9 +7,9 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
 
       abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
-      abjad> BeamSpanner(staff[0])
-      abjad> BeamSpanner(staff[1])
-      abjad> SlurSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff[0])
+      abjad> spannertools.BeamSpanner(staff[1])
+      abjad> spannertools.SlurSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          {

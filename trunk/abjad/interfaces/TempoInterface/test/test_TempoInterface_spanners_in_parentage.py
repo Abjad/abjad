@@ -8,7 +8,7 @@ def test_TempoInterface_spanners_in_parentage_01( ):
 
    t = Staff(macros.scale(4))
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
-   tempo_spanner = TempoSpanner(t, tempo_indication)
+   tempo_spanner = spannertools.TempoSpanner(t, tempo_indication)
 
    r'''
    \new Staff {

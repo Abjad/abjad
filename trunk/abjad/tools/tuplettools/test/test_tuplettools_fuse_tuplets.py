@@ -6,9 +6,9 @@ def test_tuplettools_fuse_tuplets_01( ):
    '''Fuse two unincorporated fixed-duration tuplets with same multiplier.'''
 
    t1 = FixedDurationTuplet((2, 8), macros.scale(3))
-   BeamSpanner(t1[:])
+   spannertools.BeamSpanner(t1[:])
    t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
-   SlurSpanner(t2[:])
+   spannertools.SlurSpanner(t2[:])
 
    r'''
    \times 2/3 {
@@ -52,9 +52,9 @@ def test_tuplettools_fuse_tuplets_02( ):
    '''Fuse fixed-duration tuplets with same multiplier in score.'''
 
    t1 = FixedDurationTuplet((2, 8), macros.scale(3))
-   BeamSpanner(t1[:])
+   spannertools.BeamSpanner(t1[:])
    t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
-   SlurSpanner(t2[:])
+   spannertools.SlurSpanner(t2[:])
    t = Voice([t1, t2])
 
    r'''
@@ -95,9 +95,9 @@ def test_tuplettools_fuse_tuplets_03( ):
    '''Fuse fixed-multiplier tuplets with same multiplier in score.'''
 
    t1 = FixedMultiplierTuplet((2, 3), macros.scale(3))
-   BeamSpanner(t1[:])
+   spannertools.BeamSpanner(t1[:])
    t2 = FixedMultiplierTuplet((2, 3), macros.scale(5))
-   SlurSpanner(t2[:])
+   spannertools.SlurSpanner(t2[:])
    t = Voice([t1, t2])
 
    r'''
@@ -163,7 +163,7 @@ def test_tuplettools_fuse_tuplets_06( ):
       FixedDurationTuplet((1, 12), [Note(0, (1, 8))]),
       FixedDurationTuplet((1, 6), [Note(0, (1, 4))]),
       Note(0, (1, 4))])
-   SlurSpanner(t.leaves)
+   spannertools.SlurSpanner(t.leaves)
       
    r'''
    \new Voice {

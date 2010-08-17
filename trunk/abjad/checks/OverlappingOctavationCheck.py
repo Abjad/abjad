@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.spanners import OctavationSpanner
+from abjad.tools.spannertools import OctavationSpanner
 
 
 class OverlappingOctavationCheck(_Check):

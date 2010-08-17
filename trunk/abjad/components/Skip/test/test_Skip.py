@@ -60,7 +60,7 @@ def test_Skip_06( ):
 def test_Skip_07( ):
    '''Works fine when skip is beamed.'''
    t = Staff([Note(0, (1, 8)), Skip((1, 8)), Note(0, (1, 8))])
-   BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[ : ])
    Note(t[1])
    assert isinstance(t[1], Note)
    assert t[1].parentage.parent is t
@@ -108,7 +108,7 @@ def test_Skip_11( ):
 def test_Skip_12( ):
    '''Works fine when skip is beamed.'''
    t = Staff([Note(0, (1, 8)), Skip((1, 8)), Note(0, (1, 8))])
-   BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[ : ])
    Rest(t[1])
    assert isinstance(t[1], Rest)
    assert t[1].parentage.parent is t
@@ -156,7 +156,7 @@ def test_Skip_16( ):
 def test_Skip_17( ):
    '''Works fine when skip is beamed.'''
    t = Staff([Note(0, (1, 8)), Skip((1, 8)), Note(0, (1, 8))])
-   BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[ : ])
    Chord(t[1])
    assert isinstance(t[1], Chord)
    assert t[1].parentage.parent is t

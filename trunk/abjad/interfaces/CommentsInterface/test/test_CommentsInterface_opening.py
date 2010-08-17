@@ -5,7 +5,7 @@ def test_CommentsInterface_opening_01( ):
    '''Opening comments in container.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.comments.opening.append('Voice opening comments here.')
    t.comments.opening.append('More voice opening comments.')
 

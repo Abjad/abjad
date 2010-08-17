@@ -6,7 +6,7 @@ def test_TextSpannerInterface_grob_handling_01( ):
 
    t = Staff(macros.scale(4))
    t.override.text_spanner.staff_padding = 6
-   TextSpanner(t[:])
+   spannertools.TextSpanner(t[:])
 
    r'''
    \new Staff \with {

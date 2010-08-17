@@ -5,7 +5,7 @@ def test_BeamInterface_unspan_01( ):
    '''BeamInterface clone_components_and_remove_all_spanners( ) clears any beam spanner attaching to leaf t.'''
 
    t = Staff(macros.scale(4))
-   p = BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[ : ])
 
    r'''
    \new Staff {
@@ -41,7 +41,7 @@ def test_BeamInterface_unspan_02( ):
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   p = BeamSpanner(t[ : ]) 
+   p = spannertools.BeamSpanner(t[ : ]) 
 
    r'''
    \new Staff {

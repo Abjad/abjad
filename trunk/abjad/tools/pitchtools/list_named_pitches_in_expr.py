@@ -1,6 +1,6 @@
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
-from abjad.spanners import Spanner
+from abjad.tools.spannertools import Spanner
 from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
 
 
@@ -15,7 +15,7 @@ def list_named_pitches_in_expr(expr):
    ::
 
       abjad> t = Staff(macros.scale(4))
-      abjad> beam = BeamSpanner(t[:])
+      abjad> beam = spannertools.BeamSpanner(t[:])
       abjad> pitchtools.list_named_pitches_in_expr(beam)
       ((NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4), NamedPitch(f, 4))
 

@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.spanners import Spanner
+from abjad.tools.spannertools.Spanner import Spanner
 
 
 def iterate_components_backward_in_spanner(spanner, klass = _Component):
@@ -8,7 +8,7 @@ def iterate_components_backward_in_spanner(spanner, klass = _Component):
    Yield components in `spanner` one at a time from left to right. ::
 
       abjad> t = Staff(macros.scale(4))
-      abjad> p = BeamSpanner(t[2:])
+      abjad> p = spannertools.BeamSpanner(t[2:])
       abjad> notes = spannertools.iterate_components_backward_in_spanner(p, class = Note)
       abjad> for note in notes:
          print note

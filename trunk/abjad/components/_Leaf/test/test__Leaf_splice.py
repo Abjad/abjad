@@ -5,7 +5,7 @@ def test__Leaf_splice_01( ):
    '''Splice leaves after leaf.'''
 
    t = Voice(macros.scale(3))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    result = t[-1].splice(macros.scale(3))
 
    r'''
@@ -28,7 +28,7 @@ def test__Leaf_splice_02( ):
    '''Splice leaf after interior leaf.'''
 
    t = Voice(macros.scale(3))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    result = t[1].splice([Note(2.5, (1, 8))])
 
    r'''

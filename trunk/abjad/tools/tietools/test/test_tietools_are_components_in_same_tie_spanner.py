@@ -5,7 +5,7 @@ def test_tietools_are_components_in_same_tie_spanner_01( ):
    '''True if all components in list share same tie spanner.'''
 
    t = Voice(notetools.make_repeated_notes(4))
-   TieSpanner(t[:2])
+   spannertools.TieSpanner(t[:2])
 
    r'''
    \new Voice {

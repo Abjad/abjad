@@ -6,7 +6,7 @@ def test__SpannerReceptor_chain_01( ):
       otherwise return 1-tuple of client.'''
 
    t = Staff(macros.scale(4))
-   BeamSpanner(t[2:])
+   spannertools.BeamSpanner(t[2:])
 
    r'''
    \new Staff {

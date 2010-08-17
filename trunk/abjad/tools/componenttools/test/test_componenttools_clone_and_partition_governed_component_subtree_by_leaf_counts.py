@@ -8,7 +8,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
       Also that resulting parts cut all the way up into voice.'''
 
    t = Voice([FixedDurationTuplet((2, 8), macros.scale(3))])
-   BeamSpanner(t[0][:])
+   spannertools.BeamSpanner(t[0][:])
    left, right = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t[0], [1, 2])
 
    r'''
@@ -39,7 +39,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
    '''Partition voice.'''
 
    t = Voice(macros.scale(3))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    result = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t, [1, 2])
 
    r'''

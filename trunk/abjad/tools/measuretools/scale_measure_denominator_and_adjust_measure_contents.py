@@ -12,7 +12,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
    with `new_denominator_factor`::
 
       abjad> measure = RigidMeasure((2, 8), macros.scale(2))
-      abjad> BeamSpanner(measure.leaves)
+      abjad> spannertools.BeamSpanner(measure.leaves)
       abjad> f(measure)
       {
          \time 2/8

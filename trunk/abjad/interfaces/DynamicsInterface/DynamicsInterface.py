@@ -1,7 +1,5 @@
 from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
-from abjad.spanners import DynamicTextSpanner
-from abjad.spanners import HairpinSpanner
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
 
@@ -11,6 +9,8 @@ class DynamicsInterface(_Interface, _FormatContributor, _SpannerReceptor):
    '''
    
    def __init__(self, client):
+      from abjad.tools.spannertools import DynamicTextSpanner
+      from abjad.tools.spannertools import HairpinSpanner
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
       _SpannerReceptor.__init__(self, (DynamicTextSpanner, HairpinSpanner))
@@ -37,6 +37,8 @@ class DynamicsInterface(_Interface, _FormatContributor, _SpannerReceptor):
    def effective(self):
       '''Effective dynamic.'''
       from abjad.components.Container import Container
+      from abjad.tools.spannertools import DynamicTextSpanner
+      from abjad.tools.spannertools import HairpinSpanner
       if isinstance(self._client, Container):
          return None
       if self.mark:

@@ -18,7 +18,7 @@ def test_leaftools_scale_preprolated_leaf_duration_02( ):
 def test_leaftools_scale_preprolated_leaf_duration_03( ):
 
    staff = Staff(macros.scale(4))
-   BeamSpanner(staff.leaves)
+   spannertools.BeamSpanner(staff.leaves)
    leaftools.scale_preprolated_leaf_duration(staff[1], Rational(5, 4))
 
    r'''
@@ -37,7 +37,7 @@ def test_leaftools_scale_preprolated_leaf_duration_03( ):
 def test_leaftools_scale_preprolated_leaf_duration_04( ):
 
    staff = Staff(macros.scale(4))
-   BeamSpanner(staff.leaves)
+   spannertools.BeamSpanner(staff.leaves)
    leaftools.scale_preprolated_leaf_duration(staff[1], Rational(2, 3))
 
    r'''

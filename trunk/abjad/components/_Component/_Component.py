@@ -391,7 +391,7 @@ class _Component(_Abjad):
       Do not extend edge spanners. ::
 
          abjad> t = Voice(macros.scale(3))
-         abjad> BeamSpanner(t[:])
+         abjad> spannertools.BeamSpanner(t[:])
          abjad> t[-1].extend_in_parent(macros.scale(3))
 
       ::
@@ -424,7 +424,7 @@ class _Component(_Abjad):
       Do not extend edge spanners. ::
 
          abjad> t = Voice(macros.scale(3))
-         abjad> BeamSpanner(t[:])
+         abjad> spannertools.BeamSpanner(t[:])
          abjad> t[0].extend_in_parent(macros.scale(3))
 
       ::

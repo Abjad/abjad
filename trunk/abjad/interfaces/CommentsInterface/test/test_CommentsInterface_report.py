@@ -5,7 +5,7 @@ def test_CommentsInterface_report_01( ):
    '''Report container comments.'''
 
    t = Voice(macros.scale(4))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    t.comments.before.append('Comments before.')
    t.comments.before.append('More comments before.')
    t.comments.opening.append('Comments opening.')

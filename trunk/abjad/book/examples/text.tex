@@ -15,7 +15,7 @@ f(v)
 Another line of text. More \textbf{Abjad} code follows. Notice that in the second block of \textbf{Abjad} code we can reference objects and variables created in previous blocks:
 
 <abjad>
-BeamSpanner(v)
+spannertools.BeamSpanner(v)
 show(v)
 write_ly(v, 'example1', 'oedo') <hide
 </abjad>
@@ -25,7 +25,7 @@ Here is paragraph 3, and more \textbf{Abjad} code.
 <abjad>
 macros.diatonicize(v)
 for leaf in v: print leaf
-TrillSpanner(v[2:])
+spannertools.TrillSpanner(v[2:])
 show(v)
 write_ly(v, 'example2', 'oedo') <hide
 </abjad>
@@ -33,7 +33,7 @@ write_ly(v, 'example2', 'oedo') <hide
 And a final paragraph. Here all the code is hidden:
 
 <abjad>
-PianoPedalSpanner(v[:]) <hide
+spannertools.PianoPedalSpanner(v[:]) <hide
 write_ly(v, "example4", 'oedo') <hide
 </abjad>
 

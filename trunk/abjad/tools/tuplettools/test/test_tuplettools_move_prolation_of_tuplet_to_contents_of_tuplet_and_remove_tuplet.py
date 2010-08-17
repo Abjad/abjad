@@ -6,7 +6,7 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
       of tuplet to contents.'''
 
    t = Staff(FixedDurationTuplet((3, 8), macros.scale(2)) * 2)
-   BeamSpanner(t.leaves)
+   spannertools.BeamSpanner(t.leaves)
 
    r'''
    \new Staff {

@@ -5,7 +5,7 @@ def delete_contents_of_container(container):
    r'''Delete `container` contents::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> BeamSpanner(staff.leaves)
+      abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 [

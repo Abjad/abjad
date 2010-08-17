@@ -8,8 +8,8 @@ def test_Container_pop_01( ):
       Popped leaves carry covered spanners forward.'''
 
    t = Voice(macros.scale(4))
-   SlurSpanner(t[:])
-   BeamSpanner(t[1])
+   spannertools.SlurSpanner(t[:])
+   spannertools.BeamSpanner(t[1])
 
    r'''
    \new Voice {
@@ -45,7 +45,7 @@ def test_Container_pop_02( ):
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   p = BeamSpanner(t[:])
+   p = spannertools.BeamSpanner(t[:])
 
    r'''
    \new Staff {

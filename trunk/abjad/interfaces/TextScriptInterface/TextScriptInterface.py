@@ -1,7 +1,6 @@
 from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
-from abjad.spanners import TextScriptSpanner
 
 
 class TextScriptInterface(_Interface, _FormatContributor, _SpannerReceptor):
@@ -25,8 +24,7 @@ class TextScriptInterface(_Interface, _FormatContributor, _SpannerReceptor):
    '''
 
    def __init__(self, client):
-      '''Bind client and LilyPond TextScript grob.
-      Receive Abjad Text spanner.'''
+      from abjad.tools.spannertools import TextScriptSpanner
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
       _SpannerReceptor.__init__(self, (TextScriptSpanner, ))

@@ -46,7 +46,7 @@ def test_BeamInterface_03( ):
    '''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   BeamSpanner(t.leaves[ : 4])
+   spannertools.BeamSpanner(t.leaves[ : 4])
    #assert t[0].beam.counts is None
    assert t[0].beam.spanned
    assert len(t[0].beam.spanners) == 1
@@ -74,7 +74,7 @@ def test_BeamInterface_04( ):
    '''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   BeamSpanner(t.leaves[ : 4])
+   spannertools.BeamSpanner(t.leaves[ : 4])
    #assert t[1].beam.counts is None
    assert t[1].beam.spanned
    assert len(t[1].beam.spanners) == 1
@@ -102,7 +102,7 @@ def test_BeamInterface_05( ):
    '''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   BeamSpanner(t.leaves[ : 4])
+   spannertools.BeamSpanner(t.leaves[ : 4])
    #assert t[3].beam.counts is None
    assert t[3].beam.spanned
    assert len(t[3].beam.spanners) == 1
@@ -130,7 +130,7 @@ def test_BeamInterface_06( ):
    '''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   BeamSpanner(t[3])
+   spannertools.BeamSpanner(t[3])
    #assert t[3].beam.counts is None
    assert t[3].beam.spanned
    assert len(t[3].beam.spanners) == 1

@@ -5,7 +5,7 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_durati
    '''Scale trivial tie chain to nontrivial tie chain.'''
 
    t = Staff(notetools.make_repeated_notes(1))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(t[0].tie.chain, Rational(5, 4))
 
    r'''
@@ -23,7 +23,7 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_durati
    '''Scale nontrivial tie chain to trivial tie chain.'''
 
    t = Staff(notetools.make_notes(0, [(5, 32)]))
-   BeamSpanner(t[:])
+   spannertools.BeamSpanner(t[:])
    tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(t[0].tie.chain, Rational(4, 5))
 
    r'''

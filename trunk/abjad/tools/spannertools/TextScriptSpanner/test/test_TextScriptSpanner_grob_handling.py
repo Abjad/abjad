@@ -1,0 +1,24 @@
+from abjad import *
+
+
+def test_TextScriptSpanner_grob_handling_01( ):
+   '''Abjad TextScriptSpanner handles the LilyPond TextScript grob.'''
+
+   t = Staff(macros.scale(4))
+   text_script_spanner = spannertools.TextScriptSpanner(t[:])
+   #text_script_spanner.color = 'red'
+   text_script_spanner.override.text_script.color = 'red'
+
+   r'''
+   \new Staff {
+           \override TextScript #'color = #red
+           c'8
+           d'8
+           e'8
+           f'8
+           \revert TextScript #'color
+   }
+   '''
+
+   assert componenttools.is_well_formed_component(t)
+   assert t.format == "\\new Staff {\n\t\\override TextScript #'color = #red\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TextScript #'color\n}"

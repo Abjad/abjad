@@ -1,5 +1,5 @@
 from abjad.marks import Markup
-from abjad.spanners import TextSpanner
+from abjad.tools.spannertools.TextSpanner import TextSpanner
 
 
 def make_solid_text_spanner_above_with_nib_at_right(left_text, components = None):
@@ -36,13 +36,8 @@ def make_solid_text_spanner_above_with_nib_at_right(left_text, components = None
 
    text_spanner = TextSpanner(components) 
    left_text = Markup(left_text)
-   #text_spanner.bound_details__left__text = left_text
    text_spanner.override.text_spanner.bound_details__left__text = left_text
    right_text = Markup("(markup #:draw-line '(0 . -1))", style = 'scheme')
-   #text_spanner.bound_details__right__text = right_text
-   #text_spanner.bound_details__right_broken__text = False
-   #text_spanner.dash_fraction = 1
-   #text_spanner.direction = 'up'
    text_spanner.override.text_spanner.bound_details__right__text = right_text
    text_spanner.override.text_spanner.bound_details__right_broken__text = False
    text_spanner.override.text_spanner.dash_fraction = 1

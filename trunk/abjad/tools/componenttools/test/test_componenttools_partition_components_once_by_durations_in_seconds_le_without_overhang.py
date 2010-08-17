@@ -6,7 +6,7 @@ def test_componenttools_partition_components_once_by_durations_in_seconds_le_wit
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   tempo_spanner = TempoSpanner(t[:])
+   tempo_spanner = spannertools.TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
    tempo_spanner.tempo_indication = tempo_indication
 

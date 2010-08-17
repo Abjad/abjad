@@ -5,7 +5,7 @@ def test_LeafSpannerAggregator_clear_01( ):
    '''Clear a single spanner.'''
 
    t = Voice(macros.scale(4))
-   p = BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[ : ])
 
    r'''
    \new Voice {
@@ -36,8 +36,8 @@ def test_LeafSpannerAggregator_clear_02( ):
    '''Clear multiple spanners.'''
 
    t = Voice(macros.scale(4))
-   p1 = BeamSpanner(t[:])
-   p2 = TrillSpanner(t[:])
+   p1 = spannertools.BeamSpanner(t[:])
+   p2 = spannertools.TrillSpanner(t[:])
 
    r'''
    \new Voice {

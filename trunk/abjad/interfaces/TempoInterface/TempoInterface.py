@@ -3,7 +3,6 @@ from abjad.core import _FormatContributor
 from abjad.core import _Observer
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 from abjad.core import Rational
-from abjad.spanners import TempoSpanner
 from abjad.tools import tempotools
 import types
 
@@ -31,6 +30,7 @@ class TempoInterface(_Observer, _FormatContributor, _BacktrackingInterface, _Spa
    def __init__(self, _client, _updateInterface):
       '''Bind to client and LilyPond MetronomMark grob.
          Receive Abjad TempoSpanner.'''
+      from abjad.tools.spannertools import TempoSpanner
       _Observer.__init__(self, _client, _updateInterface)
       _FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'tempo')
