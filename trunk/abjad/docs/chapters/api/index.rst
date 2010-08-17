@@ -26,7 +26,6 @@ Classes
    components/Rest/MultiMeasureRest/MultiMeasureRest
    components/_Harmonic/NaturalHarmonic
    components/Note/Note
-   components/NoteHead/NoteHead
    components/StaffGroup/PianoStaff
    components/Rest/Rest
    components/_Measure/RigidMeasure/RigidMeasure
@@ -641,6 +640,7 @@ notetools
 .. toctree::
    :maxdepth: 1
 
+   tools/notetools/NoteHead/NoteHead
    tools/notetools/add_artificial_harmonic_to_note
    tools/notetools/iterate_notes_backward_in_expr
    tools/notetools/iterate_notes_forward_in_expr

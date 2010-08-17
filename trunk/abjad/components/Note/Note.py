@@ -1,5 +1,4 @@
 from abjad.components._Leaf import _Leaf
-from abjad.components.NoteHead import NoteHead
 from abjad.components.Note._NoteInitializer import _NoteInitializer
 
 
@@ -45,6 +44,7 @@ class Note(_Leaf):
          '''Read / write reference to Abjad note_head instance.'''
          return self._note_head
       def fset(self, arg):
+         from abjad.tools.notetools.NoteHead import NoteHead
          if isinstance(arg, type(None)):
             self._note_head = None
          elif isinstance(arg, NoteHead):
@@ -80,6 +80,7 @@ class Note(_Leaf):
             return None
       def fset(self, arg):
          from abjad.tools import pitchtools
+         from abjad.tools.notetools.NoteHead import NoteHead
          if arg is None:
             if self.note_head is not None:
                self.note_head.pitch = None

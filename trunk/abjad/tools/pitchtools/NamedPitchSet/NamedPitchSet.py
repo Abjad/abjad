@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._PitchSet import _PitchSet
-from abjad.components.NoteHead import NoteHead
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
@@ -19,6 +18,7 @@ class NamedPitchSet(_PitchSet):
 
    #def __init__(self, pitch_tokens):
    def __new__(self, pitch_tokens):
+      from abjad.tools.notetools.NoteHead import NoteHead
       pitches = [ ]
       for token in pitch_tokens:
          if isinstance(token, NoteHead):

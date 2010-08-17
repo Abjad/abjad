@@ -1,6 +1,5 @@
 from abjad.components.Chord import Chord
 from abjad.components.Note import Note
-from abjad.components.NoteHead import NoteHead
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
@@ -23,4 +22,5 @@ def is_pitch_carrier(expr):
       ``pitchtools.is_pitch_carrier( )``.
    '''
 
+   from abjad.tools.notetools.NoteHead import NoteHead
    return isinstance(expr, (NamedPitch, Note, NoteHead, Chord))

@@ -2,7 +2,6 @@ from abjad.components.Chord import Chord
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.components.Note import Note
-from abjad.components.NoteHead import NoteHead
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
@@ -94,6 +93,7 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
       renamed ``pitchtools.get_pitch( )`` to
       ``pitchtools.get_named_pitch_from_pitch_carrier( )``.
    '''
+   from abjad.tools.notetools.NoteHead import NoteHead
    
    if isinstance(pitch_carrier, NamedPitch):
       return pitch_carrier

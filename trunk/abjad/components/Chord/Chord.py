@@ -1,7 +1,6 @@
 from abjad.components.Chord._ChordFormatter import _ChordFormatter
 from abjad.components.Chord._ChordInitializer import _ChordInitializer
 from abjad.components._Leaf import _Leaf
-from abjad.components.NoteHead import NoteHead
 
 
 class Chord(_Leaf):
@@ -14,6 +13,7 @@ class Chord(_Leaf):
 
    def __contains__(self, arg):
       from abjad.tools import pitchtools
+      from abjad.tools.notetools.NoteHead import NoteHead
       if isinstance(arg, (int, float, long)):
          return pitchtools.NamedPitch(arg) in self.pitches
       elif isinstance(arg, pitchtools.NamedPitch):
@@ -37,6 +37,7 @@ class Chord(_Leaf):
 
    def __setitem__(self, i, arg):
       from abjad.tools import pitchtools
+      from abjad.tools.notetools.NoteHead import NoteHead
       if isinstance(arg, (int, long, float)):
          self._note_heads[i] = NoteHead(self, pitch = arg)
       elif isinstance(arg, pitchtools.NamedPitch):
@@ -90,6 +91,7 @@ class Chord(_Leaf):
             result.append(note_head)
          return tuple(result)
       def fset(self, arglist):
+         from abjad.tools.notetools.NoteHead import NoteHead
          assert isinstance(arglist, (list, tuple, set, str))
          self._note_heads = [ ]
          if isinstance(arglist, str):
@@ -128,6 +130,7 @@ class Chord(_Leaf):
    def append(self, arg):
       '''Append note_head token to self. Then sort note_heads.'''
       from abjad.tools import pitchtools
+      from abjad.tools.notetools.NoteHead import NoteHead
       if isinstance(arg, (int, float, long)):
          self._note_heads.append(NoteHead(self, pitch = arg))
       elif isinstance(arg, pitchtools.NamedPitch):

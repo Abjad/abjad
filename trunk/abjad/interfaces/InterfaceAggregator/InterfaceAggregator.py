@@ -48,7 +48,7 @@ class InterfaceAggregator(_Interface):
    @property
    def contributors(self):
       from abjad.components.Chord import Chord
-      from abjad.components.NoteHead import NoteHead
+      from abjad.tools.notetools.NoteHead import NoteHead
       if not self._contributors_sorted:
          self._contributors.sort(lambda x, y:
             cmp(x.__class__.__name__, y.__class__.__name__))

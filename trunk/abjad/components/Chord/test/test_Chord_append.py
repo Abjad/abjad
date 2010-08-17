@@ -8,7 +8,7 @@ def test_Chord_append_01( ):
    '''
 
    chord = Chord([0, 2], Rational(1, 4))
-   note_head = NoteHead(None, 11)
+   note_head = notetools.NoteHead(None, 11)
    note_head.tweak.style = 'harmonic'
    chord.append(note_head)
 
