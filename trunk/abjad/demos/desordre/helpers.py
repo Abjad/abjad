@@ -8,7 +8,7 @@ def desordre_build(pitches):
    '''Returns a complete PianoStaff with Ligeti music!'''
    assert len(pitches) == 2
    #piano = make_empty_piano_score( )[0]
-   piano = PianoStaff([ ])
+   piano = scoretools.PianoStaff([ ])
    ## set tempo indication...
    TempoSpanner(piano, tempotools.TempoIndication(Rational(1, 1), 60))
    ## build music...

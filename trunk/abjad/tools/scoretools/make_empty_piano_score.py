@@ -1,6 +1,6 @@
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
-from abjad.components.StaffGroup import PianoStaff
+from abjad.tools.scoretools.StaffGroup import PianoStaff
 from abjad.marks import Clef
 
 

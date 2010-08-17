@@ -5,7 +5,7 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_01( ):
 
    score = Score([ ])
    score.append(Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
-   piano_staff = PianoStaff([ ])
+   piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    piano_staff[1].clef.forced = Clef('bass')
@@ -57,7 +57,7 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_02( ):
 
    score = Score([ ])
    score.append(Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
-   piano_staff = PianoStaff([ ])
+   piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    piano_staff[1].clef.forced = Clef('bass')

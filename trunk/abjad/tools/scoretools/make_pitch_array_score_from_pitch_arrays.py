@@ -1,6 +1,6 @@
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
-from abjad.components.StaffGroup import StaffGroup
+from abjad.tools.scoretools.StaffGroup.StaffGroup import StaffGroup
 
 
 def make_pitch_array_score_from_pitch_arrays(pitch_arrays):

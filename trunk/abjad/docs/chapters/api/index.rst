@@ -19,20 +19,17 @@ Classes
    components/_Tuplet/FixedDurationTuplet/FixedDurationTuplet
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
-   components/StaffGroup/GrandStaff
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
    components/Rest/MultiMeasureRest/MultiMeasureRest
    components/_Harmonic/NaturalHarmonic
    components/Note/Note
-   components/StaffGroup/PianoStaff
    components/Rest/Rest
    components/_Measure/RigidMeasure/RigidMeasure
    components/Score/Score
    components/Skip/Skip
    components/Staff/Staff
-   components/StaffGroup/StaffGroup
    components/Voice/Voice
 
 
@@ -98,7 +95,6 @@ Spanners
    spanners/BeamSpanner/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    spanners/MetricGridSpanner/MetricGridSpanner
    spanners/OctavationSpanner/OctavationSpanner
-   spanners/OverrideSpanner/OverrideSpanner
    spanners/PianoPedalSpanner/PianoPedalSpanner
    spanners/TempoSpanner/ProportionalTempoSpanner/ProportionalTempoSpanner
    spanners/SlurSpanner/SlurSpanner
@@ -818,6 +814,9 @@ scoretools
 .. toctree::
    :maxdepth: 1
 
+   tools/scoretools/StaffGroup/GrandStaff
+   tools/scoretools/StaffGroup/PianoStaff
+   tools/scoretools/StaffGroup/StaffGroup
    tools/scoretools/make_empty_piano_score
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves

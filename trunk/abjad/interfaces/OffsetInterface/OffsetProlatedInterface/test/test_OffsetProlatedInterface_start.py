@@ -83,7 +83,7 @@ def test_OffsetProlatedInterface_start_09( ):
    v1.name = v1b.name = 'voiceOne'
    s1 = Staff([v1, v1b])
    s2 = Staff([v2, v2b])
-   gs = GrandStaff([s1, s2])
+   gs = scoretools.GrandStaff([s1, s2])
    assert v1.offset.prolated.start == 0
    assert v2.offset.prolated.start == 0
    assert v1b.offset.prolated.start == Rational(4, 8)

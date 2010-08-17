@@ -5,7 +5,7 @@ def test_VerticalMoment___eq___01( ):
 
    score = Score([ ])
    score.append(Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
-   piano_staff = PianoStaff([ ])
+   piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    piano_staff[1].clef.forced = Clef('bass')
@@ -55,7 +55,7 @@ def test_VerticalMoment___eq___02( ):
 
    score = Score([ ])
    score.append(Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
-   piano_staff = PianoStaff([ ])
+   piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    piano_staff[1].clef.forced = Clef('bass')

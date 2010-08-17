@@ -251,7 +251,7 @@ class ParentageInterface(_Interface):
       '''
 
       from abjad.components.Score import Score
-      from abjad.components.StaffGroup import StaffGroup
+      from abjad.tools.scoretools import StaffGroup
       from abjad.components.Staff import Staff
       from abjad.components.Voice import Voice
       signature = _ContainmentSignature( )

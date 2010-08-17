@@ -10,7 +10,7 @@ def get_first_component_in_expr_with_name(expr, name):
       abjad> flute_staff.name = 'Flute'
       abjad> violin_staff = Staff(macros.scale(4))
       abjad> violin_staff.name = 'Violin'
-      abjad> staff_group = StaffGroup([flute_staff, violin_staff])
+      abjad> staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
       abjad> score = Score([staff_group])
    
    ::

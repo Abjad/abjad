@@ -9,14 +9,14 @@ def test_Container_parallel_01( ):
    assert not Container([ ]).parallel
    assert not FixedDurationTuplet((2, 8), [ ]).parallel
    assert not FixedMultiplierTuplet((2, 3), [ ]).parallel
-   assert GrandStaff([ ]).parallel
+   assert scoretools.GrandStaff([ ]).parallel
    assert not stafftools.make_rhythmic_sketch_staff([ ]).parallel
    assert not stafftools.make_rhythmic_staff([ ]).parallel
    assert not RigidMeasure((4, 8), [ ]).parallel
    assert Score([ ]).parallel
    assert not Container([ ]).parallel
    assert not Staff([ ]).parallel
-   assert StaffGroup([ ]).parallel
+   assert scoretools.StaffGroup([ ]).parallel
    assert not Voice([ ]).parallel
 
 

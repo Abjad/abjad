@@ -742,7 +742,7 @@ def test__Navigator_is_threadable_22( ):
 def test__Navigator_is_threadable_23( ):
    '''Like-name staff groups thread.'''
 
-   t = Container([StaffGroup([ ]), StaffGroup([ ])])
+   t = Container([scoretools.StaffGroup([ ]), scoretools.StaffGroup([ ])])
    t[0].name = t[1].name = 'staffGroup'
 
    r'''
