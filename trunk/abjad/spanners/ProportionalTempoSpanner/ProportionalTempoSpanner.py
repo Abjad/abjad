@@ -1,4 +1,4 @@
-from abjad.spanners.TempoSpanner.ProportionalTempoSpanner._ProportionalTempoSpannerFormatInterface \
+from abjad.spanners.ProportionalTempoSpanner._ProportionalTempoSpannerFormatInterface \
     import _ProportionalTempoSpannerFormatInterface
 from abjad.spanners.TempoSpanner.TempoSpanner import TempoSpanner
 import types

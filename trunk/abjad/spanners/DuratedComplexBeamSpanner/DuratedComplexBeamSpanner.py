@@ -1,5 +1,5 @@
-from abjad.spanners.BeamSpanner.DuratedComplexBeamSpanner._DuratedComplexBeamSpannerFormatInterface import _DuratedComplexBeamSpannerFormatInterface
-from abjad.spanners.BeamSpanner.ComplexBeamSpanner import ComplexBeamSpanner
+from abjad.spanners.DuratedComplexBeamSpanner._DuratedComplexBeamSpannerFormatInterface import _DuratedComplexBeamSpannerFormatInterface
+from abjad.spanners.ComplexBeamSpanner import ComplexBeamSpanner
 from abjad.core import Rational
 import types
 

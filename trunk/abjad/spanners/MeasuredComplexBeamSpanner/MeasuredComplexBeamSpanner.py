@@ -1,6 +1,6 @@
-from abjad.spanners.BeamSpanner.MeasuredComplexBeamSpanner._MeasuredComplexBeamSpannerFormatInterface import \
+from abjad.spanners.MeasuredComplexBeamSpanner._MeasuredComplexBeamSpannerFormatInterface import \
    _MeasuredComplexBeamSpannerFormatInterface
-from abjad.spanners.BeamSpanner.ComplexBeamSpanner import ComplexBeamSpanner
+from abjad.spanners.ComplexBeamSpanner import ComplexBeamSpanner
 from abjad.core import Rational
 import types
 
