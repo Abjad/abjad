@@ -3,7 +3,8 @@ from abjad.checks._Check import _Check
 
 class MisfilledMeasureCheck(_Check):
    '''For each (rigid) measure, 
-      does effective meter duration equal preprolated duration?'''
+   does effective meter duration equal preprolated duration?
+   '''
 
    def _run(self, expr):
       from abjad.tools import componenttools
