@@ -1,4 +1,3 @@
-from abjad.components.NoteHead._NoteHeadFormatInterface import _NoteHeadFormatInterface
 from abjad.core import LilyPondTweakReservoir
 
 
@@ -12,12 +11,11 @@ class NoteHead(object):
       NoteHead(cs')
    '''
 
-   __slots__ = ('_client', '_formatter', '_pitch', 'tweak')
+   __slots__ = ('_client', '_pitch', 'tweak')
 
    def __init__(self, client, pitch = None):
       self._client = client
       self.tweak = LilyPondTweakReservoir( )
-      self._formatter = _NoteHeadFormatInterface(self)
       self.pitch = pitch
 
    ## OVERLOADS ##
@@ -52,9 +50,7 @@ class NoteHead(object):
 
    @property
    def format(self):
-      '''Read-only format string of note_head.
-
-      .. todo:: appears to not currently be working, or necessary.
+      '''Read-only format string of note_head:
 
       ::
       
@@ -62,12 +58,13 @@ class NoteHead(object):
          abjad> note.nothead.format
          "cs'"
       '''
-      return self._formatter.format
+      from abjad.tools.notetools._format_note_head import _format_note_head
+      return _format_note_head(self)
 
    @apply
    def pitch( ):
       def fget(self):
-         '''Read / write pitch of note_head.
+         '''Read / write pitch of note head:
 
          ::
 
