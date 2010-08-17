@@ -16,7 +16,6 @@ def test_TextSpanner_position_01( ):
    }
    '''
 
-   assert p.position is None
    assert t.format == "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
@@ -24,7 +23,8 @@ def test_TextSpanner_position_02( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
-   p.position = 'neutral'
+   #p.position = 'neutral'
+   p.misc.text_spanner_neutral = None
 
    r'''
    \new Staff {
@@ -43,7 +43,8 @@ def test_TextSpanner_position_03( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
-   p.position = 'up'
+   #p.position = 'up'
+   p.misc.text_spanner_up = None
 
    r'''
    \new Staff {
@@ -62,7 +63,8 @@ def test_TextSpanner_position_04( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
-   p.position = 'down'
+   #p.position = 'down'
+   p.misc.text_spanner_down = None
 
    r'''
    \new Staff {
@@ -75,15 +77,6 @@ def test_TextSpanner_position_04( ):
    '''
 
    assert t.format == "\\new Staff {\n\t\\textSpannerDown\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
-
-
-def test_TextSpanner_position_05( ):
-   '''Setting unknown position raises ValueError.'''
-
-   t = Staff(notetools.make_repeated_notes(4))
-   p = TextSpanner(t[:])
-
-   assert raises(ValueError, 'p.position = "xxx"')
 
 
 def test_TextSpanner_position_06( ):
@@ -101,5 +94,4 @@ def test_TextSpanner_position_06( ):
    }
    '''
 
-   assert p.position is None
    assert t.format == "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"

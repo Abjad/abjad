@@ -1,8 +1,8 @@
-from abjad.spanners.Spanner._PositionalGrobHandlerSpanner import _PositionalGrobHandlerSpanner
+from abjad.spanners.Spanner import Spanner
 from abjad.spanners.TextSpanner._TextSpannerFormatInterface import _TextSpannerFormatInterface
 
 
-class TextSpanner(_PositionalGrobHandlerSpanner):
+class TextSpanner(Spanner):
    r'''.. versionadded:: 1.1.2
 
    Handle LilyPond TextSpanner grob.
@@ -26,11 +26,5 @@ class TextSpanner(_PositionalGrobHandlerSpanner):
    '''
 
    def __init__(self, music = None):
-      _PositionalGrobHandlerSpanner.__init__(self, 'TextSpanner', music)
+      Spanner.__init__(self, music)
       self._format = _TextSpannerFormatInterface(self)
-      self.position = None
-
-   ## PRIVATE ATTRIBUTES ##
-
-   _positions = {'neutral':r'\textSpannerNeutral', 
-      'up':r'\textSpannerUp', 'down':r'\textSpannerDown', None:None}

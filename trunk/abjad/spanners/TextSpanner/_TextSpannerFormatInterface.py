@@ -1,13 +1,12 @@
-from abjad.spanners.Spanner._PositionalSpannerFormatInterface import \
-   _PositionalSpannerFormatInterface
+from abjad.spanners.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 
 
-class _TextSpannerFormatInterface(_PositionalSpannerFormatInterface):
+class _TextSpannerFormatInterface(_SpannerFormatInterface):
 
    def __init__(self, spanner):
-      _PositionalSpannerFormatInterface.__init__(self, spanner)
+      _SpannerFormatInterface.__init__(self, spanner)
 
-   ## PUBLIC METHODS ##
+   ## PRIVATE ATTRIBUTES ##
 
    def _right(self, leaf):
       '''Spanner format contribution right of leaf.'''

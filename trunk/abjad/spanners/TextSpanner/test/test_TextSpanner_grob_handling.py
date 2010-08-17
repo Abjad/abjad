@@ -6,7 +6,7 @@ def test_TextSpanner_grob_handling_01( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    p = TextSpanner(t[:])
-   p.font_shape = 'italic'
+   p.override.text_spanner.font_shape = 'italic'
 
    r'''
    \new Staff {

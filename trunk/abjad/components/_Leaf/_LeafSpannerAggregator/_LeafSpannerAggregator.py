@@ -19,6 +19,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
          spanner_contributions = [ ]
          spanner_contributions.extend(spanner._format._after(leaf))
          if spanner._is_my_last_leaf(leaf):
+            spanner_override_contributions = [ ]
             for name, value in vars(spanner.override).iteritems( ):
                #print name, value
                if isinstance(value, LilyPondGrobProxyContextWrapper):
@@ -28,13 +29,19 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
                      #print grob_name, grob_override_namespace
                      for grob_attribute, grob_value in vars(grob_override_namespace).iteritems( ):
                         #print grob_attribute, grob_value
-                        spanner_contributions.append(_make_lilypond_revert_string(
+                        spanner_override_contributions.append(_make_lilypond_revert_string(
                            grob_name, grob_attribute, context_name = context_name))
                elif isinstance(value, LilyPondGrobProxy):
                   grob_name, grob_namespace = name, value
                   for grob_attribute, grob_value in vars(grob_namespace).iteritems( ):
-                     spanner_contributions.append(
+                     spanner_override_contributions.append(
                         _make_lilypond_revert_string(grob_name, grob_attribute))
+            spanner_override_contributions.sort( )
+            spanner_contributions.extend(spanner_override_contributions)
+            spanner_contributions.extend(
+               spanner.misc._get_formatted_commands_for_target_slot('closing'))
+            spanner_contributions.extend(
+               spanner.misc._get_formatted_commands_for_target_slot('after'))
          #spanner_contributions.sort( )
          result.extend(spanner_contributions)
       return result
@@ -55,6 +62,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
          spanner_contributions = [ ]
          spanner_contributions.extend(spanner._format._before(leaf))
          if spanner._is_my_first_leaf(leaf):
+            spanner_override_contributions = [ ]
             for name, value in vars(spanner.override).iteritems( ):
                #print name, value
                if isinstance(value, LilyPondGrobProxyContextWrapper):
@@ -64,15 +72,21 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
                      #print grob_name, grob_override_namespace
                      for grob_attribute, grob_value in vars(grob_override_namespace).iteritems( ):
                         #print grob_attribute, grob_value
-                        spanner_contributions.append(
+                        spanner_override_contributions.append(
                            _make_lilypond_override_string(grob_name, grob_attribute,
                            grob_value, context_name = context_name, is_once = False))
                elif isinstance(value, LilyPondGrobProxy):
                   grob_name, grob_namespace = name, value
                   for grob_attribute, grob_value in vars(grob_namespace).iteritems( ):
-                     spanner_contributions.append(
+                     spanner_override_contributions.append(
                         _make_lilypond_override_string(grob_name, grob_attribute,
                         grob_value, is_once = False))
+            spanner_override_contributions.sort( )
+            spanner_contributions.extend(spanner_override_contributions)
+            spanner_contributions.extend(
+               spanner.misc._get_formatted_commands_for_target_slot('before'))
+            spanner_contributions.extend(
+               spanner.misc._get_formatted_commands_for_target_slot('opening'))
          #spanner_contributions.sort( )
          result.extend(spanner_contributions)
       return result
