@@ -1,12 +1,14 @@
 from abjad.components._Leaf import _Leaf
-from abjad.components.Note._NoteInitializer import _NoteInitializer
+#from abjad.components.Note._NoteInitializer import _NoteInitializer
 
 
 class Note(_Leaf):
    '''The Abjad model of a single note.'''
    
    def __init__(self, *args, **kwargs):
-      self._initializer = _NoteInitializer(self, _Leaf, *args)
+      from abjad.tools.notetools._initialize_note import _initialize_note
+      #self._initializer = _NoteInitializer(self, _Leaf, *args)
+      _initialize_note(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
@@ -18,7 +20,7 @@ class Note(_Leaf):
          return 1
 
    def __repr__(self):
-      return 'Note(%s, %s)' % (self.pitch, self.duration)
+      return '%s(%s, %s)' % (self.__class__.__name__, self.pitch, self.duration)
 
    ## PRIVATE ATTRIBUTES ##
 

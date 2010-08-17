@@ -1,13 +1,15 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.components.Rest._RestInitializer import _RestInitializer
+#from abjad.components.Rest._RestInitializer import _RestInitializer
 
 
 class Rest(_Leaf):
    '''The Abjad model of a single rest.'''
 
    def __init__(self, *args, **kwargs):
-      self._initializer = _RestInitializer(self, _Leaf, *args)
+      from abjad.tools.resttools._initialize_rest import _initialize_rest
+      #self._initializer = _RestInitializer(self, _Leaf, *args)
+      _initialize_rest(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
    
    ## OVERLOADS ##
@@ -16,7 +18,7 @@ class Rest(_Leaf):
       return 0
 
    def __repr__(self):
-      return 'Rest(%s)' % self.duration
+      return '%s(%s)' % (self.__class__.__name__, self.duration)
 
    ## PRIVATE ATTRIBUTES ##
 

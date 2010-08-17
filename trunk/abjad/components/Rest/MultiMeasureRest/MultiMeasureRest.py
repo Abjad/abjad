@@ -1,20 +1,23 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Rest.Rest import Rest
-from abjad.components.Rest.MultiMeasureRest._MultiMeasureRestInitializer \
-   import _MultiMeasureRestInitializer
+#from abjad.components.Rest.MultiMeasureRest._MultiMeasureRestInitializer \
+#   import _MultiMeasureRestInitializer
 
 
 class MultiMeasureRest(Rest):
    '''The Abjad model of a multi-measure rest.'''
    
    def __init__(self, *args, **kwargs):
-      self._initializer = _MultiMeasureRestInitializer(self, _Leaf, *args)
+      from abjad.tools.resttools._initialize_multi_measure_rest import \
+         _initialize_multi_measure_rest
+      _initialize_multi_measure_rest(self, _Leaf, *args)
+      #self._initializer = _MultiMeasureRestInitializer(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
 
    def __repr__(self):
-      return 'MultiMeasureRest(%s)' % self.duration
+      return '%s(%s)' % (self.__class__.__name__, self.duration)
 
    ## PRIVATE ATTRIBUTES ##
 
