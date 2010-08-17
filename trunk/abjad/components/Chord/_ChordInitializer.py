@@ -1,6 +1,5 @@
 from abjad.components.Chord._ChordFormatter import _ChordFormatter
 from abjad.core import _Initializer
-from abjad.interfaces import NoteHeadInterface
 import re
 
 
@@ -35,8 +34,7 @@ class _ChordInitializer(_Initializer):
             if note.note_head is not None:
                copy = componenttools.clone_components_and_fracture_crossing_spanners([note])[0]
             _transfer_all_attributes(note, client)
-            #del client._note_head
-            client._note_head = NoteHeadInterface(client)
+            del client._note_head
             if note.note_head is not None:
                client.append(copy.note_head)
          if isinstance(args[0], Rest):

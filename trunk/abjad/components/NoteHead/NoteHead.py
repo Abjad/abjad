@@ -4,20 +4,13 @@ import types
 
 
 class NoteHead(NoteHeadInterface):
-   r'''The head of a single note or one of the heads in a chord.  
+   r'''Note or chord note head:
 
    ::
 
       abjad> note = Note(1, (1, 4))
       abjad> note.note_head
       NoteHead(cs')
-
-   The Abjad NoteHead overrides the LilyPond NoteHead grob. ::
-
-      abjad> note.override.note_head.color = 'red'
-      abjad> print note.format
-      \once \override NoteHead #'color = #red
-      cs'4
    '''
 
    def __init__(self, client, pitch = None):

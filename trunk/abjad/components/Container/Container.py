@@ -3,7 +3,6 @@ from abjad.components.Container._ContainerDurationInterface import _ContainerDur
 from abjad.components.Container._ContainerFormatter import _ContainerFormatter
 from abjad.components.Container._ContainerSpannerAggregator import _ContainerSpannerAggregator
 from abjad.interfaces import BracketsInterface
-from abjad.interfaces import NoteHeadInterface
 
 
 class Container(_Component):
