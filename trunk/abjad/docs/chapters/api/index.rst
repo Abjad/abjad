@@ -814,8 +814,8 @@ scoretools
 .. toctree::
    :maxdepth: 1
 
-   tools/scoretools/StaffGroup/GrandStaff
-   tools/scoretools/StaffGroup/PianoStaff
+   tools/scoretools/GrandStaff/GrandStaff
+   tools/scoretools/PianoStaff/PianoStaff
    tools/scoretools/StaffGroup/StaffGroup
    tools/scoretools/make_empty_piano_score
    tools/scoretools/make_piano_score_from_leaves

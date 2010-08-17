@@ -11,6 +11,6 @@ from abjad.tools.importtools._package_import import _package_import
 
 _package_import(__path__[0], globals( ))
 
-from StaffGroup import GrandStaff
-from StaffGroup import PianoStaff
+from GrandStaff import GrandStaff
+from PianoStaff import PianoStaff
 from StaffGroup import StaffGroup
