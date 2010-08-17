@@ -53,8 +53,11 @@ class MarkupInterface(_Interface, _FormatContributor):
       def fset(self, arg):
          if arg is None or arg == [ ]:
             self._down = [ ]
+         elif isinstance(arg, list):
+            self._down = arg
          else:
-            raise ValueError('set leaf markup with append( ) and extend( ).')
+            self._down = [arg]
+            #raise ValueError('set leaf markup with append( ) and extend( ).')
       return property(**locals( ))
 
    @apply
@@ -65,6 +68,9 @@ class MarkupInterface(_Interface, _FormatContributor):
       def fset(self, arg):
          if arg is None or arg == [ ]:
             self._up = [ ]
+         elif isinstance(arg, list):
+            self._up = arg
          else:
-            raise ValueError('set leaf markup with append( ) and extend( ).')
+            self._up = [arg]
+            #raise ValueError('set leaf markup with append( ) and extend( ).')
       return property(**locals( ))

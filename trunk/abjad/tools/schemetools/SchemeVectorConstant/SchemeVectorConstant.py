@@ -2,8 +2,8 @@ from abjad.core import _Immutable
 from types import BooleanType
 
 
-class SchemeVector(list, _Immutable):
-   '''Abjad representation of Scheme vector.'''
+class SchemeVectorConstant(list, _Immutable):
+   '''Abjad representation of Scheme vector constant.'''
 
    def __init__(self, *args):
       list.__init__(self, args)
@@ -38,5 +38,5 @@ class SchemeVector(list, _Immutable):
 
    @property
    def format(self):
-      '''LilyPond input representation of scheme vector.'''
-      return "#'%s" % self
+      '''LilyPond input representation of scheme vector constant.'''
+      return "#'#%s" % self

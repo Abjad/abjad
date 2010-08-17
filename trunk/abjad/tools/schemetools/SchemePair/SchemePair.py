@@ -2,10 +2,12 @@ from abjad.core import _Immutable
 from types import BooleanType
 
 
-class SchemeVector(list, _Immutable):
-   '''Abjad representation of Scheme vector.'''
+class SchemePair(list, _Immutable):
+   '''Abjad representation of Scheme pair.'''
 
    def __init__(self, *args):
+      if 2 < len(args):
+          raise Exception('Scheme pairs may contain only two values.')
       list.__init__(self, args)
 
    ## OVERLOADS ##
@@ -32,11 +34,11 @@ class SchemeVector(list, _Immutable):
               vals.append("#f")
           else:
               vals.append(x)
-      return ' '.join([str(x) for x in vals])
+      return '%s . %s' % (vals[0], vals[1])
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def format(self):
-      '''LilyPond input representation of scheme vector.'''
+      '''LilyPond input representation of scheme pair.'''
       return "#'%s" % self
