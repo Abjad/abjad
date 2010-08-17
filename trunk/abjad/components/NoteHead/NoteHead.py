@@ -19,7 +19,6 @@ class NoteHead(object):
       self.tweak = LilyPondTweakReservoir( )
       self._formatter = _NoteHeadFormatInterface(self)
       self.pitch = pitch
-      #self._unregister_if_necessary( )
 
    ## OVERLOADS ##
 
@@ -48,17 +47,6 @@ class NoteHead(object):
       if self.pitch:
          return str(self.pitch)
       return ' '
-
-#   ## PRIVATE METHODS ##
-#
-#   def _unregister_if_necessary(self):
-#      '''Note note_heads should register as format contributors.
-#      Chord note_heads should not register as format contributors.'''
-#      from abjad.components.Chord import Chord
-#      client = getattr(self, '_client', None)
-#      if client is not None:
-#         if isinstance(client, Chord):
-#            client.interfaces._contributors.remove(self)
 
    ## PUBLIC ATTRIBUTES ##
 
