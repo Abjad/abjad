@@ -47,4 +47,12 @@ import sys
 sys.ps1 = 'abjad> '
 del sys
 del os
+
+del cfg
+del checks
+del components
+del core
 del importtools
+del exceptions
+del interfaces
+del tools
