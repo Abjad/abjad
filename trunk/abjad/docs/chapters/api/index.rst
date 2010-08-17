@@ -655,15 +655,6 @@ notetools
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
 
 
-overridetools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/overridetools/clear_all_overrides_on_grob_handler
-   tools/overridetools/promote_attribute_to_context_on_grob_handler
-
-
 pitchtools
 
 .. toctree::

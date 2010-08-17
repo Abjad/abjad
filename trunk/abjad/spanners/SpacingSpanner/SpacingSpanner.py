@@ -16,13 +16,10 @@ class SpacingSpanner(Spanner):
       abjad> macros.diatonicize(staff)
       abjad> spacing_spanner = SpacingSpanner(staff[1:])
       abjad> spacing_spanner.new_section = True
-      abjad> spacing_spanner.proportional_notation_duration = Rational(1, 30)
-      abjad> spacing_spanner.strict_grace_spacing = True
-      abjad> spacing_spanner.strict_note_spacing = True
-      abjad> spacing_spanner.uniform_stretching = True
-      abjad> overridetools.promote_attribute_to_context_on_grob_handler(spacing_spanner, 'strict_grace_spacing', 'Score')
-      abjad> overridetools.promote_attribute_to_context_on_grob_handler(spacing_spanner, 'strict_note_spacing', 'Score')
-      abjad> overridetools.promote_attribute_to_context_on_grob_handler(spacing_spanner, 'uniform_stretching', 'Score')
+      abjad> spacing_spanner.override.score.spacing_spanner.proportional_notation_duration = Rational(1, 30)
+      abjad> spacing_spanner.override.score.spacing_spanner.strict_grace_spacing = True
+      abjad> spacing_spanner.override.score.spacing_spanner.strict_note_spacing = True
+      abjad> spacing_spanner.override.score.uniform_stretching = True
 
    ::
 

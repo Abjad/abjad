@@ -11,12 +11,8 @@ def test_RigidMeasure_bar_line_override_01( ):
 
    t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
-   #t.formatter.number.measures = 'comment'
    t._formatter.number.measures = 'comment'
    t[0].bar_line.kind = '||'
-   #t[0].bar_line.color = 'red'
-   #t[0].bar_line.promote('color', 'Staff')
-   #overridetools.promote_attribute_to_context_on_grob_handler(t[0].bar_line, 'color', 'Staff')
    t[0].override.staff.bar_line.color = 'red'
 
    ## NOTE: The LilyPond code here colors the DOUBLE BAR red and

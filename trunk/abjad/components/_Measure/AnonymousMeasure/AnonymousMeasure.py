@@ -38,9 +38,7 @@ class AnonymousMeasure(DynamicMeasure):
    def __init__(self, music = None, **kwargs):
       '''Initialize music and hide TimeSignature stencil.
       '''
-      #from abjad.tools import overridetools
+
       DynamicMeasure.__init__(self, music = music)
-      #self.meter.stencil = False
-      #overridetools.promote_attribute_to_context_on_grob_handler(self.meter, 'stencil', 'Staff')
       self.override.staff.time_signature.stencil = False
       self._initialize_keyword_values(**kwargs)
