@@ -1,5 +1,5 @@
 from abjad.components._Measure import RigidMeasure
-from abjad.components._Tuplet import FixedMultiplierTuplet
+from abjad.components.Tuplet import Tuplet
 from abjad.tools.componenttools._get_leaf_keyword_attributes import _get_leaf_keyword_attributes
 
 
@@ -36,7 +36,7 @@ def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attribute
          return '%s(%s, [\n%s\n], %s)' % (class_name, duration, contents, keyword_attributes)
       else:
          return '%s(%s, [\n%s\n])' % (class_name, duration, contents)
-   elif isinstance(container, FixedMultiplierTuplet):
+   elif isinstance(container, Tuplet):
       multiplier = repr(container.duration.multiplier)
       if keyword_attributes:
          return '%s(%s, [\n%s\n], %s)' % (class_name, multiplier, contents, keyword_attributes)

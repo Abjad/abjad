@@ -1,7 +1,7 @@
 from abjad import *
 from abjad.components._Component import _Component
 from abjad.components._Leaf import _Leaf
-from abjad.components._Tuplet import _Tuplet
+from abjad.components.Tuplet import _Tuplet
 
 
 def test_componenttools_iterate_components_forward_in_expr_01( ):
@@ -21,7 +21,6 @@ def test_componenttools_iterate_components_forward_in_expr_02( ):
 def test_componenttools_iterate_components_forward_in_expr_03( ):
    '''Yield internal nodes only.'''
    t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   #from abjad.components._Tuplet._Tuplet import _Tuplet
    iter = componenttools.iterate_components_forward_in_expr(t, _Tuplet)
    assert len(list(iter)) == 3
 

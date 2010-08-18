@@ -1,5 +1,5 @@
 from abjad.tools.metertools import Meter
-from abjad.components._Tuplet import _Tuplet
+from abjad.components.Tuplet import _Tuplet
 from abjad.core import Rational
 from abjad.tools import componenttools
 from abjad.tools import mathtools

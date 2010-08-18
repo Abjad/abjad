@@ -1,2 +1,2 @@
 from _Tuplet import _Tuplet
-from FixedMultiplierTuplet import FixedMultiplierTuplet
+from Tuplet import Tuplet

@@ -2,7 +2,7 @@ from abjad.components._Leaf import _Leaf
 from abjad.core import Rational
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-from abjad.components._Tuplet import FixedMultiplierTuplet
+from abjad.components.Tuplet import Tuplet
 import math
 
 
@@ -23,7 +23,7 @@ def fix_contents_of_tuplets_in_expr(tuplet):
    '''
 
    # check input
-   if isinstance(tuplet, FixedMultiplierTuplet):
+   if isinstance(tuplet, Tuplet):
       raise NotImplemented
    elif not isinstance(tuplet, FixedDurationTuplet):
       raise ValueError('must be tuplet.')

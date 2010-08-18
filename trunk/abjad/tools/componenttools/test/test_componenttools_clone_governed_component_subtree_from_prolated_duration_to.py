@@ -70,7 +70,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_05( ):
    '''Fixed multiplier tuplet.'''
 
-   t = FixedMultiplierTuplet((2, 3), macros.scale(3))
+   t = Tuplet((2, 3), macros.scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
    r'''

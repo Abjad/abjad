@@ -101,7 +101,7 @@ def test_notetools_make_notes_10( ):
    '''
    t = notetools.make_notes(1, (1, 36))
    assert len(t) == 1
-   assert isinstance(t[0], FixedMultiplierTuplet)
+   assert isinstance(t[0], Tuplet)
    assert len(t[0]) == 1
    assert t[0].duration.prolated == Rational(1, 36)
    assert t[0][0].duration.prolated == Rational(1, 36)
@@ -114,7 +114,7 @@ def test_notetools_make_notes_11( ):
    '''
    t = notetools.make_notes(1, [(1, 12), (1, 6), (1, 8)])
    assert len(t) == 2
-   assert isinstance(t[0], FixedMultiplierTuplet)
+   assert isinstance(t[0], Tuplet)
    assert isinstance(t[1], Note)
    assert len(t[0]) == 2
    assert t[0].duration.prolated == Rational(3, 12)
@@ -139,7 +139,7 @@ def test_notetools_make_notes_12( ):
    t = notetools.make_notes(1, [(5, 12), (1, 6), (1, 8)], \
       direction='little-endian')
    assert len(t) == 2
-   assert isinstance(t[0], FixedMultiplierTuplet)
+   assert isinstance(t[0], Tuplet)
    assert isinstance(t[1], Note)
    assert len(t[0]) == 3
    assert t[0].duration.prolated == Rational(7, 12)

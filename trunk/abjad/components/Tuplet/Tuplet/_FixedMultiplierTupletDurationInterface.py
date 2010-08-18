@@ -1,5 +1,5 @@
 from abjad.core import Rational
-from abjad.components._Tuplet._TupletDurationInterface import _TupletDurationInterface
+from abjad.components.Tuplet._TupletDurationInterface import _TupletDurationInterface
 
 
 class _FixedMultiplierTupletDurationInterface(_TupletDurationInterface):

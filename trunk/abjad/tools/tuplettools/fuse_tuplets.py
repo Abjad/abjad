@@ -1,9 +1,9 @@
 from abjad.components.Container import Container
-from abjad.exceptions import TupletFuseError
+from abjad.components.Tuplet import _Tuplet
+from abjad.components.Tuplet import Tuplet
 from abjad.core import Rational
-from abjad.components._Tuplet import _Tuplet
+from abjad.exceptions import TupletFuseError
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-from abjad.components._Tuplet import FixedMultiplierTuplet
 
 
 def fuse_tuplets(tuplets):
@@ -87,8 +87,8 @@ def fuse_tuplets(tuplets):
       total_contents_duration = sum([x.duration.contents for x in tuplets])
       new_target_duration = first_multiplier * total_contents_duration
       new_tuplet = FixedDurationTuplet(new_target_duration, [ ])
-   elif isinstance(first, FixedMultiplierTuplet):
-      new_tuplet = FixedMultiplierTuplet(first_multiplier, [ ])
+   elif isinstance(first, Tuplet):
+      new_tuplet = Tuplet(first_multiplier, [ ])
    else:
       raise TypeError('unknown tuplet type.')
 

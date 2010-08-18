@@ -8,7 +8,7 @@ from abjad.tools import pitchtools
 from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
-from abjad.components._Tuplet import FixedMultiplierTuplet
+from abjad.components.Tuplet import Tuplet
 
 
 ## TODO: Change leaftools.make_leaves( ) signature to allow ('c', 4) named pairs 
@@ -66,7 +66,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    leaves nested inside a fixed-multiplier tuplet. ::
 
       abjad> leaftools.make_leaves([14], [(1, 12), (1, 12), (1, 12)])
-      [FixedMultiplierTuplet(2/3, [d''8, d''8, d''8])]
+      [Tuplet(2/3, [d''8, d''8, d''8])]
 
    Set `direction` to ``'little-endian'`` to return tied leaf
    durations from least to greatest. ::
@@ -145,6 +145,6 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
          leaves = [ ]
          for pch, dur in zip(ps, ds):
             leaves.extend( _make_leaf_on_pitch(pch, dur, direction))
-         t = FixedMultiplierTuplet(multiplier, leaves)
+         t = Tuplet(multiplier, leaves)
          result.append(t)
    return result

@@ -20,8 +20,8 @@ def test_leaftools_make_leaves_02( ):
    '''
 
    leaves = leaftools.make_leaves([1, (1,2,3), None], [(2, 9), (1,18), (1,5)])
-   assert isinstance(leaves[0], FixedMultiplierTuplet)
-   assert isinstance(leaves[1], FixedMultiplierTuplet)
+   assert isinstance(leaves[0], Tuplet)
+   assert isinstance(leaves[1], Tuplet)
    tuplet1 = leaves[0] 
    assert len(tuplet1) == 2
    assert tuplet1.duration.multiplier == Rational(8, 9)
@@ -43,9 +43,9 @@ def test_leaftools_make_leaves_03( ):
    '''
 
    leaves = leaftools.make_leaves([1, (1,2,3), None], [(2, 9), (1,8), (1,5)])
-   assert isinstance(leaves[0], FixedMultiplierTuplet)
+   assert isinstance(leaves[0], Tuplet)
    assert isinstance(leaves[1], Chord)
-   assert isinstance(leaves[2], FixedMultiplierTuplet)
+   assert isinstance(leaves[2], Tuplet)
    tuplet1 = leaves[0] 
    assert len(tuplet1) == 1
    assert tuplet1.duration.multiplier == Rational(8, 9)

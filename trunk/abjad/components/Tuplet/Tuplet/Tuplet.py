@@ -1,7 +1,7 @@
 from abjad.core import Rational
-from abjad.components._Tuplet.FixedMultiplierTuplet._FixedMultiplierTupletDurationInterface import \
+from abjad.components.Tuplet.Tuplet._FixedMultiplierTupletDurationInterface import \
    _FixedMultiplierTupletDurationInterface
-from abjad.components._Tuplet._Tuplet import _Tuplet
+from abjad.components.Tuplet._Tuplet import _Tuplet
 
 
 class Tuplet(_Tuplet):

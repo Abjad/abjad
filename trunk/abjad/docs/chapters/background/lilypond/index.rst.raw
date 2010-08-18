@@ -65,9 +65,9 @@ LilyPond, such broken tuplets work out of the box.
 
 
 <abjad>
-   hide> t = FixedMultiplierTuplet((4, 7), Note(0, (1, 16)) * 4)
+   hide> t = Tuplet((4, 7), Note(0, (1, 16)) * 4)
    hide> notes = Note(0, (1, 8)) * 2
-   hide> u = FixedMultiplierTuplet((4, 7), Note(0, (1, 16)) * 3)
+   hide> u = Tuplet((4, 7), Note(0, (1, 16)) * 3)
    hide> spannertools.BeamSpanner(t)
    hide> spannertools.BeamSpanner(notes)
    hide> spannertools.BeamSpanner(u)

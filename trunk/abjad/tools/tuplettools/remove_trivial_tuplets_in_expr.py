@@ -1,5 +1,5 @@
 from abjad.tools import componenttools
-from abjad.components._Tuplet import _Tuplet
+from abjad.components.Tuplet import _Tuplet
 
 
 def remove_trivial_tuplets_in_expr(expr):

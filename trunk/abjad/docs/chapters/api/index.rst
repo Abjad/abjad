@@ -12,7 +12,6 @@ Abjad score components
    components/Chord/Chord
    components/Cluster/Cluster
    components/Container/Container
-   components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
    components/Note/Note
    components/Rest/Rest
@@ -20,6 +19,7 @@ Abjad score components
    components/Score/Score
    components/Skip/Skip
    components/Staff/Staff
+   components/Tuplet/Tuplet/Tuplet
    components/Voice/Voice
 
 

@@ -4,7 +4,7 @@ from abjad.tools.metertools import Meter
 from abjad.tools import durtools
 from abjad.tools import metertools
 from abjad.tools import spannertools
-from abjad.components._Tuplet import _Tuplet
+from abjad.components.Tuplet import _Tuplet
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components \
    import get_parent_and_start_stop_indices_of_components
 
@@ -19,6 +19,7 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
    '''
    from abjad.tools import measuretools
    from abjad.tools.containertools.set_container_multiplier import set_container_multiplier
+   from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    ## convenience leaf index split definition
    if isinstance(component, _Leaf):
@@ -42,20 +43,25 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
    if isinstance(component, _Measure):
       meter_denominator = component.meter.effective.denominator
       left_duration = sum([x.duration.prolated for x in left_music])
-      left_pair = durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
+      left_pair = \
+         durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
          left_duration, meter_denominator)
       left_meter = metertools.Meter(*left_pair)
       left = component.__class__(left_meter, left_music)
       right_duration = sum([x.duration.prolated for x in right_music])
-      right_pair = durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
+      right_pair = \
+         durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
          right_duration, meter_denominator)
       right_meter = metertools.Meter(*right_pair)
       right = component.__class__(right_meter, right_music)
-   elif isinstance(component, _Tuplet):
+   elif isinstance(component, FixedDurationTuplet):
       left = component.__class__(1, left_music)
       right = component.__class__(1, right_music)
       set_container_multiplier(left, container_multiplier)
       set_container_multiplier(right, container_multiplier)
+   elif isinstance(component, _Tuplet):
+      left = component.__class__(container_multiplier, left_music)
+      right = component.__class__(container_multiplier, right_music)
    else:
       left = component.__class__(left_music)
       right = component.__class__(right_music)

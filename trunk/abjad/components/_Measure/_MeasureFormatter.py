@@ -6,7 +6,6 @@ from abjad.components._Measure._MeasureFormatterNumberInterface import \
 from abjad.components._Measure._MeasureFormatterSlotsInterface import \
    _MeasureFormatterSlotsInterface
 from abjad.core import Rational
-from abjad.components._Tuplet import FixedMultiplierTuplet
 
 
 class _MeasureFormatter(_ContainerFormatter):
