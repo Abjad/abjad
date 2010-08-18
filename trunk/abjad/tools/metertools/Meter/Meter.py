@@ -42,11 +42,6 @@ class Meter(_Abjad, _Immutable):
 
    ## OVERLOADS ##
 
-   def __copy__(self, *args):
-      return type(self)(self)
-
-   __deepcopy__ = __copy__
-
    def __eq__(self, arg):
       if isinstance(arg, Meter):
          return self.numerator == arg.numerator and self.denominator == arg.denominator

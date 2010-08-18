@@ -51,11 +51,6 @@ class Articulation(_Abjad, _Immutable):
 
    ## OVERLOADS ##
 
-   def __copy__(self, *args):
-      return type(self)(self)
-
-   __deepcopy__ = __copy__
-
    def __eq__(self, expr):
       assert isinstance(expr, Articulation)
       if expr.string == self.string and self.direction == expr.direction:

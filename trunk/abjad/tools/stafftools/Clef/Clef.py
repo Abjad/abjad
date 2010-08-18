@@ -11,11 +11,6 @@ class Clef(_Abjad, _Immutable):
 
    ## OVERLOADS ##
 
-   def __copy__(self, *args):
-      return type(self)(self)
-
-   __deepcopy__ = __copy__
-
    def __eq__(self, arg):
       return arg == self.name
    

@@ -4,6 +4,11 @@ class _Immutable(object):
 
    ## OVERLOADS ##
 
+   def __copy__(self, *args):
+      return type(self)(self)
+
+   __deepcopy__ = __copy__
+
    def __delattr__(self, *args):
       raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 

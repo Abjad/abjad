@@ -25,7 +25,7 @@ Abjad score components
 
 
 Abjad score component interfaces
-----------
+--------------------------------
 
 .. toctree::
    :maxdepth: 1
