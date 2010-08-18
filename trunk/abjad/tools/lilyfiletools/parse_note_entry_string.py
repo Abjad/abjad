@@ -1,6 +1,6 @@
 from abjad.components.Container import Container
 from abjad.exceptions import MissingSpannerError
-from abjad.marks.Articulation import Articulation
+from abjad.tools.notetools import Articulation
 from abjad.tools.spannertools import BeamSpanner, SlurSpanner, TieSpanner
 from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
 from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token

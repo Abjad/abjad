@@ -9,14 +9,12 @@ Classes
 .. toctree::
    :maxdepth: 1
 
-   marks/Articulation/Articulation
    components/Chord/Chord
    components/Cluster/Cluster
    components/Container/Container
    components/_Tuplet/FixedDurationTuplet/FixedDurationTuplet
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
-   marks/KeySignature/KeySignature
    marks/Meter/Meter
    components/Note/Note
    components/Rest/Rest
@@ -596,6 +594,7 @@ notetools
 .. toctree::
    :maxdepth: 1
 
+   tools/notetools/Articulation/Articulation
    tools/notetools/NaturalHarmonic/NaturalHarmonic
    tools/notetools/NoteHead/NoteHead
    tools/notetools/add_artificial_harmonic_to_note
@@ -935,6 +934,7 @@ tonalitytools
    tools/tonalitytools/DoublingIndicator/DoublingIndicator
    tools/tonalitytools/ExtentIndicator/ExtentIndicator
    tools/tonalitytools/InversionIndicator/InversionIndicator
+   tools/tonalitytools/KeySignature/KeySignature
    tools/tonalitytools/Mode/Mode
    tools/tonalitytools/OmissionIndicator/OmissionIndicator
    tools/tonalitytools/QualityIndicator/QualityIndicator

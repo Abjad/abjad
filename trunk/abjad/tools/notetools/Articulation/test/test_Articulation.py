@@ -4,13 +4,13 @@ import py.test
 
 def test_Articulation_01( ):
    '''Articulations can be initialized from zero, one or two arguments.'''
-   a = Articulation()
+   a = notetools.Articulation()
    assert a.string == None
    assert a.direction == '-'
-   a = Articulation('^\\marcato')
+   a = notetools.Articulation('^\\marcato')
    assert a.string == 'marcato'
    assert a.direction == '^'
-   a = Articulation('legato', 'down')
+   a = notetools.Articulation('legato', 'down')
    assert a.string == 'legato'
    assert a.direction == '_'
 
@@ -43,7 +43,7 @@ def test_Articulation_04( ):
    a = t.articulations[0]
 
    #a.string = None
-   a = Articulation(None)
+   a = notetools.Articulation(None)
    assert a.string == None
    assert str(a) == ''
 
@@ -56,7 +56,7 @@ def test_Articulation_05( ):
    a = t.articulations[0]
 
    #a.direction = None
-   a = Articulation('staccato', None)
+   a = notetools.Articulation('staccato', None)
    assert a.direction == '-'
    assert str(a) == r'-\staccato'
 
@@ -72,7 +72,7 @@ def test_Articulation_06( ):
    assert str(a) == r'^\staccato'
 
    #a.direction = '^'
-   a = Articulation('staccato', '^')
+   a = notetools.Articulation('staccato', '^')
    assert a.direction == '^'
    assert str(a) == r'^\staccato'
 
@@ -88,7 +88,7 @@ def test_Articulation_07( ):
    assert str(a) == r'_\staccato'
 
    #a.direction = '_'
-   a = Articulation('staccato', '_')
+   a = notetools.Articulation('staccato', '_')
    assert a.direction == '_'
    assert str(a) == r'_\staccato'
 
@@ -104,7 +104,7 @@ def test_Articulation_08( ):
    assert str(a) == r'-\staccato'
 
    #a.direction = '-'
-   a = Articulation('staccato', '-')
+   a = notetools.Articulation('staccato', '-')
    assert a.direction == '-'
    assert str(a) == r'-\staccato'
 
@@ -129,17 +129,17 @@ def test_Articulation_10( ):
    #a = t.articulations[0]
    #a.string = 'staccato'
 
-   a = Articulation('staccato')
+   a = notetools.Articulation('staccato')
    assert a.string == 'staccato'
    assert str(a) == r'-\staccato'
 
    #a.string = 'blah'
-   a = Articulation('blah')
+   a = notetools.Articulation('blah')
    assert a.string == 'blah'
    assert str(a) == r'-\blah'
 
    #a.string = 'parangaricutirimicuaro'
-   a = Articulation('parangaricutirimicuaro')
+   a = notetools.Articulation('parangaricutirimicuaro')
    assert a.string == 'parangaricutirimicuaro'
    assert str(a) == r'-\parangaricutirimicuaro'
 
@@ -153,10 +153,10 @@ def test_Articulation_11( ):
    assert a.string == '.'
    assert str(a) == r'-\staccato'
    #a.string = '-'
-   a = Articulation('-')
+   a = notetools.Articulation('-')
    assert a.string == '-'
    assert str(a) == r'-\tenuto'
    #a.string = '|'
-   a = Articulation('|')
+   a = notetools.Articulation('|')
    assert a.string == '|'
    assert str(a) == r'-\staccatissimo'

@@ -5,7 +5,7 @@ def test_KeySignatureInterface_effective_01( ):
    '''Force a key signature.'''
 
    t = Staff(macros.scale(4))
-   key_signature = KeySignature('c', 'major')
+   key_signature = tonalitytools.KeySignature('c', 'major')
    t.key_signature.forced = key_signature
 
    r'''
@@ -18,7 +18,7 @@ def test_KeySignatureInterface_effective_01( ):
    }
    '''
 
-   assert t.key_signature.effective == KeySignature('c', 'major')
+   assert t.key_signature.effective == tonalitytools.KeySignature('c', 'major')
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\key c \\major\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 

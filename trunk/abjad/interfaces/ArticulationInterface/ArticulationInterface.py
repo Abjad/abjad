@@ -1,6 +1,5 @@
 from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
-from abjad.marks import Articulation
 
 
 class ArticulationInterface(_Interface, _FormatContributor):
@@ -30,10 +29,10 @@ class ArticulationInterface(_Interface, _FormatContributor):
 
    def __repr__(self):
       if len(self._articulations):
-         return '<ArticulationInterface(%s)>' % ', '.join([str(x) 
-            for x in self._articulations])
+         return '<%s(%s)>' % (self.__class__.__name__, ', '.join([str(x)
+            for x in self._articulations]))
       else:
-         return '<ArticulationInterface>'
+         return '<%s>' % self.__class__.__name__
 
    def __setitem__(self, i, expr):
       if isinstance(i, int):
@@ -52,6 +51,7 @@ class ArticulationInterface(_Interface, _FormatContributor):
    ## PRIVATE METHODS ##
 
    def _make_articulation(self, expr):
+      from abjad.tools.notetools import Articulation
       if isinstance(expr, Articulation):
          return expr
       elif isinstance(expr, (list, tuple)):

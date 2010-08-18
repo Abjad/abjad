@@ -1,18 +1,19 @@
 from abjad.core import _Abjad
-from abjad.core import _Immutable
 
 
-class KeySignature(_Abjad, _Immutable):
+class KeySignature(_Abjad):
+
+   __slots__ = ('_tonic', '_mode')
 
    def __init__(self, tonic, mode):
       from abjad.tools import pitchtools
       from abjad.tools import tonalitytools
-      #self._tonic = pitchtools.NamedPitchClass(tonic)
-      #self._mode = tonalitytools.Mode(mode)
-      _tonic = pitchtools.NamedPitchClass(tonic)
-      _mode = tonalitytools.Mode(mode)
-      object.__setattr__(self, '_tonic', _tonic)
-      object.__setattr__(self, '_mode', _mode)
+      tonic = pitchtools.NamedPitchClass(tonic)
+      mode = tonalitytools.Mode(mode)
+      #object.__setattr__(self, '_tonic', tonic)
+      #object.__setattr__(self, '_mode', mode)
+      self._tonic = tonic
+      self._mode = mode
 
    ## OVERLOADS ##
 

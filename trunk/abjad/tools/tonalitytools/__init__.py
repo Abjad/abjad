@@ -7,6 +7,7 @@ from ChordQualityIndicator import ChordQualityIndicator
 from DoublingIndicator import DoublingIndicator
 from ExtentIndicator import ExtentIndicator
 from InversionIndicator import InversionIndicator
+from KeySignature import KeySignature
 from Mode import Mode
 from OmissionIndicator import OmissionIndicator
 from QualityIndicator import QualityIndicator

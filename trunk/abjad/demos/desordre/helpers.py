@@ -17,7 +17,7 @@ def desordre_build(pitches):
       piano.append(seq)
    ## set cleff and key to lower staff...
    piano[1].clef.forced = stafftools.Clef('bass')
-   piano[1].key_signature.forced = KeySignature('b', 'major')
+   piano[1].key_signature.forced = tonalitytools.KeySignature('b', 'major')
    return piano
 
 
