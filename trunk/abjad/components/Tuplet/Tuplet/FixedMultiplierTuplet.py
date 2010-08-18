@@ -4,7 +4,7 @@ from abjad.components._Tuplet.FixedMultiplierTuplet._FixedMultiplierTupletDurati
 from abjad.components._Tuplet._Tuplet import _Tuplet
 
 
-class FixedMultiplierTuplet(_Tuplet):
+class Tuplet(_Tuplet):
    '''Abjad model of tuplet with fixed multiplier.'''
 
    def __init__(self, multiplier, music = None, **kwargs):
