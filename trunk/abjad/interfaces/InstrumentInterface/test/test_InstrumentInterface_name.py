@@ -29,7 +29,7 @@ def test_InstrumentInterface_name_02( ):
    '''Works with Markup.'''
 
    t = Staff(macros.scale(4))
-   t.set.instrument_name = Markup(r'\circle { V }')
+   t.set.instrument_name = markuptools.Markup(r'\circle { V }')
 
    r'''
    \new Staff \with {

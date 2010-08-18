@@ -1,6 +1,6 @@
 from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
-from abjad.marks import Markup
+from abjad.tools.markuptools import Markup
 
 
 class MarkupInterface(_Interface, _FormatContributor):

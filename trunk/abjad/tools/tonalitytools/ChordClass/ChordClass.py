@@ -1,4 +1,4 @@
-from abjad.marks import Markup
+from abjad.tools.markuptools import Markup
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.NamedPitchClassSet import NamedPitchClassSet
@@ -154,7 +154,7 @@ class ChordClass(NamedPitchClassSet):
          inv = r" \raise #1 \fontsize #-3 \override #'(baseline-skip . 1.5)"
          inv += r' \column { %s }' % ' '.join(inversion.split('/'))
          markup += inv
-      return Markup(markup)
+      return markuptools.Markup(markup)
 
    @property
    def quality_indicator(self):

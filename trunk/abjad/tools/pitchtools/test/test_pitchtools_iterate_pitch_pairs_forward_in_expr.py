@@ -8,7 +8,7 @@ def test_pitchtools_iterate_pitch_pairs_forward_in_expr_01( ):
    score.append(Staff(notes))
    notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
    score.append(Staff(notes))
-   score[1].clef.forced = Clef('bass')
+   score[1].clef.forced = stafftools.Clef('bass')
 
    r'''
    \new Score <<

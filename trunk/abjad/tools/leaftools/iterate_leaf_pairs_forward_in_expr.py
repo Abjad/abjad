@@ -12,7 +12,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
       abjad> score.append(Staff(notes))
       abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
       abjad> score.append(Staff(notes))
-      abjad> score[1].clef.forced = Clef('bass')
+      abjad> score[1].clef.forced = stafftools.Clef('bass')
 
    ::
 

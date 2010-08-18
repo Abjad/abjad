@@ -3,7 +3,7 @@ from abjad import *
 
 def test_pitchtools_clef_and_staff_position_number_to_named_pitch_01( ):
 
-   clef = Clef('treble')
+   clef = stafftools.Clef('treble')
 
    pitch = pitchtools.clef_and_staff_position_number_to_named_pitch(clef, -1)
    assert pitch == pitchtools.NamedPitch('a', 4)
@@ -17,7 +17,7 @@ def test_pitchtools_clef_and_staff_position_number_to_named_pitch_01( ):
 
 def test_pitchtools_clef_and_staff_position_number_to_named_pitch_02( ):
 
-   clef = Clef('alto')
+   clef = stafftools.Clef('alto')
 
    pitch = pitchtools.clef_and_staff_position_number_to_named_pitch(clef, -1)
    assert pitch == pitchtools.NamedPitch('b', 3)
@@ -31,7 +31,7 @@ def test_pitchtools_clef_and_staff_position_number_to_named_pitch_02( ):
 
 def test_pitchtools_clef_and_staff_position_number_to_named_pitch_03( ):
 
-   clef = Clef('bass')
+   clef = stafftools.Clef('bass')
 
    pitch = pitchtools.clef_and_staff_position_number_to_named_pitch(clef, -1)
    assert pitch == pitchtools.NamedPitch('c', 3)

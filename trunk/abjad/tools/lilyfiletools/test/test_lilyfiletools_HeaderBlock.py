@@ -4,8 +4,8 @@ from abjad import *
 def test_lilyfiletools_HeaderBlock_01( ):
 
    header_block = lilyfiletools.HeaderBlock( )
-   header_block.composer = Markup('Josquin')
-   header_block.title = Markup('Missa sexti tonus')
+   header_block.composer = markuptools.Markup('Josquin')
+   header_block.title = markuptools.Markup('Missa sexti tonus')
 
    r'''
    \header {

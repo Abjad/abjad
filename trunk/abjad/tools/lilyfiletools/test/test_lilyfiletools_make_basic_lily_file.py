@@ -6,7 +6,7 @@ def test_lilyfiletools_make_basic_lily_file_01( ):
 
    score = Score([Staff(macros.scale(4))])
    lily_file = lilyfiletools.make_basic_lily_file(score)
-   lily_file.header.composer = Markup('Josquin')
+   lily_file.header.composer = markuptools.Markup('Josquin')
    lily_file.layout.indent = 0
    lily_file.paper.top_margin = 15
    lily_file.paper.left_margin = 15

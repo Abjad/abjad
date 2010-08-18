@@ -1,4 +1,4 @@
-from abjad.marks import Markup
+from abjad.tools.markuptools import Markup
 from abjad.components.Staff import Staff
 from abjad.tools import componenttools
 from abjad.tools import lilyfiletools
@@ -19,7 +19,7 @@ def make_piano_sketch_score_from_leaves(leaves):
    lily_file = lilyfiletools.make_basic_lily_file(score)
    score._lily_file = lily_file
    lily_file.layout.indent = 0
-   lily_file.paper.tagline = Markup('')
+   lily_file.paper.tagline = markuptools.Markup('')
 
    score.meter.transparent = True
    score.bar_number.transparent = True

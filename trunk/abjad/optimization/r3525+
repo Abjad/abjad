@@ -1,0 +1,66 @@
+r3525+: custom _Immutable v. Python __slots__ 
+
+
+%%% With custom _Immutable: %%%
+
+MEMORY:
+
+Partition of a set of 4 objects. Total size = 588 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      1  25      348  59       348  59 types.FrameType
+     1      1  25      140  24       488  83 dict of abjad.tools.stafftools.Clef.Clef.Clef
+     2      1  25       68  12       556  95 list
+     3      1  25       32   5       588 100 abjad.tools.stafftools.Clef.Clef.Clef
+
+FUNCTION CALLS:
+
+         3 function calls in 0.000 CPU seconds
+
+   Ordered by: call count
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 Clef.py:7(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+
+
+%%% With __slots__ %%%
+
+MEMORY: 
+
+Partition of a set of 3 objects. Total size = 452 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0      1  33      348  77       348  77 types.FrameType
+     1      1  33       68  15       416  92 list
+     2      1  33       36   8       452 100 abjad.tools.stafftools.Clef.Clef.Clef
+
+FUNCTION CALLS:
+
+         3 function calls in 0.000 CPU seconds
+
+   Ordered by: call count
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 Clef.py:9(__init__)
+        1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+
+
+
+CONCLUSIONS:
+
+   * Immutable Clef takes 588 bytes; slots Clef takes only 452 bytes
+   * Immutable Clef takes 3 function calls; slots Clef takes the same 3 function calls
+
+Slots saves memory versus _Immutable.
+
+PS: same holds on instantiating 1000 Clef objects:
+
+   * 1000 immutable Clef objects takes 177k memory
+   * 1000 slots Clef objects takes 41k memory
+
+Custom class with only a single defined instance variable exists in a 4.3 : 1 ratio
+of memory usage for nonslots : slots.
+
+That is, slots can cause objects of a small custom class to use only 1/4 
+the amount of memory as objects of a nonslots definition of the same custom class.

@@ -89,11 +89,11 @@ spannertools.SlurSpanner(upper_staff.leaves[5:])
 CrescendoSpanner(upper_staff.leaves[-7:-2])
 DecrescendoSpanner(upper_staff.leaves[-2:])
 tx = Text(upper_staff.leaves[-7:])
-tx.bound_details__left__text = Markup('ritard.')
+tx.bound_details__left__text = markuptools.Markup('ritard.')
 
 ## lower staff 
 
-lower_staff.clef.forced = Clef('bass')
+lower_staff.clef.forced = stafftools.Clef('bass')
 
 spannertools.TieSpanner([v1a[0], v1b[0]])
 
@@ -137,12 +137,12 @@ show(piano)
 #CrescendoSpanner(s.leaves[-7:-2])
 #DecrescendoSpanner(s.leaves[-2:])
 #ts = Text(s.leaves[-7:])
-#ts.bound_details__left__text = Markup('ritard.')
+#ts.bound_details__left__text = markuptools.Markup('ritard.')
 #
 #ps.append(s)
 #
 #s = Staff([ ])
-#s.clef.forced = Clef('bass')
+#s.clef.forced = stafftools.Clef('bass')
 #v2 = Voice(notetools.make_notes([-1, 2, 0], [(1, 4), (1, 8), (1, 8)]))
 #v2[1].dynamics.mark = 'pp'
 #v2.name ='v2'

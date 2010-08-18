@@ -131,7 +131,7 @@ show(piano)
 Ok, let's add some detail. First, notice that the bottom staff has a treble clef, just like the top staff. Let's change that:
 
 <abjad>
-lower_staff.clef.forced = Clef('bass')
+lower_staff.clef.forced = stafftools.Clef('bass')
 </abjad>
 
 Now let's sprinkle some dynamic markings. For the top staff, we will add them to the first note of the first measure and the second note of the second measure. For the bottom staff, we will add dynamic markings to the second note of the first measure and the fourth note of the second measure. Note that because we created Voices inside the measures of the lower staff, we need to index those too:
@@ -196,7 +196,7 @@ DecrescendoSpanner(upper_staff.leaves[-2:])
 
 <abjad>
 tx = Text(upper_staff.leaves[-7:])
-tx.bound_details__left__text = Markup('ritard.')
+tx.bound_details__left__text = markuptools.Markup('ritard.')
 </abjad>
 
 And, we almost forgot! Two ties connecting the last notes in the upper and lower staves:

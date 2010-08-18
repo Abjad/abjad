@@ -1,7 +1,7 @@
 from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
-from abjad.marks import Markup
+from abjad.tools.markuptools import Markup
 
 
 class InstrumentInterface(_Interface, _FormatContributor, _SpannerReceptor):

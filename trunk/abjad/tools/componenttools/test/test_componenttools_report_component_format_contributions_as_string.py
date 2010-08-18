@@ -33,7 +33,7 @@ def test_componenttools_report_component_format_contributions_as_string_03( ):
    t = FixedDurationTuplet((2, 8), macros.scale(3))
    t.misc.set_accidental_style = 'forget'
    t.misc.bar = '|.'
-   t.clef.forced = Clef('treble')
+   t.clef.forced = stafftools.Clef('treble')
 
    r'''
    \times 2/3 {

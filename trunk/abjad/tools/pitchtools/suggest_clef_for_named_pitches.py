@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.marks import Clef
 from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
+from abjad.tools.stafftools import Clef
 
 
 def suggest_clef_for_named_pitches(pitches, clefs = ['treble', 'bass']):
@@ -28,8 +28,6 @@ def suggest_clef_for_named_pitches(pitches, clefs = ['treble', 'bass']):
       ``pitchtools.suggest_clef_for_named_pitches( )``.
    '''
 
-   #assert isinstance(pitches, list)
-   #assert all([isinstance(pitch, NamedPitch) for pitch in pitches])
    pitches = list_named_pitches_in_expr(pitches)
 
    altitudes = [pitch.altitude for pitch in pitches]

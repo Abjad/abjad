@@ -11,14 +11,12 @@ Classes
 
    marks/Articulation/Articulation
    components/Chord/Chord
-   marks/Clef/Clef
    components/Cluster/Cluster
    components/Container/Container
    components/_Tuplet/FixedDurationTuplet/FixedDurationTuplet
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
    marks/KeySignature/KeySignature
-   marks/Markup/Markup
    marks/Meter/Meter
    components/Note/Note
    components/Rest/Rest
@@ -489,6 +487,7 @@ markuptools
 .. toctree::
    :maxdepth: 1
 
+   tools/markuptools/Markup/Markup
    tools/markuptools/make_big_centered_page_number_markup
 
 
@@ -867,6 +866,7 @@ stafftools
 .. toctree::
    :maxdepth: 1
 
+   tools/stafftools/Clef/Clef
    tools/stafftools/make_invisible_staff
    tools/stafftools/make_rhythmic_sketch_staff
    tools/stafftools/make_rhythmic_staff

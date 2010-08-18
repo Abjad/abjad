@@ -1,4 +1,4 @@
-from abjad.marks import Markup
+from abjad.tools.markuptools import Markup
 from abjad.tools.spannertools.BracketSpanner._BracketSpannerFormatInterface import _BracketSpannerFormatInterface
 from abjad.tools.spannertools.TextSpanner import TextSpanner
 
@@ -45,16 +45,6 @@ class BracketSpanner(TextSpanner):
    def __init__(self, music = None):
       TextSpanner.__init__(self, music)
       self._format = _BracketSpannerFormatInterface(self)
-#      self.bound_details__left__text = Markup(
-#            "(markup #:draw-line '(0 . -1))", style = 'scheme')
-#      self.bound_details__left_broken__text = False
-#      self.bound_details__right__text = Markup(
-#         "(markup #:draw-line '(0 . -1))", style = 'scheme')
-#      self.bound_details__right_broken__text = False
-#      self.color = 'red'
-#      self.dash_fraction = 1
-#      self.staff_padding = 2
-#      self.thickness = 1.5
       self.override.text_spanner.bound_details__left__text = Markup(
             "(markup #:draw-line '(0 . -1))", style = 'scheme')
       self.override.text_spanner.bound_details__left_broken__text = False

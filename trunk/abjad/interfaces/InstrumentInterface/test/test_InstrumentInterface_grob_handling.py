@@ -7,7 +7,7 @@ def test_InstrumentInterface_grob_handling_01( ):
    '''
 
    t = Staff(macros.scale(4))
-   t.set.instrument_name = Markup(r'\circle { V }')
+   t.set.instrument_name = markuptools.Markup(r'\circle { V }')
    t.override.instrument_name.color = 'red'
 
    r'''

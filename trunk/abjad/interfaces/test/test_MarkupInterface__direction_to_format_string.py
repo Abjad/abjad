@@ -5,7 +5,7 @@ def test_MarkupInterface__direction_to_format_string_01( ):
    '''Works with markup objects.'''
 
    t = Note(0, (1, 4))
-   t.markup.up.append(Markup('foo'))
+   t.markup.up.append(markuptools.Markup('foo'))
    assert t.markup._direction_to_format_string('up') == '\\markup { foo }'
 
 

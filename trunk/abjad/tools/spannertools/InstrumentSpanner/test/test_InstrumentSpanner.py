@@ -28,8 +28,8 @@ def test_InstrumentSpanner_02( ):
    '''Works with markup.'''
 
    t = Voice(macros.scale(4))
-   long_name = Markup(r'\italic { Alto Flute in G }')
-   short_name = Markup(r'\italic { Fl. G }')
+   long_name = markuptools.Markup(r'\italic { Alto Flute in G }')
+   short_name = markuptools.Markup(r'\italic { Fl. G }')
    p = spannertools.InstrumentSpanner(t, long_name, short_name)
 
    r'''

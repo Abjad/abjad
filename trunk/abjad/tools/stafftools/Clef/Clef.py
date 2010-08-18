@@ -1,12 +1,12 @@
 from abjad.core import _Abjad
-from abjad.core import _Immutable
 
 
-class Clef(_Abjad, _Immutable):
+class Clef(_Abjad):
+
+   __slots__ = ('name')
 
    def __init__(self, name = 'treble'):
-      #self.name = name
-      object.__setattr__(self, 'name', name)
+      self.name = name
 
    ## OVERLOADS ##
 
@@ -14,15 +14,14 @@ class Clef(_Abjad, _Immutable):
       return arg == self.name
    
    def __repr__(self):
-      return "Clef('%s')" % self.name
+      return "%s('%s')" % (self.__class__.__name__, self.name)
 
    def __str__(self):
       return self.name
 
    ## PRIVATE ATTRIBUTES ##
 
-   _clef_name_to_middle_c_position = { 'treble': -6, 'alto': 0,
-      'tenor': 2, 'bass':6, }
+   _clef_name_to_middle_c_position = { 'treble': -6, 'alto': 0, 'tenor': 2, 'bass': 6, }
 
    ## PUBLIC ATTRIBUTES ##
 

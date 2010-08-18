@@ -36,7 +36,7 @@ class _BacktrackingInterface(_Abjad):
    
    r'''
    abjad> t = Staff(FixedDurationTuplet((2, 8), macros.scale(3)) * 2)
-   abjad> t.leaves[1].clef.forced = Clef('bass')
+   abjad> t.leaves[1].clef.forced = stafftools.Clef('bass')
    \new Staff {
            \times 2/3 {
                    c'8

@@ -1,5 +1,4 @@
-from abjad.marks import Markup
-import types
+from abjad.tools.markuptools import Markup
 
 
 def _write_footer(outfile, footer):

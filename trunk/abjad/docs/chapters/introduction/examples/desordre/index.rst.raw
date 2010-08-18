@@ -169,7 +169,7 @@ Finally a function that will generate the whole opening section of the piece *DÃ
          seq = staff_build(hand)
          piano.append(seq)
       ## set clef and key signature to left hand staff...
-      piano[1].clef.forced = Clef('bass')
+      piano[1].clef.forced = stafftools.Clef('bass')
       piano[1].key_signature.forced = KeySignature('b', 'major')
       return piano
 

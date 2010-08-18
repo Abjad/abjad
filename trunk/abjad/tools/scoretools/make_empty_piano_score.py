@@ -1,7 +1,7 @@
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
 from abjad.tools.scoretools.PianoStaff import PianoStaff
-from abjad.marks import Clef
+from abjad.tools.stafftools import Clef
 
 
 def make_empty_piano_score( ):

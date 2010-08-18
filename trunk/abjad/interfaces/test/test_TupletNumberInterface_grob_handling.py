@@ -71,8 +71,8 @@ def test_TupletNumberInterface_grob_handling_04( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   #t.tuplet_number.text = Markup('"6:4"')
-   t.override.tuplet_number.text = Markup('"6:4"')
+   #t.tuplet_number.text = markuptools.Markup('"6:4"')
+   t.override.tuplet_number.text = markuptools.Markup('"6:4"')
 
    r'''
    \new Voice \with {
