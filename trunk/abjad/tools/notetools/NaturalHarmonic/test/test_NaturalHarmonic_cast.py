@@ -5,7 +5,7 @@ def test_NaturalHarmonic_cast_01( ):
    '''It is possible to cast notes into natural harmonics.'''
 
    t = Staff(macros.scale(4))
-   NaturalHarmonic(t[1])
+   notetools.NaturalHarmonic(t[1])
 
    r'''
    \new Staff {

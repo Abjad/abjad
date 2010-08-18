@@ -20,7 +20,6 @@ Classes
    marks/KeySignature/KeySignature
    marks/Markup/Markup
    marks/Meter/Meter
-   components/_Harmonic/NaturalHarmonic
    components/Note/Note
    components/Rest/Rest
    components/_Measure/RigidMeasure/RigidMeasure
@@ -598,6 +597,7 @@ notetools
 .. toctree::
    :maxdepth: 1
 
+   tools/notetools/NaturalHarmonic/NaturalHarmonic
    tools/notetools/NoteHead/NoteHead
    tools/notetools/add_artificial_harmonic_to_note
    tools/notetools/iterate_notes_backward_in_expr

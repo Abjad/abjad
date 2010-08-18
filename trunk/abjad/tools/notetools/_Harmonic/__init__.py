@@ -1,1 +1,1 @@
-from NaturalHarmonic import NaturalHarmonic
+from _Harmonic import _Harmonic

@@ -1,9 +1,10 @@
-from abjad.components._Harmonic._Harmonic import _Harmonic
 from abjad.components.Note import Note
+from abjad.tools.notetools._Harmonic._Harmonic import _Harmonic
 
 
 class NaturalHarmonic(Note, _Harmonic):
-   '''Abjad model of natural string harmonics.'''
+   '''Natural harmonic.
+   '''
 
    def __init__(self, *args):
       Note.__init__(self, *args)

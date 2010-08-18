@@ -3,7 +3,7 @@ from abjad import *
 
 def test_NaturalHarmonic_01( ):
 
-   t = NaturalHarmonic(10, (1, 4))
+   t = notetools.NaturalHarmonic(10, (1, 4))
 
    r'''
    \once \override NoteHead #'style = #'harmonic
