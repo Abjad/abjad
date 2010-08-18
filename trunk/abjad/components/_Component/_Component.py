@@ -12,7 +12,6 @@ from abjad.interfaces import CommentsInterface
 from abjad.interfaces import ClefInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import DynamicsInterface
-#from abjad.interfaces import GlissandoInterface
 from abjad.interfaces import HistoryInterface
 from abjad.interfaces import InstrumentInterface
 from abjad.interfaces import InterfaceAggregator
@@ -21,18 +20,13 @@ from abjad.interfaces import MeterInterface
 from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
 from abjad.interfaces import ParentageInterface
-#from abjad.interfaces import PianoPedalInterface
 from abjad.interfaces import ScoreInterface
-#from abjad.interfaces import SlurInterface
 from abjad.interfaces import SpacingInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
-#from abjad.interfaces import TextScriptInterface
-#from abjad.interfaces import TextSpannerInterface
 from abjad.interfaces import ThreadInterface
 from abjad.interfaces import TieInterface
 from abjad.interfaces import TremoloInterface
-#from abjad.interfaces import TrillInterface
 from abjad.interfaces import VoiceInterface
 
 
@@ -60,7 +54,6 @@ class _Component(_Abjad):
       self._comments = CommentsInterface( )
       self._directives = DirectivesInterface(self)
       self._dynamics = DynamicsInterface(self)
-      #self._glissando = GlissandoInterface(self)
       self._history = HistoryInterface(self)
       self._instrument = InstrumentInterface(self)
       self._lily_file = None
@@ -69,17 +62,12 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
       self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._parentage = ParentageInterface(self)
-      #self._piano_pedal = PianoPedalInterface(self)
       self._set = LilyPondContextSettingComponentPlugIn( )
       self._score = ScoreInterface(self)
-      #self._slur = SlurInterface(self)
       self._spacing = SpacingInterface(self)
-      #self._text_script = TextScriptInterface(self)
-      #self._text_spanner = TextSpannerInterface(self)
       self._thread = ThreadInterface(self)
       self._tie = TieInterface(self)
       self._tremolo = TremoloInterface(self)
-      #self._trill = TrillInterface(self)
       self._update = _UpdateInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
@@ -170,12 +158,6 @@ class _Component(_Abjad):
       '''Read-only version of `self` as LilyPond input code.'''
       return self._formatter.format
 
-#   @property
-#   def glissando(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.glissando.interface.GlissandoInterface`.'''
-#      return self._glissando
-
    @property
    def history(self):
       '''Read-only reference to 
@@ -264,12 +246,6 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.parentage.interface.ParentageInterface`.'''
       return self._parentage
 
-#   @property
-#   def piano_pedal(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.piano_pedal.interface.PianoPedalInterface`.'''
-#      return self._piano_pedal
-
    @property
    def set(self):
       '''Read-only reference LilyPond context setting component plug-in..
@@ -281,12 +257,6 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.score.interface.ScoreInterface`.'''
       return self._score
-
-#   @property
-#   def slur(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.slur.interface.SlurInterface`.'''
-#      return self._slur
 
    @property
    def spacing(self):
@@ -327,18 +297,6 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.tempo.interface.TempoInterface`.'''
       return self._tempo
 
-#   @property
-#   def text_script(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.text_script.interface.TextScriptInterface`.
-#      '''
-#      return self._text_script
-
-#   @property
-#   def text_spanner(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.text_spanner.interface.TextSpannerInterface`.'''
-#      return self._text_spanner
 
    @property
    def tremolo(self):
@@ -346,12 +304,6 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.tremolo.interface.TremoloInterface`.'''
       return self._tremolo
 
-#   @property
-#   def trill(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.trill.interface.TrillInterface`.'''
-#      return self._trill
-   
    @property
    def voice(self):
       '''Read-only reference to

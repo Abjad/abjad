@@ -44,7 +44,6 @@ Interfaces
    interfaces/CommentsInterface/CommentsInterface
    interfaces/DirectivesInterface/DirectivesInterface
    interfaces/DynamicsInterface/DynamicsInterface
-   interfaces/GlissandoInterface/GlissandoInterface
    interfaces/GraceInterface/GraceInterface
    interfaces/HarmonicInterface/HarmonicInterface
    interfaces/HistoryInterface/HistoryInterface
@@ -57,19 +56,14 @@ Interfaces
    interfaces/OffsetInterface/OffsetInterface
    interfaces/OffsetInterface/OffsetProlatedInterface/OffsetProlatedInterface
    interfaces/ParentageInterface/ParentageInterface
-   interfaces/PianoPedalInterface/PianoPedalInterface
    interfaces/ScoreInterface/ScoreInterface
    interfaces/SpacingInterface/ScoreSpacingInterface/ScoreSpacingInterface
-   interfaces/SlurInterface/SlurInterface
    interfaces/SpacingInterface/SpacingInterface
    interfaces/StaffInterface/StaffInterface
    interfaces/TempoInterface/TempoInterface
-   interfaces/TextScriptInterface/TextScriptInterface
-   interfaces/TextSpannerInterface/TextSpannerInterface
    interfaces/ThreadInterface/ThreadInterface
    interfaces/TieInterface/TieInterface
    interfaces/TremoloInterface/TremoloInterface
-   interfaces/TrillInterface/TrillInterface
    interfaces/VoiceInterface/VoiceInterface
 
 
