@@ -1,8 +1,7 @@
 from abjad.components.Container import Container
 from abjad.exceptions import MissingSpannerError
 from abjad.marks.Articulation import Articulation
-from abjad.tools.spannertools import SlurSpanner
-from abjad.tools.spannertools import TieSpanner
+from abjad.tools.spannertools import BeamSpanner, SlurSpanner, TieSpanner
 from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
 from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
 from abjad.components.Voice import Voice
@@ -19,6 +18,7 @@ def parse_note_entry_string(note_entry_string):
       {g'4, a'4, a'2, fs'8, e'4, d'4}
 
    Return Abjad container of note, rest and chord instances.
+   Handles simple beaming, slurs and articulations.
 
    Do not parse tuplets, measures or other complex LilyPond input.
    '''
@@ -30,6 +30,9 @@ def parse_note_entry_string(note_entry_string):
    is_chord = False
    chord_tokens = [ ]
 
+   in_beam = False
+   beam_start_leaf = None
+
    in_slur = False
    slur_start_leaf = None
 
@@ -38,7 +41,7 @@ def parse_note_entry_string(note_entry_string):
 
    for token in tokens:
 
-      if is_chord: # we are inside a chord
+      if is_chord: # we are inside a chord, looking for pitches
 
          if re.match("[A-Za-z0-9,']+>[0-9]+", token) is not None:
             chord_tokens.append(token)
@@ -100,19 +103,41 @@ def parse_note_entry_string(note_entry_string):
 
          elif token == '(':
             if in_slur:
-               raise Exception('Opening a slur when another is already open.')
+               raise Exception('Attempting to create overlapping slurs.')
             in_slur = True
             slur_start_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
 
          elif token == ')':
             if not in_slur:
-               raise Exception('Closing a non-existent slur.')
+               raise Exception('Attempting to end a non-existent slur spanner.')
             in_slur = False
             slur_stop_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
             start_index = container.index(slur_start_leaf)
             stop_index = container.index(slur_stop_leaf)
             SlurSpanner(container[start_index:stop_index + 1])
             slur_start_leaf = None
+
+         elif token == '[':
+            if in_beam:
+               raise Exception('Attempting to create overlapping beams.')
+            in_beam = True
+            beam_start_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
+
+         elif token == ']':
+            if not in_beam:
+               raise Exception('Attempting to end a non-existent beam spanner.')
+            in_beam = False
+            beam_stop_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
+            start_index = container.index(beam_start_leaf)
+            stop_index = container.index(beam_stop_leaf)
+            BeamSpanner(container[start_index:stop_index + 1])
+            beam_start_leaf = None
+
+         elif token == '[]':
+            if in_beam:
+               raise Exception('Attempting to create overlapping beams.')
+            last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
+            BeamSpanner(last_leaf)
 
          else:
             pass
