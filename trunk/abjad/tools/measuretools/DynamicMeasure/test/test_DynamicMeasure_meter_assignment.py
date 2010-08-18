@@ -14,4 +14,4 @@ def test_DynamicMeasure_meter_assignment_01( ):
         e'8
         f'8'''
 
-   assert py.test.raises(MeterAssignmentError, 't.meter.forced = Meter(4, 8)')
+   assert py.test.raises(MeterAssignmentError, 't.meter.forced = metertools.Meter(4, 8)')

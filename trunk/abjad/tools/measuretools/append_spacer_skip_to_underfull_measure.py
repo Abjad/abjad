@@ -8,7 +8,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
    Append spacer skip to underfull `measure`::
 
       abjad> measure = RigidMeasure((4, 12), macros.scale(4))
-      abjad> measure.meter.forced = Meter(5, 12)
+      abjad> measure.meter.forced = metertools.Meter(5, 12)
       abjad> measure.duration.is_underfull 
       True
       

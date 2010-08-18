@@ -1,4 +1,4 @@
-from abjad.marks import Meter
+from abjad.tools.metertools.Meter import Meter
 from abjad.tools import mathtools
 from abjad.tools import durtools
 
@@ -10,22 +10,22 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
    Or take denominator from smallest workable multiple of 'factor'::
 
       abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), [5, 6, 7, 8])
-      Meter(9, 6)
+      metertools.Meter(9, 6)
 
    ::
 
       abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), [4, 8, 16, 32])
-      Meter(6, 4)
+      metertools.Meter(6, 4)
 
    ::
 
       abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), factor = 5)
-      Meter(15, 10)
+      metertools.Meter(15, 10)
 
    ::
 
       abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2))
-      Meter(3, 2)
+      metertools.Meter(3, 2)
 
    .. versionchanged:: 1.1.2
       renamed ``metertools.make_best( )`` to

@@ -9,8 +9,8 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
    Append spacer skips to underfull measures in `expr`::
 
       abjad> staff = Staff(RigidMeasure((3, 8), macros.scale(3)) * 3)
-      abjad> staff[1].meter.forced = Meter(4, 8)
-      abjad> staff[2].meter.forced = Meter(5, 8)
+      abjad> staff[1].meter.forced = metertools.Meter(4, 8)
+      abjad> staff[2].meter.forced = metertools.Meter(5, 8)
       abjad> staff[1].duration.is_underfull 
       True
       abjad> staff[2].duration.is_underfull 

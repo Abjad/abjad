@@ -5,9 +5,9 @@ def test_leaftools_is_bar_line_crossing_leaf_01( ):
 
    t = Staff(macros.scale(4))
    t[2].duration.written *= 2
-   #meter = Meter(2, 8)
+   #meter = metertools.Meter(2, 8)
    #meter.partial = Rational(1, 8)
-   meter = Meter(2, 8, partial = Rational(1, 8))
+   meter = metertools.Meter(2, 8, partial = Rational(1, 8))
    t.meter.forced = meter   
 
 

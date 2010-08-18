@@ -5,7 +5,7 @@ def test_Meter_denominator_01( ):
    '''Meter are immutable.
    '''
 
-   t = Meter(3, 8)
+   t = metertools.Meter(3, 8)
 
    assert t.numerator == 3
    assert t.denominator == 8

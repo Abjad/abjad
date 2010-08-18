@@ -44,8 +44,9 @@ def make_sphinx_toc( ):
    result += '.. toctree::'
    result += '\n\n'
 
-   result += 'Classes\n'
-   result += '-' * (len('Classes'))
+   section_title = 'Abjad score components'
+   result += '%s\n' % section_title
+   result += '-' * (len(section_title))
    result += '\n\n'
    result += '.. toctree::\n'
    result += '   :maxdepth: 1\n'
@@ -56,8 +57,9 @@ def make_sphinx_toc( ):
          result += '   %s\n' % doc_path
    result += '\n\n'
   
-   result += 'Interfaces\n'
-   result += '-' * (len('Interfaces'))
+   section_title = 'Abjad score component interfaces'
+   result += '%s\n' % section_title
+   result += '-' * (len(section_title))
    result += '\n\n'
    result += '.. toctree::\n'
    result += '   :maxdepth: 1\n'
@@ -82,8 +84,9 @@ def make_sphinx_toc( ):
   
    tools.sort(lambda x, y: cmp(x['module'], y['module']))
 
-   result += 'Tools\n'
-   result += '-' * (len('Tools'))
+   section_title = 'Abjad composition packages'
+   result += '%s\n' % section_title
+   result += '-' * (len(section_title))
    result += '\n\n'
    result += '.. toctree::\n'
    result += '   :maxdepth: 1\n'

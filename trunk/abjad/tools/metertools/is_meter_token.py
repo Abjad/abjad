@@ -1,4 +1,4 @@
-from abjad.marks import Meter
+from abjad.tools.metertools.Meter import Meter
 from abjad.core import Rational
 from abjad.tools import durtools
 
@@ -7,7 +7,7 @@ def is_meter_token(meter_token):
    '''True when `meter_token` has the form of an
    Abjad meter token. ::
    
-      abjad> metertools.is_meter_token(Meter(3, 8))
+      abjad> metertools.is_meter_token(metertools.Meter(3, 8))
       True
 
    ::

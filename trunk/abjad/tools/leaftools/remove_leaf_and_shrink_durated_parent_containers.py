@@ -1,5 +1,5 @@
 from abjad.components._Measure import RigidMeasure
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools

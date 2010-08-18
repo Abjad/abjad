@@ -85,7 +85,7 @@ class MetricGridSpanner(Spanner):
    @apply
    def meters( ):
       def fget(self):
-         from abjad.marks import Meter
+         from abjad.tools.metertools import Meter
          i = 0
          moffset = 0
          prev_meter = None

@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components._Measure import _Measure
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 from abjad.tools import durtools
 from abjad.tools import metertools
 from abjad.tools import spannertools
@@ -44,12 +44,12 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
       left_duration = sum([x.duration.prolated for x in left_music])
       left_pair = durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
          left_duration, meter_denominator)
-      left_meter = Meter(*left_pair)
+      left_meter = metertools.Meter(*left_pair)
       left = component.__class__(left_meter, left_music)
       right_duration = sum([x.duration.prolated for x in right_music])
       right_pair = durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
          right_duration, meter_denominator)
-      right_meter = Meter(*right_pair)
+      right_meter = metertools.Meter(*right_pair)
       right = component.__class__(right_meter, right_music)
    elif isinstance(component, _Tuplet):
       left = component.__class__(1, left_music)

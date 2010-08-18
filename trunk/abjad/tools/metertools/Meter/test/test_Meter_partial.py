@@ -4,7 +4,7 @@ from abjad import *
 def test_Meter_partial_01( ):
 
    t = Staff(macros.scale(4))
-   meter = Meter(2, 8, partial = Rational(1, 8))
+   meter = metertools.Meter(2, 8, partial = Rational(1, 8))
    t.meter.forced = meter   
 
    r'''

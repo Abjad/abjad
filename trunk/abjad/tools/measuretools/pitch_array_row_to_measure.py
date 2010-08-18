@@ -1,5 +1,5 @@
 from abjad.components._Measure import RigidMeasure
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 from abjad.core import Rational
 from abjad.tools import leaftools
 from abjad.tools.pitchtools.PitchArray.PitchArrayRow.PitchArrayRow \

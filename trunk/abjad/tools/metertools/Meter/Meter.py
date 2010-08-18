@@ -3,10 +3,12 @@ from abjad.core import _Immutable
 from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
-import types
 
 
 class Meter(_Abjad, _Immutable):
+
+   __slots__ = ('_denominator', '_duration', '_format', '_multiplier',
+      '_nonbinary', '_numerator', '_partial', )
 
    def __init__(self, *args, **kwargs):
 
@@ -39,6 +41,11 @@ class Meter(_Abjad, _Immutable):
       object.__setattr__(self, '_nonbinary', not mathtools.is_power_of_two(self.denominator))
 
    ## OVERLOADS ##
+
+   def __copy__(self, *args):
+      return type(self)(self)
+
+   __deepcopy__ = __copy__
 
    def __eq__(self, arg):
       if isinstance(arg, Meter):

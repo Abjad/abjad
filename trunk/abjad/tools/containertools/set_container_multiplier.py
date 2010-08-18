@@ -1,4 +1,4 @@
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 
 
 def set_container_multiplier(container, multiplier):

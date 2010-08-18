@@ -8,7 +8,7 @@ def is_bar_line_crossing_leaf(leaf):
 
       abjad> t = Staff(macros.scale(4))
       abjad> t[2].duration.written *= 2
-      abjad> meter = Meter(2, 8)
+      abjad> meter = metertools.Meter(2, 8)
       abjad> meter.partial = Rational(1, 8)
       abjad> t.meter.forced = meter
       abjad> f(t)

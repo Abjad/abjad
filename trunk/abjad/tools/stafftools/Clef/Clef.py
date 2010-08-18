@@ -1,14 +1,20 @@
 from abjad.core import _Abjad
+from abjad.core import _Immutable
 
 
-class Clef(_Abjad):
+class Clef(_Abjad, _Immutable):
 
-   __slots__ = ('name')
+   __slots__ = ('name', )
 
    def __init__(self, name = 'treble'):
-      self.name = name
+      object.__setattr__(self, '_name', name)
 
    ## OVERLOADS ##
+
+   def __copy__(self, *args):
+      return type(self)(self)
+
+   __deepcopy__ = __copy__
 
    def __eq__(self, arg):
       return arg == self.name
@@ -32,3 +38,7 @@ class Clef(_Abjad):
    @property
    def middle_c_position(self):
       return self._clef_name_to_middle_c_position[self.name]
+
+   @property
+   def name(self):
+      return self._name

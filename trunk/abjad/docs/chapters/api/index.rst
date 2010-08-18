@@ -3,8 +3,8 @@ Abjad API
 
 .. toctree::
 
-Classes
--------
+Abjad score components
+----------------------
 
 .. toctree::
    :maxdepth: 1
@@ -15,7 +15,6 @@ Classes
    components/_Tuplet/FixedDurationTuplet/FixedDurationTuplet
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
-   marks/Meter/Meter
    components/Note/Note
    components/Rest/Rest
    components/_Measure/RigidMeasure/RigidMeasure
@@ -25,7 +24,7 @@ Classes
    components/Voice/Voice
 
 
-Interfaces
+Abjad score component interfaces
 ----------
 
 .. toctree::
@@ -62,8 +61,8 @@ Interfaces
    interfaces/VoiceInterface/VoiceInterface
 
 
-Tools
------
+Abjad composition packages
+--------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -581,6 +580,7 @@ metertools
 .. toctree::
    :maxdepth: 1
 
+   tools/metertools/Meter/Meter
    tools/metertools/duration_and_possible_denominators_to_meter
    tools/metertools/get_nonbinary_factor_from_meter_denominator
    tools/metertools/is_meter_token

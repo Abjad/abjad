@@ -1,4 +1,4 @@
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 from abjad.components._Tuplet import _Tuplet
 from abjad.core import Rational
 from abjad.tools import componenttools

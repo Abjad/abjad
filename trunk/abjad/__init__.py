@@ -34,7 +34,6 @@ Rational = Fraction
 del Fraction
 
 from components import *
-from marks import *
 from abjad.tools import *
 import macros
 

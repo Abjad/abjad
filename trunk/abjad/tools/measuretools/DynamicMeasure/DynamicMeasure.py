@@ -3,7 +3,7 @@ from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface im
    _DynamicMeasureDurationInterface
 from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureMeterInterface import \
    _DynamicMeasureMeterInterface
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 import types
 
 

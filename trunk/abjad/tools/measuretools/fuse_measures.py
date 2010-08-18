@@ -1,4 +1,4 @@
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 from abjad.core import Rational
 from abjad.tools import containertools
 from abjad.tools import metertools

@@ -5,7 +5,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01( ):
    '''Handles measure prolation from nonbinary meter.'''
 
    t = RigidMeasure((4, 12), macros.scale(4))
-   t.meter.forced = Meter(5, 12)
+   t.meter.forced = metertools.Meter(5, 12)
    assert t.duration.is_underfull
 
    measuretools.append_spacer_skip_to_underfull_measure(t)
@@ -32,7 +32,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02( ):
    '''Handles regular measure with no meter prolation.'''
 
    t = RigidMeasure((4, 8), macros.scale(4))
-   t.meter.forced = Meter(5, 8)
+   t.meter.forced = metertools.Meter(5, 8)
    assert t.duration.is_underfull
 
    measuretools.append_spacer_skip_to_underfull_measure(t)

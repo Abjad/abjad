@@ -2,7 +2,7 @@ from abjad.core import _BacktrackingInterface
 from abjad.core import _FormatContributor
 from abjad.core import _Observer
 from abjad.core import Rational
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 from abjad.tools import durtools
 import types
 

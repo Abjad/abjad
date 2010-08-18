@@ -1,4 +1,4 @@
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 from abjad.core import Rational
 from abjad.tools import mathtools
 from abjad.tools import metertools
@@ -36,7 +36,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
          old_numerator = measure.meter.effective.numerator
          old_denominator = measure.meter.effective.denominator
          new_denominator = old_denominator / multiplier.numerator
-         new_meter = Meter(old_numerator, new_denominator)
+         new_meter = metertools.Meter(old_numerator, new_denominator)
       else:
          old_meter = measure.meter.effective
          old_denominator = old_meter.denominator

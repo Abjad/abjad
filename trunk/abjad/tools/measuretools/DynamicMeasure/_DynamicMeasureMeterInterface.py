@@ -1,4 +1,4 @@
-from abjad.marks import Meter
+from abjad.tools.metertools import Meter
 from abjad.exceptions import MeterAssignmentError
 from abjad.interfaces import MeterInterface
 from abjad.tools import durtools
@@ -29,7 +29,8 @@ class _DynamicMeasureMeterInterface(MeterInterface):
       client = self._client
       if client.denominator:
          return Meter(
-            durtools.rational_to_duration_pair_with_specified_integer_denominator(client.duration.contents, client.denominator))
+            durtools.rational_to_duration_pair_with_specified_integer_denominator(
+               client.duration.contents, client.denominator))
       else:
          return Meter(client.duration.contents)
 

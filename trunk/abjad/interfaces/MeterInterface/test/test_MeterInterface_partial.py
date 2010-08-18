@@ -8,7 +8,7 @@ def test_MeterInterface_partial_01( ):
    pass
 
 #   t = Staff(macros.scale(4))
-#   t.meter.forced = Meter(2, 8)
+#   t.meter.forced = metertools.Meter(2, 8)
 #   t.meter.partial = Rational(1, 8)
 #
 #   r'''

@@ -4,8 +4,8 @@ from abjad import *
 def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01( ):
 
    t = Staff(RigidMeasure((3, 8), macros.scale(3)) * 3)
-   t[1].meter.forced = Meter(4, 8)
-   t[2].meter.forced = Meter(5, 8)
+   t[1].meter.forced = metertools.Meter(4, 8)
+   t[2].meter.forced = metertools.Meter(5, 8)
 
    assert not t[0].duration.is_underfull
    assert t[1].duration.is_underfull

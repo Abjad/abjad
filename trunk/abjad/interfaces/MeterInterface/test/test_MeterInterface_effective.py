@@ -16,14 +16,14 @@ def test_MeterInterface_effective_01( ):
    '''
    
    for leaf in t:
-      assert leaf.meter.effective == Meter(4, 4)
+      assert leaf.meter.effective == metertools.Meter(4, 4)
 
 
 def test_MeterInterface_effective_02( ):
    '''Forced meter settings propagate to later leaves.'''
 
    t = Staff(macros.scale(4))
-   t[0].meter.forced = Meter(2, 8)
+   t[0].meter.forced = metertools.Meter(2, 8)
 
    r'''
    \new Staff {
@@ -36,14 +36,14 @@ def test_MeterInterface_effective_02( ):
    '''
 
    for leaf in t:
-      assert leaf.meter.effective == Meter(2, 8)
+      assert leaf.meter.effective == metertools.Meter(2, 8)
 
 
 def test_MeterInterface_effective_03( ):
    '''Setting and then clearing works as expected.'''
 
    t = Staff(macros.scale(4))
-   t[0].meter.forced = Meter(2, 8)
+   t[0].meter.forced = metertools.Meter(2, 8)
    t[0].meter.forced = None
 
    r'''
@@ -56,4 +56,4 @@ def test_MeterInterface_effective_03( ):
    '''
 
    for leaf in t:
-      assert leaf.meter.effective == Meter(4, 4)
+      assert leaf.meter.effective == metertools.Meter(4, 4)
