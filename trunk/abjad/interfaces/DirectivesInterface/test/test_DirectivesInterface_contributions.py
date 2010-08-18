@@ -80,7 +80,7 @@ def test_DirectivesInterface_contributions_02( ):
 def test_DirectivesInterface_contributions_03( ):
    '''Tuplet user directives contributions.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    beam = spannertools.BeamSpanner(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")

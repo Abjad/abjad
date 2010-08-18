@@ -22,7 +22,7 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(tie_chain
       abjad> spannertools.BeamSpanner(staff[:])
       spannertools.BeamSpanner(c'8, c'16, c'16)
       abjad> tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(staff[0].tie.chain, [1])
-      FixedDurationTuplet(3/16, [c'8.])
+      tuplettools.FixedDurationTuplet(3/16, [c'8.])
       abjad> f(staff)
       \new Staff {
               {
@@ -40,7 +40,7 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(tie_chain
       abjad> spannertools.BeamSpanner(staff[:])
       spannertools.BeamSpanner(c'8, c'16, c'16)
       abjad> tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(staff[0].tie.chain, [1, 2])
-      FixedDurationTuplet(3/16, [c'16, c'8])
+      tuplettools.FixedDurationTuplet(3/16, [c'16, c'8])
       abjad> f(staff)
       \new Staff {
               {
@@ -58,7 +58,7 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(tie_chain
       abjad> spannertools.BeamSpanner(staff[:])
       spannertools.BeamSpanner(c'8, c'16, c'16)
       abjad> tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(staff[0].tie.chain, [1, 2, 2])
-      FixedDurationTuplet(3/16, [c'32., c'16., c'16.])
+      tuplettools.FixedDurationTuplet(3/16, [c'32., c'16., c'16.])
       abjad> f(staff)
       \new Staff {
               \times 4/5 {

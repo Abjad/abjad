@@ -14,20 +14,20 @@ def remove_trivial_tuplets_in_expr(expr):
 
    Example::
 
-      abjad> t = FixedDurationTuplet((1, 4), macros.scale(3))
-      abjad> u = FixedDurationTuplet((1, 4), macros.scale(2))
+      abjad> t = tuplettools.FixedDurationTuplet((1, 4), macros.scale(3))
+      abjad> u = tuplettools.FixedDurationTuplet((1, 4), macros.scale(2))
       abjad> s = Staff([t, u])
       abjad> len(s)
       2
       abjad> s[0]
-      FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+      tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
       abjad> s[1]
-      FixedDurationTuplet(1/4, [c'8, d'8])
+      tuplettools.FixedDurationTuplet(1/4, [c'8, d'8])
       abjad> tuplettools.remove_trivial_tuplets_in_expr(s)
       abjad> len(s)
       3
       abjad> s[0]
-      FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+      tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
       abjad> s[1]
       Note(c', 8)
       abjad> s[2]

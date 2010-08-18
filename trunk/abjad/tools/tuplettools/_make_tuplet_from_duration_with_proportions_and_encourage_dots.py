@@ -11,7 +11,7 @@ from abjad.tools.tuplettools.change_augmented_tuplets_in_expr_to_diminished impo
    change_augmented_tuplets_in_expr_to_diminished
 from abjad.tools.tuplettools.change_diminished_tuplets_in_expr_to_augmented import \
    change_diminished_tuplets_in_expr_to_augmented
-from abjad.components._Tuplet import FixedDurationTuplet
+from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
 
 def _make_tuplet_from_duration_with_proportions_and_encourage_dots(

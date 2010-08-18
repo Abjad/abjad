@@ -14,7 +14,7 @@ def test_RigidMeasure_special_prolation_02( ):
       works on notes and tuplets together.'''
    t = RigidMeasure((4, 4), [
       Note(0, (1, 4)),
-      FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3),
+      tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3),
       Note(0, (1, 4))])
    assert t.leaves[0].duration.written == Rational(1, 4)
    assert t.leaves[0].duration.prolated == Rational(1, 4)
@@ -27,8 +27,8 @@ def test_RigidMeasure_special_prolation_03( ):
       works on notes and nested tuplets together.'''
    t = RigidMeasure((4, 4), [
       Note(0, (1, 4)),
-      FixedDurationTuplet((2, 4), [
-         FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3),
+      tuplettools.FixedDurationTuplet((2, 4), [
+         tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3),
          Note(0, (1, 4))]),
       Note(0, (1, 4))])
    assert t.leaves[0].duration.written == Rational(1, 4)
@@ -50,7 +50,7 @@ def test_RigidMeasure_special_prolation_05( ):
       works on notes and tuplets together.'''
    t = RigidMeasure((4, 5), [
       Note(0, (1, 4)),
-      FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3),
+      tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3),
       Note(0, (1, 4))])
    assert t.leaves[0].duration.written == Rational(1, 4)
    assert t.leaves[0].duration.prolated == Rational(1, 5)
@@ -63,8 +63,8 @@ def test_RigidMeasure_special_prolation_06( ):
       works on notes and nested tuplets together.'''
    t = RigidMeasure((4, 5), [
       Note(0, (1, 4)),
-      FixedDurationTuplet((2, 4), [
-         FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3),
+      tuplettools.FixedDurationTuplet((2, 4), [
+         tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3),
          Note(0, (1, 4))]),
       Note(0, (1, 4))])
    assert t.leaves[0].duration.written == Rational(1, 4)

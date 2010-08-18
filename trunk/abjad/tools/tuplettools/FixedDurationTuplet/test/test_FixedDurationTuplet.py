@@ -4,8 +4,8 @@ from abjad import *
 def test_FixedDurationTuplet_01( ):
    '''Nest typical fdtuplet.'''
    
-   t = FixedDurationTuplet((2, 4), [
-      FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3),
+   t = tuplettools.FixedDurationTuplet((2, 4), [
+      tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3),
       Note(0, (1, 8)),
       Note(0, (1, 8)),
       Note(0, (1, 8))])
@@ -25,8 +25,8 @@ def test_FixedDurationTuplet_01( ):
 def test_FixedDurationTuplet_02( ):
    '''Nest empty fdtuplet.'''
    
-   t = FixedDurationTuplet((2, 4), [
-      FixedDurationTuplet((2, 8), [ ]),
+   t = tuplettools.FixedDurationTuplet((2, 4), [
+      tuplettools.FixedDurationTuplet((2, 8), [ ]),
       Note(0, (1, 8)),
       Note(0, (1, 8)),
       Note(0, (1, 8))])
@@ -46,7 +46,7 @@ def test_FixedDurationTuplet_02( ):
 def test_FixedDurationTuplet_03( ):
    '''Test 1-multiplier fdtuplet.'''
 
-   t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 2)
+   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 2)
    assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
    assert str(t) == "{@ 1:1 c'8, c'8 @}"
    assert t.format == "{\n\tc'8\n\tc'8\n}"
@@ -55,7 +55,7 @@ def test_FixedDurationTuplet_03( ):
 def test_FixedDurationTuplet_04( ):
    '''Test 1-multiplier fdtuplet.'''
 
-   t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    t.pop( )
    assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
    assert str(t) == "{@ 1:1 c'8, c'8 @}"
@@ -65,7 +65,7 @@ def test_FixedDurationTuplet_04( ):
 def test_FixedDurationTuplet_05( ):
    '''Tuplet.invisible formats compressed music.'''
 
-   t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    assert t.invisible is None
    t.invisible = True
    assert t.format == "\\scaleDurations #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"

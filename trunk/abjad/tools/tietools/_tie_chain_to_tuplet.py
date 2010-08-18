@@ -4,7 +4,7 @@ from abjad.core import Rational
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
-from abjad.components._Tuplet import FixedDurationTuplet
+from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
 
 def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):

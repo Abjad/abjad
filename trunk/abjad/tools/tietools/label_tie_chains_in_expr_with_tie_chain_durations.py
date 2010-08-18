@@ -7,7 +7,7 @@ def label_tie_chains_in_expr_with_tie_chain_durations(expr):
    and prolated tie chain duration::
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
-      abjad> FixedDurationTuplet((2, 8), staff[:3])
+      abjad> tuplettools.FixedDurationTuplet((2, 8), staff[:3])
       abjad> spannertools.TieSpanner(staff.leaves[:2])
       abjad> spannertools.TieSpanner(staff.leaves[2:])
       abjad> tietools.label_tie_chains_in_expr_with_tie_chain_durations(staff)

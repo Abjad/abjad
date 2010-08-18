@@ -6,7 +6,7 @@ def test_containertools_set_container_multiplier_01( ):
    '''Set multiplier on fixed-duration tuplet 
       by adjusting target duration.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    assert t.duration.target == Rational(2, 8)
    assert t.duration.multiplier == Rational(2, 3)
 

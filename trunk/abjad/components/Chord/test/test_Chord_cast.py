@@ -16,7 +16,7 @@ def test_Chord_cast_01( ):
 
 def test_Chord_cast_02( ):
    '''Cast tupletized chord as note.'''
-   t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration.written
    Note(t[0])
    assert isinstance(t[0], Note)
@@ -68,7 +68,7 @@ def test_Chord_cast_06( ):
 
 def test_Chord_cast_07( ):
    '''Cast tupletized chord as rest.'''
-   t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration.written
    Rest(t[0])
    assert isinstance(t[0], Rest)
@@ -120,7 +120,7 @@ def test_Chord_cast_11( ):
 
 def test_Chord_cast_12( ):
    '''Cast tupletized chord as skip.'''
-   t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration.written
    Skip(t[0])
    assert isinstance(t[0], Skip)

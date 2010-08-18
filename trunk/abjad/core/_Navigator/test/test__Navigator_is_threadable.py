@@ -118,7 +118,7 @@ def test__Navigator_is_threadable_03( ):
 def test__Navigator_is_threadable_06( ):
    '''Tuplets and leaves all thread.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
 
    assert t[0]._navigator._is_threadable(t[1])
    assert t[1]._navigator._is_threadable(t[0])
@@ -174,8 +174,8 @@ def test__Navigator_is_threadable_07( ):
 def test__Navigator_is_threadable_08( ):
    '''Voice and its noncontext contents all thread.'''
 
-   t1 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
-   t2 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3, 6)])
+   t1 = tuplettools.FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
+   t2 = tuplettools.FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3, 6)])
    t = Voice([t1, t2])
 
    assert t[0]._navigator._is_threadable(t[1])

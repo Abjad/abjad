@@ -3,7 +3,7 @@ from abjad import *
 
 def test_ParentageInterface_interface_proper_01( ):
 
-   tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+   tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    staff = Staff([tuplet])
    note = staff.leaves[0]
 

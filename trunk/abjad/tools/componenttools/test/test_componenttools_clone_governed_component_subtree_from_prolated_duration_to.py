@@ -54,7 +54,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_04( ):
    '''Fixed duration tuplet.'''
 
-   t = FixedDurationTuplet((1, 4), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((1, 4), macros.scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
    r'''

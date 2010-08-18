@@ -15,7 +15,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    equals the tuplet multiplier of the parent of the 
    first element in `components`. ::
 
-      voice = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 3)
+      voice = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 3)
       macros.diatonicize(voice)
       beam = spannertools.BeamSpanner(voice.leaves[:4])
       f(voice)
@@ -38,7 +38,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
       }
       abjad> new_tuplet = componenttools.clone_components_and_immediate_parent_of_first_component(voice.leaves[:2])
       abjad> new_tuplet
-      FixedDurationTuplet(1/6, [c'8, d'8])
+      tuplettools.FixedDurationTuplet(1/6, [c'8, d'8])
       abjad> f(new_tuplet)
       \times 2/3 {
               c'8 [
@@ -50,7 +50,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    
       abjad> new_tuplet = componenttools.clone_components_and_immediate_parent_of_first_component(voice.leaves[:5])
       abjad> new_tuplet
-      FixedDurationTuplet(5/12, [c'8, d'8, e'8, f'8, g'8])
+      tuplettools.FixedDurationTuplet(5/12, [c'8, d'8, e'8, f'8, g'8])
       abjad> f(new_tuplet)
       \times 2/3 {
               c'8 [

@@ -14,7 +14,7 @@ def test_Rest_cast_as_skip_01( ):
 
 
 def test_Rest_cast_as_skip_02( ):
-   t = FixedDurationTuplet((2, 8), Rest((1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Rest((1, 8)) * 3)
    d = t[0].duration.written
    Skip(t[0])
    assert isinstance(t[0], Skip)

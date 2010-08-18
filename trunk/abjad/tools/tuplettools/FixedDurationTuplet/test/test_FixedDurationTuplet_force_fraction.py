@@ -3,7 +3,7 @@ from abjad import *
 
 def test_FixedDurationTuplet_force_fraction_01( ):
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    t.force_fraction = True
 
    r'''

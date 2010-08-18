@@ -8,7 +8,7 @@ def list_named_pitches_in_expr(expr):
    '''Get tuple of zero or more Abjad :class:`~abjad.tools.pitchtools.NamedPitch.NamedPitch` 
    instances from almost any expression. ::
 
-      abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> pitchtools.list_named_pitches_in_expr(t)
       ((NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4))
 

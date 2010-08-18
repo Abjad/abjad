@@ -30,7 +30,7 @@ def test_componenttools_report_component_format_contributions_as_string_02( ):
 def test_componenttools_report_component_format_contributions_as_string_03( ):
    '''You can report_component_format_contributions_as_string on tuplets.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    t.misc.set_accidental_style = 'forget'
    t.misc.bar = '|.'
    t.clef.forced = stafftools.Clef('treble')

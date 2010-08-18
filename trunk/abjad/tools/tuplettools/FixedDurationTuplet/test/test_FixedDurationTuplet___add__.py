@@ -5,9 +5,9 @@ import py.test
 def test_FixedDurationTuplet___add___01( ):
    '''Add two fixed-duration tuplets with same multiplier outside of score.'''
 
-   t1 = FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    spannertools.BeamSpanner(t1[:])
-   t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
+   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
    spannertools.SlurSpanner(t2[:])
 
    r'''
@@ -50,9 +50,9 @@ def test_FixedDurationTuplet___add___01( ):
 def test_FixedDurationTuplet___add___02( ):
    '''Add fixed-duration tuplets with same multiplier in score.'''
 
-   t1 = FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    spannertools.BeamSpanner(t1[:])
-   t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
+   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
    spannertools.SlurSpanner(t2[:])
    t = Voice([t1, t2])
 
@@ -93,7 +93,7 @@ def test_FixedDurationTuplet___add___02( ):
 def test_FixedDurationTuplet___add___03( ):
    '''Tuplets must carry same multiplier.'''
 
-   t1 = FixedDurationTuplet((4, 16), macros.scale(5))
-   t2 = FixedDurationTuplet((4, 16), macros.scale(6))
+   t1 = tuplettools.FixedDurationTuplet((4, 16), macros.scale(5))
+   t2 = tuplettools.FixedDurationTuplet((4, 16), macros.scale(6))
   
    assert py.test.raises(TupletFuseError, 't1 + t2')

@@ -52,7 +52,7 @@ def test_pitchtools_make_empty_pitch_array_from_list_of_pitch_lists_02( ):
    score = Score([ ])
    score.append(Staff(macros.scale(4)))
    score.append(Staff(macros.scale(2, Rational(1, 4))))
-   score.append(Staff(FixedDurationTuplet((2, 8), macros.scale(3)) * 2))
+   score.append(Staff(tuplettools.FixedDurationTuplet((2, 8), macros.scale(3)) * 2))
 
    r'''
    \new Score <<

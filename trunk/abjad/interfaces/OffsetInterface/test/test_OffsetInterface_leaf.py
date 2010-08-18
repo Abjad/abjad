@@ -45,13 +45,13 @@ def test_OffsetInterface_leaf_06( ):
 
 
 def test_OffsetInterface_leaf_07( ):
-   t = FixedDurationTuplet((1,4), notetools.make_repeated_notes(3))
+   t = tuplettools.FixedDurationTuplet((1,4), notetools.make_repeated_notes(3))
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 12)
 
 
 def test_OffsetInterface_leaf_08( ):
-   tp = FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3))
+   tp = tuplettools.FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3))
    t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
    offset = 0
    for x, d in zip(t.leaves, [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]):
@@ -61,8 +61,8 @@ def test_OffsetInterface_leaf_08( ):
 
 def test_OffsetInterface_leaf_09( ):
    '''Offset works on nested tuplets.'''
-   tp = FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3))
-   t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
+   tp = tuplettools.FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3))
+   t = tuplettools.FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
    offset = 0
    for x, d in zip(t.leaves, [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
       assert x.offset.prolated.start == offset

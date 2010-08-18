@@ -7,7 +7,7 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
    of original contents.
    Return split parts. ::
 
-      abjad> t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+      abjad> t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> tuplet = t[1]
       abjad> macros.diatonicize(t)
       abjad> spannertools.BeamSpanner(t[:])

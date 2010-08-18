@@ -33,7 +33,7 @@ def test_componenttools_all_are_components_in_same_thread_02( ):
 def test_componenttools_all_are_components_in_same_thread_03( ):
    '''Tuplet and leaves all thread.'''
    
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    
    r'''
    \times 2/3 {
@@ -128,7 +128,7 @@ def test_componenttools_all_are_components_in_same_thread_07( ):
 def test_componenttools_all_are_components_in_same_thread_08( ):
    '''Anonymous voice, tuplets and leaves all thread.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -991,7 +991,7 @@ def test_componenttools_all_are_components_in_same_thread_36( ):
 def test_componenttools_all_are_components_in_same_thread_37( ):
    '''Tuplets and leaves all thread.'''
 
-   a, b, t = FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 4) * 3
+   a, b, t = tuplettools.FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 4) * 3
    b.insert(2, a)
    t.insert(2, b)
    b.duration.target = Rational(6, 8)

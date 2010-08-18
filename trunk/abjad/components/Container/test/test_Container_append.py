@@ -28,7 +28,7 @@ def test_Container_append_01( ):
 def test_Container_append_02( ):
    '''Append leaf to tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    spannertools.BeamSpanner(t[:])
    t.append(Note(5, (1, 16)))
 

@@ -8,7 +8,7 @@ def format_input_lines_as_regression_test(input_lines, tab_width = 3):
       ... spannertools.BeamSpanner(staff.leaves)
       ... f(staff)
       ... 
-      ... FixedDurationTuplet((2, 8), staff[:3])
+      ... tuplettools.FixedDurationTuplet((2, 8), staff[:3])
       ... f(staff)
       ... '''
       abjad> formattools.format_input_lines_as_regression_test(input_lines)
@@ -25,7 +25,7 @@ def format_input_lines_as_regression_test(input_lines, tab_width = 3):
          }
          '''
 
-         FixedDurationTuplet((2, 8), staff[:3])
+         tuplettools.FixedDurationTuplet((2, 8), staff[:3])
 
          r'''
          \new Staff {

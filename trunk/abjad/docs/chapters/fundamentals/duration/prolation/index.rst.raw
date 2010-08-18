@@ -17,7 +17,7 @@ Fixed-duration tuplets and fixed-multiplier tuplets both **prolate** their conte
 
 
 <abjad>
-tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
+tuplet = tuplettools.FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
 staff = RhythmicStaff([RigidMeasure((5, 8), [tuplet])])
 spannertools.BeamSpanner(tuplet)
 print tuplet.duration.augmentation
@@ -90,7 +90,7 @@ Tuplets nest. And tuplet prolation and meter prolation combine freely. When two 
 
 
 <abjad>
-tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
+tuplet = tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
 spannertools.BeamSpanner(tuplet)
 measure = RigidMeasure((4, 10), [tuplet])
 staff = RhythmicStaff([measure])

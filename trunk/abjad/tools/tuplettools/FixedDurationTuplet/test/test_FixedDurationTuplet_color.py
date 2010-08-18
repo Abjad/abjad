@@ -5,8 +5,8 @@ def test_FixedDurationTuplet_color_01( ):
    '''Setting 'color' on the FixedDurationTuplet class
    both prints and colors trivial tuplets at format-time.'''
 
-   FixedDurationTuplet.color = True
-   t = FixedDurationTuplet((3, 8), macros.scale(3))
+   tuplettools.FixedDurationTuplet.color = True
+   t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
 
    r'''
    \tweak #'color #blue
@@ -21,14 +21,14 @@ def test_FixedDurationTuplet_color_01( ):
    assert t.format == "\\tweak #'color #blue\n\\times 1/1 {\n\tc'8\n\td'8\n\te'8\n}"
 
    ## make sure to unset color when done
-   delattr(FixedDurationTuplet, 'color')
+   delattr(tuplettools.FixedDurationTuplet, 'color')
 
 def test_FixedDurationTuplet_color_02( ):
    r'''Trivial tuplet coloring uses LilyPond \tweak to
    handle nested tuplets correctly.'''
 
-   FixedDurationTuplet.color = True
-   t = FixedDurationTuplet((3, 8), FixedDurationTuplet((2, 8), 
+   tuplettools.FixedDurationTuplet.color = True
+   t = tuplettools.FixedDurationTuplet((3, 8), tuplettools.FixedDurationTuplet((2, 8), 
       macros.scale(2)) * 2)
    macros.diatonicize(t)
 
@@ -51,4 +51,4 @@ def test_FixedDurationTuplet_color_02( ):
    assert t.format == "\\fraction \\times 3/4 {\n\t\\tweak #'color #blue\n\t\\times 1/1 {\n\t\tc'8\n\t\td'8\n\t}\n\t\\tweak #'color #blue\n\t\\times 1/1 {\n\t\te'8\n\t\tf'8\n\t}\n}"
 
    ## make sure to unset color when done
-   delattr(FixedDurationTuplet, 'color')
+   delattr(tuplettools.FixedDurationTuplet, 'color')

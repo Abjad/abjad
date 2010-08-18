@@ -6,7 +6,7 @@ def list_pitch_number_in_expr(expr):
 
    Get tuple or zero or more pitch numbers from almost any expression. ::
 
-      abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> pitchtools.list_pitch_number_in_expr(tuplet)
       (0, 2, 4)
 

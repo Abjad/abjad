@@ -5,9 +5,9 @@ import py.test
 def test_tuplettools_fuse_tuplets_01( ):
    '''Fuse two unincorporated fixed-duration tuplets with same multiplier.'''
 
-   t1 = FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    spannertools.BeamSpanner(t1[:])
-   t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
+   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
    spannertools.SlurSpanner(t2[:])
 
    r'''
@@ -51,9 +51,9 @@ def test_tuplettools_fuse_tuplets_01( ):
 def test_tuplettools_fuse_tuplets_02( ):
    '''Fuse fixed-duration tuplets with same multiplier in score.'''
 
-   t1 = FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    spannertools.BeamSpanner(t1[:])
-   t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
+   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
    spannertools.SlurSpanner(t2[:])
    t = Voice([t1, t2])
 
@@ -141,8 +141,8 @@ def test_tuplettools_fuse_tuplets_03( ):
 def test_tuplettools_fuse_tuplets_04( ):
    '''Tuplets must carry same multiplier.'''
 
-   t1 = FixedDurationTuplet((2, 8), macros.scale(3))
-   t2 = FixedDurationTuplet((2, 8), macros.scale(5))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t2 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(5))
 
    assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
 
@@ -150,7 +150,7 @@ def test_tuplettools_fuse_tuplets_04( ):
 def test_tuplettools_fuse_tuplets_05( ):
    '''Tuplets must be same type.'''
 
-   t1 = FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    t2 = FixedMultiplierTuplet((2, 3), macros.scale(3))
 
    assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
@@ -160,8 +160,8 @@ def test_tuplettools_fuse_tuplets_06( ):
    '''Dominant spanners on contents are preserved.'''
 
    t = Voice([
-      FixedDurationTuplet((1, 12), [Note(0, (1, 8))]),
-      FixedDurationTuplet((1, 6), [Note(0, (1, 4))]),
+      tuplettools.FixedDurationTuplet((1, 12), [Note(0, (1, 8))]),
+      tuplettools.FixedDurationTuplet((1, 6), [Note(0, (1, 4))]),
       Note(0, (1, 4))])
    spannertools.SlurSpanner(t.leaves)
       

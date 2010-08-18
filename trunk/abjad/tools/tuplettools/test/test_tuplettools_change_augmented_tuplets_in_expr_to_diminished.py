@@ -3,7 +3,7 @@ from abjad import *
 
 def test_tuplettools_change_augmented_tuplets_in_expr_to_diminished_01( ):
 
-   tuplet = FixedDurationTuplet((2, 4), macros.scale(3))
+   tuplet = tuplettools.FixedDurationTuplet((2, 4), macros.scale(3))
    
    r'''
    \times 4/3 {

@@ -43,7 +43,7 @@ def test__Abjad_boolean_03( ):
    assert bool(Staff(Note(0, (1, 4)) * 4))
    assert bool(Voice(Note(0, (1, 4)) * 4))
    assert bool(Container(Note(0, (1, 4)) * 4))
-   assert bool(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
+   assert bool(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
    assert bool(FixedMultiplierTuplet((2, 3), Note(0, (1, 4)) * 3))
 
 
@@ -52,5 +52,5 @@ def test__Abjad_boolean_04( ):
    assert bool(Staff([ ]))
    assert bool(Voice([ ]))
    assert bool(Container([ ]))
-   assert bool(FixedDurationTuplet((2, 4), [ ]))
+   assert bool(tuplettools.FixedDurationTuplet((2, 4), [ ]))
    assert bool(FixedMultiplierTuplet((2, 3), [ ]))

@@ -32,7 +32,7 @@ The sixteenth notes here are worth more than a sixteenth of a whole note.
 
 
 <abjad>
-tuplet = FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)
+tuplet = tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)
 spannertools.BeamSpanner(tuplet)
 measure = RigidMeasure((5, 16), [tuplet])
 staff = RhythmicStaff([measure])
@@ -90,7 +90,7 @@ The measure here contains two eighth notes and tuplet. These elements carry prep
 <abjad>
 notes = Note(0, (1, 8)) * 2
 spannertools.BeamSpanner(notes)
-tuplet = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
 spannertools.BeamSpanner(tuplet)
 measure = RigidMeasure((4, 8), notes + [tuplet]) 
 staff = RhythmicStaff([measure])
@@ -111,7 +111,7 @@ Abjad defines the target duration of fixed-duration tuplets equal to composer-se
 The fixed-duration tuplet here carries a target duration equal to 4/8.
 
 <abjad>
-tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
+tuplet = tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
 spannertools.BeamSpanner(tuplet)
 measure = RigidMeasure((4, 8), [tuplet]) 
 staff = RhythmicStaff([measure])

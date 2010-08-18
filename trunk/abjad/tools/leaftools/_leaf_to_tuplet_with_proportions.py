@@ -5,13 +5,13 @@ from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.notetools.make_notes import make_notes
-from abjad.components._Tuplet import FixedDurationTuplet
 
 
 def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
    '''Divide written duration of `l` according to `divisions`
    and `prolation`.
    '''
+   from abjad.tools.tuplettools import FixedDurationTuplet
    from abjad.tools import tuplettools
 
    ## find target duration of fixed-duration tuplet
@@ -36,7 +36,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
       notes = make_notes(0, note_durations)
 
    ## make tuplet
-   tuplet = FixedDurationTuplet(target_duration, notes)
+   tuplet = tuplettools.FixedDurationTuplet(target_duration, notes)
 
    ## fix tuplet contents if necessary
    tuplettools.fix_contents_of_tuplets_in_expr(tuplet)

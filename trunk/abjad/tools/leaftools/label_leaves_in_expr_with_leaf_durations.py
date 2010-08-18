@@ -6,7 +6,7 @@ def label_leaves_in_expr_with_leaf_durations(expr):
    r'''Label leaves in `expr` with both written leaf duration
    and prolated leaf duration::
 
-      abjad> tuplet = FixedDurationTuplet((1, 4), macros.scale(3))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), macros.scale(3))
       abjad> leaftools.label_leaves_in_expr_with_leaf_durations(tuplet)
       abjad> f(tuplet)
       \times 2/3 {

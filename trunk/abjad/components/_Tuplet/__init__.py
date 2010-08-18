@@ -1,3 +1,2 @@
 from _Tuplet import _Tuplet
-from FixedDurationTuplet import FixedDurationTuplet
 from FixedMultiplierTuplet import FixedMultiplierTuplet

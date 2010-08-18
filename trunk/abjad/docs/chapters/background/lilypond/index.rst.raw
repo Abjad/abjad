@@ -27,9 +27,9 @@ recursively to make tuplets as deep as you want.
 
 
 <abjad>
-   hide> t = FixedDurationTuplet((4, 16), Note(0, (1, 16)) * 5)
-   hide> u = FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 5)
-   hide> v = FixedDurationTuplet((4, 8), [t, u])
+   hide> t = tuplettools.FixedDurationTuplet((4, 16), Note(0, (1, 16)) * 5)
+   hide> u = tuplettools.FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 5)
+   hide> v = tuplettools.FixedDurationTuplet((4, 8), [t, u])
    hide> measure = RigidMeasure(v.duration.preprolated, [v])
    hide> measure.meter.transparent = True
    hide> staff = RhythmicStaff([measure])

@@ -4,7 +4,7 @@ from abjad import *
 def test_TupletNumberInterface_grob_handling_01( ):
    '''Abjad tuplets wrap grob overrides at before and after.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    #t.tuplet_number.fraction = True
    t.override.tuplet_number.fraction = True
 

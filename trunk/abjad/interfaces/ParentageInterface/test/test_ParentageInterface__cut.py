@@ -114,7 +114,7 @@ def test_ParentageInterface__cut_04( ):
    '''Spanned containers parentage-cut successfully.
       Spanners continue to attach to parentage-cut containers.'''
 
-   t = Voice([Container(FixedDurationTuplet((2, 8), macros.scale(3)) * 2)])
+   t = Voice([Container(tuplettools.FixedDurationTuplet((2, 8), macros.scale(3)) * 2)])
    tuplet = t[0][0]
    p = spannertools.BeamSpanner(t[0][:])
 

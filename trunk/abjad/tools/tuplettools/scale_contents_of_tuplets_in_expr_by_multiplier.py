@@ -4,7 +4,7 @@ from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr
 from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
-from abjad.components._Tuplet import FixedDurationTuplet
+from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.components._Tuplet import FixedMultiplierTuplet
 
 

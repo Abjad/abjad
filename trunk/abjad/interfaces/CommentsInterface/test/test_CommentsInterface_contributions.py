@@ -73,7 +73,7 @@ def test_CommentsInterface_contributions_02( ):
 def test_CommentsInterface_contributions_03( ):
    '''Tuplet comments contributions.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    beam = spannertools.BeamSpanner(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')

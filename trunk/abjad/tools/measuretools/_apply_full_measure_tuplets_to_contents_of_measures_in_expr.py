@@ -1,4 +1,4 @@
-from abjad.components._Tuplet import FixedDurationTuplet
+from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 import copy
 

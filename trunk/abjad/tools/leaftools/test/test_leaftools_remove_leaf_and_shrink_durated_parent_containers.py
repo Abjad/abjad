@@ -5,7 +5,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
    '''Excise leaf from tuplet and rigid measure.'''
 
    t = RigidMeasure((4, 4), 
-      FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+      tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -51,7 +51,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02( ):
    '''Excise leaf from tuplet and measure.'''
 
    t = RigidMeasure((4, 4), 
-      FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
+      tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -105,8 +105,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03( ):
    '''Excise leaf from tuplet and measure.'''
 
    t = RigidMeasure((5, 6), [
-      FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
-      FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
+      tuplettools.FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
+      tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
    
    macros.diatonicize(t)
@@ -169,8 +169,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
       change meter denominator and reset tuplet target durations.'''
 
    t = RigidMeasure((5, 6), [
-      FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
-      FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
+      tuplettools.FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
+      tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
 
    macros.chromaticize(t)
@@ -224,7 +224,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
    assert t.meter.forced == (11, 14)
    assert len(t) == 2
    tuplet = t[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
+   assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 5
    assert tuplet.duration.target == Rational(7, 8)
    assert tuplet.duration.prolated == Rational(2, 4)
@@ -232,7 +232,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
    assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 10)
    tuplet = t[1]
-   assert isinstance(tuplet, FixedDurationTuplet)
+   assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 6
    assert tuplet.duration.target == Rational(4, 8)
    assert tuplet.duration.prolated == Rational(2, 7)
@@ -247,7 +247,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
       trigger tuplet insertion.'''
 
    t = RigidMeasure((5, 6), 
-      [FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
+      [tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
          notetools.make_repeated_notes(3, (1, 4)))
    macros.chromaticize(t)
 
@@ -298,7 +298,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
    assert t.meter.forced == (11, 14)
    assert len(t) == 4
    tuplet = t[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
+   assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 6
    assert tuplet.duration.target == Rational(2, 4)
    assert tuplet.duration.prolated == Rational(2, 7)
@@ -306,7 +306,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
    assert note.duration.written == Rational(1, 8)
    assert note.duration.prolated == Rational(1, 21)
    tuplet = t[1]
-   assert isinstance(tuplet, FixedDurationTuplet)
+   assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 1
    assert tuplet.duration.target == Rational(7, 24)
    assert tuplet.duration.prolated == Rational(1, 6)
@@ -321,7 +321,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
       does not trigger trivial 1:1 tuplet insertion.'''
 
    t = RigidMeasure((5, 6), 
-      [FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
+      [tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
          notetools.make_repeated_notes(3, (1, 4)))
    macros.chromaticize(t)
 
@@ -366,7 +366,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
    assert t.meter.forced == (4, 6)
    assert len(t) == 3
    tuplet = t[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
+   assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 7
    assert tuplet.duration.target == Rational(2, 4)
    assert tuplet.duration.prolated == Rational(2, 6)
@@ -383,8 +383,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
    '''Nested fixed-duration tuplet.'''
 
    t = RigidMeasure((4, 4), [
-      FixedDurationTuplet((2, 2), [Note(0, (1, 2)), Note(1, (1, 2)), 
-      FixedDurationTuplet((2, 4), [Note(i, (1, 4)) for i in range(2, 5)])])])
+      tuplettools.FixedDurationTuplet((2, 2), [Note(0, (1, 2)), Note(1, (1, 2)), 
+      tuplettools.FixedDurationTuplet((2, 4), [Note(i, (1, 4)) for i in range(2, 5)])])])
 
    r'''
    \time 4/4
@@ -405,7 +405,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
    assert measure.meter.forced == (8, 9)
    assert len(measure) == 1
    tuplet = t[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
+   assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 3
    assert tuplet.duration.target == Rational(1)
    assert tuplet.duration.prolated == Rational(8, 9)
@@ -415,7 +415,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
    assert note.duration.written == Rational(1, 2)
    assert note.duration.prolated == Rational(1, 3)
    tuplet = t[0][-1]
-   assert isinstance(tuplet, FixedDurationTuplet)
+   assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 2
    assert tuplet.duration.target == Rational(1, 3)
    assert tuplet.duration.prolated == Rational(2, 9)
@@ -501,13 +501,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12( ):
    '''Container.'''
 
-   t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Container(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Container)
    assert len(t) == 1
    assert t.duration.preprolated == Rational(2, 4)
    assert t.duration.prolated == Rational(2, 4)
-   assert isinstance(t[0], FixedDurationTuplet)
+   assert isinstance(t[0], tuplettools.FixedDurationTuplet)
    assert t[0].duration.target == Rational(2, 4)
    assert t[0].duration.prolated == Rational(2, 4)
    assert isinstance(t[0][0], Note)
@@ -519,13 +519,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13( ):
    '''Container.'''
 
-   t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Container(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Container)
    assert len(t) == 1
    assert t.duration.preprolated == Rational(2, 4)
    assert t.duration.prolated == Rational(2, 4)
-   assert isinstance(t[0], FixedDurationTuplet)
+   assert isinstance(t[0], tuplettools.FixedDurationTuplet)
    assert t[0].duration.target == Rational(2, 4)
    assert t[0].duration.prolated == Rational(2, 4)
    assert isinstance(t[0][0], Note)
@@ -537,13 +537,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14( ):
    '''Excise voice.'''
 
-   t = Voice(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Voice)
    assert len(t) == 1
    assert t.duration.preprolated == Rational(2, 4)
    assert t.duration.prolated == Rational(2, 4)
-   assert isinstance(t[0], FixedDurationTuplet)
+   assert isinstance(t[0], tuplettools.FixedDurationTuplet)
    assert t[0].duration.target == Rational(2, 4)
    assert t[0].duration.prolated == Rational(2, 4)
    assert isinstance(t[0][0], Note)
@@ -555,13 +555,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15( ):
    '''Excise staff.'''
 
-   t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Staff)
    assert len(t) == 1
    assert t.duration.preprolated == Rational(2, 4)
    assert t.duration.prolated == Rational(2, 4)
-   assert isinstance(t[0], FixedDurationTuplet)
+   assert isinstance(t[0], tuplettools.FixedDurationTuplet)
    assert t[0].duration.target == Rational(2, 4)
    assert t[0].duration.prolated == Rational(2, 4)
    assert isinstance(t[0][0], Note)
@@ -573,13 +573,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16( ):
    '''Excise container.'''
 
-   t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 2
    assert t.duration.preprolated == Rational(5, 6)
    assert t.duration.prolated == Rational(5, 6)
-   assert isinstance(t[0], FixedDurationTuplet)
+   assert isinstance(t[0], tuplettools.FixedDurationTuplet)
    assert t[0].duration.target == Rational(2, 6)
    assert t[0].duration.prolated == Rational(2, 6)
    assert isinstance(t[0][0], Note)
@@ -591,13 +591,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17( ):
    '''Excise container.'''
 
-   t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Container(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 2
    assert t.duration.preprolated == Rational(5, 6)
    assert t.duration.prolated == Rational(5, 6)
-   assert isinstance(t[0], FixedDurationTuplet)
+   assert isinstance(t[0], tuplettools.FixedDurationTuplet)
    assert t[0].duration.target == Rational(2, 6)
    assert t[0].duration.prolated == Rational(2, 6)
    assert isinstance(t[0][0], Note)
@@ -609,13 +609,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18( ):
    '''Excise voice.'''
 
-   t = Voice(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Voice)
    assert len(t) == 2
    assert t.duration.preprolated == Rational(5, 6)
    assert t.duration.prolated == Rational(5, 6)
-   assert isinstance(t[0], FixedDurationTuplet)
+   assert isinstance(t[0], tuplettools.FixedDurationTuplet)
    assert t[0].duration.target == Rational(2, 6)
    assert t[0].duration.prolated == Rational(2, 6)
    assert isinstance(t[0][0], Note)
@@ -627,13 +627,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19( ):
    '''Excise staff.'''
 
-   t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 2
    assert t.duration.preprolated == Rational(5, 6)
    assert t.duration.prolated == Rational(5, 6)
-   assert isinstance(t[0], FixedDurationTuplet)
+   assert isinstance(t[0], tuplettools.FixedDurationTuplet)
    assert t[0].duration.target == Rational(2, 6)
    assert t[0].duration.prolated == Rational(2, 6)
    assert isinstance(t[0][0], Note)
@@ -645,12 +645,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20( ):
    '''Excise singly-nested singleton.'''
 
-   t = FixedDurationTuplet((2, 4), [
+   t = tuplettools.FixedDurationTuplet((2, 4), [
       Note(0, (1, 4)),
       Note(0, (1, 4)),
-      FixedDurationTuplet((1, 4), [Note(0, (1, 4))])])
+      tuplettools.FixedDurationTuplet((1, 4), [Note(0, (1, 4))])])
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
-   assert isinstance(t, FixedDurationTuplet)
+   assert isinstance(t, tuplettools.FixedDurationTuplet)
    assert len(t) == 2
    assert t.duration.target == Rational(2, 6)
    assert t.duration.multiplier == Rational(2, 3)
@@ -663,11 +663,11 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21( ):
    '''Excise doubly-nested singleton.'''
 
-   t = FixedDurationTuplet((2, 4), [
+   t = tuplettools.FixedDurationTuplet((2, 4), [
       Note(0, (1, 4)),
       Note(0, (1, 4)),
-      FixedDurationTuplet((1, 4), [
-         FixedDurationTuplet((1, 4), [Note(0, (1, 4))])])])
+      tuplettools.FixedDurationTuplet((1, 4), [
+         tuplettools.FixedDurationTuplet((1, 4), [Note(0, (1, 4))])])])
 
    macros.diatonicize(t)
 
@@ -699,11 +699,11 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
    '''Excise doubly-nested singleton leaf.'''
 
-   t = FixedDurationTuplet((2, 4), [
+   t = tuplettools.FixedDurationTuplet((2, 4), [
       Note(0, (1, 4)),
       Note(0, (1, 4)),
-      FixedDurationTuplet((1, 4), [
-         FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 2)])])
+      tuplettools.FixedDurationTuplet((1, 4), [
+         tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 2)])])
 
    macros.diatonicize(t)
 
@@ -741,7 +741,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23( ):
    '''Excise leaf from fixed-duration tuplet.'''
 
-   t = FixedDurationTuplet((4, 8), macros.scale(5))
+   t = tuplettools.FixedDurationTuplet((4, 8), macros.scale(5))
 
    r'''
    \times 4/5 {
@@ -801,8 +801,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25( ):
    '''Excise nested fixed-duration tuplet.'''
 
-   t = FixedDurationTuplet((2,2), [Note(0, (1,2)), Note(1, (1,2)), 
-      FixedDurationTuplet((2,4), [Note(i, (1,4)) for i in range(2, 5)])])
+   t = tuplettools.FixedDurationTuplet((2,2), [Note(0, (1,2)), Note(1, (1,2)), 
+      tuplettools.FixedDurationTuplet((2,4), [Note(i, (1,4)) for i in range(2, 5)])])
 
    r'''
    \times 2/3 {

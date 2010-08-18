@@ -11,7 +11,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
    to prolated duration `stop`::
 
       abjad> voice = Voice(notetools.make_repeated_notes(2))
-      abjad> voice.append(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
+      abjad> voice.append(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
       abjad> macros.diatonicize(voice)
       abjad> f(voice)
       \new Voice {

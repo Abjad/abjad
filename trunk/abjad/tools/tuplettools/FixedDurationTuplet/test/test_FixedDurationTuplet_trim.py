@@ -4,7 +4,7 @@ from py.test import raises
 
 def test_FixedDurationTuplet_trim_01( ):
    '''1-element index.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    t.trim(0)
@@ -15,7 +15,7 @@ def test_FixedDurationTuplet_trim_01( ):
 
 def test_FixedDurationTuplet_trim_02( ):
    '''1-element index.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    t.trim(1)
@@ -26,7 +26,7 @@ def test_FixedDurationTuplet_trim_02( ):
 
 def test_FixedDurationTuplet_trim_03( ):
    '''1-element index.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    t.trim(2)
@@ -37,7 +37,7 @@ def test_FixedDurationTuplet_trim_03( ):
 
 def test_FixedDurationTuplet_trim_04( ):
    '''Raises IndexError.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    assert raises(IndexError, 't.trim(3)')
@@ -45,7 +45,7 @@ def test_FixedDurationTuplet_trim_04( ):
 
 def test_FixedDurationTuplet_trim_05( ):
    '''0-element slice.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    t.trim(0, 0)
@@ -57,7 +57,7 @@ def test_FixedDurationTuplet_trim_05( ):
 
 def test_FixedDurationTuplet_trim_06( ):
    '''1-element slice.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    t.trim(0, 1)
@@ -68,7 +68,7 @@ def test_FixedDurationTuplet_trim_06( ):
 
 def test_FixedDurationTuplet_trim_07( ):
    '''1-element slice.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    t.trim(1, 2)
@@ -79,7 +79,7 @@ def test_FixedDurationTuplet_trim_07( ):
 
 def test_FixedDurationTuplet_trim_08( ):
    '''1-element slice.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    t.trim(2, 3)
@@ -90,7 +90,7 @@ def test_FixedDurationTuplet_trim_08( ):
 
 def test_FixedDurationTuplet_trim_09( ):
    '''Trimming all leaves raises an exception.'''
-   t = FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 3)
    for i, leaf in enumerate(t.leaves):
       leaf.pitch = i
    raises(AssertionError, 't.trim(0, 100)')

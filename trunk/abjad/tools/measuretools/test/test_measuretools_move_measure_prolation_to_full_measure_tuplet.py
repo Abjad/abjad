@@ -4,9 +4,9 @@ from abjad import *
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
    '''Project 3/12 meter onto measure contents.'''
 
-   inner = FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Rational(1, 16)))
+   inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Rational(1, 16)))
    notes = notetools.make_repeated_notes(2)
-   outer = FixedDurationTuplet((2, 8), [inner] + notes)
+   outer = tuplettools.FixedDurationTuplet((2, 8), [inner] + notes)
    t = RigidMeasure((2, 8), [outer])
    macros.diatonicize(t)
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
@@ -52,7 +52,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
 
-   t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), macros.scale(6))])
+   t = RigidMeasure((5, 8), [tuplettools.FixedDurationTuplet((5, 8), macros.scale(6))])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''

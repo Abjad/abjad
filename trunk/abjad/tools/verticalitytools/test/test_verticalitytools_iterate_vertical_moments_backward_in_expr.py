@@ -4,7 +4,7 @@ from abjad import *
 def test_verticalitytools_iterate_vertical_moments_backward_in_expr_01( ):
 
    score = Score([ ])
-   score.append(Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
+   score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
@@ -64,7 +64,7 @@ def test_verticalitytools_iterate_vertical_moments_backward_in_expr_01( ):
 def test_verticalitytools_iterate_vertical_moments_backward_in_expr_02( ):
 
    score = Score([ ])
-   score.append(Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
+   score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))

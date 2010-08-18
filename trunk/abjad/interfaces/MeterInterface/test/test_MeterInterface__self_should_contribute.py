@@ -10,7 +10,7 @@ def test_MeterInterface__self_should_contribute_01( ):
       contribute LilyPond \time indication at format-time.'''
 
    notes = macros.scale(3)
-   tuplet = FixedDurationTuplet((2, 8), notes)
+   tuplet = tuplettools.FixedDurationTuplet((2, 8), notes)
    measure = RigidMeasure((2, 8), [tuplet])
    staff = Staff([measure])
 
@@ -59,7 +59,7 @@ def test_MeterInterface__self_should_contribute_03( ):
       The note now both can and should contribute LilyPond \time.
       The parent tuplet neither can nor should contribute LilyPond \time.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    t[0].meter.forced = metertools.Meter(2, 8)
 
    r'''
@@ -83,7 +83,7 @@ def test_MeterInterface__self_should_contribute_04( ):
       The note neither can nor should contribute LilyPond \time.
       The parent tuplet both can and should contribute LilyPond \time.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    t.meter.forced = metertools.Meter(2, 8)
 
    r'''

@@ -17,7 +17,7 @@ write(staff, 'example1', 'oedo') <hide
 Tuplets, measures, voices, staves and the other containers carry even more.
 
 <abjad>
-tuplet = FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
+tuplet = tuplettools.FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
 measure = RigidMeasure((3, 16), [tuplet])
 staff = RhythmicStaff([measure])
 print tuplet.duration.multiplier

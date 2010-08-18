@@ -28,7 +28,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       Newly created, unmodified tuplets make no format
       contributions to slot 1. ::
 
-         abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> import pprint
          abjad> pprint.pprint(t.formatter.slots.slot_1)
          ([(<CommentsInterface>, 'before'), []],
@@ -85,7 +85,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
       Most tuplets open with the LilyPond ``\times`` command only. ::
 
-         abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> print t.format
          \times 2/3 {
                  c'8
@@ -100,7 +100,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
       Trivial tuplets carry a ratio of ``1:1``. ::
 
-         abjad> t = FixedDurationTuplet((3, 8), macros.scale(3)
+         abjad> t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3)
          abjad> t.duration.multiplier
          Rational(1, 1)
 
@@ -122,7 +122,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       the tuplet in question.
       Colored trivial tuplets appear blue in printed output. ::
 
-         abjad> t = FixedDurationTuplet((3, 8), macros.scale(3))
+         abjad> t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
          abjad> FixedDurationTuplet.color = True
          abjad> print t.format
          \tweak #'color #blue
@@ -141,7 +141,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       to output with the LilyPond ``\scaleDurations`` command
       instead of the the Lilypond ``\times`` command. ::
 
-         abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.invisible = True
          abjad> print t.format
          \scaleDurations #'(2 . 3) {
@@ -150,7 +150,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                  e'8
          }
          abjad> pprint.pprint(t.formatter.slots.slot_2)
-         ([(FixedDurationTuplet(1/4, [c'8, d'8, e'8]), 'invisible'),
+         ([(tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), 'invisible'),
            ["\\scaleDurations #'(2 . 3) {"]],)
 
       Invisible tuplets carry neither tuplet bracket nor

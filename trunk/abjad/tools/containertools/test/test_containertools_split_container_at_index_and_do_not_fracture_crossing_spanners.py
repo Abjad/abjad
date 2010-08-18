@@ -5,7 +5,7 @@ import py.test
 def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_01( ):
    '''Index split tuplet in score and do not fracture spanners.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
    p = spannertools.BeamSpanner(t[:])
 

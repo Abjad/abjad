@@ -6,19 +6,19 @@ def test_Staff___getitem___01( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
    assert isinstance(t[2], Chord)
    assert isinstance(t[3], Skip)
-   assert isinstance(t[4], FixedDurationTuplet)
+   assert isinstance(t[4], tuplettools.FixedDurationTuplet)
    assert isinstance(t[-5], Note)
    assert isinstance(t[-4], Rest)
    assert isinstance(t[-3], Chord)
    assert isinstance(t[-2], Skip)
-   assert isinstance(t[-1], FixedDurationTuplet)
+   assert isinstance(t[-1], tuplettools.FixedDurationTuplet)
 
 
 def test_Staff___getitem___02( ):
@@ -26,7 +26,7 @@ def test_Staff___getitem___02( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[0 : 0]
@@ -39,7 +39,7 @@ def test_Staff___getitem___03( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[0 : 1]
@@ -55,12 +55,12 @@ def test_Staff___getitem___04( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[-1 : ]
    assert len(slice) == 1
-   assert isinstance(slice[0], FixedDurationTuplet)
+   assert isinstance(slice[0], tuplettools.FixedDurationTuplet)
    for x in slice:
       assert x.parentage.parent == t
    assert componenttools.is_well_formed_component(t)
@@ -71,7 +71,7 @@ def test_Staff___getitem___05( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[1 : -1]
@@ -89,14 +89,14 @@ def test_Staff___getitem___06( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[2 : ]
    assert len(slice) == 3
    assert isinstance(slice[0], Chord)
    assert isinstance(slice[1], Skip)
-   assert isinstance(slice[2], FixedDurationTuplet)
+   assert isinstance(slice[2], tuplettools.FixedDurationTuplet)
    for x in slice:
       assert x.parentage.parent == t
    assert componenttools.is_well_formed_component(t)
@@ -107,7 +107,7 @@ def test_Staff___getitem___07( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[ : -2]
@@ -125,7 +125,7 @@ def test_Staff___getitem___08( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[ : ]
@@ -135,7 +135,7 @@ def test_Staff___getitem___08( ):
    assert isinstance(slice[1], Rest)
    assert isinstance(slice[2], Chord)
    assert isinstance(slice[3], Skip)
-   assert isinstance(slice[4], FixedDurationTuplet)
+   assert isinstance(slice[4], tuplettools.FixedDurationTuplet)
    for x in slice:
       assert x.parentage.parent == t
    assert componenttools.is_well_formed_component(t)

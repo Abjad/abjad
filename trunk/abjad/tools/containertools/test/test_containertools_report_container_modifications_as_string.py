@@ -46,7 +46,7 @@ def test_containertools_report_container_modifications_as_string_01( ):
 def test_containertools_report_container_modifications_as_string_02( ):
    '''Tuplet formatter report_container_modifications_as_string.'''
 
-   t = FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    t.comments.before.append('Example tuplet')
    t.override.note_head.color = 'red'
    t.misc.set_accidental_style = 'forget'

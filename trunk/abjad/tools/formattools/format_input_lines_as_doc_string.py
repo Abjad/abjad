@@ -8,7 +8,7 @@ def format_input_lines_as_doc_string(input_lines, tab_width = 3):
       ... spannertools.BeamSpanner(staff.leaves)
       ... f(staff)
       ... 
-      ... FixedDurationTuplet((2, 8), staff[:3]) ##
+      ... tuplettools.FixedDurationTuplet((2, 8), staff[:3]) ##
 
       ... f(staff)
       ... '''
@@ -26,8 +26,8 @@ def format_input_lines_as_doc_string(input_lines, tab_width = 3):
             
          ::
             
-            abjad> FixedDurationTuplet((2, 8), staff[:3])
-            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+            abjad> tuplettools.FixedDurationTuplet((2, 8), staff[:3])
+            tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
          ::
 

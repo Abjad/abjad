@@ -18,7 +18,7 @@ def test_Note_cast_as_rest_01( ):
 
 
 def test_Note_cast_as_rest_02( ):
-   t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    d = t[0].duration.written
    Rest(t[0])
    assert t[0].format == 'r8'

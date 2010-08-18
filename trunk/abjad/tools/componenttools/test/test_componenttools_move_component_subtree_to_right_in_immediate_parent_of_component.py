@@ -243,7 +243,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
    }
    '''
    
-   tuplet = FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3)
+   tuplet = tuplettools.FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3)
    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1][:1], tuplet)
    ## ALSO WORKS:
    componenttools.move_parentage_and_spanners_from_components_to_components(t[1][:1], [tuplet])

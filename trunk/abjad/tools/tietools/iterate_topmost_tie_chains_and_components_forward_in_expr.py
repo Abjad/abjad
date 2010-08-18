@@ -8,7 +8,7 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
    with chain-wrapped leaves. ::
 
       t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
-      t.insert(4, FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
+      t.insert(4, tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
       macros.diatonicize(t)
       abjad> print t.format
       \new Staff {
@@ -34,7 +34,7 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
       ... 
       (Note(c', 8), Note(c', 32))
       (Note(d', 8), Note(d', 32))
-      FixedDurationTuplet(1/4, [e'8, f'8, g'8])
+      tuplettools.FixedDurationTuplet(1/4, [e'8, f'8, g'8])
       (Note(a', 8), Note(a', 32))
       (Note(b', 8), Note(b', 32))
 

@@ -86,7 +86,7 @@ def test__Navigator_is_immediate_temporal_successor_of_05( ):
    '''The second of two leaves in the same tuplet is
       the immediate temporal follower of the first.'''
 
-   t = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
+   t = tuplettools.FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
 
    assert t[0]._navigator._is_immediate_temporal_successor_of(t[1])
    assert t[1]._navigator._is_immediate_temporal_successor_of(t[2])
@@ -137,8 +137,8 @@ def test__Navigator_is_immediate_temporal_successor_of_07( ):
       both temporally follow the first tuplet and the last
       note of the first tuplet immediately.'''
 
-   t1 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
-   t2 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3, 6)])
+   t1 = tuplettools.FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
+   t2 = tuplettools.FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3, 6)])
    t = Voice([t1, t2])
 
    assert t[0]._navigator._is_immediate_temporal_successor_of(t[1])

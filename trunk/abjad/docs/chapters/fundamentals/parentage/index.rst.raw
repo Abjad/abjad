@@ -20,7 +20,7 @@ An example
 Consider this score beginning with c'8.
 
 <abjad>
-tuplet = FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))
+tuplet = tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))
 staff = Staff(tuplet * 2)
 score = Score([staff])
 macros.diatonicize(score)
@@ -45,12 +45,12 @@ The immediate parent of the first note in the score is the first is a tuplet.
 The complete parentage of the first note in score is longer. ::
 
    abjad> note.parentage.parent
-   FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+   tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
 ::
 
    abjad> note.parentage.parentage
-   [Note(c', 8), FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{2}, Score<<1>>]
+   [Note(c', 8), tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{2}, Score<<1>>]
 
 Note that the `parent` attribute returns a reference to a single component
 while the `parentage` attribute returns a list of components.

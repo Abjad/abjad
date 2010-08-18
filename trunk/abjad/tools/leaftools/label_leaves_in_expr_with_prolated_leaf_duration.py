@@ -5,7 +5,7 @@ from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import \
 def label_leaves_in_expr_with_prolated_leaf_duration(expr):
    r'''Label leaves in `expr` with prolated leaf duration::
 
-      abjad> tuplet = FixedDurationTuplet((1, 4), macros.scale(3))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), macros.scale(3))
       abjad> leaftools.label_leaves_in_expr_with_leaf_durations(tuplet)
       abjad> f(tuplet)
       \times 2/3 {

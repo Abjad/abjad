@@ -130,7 +130,7 @@ Duration attributes
 :class:`Note <abjad.components.Note.note.Note>`  has a :class:`_LeafDurationInterface <abjad.components._Leaf.duration._LeafDurationInterface>`.
 
 <abjad>
-tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
 note = tuplet[0]
 print note.duration
 </abjad>
@@ -138,37 +138,37 @@ print note.duration
 :class:`_LeafDurationInterface <abjad.components._Leaf.duration._LeafDurationInterface>` bundles six public attributes.
 
 <abjad>
-tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
 note = tuplet[0]
 print note.duration.multiplied
 </abjad>
 
 <abjad>
-tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
 note = tuplet[0]
 print note.duration.multiplier
 </abjad>
 
 <abjad>
-tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
 note = tuplet[0]
 print note.duration.preprolated
 </abjad>
 
 <abjad>
-tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
 note = tuplet[0]
 print note.duration.prolated
 </abjad>
 
 <abjad>
-tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
 note = tuplet[0]
 print note.duration.prolation
 </abjad>
 
 <abjad>
-tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
 note = tuplet[0]
 print note.duration.written
 </abjad>

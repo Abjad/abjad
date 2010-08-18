@@ -4,9 +4,9 @@ from abjad import *
 def test_Container_splice_left_01( ):
    '''Splice tuplet left of tuplet.'''
 
-   t = Voice([FixedDurationTuplet((2, 8), macros.scale(3))])
+   t = Voice([tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
    spannertools.BeamSpanner(t[0])
-   result = t[0].splice_left([FixedDurationTuplet((2, 8), macros.scale(3))])
+   result = t[0].splice_left([tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
 
    r'''
    \new Voice {

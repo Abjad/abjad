@@ -9,5 +9,4 @@ from Skip import Skip
 from Staff import Staff
 from Voice import Voice
 from _Measure import RigidMeasure
-from _Tuplet import FixedDurationTuplet
 from _Tuplet import FixedMultiplierTuplet

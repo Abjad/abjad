@@ -36,7 +36,7 @@ def test__Leaf___copy___04( ):
 
 
 def test__Leaf___copy___05( ):
-   t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    m = t[1]
    n = componenttools.clone_components_and_fracture_crossing_spanners([m])[0]
    assert id(m) != id(n)
@@ -57,7 +57,7 @@ def test__Leaf___copy___06( ):
 ## TEST COPY ONE TUPLETIZED NOTE ##
 
 def test__Leaf___copy___07( ):
-   t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
    u = componenttools.clone_components_and_fracture_crossing_spanners(t.leaves[4:5])[0]
    assert isinstance(u, Note)
    assert u.pitch.number == t.leaves[4].pitch.number
@@ -67,7 +67,7 @@ def test__Leaf___copy___07( ):
 
 
 def test__Leaf___copy___08( ):
-   t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
    u = componenttools.clone_components_and_fracture_crossing_spanners(t.leaves[5:6])[0]
    assert isinstance(u, Note)
    assert u.pitch.number == t.leaves[5].pitch.number

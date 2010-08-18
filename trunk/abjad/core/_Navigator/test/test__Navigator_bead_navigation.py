@@ -99,7 +99,7 @@ def test__Navigator_bead_navigation_03( ):
 
 def test__Navigator_bead_navigation_05( ):
    '''NextBead and prev_bead work on FixedDurationTuplet.'''
-   t = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3)])
+   t = tuplettools.FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3)])
    assert t[0]._navigator._next_bead is t[1]
    assert t[1]._navigator._next_bead is t[2]
    assert t[2]._navigator._next_bead is None
@@ -154,8 +154,8 @@ def test__Navigator_bead_navigation_06( ):
 
 def test__Navigator_bead_navigation_07( ):
    '''NextBead and prev_bead work on contiguous Tuplets inside a Voice.'''
-   t1 = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3)])
-   t2 = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3,6)])
+   t1 = tuplettools.FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3)])
+   t2 = tuplettools.FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3,6)])
    t = Voice([t1, t2])
    assert t1[0]._navigator._next_bead is t1[1]
    assert t1[1]._navigator._next_bead is t1[2]
@@ -541,8 +541,8 @@ def test__Navigator_bead_navigation_16( ):
 def test__Navigator_bead_navigation_17( ):
    '''next_bead and prev_bead DO work in sequence of alternating 
    tuplets and Notes.'''
-   t1 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(3)])
-   t2 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(4,7)])
+   t1 = tuplettools.FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(3)])
+   t2 = tuplettools.FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(4,7)])
    v = Voice([t1, Note(3, (1,8)), t2])
    assert t1[-1]._navigator._next_bead is v[1]
    assert v[1]._navigator._next_bead is t2[0]
@@ -569,8 +569,8 @@ def test__Navigator_bead_navigation_17( ):
 
 def test__Navigator_bead_navigation_18( ):
    '''next_bead and prev_bead  work on asymmetrically nested tuplets.'''
-   tinner = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-   t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
+   tinner = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
    assert t[0]._navigator._next_bead is tinner[0]
    assert tinner[-1]._navigator._next_bead is t[-1]
    assert t[-1]._navigator._prev_bead is tinner[-1]

@@ -7,7 +7,7 @@ def label_leaves_in_expr_with_leaf_depth(expr):
    ::
 
       abjad> staff = Staff(macros.scale(5))
-      abjad> FixedDurationTuplet((2, 8), staff[-3:])
+      abjad> tuplettools.FixedDurationTuplet((2, 8), staff[-3:])
       abjad> leaftools.label_leaves_in_expr_with_leaf_depth(staff)
       \new Staff {
               c'8 _ \markup { \small 1 }

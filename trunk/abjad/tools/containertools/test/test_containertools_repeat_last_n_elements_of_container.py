@@ -61,7 +61,7 @@ def test_containertools_repeat_last_n_elements_of_container_01( ):
 def test_containertools_repeat_last_n_elements_of_container_02( ):
    '''Cyclic extend tuplets in voice.'''
    
-   t = Voice(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''

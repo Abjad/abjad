@@ -165,7 +165,7 @@ def test_Container___setitem___integer_05( ):
    }
    '''
 
-   t[1] = FixedDurationTuplet((2, 8), macros.scale(3))
+   t[1] = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
 
    r'''
    \new Voice {

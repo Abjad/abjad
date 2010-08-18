@@ -4,13 +4,12 @@ from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
-from abjad.components._Tuplet import FixedDurationTuplet
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
    r'''Remove `leaf` and shrink durated parent containers::
 
-      abjad> measure = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+      abjad> measure = RigidMeasure((4, 8), tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> macros.diatonicize(measure)
       abjad> spannertools.BeamSpanner(measure.leaves)
       abjad> f(measure)
@@ -52,6 +51,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
    Return none.
    '''
+   from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    prolated_leaf_duration = leaf.duration.prolated
    prolations = leaf.duration._prolations

@@ -9,7 +9,7 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
    List time intervals between unique start and stop offsets 
    of `expr` leaves::
 
-      abjad> staff_1 = Staff([FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))])
+      abjad> staff_1 = Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))])
       abjad> staff_2 = Staff(notetools.make_repeated_notes(4))
       abjad> score = Score([staff_1, staff_2])
       abjad> macros.diatonicize(score)

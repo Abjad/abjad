@@ -22,7 +22,7 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(tie_chain, pr
       abjad> spannertools.BeamSpanner(staff[:])
       spannertools.BeamSpanner(c'8, c'16, c'16)
       abjad> tietools.tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(staff[0].tie.chain, [1])
-      FixedDurationTuplet(3/16, [c'4])
+      tuplettools.FixedDurationTuplet(3/16, [c'4])
       abjad> f(staff)
       \new Staff {
               \fraction \times 3/4 {
@@ -39,7 +39,7 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(tie_chain, pr
       abjad> spannertools.BeamSpanner(staff[:])      
       spannertools.BeamSpanner(c'8, c'16, c'16)      
       abjad> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots(staff[0].tie.chain, [1, 2])
-      FixedDurationTuplet(3/16, [c'16, c'8])
+      tuplettools.FixedDurationTuplet(3/16, [c'16, c'8])
       abjad> f(staff)
       \new Staff {
               {
@@ -57,7 +57,7 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(tie_chain, pr
       abjad> spannertools.BeamSpanner(staff[:])
       spannertools.BeamSpanner(c'8, c'16, c'16)
       abjad> tietools.tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(staff[0].tie.chain, [1, 2, 2])
-      FixedDurationTuplet(3/16, [c'16, c'8, c'8])
+      tuplettools.FixedDurationTuplet(3/16, [c'16, c'8, c'8])
       abjad> f(staff)
       \new Staff {
               \fraction \times 3/5 {

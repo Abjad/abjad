@@ -57,7 +57,7 @@ def make_sphinx_toc( ):
          result += '   %s\n' % doc_path
    result += '\n\n'
   
-   section_title = 'Abjad score component interfaces'
+   section_title = 'Score component interfaces'
    result += '%s\n' % section_title
    result += '-' * (len(section_title))
    result += '\n\n'

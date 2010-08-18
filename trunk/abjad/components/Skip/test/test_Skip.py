@@ -31,7 +31,7 @@ def test_Skip_03( ):
 
 
 def test_Skip_04( ):
-   t = FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
    d = t[0].duration.written
    Note(t[0])
    assert isinstance(t[0], Note)
@@ -79,7 +79,7 @@ def test_Skip_08( ):
 
 
 def test_Skip_09( ):
-   t = FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
    d = t[0].duration.written
    Rest(t[0])
    assert isinstance(t[0], Rest)
@@ -127,7 +127,7 @@ def test_Skip_13( ):
 
 
 def test_Skip_14( ):
-   t = FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
    d = t[0].duration.written
    Chord(t[0])
    assert isinstance(t[0], Chord)

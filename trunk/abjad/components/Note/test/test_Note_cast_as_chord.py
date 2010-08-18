@@ -20,7 +20,7 @@ def test_Note_cast_as_chord_01( ):
 
 
 def test_Note_cast_as_chord_02( ):
-   t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    h, p, d = t[0].note_head, t[0].pitch, t[0].duration.written
    Chord(t[0])
    assert isinstance(t[0], Chord)

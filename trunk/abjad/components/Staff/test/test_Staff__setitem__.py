@@ -7,14 +7,14 @@ def test_Staff__setitem___01( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          Skip((1, 4)),
-         FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
    assert isinstance(t[2], Chord)
    assert isinstance(t[3], Skip)
-   assert isinstance(t[4], FixedDurationTuplet)
+   assert isinstance(t[4], tuplettools.FixedDurationTuplet)
    t[1] = Chord([12, 13, 15], (1, 4))
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
@@ -22,7 +22,7 @@ def test_Staff__setitem___01( ):
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Chord)
    assert isinstance(t[3], Skip)
-   assert isinstance(t[4], FixedDurationTuplet)
+   assert isinstance(t[4], tuplettools.FixedDurationTuplet)
    t[0] = Rest((1, 4))
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
@@ -30,22 +30,22 @@ def test_Staff__setitem___01( ):
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Chord)
    assert isinstance(t[3], Skip)
-   assert isinstance(t[4], FixedDurationTuplet)
-   t[-2] = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   assert isinstance(t[4], tuplettools.FixedDurationTuplet)
+   t[-2] = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    assert isinstance(t[0], Rest)
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Chord)
-   assert isinstance(t[3], FixedDurationTuplet)
-   assert isinstance(t[4], FixedDurationTuplet)
+   assert isinstance(t[3], tuplettools.FixedDurationTuplet)
+   assert isinstance(t[4], tuplettools.FixedDurationTuplet)
    t[-1] = Note(13, (1, 4))
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    assert isinstance(t[0], Rest)
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Chord)
-   assert isinstance(t[3], FixedDurationTuplet)
+   assert isinstance(t[3], tuplettools.FixedDurationTuplet)
    assert isinstance(t[4], Note)
    t[-3] = Skip((1, 4))
    assert len(t) == 5
@@ -53,7 +53,7 @@ def test_Staff__setitem___01( ):
    assert isinstance(t[0], Rest)
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Skip)
-   assert isinstance(t[3], FixedDurationTuplet)
+   assert isinstance(t[3], tuplettools.FixedDurationTuplet)
    assert isinstance(t[4], Note)
 
 
@@ -116,11 +116,11 @@ def test_Staff__setitem___08( ):
 def test_Staff__setitem___09( ):
    '''Slice-assign tuplets.'''
    t = Staff(Note(0, (1, 8)) * 8)
-   t[0 : 4] = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2
+   t[0 : 4] = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2
    assert len(t) == 6
    for i, x in enumerate(t):
       if i in [0, 1]:
-         assert isinstance(x, FixedDurationTuplet)
+         assert isinstance(x, tuplettools.FixedDurationTuplet)
       else:
          assert isinstance(x, Note)
    assert componenttools.is_well_formed_component(t)

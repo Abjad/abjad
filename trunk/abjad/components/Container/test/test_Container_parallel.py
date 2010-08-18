@@ -7,7 +7,7 @@ def test_Container_parallel_01( ):
       otherwise False.'''
 
    assert not Container([ ]).parallel
-   assert not FixedDurationTuplet((2, 8), [ ]).parallel
+   assert not tuplettools.FixedDurationTuplet((2, 8), [ ]).parallel
    assert not FixedMultiplierTuplet((2, 3), [ ]).parallel
    assert scoretools.GrandStaff([ ]).parallel
    assert not stafftools.make_rhythmic_sketch_staff([ ]).parallel

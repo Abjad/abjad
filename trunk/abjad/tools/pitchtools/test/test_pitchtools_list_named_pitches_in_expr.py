@@ -4,7 +4,7 @@ from abjad import *
 def test_pitchtools_list_named_pitches_in_expr_01( ):
    '''Works with containers.'''
 
-   tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+   tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    t = pitchtools.list_named_pitches_in_expr(tuplet)
 
    assert t == (pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('e', 4))

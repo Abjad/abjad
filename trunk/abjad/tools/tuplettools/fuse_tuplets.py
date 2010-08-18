@@ -2,16 +2,16 @@ from abjad.components.Container import Container
 from abjad.exceptions import TupletFuseError
 from abjad.core import Rational
 from abjad.components._Tuplet import _Tuplet
-from abjad.components._Tuplet import FixedDurationTuplet
+from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.components._Tuplet import FixedMultiplierTuplet
 
 
 def fuse_tuplets(tuplets):
    r'''Fuse parent-contiguous `tuplets`::
 
-      abjad> t1 = FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> spannertools.BeamSpanner(t1[:])
-      abjad> t2 = FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
+      abjad> t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
       abjad> spannertools.SlurSpanner(t2[:])
       abjad> staff = Staff([t1, t2])
       abjad> f(staff)

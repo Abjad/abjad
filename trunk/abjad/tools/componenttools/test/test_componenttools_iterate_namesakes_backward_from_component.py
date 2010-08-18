@@ -106,7 +106,7 @@ def test_componenttools_iterate_namesakes_backward_from_component_02( ):
 def test_componenttools_iterate_namesakes_backward_from_component_03( ):
    '''Optional start and stop keywords.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -135,7 +135,7 @@ def test_componenttools_iterate_namesakes_backward_from_component_03( ):
 def test_componenttools_iterate_namesakes_backward_from_component_04( ):
    '''Optional start and stop keywords.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''

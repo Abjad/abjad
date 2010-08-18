@@ -42,7 +42,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
    '''Copy notes from tuplet and adjust tuplet target duration
    in order to preserve tuplet multiplier.'''
 
-   t = FixedDurationTuplet((4, 8), macros.scale(5))
+   t = tuplettools.FixedDurationTuplet((4, 8), macros.scale(5))
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[:3])
 
    r'''
@@ -53,7 +53,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
    }
    '''
 
-   assert isinstance(u, FixedDurationTuplet)
+   assert isinstance(u, tuplettools.FixedDurationTuplet)
    assert u.duration.target == Rational(3, 10)
    assert len(u) == 3
 
@@ -63,7 +63,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
 def test_componenttools_clone_components_and_immediate_parent_of_first_component_04( ):
    '''Copy adjacent, whole tuplets from staff.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 3)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 3)
    macros.diatonicize(t)
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[1:])
 

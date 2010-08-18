@@ -12,7 +12,6 @@ Abjad score components
    components/Chord/Chord
    components/Cluster/Cluster
    components/Container/Container
-   components/_Tuplet/FixedDurationTuplet/FixedDurationTuplet
    components/_Tuplet/FixedMultiplierTuplet/FixedMultiplierTuplet
    components/Grace/Grace
    components/Note/Note
@@ -24,8 +23,8 @@ Abjad score components
    components/Voice/Voice
 
 
-Abjad score component interfaces
---------------------------------
+Score component interfaces
+--------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -966,6 +965,7 @@ tuplettools
 .. toctree::
    :maxdepth: 1
 
+   tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
    tools/tuplettools/beam_bottommost_tuplets_in_expr
    tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented

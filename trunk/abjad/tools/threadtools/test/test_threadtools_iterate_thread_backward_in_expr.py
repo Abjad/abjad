@@ -4,7 +4,7 @@ from abjad import *
 def test_threadtools_iterate_thread_backward_in_expr_01( ):
    '''Yield nothing when class not present.'''
 
-   t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
    iter = threadtools.iterate_thread_backward_in_expr(t, Rest, t[-1].thread.signature)
    assert len(list(iter)) == 0
 
@@ -12,7 +12,7 @@ def test_threadtools_iterate_thread_backward_in_expr_01( ):
 def test_threadtools_iterate_thread_backward_in_expr_02( ):
    '''Yield internal nodes only.'''
 
-   t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
    from abjad.components._Tuplet._Tuplet import _Tuplet
    iter = threadtools.iterate_thread_backward_in_expr(t, _Tuplet, t[-1].thread.signature)
    assert len(list(iter)) == 3
@@ -21,7 +21,7 @@ def test_threadtools_iterate_thread_backward_in_expr_02( ):
 def test_threadtools_iterate_thread_backward_in_expr_03( ):
    '''Yield exact leaves.'''
 
-   t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
    iter = threadtools.iterate_thread_backward_in_expr(t, Note, t[-1].thread.signature)
    assert len(list(iter)) == 9
 
@@ -29,7 +29,7 @@ def test_threadtools_iterate_thread_backward_in_expr_03( ):
 def test_threadtools_iterate_thread_backward_in_expr_04( ):
    '''Yield leaves based on names higher in inheritence hierarchy.'''
 
-   t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
    from abjad.components._Leaf import _Leaf
    iter = threadtools.iterate_thread_backward_in_expr(t, _Leaf, t[-1][-1].thread.signature )
    assert len(list(iter)) == 9

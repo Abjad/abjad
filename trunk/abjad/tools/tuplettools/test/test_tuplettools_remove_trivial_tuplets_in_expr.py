@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_tuplettools_remove_trivial_tuplets_in_expr_01( ):
-   t = Staff(FixedDurationTuplet((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    assert len(t) == 2
 

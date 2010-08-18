@@ -45,7 +45,7 @@ class ParentageInterface(_Interface):
       '''Nonnegative integer number of components in the proper
       parentage of `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.depth
@@ -62,7 +62,7 @@ class ParentageInterface(_Interface):
       '''Nonnegative integer number of tuplets in the proper parentage 
       of `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.depth_tuplet
@@ -163,11 +163,11 @@ class ParentageInterface(_Interface):
    
       ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.parent
-         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+         tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
    
       Equivalent to ``component.parentage.proper[0]`` for those components
       with proper parentage. Otherwise ``None``.
@@ -180,11 +180,11 @@ class ParentageInterface(_Interface):
       '''Read-only list of all of components in the parentage of 
       `component`, including `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.parentage
-         [Note(c', 8), FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1}]
+         [Note(c', 8), tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1}]
 
       .. versionchanged:: 1.1.1
          Returns (immutable) tuple instead of (mutable) list.
@@ -205,11 +205,11 @@ class ParentageInterface(_Interface):
       Read-only tuple of all of components in the parentage of 
       `component`, excluding `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.proper
-         (FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1})
+         (tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1})
 
       Defined equal to ``component.parentage.parentage[1:]``.
       '''
@@ -221,7 +221,7 @@ class ParentageInterface(_Interface):
       '''Reference to root-level component in parentage 
       of `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.root
@@ -239,7 +239,7 @@ class ParentageInterface(_Interface):
       Containment signature defined equal to first voice, first staff,
       first staffgroup, first score and root in parentage. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> print note.parentage.signature
