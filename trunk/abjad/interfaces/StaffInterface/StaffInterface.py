@@ -49,13 +49,11 @@ class StaffInterface(_Observer, _BacktrackingInterface, _FormatContributor):
       result = [ ]
       ## if client is a leaf
       if isinstance(self._client, _Leaf):
-         #if self.change or (not self.client.prev and self.forced):
          if self.change or (not self._client.prev and self.forced):
             result.append(r'\change Staff = %s' % self.effective.name)
       ## if client is a measure
       else:
          try:
-            #prev = measuretools.get_prev_measure_from_component(self.client)
             prev = measuretools.get_prev_measure_from_component(self._client)
          except:
             prev = None
@@ -88,27 +86,6 @@ class StaffInterface(_Observer, _BacktrackingInterface, _FormatContributor):
          if isinstance(parent, Staff):
             return parent
 
-#   @apply
-#   def font_size( ):
-#      def fget(self):
-#         r'''Read / write LilyPond fontSize context setting.
-#
-#         ::
-#
-#            abjad> staff = Staff([ ])
-#            abjad> staff.staff.font_size = -3
-#            abjad> f(staff)
-#            \new Staff \with {
-#                    fontSize = #-3
-#            } {
-#            }
-#         '''
-#         return self._font_size
-#      def fset(self, expr):
-#         assert isinstance(expr, (int, float, long, type(None)))
-#         self._font_size = expr
-#      return property(**locals( ))
-
    @apply
    def hide( ):
       r'''Interface to LilyPond \stopStaff, \startStaff commands,
@@ -122,17 +99,6 @@ class StaffInterface(_Observer, _BacktrackingInterface, _FormatContributor):
          self._hide = arg
       return property(**locals( ))
    
-#   @property
-#   def settings(self):
-#      r'''Read-only list of LilyPond context settings
-#      picked up at format-time.
-#      '''
-#      result = [ ]
-#      font_size = self.font_size
-#      if font_size is not None:
-#         result.append('fontSize = #%s' % font_size)
-#      return result
-
    @apply
    def show( ):
       r'''Interface to LilyPond \startStaff and \stopStaff commands,

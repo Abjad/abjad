@@ -16,4 +16,5 @@ def test_TextSpannerInterface_spanner_reception_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t[0].text_spanner.spanner is text_spanner
+   #assert t[0].text_spanner.spanner is text_spanner
+   text_spanner in t[0].spanners.attached

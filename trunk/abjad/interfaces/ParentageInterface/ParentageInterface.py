@@ -4,6 +4,7 @@ from abjad.core import Rational
 import types
 
 
+## TODO: possibly disassemble ParentageInterface into pub & private componenttools
 class ParentageInterface(_Interface):
    '''Bundle attributes relating to the containers within
    which any Abjad component nests.

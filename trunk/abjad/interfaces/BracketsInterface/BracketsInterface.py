@@ -1,6 +1,7 @@
 from abjad.interfaces._Interface import _Interface
 
 
+## TODO: dissolve BracketsInterface into container formatting code ##
 class BracketsInterface(_Interface):
 
    ## PUBLIC ATTRIBUTES ##

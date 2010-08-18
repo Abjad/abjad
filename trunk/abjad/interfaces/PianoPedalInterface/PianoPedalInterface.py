@@ -1,7 +1,7 @@
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
-
+## DEPRECATED ##
 class PianoPedalInterface(_Interface, _SpannerReceptor):
    '''Handle LilyPond PianoPedal grob.
       Receive Abjad PianoPedal spanner.'''

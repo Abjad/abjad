@@ -4,6 +4,7 @@ from abjad.interfaces.OffsetInterface._OffsetSecondsInterface import _OffsetSeco
 from abjad.core import Rational
 
 
+## TODO: if no way to get rid of OffsetInterface, at least get rid of nested interfaces
 class OffsetInterface(_Interface):
    '''Offset interface.
    '''

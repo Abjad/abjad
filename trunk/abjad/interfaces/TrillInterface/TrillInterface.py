@@ -2,7 +2,7 @@ from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
-
+## DEPRECATED ##
 class TrillInterface(_Interface, _FormatContributor, _SpannerReceptor):
    '''Handle LilyPond TrillSpanner grob and Abjad Trill spanner.'''
 

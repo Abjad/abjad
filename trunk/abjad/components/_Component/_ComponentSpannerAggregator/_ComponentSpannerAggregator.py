@@ -93,6 +93,9 @@ class _ComponentSpannerAggregator(_Interface):
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
 
+   def get_all_attached_spanners_of_type(self, spanner_type):
+      return set([x for x in self.attached if isinstance(x, spanner_type)])
+
    def report(self, output = 'screen'):
       '''Deliver report of format-time contributions.
          Order contributions first by location then by something else.'''

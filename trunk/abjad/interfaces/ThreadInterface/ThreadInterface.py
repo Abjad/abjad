@@ -2,6 +2,7 @@ from abjad.interfaces._Interface import _Interface
 from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
 
 
+## TODO: move to threadtools.component_to_thread_signature
 class ThreadInterface(_Interface):
    '''Serve thread parentage information about component.
       Handle no LilyPond grob.'''
