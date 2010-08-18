@@ -4,7 +4,7 @@ from abjad.core import _Immutable
 
 class Clef(_Abjad, _Immutable):
 
-   __slots__ = ('name', )
+   __slots__ = ('_name', )
 
    def __init__(self, name = 'treble'):
       object.__setattr__(self, '_name', name)

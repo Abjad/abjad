@@ -1,5 +1,7 @@
 class _Immutable(object):
    '''Base from which immutable custom classes can inherit.
+
+   .. todo:: write code to check all Abjad system objects with slots and make sure none has a dict defined and taking up memory in the namespace of the object.
    '''
 
    ## OVERLOADS ##
