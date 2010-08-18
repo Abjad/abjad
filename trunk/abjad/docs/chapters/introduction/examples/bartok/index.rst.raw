@@ -25,11 +25,11 @@ Here we created an empty :class:`~abjad.components.StaffGroup.pianostaff.PianoSt
 Now let's add some measures to the framework.
 
 <abjad>
-m1 = RigidMeasure((2, 4), [ ])
-m2 = RigidMeasure((3, 4), [ ])
-m3 = RigidMeasure((2, 4), [ ])
-m4 = RigidMeasure((2, 4), [ ])
-m5 = RigidMeasure((2, 4), [ ])
+m1 = Measure((2, 4), [ ])
+m2 = Measure((3, 4), [ ])
+m3 = Measure((2, 4), [ ])
+m4 = Measure((2, 4), [ ])
+m5 = Measure((2, 4), [ ])
 upper_measures = [m1, m2, m3, m4, m5]
 lower_measures = componenttools.clone_components_and_covered_spanners(upper_measures)
 upper_staff.extend(upper_measures)

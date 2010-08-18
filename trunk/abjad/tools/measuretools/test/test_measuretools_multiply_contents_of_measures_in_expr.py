@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_multiply_contents_of_measures_in_expr_01( ):
    '''Spin one measure out three times.'''
 
-   t = RigidMeasure((3, 8), macros.scale(3))
+   t = Measure((3, 8), macros.scale(3))
    measuretools.multiply_contents_of_measures_in_expr(t, 3)
 
    r'''
@@ -29,7 +29,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01( ):
 def test_measuretools_multiply_contents_of_measures_in_expr_02( ):
    '''Spin multiples measures out twice each.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
    
    r'''

@@ -7,7 +7,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_01( ):
       Reapply spanners to components.
       Return unspanned copy.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
@@ -76,7 +76,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_02( ):
       Reapply spanners to components.
       Return unspanned copy.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
@@ -140,7 +140,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_03( ):
       Reapply spanners to components.
       Return unspanned copy.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
@@ -195,7 +195,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_04( ):
       Reapply spanners to components.
       Return unspanned copy.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
@@ -255,7 +255,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_05( ):
       Return unspanned copy.
       Use optional 'n' argument for multiple copies.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])

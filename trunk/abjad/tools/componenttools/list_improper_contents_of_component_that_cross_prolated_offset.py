@@ -6,7 +6,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
    r'''List all components in `component` that cross `prolated_offset`. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {
@@ -32,12 +32,12 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
    Staff, measure and leaf cross prolated offset ``1/16``::
 
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Rational(1, 16))
-      [Staff{2}, RigidMeasure(2/8, [c'8, d'8]), Note(c', 8)]
+      [Staff{2}, Measure(2/8, [c'8, d'8]), Note(c', 8)]
 
    Staff and measure cross prolated offset ``1/8``::
 
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Rational(1, 8))
-      [Staff{2}, RigidMeasure(2/8, [c'8, d'8])]
+      [Staff{2}, Measure(2/8, [c'8, d'8])]
 
    Staff crosses prolated offset ``1/4``::
 

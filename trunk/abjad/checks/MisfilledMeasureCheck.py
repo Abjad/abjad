@@ -11,7 +11,7 @@ class MisfilledMeasureCheck(_Check):
       from abjad.components.Measure import Measure
       violators = [ ]
       total, bad = 0, 0
-      for t in componenttools.iterate_components_forward_in_expr(expr, RigidMeasure):
+      for t in componenttools.iterate_components_forward_in_expr(expr, Measure):
          if not t.full:
             violators.append(t)
             bad += 1

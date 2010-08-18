@@ -98,7 +98,7 @@ def test_leaftools_set_preprolated_leaf_duration_03( ):
 
 def test_leaftools_set_preprolated_leaf_duration_04( ):
    '''Change leaf to tied, nonbinary duration.
-      FixedMultiplierTuplet inserted over new tied notes.'''
+      Tuplet inserted over new tied notes.'''
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:2])
@@ -132,7 +132,7 @@ def test_leaftools_set_preprolated_leaf_duration_04( ):
 
 def test_leaftools_set_preprolated_leaf_duration_05( ):
    '''Change leaf to untied, nonbinary duration.
-      FixedMultiplierTuplet inserted over input leaf.'''
+      Tuplet inserted over input leaf.'''
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:2])

@@ -3,9 +3,9 @@ def list_meters_of_measures_in_expr(components):
 
    Example::
 
-      abjad> t = Staff([RigidMeasure((2, 8), macros.scale(2)),
-         RigidMeasure((3, 8), macros.scale(3)),
-         RigidMeasure((4, 8), macros.scale(4))])
+      abjad> t = Staff([Measure((2, 8), macros.scale(2)),
+         Measure((3, 8), macros.scale(3)),
+         Measure((4, 8), macros.scale(4))])
 
       abjad> metertools.list_meters_of_measures_in_expr(t[:])
       [(2, 8), (3, 8), (4, 8)]

@@ -14,7 +14,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
 
    Example::
 
-      abjad> t = RigidMeasure((2, 8), [
+      abjad> t = Measure((2, 8), [
          tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
       abjad> measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
       abjad> print t.format

@@ -10,11 +10,11 @@ lower_staff = Staff([ ])
 piano.append(upper_staff)
 piano.append(lower_staff)
 
-m1 = RigidMeasure((2, 4), [ ])
-m2 = RigidMeasure((3, 4), [ ])
-m3 = RigidMeasure((2, 4), [ ])
-m4 = RigidMeasure((2, 4), [ ])
-m5 = RigidMeasure((2, 4), [ ])
+m1 = Measure((2, 4), [ ])
+m2 = Measure((3, 4), [ ])
+m3 = Measure((2, 4), [ ])
+m4 = Measure((2, 4), [ ])
+m5 = Measure((2, 4), [ ])
 upper_measures = [m1, m2, m3, m4, m5]
 lower_measures = componenttools.clone_components_and_covered_spanners(upper_measures)
 
@@ -114,22 +114,22 @@ show(piano)
 #ps = PianoStaff([ ])
 #
 #s = Staff([ ])
-#m = RigidMeasure((2, 4), [Note(i, (1, 8)) for i in [9, 7, 5, 4]])
+#m = Measure((2, 4), [Note(i, (1, 8)) for i in [9, 7, 5, 4]])
 #m[0].dynamics.mark = 'pp'
 #spannertools.BeamSpanner(m)
 #s.append(m)
-#m = RigidMeasure((3, 4), notetools.make_notes([2,7,5,4,2], [(1, 4)]+[(1, 8)]*4))
+#m = Measure((3, 4), notetools.make_notes([2,7,5,4,2], [(1, 4)]+[(1, 8)]*4))
 #m[1].dynamics.mark = 'mp'
 #spannertools.BeamSpanner(m[1:])
 #s.append(m)
-#m = RigidMeasure((2, 4), 
+#m = Measure((2, 4), 
 #   notetools.make_notes([0,2,4,5,4], [(1, 8), (1, 16), (1, 16), (1, 8), (1, 8)]))
 #spannertools.BeamSpanner(m[0:3])
 #spannertools.BeamSpanner(m[3:])
 #s.append(m)
-#m = RigidMeasure((2, 4), [Note(2, (1, 2))])
+#m = Measure((2, 4), [Note(2, (1, 2))])
 #s.append(m)
-#m = RigidMeasure((2, 4), [Note(2, (1, 2))])
+#m = Measure((2, 4), [Note(2, (1, 2))])
 #s.append(m)
 #spannertools.TieSpanner(s[-2:])
 #spannertools.SlurSpanner(s.leaves[0:5])
@@ -146,18 +146,18 @@ show(piano)
 #v2 = Voice(notetools.make_notes([-1, 2, 0], [(1, 4), (1, 8), (1, 8)]))
 #v2[1].dynamics.mark = 'pp'
 #v2.name ='v2'
-#m = RigidMeasure((2, 4), [v2])
+#m = Measure((2, 4), [v2])
 #s.append(m)
 #v2 = Voice(notetools.make_notes([-1, -3, -4, 0, -2], 
 #   [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)]))
 #v2[3].dynamics.mark = 'mp'
 #v2.name = 'v2'   
-#m = RigidMeasure((3, 4), [v2])
+#m = Measure((3, 4), [v2])
 #s.append(m)
 #v2 = Voice(notetools.make_notes([-3, -5, -6, -5, -3], 
 #   [(1, 8), (1, 8), (1, 8), (1, 16), (1, 16)]))
 #v2.name = 'v2'   
-#m = RigidMeasure((2, 4), [v2])
+#m = Measure((2, 4), [v2])
 #s.append(m)
 #v1a= Voice([Note(-1, (1, 2))])
 #v1a.name = 'v1'
@@ -167,8 +167,8 @@ show(piano)
 #v2a.voice.number = 2
 #p = Container([v1a, v2a])
 #p.parallel = True
-#m = RigidMeasure((2, 4), [p])
-##m = RigidMeasure((2, 4), [v1a, v2a])
+#m = Measure((2, 4), [p])
+##m = Measure((2, 4), [v1a, v2a])
 #s.append(m)
 #v1b= Voice([Note(-1, (1, 2))])
 #v1b.name = 'v1'
@@ -178,8 +178,8 @@ show(piano)
 #v2b.voice.number = 2
 #p = Container([v1b, v2b])
 #p.parallel = True
-#m = RigidMeasure((2, 4), [p])
-##m = RigidMeasure((2, 4), [v1b, v2b])
+#m = Measure((2, 4), [p])
+##m = Measure((2, 4), [v1b, v2b])
 #s.append(m)
 #s.barline.kind = '||'
 #spannertools.TieSpanner([v1a[0], v1b[0]])

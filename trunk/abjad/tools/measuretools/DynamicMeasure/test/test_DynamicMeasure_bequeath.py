@@ -17,7 +17,7 @@ def test_DynamicMeasure_bequeath_01( ):
    }
    '''
 
-   u = RigidMeasure((4, 8), [ ])
+   u = Measure((4, 8), [ ])
    containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t], u)
 
    r'''

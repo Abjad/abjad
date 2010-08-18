@@ -4,7 +4,7 @@ from abjad import *
 def test_RigidMeasure_parallel_01( ):
    '''Rigid measures may be hold parallel contents.'''
 
-   measure = RigidMeasure((2, 8), Voice(notetools.make_repeated_notes(2)) * 2)
+   measure = Measure((2, 8), Voice(notetools.make_repeated_notes(2)) * 2)
    measure.parallel = True
    measure[0].voice.number = 1
    measure[1].voice.number = 2

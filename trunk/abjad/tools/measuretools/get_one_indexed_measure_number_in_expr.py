@@ -6,7 +6,7 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
    Return `measure_number` in `expr`. ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+      abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(t)
       abjad> f(t)
       \new Staff {
@@ -27,7 +27,7 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
          }
       }
       abjad> measuretools.get_one_indexed_measure_number_in_expr(t, 3)
-      RigidMeasure(2/8, [g'8, a'8])
+      Measure(2/8, [g'8, a'8])
 
    .. note:: measures number from 1.
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_fill_measures_in_expr_with_big_endian_notes_01( ):
    '''Populate nonbinary measure with big-endian tie chain.'''
 
-   t = RigidMeasure((5, 18), [ ])
+   t = Measure((5, 18), [ ])
    measuretools.fill_measures_in_expr_with_big_endian_notes(t)
 
    r'''

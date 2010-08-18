@@ -109,7 +109,7 @@ def test_CommentsInterface_contributions_03( ):
 def test_CommentsInterface_contributions_04( ):
    '''Measure comments contributions.'''
 
-   t = RigidMeasure((3, 8), macros.scale(3))
+   t = Measure((3, 8), macros.scale(3))
    beam = spannertools.BeamSpanner(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')

@@ -37,7 +37,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_03( ):
    '''RigidMeasure.'''
 
-   t = RigidMeasure((3, 8), macros.scale(3))
+   t = Measure((3, 8), macros.scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''

@@ -13,7 +13,7 @@ For example:
 
 <abjad>
 note = Note(0, (1, 4))
-measure = RigidMeasure((1, 4), [note]) <hide
+measure = Measure((1, 4), [note]) <hide
 measure.meter.transparent = True <hide
 write(measure, 'pitch_token1', 'oedo') <hide
 </abjad>
@@ -22,7 +22,7 @@ And:
 
 <abjad>
 note = Note(5.5, (1, 4))
-measure = RigidMeasure((1, 4), [note]) <hide
+measure = Measure((1, 4), [note]) <hide
 measure.meter.transparent = True <hide
 write(measure, 'pitch_token2', 'oedo') <hide
 </abjad>
@@ -31,7 +31,7 @@ And:
 
 <abjad>
 note = Note(NamedPitch(13), (1, 4))
-measure = RigidMeasure((1, 4), [note]) <hide
+measure = Measure((1, 4), [note]) <hide
 measure.meter.transparent = True <hide
 write(measure, 'pitch_token3', 'oedo') <hide
 </abjad>

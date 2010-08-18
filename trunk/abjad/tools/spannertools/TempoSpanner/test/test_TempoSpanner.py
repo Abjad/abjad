@@ -63,7 +63,7 @@ def test_TempoSpanner_02( ):
 def test_TempoSpanner_03( ):
    '''Tempo spanner works with containers.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    p = spannertools.TempoSpanner(t[:], tempotools.TempoIndication(Rational(1, 8), 38))
 
    r'''

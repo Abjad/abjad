@@ -7,7 +7,7 @@ def iterate_notes_forward_in_expr(expr, start = 0, stop = None):
 
    Yield left-to-right notes in `expr`. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

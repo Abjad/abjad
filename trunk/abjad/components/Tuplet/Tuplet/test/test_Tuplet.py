@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_FixedMultiplierTuplet_01( ):
+def test_Tuplet_01( ):
    '''Init typical fmtuplet.'''
    
    u = Tuplet((2, 3), Note(0, (1, 8)) * 3)
@@ -13,7 +13,7 @@ def test_FixedMultiplierTuplet_01( ):
    assert u.duration.prolated == Rational(1, 4)
 
 
-def test_FixedMultiplierTuplet_02( ):
+def test_Tuplet_02( ):
    '''Init empty fmtuplet.'''
 
    u = Tuplet((2, 3), [ ])
@@ -25,7 +25,7 @@ def test_FixedMultiplierTuplet_02( ):
    assert u.duration.prolated == 0
 
 
-def test_FixedMultiplierTuplet_03( ):
+def test_Tuplet_03( ):
    '''Nest fmtuplet.'''
 
    u = Tuplet((2, 3), [
@@ -46,7 +46,7 @@ def test_FixedMultiplierTuplet_03( ):
    assert u[0].duration.prolated == Rational(1, 6)
 
 
-def test_FixedMultiplierTuplet_04( ):
+def test_Tuplet_04( ):
    '''Nest empty fmtuplet.'''
 
    u = Tuplet((2, 3), [

@@ -5,9 +5,9 @@ import py.test
 def test_measuretools_fuse_measures_01( ):
    '''Fuse unicorporated binary measures.'''
 
-   t1 = RigidMeasure((1, 8), macros.scale(2, Rational(1, 16)))
+   t1 = Measure((1, 8), macros.scale(2, Rational(1, 16)))
    spannertools.BeamSpanner(t1[:])
-   t2 = RigidMeasure((2, 16), macros.scale(2, Rational(1, 16)))
+   t2 = Measure((2, 16), macros.scale(2, Rational(1, 16)))
    spannertools.SlurSpanner(t2[:])
 
    r'''
@@ -136,8 +136,8 @@ def test_measuretools_fuse_measures_04( ):
       Helpers selects least common multiple of denominators.
       Beams are OK because they attach to leaves rather than containers.'''
 
-   m1 = RigidMeasure((1, 8), notetools.make_repeated_notes(1))
-   m2 = RigidMeasure((1, 12), notetools.make_repeated_notes(1))
+   m1 = Measure((1, 8), notetools.make_repeated_notes(1))
+   m2 = Measure((1, 12), notetools.make_repeated_notes(1))
    t = Voice([m1, m2])
    macros.diatonicize(t)
    spannertools.BeamSpanner(t.leaves)
@@ -185,7 +185,7 @@ def test_measuretools_fuse_measures_05( ):
 def test_measuretools_fuse_measures_06( ):
    '''Fusing list of only one measure returns measure unaltered.'''
 
-   t = RigidMeasure((3, 8), macros.scale(3))
+   t = Measure((3, 8), macros.scale(3))
    new = measuretools.fuse_measures([t])
 
    assert new is t
@@ -242,7 +242,7 @@ def test_measuretools_fuse_measures_07( ):
 def test_measuretools_fuse_measures_08( ):
    '''Measure fusion across intervening container boundaries is undefined.'''
 
-   t = Voice(Container(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
+   t = Voice(Container(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -282,8 +282,8 @@ def test_measuretools_fuse_measures_09( ):
       With change in number of note_heads because of nonbinary multiplier.'''
 
    t = Staff([
-      RigidMeasure((9, 80), [ ]),
-      RigidMeasure((2, 16), [ ])])
+      Measure((9, 80), [ ]),
+      Measure((2, 16), [ ])])
    measuretools.fill_measures_in_expr_with_meter_denominator_notes(t)
 
    r'''

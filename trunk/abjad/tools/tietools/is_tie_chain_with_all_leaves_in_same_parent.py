@@ -10,7 +10,7 @@ def is_tie_chain_with_all_leaves_in_same_parent(expr):
 
       Example::
 
-         abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+         abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
          abjad> spannertools.TieSpanner(t.leaves[1:3])
 
          \new Staff {

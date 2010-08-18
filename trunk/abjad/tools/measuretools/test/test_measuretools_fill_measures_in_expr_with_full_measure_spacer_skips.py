@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01( ):
    '''Populate nonbinary measure with time-scaled skip.'''
 
-   t = RigidMeasure((5, 18), [ ])
+   t = Measure((5, 18), [ ])
    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(t)
 
    r'''
@@ -24,7 +24,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02( )
    '''Populate measures conditionally.
       Iteration control tests index of iteration.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
 
    r'''
@@ -88,7 +88,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03( )
    '''Populate measures conditionally.
       Iteration control tests measure length.'''
 
-   t = Staff([RigidMeasure((n, 8), macros.scale(n)) for n in (2, 3, 4)])
+   t = Staff([Measure((n, 8), macros.scale(n)) for n in (2, 3, 4)])
 
    r'''
    \new Staff {

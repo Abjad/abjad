@@ -7,7 +7,7 @@ def replace_leaves_in_expr_with_skips(expr):
 
    Replace leaves with skips in `expr`::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), macros.scale(2)) * 2)
+      abjad> staff = Staff(Measure((2, 8), macros.scale(2)) * 2)
       abjad> skiptools.replace_leaves_in_expr_with_skips(staff[0])
       abjad> print staff.format
       \new Staff {

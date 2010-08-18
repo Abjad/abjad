@@ -5,7 +5,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
    '''Iterate klass instances in expr and accumulate duration in seconds.
    Add line break after every total less than or equal to line_duration.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
 
    tempo_spanner = spannertools.TempoSpanner(t[:])

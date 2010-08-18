@@ -7,7 +7,7 @@ def get_nth_leaf_in_expr(expr, n = 0):
 
    Return leaf `n` in `expr`. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

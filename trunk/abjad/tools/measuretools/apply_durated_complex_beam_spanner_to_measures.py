@@ -6,7 +6,7 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
    
    Apply durated complex beam spanner to `measures`::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

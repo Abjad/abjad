@@ -30,6 +30,5 @@ class Tuplet(_Tuplet):
 
    @property
    def duration(self):
-      ''':class:`~abjad.components._Tuplet.FixedMultiplierTuplet._FixedMultiplierTupletDurationInterface` \
-      duration interface.'''
+      '''Tuplet duration interface.'''
       return self._duration

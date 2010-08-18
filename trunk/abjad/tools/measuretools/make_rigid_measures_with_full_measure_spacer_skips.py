@@ -37,7 +37,7 @@ def make_rigid_measures_with_full_measure_spacer_skips(meters):
       raise ValueError('meters must all be Abjad meter tokens.')
 
    ## make measures
-   measures = [RigidMeasure(meter, [ ]) for meter in meters]
+   measures = [Measure(meter, [ ]) for meter in meters]
    fill_measures_in_expr_with_full_measure_spacer_skips(measures)
    
    ## return measures

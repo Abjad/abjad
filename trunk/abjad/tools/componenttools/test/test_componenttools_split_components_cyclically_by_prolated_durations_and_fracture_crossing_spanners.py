@@ -5,7 +5,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
    '''Cyclically duration partition one leaf in score.
       Fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -55,7 +55,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
    '''Cyclically duration partition multiple leaves in score.
       Fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -107,7 +107,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
    '''Cyclically duration partition one measure in score.
       Fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -163,7 +163,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
    '''Cyclically duration partition multiple measures in score.
       Fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -260,7 +260,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
    '''Cyclically duration partition list of measures outside of score.
       Fracture spanners.'''
 
-   measures = RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2
+   measures = Measure((2, 8), notetools.make_repeated_notes(2)) * 2
    spannertools.BeamSpanner(measures[0])
    spannertools.BeamSpanner(measures[1])
    macros.diatonicize(measures)
@@ -317,7 +317,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -371,7 +371,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -425,7 +425,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -487,7 +487,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])

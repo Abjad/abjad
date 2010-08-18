@@ -9,7 +9,7 @@ def test_RigidMeasure_bar_line_override_01( ):
    draws new bar_lines during the LilyPond interpretation process.
    '''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
    t._formatter.number.measures = 'comment'
    t[0].bar_line.kind = '||'

@@ -86,12 +86,12 @@ for example, while equivalent in magnitude, these are not the same
 notated durations:
 
    <abjad>
-      hide> m1 = RigidMeasure((1, 4), [Note(0, (1, 4))])
+      hide> m1 = Measure((1, 4), [Note(0, (1, 4))])
       hide> m1.meter.transparent = True
-      hide> m2 = RigidMeasure((1, 4), Note(0, (1, 8)) * 2)
+      hide> m2 = Measure((1, 4), Note(0, (1, 8)) * 2)
       hide> spannertools.TieSpanner(m2)
       hide> m2.meter.transparent = True
-      hide> m3 = RigidMeasure((1, 4), [Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
+      hide> m3 = Measure((1, 4), [Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
       hide> spannertools.TieSpanner(m3)
       hide> m3.meter.transparent = True
       hide> r = RhythmicStaff([m1, m2, m3])
@@ -107,9 +107,9 @@ is a half tone above middle C. But how is this pitch to be notated? As
 a C sharp or a B flat?
 
    <abjad>
-      hide> m1 = RigidMeasure((1, 4), [Note(1, (1, 4))])
+      hide> m1 = Measure((1, 4), [Note(1, (1, 4))])
       hide> m1.meter.transparent = True
-      hide> m2 = RigidMeasure((1, 4), [Note(('df', 4), (1, 4))])
+      hide> m2 = Measure((1, 4), [Note(('df', 4), (1, 4))])
       hide> m2.meter.transparent = True
       hide> r = Staff([m1, m2])
       hide> write(r, 'example2')

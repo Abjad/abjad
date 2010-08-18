@@ -11,7 +11,7 @@ def test_MeterInterface__self_should_contribute_01( ):
 
    notes = macros.scale(3)
    tuplet = tuplettools.FixedDurationTuplet((2, 8), notes)
-   measure = RigidMeasure((2, 8), [tuplet])
+   measure = Measure((2, 8), [tuplet])
    staff = Staff([measure])
 
    r'''

@@ -43,7 +43,7 @@ def _split_component_at_duration(
    #print component, global_split_point, contents
 
    ## get duration crossing measures, if any
-   measures = [x for x in contents if isinstance(x, RigidMeasure)]
+   measures = [x for x in contents if isinstance(x, Measure)]
 
    ## if we must split a binary measure at a nonbinary split point
    ## go ahead and transform the binary measure to nonbinary equiavlent now;

@@ -4,9 +4,9 @@ from abjad import *
 def test_RigidMeasure___add___01( ):
    '''Add outside-of-score rigid measures.'''
    
-   t1 = RigidMeasure((1, 8), macros.scale(2, Rational(1, 16)))
+   t1 = Measure((1, 8), macros.scale(2, Rational(1, 16)))
    spannertools.BeamSpanner(t1[:])
-   t2 = RigidMeasure((2, 16), macros.scale(2, Rational(1, 16)))
+   t2 = Measure((2, 16), macros.scale(2, Rational(1, 16)))
    spannertools.SlurSpanner(t2[:])
 
    r'''
@@ -47,9 +47,9 @@ def test_RigidMeasure___add___01( ):
 def test_RigidMeasure___add___02( ):
    '''Add rigid measures in score.'''
 
-   t1 = RigidMeasure((1, 8), macros.scale(2, Rational(1, 16)))
+   t1 = Measure((1, 8), macros.scale(2, Rational(1, 16)))
    spannertools.BeamSpanner(t1[:])
-   t2 = RigidMeasure((2, 16), macros.scale(2, Rational(1, 16)))
+   t2 = Measure((2, 16), macros.scale(2, Rational(1, 16)))
    spannertools.SlurSpanner(t2[:])
    t = Staff([t1, t2])
 

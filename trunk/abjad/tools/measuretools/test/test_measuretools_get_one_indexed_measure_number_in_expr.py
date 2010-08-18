@@ -4,7 +4,7 @@ import py.test
 
 def test_measuretools_get_one_indexed_measure_number_in_expr_01( ):
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
 
    assert measuretools.get_one_indexed_measure_number_in_expr(t, 1) is t[0]
@@ -15,7 +15,7 @@ def test_measuretools_get_one_indexed_measure_number_in_expr_01( ):
 
 def test_measuretools_get_one_indexed_measure_number_in_expr_02( ):
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
 
    assert py.test.raises(ValueError, 'measuretools.get_one_indexed_measure_number_in_expr(t, -1)')

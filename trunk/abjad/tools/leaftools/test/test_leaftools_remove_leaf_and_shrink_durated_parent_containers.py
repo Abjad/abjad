@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
    '''Excise leaf from tuplet and rigid measure.'''
 
-   t = RigidMeasure((4, 4), 
+   t = Measure((4, 4), 
       tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    macros.diatonicize(t)
 
@@ -50,7 +50,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02( ):
    '''Excise leaf from tuplet and measure.'''
 
-   t = RigidMeasure((4, 4), 
+   t = Measure((4, 4), 
       tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
    macros.diatonicize(t)
 
@@ -104,7 +104,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03( ):
    '''Excise leaf from tuplet and measure.'''
 
-   t = RigidMeasure((5, 6), [
+   t = Measure((5, 6), [
       tuplettools.FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
       tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
@@ -168,7 +168,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
    '''Excise leaf that conflicts with meter duration;
       change meter denominator and reset tuplet target durations.'''
 
-   t = RigidMeasure((5, 6), [
+   t = Measure((5, 6), [
       tuplettools.FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
       tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
@@ -220,7 +220,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
         }
         '''
 
-   assert isinstance(t, RigidMeasure)
+   assert isinstance(t, Measure)
    assert t.meter.forced == (11, 14)
    assert len(t) == 2
    tuplet = t[0]
@@ -246,7 +246,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
    '''Excise leaf that conflicts with meter duration;
       trigger tuplet insertion.'''
 
-   t = RigidMeasure((5, 6), 
+   t = Measure((5, 6), 
       [tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
          notetools.make_repeated_notes(3, (1, 4)))
    macros.chromaticize(t)
@@ -294,7 +294,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
         }
         '''
 
-   assert isinstance(t, RigidMeasure)
+   assert isinstance(t, Measure)
    assert t.meter.forced == (11, 14)
    assert len(t) == 4
    tuplet = t[0]
@@ -320,7 +320,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
    '''Excise leaf that matches meter duration;
       does not trigger trivial 1:1 tuplet insertion.'''
 
-   t = RigidMeasure((5, 6), 
+   t = Measure((5, 6), 
       [tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
          notetools.make_repeated_notes(3, (1, 4)))
    macros.chromaticize(t)
@@ -362,7 +362,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
         }
         '''
 
-   assert isinstance(t, RigidMeasure)
+   assert isinstance(t, Measure)
    assert t.meter.forced == (4, 6)
    assert len(t) == 3
    tuplet = t[0]
@@ -382,7 +382,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
    '''Nested fixed-duration tuplet.'''
 
-   t = RigidMeasure((4, 4), [
+   t = Measure((4, 4), [
       tuplettools.FixedDurationTuplet((2, 2), [Note(0, (1, 2)), Note(1, (1, 2)), 
       tuplettools.FixedDurationTuplet((2, 4), [Note(i, (1, 4)) for i in range(2, 5)])])])
 
@@ -401,7 +401,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
 
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
    measure = t
-   assert isinstance(measure, RigidMeasure)
+   assert isinstance(measure, Measure)
    assert measure.meter.forced == (8, 9)
    assert len(measure) == 1
    tuplet = t[0]

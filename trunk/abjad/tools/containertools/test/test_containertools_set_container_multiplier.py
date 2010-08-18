@@ -18,7 +18,7 @@ def test_containertools_set_container_multiplier_01( ):
 def test_containertools_set_container_multiplier_02( ):
    '''Set multiplier on rigid measure by adjusting meter.'''
 
-   t = RigidMeasure((3, 8), macros.scale(3))
+   t = Measure((3, 8), macros.scale(3))
    assert t.meter.effective.duration == Rational(3, 8)
 
    containertools.set_container_multiplier(t, Rational(2, 3))

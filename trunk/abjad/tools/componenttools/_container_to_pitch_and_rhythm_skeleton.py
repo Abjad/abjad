@@ -27,7 +27,7 @@ def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attribute
    if keyword_attributes:
       keyword_attributes = ',\n'.join(keyword_attributes)
       keyword_attributes = '\n' + keyword_attributes
-   if isinstance(container, RigidMeasure):
+   if isinstance(container, Measure):
       meter = repr(container.meter.effective)
       return '%s(%s, [\n%s\n])' % (class_name, meter, contents)
    elif isinstance(container, tuplettools.FixedDurationTuplet):

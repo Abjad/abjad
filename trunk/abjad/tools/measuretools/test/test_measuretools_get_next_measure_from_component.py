@@ -4,7 +4,7 @@ import py.test
 
 def test_measuretools_get_next_measure_from_component_01( ):
    
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    Container(t[:2])
    macros.diatonicize(t)
 
@@ -47,6 +47,6 @@ def test_measuretools_get_next_measure_from_component_01( ):
 def test_measuretools_get_next_measure_from_component_02( ):
    '''Can retrieve first measure in a Python list.'''
 
-   t = [Note(0, (1, 4)), RigidMeasure((2, 8), macros.scale(2))]
+   t = [Note(0, (1, 4)), Measure((2, 8), macros.scale(2))]
 
    assert measuretools.get_next_measure_from_component(t) is t[1]

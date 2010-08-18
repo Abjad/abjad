@@ -6,7 +6,7 @@ def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index
 
    Return `leaf_index` at `measure_number` in `expr`. ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+      abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(t)
       abjad> f(t)
       \new Staff {

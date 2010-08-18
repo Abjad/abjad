@@ -12,7 +12,7 @@ class SpacingSpanner(Spanner):
 
    Handle LilyPond ``SpacingSpanner`` grob. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
       abjad> spacing_spanner = spannertools.SpacingSpanner(staff[1:])
       abjad> spacing_spanner.new_section = True

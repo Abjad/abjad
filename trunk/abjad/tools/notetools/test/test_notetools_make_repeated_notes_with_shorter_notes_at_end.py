@@ -80,7 +80,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04( ):
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05( ):
    '''Construct train of written 1/16th notes within measure of 5/18.'''
 
-   t = RigidMeasure((5, 18), notetools.make_repeated_notes_with_shorter_notes_at_end(
+   t = Measure((5, 18), notetools.make_repeated_notes_with_shorter_notes_at_end(
       0, Rational(1, 16), Rational(5, 18), prolation = Rational(16, 18)))
 
    r'''

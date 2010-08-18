@@ -19,11 +19,14 @@ def set_container_multiplier(container, multiplier):
       renamed ``containertools.multiplier_set( )`` to
       ``containertools.set_container_multiplier( )``.
    '''
+   from abjad.components.Measure import Measure
+   from abjad.components.Tuplet import Tuplet
+   from abjad.tools import tuplettools
 
-   if container.__class__.__name__ == 'FixedDurationTuplet':
+   if isinstance(container, tuplettools.FixedDurationTuplet):
       container.duration.target = multiplier * container.duration.contents
-   elif container.__class__.__name__ == 'FixedMultiplierTuplet':
+   elif isinstance(container, Tuplet):
       container.duration.multiplier = multiplier
-   elif container.__class__.__name__ == 'RigidMeasure':
+   elif isinstance(container, Measure):
       new_duration = multiplier * container.duration.contents
       container.meter.forced = Meter(new_duration.numerator, new_duration.denominator)

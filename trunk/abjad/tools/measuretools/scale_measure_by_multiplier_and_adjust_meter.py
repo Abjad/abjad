@@ -15,7 +15,7 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(
 
       Example::
 
-         abjad> t = RigidMeasure((3, 8), macros.scale(3))
+         abjad> t = Measure((3, 8), macros.scale(3))
          abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(2, 3))
          abjad> print t.format
 

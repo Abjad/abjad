@@ -35,7 +35,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
       raise TypeError('must be pitch array row.')
 
    meter = Meter(pitch_array_row.width, cell_duration_denominator)
-   measure = RigidMeasure(meter, [ ])
+   measure = Measure(meter, [ ])
    basic_cell_duration = Rational(1, cell_duration_denominator)
    measure_pitches, measure_durations = [ ], [ ]
    for cell in pitch_array_row.cells:

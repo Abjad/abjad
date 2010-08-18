@@ -8,7 +8,7 @@ For example:
 <abjad>
 note = Note(0, (1, 4))
 note.note_head = 13
-measure = RigidMeasure((1, 4), [note]) <hide
+measure = Measure((1, 4), [note]) <hide
 measure.meter.transparent = True <hide
 write(measure, 'note_head_token1', 'oedo') <hide
 </abjad>

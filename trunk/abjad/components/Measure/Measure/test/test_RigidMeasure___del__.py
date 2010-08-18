@@ -4,7 +4,7 @@ from abjad import *
 def test_RigidMeasure___del___01( ):
    '''Nonnegative indices work.'''
 
-   t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
+   t = Measure((4, 8), Note(0, (1, 8)) * 4)
    del(t[:1])
 
    assert componenttools.is_well_formed_component(t)
@@ -14,7 +14,7 @@ def test_RigidMeasure___del___01( ):
 def test_RigidMeasure___del___02( ):
    '''Negative indices work.'''
 
-   t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
+   t = Measure((4, 8), Note(0, (1, 8)) * 4)
    del(t[-1:])
 
    assert componenttools.is_well_formed_component(t)
@@ -24,7 +24,7 @@ def test_RigidMeasure___del___02( ):
 def test_RigidMeasure___del___03( ):
    '''Denominator preservation in meter.'''
 
-   t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
+   t = Measure((4, 8), Note(0, (1, 8)) * 4)
    del(t[:2])
 
    assert componenttools.is_well_formed_component(t)
@@ -34,7 +34,7 @@ def test_RigidMeasure___del___03( ):
 def test_RigidMeasure___del___04( ):
    '''Denominator changes from 8 to 16.'''
 
-   t = RigidMeasure((4, 8), Note(0, (1, 16)) * 2 + Note(0, (1, 8)) * 3)
+   t = Measure((4, 8), Note(0, (1, 16)) * 2 + Note(0, (1, 8)) * 3)
    del(t[:1])
 
    assert componenttools.is_well_formed_component(t)
@@ -44,7 +44,7 @@ def test_RigidMeasure___del___04( ):
 def test_RigidMeasure___del___05( ):
    '''Trim nonbinary measure.'''
 
-   t = RigidMeasure((4, 9), macros.scale(4))
+   t = Measure((4, 9), macros.scale(4))
    del(t[:1]) 
 
    r'''
@@ -68,7 +68,7 @@ def tet_rigid_measure_trim_06( ):
    notes = macros.scale(4)
    notes[0].duration.written = Rational(1, 16)
    notes[1].duration.written = Rational(1, 16)
-   t = RigidMeasure((3, 9), notes)
+   t = Measure((3, 9), notes)
 
    r'''
    {

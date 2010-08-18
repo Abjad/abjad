@@ -8,7 +8,7 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
    Apply beam spanners to measures in `expr`::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

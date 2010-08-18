@@ -12,7 +12,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
    Thin, bare-bones alternative to built-in pickle and cPickle modules::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((3, 8), macros.scale(4))
-      abjad> measure = RigidMeasure((6, 16), [tuplet])   
+      abjad> measure = Measure((6, 16), [tuplet])   
       abjad> staff = Staff([measure])   
       abjad> score = Score(staff * 2)   
       abjad> macros.diatonicize(score)
@@ -23,7 +23,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
       abjad> print skeleton
       Score([
          Staff([
-            RigidMeasure(Meter(6, 16), [
+            Measure(Meter(6, 16), [
                tuplettools.FixedDurationTuplet(Rational(3, 8), [
                   Note(('c', 4), Rational(1, 8)),
                   Note(('d', 4), Rational(1, 8)),
@@ -33,7 +33,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
             ])
          ]),
          Staff([
-            RigidMeasure(Meter(6, 16), [
+            Measure(Meter(6, 16), [
                tuplettools.FixedDurationTuplet(Rational(3, 8), [
                   Note(('g', 4), Rational(1, 8)),
                   Note(('a', 4), Rational(1, 8)),

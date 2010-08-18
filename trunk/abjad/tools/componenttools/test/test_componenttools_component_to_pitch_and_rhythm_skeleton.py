@@ -48,7 +48,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
 
 
    tuplet = tuplettools.FixedDurationTuplet((3, 8), macros.scale(4))
-   measure = RigidMeasure((6, 16), [tuplet])
+   measure = Measure((6, 16), [tuplet])
    staff = Staff([measure])
    score = Score(staff * 2)
    macros.diatonicize(score)
@@ -85,7 +85,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
    r'''
    Score([
       Staff([
-         RigidMeasure(Meter(6, 16), [
+         Measure(Meter(6, 16), [
             tuplettools.FixedDurationTuplet(Rational(3, 8), [
                Note(('c', 4), Rational(1, 8)),
                Note(('d', 4), Rational(1, 8)),
@@ -95,7 +95,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
          ])
       ]),
       Staff([
-         RigidMeasure(Meter(6, 16), [
+         Measure(Meter(6, 16), [
             tuplettools.FixedDurationTuplet(Rational(3, 8), [
                Note(('g', 4), Rational(1, 8)),
                Note(('a', 4), Rational(1, 8)),
@@ -107,7 +107,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
    ])
    '''
 
-   assert skeleton == "Score([\n\tStaff([\n\t\tRigidMeasure(Meter(6, 16), [\n\t\t\tFixedDurationTuplet(Rational(3, 8), [\n\t\t\t\tNote(('c', 4), Rational(1, 8)),\n\t\t\t\tNote(('d', 4), Rational(1, 8)),\n\t\t\t\tNote(('e', 4), Rational(1, 8)),\n\t\t\t\tNote(('f', 4), Rational(1, 8))\n\t\t\t])\n\t\t])\n\t]),\n\tStaff([\n\t\tRigidMeasure(Meter(6, 16), [\n\t\t\tFixedDurationTuplet(Rational(3, 8), [\n\t\t\t\tNote(('g', 4), Rational(1, 8)),\n\t\t\t\tNote(('a', 4), Rational(1, 8)),\n\t\t\t\tNote(('b', 4), Rational(1, 8)),\n\t\t\t\tNote(('c', 5), Rational(1, 8))\n\t\t\t])\n\t\t])\n\t])\n])"
+   assert skeleton == "Score([\n\tStaff([\n\t\tMeasure(Meter(6, 16), [\n\t\t\tFixedDurationTuplet(Rational(3, 8), [\n\t\t\t\tNote(('c', 4), Rational(1, 8)),\n\t\t\t\tNote(('d', 4), Rational(1, 8)),\n\t\t\t\tNote(('e', 4), Rational(1, 8)),\n\t\t\t\tNote(('f', 4), Rational(1, 8))\n\t\t\t])\n\t\t])\n\t]),\n\tStaff([\n\t\tMeasure(Meter(6, 16), [\n\t\t\tFixedDurationTuplet(Rational(3, 8), [\n\t\t\t\tNote(('g', 4), Rational(1, 8)),\n\t\t\t\tNote(('a', 4), Rational(1, 8)),\n\t\t\t\tNote(('b', 4), Rational(1, 8)),\n\t\t\t\tNote(('c', 5), Rational(1, 8))\n\t\t\t])\n\t\t])\n\t])\n])"
 
    new = eval(skeleton)
    

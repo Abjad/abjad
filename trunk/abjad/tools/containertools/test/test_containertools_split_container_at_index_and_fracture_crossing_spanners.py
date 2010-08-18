@@ -54,7 +54,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_02( ):
    '''Index split binary measure, and fracture spanners.'''
 
-   t = Voice(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
    spannertools.BeamSpanner(t[:])
    macros.diatonicize(t)
@@ -108,7 +108,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_03( ):
    '''Index split nonbinary measure, and fracture spanners.'''
 
-   t = Voice(RigidMeasure((3, 9), notetools.make_repeated_notes(3)) * 2)
+   t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
    spannertools.BeamSpanner(t[:])
    macros.diatonicize(t)
@@ -277,7 +277,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_07( ):
    '''Index split measure in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -325,7 +325,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_08( ):
    '''Index split left of leaf in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -373,7 +373,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_09( ):
    '''Index split right of leaf in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2) 
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) 
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -423,7 +423,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
 
-   t = Staff([RigidMeasure((3, 12), macros.scale(2, Rational(3, 16)))])
+   t = Staff([Measure((3, 12), macros.scale(2, Rational(3, 16)))])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t.leaves)
 
@@ -468,7 +468,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
 
-   t = Staff([RigidMeasure((3, 8), macros.scale(2, Rational(3, 16)))])
+   t = Staff([Measure((3, 8), macros.scale(2, Rational(3, 16)))])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t.leaves)
 

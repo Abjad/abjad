@@ -6,7 +6,7 @@ def color_measure(measure, color = 'red'):
 
    Color `measure` with `color`::
 
-      abjad> measure = RigidMeasure((2, 8), macros.scale(2))
+      abjad> measure = Measure((2, 8), macros.scale(2))
       abjad> f(measure)
       {
          \time 2/8
@@ -17,7 +17,7 @@ def color_measure(measure, color = 'red'):
    ::
       
       abjad> measuretools.color_measure(measure, 'red')
-      RigidMeasure(2/8, [c'8, d'8])
+      Measure(2/8, [c'8, d'8])
       
    ::
       

@@ -8,7 +8,7 @@ Notes, rests, chords and skips carry some duration attributes.
 
 <abjad>
 note = Note(0, (3, 16))
-measure = RigidMeasure((3, 16), [note])
+measure = Measure((3, 16), [note])
 staff = RhythmicStaff([measure])
 print note.duration.written
 write(staff, 'example1', 'oedo') <hide
@@ -18,7 +18,7 @@ Tuplets, measures, voices, staves and the other containers carry even more.
 
 <abjad>
 tuplet = tuplettools.FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
-measure = RigidMeasure((3, 16), [tuplet])
+measure = Measure((3, 16), [tuplet])
 staff = RhythmicStaff([measure])
 print tuplet.duration.multiplier
 write(staff, 'example2', 'oedo') <hide

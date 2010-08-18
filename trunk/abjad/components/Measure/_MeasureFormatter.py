@@ -27,7 +27,7 @@ class _MeasureFormatter(_ContainerFormatter):
    :class:`~abjad.components.Measure.rigid.measure.RigidMeasure` instances implement
    a special formatter which inherits from this base class. ::
 
-      abjad> measure = RigidMeasure((3, 8), macros.scale(3))
+      abjad> measure = Measure((3, 8), macros.scale(3))
       abjad> measure.formatter
       <_RigidMeasureFormatter>
    '''

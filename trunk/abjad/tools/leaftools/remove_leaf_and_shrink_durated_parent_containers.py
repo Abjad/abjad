@@ -9,7 +9,7 @@ from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
    r'''Remove `leaf` and shrink durated parent containers::
 
-      abjad> measure = RigidMeasure((4, 8), tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+      abjad> measure = Measure((4, 8), tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> macros.diatonicize(measure)
       abjad> spannertools.BeamSpanner(measure.leaves)
       abjad> f(measure)
@@ -64,7 +64,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
          candidate_new_parent_dur = parent.duration.target - cur_prolation * leaf.duration.written
          if Rational(0) < candidate_new_parent_dur:
             parent.duration.target = candidate_new_parent_dur
-      elif isinstance(parent, RigidMeasure):
+      elif isinstance(parent, Measure):
          old_denominator = parent.meter.forced.denominator
          naive_meter = parent.meter.forced.duration - prolated_leaf_duration
          better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(naive_meter, old_denominator)

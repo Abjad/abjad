@@ -44,7 +44,7 @@ def test_spannertools_get_spanners_that_cross_components_01( ):
 def test_spannertools_get_spanners_that_cross_components_02( ):
    '''Helper gets spanners that cross in from above.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
    beam = spannertools.BeamSpanner(t[1:2] + t[2][0:1])
 

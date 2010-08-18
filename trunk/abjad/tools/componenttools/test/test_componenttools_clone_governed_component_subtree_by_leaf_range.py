@@ -140,7 +140,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_04( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_05( ):
    '''Copy consecutive notes in binary measure.'''
 
-   t = RigidMeasure((4, 8), macros.scale(4))
+   t = Measure((4, 8), macros.scale(4))
    u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 3)
 
    r'''
@@ -178,7 +178,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_07( ):
    '''Copy consecutive leaves from tuplet in binary measure;
       nonbinary measure results.'''
 
-   t = RigidMeasure((4, 8), [tuplettools.FixedDurationTuplet((4, 8), macros.scale(5))])
+   t = Measure((4, 8), [tuplettools.FixedDurationTuplet((4, 8), macros.scale(5))])
 
    r'''
    {
@@ -217,7 +217,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
    '''Copy consecutive leaves from tuplet in measure and voice;
    nonbinary measure results.'''
 
-   t = Voice([RigidMeasure((4, 8), 
+   t = Voice([Measure((4, 8), 
       [tuplettools.FixedDurationTuplet((4, 8), macros.scale(5))])])
   
    r'''
@@ -260,7 +260,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
    '''RigidMeasures shrink down when we copy a partial tuplet.'''
 
-   t = RigidMeasure((4, 8), tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Measure((4, 8), tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -306,7 +306,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_10( ):
    '''Copy consecutive leaves across measure boundary.'''
 
-   t = Staff(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -388,7 +388,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_12( ):
    '''Copy consecutive leaves from measure in staff;
       pass start and stop indices local to measure.'''
 
-   t = Staff(RigidMeasure((3, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -429,7 +429,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_13( ):
    '''Copy consecutive leaves from nonbinary measure in staff;
       pass start and stop indices local to measure.'''
 
-   t = Staff(RigidMeasure((3, 9), notetools.make_repeated_notes(3)) * 2)
+   t = Staff(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''

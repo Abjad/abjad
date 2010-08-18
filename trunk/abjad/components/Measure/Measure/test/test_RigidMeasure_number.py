@@ -13,14 +13,14 @@ def test_RigidMeasure_number_01( ):
 def test_RigidMeasure_number_02( ):
    '''Orphan measures number correctly starting from 1.'''
 
-   t = RigidMeasure((3, 8), macros.scale(3))
+   t = Measure((3, 8), macros.scale(3))
    assert t.number == 1
 
 
 def test_RigidMeasure_number_03( ):
    '''Mesaure numbering works correctly after contents rotation.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
    
    assert t[0].number == 1

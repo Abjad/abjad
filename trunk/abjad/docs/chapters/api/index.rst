@@ -13,9 +13,9 @@ Abjad score components
    components/Cluster/Cluster
    components/Container/Container
    components/Grace/Grace
+   components/Measure/Measure/Measure
    components/Note/Note
    components/Rest/Rest
-   components/_Measure/RigidMeasure/RigidMeasure
    components/Score/Score
    components/Skip/Skip
    components/Staff/Staff

@@ -40,7 +40,7 @@ def test_SpacingSpanner_grob_handling_02( ):
    require context promotion.
    '''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    p = spannertools.SpacingSpanner(t[:])
    p.override.score.spacing_spanner.strict_grace_spacing = True

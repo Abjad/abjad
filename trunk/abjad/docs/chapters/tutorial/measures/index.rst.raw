@@ -11,7 +11,7 @@ To use a rigid measure, you need to know the duration of the
 measure you want to make before you make it.
 
 <abjad>
-measure = RigidMeasure((3, 8), macros.scale(3))
+measure = Measure((3, 8), macros.scale(3))
 print measure.format
 show(measure)
 write_ly(measure, '1') <hide

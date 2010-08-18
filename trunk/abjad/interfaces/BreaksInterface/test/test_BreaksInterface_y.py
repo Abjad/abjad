@@ -5,7 +5,7 @@ def test_BreaksInterface_y_01( ):
    '''``BreaksInterface.y`` formats the \
    LilyPond ``NonMusicalPaperColumn`` prob.'''
 
-   t = RigidMeasure((4, 8), macros.scale(4))
+   t = Measure((4, 8), macros.scale(4))
    t.breaks.line = True
    t.breaks.y = 80
 

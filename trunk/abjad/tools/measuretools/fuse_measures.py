@@ -31,7 +31,7 @@ def fuse_measures(measures):
    ::
       
       abjad> measuretools.fuse_measures(staff[:])
-      RigidMeasure(2/8, [c'16, d'16, e'16, f'16])
+      Measure(2/8, [c'16, d'16, e'16, f'16])
 
    ::
 
@@ -108,7 +108,7 @@ def fuse_measures(measures):
       #containertools.scale_contents_of_container(measure_music, multiplier)
       music += measure_music
 
-   new_measure = RigidMeasure(new_meter, music)
+   new_measure = Measure(new_meter, music)
 
    if parent is not None:
       _give_dominant_to(measures, [new_measure])

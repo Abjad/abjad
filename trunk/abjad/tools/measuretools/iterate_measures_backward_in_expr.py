@@ -7,7 +7,7 @@ def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
 
    Yield right-to-left measures in `expr`. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {
@@ -33,9 +33,9 @@ def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
       abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff):
       ...     measure
       ... 
-      RigidMeasure(2/8, [g'8, a'8])
-      RigidMeasure(2/8, [e'8, f'8])
-      RigidMeasure(2/8, [c'8, d'8])
+      Measure(2/8, [g'8, a'8])
+      Measure(2/8, [e'8, f'8])
+      Measure(2/8, [c'8, d'8])
 
    Use the optional `start` and `stop` keyword parameters
    to control indices of iteration. ::
@@ -43,16 +43,16 @@ def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
       abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 1):
       ...     measure
       ... 
-      RigidMeasure(2/8, [e'8, f'8])
-      RigidMeasure(2/8, [c'8, d'8])
+      Measure(2/8, [e'8, f'8])
+      Measure(2/8, [c'8, d'8])
 
    ::
 
       abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 0, stop = 2):
       ...     measure
       ... 
-      RigidMeasure(2/8, [g'8, a'8])
-      RigidMeasure(2/8, [e'8, f'8])
+      Measure(2/8, [g'8, a'8])
+      Measure(2/8, [e'8, f'8])
 
    .. note:: naive iteration ignores threads.
 

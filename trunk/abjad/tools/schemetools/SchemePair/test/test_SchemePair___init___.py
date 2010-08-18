@@ -7,7 +7,7 @@ def test_SchemePair___init____01( ):
    assert str(pair) == '(1 . 2)'
 
 
-def test_SchemePair___init___02( ):
+def test_SchemePair___init____02( ):
 
    pair = schemetools.SchemePair(True, False)
    assert str(pair) == "(#t . #f)"

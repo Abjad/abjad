@@ -3,7 +3,7 @@ from abjad import *
 
 def test_componenttools_partition_components_cyclically_by_prolated_durations_exactly_with_overhang_01( ):
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
 
    r'''

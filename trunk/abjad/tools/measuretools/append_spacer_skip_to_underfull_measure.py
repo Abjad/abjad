@@ -7,7 +7,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
 
    Append spacer skip to underfull `measure`::
 
-      abjad> measure = RigidMeasure((4, 12), macros.scale(4))
+      abjad> measure = Measure((4, 12), macros.scale(4))
       abjad> measure.meter.forced = metertools.Meter(5, 12)
       abjad> measure.duration.is_underfull 
       True
@@ -15,7 +15,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
    ::
       
       abjad> measuretools.append_spacer_skip_to_underfull_measure(measure) 
-      RigidMeasure(5/12, [c'8, d'8, e'8, f'8, s1 * 1/8])
+      Measure(5/12, [c'8, d'8, e'8, f'8, s1 * 1/8])
       
    ::
       
@@ -40,7 +40,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
       ``measuretools.append_spacer_skip_to_underfull_measure( )``.
    '''
 
-   assert isinstance(rigid_measure, RigidMeasure)
+   assert isinstance(rigid_measure, Measure)
 
    if rigid_measure.duration.is_underfull:
       target_duration = rigid_measure.meter.forced.duration

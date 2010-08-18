@@ -6,7 +6,7 @@ from abjad.tools.measuretools.get_next_measure_from_component import get_next_me
 def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts, mark = False):
    r'''Fuse `container` measures cyclically by `counts`::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 5)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
       abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

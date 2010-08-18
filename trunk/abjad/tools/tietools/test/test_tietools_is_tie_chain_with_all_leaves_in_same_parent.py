@@ -22,7 +22,7 @@ def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_02( ):
 def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_03( ):
    '''False for measure-crossing tie chain.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    spannertools.TieSpanner(t.leaves[1:3])
 
    r'''

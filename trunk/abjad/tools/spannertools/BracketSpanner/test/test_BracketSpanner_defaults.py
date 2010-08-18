@@ -5,7 +5,7 @@ def test_BracketSpanner_defaults_01( ):
    '''Bracket defaults to solid red line with left and right nibs
    and with no nibs at left and right broken edges.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
    spannertools.BracketSpanner(t[1])
 

@@ -24,7 +24,7 @@ def test_BarNumberInterface_current_bar_number_01( ):
 def test_BarNumberInterface_current_bar_number_02( ):
    '''Handle LilyPond currentBarNumber context setting on measure.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    t[0].set.score.current_bar_number = 12
 

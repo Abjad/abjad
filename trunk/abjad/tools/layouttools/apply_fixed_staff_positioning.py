@@ -11,7 +11,7 @@ def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
 
    ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+      abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
       abjad> macros.diatonicize(t)
       abjad> layout.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))      
       abjad> print t.format

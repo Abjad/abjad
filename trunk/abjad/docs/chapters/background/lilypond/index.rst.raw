@@ -30,7 +30,7 @@ recursively to make tuplets as deep as you want.
    hide> t = tuplettools.FixedDurationTuplet((4, 16), Note(0, (1, 16)) * 5)
    hide> u = tuplettools.FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 5)
    hide> v = tuplettools.FixedDurationTuplet((4, 8), [t, u])
-   hide> measure = RigidMeasure(v.duration.preprolated, [v])
+   hide> measure = Measure(v.duration.preprolated, [v])
    hide> measure.meter.transparent = True
    hide> staff = RhythmicStaff([measure])
    hide> write(staff, 'lily_example1')
@@ -71,7 +71,7 @@ LilyPond, such broken tuplets work out of the box.
    hide> spannertools.BeamSpanner(t)
    hide> spannertools.BeamSpanner(notes)
    hide> spannertools.BeamSpanner(u)
-   hide> measure = RigidMeasure((4, 8), [t] + notes + [u])
+   hide> measure = Measure((4, 8), [t] + notes + [u])
    hide> staff = RhythmicStaff([measure])
    hide> write(staff, 'lily_example2')
 </abjad>
@@ -115,9 +115,9 @@ We can rewrite the rhythm above in another way.
 
 
 <abjad>
-   hide> t = RigidMeasure((4, 28), Note(0, (1, 16)) * 4)
-   hide> u = RigidMeasure((2, 8), Note(0, (1, 8)) * 2)
-   hide> v = RigidMeasure((3, 28), Note(0, (1, 16)) * 3)
+   hide> t = Measure((4, 28), Note(0, (1, 16)) * 4)
+   hide> u = Measure((2, 8), Note(0, (1, 8)) * 2)
+   hide> v = Measure((3, 28), Note(0, (1, 16)) * 3)
    hide> spannertools.BeamSpanner(t)
    hide> spannertools.BeamSpanner(u)
    hide> spannertools.BeamSpanner(v)

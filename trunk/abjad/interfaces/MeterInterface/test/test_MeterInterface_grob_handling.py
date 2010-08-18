@@ -24,7 +24,7 @@ def test_MeterInterface_grob_handling_01( ):
 def test_MeterInterface_grob_handling_02( ):
    '''(Nonpromoted) transparent meter on measure.'''
 
-   t = RigidMeasure((4, 8), macros.scale(4))
+   t = Measure((4, 8), macros.scale(4))
    t.override.time_signature.transparent = True
 
    r'''
@@ -45,7 +45,7 @@ def test_MeterInterface_grob_handling_02( ):
 def test_MeterInterface_grob_handling_03( ):
    '''Promoted transarent meter on measure.'''
 
-   t = RigidMeasure((4, 8), macros.scale(4))
+   t = Measure((4, 8), macros.scale(4))
    t.override.staff.time_signature.transparent = True
 
    r'''

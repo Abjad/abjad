@@ -179,7 +179,7 @@ def test_containertools_scale_contents_of_container_06( ):
 def test_containertools_scale_contents_of_container_07( ):
    '''Double all contents, including measure.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -221,7 +221,7 @@ def test_containertools_scale_contents_of_container_07( ):
 def test_containertools_scale_contents_of_container_08( ):
    '''Multiply all contents by 5/4, including measure.'''
 
-   t = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
 
    r'''

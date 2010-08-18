@@ -3,8 +3,8 @@ import py.test
 
 
 def test_RigidMeasure_empty_01( ):
-   assert py.test.raises(TypeError, 't = RigidMeasure(None, macros.scale(4))')
-#   assert repr(t) == 'RigidMeasure( )'
+   assert py.test.raises(TypeError, 't = Measure(None, macros.scale(4))')
+#   assert repr(t) == 'Measure( )'
 #   assert str(t) == '| |'
 #   assert py.test.raises(UnderfullMeasureError, 't.format')
 #   assert t.meter.forced == None
@@ -14,8 +14,8 @@ def test_RigidMeasure_empty_01( ):
 
 
 def test_RigidMeasure_empty_02( ):
-   t = RigidMeasure((4, 4), [ ])
-   assert repr(t) == 'RigidMeasure(4/4)'
+   t = Measure((4, 4), [ ])
+   assert repr(t) == 'Measure(4/4)'
    assert str(t) == '|4/4|'
    assert py.test.raises(UnderfullMeasureError, 't.format')
    assert len(t) == 0
@@ -25,8 +25,8 @@ def test_RigidMeasure_empty_02( ):
 
 
 def test_RigidMeasure_empty_03( ):
-   t = RigidMeasure((4, 5), [ ])
-   assert repr(t) == 'RigidMeasure(4/5)'
+   t = Measure((4, 5), [ ])
+   assert repr(t) == 'Measure(4/5)'
    assert str(t) == '|4/5|'
    assert py.test.raises(UnderfullMeasureError, 't.format')
    assert len(t) == 0

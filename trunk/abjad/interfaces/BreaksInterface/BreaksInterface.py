@@ -13,7 +13,7 @@ class BreaksInterface(_Interface, _FormatContributor):
 
    Handle no LilyPond grob. ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+      abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(t)
       abjad> t[0].formatter.number.self = 'comment'
       abjad> t[1].formatter.number.self = 'comment'

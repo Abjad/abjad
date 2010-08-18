@@ -8,7 +8,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
 
    Append spacer skips to underfull measures in `expr`::
 
-      abjad> staff = Staff(RigidMeasure((3, 8), macros.scale(3)) * 3)
+      abjad> staff = Staff(Measure((3, 8), macros.scale(3)) * 3)
       abjad> staff[1].meter.forced = metertools.Meter(4, 8)
       abjad> staff[2].meter.forced = metertools.Meter(5, 8)
       abjad> staff[1].duration.is_underfull 
@@ -19,7 +19,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
    ::
       
       abjad> measuretools.append_spacer_skips_to_underfull_measures_in_expr(staff) 
-      [RigidMeasure(4/8, [c'8, d'8, e'8, s1 * 1/8]), RigidMeasure(5/8, [c'8, d'8, e'8, s1 * 1/4])]
+      [Measure(4/8, [c'8, d'8, e'8, s1 * 1/8]), Measure(5/8, [c'8, d'8, e'8, s1 * 1/4])]
       
    ::
       
@@ -59,7 +59,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
    '''
 
    treated_measures = [ ]
-   for rigid_measure in componenttools.iterate_components_forward_in_expr(expr, RigidMeasure):
+   for rigid_measure in componenttools.iterate_components_forward_in_expr(expr, Measure):
       if rigid_measure.duration.is_underfull:
          #spacer_skip = append_spacer_skip_to_underfull_measure(rigid_measure)
          #rigid_measure.append(spacer_skip)

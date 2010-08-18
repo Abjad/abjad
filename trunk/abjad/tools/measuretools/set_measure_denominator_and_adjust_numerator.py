@@ -7,7 +7,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
    r'''Set `measure` meter `denominator` and multiply
    meter numerator accordingly::
 
-      abjad> measure = RigidMeasure((3, 8), macros.scale(3))
+      abjad> measure = Measure((3, 8), macros.scale(3))
       abjad> spannertools.BeamSpanner(measure.leaves)
       abjad> f(measure)
       {
@@ -20,7 +20,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
    ::
       
       abjad> measuretools.set_measure_denominator_and_adjust_numerator(measure, 16) 
-      RigidMeasure(6/16, [c'8, d'8, e'8])
+      Measure(6/16, [c'8, d'8, e'8])
       
    ::
       

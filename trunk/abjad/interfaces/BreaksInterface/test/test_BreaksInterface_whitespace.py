@@ -6,7 +6,7 @@ py.test.skip('skipping until clean way to pass multiline overrides.')
 def test_BreaksInterface_whitespace_01( ):
    '''Insert whitespace measure after measure.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -72,7 +72,7 @@ def test_BreaksInterface_whitespace_02( ):
    '''Whitespace after leaf raises TypographicWhitespaceError.
       Otherwise would confuse LilyPond timekeeping.'''
 
-   t = RigidMeasure((2, 8), macros.scale(2))
+   t = Measure((2, 8), macros.scale(2))
 
    assert py.test.raises(
       TypographicWhitespaceError, 't[0].breaks.whitespace = Rational(1, 32)')

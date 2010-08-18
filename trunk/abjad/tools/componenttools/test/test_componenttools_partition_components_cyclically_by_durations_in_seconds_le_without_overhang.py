@@ -6,7 +6,7 @@ def test_componenttools_partition_components_cyclically_by_durations_in_seconds_
    Do read durations cyclically.
    If components remain, do not append final part.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
    tempo_spanner = spannertools.TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)

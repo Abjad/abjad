@@ -8,7 +8,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01( ):
    '''Iterate klasses in expr and accumulate prolated duration.
       Add line break after every total le line duration.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
    layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))
 
@@ -47,7 +47,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02( ):
    '''Iterate klasses in expr and accumulate prolated duration.
       Add line break after every total le line duration.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
    layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(1, 8), klass = _Leaf)
 

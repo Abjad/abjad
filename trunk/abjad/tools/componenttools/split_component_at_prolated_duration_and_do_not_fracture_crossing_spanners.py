@@ -6,7 +6,7 @@ def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(c
    Leave spanners untouched.
    Return split parts. ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+      abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(t)
       abjad> spannertools.BeamSpanner(t[0])
       abjad> spannertools.BeamSpanner(t[1])

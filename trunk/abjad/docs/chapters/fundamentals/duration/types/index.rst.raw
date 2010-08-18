@@ -19,7 +19,7 @@ The sixteenth notes here are worth exactly a sixteenth of a whole note.
 
 
 <abjad>
-measure = RigidMeasure((5, 16), Note(0, (1, 16)) * 5)
+measure = Measure((5, 16), Note(0, (1, 16)) * 5)
 spannertools.BeamSpanner(measure)
 staff = RhythmicStaff([measure])
 note = measure[0]
@@ -34,7 +34,7 @@ The sixteenth notes here are worth more than a sixteenth of a whole note.
 <abjad>
 tuplet = tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)
 spannertools.BeamSpanner(tuplet)
-measure = RigidMeasure((5, 16), [tuplet])
+measure = Measure((5, 16), [tuplet])
 staff = RhythmicStaff([measure])
 note = tuplet[0]
 print note.duration.written
@@ -92,7 +92,7 @@ notes = Note(0, (1, 8)) * 2
 spannertools.BeamSpanner(notes)
 tuplet = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
 spannertools.BeamSpanner(tuplet)
-measure = RigidMeasure((4, 8), notes + [tuplet]) 
+measure = Measure((4, 8), notes + [tuplet]) 
 staff = RhythmicStaff([measure])
 print measure.duration.contents
 write_ly(staff, 'contents_dur1', 'oedo') <hide
@@ -113,7 +113,7 @@ The fixed-duration tuplet here carries a target duration equal to 4/8.
 <abjad>
 tuplet = tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
 spannertools.BeamSpanner(tuplet)
-measure = RigidMeasure((4, 8), [tuplet]) 
+measure = Measure((4, 8), [tuplet]) 
 staff = RhythmicStaff([measure])
 print tuplet.duration.contents
 write_ly(staff, 'target_dur1', 'oedo') <hide
@@ -136,7 +136,7 @@ The first two notes here carry leaf mulitipliers equal to 2/1.
 notes = Note(0, (1, 16)) * 4
 notes[0].duration.multiplier = Rational(2, 1)
 notes[1].duration.multiplier = Rational(2, 1)
-measure = RigidMeasure((3, 8), notes) 
+measure = Measure((3, 8), notes) 
 spannertools.BeamSpanner(measure)
 staff = RhythmicStaff([measure])
 note = measure[0]

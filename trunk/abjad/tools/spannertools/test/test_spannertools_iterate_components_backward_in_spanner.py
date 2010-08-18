@@ -3,7 +3,7 @@ from abjad import *
 
 def test_spannertools_iterate_components_backward_in_spanner_01( ):
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    p = spannertools.BeamSpanner(t[:])
 

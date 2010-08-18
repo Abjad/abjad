@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_01( ):
    '''Duration partition one container in score, and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
@@ -59,7 +59,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''Duration partition multiple containers in score, 
       and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])

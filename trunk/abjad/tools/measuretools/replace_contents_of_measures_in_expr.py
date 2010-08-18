@@ -25,7 +25,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
       
       abjad> notes = macros.scale(4, Rational(1, 16))
       abjad> measuretools.replace_contents_of_measures_in_expr(staff, notes) 
-      [RigidMeasure(1/8, [c'16, d'16]), RigidMeasure(3/16, [e'16, f'16, s1 * 1/16])]
+      [Measure(1/8, [c'16, d'16]), Measure(3/16, [e'16, f'16, s1 * 1/16])]
       
    ::
       

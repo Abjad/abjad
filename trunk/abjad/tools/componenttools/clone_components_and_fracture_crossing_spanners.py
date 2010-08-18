@@ -15,7 +15,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
    Fracture spanners that attach to components not in `components`.
    Return Python list of copied components. ::
 
-      abjad> voice = Voice(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+      abjad> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(voice)
       abjad> beam = spannertools.BeamSpanner(voice.leaves[:4])
       abjad> f(voice)

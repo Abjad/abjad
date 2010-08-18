@@ -26,7 +26,7 @@ def test_SpacingSpanner_new_section_01( ):
 def test_SpacingSpanner_new_section_02( ):
    '''Apply LilyPond spacing section to Abjad measures.'''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    p = spannertools.SpacingSpanner(t[:])
    p.new_section = True
 

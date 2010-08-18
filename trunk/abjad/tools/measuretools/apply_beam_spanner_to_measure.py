@@ -7,7 +7,7 @@ def apply_beam_spanner_to_measure(measure):
 
    Apply beam spanner to `measure`::
 
-      abjad> measure = RigidMeasure((2, 8), macros.scale(2))
+      abjad> measure = Measure((2, 8), macros.scale(2))
       abjad> f(measure)
       {
          \time 2/8

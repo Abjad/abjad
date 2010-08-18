@@ -5,7 +5,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01( 
    '''Make binary measure into equivalent nonbinary measure.
       Assignable 3/2 multiplier conserves note_heads.'''
 
-   t = RigidMeasure((2, 8), macros.scale(2))
+   t = Measure((2, 8), macros.scale(2))
    spannertools.BeamSpanner(t[:])
 
    r'''
@@ -36,7 +36,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02( 
    '''Make binary measure into equivalent nonbinary measure.
       Nonassignable 5/4 multiplier induces ties.'''
 
-   t = RigidMeasure((2, 8), macros.scale(2))
+   t = Measure((2, 8), macros.scale(2))
    spannertools.BeamSpanner(t[:])
 
    r'''
@@ -69,7 +69,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03( 
    '''Make binary measure into equivalent nonbinary measure.
       Assignable 7/4 multiplier conserves note_heads.'''
 
-   t = RigidMeasure((2, 8), macros.scale(2))
+   t = Measure((2, 8), macros.scale(2))
    spannertools.BeamSpanner(t[:])
 
    r'''
@@ -100,7 +100,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04( 
    '''Make binary measure into equivalent nonbinary measure.
       Nonassignable 9/8 multiplier induces ties.'''
 
-   t = RigidMeasure((2, 8), macros.scale(2))
+   t = Measure((2, 8), macros.scale(2))
    spannertools.BeamSpanner(t[:])
 
    r'''

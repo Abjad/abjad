@@ -7,7 +7,7 @@ def get_nth_measure_in_expr(expr, n = 0):
 
    Return measure `n` in `expr`. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 3)
+      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(staff)
       abjad> f(staff)
       \new Staff {
@@ -33,18 +33,18 @@ def get_nth_measure_in_expr(expr, n = 0):
       abjad> for n in range(3):
       ...     measuretools.get_nth_measure_in_expr(staff, n)
       ... 
-      RigidMeasure(2/8, [c'8, d'8])
-      RigidMeasure(2/8, [e'8, f'8])
-      RigidMeasure(2/8, [g'8, a'8])
+      Measure(2/8, [c'8, d'8])
+      Measure(2/8, [e'8, f'8])
+      Measure(2/8, [g'8, a'8])
 
    Read backward for negative values of `n`. ::
 
       abjad> for n in range(3, -1, -1):
       ...     measuretools.get_nth_measure_in_expr(staff, n)
       ... 
-      RigidMeasure(2/8, [g'8, a'8])
-      RigidMeasure(2/8, [e'8, f'8])
-      RigidMeasure(2/8, [c'8, d'8])
+      Measure(2/8, [g'8, a'8])
+      Measure(2/8, [e'8, f'8])
+      Measure(2/8, [c'8, d'8])
          
    .. todo:: implement ``measuretools.iterate_measures_forward_in_expr(expr, i = 0, j = None)``
       as a companion to this function.

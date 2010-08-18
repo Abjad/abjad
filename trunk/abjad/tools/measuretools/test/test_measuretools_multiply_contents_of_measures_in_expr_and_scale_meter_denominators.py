@@ -6,7 +6,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
       Meter 3/8 goes to 9/24.
       Numerator and denominator both triple.'''
 
-   t = RigidMeasure((3, 8), macros.scale(3))
+   t = Measure((3, 8), macros.scale(3))
    spannertools.BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])
 
@@ -36,7 +36,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
       Meter 3/16 goes to 12/80.
       Numerator quadruples and denominator quintuples.'''
 
-   t = RigidMeasure((3, 16), macros.scale(3, Rational(1, 16)))
+   t = Measure((3, 16), macros.scale(3, Rational(1, 16)))
    spannertools.BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(4, 5)])
 
@@ -69,7 +69,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
       Meter 3/16 goes to 12/64.
       Numerator and denominator both quadruple.'''
 
-   t = RigidMeasure((3, 16), macros.scale(3, Rational(1, 16)))
+   t = Measure((3, 16), macros.scale(3, Rational(1, 16)))
    spannertools.BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(4, 4)])
 
@@ -100,7 +100,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
          Meter 3/16 goes to 6/64.
          Numerator doubles and denominator quadruples.'''
 
-   t = RigidMeasure((3, 16), macros.scale(3, Rational(1, 16)))
+   t = Measure((3, 16), macros.scale(3, Rational(1, 16)))
    spannertools.BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(2, 4)])
 

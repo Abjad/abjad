@@ -8,7 +8,7 @@ def test_layouttools_apply_layouttools_schema_01( ):
    StaffAlignmentOffsets, FixedStaffPositioning by hand.
    '''
 
-   t = Staff(RigidMeasure((2, 8), notetools.make_repeated_notes(2)) * 4)
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
 
    r'''

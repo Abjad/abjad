@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_01( ):
    '''Subsume complete binary tuplet.'''
 
-   t = RigidMeasure((2, 8), [tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
+   t = Measure((2, 8), [tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''
@@ -25,7 +25,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_02( ):
    '''Subsume complete nonbinary tuplet.'''
 
-   t = RigidMeasure((3, 16), [
+   t = Measure((3, 16), [
       tuplettools.FixedDurationTuplet((3, 16), macros.scale(5, (1, 16)))])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
@@ -49,7 +49,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_03( ):
    '''Subsume 7:6 tuplet.'''
 
-   t = RigidMeasure((6, 8), [
+   t = Measure((6, 8), [
       tuplettools.FixedDurationTuplet((6, 8), macros.scale(7))])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
@@ -75,7 +75,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_04( ):
    '''Subsume tuplet in nonassignable measure.'''
 
-   t = RigidMeasure((5, 8), [
+   t = Measure((5, 8), [
       tuplettools.FixedDurationTuplet((5, 8), macros.scale(6))])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
@@ -109,7 +109,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
    inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Rational(1, 16)))
    notes = notetools.make_repeated_notes(2)
    outer = tuplettools.FixedDurationTuplet((2, 8), [inner] + notes)
-   t = RigidMeasure((2, 8), [outer])
+   t = Measure((2, 8), [outer])
    macros.diatonicize(t)
 
    r'''
@@ -152,7 +152,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
    '''Submsume 6:5. Meter should go from 5/16 to 15/48.'''
 
    tuplet = tuplettools.FixedDurationTuplet((5, 16), macros.scale(3))
-   t = RigidMeasure((5, 16), [tuplet])
+   t = Measure((5, 16), [tuplet])
 
    r'''
    {
