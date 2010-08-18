@@ -1,6 +1,6 @@
 from abjad.components.Chord import Chord
 from abjad.components._Leaf import _Leaf
-from abjad.components._Measure import _Measure
+from abjad.components.Measure import _Measure
 from abjad.components.Note import Note
 from abjad.core import Rational
 from abjad.core import _Immutable

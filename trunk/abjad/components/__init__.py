@@ -2,6 +2,7 @@ from Chord import Chord
 from Cluster import Cluster
 from Container import Container
 from Grace import Grace
+from Measure import Measure
 from Note import Note
 from Rest import Rest
 from Score import Score
@@ -9,4 +10,3 @@ from Skip import Skip
 from Staff import Staff
 from Tuplet import Tuplet
 from Voice import Voice
-from _Measure import RigidMeasure

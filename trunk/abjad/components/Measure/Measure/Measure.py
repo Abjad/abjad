@@ -1,12 +1,11 @@
-from abjad.components._Measure._Measure import _Measure
-from abjad.components._Measure.RigidMeasure._RigidMeasureDurationInterface import \
-   _RigidMeasureDurationInterface
-from abjad.components._Measure.RigidMeasure._RigidMeasureFormatter import _RigidMeasureFormatter
+from abjad.components.Measure._Measure import _Measure
+from abjad.components.Measure.Measure._RigidMeasureDurationInterface import _RigidMeasureDurationInterface
+from abjad.components.Measure.Measure._RigidMeasureFormatter import _RigidMeasureFormatter
 from abjad.tools.metertools import Meter
 from abjad.tools import durtools
 
 
-class RigidMeasure(_Measure):
+class Measure(_Measure):
 
    def __init__(self, meter, music = None, **kwargs):
       _Measure.__init__(self, music)

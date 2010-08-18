@@ -1,5 +1,5 @@
 from abjad.components.Container import Container
-from abjad.components._Measure import _Measure
+from abjad.components.Measure import _Measure
 
 
 def comment_measures_in_container_with_measure_numbers(container, style = 'comment'):

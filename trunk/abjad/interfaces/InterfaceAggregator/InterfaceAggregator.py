@@ -187,7 +187,7 @@ class InterfaceAggregator(_Interface):
       for contributor in self.contributors:
          result.extend(getattr(contributor, 'settings', [ ]))
       from abjad.components._Leaf import _Leaf
-      from abjad.components._Measure import _Measure
+      from abjad.components.Measure import _Measure
       from abjad.tools.lilyfiletools._format_lilypond_context_setting_inline import \
          _format_lilypond_context_setting_inline
       from abjad.tools.lilyfiletools._format_lilypond_context_setting_in_with_block import \

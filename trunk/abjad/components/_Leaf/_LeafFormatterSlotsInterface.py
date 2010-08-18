@@ -66,7 +66,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    ## FIXME: make work with new grob override pattern ##
    def _wrap_preceding_measure_bar_line_reverts(self):
-      from abjad.components._Measure import _Measure
+      from abjad.components.Measure import _Measure
       from abjad.tools import componenttools
       from abjad.tools import measuretools
       leaf = self.formatter._client

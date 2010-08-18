@@ -1,4 +1,4 @@
-from abjad.components._Measure import RigidMeasure
+from abjad.components.Measure import Measure
 from abjad.components.Tuplet import Tuplet
 from abjad.tools.componenttools._get_leaf_keyword_attributes import _get_leaf_keyword_attributes
 

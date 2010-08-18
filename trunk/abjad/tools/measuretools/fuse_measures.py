@@ -70,8 +70,8 @@ def fuse_measures(measures):
       renamed ``fuse.measures_by_reference( )`` to
       ``measuretools.fuse_measures( )``.
    '''
-   from abjad.components._Measure import _Measure
-   from abjad.components._Measure import RigidMeasure
+   from abjad.components.Measure import _Measure
+   from abjad.components.Measure import Measure
    from abjad.tools import componenttools
 
    assert componenttools.all_are_contiguous_components_in_same_parent(measures,

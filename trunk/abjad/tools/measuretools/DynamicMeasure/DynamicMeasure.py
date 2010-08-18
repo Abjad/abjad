@@ -1,4 +1,4 @@
-from abjad.components._Measure._Measure import _Measure
+from abjad.components.Measure._Measure import _Measure
 from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface import \
    _DynamicMeasureDurationInterface
 from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureMeterInterface import \

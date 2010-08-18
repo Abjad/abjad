@@ -1,4 +1,4 @@
-from abjad.components._Measure._MeasureDurationInterface import _MeasureDurationInterface
+from abjad.components.Measure._MeasureDurationInterface import _MeasureDurationInterface
 
 
 class _RigidMeasureDurationInterface(_MeasureDurationInterface):

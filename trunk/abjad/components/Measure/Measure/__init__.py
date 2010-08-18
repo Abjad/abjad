@@ -1,1 +1,1 @@
-from RigidMeasure import RigidMeasure
+from Measure import Measure
