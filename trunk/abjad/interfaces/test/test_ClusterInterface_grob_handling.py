@@ -5,7 +5,7 @@ def test_ClusterInterface_grob_handling_01( ):
    '''Clusters handle grob overrides.
    '''
 
-   t = Cluster(Note(1, (1, 4)) * 4)
+   t = chordtools.Cluster(Note(1, (1, 4)) * 4)
    t.override.cluster_spanner.style = 'ramp'
    t.override.cluster_spanner.padding = 0.1
 

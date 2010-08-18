@@ -10,7 +10,6 @@ Abjad score components
    :maxdepth: 1
 
    components/Chord/Chord
-   components/Cluster/Cluster
    components/Container/Container
    components/Grace/Grace
    components/Measure/Measure/Measure
@@ -73,6 +72,7 @@ chordtools
 .. toctree::
    :maxdepth: 1
 
+   tools/chordtools/Cluster/Cluster
    tools/chordtools/arpeggiate_chord
    tools/chordtools/cast_defective_chord
    tools/chordtools/color_chord_note_heads_by_numeric_pitch_class

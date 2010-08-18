@@ -1,5 +1,4 @@
 from Chord import Chord
-from Cluster import Cluster
 from Container import Container
 from Grace import Grace
 from Measure import Measure
