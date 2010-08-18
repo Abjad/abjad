@@ -2,6 +2,7 @@ from abjad.components.Container import Container
 from abjad.exceptions import MissingSpannerError
 from abjad.tools.notetools import Articulation
 from abjad.tools.spannertools import BeamSpanner, SlurSpanner, TieSpanner
+from abjad.tools.stafftools import Clef
 from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
 from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
 from abjad.components.Voice import Voice
@@ -27,7 +28,7 @@ def parse_note_entry_string(note_entry_string):
    container = Container([ ])
    tokens = note_entry_string.split( ) 
 
-   is_chord = False
+   in_chord = False
    chord_tokens = [ ]
 
    in_beam = False
@@ -37,11 +38,24 @@ def parse_note_entry_string(note_entry_string):
    slur_start_leaf = None
 
    tie_next_leaf = False
-   waiting_on_bar_string = False
 
+   waiting_on_bar_string = False
+   waiting_on_clef_string = False
+   clef_string = None
+   
    for token in tokens:
 
-      if is_chord: # we are inside a chord, looking for pitches
+      if waiting_on_bar_string:
+         bar_string = eval(token)
+         last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
+         last_leaf.misc.bar = bar_string
+         waiting_on_bar_string = False
+
+      elif waiting_on_clef_string:
+         clef_string = token
+         waiting_on_clef_string = False
+
+      elif in_chord: # currently inside a chord block, looking for pitches
 
          if re.match("[A-Za-z0-9,']+>[0-9]+", token) is not None:
             chord_tokens.append(token)
@@ -52,8 +66,12 @@ def parse_note_entry_string(note_entry_string):
                tie_next_leaf = False
             else:
                container.append(leaf)
-            is_chord = False
+            in_chord = False
             chord_tokens = [ ]
+            if clef_string:
+               last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
+               last_leaf.clef.forced = Clef(clef_string)
+               clef_string = None
 
          elif re.match('\w+', token) is not None:
             chord_tokens.append(token)
@@ -61,7 +79,7 @@ def parse_note_entry_string(note_entry_string):
          else:
             pass
 
-      else:
+      else: # currently not inside a chord block
 
          if re.match('\w+', token) is not None:
             leaf = _parse_note_entry_token(token)
@@ -71,9 +89,13 @@ def parse_note_entry_string(note_entry_string):
                tie_next_leaf = False
             else:
                container.append(leaf) 
+            if clef_string:
+               last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
+               last_leaf.clef.forced = Clef(clef_string)
+               clef_string = None
 
          elif re.match('<\w+', token) is not None:
-            is_chord = True
+            in_chord = True
             chord_tokens.append(token)
 
          elif token == '~':
@@ -87,12 +109,9 @@ def parse_note_entry_string(note_entry_string):
          elif token == r'\bar':
             waiting_on_bar_string = True
 
-         elif token.startswith('"'):
-            bar_string = eval(token)
-            last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-            last_leaf.misc.bar = bar_string
-            waiting_on_bar_string = False
-
+         elif token == r'\clef':
+            waiting_on_clef_string = True
+         
          elif token.startswith(('\\', '-', '^', '_')):
             last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
             try:
@@ -141,6 +160,5 @@ def parse_note_entry_string(note_entry_string):
 
          else:
             pass
-
 
    return container
