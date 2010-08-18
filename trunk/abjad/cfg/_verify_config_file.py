@@ -5,25 +5,31 @@ from abjad.cfg._write_config_file import _write_config_file
 from abjad.cfg._update_config_file import _update_config_file
 import os
 
-
 def _verify_config_file( ):
    try:
       f = open(ABJADCONFIG, 'r')
       f.close( )
       old_dict = _config_file_to_dict()
 
+      ## TODO: This block overwrites user-specific config file additions like 'foo = 99' ##
+      ##       Fix and allow user-specific config file additions?                        ##
+      ##       Or remove the message about old keys being maintained?                    ##
       if sorted(dict.keys()) != sorted(old_dict.keys()):
-         raw_input( '\nAttention:\n\
-         Your current Abjad configuration file ("%s") is out of date.\n\
-         Abjad will now overwrite the old with a new configuration file.\n\
-         Any relavent keys from your old configuration will be maintained.\n\
-         Press any key to continue.' % ABJADCONFIG)
+         print ''
+         print '   The config file "%s" in your home directory is out of date.' % ABJADCONFIG
+         print '   Abjad will now overwrite the old file with a new one.'
+         print '   Any relavent keys from your old configuration will be maintained.'
+         print ''
+         raw_input('   Press any key to continue: ')
          _update_config_file(dict, old_dict)
+         os.system('clear')
 
    except IOError:
-      raw_input( '\nAttention:\n\
-      "%s" does not exist in your system.\n\
-      Abjad will now create it to store all configuration settings.\n\
-      You may want to edit this file to configure Abjad to your liking.\n\
-      Press any key to continue.' % ABJADCONFIG)
+      print ''
+      print '   Abjad will now create the file "%s" in your home directory.' % ABJADCONFIG
+      print '   Edit this file to change the way Abjad starts up and runs.'
+      print ''
+      raw_input('   Press any key to continue: ')
+      print ''
       _write_config_file(ABJADCONFIG, dict)
+      os.system('clear')
