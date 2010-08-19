@@ -845,11 +845,15 @@ spannertools
    tools/spannertools/TextSpanner/TextSpanner
    tools/spannertools/TieSpanner/TieSpanner
    tools/spannertools/TrillSpanner/TrillSpanner
+   tools/spannertools/destroy_all_spanners_attached_to_component
    tools/spannertools/find_index_of_spanner_component_at_score_offset
    tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
+   tools/spannertools/fracture_all_spanners_attached_to_component
    tools/spannertools/fracture_spanners_that_cross_components
+   tools/spannertools/get_all_spanners_attached_to_any_improper_children_of_component
    tools/spannertools/get_all_spanners_attached_to_any_proper_children_of_component
    tools/spannertools/get_all_spanners_attached_to_component
+   tools/spannertools/get_all_spanners_attached_to_improper_parentage_of_component
    tools/spannertools/get_nth_leaf_in_spanner
    tools/spannertools/get_spanners_contained_by_components
    tools/spannertools/get_spanners_covered_by_components
@@ -858,12 +862,17 @@ spannertools
    tools/spannertools/get_spanners_that_dominate_component_pair
    tools/spannertools/get_spanners_that_dominate_components
    tools/spannertools/get_spanners_that_dominate_container_components_from_to
+   tools/spannertools/is_component_with_spanner_attached
    tools/spannertools/iterate_components_backward_in_spanner
    tools/spannertools/iterate_components_forward_in_spanner
    tools/spannertools/make_dynamic_spanner_below_with_nib_at_right
    tools/spannertools/make_solid_text_spanner_above_with_nib_at_right
    tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
    tools/spannertools/move_spanners_from_component_to_children_of_component
+   tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_component
+   tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component
+   tools/spannertools/report_to_screen_format_contributions_of_all_spanners_attached_to_component
+   tools/spannertools/report_to_screen_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component
    tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
 

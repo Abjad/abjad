@@ -65,6 +65,7 @@ class _ComponentSpannerAggregator(_Interface):
          result.update(set(component.spanners.attached))
       return result
 
+   ## externalized as spannertools.get_all_spanners_attached_to_any_improper_chldren_of_component( )
    @property
    def contained(self):
       '''Return unordered set of all spanners attaching to 
@@ -76,6 +77,7 @@ class _ComponentSpannerAggregator(_Interface):
          result.update(set(component.spanners.attached))
       return result
 
+   ## externalized as spannertools.is_component_with_spanner_attached( )
    @property
    def spanned(self):
       '''Return True when any spanners attach to self, 
@@ -84,11 +86,13 @@ class _ComponentSpannerAggregator(_Interface):
 
    ## PUBLIC METHODS ##
 
+   ## externalized as spannertools.destory_all_spanners_attached_to_component( )
    def clear(self):
       '''Clear every spanner attaching to client.'''
       for spanner in list(self.attached):
          spanner.clear( )
 
+   ## externalized as spannertools.fracture_all_spananers_attached_to_component( )
    def fracture(self, direction = 'both'):
       '''Fracture every spanner attaching to client.'''
       result = [ ]
@@ -97,9 +101,14 @@ class _ComponentSpannerAggregator(_Interface):
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
 
+   ## externalized as spannertools.get_all_spanners_attached_to_component( )
    def get_all_attached_spanners_of_type(self, spanner_type):
       return set([x for x in self.attached if isinstance(x, spanner_type)])
 
+   ## externalized as spannertools.report_as_string_format_contributions_of_spanners_attached_to_component( )
+   ## externalized as spannertools.report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component( )
+   ## externalized as spannertools.report_to_screen_format_contributions_of_spanners_attached_to_component( )
+   ## externalized as spannertools.report_to_screen_format_contributions_of_spanners_attached_to_improper_parentage_of_component( )
    def report(self, output = 'screen'):
       '''Deliver report of format-time contributions.
          Order contributions first by location then by something else.'''
