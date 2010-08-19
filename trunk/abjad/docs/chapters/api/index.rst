@@ -901,6 +901,7 @@ threadtools
 .. toctree::
    :maxdepth: 1
 
+   tools/threadtools/component_to_thread_signature
    tools/threadtools/iterate_thread_backward_from_component
    tools/threadtools/iterate_thread_backward_in_expr
    tools/threadtools/iterate_thread_forward_from_component

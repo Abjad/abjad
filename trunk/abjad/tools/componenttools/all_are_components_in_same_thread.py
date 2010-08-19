@@ -1,4 +1,5 @@
 from abjad.components._Component import _Component
+from abjad.tools import threadtools
 import types
 
 
@@ -25,11 +26,13 @@ def all_are_components_in_same_thread(expr, klasses = (_Component, ), allow_orph
 
    same_thread = True
 
-   first_signature = first.thread.signature
+   #first_signature = first.thread.signature
+   first_signature = threadtools.component_to_thread_signature(first)
    for component in expr[1:]:
       if not component.parentage.orphan:
          orphan_components = False
-      if component.thread.signature != first_signature:
+      #if component.thread.signature != first_signature:
+      if threadtools.component_to_thread_signature(component) != first_signature:
          same_thread = False
       if not allow_orphans and not same_thread:
          return False

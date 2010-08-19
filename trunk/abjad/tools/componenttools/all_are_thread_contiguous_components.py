@@ -1,4 +1,5 @@
 from abjad.components._Component import _Component
+from abjad.tools import threadtools
 import types
 
 
@@ -53,14 +54,16 @@ def all_are_thread_contiguous_components(expr, klasses = (_Component), allow_orp
    same_thread = True
    thread_proper = True
 
-   first_thread = first.thread.signature
+   #first_thread = first.thread.signature
+   first_thread = threadtools.component_to_thread_signature(first)
    prev = first
    for cur in expr[1:]:
       if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
-      if not cur.thread.signature == first_thread:
+      #if not cur.thread.signature == first_thread:
+      if not threadtools.component_to_thread_signature(cur) == first_thread:
          same_thread = False
       if not prev._navigator._is_immediate_temporal_successor_of(cur):
          if not _are_thread_proper(prev, cur):
@@ -92,8 +95,10 @@ def _are_thread_proper(component_1, component_2, klasses = (_Component)):
       return False
 
    ## if component_1 and component_2 do not share a thread
-   first_thread = component_1.thread.signature
-   if not first_thread == component_2.thread.signature:
+   #first_thread = component_1.thread.signature
+   first_thread = threadtools.component_to_thread_signature(component_1)
+   #if not first_thread == component_2.thread.signature:
+   if not first_thread == threadtools.component_to_thread_signature(component_2):
       #print 'not same thread!'
       return False
 
@@ -111,7 +116,8 @@ def _are_thread_proper(component_1, component_2, klasses = (_Component)):
    for node in dfs:
       if node is component_2:
          break
-      node_thread = node.thread.signature
+      #node_thread = node.thread.signature
+      node_thread = threadtools.component_to_thread_signature(node)
       if node_thread == first_thread:
          node_begin = node.offset.prolated.start
          if first_end <= node_begin < second_begin:

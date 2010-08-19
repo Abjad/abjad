@@ -1,4 +1,5 @@
 from abjad.components._Component import _Component
+from abjad.tools import threadtools
 import types
 
 
@@ -29,14 +30,16 @@ def all_are_contiguous_components_in_same_thread(expr, klasses = (_Component),
    same_thread = True
    strictly_contiguous = True
 
-   first_signature = first.thread.signature
+   #first_signature = first.thread.signature
+   first_signature = threadtools.component_to_thread_signature(first)
    prev = first
    for cur in expr[1:]:
       if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
-      cur_signature = cur.thread.signature
+      #cur_signature = cur.thread.signature
+      cur_signature = threadtools.component_to_thread_signature(cur)
       if not cur_signature == first_signature:
          same_thread = False
       if not prev._navigator._is_immediate_temporal_successor_of(cur):
