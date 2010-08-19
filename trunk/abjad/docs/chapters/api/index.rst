@@ -11,7 +11,6 @@ Abjad score components
 
    components/Chord/Chord
    components/Container/Container
-   components/Grace/Grace
    components/Measure/Measure/Measure
    components/Note/Note
    components/Rest/Rest
@@ -119,7 +118,6 @@ componenttools
    tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups_of_klass
    tools/componenttools/is_beamable_component
    tools/componenttools/is_well_formed_component
-   tools/componenttools/iterate_components_and_grace_containers_forward_in_expr
    tools/componenttools/iterate_components_backward_in_expr
    tools/componenttools/iterate_components_depth_first
    tools/componenttools/iterate_components_forward_in_expr
@@ -271,6 +269,15 @@ formattools
 
    tools/formattools/format_input_lines_as_doc_string
    tools/formattools/format_input_lines_as_regression_test
+
+
+gracetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/gracetools/Grace/Grace
+   tools/gracetools/iterate_components_and_grace_containers_forward_in_expr
 
 
 iotools
@@ -868,6 +875,15 @@ stafftools
    tools/stafftools/make_invisible_staff
    tools/stafftools/make_rhythmic_sketch_staff
    tools/stafftools/make_rhythmic_staff
+
+
+stringtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/stringtools/underscore_delimited_lowercase_to_lowercamelcase
+   tools/stringtools/underscore_delimited_lowercase_to_uppercamelcase
 
 
 tempotools

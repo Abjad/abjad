@@ -1,6 +1,6 @@
 from _format_lilypond_attribute import _format_lilypond_attribute
 from _format_lilypond_value import _format_lilypond_value
-from _underscore_delimited_lowercase_to_uppercamelcase import _underscore_delimited_lowercase_to_uppercamelcase
+from abjad.tools import stringtools
 
 
 def _make_lilypond_override_string(grob_name, grob_attribute, grob_value, 
@@ -11,11 +11,11 @@ def _make_lilypond_override_string(grob_name, grob_attribute, grob_value,
    '''
 
    ## parse input strings
-   grob_name = _underscore_delimited_lowercase_to_uppercamelcase(grob_name)
+   grob_name = stringtools.underscore_delimited_lowercase_to_uppercamelcase(grob_name)
    grob_attribute = _format_lilypond_attribute(grob_attribute)
    grob_value = _format_lilypond_value(grob_value)
    if context_name is not None:
-      context_prefix = _underscore_delimited_lowercase_to_uppercamelcase(context_name)
+      context_prefix = stringtools.underscore_delimited_lowercase_to_uppercamelcase(context_name)
       context_prefix += '.'
    else:
       context_prefix = ''

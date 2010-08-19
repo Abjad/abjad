@@ -31,7 +31,7 @@ def test_GraceInterface_03( ):
 def test_GraceInterface_04( ):
    '''_Leaf.grace.before accepts any single grace.'''
    t = Note(0, (1, 4))
-   t.grace.before = Grace([Note(2, (1, 16))])
+   t.grace.before = gracetools.Grace([Note(2, (1, 16))])
    assert t.format == "\\grace {\n\td'16\n}\nc'4"
    '''
    \grace {
@@ -108,7 +108,7 @@ def test_GraceInterface_08( ):
 def test_GraceInterface_09( ):
    '''_Leaf.grace.after accepts any single grace.'''
    t = Note(0, (1, 4))
-   t.grace.after = Grace([Note(2, (1, 16))])
+   t.grace.after = gracetools.Grace([Note(2, (1, 16))])
    assert t.format == "\\afterGrace\nc'4\n{\n\td'16\n}"
    '''
    \afterGrace

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_iterate_components_and_grace_containers_forward_in_expr_01( ):
+def test_gracetools_iterate_components_and_grace_containers_forward_in_expr_01( ):
    '''Yield before-gracenotes and after-gracenotes.'''
 
    t = Voice(macros.scale(4))
@@ -28,7 +28,7 @@ def test_componenttools_iterate_components_and_grace_containers_forward_in_expr_
    }
    '''
 
-   notes = list(componenttools.iterate_components_and_grace_containers_forward_in_expr(t, Note))
+   notes = list(gracetools.iterate_components_and_grace_containers_forward_in_expr(t, Note))
 
    "[Note(c', 8), Note(c', 16), Note(d', 16), Note(d', 8), Note(e', 16), Note(f', 16), Note(e', 8), Note(f', 8)]"
 

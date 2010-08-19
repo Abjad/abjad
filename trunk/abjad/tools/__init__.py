@@ -2,6 +2,7 @@ from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import formattools
+from abjad.tools import gracetools
 from abjad.tools import layouttools
 from abjad.tools import lilyfiletools
 from abjad.tools import markuptools

@@ -1,7 +1,11 @@
 def underscore_delimited_lowercase_to_lowercamelcase(string):
    '''.. versionadded:: 1.1.2
 
-   bass_figure_alignment_positioning ==> bassFigureAlignmentPositioning
+   Change underscore-delimited lowercase `string` to lowercamelcase::
+
+      abjad> string = 'bass_figure_alignment_positioning'
+      abjad> stringtools.underscore_delimited_lowercase_to_lowercamelcase(string) 
+      'bassFigureAlignmentPositioning'
    '''
 
    parts = string.split('_')

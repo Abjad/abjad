@@ -3,14 +3,14 @@ from abjad import *
 
 def test_Grace_parentage_01( ):
    '''Lone Grace containers _carrier is None.'''
-   t = Grace(notetools.make_repeated_notes(4))
+   t = gracetools.Grace(notetools.make_repeated_notes(4))
    assert t._carrier is None
 
 
 def test_Grace_parentage_02( ):
    '''Grace containers in Leaf do have parent.'''
    t = Note(1, (1, 4))
-   assert isinstance(t.grace.before, Grace)
+   assert isinstance(t.grace.before, gracetools.Grace)
    assert t.grace.before._carrier is t
    assert t.grace.after._carrier is t
 
@@ -25,8 +25,8 @@ def test_Grace_parentage_03( ):
    t.grace.before = Note(4, (1, 16))
    assert t.grace.after._carrier is t
    assert t.grace.before._carrier is t
-   t.grace.after = Grace(macros.scale(2))
-   t.grace.before = Grace(macros.scale(2))
+   t.grace.after = gracetools.Grace(macros.scale(2))
+   t.grace.before = gracetools.Grace(macros.scale(2))
    assert t.grace.after._carrier is t
    assert t.grace.before._carrier is t
    t.grace.after = None
@@ -56,60 +56,3 @@ def test_Grace_parentage_04( ):
    assert isinstance(t, Note)
    assert t.grace.after._carrier is t
    assert t.grace.before._carrier is t
-
-
-#def test_Grace_parentage_05( ):
-#   '''Lone Grace containers _parent is None.'''
-#   t = Grace(notetools.make_repeated_notes(4))
-#   assert t._parent is None
-#
-#
-#def test_Grace_parentage_06( ):
-#   '''Grace containers in Leaf do have parent.'''
-#   t = Note(1, (1, 4))
-#   assert isinstance(t.grace.before, Grace)
-#   assert t.grace.before._parent is t
-#   assert t.grace.after._parent is t
-#
-#
-#def test_Grace_parentage_07( ):
-#   '''
-#   Grace containers in Leaf have their correct parent after assignment 
-#   via GraceInterface.
-#   '''
-#   t = Note(1, (1, 4))
-#   t.grace.after = Note(4, (1, 16))
-#   t.grace.before = Note(4, (1, 16))
-#   assert t.grace.after._parent is t
-#   assert t.grace.before._parent is t
-#   t.grace.after = Grace(macros.scale(2))
-#   t.grace.before = Grace(macros.scale(2))
-#   assert t.grace.after._parent is t
-#   assert t.grace.before._parent is t
-#   t.grace.after = None
-#   t.grace.before = None
-#   assert t.grace.after._parent is t
-#   assert t.grace.before._parent is t
-#
-#
-#def test_Grace_parentage_08( ):
-#   '''
-#   Grace container in Leaf have their correct parent after Leaf casting.
-#   '''
-#   n = Note(1, (1, 4))
-#   t = Rest(n)
-#   assert isinstance(t, Rest)
-#   assert t.grace.after._parent is t
-#   assert t.grace.before._parent is t
-#   t = Skip(n)
-#   assert isinstance(t, Skip)
-#   assert t.grace.after._parent is t
-#   assert t.grace.before._parent is t
-#   t = Chord(n)
-#   assert isinstance(t, Chord)
-#   assert t.grace.after._parent is t
-#   assert t.grace.before._parent is t
-#   t = Note(n)
-#   assert isinstance(t, Note)
-#   assert t.grace.after._parent is t
-#   assert t.grace.before._parent is t

@@ -1,3 +1,6 @@
+from abjad.tools import stringtools
+
+
 class LilyPondMiscellaneousCommandComponentPlugIn(object):
 
    def __init__(self):
@@ -25,8 +28,6 @@ class LilyPondMiscellaneousCommandComponentPlugIn(object):
    ## PRIVATE METHODS ##
 
    def _get_formatted_commands_for_target_slot(self, target_slot):
-      from abjad.tools.lilyfiletools._underscore_delimited_lowercase_to_lowercamelcase import \
-         _underscore_delimited_lowercase_to_lowercamelcase
       result = [ ]
       for command_name, command_value in vars(self).iteritems( ):
          ## known LilyPond command with known formatting and slot
@@ -39,6 +40,7 @@ class LilyPondMiscellaneousCommandComponentPlugIn(object):
          except KeyError:
             ## put unkonwn command in opening slot
             if target_slot == 'opening':
-               formatted_command = _underscore_delimited_lowercase_to_lowercamelcase(command_name)
+               formatted_command = \
+                  stringtools.underscore_delimited_lowercase_to_lowercamelcase(command_name)
                result.append(r'\%s' % formatted_command)
       return result
