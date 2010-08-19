@@ -52,7 +52,6 @@ Score component interfaces
    interfaces/SpacingInterface/SpacingInterface
    interfaces/StaffInterface/StaffInterface
    interfaces/TempoInterface/TempoInterface
-   interfaces/ThreadInterface/ThreadInterface
    interfaces/TieInterface/TieInterface
    interfaces/TremoloInterface/TremoloInterface
    interfaces/VoiceInterface/VoiceInterface

@@ -19,7 +19,7 @@ class _Leaf(_Component):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
-      self._grace = GraceInterface(self)
+      #self._grace = GraceInterface(self)
       self._harmonic = HarmonicInterface(self)
       self._markup = MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
@@ -70,6 +70,8 @@ class _Leaf(_Component):
       '''Read-only reference to
       :class:`~abjad.components.Grace.interface.GraceInterface`.
       '''
+      if not hasattr(self, '_grace'):
+         self._grace = GraceInterface(self)
       return self._grace
    
    @property

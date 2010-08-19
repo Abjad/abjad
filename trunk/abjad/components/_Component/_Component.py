@@ -24,7 +24,6 @@ from abjad.interfaces import ScoreInterface
 from abjad.interfaces import SpacingInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
-#from abjad.interfaces import ThreadInterface
 from abjad.interfaces import TieInterface
 from abjad.interfaces import TremoloInterface
 from abjad.interfaces import VoiceInterface
@@ -65,7 +64,6 @@ class _Component(_Abjad):
       self._set = LilyPondContextSettingComponentPlugIn( )
       self._score = ScoreInterface(self)
       self._spacing = SpacingInterface(self)
-      #self._thread = ThreadInterface(self)
       self._tie = TieInterface(self)
       self._tremolo = TremoloInterface(self)
       self._update = _UpdateInterface(self)
@@ -279,12 +277,6 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.staff.interface.StaffInterface`.'''
       return self._staff
 
-#   @property
-#   def thread(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.thread.interface.ThreadInterface`.'''
-#      return self._thread
-
    @property
    def tie(self):
       '''Read-only reference to
@@ -296,7 +288,6 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.tempo.interface.TempoInterface`.'''
       return self._tempo
-
 
    @property
    def tremolo(self):
