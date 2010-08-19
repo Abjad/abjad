@@ -10,7 +10,8 @@ def test_ArticulationsInterface_01( ):
 
 def test_ArticulationsInterface_02( ):
    t = Note(0, (1, 4))
-   t.articulations = ['staccato']
+   #t.articulations = ['staccato']
+   t.articulations.append('staccato')
    assert len(t.articulations) == 1
    assert t.format == "c'4 -\\staccato"
 
@@ -18,14 +19,16 @@ def test_ArticulationsInterface_02( ):
 def test_ArticulationsInterface_03( ):
    '''Articulations can be set as list of (string, direction) pairs.'''
    t = Note(0, (1, 4))
-   t.articulations = [('staccato', 'up')]
+   #t.articulations = [('staccato', 'up')]
+   t.articulations.append(('staccato', 'up'))
    assert len(t.articulations) == 1
    assert t.format == "c'4 ^\\staccato"
 
 
 def test_ArticulationsInterface_04( ):
    t = Note(0, (1, 4))
-   t.articulations = ['staccato', 'marcato']
+   #t.articulations = ['staccato', 'marcato']
+   t.articulations.extend(['staccato', 'marcato'])
    assert len(t.articulations) == 2
    assert t.format == "c'4 -\\marcato -\\staccato"
 
@@ -33,7 +36,8 @@ def test_ArticulationsInterface_04( ):
 def test_ArticulationsInterface_05( ):
    '''Articulations can be set as list of (string, direction) pairs.'''
    t = Note(0, (1, 4))
-   t.articulations = [('staccato', 'up'), ('marcato', 'down')]
+   #t.articulations = [('staccato', 'up'), ('marcato', 'down')]
+   t.articulations.extend([('staccato', 'up'), ('marcato', 'down')])
    assert len(t.articulations) == 2
    assert t.format == "c'4 ^\\staccato _\\marcato"
 
@@ -41,7 +45,8 @@ def test_ArticulationsInterface_05( ):
 def test_ArticulationsInterface_06( ):
    '''Articulations can be set as list of (string, direction) pairs.'''
    t = Note(0, (1, 4))
-   t.articulations = [('staccato', 'up'), 'marcato']
+   #t.articulations = [('staccato', 'up'), 'marcato']
+   t.articulations.extend([('staccato', 'up'), 'marcato'])
    assert len(t.articulations) == 2
    assert t.format == "c'4 -\\marcato ^\\staccato"
 
@@ -106,7 +111,8 @@ def test_ArticulationsInterface_13( ):
    t = Note(0, (1, 4))
    t.articulations.extend(['staccato', 'marcato'])
    assert len(t.articulations) == 2
-   t.articulations = [ ]
+   #t.articulations = [ ]
+   t.articulations[:] = [ ]
    assert len(t.articulations) == 0
 
 
@@ -115,11 +121,12 @@ def test_ArticulationsInterface_14( ):
    t = Note(0, (1, 4))
    t.articulations.extend(['staccato', 'marcato'])
    assert len(t.articulations) == 2
-   t.articulations = None
+   #t.articulations = None
+   t.articulations[:] = [ ]
    assert len(t.articulations) == 0
 
 
 def test_ArticulationsInterface_15( ):
    '''Articulations can only be directly set with list or tuple.'''
    t = Note(0, (1, 4))
-   assert py.test.raises(ValueError, "t.articulations = 'staccato'")
+   assert py.test.raises(Exception, "t.articulations = 'staccato'")

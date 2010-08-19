@@ -3,8 +3,7 @@ from abjad.core import Rational
 from abjad.tools.spannertools import TieSpanner
 
 
-def _split_leaf_at_duration(
-   leaf, split_dur, spanners = 'unfractured', tie_after = False):
+def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after = False):
    '''Split leaf into left and right lists.
    Left list may be list of one note, many tied notes, or tuplet.
    Right list may be list of one note, many tied notes, or tuplet.
@@ -30,7 +29,8 @@ def _split_leaf_at_duration(
    new_leaf = componenttools.clone_components_and_remove_all_spanners([leaf])[0]
    leaf.splice([new_leaf])
    new_leaf.grace.before = None
-   new_leaf.articulations = None
+   #new_leaf.articulations = None
+   new_leaf.articulations[:] = [ ]
    new_leaf.dynamics.mark = None
    leaf.grace.after = None
 

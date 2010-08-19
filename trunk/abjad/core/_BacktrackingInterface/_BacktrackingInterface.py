@@ -19,8 +19,6 @@ from abjad.core._Abjad import _Abjad
 ##       You have to look at, for example, TempoInterface.effective
 ##       to see the logic that determines who wins the tournament.
 
-import types
-
 
 class _BacktrackingInterface(_Abjad):
    '''Mixin base class for interfaces with 'forced', 'effective' attributes.'''
@@ -55,20 +53,14 @@ class _BacktrackingInterface(_Abjad):
 
    def _get_effective(self):
       '''Works for any interface with 'forced' and 'effective' attributes.
-         Most such interfaces are observers.'''
+      Most such interfaces are observers.
+      '''
       from abjad.components._Leaf import _Leaf
       myForced = self.forced
       if myForced is not None:
          return myForced
       prevComponent = self._client._navigator._prev 
       if prevComponent is not None:
-#         prevInterface = getattr(prevComponent, self._interfaceName, None)
-#         if prevInterface is not None:
-#            prevForced = prevInterface.forced
-#            if prevForced:
-#               return prevForced
-#            else:
-#               return prevInterface._effective
          if isinstance(prevComponent, _Leaf):
             prevInterface = getattr(prevComponent, self._interfaceName, None)
             if prevInterface is not None:

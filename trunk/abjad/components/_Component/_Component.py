@@ -47,36 +47,36 @@ class _Component(_Abjad):
 
    def __init__(self):
       self._interfaces = InterfaceAggregator(self)
-      self._articulations = ArticulationInterface(self)
-      self._beam = BeamInterface(self)
-      self._breaks = BreaksInterface(self)
-      self._comments = CommentsInterface( )
-      self._directives = DirectivesInterface(self)
-      self._dynamics = DynamicsInterface(self)
-      self._history = HistoryInterface(self)
-      self._instrument = InstrumentInterface(self)
+      #self._articulations = ArticulationInterface(self)
+      #self._beam = BeamInterface(self)
+      #self._breaks = BreaksInterface(self)
+      #self._comments = CommentsInterface( )
+      #self._directives = DirectivesInterface(self)
+      #self._dynamics = DynamicsInterface(self)
+      #self._history = HistoryInterface(self)
+      #self._instrument = InstrumentInterface(self)
       self._lily_file = None
-      self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
+      #self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       self._name = None
       self._navigator = _Navigator(self)
-      self._override = LilyPondGrobOverrideComponentPlugIn( )
+      #self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._parentage = ParentageInterface(self)
-      self._set = LilyPondContextSettingComponentPlugIn( )
-      self._score = ScoreInterface(self)
-      self._spacing = SpacingInterface(self)
-      self._tie = TieInterface(self)
-      self._tremolo = TremoloInterface(self)
+      #self._set = LilyPondContextSettingComponentPlugIn( )
+      #self._score = ScoreInterface(self)
+      #self._spacing = SpacingInterface(self)
+      #self._tie = TieInterface(self)
+      #self._tremolo = TremoloInterface(self)
       self._update = _UpdateInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
-      self._clef = ClefInterface(self, self._update)
-      self._key_signature = KeySignatureInterface(self, self._update)
-      self._meter = MeterInterface(self, self._update)
-      self._numbering = NumberingInterface(self, self._update)
+      self._clef = ClefInterface(self, self._update) ## TODO: weird backtracking conflict
+      #self._key_signature = KeySignatureInterface(self, self._update)
+      self._meter = MeterInterface(self, self._update) ## TODO: weird backtracking conflict
+      self._numbering = NumberingInterface(self, self._update) ## no public access
       self._offset = OffsetInterface(self, self._update)
-      self._staff = StaffInterface(self, self._update)
-      self._tempo = TempoInterface(self, self._update)
-      self._voice = VoiceInterface(self)
+      self._staff = StaffInterface(self, self._update) ## TODO: weird backtracking conflict
+      self._tempo = TempoInterface(self, self._update) ## TODO: weird backtracking conflict
+      #self._voice = VoiceInterface(self)
 
    ## OVERLOADS ##
 
@@ -108,36 +108,48 @@ class _Component(_Abjad):
    def articulations(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.articulation.interface.ArticulationInterface`.'''
+      if not hasattr(self, '_articulations'):
+         self._articulations = ArticulationInterface(self)
       return self._articulations
    
    @property
    def beam(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.beam.interface.BeamInterface`.'''
+      if not hasattr(self, '_beam'):
+         self._beam = BeamInterface(self)
       return self._beam
 
    @property
    def breaks(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.breaks.interface.BreaksInterface`.'''
+      if not hasattr(self, '_breaks'):
+         self._breaks = BreaksInterface(self)
       return self._breaks
 
    @property
    def clef(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.clef.interface.ClefInterface`.'''
+      if not hasattr(self, '_clef'):
+         self._clef = ClefInterface(self, self._update)
       return self._clef
 
    @property
    def comments(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.comments.interface.CommentsInterface`.'''
+      if not hasattr(self, '_comments'):
+         self._comments = CommentsInterface( )
       return self._comments
 
    @property
    def directives(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.directives.interface.DirectivesInterface`.'''
+      if not hasattr(self, '_directives'):
+         self._directives = DirectivesInterface(self)
       return self._directives
 
    @property
@@ -149,6 +161,8 @@ class _Component(_Abjad):
    def dynamics(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.dynamics.interface.DynamicsInterface`.'''
+      if not hasattr(self, '_dynamics'):
+         self._dynamics = DynamicsInterface(self)
       return self._dynamics
 
    @property
@@ -160,12 +174,16 @@ class _Component(_Abjad):
    def history(self):
       '''Read-only reference to 
       :class:`~abjad.interfaces.history.interface.HistoryInterface`.'''
+      if not hasattr(self, '_history'):
+         self._history = HistoryInterface(self)
       return self._history
 
    @property
    def instrument(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.instrument.interface.InstrumentInterface`.'''
+      if not hasattr(self, '_instrument'):
+         self._instrument = InstrumentInterface(self)
       return self._instrument
 
    @property
@@ -179,6 +197,8 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.key_signature.interface.KeySignatureInterface.`
       '''
+      if not hasattr(self, '_key_signature'):
+         self._key_signature = KeySignatureInterface(self, self._update)
       return self._key_signature
 
    @property
@@ -200,12 +220,16 @@ class _Component(_Abjad):
    def meter(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.meter.interface.MeterInterface`.''' 
+      #if not hasattr(self, '_meter'):
+      #   self._meter = MeterInterface(self, self._update)
       return self._meter
 
    @property
    def misc(self):
       '''Read-only reference LilyPond miscellaneous command component plug-in.
       '''
+      if not hasattr(self, '_misc'):
+         self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       return self._misc
 
    @property
@@ -236,6 +260,8 @@ class _Component(_Abjad):
    def override(self):
       '''Read-only reference to LilyPond grob override component plug-in.
       '''
+      if not hasattr(self, '_override'):
+         self._override = LilyPondGrobOverrideComponentPlugIn( )
       return self._override
 
    @property
@@ -248,18 +274,24 @@ class _Component(_Abjad):
    def set(self):
       '''Read-only reference LilyPond context setting component plug-in..
       '''
+      if not hasattr(self, '_set'):
+         self._set = LilyPondContextSettingComponentPlugIn( )
       return self._set
 
    @property
    def score(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.score.interface.ScoreInterface`.'''
+      if not hasattr(self, '_score'):
+         self._score = ScoreInterface(self)
       return self._score
 
    @property
    def spacing(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.spacing.interface.SpacingInterface`.'''
+      if not hasattr(self, '_spacing'):
+         self._spacing = SpacingInterface(self)
       return self._spacing
 
    @property
@@ -275,30 +307,40 @@ class _Component(_Abjad):
    def staff(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.staff.interface.StaffInterface`.'''
+      if not hasattr(self, '_staff'):
+         self._staff = StaffInterface(self, self._update)
       return self._staff
 
    @property
    def tie(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.tie.interface.TieInterface`.'''
+      if not hasattr(self, '_tie'):
+         self._tie = TieInterface(self)
       return self._tie
 
    @property
    def tempo(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.tempo.interface.TempoInterface`.'''
+      if not hasattr(self, '_tempo'):
+         self._tempo = TempoInterface(self, self._update)
       return self._tempo
 
    @property
    def tremolo(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.tremolo.interface.TremoloInterface`.'''
+      if not hasattr(self, '_tremolo'):
+         self._tremolo = TremoloInterface(self)
       return self._tremolo
 
    @property
    def voice(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.voice.interface.VoiceInterface`.'''
+      if not hasattr(self, '_voice'):
+         self._voice = VoiceInterface(self)
       return self._voice
 
    ## PRIVATE METHODS ##

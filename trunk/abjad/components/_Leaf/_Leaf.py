@@ -20,8 +20,8 @@ class _Leaf(_Component):
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
       #self._grace = GraceInterface(self)
-      self._harmonic = HarmonicInterface(self)
-      self._markup = MarkupInterface(self)
+      #self._harmonic = HarmonicInterface(self)
+      #self._markup = MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
 
    ## OVERLOADS ##
@@ -51,19 +51,19 @@ class _Leaf(_Component):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @apply
-   def articulations( ):
-      def fget(self):
-         '''Read-only reference to articulation interface.'''
-         return self._articulations
-      def fset(self, arg):
-         if arg is None:
-            self._articulations[:] = [ ]
-         elif isinstance(arg, list):
-            self._articulations[:] = arg
-         else:
-            raise ValueError('must be None or list of articulations.')
-      return property(**locals( ))
+#   @apply
+#   def articulations( ):
+#      def fget(self):
+#         '''Read-only reference to articulation interface.'''
+#         return self._articulations
+#      def fset(self, arg):
+#         if arg is None:
+#            self._articulations[:] = [ ]
+#         elif isinstance(arg, list):
+#            self._articulations[:] = arg
+#         else:
+#            raise ValueError('must be None or list of articulations.')
+#      return property(**locals( ))
 
    @property
    def grace(self):
@@ -79,6 +79,8 @@ class _Leaf(_Component):
       '''Read-only reference to
       :class:`~abjad.components._Harmonic.interface.HarmonicInterface`.
       '''
+      if not hasattr(self, '_harmonic'):
+         self._harmonic = HarmonicInterface(self)
       return self._harmonic
 
    @property
@@ -86,6 +88,8 @@ class _Leaf(_Component):
       '''Read-only reference to
       :class:`~abjad.marks.interface.MarkupInterface`.
       '''
+      if not hasattr(self, '_markup'):
+         self._markup = MarkupInterface(self)
       return self._markup
 
    @property
