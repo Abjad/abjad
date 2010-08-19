@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.report_format_contributions_of_all_spanners_attached_to_component_as_string import report_format_contributions_of_all_spanners_attached_to_component_as_string
+from abjad.tools.spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_component import report_as_string_format_contributions_of_all_spanners_attached_to_component
 
 
 def report_to_screen_format_contributions_of_all_spanners_attached_to_component(
@@ -30,7 +30,7 @@ def report_to_screen_format_contributions_of_all_spanners_attached_to_component(
             (
    '''
 
-   report = report_format_contributions_of_all_spanners_attached_to_component_as_string(
+   report = report_as_string_format_contributions_of_all_spanners_attached_to_component(
       component, klass)
    
    print report
