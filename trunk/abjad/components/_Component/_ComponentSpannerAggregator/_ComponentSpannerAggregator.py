@@ -41,17 +41,21 @@ class _ComponentSpannerAggregator(_Interface):
 
    ## PUBLIC ATTRIBUTES ##
    
+   ## externalized as spannertools.get_all_spanners_attached_to_component( )
    @property
    def attached(self):
       '''Return an unordered set of all spanners 
-         attaching directly to client.'''
+      attaching directly to client.
+      '''
       return self._spanners
 
+   ## externalized as spannertools.get_all_spanners_attached_to_any_proper_children_of_component( )
    @property
    def children(self):
       '''Return unordered set of all spanners
-         attaching to any children of self.
-         Do not include spanners attaching directly to self.'''
+      attaching to any children of self.
+      Do not include spanners attaching directly to self.
+      '''
       from abjad.components._Component._Component import _Component
       from abjad.tools import componenttools
       result = set([ ])

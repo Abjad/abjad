@@ -848,6 +848,8 @@ spannertools
    tools/spannertools/find_index_of_spanner_component_at_score_offset
    tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
    tools/spannertools/fracture_spanners_that_cross_components
+   tools/spannertools/get_all_spanners_attached_to_any_proper_children_of_component
+   tools/spannertools/get_all_spanners_attached_to_component
    tools/spannertools/get_nth_leaf_in_spanner
    tools/spannertools/get_spanners_contained_by_components
    tools/spannertools/get_spanners_covered_by_components
@@ -919,6 +921,7 @@ tietools
    tools/tietools/get_leaves_in_tie_chain
    tools/tietools/get_preprolated_tie_chain_duration
    tools/tietools/get_prolated_tie_chain_duration
+   tools/tietools/get_tie_chain
    tools/tietools/get_tie_chain_duration_in_seconds
    tools/tietools/get_tie_chains_in_expr
    tools/tietools/get_written_tie_chain_duration
