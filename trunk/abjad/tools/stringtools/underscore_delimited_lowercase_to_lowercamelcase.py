@@ -1,4 +1,4 @@
-def _underscore_delimited_lowercase_to_lowercamelcase(string):
+def underscore_delimited_lowercase_to_lowercamelcase(string):
    '''.. versionadded:: 1.1.2
 
    bass_figure_alignment_positioning ==> bassFigureAlignmentPositioning
