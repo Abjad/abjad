@@ -5,7 +5,7 @@ from abjad.exceptions import MissingSpannerError
 
 class _SpannerReceptor(_Abjad):
    '''Abstract base class to mix in with component interfaces.
-      _SpannerReceptor confers the ability to receive spanners.'''
+   '''
 
    def __init__(self, klasses):
       '''`klasses` should be a tuple of one or more spanner classes.'''
@@ -28,7 +28,9 @@ class _SpannerReceptor(_Abjad):
    @property
    def count(self):
       '''Return number of spanners attaching to client.'''
-      return len(self.spanners)
+      #return len(self.spanners)
+      from abjad.tools import spannertools
+      return len(spannertools.get_all_spanners_attached_to_component(self._client, self._klasses))
 
    @property
    def first(self):
@@ -102,15 +104,18 @@ class _SpannerReceptor(_Abjad):
                   return spanner
       raise MissingSpannerError
       
+   ## externalized as spannertools.get_all_spanners_attached_to_component(self._client, klass)
    @property
    def spanners(self):
       '''Return all spanners attaching to client.'''
-      result = set([ ])
-      client = self._client
-      for klass in self._klasses:
-         spanners = client.spanners.attached
-         result.update([p for p in spanners if isinstance(p, klass)])
-      return result
+#      result = set([ ])
+#      client = self._client
+#      for klass in self._klasses:
+#         spanners = client.spanners.attached
+#         result.update([p for p in spanners if isinstance(p, klass)])
+#      return result
+      from abjad.tools import spannertools
+      return spannertools.get_all_spanners_attached_to_component(self._client, self._klasses)
 
    @property
    def spanners_attached_to_contents(self):

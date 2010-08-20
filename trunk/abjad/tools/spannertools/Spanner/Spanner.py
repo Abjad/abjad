@@ -42,10 +42,10 @@ class Spanner(_Abjad):
       self._contiguity_constraint = 'thread'
       self._duration = _SpannerDurationInterface(self)
       self._format = _SpannerFormatInterface(self)
-      self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
+      #self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       self._offset = _SpannerOffsetInterface(self)
-      self._override = LilyPondGrobOverrideComponentPlugIn( )
-      self._set = LilyPondContextSettingComponentPlugIn( )
+      #self._override = LilyPondGrobOverrideComponentPlugIn( )
+      #self._set = LilyPondContextSettingComponentPlugIn( )
       self._initialize_music(music)
 
    ## OVERLOADS ##
@@ -325,6 +325,10 @@ class Spanner(_Abjad):
 
    @property
    def misc(self):
+      '''LilyPond miscellaneous command component plug-in.
+      '''
+      if not hasattr(self, '_misc'):
+         self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       return self._misc
 
    @property
@@ -355,10 +359,18 @@ class Spanner(_Abjad):
 
    @property
    def override(self):
+      '''LilyPond grob override component plug-in.
+      '''
+      if not hasattr(self, '_override'):
+         self._override = LilyPondGrobOverrideComponentPlugIn( )
       return self._override
 
    @property
    def set(self):
+      '''LilyPond context setting component plug-in.
+      '''
+      if not hasattr(self, '_set'):
+         self._set = LilyPondContextSettingComponentPlugIn( )
       return self._set
 
    ## PUBLIC METHODS ##
