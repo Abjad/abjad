@@ -13,7 +13,7 @@ from abjad.interfaces import ClefInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import DynamicsInterface
 from abjad.interfaces import HistoryInterface
-from abjad.interfaces import InstrumentInterface
+#from abjad.interfaces import InstrumentInterface
 from abjad.interfaces import InterfaceAggregator
 from abjad.interfaces import KeySignatureInterface
 from abjad.interfaces import MeterInterface
@@ -174,13 +174,13 @@ class _Component(_Abjad):
          self._history = HistoryInterface(self)
       return self._history
 
-   @property
-   def instrument(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.instrument.interface.InstrumentInterface`.'''
-      if not hasattr(self, '_instrument'):
-         self._instrument = InstrumentInterface(self)
-      return self._instrument
+#   @property
+#   def instrument(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.instrument.interface.InstrumentInterface`.'''
+#      if not hasattr(self, '_instrument'):
+#         self._instrument = InstrumentInterface(self)
+#      return self._instrument
 
    @property
    def interfaces(self):
