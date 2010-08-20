@@ -863,6 +863,8 @@ spannertools
    tools/spannertools/get_spanners_that_dominate_component_pair
    tools/spannertools/get_spanners_that_dominate_components
    tools/spannertools/get_spanners_that_dominate_container_components_from_to
+   tools/spannertools/get_the_only_spanner_attached_to_any_improper_parent_of_component
+   tools/spannertools/get_the_only_spanner_attached_to_component
    tools/spannertools/is_component_with_spanner_attached
    tools/spannertools/iterate_components_backward_in_spanner
    tools/spannertools/iterate_components_forward_in_spanner

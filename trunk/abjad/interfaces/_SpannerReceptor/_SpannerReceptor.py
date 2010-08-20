@@ -35,41 +35,64 @@ class _SpannerReceptor(_Abjad):
    @property
    def first(self):
       '''True when client is first in spanner, otherwise False.'''
-      return self.spanned and self.spanner._is_my_first_leaf(self._client)
+      #return self.spanned and self.spanner._is_my_first_leaf(self._client)
+      from abjad.tools import spannertools
+      if bool(spannertools.get_all_spanners_attached_to_component(self._client, self._klasses)):
+         spanner = spannertools.get_the_only_spanner_attached_to_component(
+            self._client, self._klasses)
+         return spanner._is_my_first_leaf(self._client)
 
    @property
    def last(self):
       '''True when client is last in spanner, otherwise False.'''
-      return self.spanned and self.spanner._is_my_last_leaf(self._client)
+      #return self.spanned and self.spanner._is_my_last_leaf(self._client)
+      from abjad.tools import spannertools
+      if bool(spannertools.get_all_spanners_attached_to_component(self._client, self._klasses)):
+         spanner = spannertools.get_the_only_spanner_attached_to_component(
+            self._client, self._klasses)
+         return spanner._is_my_last_leaf(self._client)
 
    @property
    def only(self):
       '''True when client is only leaf in spanner, otherwise False.'''
-      return self.spanned and self.spanner._is_my_only_leaf(self._client)
+      #return self.spanned and self.spanner._is_my_only_leaf(self._client)
+      from abjad.tools import spannertools
+      if bool(spannertools.get_all_spanners_attached_to_component(self._client, self._klasses)):
+         spanner = spannertools.get_the_only_spanner_attached_to_component(
+            self._client, self._klasses)
+         return spanner._is_my_only_leaf(self._client)
 
    @property
    def parented(self):
       '''True when spanner attached to any component in parentage of client,
-         including client, otherwise False.'''
-      result =  [ ]
-      parentage = self._client.parentage.parentage
-      for parent in parentage:
-         spanners = parent.spanners.attached
-         for klass in self._klasses:
-            result.extend(
-               [p for p in spanners if isinstance(p, klass)])
-      return bool(result)
-
+      including client, otherwise False.
+      '''
+#      result =  [ ]
+#      parentage = self._client.parentage.parentage
+#      for parent in parentage:
+#         spanners = parent.spanners.attached
+#         for klass in self._klasses:
+#            result.extend(
+#               [p for p in spanners if isinstance(p, klass)])
+#      return bool(result)
+      from abjad.tools import spannertools
+      return bool(
+         spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+            self._client, self._klasses))
+      
    @property
    def position(self):
       '''Return zero-indexed position of client in spanner.'''
-      count = self.count
-      if count == 0:
-         raise MissingSpannerError
-      elif count == 1:
-         return self.spanner.index(self._client)
-      else:
-         raise ExtraSpannerError
+#      count = self.count
+#      if count == 0:
+#         raise MissingSpannerError
+#      elif count == 1:
+#         return self.spanner.index(self._client)
+#      else:
+#         raise ExtraSpannerError
+      from abjad.tools import spannertools
+      spanner = spannertools.get_the_only_spanner_attached_to_component(self._client, self._klasses)
+      return spanner.index(self._client)
 
    @property
    def spanned(self):
@@ -82,35 +105,31 @@ class _SpannerReceptor(_Abjad):
    @property
    def spanner(self):
       '''Return first spanner attaching to client.'''
+#      count = self.count
+#      if count == 0:
+#         raise MissingSpannerError
+#      elif count == 1:
+#         return list(self.spanners)[0]
+#      else:
+#         raise ExtraSpannerError
       from abjad.tools import spannertools
-      #count = self.count
-      spanners_attached_to_component = spannertools.get_all_spanners_attached_to_component(
-         self._client, self._klasses)
-      count = len(spanners_attached_to_component)
-      if count == 0:
-         raise MissingSpannerError
-      elif count == 1:
-         #return list(self.spanners)[0]
-         return list(spanners_attached_to_component)[0]
-      else:
-         raise ExtraSpannerError
+      return spannertools.get_the_only_spanner_attached_to_component(self._client, self._klasses)
 
    @property
    def spanner_in_parentage(self):
       '''Return first spanner attaching to parentage of client.
-
-      .. todo:: raise ExtraSpannerError when more than one spanner
-         is found attaching to a component in the parentage of
-         client.
       '''
-      parentage = self._client.parentage.parentage
-      for parent in parentage:
-         spanners = parent.spanners.attached
-         for klass in self._klasses:
-            for spanner in spanners:
-               if isinstance(spanner, klass):
-                  return spanner
-      raise MissingSpannerError
+#      parentage = self._client.parentage.parentage
+#      for parent in parentage:
+#         spanners = parent.spanners.attached
+#         for klass in self._klasses:
+#            for spanner in spanners:
+#               if isinstance(spanner, klass):
+#                  return spanner
+#      raise MissingSpannerError
+      from abjad.tools import spannertools
+      return spannertools.get_the_only_spanner_attached_to_any_improper_parent_of_component(
+         self._client, self._klasses)
       
    ## externalized as spannertools.get_all_spanners_attached_to_component(self._client, klass)
    @property
@@ -130,12 +149,14 @@ class _SpannerReceptor(_Abjad):
       '''Unordered set of all spanners attaching to
       any component in the contents of client, including client.'''
       from abjad.tools import spannertools
-      contained = set([ ])
-      for spanner in spannertools.get_spanners_contained_by_components([self._client]):
-         for klass in self._klasses:
-            if isinstance(spanner, klass):
-               contained.add(spanner)
-      return contained
+#      contained = set([ ])
+#      for spanner in spannertools.get_spanners_contained_by_components([self._client]):
+#         for klass in self._klasses:
+#            if isinstance(spanner, klass):
+#               contained.add(spanner)
+#      return contained
+      return spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
+         self._client, self._klasses)
 
    @property
    def spanners_in_parentage(self):
@@ -144,15 +165,18 @@ class _SpannerReceptor(_Abjad):
       Return unordered set of all spanners attaching to 
       any component in the parentage of client, including client.
       '''
-      result = set([ ])
-      parentage = self._client.parentage.parentage
-      for parent in parentage:
-         spanners = parent.spanners.attached
-         for klass in self._klasses:
-            for spanner in spanners:
-               if isinstance(spanner, klass):
-                  result.add(spanner)
-      return result
+#      result = set([ ])
+#      parentage = self._client.parentage.parentage
+#      for parent in parentage:
+#         spanners = parent.spanners.attached
+#         for klass in self._klasses:
+#            for spanner in spanners:
+#               if isinstance(spanner, klass):
+#                  result.add(spanner)
+#      return result
+      from abjad.tools import spannertools
+      return spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+         self._client, self._klasses)
 
    ## PUBLIC METHODS ##
 
