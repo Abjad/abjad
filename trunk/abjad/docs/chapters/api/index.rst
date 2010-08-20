@@ -47,7 +47,6 @@ Score component interfaces
    interfaces/OffsetInterface/OffsetInterface
    interfaces/OffsetInterface/OffsetProlatedInterface/OffsetProlatedInterface
    interfaces/ParentageInterface/ParentageInterface
-   interfaces/ScoreInterface/ScoreInterface
    interfaces/StaffInterface/StaffInterface
    interfaces/TempoInterface/TempoInterface
    interfaces/TieInterface/TieInterface
@@ -105,6 +104,7 @@ componenttools
    tools/componenttools/component_to_score_index
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/get_first_component_in_expr_with_name
+   tools/componenttools/get_first_instance_of_klass_in_improper_parentage_of_component
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
    tools/componenttools/get_likely_multiplier_of_components
    tools/componenttools/get_nth_component_in_expr
