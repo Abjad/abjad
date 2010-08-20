@@ -48,7 +48,6 @@ Score component interfaces
    interfaces/ParentageInterface/ParentageInterface
    interfaces/StaffInterface/StaffInterface
    interfaces/TempoInterface/TempoInterface
-   interfaces/TieInterface/TieInterface
    interfaces/TremoloInterface/TremoloInterface
    interfaces/VoiceInterface/VoiceInterface
 

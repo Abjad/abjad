@@ -21,7 +21,6 @@ from abjad.interfaces import OffsetInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
-from abjad.interfaces import TieInterface
 from abjad.interfaces import TremoloInterface
 from abjad.interfaces import VoiceInterface
 
@@ -58,7 +57,6 @@ class _Component(_Abjad):
       #self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._parentage = ParentageInterface(self)
       #self._set = LilyPondContextSettingComponentPlugIn( )
-      #self._tie = TieInterface(self)
       #self._tremolo = TremoloInterface(self)
       self._update = _UpdateInterface(self)
 
@@ -280,14 +278,6 @@ class _Component(_Abjad):
       if not hasattr(self, '_staff'):
          self._staff = StaffInterface(self, self._update)
       return self._staff
-
-   @property
-   def tie(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.tie.interface.TieInterface`.'''
-      if not hasattr(self, '_tie'):
-         self._tie = TieInterface(self)
-      return self._tie
 
    @property
    def tempo(self):
