@@ -3,10 +3,11 @@ from abjad import *
 
 def test_SpacingInterface_proportional_notation_duration_01( ):
    '''You can set the LilyPond propotionalNotationDuration context
-   setting scorewide on any Abjad score.'''
+   setting scorewide on any Abjad score.
+   '''
 
    t = Score([Staff(macros.scale(4))])
-   t.spacing.proportional_notation_duration = Rational(1, 56)
+   t.set.proportional_notation_duration = schemetools.SchemeMoment(Rational(1, 56))
 
    r'''
    \new Score \with {

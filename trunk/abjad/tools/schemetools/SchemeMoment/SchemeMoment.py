@@ -4,30 +4,31 @@ from abjad.core import Rational
 
 
 class SchemeMoment(_Abjad, _Immutable):
-   '''Abjad representation of LilyPond moment.'''
+   '''Abjad representation of LilyPond moment.
+   
+   ::
+
+      abjad> moment = schemetools.SchemeMoment(Rational(1, 56))
+      abjad> f(moment)
+      #(ly:make-moment 1 56)
+   '''
+
+   __slots__ = ('_duration')
 
    def __init__(self, duration):
       object.__setattr__(self, '_duration', duration)
 
    ## PUBLIC ATTRIBUTES ##
 
-#   @apply
-#   def duration(  ):
-#      '''Read / write rational-valued duration.'''
-#      def fget(self):
-#         return self._duration
-#      def fset(self, expr):
-#         assert isinstance(expr, Rational)
-#         self._duration = expr
-#      return property(**locals( ))
-
    @property
    def duration(self):
-      '''Rational duration of LilyPond moment.'''
+      '''Rational duration of LilyPond moment.
+      '''
       return self._duration
 
    @property
    def format(self):
-      '''LilyPond input representation of moment.'''
+      '''LilyPond input representation of moment.
+      '''
       numerator, denominator = self.duration.numerator, self.duration.denominator
       return '#(ly:make-moment %s %s)' % (numerator, denominator)

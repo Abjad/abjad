@@ -21,7 +21,7 @@ from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import ScoreInterface
-from abjad.interfaces import SpacingInterface
+#from abjad.interfaces import SpacingInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
 from abjad.interfaces import TieInterface
@@ -286,13 +286,13 @@ class _Component(_Abjad):
          self._score = ScoreInterface(self)
       return self._score
 
-   @property
-   def spacing(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.spacing.interface.SpacingInterface`.'''
-      if not hasattr(self, '_spacing'):
-         self._spacing = SpacingInterface(self)
-      return self._spacing
+#   @property
+#   def spacing(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.spacing.interface.SpacingInterface`.'''
+#      if not hasattr(self, '_spacing'):
+#         self._spacing = SpacingInterface(self)
+#      return self._spacing
 
    @property
    def spanners(self):
