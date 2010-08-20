@@ -74,16 +74,24 @@ class _SpannerReceptor(_Abjad):
    @property
    def spanned(self):
       '''True when client is spanned.'''
-      return bool(self.spanners)
+      #return bool(self.spanners)
+      from abjad.tools import spannertools
+      return bool(spannertools.get_all_spanners_attached_to_component(self._client, self._klasses))
+
 
    @property
    def spanner(self):
       '''Return first spanner attaching to client.'''
-      count = self.count
+      from abjad.tools import spannertools
+      #count = self.count
+      spanners_attached_to_component = spannertools.get_all_spanners_attached_to_component(
+         self._client, self._klasses)
+      count = len(spanners_attached_to_component)
       if count == 0:
          raise MissingSpannerError
       elif count == 1:
-         return list(self.spanners)[0]
+         #return list(self.spanners)[0]
+         return list(spanners_attached_to_component)[0]
       else:
          raise ExtraSpannerError
 
@@ -150,8 +158,10 @@ class _SpannerReceptor(_Abjad):
 
    def unspan(self):
       '''Remove all spanners attaching to client.'''
-      result = [ ]
-      for spanner in list(self.spanners):
-         spanner.clear( )
-         result.append(spanner)
-      return result
+#      result = [ ]
+#      for spanner in list(self.spanners):
+#         spanner.clear( )
+#         result.append(spanner)
+#      return result
+      from abjad.tools import spannertools
+      return spannertools.destroy_all_spanners_attached_to_component(self._client, self._klasses)
