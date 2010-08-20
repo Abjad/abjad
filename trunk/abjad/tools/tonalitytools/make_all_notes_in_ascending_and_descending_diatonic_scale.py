@@ -2,6 +2,7 @@ from abjad.core import Rational
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
 from abjad.tools import componenttools
+from abjad.tools import schemetools
 from abjad.tools.tonalitytools.make_first_n_notes_in_ascending_diatonic_scale import \
    make_first_n_notes_in_ascending_diatonic_scale
 
@@ -54,6 +55,6 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
    staff = Staff(notes)
    staff.key_signature.forced = key_signature
    score = Score([staff])
-   score.tempo.tempo_wholes_per_minute = 30
+   score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(30)
 
    return score

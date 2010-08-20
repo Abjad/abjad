@@ -21,7 +21,10 @@ def test_TempoInterface_spanners_in_parentage_01( ):
    }
    '''
 
-   spanners_in_parentage = t.leaves[0].tempo.spanners_in_parentage
+   #spanners_in_parentage = t.leaves[0].tempo.spanners_in_parentage
+   spanners_in_parentage = \
+      spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+      t.leaves[0], spannertools.TempoSpanner)
 
    assert isinstance(spanners_in_parentage, set)
    assert len(spanners_in_parentage) == 1

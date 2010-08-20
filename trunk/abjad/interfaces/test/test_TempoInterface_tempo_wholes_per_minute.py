@@ -7,7 +7,7 @@ def test_TempoInterface_tempo_wholes_per_minute_01( ):
 
    t = Staff(macros.scale(4))
    score = Score([t])
-   score.tempo.tempo_wholes_per_minute = 24
+   score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 
    r'''
    \new Score \with {
@@ -31,7 +31,7 @@ def test_TempoInterface_tempo_wholes_per_minute_02( ):
 
    t = Staff(macros.scale(4))
    score = Score([t])
-   score.leaves[1].tempo.tempo_wholes_per_minute = 24
+   score.leaves[1].set.score.tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 
    r'''
    \new Score <<
