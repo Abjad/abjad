@@ -59,10 +59,12 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
    .. versionchanged:: 1.1.2
       renamed ``measuretools.beam_together( )``.
    '''
+   from abjad.tools import spannertools
 
    durations = [ ]
    for measure in measures:
-      measure.beam.unspan( )
+      #measure.beam.unspan( )
+      spannertools.destroy_all_spanners_attached_to_component(measure, spannertools.BeamSpanner)
       durations.append(measure.duration.preprolated)
    beam = DuratedComplexBeamSpanner(measures, durations = durations, span = 1)
    return beam

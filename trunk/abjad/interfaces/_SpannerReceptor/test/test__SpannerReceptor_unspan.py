@@ -2,11 +2,13 @@ from abjad import *
 
 
 def test__SpannerReceptor_unspan_01( ):
-   '''Unspan a spanned leaf.'''
+   '''Unspan a spanned leaf.
+   '''
 
    t = Note(0, (1, 8))
    spannertools.BeamSpanner(t)
-   t.beam.unspan( )
+   #t.beam.unspan( )
+   spannertools.destroy_all_spanners_attached_to_component(t, spannertools.BeamSpanner)
 
    r'''
    c'8
@@ -17,10 +19,12 @@ def test__SpannerReceptor_unspan_01( ):
 
 
 def test__SpannerReceptor_unspan_02( ):
-   '''Unspan an already unspanned leaf.'''
+   '''Unspan an already unspanned leaf.
+   '''
 
    t = Note(0, (1, 8))
-   t.beam.unspan( )
+   #t.beam.unspan( )
+   spannertools.destroy_all_spanners_attached_to_component(t, spannertools.BeamSpanner)
 
    r'''
    c'8

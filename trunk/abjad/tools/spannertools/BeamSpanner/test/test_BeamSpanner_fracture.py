@@ -9,14 +9,9 @@ def test_BeamSpanner_fracture_01( ):
    spannertools.BeamSpanner(t[ : 4])
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
-   #assert old[ : ] == t[ : 4]
    assert old.components == tuple(t[ : 4])
    old.fracture(0, 'left')
    assert len(t.spanners.contained) == 1
-   #new = list(t.spanners.contained)[0]
-   #assert new[ : ] == old[ : ] == t[ : 4]
-   #assert new.components == old.components == t[ : 4]
-   #assert new != old
 
 
 def test_BeamSpanner_fracture_02( ):
@@ -24,15 +19,9 @@ def test_BeamSpanner_fracture_02( ):
    spannertools.BeamSpanner(t[ : 4])
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
-   #assert old[ : ] == t[ : 4]
    assert old.components == tuple(t[ : 4])
    old.fracture(1, 'left')
    assert len(t.spanners.contained) == 2
-   #left, right = t.spanners.contained
-   #assert left[ : ] == t[0 : 1]
-   #assert left.components == t[0 : 1]
-   #assert right[ : ] == t[1 : 4]
-   #assert right.components == t[1 : 4]
 
 
 def test_BeamSpanner_fracture_03( ):
@@ -45,14 +34,9 @@ def test_BeamSpanner_fracture_03( ):
    spannertools.BeamSpanner(t[ : 4])
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
-   #assert old[ : ] == t[ : 4]
    assert old.components == tuple(t[ : 4])
    old.fracture(-1, 'right')
    assert len(t.spanners.contained) == 1
-   #new = list(t.spanners.contained)[0]
-   #assert new[ : ] == old[ : ] == t[ : 4]
-   #assert new.components == old.components == t[ : 4]
-   #assert new != old
 
 
 def test_BeamSpanner_fracture_04( ):
@@ -60,35 +44,32 @@ def test_BeamSpanner_fracture_04( ):
    spannertools.BeamSpanner(t[ : 4])
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
-   #assert old[ : ] == t[ : 4]
    assert old.components == tuple(t[ : 4])
    old.fracture(1, 'right')
    assert len(t.spanners.contained) == 2
-   #left, right = t.spanners.contained
-   #assert left[ : ] == t[0 : 2]
-   #assert left.components == t[0 : 2]
-   #assert right[ : ] == t[2 : 4]
-   #assert right.components == t[2 : 4]
 
 
 def test_BeamSpanner_fracture_05( ):
+   '''Fracture "both" fractures around leaf.
    '''
-   Fracture "both" fractures around leaf.
-   '''
+
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.BeamSpanner(t[ : 5])
    old = list(t.spanners.contained)[0]
    old.fracture(2, 'both')
-   assert len(t.spanners.contained) == 3
-   #spanners = t.spanners.contained
-   #assert len(spanners[0].components) == 2
-   #assert len(spanners[1].components) == 1
-   #assert len(spanners[2].components) == 2
-   #assert spanners[0] != spanners[1] != spanners[2]
-   assert len(t[0].beam.spanner) == 2
-   assert len(t[2].beam.spanner) == 1
-   assert len(t[3].beam.spanner) == 2
-   assert t[0].beam.spanner != t[2].beam.spanner != t[3].beam.spanner
+
+   #assert len(t.spanners.contained) == 3
+   #assert len(t[0].beam.spanner) == 2
+   #assert len(t[2].beam.spanner) == 1
+   #assert len(t[3].beam.spanner) == 2
+   #assert t[0].beam.spanner != t[2].beam.spanner != t[3].beam.spanner
+
+   assert len(beamtools.get_beam_spanner(t[0])) == 2
+   assert len(beamtools.get_beam_spanner(t[2])) == 1
+   assert len(beamtools.get_beam_spanner(t[3])) == 2
+   assert beamtools.get_beam_spanner(t[0]) != beamtools.get_beam_spanner(t[2])
+   assert beamtools.get_beam_spanner(t[2]) != beamtools.get_beam_spanner(t[3])
+
    componenttools.is_well_formed_component(t) ## check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8 ]\n\td'8 [ ]\n\tef'8 [\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
@@ -115,13 +96,12 @@ def test_BeamSpanner_fracture_06( ):
    old = list(t.spanners.contained)[0]
    old.fracture(0, 'both')
    assert len(t.spanners.contained) == 2
-   #spanners = list(t.spanners.contained)
-   #assert len(spanners[0]) == 1
-   #assert len(spanners[1]) == 4
-   #assert spanners[0] != spanners[1] 
-   assert len(t[0].beam.spanner) == 1
-   assert len(t[1].beam.spanner) == 4
-   assert t[0].beam.spanner != t[1].beam.spanner
+   #assert len(t[0].beam.spanner) == 1
+   #assert len(t[1].beam.spanner) == 4
+   #assert t[0].beam.spanner != t[1].beam.spanner
+   assert len(beamtools.get_beam_spanner(t[0])) == 1
+   assert len(beamtools.get_beam_spanner(t[1])) == 4
+   assert beamtools.get_beam_spanner(t[0]) != beamtools.get_beam_spanner(t[1])
    componenttools.is_well_formed_component(t) ## check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tcs'8 [\n\td'8\n\tef'8\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
    r'''
@@ -145,13 +125,12 @@ def test_BeamSpanner_fracture_07( ):
    old = list(t.spanners.contained)[0]
    old.fracture(4, 'both')
    assert len(t.spanners.contained) == 2
-   #spanners = t.spanners.contained
-   #assert len(spanners[0].components) == 4
-   #assert len(spanners[1].components) == 1
-   #assert spanners[0] != spanners[1] 
-   assert len(t[0].beam.spanner) == 4
-   assert len(t[4].beam.spanner) == 1
-   assert t[0].beam.spanner != t[4].beam.spanner
+   #assert len(t[0].beam.spanner) == 4
+   #assert len(t[4].beam.spanner) == 1
+   #assert t[0].beam.spanner != t[4].beam.spanner
+   assert len(beamtools.get_beam_spanner(t[0])) == 4
+   assert len(beamtools.get_beam_spanner(t[4])) == 1
+   assert beamtools.get_beam_spanner(t[0]) != beamtools.get_beam_spanner(t[4])
    componenttools.is_well_formed_component(t) ## check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
@@ -179,13 +158,12 @@ def test_BeamSpanner_fracture_08( ):
    old = list(t.spanners.contained)[0]
    old.fracture(-1, 'both')
    assert len(t.spanners.contained) == 2
-   #spanners = t.spanners.contained
-   #assert len(spanners[0].components) == 4
-   #assert len(spanners[1].components) == 1
-   #assert spanners[0] != spanners[1] 
-   assert len(t[0].beam.spanner) == 4
-   assert len(t[4].beam.spanner) == 1
-   assert t[0].beam.spanner != t[4].beam.spanner
+   #assert len(t[0].beam.spanner) == 4
+   #assert len(t[4].beam.spanner) == 1
+   #assert t[0].beam.spanner != t[4].beam.spanner
+   assert len(beamtools.get_beam_spanner(t[0])) == 4
+   assert len(beamtools.get_beam_spanner(t[4])) == 1
+   assert beamtools.get_beam_spanner(t[0]) != beamtools.get_beam_spanner(t[4])
    componenttools.is_well_formed_component(t) ## check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 

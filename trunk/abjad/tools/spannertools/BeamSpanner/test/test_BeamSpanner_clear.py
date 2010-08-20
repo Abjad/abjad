@@ -21,7 +21,7 @@ def test_BeamSpanner_clear_01( ):
    }
    '''
 
-   t[0].beam.spanner.clear( )
+   spannertools.destroy_all_spanners_attached_to_component(t[0], spannertools.BeamSpanner)
 
    r'''
    \new Staff {
@@ -60,7 +60,7 @@ def test_BeamSpanner_clear_02( ):
    }
    '''
 
-   t[0].beam.spanner.clear( )
+   spannertools.destroy_all_spanners_attached_to_component(t[0], spannertools.BeamSpanner)
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"

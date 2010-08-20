@@ -8,9 +8,13 @@ def test__SpannerReceptor_parented_01( ):
    t = Staff(notetools.make_repeated_notes(4))
    b = spannertools.BeamSpanner(t.leaves)
 
-   assert not t.beam.parented
+   #assert not t.beam.parented
+   assert not spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+      t, spannertools.BeamSpanner)
    for leaf in t.leaves:
-      assert leaf.beam.parented
+      #assert leaf.beam.parented
+      assert spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+         leaf, spannertools.BeamSpanner)
 
 
 def test__SpannerReceptor_parented_02( ):
@@ -19,20 +23,17 @@ def test__SpannerReceptor_parented_02( ):
    t = Staff(notetools.make_repeated_notes(4))
    b = spannertools.BeamSpanner(t)
 
-   assert t.beam.parented
+   #assert t.beam.parented
+   assert spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+      t, spannertools.BeamSpanner)
    for leaf in t.leaves:
-      assert leaf.beam.parented
+      #assert leaf.beam.parented
+      assert spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+         t, spannertools.BeamSpanner)
 
 
 def test__SpannerReceptor_parented_03( ):
-   '''Leaves and Containers are parented when spanner is attached to 
-      their grandparent and parent repsectively.'''
 
    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
 
    assert py.test.raises(AssertionError, 'b = spannertools.BeamSpanner(t)')
-#   assert t.beam.parented
-#   for v in t:
-#      assert v.beam.parented
-#   for leaf in t.leaves:
-#      assert leaf.beam.parented

@@ -60,6 +60,15 @@ Abjad composition packages
 
 
 
+beamtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/beamtools/get_beam_spanner
+   tools/beamtools/is_component_with_beam_spanner_attached
+
+
 chordtools
 
 .. toctree::

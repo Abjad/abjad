@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('beam interface is deprecated.')
 
 
 def test_BeamInterface_01( ):
@@ -6,7 +8,8 @@ def test_BeamInterface_01( ):
 
    t = Note(0, (3, 64))
    #assert t.beam.counts is None
-   assert not t.beam.spanned
+   #assert not t.beam.spanned
+   assert not beamtools.is_component_with_beam_spanner_attached(t)
    assert t.beam.spanners == set([ ])
    #assert t.beam.beamable
    assert not t.beam.first

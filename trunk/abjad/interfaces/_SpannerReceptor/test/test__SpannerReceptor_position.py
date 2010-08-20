@@ -4,7 +4,8 @@ import py.test
 
 def test__SpannerReceptor_position_01( ):
    '''Return position in spanner, if spanned;
-      otherwise, raise MissingSpannerError.'''
+   otherwise, raise MissingSpannerError.
+   '''
 
    t = Staff(macros.scale(4))
    spannertools.BeamSpanner(t[2:])
@@ -18,7 +19,10 @@ def test__SpannerReceptor_position_01( ):
    } 
    '''
 
-   assert py.test.raises(MissingSpannerError, 't[0].beam.position')
-   assert py.test.raises(MissingSpannerError, 't[1].beam.position')
-   assert t[2].beam.position == 0
-   assert t[3].beam.position == 1
+   #assert py.test.raises(MissingSpannerError, 't[0].beam.position')
+   #assert py.test.raises(MissingSpannerError, 't[1].beam.position')
+   #assert t[2].beam.position == 0
+   #assert t[3].beam.position == 1
+   
+   assert beamtools.get_beam_spanner(t[2]).index(t[2]) == 0
+   assert beamtools.get_beam_spanner(t[3]).index(t[3]) == 1
