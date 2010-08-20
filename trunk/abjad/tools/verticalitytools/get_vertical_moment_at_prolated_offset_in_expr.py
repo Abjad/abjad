@@ -1,5 +1,6 @@
 from abjad.components._Component import _Component
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
+from abjad.tools import componenttools
 
 
 def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
@@ -68,7 +69,10 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
             raise TypeError(message)
    else:
       raise TypeError(message)
-   governors.sort(lambda x, y: cmp(x.score.index, y.score.index))
+   #governors.sort(lambda x, y: cmp(x.score.index, y.score.index))
+   governors.sort(lambda x, y: cmp(
+         componenttools.component_to_score_index(x),
+         componenttools.component_to_score_index(y)))
    governors = tuple(governors)
 
    components = [ ] 
@@ -77,7 +81,10 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
          if component.offset.prolated.start <= prolated_offset:
             if prolated_offset < component.offset.prolated.stop:
                components.append(component)
-   components.sort(lambda x, y: cmp(x.score.index, y.score.index))
+   #components.sort(lambda x, y: cmp(x.score.index, y.score.index))
+   components.sort(lambda x, y: cmp(
+         componenttools.component_to_score_index(x),
+         componenttools.component_to_score_index(y)))
    components = tuple(components)
 
    vertical_moment = VerticalMoment(prolated_offset, governors, components)

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_the_only_spanner_attached_to_component_01( ):
+def test_spannertools_get_the_only_spanner_attached_to_any_improper_parent_of_component_01( ):
    '''Without klass keyword.
    '''
 

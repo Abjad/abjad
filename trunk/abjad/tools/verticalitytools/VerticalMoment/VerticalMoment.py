@@ -4,6 +4,7 @@ from abjad.components.Measure import _Measure
 from abjad.components.Note import Note
 from abjad.core import Rational
 from abjad.core import _Immutable
+from abjad.tools import componenttools
 
 
 class VerticalMoment(_Immutable):
@@ -21,7 +22,11 @@ class VerticalMoment(_Immutable):
       #self._governors = tuple(governors)
       object.__setattr__(self, '_governors', tuple(governors))
       components = list(components)
-      components.sort(lambda x, y: cmp(x.score.index, y.score.index))
+      components.sort(
+         lambda x, y: cmp(
+         #x.score.index, y.score.index))
+         componenttools.component_to_score_index(x),
+         componenttools.component_to_score_index(y)))
       #self._components = tuple(components)
       object.__setattr__(self, '_components', tuple(components))
 

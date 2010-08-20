@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ScoreInterface_index_01( ):
+def test_component_to_score_index_01( ):
    '''Exact numeric location of component in score as 
    a tuple of zero or more nonnegative integers.
    '''
@@ -35,7 +35,8 @@ def test_ScoreInterface_index_01( ):
    >>
    '''
 
-   indices = [leaf.score.index for leaf in score.leaves]
+   #indices = [leaf.score.index for leaf in score.leaves]
+   indices = [componenttools.component_to_score_index(leaf) for leaf in score.leaves]
 
    assert indices[0] == (0, 0, 0)
    assert indices[1] == (0, 0, 1)

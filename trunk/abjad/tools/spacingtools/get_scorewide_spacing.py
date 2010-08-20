@@ -1,3 +1,7 @@
+from abjad.components import Score
+from abjad.tools import componenttools
+
+
 def get_scorewide_spacing(component):
    '''Return scorewide spacing of explicit score of `compoment`. ::
 
@@ -26,7 +30,7 @@ def get_scorewide_spacing(component):
    if not isinstance(component, _Component):
       raise TypeError('must be Abjad component.')
 
-   explicit_score = component.score.explicit
+   explicit_score = componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+      component, Score)
    if explicit_score is not None:
-      #return explicit_score.spacing.scorewide
       return explicit_score.scorewide_spacing

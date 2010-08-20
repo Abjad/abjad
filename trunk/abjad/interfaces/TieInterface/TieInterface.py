@@ -5,7 +5,6 @@ from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
 class TieInterface(_Interface, _FormatContributor, _SpannerReceptor):
 #class TieInterface(_Interface, _FormatContributor):
-   '''Handle LilyPond Tie grob and Abjad Tie spanner.'''
 
    def __init__(self, client):
       from abjad.tools.spannertools import TieSpanner

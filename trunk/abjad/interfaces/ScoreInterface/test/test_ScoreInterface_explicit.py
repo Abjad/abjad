@@ -19,9 +19,16 @@ def test_ScoreInterface_explicit_01( ):
    >>
    '''
 
-   assert t.leaves[0].score.explicit is t
-   assert t[0].score.explicit is t
-   assert t.score.explicit is t
+   #assert t.leaves[0].score.explicit is t
+   #assert t[0].score.explicit is t
+   #assert t.score.explicit is t
+   
+   assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+      t.leaves[0], Score) is t
+   assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+      t[0], Score) is t
+   assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+      t, Score) is t
 
 
 def test_ScoreInterface_explicit_02( ):
@@ -40,5 +47,10 @@ def test_ScoreInterface_explicit_02( ):
    }
    '''
 
-   assert t[0].score.explicit is None
-   assert t.score.explicit is None
+   #assert t[0].score.explicit is None
+   #assert t.score.explicit is None
+
+   assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+      t[0], Score) is None
+   assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+      t, Score) is None

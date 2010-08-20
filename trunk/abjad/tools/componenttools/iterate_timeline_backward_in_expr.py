@@ -1,4 +1,5 @@
 from abjad.components._Leaf import _Leaf
+from abjad.tools.componenttools.component_to_score_index import component_to_score_index
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr \
    as componenttools_iterate_components_forward_in_expr
 
@@ -58,7 +59,9 @@ def iterate_timeline_backward_in_expr(expr, klass = _Leaf):
       result = cmp(component_1.offset.prolated.stop, 
          component_2.offset.prolated.stop)
       if result == 0:
-         return cmp(component_1.score.index, component_2.score.index)
+         return cmp(
+            component_to_score_index(component_1),
+            component_to_score_index(component_2))
       else:
          ## note negative result of cmp( ) is returned 
          ## for backward time sort

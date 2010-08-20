@@ -20,7 +20,7 @@ from abjad.interfaces import MeterInterface
 from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
 from abjad.interfaces import ParentageInterface
-from abjad.interfaces import ScoreInterface
+#from abjad.interfaces import ScoreInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
 from abjad.interfaces import TieInterface
@@ -276,13 +276,13 @@ class _Component(_Abjad):
          self._set = LilyPondContextSettingComponentPlugIn( )
       return self._set
 
-   @property
-   def score(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.score.interface.ScoreInterface`.'''
-      if not hasattr(self, '_score'):
-         self._score = ScoreInterface(self)
-      return self._score
+#   @property
+#   def score(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.score.interface.ScoreInterface`.'''
+#      if not hasattr(self, '_score'):
+#         self._score = ScoreInterface(self)
+#      return self._score
 
    @property
    def spanners(self):

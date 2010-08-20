@@ -4,7 +4,6 @@ from abjad.core import _Observer
 from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 from abjad.core import Rational
 from abjad.tools import tempotools
-import types
 
 
 class TempoInterface(_Observer, _FormatContributor, _BacktrackingInterface, _SpannerReceptor):
