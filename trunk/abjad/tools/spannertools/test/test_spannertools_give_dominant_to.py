@@ -4,10 +4,10 @@ from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
 
 def test_spannertools_give_dominant_to_01( ):
    '''Find spanners that dominate donor_components.
-      Apply dominant spanners to recipient_components.
-      Withdraw donor_components from spanners.
-      The operation can mangle spanners.
-      Remove donor_components from parentage immediately after.'''
+   Apply dominant spanners to recipient_components.
+   Withdraw donor_components from spanners.
+   The operation can mangle spanners.
+   Remove donor_components from parentage immediately after.'''
 
    t = Voice(macros.scale(4))
    spannertools.CrescendoSpanner(t[:])
@@ -69,7 +69,8 @@ def test_spannertools_give_dominant_to_01( ):
 
 
 def test_spannertools_give_dominant_to_02( ):
-   '''Not composer-safe.'''
+   '''Not composer-safe.
+   '''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)

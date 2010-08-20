@@ -73,17 +73,16 @@ class _ComponentSpannerAggregator(_Interface):
    def contained(self):
       '''Return unordered set of all spanners attaching to 
       components in client, including client.
-       '''
-      from abjad.components._Component._Component import _Component
-      from abjad.tools import componenttools
-      result = set([ ])
-      for component in componenttools.iterate_components_forward_in_expr(self._client, _Component):
-         result.update(set(component.spanners.attached))
-      return result
-      ## TODO: figure out why this drop-in replacement fails some tests ##
-      #from abjad.tools import spannertools
-      #return spannertools.get_all_spanners_attached_to_any_improper_children_of_component(
-      #   self._client)
+      '''
+#      from abjad.components._Component._Component import _Component
+#      from abjad.tools import componenttools
+#      result = set([ ])
+#      for component in componenttools.iterate_components_forward_in_expr(self._client, _Component):
+#         result.update(set(component.spanners.attached))
+#      return result
+      from abjad.tools import spannertools
+      return spannertools.get_all_spanners_attached_to_any_improper_children_of_component(
+         self._client)
 
    ## externalized as spannertools.is_component_with_spanner_attached( )
    @property
@@ -110,14 +109,13 @@ class _ComponentSpannerAggregator(_Interface):
    def fracture(self, direction = 'both'):
       '''Fracture every spanner attaching to client.
       '''
-      result = [ ]
-      client = self._client
-      for spanner in self.attached:
-         result.append(spanner.fracture(spanner.index(client), direction))
-      return result
-      ## TODO: figure out why this drop-in replacement fails some tests ##
-      #from abjad.tools import spannertools
-      #return spannertools.fracture_all_spanners_attached_to_component(self._client)
+#      result = [ ]
+#      client = self._client
+#      for spanner in self.attached:
+#         result.append(spanner.fracture(spanner.index(client), direction))
+#      return result
+      from abjad.tools import spannertools
+      return spannertools.fracture_all_spanners_attached_to_component(self._client, direction)
 
    ## externalized as spannertools.get_all_spanners_attached_to_component( )
    def get_all_attached_spanners_of_type(self, spanner_type):
