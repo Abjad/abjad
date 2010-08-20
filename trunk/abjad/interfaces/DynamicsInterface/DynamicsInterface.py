@@ -1,19 +1,19 @@
 from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
-from abjad.interfaces._SpannerReceptor import _SpannerReceptor
+#from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
 
-class DynamicsInterface(_Interface, _FormatContributor, _SpannerReceptor):
-   '''Receive Abjad DynamicTextSpanner and Hairpin spanners.
-   Implement read / write 'mark' attribute.
+#class DynamicsInterface(_Interface, _FormatContributor, _SpannerReceptor):
+class DynamicsInterface(_Interface, _FormatContributor):
+   '''Implement read / write 'mark' attribute.
    '''
    
    def __init__(self, client):
-      from abjad.tools.spannertools import DynamicTextSpanner
-      from abjad.tools.spannertools import HairpinSpanner
+      #from abjad.tools.spannertools import DynamicTextSpanner
+      #from abjad.tools.spannertools import HairpinSpanner
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
-      _SpannerReceptor.__init__(self, (DynamicTextSpanner, HairpinSpanner))
+      #_SpannerReceptor.__init__(self, (DynamicTextSpanner, HairpinSpanner))
       self._mark = None
 
    ## PRIVATE ATTRIBUTES ##
@@ -21,11 +21,16 @@ class DynamicsInterface(_Interface, _FormatContributor, _SpannerReceptor):
    @property
    def _summary(self):
       '''Summary of contents as string.'''
+      from abjad.tools import spannertools
       result = [ ]
+      spanners = spannertools.get_all_spanners_attached_to_component(self._client,
+         (spannertools.DynamicTextSpanner, spannertools.HairpinSpanner))
       if self.mark:
          result.append(self.mark)
-      if self.spanner:
-         result.append(self.spanner)
+      #if self.spanner:
+      if 0 < len(spanners):
+         #result.append(self.spanner)
+         result.append(spanners[0])
       if result:
          return ', '.join([str(x) for x in result])
       else:
@@ -39,12 +44,17 @@ class DynamicsInterface(_Interface, _FormatContributor, _SpannerReceptor):
       from abjad.components.Container import Container
       from abjad.tools.spannertools import DynamicTextSpanner
       from abjad.tools.spannertools import HairpinSpanner
+      from abjad.tools import spannertools
       if isinstance(self._client, Container):
          return None
       if self.mark:
          return self.mark
-      if self.spanned:
-         spanner = self.spanner
+      spanners = spannertools.get_all_spanners_attached_to_component(self._client,
+         (DynamicTextSpanner, HairpinSpanner))
+      #if self.spanned:
+      if 0 < len(spanners):
+         #spanner = self.spanner
+         spanner = spanners.pop( )
          if isinstance(spanner, DynamicTextSpanner):
             return spanner.mark
          elif isinstance(spanner, HairpinSpanner):

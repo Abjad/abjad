@@ -206,7 +206,9 @@ def test_HairpinSpanner_09( ):
    Rest(t[-1])
    spannertools.HairpinSpanner(t.leaves, 'p < f', trim = True)
 
-   assert len(t[0].dynamics.spanner.components) == len(t)
+   spanner = spannertools.get_the_only_spanner_attached_to_component(
+      t[0], spannertools.HairpinSpanner)
+   assert len(spanner.components) == len(t)
    assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\p\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\f\n\tr8\n}"
    checker = IntermarkedHairpinCheck( )
    assert checker.check(t)
