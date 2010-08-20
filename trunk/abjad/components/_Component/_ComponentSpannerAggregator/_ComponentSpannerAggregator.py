@@ -49,7 +49,7 @@ class _ComponentSpannerAggregator(_Interface):
       '''
       return self._spanners
 
-   ## externalized as spannertools.get_all_spanners_attached_to_any_proper_children_of_component( )
+   ## externalized as spannertools.get_all_spanners_attached_to_any_proper_child_of_component( )
    @property
    def children(self):
       '''Return unordered set of all spanners
@@ -65,7 +65,7 @@ class _ComponentSpannerAggregator(_Interface):
 #         result.update(set(component.spanners.attached))
 #      return result
       from abjad.tools import spannertools
-      return spannertools.get_all_spanners_attached_to_any_proper_children_of_component(
+      return spannertools.get_all_spanners_attached_to_any_proper_child_of_component(
          self._client)
 
    ## externalized as spannertools.get_all_spanners_attached_to_any_improper_chldren_of_component( )
@@ -81,7 +81,7 @@ class _ComponentSpannerAggregator(_Interface):
 #         result.update(set(component.spanners.attached))
 #      return result
       from abjad.tools import spannertools
-      return spannertools.get_all_spanners_attached_to_any_improper_children_of_component(
+      return spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
          self._client)
 
    ## externalized as spannertools.is_component_with_spanner_attached( )

@@ -850,10 +850,11 @@ spannertools
    tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
    tools/spannertools/fracture_all_spanners_attached_to_component
    tools/spannertools/fracture_spanners_that_cross_components
-   tools/spannertools/get_all_spanners_attached_to_any_improper_children_of_component
-   tools/spannertools/get_all_spanners_attached_to_any_proper_children_of_component
+   tools/spannertools/get_all_spanners_attached_to_any_improper_child_of_component
+   tools/spannertools/get_all_spanners_attached_to_any_improper_parent_of_component
+   tools/spannertools/get_all_spanners_attached_to_any_proper_child_of_component
+   tools/spannertools/get_all_spanners_attached_to_any_proper_parent_of_component
    tools/spannertools/get_all_spanners_attached_to_component
-   tools/spannertools/get_all_spanners_attached_to_improper_parentage_of_component
    tools/spannertools/get_nth_leaf_in_spanner
    tools/spannertools/get_spanners_contained_by_components
    tools/spannertools/get_spanners_covered_by_components
