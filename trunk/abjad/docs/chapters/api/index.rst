@@ -38,7 +38,6 @@ Score component interfaces
    interfaces/GraceInterface/GraceInterface
    interfaces/HarmonicInterface/HarmonicInterface
    interfaces/HistoryInterface/HistoryInterface
-   interfaces/InstrumentInterface/InstrumentInterface
    interfaces/InterfaceAggregator/InterfaceAggregator
    interfaces/KeySignatureInterface/KeySignatureInterface
    interfaces/MarkupInterface/MarkupInterface
