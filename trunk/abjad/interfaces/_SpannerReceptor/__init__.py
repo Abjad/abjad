@@ -1,1 +1,0 @@
-from _SpannerReceptor import _SpannerReceptor
