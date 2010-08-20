@@ -1,19 +1,14 @@
 from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
-#from abjad.interfaces._SpannerReceptor import _SpannerReceptor
 
 
-#class DynamicsInterface(_Interface, _FormatContributor, _SpannerReceptor):
 class DynamicsInterface(_Interface, _FormatContributor):
    '''Implement read / write 'mark' attribute.
    '''
    
    def __init__(self, client):
-      #from abjad.tools.spannertools import DynamicTextSpanner
-      #from abjad.tools.spannertools import HairpinSpanner
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
-      #_SpannerReceptor.__init__(self, (DynamicTextSpanner, HairpinSpanner))
       self._mark = None
 
    ## PRIVATE ATTRIBUTES ##
@@ -27,9 +22,7 @@ class DynamicsInterface(_Interface, _FormatContributor):
          (spannertools.DynamicTextSpanner, spannertools.HairpinSpanner))
       if self.mark:
          result.append(self.mark)
-      #if self.spanner:
       if 0 < len(spanners):
-         #result.append(self.spanner)
          result.append(spanners[0])
       if result:
          return ', '.join([str(x) for x in result])
@@ -51,9 +44,7 @@ class DynamicsInterface(_Interface, _FormatContributor):
          return self.mark
       spanners = spannertools.get_all_spanners_attached_to_component(self._client,
          (DynamicTextSpanner, HairpinSpanner))
-      #if self.spanned:
       if 0 < len(spanners):
-         #spanner = self.spanner
          spanner = spanners.pop( )
          if isinstance(spanner, DynamicTextSpanner):
             return spanner.mark
