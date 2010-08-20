@@ -1,3 +1,7 @@
+from abjad.tools.spannertools.fracture_all_spanners_attached_to_component import \
+   fracture_all_spanners_attached_to_component
+
+
 def fracture_spanners_that_cross_components(components):
    r'''Fracture to the left of the leftmost component.
    Fracture to the right of the rightmost component.
@@ -59,9 +63,11 @@ def fracture_spanners_that_cross_components(components):
    if 0 < len(components):
 
       leftmost_component = components[0]
-      leftmost_component.spanners.fracture(direction = 'left')
+      #leftmost_component.spanners.fracture(direction = 'left')
+      fracture_all_spanners_attached_to_component(leftmost_component, direction = 'left')
 
       rightmost_component = components[-1]
-      rightmost_component.spanners.fracture(direction = 'right')
+      #rightmost_component.spanners.fracture(direction = 'right')
+      fracture_all_spanners_attached_to_component(rightmost_component, direction = 'right')
 
    return components

@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('deprecated.')
 
 
 def test_LeafSpannerAggregator_clear_01( ):

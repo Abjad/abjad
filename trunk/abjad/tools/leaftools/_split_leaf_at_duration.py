@@ -11,6 +11,7 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
    Return value is always uniformly a pair of lists.
    '''
    from abjad.tools import componenttools
+   from abjad.tools import spannertools
    from abjad.tools import tietools
    from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_leaf_duration
 
@@ -42,7 +43,9 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
    leaf_right_of_split = right_leaf_list[0]
 
    if spanners == 'fractured':
-      leaf_left_of_split.spanners.fracture(direction = 'right')
+      #leaf_left_of_split.spanners.fracture(direction = 'right')
+      spannertools.fracture_all_spanners_attached_to_component(
+         leaf_left_of_split, direction = 'right')
    elif spanners == 'unfractured':
       pass
    else:

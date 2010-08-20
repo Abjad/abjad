@@ -40,6 +40,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
       renamed ``containertools.insert_and_fracture( )`` to
       ``containertools.insert_component_and_fracture_crossing_spanners( )``.
    '''
+   from abjad.tools import spannertools
 
    if not isinstance(container, Container):
       raise TypeError('must be container: %s' % container)
@@ -51,8 +52,12 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
    component.parentage._switch(container)
    container._music.insert(i, component)
    if component.prev:
-      result.extend(component.prev.spanners.fracture(direction = 'right'))
+      #result.extend(component.prev.spanners.fracture(direction = 'right'))
+      result.extend(spannertools.fracture_all_spanners_attached_to_component(
+         component.prev, direction = 'right'))
    if component.next:
-      result.extend(component.next.spanners.fracture(direction = 'left')) 
+      #result.extend(component.next.spanners.fracture(direction = 'left')) 
+      result.extend(spannertools.fracture_all_spanners_attached_to_component(
+         component.next, direction = 'left'))
 
    return result

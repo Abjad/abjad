@@ -8,10 +8,13 @@ class OverlappingGlissandoCheck(_Check):
 
    def _run(self, expr):
       from abjad.tools import leaftools
+      from abjad.tools import spannertools
       violators = [ ] 
       for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
          #glissandi = leaf.glissando.spanners
-         glissandi = leaf.spanners.get_all_attached_spanners_of_type(GlissandoSpanner)
+         #glissandi = leaf.spanners.get_all_attached_spanners_of_type(GlissandoSpanner)
+         glissandi = spannertools.get_all_spanners_attached_to_component(
+            leaf, GlissandoSpanner)
          if 1 < len(glissandi):
             if len(glissandi) == 2:
                common_leaves = set(glissandi[0].leaves) & \
