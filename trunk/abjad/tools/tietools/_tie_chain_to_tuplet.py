@@ -3,7 +3,9 @@ from abjad.components.Note import Note
 from abjad.core import Rational
 from abjad.tools import componenttools
 from abjad.tools import durtools
-from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
+from abjad.tools import spannertools
+from abjad.tools.tietools.get_preprolated_tie_chain_duration import \
+   get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
@@ -58,7 +60,8 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
    componenttools.move_parentage_and_spanners_from_components_to_components(list(chain), [tuplet])
 
    # untie tuplet
-   tuplet.tie.unspan( )
+   #tuplet.tie.unspan( )
+   spannertools.destroy_all_spanners_attached_to_component(tuplet, spannertools.TieSpanner)
 
    # return tuplet
    return tuplet

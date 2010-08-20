@@ -1,5 +1,6 @@
 from abjad.components._Leaf import _Leaf
-from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
+from abjad.tools.leaftools.iterate_leaves_backward_in_expr import iterate_leaves_backward_in_expr
+from abjad.tools import spannertools
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 
 
@@ -47,7 +48,9 @@ def iterate_tie_chains_backward_in_expr(expr):
       ``tietools.iterate_tie_chains_backward_in_expr( )``.
    '''
 
-   for leaf in iterate_components_backward_in_expr(expr, _Leaf):
-      if not leaf.tie.spanned or leaf.tie.first:
-         #yield leaf.tie.chain
+   for leaf in iterate_leaves_backward_in_expr(expr):
+      tie_spanners = spannertools.get_all_spanners_attached_to_component(
+         leaf, spannertools.TieSpanner)
+      #if not leaf.tie.spanned or leaf.tie.first:
+      if not(tie_spanners) or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
          yield get_tie_chain(leaf)

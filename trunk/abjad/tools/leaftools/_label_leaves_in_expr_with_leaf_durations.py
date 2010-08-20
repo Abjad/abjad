@@ -1,4 +1,5 @@
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
+from abjad.tools import spannertools
 
 
 def _label_leaves_in_expr_with_leaf_durations(expr, 
@@ -13,7 +14,10 @@ def _label_leaves_in_expr_with_leaf_durations(expr,
    
    for leaf in iterate_leaves_forward_in_expr(expr):
       if ties == 'together':
-         if not leaf.tie.spanned:
+         #if not leaf.tie.spanned:
+         tie_spanners = spannertools.get_all_spanners_attached_to_component(
+            leaf, spannertools.TieSpanner)
+         if not tie_spanners:
             if leaf.duration.multiplier is not None:
                multiplier = '* %s' % str(leaf.duration.multiplier)
             else:
@@ -23,8 +27,10 @@ def _label_leaves_in_expr_with_leaf_durations(expr,
                leaf.markup.down.append(label)
             if 'prolated' in show:
                leaf.markup.down.append(r'\small %s' % leaf.duration.prolated)
-         elif leaf.tie.spanner._is_my_first_leaf(leaf):
-            tie = leaf.tie.spanner
+         #elif leaf.tie.spanner._is_my_first_leaf(leaf):
+         elif tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
+            #tie = leaf.tie.spanner
+            tie = tie_spanners.pop( )
             if 'written' in show:
                written = sum([x.duration.written for x in tie])
                label = r'\small %s' % written

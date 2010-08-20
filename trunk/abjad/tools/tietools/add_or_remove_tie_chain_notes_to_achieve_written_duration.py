@@ -3,12 +3,15 @@ from abjad.tools.spannertools import TieSpanner
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import notetools
+from abjad.tools import spannertools
 from abjad.tools.spannertools._withdraw_from_attached import _withdraw_from_attached
 from abjad.tools.tietools.get_leaves_in_tie_chain import get_leaves_in_tie_chain
-from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
+from abjad.tools.tietools.get_preprolated_tie_chain_duration import \
+   get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
-from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import remove_all_leaves_in_tie_chain_except_first
+from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import \
+   remove_all_leaves_in_tie_chain_except_first
 from abjad.components.Tuplet import Tuplet
 
 
@@ -42,14 +45,18 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
          for leaf in tie_chain[len(duration_tokens):]:
             componenttools.remove_component_subtree_from_score_and_spanners([leaf])
       elif len(tie_chain) < len(duration_tokens):
-         tie_chain[0].tie.unspan( )
+         #tie_chain[0].tie.unspan( )
+         spannertools.destroy_all_spanners_attached_to_component(
+            tie_chain[0], spannertools.TieSpanner)
          difference = len(duration_tokens) - len(tie_chain)
          extra_leaves = tie_chain[0] * difference
          _withdraw_from_attached(extra_leaves)
          extra_tokens = duration_tokens[len(tie_chain):]
          for leaf, token in zip(extra_leaves, extra_tokens):
             leaf.duration.written = token.duration.written
-         if not tie_chain[-1].tie.spanned:
+         #if not tie_chain[-1].tie.spanned:
+         if not spannertools.is_component_with_spanner_attached(
+            tie_chain[-1], spannertools.TieSpanner):
             TieSpanner(list(tie_chain))
          tie_chain[-1].splice(extra_leaves)
    else:

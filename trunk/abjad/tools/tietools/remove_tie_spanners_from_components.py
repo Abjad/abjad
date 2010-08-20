@@ -1,3 +1,6 @@
+from abjad.tools import spannertools
+
+
 def remove_tie_spanners_from_components(components):
    r'''Untie thread-contiguous `components`. ::
 
@@ -42,6 +45,7 @@ def remove_tie_spanners_from_components(components):
    assert componenttools.all_are_thread_contiguous_components(components)
 
    for component in components:
-      component.tie.unspan( )
+      #component.tie.unspan( )
+      spannertools.destroy_all_spanners_attached_to_component(component, spannertools.TieSpanner)
 
    return components

@@ -19,12 +19,13 @@ def _split_component_at_duration(
 
    from abjad.tools import leaftools
    from abjad.tools import measuretools
+   from abjad.tools import spannertools
    from abjad.tools import tietools
+   from abjad.tools.componenttools.list_improper_contents_of_component_that_cross_prolated_offset \
+      import list_improper_contents_of_component_that_cross_prolated_offset
    from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duration
    from abjad.tools.leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian \
       import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
-   from abjad.tools.componenttools.list_improper_contents_of_component_that_cross_prolated_offset \
-      import list_improper_contents_of_component_that_cross_prolated_offset
 
    duration = Rational(duration)
    assert 0 <= duration
@@ -131,9 +132,16 @@ def _split_component_at_duration(
       if tie_after:
          leaves_at_split = [leaf_left_of_split, leaf_right_of_split]
          if not tietools.are_components_in_same_tie_spanner(leaves_at_split):
-            if all([x.tie.spanned for x in leaves_at_split]):
-               leaf_left_of_split.tie.spanner.fuse(
-                  leaf_right_of_split.tie.spanner)
+            #if all([x.tie.spanned for x in leaves_at_split]):
+            if all([tietools.is_component_with_tie_spanner_attached(x) for x in leaves_at_split]):
+               #leaf_left_of_split.tie.spanner.fuse(leaf_right_of_split.tie.spanner)
+               leaf_left_of_split_tie_spanner = \
+                  spannertools.get_the_only_spanner_attached_to_component(
+                  leaf_left_of_split, spannertools.TieSpanner)
+               leaf_right_of_split_tie_spanner = \
+                  spannertools.get_the_only_spanner_attached_to_component(
+                  leaf_right_of_split, spannertools.TieSpanner)
+               leaf_left_of_split_tie_spanner.fuse(leaf_right_of_split_tie_spanner)
             else:
                spannertools.TieSpanner(leaves_at_split)
          

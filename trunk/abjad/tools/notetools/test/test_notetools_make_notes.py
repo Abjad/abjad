@@ -10,7 +10,8 @@ def test_notetools_make_notes_01( ):
    assert len(t) == 1
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
-   assert not t[0].tie.spanned
+   #assert not t[0].tie.spanned
+   assert not tietools.is_component_with_tie_spanner_attached(t[0])
 
 
 def test_notetools_make_notes_02( ):
@@ -21,8 +22,10 @@ def test_notetools_make_notes_02( ):
    assert isinstance(t[1], Note)
    assert t[0].duration.written == Rational(4, 8)
    assert t[1].duration.written == Rational(1, 8)
-   assert t[0].tie.spanned
-   assert t[1].tie.spanned
+   #assert t[0].tie.spanned
+   #assert t[1].tie.spanned
+   assert tietools.is_component_with_tie_spanner_attached(t[0])
+   assert tietools.is_component_with_tie_spanner_attached(t[1])
 
 def test_notetools_make_notes_03( ):
    '''

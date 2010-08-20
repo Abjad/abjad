@@ -24,6 +24,7 @@ def parse_note_entry_string(note_entry_string):
    Do not parse tuplets, measures or other complex LilyPond input.
    '''
    from abjad.tools import leaftools
+   from abjad.tools import spannertools
 
    container = Container([ ])
    tokens = note_entry_string.split( ) 
@@ -101,7 +102,9 @@ def parse_note_entry_string(note_entry_string):
          elif token == '~':
             last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
             try:
-               tie_spanner = last_leaf.tie.spanner
+               #tie_spanner = last_leaf.tie.spanner
+               tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
+                  last_leaf, spannertools.TieSpanner)
             except MissingSpannerError:
                TieSpanner([last_leaf])
             tie_next_leaf = True

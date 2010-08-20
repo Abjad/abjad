@@ -147,8 +147,10 @@ def test_leaftools__split_leaf_at_duration_06( ):
    assert isinstance(halves[1][0], Note)
    assert halves[0][0].duration.written == Rational(1, 8)
    assert halves[1][0].duration.written == Rational(1, 8)
-   assert not halves[0][0].tie.spanned
-   assert not halves[1][0].tie.spanned
+   #assert not halves[0][0].tie.spanned
+   #assert not halves[1][0].tie.spanned
+   assert not tietools.is_component_with_tie_spanner_attached(halves[0][0])
+   assert not tietools.is_component_with_tie_spanner_attached(halves[1][0])
 
 
 def test_leaftools__split_leaf_at_duration_07( ):
@@ -185,10 +187,17 @@ def test_leaftools__split_leaf_at_duration_08( ):
    assert halves[0][0].duration.written == Rational(4, 32)
    assert halves[0][1].duration.written == Rational(1, 32)
    assert halves[1][0].duration.written == Rational(3, 32)
-   assert halves[0][0].tie.spanned
-   assert halves[0][1].tie.spanned
-   assert halves[0][0].tie.spanner is halves[0][1].tie.spanner
-   assert not halves[1][0].tie.spanned
+   #assert halves[0][0].tie.spanned
+   #assert halves[0][1].tie.spanned
+   assert tietools.is_component_with_tie_spanner_attached(halves[0][0])
+   assert tietools.is_component_with_tie_spanner_attached(halves[0][1])
+   #assert halves[0][0].tie.spanner is halves[0][1].tie.spanner
+   assert spannertools.get_the_only_spanner_attached_to_component(
+      halves[0][0], spannertools.TieSpanner) is \
+      spannertools.get_the_only_spanner_attached_to_component(
+      halves[0][1], spannertools.TieSpanner)
+   #assert not halves[1][0].tie.spanned
+   assert not tietools.is_component_with_tie_spanner_attached(halves[1][0])
 
 
 def test_leaftools__split_leaf_at_duration_09( ):
@@ -201,7 +210,9 @@ def test_leaftools__split_leaf_at_duration_09( ):
    assert len(t) == 2
    for leaf in t.leaves:
       assert leaf.spanners.attached == set([s])
-      assert leaf.tie.spanner is s
+      #assert leaf.tie.spanner is s
+      assert spannertools.get_the_only_spanner_attached_to_component(
+         leaf, spannertools.TieSpanner) is s
    assert componenttools.is_well_formed_component(t)
 
 
@@ -232,7 +243,9 @@ def test_leaftools__split_leaf_at_duration_11( ):
    assert len(halves[1]) == 1
    for l in t.leaves:
       assert l.spanners.attached == set([s])
-      assert l.tie.spanner is s
+      #assert l.tie.spanner is s
+      assert spannertools.get_the_only_spanner_attached_to_component(
+         l, spannertools.TieSpanner) is s
    assert componenttools.is_well_formed_component(t)
    
 
@@ -244,7 +257,8 @@ def test_leaftools__split_leaf_at_duration_12( ):
    s = spannertools.TieSpanner(t)
    halves = _split_leaf_at_duration(t[0], Rational(5, 64))
 
-   assert t.tie.spanner is s
+   #assert t.tie.spanner is s
+   assert spannertools.get_the_only_spanner_attached_to_component(t, spannertools.TieSpanner) is s
    assert s.components == (t, )
    for l in t.leaves:
       assert not l.spanners.attached 

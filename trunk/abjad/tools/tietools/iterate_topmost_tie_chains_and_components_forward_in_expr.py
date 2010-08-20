@@ -1,6 +1,7 @@
-from abjad.exceptions import TieChainError
 from abjad.components._Leaf import _Leaf
 from abjad.components.Container import Container
+from abjad.exceptions import TieChainError
+from abjad.tools import spannertools
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 
 
@@ -11,7 +12,7 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
       t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
       t.insert(4, tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
       macros.diatonicize(t)
-      abjad> print t.format
+      abjad> f(t)
       \new Staff {
          c'8 ~
          c'32
@@ -54,11 +55,14 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
       if len(get_tie_chain(expr)) == 1:
          yield get_tie_chain(expr)
       else:
-         raise TieChainError('can not only one leaf in tie chain.')
+         raise TieChainError('can not have only one leaf in tie chain.')
    elif isinstance(expr, (list, Container)):
       for component in expr:
          if isinstance(component, _Leaf):
-            if not component.tie.spanned or component.tie.last:
+            tie_spanners = spannertools.get_all_spanners_attached_to_component(
+               component, spannertools.TieSpanner)
+            #if not component.tie.spanned or component.tie.last:
+            if not tie_spanners or tuple(tie_spanners)[0]._is_my_last_leaf(component):
                yield get_tie_chain(component)
          elif isinstance(component, Container):
             yield component

@@ -1,4 +1,5 @@
 from abjad.tools import componenttools
+from abjad.tools import spannertools
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 
@@ -19,6 +20,7 @@ def remove_all_leaves_in_tie_chain_except_first(tie_chain):
 
    first = tie_chain[0]
 
-   first.tie.unspan( )
+   #first.tie.unspan( )
+   spannertools.destroy_all_spanners_attached_to_component(first, spannertools.TieSpanner)
    
    return get_tie_chain(first)

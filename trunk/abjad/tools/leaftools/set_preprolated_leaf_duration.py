@@ -1,7 +1,7 @@
 from abjad.exceptions import AssignabilityError
 from abjad.components._Leaf import _Leaf
 from abjad.core import Rational
-from abjad.tools.spannertools import TieSpanner
+from abjad.tools import spannertools
 from abjad.tools.notetools.make_notes import make_notes
 from abjad.components.Tuplet import Tuplet
 
@@ -109,8 +109,10 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
          leaf.splice(tied_leaves)
-         if not leaf.tie.parented:
-            TieSpanner(all_leaves)
+         #if not leaf.tie.parented:
+         if not spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+            leaf, spannertools.TieSpanner):
+            spannertools.TieSpanner(all_leaves)
       elif isinstance(duration_tokens[0], Tuplet):
          #print 'debug duration_tokens %s' % duration_tokens
          fmtuplet = duration_tokens[0]
@@ -122,8 +124,10 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
          leaf.splice(tied_leaves)
-         if not leaf.tie.spanned:
-            TieSpanner(all_leaves) 
+         #if not leaf.tie.spanned:
+         if not spannertools.is_component_with_spanner_attached(
+            leaf, spannertools.TieSpanner):
+            spannertools.TieSpanner(all_leaves) 
          tuplet_multiplier = fmtuplet.duration.multiplier
          Tuplet(tuplet_multiplier, all_leaves)
       else:

@@ -290,7 +290,11 @@ def test_MetricGridSpanner_10( ):
    assert v[-1].duration.prolated == Rational(4, 4)
    assert isinstance(v[-2], Rest)
    assert v[-2].duration.prolated == Rational(1, 4)
-   assert v[-2].tie.spanner == v[-1].tie.spanner
+   #assert v[-2].tie.spanner == v[-1].tie.spanner
+   assert spannertools.get_the_only_spanner_attached_to_component(
+      v[-2], spannertools.TieSpanner) == \
+      spannertools.get_the_only_spanner_attached_to_component(
+      v[-1], spannertools.TieSpanner)
 
    r'''
    \new Voice {

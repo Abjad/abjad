@@ -1,7 +1,8 @@
 from abjad.exceptions import MissingSpannerError
 from abjad.components._Leaf import _Leaf
-from abjad.tools.spannertools import TieSpanner
-from abjad.tools.tietools.are_components_in_same_tie_spanner import are_components_in_same_tie_spanner
+from abjad.tools import spannertools
+from abjad.tools.tietools.are_components_in_same_tie_spanner import \
+   are_components_in_same_tie_spanner
 
 
 def apply_tie_spanner_to_leaf_pair(left, right):
@@ -47,12 +48,16 @@ def apply_tie_spanner_to_leaf_pair(left, right):
       return 
 
    try:
-      left_tie_spanner = left.tie.spanner
+      #left_tie_spanner = left.tie.spanner
+      left_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
+         left, spannertools.TieSpanner)
    except MissingSpannerError:
       left_tie_spanner = None
 
    try:
-      right_tie_spanner = right.tie.spanner
+      #right_tie_spanner = right.tie.spanner
+      right_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
+         right, spannertools.TieSpanner)
    except MissingSpannerError:
       right_tie_spanner = None
 
@@ -63,4 +68,4 @@ def apply_tie_spanner_to_leaf_pair(left, right):
    elif left_tie_spanner is None and right_tie_spanner is not None:
       right_tie_spanner.append_left(left)
    elif left_tie_spanner is None and right_tie_spanner is None:
-      TieSpanner([left, right])
+      spannertools.TieSpanner([left, right])

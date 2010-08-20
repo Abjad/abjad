@@ -16,6 +16,8 @@ class MetricGridSpanner(Spanner):
 
    def _fuse_tied_leaves_within_measures(self):
       from abjad.tools import leaftools
+      from abjad.tools import spannertools
+      from abjad.tools import tietools
       ## fuse tied notes
       meters = self.meters
       #meter = meters.next( )
@@ -39,16 +41,25 @@ class MetricGridSpanner(Spanner):
       for leaves in leaves_in_meter:
          result = [[ ]]
          if 0 < len(leaves):
-            if leaves[0].tie.spanned:
-               sp = leaves[0].tie.spanner
+            #if leaves[0].tie.spanned:
+            if tietools.is_component_with_tie_spanner_attached(leaves[0]):
+               #sp = leaves[0].tie.spanner
+               sp = spannertools.get_the_only_spanner_attached_to_component(
+                  leaves[0], spannertools.TieSpanner)
             else:
                sp = None
          for l in leaves:
-            if l.tie.spanned and l.tie.spanner == sp:
-               result[-1].append(l)
+            #if l.tie.spanned and l.tie.spanner == sp:
+            if tietools.is_component_with_tie_spanner_attached(l):
+               if spannertools.get_the_only_spanner_attached_to_component(
+                  l, spannertools.TieSpanner) == sp:
+                  result[-1].append(l)
             else:
-               if l.tie.spanned:
-                  sp = l.tie.spanner
+               #if l.tie.spanned:
+               if tietools.is_component_with_tie_spanner_attached(l):
+                  #sp = l.tie.spanner
+                  sp = spannertools.get_the_only_spanner_attached_to_component(
+                     l, spannertools.TieSpanner)
                else:
                   sp = None
                result.append([ ])
