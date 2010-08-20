@@ -1,6 +1,7 @@
-from abjad.components.Container import Container
 from abjad.exceptions import TieChainError
 from abjad.components._Leaf import _Leaf
+from abjad.components.Container import Container
+from abjad.tools.tietools.get_tie_chain import get_tie_chain
 
 
 def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
@@ -50,15 +51,15 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
    '''
 
    if isinstance(expr, _Leaf):
-      if len(expr.tie.chain) == 1:
-         yield expr.tie.chain
+      if len(get_tie_chain(expr)) == 1:
+         yield get_tie_chain(expr)
       else:
          raise TieChainError('can not only one leaf in tie chain.')
    elif isinstance(expr, (list, Container)):
       for component in expr:
          if isinstance(component, _Leaf):
             if not component.tie.spanned or component.tie.last:
-               yield component.tie.chain
+               yield get_tie_chain(component)
          elif isinstance(component, Container):
             yield component
    else:

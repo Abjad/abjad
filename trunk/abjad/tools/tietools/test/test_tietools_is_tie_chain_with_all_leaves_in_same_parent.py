@@ -7,7 +7,7 @@ def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_01( ):
    t = notetools.make_repeated_notes(4)
    spannertools.TieSpanner(t[:])
 
-   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t[0].tie.chain)
+   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t[0]))
 
 
 def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_02( ):
@@ -16,7 +16,7 @@ def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_02( ):
    t = Staff(notetools.make_repeated_notes(4))
    spannertools.TieSpanner(t[:])
 
-   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t[0].tie.chain)
+   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t[0]))
 
 
 def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_03( ):
@@ -36,10 +36,12 @@ def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_03( ):
    }
    '''
 
-   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[0].tie.chain)
-   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[1].tie.chain)
-   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[2].tie.chain)
-   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[3].tie.chain)
+   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t.leaves[0]))
+   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(
+      tietools.get_tie_chain(t.leaves[1]))
+   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(
+      tietools.get_tie_chain(t.leaves[2]))
+   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t.leaves[3]))
 
 
 def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_04( ):
@@ -63,9 +65,18 @@ def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_04( ):
    }
    '''
 
-   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[0].tie.chain)
-   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[1].tie.chain)
-   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[2].tie.chain)
-   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[3].tie.chain)
-   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[4].tie.chain)
-   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[5].tie.chain)
+#   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[0].tie.chain)
+#   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[1].tie.chain)
+#   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[2].tie.chain)
+#   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[3].tie.chain)
+#   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[4].tie.chain)
+#   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[5].tie.chain)
+
+   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t.leaves[0]))
+   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t.leaves[1]))
+   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(
+      tietools.get_tie_chain(t.leaves[2]))
+   assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(
+      tietools.get_tie_chain(t.leaves[3]))
+   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t.leaves[4]))
+   assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t.leaves[5]))

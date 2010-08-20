@@ -15,7 +15,8 @@ def test_tietools_tie_chain_to_augmented_tuplet_with_proportions_and_encourage_d
    }
    '''
 
-   tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(t[0].tie.chain, [1])
+   tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(
+      tietools.get_tie_chain(t[0]), [1])
 
    r'''
    \new Staff {
@@ -35,7 +36,8 @@ def test_tietools_tie_chain_to_augmented_tuplet_with_proportions_and_encourage_d
    t = Staff([Note(0, (1, 8)), Note(0, (1, 16)), Note(0, (1, 16))])
    spannertools.TieSpanner(t[:2])
    spannertools.BeamSpanner(t[:])
-   tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(t[0].tie.chain, [1, 2])
+   tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(
+      tietools.get_tie_chain(t[0]), [1, 2])
 
    r'''
    \new Staff {
@@ -57,7 +59,7 @@ def test_tietools_tie_chain_to_augmented_tuplet_with_proportions_and_encourage_d
    spannertools.TieSpanner(t[:2])
    spannertools.BeamSpanner(t[:])
    tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(
-      t[0].tie.chain, [1, 2, 2])
+      tietools.get_tie_chain(t[0]), [1, 2, 2])
 
    r'''
    \new Staff {

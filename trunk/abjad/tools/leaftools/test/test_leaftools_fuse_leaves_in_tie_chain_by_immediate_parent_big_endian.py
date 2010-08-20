@@ -22,7 +22,8 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_01( )
    }
    '''
 
-   result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(t.leaves[1].tie.chain)
+   result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
+      tietools.get_tie_chain(t.leaves[1]))
 
    r'''
    \new Staff {
@@ -57,7 +58,8 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02( )
    }
    '''
 
-   result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(t.leaves[1].tie.chain)
+   result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
+      tietools.get_tie_chain(t.leaves[1]))
 
    assert componenttools.is_well_formed_component(t)
    assert len(result) == 1
@@ -68,6 +70,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_03( )
    '''Fuse leaves in tie chain with same immediate parent.'''
 
    t = Note(0, (1, 4))
-   result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(t.tie.chain)
+   result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
+      tietools.get_tie_chain(t))
    assert len(result) == 1
    assert componenttools.is_well_formed_component(t)

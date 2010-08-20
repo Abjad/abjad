@@ -4,8 +4,9 @@ from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import notetools
 from abjad.tools.spannertools._withdraw_from_attached import _withdraw_from_attached
-from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_leaves_in_tie_chain import get_leaves_in_tie_chain
+from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
+from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import remove_all_leaves_in_tie_chain_except_first
 from abjad.components.Tuplet import Tuplet
@@ -56,9 +57,9 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
       assert isinstance(duration_tokens[0], Tuplet)
       fmtuplet = duration_tokens[0]
       new_chain_written = get_preprolated_tie_chain_duration(
-         fmtuplet[0].tie.chain)
+         get_tie_chain(fmtuplet[0]))
       add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_chain_written)
       multiplier = fmtuplet.duration.multiplier
       Tuplet(multiplier, get_leaves_in_tie_chain(tie_chain))
       
-   return tie_chain[0].tie.chain         
+   return get_tie_chain(tie_chain[0])

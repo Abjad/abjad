@@ -1,5 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
+from abjad.tools.tietools.get_tie_chain import get_tie_chain
 
 
 def iterate_tie_chains_forward_in_expr(expr):
@@ -48,4 +49,5 @@ def iterate_tie_chains_forward_in_expr(expr):
 
    for leaf in iterate_components_forward_in_expr(expr, _Leaf):
       if not leaf.tie.spanned or leaf.tie.last:
-         yield leaf.tie.chain
+         #yield leaf.tie.chain
+         yield get_tie_chain(leaf)

@@ -1,10 +1,11 @@
 from abjad.tools import componenttools
+from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 
 
 def remove_all_leaves_in_tie_chain_except_first(tie_chain):
    '''Detach all leaves of tie chain after the first.
-      Unspan and return length-1 tie chain.
+   Unspan and return length-1 tie chain.
 
    .. versionchanged:: 1.1.2
       renamed ``tietools.truncate( )`` to
@@ -20,4 +21,4 @@ def remove_all_leaves_in_tie_chain_except_first(tie_chain):
 
    first.tie.unspan( )
    
-   return first.tie.chain
+   return get_tie_chain(first)

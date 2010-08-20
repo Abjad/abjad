@@ -14,18 +14,6 @@ class _SpannerReceptor(_Abjad):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def chain(self):
-      '''Return tuple of all leaves in spanner, if spanned;
-         otherwise return 1-tuple of client.'''
-      count = self.count
-      if count == 0:
-         return (self._client, )
-      elif count == 1:
-         return tuple(self.spanner.leaves)
-      else:
-         raise ExtraSpannerError
-
-   @property
    def count(self):
       '''Return number of spanners attaching to client.'''
       #return len(self.spanners)

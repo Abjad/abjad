@@ -13,7 +13,7 @@ def test_tietools_remove_all_leaves_in_tie_chain_except_first_01( ):
    }
    '''
    
-   tietools.remove_all_leaves_in_tie_chain_except_first(t[0].tie.chain)
+   tietools.remove_all_leaves_in_tie_chain_except_first(tietools.get_tie_chain(t[0]))
 
    r'''
    \new Staff {
@@ -30,7 +30,7 @@ def test_tietools_remove_all_leaves_in_tie_chain_except_first_02( ):
 
    t = Staff(notetools.make_repeated_notes(1))
 
-   tietools.remove_all_leaves_in_tie_chain_except_first(t[0].tie.chain)
+   tietools.remove_all_leaves_in_tie_chain_except_first(tietools.get_tie_chain(t[0]))
 
    r'''
    \new Staff {

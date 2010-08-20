@@ -1,16 +1,20 @@
+from abjad.exceptions import ExtraSpannerError
+from abjad.tools import spannertools
+
+
 def get_tie_chain(component):
    '''.. versionadded:: 1.1.2
 
    Get tie chain from `component`.
    '''
 
-   raise NotImplementedError('implementation coming soon.')
+   tie_spanners = spannertools.get_all_spanners_attached_to_component(
+      component, spannertools.TieSpanner)
+   count = len(tie_spanners)
 
-   count = self.count
    if count == 0:
-      return (self._client, )
+      return (component, )
    elif count == 1:
-      return tuple(self.spanner.leaves)
+      return tuple(tie_spanners.pop( ).leaves)
    else:
       raise ExtraSpannerError
-
