@@ -6,7 +6,6 @@ from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import ArticulationInterface
-from abjad.interfaces import BeamInterface
 from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
 from abjad.interfaces import ClefInterface
@@ -44,7 +43,6 @@ class _Component(_Abjad):
    def __init__(self):
       self._interfaces = InterfaceAggregator(self)
       #self._articulations = ArticulationInterface(self)
-      #self._beam = BeamInterface(self)
       #self._breaks = BreaksInterface(self)
       #self._comments = CommentsInterface( )
       #self._directives = DirectivesInterface(self)
@@ -104,14 +102,6 @@ class _Component(_Abjad):
          self._articulations = ArticulationInterface(self)
       return self._articulations
    
-   @property
-   def beam(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.beam.interface.BeamInterface`.'''
-      if not hasattr(self, '_beam'):
-         self._beam = BeamInterface(self)
-      return self._beam
-
    @property
    def breaks(self):
       '''Read-only reference to

@@ -1,5 +1,5 @@
 def get_beam_spanner(component):
-   '''.. versionaddedd:: 1.1.2
+   '''.. versionadded:: 1.1.2
 
    Get the only beam spanner attached to `component`.
 
