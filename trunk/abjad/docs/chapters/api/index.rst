@@ -48,8 +48,6 @@ Score component interfaces
    interfaces/OffsetInterface/OffsetProlatedInterface/OffsetProlatedInterface
    interfaces/ParentageInterface/ParentageInterface
    interfaces/ScoreInterface/ScoreInterface
-   interfaces/SpacingInterface/ScoreSpacingInterface/ScoreSpacingInterface
-   interfaces/SpacingInterface/SpacingInterface
    interfaces/StaffInterface/StaffInterface
    interfaces/TempoInterface/TempoInterface
    interfaces/TieInterface/TieInterface

@@ -28,4 +28,5 @@ def get_scorewide_spacing(component):
 
    explicit_score = component.score.explicit
    if explicit_score is not None:
-      return explicit_score.spacing.scorewide
+      #return explicit_score.spacing.scorewide
+      return explicit_score.scorewide_spacing

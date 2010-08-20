@@ -8,7 +8,8 @@ def test_spacingtools_get_scorewide_spacing_01( ):
    tempo_indication = tempotools.TempoIndication(Rational(1, 8), 38)
    spacing_indication = spacingtools.SpacingIndication(
       tempo_indication, Rational(1, 68))
-   t.spacing.scorewide = spacing_indication
+   #t.spacing.scorewide = spacing_indication
+   t.scorewide_spacing = spacing_indication
 
    r'''
    \new Score <<
