@@ -1,9 +1,7 @@
 from abjad.core import _BacktrackingInterface
-#from abjad.core import _FormatContributor
 from abjad.core import _Observer
 
 
-#class KeySignatureInterface(_Observer, _FormatContributor, _BacktrackingInterface):
 class KeySignatureInterface(_Observer, _BacktrackingInterface):
    '''Publish information about effective and forced key_signature.
    '''
@@ -11,7 +9,6 @@ class KeySignatureInterface(_Observer, _BacktrackingInterface):
    def __init__(self, _client, _updateInterface):
       from abjad.tools.tonalitytools import KeySignature
       _Observer.__init__(self, _client, _updateInterface)
-      #_FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'key_signature')
       self._acceptableTypes = (KeySignature, )
       #self._default = tonalitytools.KeySignature('c', 'major')

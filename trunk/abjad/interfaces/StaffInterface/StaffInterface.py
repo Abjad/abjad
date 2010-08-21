@@ -1,10 +1,8 @@
 from abjad.core import _BacktrackingInterface
-#from abjad.core import _FormatContributor
 from abjad.core import _Observer
 import types
 
 
-#class StaffInterface(_Observer, _BacktrackingInterface, _FormatContributor):
 class StaffInterface(_Observer, _BacktrackingInterface):
    r'''Report on Abjad staff in parentage of client.
    Interface to LilyPond \stopStaff, \startStaff hiding commands.
@@ -19,7 +17,6 @@ class StaffInterface(_Observer, _BacktrackingInterface):
       from abjad.components.Staff import Staff
       _Observer.__init__(self, _client, _updateInterface)
       _BacktrackingInterface.__init__(self, 'staff')
-      #_FormatContributor.__init__(self)
       self._acceptableTypes = (Staff, )
       self._effective = None
       self._font_size = None

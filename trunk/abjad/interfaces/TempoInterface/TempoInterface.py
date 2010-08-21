@@ -1,10 +1,8 @@
 from abjad.core import _BacktrackingInterface
-#from abjad.core import _FormatContributor
 from abjad.core import _Observer
 from abjad.tools import tempotools
 
 
-#class TempoInterface(_Observer, _FormatContributor, _BacktrackingInterface):
 class TempoInterface(_Observer, _BacktrackingInterface):
    '''Handle LilyPond MetronomeMark grob and Abjad TempoSpanner.
 
@@ -27,7 +25,6 @@ class TempoInterface(_Observer, _BacktrackingInterface):
    
    def __init__(self, _client, _updateInterface):
       _Observer.__init__(self, _client, _updateInterface)
-      #_FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'tempo')
       self._acceptableTypes = (tempotools.TempoIndication, )
       self._effective = None

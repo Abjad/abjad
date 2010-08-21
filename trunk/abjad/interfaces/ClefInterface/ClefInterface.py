@@ -1,9 +1,7 @@
 from abjad.core import _BacktrackingInterface
-#from abjad.core import _FormatContributor
 from abjad.core import _Observer
 
 
-#class ClefInterface(_Observer, _BacktrackingInterface, _FormatContributor):
 class ClefInterface(_Observer, _BacktrackingInterface):
    '''Observe score structure to find effective clef.
    Manage forced clef changes.
@@ -13,7 +11,6 @@ class ClefInterface(_Observer, _BacktrackingInterface):
       from abjad.tools.stafftools import Clef
       _Observer.__init__(self, _client, updateInterface)
       _BacktrackingInterface.__init__(self, 'clef')
-      #_FormatContributor.__init__(self)
       self._acceptableTypes = (Clef, )
       self._default = Clef('treble')
       self._forced = None
