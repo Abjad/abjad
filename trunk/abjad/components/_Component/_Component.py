@@ -19,7 +19,6 @@ from abjad.interfaces import OffsetInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
-from abjad.interfaces import TremoloInterface
 
 
 class _Component(_Abjad):
@@ -40,7 +39,6 @@ class _Component(_Abjad):
       self._parentage = ParentageInterface(self)
       self._spanners = set([ ])
       #self._set = LilyPondContextSettingComponentPlugIn( )
-      #self._tremolo = TremoloInterface(self)
       self._update = _UpdateInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
@@ -257,14 +255,6 @@ class _Component(_Abjad):
       if not hasattr(self, '_tempo'):
          self._tempo = TempoInterface(self, self._update)
       return self._tempo
-
-   @property
-   def tremolo(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.tremolo.interface.TremoloInterface`.'''
-      if not hasattr(self, '_tremolo'):
-         self._tremolo = TremoloInterface(self)
-      return self._tremolo
 
    ## PRIVATE METHODS ##
 
