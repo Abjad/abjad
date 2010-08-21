@@ -2,11 +2,12 @@ from abjad.interfaces._Interface import _Interface
 
 
 class InterfaceAggregator(_Interface):
-   '''Aggregate information about all format-contributing interfaces.'''
+   '''Aggregate information about all format-contributing interfaces.
+   '''
 
    def __init__(self, client):
       '''Bind to client. Note that private contributors list is not
-      populate in this class. Rather, each class inheriting from format
+      populated in this class. Rather, each class inheriting from format
       contributor is reponsible for registering itself and adding
       its class to the private contributors list initialized here.'''
       _Interface.__init__(self, client)
@@ -17,9 +18,13 @@ class InterfaceAggregator(_Interface):
 
    @property
    def after(self):
-      '''Ordered list of format-time contributions for after format slot.'''
+      '''Ordered list of format-time contributions for after format slot.
+      '''
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, '_after', [ ]))
       result.extend(self._client.misc._get_formatted_commands_for_target_slot('after'))
       result.sort( )
@@ -27,9 +32,13 @@ class InterfaceAggregator(_Interface):
 
    @property
    def before(self):
-      '''Ordered list of format-time contributions for before format slot.'''
+      '''Ordered list of format-time contributions for before format slot.
+      '''
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, '_before', [ ]))
       result.extend(self._client.misc._get_formatted_commands_for_target_slot('before'))
       result.sort( )
@@ -37,36 +46,43 @@ class InterfaceAggregator(_Interface):
 
    @property
    def closing(self):
-      '''Ordered list of format-time contributions for closing format slot.'''
+      '''Ordered list of format-time contributions for closing format slot.
+      '''
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, '_closing', [ ]))
       result.extend(self._client.misc._get_formatted_commands_for_target_slot('closing'))
       result.sort( )
       return result
 
-   @property
-   def contributors(self):
-      from abjad.components.Chord import Chord
-      from abjad.tools.notetools.NoteHead import NoteHead
-      if not self._contributors_sorted:
-         self._contributors.sort(lambda x, y:
-            cmp(x.__class__.__name__, y.__class__.__name__))
-         self._contributors_sorted = True
-      ## TODO: Remove client-testing hack. ##
-      if isinstance(self._client, Chord):
-         note_head = [x for x in self._contributors if isinstance(x, NoteHead)]
-         if note_head:
-            note_head = note_head[0]
-            self._contributors.remove(note_head) 
-      return self._contributors
+#   @property
+#   def contributors(self):
+#      from abjad.components.Chord import Chord
+#      from abjad.tools.notetools.NoteHead import NoteHead
+#      if not self._contributors_sorted:
+#         self._contributors.sort(lambda x, y:
+#            cmp(x.__class__.__name__, y.__class__.__name__))
+#         self._contributors_sorted = True
+#      ## TODO: Remove client-testing hack. ##
+#      if isinstance(self._client, Chord):
+#         note_head = [x for x in self._contributors if isinstance(x, NoteHead)]
+#         if note_head:
+#            note_head = note_head[0]
+#            self._contributors.remove(note_head) 
+#      return self._contributors
 
    @property
    def left(self):
       '''Ordered list of format-time contributions for left format slot.
       '''
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, '_left', [ ]))
       result.extend(self._client.misc._get_formatted_commands_for_target_slot('left'))
       result.sort( )
@@ -76,8 +92,11 @@ class InterfaceAggregator(_Interface):
    def opening(self):
       '''Ordered list of format-time contributions for opening format slot.
       '''
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, '_opening', [ ]))
       result.extend(self._client.misc._get_formatted_commands_for_target_slot('opening'))
       result.sort( )
@@ -92,8 +111,11 @@ class InterfaceAggregator(_Interface):
       from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
       from abjad.tools.lilyfiletools._make_lilypond_override_string import \
          _make_lilypond_override_string
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, '_overrides', [ ]))
       if isinstance(self._client, _Leaf):
          is_once = True
@@ -132,8 +154,11 @@ class InterfaceAggregator(_Interface):
       from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
       from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
          _make_lilypond_revert_string
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, '_reverts', [ ]))
       if not isinstance(self._client, _Leaf):
          for name, value in vars(self._client.override).iteritems( ):
@@ -159,8 +184,11 @@ class InterfaceAggregator(_Interface):
    def right(self):
       '''Ordered list of format-time contributions for right format slot.
       '''
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, '_right', [ ]))
       dynamic_mark = getattr(self._client, 'dynamic_mark', None)
       if dynamic_mark is not None:
@@ -173,8 +201,11 @@ class InterfaceAggregator(_Interface):
    def settings(self):
       '''Ordered data structure of format-time context settings.
       '''
+      from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+         _get_format_contributor_component_interfaces
       result = [ ]
-      for contributor in self.contributors:
+      #for contributor in self.contributors:
+      for contributor in _get_format_contributor_component_interfaces(self._client):
          result.extend(getattr(contributor, 'settings', [ ]))
       from abjad.components._Leaf import _Leaf
       from abjad.components.Measure import _Measure
