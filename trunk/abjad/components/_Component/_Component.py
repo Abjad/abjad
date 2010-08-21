@@ -8,7 +8,6 @@ from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
 from abjad.interfaces import ClefInterface
 from abjad.interfaces import DirectivesInterface
-#from abjad.interfaces import DynamicsInterface
 from abjad.interfaces import HistoryInterface
 from abjad.interfaces import InterfaceAggregator
 from abjad.interfaces import KeySignatureInterface
@@ -27,7 +26,6 @@ class _Component(_Abjad):
       #self._breaks = BreaksInterface(self)
       #self._comments = CommentsInterface( )
       #self._directives = DirectivesInterface(self)
-      #self._dynamics = DynamicsInterface(self)
       #self._history = HistoryInterface(self)
       self._lily_file = None
       #self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
@@ -110,14 +108,6 @@ class _Component(_Abjad):
    def duration(self):
       '''Read-only reference to class-specific duration interface.'''
       return self._duration
-
-#   @property
-#   def dynamics(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.dynamics.interface.DynamicsInterface`.'''
-#      if not hasattr(self, '_dynamics'):
-#         self._dynamics = DynamicsInterface(self)
-#      return self._dynamics
 
    @property
    def format(self):

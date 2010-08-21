@@ -32,7 +32,6 @@ Score component interfaces
    interfaces/ClefInterface/ClefInterface
    interfaces/CommentsInterface/CommentsInterface
    interfaces/DirectivesInterface/DirectivesInterface
-   interfaces/DynamicsInterface/DynamicsInterface
    interfaces/HistoryInterface/HistoryInterface
    interfaces/InterfaceAggregator/InterfaceAggregator
    interfaces/KeySignatureInterface/KeySignatureInterface
