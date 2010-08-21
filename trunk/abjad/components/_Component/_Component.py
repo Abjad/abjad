@@ -1,4 +1,3 @@
-#from abjad.components._Component._ComponentSpannerAggregator import _ComponentSpannerAggregator
 from abjad.core import _Abjad
 from abjad.core import _Navigator
 from abjad.core import LilyPondContextSettingComponentPlugIn
@@ -40,8 +39,7 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
       #self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._parentage = ParentageInterface(self)
-      #self._spanners = _ComponentSpannerAggregator(self)
-      self._spanners = set([ ]) ## <== TODO
+      self._spanners = set([ ])
       #self._set = LilyPondContextSettingComponentPlugIn( )
       #self._tremolo = TremoloInterface(self)
       self._update = _UpdateInterface(self)

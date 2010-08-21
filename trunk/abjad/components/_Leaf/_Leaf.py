@@ -4,7 +4,6 @@ from abjad.interfaces import HarmonicInterface
 from abjad.interfaces import MarkupInterface
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.components._Leaf._LeafFormatter import _LeafFormatter
-#from abjad.components._Leaf._LeafSpannerAggregator import _LeafSpannerAggregator
 import operator
 
 
@@ -17,7 +16,6 @@ class _Leaf(_Component):
       #self._grace = GraceInterface(self)
       #self._harmonic = HarmonicInterface(self)
       #self._markup = MarkupInterface(self)
-      #self._spanners = _LeafSpannerAggregator(self)
 
    ## OVERLOADS ##
 
