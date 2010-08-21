@@ -101,7 +101,8 @@ class Container(_Component):
          componenttools.remove_component_subtree_from_score_and_spanners([old])
          for spanner, index in spanners_receipt:
             spanner._insert(index, expr)
-            expr.spanners._add(spanner)
+            #expr.spanners._add(spanner)
+            expr._spanners.add(spanner)
       # slice assignment
       else:
          assert componenttools.all_are_components(expr)
@@ -122,7 +123,8 @@ class Container(_Component):
          for spanner, index in spanners_receipt:
             for component in reversed(expr):
                spanner._insert(index, component)
-               component.spanners._add(spanner)
+               #component.spanners._add(spanner)
+               component._spanners.add(spanner)
 
    ## PRIVATE ATTRIBUTES ##
 

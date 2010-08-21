@@ -11,11 +11,14 @@ def move_spanners_from_component_to_children_of_component(donor):
    children = donor[:]
 
    #for spanner in list(donor.spanners.attached):
-   for spanner in list(donor.spanners._spanners):
+   #for spanner in list(donor.spanners._spanners):
+   for spanner in donor.spanners:
       i = spanner.index(donor)
       spanner._components[i:i+1] = children
       for child in children:
-         child.spanners._add(spanner)
-      donor.spanners._spanners.discard(spanner)
+         #child.spanners._add(spanner)
+         child._spanners.add(spanner)
+      #donor.spanners._spanners.discard(spanner)
+      donor._spanners.discard(spanner)
 
    return donor

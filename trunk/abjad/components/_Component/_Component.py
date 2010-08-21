@@ -1,4 +1,4 @@
-from abjad.components._Component._ComponentSpannerAggregator import _ComponentSpannerAggregator
+#from abjad.components._Component._ComponentSpannerAggregator import _ComponentSpannerAggregator
 from abjad.core import _Abjad
 from abjad.core import _Navigator
 from abjad.core import LilyPondContextSettingComponentPlugIn
@@ -40,8 +40,8 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
       #self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._parentage = ParentageInterface(self)
-      self._spanners = _ComponentSpannerAggregator(self)
-      #self._spanners = set([ ]) ## <== TODO
+      #self._spanners = _ComponentSpannerAggregator(self)
+      self._spanners = set([ ]) ## <== TODO
       #self._set = LilyPondContextSettingComponentPlugIn( )
       #self._tremolo = TremoloInterface(self)
       self._update = _UpdateInterface(self)
@@ -234,7 +234,7 @@ class _Component(_Abjad):
 
    @property
    def set(self):
-      '''Read-only reference LilyPond context setting component plug-in..
+      '''Read-only reference LilyPond context setting component plug-in.
       '''
       if not hasattr(self, '_set'):
          self._set = LilyPondContextSettingComponentPlugIn( )
@@ -242,9 +242,9 @@ class _Component(_Abjad):
 
    @property
    def spanners(self):
-      '''Read-only reference to spanner aggregator.
+      '''Read-only reference to unordered set of spanners attached to component.
       '''
-      return self._spanners
+      return set(self._spanners)
    
    @property
    def staff(self):
@@ -378,7 +378,8 @@ class _Component(_Abjad):
             insert_index = len(spanner)
          for component in reversed(components):
             spanner._insert(insert_index, component)
-            component.spanners._add(spanner)
+            #component.spanners._add(spanner)
+            component._spanners.add(spanner)
       parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
          for component in reversed(components):
@@ -399,7 +400,8 @@ class _Component(_Abjad):
          index = spannertools.find_index_of_spanner_component_at_score_offset(spanner, offset)
          for component in reversed(components):
             spanner._insert(index, component)
-            component.spanners._add(spanner)
+            #component.spanners._add(spanner)
+            component._spanners.add(spanner)
       parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
          for component in reversed(components):

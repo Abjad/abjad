@@ -32,8 +32,9 @@ def get_all_spanners_attached_to_any_improper_parent_of_component(component, kla
    parentage = component.parentage.parentage
    for parent in parentage:
       #spanners = parent.spanners.attached
-      spanners = parent.spanners._spanners
-      for spanner in spanners:
+      #spanners = parent.spanners._spanners
+      #for spanner in spanners:
+      for spanner in parent.spanners:
          if klass is None:
             result.add(spanner)
          elif isinstance(spanner, klass):

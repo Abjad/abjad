@@ -26,4 +26,5 @@ def _withdraw_from_crossing(components):
       for component in components_including_children:
          if component in spanner_components:
             crossing_spanner._components.remove(component)
-            component.spanners._spanners.discard(crossing_spanner)
+            #component.spanners._spanners.discard(crossing_spanner)
+            component._spanners.discard(crossing_spanner)

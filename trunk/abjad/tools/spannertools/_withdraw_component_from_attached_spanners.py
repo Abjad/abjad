@@ -3,6 +3,7 @@ def _withdraw_component_from_attached_spanners(component):
    '''
 
    ## externalization of (old) component spanner aggregator _detach( ) method
-   for spanner in list(component.spanners._spanners):
+   #for spanner in list(component.spanners._spanners):
+   for spanner in component.spanners:
       index = spanner.index(component)
       spanner._remove(component)

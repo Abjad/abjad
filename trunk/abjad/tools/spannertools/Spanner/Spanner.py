@@ -92,7 +92,8 @@ class Spanner(_Abjad):
          self._block_component(component)
 
    def _block_component(self, component):
-      component.spanners._spanners.remove(self)
+      #component.spanners._spanners.remove(self)
+      component._spanners.remove(self)
    
    ## TODO: Remove call to self.leaes ##
    def _duration_offset_in_me(self, leaf):
@@ -146,8 +147,10 @@ class Spanner(_Abjad):
 
    def _insert(self, i, component):
       '''Insert component in spanner at index i.
-         Not composer-safe and may mangle spanners.'''
-      component.spanners._add(self)
+      Not composer-safe and may mangle spanners.
+      '''
+      #component.spanners._add(self)
+      component._spanners.add(self)
       self._components.insert(i, component)
    
    def _is_exterior_leaf(self, leaf):
@@ -240,7 +243,8 @@ class Spanner(_Abjad):
          self._unblock_component(component)
 
    def _unblock_component(self, component):
-      component.spanners._add(self)
+      #component.spanners._add(self)
+      component._spanners.add(self)
 
    ## PUBLIC ATTRIBUTES ##
    
@@ -396,7 +400,8 @@ class Spanner(_Abjad):
          from abjad.tools import componenttools
          components = self[-1:] + [component]
          assert componenttools.all_are_thread_contiguous_components(components)
-      component.spanners._add(self)
+      #component.spanners._add(self)
+      component._spanners.add(self)
       self._components.append(component)
 
    def append_left(self, component):
@@ -419,7 +424,8 @@ class Spanner(_Abjad):
       from abjad.tools import componenttools
       components = [component] + self[:1] 
       assert componenttools.all_are_thread_contiguous_components(components)
-      component.spanners._add(self)
+      #component.spanners._add(self)
+      component._spanners.add(self)
       self._components.insert(0, component)
 
    def clear(self):

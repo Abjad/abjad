@@ -33,10 +33,12 @@ def is_component_with_spanner_attached(expr, klass = None):
    if isinstance(expr, _Component):
       if klass is None:
          #return 0 < len(expr.spanners.attached)
-         return 0 < len(expr.spanners._spanners)
+         #return 0 < len(expr.spanners._spanners)
+         return 0 < len(expr.spanners)
       else:
          #for spanner in expr.spanners.attached:
-         for spanner in expr.spanners._spanners:
+         #for spanner in expr.spanners._spanners:
+         for spanner in expr.spanners:
             if isinstance(spanner, klass):
                return True
    return False
