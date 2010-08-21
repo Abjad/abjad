@@ -50,7 +50,7 @@ def test_Note_cast_as_skip_04( ):
 def test_Note_cast_as_skip_05( ):
    '''Works fine when note is beamed.'''
    t = Staff(Note(0, (1, 8)) * 3)
-   spannertools.BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[:])
    Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0].parentage.parent is t

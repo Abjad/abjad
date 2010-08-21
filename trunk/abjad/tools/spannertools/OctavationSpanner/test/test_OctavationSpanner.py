@@ -6,7 +6,7 @@ def test_OctavationSpanner_01( ):
    '''Octavation has default start and stop arguments set to 0.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   o = spannertools.OctavationSpanner(t[ : ])
+   o = spannertools.OctavationSpanner(t[:])
 
    r'''
    \new Staff {

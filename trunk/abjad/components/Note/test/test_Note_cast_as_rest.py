@@ -50,7 +50,7 @@ def test_Note_cast_as_rest_04( ):
 def test_Note_cast_as_rest_05( ):
    '''Works fine when note is beamed.'''
    t = Staff(Note(0, (1, 8)) * 3)
-   spannertools.BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[:])
    Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0].parentage.parent is t

@@ -128,7 +128,7 @@ def test_Staff___getitem___08( ):
          tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
-   slice = t[ : ]
+   slice = t[:]
    assert len(slice) == 5
    assert isinstance(slice, list)
    assert isinstance(slice[0], Note)

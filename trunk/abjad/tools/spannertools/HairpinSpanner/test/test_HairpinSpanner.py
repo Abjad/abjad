@@ -133,7 +133,7 @@ def test_HairpinSpanner_06( ):
    '''Hairpins format rests.'''
 
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-   spannertools.CrescendoSpanner(t[ : ])
+   spannertools.CrescendoSpanner(t[:])
 
    assert t.format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
    assert componenttools.is_well_formed_component(t)
@@ -179,7 +179,7 @@ def test_HairpinSpanner_08( ):
    '''Trim hairpins format only notes and chords.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-   spannertools.CrescendoSpanner(t[ : ], trim = True)
+   spannertools.CrescendoSpanner(t[:], trim = True)
 
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"
    assert componenttools.is_well_formed_component(t)

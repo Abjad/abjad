@@ -7,7 +7,7 @@ def test_LeafSpannerAggregator_clear_01( ):
    '''Clear a single spanner.'''
 
    t = Voice(macros.scale(4))
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
 
    r'''
    \new Voice {

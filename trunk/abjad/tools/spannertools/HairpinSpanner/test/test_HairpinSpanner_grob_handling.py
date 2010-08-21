@@ -6,7 +6,7 @@ def test_HairpinSpanner_grob_handling_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = spannertools.HairpinSpanner(t[ : ], 'p < f')
+   p = spannertools.HairpinSpanner(t[:], 'p < f')
    p.override.dynamic_line_spanner.staff_padding = 4
 
    r'''

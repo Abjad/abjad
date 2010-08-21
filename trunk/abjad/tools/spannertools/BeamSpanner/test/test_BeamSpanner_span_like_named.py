@@ -17,7 +17,7 @@ def test_BeamSpanner_span_like_named_01( ):
    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
    p.clear( )
 
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
    assert len(p.components) == 2
    for x in p.components:
       assert isinstance(x, Voice)
@@ -54,7 +54,7 @@ def test_BeamSpanner_span_like_named_02( ):
    
    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
 
-   assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t[ : ])')
+   assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t[:])')
 
    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([t[0][0], t[1][0]])')
 

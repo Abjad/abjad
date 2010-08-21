@@ -6,7 +6,7 @@ def test_BeamSpanner_grob_handling_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
    #p.positions = (4, 4)
    p.override.beam.positions = (4, 4)
 

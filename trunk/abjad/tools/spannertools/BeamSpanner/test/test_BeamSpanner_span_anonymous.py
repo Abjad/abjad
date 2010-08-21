@@ -52,7 +52,7 @@ def test_BeamSpanner_span_anonymous_03( ):
       beam indications.'''
 
    t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
 
    r'''
    \new Staff {
@@ -112,7 +112,7 @@ def test_BeamSpanner_span_anonymous_05( ):
       first and last leaves in contiguity chain format beam indications.'''
 
    t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
 
    r'''
    \new Staff {
@@ -168,7 +168,7 @@ def test_BeamSpanner_span_anonymous_07( ):
       no beams appear at format-time.'''
 
    t = Staff(Container([ ]) * 3)
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
 
    assert len(p.components) == 3
    for x in p.components:
@@ -192,7 +192,7 @@ def test_BeamSpanner_span_anonymous_08( ):
 
    t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
    t.insert(1, Container([ ]))
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
 
    assert len(p.components) == 3
    for x in p.components:
@@ -225,7 +225,7 @@ def test_BeamSpanner_span_anonymous_09( ):
 
    t = Staff(Container([ ]) * 2)
    t.insert(1, Container(Note(0, (1, 8)) * 4))
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
 
    assert len(p.components) == 3
    for x in p.components:
@@ -371,7 +371,7 @@ def test_BeamSpanner_span_anonymous_12( ):
    assert len(p.leaves) == 5
    p.clear( )
 
-   p = spannertools.BeamSpanner(v[ : ])
+   p = spannertools.BeamSpanner(v[:])
    assert len(p.components) == 3
    assert len(p.leaves) == 5
    p.clear( )
@@ -419,7 +419,7 @@ def test_BeamSpanner_span_anonymous_13( ):
    assert len(p.leaves) == 7
    p.clear( )
 
-   p = spannertools.BeamSpanner(v[ : ])
+   p = spannertools.BeamSpanner(v[:])
    assert len(p.components) == 3
    assert len(p.leaves) == 7
    p.clear( )
@@ -448,7 +448,7 @@ def test_BeamSpanner_span_anonymous_14( ):
    assert len(p.leaves) == 5
    p.clear( )
 
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
    assert len(p.components) == 3
    assert len(p.leaves) == 5
 

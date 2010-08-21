@@ -58,7 +58,7 @@ def test_Note_cast_as_chord_04( ):
 def test_Note_cast_as_chord_05( ):
    '''Works fine when note is beamed.'''
    t = Staff(Note(0, (1, 8)) * 3)
-   spannertools.BeamSpanner(t[ : ])
+   spannertools.BeamSpanner(t[:])
    Chord(t[0])
    assert isinstance(t[0], Chord)
    assert t[0].parentage.parent is t

@@ -9,7 +9,7 @@ def test_OctavationSpanner_grob_handling_01( ):
    '''
 
    t = Voice(macros.scale(4))
-   p = spannertools.OctavationSpanner(t[ : ], 1)
+   p = spannertools.OctavationSpanner(t[:], 1)
    p.override.staff.ottava_bracket.staff_position = 4
 
    r'''

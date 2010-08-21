@@ -6,7 +6,7 @@ def test_Spanner_fracture_01( ):
 
    t = Staff(Container(notetools.make_repeated_notes(4)) * 3)
    macros.chromaticize(t)
-   p = spannertools.BeamSpanner(t[ : ])
+   p = spannertools.BeamSpanner(t[:])
    original, left, right = p.fracture(1, 'right')
 
    assert len(original.components) == 3

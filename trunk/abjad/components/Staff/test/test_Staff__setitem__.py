@@ -61,7 +61,7 @@ def test_Staff__setitem___02( ):
    '''Reassign the *entire* contents of t.'''
    t = Staff(Note(0, (1, 4)) * 4)
    assert t.duration.contents == Rational(4, 4)
-   t[ : ] = Note(0, (1, 8)) * 4
+   t[:] = Note(0, (1, 8)) * 4
    assert t.duration.contents == Rational(4, 8)
 
 
