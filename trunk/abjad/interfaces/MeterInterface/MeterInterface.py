@@ -1,5 +1,5 @@
 from abjad.core import _BacktrackingInterface
-from abjad.core import _FormatContributor
+#from abjad.core import _FormatContributor
 from abjad.core import _Observer
 from abjad.core import Rational
 from abjad.tools.metertools import Meter
@@ -7,13 +7,14 @@ from abjad.tools import durtools
 import types
 
 
-class MeterInterface(_Observer, _FormatContributor, _BacktrackingInterface):
+#class MeterInterface(_Observer, _FormatContributor, _BacktrackingInterface):
+class MeterInterface(_Observer, _BacktrackingInterface):
    '''Publish information about effective and forced meter.
    '''
    
    def __init__(self, _client, _updateInterface):
       _Observer.__init__(self, _client, _updateInterface)
-      _FormatContributor.__init__(self)
+      #_FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'meter')
       self._acceptableTypes = (Meter, )
       self._default = Meter(4, 4)

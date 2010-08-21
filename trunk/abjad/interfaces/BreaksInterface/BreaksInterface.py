@@ -1,12 +1,12 @@
-from abjad.core import _FormatContributor
+#from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import LineBreakError
 from abjad.exceptions import TypographicWhitespaceError
 from abjad.core import Rational
-import types
 
 
-class BreaksInterface(_Interface, _FormatContributor):
+#class BreaksInterface(_Interface, _FormatContributor):
+class BreaksInterface(_Interface):
    r'''Interface to LilyPond ``\break`` and ``\pageBreak`` commands.
 
    Interface to LilyPond x- and y- system positioning.
@@ -47,7 +47,7 @@ class BreaksInterface(_Interface, _FormatContributor):
       '''Bind to client and set line, page, eol_adjustment,
       whitespace, x and y to None.'''
       _Interface.__init__(self, _client)
-      _FormatContributor.__init__(self)
+      #_FormatContributor.__init__(self)
       self._alignment_offsets = [ ]
       self._alignment_distances = [ ]
       self._eol_adjustment = None

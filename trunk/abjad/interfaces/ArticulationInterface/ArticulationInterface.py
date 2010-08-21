@@ -1,12 +1,13 @@
-from abjad.core import _FormatContributor
+#from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 
 
-class ArticulationInterface(_Interface, _FormatContributor):
+#class ArticulationInterface(_Interface, _FormatContributor):
+class ArticulationInterface(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _FormatContributor.__init__(self)
+      #_FormatContributor.__init__(self)
       self._articulations = [ ]
 
    ## OVERLOADS ##

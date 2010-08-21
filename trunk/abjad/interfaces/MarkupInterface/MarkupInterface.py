@@ -1,9 +1,10 @@
-from abjad.core import _FormatContributor
+#from abjad.core import _FormatContributor
 from abjad.interfaces._Interface import _Interface
 from abjad.tools.markuptools import Markup
 
 
-class MarkupInterface(_Interface, _FormatContributor):
+#class MarkupInterface(_Interface, _FormatContributor):
+class MarkupInterface(_Interface):
    '''Manage LilyPond markup.
    Handles no LilyPond grob.
    '''
@@ -11,7 +12,7 @@ class MarkupInterface(_Interface, _FormatContributor):
    def __init__(self, client):
       '''Bind to client and set up and down to empty lists.'''
       _Interface.__init__(self, client)
-      _FormatContributor.__init__(self)
+      #_FormatContributor.__init__(self)
       self._down = [ ]
       self._up = [ ]
 
