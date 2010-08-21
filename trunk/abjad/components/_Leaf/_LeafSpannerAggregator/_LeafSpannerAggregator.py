@@ -13,7 +13,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
          _make_lilypond_revert_string
       result = [ ]
-      leaf = self.leaf
+      leaf = self._client
       for spanner in self._spanners_in_parentage:
          spanner_contributions = [ ]
          spanner_contributions.extend(spanner._format._after(leaf))
@@ -54,7 +54,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       from abjad.tools.lilyfiletools._make_lilypond_override_string import \
          _make_lilypond_override_string
       result = [ ]
-      leaf = self.leaf
+      leaf = self._client
       for spanner in self._spanners_in_parentage:
          #result.extend(spanner._format._before(leaf))
          spanner_contributions = [ ]
@@ -91,7 +91,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    @property
    def _left(self):
       result = [ ]
-      leaf = self.leaf
+      leaf = self._client
       for spanner in self._spanners_in_parentage:
          result.extend(spanner._format._left(leaf))   
       return result
@@ -103,7 +103,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       '''
       stop_contributions = [ ]
       other_contributions = [ ]
-      leaf = self.leaf
+      leaf = self._client
       for spanner in self._spanners_in_parentage:
          contributions = spanner._format._right(leaf)
          if contributions:
@@ -129,9 +129,3 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       result.sort(
          lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
-
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def leaf(self):
-      return self._client
