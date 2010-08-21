@@ -1,5 +1,4 @@
 from abjad.components._Component._Component import _Component
-#from abjad.interfaces import GraceInterface
 from abjad.interfaces import MarkupInterface
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.components._Leaf._LeafFormatter import _LeafFormatter
@@ -13,7 +12,6 @@ class _Leaf(_Component):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
-      #self._grace = GraceInterface(self)
       #self._markup = MarkupInterface(self)
       self.tremolo_subdivision = None
 
@@ -53,20 +51,6 @@ class _Leaf(_Component):
          self._after_grace._carrier = self
          self._after_grace.kind = 'after'
       return self._after_grace
-
-#   @apply
-#   def articulations( ):
-#      def fget(self):
-#         '''Read-only reference to articulation interface.'''
-#         return self._articulations
-#      def fset(self, arg):
-#         if arg is None:
-#            self._articulations[:] = [ ]
-#         elif isinstance(arg, list):
-#            self._articulations[:] = arg
-#         else:
-#            raise ValueError('must be None or list of articulations.')
-#      return property(**locals( ))
 
    @property
    def grace(self):

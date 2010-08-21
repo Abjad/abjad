@@ -1,4 +1,3 @@
-from abjad.interfaces import GraceInterface
 from abjad.tools import componenttools
 
 
@@ -12,7 +11,4 @@ def _transfer_all_attributes(old, new):
       if key not in _attributes_not_to_copy:
          if hasattr(value, '_client'):
             setattr(value, '_client', new)
-            if isinstance(value, GraceInterface):
-               setattr(value._after, '_carrier', new)
-               setattr(value._before, '_carrier', new)
          setattr(new, key, value)
