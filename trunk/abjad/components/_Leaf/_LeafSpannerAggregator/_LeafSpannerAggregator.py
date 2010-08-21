@@ -12,9 +12,14 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
       from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
          _make_lilypond_revert_string
+      from abjad.tools import spannertools
       result = [ ]
       leaf = self._client
-      for spanner in self._spanners_in_parentage:
+      #for spanner in self._spanners_in_parentage:
+      spanners = spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(leaf)
+      spanners = list(spanners)
+      spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
+      for spanner in spanners:
          spanner_contributions = [ ]
          spanner_contributions.extend(spanner._format._after(leaf))
          if spanner._is_my_last_leaf(leaf):
@@ -53,9 +58,14 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
       from abjad.tools.lilyfiletools._make_lilypond_override_string import \
          _make_lilypond_override_string
+      from abjad.tools import spannertools
       result = [ ]
       leaf = self._client
-      for spanner in self._spanners_in_parentage:
+      #for spanner in self._spanners_in_parentage:
+      spanners = spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(leaf)
+      spanners = list(spanners)
+      spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
+      for spanner in spanners:
          #result.extend(spanner._format._before(leaf))
          spanner_contributions = [ ]
          if spanner._is_my_first_leaf(leaf):
@@ -90,9 +100,14 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 
    @property
    def _left(self):
+      from abjad.tools import spannertools
       result = [ ]
       leaf = self._client
-      for spanner in self._spanners_in_parentage:
+      #for spanner in self._spanners_in_parentage:
+      spanners = spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(leaf)
+      spanners = list(spanners)
+      spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
+      for spanner in spanners:
          result.extend(spanner._format._left(leaf))   
       return result
 
@@ -101,10 +116,15 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       '''Order first by alphabetically by spanner class name;
       order next by stop / start status of spanner rel to leaf.
       '''
+      from abjad.tools import spannertools
       stop_contributions = [ ]
       other_contributions = [ ]
       leaf = self._client
-      for spanner in self._spanners_in_parentage:
+      #for spanner in self._spanners_in_parentage:
+      spanners = spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(leaf)
+      spanners = list(spanners)
+      spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
+      for spanner in spanners:
          contributions = spanner._format._right(leaf)
          if contributions:
             if spanner._is_my_last_leaf(leaf):
@@ -112,20 +132,4 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
             else:
                other_contributions.extend(contributions)
       result = stop_contributions + other_contributions
-      return result
-
-   @property
-   def _spanners_in_parentage(self):
-      '''List of all spanners attaching either to client
-      or to a component in the parentage of client,
-      ordered alphabetically by spanner class name.
-      '''
-      from abjad.tools import spannertools
-      result = [ ]
-      #for component in self._client.parentage.parentage:
-      #   result.extend(component.spanners.attached)
-      result.extend(spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
-         self._client))
-      result.sort(
-         lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
