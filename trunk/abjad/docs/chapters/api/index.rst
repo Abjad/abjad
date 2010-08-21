@@ -35,7 +35,6 @@ Score component interfaces
    interfaces/DirectivesInterface/DirectivesInterface
    interfaces/DynamicsInterface/DynamicsInterface
    interfaces/GraceInterface/GraceInterface
-   interfaces/HarmonicInterface/HarmonicInterface
    interfaces/HistoryInterface/HistoryInterface
    interfaces/InterfaceAggregator/InterfaceAggregator
    interfaces/KeySignatureInterface/KeySignatureInterface
@@ -47,7 +46,6 @@ Score component interfaces
    interfaces/ParentageInterface/ParentageInterface
    interfaces/StaffInterface/StaffInterface
    interfaces/TempoInterface/TempoInterface
-   interfaces/TremoloInterface/TremoloInterface
 
 
 Abjad composition packages
