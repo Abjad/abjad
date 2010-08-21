@@ -37,6 +37,10 @@ class _LeafFormatter(_ComponentFormatter):
 
    @property
    def _leaf_body(self):
+      from abjad.tools.leaftools._get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+      _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
+      from abjad.tools.leaftools._get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+      _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       result = [ ]
       client = self._client
       directives = client.directives
@@ -44,12 +48,22 @@ class _LeafFormatter(_ComponentFormatter):
       spanners = client.spanners
       #result.extend(directives.left)
       #result.extend(spanners.left)
-      result.extend(spanners._left)
+
+      #result.extend(spanners._left)
+      result.extend(
+      _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
+      self._client))
+
       result.extend(interfaces.left)
       result.extend(self._nucleus)
       result.extend(self._tremolo_subdivision_contribution)
       result.extend(interfaces.right)
-      result.extend(spanners._right)
+
+      #result.extend(spanners._right)
+      result.extend(
+      _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
+      self._client))
+
       result.extend(directives.right)
       result.extend(self._number_contribution)
       result.extend(['% ' + x for x in client.comments.right])

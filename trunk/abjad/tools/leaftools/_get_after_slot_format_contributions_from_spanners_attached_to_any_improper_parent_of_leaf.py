@@ -1,13 +1,11 @@
 def _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
-   self):
+   leaf):
    from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
    from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
    from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
       _make_lilypond_revert_string
    from abjad.tools import spannertools
    result = [ ]
-   leaf = self._client
-   #for spanner in self._spanners_in_parentage:
    spanners = spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(leaf)
    spanners = list(spanners)
    spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))

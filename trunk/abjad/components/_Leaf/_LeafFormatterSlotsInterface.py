@@ -10,6 +10,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_1(self):
+      from abjad.tools.leaftools._get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+      _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
@@ -18,7 +20,13 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append(self.wrap(leaf.directives, 'before'))
       result.append(self.wrap(leaf.interfaces, 'overrides'))
       result.append(self.wrap(leaf.interfaces, 'settings'))
-      result.append(self.wrap(leaf.spanners, '_before'))
+
+      #result.append(self.wrap(leaf.spanners, '_before'))
+      ## wrap format contributions by hand:
+      result.append([(leaf.spanners, '_before'),
+      _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
+      leaf)])
+
       result.append(self.wrap(leaf.interfaces, 'before'))
       return tuple(result)
 
@@ -53,11 +61,18 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_7(self):
+      from abjad.tools.leaftools._get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+      _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(leaf.interfaces, 'after'))
-      result.append(self.wrap(leaf.spanners, '_after'))
+
+      #result.append(self.wrap(leaf.spanners, '_after'))
+      result.append([(leaf.spanners, '_after'),
+      _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
+      leaf)])
+
       result.append(self.wrap(leaf.directives, 'after'))
       result.append(self.wrap(leaf.comments, 'after'))
       return tuple(result)
