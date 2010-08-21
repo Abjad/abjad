@@ -8,6 +8,7 @@ class LilyPondMiscellaneousCommandComponentPlugIn(object):
 
    _known_lilypond_miscellaneous_commands = {
       'bar': (r'\bar "%s"', 'closing'),
+      'flageolet': (r'\flageolet', 'right'),
       'set_accidental_style': (r"#(set-accidental-style '%s)", 'opening'),
       'voice_one': (r'\voiceOne', 'opening'),
       'voice_two': (r'\voiceTwo', 'opening'),

@@ -1,6 +1,6 @@
 from abjad.components._Component._Component import _Component
 from abjad.interfaces import GraceInterface
-from abjad.interfaces import HarmonicInterface
+#from abjad.interfaces import HarmonicInterface
 from abjad.interfaces import MarkupInterface
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.components._Leaf._LeafFormatter import _LeafFormatter
@@ -68,14 +68,14 @@ class _Leaf(_Component):
          self._grace = GraceInterface(self)
       return self._grace
    
-   @property
-   def harmonic(self):
-      '''Read-only reference to
-      :class:`~abjad.components._Harmonic.interface.HarmonicInterface`.
-      '''
-      if not hasattr(self, '_harmonic'):
-         self._harmonic = HarmonicInterface(self)
-      return self._harmonic
+#   @property
+#   def harmonic(self):
+#      '''Read-only reference to
+#      :class:`~abjad.components._Harmonic.interface.HarmonicInterface`.
+#      '''
+#      if not hasattr(self, '_harmonic'):
+#         self._harmonic = HarmonicInterface(self)
+#      return self._harmonic
 
    @property
    def markup(self):
