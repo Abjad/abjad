@@ -1,4 +1,4 @@
-from abjad.core import _BacktrackingInterface
+from abjad.interfaces._BacktrackingInterface import _BacktrackingInterface
 from abjad.interfaces._ObserverInterface import _ObserverInterface
 from abjad.core import Rational
 from abjad.tools.metertools import Meter

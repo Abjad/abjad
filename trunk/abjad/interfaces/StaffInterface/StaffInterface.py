@@ -1,6 +1,5 @@
-from abjad.core import _BacktrackingInterface
+from abjad.interfaces._BacktrackingInterface import _BacktrackingInterface
 from abjad.interfaces._ObserverInterface import _ObserverInterface
-import types
 
 
 class StaffInterface(_ObserverInterface, _BacktrackingInterface):
@@ -91,7 +90,7 @@ class StaffInterface(_ObserverInterface, _BacktrackingInterface):
       def fget(self):
          return self._hide
       def fset(self, arg):
-         assert isinstance(arg, (types.BooleanType, type(None)))
+         assert isinstance(arg, (type(True), type(None)))
          if self.show is not None:
             raise ValueError('can not set hide and show at same time.')
          self._hide = arg
@@ -104,7 +103,7 @@ class StaffInterface(_ObserverInterface, _BacktrackingInterface):
       def fget(self):
          return self._show
       def fset(self, arg):
-         assert isinstance(arg, (types.BooleanType, type(None)))
+         assert isinstance(arg, (type(True), type(None)))
          if self.hide is not None:
             raise ValueError('can not set show and hide at same time.')
          self._show = arg

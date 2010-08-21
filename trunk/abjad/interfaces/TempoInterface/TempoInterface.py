@@ -1,4 +1,4 @@
-from abjad.core import _BacktrackingInterface
+from abjad.interfaces._BacktrackingInterface import _BacktrackingInterface
 from abjad.interfaces._ObserverInterface import _ObserverInterface
 from abjad.tools import tempotools
 
