@@ -16,6 +16,7 @@ class _Leaf(_Component):
       #self._grace = GraceInterface(self)
       #self._harmonic = HarmonicInterface(self)
       #self._markup = MarkupInterface(self)
+      self.tremolo_subdivision = None
 
    ## OVERLOADS ##
 
