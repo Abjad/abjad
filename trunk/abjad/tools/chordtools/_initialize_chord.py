@@ -1,5 +1,4 @@
 from abjad.components.Chord._ChordFormatter import _ChordFormatter
-from abjad.core import _Initializer
 import re
 
 
