@@ -52,7 +52,7 @@ def test_VoiceInterface_number_03( ):
    #assert py.test.raises(ValueError, 't[0].voice.number = 23')
 
 
-def test_VoiceInterface_number_05( ):
+def test_VoiceInterface_number_04( ):
    '''Voice number can be set on a Voice container and 
    on one of the leaves contained in it.
    '''

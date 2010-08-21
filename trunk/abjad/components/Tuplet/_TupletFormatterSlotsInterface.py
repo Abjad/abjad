@@ -167,20 +167,18 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
             contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
             result.append([contributor, contributions])
          else:
-            contributor = (tuplet.brackets, 'open')
+            #contributor = (tuplet.brackets, 'open')
+            contributor = ('tuplet_brackets', 'open')
             if tuplet.duration.multiplier != 1 or \
                hasattr(tuplet.__class__, 'color'):
-#               contributions = [r'%s\times %s %s' % (
-#                  formatter._fraction, 
-#                  durtools.rational_to_fraction_string(
-#                     tuplet.duration.multiplier), 
-#                  tuplet.brackets.open[0])]
                contributions = [r'%s\times %s %s' % (
                   formatter._fraction, 
                   tuplet.duration._multiplier_fraction_string,
-                  tuplet.brackets.open[0])]
+                  '{'
+                  )]
             else:
-               contributions = [tuplet.brackets.open[0]]
+               #contributions = [tuplet.brackets.open[0]]
+               contributions = ['{']
             result.append([contributor, contributions])
       return tuple(result)
 
@@ -216,7 +214,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       tuplet = self.formatter.tuplet
       if tuplet.duration.multiplier:
-         result.append(self.wrap(tuplet.brackets, 'close'))
+         #result.append(self.wrap(tuplet.brackets, 'close'))
+         result.append([('tuplet_brackets', 'close'), '}'])
       return tuple(result)
 
    @property

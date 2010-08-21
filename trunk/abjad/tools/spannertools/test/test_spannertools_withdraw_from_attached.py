@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.spannertools._withdraw_components_from_attached_spanners import _withdraw_components_from_attached_spanners
 
 
-def test_spannertools_withdraw_components_from_attached_spanners_01( ):
+def test_spannertools_withdraw_from_attached_01( ):
    t = Staff(macros.scale(4))
    spannertools.BeamSpanner(t[:])
    _withdraw_components_from_attached_spanners(t[:])
@@ -20,7 +20,7 @@ def test_spannertools_withdraw_components_from_attached_spanners_01( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_spannertools_withdraw_components_from_attached_spanners_02( ):
+def test_spannertools_withdraw_from_attached_02( ):
    t = Staff(macros.scale(4))
    spannertools.BeamSpanner(t[:])
    _withdraw_components_from_attached_spanners(t[0:2])
@@ -38,6 +38,6 @@ def test_spannertools_withdraw_components_from_attached_spanners_02( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_spannertools_withdraw_components_from_attached_spanners_03( ):
+def test_spannertools_withdraw_from_attached_03( ):
    t = _withdraw_components_from_attached_spanners([ ])
    assert t == [ ]

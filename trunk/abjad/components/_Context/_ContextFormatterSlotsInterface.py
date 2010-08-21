@@ -14,14 +14,19 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       formatter = self.formatter
       context = formatter.context
-      brackets_open = context.brackets.open
+      #brackets_open = context.brackets.open
+      if self._client._client.parallel:
+         brackets_open = ['<<']
+      else:
+         brackets_open = ['{']
       engraver_removals = formatter._formatted_engraver_removals
       engraver_consists = formatter._formatted_engraver_consists
       overrides = context.interfaces.overrides
       settings = context.interfaces.settings
       if engraver_removals or engraver_consists or overrides or settings:
          contributions = [formatter._invocation + r' \with {']
-         result.append([(context.brackets, 'open'), contributions])
+         #result.append([(context.brackets, 'open'), contributions])
+         result.append([('context_brackets', 'open'), contributions])
          contributions = ['\t' + x for x in engraver_removals]
          result.append([(formatter, 'engraver_removals'), contributions])
          contributions = ['\t' + x for x in engraver_consists]
@@ -30,12 +35,15 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          result.append([(context.interfaces, 'overrides'), contributions])
          contributions = ['\t' + x for x in settings] 
          result.append([(context.interfaces, 'settings'), contributions])
-         contributions = ['} %s' % context.brackets.open[0]]
-         result.append([(context.brackets, 'open'), contributions])
+         #contributions = ['} %s' % context.brackets.open[0]]
+         #result.append([(context.brackets, 'open'), contributions])
+         contributions = ['} %s' % brackets_open[0]]
+         result.append([('context_brackets', 'open'), contributions])
       else:
-         contributions = [formatter._invocation + 
-            ' %s' % context.brackets.open[0]]
-         result.append([(context.brackets, 'open'), contributions])
+         #contributions = [formatter._invocation + ' %s' % context.brackets.open[0]]
+         #result.append([(context.brackets, 'open'), contributions])
+         contributions = [formatter._invocation + ' %s' % brackets_open[0]]
+         result.append([('context_brackets', 'open'), contributions])
       return tuple(result)
 
    @property

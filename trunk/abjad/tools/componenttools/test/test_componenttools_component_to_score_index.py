@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_component_to_score_index_01( ):
+def test_componenttools_component_to_score_index_01( ):
    '''Exact numeric location of component in score as 
    a tuple of zero or more nonnegative integers.
    '''
