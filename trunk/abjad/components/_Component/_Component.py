@@ -20,7 +20,7 @@ from abjad.interfaces import ParentageInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
 from abjad.interfaces import TremoloInterface
-from abjad.interfaces import VoiceInterface
+#from abjad.interfaces import VoiceInterface
 
 
 class _Component(_Abjad):
@@ -268,13 +268,13 @@ class _Component(_Abjad):
          self._tremolo = TremoloInterface(self)
       return self._tremolo
 
-   @property
-   def voice(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.voice.interface.VoiceInterface`.'''
-      if not hasattr(self, '_voice'):
-         self._voice = VoiceInterface(self)
-      return self._voice
+#   @property
+#   def voice(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.voice.interface.VoiceInterface`.'''
+#      if not hasattr(self, '_voice'):
+#         self._voice = VoiceInterface(self)
+#      return self._voice
 
    ## PRIVATE METHODS ##
 

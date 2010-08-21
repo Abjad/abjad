@@ -9,6 +9,10 @@ class LilyPondMiscellaneousCommandComponentPlugIn(object):
    _known_lilypond_miscellaneous_commands = {
       'bar': (r'\bar "%s"', 'closing'),
       'set_accidental_style': (r"#(set-accidental-style '%s)", 'opening'),
+      'voice_one': (r'\voiceOne', 'opening'),
+      'voice_two': (r'\voiceTwo', 'opening'),
+      'voice_three': (r'\voiceThree', 'opening'),
+      'voice_four': (r'\voiceFour', 'opening'),
    }
 
    ## OVERLOADS ##
@@ -35,7 +39,10 @@ class LilyPondMiscellaneousCommandComponentPlugIn(object):
             format_string, command_slot = \
                type(self)._known_lilypond_miscellaneous_commands[command_name]
             if command_slot == target_slot:
-               result.append(format_string % command_value)
+               if command_value is None:
+                  result.append(format_string)
+               else:
+                  result.append(format_string % command_value)
          ## unknown LilyPond command
          except KeyError:
             ## put unkonwn command in opening slot

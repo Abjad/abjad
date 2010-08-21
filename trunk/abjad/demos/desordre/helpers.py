@@ -51,14 +51,16 @@ def desordre_cell(pitches):
    notes[1].dynamics.mark = 'p'
    v_lower = Voice(notes)
    v_lower.name = 'rh_lower'
-   v_lower.voice.number = 2
+   #v_lower.voice.number = 2
+   v_lower.misc.voice_two = None
 
    n = int(math.ceil(len(pitches) / 2.))
    chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
    chord.articulations.append('>')
    v_higher = Voice([chord])
    v_higher.name = 'rh_higher'
-   v_higher.voice.number = 1
+   #v_higher.voice.number = 1
+   v_higher.misc.voice_one = None
    p = Container([v_lower, v_higher])
    p.parallel = True
    ## make all 1/8 beats breakable

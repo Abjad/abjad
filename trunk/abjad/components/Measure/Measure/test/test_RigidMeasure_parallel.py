@@ -6,8 +6,10 @@ def test_RigidMeasure_parallel_01( ):
 
    measure = Measure((2, 8), Voice(notetools.make_repeated_notes(2)) * 2)
    measure.parallel = True
-   measure[0].voice.number = 1
-   measure[1].voice.number = 2
+   #measure[0].voice.number = 1
+   #measure[1].voice.number = 2
+   measure[0].misc.voice_one = None
+   measure[1].misc.voice_two = None
    t = Staff([measure])
    macros.diatonicize(t)
 
