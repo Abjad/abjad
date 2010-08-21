@@ -175,6 +175,9 @@ class InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_right', [ ]))
+      dynamic_mark = getattr(self._client, 'dynamic_mark', None)
+      if dynamic_mark is not None:
+         result.append(r'\%s' % dynamic_mark)
       result.extend(self._client.misc._get_formatted_commands_for_target_slot('right'))
       result.sort( )
       return result

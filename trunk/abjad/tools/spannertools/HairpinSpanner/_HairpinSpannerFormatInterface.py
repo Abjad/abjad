@@ -22,7 +22,8 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
          if spanner._is_my_last_leaf(leaf):
             if spanner.stop:
                result.append('\\%s' % spanner.stop)
-            elif not leaf.dynamics.mark:
+            #elif not leaf.dynamics.mark:
+            elif leaf.dynamic_mark is None:
                result.append('\\!')
       else:
          if spanner._is_my_first(leaf, (Chord, Note)):
@@ -32,6 +33,7 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
          if spanner._is_my_last(leaf, (Chord, Note)):
             if spanner.stop:
                result.append('\\%s' % spanner.stop)
-            elif not leaf.dynamics.mark:
+            #elif not leaf.dynamics.mark:
+            elif leaf.dynamic_mark is None:
                result.append('\\!')
       return result

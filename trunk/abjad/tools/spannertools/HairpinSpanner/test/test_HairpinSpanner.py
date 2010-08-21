@@ -55,8 +55,8 @@ def test_HairpinSpanner_03( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.CrescendoSpanner(t[ : 4])
-   t[0].dynamics.mark = 'p'
-   t[3].dynamics.mark = 'f'
+   t[0].dynamic_mark = 'p'
+   t[3].dynamic_mark = 'f'
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -80,7 +80,7 @@ def test_HairpinSpanner_04( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.CrescendoSpanner(t[ : 4])
-   t[2].dynamics.mark = 'p'
+   t[2].dynamic_mark = 'p'
    checker = IntermarkedHairpinCheck( )
 
    assert not checker.check(t)
@@ -104,13 +104,13 @@ def test_HairpinSpanner_05( ):
    '''Apply back-to-back hairpins separately.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   t[0].dynamics.mark = 'p'
+   t[0].dynamic_mark = 'p'
    spannertools.CrescendoSpanner(t[0 : 3])
-   t[2].dynamics.mark = 'f'
+   t[2].dynamic_mark = 'f'
    spannertools.DecrescendoSpanner(t[2 : 5])
-   t[4].dynamics.mark = 'p'
+   t[4].dynamic_mark = 'p'
    spannertools.CrescendoSpanner(t[4 : 7])
-   t[6].dynamics.mark = 'f'
+   t[6].dynamic_mark = 'f'
 
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
    assert componenttools.is_well_formed_component(t)

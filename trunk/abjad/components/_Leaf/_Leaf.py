@@ -14,6 +14,7 @@ class _Leaf(_Component):
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
       #self._markup = MarkupInterface(self)
+      self.dynamic_mark = None
       self.tremolo_subdivision = None
 
    ## OVERLOADS ##
