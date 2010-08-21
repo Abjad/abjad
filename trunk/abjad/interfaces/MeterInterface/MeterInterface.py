@@ -1,5 +1,5 @@
 from abjad.core import _BacktrackingInterface
-from abjad.core import _Observer
+from abjad.interfaces._Observer import _Observer
 from abjad.core import Rational
 from abjad.tools.metertools import Meter
 from abjad.tools import durtools

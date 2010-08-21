@@ -1,5 +1,5 @@
 from abjad.core import _BacktrackingInterface
-from abjad.core import _Observer
+from abjad.interfaces._Observer import _Observer
 import types
 
 

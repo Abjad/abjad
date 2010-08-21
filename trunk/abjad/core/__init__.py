@@ -3,7 +3,6 @@ from _BacktrackingInterface import _BacktrackingInterface
 from _Immutable import _Immutable
 from _ImmutableDictionary import _ImmutableDictionary
 from _Navigator import _Navigator
-from _Observer import _Observer
 from LilyPondContextSettingComponentPlugIn import LilyPondContextSettingComponentPlugIn
 from LilyPondGrobOverrideComponentPlugIn import LilyPondGrobOverrideComponentPlugIn
 from LilyPondMiscellaneousCommandComponentPlugIn import LilyPondMiscellaneousCommandComponentPlugIn

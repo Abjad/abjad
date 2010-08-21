@@ -1,4 +1,4 @@
-from abjad.core import _Observer
+from abjad.interfaces._Observer import _Observer
 from abjad.core import Rational
 
 
