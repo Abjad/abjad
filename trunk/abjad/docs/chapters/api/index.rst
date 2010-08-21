@@ -42,7 +42,6 @@ Score component interfaces
    interfaces/MeterInterface/MeterInterface
    interfaces/NumberingInterface/NumberingInterface
    interfaces/OffsetInterface/OffsetInterface
-   interfaces/OffsetInterface/OffsetProlatedInterface/OffsetProlatedInterface
    interfaces/ParentageInterface/ParentageInterface
    interfaces/StaffInterface/StaffInterface
    interfaces/TempoInterface/TempoInterface

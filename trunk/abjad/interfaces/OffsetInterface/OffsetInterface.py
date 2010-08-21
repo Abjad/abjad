@@ -1,5 +1,5 @@
 from abjad.interfaces._Interface import _Interface
-from abjad.interfaces.OffsetInterface.OffsetProlatedInterface import OffsetProlatedInterface
+from abjad.interfaces.OffsetInterface._OffsetProlatedInterface import _OffsetProlatedInterface
 from abjad.interfaces.OffsetInterface._OffsetSecondsInterface import _OffsetSecondsInterface
 from abjad.core import Rational
 
@@ -11,7 +11,7 @@ class OffsetInterface(_Interface):
 
    def __init__(self, _client, _updateInterface):
       _Interface.__init__(self, _client)
-      self._prolated = OffsetProlatedInterface(self, _updateInterface)
+      self._prolated = _OffsetProlatedInterface(self, _updateInterface)
       self._seconds = _OffsetSecondsInterface(self, _updateInterface)
 
    ## PUBLIC ATTRIBUTES ##
