@@ -1,1 +1,0 @@
-from _FormatInterface import _FormatInterface
