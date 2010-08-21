@@ -293,35 +293,35 @@ def test_leaftools__split_leaf_at_duration_14( ):
    '''After grace notes are removed from first leaf in bipartition.'''
 
    t = Note(0, (1, 4))
-   t.grace.after = Note(0, (1, 32))
+   t.after_grace.append(Note(0, (1, 32)))
    halves = _split_leaf_at_duration(t, Rational(1, 8))
 
-   assert len(halves[0][0].grace.after) == 0
-   assert len(halves[1][0].grace.after) == 1
+   assert len(halves[0][0].after_grace) == 0
+   assert len(halves[1][0].after_grace) == 1
 
 
 def test_leaftools__split_leaf_at_duration_15( ):
    '''After grace notes are removed from first tied leaves in bipartition.'''
 
    t = Note(0, (1, 4))
-   t.grace.after = Note(0, (1, 32))
+   t.after_grace.append(Note(0, (1, 32)))
    halves = _split_leaf_at_duration(t, Rational(5, 32))
 
    assert len(halves) == 2
-   assert len(halves[0][0].grace.after) == 0
-   assert len(halves[0][1].grace.after) == 0
+   assert len(halves[0][0].after_grace) == 0
+   assert len(halves[0][1].after_grace) == 0
    assert len(halves[1]) == 1
-   assert len(halves[1][0].grace.after) == 1
+   assert len(halves[1][0].after_grace) == 1
 
 
 def test_leaftools__split_leaf_at_duration_16( ):
    '''Grace notes are removed from second leaf in bipartition.'''
 
    t = Note(0, (1, 4))
-   t.grace.before = Note(0, (1, 32))
+   t.grace.append(Note(0, (1, 32)))
    halves = _split_leaf_at_duration(t, Rational(1, 16))
 
    assert len(halves[0]) == 1
    assert len(halves[1]) == 1
-   assert len(halves[0][0].grace.before) == 1
-   assert len(halves[1][0].grace.before) == 0
+   assert len(halves[0][0].grace) == 1
+   assert len(halves[1][0].grace) == 0

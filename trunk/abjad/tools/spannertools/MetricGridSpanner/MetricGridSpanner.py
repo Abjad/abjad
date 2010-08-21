@@ -68,7 +68,8 @@ class MetricGridSpanner(Spanner):
             ## keep last after graces, if any
             ## TODO: this is very hacky. Find better solution
             if 0 < len(r):
-               r[0].grace.after = r[-1].grace.after
+               #r[0].grace.after = r[-1].grace.after
+               r[0].after_grace.extend(r[-1].after_grace)
             leaftools.fuse_leaves_big_endian(r)
          
    def _matching_meter(self, leaf):

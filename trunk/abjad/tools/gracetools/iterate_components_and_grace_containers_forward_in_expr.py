@@ -52,13 +52,24 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
       ``componenttools.iterate_components_and_grace_containers_forward_in_expr( )``.
    '''
 
-   if hasattr(expr, 'grace'):
-      for m in expr.grace.before:
+#   if hasattr(expr, 'grace'):
+#      for m in expr.grace.before:
+#         for x in iterate_components_and_grace_containers_forward_in_expr(m, klass):
+#            yield x
+#      if isinstance(expr, klass):
+#         yield expr
+#      for m in expr.grace.after:
+#         for x in iterate_components_and_grace_containers_forward_in_expr(m, klass):
+#            yield x
+
+   if hasattr(expr, '_grace'):
+      for m in expr.grace:
          for x in iterate_components_and_grace_containers_forward_in_expr(m, klass):
             yield x
       if isinstance(expr, klass):
          yield expr
-      for m in expr.grace.after:
+   if hasattr(expr, '_after_grace'):
+      for m in expr.after_grace:
          for x in iterate_components_and_grace_containers_forward_in_expr(m, klass):
             yield x
    elif isinstance(expr, klass):

@@ -15,24 +15,30 @@ class _LeafFormatter(_ComponentFormatter):
    @property
    def _agrace_body(self):
       result = [ ]
-      agrace = self._client.grace.after
-      if len(agrace):
-         result.append(agrace.format)
+      #agrace = self._client.grace.after
+      if hasattr(self._client, '_after_grace'):
+         after_grace = self._client.after_grace
+         if len(after_grace):
+            result.append(after_grace.format)
       return result
 
    @property
    def _agrace_opening(self):
       result = [ ]
-      if len(self._client.grace.after):
-         result.append(r'\afterGrace')
+      if hasattr(self._client, '_after_grace'):
+         #if len(self._client.grace.after):
+         if len(self._client.after_grace):
+            result.append(r'\afterGrace')
       return result
 
    @property
    def _grace_body(self):
       result = [ ]
-      grace = self._client.grace.before
-      if len(grace):
-         result.append(grace.format)
+      #grace = self._client.grace.before
+      if hasattr(self._client, '_grace'):
+         grace = self._client.grace
+         if len(grace):
+            result.append(grace.format)
       return result
 
    @property

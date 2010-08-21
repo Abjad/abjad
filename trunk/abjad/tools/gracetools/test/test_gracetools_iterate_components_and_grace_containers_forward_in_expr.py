@@ -7,8 +7,8 @@ def test_gracetools_iterate_components_and_grace_containers_forward_in_expr_01( 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
    notes = macros.scale(4, Rational(1, 16))
-   t[1].grace.before.extend(notes[:2])
-   t[1].grace.after.extend(notes[2:])
+   t[1].grace.extend(notes[:2])
+   t[1].after_grace.extend(notes[2:])
 
    r'''
    \new Voice {
@@ -33,10 +33,10 @@ def test_gracetools_iterate_components_and_grace_containers_forward_in_expr_01( 
    "[Note(c', 8), Note(c', 16), Note(d', 16), Note(d', 8), Note(e', 16), Note(f', 16), Note(e', 8), Note(f', 8)]"
 
    assert notes[0] is t[0]
-   assert notes[1] is t[1].grace.before[0]
-   assert notes[2] is t[1].grace.before[1]
+   assert notes[1] is t[1].grace[0]
+   assert notes[2] is t[1].grace[1]
    assert notes[3] is t[1]
-   assert notes[4] is t[1].grace.after[0]
-   assert notes[5] is t[1].grace.after[1]
+   assert notes[4] is t[1].after_grace[0]
+   assert notes[5] is t[1].after_grace[1]
    assert notes[6] is t[2]
    assert notes[7] is t[3]

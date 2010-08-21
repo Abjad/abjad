@@ -29,11 +29,10 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
 
    new_leaf = componenttools.clone_components_and_remove_all_spanners([leaf])[0]
    leaf.splice([new_leaf])
-   new_leaf.grace.before = None
-   #new_leaf.articulations = None
+   new_leaf.grace[:] = [ ]
    new_leaf.articulations[:] = [ ]
    new_leaf.dynamics.mark = None
-   leaf.grace.after = None
+   leaf.after_grace[:] = [ ]
 
    left_leaf_list = set_preprolated_leaf_duration(leaf, unprolated_split_dur)
    right_leaf_list = set_preprolated_leaf_duration(
