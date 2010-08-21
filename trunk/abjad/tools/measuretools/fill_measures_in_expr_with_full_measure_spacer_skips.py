@@ -1,5 +1,6 @@
 from abjad.components.Skip import Skip
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools.spannertools._withdraw_component_from_attached_spanners import _withdraw_component_from_attached_spanners
 
 
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
@@ -18,4 +19,5 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
          #skip.duration.multiplier = meter.duration * ~meter.multiplier
          skip.duration.multiplier = meter.duration / meter.multiplier
          measure[:] = [skip]
-         measure.spanners._detach( )
+         #measure.spanners._detach( )
+         _withdraw_component_from_attached_spanners(measure)
