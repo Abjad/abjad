@@ -62,19 +62,6 @@ class InterfaceAggregator(_Interface):
       return self._contributors
 
    @property
-   def contributions(self):
-      '''Returns an ordered list of contribution triples.'''
-      result = [ ]
-      locations = ('before', 'overrides', 'opening', 'left', 
-         'right', 'closing', 'reverts', 'after')
-      for contributor in self.contributors:
-         for location in locations:
-            contributions = getattr(contributor, location, None)
-            if contributions:
-               result.append(((contributor, location), contributions))
-      return result
-   
-   @property
    def left(self):
       '''Ordered list of format-time contributions for left format slot.
       '''
@@ -212,20 +199,3 @@ class InterfaceAggregator(_Interface):
             result.append(_format_lilypond_context_setting_in_with_block(name, value))
       result.sort( )
       return result
-
-   ## PUBLIC METHODS ##
-
-   def report(self, output = 'screen'):
-      '''Deliver report of format-time contributions.
-      Order by interface, location, contribution.
-      '''
-      result = ''
-      for ((contributor, location), contributions) in self.contributions:
-         result += '%s\n' % contributor.__class__.__name__
-         result += '\t%s\n' % location
-         for contribution in contributions:
-            result += '\t\t%s\n' % contribution
-      if output == 'screen':
-         print result
-      else:
-         return result
