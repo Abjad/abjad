@@ -5,15 +5,10 @@ from abjad.interfaces import MarkupInterface
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.components._Leaf._LeafFormatter import _LeafFormatter
 from abjad.components._Leaf._LeafSpannerAggregator import _LeafSpannerAggregator
-from abjad.core import Rational
 import operator
 
 
 class _Leaf(_Component):
-
-## TODO?: could __slots__ improve Abjad's performance?
-#   __slots__ = ('_duration', '_formatter', '_grace', '_harmonic', '_markup',
-#      '_spanners')
 
    def __init__(self, duration):
       _Component.__init__(self)

@@ -1,9 +1,9 @@
+from abjad.components._Component._ComponentSpannerAggregator import _ComponentSpannerAggregator
 from abjad.core import _Abjad
 from abjad.core import _Navigator
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
-from abjad.core import Rational
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import ArticulationInterface
 from abjad.interfaces import BreaksInterface
@@ -26,20 +26,6 @@ from abjad.interfaces import VoiceInterface
 
 class _Component(_Abjad):
 
-## TODO?: could __slots__ improve Abjad's performance?
-#   __slots__ = ('_interfaces', '_accidental', '_articulations', '_bar_line', 
-#      '_bar_number', '_beam', '_breaks', '_comments', '_directives', 
-#      '_dots', '_dynamics', '_dynamic_line_spanner', '_dynamic_text', 
-#      '_dynamic_text_spanner', '_glissando', '_hairpin', '_history', 
-#      '_instrument', '_lily_file', '_name', '_navigator', 
-#      '_non_musical_paper_column', '_note_column', '_note_head', 
-#      '_ottava_bracket', '_parentage', '_piano_pedal', '_rehearsal_mark', 
-#      '_rest', '_score', '_script', '_slur', '_spacing', '_span_bar', '_stem', 
-#      '_stem_tremolo', '_system_start_bar', '_text_script', '_text_spanner', 
-#      '_thread', '_tie', '_tremolo', '_trill', '_trill_pitch_accidental', 
-#      '_tuplet_bracket', '_tuplet_number', '_update', '_verical_alignment', 
-#      '_vertical_axis_group')
-
    def __init__(self):
       self._interfaces = InterfaceAggregator(self)
       #self._articulations = ArticulationInterface(self)
@@ -54,6 +40,7 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
       #self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._parentage = ParentageInterface(self)
+      self._spanners = _ComponentSpannerAggregator(self)
       #self._set = LilyPondContextSettingComponentPlugIn( )
       #self._tremolo = TremoloInterface(self)
       self._update = _UpdateInterface(self)
@@ -254,10 +241,7 @@ class _Component(_Abjad):
 
    @property
    def spanners(self):
-      '''Read-only reference to
-      :class:`~abjad.components._Component.spanner.aggregator._ComponentSpannerAggregator`.
-
-      .. todo:: move to abjad/interfaces/spanner_aggregator directory.
+      '''Read-only reference to spanner aggregator.
       '''
       return self._spanners
    

@@ -1,7 +1,6 @@
 from abjad.components._Component._Component import _Component
 from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
 from abjad.components.Container._ContainerFormatter import _ContainerFormatter
-from abjad.components.Container._ContainerSpannerAggregator import _ContainerSpannerAggregator
 from abjad.interfaces import BracketsInterface
 
 
@@ -9,7 +8,6 @@ class Container(_Component):
 
    def __init__(self, music = None, **kwargs):
       _Component.__init__(self)
-      self._spanners = _ContainerSpannerAggregator(self)
       self._initialize_music(music)
       self._brackets = BracketsInterface(self)
       self._duration = _ContainerDurationInterface(self)
