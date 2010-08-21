@@ -18,7 +18,6 @@ class _ComponentSpannerAggregator(_Interface):
    def _detach(self):
       '''Remove client from every spanner attaching to client.'''
       client = self._client
-      #for spanner in list(self.attached):
       for spanner in list(self._spanners):
          index = spanner.index(client)
          spanner._remove(client)

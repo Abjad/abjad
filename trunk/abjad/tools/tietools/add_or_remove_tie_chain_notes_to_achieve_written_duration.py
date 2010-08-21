@@ -4,7 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import notetools
 from abjad.tools import spannertools
-from abjad.tools.spannertools._withdraw_from_attached import _withdraw_from_attached
+from abjad.tools.spannertools._withdraw_components_from_attached_spanners import _withdraw_components_from_attached_spanners
 from abjad.tools.tietools.get_leaves_in_tie_chain import get_leaves_in_tie_chain
 from abjad.tools.tietools.get_preprolated_tie_chain_duration import \
    get_preprolated_tie_chain_duration
@@ -50,7 +50,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
             tie_chain[0], spannertools.TieSpanner)
          difference = len(duration_tokens) - len(tie_chain)
          extra_leaves = tie_chain[0] * difference
-         _withdraw_from_attached(extra_leaves)
+         _withdraw_components_from_attached_spanners(extra_leaves)
          extra_tokens = duration_tokens[len(tie_chain):]
          for leaf, token in zip(extra_leaves, extra_tokens):
             leaf.duration.written = token.duration.written
