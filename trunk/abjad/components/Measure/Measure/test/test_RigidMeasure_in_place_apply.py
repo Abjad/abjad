@@ -7,7 +7,7 @@ def test_RigidMeasure_in_place_apply_01( ):
 
    t = Voice([Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
-   Measure((4, 8), t[0 : 4])
+   Measure((4, 8), t[0:4])
    leaves_after = t.leaves
 
    assert len(t) == 5
@@ -24,7 +24,7 @@ def test_RigidMeasure_in_place_apply_02( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
-   Measure((4, 8), t[0 : 4])
+   Measure((4, 8), t[0:4])
    leaves_after = t.leaves
 
    assert len(t) == 5
@@ -41,7 +41,7 @@ def test_RigidMeasure_in_place_apply_03( ):
 
    t = Staff([Note(n, (1, 1)) for n in range(4)])
    leaves_before = t.leaves
-   Measure((1, 1), t[0 : 1])
+   Measure((1, 1), t[0:1])
    leaves_after = t.leaves
 
    assert len(t) == 4

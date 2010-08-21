@@ -16,7 +16,7 @@ def test_BeamSpanner___copy___01( ):
 def test_BeamSpanner___copy___02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.BeamSpanner(t[:4])
-   u = componenttools.clone_components_and_immediate_parent_of_first_component(t[0 : 1])
+   u = componenttools.clone_components_and_immediate_parent_of_first_component(t[0:1])
 
    #assert u[0].beam.spanned and u[0].beam.only
 

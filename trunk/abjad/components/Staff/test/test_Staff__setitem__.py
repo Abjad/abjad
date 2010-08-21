@@ -74,7 +74,7 @@ def test_Staff__setitem___03( ):
 def test_Staff__setitem___04( ):
    '''Slice-assign empty containers to t.'''
    t = Staff(Note(0, (1, 4)) * 4)
-   t[0 : 2] = [Voice([ ]), Voice([ ])]
+   t[0:2] = [Voice([ ]), Voice([ ])]
 
 
 def test_Staff__setitem___05( ):
@@ -92,11 +92,11 @@ def test_Staff__setitem___06( ):
 def test_Staff__setitem___07( ):
    '''Slice-assign notes.'''
    t = Staff(Note(0, (1, 8)) * 8)
-   t[0 : 4] = Note(2, (1, 8)) * 4
+   t[0:4] = Note(2, (1, 8)) * 4
    assert len(t) == 8
-   for x in t[0 : 4]:
+   for x in t[0:4]:
       assert x.pitch.number == 2
-   for x in t[4 : 8]:
+   for x in t[4:8]:
       assert x.pitch.number == 0
    assert componenttools.is_well_formed_component(t)
 
@@ -104,11 +104,11 @@ def test_Staff__setitem___07( ):
 def test_Staff__setitem___08( ):
    '''Slice-assign chords.'''
    t = Staff(Note(0, (1, 8)) * 8)
-   t[0 : 4] = Chord([2, 3, 4], (1, 4)) * 4
+   t[0:4] = Chord([2, 3, 4], (1, 4)) * 4
    assert len(t) == 8
-   for x in t[0 : 4]:
+   for x in t[0:4]:
       assert x.duration.written == Rational(1, 4)
-   for x in t[4 : 8]:
+   for x in t[4:8]:
       assert x.duration.written == Rational(1, 8)
    assert componenttools.is_well_formed_component(t)
 
@@ -116,7 +116,7 @@ def test_Staff__setitem___08( ):
 def test_Staff__setitem___09( ):
    '''Slice-assign tuplets.'''
    t = Staff(Note(0, (1, 8)) * 8)
-   t[0 : 4] = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2
+   t[0:4] = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2
    assert len(t) == 6
    for i, x in enumerate(t):
       if i in [0, 1]:
@@ -129,7 +129,7 @@ def test_Staff__setitem___09( ):
 def test_Staff__setitem___10( ):
    '''Slice-assign measures.'''
    t = Staff(Note(0, (1, 8)) * 8)
-   t[0 : 4] = Measure((2, 8), Note(0, (1, 8)) * 2) * 2
+   t[0:4] = Measure((2, 8), Note(0, (1, 8)) * 2) * 2
    assert len(t) == 6
    for i, x in enumerate(t):
       if i in [0, 1]:

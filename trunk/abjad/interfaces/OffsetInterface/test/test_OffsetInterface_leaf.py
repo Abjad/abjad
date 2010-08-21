@@ -22,14 +22,14 @@ def test_OffsetInterface_leaf_03( ):
 
 def test_OffsetInterface_leaf_04( ):
    t = Staff(notetools.make_repeated_notes(16))
-   t[10 : 10] = [Rest((1, 8))]
+   t[10:10] = [Rest((1, 8))]
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 8)
  
 
 def test_OffsetInterface_leaf_05( ):
    t = Staff(notetools.make_repeated_notes(16))
-   t[10 : 12] = [Rest((1, 8))]
+   t[10:12] = [Rest((1, 8))]
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 8)
 

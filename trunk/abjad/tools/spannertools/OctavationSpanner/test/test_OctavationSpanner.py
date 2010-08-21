@@ -26,7 +26,7 @@ def test_OctavationSpanner_01( ):
 def test_OctavationSpanner_02( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.OctavationSpanner(t[ : 4], 1)
+   spannertools.OctavationSpanner(t[:4], 1)
 
    r'''
    \new Staff {
@@ -50,7 +50,7 @@ def test_OctavationSpanner_02( ):
 def test_OctavationSpanner_03( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.OctavationSpanner(t[ : 4], 1, 2)
+   spannertools.OctavationSpanner(t[:4], 1, 2)
 
    r'''
    \new Staff {
@@ -131,8 +131,8 @@ def test_OctavationSpanner_06( ):
    '''Overlapping octavation spanners are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.OctavationSpanner(t[ : 4], 1)
-   spannertools.OctavationSpanner(t[2 : 6], 2)
+   spannertools.OctavationSpanner(t[:4], 1)
+   spannertools.OctavationSpanner(t[2:6], 2)
    checker = OverlappingOctavationCheck( )
 
    assert not checker.check(t)

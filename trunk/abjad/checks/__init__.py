@@ -2,7 +2,7 @@ import os
 
 
 _fns = os.listdir(__path__[0])
-_modules = [_fn[ : -3] for _fn in _fns 
+_modules = [_fn[:-3] for _fn in _fns 
    if _fn.endswith('.py') and not _fn.startswith('_')]
 
 for _module in sorted(_modules):

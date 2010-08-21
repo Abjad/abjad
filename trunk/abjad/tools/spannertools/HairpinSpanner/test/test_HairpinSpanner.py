@@ -30,7 +30,7 @@ def test_HairpinSpanner_02( ):
    '''Hairpins spanning a single leaf are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.CrescendoSpanner(t[0 : 1])
+   spannertools.CrescendoSpanner(t[0:1])
    checker = ShortHairpinCheck( )
 
    assert not checker.check(t)
@@ -54,7 +54,7 @@ def test_HairpinSpanner_03( ):
    '''Hairpins and dynamics apply separately.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.CrescendoSpanner(t[ : 4])
+   spannertools.CrescendoSpanner(t[:4])
    t[0].dynamic_mark = 'p'
    t[3].dynamic_mark = 'f'
 
@@ -79,7 +79,7 @@ def test_HairpinSpanner_04( ):
    '''Internal marks are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.CrescendoSpanner(t[ : 4])
+   spannertools.CrescendoSpanner(t[:4])
    t[2].dynamic_mark = 'p'
    checker = IntermarkedHairpinCheck( )
 
@@ -105,11 +105,11 @@ def test_HairpinSpanner_05( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    t[0].dynamic_mark = 'p'
-   spannertools.CrescendoSpanner(t[0 : 3])
+   spannertools.CrescendoSpanner(t[0:3])
    t[2].dynamic_mark = 'f'
-   spannertools.DecrescendoSpanner(t[2 : 5])
+   spannertools.DecrescendoSpanner(t[2:5])
    t[4].dynamic_mark = 'p'
-   spannertools.CrescendoSpanner(t[4 : 7])
+   spannertools.CrescendoSpanner(t[4:7])
    t[6].dynamic_mark = 'f'
 
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"

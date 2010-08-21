@@ -44,7 +44,7 @@ class ArticulationInterface(_Interface):
       else:
          assert isinstance(expr, list)
          expr = [self._make_articulation(x) for x in expr]
-         self._articulations[i.start : i.stop] = expr
+         self._articulations[i.start:i.stop] = expr
 
    ## PRIVATE METHODS ##
 

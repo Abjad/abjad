@@ -6,20 +6,20 @@ def test_BeamSpanner_fracture_01( ):
       effectively does nothing except to replace an existing
       spanner with an identical new spanner.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.BeamSpanner(t[ : 4])
+   spannertools.BeamSpanner(t[:4])
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 1
    old = list(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t))[0]
-   assert old.components == tuple(t[ : 4])
+   assert old.components == tuple(t[:4])
    old.fracture(0, 'left')
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 1
 
 
 def test_BeamSpanner_fracture_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.BeamSpanner(t[ : 4])
+   spannertools.BeamSpanner(t[:4])
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 1
    old = list(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t))[0]
-   assert old.components == tuple(t[ : 4])
+   assert old.components == tuple(t[:4])
    old.fracture(1, 'left')
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 2
 
@@ -31,20 +31,20 @@ def test_BeamSpanner_fracture_03( ):
    spanner with an identical new spanner.
    '''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.BeamSpanner(t[ : 4])
+   spannertools.BeamSpanner(t[:4])
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 1
    old = list(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t))[0]
-   assert old.components == tuple(t[ : 4])
+   assert old.components == tuple(t[:4])
    old.fracture(-1, 'right')
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 1
 
 
 def test_BeamSpanner_fracture_04( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.BeamSpanner(t[ : 4])
+   spannertools.BeamSpanner(t[:4])
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 1
    old = list(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t))[0]
-   assert old.components == tuple(t[ : 4])
+   assert old.components == tuple(t[:4])
    old.fracture(1, 'right')
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 2
 
@@ -54,7 +54,7 @@ def test_BeamSpanner_fracture_05( ):
    '''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.BeamSpanner(t[ : 5])
+   spannertools.BeamSpanner(t[:5])
    old = list(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t))[0]
    old.fracture(2, 'both')
 
@@ -92,7 +92,7 @@ def test_BeamSpanner_fracture_06( ):
    Fracture "both" works of first spanned leaf.
    '''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.BeamSpanner(t[ : 5])
+   spannertools.BeamSpanner(t[:5])
    old = list(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t))[0]
    old.fracture(0, 'both')
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 2
@@ -121,7 +121,7 @@ def test_BeamSpanner_fracture_06( ):
 def test_BeamSpanner_fracture_07( ):
    '''Fracture "both" works of last spanned leaf.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.BeamSpanner(t[ : 5])
+   spannertools.BeamSpanner(t[:5])
    old = list(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t))[0]
    old.fracture(4, 'both')
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 2
@@ -154,7 +154,7 @@ def test_BeamSpanner_fracture_08( ):
    '''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   spannertools.BeamSpanner(t[ : 5])
+   spannertools.BeamSpanner(t[:5])
    old = list(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t))[0]
    old.fracture(-1, 'both')
    assert len(spannertools.get_all_spanners_attached_to_any_improper_child_of_component(t)) == 2

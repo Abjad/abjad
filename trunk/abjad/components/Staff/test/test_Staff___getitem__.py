@@ -29,7 +29,7 @@ def test_Staff___getitem___02( ):
          tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
-   slice = t[0 : 0]
+   slice = t[0:0]
    assert len(slice) == 0
    assert componenttools.is_well_formed_component(t)
 
@@ -42,7 +42,7 @@ def test_Staff___getitem___03( ):
          tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
-   slice = t[0 : 1]
+   slice = t[0:1]
    assert len(slice) == 1
    assert isinstance(slice[0], Note)
    for x in t:
@@ -58,7 +58,7 @@ def test_Staff___getitem___04( ):
          tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
-   slice = t[-1 : ]
+   slice = t[-1:]
    assert len(slice) == 1
    assert isinstance(slice[0], tuplettools.FixedDurationTuplet)
    for x in slice:
@@ -74,7 +74,7 @@ def test_Staff___getitem___05( ):
          tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
-   slice = t[1 : -1]
+   slice = t[1:-1]
    assert len(slice) == 3
    assert isinstance(slice[0], Rest)
    assert isinstance(slice[1], Chord)
@@ -92,7 +92,7 @@ def test_Staff___getitem___06( ):
          tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
-   slice = t[2 : ]
+   slice = t[2:]
    assert len(slice) == 3
    assert isinstance(slice[0], Chord)
    assert isinstance(slice[1], Skip)
@@ -110,7 +110,7 @@ def test_Staff___getitem___07( ):
          tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
-   slice = t[ : -2]
+   slice = t[:-2]
    assert len(slice) == 3
    assert isinstance(slice[0], Note)
    assert isinstance(slice[1], Rest)

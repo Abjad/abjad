@@ -210,7 +210,7 @@ class Spanner(_Abjad):
       if isinstance(leaf, klass):
          leaves = list(self.leaves)
          i = leaves.index(leaf)
-         for x in leaves[i + 1 : ]:
+         for x in leaves[i + 1:]:
             if isinstance(x, klass):
                return False
          return True
@@ -460,7 +460,7 @@ class Spanner(_Abjad):
       self._components = my_components
 
 ##      if stop is not None:
-##         for component in self[start : stop + 1]:
+##         for component in self[start:stop + 1]:
 ##            result._components.append(component)
 ##      else:
 ##         for component in self:

@@ -19,10 +19,10 @@ def test_Spanner__is_my_first_leaf_01( ):
    '''
 
    assert p._is_my_first_leaf(t[0])
-   for leaf in t[1 : ]:
+   for leaf in t[1:]:
       assert not p._is_my_first_leaf(leaf)
    assert p._is_my_last_leaf(t[-1])
-   for leaf in t[ : -1]:
+   for leaf in t[:-1]:
       assert not p._is_my_last_leaf(leaf)
    for leaf in t:
       assert not p._is_my_only_leaf(leaf)
@@ -34,7 +34,7 @@ def test_Spanner__is_my_first_leaf_02( ):
    t = Voice(notetools.make_repeated_notes(4))
    t.insert(2, Container(notetools.make_repeated_notes(2)))
    macros.chromaticize(t)
-   p = spannertools.Spanner(t[ : 3])
+   p = spannertools.Spanner(t[:3])
 
    r'''
    \new Voice {

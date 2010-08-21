@@ -33,5 +33,5 @@ class FixedDurationTuplet(_Tuplet):
       if stop == 'unused':
          del(self[start])
       else:
-         del(self[start : stop])
+         del(self[start:stop])
       self.duration.target = old_multiplier * self.duration.contents

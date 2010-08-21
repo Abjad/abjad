@@ -3,7 +3,7 @@ from abjad import *
 
 def test_BeamSpanner_public_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   beam = spannertools.BeamSpanner(t.leaves[ : 4])
+   beam = spannertools.BeamSpanner(t.leaves[:4])
    assert isinstance(beam, spannertools.BeamSpanner)
    assert len(beam.components) == 4
    for x in t[:4]:
