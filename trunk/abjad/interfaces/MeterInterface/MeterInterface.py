@@ -1,17 +1,17 @@
 from abjad.core import _BacktrackingInterface
-from abjad.interfaces._Observer import _Observer
+from abjad.interfaces._ObserverInterface import _ObserverInterface
 from abjad.core import Rational
 from abjad.tools.metertools import Meter
 from abjad.tools import durtools
 import types
 
 
-class MeterInterface(_Observer, _BacktrackingInterface):
+class MeterInterface(_ObserverInterface, _BacktrackingInterface):
    '''Publish information about effective and forced meter.
    '''
    
    def __init__(self, _client, _updateInterface):
-      _Observer.__init__(self, _client, _updateInterface)
+      _ObserverInterface.__init__(self, _client, _updateInterface)
       _BacktrackingInterface.__init__(self, 'meter')
       self._acceptableTypes = (Meter, )
       self._default = Meter(4, 4)

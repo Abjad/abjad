@@ -1,15 +1,15 @@
-from abjad.interfaces._Observer import _Observer
+from abjad.interfaces._ObserverInterface import _ObserverInterface
 from abjad.core import Rational
 
 
-class _OffsetProlatedInterface(_Observer):
+class _OffsetProlatedInterface(_ObserverInterface):
    '''Serve rational-valued prolated start and stop values.'''
 
    def __init__(self, _client, _updateInterface):
       '''Bind to OffsetInterface as client.
          Register self as observer.
          Init start and stop to zero.'''
-      _Observer.__init__(self, _client, _updateInterface)
+      _ObserverInterface.__init__(self, _client, _updateInterface)
       self._start = Rational(0)
       self._stop = Rational(0)
 

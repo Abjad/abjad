@@ -1,9 +1,9 @@
 from abjad.core import _BacktrackingInterface
-from abjad.interfaces._Observer import _Observer
+from abjad.interfaces._ObserverInterface import _ObserverInterface
 from abjad.tools import tempotools
 
 
-class TempoInterface(_Observer, _BacktrackingInterface):
+class TempoInterface(_ObserverInterface, _BacktrackingInterface):
    '''Handle LilyPond MetronomeMark grob and Abjad TempoSpanner.
 
    The implementation of `effective` given here allows for
@@ -24,7 +24,7 @@ class TempoInterface(_Observer, _BacktrackingInterface):
    '''
    
    def __init__(self, _client, _updateInterface):
-      _Observer.__init__(self, _client, _updateInterface)
+      _ObserverInterface.__init__(self, _client, _updateInterface)
       _BacktrackingInterface.__init__(self, 'tempo')
       self._acceptableTypes = (tempotools.TempoIndication, )
       self._effective = None

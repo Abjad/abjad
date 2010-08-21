@@ -2,7 +2,7 @@ from abjad.cfg._CFGSession import _CFGSession
 from abjad.interfaces._Interface import _Interface
 
 
-class _Observer(_Interface):
+class _ObserverInterface(_Interface):
 
    def __init__(self, _client, updateInterface):
       _Interface.__init__(self, _client)

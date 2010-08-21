@@ -1,9 +1,9 @@
 from abjad.core import _BacktrackingInterface
-from abjad.interfaces._Observer import _Observer
+from abjad.interfaces._ObserverInterface import _ObserverInterface
 import types
 
 
-class StaffInterface(_Observer, _BacktrackingInterface):
+class StaffInterface(_ObserverInterface, _BacktrackingInterface):
    r'''Report on Abjad staff in parentage of client.
    Interface to LilyPond \stopStaff, \startStaff hiding commands.
    Interface to LilyPond fontSize context setting.
@@ -15,7 +15,7 @@ class StaffInterface(_Observer, _BacktrackingInterface):
       Init effective and force staff to None.
       Init hide to False.'''
       from abjad.components.Staff import Staff
-      _Observer.__init__(self, _client, _updateInterface)
+      _ObserverInterface.__init__(self, _client, _updateInterface)
       _BacktrackingInterface.__init__(self, 'staff')
       self._acceptableTypes = (Staff, )
       self._effective = None
