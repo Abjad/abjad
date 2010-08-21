@@ -10,9 +10,12 @@ class DiscontiguousSpannerCheck(_Check):
 
    def _run(self, expr):
       from abjad.tools import componenttools
+      from abjad.tools import spannertools
       violators = [ ]
       total, bad = 0, 0
-      for spanner in expr.spanners.contained:
+      #for spanner in expr.spanners.contained:
+      for spanner in spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
+         expr):
          if spanner._contiguity_constraint == 'thread':
             if not componenttools.all_are_thread_contiguous_components(spanner[:]):
                violators.append(spanner)

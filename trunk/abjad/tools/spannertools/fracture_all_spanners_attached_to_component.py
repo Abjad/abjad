@@ -30,7 +30,8 @@ def fracture_all_spanners_attached_to_component(component, direction = 'both', k
    '''
 
    result = [ ]
-   for spanner in set(component.spanners.attached):
+   #for spanner in set(component.spanners.attached):
+   for spanner in set(component.spanners._spanners):
       if klass is None:
          result.append(spanner.fracture(spanner.index(component), direction))
       elif isinstance(spanner, klass):

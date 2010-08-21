@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('scheduled for deletion.')
 
 
 def test_ComponentSpannerAggregator_children_01( ):

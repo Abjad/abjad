@@ -41,6 +41,8 @@ def get_all_spanners_attached_to_component(component, klass = None):
 
    ## note: externalization of (old) component spanner aggregator 'spanners' property
    if klass is None:
-      return set(component.spanners.attached)
+      #return set(component.spanners.attached)
+      return set(component.spanners._spanners)
    else:
-      return set([x for x in component.spanners.attached if isinstance(x, klass)])
+      #return set([x for x in component.spanners.attached if isinstance(x, klass)])
+      return set([x for x in component.spanners._spanners if isinstance(x, klass)])

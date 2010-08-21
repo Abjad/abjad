@@ -120,9 +120,12 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       or to a component in the parentage of client,
       ordered alphabetically by spanner class name.
       '''
+      from abjad.tools import spannertools
       result = [ ]
-      for component in self._client.parentage.parentage:
-         result.extend(component.spanners.attached)
+      #for component in self._client.parentage.parentage:
+      #   result.extend(component.spanners.attached)
+      result.extend(spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+         self._client))
       result.sort(
          lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result

@@ -1,4 +1,6 @@
 from abjad.components._Component import _Component
+from abjad.tools.spannertools.get_all_spanners_attached_to_component import \
+   get_all_spanners_attached_to_component
 
 
 def get_spanners_that_dominate_components(components):
@@ -30,23 +32,11 @@ def get_spanners_that_dominate_components(components):
    
    first, last = components[0], components[-1]
 
-#   subtree_begin = first.offset.prolated.start
-#   subtree_end = last.offset.prolated.stop
-
-#   for component in componenttools.iterate_components_forward_in_expr(first, _Component):
-#      if component.offset.prolated.start == subtree_begin:
-#         for spanner in component.spanners.attached:
-#            if spanner.offset.start <= subtree_begin:
-#               if subtree_end <= spanner.offset.stop:
-#                  index = spanner.index(component)
-#                  receipt.add((spanner, index))
-#      elif subtree_begin < component.offset.prolated.start:
-#         break
-
    start_components = first._navigator._contemporaneous_start_contents
    stop_components = set(last._navigator._contemporaneous_stop_contents)
    for component in start_components:
-      for spanner in component.spanners.attached:
+      #for spanner in component.spanners.attached:
+      for spanner in get_all_spanners_attached_to_component(component):
          if set(spanner[:]) & stop_components != set([ ]):
             index = spanner.index(component)
             receipt.add((spanner, index))

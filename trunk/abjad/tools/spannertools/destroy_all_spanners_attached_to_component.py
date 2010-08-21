@@ -1,3 +1,7 @@
+from abjad.tools.spannertools.get_all_spanners_attached_to_component import \
+   get_all_spanners_attached_to_component
+
+
 def destroy_all_spanners_attached_to_component(component, klass = None):
    r'''.. versionadded:: 1.1.1
 
@@ -27,7 +31,8 @@ def destroy_all_spanners_attached_to_component(component, klass = None):
       }
    '''
 
-   for spanner in set(component.spanners.attached):
+   #for spanner in set(component.spanners.attached):
+   for spanner in get_all_spanners_attached_to_component(component):
       if klass is None:
          spanner.clear( )
       elif isinstance(spanner, klass):

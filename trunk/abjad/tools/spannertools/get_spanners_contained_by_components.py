@@ -1,3 +1,7 @@
+from abjad.tools.spannertools.get_all_spanners_attached_to_any_improper_child_of_component import \
+   get_all_spanners_attached_to_any_improper_child_of_component
+
+
 def get_spanners_contained_by_components(components):
    '''Return unordered set of spanners contained within
       any component in list of thread-contiguous components.
@@ -13,6 +17,6 @@ def get_spanners_contained_by_components(components):
 
    result = set([ ]) 
    for component in components:
-      result.update(component.spanners.contained)
-
+      #result.update(component.spanners.contained)
+      result.update(get_all_spanners_attached_to_any_improper_child_of_component(component))
    return result

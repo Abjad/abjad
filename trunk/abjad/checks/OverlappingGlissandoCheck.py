@@ -30,5 +30,7 @@ class OverlappingGlissandoCheck(_Check):
             for glissando in glissandi:
                if glissando not in violators:
                   violators.append(glissando)
-      total = [p for p in expr.spanners.contained if isinstance(p, GlissandoSpanner)]
+      #total = [p for p in expr.spanners.contained if isinstance(p, GlissandoSpanner)]
+      total = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
+         expr, GlissandoSpanner)
       return violators, len(total)

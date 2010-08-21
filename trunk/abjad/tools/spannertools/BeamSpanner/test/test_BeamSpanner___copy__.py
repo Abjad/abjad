@@ -5,7 +5,8 @@ def test_BeamSpanner___copy___01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.BeamSpanner(t[:4])
    u = componenttools.clone_components_and_fracture_crossing_spanners(t[:1])[0]
-   len(u.spanners.attached) == 1
+   #len(u.spanners.attached) == 1
+   len(u.spanners._spanners) == 1
 
    #assert u.beam.spanned and u.beam.only
 

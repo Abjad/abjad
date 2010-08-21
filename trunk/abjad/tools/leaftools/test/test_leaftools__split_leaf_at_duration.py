@@ -209,7 +209,8 @@ def test_leaftools__split_leaf_at_duration_09( ):
 
    assert len(t) == 2
    for leaf in t.leaves:
-      assert leaf.spanners.attached == set([s])
+      #assert leaf.spanners.attached == set([s])
+      assert leaf.spanners._spanners == set([s])
       #assert leaf.tie.spanner is s
       assert spannertools.get_the_only_spanner_attached_to_component(
          leaf, spannertools.TieSpanner) is s
@@ -225,7 +226,8 @@ def test_leaftools__split_leaf_at_duration_10( ):
 
    assert len(t) == 5
    for l in t.leaves:
-      assert l.spanners.attached == set([b])
+      #assert l.spanners.attached == set([b])
+      assert l.spanners._spanners == set([b])
       #assert l.beam.spanner is b
       assert beamtools.get_beam_spanner(l) is b
    assert componenttools.is_well_formed_component(t)
@@ -243,7 +245,8 @@ def test_leaftools__split_leaf_at_duration_11( ):
    assert len(halves[0]) == 2
    assert len(halves[1]) == 1
    for l in t.leaves:
-      assert l.spanners.attached == set([s])
+      #assert l.spanners.attached == set([s])
+      assert l.spanners._spanners == set([s])
       #assert l.tie.spanner is s
       assert spannertools.get_the_only_spanner_attached_to_component(
          l, spannertools.TieSpanner) is s
@@ -262,7 +265,8 @@ def test_leaftools__split_leaf_at_duration_12( ):
    assert spannertools.get_the_only_spanner_attached_to_component(t, spannertools.TieSpanner) is s
    assert s.components == (t, )
    for l in t.leaves:
-      assert not l.spanners.attached 
+      #assert not l.spanners.attached 
+      assert not l.spanners._spanners 
    assert componenttools.is_well_formed_component(t)
 
 
@@ -276,9 +280,11 @@ def test_leaftools__split_leaf_at_duration_13( ):
 
    assert s.components == tuple(t[:])
    for v in t:
-      assert v.spanners.attached == set([s])
+      #assert v.spanners.attached == set([s])
+      assert v.spanners._spanners == set([s])
       for l in v.leaves:
-         assert not l.spanners.attached 
+         #assert not l.spanners.attached 
+         assert not l.spanners._spanners 
          assert l.parentage.parent is v
    assert componenttools.is_well_formed_component(t)
 

@@ -324,4 +324,7 @@ def test_MetricGridSpanner_11( ):
    assert v[0].duration.written == v[1].duration.written == Rational(1, 8)
    assert v[3].duration.written == v[3].duration.written == Rational(1, 8)
    assert v[2].duration.written == Rational(1, 4)
-   ties = len([p for p in v.spanners.contained if isinstance(p, spannertools.TieSpanner)]) == 2
+   #ties = len([p for p in v.spanners.contained if isinstance(p, spannertools.TieSpanner)]) == 2
+   ties = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
+      v, spannertools.TieSpanner)
+   assert len(ties) == 2

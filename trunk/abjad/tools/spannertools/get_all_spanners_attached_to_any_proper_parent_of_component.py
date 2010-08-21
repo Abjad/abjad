@@ -26,7 +26,8 @@ def get_all_spanners_attached_to_any_proper_parent_of_component(component, klass
    result = set([ ])
    parentage = component.parentage.parentage[1:]
    for parent in parentage:
-      spanners = parent.spanners.attached
+      #spanners = parent.spanners.attached
+      spanners = parent.spanners._spanners
       for spanner in spanners:
          if klass is None:
             result.add(spanner)

@@ -56,9 +56,9 @@ def test_chordtools_divide_chord_by_pitch_altitude_05( ):
    t = staff[1]
    treble, bass = chordtools.divide_chord_by_pitch_altitude(t, pitchtools.NamedPitch('e', 4))
    assert isinstance(treble, Chord)
-   assert len(treble.spanners.attached) == 0
+   assert len(treble.spanners._spanners) == 0
    assert isinstance(bass, Note)
-   assert len(bass.spanners.attached) == 0
+   assert len(bass.spanners._spanners) == 0
    assert t is not treble
    assert t is not bass
    assert treble is not bass

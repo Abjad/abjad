@@ -1,7 +1,7 @@
 def get_spanners_on_components_or_component_children(components):
    '''Return unordered set of all spanners attaching to any
-      component in 'components' or attaching to any of the children
-      of any of the components in 'components'.
+   component in `components` or attaching to any of the children
+   of any of the components in `components`.
 
    .. versionchanged:: 1.1.2
       renamed ``spannertools.get_attached( )`` to
@@ -15,7 +15,7 @@ def get_spanners_on_components_or_component_children(components):
    ## accumulate spanners
    spanners = set([ ])
    for component in components:
-      for spanner in list(component.spanners.attached):
+      for spanner in list(component.spanners._spanners):
          spanners.update((spanner, ))
       
    ## return spanners

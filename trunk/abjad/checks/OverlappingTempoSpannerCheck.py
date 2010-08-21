@@ -17,5 +17,7 @@ class OverlappingTempoSpannerCheck(_Check):
             leaf, TempoSpanner)
          if 1 < len(spanners_in_parentage):
             violators.update(spanners_in_parentage)
-      total = [p for p in expr.spanners.contained if isinstance(p, TempoSpanner)]
+      #total = [p for p in expr.spanners.contained if isinstance(p, TempoSpanner)]
+      total = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
+         expr, TempoSpanner)
       return violators, len(total)
