@@ -28,7 +28,6 @@ Score component interfaces
    :maxdepth: 1
 
    interfaces/ArticulationInterface/ArticulationInterface
-   interfaces/BracketsInterface/BracketsInterface
    interfaces/BreaksInterface/BreaksInterface
    interfaces/ClefInterface/ClefInterface
    interfaces/CommentsInterface/CommentsInterface
