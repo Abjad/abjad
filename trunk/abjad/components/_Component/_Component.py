@@ -20,7 +20,6 @@ from abjad.interfaces import ParentageInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
 from abjad.interfaces import TremoloInterface
-#from abjad.interfaces import VoiceInterface
 
 
 class _Component(_Abjad):
@@ -52,7 +51,6 @@ class _Component(_Abjad):
       self._offset = OffsetInterface(self, self._update)
       self._staff = StaffInterface(self, self._update) ## TODO: weird backtracking conflict
       self._tempo = TempoInterface(self, self._update) ## TODO: weird backtracking conflict
-      #self._voice = VoiceInterface(self)
 
    ## OVERLOADS ##
 
@@ -267,14 +265,6 @@ class _Component(_Abjad):
       if not hasattr(self, '_tremolo'):
          self._tremolo = TremoloInterface(self)
       return self._tremolo
-
-#   @property
-#   def voice(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces.voice.interface.VoiceInterface`.'''
-#      if not hasattr(self, '_voice'):
-#         self._voice = VoiceInterface(self)
-#      return self._voice
 
    ## PRIVATE METHODS ##
 

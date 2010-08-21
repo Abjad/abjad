@@ -48,7 +48,6 @@ Score component interfaces
    interfaces/StaffInterface/StaffInterface
    interfaces/TempoInterface/TempoInterface
    interfaces/TremoloInterface/TremoloInterface
-   interfaces/VoiceInterface/VoiceInterface
 
 
 Abjad composition packages
