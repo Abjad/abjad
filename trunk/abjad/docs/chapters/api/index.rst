@@ -33,7 +33,6 @@ Score component interfaces
    interfaces/CommentsInterface/CommentsInterface
    interfaces/DirectivesInterface/DirectivesInterface
    interfaces/HistoryInterface/HistoryInterface
-   interfaces/InterfaceAggregator/InterfaceAggregator
    interfaces/KeySignatureInterface/KeySignatureInterface
    interfaces/MarkupInterface/MarkupInterface
    interfaces/MeterInterface/MeterInterface
