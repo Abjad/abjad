@@ -43,6 +43,10 @@ class _LeafFormatter(_ComponentFormatter):
 
    @property
    def _leaf_body(self):
+      from abjad.tools.formattools._get_left_slot_format_contributions import \
+         _get_left_slot_format_contributions
+      from abjad.tools.formattools._get_right_slot_format_contributions import \
+         _get_right_slot_format_contributions
       from abjad.tools.leaftools._get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
       _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       from abjad.tools.leaftools._get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
@@ -50,7 +54,7 @@ class _LeafFormatter(_ComponentFormatter):
       result = [ ]
       client = self._client
       directives = client.directives
-      interfaces = client.interfaces
+      #interfaces = client.interfaces
       spanners = client.spanners
       #result.extend(directives.left)
       #result.extend(spanners.left)
@@ -60,10 +64,14 @@ class _LeafFormatter(_ComponentFormatter):
       _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
       self._client))
 
-      result.extend(interfaces.left)
+      #result.extend(interfaces.left)
+      result.extend(_get_left_slot_format_contributions(self._client))
+
       result.extend(self._nucleus)
       result.extend(self._tremolo_subdivision_contribution)
-      result.extend(interfaces.right)
+
+      #result.extend(interfaces.right)
+      result.extend(_get_right_slot_format_contributions(self._client))
 
       #result.extend(spanners._right)
       result.extend(

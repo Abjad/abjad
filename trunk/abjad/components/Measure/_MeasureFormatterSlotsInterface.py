@@ -35,14 +35,24 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       the format string. Otherwise, measure contents of slot 3 is just
       like generic container contents of slot 3.
       '''
+      from abjad.tools.formattools._get_opening_slot_format_contributions import \
+         _get_opening_slot_format_contributions
+      from abjad.tools.formattools._get_context_setting_format_contributions import \
+         _get_context_setting_format_contributions
       result = [ ]
       measure = self.formatter.container
       result.append(self.wrap(measure.comments, 'opening'))
       result.append(self.wrap(measure.directives, 'opening'))
       #result.append(self.wrap(measure.interfaces, 'overrides'))
       result.append(self._wrap_measure_interface_overrides( ))
-      result.append(self.wrap(measure.interfaces, 'opening'))
-      result.append(self.wrap(measure.interfaces, 'settings'))
+
+      #result.append(self.wrap(measure.interfaces, 'opening'))
+      #result.append(self.wrap(measure.interfaces, 'settings'))
+      result.append([('opening', 'opening'),
+         _get_opening_slot_format_contributions(self._client._client)])
+      result.append([('settings', 'settings'),
+         _get_context_setting_format_contributions(self._client._client)])
+
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -50,11 +60,18 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_5(self):
       r'''Just like container slot 5. But with any LilyPond BarLine
       \override strings included FIRST THING so as to appear PRIOR TO
-      any LilyPond BarLine \revert strings that may appear later.'''
+      any LilyPond BarLine \revert strings that may appear later.
+      '''
+      from abjad.tools.formattools._get_closing_slot_format_contributions import \
+         _get_closing_slot_format_contributions
       result = [ ]
       measure = self.formatter.container
       result.append(self._wrap_bar_line_interface_overrides( ))
-      result.append(self.wrap(measure.interfaces, 'closing'))
+
+      #result.append(self.wrap(measure.interfaces, 'closing'))
+      result.append([('closing', 'closing'),
+         _get_closing_slot_format_contributions(self._client._client)])
+
       #result.append(self.wrap(measure.interfaces, 'reverts'))
       result.append(self._wrap_measure_interface_reverts( ))
       result.append(self.wrap(measure.directives, 'closing'))
@@ -97,7 +114,13 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       
    def _wrap_measure_interface_overrides(self):
       '''To allow filtering out of BarLine overrides.'''
-      result = self.wrap(self.formatter.container.interfaces, 'overrides')
+      from abjad.tools.formattools._get_grob_override_format_contributions import \
+         _get_grob_override_format_contributions
+
+      #result = self.wrap(self.formatter.container.interfaces, 'overrides')
+      result = [('overrides', 'overrides'),
+         _get_grob_override_format_contributions(self._client._client)]
+
       override_list = result[-1]
       override_list = [x for x in override_list 
          if 'BarLine' not in x and 'SpanBar' not in x]
@@ -105,8 +128,15 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       return result
 
    def _wrap_measure_interface_reverts(self):
-      '''To allow filtering out of BarLine reverts.'''
-      result = self.wrap(self.formatter.container.interfaces, 'reverts')
+      '''To allow filtering out of BarLine reverts.
+      '''
+      from abjad.tools.formattools._get_grob_revert_format_contributions import \
+         _get_grob_revert_format_contributions
+
+      #result = self.wrap(self.formatter.container.interfaces, 'reverts')
+      result = [('reverts', 'reverts'),
+         _get_grob_revert_format_contributions(self._client._client)]
+
       override_list = result[-1]
       override_list = [x for x in override_list 
          if 'BarLine' not in x and 'SpanBar' not in x]

@@ -11,6 +11,10 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_2(self):
+      from abjad.tools.formattools._get_grob_override_format_contributions import \
+         _get_grob_override_format_contributions
+      from abjad.tools.formattools._get_context_setting_format_contributions import \
+         _get_context_setting_format_contributions
       result = [ ]
       formatter = self.formatter
       context = formatter.context
@@ -21,8 +25,12 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          brackets_open = ['{']
       engraver_removals = formatter._formatted_engraver_removals
       engraver_consists = formatter._formatted_engraver_consists
-      overrides = context.interfaces.overrides
-      settings = context.interfaces.settings
+
+      #overrides = context.interfaces.overrides
+      #settings = context.interfaces.settings
+      overrides = _get_grob_override_format_contributions(self._client._client)
+      settings = _get_context_setting_format_contributions(self._client._client)
+
       if engraver_removals or engraver_consists or overrides or settings:
          contributions = [formatter._invocation + r' \with {']
          #result.append([(context.brackets, 'open'), contributions])
@@ -32,9 +40,9 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          contributions = ['\t' + x for x in engraver_consists]
          result.append([(formatter, 'engraver_consists'), contributions])
          contributions = ['\t' + x for x in overrides]
-         result.append([(context.interfaces, 'overrides'), contributions])
+         result.append([('overrides', 'overrides'), contributions])
          contributions = ['\t' + x for x in settings] 
-         result.append([(context.interfaces, 'settings'), contributions])
+         result.append([('settings', 'settings'), contributions])
          #contributions = ['} %s' % context.brackets.open[0]]
          #result.append([(context.brackets, 'open'), contributions])
          contributions = ['} %s' % brackets_open[0]]
@@ -48,19 +56,31 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_3(self):
+      from abjad.tools.formattools._get_opening_slot_format_contributions import \
+         _get_opening_slot_format_contributions
       result = [ ]
       context = self.formatter.context
       result.append(self.wrap(context.comments, 'opening'))
       result.append(self.wrap(context.directives, 'opening'))
-      result.append(self.wrap(context.interfaces, 'opening'))
+
+      #result.append(self.wrap(context.interfaces, 'opening'))
+      result.append([('opening', 'opening'),
+         _get_opening_slot_format_contributions(self._client._client)])
+
       self._indent_slot_contributions(result)
       return tuple(result)
 
    @property
    def slot_5(self):
+      from abjad.tools.formattools._get_closing_slot_format_contributions import \
+         _get_closing_slot_format_contributions
       result = [ ]
       context = self.formatter.context
-      result.append(self.wrap(context.interfaces, 'closing'))
+
+      #result.append(self.wrap(context.interfaces, 'closing'))
+      result.append([('closing', 'closing'),
+         _get_closing_slot_format_contributions(self._client._client)])
+
       result.append(self.wrap(context.directives, 'closing'))
       result.append(self.wrap(context.comments, 'closing'))
       self._indent_slot_contributions(result)

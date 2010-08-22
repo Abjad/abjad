@@ -65,12 +65,18 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          \revert Dots #'color
          \revert NoteHead #'color
       '''
+      from abjad.tools.formattools._get_grob_override_format_contributions import \
+         _get_grob_override_format_contributions
 
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append(self.wrap(tuplet.comments, 'before'))
       result.append(self.wrap(tuplet.directives, 'before'))
-      result.append(self.wrap(tuplet.interfaces, 'overrides'))
+
+      #result.append(self.wrap(tuplet.interfaces, 'overrides'))
+      result.append([('overrides', 'overrides'),
+         _get_grob_override_format_contributions(self._client._client)])
+
       if tuplet.duration.multiplier == 1 and \
          hasattr(tuplet.__class__, 'color'):
          contributor = (tuplet.__class__, 'color')
@@ -186,11 +192,17 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_3(self):
       '''Read-only tuple of format contributions to appear
       immediately after tuplet opening.'''
+      from abjad.tools.formattools._get_opening_slot_format_contributions import \
+         _get_opening_slot_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append(self.wrap(tuplet.comments, 'opening'))
       result.append(self.wrap(tuplet.directives, 'opening'))
-      result.append(self.wrap(tuplet.interfaces, 'opening'))
+
+      #result.append(self.wrap(tuplet.interfaces, 'opening'))
+      result.append([('opening', 'opening'),
+         _get_opening_slot_format_contributions(self._client._client)])
+
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -198,9 +210,15 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_5(self):
       '''Read-only tuple of format contributions to appear
       immediately before tuplet closing.'''
+      from abjad.tools.formattools._get_closing_slot_format_contributions import \
+         _get_closing_slot_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
-      result.append(self.wrap(tuplet.interfaces, 'closing'))
+
+      #result.append(self.wrap(tuplet.interfaces, 'closing'))
+      result.append([('closing', 'closing'),
+         _get_closing_slot_format_contributions(self._client._client)])
+
       result.append(self.wrap(tuplet.directives, 'closing'))
       result.append(self.wrap(tuplet.comments, 'closing'))
       self._indent_slot_contributions(result)
@@ -222,9 +240,15 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_7(self):
       '''Read-only tuple of format contributions
       to appear immediately after tuplet closing.'''
+      from abjad.tools.formattools._get_grob_revert_format_contributions import \
+         _get_grob_revert_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append(self.wrap(tuplet.directives, 'after'))
-      result.append(self.wrap(tuplet.interfaces, 'reverts'))
+
+      #result.append(self.wrap(tuplet.interfaces, 'reverts'))
+      result.append([('reverts', 'reverts'),
+         _get_grob_revert_format_contributions(self._client._client)])
+
       result.append(self.wrap(tuplet.comments, 'after'))
       return tuple(result)

@@ -38,13 +38,29 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_3(self):
+      from abjad.tools.formattools._get_opening_slot_format_contributions import \
+         _get_opening_slot_format_contributions
+      from abjad.tools.formattools._get_grob_override_format_contributions import \
+         _get_grob_override_format_contributions
+      from abjad.tools.formattools._get_context_setting_format_contributions import \
+         _get_context_setting_format_contributions
+
       result = [ ]
       container = self.formatter.container
       result.append(self.wrap(container.comments, 'opening'))
       result.append(self.wrap(container.directives, 'opening'))
-      result.append(self.wrap(container.interfaces, 'overrides'))
-      result.append(self.wrap(container.interfaces, 'opening'))
-      result.append(self.wrap(container.interfaces, 'settings'))
+
+      #result.append(self.wrap(container.interfaces, 'overrides'))
+      #result.append(self.wrap(container.interfaces, 'opening'))
+      #result.append(self.wrap(container.interfaces, 'settings'))
+      
+      result.append([('overrides', 'overrides'), 
+         _get_grob_override_format_contributions(self._client._client)])
+      result.append([('opening', 'opening'), 
+         _get_opening_slot_format_contributions(self._client._client)])
+      result.append([('settings', 'settings'), 
+         _get_context_setting_format_contributions(self._client._client)])
+
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -56,10 +72,21 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_5(self):
+      from abjad.tools.formattools._get_closing_slot_format_contributions import \
+         _get_closing_slot_format_contributions
+      from abjad.tools.formattools._get_grob_revert_format_contributions import \
+         _get_grob_revert_format_contributions
+
       result = [ ]
       container = self.formatter.container
-      result.append(self.wrap(container.interfaces, 'closing'))
-      result.append(self.wrap(container.interfaces, 'reverts'))
+
+      #result.append(self.wrap(container.interfaces, 'closing'))
+      #result.append(self.wrap(container.interfaces, 'reverts'))
+      result.append([('closing', 'closing'), 
+         _get_closing_slot_format_contributions(self._client._client)])
+      result.append([('reverts', 'reverts'), 
+         _get_grob_revert_format_contributions(self._client._client)])
+
       result.append(self.wrap(container.directives, 'closing'))
       result.append(self.wrap(container.comments, 'closing'))
       self._indent_slot_contributions(result)

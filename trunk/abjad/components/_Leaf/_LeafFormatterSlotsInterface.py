@@ -10,6 +10,12 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_1(self):
+      from abjad.tools.formattools._get_grob_override_format_contributions import \
+         _get_grob_override_format_contributions
+      from abjad.tools.formattools._get_context_setting_format_contributions import \
+         _get_context_setting_format_contributions
+      from abjad.tools.formattools._get_before_slot_format_contributions import \
+         _get_before_slot_format_contributions
       from abjad.tools.leaftools._get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
       _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       result = [ ]
@@ -18,8 +24,14 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append(self.wrap(formatter, '_grace_body'))
       result.append(self.wrap(leaf.comments, 'before'))
       result.append(self.wrap(leaf.directives, 'before'))
-      result.append(self.wrap(leaf.interfaces, 'overrides'))
-      result.append(self.wrap(leaf.interfaces, 'settings'))
+
+      #result.append(self.wrap(leaf.interfaces, 'overrides'))
+      #result.append(self.wrap(leaf.interfaces, 'settings'))
+
+      result.append([('overrides', 'overrides'),
+         _get_grob_override_format_contributions(self._client._client)])
+      result.append([('settings', 'settings'),
+         _get_context_setting_format_contributions(self._client._client)])
 
       #result.append(self.wrap(leaf.spanners, '_before'))
       ## wrap format contributions by hand:
@@ -27,17 +39,26 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
       leaf)])
 
-      result.append(self.wrap(leaf.interfaces, 'before'))
+      #result.append(self.wrap(leaf.interfaces, 'before'))
+      result.append([('before', 'before'),
+         _get_before_slot_format_contributions(self._client._client)])
+
       return tuple(result)
 
    @property
    def slot_3(self):
+      from abjad.tools.formattools._get_opening_slot_format_contributions import \
+         _get_opening_slot_format_contributions
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(leaf.comments, 'opening'))
       result.append(self.wrap(leaf.directives, 'opening'))
-      result.append(self.wrap(leaf.interfaces, 'opening'))
+
+      #result.append(self.wrap(leaf.interfaces, 'opening'))
+      result.append([('opening', 'opening'),
+         _get_opening_slot_format_contributions(self._client._client)])
+
       result.append(self.wrap(formatter, '_agrace_opening'))
       return tuple(result)
 
@@ -50,23 +71,34 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_5(self):
+      from abjad.tools.formattools._get_closing_slot_format_contributions import \
+         _get_closing_slot_format_contributions
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(formatter, '_agrace_body'))
       result.append(self.wrap(leaf.directives, 'closing'))
-      result.append(self.wrap(leaf.interfaces, 'closing'))
+
+      #result.append(self.wrap(leaf.interfaces, 'closing'))
+      result.append([('closing', 'closing'),
+         _get_closing_slot_format_contributions(self._client._client)])
+
       result.append(self.wrap(leaf.comments, 'closing'))
       return tuple(result)
 
    @property
    def slot_7(self):
+      from abjad.tools.formattools._get_after_slot_format_contributions import \
+         _get_after_slot_format_contributions
       from abjad.tools.leaftools._get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
       _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
-      result.append(self.wrap(leaf.interfaces, 'after'))
+
+      #result.append(self.wrap(leaf.interfaces, 'after'))
+      result.append([('after', 'after'),
+         _get_after_slot_format_contributions(self._client._client)])
 
       #result.append(self.wrap(leaf.spanners, '_after'))
       result.append([(leaf.spanners, '_after'),

@@ -14,7 +14,7 @@ def test_componenttools_report_component_format_contributions_as_string_01( ):
    t.comments.before.append('textual information before')
    t.comments.after.append('textual information after')
 
-   assert componenttools.report_component_format_contributions_as_string(t) == "slot_1\n\tCommentsInterface.before\n\t\t% textual information before\n\tInterfaceAggregator.overrides\n\t\t\\once \\override NoteHead #'color = #red\n\t\t\\once \\override NoteHead #'style = #'cross\n\t\t\\once \\override Stem #'color = #red\nslot_2\nslot_3\nslot_4\n\t_LeafFormatter._leaf_body\n\t\tc'4 -\\staccato -\\tenuto _ \\markup { \\italic { ben. marcato } }\nslot_5\nslot_6\nslot_7\n\tCommentsInterface.after\n\t\t% textual information after\n"
+   assert componenttools.report_component_format_contributions_as_string(t) == "slot_1\n\tCommentsInterface.before\n\t\t% textual information before\n\toverrides.overrides\n\t\t\\once \\override NoteHead #'color = #red\n\t\t\\once \\override NoteHead #'style = #'cross\n\t\t\\once \\override Stem #'color = #red\nslot_2\nslot_3\nslot_4\n\t_LeafFormatter._leaf_body\n\t\tc'4 -\\staccato -\\tenuto _ \\markup { \\italic { ben. marcato } }\nslot_5\nslot_6\nslot_7\n\tCommentsInterface.after\n\t\t% textual information after\n"
 
 
 def test_componenttools_report_component_format_contributions_as_string_02( ):
@@ -71,4 +71,4 @@ def test_componenttools_report_component_format_contributions_as_string_03( ):
    slot_7
    '''
 
-   assert result == 'slot_1\nslot_2\n\ttuplet_brackets.open\n\t\t\\times 2/3 {\nslot_3\n\tInterfaceAggregator.opening\n\t\t\t#(set-accidental-style \'forget)\n\t\t\t\\clef "treble"\nslot_4\n\t_TupletFormatter._contents\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\nslot_5\n\tInterfaceAggregator.closing\n\t\t\t\\bar "|."\nslot_6\n\ttuplet_brackets.close\n\t\t}\nslot_7\n'
+   assert result == 'slot_1\nslot_2\n\ttuplet_brackets.open\n\t\t\\times 2/3 {\nslot_3\n\topening.opening\n\t\t\t#(set-accidental-style \'forget)\n\t\t\t\\clef "treble"\nslot_4\n\t_TupletFormatter._contents\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\nslot_5\n\tclosing.closing\n\t\t\t\\bar "|."\nslot_6\n\ttuplet_brackets.close\n\t\t}\nslot_7\n'

@@ -9,7 +9,7 @@ from abjad.interfaces import CommentsInterface
 from abjad.interfaces import ClefInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import HistoryInterface
-from abjad.interfaces import InterfaceAggregator
+#from abjad.interfaces import InterfaceAggregator
 from abjad.interfaces import KeySignatureInterface
 from abjad.interfaces import MeterInterface
 from abjad.interfaces import NumberingInterface
@@ -22,7 +22,7 @@ from abjad.interfaces import TempoInterface
 class _Component(_Abjad):
 
    def __init__(self):
-      self._interfaces = InterfaceAggregator(self)
+      #self._interfaces = InterfaceAggregator(self)
       #self._breaks = BreaksInterface(self)
       #self._comments = CommentsInterface( )
       #self._directives = DirectivesInterface(self)
@@ -122,11 +122,11 @@ class _Component(_Abjad):
          self._history = HistoryInterface(self)
       return self._history
 
-   @property
-   def interfaces(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.interface_aggregator.aggregator.InterfaceAggregator`.'''
-      return self._interfaces
+#   @property
+#   def interfaces(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.interface_aggregator.aggregator.InterfaceAggregator`.'''
+#      return self._interfaces
 
    @property
    def key_signature(self):
