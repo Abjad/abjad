@@ -486,7 +486,13 @@ marktools
 .. toctree::
    :maxdepth: 1
 
+   tools/marktools/ClefMark/ClefMark
+   tools/marktools/DynamicMark/DynamicMark
+   tools/marktools/InstrumentNameMark/InstrumentNameMark
+   tools/marktools/KeySignatureMark/KeySignatureMark
    tools/marktools/Mark/Mark
+   tools/marktools/TempoMark/TempoMark
+   tools/marktools/TimeSignatureMark/TimeSignatureMark
 
 
 markuptools

@@ -43,6 +43,8 @@ class _LeafFormatter(_ComponentFormatter):
 
    @property
    def _leaf_body(self):
+      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
+         _get_mark_format_contributions_for_slot
       from abjad.tools.formattools._get_left_slot_format_contributions import \
          _get_left_slot_format_contributions
       from abjad.tools.formattools._get_right_slot_format_contributions import \
@@ -54,10 +56,7 @@ class _LeafFormatter(_ComponentFormatter):
       result = [ ]
       client = self._client
       directives = client.directives
-      #interfaces = client.interfaces
       spanners = client.spanners
-      #result.extend(directives.left)
-      #result.extend(spanners.left)
 
       #result.extend(spanners._left)
       result.extend(
@@ -72,6 +71,9 @@ class _LeafFormatter(_ComponentFormatter):
 
       #result.extend(interfaces.right)
       result.extend(_get_right_slot_format_contributions(self._client))
+
+      ## marks
+      result.extend(_get_mark_format_contributions_for_slot(self._client, 'right'))
 
       #result.extend(spanners._right)
       result.extend(

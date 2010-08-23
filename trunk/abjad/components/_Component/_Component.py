@@ -149,7 +149,7 @@ class _Component(_Abjad):
    def marks(self):
       '''Read-only reference to ordered list of marks attached to component.
       '''
-      return list(self._marks)
+      return tuple(self._marks)
 
    @property
    def meter(self):

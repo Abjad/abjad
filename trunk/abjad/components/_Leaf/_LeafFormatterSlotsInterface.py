@@ -49,11 +49,17 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_3(self):
       from abjad.tools.formattools._get_opening_slot_format_contributions import \
          _get_opening_slot_format_contributions
+      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
+         _get_mark_format_contributions_for_slot
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(leaf.comments, 'opening'))
       result.append(self.wrap(leaf.directives, 'opening'))
+
+      ## marks
+      result.append([('marks', 'marks'),
+         _get_mark_format_contributions_for_slot(self._client._client, 'opening')])
 
       #result.append(self.wrap(leaf.interfaces, 'opening'))
       result.append([('opening', 'opening'),

@@ -47,8 +47,22 @@ class Mark(object):
       self._bind_start_component(start_component)
       return self
 
+   def __copy__(self, *args):
+      return type(self)(self.value)
+
+   __deepcopy__ = __copy__
+      
    def __delattr__(self, *args):
       raise AttributeError('can not delete %s attributes.' % self.__class__.__name__)
+
+   def __eq__(self, arg):
+      if isinstance(arg, type(self)):
+         if self.value == arg.value:
+            return True
+      return False
+
+   def __ne__(self, arg):
+      return not self == arg
 
    def __repr__(self):
       return '%s(%s)%s' % (
