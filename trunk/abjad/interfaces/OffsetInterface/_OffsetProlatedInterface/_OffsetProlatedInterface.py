@@ -24,7 +24,7 @@ class _OffsetProlatedInterface(_ObserverInterface):
          Updating stop at same time induces infinite recursion.'''
       prev = self._client._client._navigator._prev
       if prev:
-         self._start = prev.offset.prolated.stop
+         self._start = prev.offset.stop
       else:
          self._start = Rational(0)
 

@@ -29,5 +29,5 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
    except TypeError:
       pass
 
-   return component.offset.seconds.start <= timepoint < \
-      component.offset.seconds.stop
+   return component.offset.start_in_seconds <= timepoint < \
+      component.offset.stop_in_seconds

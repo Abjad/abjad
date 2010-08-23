@@ -16,8 +16,8 @@ def test_OffsetSecondsInterface_start_01( ):
    }
    '''
 
-   assert py.test.raises(UndefinedTempoError, 't[0].offset.seconds.start')
-   assert py.test.raises(UndefinedTempoError, 't[0].offset.seconds.stop')
+   #assert py.test.raises(UndefinedTempoError, 't[0].offset.start_in_seconds')
+   assert py.test.raises(UndefinedTempoError, 't[0].offset.stop_in_seconds')
 
 
 def test_OffsetSecondsInterface_start_02( ):
@@ -36,5 +36,5 @@ def test_OffsetSecondsInterface_start_02( ):
    }
    '''
 
-   assert t[0].offset.seconds.start == Rational(0)
-   assert t[1].offset.seconds.start == Rational(5, 4)
+   assert t[0].offset.start_in_seconds == Rational(0)
+   assert t[1].offset.start_in_seconds == Rational(5, 4)

@@ -121,7 +121,7 @@ class VerticalMoment(_Immutable):
       from abjad.tools import verticalitytools
       candidate_shortest_leaf = self.leaves[0] 
       for leaf in self.leaves[1:]:
-         if leaf.offset.prolated.stop < candidate_shortest_leaf.offset.prolated.stop:
+         if leaf.offset.stop < candidate_shortest_leaf.offset.stop:
             candidate_shortest_leaf = leaf
       next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
       next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(next_leaf)
@@ -145,7 +145,7 @@ class VerticalMoment(_Immutable):
       from abjad.tools import verticalitytools
       candidate_shortest_leaf = self.leaves[0] 
       for leaf in self.leaves[1:]:
-         if leaf.offset.prolated.stop < candidate_shortest_leaf.offset.prolated.stop:
+         if leaf.offset.stop < candidate_shortest_leaf.offset.stop:
             candidate_shortest_leaf = leaf
       next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
       next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
@@ -158,7 +158,7 @@ class VerticalMoment(_Immutable):
       starting before vertical moment, ordered by score index.'''
       result = [ ]
       for component in self.components:
-         if component.offset.prolated.start < self.prolated_offset:
+         if component.offset.start < self.prolated_offset:
             result.append(component)
       result = tuple(result)
       return result
@@ -199,7 +199,7 @@ class VerticalMoment(_Immutable):
       for leaf in self.leaves:
          #print ''
          #print leaf
-         leaf_start = leaf.offset.prolated.start
+         leaf_start = leaf.offset.start
          if leaf_start < self.prolated_offset:
             #print 'found leaf starting before this moment ...'
             if most_recent_start_offset <= leaf_start:
@@ -209,7 +209,7 @@ class VerticalMoment(_Immutable):
             #print 'found leaf starting on this moment ...'
             try:
                prev_leaf = componenttools.get_nth_namesake_from_component(leaf, -1)
-               start = prev_leaf.offset.prolated.start
+               start = prev_leaf.offset.start
                #print prev_leaf, start
                if most_recent_start_offset <= start:
                   most_recent_start_offset = start
@@ -236,7 +236,7 @@ class VerticalMoment(_Immutable):
       starting with at vertical moment, ordered by score index.'''
       result = [ ]
       for component in self.components:
-         if component.offset.prolated.start == self.prolated_offset:
+         if component.offset.start == self.prolated_offset:
             result.append(component)
       result = tuple(result)
       return result

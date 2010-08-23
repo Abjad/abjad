@@ -7,7 +7,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
    r'''.. versionadded:: 1.1.2
 
    When `governor` is none, get vertical moment at 
-   ``expr.offset.prolated.start`` in ``expr.parentage.root``. ::
+   ``expr.offset.start`` in ``expr.parentage.root``. ::
 
       abjad> score = Score([ ])
       abjad> score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
@@ -44,7 +44,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
       VerticalMoment(Score<<2>>, Staff{1}, {@ 3:4 d''8, c''8, b'8 @}, d''8, PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)
 
    When `governor` is not none, get vertical moment at
-   ``expr.offset.prolated.start`` in `governor`. ::
+   ``expr.offset.start`` in `governor`. ::
 
       abjad> verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][1], piano_staff)
       VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)
@@ -60,7 +60,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
       ``verticalitytools.get_vertical_moment_starting_with_component( )``.
    '''
 
-   prolated_offset = expr.offset.prolated.start
+   prolated_offset = expr.offset.start
 
    if governor is None:
       governor = expr.parentage.root

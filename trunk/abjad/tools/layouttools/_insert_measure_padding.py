@@ -25,7 +25,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    root = expr[0].parentage.root
 
    ## forbid updates because _Component.splice_left( ) and ##
-   ## _Component.splice( ) call self.offset.prolated.stop  ##
+   ## _Component.splice( ) call self.offset.stop  ##
    root._update._forbid_update( )
 
    for measure in measuretools.iterate_measures_forward_in_expr(expr):

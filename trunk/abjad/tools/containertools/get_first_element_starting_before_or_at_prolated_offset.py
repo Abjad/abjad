@@ -24,5 +24,5 @@ def get_first_element_starting_before_or_at_prolated_offset(container, prolated_
    prolated_offset = Rational(prolated_offset)
 
    for element in reversed(container):
-      if element.offset.prolated.start <= prolated_offset:
+      if element.offset.start <= prolated_offset:
          return element

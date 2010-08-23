@@ -23,7 +23,7 @@ def get_element_starting_at_exactly_prolated_offset(container, prolated_offset):
    '''
 
    for element in container:
-      if element.offset.prolated.start == prolated_offset:
+      if element.offset.start == prolated_offset:
          return element
    
    raise MissingComponentError

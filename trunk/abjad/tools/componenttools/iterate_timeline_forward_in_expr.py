@@ -55,8 +55,8 @@ def iterate_timeline_forward_in_expr(expr, klass = _Leaf):
    components = list(component_generator)
    
    def _sort_helper(component_1, component_2):
-      result = cmp(component_1.offset.prolated.start, 
-         component_2.offset.prolated.start)
+      result = cmp(component_1.offset.start, 
+         component_2.offset.start)
       if result == 0:
          return cmp(
             component_to_score_index(component_1),

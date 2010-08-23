@@ -51,8 +51,8 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
             result.append('<<')
             for meter, moffset, temp_hide in m:
                s = Skip(Rational(1))
-               #s.duration.multiplier = meter.offset - leaf.offset.prolated.start
-               s.duration.multiplier = moffset - leaf.offset.prolated.start
+               #s.duration.multiplier = meter.offset - leaf.offset.start
+               s.duration.multiplier = moffset - leaf.offset.start
                s.meter.forced = meter
                container = Container([s])
                result.append(container.format)

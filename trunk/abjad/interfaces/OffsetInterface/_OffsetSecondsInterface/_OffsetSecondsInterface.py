@@ -26,7 +26,7 @@ class _OffsetSecondsInterface(_ObserverInterface):
       prev = self._client._client._navigator._prev
       if prev:
          try:
-            self._start = prev.offset.seconds.stop
+            self._start = prev.offset.stop_in_seconds
          except UndefinedTempoError:
             self._start = Rational(0)
       else:

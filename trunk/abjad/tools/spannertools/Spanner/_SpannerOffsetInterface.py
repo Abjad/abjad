@@ -13,7 +13,7 @@ class _SpannerOffsetInterface(_Abjad):
    def start(self):
       client = self._client
       if len(client):
-         return client[0].offset.prolated.start
+         return client[0].offset.start
       else:
          return Rational(0)
 
@@ -22,6 +22,6 @@ class _SpannerOffsetInterface(_Abjad):
       client = self._client
       if len(client):
          last = client[-1]
-         return last.offset.prolated.stop
+         return last.offset.stop
       else:
          return Rational(0)

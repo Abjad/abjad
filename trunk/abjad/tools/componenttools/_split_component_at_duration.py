@@ -36,7 +36,7 @@ def _split_component_at_duration(
       return (component, )
 
    ## get global position of duration split in score
-   global_split_point = component.offset.prolated.start + duration
+   global_split_point = component.offset.start + duration
 
    ## get duration crossers, if any
    contents = list_improper_contents_of_component_that_cross_prolated_offset(component, duration) 
@@ -51,7 +51,7 @@ def _split_component_at_duration(
    ## code that crawls and splits later on will be happier
    if len(measures) == 1:
       measure = measures[0]
-      split_point_in_measure = global_split_point - measure.offset.prolated.start
+      split_point_in_measure = global_split_point - measure.offset.start
       split_point_denominator = split_point_in_measure.denominator
       if measure.duration.nonbinary:
          measure_multiplier = measure.duration.multiplier
@@ -82,7 +82,7 @@ def _split_component_at_duration(
    if isinstance(bottom, _Leaf):
       assert isinstance(bottom, _Leaf)
       did_split_leaf = True
-      split_point_in_bottom = global_split_point - bottom.offset.prolated.start
+      split_point_in_bottom = global_split_point - bottom.offset.start
       left_list, right_list = _split_leaf_at_duration(bottom, 
          split_point_in_bottom, spanners = spanners, tie_after = tie_after)
       right = right_list[0]
@@ -97,7 +97,7 @@ def _split_component_at_duration(
    else:
       containers = contents[:]
       for leaf in leaftools.iterate_leaves_forward_in_expr(bottom):
-         if leaf.offset.prolated.start == global_split_point:
+         if leaf.offset.start == global_split_point:
             right = leaf
             leaf_right_of_split = right
             leaf_left_of_split = right.prev

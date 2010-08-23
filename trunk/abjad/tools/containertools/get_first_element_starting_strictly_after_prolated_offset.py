@@ -24,5 +24,5 @@ def get_first_element_starting_strictly_after_prolated_offset(container, prolate
    prolated_offset = Rational(prolated_offset)
 
    for element in container:
-      if prolated_offset < element.offset.prolated.start:
+      if prolated_offset < element.offset.start:
          return element

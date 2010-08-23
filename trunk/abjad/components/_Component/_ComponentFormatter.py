@@ -29,18 +29,6 @@ class _ComponentFormatter(_Interface):
 
    ## PUBLIC ATTRIBUTES ##
 
-#   @property
-#   def format(self):
-#      result = [ ]
-#      result.extend(self.slots.contributions('slot_1'))
-#      result.extend(self.slots.contributions('slot_2'))
-#      result.extend(self.slots.contributions('slot_3'))
-#      result.extend(self.slots.contributions('slot_4'))
-#      result.extend(self.slots.contributions('slot_5'))
-#      result.extend(self.slots.contributions('slot_6'))
-#      result.extend(self.slots.contributions('slot_7'))
-#      result = '\n'.join(result)
-#      return result
    @property
    def format(self):
       return '\n'.join(self._format_pieces)

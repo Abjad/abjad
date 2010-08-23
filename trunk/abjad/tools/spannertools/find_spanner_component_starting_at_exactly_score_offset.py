@@ -9,5 +9,5 @@ def find_spanner_component_starting_at_exactly_score_offset(spanner, score_offse
    '''
 
    for component in spanner:
-      if component.offset.prolated.start == score_offset:
+      if component.offset.start == score_offset:
          return component

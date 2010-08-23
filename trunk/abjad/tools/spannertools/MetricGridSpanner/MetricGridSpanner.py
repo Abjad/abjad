@@ -26,8 +26,8 @@ class MetricGridSpanner(Spanner):
       leaf = self.leaves[0]
       ## group leaves by measure.
       while leaf:
-         #if leaf.offset.prolated.start < meter.offset + meter.duration:
-         if leaf.offset.prolated.start < moffset + meter.duration:
+         #if leaf.offset.start < meter.offset + meter.duration:
+         if leaf.offset.start < moffset + meter.duration:
             leaves_in_meter[-1].append(leaf)
             leaf = leaf.next
          else:
@@ -76,18 +76,18 @@ class MetricGridSpanner(Spanner):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''
       #for m in self.meters:
       for m, moffset, temp_hide in self.meters:
-         #if leaf.offset.prolated.start == m.offset: 
-         if leaf.offset.prolated.start == moffset: 
+         #if leaf.offset.start == m.offset: 
+         if leaf.offset.start == moffset: 
             return m, temp_hide
 
    def _slicing_meters(self, leaf):
       '''Return the MetricStrip(s) that slices leaf, if any.'''
       #for m in self.meters:
       for m, moffset, temp_hide in self.meters:
-         #if leaf.offset.prolated.start < m.offset:
-         if leaf.offset.prolated.start < moffset:
-            #if m.offset < leaf.offset.prolated.stop:
-            if moffset < leaf.offset.prolated.stop:
+         #if leaf.offset.start < m.offset:
+         if leaf.offset.start < moffset:
+            #if m.offset < leaf.offset.stop:
+            if moffset < leaf.offset.stop:
                yield m, moffset, temp_hide
             else:
                break
