@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_OffsetProlatedInterface_start_01( ):
+def test_OffsetInterface_start_01( ):
    '''Prolated offsets works on threaded sequential voices.'''
    t = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
    t[0].name = t[1].name = 'voice'
@@ -10,7 +10,7 @@ def test_OffsetProlatedInterface_start_01( ):
       assert x.offset.start == i * Rational(4, 8)
 
 
-def test_OffsetProlatedInterface_start_02( ):
+def test_OffsetInterface_start_02( ):
    '''Prolated offset does NOT go across sequential staves.'''
    t = Container([Staff(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
    t[0].name = t[1].name = 'staff'
@@ -18,14 +18,14 @@ def test_OffsetProlatedInterface_start_02( ):
    assert t[1].offset.start == Rational(1, 2)
 
 
-def test_OffsetProlatedInterface_start_03( ):
+def test_OffsetInterface_start_03( ):
    '''Prolated offsets follows strict threads.'''
    t = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
    for i, x in enumerate(t):
       assert x.offset.start == i * Rational(4, 8)
 
 
-def test_OffsetProlatedInterface_start_04( ):
+def test_OffsetInterface_start_04( ):
    '''Prolated offsets works on sequential tuplets.'''
    t = Voice(tuplettools.FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3)) * 3)
    assert t[0].offset.start == 0
@@ -33,7 +33,7 @@ def test_OffsetProlatedInterface_start_04( ):
    assert t[2].offset.start == 2 * Rational(1, 4)
 
 
-def test_OffsetProlatedInterface_start_05( ):
+def test_OffsetInterface_start_05( ):
    '''Prolated offsets work on tuplets between notes.'''
    tp = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
@@ -42,7 +42,7 @@ def test_OffsetProlatedInterface_start_05( ):
    assert t[2].offset.start == Rational(3, 8)
 
 
-def test_OffsetProlatedInterface_start_06( ):
+def test_OffsetInterface_start_06( ):
    '''Prolated offsets work on nested tuplets.'''
    tp = tuplettools.FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3))
    t = tuplettools.FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
@@ -53,7 +53,7 @@ def test_OffsetProlatedInterface_start_06( ):
 
 ## nested contexts ##
 
-def test_OffsetProlatedInterface_start_07( ):
+def test_OffsetInterface_start_07( ):
    '''Prolated offsets work on nested contexts.'''
    vin = Voice(notetools.make_repeated_notes(4))
    vout = Voice([Note(0, (1, 8)), vin])
@@ -63,7 +63,7 @@ def test_OffsetProlatedInterface_start_07( ):
    assert vout.offset.start == Rational(1, 8)
    
 
-def test_OffsetProlatedInterface_start_08( ):
+def test_OffsetInterface_start_08( ):
    '''Prolated offsets work on nested parallel contexts.'''
    v1 = Voice(notetools.make_repeated_notes(4))
    v2 = Voice(notetools.make_repeated_notes(4))
@@ -73,7 +73,7 @@ def test_OffsetProlatedInterface_start_08( ):
    assert t[1].offset.start == 0
 
 
-def test_OffsetProlatedInterface_start_09( ):
+def test_OffsetInterface_start_09( ):
    '''Prolated offsets works in nested parallel and sequential 
    contexts.'''
    v1 = Voice(notetools.make_repeated_notes(4))

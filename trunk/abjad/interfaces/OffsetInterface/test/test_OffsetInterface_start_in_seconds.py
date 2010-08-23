@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_OffsetSecondsInterface_start_01( ):
+def test_OffsetInterface_start_in_seconds_01( ):
    '''Offset seconds can not calculate without excplit tempo indication.'''
 
    t = Staff(macros.scale(4))
@@ -20,7 +20,7 @@ def test_OffsetSecondsInterface_start_01( ):
    assert py.test.raises(UndefinedTempoError, 't[0].offset.stop_in_seconds')
 
 
-def test_OffsetSecondsInterface_start_02( ):
+def test_OffsetInterface_start_in_seconds_02( ):
    '''Offset seconds work with explicit tempo indication.'''
 
    t = Staff(macros.scale(4))

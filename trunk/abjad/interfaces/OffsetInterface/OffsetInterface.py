@@ -1,21 +1,14 @@
 from abjad.exceptions import UndefinedTempoError
-#from abjad.interfaces._Interface import _Interface
 from abjad.interfaces._ObserverInterface import _ObserverInterface
-#from abjad.interfaces.OffsetInterface._OffsetProlatedInterface import _OffsetProlatedInterface
-#from abjad.interfaces.OffsetInterface._OffsetSecondsInterface import _OffsetSecondsInterface
 from abjad.core import Rational
 
 
-#class OffsetInterface(_Interface):
 class OffsetInterface(_ObserverInterface):
    '''Offset interface.
    '''
 
    def __init__(self, _client, _updateInterface):
-      #_Interface.__init__(self, _client)
       _ObserverInterface.__init__(self, _client, _updateInterface)
-      #self._prolated = _OffsetProlatedInterface(self, _updateInterface)
-      #self._seconds = _OffsetSecondsInterface(self, _updateInterface)
       self._start = Rational(0)
       self._start_in_seconds = Rational(0)
       self._stop = Rational(0)
@@ -43,14 +36,6 @@ class OffsetInterface(_ObserverInterface):
          self._start_in_seconds = Rational(0)
 
    ## PUBLIC ATTRIBUTES ##
-
-#   @property
-#   def prolated(self):
-#      return self._prolated
-#  
-#   @property
-#   def seconds(self):
-#      return self._seconds
 
    @property
    def start(self):
