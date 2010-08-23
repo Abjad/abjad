@@ -493,6 +493,7 @@ marktools
    tools/marktools/Mark/Mark
    tools/marktools/TempoMark/TempoMark
    tools/marktools/TimeSignatureMark/TimeSignatureMark
+   tools/marktools/get_effective_mark
 
 
 markuptools

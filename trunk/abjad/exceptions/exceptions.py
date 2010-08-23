@@ -10,6 +10,14 @@ class MissingComponentError(Exception):
    '''Operation assumes presence of component, but none is found.'''
    pass
 
+class MarkError(Exception):
+   '''Any mark error.'''
+   pass
+
+class ExtraMarkError(Exception):
+   '''Operation assumes only one mark but more than one mark are present.'''
+   pass
+
 class MeasureError(Exception):
    '''General measure error.'''
    pass
