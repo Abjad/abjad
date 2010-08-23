@@ -17,6 +17,6 @@ def test_ParentageInterface_interface_proper_01( ):
    }
    '''
 
-   assert len(note.parentage.proper) == 2
-   assert note.parentage.proper[0] is tuplet
-   assert note.parentage.proper[1] is staff
+   assert len(note.parentage.proper_parentage) == 2
+   assert note.parentage.proper_parentage[0] is tuplet
+   assert note.parentage.proper_parentage[1] is staff

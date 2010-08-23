@@ -33,7 +33,7 @@ def _measure_get(component, direction):
    '''
 
    if isinstance(component, _Leaf):
-      for parent in component.parentage.parentage[1:]:
+      for parent in component.parentage.proper_parentage:
          if isinstance(parent, _Measure):
             return parent
       raise MissingMeasureError

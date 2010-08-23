@@ -44,7 +44,7 @@ class _Navigator(_Abjad):
       client = self._client
       result = [client]
       prev = client
-      for parent in client.parentage.parentage[1:]:
+      for parent in client.parentage.proper_parentage:
          if parent.parallel:
             result.append(parent)
          elif parent.index(prev) == 0:
@@ -87,7 +87,7 @@ class _Navigator(_Abjad):
       client = self._client
       result = [client]
       prev = client
-      for parent in client.parentage.parentage[1:]:
+      for parent in client.parentage.proper_parentage:
          if parent.parallel:
             if prev.duration.prolated == parent.duration.prolated:
                result.append(parent)
@@ -145,7 +145,7 @@ class _Navigator(_Abjad):
       if next:
          return next
       else:
-         for p in self._client.parentage.parentage[1:]:
+         for p in self._client.parentage.proper_parentage:
             next = p._navigator._next_sibling
             if next:
                return next
@@ -224,7 +224,7 @@ class _Navigator(_Abjad):
       if prev:
          return prev
       else:
-         for p in self._client.parentage.parentage[1:]:
+         for p in self._client.parentage.proper_parentage:
             prev = p._navigator._prev_sibling
             if prev:
                return prev

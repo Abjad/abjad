@@ -12,7 +12,7 @@ def component_to_thread_signature(component):
 
    signature = _ContainmentSignature( )
    signature._self = component._ID
-   for component in component.parentage.parentage:
+   for component in component.parentage.improper_parentage:
       if isinstance(component, Voice) and not signature._voice:
          signature._voice = component._ID
       elif isinstance(component, Staff) and not signature._staff:

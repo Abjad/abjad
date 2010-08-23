@@ -86,7 +86,7 @@ class _BacktrackingInterface(_Abjad):
                   return prevForced
                else:
                   return prevInterface._effective
-      for parent in self._client.parentage.parentage[1:]:
+      for parent in self._client.parentage.proper_parentage:
          parentInterface = getattr(parent, self._interfaceName, None)
          if parentInterface is not None:
             parentForced = parentInterface.forced

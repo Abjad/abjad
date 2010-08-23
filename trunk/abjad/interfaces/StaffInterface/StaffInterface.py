@@ -79,7 +79,7 @@ class StaffInterface(_ObserverInterface, _BacktrackingInterface):
       '''First explicit Abjad staff in parentage of client.
       Otherwise none.'''
       from abjad.components.Staff import Staff
-      for parent in self._client.parentage.parentage:
+      for parent in self._client.parentage.improper_parentage:
          if isinstance(parent, Staff):
             return parent
 

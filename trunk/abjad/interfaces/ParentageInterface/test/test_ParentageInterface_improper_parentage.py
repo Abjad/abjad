@@ -1,9 +1,10 @@
 from abjad import *
 
 
-def test_ParentageInterface_parentage_01( ):
-   '''t.parentage.parentage return a list of the elements
-      in the parentage of leaf t, including t.'''
+def test_ParentageInterface_improper_parentage_01( ):
+   '''t.parentage.improper_parentage returns a list of the elements
+   in the parentage of t, including t.
+   '''
 
    t = Score([Staff(Container(notetools.make_repeated_notes(2)) * 2)])
    macros.diatonicize(t)
@@ -23,7 +24,7 @@ def test_ParentageInterface_parentage_01( ):
    >>
    '''
 
-   parentage = t.leaves[0].parentage.parentage
+   parentage = t.leaves[0].parentage.improper_parentage
 
    "[Note(c', 8), Container(c'8, d'8), Staff{2}, Score<<1>>]"
 
@@ -34,8 +35,8 @@ def test_ParentageInterface_parentage_01( ):
    assert parentage[3] is t
 
 
-def test_ParentageInterface_parentage_02( ):
-   '''t.parentage.parentage returns a list of the elements
+def test_ParentageInterface_improper_parentage_02( ):
+   '''t.parentage.improper_parentage returns a list of the elements
       in the parentage of container t, including t.'''
 
    t = Score([Staff(Container(notetools.make_repeated_notes(2)) * 2)])
@@ -56,7 +57,7 @@ def test_ParentageInterface_parentage_02( ):
    >>
    '''
 
-   parentage = t[0][0].parentage.parentage
+   parentage = t[0][0].parentage.improper_parentage
 
    "[Container(c'8, d'8), Staff{2}, Score<<1>>]"
 

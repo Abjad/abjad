@@ -83,7 +83,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
                   FixedDurationTuplet(new_target, [x])
       parent = parent.parentage.parent
       i += 1
-   parentage = leaf.parentage.parentage[1:]
+   parentage = leaf.parentage.proper_parentage
    remove_component_subtree_from_score_and_spanners([leaf])
    for x in parentage:
       if not len(x):

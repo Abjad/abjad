@@ -1,7 +1,5 @@
 from abjad.interfaces._Interface import _Interface
 from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
-from abjad.core import Rational
-import types
 
 
 ## TODO: possibly disassemble ParentageInterface into pub & private componenttools
@@ -51,11 +49,10 @@ class ParentageInterface(_Interface):
          abjad> note.parentage.depth
          2
 
-      Defined equal to ``len(component.parentage.proper)``.
+      Defined equal to ``len(component.parentage.proper_parentage)``.
       '''
 
-      #return len(self.parentage) - 1
-      return len(self.proper)
+      return len(self.proper_parentage)
 
    @property
    def depth_tuplet(self):
@@ -81,7 +78,7 @@ class ParentageInterface(_Interface):
 
       from abjad.components._Tuplet import _Tuplet
       result = 0
-      for parent in self.parentage[1:]:
+      for parent in self.proper_parentage:
          if isinstance(parent, _Tuplet):
             result += 1
       return result
@@ -133,57 +130,23 @@ class ParentageInterface(_Interface):
       '''
 
       from abjad.components.Container import Container
-      for component in self.parentage:
+      for component in self.improper_parentage:
          if isinstance(component, Container) and not component.parallel:
             parent = component.parentage.parent
             if parent is None:
                return component
             if isinstance(parent, Container) and parent.parallel:
                return component
-            
-   @property
-   def orphan(self):
-      '''``True`` when component has no parent, otherwise ``False``.
-      
-      ::
-
-         abjad> note = Note(0, (1, 4))
-         abjad> note.parentage.orphan
-         True
-
-      Defined equal to ``len(component.parentage.proper) == 0``.
-      '''
-
-      #return len(self.parentage) == 1
-      return len(self.proper) == 0
 
    @property
-   def parent(self):
-      '''Read-only reference to immediate parent of `component`.
-   
-      ::
-
-         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-         abjad> staff = Staff([tuplet])
-         abjad> note = staff.leaves[0]
-         abjad> note.parentage.parent
-         tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-   
-      Equivalent to ``component.parentage.proper[0]`` for those components
-      with proper parentage. Otherwise ``None``.
-      '''
-
-      return self.__parent
-      
-   @property
-   def parentage(self):
+   def improper_parentage(self):
       '''Read-only list of all of components in the parentage of 
       `component`, including `component`. ::
 
          abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
-         abjad> note.parentage.parentage
+         abjad> note.parentage.improper_parentage
          [Note(c', 8), tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1}]
 
       .. versionchanged:: 1.1.1
@@ -197,9 +160,42 @@ class ParentageInterface(_Interface):
          cur = cur.parentage.parent
       result = tuple(result)
       return result
+            
+   @property
+   def orphan(self):
+      '''``True`` when component has no parent, otherwise ``False``.
+      
+      ::
+
+         abjad> note = Note(0, (1, 4))
+         abjad> note.parentage.orphan
+         True
+
+      Defined equal to ``len(component.parentage.proper_parentage) == 0``.
+      '''
+
+      return len(self.proper_parentage) == 0
 
    @property
-   def proper(self):
+   def parent(self):
+      '''Read-only reference to immediate parent of `component`.
+   
+      ::
+
+         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> staff = Staff([tuplet])
+         abjad> note = staff.leaves[0]
+         abjad> note.parentage.parent
+         tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+   
+      Equivalent to ``component.parentage.proper_parentage[0]`` for those components
+      with proper parentage. Otherwise ``None``.
+      '''
+
+      return self.__parent
+      
+   @property
+   def proper_parentage(self):
       '''.. versionadded:: 1.1.1
 
       Read-only tuple of all of components in the parentage of 
@@ -208,13 +204,13 @@ class ParentageInterface(_Interface):
          abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
-         abjad> note.parentage.proper
+         abjad> note.parentage.proper_parentage
          (tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1})
 
-      Defined equal to ``component.parentage.parentage[1:]``.
+      Defined equal to ``component.parentage.improper_parentage[1:]``.
       '''
 
-      return tuple(self.parentage[1:])
+      return tuple(self.improper_parentage[1:])
 
    @property
    def root(self):
@@ -227,10 +223,10 @@ class ParentageInterface(_Interface):
          abjad> note.parentage.root
          Staff{1}
 
-      Defined equal to ``component.parentage.parentage[-1]``.
+      Defined equal to ``component.parentage.improper_parentage[-1]``.
       '''
 
-      return self.parentage[-1]
+      return self.improper_parentage[-1]
 
    @property
    def signature(self):
@@ -257,7 +253,7 @@ class ParentageInterface(_Interface):
       from abjad.components.Voice import Voice
       signature = _ContainmentSignature( )
       signature._self = self._client._ID
-      for component in self._client.parentage.parentage:
+      for component in self._client.parentage.improper_parentage:
          if isinstance(component, Voice) and not signature._voice:
             signature._voice = component._ID
          elif isinstance(component, Staff) and not signature._staff:

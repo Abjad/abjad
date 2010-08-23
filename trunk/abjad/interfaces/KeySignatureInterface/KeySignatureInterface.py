@@ -34,7 +34,7 @@ class KeySignatureInterface(_ObserverInterface, _BacktrackingInterface):
    @property
    def _parent_can_contribute(self):
       r'''True when any parent, other than self, can contribute LP \time.'''
-      for parent in self._client.parentage.parentage[1:]:
+      for parent in self._client.parentage.proper_parentage:
          try:
             if parent.key_signature._self_can_contribute:
                return True

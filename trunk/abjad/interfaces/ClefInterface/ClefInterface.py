@@ -37,7 +37,7 @@ class ClefInterface(_ObserverInterface, _BacktrackingInterface):
       and when that parent begins at the exact same moment as client,
       effectively overruling forced clef of client.
       '''
-      for parent in self._client.parentage.parentage[1:]:
+      for parent in self._client.parentage.proper_parentage:
          try:
             if parent.clef._self_can_contribute:
                if self._client in \
