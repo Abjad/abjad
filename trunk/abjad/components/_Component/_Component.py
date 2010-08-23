@@ -26,6 +26,7 @@ class _Component(_Abjad):
       #self._directives = DirectivesInterface(self)
       #self._history = HistoryInterface(self)
       self._lily_file = None
+      self._marks = list( )
       #self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       self._name = None
       self._navigator = _Navigator(self)
@@ -143,6 +144,12 @@ class _Component(_Abjad):
       Read-only reference to .ly file in which 
       component is housed, if any.'''
       return self._lily_file
+
+   @property
+   def marks(self):
+      '''Read-only reference to ordered list of marks attached to component.
+      '''
+      return list(self._marks)
 
    @property
    def meter(self):
