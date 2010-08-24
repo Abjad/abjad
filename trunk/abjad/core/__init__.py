@@ -1,10 +1,9 @@
 from _Abjad import _Abjad
 from _Immutable import _Immutable
 from _ImmutableDictionary import _ImmutableDictionary
-from _Navigator import _Navigator
+#from _Navigator import _Navigator
 from LilyPondContextSettingComponentPlugIn import LilyPondContextSettingComponentPlugIn
 from LilyPondGrobOverrideComponentPlugIn import LilyPondGrobOverrideComponentPlugIn
 from LilyPondMiscellaneousCommandComponentPlugIn import LilyPondMiscellaneousCommandComponentPlugIn
 from LilyPondTweakReservoir import LilyPondTweakReservoir
-#from Rational import Rational
 from fractions import Fraction as Rational
