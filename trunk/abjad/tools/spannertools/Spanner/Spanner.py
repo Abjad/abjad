@@ -317,11 +317,11 @@ class Spanner(_Abjad):
       '''
 
       from abjad.components._Leaf import _Leaf
+      from abjad.tools import componenttools
       result = [ ]
       for component in self._components:
          ## EXPERIMENTAL: expand to allow staff-level spanner eventually ##
-         #for node in component._navigator._DFS(forbid = 'parallel'):
-         for node in component._navigator._DFS( ):
+         for node in componenttools.iterate_components_depth_first(component):
             if isinstance(node, _Leaf):
                result.append(node)
       result = tuple(result)

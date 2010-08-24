@@ -1,40 +1,41 @@
 from abjad.components._Component import _Component
+from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
 from abjad.tools import threadtools
 import types
 
 
 def all_are_thread_contiguous_components(expr, klasses = (_Component), allow_orphans = True):
    r'''True when `expr` is a Python list of Abjad components, and
-      when there exists no foreign component C_f not in list such that
-      C_f occurs temporally between any of the components in list.
+   when there exists no foreign component C_f not in list such that
+   C_f occurs temporally between any of the components in list.
 
-      Thread-contiguous components are definitionally spannable::
+   Thread-contiguous components are definitionally spannable::
 
-         t = Voice(notetools.make_repeated_notes(4))
-         t.insert(2, Voice(notetools.make_repeated_notes(2)))
-         Container(t[:2])
-         Container(t[-2:])
-         macros.diatonicize(t)
+      t = Voice(notetools.make_repeated_notes(4))
+      t.insert(2, Voice(notetools.make_repeated_notes(2)))
+      Container(t[:2])
+      Container(t[-2:])
+      macros.diatonicize(t)
 
-         \new Voice {
-            {
-               c'8
-               d'8
-            }
-            \new Voice {
-               e'8
-               f'8
-            }
-            {
-               g'8
-               a'8
-            }
+      \new Voice {
+         {
+            c'8
+            d'8
          }
+         \new Voice {
+            e'8
+            f'8
+         }
+         {
+            g'8
+            a'8
+         }
+      }
 
-         assert _are_thread_contiguous_components(t[0:1] + t[-1:])
-         assert _are_thread_contiguous_components(t[0][:] + t[-1:])
-         assert _are_thread_contiguous_components(t[0:1] + t[-1][:])
-         assert _are_thread_contiguous_components(t[0][:] + t[-1][:])
+      assert _are_thread_contiguous_components(t[0:1] + t[-1:])
+      assert _are_thread_contiguous_components(t[0][:] + t[-1:])
+      assert _are_thread_contiguous_components(t[0:1] + t[-1][:])
+      assert _are_thread_contiguous_components(t[0][:] + t[-1][:])
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
@@ -112,11 +113,10 @@ def _are_thread_proper(component_1, component_2, klasses = (_Component)):
       return False
 
    ## if there exists an intervening component of the same thread
-   dfs = component_1._navigator._DFS(capped = False)
+   dfs = iterate_components_depth_first(component_1, capped = False)
    for node in dfs:
       if node is component_2:
          break
-      #node_thread = node.thread.signature
       node_thread = threadtools.component_to_thread_signature(node)
       if node_thread == first_thread:
          node_begin = node.offset.start

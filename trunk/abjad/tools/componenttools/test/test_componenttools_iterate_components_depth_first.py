@@ -29,7 +29,7 @@ r'''
 '''
 
 
-def test__Navigator_dfs_01( ):
+def test_componenttools_iterate_components_depth_first_01( ):
    '''
    Default depth-first search:
       * capped iteration returns no elements above self._client
@@ -39,7 +39,7 @@ def test__Navigator_dfs_01( ):
   
    ## LEFT-TO-RIGHT ##
 
-   g = t[2]._navigator._DFS( )
+   g = componenttools.iterate_components_depth_first(t[2])
 
    assert g.next( ) is t[2]
    assert g.next( ) is t[2][0]
@@ -62,7 +62,7 @@ def test__Navigator_dfs_01( ):
    
    ## RIGHT-TO-LEFT ##
 
-   g = t[2]._navigator._DFS(direction = 'right')
+   g = componenttools.iterate_components_depth_first(t[2], direction = 'right') 
 
    assert g.next( ) is t[2]
    assert g.next( ) is t[2][1]
@@ -84,15 +84,14 @@ def test__Navigator_dfs_01( ):
    '''
 
 
-def test__Navigator_dfs_02( ):
-   '''
-   Uncapped depth-first search:
-      * uncapped iteration returns all elements above self._client
+def test_componenttools_iterate_components_depth_first_02( ):
+   '''Uncapped depth-first search: uncapped iteration returns 
+   all elements above self._client
    '''
   
    ## LEFT-TO-RIGHT ##
 
-   g = t[2]._navigator._DFS(capped = False)
+   g = componenttools.iterate_components_depth_first(t[2], capped = False)
 
    assert g.next( ) is t[2]
    assert g.next( ) is t[2][0]
@@ -121,7 +120,7 @@ def test__Navigator_dfs_02( ):
    
    ## RIGHT-TO-LEFT ##
 
-   g = t[2]._navigator._DFS(capped = False, direction = 'right')
+   g = componenttools.iterate_components_depth_first(t[2], capped = False, direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t[2][1]
@@ -149,15 +148,13 @@ def test__Navigator_dfs_02( ):
    '''
 
 
-def test__Navigator_dfs_03( ):
-   '''
-   Duplicates-allowed depth-first search:
-      * nodes yield every time they are traversed
+def test_componenttools_iterate_components_depth_first_03( ):
+   '''Duplicates-allowed depth-first search: nodes yield every time they are traversed.
    '''
   
    ## LEFT-TO-RIGHT ##
 
-   g = t[2]._navigator._DFS(unique = False)
+   g = componenttools.iterate_components_depth_first(t[2], unique = False)
 
    assert g.next( ) is t[2]
    assert g.next( ) is t[2][0]
@@ -192,7 +189,7 @@ def test__Navigator_dfs_03( ):
    
    ## RIGHT-TO-LEFT ##
 
-   g = t[2]._navigator._DFS(unique = False, direction = 'right')
+   g = componenttools.iterate_components_depth_first(t[2], unique = False, direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t[2][1]
@@ -226,15 +223,14 @@ def test__Navigator_dfs_03( ):
    '''
 
 
-def test__Navigator_dfs_04( ):
-   '''
-   Restricted depth-first search:
-      * iteration will yield -- but will not enter -- forbidden classes.
+def test_componenttools_iterate_components_depth_first_04( ):
+   '''Restricted depth-first search: iteration will yield -- but will not 
+   enter -- forbidden classes.
    '''
 
    ## LEFT-TO-RIGHT ##
 
-   g = t._navigator._DFS(forbid = 'parallel')
+   g = componenttools.iterate_components_depth_first(t, forbid = 'parallel')
 
    assert g.next( ) is t
    assert g.next( ) is t[0]
@@ -255,7 +251,7 @@ def test__Navigator_dfs_04( ):
    
    ## RIGHT-TO-LEFT ##
 
-   g = t._navigator._DFS(forbid = 'parallel', direction = 'right')
+   g = componenttools.iterate_components_depth_first(t, forbid = 'parallel', direction = 'right')
    
    assert g.next( ) is t
    assert g.next( ) is t[4]
@@ -275,14 +271,13 @@ def test__Navigator_dfs_04( ):
    '''
 
 
-def test__Navigator_dfs_05( ):
-   '''
-   Uncapped depth-first search with duplicates allowed.
+def test_componenttools_iterate_components_depth_first_05( ):
+   '''Uncapped depth-first search with duplicates allowed.
    '''
 
    ## LEFT-TO-RIGHT ##
 
-   g = t[2]._navigator._DFS(capped = False, unique = False)
+   g = componenttools.iterate_components_depth_first(t[2], capped = False, unique = False)
 
    assert g.next( ) is t[2]
    assert g.next( ) is t[2][0]
@@ -327,8 +322,8 @@ def test__Navigator_dfs_05( ):
 
    ## RIGHT-TO-LEFT ##
 
-   g = t[2]._navigator._DFS(
-      capped = False, unique = False, direction = 'right')
+   g = componenttools.iterate_components_depth_first(
+      t[2], capped = False, unique = False, direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t[2][1]
@@ -372,14 +367,13 @@ def test__Navigator_dfs_05( ):
    '''
 
 
-def test__Navigator_dfs_06( ):
-   '''
-   Uncapped and restricted depth-first search.
+def test_componenttools_iterate_components_depth_first_06( ):
+   '''Uncapped and restricted depth-first search.
    '''
 
    ## LEFT-TO-RIGHT ##
 
-   g = t[2]._navigator._DFS(capped = False, forbid = 'parallel')
+   g = componenttools.iterate_components_depth_first(t[2], capped = False, forbid = 'parallel')
    
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -395,8 +389,8 @@ def test__Navigator_dfs_06( ):
 
    ## RIGHT-TO-LEFT ##
    
-   g = t[2]._navigator._DFS(
-      capped = False, forbid = 'parallel', direction = 'right')
+   g = componenttools.iterate_components_depth_first(
+      t[2], capped = False, forbid = 'parallel', direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -411,14 +405,13 @@ def test__Navigator_dfs_06( ):
    '''
 
 
-def test__Navigator_dfs_07( ):
-   '''
-   Restricted depth-first search with duplicates allowed.
+def test_componenttools_iterate_components_depth_first_07( ):
+   '''Restricted depth-first search with duplicates allowed.
    '''
 
    ## LEFT-TO-RIGHT
 
-   g = t._navigator._DFS(forbid = 'parallel', unique = False)
+   g = componenttools.iterate_components_depth_first(t, forbid = 'parallel', unique = False)
 
    assert g.next( ) is t
    assert g.next( ) is t[0]
@@ -449,8 +442,8 @@ def test__Navigator_dfs_07( ):
 
    ## RIGHT-TO-LEFT ##
 
-   g = t._navigator._DFS(
-      forbid = 'parallel', unique = False, direction = 'right')
+   g = componenttools.iterate_components_depth_first(
+      t, forbid = 'parallel', unique = False, direction = 'right')
 
    assert g.next( ) is t
    assert g.next( ) is t[4]
@@ -480,15 +473,14 @@ def test__Navigator_dfs_07( ):
    '''
 
 
-def test__Navigator_dfs_08( ):
-   '''
-   Uncapped but restricted depth-first serach with duplicates allowed.
+def test_componenttools_iterate_components_depth_first_08( ):
+   '''Uncapped but restricted depth-first serach with duplicates allowed.
    '''
   
    ## LEFT-TO-RIGHT ##
 
-   g = t[2]._navigator._DFS(
-      capped = False, forbid = 'parallel', unique = False)
+   g = componenttools.iterate_components_depth_first(
+      t[2], capped = False, forbid = 'parallel', unique = False)
 
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -509,8 +501,8 @@ def test__Navigator_dfs_08( ):
 
    ## RIGHT-TO-LEFT ##
 
-   g = t[2]._navigator._DFS(
-      capped = False, forbid = 'parallel', unique = False, direction = 'right')
+   g = componenttools.iterate_components_depth_first(
+      t[2], capped = False, forbid = 'parallel', unique = False, direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t

@@ -19,11 +19,13 @@ def iterate_components_forward_in_spanner(spanner, klass = _Component):
       renamed ``spannertools.iterate_components_forward( )`` to
       ``spannertools.iterate_components_forward_in_spanner( )``.
    '''
+   from abjad.tools import componenttools
 
    if not isinstance(spanner, Spanner):
       raise TypeError
 
    for component in spanner._components:
-      for node in component._navigator._DFS( ):
+      dfs = componenttools.iterate_components_depth_first(component)
+      for node in dfs:
          if isinstance(node, klass):
             yield node
