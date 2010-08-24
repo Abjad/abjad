@@ -70,5 +70,5 @@ class _Measure(Container):
    @property
    def number(self):
       '''Read-only measure number STARTING AT ONE, not zero.'''
-      self._numbering._make_subject_update_if_necessary( )
+      self._numbering._update_all_observer_interfaces_in_score_if_necessary( )
       return self._numbering._measure

@@ -61,17 +61,27 @@ class _UpdateInterface(_Interface):
       '''Update observer interfaces attached to all score components.
       '''
       from abjad.tools import componenttools
-      if self._all_improper_parents_allow_update:
-         score = self._client.parentage.root
-         score = componenttools.iterate_components_depth_first(
-            score, capped = True, unique = True, forbid = None, direction = 'left')
-         for node in score:
-            for observer in node._update._observers:
-               observer._update_component( )
-            node._update._current = True
+      if not self._all_improper_parents_allow_update:
+         return
+      score = self._client.parentage.root
+      score = componenttools.iterate_components_depth_first(
+         score, capped = True, unique = True, forbid = None, direction = 'left')
+      for node in score:
+         for observer in node._update._observers:
+            observer._update_component( )
+         node._update._current = True
 
    def _update_offset_interfaces_attached_to_all_score_components(self):
       '''Update offset interfaces attached to all score components;
       do not update other observer interfaces attached to score components.
       '''
-      pass
+      from abjad.tools import componenttools
+      if not self._all_improper_parents_allow_update:
+         raise Exception("what's going on here?")
+#      score = self._client.parentage.root
+#      score = componenttools.iterate_components_depth_first(
+#         score, capped = True, unique = True, forbid = None, direction = 'left')
+#      for node in score:
+#         for observer in node._update._observers:
+#            observer._update_component( )
+#         node._update._current = True

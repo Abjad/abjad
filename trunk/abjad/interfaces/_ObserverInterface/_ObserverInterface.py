@@ -9,7 +9,7 @@ class _ObserverInterface(_Interface):
 
    ## PRIVATE METHODS ##
 
-   def _make_subject_update_if_necessary(self):
+   def _update_all_observer_interfaces_in_score_if_necessary(self):
       update_interface = self._client._update
       if not update_interface._all_improper_parents_are_current:
          update_interface._update_observer_interfaces_attached_to_all_score_components( )

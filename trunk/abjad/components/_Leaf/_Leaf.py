@@ -88,7 +88,7 @@ class _Leaf(_Component):
    @property
    def number(self):
       '''Read-only number of `self` in thread.'''
-      self._numbering._make_subject_update_if_necessary( )
+      self._numbering._update_all_observer_interfaces_in_score_if_necessary( )
       return self._numbering._leaf
 
    @property

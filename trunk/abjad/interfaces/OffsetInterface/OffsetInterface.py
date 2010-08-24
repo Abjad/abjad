@@ -39,7 +39,7 @@ class OffsetInterface(_ObserverInterface):
 
    @property
    def start(self):
-      self._make_subject_update_if_necessary( )
+      self._update_all_observer_interfaces_in_score_if_necessary( )
       return self._start
 
    @property
@@ -48,7 +48,7 @@ class OffsetInterface(_ObserverInterface):
 
    @property
    def start_in_seconds(self):
-      self._make_subject_update_if_necessary( )
+      self._update_all_observer_interfaces_in_score_if_necessary( )
       return self._start_in_seconds
 
    @property

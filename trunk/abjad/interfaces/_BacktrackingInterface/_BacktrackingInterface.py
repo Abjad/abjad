@@ -119,7 +119,7 @@ class _BacktrackingInterface(_Abjad):
       if forced is not None:
          return forced
       else:
-         self._make_subject_update_if_necessary( )
+         self._update_all_observer_interfaces_in_score_if_necessary( )
          return self._effective
 
    @apply
