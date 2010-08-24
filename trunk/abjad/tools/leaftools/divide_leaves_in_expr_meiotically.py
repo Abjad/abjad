@@ -58,8 +58,5 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
    '''
 
    ## can not wrap with update control because of leaf.splice( ) ##
-   #expr.parentage.root._update._forbid_update( )
    for leaf in iterate_leaves_backward_in_expr(expr):
       divide_leaf_meiotically(leaf, n)
-   #expr.parentage.root._update._allow_update( )
-   #expr.parentage.root._update._update_all( )

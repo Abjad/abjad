@@ -27,14 +27,14 @@ class ParentageInterface(_Interface):
 
    def _ignore(self):
       '''Client forgets parent (but parent remembers client).'''
-      self._client._update._mark_for_update_to_root( )
+      self._client._update._mark_all_improper_parents_for_update( )
       self.__parent = None
 
    def _switch(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
       self._cut( )
       self.__parent = new_parent
-      self._client._update._mark_for_update_to_root( )
+      self._client._update._mark_all_improper_parents_for_update( )
 
    ## PUBLIC ATTRIBUTES ##
 

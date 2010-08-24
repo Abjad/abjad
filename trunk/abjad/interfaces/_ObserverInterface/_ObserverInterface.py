@@ -3,18 +3,13 @@ from abjad.interfaces._Interface import _Interface
 
 class _ObserverInterface(_Interface):
 
-   def __init__(self, _client, updateInterface):
+   def __init__(self, _client, update_interface):
       _Interface.__init__(self, _client)
-      updateInterface._observers.append(self)
+      update_interface._observers.add(self)
 
    ## PRIVATE METHODS ##
 
    def _make_subject_update_if_necessary(self):
-      try:
-         observerSubject = self._client._update
-      except AttributeError:
-         ## t.offset.prolated
-         observerSubject = self._client._client._update
-      if not observerSubject._current_to_root:
-         if True:
-            observerSubject._update_all( )
+      update_interface = self._client._update
+      if not update_interface._all_improper_parents_are_current:
+         update_interface._update_observer_interfaces_attached_to_all_score_components( )

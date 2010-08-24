@@ -2,7 +2,6 @@ from abjad.core import Rational
 from abjad.components._Leaf import _Leaf
 from abjad.components.Rest import Rest
 from abjad.components.Skip import Skip
-import types
 
 
 def _insert_measure_padding(expr, front, back, klass, splice = False):
@@ -26,7 +25,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
 
    ## forbid updates because _Component.splice_left( ) and ##
    ## _Component.splice( ) call self.offset.stop  ##
-   root._update._forbid_update( )
+   root._update._forbid_component_update( )
 
    for measure in measuretools.iterate_measures_forward_in_expr(expr):
       if front is not None:
@@ -47,4 +46,4 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
                stop_leaf.extend_in_parent([klass.__class__(back)])
 
    ## allow updates after all calls to splice( ) are done. ##
-   root._update._allow_update( )
+   root._update._allow_component_update( )

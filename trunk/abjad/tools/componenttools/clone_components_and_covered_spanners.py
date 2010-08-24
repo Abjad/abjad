@@ -104,7 +104,7 @@ def clone_components_and_covered_spanners(components, n = 1):
 
    result = copy.deepcopy(components)
    for component in result:
-      component._update._mark_for_update_to_root( )
+      component._update._mark_all_improper_parents_for_update( )
 
    _restore(receipt)
 
