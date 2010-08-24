@@ -2,7 +2,7 @@ from abjad.core import _Abjad
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
-from abjad.interfaces import _Navigator
+from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
@@ -29,7 +29,7 @@ class _Component(_Abjad):
       self._marks = list( )
       #self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       self._name = None
-      self._navigator = _Navigator(self)
+      self._navigator = _NavigationInterface(self)
       #self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._parentage = ParentageInterface(self)
       self._spanners = set([ ])

@@ -2,7 +2,7 @@ from abjad.core import _Abjad
 import collections
 
 
-class _Navigator(_Abjad):
+class _NavigationInterface(_Abjad):
 
    def __init__(self, client):
       self._client = client
@@ -188,7 +188,7 @@ class _Navigator(_Abjad):
             node.parentage.signature == self._client.parentage.signature:
             return node
 
-   ## TODO: Write tests for _Navigator._prev_namesake.                           ##
+   ## TODO: Write tests for _NavigationInterface._prev_namesake.                           ##
    ##       Backwards depth first search has always had a bug that needs fixing. ##
 
    @property
@@ -320,7 +320,7 @@ class _Navigator(_Abjad):
       from abjad.tools import componenttools
       return componenttools.all_are_components_in_same_thread([self._client, expr])
 
-   ## TODO: Move _Navigator._rank to Parentage._rank ##
+   ## TODO: Move _NavigationInterface._rank to Parentage._rank ##
 
    def _rank(self):
       '''Returns the index of the caller (its position) in 
