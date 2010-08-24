@@ -7,9 +7,9 @@ class ClefInterface(_ObserverInterface, _BacktrackingInterface):
    Manage forced clef changes.
    '''
    
-   def __init__(self, _client, updateInterface):
+   def __init__(self, _client, update_interface):
       from abjad.tools.stafftools import Clef
-      _ObserverInterface.__init__(self, _client, updateInterface)
+      _ObserverInterface.__init__(self, _client, update_interface)
       _BacktrackingInterface.__init__(self, 'clef')
       self._acceptableTypes = (Clef, )
       self._default = Clef('treble')

@@ -95,7 +95,7 @@ class _BacktrackingInterface(_Abjad):
       default = getattr(self, 'default', None)
       return default
    
-   def _update(self):
+   def _update_component(self):
       '''Update my score-dependent core attributes.'''
       effective = self._get_effective( )
       self._effective = effective

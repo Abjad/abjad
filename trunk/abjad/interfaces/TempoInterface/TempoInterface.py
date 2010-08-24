@@ -23,8 +23,8 @@ class TempoInterface(_ObserverInterface, _BacktrackingInterface):
    the future.
    '''
    
-   def __init__(self, _client, _updateInterface):
-      _ObserverInterface.__init__(self, _client, _updateInterface)
+   def __init__(self, _client, _update_interface):
+      _ObserverInterface.__init__(self, _client, _update_interface)
       _BacktrackingInterface.__init__(self, 'tempo')
       self._acceptableTypes = (tempotools.TempoIndication, )
       self._effective = None

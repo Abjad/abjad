@@ -6,16 +6,16 @@ from abjad.core import Rational
 class NumberingInterface(_ObserverInterface):
    '''Number score components but handle no LilyPond grob.'''
 
-   def __init__(self, _client, updateInterface):
+   def __init__(self, _client, update_interface):
       '''Bind to client and register self as observer.
          Init leaf and measure numbers to zero.'''
-      _ObserverInterface.__init__(self, _client, updateInterface)
+      _ObserverInterface.__init__(self, _client, update_interface)
       self._leaf = 0
       self._measure = 1
 
    ## PRIVATE METHODS ##
 
-   def _update(self):
+   def _update_component(self):
       '''Update number of any one node in score.'''
       from abjad.components._Leaf import _Leaf
       from abjad.components.Measure import _Measure

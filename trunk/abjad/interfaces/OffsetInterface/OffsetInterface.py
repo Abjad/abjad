@@ -7,8 +7,8 @@ class OffsetInterface(_ObserverInterface):
    '''Offset interface.
    '''
 
-   def __init__(self, _client, _updateInterface):
-      _ObserverInterface.__init__(self, _client, _updateInterface)
+   def __init__(self, _client, _update_interface):
+      _ObserverInterface.__init__(self, _client, _update_interface)
       self._start = Rational(0)
       self._start_in_seconds = Rational(0)
       self._stop = Rational(0)
@@ -16,11 +16,11 @@ class OffsetInterface(_ObserverInterface):
 
    ## PRIVATE METHODS ##
 
-   def _update(self):
+   def _update_component(self):
       '''Update offset values of any one node in score.'''
-      self._update_start( )
+      self._update_component_start_offset_values( )
 
-   def _update_start(self):
+   def _update_component_start_offset_values(self):
       '''Update prolated start time and start time in seconds.
       Updating stop at same time induces infinite recursion.
       '''

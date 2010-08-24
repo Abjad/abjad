@@ -10,8 +10,8 @@ class MeterInterface(_ObserverInterface, _BacktrackingInterface):
    '''Publish information about effective and forced meter.
    '''
    
-   def __init__(self, _client, _updateInterface):
-      _ObserverInterface.__init__(self, _client, _updateInterface)
+   def __init__(self, _client, _update_interface):
+      _ObserverInterface.__init__(self, _client, _update_interface)
       _BacktrackingInterface.__init__(self, 'meter')
       self._acceptableTypes = (Meter, )
       self._default = Meter(4, 4)

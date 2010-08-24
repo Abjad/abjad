@@ -67,5 +67,11 @@ class _UpdateInterface(_Interface):
             score, capped = True, unique = True, forbid = None, direction = 'left')
          for node in score:
             for observer in node._update._observers:
-               observer._update( )
+               observer._update_component( )
             node._update._current = True
+
+   def _update_offset_interfaces_attached_to_all_score_components(self):
+      '''Update offset interfaces attached to all score components;
+      do not update other observer interfaces attached to score components.
+      '''
+      pass

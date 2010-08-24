@@ -9,12 +9,12 @@ class StaffInterface(_ObserverInterface, _BacktrackingInterface):
    Handle no LilyPond StaffSymbol grob.
    '''
    
-   def __init__(self, _client, _updateInterface):
+   def __init__(self, _client, _update_interface):
       '''Register as observer, format contributor and backtracker.
       Init effective and force staff to None.
       Init hide to False.'''
       from abjad.components.Staff import Staff
-      _ObserverInterface.__init__(self, _client, _updateInterface)
+      _ObserverInterface.__init__(self, _client, _update_interface)
       _BacktrackingInterface.__init__(self, 'staff')
       self._acceptableTypes = (Staff, )
       self._effective = None

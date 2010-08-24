@@ -9,9 +9,9 @@ class _DynamicMeasureMeterInterface(MeterInterface):
    Publish information about effective and forced meter.
    '''
    
-   def __init__(self, _client, _updateInterface):
+   def __init__(self, _client, _update_interface):
       '''Initialize parent class.'''
-      MeterInterface.__init__(self, _client, _updateInterface)
+      MeterInterface.__init__(self, _client, _update_interface)
 
    ## PRIVATE ATTRIBUTES ##
 
