@@ -8,6 +8,8 @@ def test_marktools_get_effective_instrument_01( ):
 
    r'''
    \new Staff {
+      \set Staff.instrumentName = \markup { Flute }
+      \set Staff.shortInstrumentName = \markup { Fl. }
       c'8
       d'8
       e'8

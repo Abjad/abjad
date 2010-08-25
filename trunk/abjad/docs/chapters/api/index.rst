@@ -488,13 +488,14 @@ marktools
 
    tools/marktools/ClefMark/ClefMark
    tools/marktools/DynamicMark/DynamicMark
-   tools/marktools/InstrumentNameMark/InstrumentNameMark
+   tools/marktools/InstrumentMark/InstrumentMark
    tools/marktools/KeySignatureMark/KeySignatureMark
    tools/marktools/Mark/Mark
    tools/marktools/TempoMark/TempoMark
    tools/marktools/TimeSignatureMark/TimeSignatureMark
    tools/marktools/get_effective_clef
    tools/marktools/get_effective_dynamic
+   tools/marktools/get_effective_instrument
    tools/marktools/get_effective_key_signature
    tools/marktools/get_effective_mark
    tools/marktools/get_effective_tempo
