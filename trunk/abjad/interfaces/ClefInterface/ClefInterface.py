@@ -1,74 +1,99 @@
-from abjad.interfaces._BacktrackingInterface import _BacktrackingInterface
+#from abjad.interfaces._BacktrackingInterface import _BacktrackingInterface
 from abjad.interfaces._ObserverInterface import _ObserverInterface
 
 
-class ClefInterface(_ObserverInterface, _BacktrackingInterface):
-   '''Observe score structure to find effective clef.
-   Manage forced clef changes.
-   '''
-   
-   def __init__(self, _client, update_interface):
-      from abjad.tools.stafftools import Clef
-      _ObserverInterface.__init__(self, _client, update_interface)
-      _BacktrackingInterface.__init__(self, 'clef')
-      self._acceptableTypes = (Clef, )
-      self._default = Clef('treble')
-      self._forced = None
-      #self._suppress = False
-      self._suppress = None
+class ClefInterface(_ObserverInterface):
 
-   ## TODO: Generalize _self_should_contribute for both _Clef and _Meter ##
+   def __init__(self, _client, update_interface):
+      _ObserverInterface.__init__(self, _client, update_interface)
+      self._effective = None
 
    ## PRIVATE ATTRIBUTES ##
 
-   @property
-   def _self_can_contribute(self):
-      r'''True when self is able to contribute LilyPond \clef.'''
-      return not self.suppress and (self.forced or self.change)
+   def _get_effective(self):
+      from abjad.tools.marktools.get_effective_mark import get_effective_mark
+      from abjad.tools.marktools.ClefMark import ClefMark
+      return get_effective_mark(self._client, ClefMark)
 
-   @property
-   def _self_should_contribute(self):
-      r'''True when self should contribute LilyPond \clef.'''
-      return self._self_can_contribute and not self._parent_can_contribute
-
-   @property
-   def _parent_can_contribute(self):
-      r'''True when any parent, other than self, can contribute LP \clef
-      and when that parent begins at the exact same moment as client,
-      effectively overruling forced clef of client.
-      '''
-      for parent in self._client.parentage.proper_parentage:
-         try:
-            if parent.clef._self_can_contribute:
-               if self._client in \
-                  parent._navigator._contemporaneous_start_components:
-                  return True
-         except AttributeError:
-            pass
-      return False
+   def _update_component(self):
+      self._effective = self._get_effective( )
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def default(self):
-      return self._default
+   def effective(self):
+      self._update_prolated_offset_values_of_all_score_components_if_necessary( )
+      self._update_observer_interfaces_of_all_score_components_if_necessary( )
+      return self._effective
+   
 
-   @property
-   def _opening(self):
-      '''Format contribution at container opening or before leaf.'''
-      result = [ ]
-      #if self.forced or self.change:
-      if self._self_should_contribute:
-         result.append(self.effective.format)
-      return result
-
-   @apply
-   def suppress( ):
-      r'''Read / write attribute to suppress contribution
-         of LilyPond \clef indication at format-time.'''
-      def fget(self):
-         return self._suppress
-      def fset(self, arg):
-         assert isinstance(arg, (bool, type(None)))
-         self._suppress = arg
-      return property(**locals( ))
+#class ClefInterface(_ObserverInterface, _BacktrackingInterface):
+#   '''Observe score structure to find effective clef.
+#   Manage forced clef changes.
+#   '''
+#   
+#   def __init__(self, _client, update_interface):
+#      from abjad.tools.stafftools import Clef
+#      _ObserverInterface.__init__(self, _client, update_interface)
+#      _BacktrackingInterface.__init__(self, 'clef')
+#      self._acceptableTypes = (Clef, )
+#      self._default = Clef('treble')
+#      self._forced = None
+#      #self._suppress = False
+#      self._suppress = None
+#
+#   ## TODO: Generalize _self_should_contribute for both _Clef and _Meter ##
+#
+#   ## PRIVATE ATTRIBUTES ##
+#
+#   @property
+#   def _self_can_contribute(self):
+#      r'''True when self is able to contribute LilyPond \clef.'''
+#      return not self.suppress and (self.forced or self.change)
+#
+#   @property
+#   def _self_should_contribute(self):
+#      r'''True when self should contribute LilyPond \clef.'''
+#      return self._self_can_contribute and not self._parent_can_contribute
+#
+#   @property
+#   def _parent_can_contribute(self):
+#      r'''True when any parent, other than self, can contribute LP \clef
+#      and when that parent begins at the exact same moment as client,
+#      effectively overruling forced clef of client.
+#      '''
+#      for parent in self._client.parentage.proper_parentage:
+#         try:
+#            if parent.clef._self_can_contribute:
+#               if self._client in \
+#                  parent._navigator._contemporaneous_start_components:
+#                  return True
+#         except AttributeError:
+#            pass
+#      return False
+#
+#   ## PUBLIC ATTRIBUTES ##
+#
+#   @property
+#   def default(self):
+#      return self._default
+#
+#   @property
+#   def _opening(self):
+#      '''Format contribution at container opening or before leaf.'''
+#      result = [ ]
+#      #if self.forced or self.change:
+#      if self._self_should_contribute:
+#         result.append(self.effective.format)
+#      return result
+#
+#   @apply
+#   def suppress( ):
+#      r'''Read / write attribute to suppress contribution
+#         of LilyPond \clef indication at format-time.'''
+#      def fget(self):
+#         return self._suppress
+#      def fset(self, arg):
+#         assert isinstance(arg, (bool, type(None)))
+#         self._suppress = arg
+#      return property(**locals( ))

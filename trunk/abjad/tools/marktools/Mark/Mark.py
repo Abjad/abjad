@@ -92,22 +92,26 @@ class Mark(object):
       self._unbind_context( )
       if context is not None:
          self._context = context
-         self.context._marks.append(self)
+         #self.context._marks.append(self)
+         self.context._marks_for_which_component_functions_as_mark_context.append(self)
 
    def _bind_start_component(self, start_component):
       self._unbind_start_component( )
       if start_component is not None:
          self._start_component = start_component
-         self.start_component._marks.append(self)
+         #self.start_component._marks.append(self)
+         self.start_component._marks_for_which_component_functions_as_start_component.append(self)
 
    def _unbind_context(self):
       if self.context is not None:
-         self.context._marks.remove(self)
+         #self.context._marks.remove(self)
+         self.context._marks_for_which_component_functions_as_mark_context.remove(self)
          self._context = None
 
    def _unbind_start_component(self):
       if self.start_component is not None:
-         self.start_component._marks.remove(self)
+         #self.start_component._marks.remove(self)
+         self.start_component._marks_for_which_component_functions_as_start_component.remove(self)
          self._start_component = None
 
    ## PUBLIC ATTRIBUTES ##
@@ -119,3 +123,11 @@ class Mark(object):
    @property
    def start_component(self):
       return self._start_component
+
+   ## PUBLIC METHODS ##
+
+   def attach_mark_to_context_and_start_component(self, context, start_component):
+      return self(context, start_component)
+
+   def detach_mark_from_context_and_start_component(self):
+      return self( )

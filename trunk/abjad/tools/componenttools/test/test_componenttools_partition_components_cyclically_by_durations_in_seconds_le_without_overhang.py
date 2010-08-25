@@ -4,13 +4,15 @@ from abjad import *
 def test_componenttools_partition_components_cyclically_by_durations_in_seconds_le_without_overhang_01( ):
    '''Parts must be less than durations.
    Do read durations cyclically.
-   If components remain, do not append final part.'''
+   If components remain, do not append final part.
+   '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   tempo_spanner = spannertools.TempoSpanner(t[:])
-   tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
-   tempo_spanner.tempo_indication = tempo_indication
+   #tempo_spanner = spannertools.TempoSpanner(t[:])
+   #tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   #tempo_spanner.tempo_indication = tempo_indication
+   marktools.TempoMark(Fraction(1, 4), 60)(t)
 
    r'''
    \new Staff {

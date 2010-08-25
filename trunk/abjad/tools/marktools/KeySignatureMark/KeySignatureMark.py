@@ -25,7 +25,7 @@ class KeySignatureMark(Mark):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, KeySignature):
+      if isinstance(arg, type(self)):
          if self.tonic == arg.tonic:
             if self.mode == arg.mode:
                return True

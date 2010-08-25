@@ -1,5 +1,6 @@
 from abjad import *
 import py.test
+py.test.skip('DEPRECATED. Use TempoMark instead.')
 
 
 def test_TempoSpanner_contiguity_constraint_01( ):

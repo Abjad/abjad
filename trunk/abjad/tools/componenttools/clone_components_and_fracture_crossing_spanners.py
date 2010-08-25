@@ -1,7 +1,9 @@
 from abjad.components._Component import _Component
+from abjad.tools import spannertools
 from abjad.tools.componenttools._ignore import _ignore
 from abjad.tools.componenttools._restore import _restore
-from abjad.tools import spannertools
+from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
+   _reattach_blinded_marks_to_components_in_expr
 import copy
 
 
@@ -92,7 +94,8 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   selection_components = set(componenttools.iterate_components_forward_in_expr(components, _Component))
+   selection_components = set(componenttools.iterate_components_forward_in_expr(
+      components, _Component))
 
    spanners = spannertools.get_spanners_that_cross_components(components) 
 
@@ -118,5 +121,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    for i in range(n - 1):
       result += clone_components_and_fracture_crossing_spanners(components)
+
+   _reattach_blinded_marks_to_components_in_expr(result) 
 
    return result

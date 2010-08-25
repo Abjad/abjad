@@ -17,6 +17,7 @@ def test_MeterInterface_effective_01( ):
    
    for leaf in t:
       assert leaf.meter.effective == metertools.Meter(4, 4)
+      #assert leaf.meter.effective is None
 
 
 def test_MeterInterface_effective_02( ):
@@ -24,6 +25,7 @@ def test_MeterInterface_effective_02( ):
 
    t = Staff(macros.scale(4))
    t[0].meter.forced = metertools.Meter(2, 8)
+   #marktools.TimeSignatureMark(2, 8)(t, t[0])
 
    r'''
    \new Staff {
@@ -37,6 +39,7 @@ def test_MeterInterface_effective_02( ):
 
    for leaf in t:
       assert leaf.meter.effective == metertools.Meter(2, 8)
+      #assert leaf.meter.effective == marktools.TimeSignatureMark(2, 8)
 
 
 def test_MeterInterface_effective_03( ):
@@ -45,6 +48,8 @@ def test_MeterInterface_effective_03( ):
    t = Staff(macros.scale(4))
    t[0].meter.forced = metertools.Meter(2, 8)
    t[0].meter.forced = None
+   #time_signature = marktools.TimeSignatureMark(2, 8)(t, t[0])
+   #time_signature.detach_mark_from_context_and_start_component( )
 
    r'''
    \new Staff {
@@ -57,3 +62,4 @@ def test_MeterInterface_effective_03( ):
 
    for leaf in t:
       assert leaf.meter.effective == metertools.Meter(4, 4)
+      #assert leaf.meter.effective == None

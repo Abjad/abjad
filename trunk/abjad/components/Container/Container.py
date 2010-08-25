@@ -78,11 +78,12 @@ class Container(_Component):
 
    def __setitem__(self, i, expr):
       '''Set 'expr' in self at nonnegative integer index i.
-         Or, set 'expr' in self at slice i.
-         Find spanners that dominate self[i] and children of self[i].
-         Replace contents at self[i] with 'expr'.
-         Reattach spanners to new contents.
-         This operation leaves all score trees always in tact.'''
+      Or, set 'expr' in self at slice i.
+      Find spanners that dominate self[i] and children of self[i].
+      Replace contents at self[i] with 'expr'.
+      Reattach spanners to new contents.
+      This operation leaves all score trees always in tact.
+      '''
       from abjad.tools import componenttools
       from abjad.tools import spannertools
       from abjad.tools.spannertools._withdraw_from_crossing import _withdraw_from_crossing
@@ -110,7 +111,8 @@ class Container(_Component):
          else:
             start, stop, stride = i.indices(len(self))
          old = self[start:stop]
-         spanners_receipt = spannertools.get_spanners_that_dominate_container_components_from_to(self, start, stop)
+         spanners_receipt = spannertools.get_spanners_that_dominate_container_components_from_to(
+            self, start, stop)
          componenttools.remove_component_subtree_from_score_and_spanners(old)
          ## must withdraw before setting in self!
          ## otherwise circular withdraw ensues!

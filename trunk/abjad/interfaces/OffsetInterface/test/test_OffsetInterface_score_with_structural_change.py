@@ -9,10 +9,10 @@ def test_OffsetInterface_score_with_structural_change_01( ):
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
    note = t[2]
-   assert note.offset.start == Rational(1, 4)
+   assert note.offset.start == Fraction(1, 4)
 
    t.insert(2, Note(3, (1, 8)))
-   assert note.offset.start == Rational(3, 8)
+   assert note.offset.start == Fraction(3, 8)
 
 
 def test_OffsetInterface_score_with_structural_change_02( ):
@@ -21,7 +21,7 @@ def test_OffsetInterface_score_with_structural_change_02( ):
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
    note = t[2]
-   assert note.offset.start == Rational(1, 4)
+   assert note.offset.start == Fraction(1, 4)
 
    del(t[1])
-   assert note.offset.start == Rational(1, 8)
+   assert note.offset.start == Fraction(1, 8)

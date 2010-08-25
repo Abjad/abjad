@@ -26,7 +26,9 @@ class _Component(_Abjad):
       #self._directives = DirectivesInterface(self)
       #self._history = HistoryInterface(self)
       self._lily_file = None
-      self._marks = list( )
+      #self._marks = list( )
+      self._marks_for_which_component_functions_as_mark_context = list( )
+      self._marks_for_which_component_functions_as_start_component = list( )
       #self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       self._name = None
       self._navigator = _NavigationInterface(self)
@@ -149,7 +151,9 @@ class _Component(_Abjad):
    def marks(self):
       '''Read-only reference to ordered list of marks attached to component.
       '''
-      return tuple(self._marks)
+      return tuple(
+         self._marks_for_which_component_functions_as_mark_context +
+         self._marks_for_which_component_functions_as_start_component)
 
    @property
    def meter(self):

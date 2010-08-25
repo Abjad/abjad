@@ -64,6 +64,9 @@ def clone_components_and_immediate_parent_of_first_component(components):
       the first element in `components`. This function ignores any further 
       parentage of `components` above the immediate parent of `components`.
 
+   .. todo:: this function should (but does not) copy marks that attach to `components` and
+      to the immediate parent of the first component; extend function to do so.
+
    .. versionchanged:: 1.1.2
       renamed ``clonewp.with_parent( )`` to
       ``componenttools.clone_components_and_immediate_parent_of_first_component( )``.
@@ -108,6 +111,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    for element in result:
       element.parentage._switch(result)
 
+   ## TODO: change hard-coded class name testing to isinstance testing instead
    # new: resize result to match parent_multiplier, if resizable
    if result.__class__.__name__ == 'FixedDurationTuplet':
       result.duration.target = parent_multiplier * result.duration.contents
@@ -119,7 +123,8 @@ def clone_components_and_immediate_parent_of_first_component(components):
    if parent_denominator is not None:
       old_meter = result.meter.effective
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
-      new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(old_meter_pair, parent_denominator)
+      new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+         old_meter_pair, parent_denominator)
       result.meter.forced = Meter(new_meter)
 
    # return copy

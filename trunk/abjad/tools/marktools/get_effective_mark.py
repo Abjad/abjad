@@ -14,6 +14,8 @@ def get_effective_mark(component, klass):
             candidate_marks.add(mark)
    candidate_marks = sorted(candidate_marks, 
       cmp = lambda m, n: cmp(m.start_component.offset.start, n.start_component.offset.start)) 
+   #for x in candidate_marks:
+   #   print x, x.start_component.offset.start
    first_winner = None
    for candidate_mark in reversed(candidate_marks):
       if candidate_mark.start_component.offset.start <= component.offset.start:

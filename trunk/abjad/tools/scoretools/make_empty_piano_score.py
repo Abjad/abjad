@@ -1,7 +1,8 @@
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
+from abjad.tools import marktools
 from abjad.tools.scoretools.PianoStaff import PianoStaff
-from abjad.tools.stafftools import Clef
+#from abjad.tools.stafftools import Clef
 
 
 def make_empty_piano_score( ):
@@ -34,11 +35,13 @@ def make_empty_piano_score( ):
 
    treble_staff = Staff([ ])
    treble_staff.name = 'treble'
-   treble_staff.clef.forced = Clef('treble')
+   #treble_staff.clef.forced = Clef('treble')
+   marktools.ClefMark('treble')(treble_staff)
 
    bass_staff = Staff([ ])
    bass_staff.name = 'bass'
-   bass_staff.clef.forced = Clef('bass')
+   #bass_staff.clef.forced = Clef('bass')
+   marktools.ClefMark('bass')(bass_staff)
 
    piano_staff = PianoStaff([treble_staff, bass_staff])
 

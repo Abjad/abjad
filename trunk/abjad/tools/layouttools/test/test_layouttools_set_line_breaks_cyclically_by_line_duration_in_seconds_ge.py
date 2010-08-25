@@ -8,9 +8,10 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
 
-   tempo_spanner = spannertools.TempoSpanner(t[:])
-   tempo_indication = tempotools.TempoIndication(Rational(1, 8), 44)
-   tempo_spanner.tempo_indication = tempo_indication
+   #tempo_spanner = spannertools.TempoSpanner(t[:])
+   #tempo_indication = tempotools.TempoIndication(Rational(1, 8), 44)
+   #tempo_spanner.tempo_indication = tempo_indication
+   marktools.TempoMark(Fraction(1, 8), 44)(t)
 
    r'''
    \new Staff {
@@ -64,10 +65,9 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
                    \time 2/8
                    b'8
                    c''8
-                   %% tempo 8=44 ends here
            }
    }
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\tempo 8=44\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t\t%% tempo 8=44 ends here\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\tempo 8=44\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t}\n}"

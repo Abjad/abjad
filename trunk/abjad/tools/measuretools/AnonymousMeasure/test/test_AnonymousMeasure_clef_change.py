@@ -9,11 +9,14 @@ def test_AnonymousMeasure_clef_change_01( ):
 
    t = Staff([ ])
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   t[-1].clef.forced = stafftools.Clef('treble')
+   #t[-1].clef.forced = stafftools.Clef('treble')
+   marktools.ClefMark('treble')(t)
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   t[-1].clef.forced = stafftools.Clef('bass')
+   #t[-1].clef.forced = stafftools.Clef('bass')
+   marktools.ClefMark('bass')(t, t[-1])
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   t[-1].clef.forced = stafftools.Clef('treble')
+   #t[-1].clef.forced = stafftools.Clef('treble')
+   marktools.ClefMark('treble')(t, t[-1])
 
    r'''
    \new Staff {
@@ -45,4 +48,4 @@ def test_AnonymousMeasure_clef_change_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == '\\new Staff {\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "treble"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "bass"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "treble"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n}'
+   assert t.format == '\\new Staff {\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\time 1/4\n\t\t\\clef "treble"\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\time 1/4\n\t\t\\clef "bass"\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\time 1/4\n\t\t\\clef "treble"\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n}'

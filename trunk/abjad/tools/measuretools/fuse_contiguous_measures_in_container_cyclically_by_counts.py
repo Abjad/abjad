@@ -83,7 +83,9 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
 
    try:
       if not container._update._current:
-         container._update._update_observer_interfaces_attached_to_all_score_components( )
+         #container._update._update_observer_interfaces_attached_to_all_score_components( )
+         container._update._update_prolated_offset_values_of_all_score_components( )
+         container._update._update_observer_interfaces_of_all_score_components( )
       container._update._forbid_component_update( )
       len_parts = len(counts)
       part_index = 0

@@ -3,7 +3,31 @@ from abjad.interfaces._ObserverInterface import _ObserverInterface
 from abjad.core import Rational
 from abjad.tools.metertools import Meter
 from abjad.tools import durtools
-import types
+
+
+#class MeterInterface(_ObserverInterface):
+#
+#   def __init__(self, _client, update_interface):
+#      _ObserverInterface.__init__(self, _client, update_interface)
+#      self._effective = None
+#
+#   ## PRIVATE ATTRIBUTES ##
+#
+#   def _get_effective(self):
+#      from abjad.tools.marktools.get_effective_mark import get_effective_mark
+#      from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
+#      return get_effective_mark(self._client, TimeSignatureMark)
+#
+#   def _update_component(self):
+#      self._effective = self._get_effective( )
+#
+#   ## PUBLIC ATTRIBUTES ##
+#
+#   @property
+#   def effective(self):
+#      self._update_prolated_offset_values_of_all_score_components_if_necessary( )
+#      self._update_observer_interfaces_of_all_score_components_if_necessary( )
+#      return self._effective
 
 
 class MeterInterface(_ObserverInterface, _BacktrackingInterface):

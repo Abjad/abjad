@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('DEPRECATED.')
 
 
 def test_ClefInterface__parent_can_contribute_01( ):

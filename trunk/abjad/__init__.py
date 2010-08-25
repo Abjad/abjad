@@ -31,7 +31,7 @@ _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 
 from fractions import Fraction
 Rational = Fraction
-del Fraction
+Fraction
 
 from components import *
 from abjad.tools import *

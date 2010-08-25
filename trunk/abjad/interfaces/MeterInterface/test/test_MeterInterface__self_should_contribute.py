@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('DEPRECATED.')
 
 
 def test_MeterInterface__self_should_contribute_01( ):

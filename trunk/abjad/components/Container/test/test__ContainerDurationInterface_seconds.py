@@ -4,14 +4,17 @@ import py.test
 
 def test__ContainerDurationInterface_seconds_01( ):
    '''Container duration in seconds equals 
-      sum of leaf durations in seconds.'''
+   sum of leaf durations in seconds.
+   '''
 
-   t = Container(macros.scale(4))
-   t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
-   t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
+   t = Staff(macros.scale(4))
+   #t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
+   #t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
+   marktools.TempoMark(Rational(1, 4), 38)(t)
+   marktools.TempoMark(Rational(1, 4), 42)(t, t[2])
 
    r'''
-   {
+   \new Staff {
       \tempo 8=38
       c'8
       d'8
