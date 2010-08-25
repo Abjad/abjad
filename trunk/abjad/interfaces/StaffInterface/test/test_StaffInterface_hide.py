@@ -27,7 +27,8 @@ def test_StaffInterface_hide_01( ):
    }
    '''
 
-   t[1].staff.hide = True
+   #t[1].staff.hide = True
+   spannertools.HiddenStaffSpanner(t[1])
 
    r'''
    \new Staff {
@@ -37,8 +38,8 @@ def test_StaffInterface_hide_01( ):
                    d'8
            }
            {
-                   \stopStaff
                    \time 2/8
+                   \stopStaff
                    e'8
                    f'8
                    \startStaff
@@ -52,14 +53,15 @@ def test_StaffInterface_hide_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\stopStaff\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\startStaff\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\t\\stopStaff\n\t\te'8\n\t\tf'8\n\t\t\\startStaff\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
 def test_StaffInterface_hide_02( ):
    '''Hide staff around one leaf.'''
 
    t = Note(0, (1, 8))
-   t.staff.hide = True
+   #t.staff.hide = True
+   spannertools.HiddenStaffSpanner(t)
 
    r'''
    \stopStaff

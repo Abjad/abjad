@@ -491,6 +491,7 @@ marktools
    tools/marktools/InstrumentMark/InstrumentMark
    tools/marktools/KeySignatureMark/KeySignatureMark
    tools/marktools/Mark/Mark
+   tools/marktools/StaffChangeMark/StaffChangeMark
    tools/marktools/TempoMark/TempoMark
    tools/marktools/TimeSignatureMark/TimeSignatureMark
    tools/marktools/get_effective_clef
@@ -498,6 +499,7 @@ marktools
    tools/marktools/get_effective_instrument
    tools/marktools/get_effective_key_signature
    tools/marktools/get_effective_mark
+   tools/marktools/get_effective_staff
    tools/marktools/get_effective_tempo
    tools/marktools/get_effective_time_signature
 
@@ -849,6 +851,7 @@ spannertools
    tools/spannertools/DynamicTextSpanner/DynamicTextSpanner
    tools/spannertools/GlissandoSpanner/GlissandoSpanner
    tools/spannertools/HairpinSpanner/HairpinSpanner
+   tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
    tools/spannertools/InstrumentSpanner/InstrumentSpanner
    tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    tools/spannertools/MetricGridSpanner/MetricGridSpanner

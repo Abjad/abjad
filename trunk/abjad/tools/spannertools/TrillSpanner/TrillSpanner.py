@@ -1,6 +1,5 @@
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.spannertools.TrillSpanner._TrillSpannerFormatInterface import _TrillSpannerFormatInterface
-import types
 
 
 class TrillSpanner(Spanner):

@@ -11,6 +11,7 @@ from DuratedComplexBeamSpanner import DuratedComplexBeamSpanner
 from DynamicTextSpanner import DynamicTextSpanner
 from GlissandoSpanner import GlissandoSpanner
 from HairpinSpanner import HairpinSpanner
+from HiddenStaffSpanner import HiddenStaffSpanner
 from InstrumentSpanner import InstrumentSpanner
 from MeasuredComplexBeamSpanner import MeasuredComplexBeamSpanner
 from MetricGridSpanner import MetricGridSpanner

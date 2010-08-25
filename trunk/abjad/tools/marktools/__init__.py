@@ -7,5 +7,6 @@ from DynamicMark import DynamicMark
 from InstrumentMark import InstrumentMark
 from KeySignatureMark import KeySignatureMark
 from Mark import Mark
+from StaffChangeMark import StaffChangeMark
 from TempoMark import TempoMark
 from TimeSignatureMark import TimeSignatureMark

@@ -34,7 +34,7 @@ class _Component(_StrictComparator):
       self._meter = MeterInterface(self, self._update) ## TODO: weird backtracking conflict
       self._numbering = NumberingInterface(self, self._update) ## no public access
       self._offset = OffsetInterface(self, self._update)
-      self._staff = StaffInterface(self, self._update) ## TODO: weird backtracking conflict
+      #self._staff = StaffInterface(self, self._update) ## TODO: weird backtracking conflict
 
    ## OVERLOADS ##
 
@@ -217,7 +217,8 @@ class _Component(_StrictComparator):
       '''Read-only reference to
       :class:`~abjad.interfaces.staff.interface.StaffInterface`.'''
       if not hasattr(self, '_staff'):
-         self._staff = StaffInterface(self, self._update)
+         #self._staff = StaffInterface(self, self._update)
+         self._staff = StaffInterface(self)
       return self._staff
 
    @property

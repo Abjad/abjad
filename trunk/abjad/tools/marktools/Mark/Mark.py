@@ -16,6 +16,7 @@ class Mark(object):
    __slots__ = ('_context', '_start_component', 'value')
 
    def __init__(self, value = None):
+      self._contents_repr_string = ' '
       self._context = None
       self._start_component = None
       self.value = value
@@ -78,13 +79,6 @@ class Mark(object):
                return '**'
          return '*'
       return ''
-
-   @property
-   def _contents_repr_string(self):
-      if self.value is not None:
-         return str(self.value)
-      else:
-         return ' '
 
    ## PRIVATE METHODS ##
    
