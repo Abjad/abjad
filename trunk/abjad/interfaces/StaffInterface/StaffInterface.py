@@ -8,6 +8,9 @@ class StaffInterface(_ObserverInterface, _BacktrackingInterface):
    Interface to LilyPond fontSize context setting.
    Handle no LilyPond StaffSymbol grob.
    '''
+
+   __slots__ = ('_acceptable_types', '_default', '_effective', '_forced',       
+      '_hide', '_interface_name', '_show', )
    
    def __init__(self, _client, _update_interface):
       '''Register as observer, format contributor and backtracker.
@@ -16,9 +19,9 @@ class StaffInterface(_ObserverInterface, _BacktrackingInterface):
       from abjad.components.Staff import Staff
       _ObserverInterface.__init__(self, _client, _update_interface)
       _BacktrackingInterface.__init__(self, 'staff')
-      self._acceptableTypes = (Staff, )
+      self._acceptable_types = (Staff, )
       self._effective = None
-      self._font_size = None
+      #self._font_size = None
       self._forced = None
       self._hide = None
       self._show = None

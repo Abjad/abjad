@@ -11,6 +11,9 @@ class _UpdateInterface(_Interface):
    as needed by observer interfaces attached to component.
    '''
 
+   __slots__ = ('_allow', '_current', '_currently_updating', '_observers',
+      '_prolated_offset_values_of_component_are_current')
+   
    def __init__(self, client):
       '''Initialize update interface.
       '''

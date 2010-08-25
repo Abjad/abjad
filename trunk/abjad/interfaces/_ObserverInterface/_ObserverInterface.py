@@ -3,6 +3,8 @@ from abjad.interfaces._Interface import _Interface
 
 class _ObserverInterface(_Interface):
 
+   __slots__ = ( )
+
    def __init__(self, _client, update_interface):
       _Interface.__init__(self, _client)
       update_interface._observers.add(self)

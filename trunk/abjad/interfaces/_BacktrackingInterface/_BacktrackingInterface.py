@@ -8,24 +8,30 @@ from abjad.core._Abjad import _Abjad
 ##       and when a note somewhere in the middle of the sequence
 ##       forces a tempo change?
 
-##       The solution implemented as of r2125 is that spanners will
-##       'win' in place of forced and backtracked attributes.
-##       That is, in the example above, all notes governed by the
-##       hypothetical tempo spanner will derive t.tempo.effective
-##       directly from the governing spanner EXCEPT for the
-##       one note in the middle of a run one which the tempo is forced.
+## RESOLVED: _BacktrackingInterface is deprecated in favor of Marks.
+##       A number of items in musical score do not model well as spanners.
+##       The include clefs, key signatures, time signature, tempo indications
+##       instrument name changes and so on. The nature of all of these
+##       indications in the score is something like 'from here forward do ...'.
+##       This type of indications differs inherently from spanners
+##       because spanners are bound at both edges and therefore
+##       indicate something like 'from here to here do ...'.
 
-## NOTE: This solution is not evident here in _BacktrackingInterface.
-##       You have to look at, for example, TempoInterface.effective
-##       to see the logic that determines who wins the tournament.
-
+##       All backtracking interfaces are the in the process of being removed.
+##       All here-forward sort of score items are now modeled with Marks.
+##       No system objects will implement a 'forced' attribute in future.
 
 class _BacktrackingInterface(_Abjad):
-   '''Mixin base class for interfaces with 'forced', 'effective' attributes.'''
+   '''Mix-in base class for interfaces with 'forced', 'effective' attributes.
+   
+   Note: class in now DEPRECATED.
+   '''
 
-   def __init__(self, _interfaceName):
+   __slots__ = ( ) ## create real slots definition in concrete child classes
+
+   def __init__(self, _interface_name):
       '''Initialize interface name.'''
-      self._interfaceName = _interfaceName
+      self._interface_name = _interface_name
 
    ## PRIVATE METHODS ##
 
@@ -56,42 +62,43 @@ class _BacktrackingInterface(_Abjad):
       Most such interfaces are observers.
       '''
       from abjad.components._Leaf import _Leaf
-      myForced = self.forced
-      if myForced is not None:
-         return myForced
-      prevComponent = self._client._navigator._prev 
-      if prevComponent is not None:
-         if isinstance(prevComponent, _Leaf):
-            prevInterface = getattr(prevComponent, self._interfaceName, None)
-            if prevInterface is not None:
-               prevForced = prevInterface.forced
-               if prevForced:
-                  return prevForced
+      my_forced = self.forced
+      if my_forced is not None:
+         return my_forced
+      prev_component = self._client._navigator._prev 
+      if prev_component is not None:
+         if isinstance(prev_component, _Leaf):
+            prev_interface = getattr(prev_component, self._interface_name, None)
+            if prev_interface is not None:
+               prev_forced = prev_interface.forced
+               if prev_forced:
+                  return prev_forced
                else:
-                  return prevInterface._effective
+                  return prev_interface._effective
          else:
             ## TODO: this is a hack; the logic here will work if prev
             ##       component is a container that happens to contain
             ##       a leaf as its last contained element.
             ##       The logic here needs to be truly backwards recursive.
-            ## TODO: Using componenttools.iterate_components_depth_first( ) here *backwards* should work.
+            ## TODO: Using componenttools.iterate_components_depth_first( ) 
+            ##       here *backwards* should work.
             try:
-               last_contained = prevComponent[-1]
+               last_contained = prev_component[-1]
             except IndexError:
-               last_contained = prevComponent
-            prevInterface = getattr(last_contained, self._interfaceName, None)
-            if prevInterface is not None:
-               prevForced = prevInterface.forced
-               if prevForced:
-                  return prevForced
+               last_contained = prev_component
+            prev_interface = getattr(last_contained, self._interface_name, None)
+            if prev_interface is not None:
+               prev_forced = prev_interface.forced
+               if prev_forced:
+                  return prev_forced
                else:
-                  return prevInterface._effective
+                  return prev_interface._effective
       for parent in self._client.parentage.proper_parentage:
-         parentInterface = getattr(parent, self._interfaceName, None)
-         if parentInterface is not None:
-            parentForced = parentInterface.forced
-            if parentForced is not None:
-               return parentForced
+         parent_interface = getattr(parent, self._interface_name, None)
+         if parent_interface is not None:
+            parent_forced = parent_interface.forced
+            if parent_forced is not None:
+               return parent_forced
       default = getattr(self, 'default', None)
       return default
    
@@ -105,11 +112,11 @@ class _BacktrackingInterface(_Abjad):
    @property
    def change(self):
       '''True when core attribute changes at client, otherwise False.'''
-      prevLeaf = getattr(self._client, 'prev', None)
-      if prevLeaf:
-         prevInterface = getattr(prevLeaf, self._interfaceName)
-         curInterface = getattr(self._client, self._interfaceName)
-         return not prevInterface.effective == curInterface.effective
+      prev_leaf = getattr(self._client, 'prev', None)
+      if prev_leaf:
+         prev_interface = getattr(prev_leaf, self._interface_name)
+         cur_interface = getattr(self._client, self._interface_name)
+         return not prev_interface.effective == cur_interface.effective
       return False
 
    @property
@@ -130,7 +137,7 @@ class _BacktrackingInterface(_Abjad):
       def fget(self):
          return self._forced
       def fset(self, arg):
-         assert isinstance(arg, (self._acceptableTypes, type(None)))
+         assert isinstance(arg, (self._acceptable_types, type(None)))
          self._forced = arg
          self._client._update._mark_all_improper_parents_for_update( )
       return property(**locals( ))

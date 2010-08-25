@@ -1,5 +1,8 @@
 class _Abjad(object):
-   '''Abjad root class. All Abjad classes inherit from _Abjad.'''
+   '''Mix-in base class designed to regularize comparison behavior.
+   '''
+
+   __slots__ = ( )
 
    ## OVERLOADS ##
    

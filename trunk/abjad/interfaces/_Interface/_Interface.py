@@ -1,8 +1,6 @@
-#from abjad.core import _Abjad
-
-
-#class _Interface(_Abjad):
 class _Interface(object):
+
+   __slots__ = ('_client')
 
    def __init__(self, client):
       self._client = client
