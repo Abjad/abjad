@@ -4,7 +4,7 @@ _package_import(__path__[0], globals( ))
 
 from ClefMark import ClefMark
 from DynamicMark import DynamicMark
-from InstrumentNameMark import InstrumentNameMark
+from InstrumentMark import InstrumentMark
 from KeySignatureMark import KeySignatureMark
 from Mark import Mark
 from TempoMark import TempoMark

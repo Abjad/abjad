@@ -2,7 +2,7 @@ from abjad.tools.marktools.Mark import Mark
 from abjad.tools.markuptools import Markup
 
 
-class InstrumentNameMark(Mark):
+class InstrumentMark(Mark):
    '''.. versionadded:: 1.1.2
 
    Instrument name mark.
