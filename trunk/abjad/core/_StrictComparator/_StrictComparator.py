@@ -30,5 +30,5 @@ class _StrictComparator(object):
    def __nonzero__(self):
       return True
 
-   def __repr__(self):
-      return '<%s>' % self.__class__.__name__
+   #def __repr__(self):
+   #   return '<%s>' % self.__class__.__name__
