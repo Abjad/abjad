@@ -11,7 +11,7 @@ class Articulation(_StrictComparator, _Immutable):
       Articulation('^\staccato')
    '''
 
-   __slots__ = ('string', 'direction')
+   __slots__ = ('_string', '_direction')
 
    def __init__(self, *args):
       assert len(args) in range(3)

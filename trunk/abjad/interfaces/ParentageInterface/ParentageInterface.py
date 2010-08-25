@@ -10,6 +10,8 @@ class ParentageInterface(_Interface):
    Handle no LilyPond grob.
    '''
 
+   __slots__ = ('__parent', )
+
    def __init__(self, _client):
       '''Bind to client and set parent to None.'''
       _Interface.__init__(self, _client)

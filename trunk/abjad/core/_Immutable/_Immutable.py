@@ -3,6 +3,8 @@ class _Immutable(object):
 
    .. todo:: write code to check all Abjad system objects with slots and make sure none has a dict defined and taking up memory in the namespace of the object.
    '''
+   
+   __slots__ = ( )
 
    ## OVERLOADS ##
 

@@ -5,6 +5,8 @@ from abjad.interfaces import DirectivesInterface
 
 class _ComponentFormatterSlotsInterface(_Interface):
 
+   __slots__ = ( )
+
    def __init__(self, client):
       _Interface.__init__(self, client)
       

@@ -6,6 +6,8 @@ from abjad.core import Rational
 class NumberingInterface(_ObserverInterface):
    '''Number score components but handle no LilyPond grob.'''
 
+   __slots__ = ('_leaf', '_measure')
+
    def __init__(self, _client, update_interface):
       '''Bind to client and register self as observer.
          Init leaf and measure numbers to zero.'''

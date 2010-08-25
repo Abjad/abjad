@@ -9,6 +9,8 @@ class OffsetInterface(_ObserverInterface):
    '''Offset interface.
    '''
 
+   __slots__ = ('_start', '_start_in_seconds', '_stop', '_stop_in_seconds')
+
    def __init__(self, _client, _update_interface):
       _ObserverInterface.__init__(self, _client, _update_interface)
       #_Interface.__init__(self, _client)

@@ -1,8 +1,11 @@
 class _LeafFormatterNumberInterface(object):
 
+   __slots__ = ('_client', 'self', )
+
    def __init__(self, client):
       self._client = client
-      self._self = None
+      ## set to 'comment' or 'markup'
+      self.self = None
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -17,13 +20,3 @@ class _LeafFormatterNumberInterface(object):
             if contribution is not None:
                return contribution
       return None
-
-   ## PUBLIC ATTRIBUTES ##
-
-   @apply
-   def self( ):
-      def fget(self):
-         return self._self
-      def fset(self, arg):
-         assert arg in ('comment', 'markup', None)
-         self._self = arg

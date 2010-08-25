@@ -3,6 +3,8 @@ from abjad.components._Component._ComponentFormatterSlotsInterface import _Compo
 
 class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
+   __slots__ = ( )
+
    def __init__(self, client):
       _ComponentFormatterSlotsInterface.__init__(self, client)
       

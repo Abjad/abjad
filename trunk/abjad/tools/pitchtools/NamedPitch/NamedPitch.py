@@ -1,7 +1,6 @@
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.core import _StrictComparator
 from abjad.tools.pitchtools._Pitch import _Pitch
-import types
 
 
 _accidental_spelling = _read_config_file( )['accidental_spelling']
@@ -10,6 +9,8 @@ class NamedPitch(_StrictComparator, _Pitch):
    '''Musical pitch.'''
 
    accidental_spelling = _accidental_spelling
+
+   __slots__ = ('_accidental', '_deviation', '_letter', '_octave')
 
    def __init__(self, *args):
       from abjad.tools import pitchtools

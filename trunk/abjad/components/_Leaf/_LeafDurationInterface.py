@@ -8,6 +8,8 @@ from abjad.core import Rational
 
 class _LeafDurationInterface(_ComponentDurationInterface):
 
+   __slots__ = ('_multiplier', '_written', )
+
    def __init__(self, _client, duration_token):
       _ComponentDurationInterface.__init__(self, _client)
       self.multiplier = None

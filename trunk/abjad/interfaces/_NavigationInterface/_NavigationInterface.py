@@ -1,8 +1,10 @@
-from abjad.core import _StrictComparator
+from abjad.interfaces._Interface import _Interface
 import collections
 
 
-class _NavigationInterface(_StrictComparator):
+class _NavigationInterface(_Interface):
+
+   __slots__ = ( )
 
    def __init__(self, client):
       self._client = client

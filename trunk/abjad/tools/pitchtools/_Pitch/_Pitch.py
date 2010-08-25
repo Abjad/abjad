@@ -7,6 +7,8 @@ class _Pitch(_Immutable):
    Abstract pitch class from which concrete classes inherit.
    '''
 
+   __slots__ = ( )
+
    ## OVERLOADS ##
 
    def __hash__(self):

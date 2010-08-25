@@ -5,6 +5,8 @@ from abjad.components._Leaf._LeafFormatterSlotsInterface import _LeafFormatterSl
 
 class _LeafFormatter(_ComponentFormatter):
 
+   __slots__ = ('_number',)
+
    def __init__(self, client):
       _ComponentFormatter.__init__(self, client)
       self._number = _LeafFormatterNumberInterface(self)

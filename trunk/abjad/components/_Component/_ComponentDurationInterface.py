@@ -5,6 +5,8 @@ from abjad.core import Rational
 
 class _ComponentDurationInterface(_Interface):
 
+   __slots__ = ( )
+
    def __init__(self, _client):
       _Interface.__init__(self, _client)
 

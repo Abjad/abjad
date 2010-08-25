@@ -11,6 +11,9 @@ class Accidental(_StrictComparator, _Immutable):
       Accidental(sharp)
    '''
 
+   __slots__ = ('_alphabetic_string', '_is_adjusted', '_name', 
+      '_semitones', '_symbolic_string')
+
    def __init__(self, arg = ''):
    
       ## initializer symbolic string from arg
