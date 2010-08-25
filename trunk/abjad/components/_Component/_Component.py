@@ -1,4 +1,4 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
@@ -18,7 +18,7 @@ from abjad.interfaces import StaffInterface
 from abjad.interfaces import TempoInterface
 
 
-class _Component(_Abjad):
+class _Component(_StrictComparator):
 
    def __init__(self):
       self._lily_file = None

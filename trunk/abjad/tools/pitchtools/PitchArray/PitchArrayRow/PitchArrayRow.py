@@ -1,10 +1,10 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
 import copy
 
 
-class PitchArrayRow(_Abjad):
+class PitchArrayRow(_StrictComparator):
    '''.. versionadded:: 1.1.2
 
    One row in pitch array. ::

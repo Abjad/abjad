@@ -1,7 +1,7 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 
 
-class _MeasureFormatterNumberInterface(_Abjad):
+class _MeasureFormatterNumberInterface(_StrictComparator):
 
    def __init__(self, _client):
       self._client = _client

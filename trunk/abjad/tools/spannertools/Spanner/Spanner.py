@@ -1,4 +1,4 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
@@ -9,7 +9,7 @@ from abjad.core import Rational
 from copy import deepcopy as python_deepcopy
 
 
-class Spanner(_Abjad):
+class Spanner(_StrictComparator):
    '''Any type of notation object that stretches horizontally
    and encompasses some number of notes, rest, chords, tuplets,
    measures, voices or other Abjad components. 

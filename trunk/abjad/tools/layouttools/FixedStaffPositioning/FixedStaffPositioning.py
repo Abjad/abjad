@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 
 
-class FixedStaffPositioning(_Abjad, _Immutable):
+class FixedStaffPositioning(_StrictComparator, _Immutable):
    r'''Indicator object to model fixed-systems layout across an entire score.
    Instantiate a :class:`~abjad.layouttools.systemsindicator.FixedStaffPositioning`
    object with numeric indication of fixed distances between systems.

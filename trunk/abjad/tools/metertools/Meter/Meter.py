@@ -1,11 +1,11 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 from abjad.core import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
 
 
-class Meter(_Abjad, _Immutable):
+class Meter(_StrictComparator, _Immutable):
 
    __slots__ = ('_denominator', '_duration', '_format', '_multiplier',
       '_nonbinary', '_numerator', '_partial', )

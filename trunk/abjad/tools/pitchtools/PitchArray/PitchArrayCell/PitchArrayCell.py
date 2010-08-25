@@ -1,9 +1,9 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 import types
 
 
-class PitchArrayCell(_Abjad):
+class PitchArrayCell(_StrictComparator):
    '''.. versionadded 1.1.2
 
    One cell in a pitch array. ::

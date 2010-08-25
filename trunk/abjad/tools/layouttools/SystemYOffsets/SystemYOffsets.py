@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 
 
-class SystemYOffsets(_Abjad, _Immutable):
+class SystemYOffsets(_StrictComparator, _Immutable):
    '''Used to specify systems starting at even intervals running
    down every page.
 

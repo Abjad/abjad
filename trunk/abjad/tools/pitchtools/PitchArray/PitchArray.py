@@ -1,4 +1,4 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.PitchArray.PitchArrayColumn.PitchArrayColumn import 
 from abjad.tools.pitchtools.PitchArray.PitchArrayRow.PitchArrayRow import PitchArrayRow
 
 
-class PitchArray(_Abjad):
+class PitchArray(_StrictComparator):
    '''.. versionadded:: 1.1.2
 
    Two-dimensional array of pitches.

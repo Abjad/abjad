@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 import collections
 
 
-class _NavigationInterface(_Abjad):
+class _NavigationInterface(_StrictComparator):
 
    def __init__(self, client):
       self._client = client

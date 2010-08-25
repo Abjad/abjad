@@ -1,7 +1,7 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 
 
-class KeySignature(_Abjad):
+class KeySignature(_StrictComparator):
 
    __slots__ = ('_tonic', '_mode')
 

@@ -1,9 +1,9 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.tools import listtools
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
 
 
-class PitchArrayColumn(_Abjad):
+class PitchArrayColumn(_StrictComparator):
    '''.. versionadded:: 1.1.2
 
    Column in a pitch array. ::

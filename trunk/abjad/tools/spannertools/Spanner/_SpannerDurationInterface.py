@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import Rational
 
 
-class _SpannerDurationInterface(_Abjad):
+class _SpannerDurationInterface(_StrictComparator):
 
    def __init__(self, _client):
       self._client = _client

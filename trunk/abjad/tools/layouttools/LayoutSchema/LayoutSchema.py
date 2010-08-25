@@ -1,4 +1,4 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 from abjad.core import Rational
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
@@ -6,7 +6,7 @@ from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistan
 from abjad.tools.layouttools.SystemYOffsets import SystemYOffsets
 
 
-class LayoutSchema(_Abjad, _Immutable):
+class LayoutSchema(_StrictComparator, _Immutable):
    r'''Indicator to line-break an arbitrary score and then
    position staves and systems regularly throughout.
 

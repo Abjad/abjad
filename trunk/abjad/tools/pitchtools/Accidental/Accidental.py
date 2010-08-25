@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 
 
-class Accidental(_Abjad, _Immutable):
+class Accidental(_StrictComparator, _Immutable):
    '''Abjad model of the accidental:
 
    ::

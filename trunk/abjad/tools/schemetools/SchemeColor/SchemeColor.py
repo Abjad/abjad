@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 
 
-class SchemeColor(_Abjad, _Immutable):
+class SchemeColor(_StrictComparator, _Immutable):
    '''Wrapper for names of X-11 colors known to LilyPond.
 
    ::

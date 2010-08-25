@@ -1,7 +1,7 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 
 
-class CommentsInterface(_Abjad):
+class CommentsInterface(_StrictComparator):
    
    def __init__(self):
       self._after = [ ]

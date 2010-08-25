@@ -1,4 +1,4 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools import componenttools
 
@@ -8,7 +8,7 @@ else:
    DEBUG = True
 
 
-class _debug(_Abjad):
+class _debug(_StrictComparator):
    '''Debug decorator class.  
 
    The purpose of this decorator is to run "live bug tracking" 

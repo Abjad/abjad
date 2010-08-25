@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import Rational
 
 
-class _SpannerOffsetInterface(_Abjad):
+class _SpannerOffsetInterface(_StrictComparator):
 
    def __init__(self, client):
       self._client = client

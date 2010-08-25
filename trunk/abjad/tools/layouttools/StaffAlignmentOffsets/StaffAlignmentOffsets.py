@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 
 
-class StaffAlignmentOffsets(_Abjad, _Immutable):
+class StaffAlignmentOffsets(_StrictComparator, _Immutable):
    '''Class to model distances between staves in a system.
    Specify distances by hand when initializing the class.
    Distances may be even or uneven. LilyPond reads distances going

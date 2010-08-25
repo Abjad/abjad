@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 
 
-class SchemeFunction(_Abjad, _Immutable):
+class SchemeFunction(_StrictComparator, _Immutable):
    '''Wrapper for names of Scheme functions known to LilyPond.'''
 
    def __init__(self, name = '', *args):

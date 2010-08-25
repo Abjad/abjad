@@ -1,7 +1,7 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 
 
-class SchemeString(_Abjad):
+class SchemeString(_StrictComparator):
    '''Wrapper for string in Scheme.'''
 
    def __init__(self, string):

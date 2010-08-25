@@ -1,7 +1,7 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 
 
-class _SpannerFormatInterface(_Abjad):
+class _SpannerFormatInterface(_StrictComparator):
    '''Abstract base class. 
    Model format interface for all Abjad spanners.
    '''

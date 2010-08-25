@@ -1,9 +1,9 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 from abjad.core import Rational
 
 
-class SchemeMoment(_Abjad, _Immutable):
+class SchemeMoment(_StrictComparator, _Immutable):
    '''Abjad representation of LilyPond moment.
    
    ::

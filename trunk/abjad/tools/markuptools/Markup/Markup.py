@@ -1,7 +1,7 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 
 
-class Markup(_Abjad):
+class Markup(_StrictComparator):
    r'''Abjad wrapper around LilyPond markup.
 
    Class inserts ``\markup { }`` wrapper around contents at format time. ::

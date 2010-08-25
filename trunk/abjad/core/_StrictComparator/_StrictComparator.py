@@ -1,5 +1,8 @@
-class _Abjad(object):
-   '''Mix-in base class designed to regularize comparison behavior.
+class _StrictComparator(object):
+   '''Mix-in base class to confer strict comparison behavior 
+   to any custom class. Note This class will be unnecessary 
+   in some future release because Python 3.0 implements strict 
+   comparison behavior by default.
    '''
 
    __slots__ = ( )

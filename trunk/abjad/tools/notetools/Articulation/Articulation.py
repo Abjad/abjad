@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 
 
-class Articulation(_Abjad, _Immutable):
+class Articulation(_StrictComparator, _Immutable):
    '''Any staccato, tenuto, portato or other articulation:
 
    ::

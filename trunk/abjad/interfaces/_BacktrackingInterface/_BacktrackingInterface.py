@@ -1,4 +1,4 @@
-from abjad.core._Abjad import _Abjad
+from abjad.core import _StrictComparator
 
 
 ## TODO: The system model does not clearly define what happens
@@ -21,7 +21,7 @@ from abjad.core._Abjad import _Abjad
 ##       All here-forward sort of score items are now modeled with Marks.
 ##       No system objects will implement a 'forced' attribute in future.
 
-class _BacktrackingInterface(_Abjad):
+class _BacktrackingInterface(_StrictComparator):
    '''Mix-in base class for interfaces with 'forced', 'effective' attributes.
    
    Note: class in now DEPRECATED.

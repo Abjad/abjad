@@ -1,8 +1,8 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 
 
-class Clef(_Abjad, _Immutable):
+class Clef(_StrictComparator, _Immutable):
 
    __slots__ = ('_name', )
 

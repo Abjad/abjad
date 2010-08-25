@@ -1,7 +1,7 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 
 
-class _ContainerFormatterNumberInterface(_Abjad):
+class _ContainerFormatterNumberInterface(_StrictComparator):
 
    def __init__(self, _client):
       self._client = _client

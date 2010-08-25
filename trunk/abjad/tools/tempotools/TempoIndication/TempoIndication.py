@@ -1,10 +1,10 @@
-from abjad.core import _Abjad
+from abjad.core import _StrictComparator
 from abjad.core import _Immutable
 from abjad.core import Rational
 from abjad.tools import durtools
 
 
-class TempoIndication(_Abjad, _Immutable):
+class TempoIndication(_StrictComparator, _Immutable):
    r'''Tempo indication token. 
    
    Assign to :class:`~abjad.TempoSpanner` spanner ``indication``. ::
