@@ -21,31 +21,20 @@ from abjad.interfaces import TempoInterface
 class _Component(_Abjad):
 
    def __init__(self):
-      #self._breaks = BreaksInterface(self)
-      #self._comments = CommentsInterface( )
-      #self._directives = DirectivesInterface(self)
-      #self._history = HistoryInterface(self)
       self._lily_file = None
-      #self._marks = list( )
       self._marks_for_which_component_functions_as_mark_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )
-      #self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
       self._name = None
       self._navigator = _NavigationInterface(self)
-      #self._override = LilyPondGrobOverrideComponentPlugIn( )
       self._parentage = ParentageInterface(self)
       self._spanners = set([ ])
-      #self._set = LilyPondContextSettingComponentPlugIn( )
       self._update = _UpdateInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
-      self._clef = ClefInterface(self, self._update) ## TODO: weird backtracking conflict
-      #self._key_signature = KeySignatureInterface(self, self._update)
       self._meter = MeterInterface(self, self._update) ## TODO: weird backtracking conflict
       self._numbering = NumberingInterface(self, self._update) ## no public access
       self._offset = OffsetInterface(self, self._update)
       self._staff = StaffInterface(self, self._update) ## TODO: weird backtracking conflict
-      self._tempo = TempoInterface(self, self._update) ## TODO: weird backtracking conflict
 
    ## OVERLOADS ##
 
@@ -86,7 +75,7 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.clef.interface.ClefInterface`.'''
       if not hasattr(self, '_clef'):
-         self._clef = ClefInterface(self, self._update)
+         self._clef = ClefInterface(self)
       return self._clef
 
    @property
@@ -129,7 +118,7 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.key_signature.interface.KeySignatureInterface.`
       '''
       if not hasattr(self, '_key_signature'):
-         self._key_signature = KeySignatureInterface(self, self._update)
+         self._key_signature = KeySignatureInterface(self)
       return self._key_signature
 
    @property
@@ -236,7 +225,7 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.tempo.interface.TempoInterface`.'''
       if not hasattr(self, '_tempo'):
-         self._tempo = TempoInterface(self, self._update)
+         self._tempo = TempoInterface(self)
       return self._tempo
 
    ## PRIVATE METHODS ##

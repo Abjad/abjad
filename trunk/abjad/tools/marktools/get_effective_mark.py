@@ -9,6 +9,7 @@ def get_effective_mark(component, klass):
 
    candidate_marks = set([ ])
    for parent in component.parentage.improper_parentage:
+      #print parent
       for mark in parent.marks:
          if isinstance(mark, klass):
             candidate_marks.add(mark)
@@ -16,6 +17,7 @@ def get_effective_mark(component, klass):
       cmp = lambda m, n: cmp(m.start_component.offset.start, n.start_component.offset.start)) 
    #for x in candidate_marks:
    #   print x, x.start_component.offset.start
+   #print ''
    first_winner = None
    for candidate_mark in reversed(candidate_marks):
       if candidate_mark.start_component.offset.start <= component.offset.start:

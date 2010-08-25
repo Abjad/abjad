@@ -14,7 +14,7 @@ def test__UpdateInterface_01( ):
    assert t._update._prolated_offset_values_of_component_are_current
    assert not t._update._current
 
-   t.clef.effective
+   t.meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
    assert t._update._current
    
@@ -30,7 +30,7 @@ def test__UpdateInterface_02( ):
    assert t._update._prolated_offset_values_of_component_are_current
    assert not t._update._current
 
-   t[-1].clef.effective
+   t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
    assert t._update._current
 
@@ -64,7 +64,7 @@ def test__UpdateInterface_05( ):
    assert t._update._prolated_offset_values_of_component_are_current
    assert not t._update._current
 
-   t[-1].clef.effective
+   t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
    assert t._update._current
 
@@ -78,7 +78,7 @@ def test__UpdateInterface_06( ):
 
    t = Voice(macros.scale(4))
    t[-1].offset.start
-   t[-1].clef.effective
+   t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
    assert t._update._current
    
@@ -92,7 +92,7 @@ def test__UpdateInterface_07( ):
 
    t = Voice(macros.scale(4))
    t[-1].offset.start
-   t[-1].clef.effective
+   t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
    assert t._update._current
 
@@ -106,7 +106,7 @@ def test__UpdateInterface_08( ):
 
    t = Voice(macros.scale(4))
    t[-1].offset.start
-   t[-1].clef.effective
+   t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
    assert t._update._current
 
@@ -120,7 +120,7 @@ def test__UpdateInterface_09( ):
 
    t = Voice(macros.scale(4))
    t[-1].offset.start
-   t[-1].clef.effective
+   t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
    assert t._update._current
 
@@ -134,7 +134,7 @@ def test__UpdateInterface_10( ):
 
    t = Voice(macros.scale(4))
    t[-1].offset.start
-   t[-1].clef.effective
+   t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
    assert t._update._current
 

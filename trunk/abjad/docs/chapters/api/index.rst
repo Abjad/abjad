@@ -494,8 +494,10 @@ marktools
    tools/marktools/TempoMark/TempoMark
    tools/marktools/TimeSignatureMark/TimeSignatureMark
    tools/marktools/get_effective_clef
+   tools/marktools/get_effective_dynamic
    tools/marktools/get_effective_key_signature
    tools/marktools/get_effective_mark
+   tools/marktools/get_effective_tempo
    tools/marktools/get_effective_time_signature
 
 
