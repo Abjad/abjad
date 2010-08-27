@@ -9,12 +9,13 @@ def get_effective_mark(component, klass):
 
    candidate_marks = set([ ])
    for parent in component.parentage.improper_parentage:
-      #print parent
+      #print parent, parent.marks
       for mark in parent.marks:
          if isinstance(mark, klass):
             candidate_marks.add(mark)
    candidate_marks = sorted(candidate_marks, 
       cmp = lambda m, n: cmp(m.start_component.offset.start, n.start_component.offset.start)) 
+   #print ''
    #for x in candidate_marks:
    #   print x, x.start_component.offset.start
    #print ''

@@ -31,8 +31,8 @@ def test_BarNumberInterface_current_bar_number_02( ):
    r'''
    \new Staff {
            {
-                   \time 2/8
                    \set Score.currentBarNumber = #12
+                   \time 2/8
                    c'8
                    d'8
            }
@@ -45,4 +45,4 @@ def test_BarNumberInterface_current_bar_number_02( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\set Score.currentBarNumber = #12\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\set Score.currentBarNumber = #12\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n}"

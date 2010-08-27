@@ -9,8 +9,10 @@ class MisduratedMeasureCheck(_Check):
       violators = [ ]
       total, bad = 0, 0
       for t in measuretools.iterate_measures_forward_in_expr(expr):
-         if t.meter.forced is not None:
-            if t.duration.preprolated != t.meter.forced.duration:
+         #if t.meter.forced is not None:
+         if t.meter.effective is not None:
+            #if t.duration.preprolated != t.meter.forced.duration:
+            if t.duration.preprolated != t.meter.effective.duration:
                violators.append(t)
                bad += 1
          total += 1

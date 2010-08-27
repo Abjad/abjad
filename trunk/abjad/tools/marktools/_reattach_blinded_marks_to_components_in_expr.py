@@ -9,17 +9,24 @@ def _reattach_blinded_marks_to_components_in_expr(expr):
    #print 'reattaching blinded marks ...'
    all_marks_in_expr = set([ ])
    for component in componenttools.iterate_components_forward_in_expr(expr):
-      for mark in component._marks_for_which_component_functions_as_mark_context:
-         mark._context = component
-         all_marks_in_expr.add(mark)
+      #print component, component.marks
+      #for mark in component._marks_for_which_component_functions_as_mark_context:
+      #   mark._target_context = component
+      #   all_marks_in_expr.add(mark)
       for mark in component._marks_for_which_component_functions_as_start_component:
+         #print mark, mark.start_component, mark.target_context, mark.effective_context
          mark._start_component = component
+         mark._bind_effective_context(mark.target_context)
+         #print mark, mark.start_component, mark.target_context, mark.effective_context
          all_marks_in_expr.add(mark)
 
-   total_blinded_marks_in_expr_unable_to_reattach_to_both_context_and_start_component = 0
+   ## this suite should be completely unnecessary
+   total_blinded_marks_in_expr_unable_to_reattach_to_start_component = 0
    for mark in all_marks_in_expr:
-      if bool(mark.context is None) != bool(mark.start_component is None):
-         mark.detach_mark_from_context_and_start_component( )
-         total_blinded_marks_in_expr_unable_to_reattach_to_both_context_and_start_component += 1
+      if mark.start_component is None:
+         mark.detach_mark( )
+         total_blinded_marks_in_expr_unable_to_reattach_to_start_component += 1
+   if total_blinded_marks_in_expr_unable_to_reattach_to_start_component:
+      raise Exception('this is weird; mark should ALWAYS find a start component to reattach to.')
 
-   return total_blinded_marks_in_expr_unable_to_reattach_to_both_context_and_start_component
+   return total_blinded_marks_in_expr_unable_to_reattach_to_start_component

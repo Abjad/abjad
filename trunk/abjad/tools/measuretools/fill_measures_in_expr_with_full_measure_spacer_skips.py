@@ -11,7 +11,8 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
       if iterctrl(measure, i):
          skip = Skip(1)
          ## allow zero-update iteration
-         forced_meter = measure.meter.forced
+         #forced_meter = measure.meter.forced
+         forced_meter = measure._explicit_meter
          if forced_meter is not None:
             meter = forced_meter
          else:

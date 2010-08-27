@@ -1,6 +1,6 @@
 from abjad.core import _StrictComparator
 from abjad.core import _Immutable
-from abjad.core import Rational
+from fractions import Fraction
 
 
 class SchemeMoment(_StrictComparator, _Immutable):
@@ -8,7 +8,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
    
    ::
 
-      abjad> moment = schemetools.SchemeMoment(Rational(1, 56))
+      abjad> moment = schemetools.SchemeMoment(Fraction(1, 56))
       abjad> f(moment)
       #(ly:make-moment 1 56)
    '''
@@ -16,6 +16,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
    __slots__ = ('_duration')
 
    def __init__(self, duration):
+      duration = Fraction(duration)
       object.__setattr__(self, '_duration', duration)
 
    ## PUBLIC ATTRIBUTES ##

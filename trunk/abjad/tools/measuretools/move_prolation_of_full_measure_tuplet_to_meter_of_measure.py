@@ -43,7 +43,8 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
             meter_rational = Rational(meter.numerator, meter.denominator)
             numerator = meter_rational.numerator * reduced_denominator
             denominator = meter_rational.denominator * reduced_denominator
-            measure.meter.forced = Meter(numerator, denominator)
+            #measure.meter.forced = Meter(numerator, denominator)
+            measure._attach_explicit_meter(numerator, denominator)
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
             componenttools.move_parentage_and_spanners_from_components_to_components(

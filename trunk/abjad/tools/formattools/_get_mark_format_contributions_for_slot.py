@@ -10,8 +10,12 @@ def _get_mark_format_contributions_for_slot(leaf, slot):
    for component in leaf.parentage.improper_parentage:
       for mark in component.marks:
          if mark._format_slot == slot:
-            if mark.start_component.offset.start == leaf.offset.start:
-               marks.add(mark)
+            #if mark._is_fully_attached:
+            #if True:
+            if mark.start_component is not None:
+               if mark.start_component.offset.start == leaf.offset.start:
+                  marks.add(mark)
+   #print marks
    for mark in marks:
       mark_format = mark.format
       if isinstance(mark_format, (tuple, list)):

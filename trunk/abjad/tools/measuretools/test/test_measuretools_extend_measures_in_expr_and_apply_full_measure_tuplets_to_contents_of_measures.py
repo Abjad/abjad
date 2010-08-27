@@ -22,7 +22,8 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "{\n\t\\time 4/8\n\t\\times 4/5 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
+   #assert t.format == "{\n\t\\time 4/8\n\t\\times 4/5 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
+   assert t.format == "{\n\t\\times 4/5 {\n\t\t\\time 4/8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
 
 
 def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_contents_of_measures_02( ):
@@ -46,4 +47,5 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "{\n\t\\time 4/8\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tr4\n\t}\n}"
+   #assert t.format == "{\n\t\\time 4/8\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tr4\n\t}\n}"
+   assert t.format == "{\n\t\\times 2/3 {\n\t\t\\time 4/8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tr4\n\t}\n}"

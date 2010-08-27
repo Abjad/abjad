@@ -44,7 +44,8 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
          new_duration = multiplier * old_duration
          new_meter = metertools.duration_and_possible_denominators_to_meter(
             new_duration, [old_denominator], multiplier.denominator)
-      measure.meter.forced = new_meter
+      #measure.meter.forced = new_meter
+      measure._attach_explicit_meter(new_meter.numerator, new_meter.denominator)
 
       contents_multiplier_denominator = \
          mathtools.greatest_power_of_two_less_equal(multiplier.denominator)

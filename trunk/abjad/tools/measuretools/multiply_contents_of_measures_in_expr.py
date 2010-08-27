@@ -56,5 +56,6 @@ def multiply_contents_of_measures_in_expr(expr, n):
       containertools.repeat_contents_of_container(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)
       new_pair = durtools.multiply_duration_pair(old_pair, Rational(n))
-      new_meter = Meter(new_pair)
-      measure.meter.forced = new_meter
+      #new_meter = Meter(new_pair)
+      #measure.meter.forced = new_meter
+      measure._attach_explicit_meter(*new_pair)

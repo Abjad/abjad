@@ -6,6 +6,7 @@ from ClefMark import ClefMark
 from DynamicMark import DynamicMark
 from InstrumentMark import InstrumentMark
 from KeySignatureMark import KeySignatureMark
+from LilyPondCommandMark import LilyPondCommandMark
 from Mark import Mark
 from StaffChangeMark import StaffChangeMark
 from TempoMark import TempoMark

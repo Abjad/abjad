@@ -3,10 +3,11 @@ from abjad import *
 
 def test_componenttools_clone_components_and_covered_spanners_01( ):
    '''Withdraw components in 'components' from crossing spanners.
-      Preserve spanners covered by 'components'.
-      Deep copy 'components'.
-      Reapply crossing spanners to 'components'.
-      Return copy of 'components' with covered spanners.'''
+   Preserve spanners covered by 'components'.
+   Deep copy 'components'.
+   Reapply crossing spanners to 'components'.
+   Return copy of 'components' with covered spanners.
+   '''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)

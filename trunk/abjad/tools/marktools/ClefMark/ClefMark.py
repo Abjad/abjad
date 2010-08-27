@@ -9,6 +9,10 @@ class ClefMark(Mark):
 
    _format_slot = 'opening'
 
+   def __init__(self, clef_name):
+      Mark.__init__(self, clef_name)
+      self._contents_repr_string = "'%s'" % clef_name
+
    ## PUBLIC ATTRIBUTES ##
 
    @property

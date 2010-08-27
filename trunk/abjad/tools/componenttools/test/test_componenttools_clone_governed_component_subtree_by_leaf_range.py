@@ -210,7 +210,8 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_07( ):
 
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(u)
-   assert u.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
+   #assert u.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
+   assert u.format == "{\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\t\\time 3/10\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
 
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
@@ -254,13 +255,15 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
 
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(u)
-   assert u.format == "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
+   #assert u.format == "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
+   assert u.format == "\\new Voice {\n\t{\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\t\\time 3/10\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
 
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
    '''RigidMeasures shrink down when we copy a partial tuplet.'''
 
-   t = Measure((4, 8), tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Measure((4, 8), 
+      tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -300,7 +303,8 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
 
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(u)
-   assert u.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
+   #assert u.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
+   assert u.format == "{\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\t\\time 5/12\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
 
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_10( ):
@@ -386,7 +390,8 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_11( ):
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_12( ):
    '''Copy consecutive leaves from measure in staff;
-      pass start and stop indices local to measure.'''
+   pass start and stop indices local to measure.
+   '''
 
    t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
@@ -427,7 +432,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_12( ):
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_13( ):
    '''Copy consecutive leaves from nonbinary measure in staff;
-      pass start and stop indices local to measure.'''
+   pass start and stop indices local to measure.'''
 
    t = Staff(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
    macros.diatonicize(t)
@@ -469,4 +474,5 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_13( ):
    
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(u)
-   assert u.format == "\\new Staff {\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
+   #assert u.format == "\\new Staff {\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
+   assert u.format == "\\new Staff {\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 2/9\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"

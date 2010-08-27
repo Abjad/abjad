@@ -34,7 +34,8 @@ class _RigidMeasureFormatter(_MeasureFormatter):
       from abjad.tools import marktools
       client = self._client
       #effective_meter = marktools.get_effective_time_signature(client)
-      if client.meter.effective.nonbinary and client.meter.suppress:
+      #if client.meter.effective.nonbinary and client.meter.suppress:
+      if client.meter.effective.nonbinary and client.meter.effective.suppress:
       #if effective_meter.nonbinary and client.meter.suppress:
          raise NonbinaryMeterSuppressionError
       if client.meter.effective.duration < client.duration.preprolated:

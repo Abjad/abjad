@@ -108,6 +108,8 @@ class _UpdateInterface(_Interface):
          for observer in node._update._observers:
             #print node, observer
             observer._update_component( )
+         for mark in node.marks:
+            mark._bind_effective_context(mark.target_context)
          node._update._currently_updating = False
          node._update._current = True
       ## update offset values of all score components in seconds

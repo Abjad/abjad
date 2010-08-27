@@ -18,7 +18,8 @@ def test_RigidMeasure_meter_update_01( ):
 
    t.pop( )
    #t.meter.forced.numerator = 3
-   t.meter.forced = metertools.Meter(3, 8)
+   #t.meter.forced = metertools.Meter(3, 8)
+   marktools.TimeSignatureMark(3, 8)(Staff, t)
 
    r'''
    {

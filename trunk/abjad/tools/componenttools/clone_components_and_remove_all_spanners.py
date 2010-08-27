@@ -1,6 +1,8 @@
+from abjad.tools import spannertools
 from abjad.tools.componenttools._ignore import _ignore
 from abjad.tools.componenttools._restore import _restore
-from abjad.tools import spannertools
+from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
+   _reattach_blinded_marks_to_components_in_expr
 import copy
 
 
@@ -107,5 +109,7 @@ def clone_components_and_remove_all_spanners(components, n = 1):
 
    for i in range(n - 1):
       result += clone_components_and_remove_all_spanners(components)
+
+   _reattach_blinded_marks_to_components_in_expr(result)
       
    return result

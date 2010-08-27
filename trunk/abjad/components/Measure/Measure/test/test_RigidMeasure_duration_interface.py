@@ -45,7 +45,9 @@ def test_RigidMeasure_duration_interface_02( ):
    assert t.duration.prolated == Rational(3, 10)
    assert t.duration.prolation == 1
 
-   assert t.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+   #assert t.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+   assert t.format == "{\n\t\\scaleDurations #'(4 . 5) {\n\t\t\\time 3/10\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+
 
 
 def test_RigidMeasure_duration_interface_03( ):

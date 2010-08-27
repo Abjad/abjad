@@ -2,11 +2,12 @@ from abjad import *
 
 
 def test_DynamicMeasure_meter_suppress_01( ):
-   '''It is possible to suppress meter from dynamic measures;
-      set suppress on the meter interface.'''
+   '''It is possible to suppress meter from dynamic measures.
+   '''
 
    t = measuretools.DynamicMeasure(macros.scale(4))
-   t.meter.suppress = True
+   #t.meter.suppress = True
+   t.suppress_meter = True
 
    r'''
    {

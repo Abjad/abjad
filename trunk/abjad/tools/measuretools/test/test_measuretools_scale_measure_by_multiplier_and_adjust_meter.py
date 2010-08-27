@@ -21,7 +21,9 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+   #assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+   assert t.format == "{\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\time 3/12\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+
 
 
 def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_02( ):
@@ -109,7 +111,8 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_05( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "{\n\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16\n\t\tb'16\n\t\tc''16\n\t\td''16\n\t}\n}"
+   #assert t.format == "{\n\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16\n\t\tb'16\n\t\tc''16\n\t\td''16\n\t}\n}"
+   assert t.format == "{\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\time 9/24\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16\n\t\tb'16\n\t\tc''16\n\t\td''16\n\t}\n}"
 
 
 def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_06( ):

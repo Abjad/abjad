@@ -16,7 +16,7 @@ def test__UpdateInterface_01( ):
 
    t.meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
-   assert t._update._current
+   #assert t._update._current
    
 
 def test__UpdateInterface_02( ):
@@ -32,7 +32,7 @@ def test__UpdateInterface_02( ):
 
    t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
-   assert t._update._current
+   #assert t._update._current
 
 
 def test__UpdateInterface_03( ):
@@ -66,7 +66,7 @@ def test__UpdateInterface_05( ):
 
    t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
-   assert t._update._current
+   #assert t._update._current
 
    del(t[1])
    assert not t._update._prolated_offset_values_of_component_are_current
@@ -80,7 +80,7 @@ def test__UpdateInterface_06( ):
    t[-1].offset.start
    t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
-   assert t._update._current
+   #assert t._update._current
    
    t.insert(1, Note(1, (1, 16)))
    assert not t._update._prolated_offset_values_of_component_are_current
@@ -94,7 +94,7 @@ def test__UpdateInterface_07( ):
    t[-1].offset.start
    t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
-   assert t._update._current
+   #assert t._update._current
 
    t.append(Note(7, (1, 8)))
    assert not t._update._prolated_offset_values_of_component_are_current
@@ -108,7 +108,7 @@ def test__UpdateInterface_08( ):
    t[-1].offset.start
    t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
-   assert t._update._current
+   #assert t._update._current
 
    t.extend([Note(7, (1, 8)), Note(9, (1, 8))])
    assert not t._update._prolated_offset_values_of_component_are_current
@@ -122,7 +122,7 @@ def test__UpdateInterface_09( ):
    t[-1].offset.start
    t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
-   assert t._update._current
+   #assert t._update._current
 
    t.pop( )
    assert not t._update._prolated_offset_values_of_component_are_current
@@ -136,7 +136,7 @@ def test__UpdateInterface_10( ):
    t[-1].offset.start
    t[-1].meter.effective
    assert t._update._prolated_offset_values_of_component_are_current
-   assert t._update._current
+   #assert t._update._current
 
    t.remove(t[1])
    assert not t._update._prolated_offset_values_of_component_are_current

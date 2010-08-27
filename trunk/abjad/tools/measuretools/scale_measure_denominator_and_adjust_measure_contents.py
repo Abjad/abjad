@@ -73,7 +73,8 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
    scale_contents_of_measures_in_expr(measure, inverse_measure_multiplier)
 
    ## assign new meter
-   measure.meter.forced = new_meter
+   #measure.meter.forced = new_meter
+   measure._attach_explicit_meter(new_meter)
 
    ## return measure
    return measure

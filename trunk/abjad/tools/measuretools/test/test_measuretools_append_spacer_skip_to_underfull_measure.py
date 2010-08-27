@@ -5,7 +5,8 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01( ):
    '''Handles measure prolation from nonbinary meter.'''
 
    t = Measure((4, 12), macros.scale(4))
-   t.meter.forced = metertools.Meter(5, 12)
+   #t.meter.forced = metertools.Meter(5, 12)
+   marktools.TimeSignatureMark(5, 12)(Staff, t)
    assert t.duration.is_underfull
 
    measuretools.append_spacer_skip_to_underfull_measure(t)
@@ -25,14 +26,16 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\ts1 * 1/8\n\t}\n}"
+   #assert t.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\ts1 * 1/8\n\t}\n}"
+   assert t.format == "{\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\time 5/12\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\ts1 * 1/8\n\t}\n}"
 
 
 def test_measuretools_append_spacer_skip_to_underfull_measure_02( ):
    '''Handles regular measure with no meter prolation.'''
 
    t = Measure((4, 8), macros.scale(4))
-   t.meter.forced = metertools.Meter(5, 8)
+   #t.meter.forced = metertools.Meter(5, 8)
+   marktools.TimeSignatureMark(5, 8)(Staff, t)
    assert t.duration.is_underfull
 
    measuretools.append_spacer_skip_to_underfull_measure(t)

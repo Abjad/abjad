@@ -21,6 +21,7 @@ from abjad.interfaces import TempoInterface
 class _Component(_StrictComparator):
 
    def __init__(self):
+      self.__is_current = False
       self._lily_file = None
       self._marks_for_which_component_functions_as_mark_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )
@@ -31,7 +32,7 @@ class _Component(_StrictComparator):
       self._update = _UpdateInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
-      self._meter = MeterInterface(self, self._update) ## TODO: weird backtracking conflict
+      #self._meter = MeterInterface(self, self._update) ## TODO: weird backtracking conflict
       self._numbering = NumberingInterface(self, self._update) ## no public access
       self._offset = OffsetInterface(self, self._update)
       #self._staff = StaffInterface(self, self._update) ## TODO: weird backtracking conflict
@@ -59,6 +60,19 @@ class _Component(_StrictComparator):
          rhs = id(self)
       lhs = self.__class__.__name__
       return '%s-%s' % (lhs, rhs)
+
+   ## PRIVATE METHODS ##
+
+   def __update_component(self):
+      #print 'updating component ...'
+      self._update._update_prolated_offset_values_of_all_score_components( )
+      self._update._update_observer_interfaces_of_all_score_components( )
+      #self.__is_current = True
+
+   def _update_component_if_necessary(self):
+      #if not self.__is_current:
+      if True:
+         self.__update_component( )
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -102,6 +116,7 @@ class _Component(_StrictComparator):
    @property
    def format(self):
       '''Read-only version of `self` as LilyPond input code.'''
+      self._update_component_if_necessary( )
       return self._formatter.format
 
    @property
@@ -140,16 +155,16 @@ class _Component(_StrictComparator):
    def marks(self):
       '''Read-only reference to ordered list of marks attached to component.
       '''
-      return tuple(
-         self._marks_for_which_component_functions_as_mark_context +
-         self._marks_for_which_component_functions_as_start_component)
+      return tuple(set(
+         self._marks_for_which_component_functions_as_start_component +
+         self._marks_for_which_component_functions_as_mark_context))
 
    @property
    def meter(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.meter.interface.MeterInterface`.''' 
-      #if not hasattr(self, '_meter'):
-      #   self._meter = MeterInterface(self, self._update)
+      if not hasattr(self, '_meter'):
+         self._meter = MeterInterface(self)
       return self._meter
 
    @property

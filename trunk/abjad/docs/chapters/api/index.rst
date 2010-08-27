@@ -490,6 +490,7 @@ marktools
    tools/marktools/DynamicMark/DynamicMark
    tools/marktools/InstrumentMark/InstrumentMark
    tools/marktools/KeySignatureMark/KeySignatureMark
+   tools/marktools/LilyPondCommandMark/LilyPondCommandMark
    tools/marktools/Mark/Mark
    tools/marktools/StaffChangeMark/StaffChangeMark
    tools/marktools/TempoMark/TempoMark

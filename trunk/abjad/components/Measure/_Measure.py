@@ -4,13 +4,13 @@ from abjad.components.Measure._MeasureFormatter import _MeasureFormatter
 
 
 class _Measure(Container):
-   '''Abstract base class of Abjad model of one measure in score.'''
+   '''Abstract base class of Abjad model of one measure in score.
+   '''
 
    def __init__(self, music = None):
-      '''Init measure as a type of Abjad container.
-         Init dedicated duration interface and formatter.'''
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
+      self._explicit_meter = None
       self._formatter = _MeasureFormatter(self)
 
    ## OVERLOADS ##
@@ -26,7 +26,8 @@ class _Measure(Container):
    def __repr__(self):
       '''String form of measure with parentheses for interpreter display.'''
       class_name = self.__class__.__name__
-      forced_meter = self.meter.forced
+      #forced_meter = self.meter.forced
+      forced_meter = self._explicit_meter
       summary = self._summary
       length = len(self)
       if forced_meter and length:
@@ -40,7 +41,8 @@ class _Measure(Container):
 
    def __str__(self):
       '''String form of measure with pipes for single string display.'''
-      forced_meter = self.meter.forced
+      #forced_meter = self.meter.forced
+      forced_meter = self.meter.effective
       summary = self._summary
       length = len(self)
       if forced_meter and length:
@@ -51,6 +53,33 @@ class _Measure(Container):
          return '|%s|' % summary
       else:
          return '| |'
+
+   ## PRIVATE METHODS ##
+
+   #def _attach_explicit_meter(self, numerator, denominator, partial = None):
+   def _attach_explicit_meter(self, *args, **kwargs):
+      #print 'attaching explicit meter ...'
+      from abjad.components import Staff
+      from abjad.tools import marktools
+      from abjad.tools import metertools
+      if len(args) == 1 and isinstance(args[0], marktools.TimeSignatureMark):
+         new_explicit_meter = args[0]
+      elif len(args) == 1 and isinstance(args[0], metertools.Meter):
+         numerator, denominator = args[0].numerator, args[0].denominator
+         new_explicit_meter = marktools.TimeSignatureMark(numerator, denominator)
+      elif len(args) == 2:
+         numerator, denominator = args
+         new_explicit_meter = marktools.TimeSignatureMark(numerator, denominator)
+      else:
+         raise ValueError('args "%s" not understood.' % str(args))
+      partial = kwargs.get('partial', None)
+      if partial is not None:
+         raise Exception('implement partial meter.')
+      if self._explicit_meter is not None:
+         #print 'detaching old explicit meter ...'
+         self._explicit_meter.detach_mark( )
+      new_explicit_meter(Staff, self)
+      self._explicit_meter = new_explicit_meter
 
    ## PRIVATE ATTRIBUTES ##
 

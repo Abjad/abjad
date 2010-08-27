@@ -3,7 +3,9 @@ import py.test
 
 
 def test_DynamicMeasure_meter_assignment_01( ):
-   '''Dynamic measures block meter assignment.'''
+   '''Dynamic measures block meter assignment.
+   '''
+   py.test.skip('fix and decide how to model dynamic measure attachment errors.')
 
    t = measuretools.DynamicMeasure(macros.scale(4))
 
@@ -12,6 +14,7 @@ def test_DynamicMeasure_meter_assignment_01( ):
         c'8
         d'8
         e'8
-        f'8'''
+        f'8
+   '''
 
    assert py.test.raises(MeterAssignmentError, 't.meter.forced = metertools.Meter(4, 8)')

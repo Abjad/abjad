@@ -8,11 +8,12 @@ class TimeSignatureMark(Mark):
    '''.. versionadded:: 1.1.2
    '''
 
-   #__slots__ = ('_denominator', '_duration', '_format', '_multiplier',
+   _format_slot = 'opening'
+
+   #__slots__ = ('_denominator', '_duration', '_format', '_format_slot', '_multiplier',
    #   '_nonbinary', '_numerator', '_partial', )
 
    def __init__(self, *args, **kwargs):
-
       Mark.__init__(self)
       ## initialize numerator and denominator from *args
       if len(args) == 1 and isinstance(args[0], type(self)):
@@ -37,6 +38,16 @@ class TimeSignatureMark(Mark):
          raise TypeError
       #object.__setattr__(self, '_partial', partial)
       self._partial = partial
+      if partial is not None:
+         self._partial_repr_string = ', partial = %s' % repr(self._partial)
+      else:
+         self._partial_repr = ''
+
+      ## initialize suppress from kwargs
+      suppress = kwargs.get('suppress', None)
+      if not isinstance(suppress, (bool, type(None))):
+         raise TypeError
+      self.suppress = suppress
 
       ## initialize derived attributes
       #object.__setattr__(self, '_duration', Fraction(numerator, denominator))
@@ -49,7 +60,25 @@ class TimeSignatureMark(Mark):
       self._multiplier = _multiplier
       self._nonbinary = not mathtools.is_power_of_two(self.denominator)
 
+      self._contents_repr_string = '%s/%s' % (self.numerator, self.denominator)
+
    ## OVERLOADS ##
+
+   def __call__(self, *args):
+      from abjad.components import Measure
+      Mark.__call__(self, *args)
+      if isinstance(self._start_component, Measure):
+         if self._start_component._explicit_meter is not None:
+            self._start_component._explicit_meter.detach_mark( )
+         self._start_component._explicit_meter = self
+      return self
+
+   def __copy__(self, *args):
+      new = type(self)(self.numerator, self.denominator, partial = self.partial)
+      new._target_context = self._target_context
+      return new
+
+   __deepcopy__ = __copy__
 
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
@@ -90,15 +119,10 @@ class TimeSignatureMark(Mark):
       return True
    
    def __repr__(self):
-      return '%s(%s, %s)' % (self.__class__.__name__, self.numerator, self.denominator)
+      return '%s(%s, %s%s)%s' % (self.__class__.__name__, self.numerator, 
+         self.denominator, self._partial_repr_string, self._attachment_repr_string)
 
    def __str__(self):
-      return '%s/%s' % (self.numerator, self.denominator)
-
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _contents_repr_string(self):
       return '%s/%s' % (self.numerator, self.denominator)
 
    ## PUBLIC ATTRIBUTES ##
@@ -116,7 +140,17 @@ class TimeSignatureMark(Mark):
    @property
    def format(self):
       '''LilyPond input format of meter.'''
-      return self._format
+      if self.suppress:
+         return [ ]
+      elif self.partial is None:
+         return self._format
+      else:
+         result = [ ]
+         result.append(self._format)
+         duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.partial)
+         partial_directive = r'\partial %s' % duration_string
+         result.append(partial_directive)
+         return result
 
    @property
    def multiplier(self):
