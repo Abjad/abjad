@@ -59,7 +59,7 @@ def test_ClefInterface_effective_05( ):
    marktools.ClefMark('treble')(t, t[0])
    marktools.ClefMark('bass')(t, t[4])
    clef = marktools.get_effective_clef(t[4])
-   clef.detach_mark_from_context_and_start_component( )
+   clef.detach_mark( )
    for note in t:
       #assert note.clef.effective == stafftools.Clef('treble')
       assert note.clef.effective == marktools.ClefMark('treble')
@@ -141,7 +141,7 @@ def test_ClefInterface_effective_09( ):
    #t[0].clef.forced = None
    marktools.ClefMark('alto')(t, t[0])
    clef = marktools.get_effective_clef(t[0])
-   clef.detach_mark_from_context_and_start_component( )
+   clef.detach_mark( )
 
    for leaf in t:
       #assert leaf.clef.effective == stafftools.Clef('treble')

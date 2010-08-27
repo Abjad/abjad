@@ -73,7 +73,7 @@ def test_TempoInterface_04( ):
 
    staff = Staff([Note(0, (1, 4))])
    tempo = marktools.TempoMark(Rational(1, 8), 38)(staff, staff[0])
-   tempo.detach_mark_from_context_and_start_component( )
+   tempo.detach_mark( )
    
 
    r'''

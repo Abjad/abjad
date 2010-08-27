@@ -167,7 +167,7 @@ class Mark(object):
       return self(context, start_component)
 
    ## TODO: rename to detach_mark( ) ##
-   def detach_mark_from_context_and_start_component(self):
+   def detach_mark(self):
       return self( )
 
    def detach_mark(self):
