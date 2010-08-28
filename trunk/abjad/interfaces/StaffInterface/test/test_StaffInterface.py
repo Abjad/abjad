@@ -9,7 +9,7 @@ def test_StaffInterface_01( ):
    piano[0].name = 'RH'
    piano[1].name = 'LH'
    #piano[0][0].staff.forced = piano[1]
-   marktools.StaffChangeMark(piano[1])(piano[0], piano[0][0])
+   marktools.StaffChangeMark(piano[1])(piano[0][0])
 
    r'''
    \new PianoStaff <<
@@ -51,8 +51,8 @@ def test_StaffInterface_02( ):
    piano[1].name = 'LH'
    #piano[0][0].staff.forced = piano[1]
    #piano[0][2].staff.forced = piano[0]
-   marktools.StaffChangeMark(piano[1])(piano[0], piano[0][0])
-   marktools.StaffChangeMark(piano[0])(piano[0], piano[0][2])
+   marktools.StaffChangeMark(piano[1])(piano[0][0])
+   marktools.StaffChangeMark(piano[0])(piano[0][2])
 
    r'''
    \new PianoStaff <<
@@ -94,7 +94,7 @@ def test_StaffInterface_03( ):
    piano[0].name = 'RH'
    piano[1].name = 'LH'
    #piano[0][-1].staff.forced = piano[1]
-   marktools.StaffChangeMark(piano[1])(piano[0], piano[0][-1])
+   marktools.StaffChangeMark(piano[1])(piano[0][-1])
 
    r'''
    \new PianoStaff <<
@@ -127,8 +127,8 @@ def test_StaffInterface_04( ):
    piano[1].name = 'LH'
    #piano[0][0].staff.forced = piano[1]
    #piano[0][1].staff.forced = piano[1]
-   marktools.StaffChangeMark(piano[1])(piano[0], piano[0][0])
-   marktools.StaffChangeMark(piano[1])(piano[0], piano[0][1])
+   marktools.StaffChangeMark(piano[1])(piano[0][0])
+   marktools.StaffChangeMark(piano[1])(piano[0][1])
 
    r'''
    \new PianoStaff <<

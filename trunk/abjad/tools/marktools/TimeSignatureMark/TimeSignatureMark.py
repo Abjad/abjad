@@ -14,7 +14,11 @@ class TimeSignatureMark(Mark):
    #   '_nonbinary', '_numerator', '_partial', )
 
    def __init__(self, *args, **kwargs):
-      Mark.__init__(self)
+      from abjad.components import Staff
+      target_context = kwargs.get('target_context', None)
+      Mark.__init__(self, target_context = target_context)
+      if self.target_context is None:
+         self._target_context = Staff
       ## initialize numerator and denominator from *args
       if len(args) == 1 and isinstance(args[0], type(self)):
          meter = args[0]
@@ -41,7 +45,7 @@ class TimeSignatureMark(Mark):
       if partial is not None:
          self._partial_repr_string = ', partial = %s' % repr(self._partial)
       else:
-         self._partial_repr = ''
+         self._partial_repr_string = ''
 
       ## initialize suppress from kwargs
       suppress = kwargs.get('suppress', None)
@@ -66,18 +70,19 @@ class TimeSignatureMark(Mark):
 
    def __call__(self, *args):
       from abjad.components import Measure
+      from abjad.components.Measure._Measure import _Measure
       Mark.__call__(self, *args)
-      if isinstance(self._start_component, Measure):
+      if isinstance(self._start_component, (Measure, _Measure)):
          if self._start_component._explicit_meter is not None:
             self._start_component._explicit_meter.detach_mark( )
          self._start_component._explicit_meter = self
       return self
 
    def __copy__(self, *args):
-      new = type(self)(self.numerator, self.denominator, partial = self.partial)
-      new._target_context = self._target_context
-      return new
+      return type(self)(self.numerator, self.denominator, 
+         partial = self.partial, target_context = self.target_context)
 
+   ## TODO: can this be removed bc defined on Mark superclass?
    __deepcopy__ = __copy__
 
    def __eq__(self, arg):

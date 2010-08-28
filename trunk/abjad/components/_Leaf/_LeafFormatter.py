@@ -95,11 +95,12 @@ class _LeafFormatter(_ComponentFormatter):
    def _number_contribution(self):
       result = [ ]
       leaf = self._client
-      contribution = self.number._leaf_contribution
-      if contribution == 'markup':
-         result.append(r'^ \markup { %s }' % leaf.number)
-      elif contribution == 'comment':
-         result.append(r'%% leaf %s' % leaf.number)
+## FIXME ##
+#      contribution = self.number._leaf_contribution
+#      if contribution == 'markup':
+#         result.append(r'^ \markup { %s }' % leaf.number)
+#      elif contribution == 'comment':
+#         result.append(r'%% leaf %s' % leaf.number)
       return result
 
    @property

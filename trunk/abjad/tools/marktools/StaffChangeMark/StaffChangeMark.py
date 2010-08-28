@@ -7,10 +7,23 @@ class StaffChangeMark(Mark):
 
    _format_slot = 'opening'
 
-   def __init__(self, staff):
-      Mark.__init__(self)
+   def __init__(self, staff, target_context = None):
+      from abjad.components import Staff
+      Mark.__init__(self, target_context = target_context)
+      if self.target_context is None:
+         self._target_context = Staff
       self._staff = staff
       self._contents_repr_string = repr(staff)
+
+   ## OVERLOADS ##
+
+   def __copy__(self, *args):
+      return type(self)(self.staff, target_context = self.target_context)
+
+   def __eq__(self, arg):
+      if isinstance(arg, type(self)):
+         return self.staff is arg.staff
+      return False
 
    ## PUBLIC ATTRIBUTES ##
 

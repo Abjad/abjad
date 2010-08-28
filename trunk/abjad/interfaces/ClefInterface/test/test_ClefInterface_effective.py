@@ -25,7 +25,7 @@ def test_ClefInterface_effective_03( ):
    Clefs carry over to notes following.'''
    t = Staff(macros.scale(8))
    #t[4].clef.forced = stafftools.Clef('bass')
-   marktools.ClefMark('bass')(t, t[4])
+   marktools.ClefMark('bass')(t[4])
    for i, note in enumerate(t):
       if i in (0, 1, 2, 3):
          #note.clef.effective == stafftools.Clef('treble')
@@ -40,8 +40,8 @@ def test_ClefInterface_effective_04( ):
    t = Staff(macros.scale(8))
    #t[0].clef.forced = stafftools.Clef('treble')
    #t[4].clef.forced = stafftools.Clef('bass')
-   marktools.ClefMark('treble')(t, t[0])
-   marktools.ClefMark('bass')(t, t[4])
+   marktools.ClefMark('treble')(t[0])
+   marktools.ClefMark('bass')(t[4])
    #assert [note.clef.effective for note in t] == \
    #   [stafftools.Clef(name) for name in ['treble', 'treble', 'treble', 'treble', 
    #   'bass', 'bass', 'bass', 'bass']]
@@ -56,8 +56,8 @@ def test_ClefInterface_effective_05( ):
    #t[0].clef.forced = stafftools.Clef('treble')
    #t[4].clef.forced = stafftools.Clef('bass')
    #t[4].clef.forced = None
-   marktools.ClefMark('treble')(t, t[0])
-   marktools.ClefMark('bass')(t, t[4])
+   marktools.ClefMark('treble')(t[0])
+   marktools.ClefMark('bass')(t[4])
    clef = marktools.get_effective_clef(t[4])
    clef.detach_mark( )
    for note in t:
@@ -82,8 +82,8 @@ def test_ClefInterface_effective_07( ):
    macros.chromaticize(t)
    #t[0].clef.forced = stafftools.Clef('treble')
    #t[4].clef.forced = stafftools.Clef('treble')
-   marktools.ClefMark('treble')(t, t[0])
-   marktools.ClefMark('treble')(t, t[4])
+   marktools.ClefMark('treble')(t[0])
+   marktools.ClefMark('treble')(t[4])
 
    r'''
    Staff {
@@ -111,8 +111,8 @@ def test_ClefInterface_effective_08( ):
    macros.chromaticize(t)
    #t[0].clef.forced = stafftools.Clef('treble_8')
    #t[4].clef.forced = stafftools.Clef('treble')
-   marktools.ClefMark('treble_8')(t, t[0])
-   marktools.ClefMark('treble')(t, t[4])
+   marktools.ClefMark('treble_8')(t[0])
+   marktools.ClefMark('treble')(t[4])
 
    r'''
    \new Staff {
@@ -139,7 +139,7 @@ def test_ClefInterface_effective_09( ):
    t = Staff(macros.scale(4))
    #t[0].clef.forced = stafftools.Clef('alto')
    #t[0].clef.forced = None
-   marktools.ClefMark('alto')(t, t[0])
+   marktools.ClefMark('alto')(t[0])
    clef = marktools.get_effective_clef(t[0])
    clef.detach_mark( )
 

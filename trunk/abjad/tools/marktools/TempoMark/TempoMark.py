@@ -11,8 +11,11 @@ class TempoMark(Mark):
 
    _format_slot = 'opening'
 
-   def __init__(self, *args):
-      Mark.__init__(self)
+   def __init__(self, *args, **kwargs):
+      from abjad.components import Score
+      Mark.__init__(self, **kwargs)
+      if self.target_context is None:
+         self._target_context = Score
       if len(args) == 1 and isinstance(args[0], type(self)):
          tempo_indication = args[0]
          duration = Fraction(tempo_indication.duration)
@@ -27,6 +30,7 @@ class TempoMark(Mark):
          raise ValueError('can not initialize tempo indication.')
       object.__setattr__(self, '_duration', duration)
       object.__setattr__(self, '_units_per_minute', units_per_minute)
+      self._contents_repr_string = '%s, %s' % (self._dotted, self.units_per_minute)
 
    ## OVERLOADS ##
 
@@ -40,6 +44,9 @@ class TempoMark(Mark):
          new_duration = Fraction(1, new_duration_denominator)
          new_tempo_indication = type(self)(new_duration, new_units_per_minute)
          return new_tempo_indication
+
+   def __copy__(self, *args):
+      return type(self)(self.duration, self.units_per_minute, target_context = self.target_context)
 
    def __div__(self, expr):
       if isinstance(expr, type(self)):
@@ -60,12 +67,9 @@ class TempoMark(Mark):
          new_tempo_indication = type(self)(new_duration, new_units_per_minute)
          return new_tempo_indication
 
-   def __ne__(self, expr):
-      return not self == expr
-
-   def __repr__(self):
-      return '%s(%s, %s)' % (
-         self.__class__.__name__, self._dotted, self.units_per_minute)
+#   def __repr__(self):
+#      return '%s(%s, %s)' % (
+#         self.__class__.__name__, self._dotted, self.units_per_minute)
 
    def __sub__(self, expr):
       if isinstance(expr, type(self)):

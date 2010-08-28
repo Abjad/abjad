@@ -16,9 +16,9 @@ def test_SpacingSpanner_proportional_notation_duration_01( ):
 #   spacing_spanner_2.proportional_notation_duration = Rational(1, 30)
 
    t = Staff(macros.scale(4))
-   marktools.LilyPondCommandMark('new_spacing_section')(Score, t[0])
+   marktools.LilyPondCommandMark('new_spacing_section')(t[0])
    t[0].set.score.proportional_notation_duration = schemetools.SchemeMoment(Fraction(1, 15))
-   marktools.LilyPondCommandMark('new_spacing_section')(Score, t[2])
+   marktools.LilyPondCommandMark('new_spacing_section')(t[2])
    t[2].set.score.proportional_notation_duration = schemetools.SchemeMoment(Fraction(1, 30))
    
    r'''

@@ -7,7 +7,7 @@ def test_Staff_meter_02( ):
 
    t = Staff(Note(0, (1, 4)) * 8)
    #t.meter.forced = metertools.Meter(2, 4)
-   marktools.TimeSignatureMark(2, 4)(Staff, t)
+   marktools.TimeSignatureMark(2, 4)(t)
    assert t.format == "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
    r'''
    \new Staff {
@@ -29,7 +29,7 @@ def test_Staff_meter_03( ):
 
    t = Staff([ ])
    #t.meter.forced = metertools.Meter(2, 4)
-   marktools.TimeSignatureMark(2, 4)(Staff, t)
+   marktools.TimeSignatureMark(2, 4)(t)
 
    r'''
    \new Staff {
@@ -46,7 +46,7 @@ def test_Staff_meter_04( ):
 
    t = Staff(Note(0, (1, 4)) * 8)
    #t.meter.forced = metertools.Meter(2, 4)
-   marktools.TimeSignatureMark(2, 4)(Staff, t)
+   marktools.TimeSignatureMark(2, 4)(t)
    for x in t:
       assert x.meter.effective == (2, 4)
 
@@ -71,7 +71,7 @@ def test_Staff_meter_06( ):
    t = Staff(Note(0, (1, 4)) * 8)
    #t.meter.forced = metertools.Meter(2, 4)
    #t.meter.forced = None
-   marktools.TimeSignatureMark(2, 4)(Staff, t)
+   marktools.TimeSignatureMark(2, 4)(t)
    t.meter.effective.detach_mark( )
    for leaf in t:
       #assert leaf.meter.effective == (4, 4)

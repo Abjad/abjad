@@ -8,7 +8,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
    Append spacer skip to underfull `measure`::
 
       abjad> measure = Measure((4, 12), macros.scale(4))
-      abjad> marktools.TimeSignatureMark(5, 12)(Staff, measure)
+      abjad> marktools.TimeSignatureMark(5, 12)(measure)
       abjad> measure.duration.is_underfull 
       True
       

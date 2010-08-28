@@ -11,7 +11,7 @@ def test_TempoInterface_01( ):
    #t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
    #t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 8), 42)
    marktools.TempoMark(Rational(1, 8), 38)(t)
-   marktools.TempoMark(Rational(1, 8), 42)(t, t[2])
+   marktools.TempoMark(Rational(1, 8), 42)(t[2])
 
    r'''
    \new Staff {
@@ -38,7 +38,7 @@ def test_TempoInterface_02( ):
    '''
 
    t = Staff([Chord([2, 3, 4], (1, 4))])
-   marktools.TempoMark(Rational(1, 8), 38)(t, t[0])
+   marktools.TempoMark(Rational(1, 8), 38)(t[0])
 
    r'''
    \new Staff {
@@ -55,7 +55,7 @@ def test_TempoInterface_03( ):
 
    staff = Staff([Note(0, (1, 4))])
    #t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
-   marktools.TempoMark(Rational(1, 8), 38)(staff, staff[0])
+   marktools.TempoMark(Rational(1, 8), 38)(staff[0])
 
    r'''
    \new Staff {
@@ -72,7 +72,7 @@ def test_TempoInterface_04( ):
    '''
 
    staff = Staff([Note(0, (1, 4))])
-   tempo = marktools.TempoMark(Rational(1, 8), 38)(staff, staff[0])
+   tempo = marktools.TempoMark(Rational(1, 8), 38)(staff[0])
    tempo.detach_mark( )
    
 

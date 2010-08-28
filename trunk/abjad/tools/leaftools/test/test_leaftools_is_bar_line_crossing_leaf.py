@@ -9,7 +9,7 @@ def test_leaftools_is_bar_line_crossing_leaf_01( ):
    #meter.partial = Rational(1, 8)
    #meter = metertools.Meter(2, 8, partial = Rational(1, 8))
    #t.meter.forced = meter   
-   marktools.TimeSignatureMark(2, 8, partial = Rational(1, 8))(Staff, t)
+   marktools.TimeSignatureMark(2, 8, partial = Rational(1, 8))(t)
 
 
    r'''

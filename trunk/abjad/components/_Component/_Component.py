@@ -3,7 +3,7 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
-from abjad.interfaces import _UpdateInterface
+#from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
 from abjad.interfaces import ClefInterface
@@ -11,7 +11,7 @@ from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import HistoryInterface
 from abjad.interfaces import KeySignatureInterface
 from abjad.interfaces import MeterInterface
-from abjad.interfaces import NumberingInterface
+#from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import StaffInterface
@@ -21,21 +21,24 @@ from abjad.interfaces import TempoInterface
 class _Component(_StrictComparator):
 
    def __init__(self):
-      self.__is_current = False
+      #self.__is_current = False
+      self._marks_are_current = False
+      self._offset_values_in_seconds_are_current = False
+      self._prolated_offset_values_are_current = False
+      #self._is_current = False
       self._lily_file = None
-      self._marks_for_which_component_functions_as_mark_context = list( )
+      self._marks_for_which_component_functions_as_effective_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )
       self._name = None
       self._navigator = _NavigationInterface(self)
       self._parentage = ParentageInterface(self)
       self._spanners = set([ ])
-      self._update = _UpdateInterface(self)
+      #self._update = _UpdateInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
-      #self._meter = MeterInterface(self, self._update) ## TODO: weird backtracking conflict
-      self._numbering = NumberingInterface(self, self._update) ## no public access
-      self._offset = OffsetInterface(self, self._update)
-      #self._staff = StaffInterface(self, self._update) ## TODO: weird backtracking conflict
+      #self._numbering = NumberingInterface(self, self._update) ## no public access
+      #self._offset = OffsetInterface(self, self._update)
+      self._offset = OffsetInterface(self)
 
    ## OVERLOADS ##
 
@@ -60,19 +63,6 @@ class _Component(_StrictComparator):
          rhs = id(self)
       lhs = self.__class__.__name__
       return '%s-%s' % (lhs, rhs)
-
-   ## PRIVATE METHODS ##
-
-   def __update_component(self):
-      #print 'updating component ...'
-      self._update._update_prolated_offset_values_of_all_score_components( )
-      self._update._update_observer_interfaces_of_all_score_components( )
-      #self.__is_current = True
-
-   def _update_component_if_necessary(self):
-      #if not self.__is_current:
-      if True:
-         self.__update_component( )
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -116,7 +106,7 @@ class _Component(_StrictComparator):
    @property
    def format(self):
       '''Read-only version of `self` as LilyPond input code.'''
-      self._update_component_if_necessary( )
+      self._update_marks_of_entire_score_tree_if_necessary( )
       return self._formatter.format
 
    @property
@@ -157,7 +147,7 @@ class _Component(_StrictComparator):
       '''
       return tuple(set(
          self._marks_for_which_component_functions_as_start_component +
-         self._marks_for_which_component_functions_as_mark_context))
+         self._marks_for_which_component_functions_as_effective_context))
 
    @property
    def meter(self):
@@ -374,3 +364,133 @@ class _Component(_StrictComparator):
             component.parentage._switch(parent)
             parent._music.insert(start, component)
       return components + [self] 
+
+   ## MANGLED METHODS ##
+
+   def __update_explicit_meters_of_entire_score_tree(self):
+      from abjad.tools import componenttools
+      from abjad.tools import measuretools
+      #print 'updating all explicit meters in score (from %s) ...' % str(self.__class__.__name__)
+      total_components_iterated = 0
+      score = self.parentage.root
+      components = componenttools.iterate_components_depth_first(score, 
+         capped = True, unique = True, forbid = None, direction = 'left')
+      for component in components:
+         if isinstance(component, measuretools.DynamicMeasure):
+            #print '\tnow updating %s explicit meter ...' % str(component.__class__.__name__)
+            component._update_explicit_meter( )
+         total_components_iterated += 1
+      #print  '... done updating all explicit meters in score (from %s).' % str(
+      #   self.__class__.__name__)
+
+   def __update_marks_of_entire_score_tree(self):
+      '''Updating marks does not cause prolated offset values to update.
+      On the other hand, getting effective mark causes prolated offset values
+      to update when at least one mark of appropriate type attaches to score.
+      '''
+      from abjad.tools import componenttools
+      #print 'updating all marks in score (from %s) ...' % str(self.__class__.__name__)
+      total_components_iterated = 0
+      score = self.parentage.root
+      components = componenttools.iterate_components_depth_first(score, 
+         capped = True, unique = True, forbid = None, direction = 'left')
+      for component in components:
+         #print '\tnow updating %s marks ...' % str(component.__class__.__name__)
+         for mark in component._marks_for_which_component_functions_as_start_component:
+            mark._update_effective_context( )
+         component._marks_are_current = True
+         total_components_iterated += 1
+      #print '... done updating all marks in score (from %s).' % str(self.__class__.__name__)
+   
+   def __update_offset_values_in_seconds_of_entire_score_tree(self):
+      from abjad.tools import componenttools
+      #print 'updating all offset values in seconds in score ...'
+      total_components_iterated = 0
+      score = self.parentage.root
+      components = componenttools.iterate_components_depth_first(score, 
+         capped = True, unique = True, forbid = None, direction = 'left')
+      for component in components:
+         #print '\tnow updating %s offset values in seconds ...' % str(component.__class__.__name__)
+         component.offset._update_offset_values_of_component_in_seconds( )
+         component._offset_values_in_seconds_are_current = True
+         total_components_iterated += 1
+      #print 'done updating all offset values in seconds in score.'
+
+   def __update_prolated_offset_values_of_entire_score_tree(self):
+      '''Updating prolated offset values does NOT update marks.
+      Updating prolated offset values does NOT update offset values in seconds.
+      '''
+      from abjad.tools import componenttools
+      #print 'updating prolated offset values ...',
+      total_components_iterated = 0
+      score = self.parentage.root
+      components = componenttools.iterate_components_depth_first(score, 
+         capped = True, unique = True, forbid = None, direction = 'left')
+      for component in components:
+         component.offset._update_prolated_offset_values_of_component( )
+         component._prolated_offset_values_are_current = True
+         total_components_iterated += 1
+      #print total_components_iterated, '... prolated offset values updated.'
+
+   ## PRIVATE UPDATE METHODS ##
+
+   def _mark_entire_score_tree_for_later_update(self, value):
+      '''Call immediately AFTER MODIFYING score tree.
+      '''
+      assert value in ('prolated', 'marks', 'seconds')
+      for component in self.parentage.improper_parentage:
+         if value == 'prolated':
+            component._prolated_offset_values_are_current = False
+         elif value == 'marks':
+            component._marks_are_current = False
+         elif value == 'seconds':
+            component._offset_values_of_in_seconds_are_current = False
+         else:
+            raise ValueError
+
+   def _get_score_tree_state_flags(self):
+      prolated_offset_values_are_current = True
+      marks_are_current = True
+      offset_values_in_seconds_are_current = True
+      for component in self.parentage.improper_parentage:
+         if prolated_offset_values_are_current:
+            if not component._prolated_offset_values_are_current:
+               prolated_offset_values_are_current = False
+         if marks_are_current:
+            if not component._marks_are_current:
+               marks_are_current = False
+         if offset_values_in_seconds_are_current:
+            if not component._offset_values_in_seconds_are_current:
+               offset_values_in_seconds_are_current = False
+      return (prolated_offset_values_are_current, marks_are_current,
+         offset_values_in_seconds_are_current)
+
+   def _update_marks_of_entire_score_tree_if_necessary(self):
+      '''Call immediately BEFORE READING effective mark.
+      '''
+      from abjad.tools import componenttools
+      #print 'checking marks of entire score tree ...',
+      state_flags = self._get_score_tree_state_flags( )
+      #print state_flags
+      prolated_offset_values, marks, offset_values_in_seconds = state_flags
+      if not marks:
+         ## updating marks INHERENTLY UPDATES prolated offset values
+         self.__update_marks_of_entire_score_tree( )
+         self.__update_offset_values_in_seconds_of_entire_score_tree( )
+         #print 'update done.'
+      else:
+         #print 'no need.'
+         pass
+
+   def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
+      #print 'checking prolated offset values of entire score tree ...',
+      state_flags = self._get_score_tree_state_flags( )
+      prolated_offset_values, marks, offset_values_in_seconds = state_flags
+      ## score tree structure change entails prolated offset update
+      ## score tree structure change entail dynamic measure meter recalculation
+      if not prolated_offset_values:
+         self.__update_prolated_offset_values_of_entire_score_tree( )
+         self.__update_explicit_meters_of_entire_score_tree( )
+      else:
+         #print 'no need.'
+         pass

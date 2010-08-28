@@ -18,11 +18,12 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       formatter = self._client
       measure = formatter._client
-      contribution = formatter.number._measure_contribution
-      if contribution == 'comment':
-         contributor = (formatter.number, '_measure_contribution')
-         contributions = ['%% start measure %s' % measure.number]
-         result.append([contributor, contributions])
+## FIXME ##
+#      contribution = formatter.number._measure_contribution
+#      if contribution == 'comment':
+#         contributor = (formatter.number, '_measure_contribution')
+#         contributions = ['%% start measure %s' % measure.number]
+#         result.append([contributor, contributions])
       brackets = _ContainerFormatterSlotsInterface.slot_2.fget(self) 
       result.extend(brackets)
       return tuple(result)
@@ -92,11 +93,12 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       measure = formatter._client
       brackets = _ContainerFormatterSlotsInterface.slot_6.fget(self)
       result.extend(brackets)
-      contribution = formatter.number._measure_contribution
-      if contribution == 'comment':
-         contributor = (formatter.number, '_measure_contribution')
-         contributions = ['%% stop measure %s' % measure.number]
-         result.append([contributor, contributions])
+## FIXME ##
+#      contribution = formatter.number._measure_contribution
+#      if contribution == 'comment':
+#         contributor = (formatter.number, '_measure_contribution')
+#         contributions = ['%% stop measure %s' % measure.number]
+#         result.append([contributor, contributions])
       return tuple(result)
 
    ## PRIVATE METHODS ##

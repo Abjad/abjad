@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('deprecated.')
 
 
 def test__UpdateInterface_01( ):

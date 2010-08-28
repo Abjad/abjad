@@ -59,7 +59,6 @@ class _Measure(Container):
    #def _attach_explicit_meter(self, numerator, denominator, partial = None):
    def _attach_explicit_meter(self, *args, **kwargs):
       #print 'attaching explicit meter ...'
-      from abjad.components import Staff
       from abjad.tools import marktools
       from abjad.tools import metertools
       if len(args) == 1 and isinstance(args[0], marktools.TimeSignatureMark):
@@ -78,8 +77,9 @@ class _Measure(Container):
       if self._explicit_meter is not None:
          #print 'detaching old explicit meter ...'
          self._explicit_meter.detach_mark( )
-      new_explicit_meter(Staff, self)
+      new_explicit_meter(self)
       self._explicit_meter = new_explicit_meter
+      self._mark_entire_score_tree_for_later_update('marks')
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -96,10 +96,11 @@ class _Measure(Container):
       '''True if preprolated duration matches effective meter duration.'''
       return self.meter.effective.duration == self.duration.preprolated
 
-   @property
-   def number(self):
-      '''Read-only measure number STARTING AT ONE, not zero.'''
-      #self._numbering._update_all_observer_interfaces_in_score_if_necessary( )
-      self._numbering._update_prolated_offset_values_of_all_score_components_if_necessary( )
-      self._numbering._update_observer_interfaces_of_all_score_components_if_necessary( )
-      return self._numbering._measure
+## FIXME ##
+#   @property
+#   def number(self):
+#      '''Read-only measure number STARTING AT ONE, not zero.'''
+#      #self._numbering._update_all_observer_interfaces_in_score_if_necessary( )
+#      self._numbering._update_prolated_offset_values_of_all_score_components_if_necessary( )
+#      self._numbering._update_observer_interfaces_of_all_score_components_if_necessary( )
+#      return self._numbering._measure

@@ -6,7 +6,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01( ):
 
    t = Measure((4, 12), macros.scale(4))
    #t.meter.forced = metertools.Meter(5, 12)
-   marktools.TimeSignatureMark(5, 12)(Staff, t)
+   marktools.TimeSignatureMark(5, 12)(t)
    assert t.duration.is_underfull
 
    measuretools.append_spacer_skip_to_underfull_measure(t)
@@ -35,7 +35,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02( ):
 
    t = Measure((4, 8), macros.scale(4))
    #t.meter.forced = metertools.Meter(5, 8)
-   marktools.TimeSignatureMark(5, 8)(Staff, t)
+   marktools.TimeSignatureMark(5, 8)(t)
    assert t.duration.is_underfull
 
    measuretools.append_spacer_skip_to_underfull_measure(t)

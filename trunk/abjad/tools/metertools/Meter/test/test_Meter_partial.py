@@ -6,7 +6,7 @@ def test_Meter_partial_01( ):
    t = Staff(macros.scale(4))
    #meter = metertools.Meter(2, 8, partial = Rational(1, 8))
    #t.meter.forced = meter   
-   marktools.TimeSignatureMark(2, 8, partial = Rational(1, 8))(Staff, t)
+   marktools.TimeSignatureMark(2, 8, partial = Rational(1, 8))(t)
 
    r'''
    \new Staff {

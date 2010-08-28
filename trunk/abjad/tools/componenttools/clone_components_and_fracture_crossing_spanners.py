@@ -111,7 +111,8 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
    result = copy.deepcopy(components)
 
    for component in result:
-      component._update._mark_all_improper_parents_for_update( )
+      #component._update._mark_all_improper_parents_for_update( )
+      component._mark_entire_score_tree_for_later_update('prolated')
 
    _restore(receipt)
 

@@ -3,57 +3,39 @@ from abjad.components._Context import _Context
 from fractions import Fraction
 
 
+## TODO: how to test _Context subtypes like Staff? ##
 class Mark(object):
    '''.. versionadded:: 1.1.2
-
-   'Here forward' mark.
 
    Mark models time signatures, key signatures, clef, dynamics
    and other score symbols that establish a score setting to remain
    in effect until the next occurrence of such a score symbol.
    '''
 
-   __slots__ = ('_effective_context', '_start_component', '_target_context', 'value')
+   __slots__ = ('_contents_repr_string', '_effective_context', '_start_component', 
+      '_target_context')
 
-   def __init__(self, value = None):
+   def __init__(self, target_context = None):
       self._contents_repr_string = ' '
       self._effective_context = None
       self._start_component = None
-      self._target_context = None
-      ## TODO: make mark value read-only
-      self.value = value
+      if target_context is not None:
+         if not isinstance(target_context, type):
+            raise TypeError('target context "%s" must be context class.' % target_context)
+      self._target_context = target_context
 
    ## OVERLOADS ##
 
    def __call__(self, *args):
       if len(args) == 0:
-         target_context = None
-         start_component = None
+         return self.detach_mark( )
       elif len(args) == 1:
-         target_context = args[0]
-         start_component = args[0]
-      elif len(args) == 2:
-         target_context = args[0]
-         start_component = args[1]
+         return self.attach_mark(args[0])
       else:
-         raise ValueError('must call mark with 0, 1 or 2 arguments only.')
-      if not isinstance(target_context, (_Context, type(_Context), str, type(None))):
-         raise TypeError(
-            'mark target context "%s" must be context or context name.' % target_context)
-      if start_component is not None:
-         if not isinstance(start_component, _Component):
-            raise TypeError('mark start component "%s" must be component.' % start_component)
-      if isinstance(target_context, _Context):
-         target_context = type(target_context)
-      self._bind_start_component(start_component)
-      self._target_context = target_context
-      self._bind_effective_context(target_context)
-      return self
+         raise ValueError('must call mark with at most 1 argument.')
 
    def __copy__(self, *args):
-      new = type(self)(self.value)
-      new._target_context = self._target_context
-      return new
+      return type(self)(target_context = self._target_context)
 
    __deepcopy__ = __copy__
       
@@ -62,8 +44,7 @@ class Mark(object):
 
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
-         if self.value == arg.value:
-            return True
+         return True
       return False
 
    def __ne__(self, arg):
@@ -77,35 +58,50 @@ class Mark(object):
 
    @property
    def _attachment_repr_string(self):
-      result = ''
-      if self.start_component is not None:
-         result += '*'
-      if self.effective_context is not None:
-         result += '*'
-      return result
+      if self.start_component is None:
+         return ''
+      else:
+         return '(%s)' % str(self.start_component)
 
-   @property
-   def _is_fully_attached(self):
-      return bool(self._start_component) and bool(self._effective_context)
+   ## MANGLED METHODS ##
+
+   def __bind_correct_effective_context(self, correct_effective_context):
+      self.__unbind_effective_context( )
+      if correct_effective_context is not None:
+         correct_effective_context._marks_for_which_component_functions_as_effective_context.append(
+            self)
+      self._effective_context = correct_effective_context
+      correct_effective_context._mark_entire_score_tree_for_later_update('marks')
+
+   def __bind_start_component(self, start_component):
+      assert isinstance(start_component, _Component)
+      self.__unbind_start_component( )
+      start_component._marks_for_which_component_functions_as_start_component.append(self)
+      self._start_component = start_component
+      self._start_component._mark_entire_score_tree_for_later_update('marks')
+
+   def __unbind_effective_context(self):
+      effective_context = self._effective_context
+      if effective_context is not None:
+         try:
+            effective_context._marks_for_which_component_functions_as_effective_context.remove(self)
+         except ValueError:
+            pass
+      self._effective_context = None
+
+   def __unbind_start_component(self):
+      start_component = self._start_component
+      if start_component is not None:
+         try:
+            start_component._marks_for_which_component_functions_as_start_component.remove(self)
+         except ValueError:
+            pass
+      self._start_component = None
 
    ## PRIVATE METHODS ##
    
-   def _bind_effective_context(self, target_context):
-      self._unbind_effective_context( )
-      effective_context = self._find_effective_context(target_context)
-      if effective_context is not None:
-         effective_context._marks_for_which_component_functions_as_mark_context.append(self)
-         effective_context._update._mark_all_improper_parents_for_update( )
-      self._effective_context = effective_context
-
-   def _bind_start_component(self, start_component):
-      self._unbind_start_component( )
-      if start_component is not None:
-         start_component._marks_for_which_component_functions_as_start_component.append(self)
-         start_component._update._mark_all_improper_parents_for_update( )
-      self._start_component = start_component
-
-   def _find_effective_context(self, target_context):
+   def _find_correct_effective_context(self):
+      target_context = self.target_context
       if target_context is None:
          return None
       elif isinstance(target_context, type):
@@ -122,36 +118,21 @@ class Mark(object):
          raise TypeError('target context "%s" must be context type, context name or none.' % 
             target_context)
 
-   def _unbind_effective_context(self):
-      effective_context = self._effective_context
-      if effective_context is not None:
-         try:
-            effective_context._marks_for_which_component_functions_as_mark_context.remove(self)
-         except ValueError:
-            pass
-      self._effective_context = None
-
-   def _unbind_start_component(self):
-      start_component = self._start_component
-      if start_component is not None:
-         try:
-            start_component._marks_for_which_component_functions_as_start_component.remove(self)
-         except ValueError:
-            pass
-      self._start_component = None
+   def _update_effective_context(self):
+      '''This function is designed to be called by score components during score update.
+      '''
+      current_effective_context = self._effective_context
+      correct_effective_context = self._find_correct_effective_context( )
+      if current_effective_context is not correct_effective_context:
+         self.__bind_correct_effective_context(correct_effective_context)
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def effective_context(self):
       if self.start_component is not None:
-         update_interface = self.start_component._update
-         if not update_interface._prolated_offset_values_of_all_improper_parents_are_current:
-            update_interface._update_prolated_offset_values_of_all_score_components( )
-         if not update_interface._any_improper_parents_are_currently_updating:
-            if not update_interface._all_improper_parents_are_current:
-               update_interface._update_observer_interfaces_of_all_score_components( )
-         return self._effective_context
+         self.start_component._update_marks_of_entire_score_tree_if_necessary( )
+      return self._effective_context
 
    @property
    def start_component(self):
@@ -163,12 +144,11 @@ class Mark(object):
 
    ## PUBLIC METHODS ##
 
-   def attach_mark(self, context, start_component):
-      return self(context, start_component)
-
-   ## TODO: rename to detach_mark( ) ##
-   def detach_mark(self):
-      return self( )
+   def attach_mark(self, start_component):
+      self.__bind_start_component(start_component)
+      return self
 
    def detach_mark(self):
-      return self( )
+      self.__unbind_start_component( )
+      self.__unbind_effective_context( )
+      return self

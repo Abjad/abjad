@@ -10,7 +10,8 @@ def test_LeafDurationInterface_seconds_01( ):
    #t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
    #t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
    marktools.TempoMark(Fraction(1, 4), 38)(t)
-   marktools.TempoMark(Fraction(1, 4), 42)(t, t[2])
+   marktools.TempoMark(Fraction(1, 4), 42)(t[2])
+   Score([t])
 
    r'''
    \new Staff {

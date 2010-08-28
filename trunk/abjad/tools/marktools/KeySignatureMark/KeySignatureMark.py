@@ -3,24 +3,26 @@ from abjad.tools.marktools.Mark import Mark
 
 class KeySignatureMark(Mark):
    '''.. versionadded:: 1.1.2
-
-   Key signature mark.
    '''
 
    #__slots__ = ('_tonic', '_mode')
 
    _format_slot = 'opening'
 
-   def __init__(self, tonic, mode):
+   def __init__(self, tonic, mode, target_context = None):
+      from abjad.components import Staff
       from abjad.tools import pitchtools
       from abjad.tools import tonalitytools
-      Mark.__init__(self)
+      Mark.__init__(self, target_context = target_context)
+      if self.target_context is None:
+         self._target_context = Staff
       tonic = pitchtools.NamedPitchClass(tonic)
       mode = tonalitytools.Mode(mode)
       #object.__setattr__(self, '_tonic', tonic)
       #object.__setattr__(self, '_mode', mode)
       self._tonic = tonic
       self._mode = mode
+      self._contents_repr_string = "'%s', '%s'" % (tonic, mode)
 
    ## OVERLOADS ##
 
@@ -30,12 +32,6 @@ class KeySignatureMark(Mark):
             if self.mode == arg.mode:
                return True
       return False
-
-   def __ne__(self, arg):
-      return not self == arg
-
-   def __repr__(self):
-      return "%s('%s', '%s')" % (self.__class__.__name__, self.tonic, self.mode)
 
    def __str__(self):
       return '%s-%s' % (self.tonic, self.mode)

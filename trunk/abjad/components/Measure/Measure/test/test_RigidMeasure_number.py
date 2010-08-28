@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('numbering disabled until after update reimplementation.')
 
 
 def test_RigidMeasure_number_01( ):

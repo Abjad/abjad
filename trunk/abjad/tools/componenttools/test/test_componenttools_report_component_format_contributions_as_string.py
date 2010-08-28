@@ -35,7 +35,7 @@ def test_componenttools_report_component_format_contributions_as_string_03( ):
    t.misc.set_accidental_style = 'forget'
    t.misc.bar = '|.'
    staff = Staff([t])
-   marktools.ClefMark('treble')(staff, t)
+   marktools.ClefMark('treble')(t)
 
    r'''
    \new Staff {

@@ -4,7 +4,7 @@ from abjad import *
 def test_marktools_get_effective_dynamic_01( ):
 
    staff = Staff(macros.scale(4))
-   marktools.DynamicMark('f')(staff, staff[2])
+   marktools.DynamicMark('f')(staff[2])
 
    r'''
    \new Staff {

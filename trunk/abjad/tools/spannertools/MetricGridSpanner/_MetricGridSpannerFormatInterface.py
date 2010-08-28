@@ -1,4 +1,3 @@
-from abjad.components.Staff import Staff
 from abjad.core import Rational
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools import marktools
@@ -57,7 +56,8 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
                s.duration.multiplier = moffset - leaf.offset.start
                #s.meter.forced = meter
                numerator, denominator = meter.numerator, meter.denominator
-               marktools.TimeSignatureMark(numerator, denominator)(Staff, s)
+               mark = marktools.TimeSignatureMark(numerator, denominator)(s)
+               mark._is_cosmetic_mark = True
                container = Container([s])
                result.append(container.format)
       return result

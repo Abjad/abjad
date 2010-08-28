@@ -71,7 +71,7 @@ def test_Staff_clef_05( ):
    #t.clef.forced = stafftools.Clef('bass')
    #t[4].clef.forced = stafftools.Clef('treble')
    marktools.ClefMark('bass')(t)
-   marktools.ClefMark('treble')(t, t[4])
+   marktools.ClefMark('treble')(t[4])
    for i, leaf in enumerate(t):
       if i in (0, 1, 2, 3):
          #assert leaf.clef.effective == stafftools.Clef('bass')
@@ -106,7 +106,7 @@ def test_Staff_clef_07( ):
    #t.clef.forced = stafftools.Clef('treble')
    #t[0].clef.forced = stafftools.Clef('bass')
    marktools.ClefMark('treble')(t)
-   marktools.ClefMark('bass')(t, t[0])
+   marktools.ClefMark('bass')(t[0])
    for leaf in t:
       #assert leaf.clef.effective == stafftools.Clef('bass')
       assert py.test.raises(ExtraMarkError, 'leaf.clef.effective')

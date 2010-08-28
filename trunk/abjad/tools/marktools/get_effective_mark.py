@@ -6,19 +6,30 @@ def get_effective_mark(component, klass):
 
    Get effective mark of mark `klass` for `component`.
    '''
+   from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
+   from abjad.components import Measure
+   from abjad.components.Measure._Measure import _Measure
 
+   #print 'getting ready to get effective mark ...'
+   component._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
+   component._update_marks_of_entire_score_tree_if_necessary( )
+
+   #print 'now getting effective mark ...'
    candidate_marks = set([ ])
    for parent in component.parentage.improper_parentage:
       #print parent, parent.marks
       for mark in parent.marks:
          if isinstance(mark, klass):
-            candidate_marks.add(mark)
+            if mark.effective_context is not None:
+               candidate_marks.add(mark)
+            elif isinstance(mark, TimeSignatureMark):
+               if isinstance(mark.start_component, (Measure, _Measure)):
+                  candidate_marks.add(mark)
    candidate_marks = sorted(candidate_marks, 
       cmp = lambda m, n: cmp(m.start_component.offset.start, n.start_component.offset.start)) 
-   #print ''
+   #print candidate_marks
    #for x in candidate_marks:
    #   print x, x.start_component.offset.start
-   #print ''
    first_winner = None
    for candidate_mark in reversed(candidate_marks):
       if candidate_mark.start_component.offset.start <= component.offset.start:
@@ -30,4 +41,5 @@ def get_effective_mark(component, klass):
                first_winner, candidate_mark))
          else:
             break
+   #print 'first winner is ', first_winner, '\n'
    return first_winner

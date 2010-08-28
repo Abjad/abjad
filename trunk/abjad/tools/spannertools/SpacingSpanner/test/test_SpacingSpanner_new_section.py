@@ -7,7 +7,7 @@ def test_SpacingSpanner_new_section_01( ):
    t = Staff(macros.scale(4))
    #p = spannertools.SpacingSpanner(t[:])
    #p.new_section = True
-   marktools.LilyPondCommandMark('new_spacing_section')(Score, t[0])
+   marktools.LilyPondCommandMark('new_spacing_section')(t[0])
 
 
    r'''
@@ -30,7 +30,7 @@ def test_SpacingSpanner_new_section_02( ):
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    #p = spannertools.SpacingSpanner(t[:])
    #p.new_section = True
-   marktools.LilyPondCommandMark('new_spacing_section')(Score, t[0])
+   marktools.LilyPondCommandMark('new_spacing_section')(t[0])
 
    r'''
    \new Staff {
