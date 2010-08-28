@@ -1,7 +1,8 @@
-from abjad.tools.metertools import Meter
 from abjad.core import Rational
 from abjad.tools import durtools
+from abjad.tools import marktools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools.metertools import Meter
 
 
 def multiply_contents_of_measures_in_expr(expr, n):
@@ -52,10 +53,8 @@ def multiply_contents_of_measures_in_expr(expr, n):
    assert 0 < n
 
    for measure in iterate_measures_forward_in_expr(expr):
-      old_meter = measure.meter.effective
+      old_meter = marktools.get_effective_time_signature(measure)
       containertools.repeat_contents_of_container(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)
       new_pair = durtools.multiply_duration_pair(old_pair, Rational(n))
-      #new_meter = Meter(new_pair)
-      #measure.meter.forced = new_meter
       measure._attach_explicit_meter(*new_pair)

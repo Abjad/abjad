@@ -21,6 +21,7 @@ def list_meters_of_measures_in_expr(components):
       ``metertools.list_meters_of_measures_in_expr( )``.
    '''
    from abjad.tools import componenttools
+   from abjad.tools import marktools
    from abjad.tools import measuretools
 
    ## make sure components is a Python list of Abjad components
@@ -31,7 +32,7 @@ def list_meters_of_measures_in_expr(components):
 
    ## iterate measures and store meter pairs
    for measure in measuretools.iterate_measures_forward_in_expr(components):
-      meter = measure.meter.effective
+      meter = marktools.get_effective_time_signature(measure)
       pair = (meter.numerator, meter.denominator)
       result.append(pair)
 

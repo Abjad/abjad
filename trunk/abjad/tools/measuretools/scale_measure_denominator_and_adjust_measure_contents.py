@@ -1,5 +1,6 @@
 from abjad.core import Rational
 from abjad.tools import durtools
+from abjad.tools import marktools
 from abjad.tools import metertools
 from abjad.tools.measuretools.scale_contents_of_measures_in_expr import \
    scale_contents_of_measures_in_expr
@@ -56,7 +57,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
    '''
 
    ## save old meter duration
-   old_meter_duration = measure.meter.effective.duration
+   old_meter_duration = marktools.get_effective_time_signature(measure).duration
 
    ## find new meter
    new_meter = metertools.duration_and_possible_denominators_to_meter(

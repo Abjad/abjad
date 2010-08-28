@@ -27,4 +27,5 @@ def is_well_formed_component(expr, allow_empty_containers = True):
          if getattr(checker, 'runtime', False) == 'composition':
             continue
       results.append(checker.check(expr))
+      #print results
    return all(results) 

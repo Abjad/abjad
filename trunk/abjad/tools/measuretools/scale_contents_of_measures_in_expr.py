@@ -1,6 +1,7 @@
 from abjad.tools.metertools import Meter
 from abjad.core import Rational
 from abjad.tools import mathtools
+from abjad.tools import marktools
 from abjad.tools import metertools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
@@ -33,18 +34,17 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
          continue
 
       if mathtools.is_power_of_two(multiplier) and 1 <= multiplier:
-         old_numerator = measure.meter.effective.numerator
-         old_denominator = measure.meter.effective.denominator
+         old_numerator = marktools.get_effective_time_signature(measure).numerator
+         old_denominator = marktools.get_effective_time_signature(measure).denominator
          new_denominator = old_denominator / multiplier.numerator
          new_meter = metertools.Meter(old_numerator, new_denominator)
       else:
-         old_meter = measure.meter.effective
+         old_meter = marktools.get_effective_time_signature(measure)
          old_denominator = old_meter.denominator
          old_duration = old_meter.duration
          new_duration = multiplier * old_duration
          new_meter = metertools.duration_and_possible_denominators_to_meter(
             new_duration, [old_denominator], multiplier.denominator)
-      #measure.meter.forced = new_meter
       measure._attach_explicit_meter(new_meter.numerator, new_meter.denominator)
 
       contents_multiplier_denominator = \

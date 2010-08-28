@@ -8,4 +8,8 @@ def get_effective_time_signature(component):
    Get effective time signature from `component`.
    '''
 
-   return get_effective_mark(component, TimeSignatureMark)
+   explicit_meter = getattr(component, '_explicit_meter', None)
+   if explicit_meter is not None:
+      return explicit_meter
+   else:
+      return get_effective_mark(component, TimeSignatureMark)
