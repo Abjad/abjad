@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_StaffInterface_font_size_01( ):
+def test_LilyPondContextSettingComponentPlugIn___setattr___01( ):
 
    t = Staff(macros.scale(4))
    t.set.font_size = -3

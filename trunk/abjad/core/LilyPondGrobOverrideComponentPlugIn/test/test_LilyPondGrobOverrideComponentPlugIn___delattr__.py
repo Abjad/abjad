@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_OverrideNamespace___delattr___01( ):
+def test_LilyPondGrobOverrideComponentPlugIn___delattr___01( ):
 
    note = Note(0, (1, 4))
    note.override.accidental.color = 'red'

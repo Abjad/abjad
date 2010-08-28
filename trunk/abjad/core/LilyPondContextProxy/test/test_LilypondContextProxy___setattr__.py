@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TempoInterface_tempo_wholes_per_minute_01( ):
+def test_LilypondContextProxy___setattr___01( ):
    r'''Works with score tempo interface.
    Does not include LilyPond \set command.'''
 
@@ -25,7 +25,7 @@ def test_TempoInterface_tempo_wholes_per_minute_01( ):
    assert score.format == "\\new Score \\with {\n\ttempoWholesPerMinute = #(ly:make-moment 24 1)\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
-def test_TempoInterface_tempo_wholes_per_minute_02( ):
+def test_LilypondContextProxy___setattr___02( ):
    r'''Works with leaf tempo interface.
    Includes LilyPond \set command.'''
 
