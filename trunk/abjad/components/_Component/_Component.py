@@ -3,7 +3,6 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
-#from abjad.interfaces import _UpdateInterface
 from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
 from abjad.interfaces import ClefInterface
@@ -31,14 +30,9 @@ class _Component(_StrictComparator):
       self._marks_for_which_component_functions_as_start_component = list( )
       self._name = None
       self._navigator = _NavigationInterface(self)
+      self._offset = OffsetInterface(self)
       self._parentage = ParentageInterface(self)
       self._spanners = set([ ])
-      #self._update = _UpdateInterface(self)
-
-      ## Observer Interfaces must instantiate after _UpdateInterface ##
-      #self._numbering = NumberingInterface(self, self._update) ## no public access
-      #self._offset = OffsetInterface(self, self._update)
-      self._offset = OffsetInterface(self)
 
    ## OVERLOADS ##
 

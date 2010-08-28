@@ -1,19 +1,15 @@
 from abjad.exceptions import UndefinedTempoError
 from abjad.interfaces._Interface import _Interface
-#from abjad.interfaces._ObserverInterface import _ObserverInterface
 from abjad.core import Rational
 
 
-#class OffsetInterface(_ObserverInterface):
 class OffsetInterface(_Interface):
    '''Offset interface.
    '''
 
    __slots__ = ('_start', '_start_in_seconds', '_stop', '_stop_in_seconds')
 
-   #def __init__(self, _client, _update_interface):
    def __init__(self, _client):
-      #_ObserverInterface.__init__(self, _client, _update_interface)
       _Interface.__init__(self, _client)
       self._start = None
       self._start_in_seconds = None

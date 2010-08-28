@@ -1,1 +1,0 @@
-from _ObserverInterface import _ObserverInterface

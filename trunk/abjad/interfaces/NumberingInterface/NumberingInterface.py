@@ -1,9 +1,8 @@
-from abjad.interfaces._ObserverInterface import _ObserverInterface
+from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import MeasureContiguityError
-from abjad.core import Rational
 
 
-class NumberingInterface(_ObserverInterface):
+class NumberingInterface(_Interface):
    '''Number score components but handle no LilyPond grob.'''
 
    __slots__ = ('_leaf', '_measure')
@@ -11,7 +10,7 @@ class NumberingInterface(_ObserverInterface):
    def __init__(self, _client, update_interface):
       '''Bind to client and register self as observer.
          Init leaf and measure numbers to zero.'''
-      _ObserverInterface.__init__(self, _client, update_interface)
+      _Interface.__init__(self, _client)
       self._leaf = 0
       self._measure = 1
 
