@@ -29,18 +29,14 @@ Score component interfaces
 
    interfaces/ArticulationInterface/ArticulationInterface
    interfaces/BreaksInterface/BreaksInterface
-   interfaces/ClefInterface/ClefInterface
    interfaces/CommentsInterface/CommentsInterface
    interfaces/DirectivesInterface/DirectivesInterface
    interfaces/HistoryInterface/HistoryInterface
-   interfaces/KeySignatureInterface/KeySignatureInterface
    interfaces/MarkupInterface/MarkupInterface
    interfaces/MeterInterface/MeterInterface
    interfaces/NumberingInterface/NumberingInterface
    interfaces/OffsetInterface/OffsetInterface
    interfaces/ParentageInterface/ParentageInterface
-   interfaces/StaffInterface/StaffInterface
-   interfaces/TempoInterface/TempoInterface
 
 
 Abjad composition packages

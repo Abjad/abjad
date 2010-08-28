@@ -6,8 +6,8 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
    of `component` in seconds. ::
    
       abjad> staff = Staff(macros.scale(4))
-      abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 2), 60)
-      abjad> staff.tempo.forced = tempo_indication
+      abjad> marktools.TempoMark(Rational(1, 2), 60, target_context = Staff)(staff)
+      
       abjad> leaf = staff.leaves[0]
       abjad> componenttools.number_is_between_start_and_stop_offsets_of_component_in_seconds(0.1, leaf)
       True

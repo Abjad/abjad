@@ -6,7 +6,6 @@ def test_componenttools_number_is_between_start_and_stop_offsets_of_component_in
 
    staff = Staff([Note(0, (1, 4))])
    t = staff[0]
-   #t.tempo.forced = tempotools.TempoIndication(Rational(1, 2), 60)
    marktools.TempoMark(Rational(1, 2), 60, target_context = Staff)(staff)
 
    assert componenttools.number_is_between_start_and_stop_offsets_of_component_in_seconds(0, t)

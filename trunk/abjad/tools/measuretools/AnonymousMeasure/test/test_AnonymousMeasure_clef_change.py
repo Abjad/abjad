@@ -9,13 +9,10 @@ def test_AnonymousMeasure_clef_change_01( ):
 
    t = Staff([ ])
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   #t[-1].clef.forced = stafftools.Clef('treble')
    marktools.ClefMark('treble')(t)
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   #t[-1].clef.forced = stafftools.Clef('bass')
    marktools.ClefMark('bass')(t[-1])
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   #t[-1].clef.forced = stafftools.Clef('treble')
    marktools.ClefMark('treble')(t[-1])
 
    r'''

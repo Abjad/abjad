@@ -5,7 +5,6 @@ from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
-from abjad.interfaces import ClefInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import HistoryInterface
 from abjad.interfaces import MeterInterface
@@ -64,14 +63,6 @@ class _Component(_StrictComparator):
       if not hasattr(self, '_breaks'):
          self._breaks = BreaksInterface(self)
       return self._breaks
-
-   @property
-   def clef(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.clef.interface.ClefInterface`.'''
-      if not hasattr(self, '_clef'):
-         self._clef = ClefInterface(self)
-      return self._clef
 
    @property
    def comments(self):

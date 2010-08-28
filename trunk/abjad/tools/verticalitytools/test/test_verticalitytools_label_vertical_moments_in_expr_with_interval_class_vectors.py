@@ -5,10 +5,8 @@ def test_verticalitytools_label_vertical_moments_in_expr_with_interval_class_vec
 
    score = Score(Staff([ ]) * 3)
    score[0].extend(macros.scale(4))
-   #score[1].clef.forced = stafftools.Clef('alto')
    marktools.ClefMark('alto')(score[1])
    score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
-   #score[2].clef.forced = stafftools.Clef('bass')
    marktools.ClefMark('bass')(score[2])
    score[2].append(Note(-24, (1, 2)))
    verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors(score)

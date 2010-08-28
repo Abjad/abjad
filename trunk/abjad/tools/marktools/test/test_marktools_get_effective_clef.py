@@ -2,86 +2,69 @@ from abjad import *
 import py.test
 
 
-def test_ClefInterface_effective_01( ):
-   '''Clef defaults to treble.'''
+def test_marktools_get_effective_clef_01( ):
+   '''Clef defaults to none.
+   '''
+
    t = Staff(macros.scale(8))
    for note in t:
-      #assert note.clef.effective == stafftools.Clef('treble')
-      assert note.clef.effective is None
+      assert marktools.get_effective_clef(note) is None
    
 
-def test_ClefInterface_effective_02( ):
-   '''Clefs carry over to notes following.'''
+def test_marktools_get_effective_clef_02( ):
+   '''Clefs carry over to notes following.
+   '''
+
    t = Staff(macros.scale(8))
-   #t[0].clef.forced = stafftools.Clef('treble')
    marktools.ClefMark('treble')(t)
    for note in t:
-      #assert note.clef.effective == stafftools.Clef('treble')
       assert marktools.get_effective_clef(note) == marktools.ClefMark('treble')
 
 
-def test_ClefInterface_effective_03( ):
+def test_marktools_get_effective_clef_03( ):
    '''Clef defaults to none.
-   Clefs carry over to notes following.'''
+   Clefs carry over to notes following.
+   '''
+
    t = Staff(macros.scale(8))
-   #t[4].clef.forced = stafftools.Clef('bass')
    marktools.ClefMark('bass')(t[4])
    for i, note in enumerate(t):
       if i in (0, 1, 2, 3):
-         #note.clef.effective == stafftools.Clef('treble')
-         note.clef.effective is None
+         assert marktools.get_effective_clef(note) is None
       else:
-         #note.clef.effective == stafftools.Clef('bass')
-         note.clef.effective == marktools.ClefMark('bass')
+         assert marktools.get_effective_clef(note) == marktools.ClefMark('bass')
 
 
-def test_ClefInterface_effective_04( ):
-   '''Clefs carry over to notes following.'''
+def test_marktools_get_effective_clef_04( ):
+   '''Clefs carry over to notes following.
+   '''
+
    t = Staff(macros.scale(8))
-   #t[0].clef.forced = stafftools.Clef('treble')
-   #t[4].clef.forced = stafftools.Clef('bass')
    marktools.ClefMark('treble')(t[0])
    marktools.ClefMark('bass')(t[4])
-   #assert [note.clef.effective for note in t] == \
-   #   [stafftools.Clef(name) for name in ['treble', 'treble', 'treble', 'treble', 
-   #   'bass', 'bass', 'bass', 'bass']]
-   assert [note.clef.effective for note in t] == \
+   assert [marktools.get_effective_clef(note) for note in t] == \
       [marktools.ClefMark(name) for name in ['treble', 'treble', 'treble', 'treble', 
       'bass', 'bass', 'bass', 'bass']]
 
 
-def test_ClefInterface_effective_05( ):
-   '''None cancels an explicit clef.'''
+def test_marktools_get_effective_clef_05( ):
+   '''None cancels an explicit clef.
+   '''
+
    t = Staff(macros.scale(8))
-   #t[0].clef.forced = stafftools.Clef('treble')
-   #t[4].clef.forced = stafftools.Clef('bass')
-   #t[4].clef.forced = None
    marktools.ClefMark('treble')(t[0])
    marktools.ClefMark('bass')(t[4])
    clef = marktools.get_effective_clef(t[4])
    clef.detach_mark( )
    for note in t:
-      #assert note.clef.effective == stafftools.Clef('treble')
-      assert note.clef.effective == marktools.ClefMark('treble')
+      assert marktools.get_effective_clef(note) == marktools.ClefMark('treble')
       
 
-def test_ClefInterface_effective_06( ):
-   '''None has no effect on an unassigned clef.'''
-   py.test.skip('deprecated.')
-   t = Staff(macros.scale(8))
-   for note in t:
-      note.clef.forced = None
-   for note in t:
-      assert note.clef.effective == stafftools.Clef('treble')
-
-
-def test_ClefInterface_effective_07( ):
+def test_marktools_get_effective_clef_06( ):
    '''Redudant clefs are allowed.'''
 
    t = Staff(notetools.make_repeated_notes(8))
    macros.chromaticize(t)
-   #t[0].clef.forced = stafftools.Clef('treble')
-   #t[4].clef.forced = stafftools.Clef('treble')
    marktools.ClefMark('treble')(t[0])
    marktools.ClefMark('treble')(t[4])
 
@@ -104,13 +87,11 @@ def test_ClefInterface_effective_07( ):
    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "treble"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}'''
 
 
-def test_ClefInterface_effective_08( ):
+def test_marktools_get_effective_clef_07( ):
    '''Clefs with transposition are allowed and work as expected.'''
 
    t = Staff(notetools.make_repeated_notes(8))
    macros.chromaticize(t)
-   #t[0].clef.forced = stafftools.Clef('treble_8')
-   #t[4].clef.forced = stafftools.Clef('treble')
    marktools.ClefMark('treble_8')(t[0])
    marktools.ClefMark('treble')(t[4])
 
@@ -133,16 +114,13 @@ def test_ClefInterface_effective_08( ):
    assert t.format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
 
 
-def test_ClefInterface_effective_09( ):
+def test_marktools_get_effective_clef_08( ):
    '''Setting and then clearing works as expected.'''
 
    t = Staff(macros.scale(4))
-   #t[0].clef.forced = stafftools.Clef('alto')
-   #t[0].clef.forced = None
    marktools.ClefMark('alto')(t[0])
    clef = marktools.get_effective_clef(t[0])
    clef.detach_mark( )
 
    for leaf in t:
-      #assert leaf.clef.effective == stafftools.Clef('treble')
-      assert leaf.clef.effective is None
+      assert marktools.get_effective_clef(leaf) is None

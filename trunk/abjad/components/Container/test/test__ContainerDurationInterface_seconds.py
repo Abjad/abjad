@@ -8,8 +8,6 @@ def test__ContainerDurationInterface_seconds_01( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
-   #t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
    marktools.TempoMark(Rational(1, 4), 38)(t)
    marktools.TempoMark(Rational(1, 4), 42)(t[2])
    score = Score([t])

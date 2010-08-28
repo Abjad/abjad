@@ -1,11 +1,11 @@
 from abjad.components.Container import Container
+from abjad.components.Voice import Voice
 from abjad.exceptions import MissingSpannerError
+from abjad.tools import marktools
 from abjad.tools.notetools import Articulation
 from abjad.tools.spannertools import BeamSpanner, SlurSpanner, TieSpanner
-from abjad.tools.stafftools import Clef
 from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
 from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
-from abjad.components.Voice import Voice
 import re
 
 
@@ -71,7 +71,7 @@ def parse_note_entry_string(note_entry_string):
             chord_tokens = [ ]
             if clef_string:
                last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-               last_leaf.clef.forced = Clef(clef_string)
+               marktools.ClefMark(clef_string)(last_leaf)
                clef_string = None
 
          elif re.match('\w+', token) is not None:
@@ -92,7 +92,7 @@ def parse_note_entry_string(note_entry_string):
                container.append(leaf) 
             if clef_string:
                last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-               last_leaf.clef.forced = Clef(clef_string)
+               marktools.ClefMark(clef_string)(last_leaf)
                clef_string = None
 
          elif re.match('<\w+', token) is not None:

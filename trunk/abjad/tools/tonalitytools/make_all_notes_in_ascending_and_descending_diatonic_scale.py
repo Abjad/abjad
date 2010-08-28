@@ -55,7 +55,6 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
    notes = ascending_notes + descending_notes
    notes[-1].duration.written = Rational(1, 4)
    staff = Staff(notes)
-   #staff.key_signature.forced = key_signature
    marktools.KeySignatureMark(key_signature.tonic, key_signature.mode)(staff)
    score = Score([staff])
    score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(30)
