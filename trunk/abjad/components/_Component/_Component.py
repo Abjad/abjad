@@ -13,7 +13,7 @@ from abjad.interfaces import MeterInterface
 from abjad.interfaces import OffsetInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import StaffInterface
-from abjad.interfaces import TempoInterface
+#from abjad.interfaces import TempoInterface
 
 
 class _Component(_StrictComparator):
@@ -210,13 +210,13 @@ class _Component(_StrictComparator):
          self._staff = StaffInterface(self)
       return self._staff
 
-   @property
-   def tempo(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.tempo.interface.TempoInterface`.'''
-      if not hasattr(self, '_tempo'):
-         self._tempo = TempoInterface(self)
-      return self._tempo
+#   @property
+#   def tempo(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.tempo.interface.TempoInterface`.'''
+#      if not hasattr(self, '_tempo'):
+#         self._tempo = TempoInterface(self)
+#      return self._tempo
 
    ## PRIVATE METHODS ##
 
