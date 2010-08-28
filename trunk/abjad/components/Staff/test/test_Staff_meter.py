@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Staff_meter_02( ):
+def test_Staff_meter_01( ):
    '''Force meter on nonempty staff.'''
 
    t = Staff(Note(0, (1, 4)) * 8)
@@ -24,7 +24,7 @@ def test_Staff_meter_02( ):
    '''
 
 
-def test_Staff_meter_03( ):
+def test_Staff_meter_02( ):
    '''Force meter on empty staff.'''
 
    t = Staff([ ])
@@ -41,7 +41,7 @@ def test_Staff_meter_03( ):
    assert t.format == '\\new Staff {\n\t\\time 2/4\n}'
 
 
-def test_Staff_meter_04( ):
+def test_Staff_meter_03( ):
    '''Staff meter carries over to staff-contained leaves.'''
 
    t = Staff(Note(0, (1, 4)) * 8)
@@ -51,7 +51,7 @@ def test_Staff_meter_04( ):
       assert x.meter.effective == (2, 4)
 
 
-#def test_Staff_meter_05( ):
+#def test_Staff_meter_04( ):
 #   '''Staff meterf carries over to staff-contained leaves,
 #      but leaves can reassert new meter.'''
 #   t = Staff(Note(0, (1, 4)) * 8)
@@ -64,7 +64,7 @@ def test_Staff_meter_04( ):
 #         assert leaf.meter.effective == (4, 4)
 
 
-def test_Staff_meter_06( ):
+def test_Staff_meter_05( ):
    '''Staff meter set and then clear.
    '''
 
@@ -78,7 +78,7 @@ def test_Staff_meter_06( ):
       assert leaf.meter.effective is None
 
 
-#def test_Staff_meter_07( ):
+#def test_Staff_meter_06( ):
 #   '''Staff / first-leaf meter competition resolves
 #      in favor of first leaf.'''
 #   t = Staff(Note(0, (1, 4)) * 8)

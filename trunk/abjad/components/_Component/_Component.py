@@ -8,7 +8,6 @@ from abjad.interfaces import CommentsInterface
 from abjad.interfaces import ClefInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import HistoryInterface
-from abjad.interfaces import KeySignatureInterface
 from abjad.interfaces import MeterInterface
 #from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
@@ -110,15 +109,6 @@ class _Component(_StrictComparator):
       if not hasattr(self, '_history'):
          self._history = HistoryInterface(self)
       return self._history
-
-   @property
-   def key_signature(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.key_signature.interface.KeySignatureInterface.`
-      '''
-      if not hasattr(self, '_key_signature'):
-         self._key_signature = KeySignatureInterface(self)
-      return self._key_signature
 
    @property
    def leaves(self):
