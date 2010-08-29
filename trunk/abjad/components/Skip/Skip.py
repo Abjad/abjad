@@ -1,12 +1,10 @@
 from abjad.components._Leaf import _Leaf
-#from abjad.components.Skip._SkipInitializer import _SkipInitializer
 
 
 class Skip(_Leaf):
 
    def __init__(self, *args, **kwargs):
       from abjad.tools.skiptools._initialize_skip import _initialize_skip
-      #self._initializer = _SkipInitializer(self, _Leaf, *args)
       _initialize_skip(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
       

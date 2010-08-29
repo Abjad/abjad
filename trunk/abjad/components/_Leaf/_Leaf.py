@@ -13,7 +13,6 @@ class _Leaf(_Component):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
-      #self._markup = MarkupInterface(self)
       self.dynamic_mark = None
       self.tremolo_subdivision = None
 

@@ -1,5 +1,4 @@
 from abjad.components._Leaf import _Leaf
-#from abjad.components.Note._NoteInitializer import _NoteInitializer
 
 
 class Note(_Leaf):
@@ -7,7 +6,6 @@ class Note(_Leaf):
    
    def __init__(self, *args, **kwargs):
       from abjad.tools.notetools._initialize_note import _initialize_note
-      #self._initializer = _NoteInitializer(self, _Leaf, *args)
       _initialize_note(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
 

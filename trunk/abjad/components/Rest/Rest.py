@@ -1,6 +1,5 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-#from abjad.components.Rest._RestInitializer import _RestInitializer
 
 
 class Rest(_Leaf):
@@ -8,7 +7,6 @@ class Rest(_Leaf):
 
    def __init__(self, *args, **kwargs):
       from abjad.tools.resttools._initialize_rest import _initialize_rest
-      #self._initializer = _RestInitializer(self, _Leaf, *args)
       _initialize_rest(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
    

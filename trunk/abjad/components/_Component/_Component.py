@@ -16,17 +16,17 @@ class _Component(_StrictComparator):
 
    def __init__(self):
       #self.__is_current = False
-      self._marks_are_current = False
-      self._offset_values_in_seconds_are_current = False
-      self._prolated_offset_values_are_current = False
       #self._is_current = False
       self._lily_file = None
+      self._marks_are_current = False
       self._marks_for_which_component_functions_as_effective_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )
       self._name = None
       self._navigator = _NavigationInterface(self)
       self._offset = OffsetInterface(self)
+      self._offset_values_in_seconds_are_current = False
       self._parentage = ParentageInterface(self)
+      self._prolated_offset_values_are_current = False
       self._spanners = set([ ])
 
    ## OVERLOADS ##
@@ -101,8 +101,7 @@ class _Component(_StrictComparator):
    @property
    def leaves(self):
       '''Read-only tuple of all leaves in `self`.
-
-      .. versionchanged:: 1.1.1'''
+      '''
       from abjad.tools import leaftools
       return tuple(leaftools.iterate_leaves_forward_in_expr(self))
 
@@ -198,6 +197,7 @@ class _Component(_StrictComparator):
 
    ## PUBLIC METHODS ##
 
+   ## TODO: externalize ##
    def extend_in_parent(self, components):
       r'''.. versionadded:: 1.1.1
 
@@ -231,6 +231,7 @@ class _Component(_StrictComparator):
          parent[after:after] = components
       return [self] + components
 
+   ## TODO: externalize ##
    def extend_left_in_parent(self, components):
       r'''.. versionadded:: 1.1.1
 
@@ -263,6 +264,7 @@ class _Component(_StrictComparator):
          parent[start:start] = components
       return components + [self] 
 
+   ## TODO: externalize ##
    def splice(self, components):
       '''Splice `components` after `self`.
       Extend spanners rightwards to attach to all components in list.'''
@@ -281,7 +283,6 @@ class _Component(_StrictComparator):
             insert_index = len(spanner)
          for component in reversed(components):
             spanner._insert(insert_index, component)
-            #component.spanners._add(spanner)
             component._spanners.add(spanner)
       parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
@@ -290,9 +291,11 @@ class _Component(_StrictComparator):
             parent._music.insert(start + 1, component)
       return [self] + components
 
+   ## TODO: externalize ##
    def splice_left(self, components):
       '''Splice `components` before `self`.
-      Extend spanners leftwards to attach to all components in list.'''
+      Extend spanners leftwards to attach to all components in list.
+      '''
       from abjad.tools import componenttools
       from abjad.tools import componenttools
       from abjad.tools import spannertools
@@ -303,7 +306,6 @@ class _Component(_StrictComparator):
          index = spannertools.find_index_of_spanner_component_at_score_offset(spanner, offset)
          for component in reversed(components):
             spanner._insert(index, component)
-            #component.spanners._add(spanner)
             component._spanners.add(spanner)
       parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:

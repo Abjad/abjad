@@ -1,5 +1,4 @@
 from abjad.components.Chord._ChordFormatter import _ChordFormatter
-#from abjad.components.Chord._ChordInitializer import _ChordInitializer
 from abjad.components._Leaf import _Leaf
 
 
@@ -7,7 +6,6 @@ class Chord(_Leaf):
 
    def __init__(self, *args, **kwargs):
       from abjad.tools.chordtools._initialize_chord import _initialize_chord
-      #self._initializer = _ChordInitializer(self, _Leaf, *args)
       _initialize_chord(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
 
