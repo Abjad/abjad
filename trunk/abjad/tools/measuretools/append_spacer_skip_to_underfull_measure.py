@@ -1,5 +1,6 @@
 from abjad.components.Skip import Skip
 from abjad.components.Measure import Measure
+from abjad.tools import marktools
 
 
 def append_spacer_skip_to_underfull_measure(rigid_measure):
@@ -43,15 +44,12 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
    assert isinstance(rigid_measure, Measure)
 
    if rigid_measure.duration.is_underfull:
-      #target_duration = rigid_measure.meter.forced.duration
-      target_duration = rigid_measure.meter.effective.duration
+      target_duration = marktools.get_effective_time_signature(rigid_measure).duration
       prolated_duration = rigid_measure.duration.prolated
       skip = Skip((1, 1))
-      #meter_multiplier = rigid_measure.meter.forced.multiplier
-      meter_multiplier = rigid_measure.meter.effective.multiplier
+      meter_multiplier = marktools.get_effective_time_signature(rigid_measure).multiplier
       new_multiplier = (target_duration - prolated_duration) / meter_multiplier
       skip.duration.multiplier = new_multiplier
-      #return skip
       rigid_measure.append(skip)
 
    return rigid_measure

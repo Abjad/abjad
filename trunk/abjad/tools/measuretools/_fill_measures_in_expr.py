@@ -11,20 +11,20 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 
    With mode = 'big-endian':
       Populate with big-endian series of notes
-      summing to measure.meter.effective.duration.
+      summing to duration of effective meter of measure.
    
    With mode = 'little-endian':
       Populate with little-endian series of notes
-      summing to measure.meter.effective.duration.
+      summing to duration of effective meter of measure.
    
    With mode = 'meter series':
       Populate with n total 1/d notes, where
-      n equals measure.meter.effective.numerator, and
-      d equals measure.meter.effective.denominator.
+      n equals effective_meter.numerator, and
+      d equals effective_meter.denominator.
 
    With mode = 'skip':
       Populate with exactly one skip, such that
-      skip.duration.prolated == measure.meter.effective.duration.
+      skip.duration.prolated == effective_meter.duration.
       Remove spanners attaching to measure.
 
    When mode is None:
@@ -49,66 +49,3 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
       _measures_populate_none(expr, iterctrl)
    else:
       raise ValueError('unknown measure population mode "%s".' % mode)
-
-
-#def _measures_populate_big_endian(expr, iterctrl):
-#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
-#      if iterctrl(measure, i):
-#         meter = measure.meter.effective
-#         written_duration = ~meter.multiplier * meter.duration
-#         notes = notetools.make_notes(0, written_duration)
-#         measure[:] = notes
-#
-#
-#def _measures_populate_little_endian(expr, iterctrl):
-#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
-#      if iterctrl(measure, i):
-#         meter = measure.meter.effective
-#         written_duration = ~meter.multiplier * meter.duration
-#         notes = notetools.make_notes(
-#            0, written_duration, direction = 'little-endian')
-#         measure[:] = notes
-#
-#
-#def _measures_populate_duration_train(expr, written_duration, iterctrl):
-#   written_duration = Rational(written_duration)
-#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
-#      if iterctrl(measure, i):
-#         meter = measure.meter.effective
-#         total_duration = meter.duration
-#         prolation = meter.multiplier
-#         notes = notetools.make_repeated_notes_with_shorter_notes_at_end(
-#            0, written_duration, total_duration, prolation)
-#         measure[:] = notes
-#
-#
-#def _measures_populate_meter_series(expr, iterctrl):
-#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
-#      if iterctrl(measure, i):
-#         meter = measure.meter.effective
-#         denominator = mathtools.greatest_power_of_two_less_equal(
-#            meter.denominator)
-#         numerator = meter.numerator
-#         notes = Note(0, (1, denominator)) * numerator
-#         measure[:] = notes
-#
-#
-#def _measures_populate_none(expr, iterctrl):
-#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
-#      if iterctrl(measure, i):
-#         measure[:] = [ ]
-#
-#
-#def _measures_populate_skip(expr, iterctrl):
-#   for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
-#      if iterctrl(measure, i):
-#         skip = Skip(1)
-#         ## allow zero-update iteration
-#         forced_meter = measure.meter.forced
-#         if forced_meter is not None:
-#            meter = forced_meter
-#         else:
-#            meter = measure.meter.effective
-#         skip.duration.multiplier = meter.duration * ~meter.multiplier
-#         measure[:] = [skip]
-#         measure.spanners._detach( )

@@ -1,3 +1,4 @@
+from abjad.tools import marktools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 import itertools
 
@@ -28,7 +29,7 @@ def _report_meter_distribution(expr, delivery = 'screen'):
 
    meters = [ ]
    for measure in iterate_measures_forward_in_expr(expr):
-      meters.append(measure.meter.effective)
+      meters.append(marktools.get_effective_time_signature(measure))
       
    meters.sort( )
 

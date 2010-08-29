@@ -1,4 +1,5 @@
 from abjad.core import Rational
+from abjad.tools import marktools
 
 
 def is_bar_line_crossing_leaf(leaf):
@@ -8,9 +9,7 @@ def is_bar_line_crossing_leaf(leaf):
 
       abjad> t = Staff(macros.scale(4))
       abjad> t[2].duration.written *= 2
-      abjad> meter = metertools.Meter(2, 8)
-      abjad> meter.partial = Rational(1, 8)
-      abjad> t.meter.forced = meter
+      abjad> marktools.TimeSignatureMark(2, 8, partial = Rational(1, 8))(t[2])
       abjad> f(t)
       \new Staff {
               \time 2/8
@@ -29,7 +28,7 @@ def is_bar_line_crossing_leaf(leaf):
       False
    '''
 
-   meter = leaf.meter.effective
+   meter = marktools.get_effective_time_signature(leaf)
    partial = meter.partial
    if meter.partial is None:
       partial = Rational(0)

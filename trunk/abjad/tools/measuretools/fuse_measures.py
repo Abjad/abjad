@@ -1,6 +1,7 @@
 from abjad.tools.metertools import Meter
 from abjad.core import Rational
 from abjad.tools import containertools
+from abjad.tools import marktools
 from abjad.tools import metertools
 from abjad.tools import componenttools
 from abjad.tools.componenttools._switch import _switch
@@ -90,7 +91,7 @@ def fuse_measures(measures):
    old_denominators = [ ]
    new_duration = Rational(0)
    for measure in measures:
-      effective_meter = measure.meter.effective
+      effective_meter = marktools.get_effective_time_signature(measure)
       old_denominators.append(effective_meter.denominator)
       new_duration += effective_meter.duration
 
@@ -100,8 +101,8 @@ def fuse_measures(measures):
    music = [ ]
    for measure in measures:
       ## scale before reassignment to prevent tie chain scale drama
-      #multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
-      multiplier = measure.meter.effective.multiplier / new_meter.multiplier
+      multiplier = \
+         marktools.get_effective_time_signature(measure).multiplier / new_meter.multiplier
       containertools.scale_contents_of_container(measure, multiplier)
       measure_music = measure[:]
       _switch(measure_music, None)

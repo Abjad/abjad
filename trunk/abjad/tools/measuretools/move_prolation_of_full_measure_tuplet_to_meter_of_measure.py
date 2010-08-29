@@ -2,6 +2,7 @@ from abjad.tools.metertools import Meter
 from abjad.components.Tuplet import _Tuplet
 from abjad.core import Rational
 from abjad.tools import componenttools
+from abjad.tools import marktools
 from abjad.tools import mathtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
@@ -39,13 +40,12 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
             tuplet_multiplier = tuplet.duration.multiplier
             tuplet_denominator = tuplet_multiplier.denominator
             reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
-            meter = measure.meter.effective
+            meter = marktools.get_effective_time_signature(measure)
             meter_rational = Rational(meter.numerator, meter.denominator)
             numerator = meter_rational.numerator * reduced_denominator
             denominator = meter_rational.denominator * reduced_denominator
-            #measure.meter.forced = Meter(numerator, denominator)
             measure._attach_explicit_meter(numerator, denominator)
-            meter_multiplier = measure.meter.effective.multiplier
+            meter_multiplier = marktools.get_effective_time_signature(measure).multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
             componenttools.move_parentage_and_spanners_from_components_to_components(
                [tuplet], tuplet[:])

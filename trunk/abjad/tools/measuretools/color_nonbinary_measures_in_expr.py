@@ -1,3 +1,4 @@
+from abjad.tools import marktools
 from abjad.tools.measuretools.color_measure import color_measure
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
@@ -72,7 +73,7 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
 
    ## color nonbinary measures in expr
    for measure in iterate_measures_forward_in_expr(expr):
-      if measure.meter.effective.nonbinary:
+      if marktools.get_effective_time_signature(measure).nonbinary:
          color_measure(measure, color)
          measures_colored.append(measure)
 

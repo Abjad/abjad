@@ -1,4 +1,5 @@
 from abjad.components.Note import Note
+from abjad.tools import marktools
 from abjad.tools import mathtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
@@ -9,7 +10,7 @@ def fill_measures_in_expr_with_meter_denominator_notes(expr, iterctrl = None):
       iterctrl = lambda measure, i: True
    for i, measure in enumerate(iterate_measures_forward_in_expr(expr)):
       if iterctrl(measure, i):
-         meter = measure.meter.effective
+         meter = marktools.get_effective_time_signature(measure)
          denominator = mathtools.greatest_power_of_two_less_equal(
             meter.denominator)
          numerator = meter.numerator
