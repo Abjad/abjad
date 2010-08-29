@@ -9,7 +9,7 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
 
    @property
    def _duration(self):
-      forced_meter = self._client.meter.forced
+      forced_meter = self._client._explicit_meter
       if forced_meter:
          return forced_meter.duration
       else:

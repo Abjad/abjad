@@ -27,7 +27,6 @@ class _Measure(Container):
    def __repr__(self):
       '''String form of measure with parentheses for interpreter display.'''
       class_name = self.__class__.__name__
-      #forced_meter = self.meter.forced
       forced_meter = self._explicit_meter
       summary = self._summary
       length = len(self)

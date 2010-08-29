@@ -54,7 +54,6 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
                s = Skip(Rational(1))
                #s.duration.multiplier = meter.offset - leaf.offset.start
                s.duration.multiplier = moffset - leaf.offset.start
-               #s.meter.forced = meter
                numerator, denominator = meter.numerator, meter.denominator
                mark = marktools.TimeSignatureMark(numerator, denominator)(s)
                mark._is_cosmetic_mark = True

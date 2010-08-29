@@ -50,7 +50,6 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(
       new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
          old_pair, multiplier)      
       new_meter = Meter(new_pair)
-      #measure.meter.forced = new_meter
       measure._attach_explicit_meter(new_meter)
       remaining_multiplier = Rational(*reduced_pair)
       if remaining_multiplier != Rational(1):
@@ -69,13 +68,11 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(
       elif multiplier == Rational(0):
          raise ZeroDivisionError
       new_meter = Meter(new_pair)
-      #measure.meter.forced = new_meter
       measure._attach_explicit_meter(new_meter)
    else:
       new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
          old_pair, multiplier)
       new_meter = Meter(new_pair)
-      #measure.meter.forced = new_meter
       measure._attach_explicit_meter(new_meter)
       remaining_multiplier = multiplier / new_meter.multiplier
       if remaining_multiplier != Rational(1):

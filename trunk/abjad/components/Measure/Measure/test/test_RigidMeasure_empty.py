@@ -4,13 +4,6 @@ import py.test
 
 def test_RigidMeasure_empty_01( ):
    assert py.test.raises(TypeError, 't = Measure(None, macros.scale(4))')
-#   assert repr(t) == 'Measure( )'
-#   assert str(t) == '| |'
-#   assert py.test.raises(UnderfullMeasureError, 't.format')
-#   assert t.meter.forced == None
-#   assert len(t) == 0
-#   assert t.duration.preprolated == Rational(0)
-#   assert t.duration.prolated == Rational(0)
 
 
 def test_RigidMeasure_empty_02( ):
