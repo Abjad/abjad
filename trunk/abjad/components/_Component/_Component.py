@@ -7,7 +7,6 @@ from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import HistoryInterface
-from abjad.interfaces import MeterInterface
 #from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
 from abjad.interfaces import ParentageInterface
@@ -121,14 +120,6 @@ class _Component(_StrictComparator):
       return tuple(set(
          self._marks_for_which_component_functions_as_start_component +
          self._marks_for_which_component_functions_as_effective_context))
-
-   @property
-   def meter(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.meter.interface.MeterInterface`.''' 
-      if not hasattr(self, '_meter'):
-         self._meter = MeterInterface(self)
-      return self._meter
 
    @property
    def misc(self):

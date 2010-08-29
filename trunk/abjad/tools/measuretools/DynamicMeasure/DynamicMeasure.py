@@ -3,9 +3,6 @@ from abjad.tools import durtools
 from abjad.tools import marktools
 from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface import \
    _DynamicMeasureDurationInterface
-from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureMeterInterface import \
-   _DynamicMeasureMeterInterface
-from abjad.tools.metertools import Meter
 
 
 class DynamicMeasure(_Measure):
@@ -15,15 +12,12 @@ class DynamicMeasure(_Measure):
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
       self._explicit_meter_is_current = False
-      #self._meter = _DynamicMeasureMeterInterface(self, self._update)
-      self._meter = _DynamicMeasureMeterInterface(self)
       self._initialize_keyword_values(**kwargs)
       self.suppress_meter = False
 
    ## PRIVATE METHODS ##
 
    def _update_explicit_meter(self):
-      #print 'foo'
       if self.denominator:
          meter_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             self.duration.contents, self.denominator)
@@ -32,7 +26,6 @@ class DynamicMeasure(_Measure):
       meter = marktools.TimeSignatureMark(*meter_pair, suppress = self.suppress_meter)
       self._attach_explicit_meter(meter)
       self._explicit_meter_is_current = True
-      #print 'bar'
 
    ## PUBLIC ATTRIBUTES ##
 

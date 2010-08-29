@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MeterInterface_partial_01( ):
+def test_TimeSignatureMark_partial_01( ):
 
    t = Staff(macros.scale(4))
    marktools.TimeSignatureMark(2, 8, partial = Rational(1, 8))(t)

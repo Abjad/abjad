@@ -48,7 +48,7 @@ def test_Staff_meter_03( ):
       assert marktools.get_effective_time_signature(x) == marktools.TimeSignatureMark(2, 4)
 
 
-def test_Staff_meter_05( ):
+def test_Staff_meter_04( ):
    '''Staff meter set and then clear.
    '''
 
