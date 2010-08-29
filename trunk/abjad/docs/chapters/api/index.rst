@@ -33,7 +33,6 @@ Score component interfaces
    interfaces/DirectivesInterface/DirectivesInterface
    interfaces/HistoryInterface/HistoryInterface
    interfaces/MarkupInterface/MarkupInterface
-   interfaces/MeterInterface/MeterInterface
    interfaces/NumberingInterface/NumberingInterface
    interfaces/OffsetInterface/OffsetInterface
    interfaces/ParentageInterface/ParentageInterface
