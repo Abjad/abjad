@@ -1,8 +1,7 @@
 from abjad import *
 
 
-def test_MeterInterface_effective_01( ):
-   #'''The default effective meter is 4/4.'''
+def test_marktools_get_effective_time_signature_01( ):
    '''The default effective meter is none.'''
 
    t = Staff(macros.scale(4))
@@ -17,15 +16,13 @@ def test_MeterInterface_effective_01( ):
    '''
    
    for leaf in t:
-      #assert leaf.meter.effective == metertools.Meter(4, 4)
-      assert leaf.meter.effective is None
+      assert marktools.get_effective_time_signature(leaf) is None
 
 
-def test_MeterInterface_effective_02( ):
+def test_marktools_get_effective_time_signature_02( ):
    '''Forced meter settings propagate to later leaves.'''
 
    t = Staff(macros.scale(4))
-   #t[0].meter.forced = metertools.Meter(2, 8)
    marktools.TimeSignatureMark(2, 8)(t[0])
 
    r'''
@@ -39,16 +36,13 @@ def test_MeterInterface_effective_02( ):
    '''
 
    for leaf in t:
-      #assert leaf.meter.effective == metertools.Meter(2, 8)
-      assert leaf.meter.effective == marktools.TimeSignatureMark(2, 8)
+      assert marktools.get_effective_time_signature(leaf) == marktools.TimeSignatureMark(2, 8)
 
 
-def test_MeterInterface_effective_03( ):
+def test_marktools_get_effective_time_signature_03( ):
    '''Setting and then clearing works as expected.'''
 
    t = Staff(macros.scale(4))
-   #t[0].meter.forced = metertools.Meter(2, 8)
-   #t[0].meter.forced = None
    time_signature = marktools.TimeSignatureMark(2, 8)(t[0])
    time_signature.detach_mark( )
 
@@ -62,5 +56,4 @@ def test_MeterInterface_effective_03( ):
    '''
 
    for leaf in t:
-      #assert leaf.meter.effective == metertools.Meter(4, 4)
-      assert leaf.meter.effective is None
+      assert marktools.get_effective_time_signature(leaf) is None

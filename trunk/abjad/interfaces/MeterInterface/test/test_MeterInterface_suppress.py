@@ -6,8 +6,7 @@ def test_MeterInterface_suppress_01( ):
    '''Suppress binary meter at format-time.'''
 
    t = Measure((7, 8), macros.scale(7))
-   #t.meter.suppress = True
-   t.meter.effective.suppress = True
+   marktools.get_effective_time_signature(t).suppress = True
 
    r'''
    {
@@ -28,7 +27,6 @@ def test_MeterInterface_suppress_02( ):
    '''Nonbinary meter suppression at format-time raises custom exception.'''
 
    t = Measure((8, 9), macros.scale(8))
-   #t.meter.suppress = True
-   t.meter.effective.suppress = True
+   marktools.get_effective_time_signature(t).suppress = True
 
    assert py.test.raises(NonbinaryMeterSuppressionError, 't.format')

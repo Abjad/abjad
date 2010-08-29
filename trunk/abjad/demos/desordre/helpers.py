@@ -36,7 +36,7 @@ def measure_build(pitches):
    for seq in pitches:
       result.append(desordre_cell(seq))
    ## make denominator 8
-   if result.meter.effective.denominator == 1:
+   if marktools.get_effective_time_signature(result).denominator == 1:
       result.denominator = 8
    return result
 

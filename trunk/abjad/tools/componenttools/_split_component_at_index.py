@@ -1,10 +1,11 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Measure import _Measure
-from abjad.tools.metertools import Meter
+from abjad.components.Tuplet import _Tuplet
 from abjad.tools import durtools
+from abjad.tools import marktools
 from abjad.tools import metertools
 from abjad.tools import spannertools
-from abjad.components.Tuplet import _Tuplet
+from abjad.tools.metertools import Meter
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components \
    import get_parent_and_start_stop_indices_of_components
 
@@ -43,7 +44,7 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
 
    ## instantiate new left and right containers
    if isinstance(component, _Measure):
-      meter_denominator = component.meter.effective.denominator
+      meter_denominator = marktools.get_effective_time_signature(component).denominator
       left_duration = sum([x.duration.prolated for x in left_music])
       left_pair = \
          durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(

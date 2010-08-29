@@ -1,5 +1,6 @@
-from abjad.tools.metertools import Meter
 from abjad.tools import durtools
+from abjad.tools import marktools
+from abjad.tools.metertools import Meter
 from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
    clone_components_and_fracture_crossing_spanners
 
@@ -85,7 +86,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
 
    # new: remember parent denominator, if any
    if isinstance(parent, _Measure):
-      parent_denominator = parent.meter.effective.denominator
+      parent_denominator = marktools.get_effective_time_signature(parent).denominator
    else:
       parent_denominator = None
 
@@ -117,16 +118,14 @@ def clone_components_and_immediate_parent_of_first_component(components):
       result.duration.target = parent_multiplier * result.duration.contents
    elif result.__class__.__name__ == 'RigidMeasure':
       new_duration = parent_multiplier * result.duration.contents
-      #result.meter.forced = Meter(new_duration.numerator, new_duration.denominator)
       result._attach_explicit_meter(new_duration.numerator, new_duration.denominator)
 
    # new: rewrite result denominator, if available
    if parent_denominator is not None:
-      old_meter = result.meter.effective
+      old_meter = marktools.get_effective_time_signature(result)
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
          old_meter_pair, parent_denominator)
-      #result.meter.forced = Meter(new_meter)
       result._attach_explicit_meter(*new_meter)
 
    # return copy
