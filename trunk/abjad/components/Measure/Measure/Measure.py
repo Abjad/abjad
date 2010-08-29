@@ -13,13 +13,9 @@ class Measure(_Measure):
       from abjad.components import Staff
       _Measure.__init__(self, music)
       self._duration = _RigidMeasureDurationInterface(self)
-      #self._explicit_meter = None
       self._formatter = _RigidMeasureFormatter(self)
-      #self.meter.forced = Meter(meter)
       meter = Meter(meter)
       numerator, denominator = meter.numerator, meter.denominator
-      #meter = marktools.TimeSignatureMark(numerator, denominator)(self)
-      #self._explicit_meter = meter
       self._attach_explicit_meter(numerator, denominator)
       self._initialize_keyword_values(**kwargs)
 
@@ -28,8 +24,7 @@ class Measure(_Measure):
    def __delitem__(self, i):
       '''Container deletion with meter adjustment.'''
       try:
-         #old_denominator = self.meter.forced.denominator
-         old_denominator = self.meter.effective.denominator
+         old_denominator = marktools.get_effective_time_signature(self).denominator
       except AttributeError:
          pass
       _Measure.__delitem__(self, i)
@@ -37,7 +32,6 @@ class Measure(_Measure):
          naive_meter = self.duration.preprolated
          better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             naive_meter, old_denominator)
-         #self.meter.forced = Meter(better_meter)
          self._attach_explicit_meter(*better_meter)
       except (AttributeError, UnboundLocalError):
          pass

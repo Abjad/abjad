@@ -1,8 +1,9 @@
+from abjad.core import Rational
+from abjad.components.Measure._MeasureFormatter import _MeasureFormatter
 from abjad.exceptions import NonbinaryMeterSuppressionError
 from abjad.exceptions import OverfullMeasureError
 from abjad.exceptions import UnderfullMeasureError
-from abjad.components.Measure._MeasureFormatter import _MeasureFormatter
-from abjad.core import Rational
+from abjad.tools import marktools
 
 
 class _RigidMeasureFormatter(_MeasureFormatter):
@@ -33,15 +34,11 @@ class _RigidMeasureFormatter(_MeasureFormatter):
    def format(self):
       from abjad.tools import marktools
       client = self._client
-      #effective_meter = marktools.get_effective_time_signature(client)
-      #if client.meter.effective.nonbinary and client.meter.suppress:
-      if client.meter.effective.nonbinary and client.meter.effective.suppress:
-      #if effective_meter.nonbinary and client.meter.suppress:
+      effective_meter = marktools.get_effective_time_signature(self._client)
+      if effective_meter.nonbinary and effective_meter.suppress:
          raise NonbinaryMeterSuppressionError
-      if client.meter.effective.duration < client.duration.preprolated:
-      #if effective_meter.duration < client.duration.preprolated:
+      if effective_meter.duration < client.duration.preprolated:
          raise OverfullMeasureError
-      if client.duration.preprolated < client.meter.effective.duration:
-      #if client.duration.preprolated < effective_meter.duration:
+      if client.duration.preprolated < effective_meter.duration:
          raise UnderfullMeasureError
       return _MeasureFormatter.format.fget(self)

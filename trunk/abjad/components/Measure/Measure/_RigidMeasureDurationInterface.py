@@ -1,4 +1,5 @@
 from abjad.components.Measure._MeasureDurationInterface import _MeasureDurationInterface
+from abjad.tools import marktools
 
 
 class _RigidMeasureDurationInterface(_MeasureDurationInterface):
@@ -13,7 +14,8 @@ class _RigidMeasureDurationInterface(_MeasureDurationInterface):
       effective meter duration.
       '''
 
-      return self._client.meter.effective.duration < self.prolated
+      return marktools.get_effective_time_signature(self._client).duration < self.prolated
+      
 
    @property
    def is_underfull(self):
@@ -23,9 +25,9 @@ class _RigidMeasureDurationInterface(_MeasureDurationInterface):
       effective meter duration.
       '''
 
-      return self.prolated < self._client.meter.effective.duration
+      return self.prolated < marktools.get_effective_time_signature(self._client).duration
 
    @property
    def preprolated(self):
       '''Measure contents duration times effective meter multiplier.'''
-      return self._client.meter.effective.multiplier * self.contents
+      return marktools.get_effective_time_signature(self._client).multiplier * self.contents

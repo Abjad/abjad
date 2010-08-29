@@ -1,6 +1,7 @@
 from abjad.components.Container import Container
 from abjad.components.Measure._MeasureDurationInterface import _MeasureDurationInterface
 from abjad.components.Measure._MeasureFormatter import _MeasureFormatter
+from abjad.tools import marktools
 
 
 class _Measure(Container):
@@ -41,8 +42,7 @@ class _Measure(Container):
 
    def __str__(self):
       '''String form of measure with pipes for single string display.'''
-      #forced_meter = self.meter.forced
-      forced_meter = self.meter.effective
+      forced_meter = marktools.get_effective_time_signature(self)
       summary = self._summary
       length = len(self)
       if forced_meter and length:
@@ -87,14 +87,14 @@ class _Measure(Container):
    def _compact_representation(self):
       '''Display form of measure used for spanners to display
       potentially many spanned measures one after the other.'''
-      return '|%s(%s)|' % (self.meter.effective, len(self))
+      return '|%s(%s)|' % (marktools.get_effective_time_signature(self), len(self))
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def full(self):
       '''True if preprolated duration matches effective meter duration.'''
-      return self.meter.effective.duration == self.duration.preprolated
+      return marktools.get_effective_time_signature(self).duration == self.duration.preprolated
 
 ## FIXME ##
 #   @property

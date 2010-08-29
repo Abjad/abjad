@@ -1,5 +1,6 @@
 from abjad.components.Container._MultipliedContainerDurationInterface import \
    _MultipliedContainerDurationInterface
+from abjad.tools import marktools
 
 
 class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
@@ -18,8 +19,8 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
 
    @property
    def multiplier(self):
-      return self._client.meter.effective.multiplier
+      return marktools.get_effective_time_signature(self._client).multiplier
 
    @property
    def nonbinary(self):
-      return self._client.meter.effective.nonbinary
+      return marktools.get_effective_time_signature(self._client).nonbinary
