@@ -4,7 +4,7 @@ from abjad.tools.spannertools.SlurSpanner._SlurSpannerFormatInterface import _Sl
 
 class SlurSpanner(Spanner):
 
-   def __init__(self, music = None):
+   def __init__(self, music = None, style = None):
       Spanner.__init__(self, music)
       self._format = _SlurSpannerFormatInterface(self)
       self.style = None

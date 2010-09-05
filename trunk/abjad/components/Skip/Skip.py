@@ -20,6 +20,10 @@ class Skip(_Leaf):
       return 's%s' % self.duration
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def _compact_representation(self):
+      return 's%s' % self.duration
   
    @property
    def _body(self):

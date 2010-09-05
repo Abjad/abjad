@@ -16,5 +16,13 @@ class _Immutable(object):
    def __delattr__(self, *args):
       raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
 
+   def __getstate__(self):
+      return { }
+
+   #def __new__(klass, *args, **kwargs):
+   #   return object.__new__(klass, *args, **kwargs)
+
    def __setattr__(self, *args):
       raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
+
+

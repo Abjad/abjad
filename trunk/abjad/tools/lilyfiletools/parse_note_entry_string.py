@@ -54,6 +54,8 @@ def parse_note_entry_string(note_entry_string):
 
       elif waiting_on_clef_string:
          clef_string = token
+         if token.startswith(('\'', '\"')):
+            clef_string = eval(token)
          waiting_on_clef_string = False
 
       elif in_chord: # currently inside a chord block, looking for pitches
