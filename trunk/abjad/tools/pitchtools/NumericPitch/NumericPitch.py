@@ -11,7 +11,8 @@ class NumericPitch(_Pitch):
    Numeric pitches are value objects and can not be changed after creation.
    '''
 
-   def __init__(self, arg):
+   def __new__(klass, arg):
+      self = object.__new__(klass)
       if isinstance(arg, (int, float, long)):
          #self._number = arg
          number = arg
@@ -21,6 +22,21 @@ class NumericPitch(_Pitch):
       else:
          raise TypeError('can not initialize numeric pitch from %s.' % arg)
       object.__setattr__(self, '_number', number)
+      return self
+
+   def __getnewargs__(self):
+      return (self.number,)
+
+#   def __init__(self, arg):
+#      if isinstance(arg, (int, float, long)):
+#         #self._number = arg
+#         number = arg
+#      elif isinstance(arg, NumericPitch):
+#         #self._number = arg.number
+#         number = arg.number
+#      else:
+#         raise TypeError('can not initialize numeric pitch from %s.' % arg)
+#      object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##
 

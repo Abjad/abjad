@@ -14,26 +14,22 @@ class Accidental(_StrictComparator, _Immutable):
    __slots__ = ('_alphabetic_string', '_is_adjusted', '_name', 
       '_semitones', '_symbolic_string')
 
-   def __init__(self, arg = ''):
-   
+   def __new__(klass, arg = ''):
+
+      self = object.__new__(klass)
+
       ## initializer symbolic string from arg
       if arg in self._all_accidental_alphabetic_strings:
-         #self._alphabetic_string = arg
          _alphabetic_string = arg
       elif arg in self._all_accidental_symbolic_strings:
          _alphabetic_string = self._symbolic_string_to_alphabetic_string[arg]
-         #self._alphabetic_string = _alphabetic_string
       elif arg in self._all_accidental_names:
          _alphabetic_string = self._name_to_alphabetic_string[arg]
-         #self._alphabetic_string = _alphabetic_string
       elif arg in self._all_accidental_semitone_values:
          _alphabetic_string = self._semitones_to_alphabetic_string[arg]
-         #self._alphabetic_string = _alphabetic_string
       elif isinstance(arg, Accidental):
-         #self._alphabetic_string = arg.alphabetic_string 
          _alphabetic_string = arg.alphabetic_string 
       elif isinstance(arg, type(None)):
-         #self._alphabetic_string = ''
          _alphabetic_string = ''
       else:
          raise ValueError('can not initialize accidental from value: %s' % arg)
@@ -48,6 +44,46 @@ class Accidental(_StrictComparator, _Immutable):
       object.__setattr__(self, '_is_adjusted', _is_adjusted)
       _symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
       object.__setattr__(self, '_symbolic_string', _symbolic_string)
+
+      return self
+
+   def __getnewargs__(self):
+      return (self.alphabetic_string,)
+
+#   def __init__(self, arg = ''):
+#   
+#      ## initializer symbolic string from arg
+#      if arg in self._all_accidental_alphabetic_strings:
+#         #self._alphabetic_string = arg
+#         _alphabetic_string = arg
+#      elif arg in self._all_accidental_symbolic_strings:
+#         _alphabetic_string = self._symbolic_string_to_alphabetic_string[arg]
+#         #self._alphabetic_string = _alphabetic_string
+#      elif arg in self._all_accidental_names:
+#         _alphabetic_string = self._name_to_alphabetic_string[arg]
+#         #self._alphabetic_string = _alphabetic_string
+#      elif arg in self._all_accidental_semitone_values:
+#         _alphabetic_string = self._semitones_to_alphabetic_string[arg]
+#         #self._alphabetic_string = _alphabetic_string
+#      elif isinstance(arg, Accidental):
+#         #self._alphabetic_string = arg.alphabetic_string 
+#         _alphabetic_string = arg.alphabetic_string 
+#      elif isinstance(arg, type(None)):
+#         #self._alphabetic_string = ''
+#         _alphabetic_string = ''
+#      else:
+#         raise ValueError('can not initialize accidental from value: %s' % arg)
+#      object.__setattr__(self, '_alphabetic_string', _alphabetic_string)
+
+#      ## initialize derived attributes
+#      _semitones = self._alphabetic_string_to_semitones[self.alphabetic_string]
+#      object.__setattr__(self, '_semitones', _semitones)
+#      _name = self._alphabetic_string_to_name[self.alphabetic_string]
+#      object.__setattr__(self, '_name', _name)
+#      _is_adjusted = not self.semitones == 0
+#      object.__setattr__(self, '_is_adjusted', _is_adjusted)
+#      _symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
+#      object.__setattr__(self, '_symbolic_string', _symbolic_string)
 
    ## OVERLOADS ##
 
@@ -261,3 +297,4 @@ class Accidental(_StrictComparator, _Immutable):
       #symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
       #return symbolic_string
       return self._symbolic_string
+

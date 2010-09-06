@@ -12,8 +12,9 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    __slots__ = ('_accidental', '_deviation', '_letter', '_octave')
 
-   def __init__(self, *args):
+   def __new__(klass, *args):
       from abjad.tools import pitchtools
+      self = object.__new__(klass)
       #self._deviation = None
       object.__setattr__(self, '_deviation', None)
       if not args:
@@ -41,6 +42,40 @@ class NamedPitch(_StrictComparator, _Pitch):
          self._init_by_name_octave_and_deviation(*args)
       else:
          raise ValueError('%s not valid pitch token.' % str(args))
+      return self
+
+   def __getnewargs__(self):
+      return (self.name, self.octave)
+
+#   def __init__(self, *args):
+#      from abjad.tools import pitchtools
+#      #self._deviation = None
+#      object.__setattr__(self, '_deviation', None)
+#      if not args:
+#         self._init_empty( )
+#      elif len(args) == 1 and isinstance(args[0], (int, long, float)):
+#         self._init_by_number(*args)
+#      elif len(args) == 1 and isinstance(args[0], NamedPitch):
+#         self._init_by_reference(*args)
+#      elif len(args) == 1 and pitchtools.is_named_pitch_pair(args[0]):
+#         self._init_by_pair(*args)
+#      elif len(args) == 1 and isinstance(args[0], str):
+#         self._init_by_pitch_string(*args)
+#      elif len(args) == 2 and isinstance(args[0], str):
+#         self._init_by_name_and_octave(*args)
+#      elif len(args) == 2 and isinstance(args[0], pitchtools.NamedPitchClass):
+#         self._init_by_named_pitch_class_and_octave_number(*args)
+#      elif len(args) == 2 and isinstance(args[0], (int, long, float)):
+#         if isinstance(args[1], str):
+#            self._init_by_number_and_letter(*args)
+#         elif isinstance(args[1], pitchtools.NamedPitchClass):
+#            self._init_by_number_and_named_pitch_class(*args)
+#         else:
+#            raise TypeError
+#      elif len(args) == 3:
+#         self._init_by_name_octave_and_deviation(*args)
+#      else:
+#         raise ValueError('%s not valid pitch token.' % str(args))
 
    ## OVERLOADS ##
 

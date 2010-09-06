@@ -13,7 +13,10 @@ class Articulation(_StrictComparator, _Immutable):
 
    __slots__ = ('_string', '_direction')
 
-   def __init__(self, *args):
+   def __new__(klass, *args):
+
+      self = object.__new__(klass)
+
       assert len(args) in range(3)
       if 2 <= len(args):
          assert isinstance(args[0], (str, type(None)))
@@ -48,6 +51,47 @@ class Articulation(_StrictComparator, _Immutable):
 
       object.__setattr__(self, '_string', string)
       object.__setattr__(self, '_direction', direction)
+
+      return self
+
+   def __getnewargs__(self):
+      return (self.string, self.direction)
+
+#   def __init__(self, *args):
+#      assert len(args) in range(3)
+#      if 2 <= len(args):
+#         assert isinstance(args[0], (str, type(None)))
+#         assert isinstance(args[1], (str, type(None)))
+#         string, direction = args
+#      elif len(args) == 1:
+#         assert isinstance(args[0], (str, type(None)))
+#         if args[0]:
+#            splits = args[0].split('\\')
+#            assert len(splits) in (1, 2)
+#            if len(splits) == 1:
+#               string, direction = args[0], None
+#            elif len(splits) == 2:
+#               string = splits[1]
+#               if splits[0]:
+#                  direction = splits[0]
+#               else:
+#                  direction = None
+#         else:
+#            string, direction = None, None
+#      else:
+#         string, direction = None, None
+#
+#      if direction in ('^', 'up'):
+#         direction = '^'
+#      elif direction in ('_', 'down'):
+#         direction = '_'
+#      elif direction in ('-', 'default', None):
+#         direction = '-'
+#      else:
+#         raise ValueError('can not set articulation direction.')
+#
+#      object.__setattr__(self, '_string', string)
+#      object.__setattr__(self, '_direction', direction)
 
    ## OVERLOADS ##
 

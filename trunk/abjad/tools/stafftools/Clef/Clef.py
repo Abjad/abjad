@@ -6,8 +6,16 @@ class Clef(_StrictComparator, _Immutable):
 
    __slots__ = ('_name', )
 
-   def __init__(self, name = 'treble'):
+   def __new__(klass, name = 'treble'):
+      self = object.__new__(klass)
       object.__setattr__(self, '_name', name)
+      return self
+
+   def __getnewargs__(self):
+      return (self.name,)
+
+#   def __init__(self, name = 'treble'):
+#      object.__setattr__(self, '_name', name)
 
    ## OVERLOADS ##
 
