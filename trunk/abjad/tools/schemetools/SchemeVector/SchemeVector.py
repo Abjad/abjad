@@ -2,11 +2,18 @@ from abjad.core import _Immutable
 from types import BooleanType
 
 
-class SchemeVector(list, _Immutable):
+class SchemeVector(tuple, _Immutable):
    '''Abjad representation of Scheme vector.'''
 
-   def __init__(self, *args):
-      list.__init__(self, args)
+   def __new__(klass, *args):
+      self = tuple.__new__(klass, args)
+      return self
+
+   def __getnewargs__(self):
+      return tuple(self)
+
+#   def __init__(self, *args):
+#      list.__init__(self, args)
 
    ## OVERLOADS ##
 
@@ -39,4 +46,4 @@ class SchemeVector(list, _Immutable):
    @property
    def format(self):
       '''LilyPond input representation of scheme vector.'''
-      return "#'%s" % self
+      return "#'%s" % self.__str__()

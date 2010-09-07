@@ -2,13 +2,22 @@ from abjad.core import _Immutable
 from types import BooleanType
 
 
-class SchemePair(list, _Immutable):
+class SchemePair(tuple, _Immutable):
    '''Abjad representation of Scheme pair.'''
 
-   def __init__(self, *args):
-      if 2 < len(args):
-          raise Exception('Scheme pairs may contain only two values.')
-      list.__init__(self, args)
+   def __new__(klass, *args):
+      if len(args) != 2:
+         raise Exception('Scheme pairs may contain only two values.')
+      self = tuple.__new__(klass, args)
+      return self
+
+   def __getnewargs__(self):
+      return tuple(self)
+
+#   def __init__(self, *args):
+#      if 2 < len(args):
+#          raise Exception('Scheme pairs may contain only two values.')
+#      list.__init__(self, args)
 
    ## OVERLOADS ##
 
@@ -41,4 +50,4 @@ class SchemePair(list, _Immutable):
    @property
    def format(self):
       '''LilyPond input representation of scheme pair.'''
-      return "#'%s" % self
+      return "#'%s" % self.__str__()

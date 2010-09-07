@@ -15,9 +15,17 @@ class SchemeMoment(_StrictComparator, _Immutable):
 
    __slots__ = ('_duration')
 
-   def __init__(self, duration):
-      duration = Fraction(duration)
+   def __new__(klass, duration):
+      self = object.__new__(klass)
       object.__setattr__(self, '_duration', duration)
+      return self
+
+   def __getnewargs__(self):
+      return (self.duration,)
+
+#   def __init__(self, duration):
+#      duration = Fraction(duration)
+#      object.__setattr__(self, '_duration', duration)
 
    ## PUBLIC ATTRIBUTES ##
 

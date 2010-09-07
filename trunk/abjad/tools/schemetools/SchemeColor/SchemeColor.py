@@ -14,8 +14,16 @@ class SchemeColor(_StrictComparator, _Immutable):
       c'4
    '''
 
-   def __init__(self, name):
+   def __new__(klass, name):
+      self = object.__new__(klass)
       object.__setattr__(self, 'name', name)
+      return self
+
+   def __getnewargs__(self):
+      return (self.name,)
+
+#   def __init__(self, name):
+#      object.__setattr__(self, 'name', name)
 
    ## PUBLIC ATTRIBUTES ##
    

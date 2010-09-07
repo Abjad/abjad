@@ -5,10 +5,24 @@ from abjad.core import _Immutable
 class SchemeFunction(_StrictComparator, _Immutable):
    '''Wrapper for names of Scheme functions known to LilyPond.'''
 
-   def __init__(self, name = '', *args):
-      object.__setattr__(self, 'name', name)
-      object.__setattr__(self, 'args', [ ])
-      self.args.extend(args)
+   def __new__(klass, *args):
+      self = object.__new__(klass)
+      object.__setattr__(self, 'name', args[0])
+      if 1 < len(args):
+         object.__setattr__(self, 'args', args[1:])
+      else:
+         object.__setattr__(self, 'args', [ ])
+      return self
+
+   def __getnewargs__(self):
+      newargs = [self.name]
+      newargs.extend(self.args)
+      return tuple(newargs)
+
+#   def __init__(self, name = '', *args):
+#      object.__setattr__(self, 'name', name)
+#      object.__setattr__(self, 'args', [ ])
+#      self.args.extend(args)
 
    ## PUBLIC ATTRIBUTES ##
    
