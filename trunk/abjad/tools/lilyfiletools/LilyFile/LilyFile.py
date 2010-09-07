@@ -24,7 +24,7 @@ class LilyFile(list):
       result = [ ]
       result.extend(self._file_initial_scheme_settings)
       for x in self:
-         if hasattr(x, 'format'):
+         if 'format' in dir(x) and not isinstance(x, str):
             result.append(x.format)
          else:
             result.append(str(x))
