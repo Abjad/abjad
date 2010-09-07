@@ -514,6 +514,7 @@ mathtools
 .. toctree::
    :maxdepth: 1
 
+   tools/mathtools/binomial_coefficient
    tools/mathtools/divide_scalar_by_ratio
    tools/mathtools/divisors
    tools/mathtools/factors
