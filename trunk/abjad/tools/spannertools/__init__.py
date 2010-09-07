@@ -21,6 +21,7 @@ from ProportionalTempoSpanner import ProportionalTempoSpanner
 from SlurSpanner import SlurSpanner
 from SpacingSpanner import SpacingSpanner
 from Spanner import Spanner
+from StaffLinesSpanner import StaffLinesSpanner
 from TempoSpanner import TempoSpanner
 from TextScriptSpanner import TextScriptSpanner
 from TextSpanner import TextSpanner
