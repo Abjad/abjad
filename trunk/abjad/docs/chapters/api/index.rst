@@ -858,6 +858,7 @@ spannertools
    tools/spannertools/SlurSpanner/SlurSpanner
    tools/spannertools/SpacingSpanner/SpacingSpanner
    tools/spannertools/Spanner/Spanner
+   tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
    tools/spannertools/TempoSpanner/TempoSpanner
    tools/spannertools/TextScriptSpanner/TextScriptSpanner
    tools/spannertools/TextSpanner/TextSpanner
