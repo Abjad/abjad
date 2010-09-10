@@ -1,0 +1,1 @@
+clear && python -i $1 -c 'from abjad import *'
