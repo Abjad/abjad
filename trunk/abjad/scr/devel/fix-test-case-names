@@ -65,14 +65,7 @@ def _check_test_case_names( ):
    print '%s total nonmatching test case name.' % total_nonmatching_names
       
 
-
-def _fix_test_case_names( ):
-   pass
-
-
-
 if __name__ == '__main__':
    os.system('clear')
    _check_test_case_names( )
-   _fix_test_case_names( )
    print ''
