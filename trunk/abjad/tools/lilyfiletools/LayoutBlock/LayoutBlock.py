@@ -28,5 +28,3 @@ class LayoutBlock(_BlockAttributed):
    @property
    def contexts(self):
       return self._contexts
-
-
