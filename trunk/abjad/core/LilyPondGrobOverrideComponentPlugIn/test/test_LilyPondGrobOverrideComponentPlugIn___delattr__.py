@@ -24,3 +24,35 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___01( ):
    '''
 
    assert note.format == "\\once \\override Dots #'thicknes = #2\nc'4"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___delattr___02( ):
+   '''Delete LilyPond Rest grob override.
+   '''
+
+   t = Staff(macros.scale(4))
+   t.override.rest.transparent = True
+   del(t.override.rest)
+
+   r'''
+   \new Staff {
+           c'8
+           d'8
+           e'8
+           f'8
+   }
+   '''
+   
+   assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___delattr___03( ):
+   '''Delete LilyPond TimeSignature grob override.
+   '''
+
+   t = Note(0, (1, 4))
+   t.override.time_signature.color = 'red'
+   t.override.time_signature.transparent = True
+   del(t.override.time_signature)
+
+   assert t.format == "c'4"
