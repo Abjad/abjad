@@ -68,6 +68,28 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___03( ):
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___04( ):
+   '''Override LilyPond Beam grob.
+   '''
+
+   t = Voice(macros.scale(4))
+   p = spannertools.BeamSpanner(t[:])
+   #p.positions = (4, 4)
+   p.override.beam.positions = (4, 4)
+
+   r'''
+   \new Voice {
+      \override Beam #'positions = #'(4 . 4)
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+      \revert Beam #'positions
+   }
+   '''
+
+   assert t.format == "\\new Voice {\n\t\\override Beam #'positions = #'(4 . 4)\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'positions\n}"
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___05( ):
    '''Override LilyPond Clef grob.
    '''
 
@@ -82,7 +104,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___04( ):
    assert t.format == "\\once \\override Clef #'color = #red\nc'4"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___05( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___06( ):
    '''Override LilyPond Clef grob.
    '''
 
@@ -96,7 +118,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___05( ):
    '''
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___06( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___07( ):
    '''Override LilyPond Clef grob.
    '''
 
@@ -117,7 +139,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___06( ):
    assert t.format == "\\new Staff \\with {\n\t\\override Clef #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___07( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___08( ):
    '''Override LilyPond ClusterSpanner grob.
    '''
 
@@ -154,7 +176,30 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___07( ):
    assert t.format == "\\makeClusters {\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___08( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___09( ):
+   '''Override LilyPond DynamicLineSpanner grob.
+   '''
+
+   t = Voice(macros.scale(4))
+   p = spannertools.HairpinSpanner(t[:], 'p < f')
+   p.override.dynamic_line_spanner.staff_padding = 4
+
+   r'''
+   \new Voice {
+      \override DynamicLineSpanner #'staff-padding = #4
+      c'8 \< \p
+      d'8
+      e'8
+      f'8 \f
+      \revert DynamicLineSpanner #'staff-padding
+   }
+   '''
+
+   #assert t.format == "\\new Voice {\n\t\\override DynamicLineSpanner #'staff-padding = #4\n\tc'8 \\< \\pX\n\td'8\n\te'8\n\tf'8 \\fX\n\t\\revert DynamicLineSpanner #'staff-padding\n}"
+   assert t.format == "\\new Voice {\n\t\\override DynamicLineSpanner #'staff-padding = #4\n\tc'8 \\< \\p\n\td'8\n\te'8\n\tf'8 \\f\n\t\\revert DynamicLineSpanner #'staff-padding\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___10( ):
    '''Override LilyPond DynamicLineSpanner grob.
    '''
 
@@ -179,7 +224,31 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___08( ):
    assert t.format == "\\new Staff \\with {\n\t\\override DynamicLineSpanner #'Y-extent = #'(-1.5 . 1.5)\n\t\\override DynamicLineSpanner #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___09( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___11( ):
+   '''Override LilyPond DynamicText grob.
+   '''
+
+   t = Voice(macros.scale(4))
+   spannertools.BeamSpanner(t[:])
+   p = spannertools.DynamicTextSpanner(t[:], 'f')
+   p.override.dynamic_text.thickness = 3
+
+   r'''
+   \new Voice {
+      \override DynamicText #'thickness = #3
+      c'8 [ \f
+      d'8
+      e'8
+      f'8 ]
+      \revert DynamicText #'thickness
+   }
+   '''
+
+   assert componenttools.is_well_formed_component(t)
+   assert t.format == "\\new Voice {\n\t\\override DynamicText #'thickness = #3\n\tc'8 [ \\f\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert DynamicText #'thickness\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___12( ):
    '''Override LilyPond DynamicText grob.
    '''
 
@@ -204,7 +273,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09( ):
    assert t.format == "\\new Staff \\with {\n\t\\override DynamicText #'Y-extent = #'(-1.5 . 1.5)\n\t\\override DynamicText #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___10( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___13( ):
    '''Override LilyPond DynamicTextSpanner grob.
    '''
 
@@ -229,7 +298,29 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___10( ):
    assert t.format == "\\new Staff \\with {\n\t\\override DynamicTextSpanner #'Y-extent = #'(-1.5 . 1.5)\n\t\\override DynamicTextSpanner #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___11( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___14( ):
+   '''Override LilyPond Glissando grob.
+   '''
+
+   t = Voice(macros.scale(4))
+   p = spannertools.GlissandoSpanner(t[:])
+   p.override.glissando.thickness = 3
+
+   r'''
+   \new Voice {
+      \override Glissando #'thickness = #3
+      c'8 \glissando
+      d'8 \glissando
+      e'8 \glissando
+      f'8
+      \revert Glissando #'thickness
+   }
+   '''
+
+   assert t.format == "\\new Voice {\n\t\\override Glissando #'thickness = #3\n\tc'8 \\glissando\n\td'8 \\glissando\n\te'8 \\glissando\n\tf'8\n\t\\revert Glissando #'thickness\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___15( ):
    '''Override LilyPond Hairpin grob.
    '''
 
@@ -252,7 +343,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___11( ):
    assert t.format == "\\new Staff \\with {\n\t\\override Hairpin #'Y-extent = #'(-1.5 . 1.5)\n\t\\override Hairpin #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___12( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___16( ):
    '''Override LilyPond InstrumentName grob.
    '''
 
@@ -276,7 +367,31 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12( ):
    assert t.format == "\\new Staff \\with {\n\t\\override InstrumentName #'color = #red\n\tinstrumentName = \\markup { \\circle { V } }\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___13( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___17( ):
+   '''Override LilyPond MetronomeMark grob.
+   '''
+
+   t = Voice(macros.scale(4))
+   p = spannertools.TempoSpanner(t[:], tempotools.TempoIndication(Rational(1, 4), 58))
+   p.override.staff.metronome_mark.color = 'red'
+   
+   r'''
+   \new Voice {
+      \override Staff.MetronomeMark #'color = #red
+      \tempo 4=58
+      c'8
+      d'8
+      e'8
+      f'8
+      %% tempo 4=58 ends here
+      \revert Staff.MetronomeMark #'color
+   }
+   '''
+
+   assert t.format == "\\new Voice {\n\t\\override Staff.MetronomeMark #'color = #red\n\t\\tempo 4=58\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t%% tempo 4=58 ends here\n\t\\revert Staff.MetronomeMark #'color\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___18( ):
    '''Override LilyPond MultiMeasureRestGrob.
    '''
 
@@ -294,7 +409,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___13( ):
    assert staff.format == "\\new Staff \\with {\n\t\\override MultiMeasureRest #'expand-limit = #12\n} {\n\tc'4\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___14( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___19( ):
    '''Override LilyPond NonMusicalPaperColumn grob.
    '''
 
@@ -322,7 +437,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___14( ):
    assert t.format == "\\new Score \\with {\n\t\\override NonMusicalPaperColumn #'line-break-permission = ##f\n\t\\override NonMusicalPaperColumn #'page-break-permission = ##f\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___15( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___20( ):
    '''Override LilyPond NoteColumn grob.
    '''
 
@@ -339,7 +454,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___15( ):
    assert t.format == "\\once \\override NoteColumn #'ignore-collision = ##t\nc'4"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___16( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___21( ):
    '''Override LilyPond NoteColumn grob.
    '''
 
@@ -362,7 +477,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___16( ):
    assert t.format == "\\new Staff \\with {\n\t\\override NoteColumn #'ignore-collision = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___17( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___22( ):
    '''Override LilyPond NoteHead grob.
    '''
 
@@ -376,7 +491,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___17( ):
    assert t.format == "cs''4"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___18( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___23( ):
    '''Override LilyPond NoteHead grob.
    '''
 
@@ -398,7 +513,31 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18( ):
    assert t.format == "\\new Voice \\with {\n\t\\override NoteHead #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___19( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___24( ):
+   '''Override LilyPond OctavationBracket grob.
+   '''
+
+   t = Voice(macros.scale(4))
+   p = spannertools.OctavationSpanner(t[:], 1)
+   p.override.staff.ottava_bracket.staff_position = 4
+
+   r'''
+   \new Voice {
+      \override Staff.OttavaBracket #'staff-position = #4
+      \ottava #1
+      c'8
+      d'8
+      e'8
+      f'8
+      \ottava #0
+      \revert Staff.OttavaBracket #'staff-position
+   }
+   '''
+
+   assert t.format == "\\new Voice {\n\t\\override Staff.OttavaBracket #'staff-position = #4\n\t\\ottava #1\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\ottava #0\n\t\\revert Staff.OttavaBracket #'staff-position\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___25( ):
    '''Override LilyPond RehearsalMark grob.
    '''
 
@@ -423,7 +562,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___19( ):
    assert t.format == "\\new Staff \\with {\n\t\\override RehearsalMark #'Y-extent = #'(-1.5 . 1.5)\n\t\\override RehearsalMark #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___20( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___26( ):
    '''Override LilyPond Rest grob.
    '''
 
@@ -444,7 +583,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___20( ):
    assert t.format == "\\new Staff \\with {\n\t\\override Rest #'transparent = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___21( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___27( ):
    '''Override LilyPond Script grob.
    '''
 
@@ -461,7 +600,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___21( ):
    assert t.format == "\\once \\override Script #'color = #red\nc'4 -\\staccato"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___22( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___28( ):
    '''Override LilyPond Script grob.
    '''
 
@@ -486,7 +625,77 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___22( ):
    assert t.format == "\\new Staff \\with {\n\t\\override Script #'Y-extent = #'(-1.5 . 1.5)\n\t\\override Script #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___23( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___29( ):
+   '''Override LilyPond SpacingSpanner grob.
+   '''
+
+   t = Staff(macros.scale(4))
+   #p = spannertools.SpacingSpanner(t[:])
+   p = spannertools.Spanner(t[:])
+   p.override.score.spacing_spanner.strict_grace_spacing = True
+   p.override.score.spacing_spanner.strict_note_spacing = True
+   p.override.score.spacing_spanner.uniform_stretching = True
+
+   r'''
+   \new Staff {
+      \override Score.SpacingSpanner #'strict-grace-spacing = ##t
+      \override Score.SpacingSpanner #'strict-note-spacing = ##t
+      \override Score.SpacingSpanner #'uniform-stretching = ##t
+      c'8
+      d'8
+      e'8
+      f'8
+      \revert Score.SpacingSpanner #'strict-grace-spacing
+      \revert Score.SpacingSpanner #'strict-note-spacing
+      \revert Score.SpacingSpanner #'uniform-stretching
+   }
+   '''
+
+   assert componenttools.is_well_formed_component(t)
+   assert t.format == "\\new Staff {\n\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\\revert Score.SpacingSpanner #'uniform-stretching\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___30( ):
+   '''Override LilyPond SpacingSpanner grob on Abjad containers.
+   LilyPond SpacingSpanner lives at Score by default.
+   Abjad SpacingSpanner overrides usually 
+   require context promotion.
+   '''
+
+   t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+   macros.diatonicize(t)
+   #p = spannertools.SpacingSpanner(t[:])
+   p = spannertools.Spanner(t[:])
+   p.override.score.spacing_spanner.strict_grace_spacing = True
+   p.override.score.spacing_spanner.strict_note_spacing = True
+   p.override.score.spacing_spanner.uniform_stretching = True
+   
+
+   r'''
+   \new Staff {
+           {
+                   \time 2/8
+                   \override Score.SpacingSpanner #'strict-grace-spacing = ##t
+                   \override Score.SpacingSpanner #'strict-note-spacing = ##t
+                   \override Score.SpacingSpanner #'uniform-stretching = ##t
+                   c'8
+                   d'8
+           }
+           {
+                   \time 2/8
+                   e'8
+                   f'8
+                   \revert Score.SpacingSpanner #'strict-note-spacing
+                   \revert Score.SpacingSpanner #'strict-grace-spacing
+                   \revert Score.SpacingSpanner #'uniform-stretching
+           }
+   }
+   '''
+
+   assert componenttools.is_well_formed_component(t)
+   #assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n\t}\n}"
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___31( ):
    '''Override LilyPond SpacingSpanner grob.
    '''
 
@@ -508,7 +717,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___23( ):
    assert t.format == "\\new Score \\with {\n\t\\override SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override SpacingSpanner #'strict-note-spacing = ##t\n\t\\override SpacingSpanner #'uniform-stretching = ##t\n} <<\n>>"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___24( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___32( ):
    '''Override LilyPond SpanBar grob.
    '''
 
@@ -544,7 +753,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___24( ):
    assert score.format == '\\new Score \\with {\n\t\\override SpanBar #\'color = #red\n} <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\n\t\t\tf\'8\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\n\t\t\tf\'8\n\t\t}\n\t>>\n>>'
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___25( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___33( ):
    '''Override LilyPond StaffSymbol grob.
    '''
 
@@ -565,7 +774,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___25( ):
    assert t.format == "\\new Staff \\with {\n\t\\override StaffSymbol #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___26( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___34( ):
    '''Override LilyPond StaffSymbol grob.
    '''
 
@@ -585,7 +794,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___26( ):
    t.format == "\\new Staff {\n\tc'8\n\td'8\n\t\\once \\override Staff.StaffSymbol #'color = #red\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___27( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___35( ):
    '''Override LilyPond StaffSymbol grob.
    '''
 
@@ -606,7 +815,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___27( ):
    assert staff.format == "\\new Staff \\with {\n\t\\override StaffSymbol #'line-positions = #'(-4 -2 2 4)\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___28( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___36( ):
    '''Override LilyPond StemTremolo grob.
    '''
 
@@ -631,7 +840,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___28( ):
    assert t.format == "\\new Staff \\with {\n\t\\override StemTremolo #'Y-extent = #'(-1.5 . 1.5)\n\t\\override StemTremolo #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___29( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___37( ):
    '''Override LilyPond SystemStartBar grob.
    '''
 
@@ -662,7 +871,54 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___29( ):
    assert score.format == "\\new Score \\with {\n\t\\override SystemStartBar #'collapse-height = #0\n\t\\override SystemStartBar #'color = #red\n} <<\n\t\\new StaffGroup <<\n\t\t\\new Staff {\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t}\n\t>>\n>>"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___30( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___38( ):
+   '''Override LilyPond TextScript grob.
+   '''
+
+   t = Staff(macros.scale(4))
+   text_script_spanner = spannertools.TextScriptSpanner(t[:])
+   #text_script_spanner.color = 'red'
+   text_script_spanner.override.text_script.color = 'red'
+
+   r'''
+   \new Staff {
+           \override TextScript #'color = #red
+           c'8
+           d'8
+           e'8
+           f'8
+           \revert TextScript #'color
+   }
+   '''
+
+   assert componenttools.is_well_formed_component(t)
+   assert t.format == "\\new Staff {\n\t\\override TextScript #'color = #red\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TextScript #'color\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___39( ):
+   '''Override LilyPond TextSpanner grob.
+   '''
+
+   t = Staff(notetools.make_repeated_notes(4))
+   p = spannertools.TextSpanner(t[:])
+   p.override.text_spanner.font_shape = 'italic'
+
+   r'''
+   \new Staff {
+           \override TextSpanner #'font-shape = #'italic
+           c'8 \startTextSpan
+           c'8
+           c'8
+           c'8 \stopTextSpan
+           \revert TextSpanner #'font-shape
+   }
+   '''
+
+   assert componenttools.is_well_formed_component(t)
+   assert t.format == "\\new Staff {\n\t\\override TextSpanner #'font-shape = #'italic\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n\t\\revert TextSpanner #'font-shape\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___40( ):
    '''Override LilyPond TimeSignature grob.
    '''
 
@@ -683,7 +939,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___30( ):
    assert t.format == "\\new Staff \\with {\n\t\\override TimeSignature #'transparent = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___31( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___41( ):
    '''Override LilyPond TimeSignature grob.
    '''
 
@@ -705,7 +961,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___31( ):
    assert t.format == "{\n\t\\override TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TimeSignature #'transparent\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___32( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___42( ):
    '''Override LilyPond TimeSignature grob.
    '''
 
@@ -727,7 +983,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___32( ):
    assert t.format == "{\n\t\\override Staff.TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'transparent\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___33( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___43( ):
    '''Override LilyPond TrillPitchAccidental grob.
    '''
 
@@ -752,7 +1008,30 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___33( ):
    assert t.format == "\\new Staff \\with {\n\t\\override TrillPitchAccidental #'Y-extent = #'(-1.5 . 1.5)\n\t\\override TrillPitchAccidental #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___34( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___44( ):
+   '''Override LilyPond TrillSpanner grob.
+   '''
+
+   t = Voice(macros.scale(4))
+   p = spannertools.TrillSpanner(t[:])
+   #p.color = 'red'   
+   p.override.trill_spanner.color = 'red'
+
+   r'''
+   \new Voice {
+      \override TrillSpanner #'color = #red
+      c'8 \startTrillSpan
+      d'8
+      e'8
+      f'8 \stopTrillSpan
+      \revert TrillSpanner #'color
+   }
+   '''
+
+   assert t.format == "\\new Voice {\n\t\\override TrillSpanner #'color = #red\n\tc'8 \\startTrillSpan\n\td'8\n\te'8\n\tf'8 \\stopTrillSpan\n\t\\revert TrillSpanner #'color\n}"
+
+
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___45( ):
    '''Override LilyPond TupletBracket grob.
    '''
 
@@ -776,7 +1055,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___34( ):
    assert t.format == "\\new Voice \\with {\n\t\\override TupletBracket #'direction = #down\n} {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___35( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___46( ):
    '''Override LilyPond TupletBracket grob.
    '''
 
@@ -799,7 +1078,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\once \\override TupletBracket #'direction = #down\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___36( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___47( ):
    '''Override LilyPond TupletNumber grob.
    '''
 
@@ -821,7 +1100,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36( ):
    assert t.format == "\\override TupletNumber #'fraction = ##t\n\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}\n\\revert TupletNumber #'fraction"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___37( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___48( ):
    '''Override LilyPond TupletNumber grob.
    '''
 
@@ -845,7 +1124,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___37( ):
    assert t.format == "\\new Voice \\with {\n\t\\override TupletNumber #'fraction = ##t\n} {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___38( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___49( ):
    '''Override LilyPond TupletNumber grob.
    '''
 
@@ -868,7 +1147,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___38( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\once \\override TupletNumber #'fraction = ##t\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___39( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___50( ):
    '''Override LilyPond TupletNumber grob.
    '''
 
@@ -892,7 +1171,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___39( ):
    assert t.format == '\\new Voice \\with {\n\t\\override TupletNumber #\'text = \\markup { "6:4" }\n} {\n\tc\'8 [\n\td\'8\n\te\'8\n\tf\'8 ]\n}'
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___40( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___51( ):
    '''Override LilyPond VerticalAlignment grob.
    '''
 
@@ -917,7 +1196,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___40( ):
    assert t.format == "\\new Staff \\with {\n\t\\override VerticalAlignment #'Y-extent = #'(-1.5 . 1.5)\n\t\\override VerticalAlignment #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___setattr___41( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___52( ):
    '''Override LilyPond VerticalAxis grob.
    '''
 

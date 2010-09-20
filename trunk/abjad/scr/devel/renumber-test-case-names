@@ -35,7 +35,8 @@ def _fix_test_case_numbering( ):
                      actual_test_case_number, desired_test_case_number)
                   print 'OLD LINE:  %s' % line.strip('\n')
                   print 'NEW LINE:  %s' % new_line.strip('\n')
-                  choice = raw_input('Make replacement [y/n]? ')
+                  #choice = raw_input('Make replacement [y/n]? ')
+                  choice = 'y' 
                   if choice.lower( ) == 'y':
                      new_lines.append(new_line)
                   else:
