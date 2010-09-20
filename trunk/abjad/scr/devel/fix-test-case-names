@@ -3,7 +3,7 @@
 import os
 
 
-def _check_test_case_names( ):
+def _fix_test_case_names( ):
    total_test_modules = 0
    total_test_cases = 0
    total_nonmatching_names = 0
@@ -18,10 +18,13 @@ def _check_test_case_names( ):
          total_test_cases_in_module, total_nonmatching_names_in_module = result
          total_test_cases += total_test_cases_in_module
          total_nonmatching_names += total_nonmatching_names_in_module
-   print ''
    print '%s total test modules.' % total_test_modules
    print '%s total test cases.' % total_test_cases
-   print '%s total nonmatching test case name.' % total_nonmatching_names
+   if total_nonmatching_names == 1:
+      suffix = ''
+   else:
+      suffix = 's'
+   print '%s total nonmatching test case name%s.' % (total_nonmatching_names, suffix)
 
 
 def _process_test_module(test_module, path):
@@ -55,7 +58,6 @@ def _process_test_module(test_module, path):
 
          if not actual_test_case_prefix == desired_test_case_prefix:
             total_nonmatching_names_in_current_module += 1
-            print ''
             print 'NONMATCHING in %s' % test_module
             new_line = line.replace(actual_test_case_prefix, desired_test_case_prefix)
             print 'OLD LINE:  %s' % line.strip('\n')
@@ -66,6 +68,7 @@ def _process_test_module(test_module, path):
                new_lines.append(new_line)
             else:
                new_lines.append(line)
+            print ''
          else:
             new_lines.append(line)
       else:
@@ -79,5 +82,5 @@ def _process_test_module(test_module, path):
 
 if __name__ == '__main__':
    os.system('clear')
-   _check_test_case_names( )
+   _fix_test_case_names( )
    print ''

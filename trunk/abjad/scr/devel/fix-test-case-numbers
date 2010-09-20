@@ -3,7 +3,7 @@
 import os
 
 
-def _fix_test_case_numbering( ):
+def _fix_test_case_numbers( ):
    total_test_modules = 0
    total_test_cases = 0
    total_misnumbered_cases = 0
@@ -20,7 +20,11 @@ def _fix_test_case_numbering( ):
          total_misnumbered_cases += misnumbered_cases_in_current_module
    print '%s total test modules.' % total_test_modules
    print '%s total test cases.' % total_test_cases
-   print '%s total misnumbered test case names.' % total_misnumbered_cases
+   if total_misnumbered_cases == 1:
+      suffix = ''
+   else:
+      suffix = 's'
+   print '%s total misnumbered test case name%s.' % (total_misnumbered_cases, suffix)
 
 
 def _process_test_module(test_module, path):
@@ -70,5 +74,5 @@ def _process_test_module(test_module, path):
 
 if __name__ == '__main__':
    os.system('clear')
-   _fix_test_case_numbering( )
+   _fix_test_case_numbers( )
    print ''
