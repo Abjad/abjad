@@ -1,7 +1,7 @@
 Tuplet
 ======
 
-.. automodule:: abjad.components.Tuplet.Tuplet.Tuplet
+.. automodule:: abjad.components.Tuplet.Tuplet
 
 .. autoclass:: abjad.Tuplet
    :members:

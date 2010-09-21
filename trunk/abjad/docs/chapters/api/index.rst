@@ -17,7 +17,7 @@ Abjad score components
    components/Score/Score
    components/Skip/Skip
    components/Staff/Staff
-   components/Tuplet/Tuplet/Tuplet
+   components/Tuplet/Tuplet
    components/Voice/Voice
 
 
