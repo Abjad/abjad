@@ -8,12 +8,15 @@ class _Tuplet(Container):
    '''
 
    #def __init__(self, music = None):
-   def __init__(self, multiplier, music = None):
+   #def __init__(self, multiplier, music = None):
+   def __init__(self, multiplier, music = None, **kwargs):
       Container.__init__(self, music)
       self._duration = _TupletDurationInterface(self, multiplier)
       self._force_fraction = None
       self._formatter = _TupletFormatter(self) 
       self._is_invisible = None
+      self._signifier = '*'
+      self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
 
@@ -24,11 +27,23 @@ class _Tuplet(Container):
       new = tuplettools.fuse_tuplets([self, arg])
       return new
       
+#   def __repr__(self):
+#      if 0 < len(self):
+#         return '_Tuplet(%s)' % self._summary
+#      else:
+#         return '_Tuplet( )'
+
    def __repr__(self):
+      #return '%s(%s, [%s])' % ( 
+      #   self.__class__.__name__, self.duration.multiplier, self._summary)
+      return '%s(%s, [%s])' % (
+         'Tuplet', self.duration.multiplier, self._summary)
+
+   def __str__(self):
       if 0 < len(self):
-         return '_Tuplet(%s)' % self._summary
+         return '{%s %s %s %s}' % (self._signifier, self.ratio, self._summary, self._signifier)
       else:
-         return '_Tuplet( )'
+         return '{%s %s %s}' % (self._signifier, self.duration.multiplier, self._signifier)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -44,6 +59,11 @@ class _Tuplet(Container):
       return not self.is_invisible
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def duration(self):
+      '''Tuplet duration interface.'''
+      return self._duration
 
    @apply
    def force_fraction( ):
