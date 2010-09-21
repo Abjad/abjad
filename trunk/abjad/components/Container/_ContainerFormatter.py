@@ -26,8 +26,7 @@ class _ContainerFormatter(_ComponentFormatter):
    @property
    def _contents(self):
       '''Read-only list of tabbed lines of content.
-      .. todo:: Return (immutable) tuple instead of (mutable) list..'''
-
+      '''
       result = [ ]
       for m in self._client._music:
          result.extend(m.format.split('\n'))
