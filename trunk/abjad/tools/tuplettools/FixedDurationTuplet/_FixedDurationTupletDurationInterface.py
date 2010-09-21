@@ -5,7 +5,11 @@ from abjad.components.Tuplet._TupletDurationInterface import _TupletDurationInte
 class _FixedDurationTupletDurationInterface(_TupletDurationInterface):
 
    def __init__(self, _client, target):
-      _TupletDurationInterface.__init__(self, _client)
+      #_TupletDurationInterface.__init__(self, _client)
+      ## new ##
+      dummy_multiplier = 1
+      _TupletDurationInterface.__init__(self, _client, dummy_multiplier)
+      ## end ##
       self.target = target
 
    ## PUBLIC ATTRIBUTES ##
@@ -14,12 +18,23 @@ class _FixedDurationTupletDurationInterface(_TupletDurationInterface):
    def multiplied(self):
       return self.target
 
-   @property
-   def multiplier(self):
-      if 0 < len(self._client):
-         return self.target / self.contents
-      else:
-         return None
+#   @property
+#   def multiplier(self):
+#      if 0 < len(self._client):
+#         return self.target / self.contents
+#      else:
+#         return None
+
+   @apply
+   def multiplier( ):
+      def fget(self):
+         if 0 < len(self._client):
+            return self.target / self.contents
+         else:
+            return None
+      def fset(self, expr):
+         pass
+      return property(**locals( ))
 
    @apply
    def target( ):

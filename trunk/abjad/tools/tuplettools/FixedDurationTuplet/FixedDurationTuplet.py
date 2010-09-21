@@ -7,7 +7,11 @@ from abjad.components.Tuplet._Tuplet import _Tuplet
 class FixedDurationTuplet(_Tuplet):
 
    def __init__(self, duration, music, **kwargs):
-      _Tuplet.__init__(self, music)
+      #_Tuplet.__init__(self, music)
+      ## new ##
+      dummy_multiplier = 1
+      _Tuplet.__init__(self, dummy_multiplier, music)
+      ## end ##
       self._duration = _FixedDurationTupletDurationInterface(self, duration)
       self._signifier = '@'
       self._initialize_keyword_values(**kwargs)

@@ -7,10 +7,10 @@ class _Tuplet(Container):
    '''Abjad tuplet formalization.
    '''
 
-   def __init__(self, music = None):
-      '''Init tuplet as type of Abjad container.'''
+   #def __init__(self, music = None):
+   def __init__(self, multiplier, music = None):
       Container.__init__(self, music)
-      self._duration = _TupletDurationInterface(self)
+      self._duration = _TupletDurationInterface(self, multiplier)
       self._force_fraction = None
       self._formatter = _TupletFormatter(self) 
       self._is_invisible = None

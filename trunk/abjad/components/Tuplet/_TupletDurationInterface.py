@@ -7,11 +7,22 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    r'''Manage duration attributes common to both fixed-duration and fixed-multiplier tuplets.
    '''
 
-   def __init__(self, _client):
+   #def __init__(self, _client):
+   def __init__(self, _client, multiplier):
       _MultipliedContainerDurationInterface.__init__(self, _client)
       self._preferred_denominator = None
+      ## new ##
+      self.multiplier = multiplier
 
    ## PRVIATE ATTRIBUTES ##
+
+   ## new ##
+   @property
+   def _duration(self):
+      if 0 < len(self._client):
+         return self.multiplier * self.contents
+      else:
+         return Fraction(0)
 
    @property
    def _multiplier_fraction_string(self):
@@ -70,6 +81,31 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    @property
    def is_nonbinary(self):
       return not self.is_binary
+
+   ## new ##
+   @property
+   def multiplied(self):
+      return self.multiplier * self.contents
+
+   ## new ##
+   @apply
+   def multiplier( ):
+      def fget(self):
+         return self._multiplier
+      def fset(self, expr):
+         if isinstance(expr, (int, long)):
+            rational = Fraction(expr)
+         elif isinstance(expr, tuple):
+            rational = Fraction(*expr)
+         elif isinstance(expr, Fraction):
+            rational = Fraction(expr)
+         else:
+            raise ValueError('Can not set tuplet rational from %s.' % str(expr))
+         if 0 < rational:
+            self._multiplier = rational
+         else:
+            raise ValueError('Tuplet rational %s must be positive.' % rational)
+      return property(**locals( ))
 
    @apply
    def preferred_denominator( ):

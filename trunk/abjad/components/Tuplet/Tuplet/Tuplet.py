@@ -9,8 +9,8 @@ class Tuplet(_Tuplet):
 
    def __init__(self, multiplier, music = None, **kwargs):
       '''Init fixed-multiplier tuplet as type of Abjad tuplet.'''
-      _Tuplet.__init__(self, music)
-      self._duration = _FixedMultiplierTupletDurationInterface(self, multiplier)
+      _Tuplet.__init__(self, multiplier, music)
+      #self._duration = _FixedMultiplierTupletDurationInterface(self, multiplier)
       self._signifier = '*'
       self._initialize_keyword_values(**kwargs)
 
