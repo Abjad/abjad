@@ -11,7 +11,7 @@ Abjad score components
 
    components/Chord/Chord
    components/Container/Container
-   components/Measure/Measure/Measure
+   components/Measure/Measure
    components/Note/Note
    components/Rest/Rest
    components/Score/Score
