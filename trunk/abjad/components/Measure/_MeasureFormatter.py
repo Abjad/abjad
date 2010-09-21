@@ -26,7 +26,7 @@ class _MeasureFormatter(_ContainerFormatter):
 
       abjad> measure = Measure((3, 8), macros.scale(3))
       abjad> measure.formatter
-      <_RigidMeasureFormatter>
+      <_MeasureFormatter>
    '''
 
    def __init__(self, client):

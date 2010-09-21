@@ -1,5 +1,4 @@
 from abjad.components.Measure._Measure import _Measure
-#from abjad.components.Measure.Measure._RigidMeasureFormatter import _RigidMeasureFormatter
 from abjad.tools.metertools import Meter
 from abjad.tools import durtools
 from abjad.tools import marktools
@@ -9,7 +8,6 @@ class Measure(_Measure):
 
    def __init__(self, meter, music = None, **kwargs):
       _Measure.__init__(self, music)
-      #self._formatter = _RigidMeasureFormatter(self)
       meter = Meter(meter)
       numerator, denominator = meter.numerator, meter.denominator
       self._attach_explicit_meter(numerator, denominator)
