@@ -1,6 +1,4 @@
 from abjad.core import Rational
-from abjad.components.Tuplet.Tuplet._FixedMultiplierTupletDurationInterface import \
-   _FixedMultiplierTupletDurationInterface
 from abjad.components.Tuplet._Tuplet import _Tuplet
 
 
@@ -10,7 +8,6 @@ class Tuplet(_Tuplet):
    def __init__(self, multiplier, music = None, **kwargs):
       '''Init fixed-multiplier tuplet as type of Abjad tuplet.'''
       _Tuplet.__init__(self, multiplier, music)
-      #self._duration = _FixedMultiplierTupletDurationInterface(self, multiplier)
       self._signifier = '*'
       self._initialize_keyword_values(**kwargs)
 
