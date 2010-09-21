@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_RigidMeasure_duration_interface_01( ):
+def test_Measure_duration_interface_01( ):
    '''Binary meter, properly filled.'''
 
    t = Measure((3, 8), macros.scale(3))
@@ -24,7 +24,7 @@ def test_RigidMeasure_duration_interface_01( ):
    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_RigidMeasure_duration_interface_02( ):
+def test_Measure_duration_interface_02( ):
    '''Nonbinary meter, properly filled.'''
 
    t = Measure((3, 10), macros.scale(3))
@@ -50,7 +50,7 @@ def test_RigidMeasure_duration_interface_02( ):
 
 
 
-def test_RigidMeasure_duration_interface_03( ):
+def test_Measure_duration_interface_03( ):
    '''Binary meter, improperly filled.'''
 
    t = Measure((3, 8), macros.scale(4))
@@ -63,7 +63,7 @@ def test_RigidMeasure_duration_interface_03( ):
    assert t.duration.prolation == 1
 
 
-def test_RigidMeasure_duration_interface_04( ):
+def test_Measure_duration_interface_04( ):
    '''Nonbinary meter, improperly filled.'''
 
    t = Measure((3, 10), macros.scale(4))

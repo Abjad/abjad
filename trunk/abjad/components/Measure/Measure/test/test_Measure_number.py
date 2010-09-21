@@ -3,7 +3,7 @@ import py.test
 py.test.skip('numbering disabled until after update reimplementation.')
 
 
-def test_RigidMeasure_number_01( ):
+def test_Measure_number_01( ):
    '''Measures in staff number correctly starting from 1.'''
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips(
@@ -13,14 +13,14 @@ def test_RigidMeasure_number_01( ):
    assert t[2].number == 3
 
 
-def test_RigidMeasure_number_02( ):
+def test_Measure_number_02( ):
    '''Orphan measures number correctly starting from 1.'''
 
    t = Measure((3, 8), macros.scale(3))
    assert t.number == 1
 
 
-def test_RigidMeasure_number_03( ):
+def test_Measure_number_03( ):
    '''Mesaure numbering works correctly after contents rotation.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

@@ -5,13 +5,10 @@ from abjad.components.Measure._MeasureFormatterNumberInterface import \
    _MeasureFormatterNumberInterface
 from abjad.components.Measure._MeasureFormatterSlotsInterface import \
    _MeasureFormatterSlotsInterface
-from abjad.core import Rational
 
 
 class _MeasureFormatter(_ContainerFormatter):
-   '''Encapsulate all
-   :class:`~abjad.components.Measure.dynamic.measure.DynamicMeasure` and
-   :class:`~abjad.components.Measure.anonymous.AnonymousMeasure.AnonymousMeasure` 
+   '''Encapsulate all dynamic measure and anonymous measure
    format logic. ::
 
       abjad> measure = AnonymousMeasure(macros.scale(3))
@@ -24,8 +21,7 @@ class _MeasureFormatter(_ContainerFormatter):
       abjad> measure.formatter
       <_MeasureFormatter>
 
-   :class:`~abjad.components.Measure.rigid.measure.RigidMeasure` instances implement
-   a special formatter which inherits from this base class. ::
+   Measure instances implement a special formatter which inherits from this base class. ::
 
       abjad> measure = Measure((3, 8), macros.scale(3))
       abjad> measure.formatter
@@ -41,7 +37,6 @@ class _MeasureFormatter(_ContainerFormatter):
 
    @property
    def slots(self):
-      '''Read-only reference to 
-      :class:`~abjad.components.Measure.slots._MeasureFormatterSlotsInterface`.'''
-
+      '''Read-only reference to measure formatter slots interface.
+      '''
       return self._slots

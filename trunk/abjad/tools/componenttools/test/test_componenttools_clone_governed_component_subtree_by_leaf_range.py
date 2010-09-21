@@ -260,7 +260,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
 
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
-   '''RigidMeasures shrink down when we copy a partial tuplet.'''
+   '''Measures shrink down when we copy a partial tuplet.'''
 
    t = Measure((4, 8), 
       tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)

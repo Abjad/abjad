@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_RigidMeasure_parallel_01( ):
+def test_Measure_parallel_01( ):
    '''Rigid measures may be hold parallel contents.'''
 
    py.test.skip('fix minor format positioning of time signatures.')

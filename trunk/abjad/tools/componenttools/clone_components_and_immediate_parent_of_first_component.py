@@ -116,7 +116,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    # new: resize result to match parent_multiplier, if resizable
    if result.__class__.__name__ == 'FixedDurationTuplet':
       result.duration.target = parent_multiplier * result.duration.contents
-   elif result.__class__.__name__ == 'RigidMeasure':
+   elif result.__class__.__name__ == 'Measure':
       new_duration = parent_multiplier * result.duration.contents
       result._attach_explicit_meter(new_duration.numerator, new_duration.denominator)
 

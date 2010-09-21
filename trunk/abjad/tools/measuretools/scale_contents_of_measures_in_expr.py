@@ -15,7 +15,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
    Extends containertools.scale_contents_of_container( ).
    Returns None because iterates possibly many measures.
 
-   This might best be a bound method on RigidMeasure.
+   This might best be a bound method on Measure.
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.scale( )`` to
