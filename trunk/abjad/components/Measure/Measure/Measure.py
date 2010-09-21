@@ -12,20 +12,3 @@ class Measure(_Measure):
       numerator, denominator = meter.numerator, meter.denominator
       self._attach_explicit_meter(numerator, denominator)
       self._initialize_keyword_values(**kwargs)
-
-   ## OVERLOADS ##
-
-   def __delitem__(self, i):
-      '''Container deletion with meter adjustment.'''
-      try:
-         old_denominator = marktools.get_effective_time_signature(self).denominator
-      except AttributeError:
-         pass
-      _Measure.__delitem__(self, i)
-      try:
-         naive_meter = self.duration.preprolated
-         better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
-            naive_meter, old_denominator)
-         self._attach_explicit_meter(*better_meter)
-      except (AttributeError, UnboundLocalError):
-         pass

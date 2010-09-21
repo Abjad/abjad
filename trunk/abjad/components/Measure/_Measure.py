@@ -1,6 +1,7 @@
 from abjad.components.Container import Container
 from abjad.components.Measure._MeasureDurationInterface import _MeasureDurationInterface
 from abjad.components.Measure._MeasureFormatter import _MeasureFormatter
+from abjad.tools import durtools
 from abjad.tools import marktools
 
 
@@ -24,6 +25,22 @@ class _Measure(Container):
       from abjad.tools import measuretools
       new = measuretools.fuse_measures([self, arg])
       return new
+
+   def __delitem__(self, i):
+      '''Container deletion with meter adjustment.'''
+      try:
+         old_denominator = marktools.get_effective_time_signature(self).denominator
+      except AttributeError:
+         pass
+      #_Measure.__delitem__(self, i)
+      Container.__delitem__(self, i)
+      try:
+         naive_meter = self.duration.preprolated
+         better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+            naive_meter, old_denominator)
+         self._attach_explicit_meter(*better_meter)
+      except (AttributeError, UnboundLocalError):
+         pass
 
    def __repr__(self):
       '''String form of measure with parentheses for interpreter display.
