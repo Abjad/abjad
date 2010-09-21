@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Measure import _Measure
-from abjad.components.Tuplet import _Tuplet
+from abjad.components.Tuplet import Tuplet
 from abjad.tools import durtools
 from abjad.tools import marktools
 from abjad.tools import metertools
@@ -62,7 +62,7 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
       right = component.__class__(1, right_music)
       set_container_multiplier(left, container_multiplier)
       set_container_multiplier(right, container_multiplier)
-   elif isinstance(component, _Tuplet):
+   elif isinstance(component, Tuplet):
       left = component.__class__(container_multiplier, left_music)
       right = component.__class__(container_multiplier, right_music)
    else:

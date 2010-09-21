@@ -1,6 +1,6 @@
 from abjad.components.Container import Container
 from abjad.tools import componenttools
-from abjad.components.Tuplet import _Tuplet
+from abjad.components.Tuplet import Tuplet
 
 
 def fuse_like_named_contiguous_containers_in_expr(expr):
@@ -59,7 +59,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
    for cmp in g:
       next = cmp._navigator._next_namesake
       if isinstance(next, Container) and not next.parallel and \
-         not isinstance(next, _Tuplet) and \
+         not isinstance(next, Tuplet) and \
          componenttools.all_are_contiguous_components_in_same_score(
             [cmp, next], allow_orphans = True):
          cmp.extend(next)

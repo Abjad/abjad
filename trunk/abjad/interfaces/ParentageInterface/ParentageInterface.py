@@ -80,10 +80,10 @@ class ParentageInterface(_Interface):
          0
       '''
 
-      from abjad.components.Tuplet import _Tuplet
+      from abjad.components.Tuplet import Tuplet
       result = 0
       for parent in self.proper_parentage:
-         if isinstance(parent, _Tuplet):
+         if isinstance(parent, Tuplet):
             result += 1
       return result
 

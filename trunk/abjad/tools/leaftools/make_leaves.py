@@ -9,7 +9,7 @@ from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
 #from abjad.components.Tuplet import Tuplet
-from abjad.components.Tuplet import OldFixedMultiplierTuplet
+from abjad.components.Tuplet import Tuplet
 
 
 ## TODO: Change leaftools.make_leaves( ) signature to allow ('c', 4) named pairs 
@@ -147,6 +147,6 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
          for pch, dur in zip(ps, ds):
             leaves.extend( _make_leaf_on_pitch(pch, dur, direction))
          #t = Tuplet(multiplier, leaves)
-         t = OldFixedMultiplierTuplet(multiplier, leaves)
+         t = Tuplet(multiplier, leaves)
          result.append(t)
    return result

@@ -21,13 +21,13 @@ def set_container_multiplier(container, multiplier):
    '''
    from abjad.components.Measure import Measure
    #from abjad.components.Tuplet import Tuplet
-   from abjad.components.Tuplet import OldFixedMultiplierTuplet
+   from abjad.components.Tuplet import Tuplet
    from abjad.tools import tuplettools
 
    if isinstance(container, tuplettools.FixedDurationTuplet):
       container.duration.target = multiplier * container.duration.contents
    #elif isinstance(container, Tuplet):
-   elif isinstance(container, OldFixedMultiplierTuplet):
+   elif isinstance(container, Tuplet):
       container.duration.multiplier = multiplier
    elif isinstance(container, Measure):
       new_duration = multiplier * container.duration.contents

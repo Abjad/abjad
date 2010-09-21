@@ -33,7 +33,7 @@ def test_FixedDurationTuplet_in_place_apply_02( ):
 
 def test_FixedDurationTuplet_in_place_apply_03( ):
    #t = Tuplet((7, 8), [Note(n, (1, 8)) for n in range(8)])
-   t = OldFixedMultiplierTuplet((7, 8), [Note(n, (1, 8)) for n in range(8)])
+   t = Tuplet((7, 8), [Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    tuplettools.FixedDurationTuplet((2, 8), t[0:3])
    leaves_after = t.leaves

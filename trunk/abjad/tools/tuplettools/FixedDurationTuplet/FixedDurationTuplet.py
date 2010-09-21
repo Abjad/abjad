@@ -1,16 +1,15 @@
 from abjad.core import Rational
 from abjad.tools.tuplettools.FixedDurationTuplet._FixedDurationTupletDurationInterface \
    import _FixedDurationTupletDurationInterface
-from abjad.components.Tuplet._Tuplet import _Tuplet
+from abjad.components.Tuplet.Tuplet import Tuplet
 
 
-class FixedDurationTuplet(_Tuplet):
+class FixedDurationTuplet(Tuplet):
 
    def __init__(self, duration, music, **kwargs):
-      #_Tuplet.__init__(self, music)
       ## new ##
       dummy_multiplier = 1
-      _Tuplet.__init__(self, dummy_multiplier, music)
+      Tuplet.__init__(self, dummy_multiplier, music)
       ## end ##
       self._duration = _FixedDurationTupletDurationInterface(self, duration)
       self._signifier = '@'

@@ -209,7 +209,7 @@ def test_MetricGridSpanner_08( ):
    '''MetricGrid split works with tuplets.'''
 
    #t = Voice([Tuplet((2,3), Note(0, (1,8)) * 6)])
-   t = Voice([OldFixedMultiplierTuplet((2,3), Note(0, (1,8)) * 6)])
+   t = Voice([Tuplet((2,3), Note(0, (1,8)) * 6)])
    m = spannertools.MetricGridSpanner(t.leaves, [(1, 8)])
    m.split_on_bar( )
 
@@ -238,8 +238,8 @@ def test_MetricGridSpanner_09( ):
 
    #t = Voice([Tuplet((2,3), [Note(0, (1,8)), 
    #      Tuplet((3,2), Note(0, (1,8)) *4)])])
-   t = Voice([OldFixedMultiplierTuplet((2,3), [Note(0, (1,8)), 
-         OldFixedMultiplierTuplet((3,2), Note(0, (1,8)) *4)])])
+   t = Voice([Tuplet((2,3), [Note(0, (1,8)), 
+         Tuplet((3,2), Note(0, (1,8)) *4)])])
    m = spannertools.MetricGridSpanner(t.leaves, [(1, 8)])
    m.split_on_bar( )
 

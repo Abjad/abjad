@@ -3,7 +3,7 @@ from abjad.components.Tuplet._TupletDurationInterface import _TupletDurationInte
 from abjad.components.Tuplet._TupletFormatter import _TupletFormatter
 
 
-class _Tuplet(Container):
+class Tuplet(Container):
    '''Abjad tuplet formalization.
    '''
 

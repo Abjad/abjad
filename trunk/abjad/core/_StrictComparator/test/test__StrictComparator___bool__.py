@@ -45,7 +45,7 @@ def test__StrictComparator___bool___03( ):
    assert bool(Container(Note(0, (1, 4)) * 4))
    assert bool(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
    #assert bool(Tuplet((2, 3), Note(0, (1, 4)) * 3))
-   assert bool(OldFixedMultiplierTuplet((2, 3), Note(0, (1, 4)) * 3))
+   assert bool(Tuplet((2, 3), Note(0, (1, 4)) * 3))
 
 
 def test__StrictComparator___bool___04( ):
@@ -55,4 +55,4 @@ def test__StrictComparator___bool___04( ):
    assert bool(Container([ ]))
    assert bool(tuplettools.FixedDurationTuplet((2, 4), [ ]))
    #assert bool(Tuplet((2, 3), [ ]))
-   assert bool(OldFixedMultiplierTuplet((2, 3), [ ]))
+   assert bool(Tuplet((2, 3), [ ]))

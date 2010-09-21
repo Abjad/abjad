@@ -4,7 +4,7 @@ from abjad.core import Rational
 from abjad.tools import spannertools
 from abjad.tools.notetools.make_notes import make_notes
 #from abjad.components.Tuplet import Tuplet
-from abjad.components.Tuplet import OldFixedMultiplierTuplet
+from abjad.components.Tuplet import Tuplet
 
    
 def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
@@ -115,7 +115,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             leaf, spannertools.TieSpanner):
             spannertools.TieSpanner(all_leaves)
       #elif isinstance(duration_tokens[0], Tuplet):
-      elif isinstance(duration_tokens[0], OldFixedMultiplierTuplet):
+      elif isinstance(duration_tokens[0], Tuplet):
          #print 'debug duration_tokens %s' % duration_tokens
          fmtuplet = duration_tokens[0]
          duration_tokens = fmtuplet[:]
@@ -132,7 +132,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             spannertools.TieSpanner(all_leaves) 
          tuplet_multiplier = fmtuplet.duration.multiplier
          #Tuplet(tuplet_multiplier, all_leaves)
-         OldFixedMultiplierTuplet(tuplet_multiplier, all_leaves)
+         Tuplet(tuplet_multiplier, all_leaves)
       else:
          raise ValueError('unexpected output from notetools.make_notes.')
 

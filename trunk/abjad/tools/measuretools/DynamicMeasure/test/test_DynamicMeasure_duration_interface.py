@@ -55,7 +55,7 @@ def test_DynamicMeasure_duration_interface_03( ):
    '''Nonbinary tuplet as contents.'''
 
    #t = measuretools.DynamicMeasure([Tuplet((2, 3), macros.scale(4))])
-   t = measuretools.DynamicMeasure([OldFixedMultiplierTuplet((2, 3), macros.scale(4))])
+   t = measuretools.DynamicMeasure([Tuplet((2, 3), macros.scale(4))])
    t.denominator = 12
 
    r'''

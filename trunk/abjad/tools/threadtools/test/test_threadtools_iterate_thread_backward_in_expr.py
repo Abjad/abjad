@@ -14,9 +14,8 @@ def test_threadtools_iterate_thread_backward_in_expr_02( ):
    '''Yield internal nodes only.'''
 
    t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   from abjad.components.Tuplet import _Tuplet
    thread_signature = threadtools.component_to_thread_signature(t[-1])
-   iter = threadtools.iterate_thread_backward_in_expr(t, _Tuplet, thread_signature)
+   iter = threadtools.iterate_thread_backward_in_expr(t, Tuplet, thread_signature)
    assert len(list(iter)) == 3
 
 
