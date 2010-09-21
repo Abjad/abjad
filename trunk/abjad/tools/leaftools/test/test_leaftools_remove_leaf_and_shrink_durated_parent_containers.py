@@ -4,8 +4,7 @@ from abjad import *
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
    '''Excise leaf from tuplet and rigid measure.'''
 
-   t = Measure((4, 4), 
-      tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Measure((4, 4), tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -51,8 +50,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02( ):
    '''Excise leaf from tuplet and measure.'''
 
-   t = Measure((4, 4), 
-      tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
+   t = Measure((4, 4), tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
    macros.diatonicize(t)
 
    r'''
@@ -774,7 +772,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24( ):
    '''Excise leaf from fixed-multiplier tuplet.'''
 
-   t = Tuplet((4, 5), macros.scale(5))
+   #t = Tuplet((4, 5), macros.scale(5))
+   t = OldFixedMultiplierTuplet((4, 5), macros.scale(5))
 
    r'''
    \times 4/5 {
@@ -839,8 +838,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26( ):
    '''Excise nested fixed-multiplier tuplet.'''
 
-   t = Tuplet((2,3), [Note(0, (1,2)), Note(1, (1,2)), 
-      Tuplet((2,3), [Note(i, (1,4)) for i in range(2, 5)])])
+   #t = Tuplet((2,3), [Note(0, (1,2)), Note(1, (1,2)), 
+   #   Tuplet((2,3), [Note(i, (1,4)) for i in range(2, 5)])])
+   t = OldFixedMultiplierTuplet((2,3), [Note(0, (1,2)), Note(1, (1,2)), 
+      OldFixedMultiplierTuplet((2,3), [Note(i, (1,4)) for i in range(2, 5)])])
 
    r'''
    \times 2/3 {

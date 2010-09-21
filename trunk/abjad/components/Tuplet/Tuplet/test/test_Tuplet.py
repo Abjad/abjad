@@ -4,7 +4,7 @@ from abjad import *
 def test_Tuplet_01( ):
    '''Init typical fmtuplet.'''
    
-   u = Tuplet((2, 3), Note(0, (1, 8)) * 3)
+   u = OldFixedMultiplierTuplet((2, 3), Note(0, (1, 8)) * 3)
    assert repr(u) == "Tuplet(2/3, [c'8, c'8, c'8])" 
    assert str(u) == "{* 3:2 c'8, c'8, c'8 *}"
    assert len(u) == 3
@@ -16,7 +16,7 @@ def test_Tuplet_01( ):
 def test_Tuplet_02( ):
    '''Init empty fmtuplet.'''
 
-   u = Tuplet((2, 3), [ ])
+   u = OldFixedMultiplierTuplet((2, 3), [ ])
    assert repr(u) == 'Tuplet(2/3, [ ])'
    assert str(u) == '{* 2/3 *}'
    assert len(u) == 0
@@ -28,8 +28,8 @@ def test_Tuplet_02( ):
 def test_Tuplet_03( ):
    '''Nest fmtuplet.'''
 
-   u = Tuplet((2, 3), [
-      Tuplet((4, 5), Note(0, (1, 16)) * 5),
+   u = OldFixedMultiplierTuplet((2, 3), [
+      OldFixedMultiplierTuplet((4, 5), Note(0, (1, 16)) * 5),
       Note(0, (1, 4)),
       Note(0, (1, 4))])
    assert repr(u) == "Tuplet(2/3, [{* 5:4 c'16, c'16, c'16, c'16, c'16 *}, c'4, c'4])"
@@ -49,8 +49,8 @@ def test_Tuplet_03( ):
 def test_Tuplet_04( ):
    '''Nest empty fmtuplet.'''
 
-   u = Tuplet((2, 3), [
-      Tuplet((4, 5), [ ]),
+   u = OldFixedMultiplierTuplet((2, 3), [
+      OldFixedMultiplierTuplet((4, 5), [ ]),
       Note(0, (1, 4)),
       Note(0, (1, 4))])
    assert repr(u) == "Tuplet(2/3, [{* 4/5 *}, c'4, c'4])"

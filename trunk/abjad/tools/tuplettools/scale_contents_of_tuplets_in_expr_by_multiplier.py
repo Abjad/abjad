@@ -5,7 +5,6 @@ from abjad.tools import leaftools
 from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr
 from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-from abjad.components.Tuplet import Tuplet
 
 
 def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
@@ -15,10 +14,8 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
    '''
 
    # check input
-   if isinstance(tuplet, Tuplet):
-      raise NotImplemented
-   elif not isinstance(tuplet, FixedDurationTuplet):
-      raise ValueError('must be tuplet.')
+   if not isinstance(tuplet, FixedDurationTuplet):
+      raise TypeError('must be tuplet.')
    assert isinstance(multiplier, Rational)
 
    # find new target duration

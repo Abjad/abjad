@@ -23,10 +23,8 @@ def fix_contents_of_tuplets_in_expr(tuplet):
    '''
 
    # check input
-   if isinstance(tuplet, Tuplet):
-      raise NotImplemented
-   elif not isinstance(tuplet, FixedDurationTuplet):
-      raise ValueError('must be tuplet.')
+   if not isinstance(tuplet, FixedDurationTuplet):
+      raise TypeError('must be fixed-duration tuplet.')
 
    # find tuplet multiplier
    integer_exponent = int(math.log(tuplet.duration.multiplier, 2))

@@ -3,7 +3,8 @@ from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from abjad.components.Tuplet import Tuplet
+#from abjad.components.Tuplet import Tuplet
+from abjad.components.Tuplet import OldFixedMultiplierTuplet
 import operator
 import math
       
@@ -89,6 +90,7 @@ def make_notes(pitches, durations, direction='big-endian'):
          ds = [ratio * Rational(*d) for d in ds]
          ## make notes
          ns = _construct_unprolated_notes(ps, ds, direction)
-         t = Tuplet(multiplier, ns)
+         #t = Tuplet(multiplier, ns)
+         t = OldFixedMultiplierTuplet(multiplier, ns)
          result.append(t)
    return result

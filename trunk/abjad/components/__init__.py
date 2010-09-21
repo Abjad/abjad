@@ -6,5 +6,5 @@ from Rest import Rest
 from Skip import Skip
 from Score import Score
 from Staff import Staff
-from Tuplet import Tuplet
+from Tuplet import OldFixedMultiplierTuplet
 from Voice import Voice

@@ -56,7 +56,8 @@ def test_AnonymousMeasure_duration_interface_02( ):
 def test_AnonymousMeasure_duration_interface_03( ):
    '''Works with nonbinary tuplet.'''
 
-   t = measuretools.AnonymousMeasure([Tuplet((2, 3), macros.scale(4))])
+   #t = measuretools.AnonymousMeasure([Tuplet((2, 3), macros.scale(4))])
+   t = measuretools.AnonymousMeasure([OldFixedMultiplierTuplet((2, 3), macros.scale(4))])
    t.denominator = 12
 
    r'''

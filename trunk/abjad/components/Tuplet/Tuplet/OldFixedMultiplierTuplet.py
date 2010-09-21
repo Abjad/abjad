@@ -2,7 +2,7 @@ from abjad.core import Rational
 from abjad.components.Tuplet._Tuplet import _Tuplet
 
 
-class Tuplet(_Tuplet):
+class OldFixedMultiplierTuplet(_Tuplet):
    '''Abjad model of tuplet with fixed multiplier.'''
 
    def __init__(self, multiplier, music = None, **kwargs):
@@ -14,8 +14,10 @@ class Tuplet(_Tuplet):
    ## REPR ##
 
    def __repr__(self):
+      #return '%s(%s, [%s])' % ( 
+      #   self.__class__.__name__, self.duration.multiplier, self._summary)
       return '%s(%s, [%s])' % ( 
-         self.__class__.__name__, self.duration.multiplier, self._summary)
+         'Tuplet', self.duration.multiplier, self._summary)
 
    def __str__(self):
       if 0 < len(self):

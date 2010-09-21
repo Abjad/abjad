@@ -12,7 +12,8 @@ from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import \
    remove_all_leaves_in_tie_chain_except_first
-from abjad.components.Tuplet import Tuplet
+#from abjad.components.Tuplet import Tuplet
+from abjad.components.Tuplet import OldFixedMultiplierTuplet
 
 
 ## TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( ) carefully. ##
@@ -61,12 +62,14 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
          tie_chain[-1].splice(extra_leaves)
    else:
       duration_tokens = notetools.make_notes(0, new_written_duration)
-      assert isinstance(duration_tokens[0], Tuplet)
+      #assert isinstance(duration_tokens[0], Tuplet)
+      assert isinstance(duration_tokens[0], OldFixedMultiplierTuplet)
       fmtuplet = duration_tokens[0]
       new_chain_written = get_preprolated_tie_chain_duration(
          get_tie_chain(fmtuplet[0]))
       add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_chain_written)
       multiplier = fmtuplet.duration.multiplier
-      Tuplet(multiplier, get_leaves_in_tie_chain(tie_chain))
+      #Tuplet(multiplier, get_leaves_in_tie_chain(tie_chain))
+      OldFixedMultiplierTuplet(multiplier, get_leaves_in_tie_chain(tie_chain))
       
    return get_tie_chain(tie_chain[0])
