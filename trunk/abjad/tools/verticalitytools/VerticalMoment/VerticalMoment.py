@@ -1,6 +1,6 @@
 from abjad.components.Chord import Chord
 from abjad.components._Leaf import _Leaf
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.components.Note import Note
 from abjad.core import Rational
 from abjad.core import _Immutable
@@ -109,7 +109,7 @@ class VerticalMoment(_Immutable):
       at vertical moment.'''
       result = [ ]
       for component in self.components:
-         if isinstance(component, _Measure):
+         if isinstance(component, Measure):
             result.append(component)
       result = tuple(result)
       return result
@@ -175,7 +175,7 @@ class VerticalMoment(_Immutable):
    def overlap_measures(self):
       '''Read-only tuple of measures in vertical moment
       starting before vertical moment, ordered by score index.'''
-      result = [x for x in self.overlap_components if isinstance(x, _Measure)]
+      result = [x for x in self.overlap_components if isinstance(x, Measure)]
       result = tuple(result)
       return result
 

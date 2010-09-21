@@ -8,7 +8,7 @@ class _MeasuredComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterf
 
    def _before(self, leaf):
       '''Spanner format contribution to output before leaf.'''
-      from abjad.components.Measure import _Measure
+      from abjad.components import Measure
       from abjad.tools import componenttools
       result = [ ]
       spanner = self.spanner
@@ -17,9 +17,9 @@ class _MeasuredComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterf
          if spanner._is_exterior_leaf(leaf):
             left, right = self._get_left_right_for_exterior_leaf(leaf)
          elif componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
-            leaf, _Measure) is not None:
+            leaf, Measure) is not None:
             measure = componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
-               leaf, _Measure)
+               leaf, Measure)
             # leaf at beginning of measure
             if measure._is_one_of_my_first_leaves(leaf):
                assert isinstance(spanner.span, int)

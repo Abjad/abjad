@@ -1,4 +1,4 @@
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.tools.layouttools.LayoutSchema import LayoutSchema
 from abjad.tools.layouttools.apply_fixed_staff_positioning import apply_fixed_staff_positioning
 from abjad.tools.layouttools.set_line_breaks_cyclically_by_line_duration_ge import \
@@ -8,7 +8,7 @@ from abjad.tools.layouttools.set_line_breaks_cyclically_by_line_duration_in_seco
 
 
 def apply_layout_schema(expr, layout_schema, 
-   klass = _Measure, adjust_eol = False, add_empty_bars = False):
+   klass = Measure, adjust_eol = False, add_empty_bars = False):
    r""".. versionadded:: 1.1.2
 
    Apply `layout_schema` to `expr`.

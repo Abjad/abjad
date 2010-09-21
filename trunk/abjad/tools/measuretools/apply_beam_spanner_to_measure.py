@@ -1,4 +1,4 @@
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.tools.spannertools import BeamSpanner
 
 
@@ -33,7 +33,7 @@ def apply_beam_spanner_to_measure(measure):
    '''
 
    ## check measure type
-   if not isinstance(measure, _Measure):
+   if not isinstance(measure, Measure):
       raise TypeError('must be measure: %s' % measure)
 
    ## apply beam spanner to measure

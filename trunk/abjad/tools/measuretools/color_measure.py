@@ -1,4 +1,4 @@
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 
 
 def color_measure(measure, color = 'red'):
@@ -44,7 +44,7 @@ def color_measure(measure, color = 'red'):
    '''
 
    ## check measure type
-   if not isinstance(measure, _Measure):
+   if not isinstance(measure, Measure):
       raise TypeError('must be measure: %s' % measure)
 
    ## color measure

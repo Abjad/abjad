@@ -1,8 +1,8 @@
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.tools.layouttools._line_break_every import _line_break_every
 
 
-def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duration, klass = _Measure,
+def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duration, klass = Measure,
    adjust_eol = False, add_empty_bars = False):
    r'''Iterate `klass` instances in `expr` and accumulate duration in seconds.
    Add line break after every total less than or equal to `line_duration`.

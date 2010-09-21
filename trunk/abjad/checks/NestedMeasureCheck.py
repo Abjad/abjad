@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.components.Measure import _Measure
+from abjad.components import Measure
 
 
 class NestedMeasureCheck(_Check):
@@ -11,8 +11,7 @@ class NestedMeasureCheck(_Check):
       violators = [ ]
       total = 0
       for t in measuretools.iterate_measures_forward_in_expr(expr):
-         if componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
-            t, _Measure):
+         if componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(t, Measure):
             violators.append(t)
          total += 1
       return violators, total

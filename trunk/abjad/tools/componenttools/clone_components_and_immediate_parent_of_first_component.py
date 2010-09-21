@@ -73,7 +73,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
       ``componenttools.clone_components_and_immediate_parent_of_first_component( )``.
    '''
    from abjad.tools import componenttools
-   from abjad.components.Measure import _Measure
+   from abjad.components import Measure
 
    # assert strictly contiguous components in same thread
    assert componenttools.all_are_thread_contiguous_components(components)
@@ -85,7 +85,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    parent_multiplier = getattr(parent.duration, 'multiplier', 1)
 
    # new: remember parent denominator, if any
-   if isinstance(parent, _Measure):
+   if isinstance(parent, Measure):
       parent_denominator = marktools.get_effective_time_signature(parent).denominator
    else:
       parent_denominator = None

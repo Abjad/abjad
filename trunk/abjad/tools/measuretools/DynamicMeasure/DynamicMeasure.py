@@ -1,15 +1,15 @@
-from abjad.components.Measure._Measure import _Measure
+from abjad.components.Measure.Measure import Measure
 from abjad.tools import durtools
 from abjad.tools import marktools
 from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface import \
    _DynamicMeasureDurationInterface
 
 
-class DynamicMeasure(_Measure):
+class DynamicMeasure(Measure):
 
    def __init__(self, music = None, **kwargs):
       #_Measure.__init__(self, music)
-      _Measure.__init__(self, meter = (99, 99), music = music, **kwargs)
+      Measure.__init__(self, meter = (99, 99), music = music, **kwargs)
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
       self._explicit_meter_is_current = False

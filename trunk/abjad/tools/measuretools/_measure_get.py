@@ -2,7 +2,7 @@ from abjad.components.Container import Container
 from abjad.exceptions import MeasureContiguityError
 from abjad.exceptions import MissingMeasureError
 from abjad.components._Leaf import _Leaf
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 from abjad.tools.measuretools._get_contemporaneous_measure import _get_contemporaneous_measure
@@ -34,10 +34,10 @@ def _measure_get(component, direction):
 
    if isinstance(component, _Leaf):
       for parent in component.parentage.proper_parentage:
-         if isinstance(parent, _Measure):
+         if isinstance(parent, Measure):
             return parent
       raise MissingMeasureError
-   elif isinstance(component, _Measure):
+   elif isinstance(component, Measure):
       if direction == '_next':
          return component._navigator._next_namesake
       elif direction == '_prev':
@@ -48,9 +48,9 @@ def _measure_get(component, direction):
       return _get_contemporaneous_measure(component, direction)
    elif isinstance(component, (list, tuple)):
       if direction == '_next':
-         measure_generator = iterate_components_forward_in_expr(component, _Measure)
+         measure_generator = iterate_components_forward_in_expr(component, Measure)
       elif direction == '_prev':
-         measure_generator = iterate_components_backward_in_expr(component, _Measure)
+         measure_generator = iterate_components_backward_in_expr(component, Measure)
       else:
          raise ValueError('direction must be _next or _prev.')
       try:

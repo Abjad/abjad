@@ -4,7 +4,6 @@ from abjad.components._Leaf import _Leaf
 def _get_mark_format_contributions_for_slot(leaf, slot):
    from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
    from abjad.components import Measure
-   from abjad.components.Measure._Measure import _Measure
 
    result = [ ]
    if not isinstance(leaf, _Leaf):
@@ -34,7 +33,7 @@ def _get_mark_format_contributions_for_slot(leaf, slot):
       if mark.effective_context is not None or \
          getattr(mark, '_is_cosmetic_mark', False) or \
          (isinstance(mark, TimeSignatureMark) and
-         isinstance(mark.start_component, (Measure, _Measure))):
+         isinstance(mark.start_component, Measure)):
          result.extend(addenda)         
       else:
          addenda = [r'%%% ' + addendum + r' %%%' for addendum in addenda]

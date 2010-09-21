@@ -1,9 +1,9 @@
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.core import Rational
 from abjad.tools import componenttools
 
 
-def _line_break_every(expr, line_duration, klass = _Measure, 
+def _line_break_every(expr, line_duration, klass = Measure, 
    kind = 'prolated', adjust_eol = False, add_empty_bars = False):
    '''Iterate klasses in `expr` and accumulate `kind` duration.
 

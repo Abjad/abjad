@@ -1,4 +1,4 @@
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.tools import durtools
 from abjad.tools import marktools
 from abjad.tools.metertools import Meter
@@ -47,7 +47,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
 
 
-   if isinstance(measure, _Measure):
+   if isinstance(measure, Measure):
       ## to allow iteration inside zero-update loop
       forced_meter = measure._explicit_meter
       if forced_meter is not None:

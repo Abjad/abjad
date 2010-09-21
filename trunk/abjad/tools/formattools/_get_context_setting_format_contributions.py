@@ -7,12 +7,12 @@ def _get_context_setting_format_contributions(component):
    for contributor in _get_format_contributor_component_interfaces(component):
       result.extend(getattr(contributor, 'settings', [ ]))
    from abjad.components._Leaf import _Leaf
-   from abjad.components.Measure import _Measure
+   from abjad.components import Measure
    from abjad.tools.lilyfiletools._format_lilypond_context_setting_inline import \
       _format_lilypond_context_setting_inline
    from abjad.tools.lilyfiletools._format_lilypond_context_setting_in_with_block import \
       _format_lilypond_context_setting_in_with_block
-   if isinstance(component, (_Leaf, _Measure)):
+   if isinstance(component, (_Leaf, Measure)):
       for name, value in vars(component.set).iteritems( ):
          ## if we've found a leaf LilyPondContextNamespace
          if name.startswith('_'):

@@ -6,7 +6,7 @@ from abjad.tools import marktools
 from abjad.tools.metertools import Meter
 
 
-class _Measure(Container):
+class Measure(Container):
    '''Abstract base class of Abjad model of one measure in score.
    '''
 
@@ -30,7 +30,7 @@ class _Measure(Container):
       '''Add two measures together in-score or outside-of-score.
       Wrapper around measuretools.fuse_measures.
       '''
-      assert isinstance(arg, _Measure)
+      assert isinstance(arg, type(self))
       from abjad.tools import measuretools
       new = measuretools.fuse_measures([self, arg])
       return new

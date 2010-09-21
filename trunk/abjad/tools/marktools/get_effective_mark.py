@@ -8,7 +8,6 @@ def get_effective_mark(component, klass):
    '''
    from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
    from abjad.components import Measure
-   from abjad.components.Measure._Measure import _Measure
 
    #print 'getting ready to get effective mark ...'
    component._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
@@ -23,7 +22,7 @@ def get_effective_mark(component, klass):
             if mark.effective_context is not None:
                candidate_marks.add(mark)
             elif isinstance(mark, TimeSignatureMark):
-               if isinstance(mark.start_component, (Measure, _Measure)):
+               if isinstance(mark.start_component, Measure):
                   candidate_marks.add(mark)
    candidate_marks = sorted(candidate_marks, 
       cmp = lambda m, n: cmp(m.start_component.offset.start, n.start_component.offset.start)) 

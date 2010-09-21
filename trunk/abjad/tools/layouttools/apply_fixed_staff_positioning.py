@@ -1,11 +1,11 @@
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.tools import componenttools
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
 from abjad.tools.layouttools.StaffAlignmentOffsets import StaffAlignmentOffsets
 from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistances
 
 
-def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
+def apply_fixed_staff_positioning(expr, positioning, klass = Measure):
    r'''Apply `positioning` to `expr`.
    Music `expr` must already be marked with line breaks.
 

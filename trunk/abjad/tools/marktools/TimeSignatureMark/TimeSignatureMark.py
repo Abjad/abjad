@@ -69,10 +69,9 @@ class TimeSignatureMark(Mark):
    ## OVERLOADS ##
 
    def __call__(self, *args):
-      from abjad.components import Measure
-      from abjad.components.Measure._Measure import _Measure
+      from abjad.components.Measure import Measure
       Mark.__call__(self, *args)
-      if isinstance(self._start_component, (Measure, _Measure)):
+      if isinstance(self._start_component, Measure):
          if self._start_component._explicit_meter is not None:
             self._start_component._explicit_meter.detach_mark( )
          self._start_component._explicit_meter = self

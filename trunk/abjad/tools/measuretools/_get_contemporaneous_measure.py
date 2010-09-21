@@ -1,6 +1,6 @@
 from abjad.components.Container import Container
 from abjad.exceptions import MissingMeasureError
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 
 
 def _get_contemporaneous_measure(container, direction):
@@ -13,7 +13,7 @@ def _get_contemporaneous_measure(container, direction):
          contents = container._navigator._contemporaneous_stop_contents
       else:
          raise ValueError("direction must be '_next' or '_prev'.")
-      contents = [x for x in contents if isinstance(x, _Measure)]
+      contents = [x for x in contents if isinstance(x, Measure)]
       if contents:
          return contents[0]
       raise MissingMeasureError

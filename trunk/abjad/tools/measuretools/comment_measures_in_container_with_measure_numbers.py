@@ -1,5 +1,5 @@
 from abjad.components.Container import Container
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 
 
 def comment_measures_in_container_with_measure_numbers(container, style = 'comment'):
@@ -63,7 +63,7 @@ def comment_measures_in_container_with_measure_numbers(container, style = 'comme
    '''
 
    ## functionality implemented on _ContainerFormatterNumberInterface
-   if isinstance(container, _Measure):
+   if isinstance(container, Measure):
       container._formatter.number.self = style
    else:
       container._formatter.number.measures = style

@@ -1,4 +1,4 @@
-from abjad.components.Measure import _Measure
+from abjad.components.Measure import Measure
 from abjad.tools.componenttools.get_nth_component_in_expr import get_nth_component_in_expr
 
 
@@ -58,4 +58,4 @@ def get_nth_measure_in_expr(expr, n = 0):
       ``measuretools.get_nth_measure_in_expr( )``.
    '''
 
-   return get_nth_component_in_expr(expr, _Measure, n)
+   return get_nth_component_in_expr(expr, Measure, n)
