@@ -18,14 +18,16 @@ class _Measure(Container):
 
    def __add__(self, arg):
       '''Add two measures together in-score or outside-of-score.
-         Wrapper around measuretools.fuse_measures.'''
+      Wrapper around measuretools.fuse_measures.
+      '''
       assert isinstance(arg, _Measure)
       from abjad.tools import measuretools
       new = measuretools.fuse_measures([self, arg])
       return new
 
    def __repr__(self):
-      '''String form of measure with parentheses for interpreter display.'''
+      '''String form of measure with parentheses for interpreter display.
+      '''
       class_name = self.__class__.__name__
       forced_meter = self._explicit_meter
       summary = self._summary
@@ -40,7 +42,8 @@ class _Measure(Container):
          return '%s( )' % class_name
 
    def __str__(self):
-      '''String form of measure with pipes for single string display.'''
+      '''String form of measure with pipes for single string display.
+      '''
       forced_meter = marktools.get_effective_time_signature(self)
       summary = self._summary
       length = len(self)
@@ -85,14 +88,16 @@ class _Measure(Container):
    @property
    def _compact_representation(self):
       '''Display form of measure used for spanners to display
-      potentially many spanned measures one after the other.'''
+      potentially many spanned measures one after the other.
+      '''
       return '|%s(%s)|' % (marktools.get_effective_time_signature(self), len(self))
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def full(self):
-      '''True if preprolated duration matches effective meter duration.'''
+   def is_full(self):
+      '''True if preprolated duration matches effective meter duration.
+      '''
       return marktools.get_effective_time_signature(self).duration == self.duration.preprolated
 
 ## FIXME ##

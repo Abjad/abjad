@@ -11,7 +11,7 @@ class TimeSignatureMark(Mark):
    _format_slot = 'opening'
 
    #__slots__ = ('_denominator', '_duration', '_format', '_format_slot', '_multiplier',
-   #   '_nonbinary', '_numerator', '_partial', )
+   #   '_is_nonbinary', '_numerator', '_partial', )
 
    def __init__(self, *args, **kwargs):
       from abjad.components import Staff
@@ -58,11 +58,11 @@ class TimeSignatureMark(Mark):
       #object.__setattr__(self, '_format', r'\time %s/%s' % (numerator, denominator))
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
       #object.__setattr__(self, '_multiplier', _multiplier)
-      #object.__setattr__(self, '_nonbinary', not mathtools.is_power_of_two(self.denominator))
+      #object.__setattr__(self, '_is_nonbinary', not mathtools.is_power_of_two(self.denominator))
       self._duration = Fraction(numerator, denominator)
       self._format = r'\time %s/%s' % (numerator, denominator)
       self._multiplier = _multiplier
-      self._nonbinary = not mathtools.is_power_of_two(self.denominator)
+      self._is_nonbinary = not mathtools.is_power_of_two(self.denominator)
 
       self._contents_repr_string = '%s/%s' % (self.numerator, self.denominator)
 
@@ -168,9 +168,9 @@ class TimeSignatureMark(Mark):
       return self._numerator
 
    @property
-   def nonbinary(self):
+   def is_nonbinary(self):
       '''Boolean indicator of nonbinary meter.'''
-      return self._nonbinary
+      return self._is_nonbinary
 
    @property
    def partial(self):

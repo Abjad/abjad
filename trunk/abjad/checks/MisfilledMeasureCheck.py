@@ -12,7 +12,7 @@ class MisfilledMeasureCheck(_Check):
       violators = [ ]
       total, bad = 0, 0
       for t in componenttools.iterate_components_forward_in_expr(expr, Measure):
-         if not t.full:
+         if not t.is_full:
             violators.append(t)
             bad += 1
          total += 1

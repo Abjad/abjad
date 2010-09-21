@@ -53,7 +53,7 @@ def _split_component_at_duration(
       measure = measures[0]
       split_point_in_measure = global_split_point - measure.offset.start
       split_point_denominator = split_point_in_measure.denominator
-      if measure.duration.nonbinary:
+      if measure.duration.is_nonbinary:
          measure_multiplier = measure.duration.multiplier
          split_point_multiplier = durtools.positive_integer_to_implied_prolation_multipler(
             split_point_denominator)

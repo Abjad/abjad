@@ -8,7 +8,7 @@ from abjad.tools import mathtools
 class Meter(_StrictComparator, _Immutable):
 
    __slots__ = ('_denominator', '_duration', '_format', '_multiplier',
-      '_nonbinary', '_numerator', '_partial', )
+      '_is_nonbinary', '_numerator', '_partial', )
 
    def __init__(self, *args, **kwargs):
 
@@ -38,7 +38,7 @@ class Meter(_StrictComparator, _Immutable):
       object.__setattr__(self, '_format', r'\time %s/%s' % (numerator, denominator))
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
       object.__setattr__(self, '_multiplier', _multiplier)
-      object.__setattr__(self, '_nonbinary', not mathtools.is_power_of_two(self.denominator))
+      object.__setattr__(self, '_is_nonbinary', not mathtools.is_power_of_two(self.denominator))
 
    ## OVERLOADS ##
 
@@ -114,9 +114,9 @@ class Meter(_StrictComparator, _Immutable):
       return self._numerator
 
    @property
-   def nonbinary(self):
+   def is_nonbinary(self):
       '''Boolean indicator of nonbinary meter.'''
-      return self._nonbinary
+      return self._is_nonbinary
 
    @property
    def partial(self):

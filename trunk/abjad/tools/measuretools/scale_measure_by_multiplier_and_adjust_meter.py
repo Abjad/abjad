@@ -56,7 +56,7 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(
          containertools.scale_contents_of_container(measure, remaining_multiplier)
    elif componenttools.all_are_components_scalable_by_multiplier(measure[:], multiplier):
       containertools.scale_contents_of_container(measure, multiplier)
-      if old_meter.nonbinary or not mathtools.is_power_of_two(multiplier):
+      if old_meter.is_nonbinary or not mathtools.is_power_of_two(multiplier):
          new_pair = durtools.multiply_duration_pair_and_reduce_factors(old_pair, multiplier)
       ## multiplier is a negative power of two, like 1/2, 1/4, etc.
       elif multiplier < Rational(0):

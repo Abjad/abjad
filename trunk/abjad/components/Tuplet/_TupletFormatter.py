@@ -16,7 +16,7 @@ class _TupletFormatter(_ContainerFormatter):
       tuplet = self._client
       if tuplet._visible:
          if tuplet.duration.augmentation or \
-            tuplet.duration._nonbinary or \
+            tuplet.duration._is_nonbinary or \
             tuplet.force_fraction:
                return r'\fraction '
       return ''

@@ -17,7 +17,7 @@ class _RigidMeasureFormatter(_MeasureFormatter):
    def _contents(self):
       result = [ ]
       client = self._client
-      if client.duration.nonbinary:
+      if client.duration.is_nonbinary:
          result.append("\t\\scaleDurations #'(%s . %s) {" % (
             client.duration.multiplier.numerator,
             client.duration.multiplier.denominator))
@@ -35,7 +35,7 @@ class _RigidMeasureFormatter(_MeasureFormatter):
       from abjad.tools import marktools
       client = self._client
       effective_meter = marktools.get_effective_time_signature(self._client)
-      if effective_meter.nonbinary and effective_meter.suppress:
+      if effective_meter.is_nonbinary and effective_meter.suppress:
          raise NonbinaryMeterSuppressionError
       if effective_meter.duration < client.duration.preprolated:
          raise OverfullMeasureError

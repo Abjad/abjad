@@ -73,7 +73,7 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
 
    ## color nonbinary measures in expr
    for measure in iterate_measures_forward_in_expr(expr):
-      if marktools.get_effective_time_signature(measure).nonbinary:
+      if marktools.get_effective_time_signature(measure).is_nonbinary:
          color_measure(measure, color)
          measures_colored.append(measure)
 

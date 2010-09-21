@@ -18,7 +18,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    ## PRVIATE ATTRIBUTES ##
 
    @property
-   def _binary(self):
+   def _is_binary(self):
       '''True when multiplier numerator is power of two,
       otherwise False.'''
       if self.multiplier:
@@ -40,8 +40,8 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       return '%s/%s' % (n, d)
 
    @property
-   def _nonbinary(self):
-      return not self._binary
+   def _is_nonbinary(self):
+      return not self._is_binary
 
    ## PUBLIC ATTRIBUTES ##
 
