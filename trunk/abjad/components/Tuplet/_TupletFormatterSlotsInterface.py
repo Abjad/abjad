@@ -143,12 +143,12 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       Note that ``color`` is a tuplet class attribute,
       not a tuplet instance attribute.
    
-      Finally, settings ``t.invisible = True`` causes the tuplet
+      Finally, settings ``t.is_invisible = True`` causes the tuplet
       to output with the LilyPond ``\scaleDurations`` command
       instead of the the Lilypond ``\times`` command. ::
 
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-         abjad> t.invisible = True
+         abjad> t.is_invisible = True
          abjad> print t.format
          \scaleDurations #'(2 . 3) {
                  c'8
@@ -156,7 +156,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                  e'8
          }
          abjad> pprint.pprint(t.formatter.slots.slot_2)
-         ([(tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), 'invisible'),
+         ([(tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), 'is_invisible'),
            ["\\scaleDurations #'(2 . 3) {"]],)
 
       Invisible tuplets carry neither tuplet bracket nor
@@ -166,10 +166,10 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       formatter = self.formatter
       tuplet = formatter.tuplet
       if tuplet.duration.multiplier:
-         if tuplet.invisible:
+         if tuplet.is_invisible:
             multiplier = tuplet.duration.multiplier
             n, d = multiplier.numerator, multiplier.denominator
-            contributor = (tuplet, 'invisible')
+            contributor = (tuplet, 'is_invisible')
             contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
             result.append([contributor, contributions])
          else:

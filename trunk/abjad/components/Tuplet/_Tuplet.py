@@ -13,7 +13,7 @@ class _Tuplet(Container):
       self._duration = _TupletDurationInterface(self)
       self._force_fraction = None
       self._formatter = _TupletFormatter(self) 
-      self._invisible = None
+      self._is_invisible = None
 
    ## OVERLOADS ##
 
@@ -40,8 +40,8 @@ class _Tuplet(Container):
          return ' '
 
    @property
-   def _visible(self):
-      return not self.invisible
+   def _is_visible(self):
+      return not self.is_invisible
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -58,14 +58,19 @@ class _Tuplet(Container):
       return property(**locals( ))
 
    @apply
-   def invisible( ):
+   def is_invisible( ):
       def fget(self):
          '''Read / write boolean to render tuplet invisible.'''
-         return self._invisible
+         return self._is_invisible
       def fset(self, arg):
          assert isinstance(arg, (bool, type(None)))
-         self._invisible = arg
+         self._is_invisible = arg
       return property(**locals())
+
+   @property
+   def is_trivial(self):
+      '''True when tuplet multiplier is one, otherwise False.'''
+      return self.duration.multiplier == 1
 
    @property
    def ratio(self):
@@ -75,8 +80,3 @@ class _Tuplet(Container):
          return '%s:%s' % (multiplier.denominator, multiplier.numerator)
       else:
          return None
-
-   @property
-   def trivial(self):
-      '''True when tuplet multiplier is one, otherwise False.'''
-      return self.duration.multiplier == 1

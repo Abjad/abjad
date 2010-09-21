@@ -23,7 +23,7 @@ def change_augmented_tuplets_in_expr_to_diminished(tuplet):
    if not isinstance(tuplet, _Tuplet):
       raise TypeError('must be tuplet.')
 
-   while not tuplet.duration.diminution:
+   while not tuplet.duration.is_diminution:
       for leaf in tuplet.leaves:
          leaf.duration.written *= 2
 

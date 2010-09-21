@@ -22,5 +22,9 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
       return marktools.get_effective_time_signature(self._client).multiplier
 
    @property
+   def is_binary(self):
+      return not self.is_nonbinary
+
+   @property
    def is_nonbinary(self):
       return marktools.get_effective_time_signature(self._client).is_nonbinary

@@ -9,7 +9,7 @@ from abjad.components.Measure._MeasureFormatterSlotsInterface import \
 
 class _MeasureFormatter(_ContainerFormatter):
    '''Encapsulate all dynamic measure and anonymous measure
-   format logic. ::
+   format logic::
 
       abjad> measure = AnonymousMeasure(macros.scale(3))
       abjad> measure.formatter

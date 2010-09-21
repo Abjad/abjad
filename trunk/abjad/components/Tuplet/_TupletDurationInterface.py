@@ -1,17 +1,13 @@
-from abjad.core import Rational
 from abjad.components.Container._MultipliedContainerDurationInterface import _MultipliedContainerDurationInterface
 from abjad.tools import mathtools
-import types
+from fractions import Fraction
 
 
 class _TupletDurationInterface(_MultipliedContainerDurationInterface):
-   r'''Manage duration attributes common to both fixed-duration
-   and fixed-multiplier tuplets.
+   r'''Manage duration attributes common to both fixed-duration and fixed-multiplier tuplets.
    '''
 
    def __init__(self, _client):
-      '''Bind to client.
-      Init as type of multiplied container duration interface.'''
       _MultipliedContainerDurationInterface.__init__(self, _client)
       self._preferred_denominator = None
 
@@ -19,8 +15,8 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
    @property
    def _is_binary(self):
-      '''True when multiplier numerator is power of two,
-      otherwise False.'''
+      '''True when multiplier numerator is power of two, otherwise False.
+      '''
       if self.multiplier:
          return mathtools.is_power_of_two(self.multiplier.numerator)
       else:
@@ -32,7 +28,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       if self.preferred_denominator is not None:
          #d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
          #   ~self.multiplier, self.preferred_denominator)
-         inverse_multiplier = Rational(self.multiplier.denominator, self.multiplier.numerator)
+         inverse_multiplier = Fraction(self.multiplier.denominator, self.multiplier.numerator)
          d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             inverse_multiplier, self.preferred_denominator)
       else:
@@ -46,14 +42,12 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def augmentation(self):
-      '''Read-only boolean. ``True`` when multiplier is
-      greater than ``1``, otherwise ``False``.
-
-      ::
+   def is_augmentation(self):
+      '''True when multiplier is greater than 1.
+      Otherwise false::
 
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-         abjad> t.duration.augmentation
+         abjad> t.duration.is_augmentation
          False
       '''
 
@@ -63,14 +57,12 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          return False
 
    @property
-   def diminution(self):
-      '''Read-only boolean. ``True`` when multiplier is
-      less than ``1``, otherwise ``False``.
-
-      ::
+   def is_diminution(self):
+      '''True when multiplier is less than 1.
+      Otherwise false::
 
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-         abjad> t.duration.diminution
+         abjad> t.duration.is_diminution
          True
       '''
 
@@ -83,8 +75,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    def preferred_denominator( ):
       def fget(self):
          '''.. versionadded:: 1.1.2
-         Integer denominator in terms of which tuplet fraction
-         should format.
+         Integer denominator in terms of which tuplet fraction should format.
          '''
          return self._preferred_denominator
       def fset(self, arg):
@@ -98,14 +89,13 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
    @property
    def preprolated(self):
-      '''Read-only :class:`Rational <abjad.core.rational.Rational>`.
-      Duration prior to prolation.
+      '''Duration prior to prolation:
 
       ::
 
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.duration.preprolated
-         Rational(1, 4)
+         Fraction(1, 4)
       '''
 
       return self.multiplied
