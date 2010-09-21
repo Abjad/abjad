@@ -14,15 +14,6 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    ## PRVIATE ATTRIBUTES ##
 
    @property
-   def _is_binary(self):
-      '''True when multiplier numerator is power of two, otherwise False.
-      '''
-      if self.multiplier:
-         return mathtools.is_power_of_two(self.multiplier.numerator)
-      else:
-         return True
-   
-   @property
    def _multiplier_fraction_string(self):
       from abjad.tools import durtools
       if self.preferred_denominator is not None:
@@ -34,10 +25,6 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       else:
          n, d = self.multiplier.numerator, self.multiplier.denominator
       return '%s/%s' % (n, d)
-
-   @property
-   def _is_nonbinary(self):
-      return not self._is_binary
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -57,6 +44,15 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          return False
 
    @property
+   def is_binary(self):
+      '''True when multiplier numerator is power of two, otherwise False.
+      '''
+      if self.multiplier:
+         return mathtools.is_power_of_two(self.multiplier.numerator)
+      else:
+         return True
+   
+   @property
    def is_diminution(self):
       '''True when multiplier is less than 1.
       Otherwise false::
@@ -70,6 +66,10 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          return self.multiplier < 1
       else:
          return False
+
+   @property
+   def is_nonbinary(self):
+      return not self.is_binary
 
    @apply
    def preferred_denominator( ):
