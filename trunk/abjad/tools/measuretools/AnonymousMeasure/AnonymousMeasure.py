@@ -39,6 +39,6 @@ class AnonymousMeasure(DynamicMeasure):
       '''Initialize music and hide TimeSignature stencil.
       '''
 
-      DynamicMeasure.__init__(self, music = music)
+      DynamicMeasure.__init__(self, music = music, **kwargs)
       self.override.staff.time_signature.stencil = False
-      self._initialize_keyword_values(**kwargs)
+      #self._initialize_keyword_values(**kwargs)

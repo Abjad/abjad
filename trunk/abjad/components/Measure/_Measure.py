@@ -3,17 +3,26 @@ from abjad.components.Measure._MeasureDurationInterface import _MeasureDurationI
 from abjad.components.Measure._MeasureFormatter import _MeasureFormatter
 from abjad.tools import durtools
 from abjad.tools import marktools
+from abjad.tools.metertools import Meter
 
 
 class _Measure(Container):
    '''Abstract base class of Abjad model of one measure in score.
    '''
 
-   def __init__(self, music = None):
+   #def __init__(self, music = None):
+   def __init__(self, meter, music = None, **kwargs):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self._explicit_meter = None
       self._formatter = _MeasureFormatter(self)
+
+      meter = Meter(meter)
+      numerator, denominator = meter.numerator, meter.denominator
+      self._attach_explicit_meter(numerator, denominator)
+
+      self._initialize_keyword_values(**kwargs)
+
 
    ## OVERLOADS ##
 

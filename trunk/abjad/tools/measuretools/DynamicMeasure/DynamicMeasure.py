@@ -8,12 +8,14 @@ from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface im
 class DynamicMeasure(_Measure):
 
    def __init__(self, music = None, **kwargs):
-      _Measure.__init__(self, music)
+      #_Measure.__init__(self, music)
+      _Measure.__init__(self, meter = (99, 99), music = music, **kwargs)
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
       self._explicit_meter_is_current = False
-      self._initialize_keyword_values(**kwargs)
+      #self._initialize_keyword_values(**kwargs)
       self.suppress_meter = False
+      self._update_explicit_meter( )
 
    ## PRIVATE METHODS ##
 
