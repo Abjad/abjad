@@ -3,8 +3,12 @@ from abjad.exceptions import MeasureContiguityError
 from abjad.exceptions import MissingMeasureError
 from abjad.components._Leaf import _Leaf
 from abjad.components.Measure import Measure
-from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
-from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
+from abjad.tools.componenttools.get_proper_parentage_of_component import \
+   get_proper_parentage_of_component
+from abjad.tools.componenttools.iterate_components_backward_in_expr import \
+   iterate_components_backward_in_expr
+from abjad.tools.componenttools.iterate_components_forward_in_expr import \
+   iterate_components_forward_in_expr
 from abjad.tools.measuretools._get_contemporaneous_measure import _get_contemporaneous_measure
 
 
@@ -33,7 +37,8 @@ def _measure_get(component, direction):
    '''
 
    if isinstance(component, _Leaf):
-      for parent in component.parentage.proper_parentage:
+      #for parent in component.parentage.proper_parentage:
+      for parent in get_proper_parentage_of_component(component):
          if isinstance(parent, Measure):
             return parent
       raise MissingMeasureError

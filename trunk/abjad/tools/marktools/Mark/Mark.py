@@ -101,17 +101,20 @@ class Mark(object):
    ## PRIVATE METHODS ##
    
    def _find_correct_effective_context(self):
+      from abjad.tools import componenttools
       target_context = self.target_context
       if target_context is None:
          return None
       elif isinstance(target_context, type):
          target_context_type = target_context
-         for component in self.start_component.parentage.improper_parentage:
+         #for component in self.start_component.parentage.improper_parentage:
+         for component in componenttools.get_improper_parentage_of_component(self.start_component):
             if isinstance(component, target_context_type):
                return component
       elif isinstance(target_context, str):
          target_context_name = target_context
-         for component in self.start_component.parentage.improper_parentage:
+         #for component in self.start_component.parentage.improper_parentage:
+         for component in componenttools.get_improper_parentage_of_component(self.start_component):
             if component.name == target_context_name:
                return component
       else:

@@ -44,10 +44,12 @@ class _NavigationInterface(_Interface):
       '''Return a list of all components in the parentage of client
       starting at the same moment as client, including client.
       '''
+      from abjad.tools import componenttools
       client = self._client
       result = [client]
       prev = client
-      for parent in client.parentage.proper_parentage:
+      #for parent in client.parentage.proper_parentage:
+      for parent in componenttools.get_proper_parentage_of_component(client):
          if parent.parallel:
             result.append(parent)
          elif parent.index(prev) == 0:
@@ -90,10 +92,12 @@ class _NavigationInterface(_Interface):
       '''Return a list of all components in the parentage of client
       stopping at the same moment as client, including client.
       '''
+      from abjad.tools import componenttools
       client = self._client
       result = [client]
       prev = client
-      for parent in client.parentage.proper_parentage:
+      #for parent in client.parentage.proper_parentage:
+      for parent in componenttools.get_proper_parentage_of_component(client):
          if parent.parallel:
             if prev.duration.prolated == parent.duration.prolated:
                result.append(parent)
@@ -150,11 +154,13 @@ class _NavigationInterface(_Interface):
    def _next(self):
       '''Returns next Component in temporal order.
       '''
+      from abjad.tools import componenttools
       next = self._next_sibling
       if next:
          return next
       else:
-         for p in self._client.parentage.proper_parentage:
+         #for p in self._client.parentage.proper_parentage:
+         for p in componenttools.get_proper_parentage_of_component(self._client):
             next = p._navigator._next_sibling
             if next:
                return next
@@ -245,11 +251,13 @@ class _NavigationInterface(_Interface):
    def _prev(self):
       '''Returns previous Component in temporal order.
       '''
+      from abjad.tools import componenttools
       prev = self._prev_sibling
       if prev:
          return prev
       else:
-         for p in self._client.parentage.proper_parentage:
+         #for p in self._client.parentage.proper_parentage:
+         for p in componenttools.get_proper_parentage_of_component(self._client):
             prev = p._navigator._prev_sibling
             if prev:
                return prev

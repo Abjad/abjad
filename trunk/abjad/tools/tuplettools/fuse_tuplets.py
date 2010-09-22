@@ -2,6 +2,7 @@ from abjad.components.Container import Container
 from abjad.components.Tuplet import Tuplet
 from abjad.core import Rational
 from abjad.exceptions import TupletFuseError
+from abjad.tools.componenttools.component_to_score_root import component_to_score_root
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
 
@@ -93,10 +94,12 @@ def fuse_tuplets(tuplets):
       raise TypeError('unknown tuplet type.')
 
    wrapped = False
-   if tuplets[0].parentage.root is not tuplets[-1].parentage.root:
+   #if tuplets[0].parentage.root is not tuplets[-1].parentage.root:
+   if component_to_score_root(tuplets[0]) is not component_to_score_root(tuplets[-1]):
       dummy_container = Container(tuplets) 
       wrapped = True
-   containertools.move_parentage_children_and_spanners_from_components_to_empty_container(tuplets, new_tuplet)
+   containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
+      tuplets, new_tuplet)
 
    if wrapped:
       containertools.delete_contents_of_container(dummy_container)

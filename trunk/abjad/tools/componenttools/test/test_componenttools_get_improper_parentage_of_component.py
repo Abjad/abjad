@@ -24,15 +24,16 @@ def test_ParentageInterface_improper_parentage_01( ):
    >>
    '''
 
-   parentage = t.leaves[0].parentage.improper_parentage
+   #parentage = t.leaves[0].parentage.improper_parentage
+   improper_parentage = componenttools.get_improper_parentage_of_component(t.leaves[0])
 
    "[Note(c', 8), Container(c'8, d'8), Staff{2}, Score<<1>>]"
 
-   assert len(parentage) == 4
-   assert parentage[0] is t[0][0][0]
-   assert parentage[1] is t[0][0]
-   assert parentage[2] is t[0]
-   assert parentage[3] is t
+   assert len(improper_parentage) == 4
+   assert improper_parentage[0] is t[0][0][0]
+   assert improper_parentage[1] is t[0][0]
+   assert improper_parentage[2] is t[0]
+   assert improper_parentage[3] is t
 
 
 def test_ParentageInterface_improper_parentage_02( ):
@@ -57,11 +58,12 @@ def test_ParentageInterface_improper_parentage_02( ):
    >>
    '''
 
-   parentage = t[0][0].parentage.improper_parentage
+   #parentage = t[0][0].parentage.improper_parentage
+   improper_parentage = componenttools.get_improper_parentage_of_component(t[0][0])
 
    "[Container(c'8, d'8), Staff{2}, Score<<1>>]"
 
-   assert len(parentage) == 3
-   assert parentage[0] is t[0][0]
-   assert parentage[1] is t[0]
-   assert parentage[2] is t
+   assert len(improper_parentage) == 3
+   assert improper_parentage[0] is t[0][0]
+   assert improper_parentage[1] is t[0]
+   assert improper_parentage[2] is t

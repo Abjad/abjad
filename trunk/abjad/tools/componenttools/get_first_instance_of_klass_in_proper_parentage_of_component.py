@@ -1,3 +1,7 @@
+from abjad.tools.componenttools.get_proper_parentage_of_component import \
+   get_proper_parentage_of_component
+
+
 def get_first_instance_of_klass_in_proper_parentage_of_component(component, klass):
    '''.. versionadded:: 1.1.1
 
@@ -16,6 +20,7 @@ def get_first_instance_of_klass_in_proper_parentage_of_component(component, klas
       ``componenttools.get_first_instance_of_klass_in_proper_parentage_of_component( )``.
    '''
 
-   for parent in component.parentage.proper_parentage:
+   #for parent in component.parentage.proper_parentage:
+   for parent in get_proper_parentage_of_component(component):
       if isinstance(parent, klass):
          return parent

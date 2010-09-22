@@ -26,10 +26,12 @@ def get_all_spanners_attached_to_any_improper_parent_of_component(component, kla
       renamed ``spannertools.get_all_spanners_attached_to_improper_parentage_of_component( )`` to
       ``spannertools.get_all_spanners_attached_to_any_improper_parent_of_component( )``.
    '''
+   from abjad.tools import componenttools
 
    ## externalized version of (old) spanner receptor 'spanners_in_parentage' attribute 
    result = set([ ])
-   parentage = component.parentage.improper_parentage
+   #parentage = component.parentage.improper_parentage
+   parentage = componenttools.get_improper_parentage_of_component(component)
    for parent in parentage:
       #spanners = parent.spanners.attached
       #spanners = parent.spanners._spanners

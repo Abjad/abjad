@@ -1,3 +1,7 @@
+from abjad.tools.componenttools.get_improper_parentage_of_component import \
+   get_improper_parentage_of_component
+
+
 def get_first_instance_of_klass_in_improper_parentage_of_component(component, klass):
    '''.. versionadded:: 1.1.2
 
@@ -10,6 +14,7 @@ def get_first_instance_of_klass_in_improper_parentage_of_component(component, kl
    Otherwise return none.
    '''
 
-   for parent in component.parentage.improper_parentage:
+   #for parent in component.parentage.improper_parentage:
+   for parent in get_improper_parentage_of_component(component):
       if isinstance(parent, klass):
          return parent

@@ -92,18 +92,24 @@ componenttools
    tools/componenttools/clone_components_and_remove_all_spanners
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
+   tools/componenttools/component_is_orphan
    tools/componenttools/component_to_parentage_signature
    tools/componenttools/component_to_pitch_and_rhythm_skeleton
    tools/componenttools/component_to_pitch_and_rhythm_skeleton_with_interface_attributes
+   tools/componenttools/component_to_score_depth
    tools/componenttools/component_to_score_index
+   tools/componenttools/component_to_score_root
+   tools/componenttools/component_to_tuplet_depth
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/get_first_component_in_expr_with_name
    tools/componenttools/get_first_instance_of_klass_in_improper_parentage_of_component
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
+   tools/componenttools/get_improper_parentage_of_component
    tools/componenttools/get_likely_multiplier_of_components
    tools/componenttools/get_nth_component_in_expr
    tools/componenttools/get_nth_namesake_from_component
    tools/componenttools/get_parent_and_start_stop_indices_of_components
+   tools/componenttools/get_proper_parentage_of_component
    tools/componenttools/group_components_by_like_preprolated_duration
    tools/componenttools/group_components_by_like_prolated_duration
    tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups

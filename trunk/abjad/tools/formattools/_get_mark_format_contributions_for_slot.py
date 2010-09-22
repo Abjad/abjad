@@ -2,14 +2,16 @@ from abjad.components._Leaf import _Leaf
 
 
 def _get_mark_format_contributions_for_slot(leaf, slot):
-   from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
    from abjad.components import Measure
+   from abjad.tools import componenttools
+   from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
 
    result = [ ]
    if not isinstance(leaf, _Leaf):
       return result
    marks = set([ ])
-   for component in leaf.parentage.improper_parentage:
+   #for component in leaf.parentage.improper_parentage:
+   for component in componenttools.get_improper_parentage_of_component(leaf):
       #print component.__class__.__name__
       for mark in component.marks:
          #print mark

@@ -6,8 +6,9 @@ def get_effective_mark(component, klass):
 
    Get effective mark of mark `klass` for `component`.
    '''
-   from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
    from abjad.components import Measure
+   from abjad.tools import componenttools
+   from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
 
    #print 'getting ready to get effective mark ...'
    component._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
@@ -15,7 +16,8 @@ def get_effective_mark(component, klass):
 
    #print 'now getting effective mark ...'
    candidate_marks = set([ ])
-   for parent in component.parentage.improper_parentage:
+   #for parent in component.parentage.improper_parentage:
+   for parent in componenttools.get_improper_parentage_of_component(component):
       #print parent, parent.marks
       for mark in parent.marks:
          if isinstance(mark, klass):
