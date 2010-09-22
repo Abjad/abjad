@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ParentageInterface_interface_proper_01( ):
+def test_componenttools_get_proper_parentage_of_component_01( ):
 
    tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    staff = Staff([tuplet])

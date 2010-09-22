@@ -868,6 +868,7 @@ spannertools
    tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    tools/spannertools/MetricGridSpanner/MetricGridSpanner
    tools/spannertools/OctavationSpanner/OctavationSpanner
+   tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
    tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
    tools/spannertools/ProportionalTempoSpanner/ProportionalTempoSpanner
    tools/spannertools/SlurSpanner/SlurSpanner

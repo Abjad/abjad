@@ -16,6 +16,7 @@ from InstrumentSpanner import InstrumentSpanner
 from MeasuredComplexBeamSpanner import MeasuredComplexBeamSpanner
 from MetricGridSpanner import MetricGridSpanner
 from OctavationSpanner import OctavationSpanner
+from PhrasingSlurSpanner import PhrasingSlurSpanner
 from PianoPedalSpanner import PianoPedalSpanner
 from ProportionalTempoSpanner import ProportionalTempoSpanner
 from SlurSpanner import SlurSpanner

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_ParentageInterface_signature_01( ):
+def test_componenttools_component_to_parentage_signature_01( ):
    '''An anonymous Staff and it's contained unvoiced leaves share the 
    same parentage signature.'''
 
@@ -13,7 +13,7 @@ def test_ParentageInterface_signature_01( ):
       assert componenttools.component_to_parentage_signature(component) == containment
 
 
-def test_ParentageInterface_signature_02( ):
+def test_componenttools_component_to_parentage_signature_02( ):
    '''A named Staff and it's contained unvoiced leaves share the 
    same parentage signature.'''
 
@@ -28,7 +28,7 @@ def test_ParentageInterface_signature_02( ):
       assert componenttools.component_to_parentage_signature(component) == containment
 
 
-def test_ParentageInterface_signature_03( ):
+def test_componenttools_component_to_parentage_signature_03( ):
    '''Leaves inside equally named sequential voices inside a Staff 
    share the same parentage signature.'''
 
@@ -41,7 +41,7 @@ def test_ParentageInterface_signature_03( ):
       assert componenttools.component_to_parentage_signature(leaf) == containment
 
 
-def test_ParentageInterface_signature_04( ):
+def test_componenttools_component_to_parentage_signature_04( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -84,7 +84,7 @@ def test_ParentageInterface_signature_04( ):
    assert signatures[2] != signatures[4]
 
       
-def test_ParentageInterface_signature_05( ):
+def test_componenttools_component_to_parentage_signature_05( ):
    '''Unicorporated leaves carry different parentage signatures.'''
 
    t1 = Note(0, (1, 8))
@@ -95,7 +95,7 @@ def test_ParentageInterface_signature_05( ):
       componenttools.component_to_parentage_signature(t2)
 
 
-def test_ParentageInterface_signature_06( ):
+def test_componenttools_component_to_parentage_signature_06( ):
    '''Leaves inside different Staves with the same name have the same
    parentage signature.'''
 
