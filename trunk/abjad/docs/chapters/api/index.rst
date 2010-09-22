@@ -92,6 +92,7 @@ componenttools
    tools/componenttools/clone_components_and_remove_all_spanners
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
+   tools/componenttools/component_to_parentage_signature
    tools/componenttools/component_to_pitch_and_rhythm_skeleton
    tools/componenttools/component_to_pitch_and_rhythm_skeleton_with_interface_attributes
    tools/componenttools/component_to_score_index

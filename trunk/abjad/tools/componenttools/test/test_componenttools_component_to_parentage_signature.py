@@ -1,15 +1,16 @@
 from abjad import *
-from abjad.components._Component._Component import _Component
 import py.test
+
 
 def test_ParentageInterface_signature_01( ):
    '''An anonymous Staff and it's contained unvoiced leaves share the 
    same parentage signature.'''
+
    t = Staff(macros.scale(4))
 
-   containment = t.parentage.signature
-   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
-      assert component.parentage.signature == containment
+   containment = componenttools.component_to_parentage_signature(t)
+   for component in componenttools.iterate_components_forward_in_expr(t):
+      assert componenttools.component_to_parentage_signature(component) == containment
 
 
 def test_ParentageInterface_signature_02( ):
@@ -19,9 +20,12 @@ def test_ParentageInterface_signature_02( ):
    t = Staff(macros.scale(4))
    t.name = 'foo'
 
-   containment = t.parentage.signature
-   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
-      assert component.parentage.signature == containment
+   #containment = t.parentage.signature
+   #for component in componenttools.iterate_components_forward_in_expr(t):
+   #   assert component.parentage.signature == containment
+   containment = componenttools.component_to_parentage_signature(t)
+   for component in componenttools.iterate_components_forward_in_expr(t):
+      assert componenttools.component_to_parentage_signature(component) == containment
 
 
 def test_ParentageInterface_signature_03( ):
@@ -32,9 +36,9 @@ def test_ParentageInterface_signature_03( ):
    t[0].name = 'foo'
    t[1].name = 'foo'
 
-   containment = t[0][0].parentage.signature
+   containment = componenttools.component_to_parentage_signature(t[0][0])
    for leaf in t.leaves:
-      assert leaf.parentage.signature == containment
+      assert componenttools.component_to_parentage_signature(leaf) == containment
 
 
 def test_ParentageInterface_signature_04( ):
@@ -45,7 +49,6 @@ def test_ParentageInterface_signature_04( ):
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    macros.diatonicize(t)
-   #t.note_head.color = 'red'
    t.override.note_head.color = 'red'
 
    r'''
@@ -69,7 +72,8 @@ def test_ParentageInterface_signature_04( ):
    }
    '''
 
-   signatures = [leaf.parentage.signature for leaf in t.leaves]
+   #signatures = [leaf.parentage.signature for leaf in t.leaves]
+   signatures = [componenttools.component_to_parentage_signature(leaf) for leaf in t.leaves]
 
    assert signatures[0] == signatures[1]
    assert signatures[0] != signatures[2]
@@ -86,12 +90,15 @@ def test_ParentageInterface_signature_05( ):
    t1 = Note(0, (1, 8))
    t2 = Note(0, (1, 8))
   
-   assert t1.parentage.signature != t2.parentage.signature
+   #assert t1.parentage.signature != t2.parentage.signature
+   assert componenttools.component_to_parentage_signature(t1) != \
+      componenttools.component_to_parentage_signature(t2)
 
 
 def test_ParentageInterface_signature_06( ):
    '''Leaves inside different Staves with the same name have the same
    parentage signature.'''
+
    t = Container(Staff(notetools.make_repeated_notes(2)) * 2)
    t[0].name = t[1].name = 'staff'
 
@@ -108,9 +115,20 @@ def test_ParentageInterface_signature_06( ):
    }
    '''
 
-   assert t.leaves[0].parentage.signature == t.leaves[1].parentage.signature
-   assert t.leaves[0].parentage.signature == t.leaves[2].parentage.signature
-   assert t.leaves[2].parentage.signature == t.leaves[3].parentage.signature
-   assert t.leaves[2].parentage.signature == t.leaves[0].parentage.signature
+   #assert t.leaves[0].parentage.signature == t.leaves[1].parentage.signature
+   #assert t.leaves[0].parentage.signature == t.leaves[2].parentage.signature
+   #assert t.leaves[2].parentage.signature == t.leaves[3].parentage.signature
+   #assert t.leaves[2].parentage.signature == t.leaves[0].parentage.signature
+   #assert t[0].parentage.signature == t[1].parentage.signature
 
-   assert t[0].parentage.signature == t[1].parentage.signature
+   assert componenttools.component_to_parentage_signature(t.leaves[0]) == \
+      componenttools.component_to_parentage_signature(t.leaves[1])
+   assert componenttools.component_to_parentage_signature(t.leaves[0]) == \
+      componenttools.component_to_parentage_signature(t.leaves[2])
+   assert componenttools.component_to_parentage_signature(t.leaves[2]) == \
+      componenttools.component_to_parentage_signature(t.leaves[3])
+   assert componenttools.component_to_parentage_signature(t.leaves[2]) == \
+      componenttools.component_to_parentage_signature(t.leaves[0])
+
+   assert componenttools.component_to_parentage_signature(t[0]) == \
+      componenttools.component_to_parentage_signature(t[1])

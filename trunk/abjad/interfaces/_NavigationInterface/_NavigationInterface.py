@@ -186,8 +186,11 @@ class _NavigationInterface(_Interface):
          return None
       dfs = componenttools.iterate_components_depth_first(next, capped = False)
       for node in dfs:
+         #if type(node) == type(self._client) and \
+         #   node.parentage.signature == self._client.parentage.signature:
          if type(node) == type(self._client) and \
-            node.parentage.signature == self._client.parentage.signature:
+            componenttools.component_to_parentage_signature(node) == \
+            componenttools.component_to_parentage_signature(self._client):
             return node
 
    ## TODO: Write tests for _NavigationInterface._prev_namesake.                           ##
@@ -203,8 +206,11 @@ class _NavigationInterface(_Interface):
          return None
       dfs = componenttools.iterate_components_depth_first(prev, capped = False, direction = 'right')
       for node in dfs:
+         #if type(node) == type(self._client) and \
+         #   node.parentage.signature == self._client.parentage.signature:
          if type(node) == type(self._client) and \
-            node.parentage.signature == self._client.parentage.signature:
+            componenttools.component_to_parentage_signature(node) == \
+            componenttools.component_to_parentage_signature(self._client):
             return node
 
    @property
