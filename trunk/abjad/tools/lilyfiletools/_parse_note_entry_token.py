@@ -1,13 +1,11 @@
+from abjad.components import Note
+from abjad.components import Rest
+from abjad.components import Skip
 from abjad.exceptions import InputSpecificationError
-from abjad.components.Note import Note
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.components.Rest import Rest
-from abjad.tools.resttools import MultiMeasureRest
-from abjad.components.Skip import Skip
 from abjad.tools import pitchtools
 from abjad.tools.lilyfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
-from abjad.tools.lilyfiletools._parse_chord_entry_token import \
-   _parse_chord_entry_token
+from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
+from abjad.tools.resttools.MultiMeasureRest import MultiMeasureRest
 import re
 
 
@@ -35,7 +33,7 @@ def _parse_note_entry_token(note_entry_token):
       #if note_entry_token.startswith('<'):
       #   chord = _parse_chord_entry_token(note_entry_token)
       #   return chord
-      message = 'incorrect note entry token:\n%s.' % note_entry_token
+      message = 'incorrect note entry token: %s.\n' % note_entry_token
       raise InputSpecificationError(message)
 
    name, ticks, duration_body, dots = match.groups( )
@@ -49,5 +47,5 @@ def _parse_note_entry_token(note_entry_token):
       return Skip(duration_string)
    else:
       pitch_string = name + ticks
-      pitch = NamedPitch(pitch_string)
+      pitch = pitchtools.NamedPitch(pitch_string)
       return Note(pitch, duration_string)
