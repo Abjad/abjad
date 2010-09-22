@@ -292,6 +292,7 @@ iotools
    :maxdepth: 1
 
    tools/iotools/f
+   tools/iotools/get_lilypond_version
    tools/iotools/list_settings
    tools/iotools/log
    tools/iotools/ly
