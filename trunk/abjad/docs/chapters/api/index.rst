@@ -199,6 +199,7 @@ containertools
    tools/containertools/remove_empty_containers_in_expr
    tools/containertools/repeat_contents_of_container
    tools/containertools/repeat_last_n_elements_of_container
+   tools/containertools/replace_contents_of_target_container_with_contents_of_source_container
    tools/containertools/replace_larger_left_half_of_elements_in_container_with_big_endian_rests
    tools/containertools/replace_larger_left_half_of_elements_in_container_with_little_endian_rests
    tools/containertools/replace_larger_right_half_of_elements_in_container_with_big_endian_rests
