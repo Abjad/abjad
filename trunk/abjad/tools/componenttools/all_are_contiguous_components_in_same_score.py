@@ -23,7 +23,7 @@ def all_are_contiguous_components_in_same_score(expr, klasses = (_Component),
       return False
 
    orphan_components = True   
-   if not first.parentage.orphan:
+   if not first.parentage.is_orphan:
       orphan_components = False
 
    same_score = True
@@ -34,7 +34,7 @@ def all_are_contiguous_components_in_same_score(expr, klasses = (_Component),
    for cur in expr[1:]:
       if not isinstance(cur, klasses):
          return False
-      if not cur.parentage.orphan:
+      if not cur.parentage.is_orphan:
          orphan_components = False
       if not cur.parentage.root is first_score:
          same_score = False

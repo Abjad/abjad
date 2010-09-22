@@ -62,7 +62,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
    '''
 
    # swap positions in parent
-   if not component.parentage.orphan:
+   if not component.parentage.is_orphan:
       parent = component.parentage.parent
       parent_index = parent.index(component)
       try:

@@ -18,7 +18,7 @@ def all_are_contiguous_components(expr, klasses = (_Component, ), allow_orphans 
       return False
 
    orphan_components = True
-   if not first.parentage.orphan:
+   if not first.parentage.is_orphan:
       orphan_components = False
 
    strictly_contiguous = True
@@ -27,7 +27,7 @@ def all_are_contiguous_components(expr, klasses = (_Component, ), allow_orphans 
    for cur in expr[1:]:
       if not isinstance(cur, klasses):
          return False
-      if not cur.parentage.orphan:
+      if not cur.parentage.is_orphan:
          orphan_components = False
       if not prev._navigator._is_immediate_temporal_successor_of(cur):
          strictly_contiguous = False

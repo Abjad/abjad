@@ -166,13 +166,13 @@ class ParentageInterface(_Interface):
       return result
             
    @property
-   def orphan(self):
+   def is_orphan(self):
       '''``True`` when component has no parent, otherwise ``False``.
       
       ::
 
          abjad> note = Note(0, (1, 4))
-         abjad> note.parentage.orphan
+         abjad> note.parentage.is_orphan
          True
 
       Defined equal to ``len(component.parentage.proper_parentage) == 0``.

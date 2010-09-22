@@ -24,7 +24,7 @@ def all_are_components_in_same_score(expr, klasses = (_Component, ), allow_orpha
       if not isinstance(element, klasses):
          return False
       if element.parentage.root is not first_score:
-         if not (allow_orphans and element.parentage.orphan):
+         if not (allow_orphans and element.parentage.is_orphan):
             return False
 
    return True
