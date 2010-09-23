@@ -11,7 +11,7 @@ def get_proper_parentage_of_component(component):
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
-      abjad> note.parentage.proper_parentage
+      abjad> note._parentage.proper_parentage
       (tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1})
    '''
 

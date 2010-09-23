@@ -1,7 +1,7 @@
 from abjad.interfaces._Interface import _Interface
 
 
-class ParentageInterface(_Interface):
+class _ParentageInterface(_Interface):
    '''Bundle attributes relating to the containers within which any Abjad component nests.
    '''
 
@@ -67,14 +67,14 @@ class ParentageInterface(_Interface):
       ::
 
          abjad> note = t.leaves[1]
-         abjad> note.parentage.governor is t[0][0]
+         abjad> note._parentage.governor is t[0][0]
          True
 
       In the case that no such container exists
       in the parentage of `component`, return ``None``. ::
 
          abjad> note = Note(0, (1, 4))
-         abjad> note.parentage.governor is None
+         abjad> note._parentage.governor is None
          True
 
       .. note:: Governor is an old and probably nonoptimal idea
@@ -87,7 +87,7 @@ class ParentageInterface(_Interface):
       #for component in self.improper_parentage:
       for component in componenttools.get_improper_parentage_of_component(self._client):
          if isinstance(component, Container) and not component.parallel:
-            parent = component.parentage.parent
+            parent = component._parentage.parent
             if parent is None:
                return component
             if isinstance(parent, Container) and parent.parallel:
@@ -102,10 +102,10 @@ class ParentageInterface(_Interface):
          abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
-         abjad> note.parentage.parent
+         abjad> note._parentage.parent
          tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
    
-      Equivalent to ``component.parentage.proper_parentage[0]`` for those components
+      Equivalent to ``component._parentage.proper_parentage[0]`` for those components
       with proper parentage. Otherwise ``None``.
       '''
 

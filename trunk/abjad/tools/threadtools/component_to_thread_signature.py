@@ -1,4 +1,4 @@
-from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
+from abjad.interfaces._ParentageInterface.containment import _ContainmentSignature
 
 
 def component_to_thread_signature(component):

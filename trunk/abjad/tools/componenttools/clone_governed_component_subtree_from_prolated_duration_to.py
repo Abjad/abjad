@@ -98,7 +98,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
       abjad> new_leaf = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice[0], 0, (1, 8))
       abjad> f(new_leaf)
       c'8
-      abjad> new_leaf.parentage.parent is None 
+      abjad> new_leaf._parentage.parent is None 
       True
    '''
    assert isinstance(component, _Component)

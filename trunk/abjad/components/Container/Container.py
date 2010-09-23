@@ -95,7 +95,7 @@ class Container(_Component):
          ## must withdraw from spanners before parentage!
          ## otherwise begin / end assessments don't work!
          _withdraw_from_crossing([expr])
-         expr.parentage._switch(self)
+         expr._parentage._switch(self)
          self._music.insert(i, expr)
          componenttools.remove_component_subtree_from_score_and_spanners([old])
          for spanner, index in spanners_receipt:
@@ -119,7 +119,7 @@ class Container(_Component):
          _withdraw_from_crossing(expr)
          self._music[start:start] = expr
          for component in expr:
-            component.parentage._switch(self)
+            component._parentage._switch(self)
          for spanner, index in spanners_receipt:
             for component in reversed(expr):
                spanner._insert(index, component)
@@ -175,7 +175,7 @@ class Container(_Component):
       _switch(self._music, self)
       if parent is not None:
          parent._music.insert(index, self)
-         self.parentage._switch(parent)
+         self._parentage._switch(parent)
 
    def _is_one_of_my_first_leaves(self, leaf):
       return leaf in self._navigator._contemporaneous_start_contents

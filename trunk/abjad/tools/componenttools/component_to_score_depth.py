@@ -10,7 +10,7 @@ def component_to_score_depth(component):
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
-      abjad> note.parentage.depth
+      abjad> note._parentage.depth
       2
    '''
 

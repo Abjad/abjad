@@ -35,7 +35,6 @@ Score component interfaces
    interfaces/MarkupInterface/MarkupInterface
    interfaces/NumberingInterface/NumberingInterface
    interfaces/OffsetInterface/OffsetInterface
-   interfaces/ParentageInterface/ParentageInterface
 
 
 Abjad composition packages

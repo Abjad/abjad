@@ -9,6 +9,6 @@ def _switch(components, parent):
    assert componenttools.all_are_thread_contiguous_components(components)
 
    for component in components:
-      component.parentage._switch(parent)
+      component._parentage._switch(parent)
 
    return components

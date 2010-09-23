@@ -13,7 +13,7 @@ def test_Note_cast_as_skip_01( ):
    assert dir(n) == dir(Note(0, (1, 4)))
    assert dir(s) == dir(Skip((1, 4)))
    assert s.format == 's8'
-   assert s.parentage.parent is None
+   assert s._parentage.parent is None
    assert s.duration.written == d
 
 
@@ -23,7 +23,7 @@ def test_Note_cast_as_skip_02( ):
    Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0].format == 's8'
-   assert t[0].parentage.parent is t
+   assert t[0]._parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -33,7 +33,7 @@ def test_Note_cast_as_skip_03( ):
    Skip(v[0])
    assert isinstance(v[0], Skip)
    assert v[0].format == 's8'
-   assert v[0].parentage.parent is v
+   assert v[0]._parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -43,7 +43,7 @@ def test_Note_cast_as_skip_04( ):
    Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0].format == 's8'
-   assert t[0].parentage.parent is t
+   assert t[0]._parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -53,4 +53,4 @@ def test_Note_cast_as_skip_05( ):
    spannertools.BeamSpanner(t[:])
    Skip(t[0])
    assert isinstance(t[0], Skip)
-   assert t[0].parentage.parent is t
+   assert t[0]._parentage.parent is t

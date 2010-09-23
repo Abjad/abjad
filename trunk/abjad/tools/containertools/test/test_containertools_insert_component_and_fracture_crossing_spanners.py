@@ -143,4 +143,4 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_07( ):
    assert componenttools.is_well_formed_component(v)
    assert componenttools.is_well_formed_component(t)
    assert not note in v
-   assert note.parentage.parent is t
+   assert note._parentage.parent is t

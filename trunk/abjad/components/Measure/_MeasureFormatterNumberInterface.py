@@ -14,7 +14,7 @@ class _MeasureFormatterNumberInterface(_StrictComparator):
    def _measure_contribution(self):
       if self.self is not None:
          return self.self
-      parentage = self._client._client.parentage.proper_parentage
+      parentage = self._client._client._parentage.proper_parentage
       for parent in parentage:
          if hasattr(parent._formatter, 'number'):
             contribution = getattr(parent._formatter.number, 'measures', None)

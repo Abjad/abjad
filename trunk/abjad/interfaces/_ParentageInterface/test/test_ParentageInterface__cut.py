@@ -7,7 +7,7 @@ def test_ParentageInterface__cut_01( ):
 
    t = Staff(macros.scale(4))
    note = t[1]
-   note.parentage._cut( )
+   note._parentage._cut( )
 
    r'''
    \new Staff {
@@ -21,7 +21,7 @@ def test_ParentageInterface__cut_01( ):
    
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(note)
-   assert note.parentage.parent is None
+   assert note._parentage.parent is None
 
 
 def test_ParentageInterface__cut_02( ):
@@ -43,12 +43,12 @@ def test_ParentageInterface__cut_02( ):
    }
    '''
 
-   leaf.parentage._cut( )
+   leaf._parentage._cut( )
    assert not componenttools.is_well_formed_component(t)
    assert not componenttools.is_well_formed_component(leaf)
 
    t._music.insert(0, leaf)
-   leaf.parentage._switch(t)
+   leaf._parentage._switch(t)
 
    r'''
    \new Voice {
@@ -90,7 +90,7 @@ def test_ParentageInterface__cut_03( ):
    }
    '''
    
-   sequential.parentage._cut( )
+   sequential._parentage._cut( )
 
    r'''
    \new Staff {
@@ -135,12 +135,12 @@ def test_ParentageInterface__cut_04( ):
    }
    '''
 
-   tuplet.parentage._cut( )
+   tuplet._parentage._cut( )
    assert not componenttools.is_well_formed_component(t)
    assert not componenttools.is_well_formed_component(tuplet)
 
    t._music.insert(0, tuplet)
-   tuplet.parentage._switch(t)
+   tuplet._parentage._switch(t)
    
    r'''
    \new Voice {

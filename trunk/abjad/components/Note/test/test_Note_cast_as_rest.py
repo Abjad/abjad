@@ -13,7 +13,7 @@ def test_Note_cast_as_rest_01( ):
    assert dir(n) == dir(Note(0, (1, 8)))
    assert dir(r) == dir(Rest((1, 4)))
    assert r.format == 'r8'
-   assert r.parentage.parent is None
+   assert r._parentage.parent is None
    assert r.duration.written == d
 
 
@@ -23,7 +23,7 @@ def test_Note_cast_as_rest_02( ):
    Rest(t[0])
    assert t[0].format == 'r8'
    assert isinstance(t[0], Rest)
-   assert t[0].parentage.parent is t
+   assert t[0]._parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -33,7 +33,7 @@ def test_Note_cast_as_rest_03( ):
    Rest(v[0])
    assert v[0].format == 'r8'
    assert isinstance(v[0], Rest)
-   assert v[0].parentage.parent is v
+   assert v[0]._parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -43,7 +43,7 @@ def test_Note_cast_as_rest_04( ):
    Rest(t[0])
    assert t[0].format == 'r8'
    assert isinstance(t[0], Rest)
-   assert t[0].parentage.parent is t
+   assert t[0]._parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -53,7 +53,7 @@ def test_Note_cast_as_rest_05( ):
    spannertools.BeamSpanner(t[:])
    Rest(t[0])
    assert isinstance(t[0], Rest)
-   assert t[0].parentage.parent is t
+   assert t[0]._parentage.parent is t
 
 
 def test_Note_cast_as_rest_06( ):

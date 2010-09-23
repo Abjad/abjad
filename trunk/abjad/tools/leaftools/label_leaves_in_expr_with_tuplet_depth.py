@@ -25,5 +25,5 @@ def label_leaves_in_expr_with_tuplet_depth(expr):
    '''
 
    for leaf in iterate_leaves_forward_in_expr(expr):
-      label = r'\small %s' % leaf.parentage.depth_tuplet
+      label = r'\small %s' % leaf._parentage.depth_tuplet
       leaf.markup.down.append(label)

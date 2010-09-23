@@ -20,7 +20,7 @@ def all_are_components_in_same_score(expr, klasses = (_Component, ), allow_orpha
    if not isinstance(first, klasses):
       return False
 
-   first_parent = first.parentage.parent
+   first_parent = first._parentage.parent
    first_score = component_to_score_root(first)
    for element in expr[1:]:
       if not isinstance(element, klasses):

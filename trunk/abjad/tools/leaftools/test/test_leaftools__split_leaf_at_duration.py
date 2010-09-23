@@ -285,7 +285,7 @@ def test_leaftools__split_leaf_at_duration_13( ):
       for l in v.leaves:
          #assert not l.spanners.attached 
          assert not l.spanners 
-         assert l.parentage.parent is v
+         assert l._parentage.parent is v
    assert componenttools.is_well_formed_component(t)
 
 

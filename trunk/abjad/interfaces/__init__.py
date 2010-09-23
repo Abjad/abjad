@@ -4,3 +4,4 @@ from abjad.tools.importtools._import_functions_in_package_to_namespace import \
 _import_functions_in_package_to_namespace(__path__[0], globals( ))
 
 from _NavigationInterface import _NavigationInterface
+from _ParentageInterface import _ParentageInterface

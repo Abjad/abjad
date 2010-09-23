@@ -49,7 +49,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
    assert isinstance(component, _Component)
 
    result = [ ]
-   component.parentage._switch(container)
+   component._parentage._switch(container)
    container._music.insert(i, component)
    if component.prev:
       #result.extend(component.prev.spanners.fracture(direction = 'right'))
