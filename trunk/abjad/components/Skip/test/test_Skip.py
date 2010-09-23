@@ -26,7 +26,7 @@ def test_Skip_03( ):
    assert isinstance(n, Note)
    assert dir(s) == dir(Skip((1, 4)))
    assert dir(n) == dir(Note(0, (1, 4)))
-   assert n._parentage.parent is None
+   assert n.parentage.parent is None
    assert n.duration.written == d
 
 
@@ -35,7 +35,7 @@ def test_Skip_04( ):
    d = t[0].duration.written
    Note(t[0])
    assert isinstance(t[0], Note)
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -44,7 +44,7 @@ def test_Skip_05( ):
    d = v[0].duration.written
    Note(v[0])
    assert isinstance(v[0], Note)
-   assert v[0]._parentage.parent is v
+   assert v[0].parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -53,7 +53,7 @@ def test_Skip_06( ):
    d = t[0].duration.written
    Note(t[0])
    assert isinstance(t[0], Note)
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -63,7 +63,7 @@ def test_Skip_07( ):
    spannertools.BeamSpanner(t[:])
    Note(t[1])
    assert isinstance(t[1], Note)
-   assert t[1]._parentage.parent is t
+   assert t[1].parentage.parent is t
    
 
 def test_Skip_08( ):
@@ -74,7 +74,7 @@ def test_Skip_08( ):
    assert isinstance(r, Rest)
    assert dir(s) == dir(Skip((1, 4)))
    assert dir(r) == dir(Rest((1, 4)))
-   assert r._parentage.parent is None
+   assert r.parentage.parent is None
    assert r.duration.written == d
 
 
@@ -83,7 +83,7 @@ def test_Skip_09( ):
    d = t[0].duration.written
    Rest(t[0])
    assert isinstance(t[0], Rest)
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -92,7 +92,7 @@ def test_Skip_10( ):
    d = v[0].duration.written
    Rest(v[0])
    assert isinstance(v[0], Rest)
-   assert v[0]._parentage.parent is v
+   assert v[0].parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -101,7 +101,7 @@ def test_Skip_11( ):
    d = t[0].duration.written
    Rest(t[0])
    assert isinstance(t[0], Rest)
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -111,7 +111,7 @@ def test_Skip_12( ):
    spannertools.BeamSpanner(t[:])
    Rest(t[1])
    assert isinstance(t[1], Rest)
-   assert t[1]._parentage.parent is t
+   assert t[1].parentage.parent is t
 
 
 def test_Skip_13( ):
@@ -122,7 +122,7 @@ def test_Skip_13( ):
    assert isinstance(c, Chord)
    assert dir(s) == dir(Skip((1, 4)))
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-   assert c._parentage.parent is None
+   assert c.parentage.parent is None
    assert c.duration.written == d
 
 
@@ -131,7 +131,7 @@ def test_Skip_14( ):
    d = t[0].duration.written
    Chord(t[0])
    assert isinstance(t[0], Chord)
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -140,7 +140,7 @@ def test_Skip_15( ):
    d = v[0].duration.written
    Chord(v[0])
    assert isinstance(v[0], Chord)
-   assert v[0]._parentage.parent is v
+   assert v[0].parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -149,7 +149,7 @@ def test_Skip_16( ):
    d = t[0].duration.written
    Chord(t[0])
    assert isinstance(t[0], Chord)
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -159,4 +159,4 @@ def test_Skip_17( ):
    spannertools.BeamSpanner(t[:])
    Chord(t[1])
    assert isinstance(t[1], Chord)
-   assert t[1]._parentage.parent is t
+   assert t[1].parentage.parent is t

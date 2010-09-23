@@ -218,9 +218,9 @@ class _NavigationInterface(_Interface):
       None otherwise.
       '''
       rank = self._rank( )
-      if (not rank is None) and (not self._client._parentage.parent.parallel): 
-         if rank + 1 < len(self._client._parentage.parent._music):
-            return self._client._parentage.parent._music[rank + 1]
+      if (not rank is None) and (not self._client.parentage.parent.parallel): 
+         if rank + 1 < len(self._client.parentage.parent._music):
+            return self._client.parentage.parent._music[rank + 1]
       else:
          return None
          
@@ -275,9 +275,9 @@ class _NavigationInterface(_Interface):
       None otherwise.
       '''
       rank = self._rank( )
-      if (not rank is None) and (not self._client._parentage.parent.parallel): 
+      if (not rank is None) and (not self._client.parentage.parent.parallel): 
          if 0 <= rank - 1:
-            return self._client._parentage.parent._music[rank - 1]
+            return self._client.parentage.parent._music[rank - 1]
       else:
          return None
 
@@ -293,7 +293,7 @@ class _NavigationInterface(_Interface):
          else:
             return self._client.parentge.parent
       else:
-         return self._client._parentage.parent
+         return self._client.parentage.parent
 
    def _find_fellow_bead(self, candidates):
       '''Helper method from prev_bead and next_bead. 
@@ -311,7 +311,7 @@ class _NavigationInterface(_Interface):
       while cur is not None:
          next_sibling = cur._navigator._next_sibling
          if next_sibling is None:
-            cur = cur._parentage.parent
+            cur = cur.parentage.parent
          else:
             return next_sibling._navigator._contemporaneous_start_contents
       return [ ]
@@ -335,7 +335,7 @@ class _NavigationInterface(_Interface):
       the parent container. If caller has no parent, 
       returns None.
       '''
-      parent = self._client._parentage.parent
+      parent = self._client.parentage.parent
       if parent is not None:
          return parent._music.index(self._client)
       else:

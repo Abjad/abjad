@@ -10,7 +10,7 @@ def component_to_parentage_signature(component):
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
-      abjad> print note._parentage.signature
+      abjad> print note.parentage.signature
             root: Staff-18830800 (18830800)
            score: 
       staffgroup: 

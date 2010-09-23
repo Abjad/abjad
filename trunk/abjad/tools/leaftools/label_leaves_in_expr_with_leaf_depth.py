@@ -29,5 +29,5 @@ def label_leaves_in_expr_with_leaf_depth(expr):
    '''
 
    for leaf in iterate_leaves_forward_in_expr(expr):
-      label = r'\small %s' % leaf._parentage.depth
+      label = r'\small %s' % leaf.parentage.depth
       leaf.markup.down.append(label)

@@ -8,7 +8,7 @@ def component_is_orphan(component):
    ::
 
       abjad> note = Note(0, (1, 4))
-      abjad> note._parentage.is_orphan
+      abjad> note.parentage.is_orphan
       True
    '''
 

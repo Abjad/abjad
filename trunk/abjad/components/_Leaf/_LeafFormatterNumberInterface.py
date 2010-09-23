@@ -13,7 +13,7 @@ class _LeafFormatterNumberInterface(object):
    def _leaf_contribution(self):
       if self.self is not None:
          return self.self
-      parentage = self._client._client._parentage.proper_parentage
+      parentage = self._client._client.parentage.proper_parentage
       for parent in parentage:
          if hasattr(parent._formatter, 'number'):
             contribution = getattr(parent._formatter.number, 'leaves', None)

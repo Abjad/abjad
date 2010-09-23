@@ -21,7 +21,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    if not isinstance(klass, (Rest, Skip)):
       raise TypeError
 
-   root = expr[0]._parentage.root
+   root = expr[0].parentage.root
 
    ## forbid updates because _Component.splice_left( ) and ##
    ## _Component.splice( ) call self.offset.stop  ##

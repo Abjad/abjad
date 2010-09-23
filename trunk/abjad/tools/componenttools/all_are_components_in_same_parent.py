@@ -18,14 +18,14 @@ def all_are_components_in_same_parent(expr, klasses = (_Component, ), allow_orph
    if not isinstance(first, klasses):
       return False
 
-   first_parent = first._parentage.parent
+   first_parent = first.parentage.parent
    if first_parent is None and not allow_orphans:
       return False
 
    for element in expr[1:]:
       if not isinstance(element, klasses):
          return False
-      if element._parentage.parent is not first_parent:
+      if element.parentage.parent is not first_parent:
          return False
 
    return True

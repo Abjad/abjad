@@ -47,11 +47,11 @@ def component_to_score_index(component):
 
    result = [ ]
    cur = component
-   parent = cur._parentage.parent
+   parent = cur.parentage.parent
    while parent is not None:
       index = parent.index(cur)
       result.insert(0, index)
       cur = parent
-      parent = cur._parentage.parent
+      parent = cur.parentage.parent
    result = tuple(result)
    return result

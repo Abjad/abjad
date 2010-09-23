@@ -13,7 +13,7 @@ def test_Note_cast_as_chord_01( ):
    assert dir(n) == dir(Note(0, (1, 4)))
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert c.format == "<d'>8"
-   assert c._parentage.parent is None
+   assert c.parentage.parent is None
    assert c.note_heads[0] is not h
    assert c.pitches[0].number == p.number
    assert c.duration.written == d
@@ -25,7 +25,7 @@ def test_Note_cast_as_chord_02( ):
    Chord(t[0])
    assert isinstance(t[0], Chord)
    assert t[0].format == "<c'>8"
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t
    assert t[0].note_heads[0] is not h
    assert t[0].pitches[0].number == p.number
    assert t[0].duration.written == d
@@ -37,7 +37,7 @@ def test_Note_cast_as_chord_03( ):
    Chord(v[0])
    assert isinstance(v[0], Chord)
    assert v[0].format == "<c'>8"
-   assert v[0]._parentage.parent is v
+   assert v[0].parentage.parent is v
    assert v[0].note_heads[0] is not h
    assert v[0].pitches[0].number == p.number
    assert v[0].duration.written == d
@@ -49,7 +49,7 @@ def test_Note_cast_as_chord_04( ):
    Chord(t[0])
    assert isinstance(t[0], Chord)
    assert t[0].format == "<c'>8"
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t
    assert t[0].note_heads[0] is not h
    assert t[0].pitches[0].number == p.number
    assert t[0].duration.written == d
@@ -61,4 +61,4 @@ def test_Note_cast_as_chord_05( ):
    spannertools.BeamSpanner(t[:])
    Chord(t[0])
    assert isinstance(t[0], Chord)
-   assert t[0]._parentage.parent is t
+   assert t[0].parentage.parent is t

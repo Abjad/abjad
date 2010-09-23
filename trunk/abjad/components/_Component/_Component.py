@@ -3,12 +3,12 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
-from abjad.interfaces import _ParentageInterface
 from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import HistoryInterface
 #from abjad.interfaces import NumberingInterface
+from abjad.interfaces import ParentageInterface
 from abjad.interfaces import OffsetInterface
 
 
@@ -25,7 +25,7 @@ class _Component(_StrictComparator):
       self._navigator = _NavigationInterface(self)
       self._offset = OffsetInterface(self)
       self._offset_values_in_seconds_are_current = False
-      self._parentage = _ParentageInterface(self)
+      self.parentage = ParentageInterface(self)
       self._prolated_offset_values_are_current = False
       self._spanners = set([ ])
 
@@ -160,11 +160,11 @@ class _Component(_StrictComparator):
          self._override = LilyPondGrobOverrideComponentPlugIn( )
       return self._override
 
-#   @property
-#   def parentage(self):
-#      '''Read-only reference to
-#      :class:`~abjad.interfaces._parentage.interface.ParentageInterface`.'''
-#      return self._parentage
+   @property
+   def parentage(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.parentage.interface.ParentageInterface`.'''
+      return self.parentage
 
    @property
    def set(self):
@@ -287,7 +287,7 @@ class _Component(_StrictComparator):
       parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
          for component in reversed(components):
-            component._parentage._switch(parent)
+            component.parentage._switch(parent)
             parent._music.insert(start + 1, component)
       return [self] + components
 
@@ -310,7 +310,7 @@ class _Component(_StrictComparator):
       parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
          for component in reversed(components):
-            component._parentage._switch(parent)
+            component.parentage._switch(parent)
             parent._music.insert(start, component)
       return components + [self] 
 

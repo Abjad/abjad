@@ -27,17 +27,17 @@ def test_ParentageInterface_governor_01( ):
    }
    '''
 
-   assert t.leaves[0]._parentage.governor is t[0][0]
-   assert t.leaves[1]._parentage.governor is t[0][0]
-   assert t.leaves[2]._parentage.governor is t[0][1]
-   assert t.leaves[3]._parentage.governor is t[0][1]
+   assert t.leaves[0].parentage.governor is t[0][0]
+   assert t.leaves[1].parentage.governor is t[0][0]
+   assert t.leaves[2].parentage.governor is t[0][1]
+   assert t.leaves[3].parentage.governor is t[0][1]
 
 
 def test_ParentageInterface_governor_02( ):
    '''Unicorporated leaves have no governor.'''
 
    t = Note(0, (1, 8))
-   assert t._parentage.governor is None
+   assert t.parentage.governor is None
 
 
 def test_ParentageInterface_governor_03( ):
@@ -60,10 +60,10 @@ def test_ParentageInterface_governor_03( ):
    }
    '''
    
-   assert t.leaves[0]._parentage.governor is t
-   assert t.leaves[1]._parentage.governor is t
-   assert t.leaves[2]._parentage.governor is t
-   assert t.leaves[3]._parentage.governor is t
+   assert t.leaves[0].parentage.governor is t
+   assert t.leaves[1].parentage.governor is t
+   assert t.leaves[2].parentage.governor is t
+   assert t.leaves[3].parentage.governor is t
 
 
 def test_ParentageInterface_governor_04( ):
@@ -86,6 +86,6 @@ def test_ParentageInterface_governor_04( ):
    } 
    '''
 
-   assert t[0][0]._parentage.governor is t
-   assert t[0]._parentage.governor is t
-   assert t._parentage.governor is t
+   assert t[0][0].parentage.governor is t
+   assert t[0].parentage.governor is t
+   assert t.parentage.governor is t

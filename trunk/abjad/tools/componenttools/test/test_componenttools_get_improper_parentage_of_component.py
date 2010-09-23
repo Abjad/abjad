@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_get_improper_parentage_of_component_01( ):
-   '''t._parentage.improper_parentage returns a list of the elements
+   '''t.parentage.improper_parentage returns a list of the elements
    in the parentage of t, including t.
    '''
 
@@ -36,7 +36,7 @@ def test_componenttools_get_improper_parentage_of_component_01( ):
 
 
 def test_componenttools_get_improper_parentage_of_component_02( ):
-   '''t._parentage.improper_parentage returns a list of the elements
+   '''t.parentage.improper_parentage returns a list of the elements
       in the parentage of container t, including t.'''
 
    t = Score([Staff(Container(notetools.make_repeated_notes(2)) * 2)])

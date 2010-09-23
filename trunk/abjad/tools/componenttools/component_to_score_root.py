@@ -9,7 +9,7 @@ def component_to_score_root(component):
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
-      abjad> note._parentage.root
+      abjad> note.parentage.root
       Staff{1}
    '''
 
