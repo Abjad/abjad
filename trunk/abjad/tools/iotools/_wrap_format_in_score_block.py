@@ -1,4 +1,4 @@
-def _wrap_format_in_score_block(format, midi=False, layout=False):
+def _wrap_format_in_score_block(format, midi = False, layout = False):
    lines = format.split('\n')
    if layout:
       lines.append('\\layout{ }')

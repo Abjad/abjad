@@ -1,28 +1,24 @@
-from abjad.cfg._open_file import _open_file
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.cfg._run_lilypond import _run_lilypond
-from abjad.cfg._verify_output_directory import _verify_output_directory
-from abjad.cfg._wrap_format_in_score_block import _wrap_format_in_score_block
-from abjad.cfg._write_preamble import _write_preamble
+from abjad.tools.iotools._open_file import _open_file
+from abjad.tools.iotools._run_lilypond import _run_lilypond
+from abjad.tools.iotools._verify_output_directory import _verify_output_directory
+from abjad.tools.iotools._wrap_format_in_score_block import _wrap_format_in_score_block
+from abjad.tools.iotools._write_preamble import _write_preamble
 from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
 import os
 
 
 def play(expr):
-   '''Call ``play(expr)`` to render Abjad expression ``expr`` as MIDI \
-      and then open with the cross-platform file-opener.
+   '''Play `expr`::
 
-      ::
+      abjad> t = Note(0, (1, 4))
+      abjad> play(t)
 
-         abjad> t = Note(0, (1, 4))
-         abjad> play(t)
+   This input renders and then opens a one-note MIDI file.
 
-      This input renders and then opens a one-note MIDI file.
+   Abjad outputs MIDI files of the format ``filename.mid`` under Windows.
 
-      *  Abjad outputs MIDI files of the format \
-         ``filename.mid`` under Windows.
-      *  Abjad outputs MIDI files of the format \
-         ``filename.midi`` under other operating systems.
+   Abjad outputs MIDI files of the format ``filename.midi`` under other operating systems.
    '''
 
    ABJADOUTPUT = _read_config_file( )['abjad_output']

@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def _open_file(file_name, application=None):
+def _open_file(file_name, application = None):
    '''Generic cross-platform file opener.'''
 
    if os.name == 'nt':

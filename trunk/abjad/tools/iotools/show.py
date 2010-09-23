@@ -1,6 +1,6 @@
-from abjad.cfg._log_render_lilypond_input import _log_render_lilypond_input
-from abjad.cfg._open_file import _open_file
 from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools.iotools._log_render_lilypond_input import _log_render_lilypond_input
+from abjad.tools.iotools._open_file import _open_file
 import os
 
 

@@ -1,5 +1,5 @@
-from abjad.cfg._write_preamble import _write_preamble
-from abjad.cfg._write_score import _write_score
+from abjad.tools.iotools._write_preamble import _write_preamble
+from abjad.tools.iotools._write_score import _write_score
 import os
 
 

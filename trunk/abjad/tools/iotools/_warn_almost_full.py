@@ -1,4 +1,3 @@
-#from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg._read_config_file import _read_config_file
 
 
