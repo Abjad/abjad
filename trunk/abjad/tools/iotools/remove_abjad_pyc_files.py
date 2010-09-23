@@ -2,8 +2,9 @@ from abjad.cfg.cfg import ABJADPATH
 import os
 
 
-def _remove_abjad_pyc_files( ):
-   '''Remove *.pyc files from abjad/ directory.'''
+def remove_abjad_pyc_files( ):
+   '''Remove .pyc files from top-level abjad directory.
+   '''
 
    project_root = ABJADPATH.rstrip('abjad')
 

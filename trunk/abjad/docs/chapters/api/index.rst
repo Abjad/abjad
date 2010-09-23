@@ -292,7 +292,10 @@ iotools
    :maxdepth: 1
 
    tools/iotools/f
-   tools/iotools/get_lilypond_version
+   tools/iotools/get_abjad_version_string
+   tools/iotools/get_last_output_file_name
+   tools/iotools/get_lilypond_version_string
+   tools/iotools/get_next_output_file_name
    tools/iotools/list_settings
    tools/iotools/log
    tools/iotools/ly
@@ -300,6 +303,7 @@ iotools
    tools/iotools/play
    tools/iotools/profile_expr
    tools/iotools/redo
+   tools/iotools/remove_abjad_pyc_files
    tools/iotools/show
    tools/iotools/write_expr_to_ly
    tools/iotools/write_expr_to_ly_and_to_pdf_and_show

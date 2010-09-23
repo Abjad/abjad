@@ -3,12 +3,12 @@ import os
 import subprocess
 
 
-def get_lilypond_version( ):
+def get_lilypond_version_string( ):
    '''Get LilyPond version:
 
    ::
 
-      abjad> iotools.get_lilypond_version( )
+      abjad> iotools.get_lilypond_version_string( )
       '2.13.34'
    '''
 
@@ -27,7 +27,7 @@ def get_lilypond_version( ):
 
    command = lilypond + ' --version'
    proc = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
-   lilypond_version = proc.stdout.readline( )
-   lilypond_version = lilypond_version.split(' ')[-1]
-   lilypond_version = lilypond_version.strip( )
-   return lilypond_version
+   lilypond_version_string = proc.stdout.readline( )
+   lilypond_version_string = lilypond_version_string.split(' ')[-1]
+   lilypond_version_string = lilypond_version_string.strip( )
+   return lilypond_version_string

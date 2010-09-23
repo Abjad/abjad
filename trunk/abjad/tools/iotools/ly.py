@@ -1,5 +1,5 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.cfg._get_last_output import _get_last_output
+from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 import os
 
 
@@ -36,7 +36,7 @@ def ly(target = -1):
 
    ABJADOUTPUT = _read_config_file( )['abjad_output']
    if isinstance(target, int) and target < 0:
-      last_lilypond = _get_last_output( )
+      last_lilypond = get_last_output_file_name( )
       if last_lilypond:
          last_number = last_lilypond.replace('.ly', '')
          target_number = int(last_number) + (target + 1)

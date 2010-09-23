@@ -1,8 +1,8 @@
-from abjad.cfg._get_last_output import _get_last_output
 from abjad.cfg._open_file import _open_file
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._run_lilypond import _run_lilypond
 from abjad.cfg._verify_output_directory import _verify_output_directory
+from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 import os
 import time
 
@@ -23,7 +23,7 @@ def redo(target = -1, lily_time = 10):
    ## TODO: Encapsulate as a single function called cfg._find_target( )
    ## find target
    if isinstance(target, int) and target < 0:
-      last_lilypond = _get_last_output( )
+      last_lilypond = get_last_output_file_name( )
       if last_lilypond:
          last_number = last_lilypond.replace('.ly', '')
          target_number = int(last_number) + (target + 1)

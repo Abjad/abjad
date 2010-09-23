@@ -1,4 +1,3 @@
-from abjad.cfg._get_next_output import _get_next_output
 from abjad.cfg._open_file import _open_file
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._run_lilypond import _run_lilypond
@@ -6,6 +5,7 @@ from abjad.cfg._verify_output_directory import _verify_output_directory
 from abjad.cfg._wrap_format_in_score_block import _wrap_format_in_score_block
 from abjad.cfg._write_preamble import _write_preamble
 from abjad.cfg._write_title import _write_title
+from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
 import os
 
 
@@ -29,7 +29,7 @@ def play(expr):
    ABJADOUTPUT = _read_config_file( )['abjad_output']
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
-   name = _get_next_output( )
+   name = get_next_output_file_name( )
    outfile = open(name, 'w')
    _write_preamble(outfile, None)
    outfile.write(_wrap_format_in_score_block(expr.format, midi=True))

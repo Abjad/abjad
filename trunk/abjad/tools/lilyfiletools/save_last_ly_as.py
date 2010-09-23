@@ -1,4 +1,4 @@
-from abjad.cfg._get_last_output import _get_last_output
+from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 from abjad.cfg._read_config_file import _read_config_file
 import os
 
@@ -19,7 +19,7 @@ def save_last_ly_as(file_name):
    '''
 
    ABJADOUTPUT = _read_config_file( )['abjad_output'] 
-   last_ly = _get_last_output( )
+   last_ly = get_last_output_file_name( )
    last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
    old = open(last_ly_full_name, 'r')
    new = open(file_name, 'w')
