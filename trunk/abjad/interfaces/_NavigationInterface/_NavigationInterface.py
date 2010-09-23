@@ -48,7 +48,6 @@ class _NavigationInterface(_Interface):
       client = self._client
       result = [client]
       prev = client
-      #for parent in client.parentage.proper_parentage:
       for parent in componenttools.get_proper_parentage_of_component(client):
          if parent.parallel:
             result.append(parent)
@@ -96,7 +95,6 @@ class _NavigationInterface(_Interface):
       client = self._client
       result = [client]
       prev = client
-      #for parent in client.parentage.proper_parentage:
       for parent in componenttools.get_proper_parentage_of_component(client):
          if parent.parallel:
             if prev.duration.prolated == parent.duration.prolated:
@@ -159,7 +157,6 @@ class _NavigationInterface(_Interface):
       if next:
          return next
       else:
-         #for p in self._client.parentage.proper_parentage:
          for p in componenttools.get_proper_parentage_of_component(self._client):
             next = p._navigator._next_sibling
             if next:
@@ -192,8 +189,6 @@ class _NavigationInterface(_Interface):
          return None
       dfs = componenttools.iterate_components_depth_first(next, capped = False)
       for node in dfs:
-         #if type(node) == type(self._client) and \
-         #   node.parentage.signature == self._client.parentage.signature:
          if type(node) == type(self._client) and \
             componenttools.component_to_parentage_signature(node) == \
             componenttools.component_to_parentage_signature(self._client):
@@ -212,8 +207,6 @@ class _NavigationInterface(_Interface):
          return None
       dfs = componenttools.iterate_components_depth_first(prev, capped = False, direction = 'right')
       for node in dfs:
-         #if type(node) == type(self._client) and \
-         #   node.parentage.signature == self._client.parentage.signature:
          if type(node) == type(self._client) and \
             componenttools.component_to_parentage_signature(node) == \
             componenttools.component_to_parentage_signature(self._client):
@@ -256,7 +249,6 @@ class _NavigationInterface(_Interface):
       if prev:
          return prev
       else:
-         #for p in self._client.parentage.proper_parentage:
          for p in componenttools.get_proper_parentage_of_component(self._client):
             prev = p._navigator._prev_sibling
             if prev:

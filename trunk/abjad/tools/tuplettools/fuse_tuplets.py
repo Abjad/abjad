@@ -86,15 +86,12 @@ def fuse_tuplets(tuplets):
       total_contents_duration = sum([x.duration.contents for x in tuplets])
       new_target_duration = first_multiplier * total_contents_duration
       new_tuplet = FixedDurationTuplet(new_target_duration, [ ])
-   #elif isinstance(first, Tuplet):
    elif isinstance(first, Tuplet):
-      #new_tuplet = Tuplet(first_multiplier, [ ])
       new_tuplet = Tuplet(first_multiplier, [ ])
    else:
       raise TypeError('unknown tuplet type.')
 
    wrapped = False
-   #if tuplets[0].parentage.root is not tuplets[-1].parentage.root:
    if component_to_score_root(tuplets[0]) is not component_to_score_root(tuplets[-1]):
       dummy_container = Container(tuplets) 
       wrapped = True

@@ -20,9 +20,6 @@ def test_componenttools_component_to_parentage_signature_02( ):
    t = Staff(macros.scale(4))
    t.name = 'foo'
 
-   #containment = t.parentage.signature
-   #for component in componenttools.iterate_components_forward_in_expr(t):
-   #   assert component.parentage.signature == containment
    containment = componenttools.component_to_parentage_signature(t)
    for component in componenttools.iterate_components_forward_in_expr(t):
       assert componenttools.component_to_parentage_signature(component) == containment
@@ -72,7 +69,6 @@ def test_componenttools_component_to_parentage_signature_04( ):
    }
    '''
 
-   #signatures = [leaf.parentage.signature for leaf in t.leaves]
    signatures = [componenttools.component_to_parentage_signature(leaf) for leaf in t.leaves]
 
    assert signatures[0] == signatures[1]
@@ -90,7 +86,6 @@ def test_componenttools_component_to_parentage_signature_05( ):
    t1 = Note(0, (1, 8))
    t2 = Note(0, (1, 8))
   
-   #assert t1.parentage.signature != t2.parentage.signature
    assert componenttools.component_to_parentage_signature(t1) != \
       componenttools.component_to_parentage_signature(t2)
 
@@ -114,12 +109,6 @@ def test_componenttools_component_to_parentage_signature_06( ):
            }
    }
    '''
-
-   #assert t.leaves[0].parentage.signature == t.leaves[1].parentage.signature
-   #assert t.leaves[0].parentage.signature == t.leaves[2].parentage.signature
-   #assert t.leaves[2].parentage.signature == t.leaves[3].parentage.signature
-   #assert t.leaves[2].parentage.signature == t.leaves[0].parentage.signature
-   #assert t[0].parentage.signature == t[1].parentage.signature
 
    assert componenttools.component_to_parentage_signature(t.leaves[0]) == \
       componenttools.component_to_parentage_signature(t.leaves[1])

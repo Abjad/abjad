@@ -17,10 +17,6 @@ def test_componenttools_get_proper_parentage_of_component_01( ):
    }
    '''
 
-   #assert len(note.parentage.proper_parentage) == 2
-   #assert note.parentage.proper_parentage[0] is tuplet
-   #assert note.parentage.proper_parentage[1] is staff
-
    proper_parentage = componenttools.get_proper_parentage_of_component(note)
    assert len(proper_parentage) == 2
    assert proper_parentage[0] is tuplet

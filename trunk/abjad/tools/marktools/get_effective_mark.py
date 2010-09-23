@@ -16,9 +16,7 @@ def get_effective_mark(component, klass):
 
    #print 'now getting effective mark ...'
    candidate_marks = set([ ])
-   #for parent in component.parentage.improper_parentage:
    for parent in componenttools.get_improper_parentage_of_component(component):
-      #print parent, parent.marks
       for mark in parent.marks:
          if isinstance(mark, klass):
             if mark.effective_context is not None:

@@ -10,7 +10,6 @@ def _get_mark_format_contributions_for_slot(leaf, slot):
    if not isinstance(leaf, _Leaf):
       return result
    marks = set([ ])
-   #for component in leaf.parentage.improper_parentage:
    for component in componenttools.get_improper_parentage_of_component(leaf):
       #print component.__class__.__name__
       for mark in component.marks:

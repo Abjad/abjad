@@ -321,7 +321,6 @@ class _Component(_StrictComparator):
       from abjad.tools import measuretools
       #print 'updating all explicit meters in score (from %s) ...' % str(self.__class__.__name__)
       total_components_iterated = 0
-      #score = self.parentage.root
       score = componenttools.component_to_score_root(self)
       components = componenttools.iterate_components_depth_first(score, 
          capped = True, unique = True, forbid = None, direction = 'left')
@@ -341,7 +340,6 @@ class _Component(_StrictComparator):
       from abjad.tools import componenttools
       #print 'updating all marks in score (from %s) ...' % str(self.__class__.__name__)
       total_components_iterated = 0
-      #score = self.parentage.root
       score = componenttools.component_to_score_root(self)
       components = componenttools.iterate_components_depth_first(score, 
          capped = True, unique = True, forbid = None, direction = 'left')
@@ -357,7 +355,6 @@ class _Component(_StrictComparator):
       from abjad.tools import componenttools
       #print 'updating all offset values in seconds in score ...'
       total_components_iterated = 0
-      #score = self.parentage.root
       score = componenttools.component_to_score_root(self)
       components = componenttools.iterate_components_depth_first(score, 
          capped = True, unique = True, forbid = None, direction = 'left')
@@ -375,7 +372,6 @@ class _Component(_StrictComparator):
       from abjad.tools import componenttools
       #print 'updating prolated offset values ...',
       total_components_iterated = 0
-      #score = self.parentage.root
       score = componenttools.component_to_score_root(self)
       components = componenttools.iterate_components_depth_first(score, 
          capped = True, unique = True, forbid = None, direction = 'left')
@@ -392,7 +388,6 @@ class _Component(_StrictComparator):
       '''
       from abjad.tools import componenttools
       assert value in ('prolated', 'marks', 'seconds')
-      #for component in self.parentage.improper_parentage:
       for component in componenttools.get_improper_parentage_of_component(self):
          if value == 'prolated':
             component._prolated_offset_values_are_current = False
@@ -408,7 +403,6 @@ class _Component(_StrictComparator):
       prolated_offset_values_are_current = True
       marks_are_current = True
       offset_values_in_seconds_are_current = True
-      #for component in self.parentage.improper_parentage:
       for component in componenttools.get_improper_parentage_of_component(self):
          if prolated_offset_values_are_current:
             if not component._prolated_offset_values_are_current:

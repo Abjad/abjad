@@ -30,12 +30,8 @@ def get_all_spanners_attached_to_any_improper_parent_of_component(component, kla
 
    ## externalized version of (old) spanner receptor 'spanners_in_parentage' attribute 
    result = set([ ])
-   #parentage = component.parentage.improper_parentage
    parentage = componenttools.get_improper_parentage_of_component(component)
    for parent in parentage:
-      #spanners = parent.spanners.attached
-      #spanners = parent.spanners._spanners
-      #for spanner in spanners:
       for spanner in parent.spanners:
          if klass is None:
             result.add(spanner)

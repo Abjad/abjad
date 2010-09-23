@@ -37,7 +37,6 @@ def _measure_get(component, direction):
    '''
 
    if isinstance(component, _Leaf):
-      #for parent in component.parentage.proper_parentage:
       for parent in get_proper_parentage_of_component(component):
          if isinstance(parent, Measure):
             return parent

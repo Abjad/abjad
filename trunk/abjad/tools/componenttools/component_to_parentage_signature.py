@@ -26,7 +26,6 @@ def component_to_parentage_signature(component):
 
    signature = _ContainmentSignature( )
    signature._self = component._ID
-   #for component in component.parentage.improper_parentage:
    for component in componenttools.get_improper_parentage_of_component(component):
       if isinstance(component, Voice) and not signature._voice:
          signature._voice = component._ID

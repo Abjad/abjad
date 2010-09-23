@@ -49,7 +49,6 @@ def iterate_timeline_backward_from_component(expr, klass = _Leaf):
       ``componenttools.iterate_timeline_backward_from_component( )``.
    '''
 
-   #root = expr.parentage.root
    root = component_to_score_root(expr)
    component_generator = iterate_timeline_backward_in_expr(root, klass = klass)
 

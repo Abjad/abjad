@@ -24,7 +24,6 @@ def test_componenttools_get_improper_parentage_of_component_01( ):
    >>
    '''
 
-   #parentage = t.leaves[0].parentage.improper_parentage
    improper_parentage = componenttools.get_improper_parentage_of_component(t.leaves[0])
 
    "[Note(c', 8), Container(c'8, d'8), Staff{2}, Score<<1>>]"
@@ -58,7 +57,6 @@ def test_componenttools_get_improper_parentage_of_component_02( ):
    >>
    '''
 
-   #parentage = t[0][0].parentage.improper_parentage
    improper_parentage = componenttools.get_improper_parentage_of_component(t[0][0])
 
    "[Container(c'8, d'8), Staff{2}, Score<<1>>]"

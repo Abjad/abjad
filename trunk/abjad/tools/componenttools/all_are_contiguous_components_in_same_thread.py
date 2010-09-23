@@ -25,20 +25,17 @@ def all_are_contiguous_components_in_same_thread(expr, klasses = (_Component),
       return False
 
    orphan_components = True
-   #if not first.parentage.is_orphan:
    if not component_is_orphan(first):
       orphan_components = False
 
    same_thread = True
    strictly_contiguous = True
 
-   #first_signature = first.thread.signature
    first_signature = threadtools.component_to_thread_signature(first)
    prev = first
    for cur in expr[1:]:
       if not isinstance(cur, klasses):
          return False
-      #if not cur.parentage.is_orphan:
       if not component_is_orphan(cur):
          orphan_components = False
       #cur_signature = cur.thread.signature

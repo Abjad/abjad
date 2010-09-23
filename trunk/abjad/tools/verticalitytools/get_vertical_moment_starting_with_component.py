@@ -8,7 +8,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
    r'''.. versionadded:: 1.1.2
 
    When `governor` is none, get vertical moment at 
-   ``expr.offset.start`` in ``expr.parentage.root``. ::
+   ``expr.offset.start`` in score root of `expr`::
 
       abjad> score = Score([ ])
       abjad> score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
@@ -64,7 +64,6 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
    prolated_offset = expr.offset.start
 
    if governor is None:
-      #governor = expr.parentage.root
       governor = component_to_score_root(expr)
 
    return verticalitytools_get_vertical_moment_at_prolated_offset_in_expr(
