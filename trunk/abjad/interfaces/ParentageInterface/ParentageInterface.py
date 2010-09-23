@@ -1,7 +1,7 @@
 from abjad.interfaces._Interface import _Interface
 
 
-class _ParentageInterface(_Interface):
+class ParentageInterface(_Interface):
    '''Bundle attributes relating to the containers within which any Abjad component nests.
    '''
 
