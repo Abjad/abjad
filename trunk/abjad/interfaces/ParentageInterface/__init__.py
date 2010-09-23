@@ -3,4 +3,4 @@
 #
 #_import_functions_in_package_to_namespace(__path__[0], globals( ))
 
-from _ParentageInterface import _ParentageInterface
+from ParentageInterface import ParentageInterface

@@ -25,7 +25,7 @@ class _Component(_StrictComparator):
       self._navigator = _NavigationInterface(self)
       self._offset = OffsetInterface(self)
       self._offset_values_in_seconds_are_current = False
-      self.parentage = ParentageInterface(self)
+      self._parentage = ParentageInterface(self)
       self._prolated_offset_values_are_current = False
       self._spanners = set([ ])
 
@@ -164,7 +164,7 @@ class _Component(_StrictComparator):
    def parentage(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.parentage.interface.ParentageInterface`.'''
-      return self.parentage
+      return self._parentage
 
    @property
    def set(self):
