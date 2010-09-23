@@ -4,7 +4,6 @@ from abjad.cfg._run_lilypond import _run_lilypond
 from abjad.cfg._verify_output_directory import _verify_output_directory
 from abjad.cfg._wrap_format_in_score_block import _wrap_format_in_score_block
 from abjad.cfg._write_preamble import _write_preamble
-from abjad.cfg._write_title import _write_title
 from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
 import os
 

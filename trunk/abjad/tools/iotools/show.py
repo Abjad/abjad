@@ -4,61 +4,22 @@ from abjad.cfg._read_config_file import _read_config_file
 import os
 
 
-def show(expr, template = None, title = None, footer = None, 
-   lily_time = 10, format_time = 10, return_timing = False,
-   suppress_pdf = False):
-   '''Format `expr` as a valid string of LilyPond input.
+def show(expr, template = None, return_timing = False, suppress_pdf = False):
+   '''Show `expr`::
 
-   Call LilyPond on the formatted version of `expr`.
+      abjad> note = Note(0, (1, 4))
+      abjad> show(note)
 
-   Open the PDF that LilyPond creates.
+   Show `expr` with `template`::
 
-   Render `t` and open the resulting PDF::
+      abjad> note = Note(0, (1, 4))
+      abjad> show(note, template = 'tangiers')
 
-      abjad> t = Note(0, (1, 4))
-      abjad> show(t)
+   Show `expr` and return both Abjad and LilyPond processing time in seconds::
 
-   Render `t` with the ``tangiers.ly`` template and then 
-   open the resulting PDF::
-
-      abjad> show(t, template = 'tangiers')
-
-   Render `t` with a score title and open the resulting PDF::
-
-      abjad> show(t, title = 'Score Title')
-
-   Render `t` with a multiline score title and open the resulting PDF::
-
-      abjad> show(t, title = ['Score Title', 'score subtitle', 'more subtitle'])
-
-   .. versionadded:: 1.1.1
-      Render `t` with a footer and open the resulting PDF:
-
-   ::
-
-      abjad> show(t, footer = '"This is footer text."')
-
-   Render `t` and open the resulting PDF. Alert the composer
-   if LilyPond takes greater than 60 seconds to render::
-
-      abjad> show(t, lily_time = 60)
-
-   .. versionadded:: 1.1.2
-      Render `t` and open the resulting PDF. Alert the composer
-      if Abjad takes greater than 10 seconds to format `t`:
-
-   ::
-
-      abjad> show(t, format_time = 10)
-
-   .. versionadded:: 1.1.2
-      Render `t`, open the resulting PDF, and return both the number
-      of seconds it took Abjad to format `t` and also the number
-      of seconds it took LilyPond to render `t`:
-
-   ::
-
-      abjad> show(t, return_timing = True)
+      abjad> staff = Staff(Note(0, (1, 4)) * 200)
+      abjad> show(note, return_timing = True)
+      (0, 3)
 
    .. note:: 
       By default, Abjad writes LilyPond input files
@@ -66,10 +27,11 @@ def show(expr, template = None, title = None, footer = None,
       setting the ``abjad_output`` variable in the ``config.py`` file.
    '''
 
-   ## format expr and write lilypond input file
+   lily_time = 10
+   format_time = 10
+
    name, actual_format_time, actual_lily_time = _log_render_lilypond_input(
-      expr, template = template, title = title, footer = footer, 
-      lily_time = lily_time, format_time = format_time)
+      expr, template = template)
 
    ## do not open PDF if we're running py.test regression battery
    if not suppress_pdf:

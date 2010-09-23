@@ -3,17 +3,17 @@ from abjad.cfg._log_render_lilypond_input import _log_render_lilypond_input
 import os
 import shutil
 
-def write_expr_to_pdf(expr, file_name, template = None, 
-   title = None, footer = None, lily_time = 10):
-   '''Render `expr` as LilyPond input.
 
-   Call LilyPond and write the resulting PDF as `file_name`. ::
+def write_expr_to_pdf(expr, file_name, template = None):
+   '''Write `expr` to pdf `file_name`::
 
-      abjad> t = Note(0, (1, 4))
-      abjad> write_expr_to_pdf(t, 'one_note.pdf')
+      abjad> note = Note(0, (1, 4))
+      abjad> write_expr_to_pdf(note, 'one_note.pdf')
 
-   .. versionadded:: 1.1.1
-      Optional `footer` keyword.
+   Write `expr` to pdf `file_name` with `template`::
+
+      abjad> note = Note(0, (1, 4))
+      abjad> write_expr_to_pdf(note, 'one_note.pdf', 'paris')
    '''
 
    ## massage file_name
@@ -21,8 +21,7 @@ def write_expr_to_pdf(expr, file_name, template = None,
    if not file_name.endswith('.pdf'):
       file_name += '.pdf'
 
-   name = _log_render_lilypond_input(expr, template = template, 
-      title = title, footer = footer, lily_time = lily_time)
+   name = _log_render_lilypond_input(expr, template = template)
 
    ## copy PDF file to file_name
    pdf_name = name[:-3] + '.pdf'
