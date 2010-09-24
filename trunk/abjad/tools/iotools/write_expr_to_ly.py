@@ -1,6 +1,4 @@
 from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_lily_file
-#from abjad.tools.iotools._write_preamble import _write_preamble
-#from abjad.tools.iotools._write_score import _write_score
 import os
 
 
@@ -25,8 +23,6 @@ def write_expr_to_ly(expr, file_name, template = None):
       file_name += '.ly'
    try:
       outfile = open(file_name, 'w')
-      #_write_preamble(outfile, template)
-      #_write_score(outfile, expr.format)
       lily_file = _insert_expr_into_lily_file(expr)
       outfile.write(lily_file.format)
       outfile.close( )

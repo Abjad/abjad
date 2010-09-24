@@ -4,8 +4,6 @@ from abjad.tools import lilyfiletools
 from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_lily_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
 from abjad.tools.iotools._verify_output_directory import _verify_output_directory
-#from abjad.tools.iotools._write_preamble import _write_preamble
-#from abjad.tools.iotools._write_score import _write_score
 from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
 import os
 import time
@@ -34,37 +32,15 @@ def _log_render_lilypond_input(expr, template = None):
    os.chdir(ABJADOUTPUT)
    name = get_next_output_file_name( )
    outfile = open(name, 'w')
-   #_write_preamble(outfile, template)
 
    ## catch Abjad tight loops that result in excessive format time
    start_format_time = time.time( )
-
-#   if isinstance(expr, lilyfiletools.LilyFile):
-#      lily_file = expr
-#   elif isinstance(expr, _Context):
-#      lily_file = lilyfiletools.make_basic_lily_file(expr)
-#      lily_file._is_temporary = True
-#   else:
-#      lily_file = lilyfiletools.make_basic_lily_file( )
-#      score_block = lilyfiletools.ScoreBlock( )
-#      score_block.append(expr)
-#      lily_file.append(score_block)
-#      lily_file._is_temporary = True
-
    lily_file = _insert_expr_into_lily_file(expr)
-
-   #formatted_expr = expr.format
    formatted_lily_file = lily_file.format
    stop_format_time = time.time( )
    actual_format_time = int(stop_format_time - start_format_time)
    if format_time <= actual_format_time:
       print 'Abjad format time equal to %s sec.' % actual_format_time
-
-#   if isinstance(expr, lilyfiletools.LilyFile):
-#      outfile.write(expr.format)
-#   else:
-#      _write_score(outfile, expr.format)
-
    outfile.write(formatted_lily_file)
    outfile.close( )
 
