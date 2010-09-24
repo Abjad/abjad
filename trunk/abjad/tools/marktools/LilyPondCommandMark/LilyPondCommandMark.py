@@ -3,7 +3,23 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class LilyPondCommandMark(Mark):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
+
+   LilyPond command mark::
+
+      abjad> staff = Staff(macros.scale(4))
+      abjad> slur = spannertools.SlurSpanner(staff.leaves)
+      abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(staff[0])
+      abjad> f(staff)
+      \new Staff {
+         \slurDotted
+         c'8 (
+         d'8
+         e'8
+         f'8 )
+      }
+
+   .. todo:: allow LilyPondCommandMark objects to attach to spanners.
    '''
 
    _format_slot = 'opening'
