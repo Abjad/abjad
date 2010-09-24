@@ -9,13 +9,17 @@ def save_last_ly_as(file_name):
    Save last LilyPond file as `file_name`::
 
       abjad> show(score)
-      abjad> lilyfiletools.save_last_ly_as('/project/output/example-1.ly')
+      abjad> iotools.save_last_ly_as('/project/output/example-1.ly')
 
    Return none.
 
    .. versionchanged:: 1.1.2
       renamed ``lilyfiletools.save_ly_as( )`` to
-      ``lilyfiletools.save_last_ly_as( )``.
+      ``iotools.save_last_ly_as( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``lilyfiletools.save_last_ly_as( )`` to
+      ``iotools.save_last_ly_as( )``.
    '''
 
    ABJADOUTPUT = _read_config_file( )['abjad_output'] 

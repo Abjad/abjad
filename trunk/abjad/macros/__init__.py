@@ -1,7 +1,7 @@
 from abjad.tools.componenttools import component_to_pitch_and_rhythm_skeleton_with_interface_attributes as skeletonize
 from abjad.tools.formattools import format_input_lines_as_doc_string as docstring
 from abjad.tools.formattools import format_input_lines_as_regression_test as regtest
-from abjad.tools.lilyfiletools import parse_note_entry_string as parsely
+from abjad.tools.iotools import parse_note_entry_string as parsely
 from abjad.tools.pitchtools import set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr as chromaticize
 from abjad.tools.pitchtools import set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr as diatonicize
 from abjad.tools.tonalitytools import make_first_n_notes_in_ascending_diatonic_scale as scale

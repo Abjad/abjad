@@ -15,13 +15,17 @@ def parse_note_entry_string(note_entry_string):
    Parse LilyPond `note_entry_string`::
 
       abjad> note_entry_string = "g'2 a'2 g'4. fs'8 e'4 d'4"
-      abjad> lilyfiletools.parse_note_entry_string(note_entry_string)
+      abjad> iotools.parse_note_entry_string(note_entry_string)
       {g'4, a'4, a'2, fs'8, e'4, d'4}
 
    Return Abjad container of note, rest and chord instances.
    Handles simple beaming, slurs and articulations.
 
    Do not parse tuplets, measures or other complex LilyPond input.
+
+   .. versionchanged:: 1.1.2
+      renamed ``lilyfiletools.parse_note_entry_string( )`` to
+      ``iotools.parse_note_entry_string( )``.
    '''
    from abjad.tools import leaftools
    from abjad.tools import spannertools

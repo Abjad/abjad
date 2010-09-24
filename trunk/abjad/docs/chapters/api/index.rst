@@ -298,11 +298,14 @@ iotools
    tools/iotools/list_settings
    tools/iotools/log
    tools/iotools/ly
+   tools/iotools/parse_note_entry_string
    tools/iotools/pdf
    tools/iotools/play
    tools/iotools/profile_expr
    tools/iotools/redo
    tools/iotools/remove_abjad_pyc_files
+   tools/iotools/save_last_ly_as
+   tools/iotools/save_last_pdf_as
    tools/iotools/show
    tools/iotools/write_expr_to_ly
    tools/iotools/write_expr_to_ly_and_to_pdf_and_show
@@ -401,9 +404,6 @@ lilyfiletools
    tools/lilyfiletools/PaperBlock/PaperBlock
    tools/lilyfiletools/ScoreBlock/ScoreBlock
    tools/lilyfiletools/make_basic_lily_file
-   tools/lilyfiletools/parse_note_entry_string
-   tools/lilyfiletools/save_last_ly_as
-   tools/lilyfiletools/save_last_pdf_as
 
 
 listtools
