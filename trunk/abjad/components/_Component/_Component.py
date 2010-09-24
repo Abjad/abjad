@@ -7,7 +7,7 @@ from abjad.interfaces import BreaksInterface
 from abjad.interfaces import CommentsInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import HistoryInterface
-#from abjad.interfaces import NumberingInterface
+#from abjad.interfaces import _NumberingInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import OffsetInterface
 

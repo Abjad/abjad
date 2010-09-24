@@ -2,7 +2,7 @@ from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import MeasureContiguityError
 
 
-class NumberingInterface(_Interface):
+class _NumberingInterface(_Interface):
    '''Number score components but handle no LilyPond grob.'''
 
    __slots__ = ('_leaf', '_measure')

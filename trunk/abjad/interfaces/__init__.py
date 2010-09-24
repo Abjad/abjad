@@ -1,6 +1,10 @@
-from abjad.tools.importtools._import_functions_in_package_to_namespace import \
-   _import_functions_in_package_to_namespace
-
-_import_functions_in_package_to_namespace(__path__[0], globals( ))
-
+from ArticulationInterface import ArticulationInterface
+from BreaksInterface import BreaksInterface
+from CommentsInterface import CommentsInterface
+from DirectivesInterface import DirectivesInterface
+from HistoryInterface import HistoryInterface
+from MarkupInterface import MarkupInterface
+from OffsetInterface import OffsetInterface
+from ParentageInterface import ParentageInterface
 from _NavigationInterface import _NavigationInterface
+from _NumberingInterface import _NumberingInterface
