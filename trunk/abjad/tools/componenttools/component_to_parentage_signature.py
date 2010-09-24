@@ -1,4 +1,5 @@
-from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
+#from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
+from abjad.tools.componenttools._ContainmentSignature import _ContainmentSignature
 
 
 def component_to_parentage_signature(component):
