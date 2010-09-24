@@ -1,11 +1,15 @@
 from abjad import *
 
 
-def test_lilyfiletools_ScoreBlock_01( ):
+def test_ScoreBlock_01( ):
+   '''Midi block is formatted when empty by default.
+   Layout block must be explicitly set to format when empty.
+   '''
 
    score = Score([Staff(macros.scale(4))])
    score_block = lilyfiletools.ScoreBlock( )
    layout_block = lilyfiletools.LayoutBlock( )
+   layout_block.is_formatted_when_empty = True
    midi_block = lilyfiletools.MidiBlock( )
 
    score_block.append(score)

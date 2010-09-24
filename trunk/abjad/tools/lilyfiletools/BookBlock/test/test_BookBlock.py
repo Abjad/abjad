@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_lilyfiletools_BookBlock_01( ):
+def test_BookBlock_01( ):
 
    book_block = lilyfiletools.BookBlock( )
    

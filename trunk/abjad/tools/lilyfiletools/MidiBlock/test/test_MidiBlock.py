@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_lilyfiletools_MidiBlock_01( ):
+def test_MidiBlock_01( ):
 
    midi_block = lilyfiletools.MidiBlock( )
 

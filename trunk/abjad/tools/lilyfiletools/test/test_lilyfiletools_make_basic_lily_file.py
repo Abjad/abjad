@@ -11,6 +11,9 @@ def test_lilyfiletools_make_basic_lily_file_01( ):
    lily_file.paper.top_margin = 15
    lily_file.paper.left_margin = 15
 
+   lily_file.file_initial_system_comments = [ ]
+   lily_file.file_initial_system_includes = [ ]
+
    r'''
    \header {
            composer = \markup { Josquin }

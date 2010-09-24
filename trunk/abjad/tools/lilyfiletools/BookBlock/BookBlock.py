@@ -2,7 +2,10 @@ from abjad.tools.lilyfiletools._BlockNonattributed import _BlockNonattributed
 
 
 class BookBlock(_BlockNonattributed):
-   r'''Abjad model of the LilyPond \book block.'''
+   r'''.. versionadded:: 1.1.2
+
+   Abjad model of LilyPond input file book block.
+   '''
 
    def __init__(self):
       _BlockNonattributed.__init__(self)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_lilyfiletools_PaperBlock_minimal_page_breaking_01( ):
+def test_PaperBlock_minimal_page_breaking_01( ):
 
    pb = lilyfiletools.PaperBlock( )
    pb.minimal_page_breaking = True

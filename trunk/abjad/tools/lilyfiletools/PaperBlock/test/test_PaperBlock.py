@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_lilyfiletools_PaperBlock_01( ):
+def test_PaperBlock_01( ):
 
    pb = lilyfiletools.PaperBlock( )
    pb.top_margin = 15

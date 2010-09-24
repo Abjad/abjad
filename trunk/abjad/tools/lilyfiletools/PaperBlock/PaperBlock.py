@@ -3,8 +3,9 @@ import types
 
 
 class PaperBlock(_BlockAttributed):
-   r'''Model of \paper block in .ly input file.
-
+   r'''.. versionadded:: 1.1.2
+   
+   Abjad model of LilyPond input file paper block.
    '''
 
    def __init__(self):

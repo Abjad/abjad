@@ -389,11 +389,14 @@ lilyfiletools
 .. toctree::
    :maxdepth: 1
 
+   tools/lilyfiletools/AbjadVersionToken/AbjadVersionToken
    tools/lilyfiletools/BookBlock/BookBlock
    tools/lilyfiletools/BookpartBlock/BookpartBlock
+   tools/lilyfiletools/DateTimeToken/DateTimeToken
    tools/lilyfiletools/HeaderBlock/HeaderBlock
    tools/lilyfiletools/LayoutBlock/LayoutBlock
    tools/lilyfiletools/LilyFile/LilyFile
+   tools/lilyfiletools/LilyPondVersionToken/LilyPondVersionToken
    tools/lilyfiletools/MidiBlock/MidiBlock
    tools/lilyfiletools/PaperBlock/PaperBlock
    tools/lilyfiletools/ScoreBlock/ScoreBlock

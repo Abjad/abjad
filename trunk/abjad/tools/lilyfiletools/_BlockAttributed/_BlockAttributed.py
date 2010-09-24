@@ -1,13 +1,9 @@
-#from abjad.core import _Parser
-
-
 class _BlockAttributed(object):
    '''Model of attribute block in LilyPond input file.
    '''
 
    def __init__(self):
-      #self._parser = _Parser( )
-      pass
+      self._is_formatted_when_empty = False
 
    ## OVERLOADS ##
 
@@ -22,19 +18,20 @@ class _BlockAttributed(object):
    @property
    def _format_pieces(self):
       result = [ ]
-      #if not self._user_attributes:
-      if not self._formatted_user_attributes and \
-         not getattr(self, 'contexts', None):
-         result.append('%s { }' % self._escaped_name)
-      else:
-         result = ['%s {' % self._escaped_name]
-         if getattr(self, 'contexts', None):
-            specs = self._formatted_context_specifications
-            result.extend(['\t' + x for x in specs])
-         formatted_attributes = self._formatted_user_attributes
-         formatted_attributes = ['\t' + x for x in formatted_attributes]
-         result.extend(formatted_attributes)
-         result.append('}')
+      if not self._formatted_user_attributes and not getattr(self, 'contexts', None):
+         if self.is_formatted_when_empty:
+            result.append('%s { }' % self._escaped_name)
+            return result
+         else:
+            return result
+      result.append('%s {' % self._escaped_name)
+      if getattr(self, 'contexts', None):
+         specs = self._formatted_context_specifications
+         result.extend(['\t' + x for x in specs])
+      formatted_attributes = self._formatted_user_attributes
+      formatted_attributes = ['\t' + x for x in formatted_attributes]
+      result.extend(formatted_attributes)
+      result.append('}')
       return result
 
    @property
@@ -44,7 +41,6 @@ class _BlockAttributed(object):
       for key, value in sorted(vars(self).items( )):
          if not key.startswith('_'):
             formatted_key = key.replace('_', '-')
-            #formatted_value = self._parser.format_value(value)
             formatted_value = _format_lilypond_value(value)
             setting = '%s = %s' % (formatted_key, formatted_value)
             result.append(setting)
@@ -62,3 +58,14 @@ class _BlockAttributed(object):
    @property
    def format(self):
       return '\n'.join(self._format_pieces)
+
+   @apply
+   def is_formatted_when_empty( ):
+      def fget(self):
+         return self._is_formatted_when_empty
+      def fset(self, arg):
+         if isinstance(arg, type(True)):
+            self._is_formatted_when_empty = arg
+         else:
+            raise TypeError
+      return property(**locals( ))

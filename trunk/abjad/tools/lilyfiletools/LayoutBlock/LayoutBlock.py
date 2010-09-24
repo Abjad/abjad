@@ -2,8 +2,9 @@ from abjad.tools.lilyfiletools._BlockAttributed import _BlockAttributed
 
 
 class LayoutBlock(_BlockAttributed):
-   r'''Model of \layout block in .ly input file.
+   r'''.. versionadded:: 1.1.2
 
+   Abjad model of LilyPond input file layout block.
    '''
 
    def __init__(self):
