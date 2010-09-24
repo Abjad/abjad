@@ -47,14 +47,14 @@ def make_basic_lily_file(music = None):
    lily_file.append(HeaderBlock( ))
    lily_file.append(LayoutBlock( ))
    lily_file.append(PaperBlock( ))
-   lily_file.append(music)
 
    if music is not None:
+      lily_file.append(music)
       music._lily_file = lily_file
 
    lily_file.header = lily_file[0]
    lily_file.layout = lily_file[1]
    lily_file.paper = lily_file[2]
-   lily_file.music = lily_file[3]
+   lily_file.music = music
 
    return lily_file
