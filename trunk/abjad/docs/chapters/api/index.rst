@@ -501,6 +501,7 @@ marktools
    :maxdepth: 1
 
    tools/marktools/ClefMark/ClefMark
+   tools/marktools/CommentMark/CommentMark
    tools/marktools/DynamicMark/DynamicMark
    tools/marktools/InstrumentMark/InstrumentMark
    tools/marktools/KeySignatureMark/KeySignatureMark
@@ -509,6 +510,8 @@ marktools
    tools/marktools/StaffChangeMark/StaffChangeMark
    tools/marktools/TempoMark/TempoMark
    tools/marktools/TimeSignatureMark/TimeSignatureMark
+   tools/marktools/get_all_marks_attached_to_component
+   tools/marktools/get_comment_marks_attached_to_component
    tools/marktools/get_effective_clef
    tools/marktools/get_effective_dynamic
    tools/marktools/get_effective_instrument
@@ -517,6 +520,7 @@ marktools
    tools/marktools/get_effective_staff
    tools/marktools/get_effective_tempo
    tools/marktools/get_effective_time_signature
+   tools/marktools/get_lilypond_command_marks_attached_to_component
 
 
 markuptools

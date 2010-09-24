@@ -47,6 +47,15 @@ class LilyPondCommandMark(Mark):
 
    @property
    def format(self):
+      '''Format-time contribution of LilyPondCommandMark:
+
+      ::
+
+         abjad> note = Note(0, (1, 4))
+         abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
+         abjad> lilypond_command.format
+         '\\slurDotted'
+      '''
       command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(
          self._command_name_string)
       return r'\%s' % command
