@@ -1,6 +1,7 @@
 from abjad.cfg.cfg import ABJADPATH
 from abjad.tools.lilyfiletools.AbjadVersionToken import AbjadVersionToken
 from abjad.tools.lilyfiletools.DateTimeToken import DateTimeToken
+from abjad.tools.lilyfiletools.LilyPondLanguageToken import LilyPondLanguageToken
 from abjad.tools.lilyfiletools.LilyPondVersionToken import LilyPondVersionToken
 import os
 
@@ -75,7 +76,7 @@ class LilyFile(list):
       self._file_initial_user_comments = [ ]
       self._file_initial_system_includes = [ ]
       self._file_initial_system_includes.append(LilyPondVersionToken( ))
-      self._file_initial_system_includes.append('english.ly')
+      self._file_initial_system_includes.append(LilyPondLanguageToken( ))
       self._file_initial_system_includes.append(os.path.join(ABJADPATH, 'cfg', 'abjad.scm'))
       self._file_initial_user_includes = [ ]
       self.default_paper_size = None

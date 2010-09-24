@@ -1,9 +1,11 @@
 from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools import lilyfiletools
+from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_lily_file
 from abjad.tools.iotools._open_file import _open_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
 from abjad.tools.iotools._verify_output_directory import _verify_output_directory
-from abjad.tools.iotools._wrap_format_in_score_block import _wrap_format_in_score_block
-from abjad.tools.iotools._write_preamble import _write_preamble
+#from abjad.tools.iotools._wrap_format_in_score_block import _wrap_format_in_score_block
+#from abjad.tools.iotools._write_preamble import _write_preamble
 from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
 import os
 
@@ -26,8 +28,11 @@ def play(expr):
    os.chdir(ABJADOUTPUT)
    name = get_next_output_file_name( )
    outfile = open(name, 'w')
-   _write_preamble(outfile, None)
-   outfile.write(_wrap_format_in_score_block(expr.format, midi=True))
+   #_write_preamble(outfile, None)
+   #outfile.write(_wrap_format_in_score_block(expr.format, midi=True))
+   lily_file = _insert_expr_into_lily_file(expr)
+   score_block = lily_file.score.append(lilyfiletools.MidiBlock( ))
+   outfile.write(lily_file.format)
    outfile.close( )
    _run_lilypond(name, _read_config_file( )['lilypond_path'])
    if os.name == 'nt':

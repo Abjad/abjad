@@ -399,6 +399,7 @@ lilyfiletools
    tools/lilyfiletools/HeaderBlock/HeaderBlock
    tools/lilyfiletools/LayoutBlock/LayoutBlock
    tools/lilyfiletools/LilyFile/LilyFile
+   tools/lilyfiletools/LilyPondLanguageToken/LilyPondLanguageToken
    tools/lilyfiletools/LilyPondVersionToken/LilyPondVersionToken
    tools/lilyfiletools/MidiBlock/MidiBlock
    tools/lilyfiletools/PaperBlock/PaperBlock

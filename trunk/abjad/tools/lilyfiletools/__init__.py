@@ -9,6 +9,7 @@ from DateTimeToken import DateTimeToken
 from HeaderBlock import HeaderBlock
 from LayoutBlock import LayoutBlock
 from LilyFile import LilyFile
+from LilyPondLanguageToken import LilyPondLanguageToken
 from LilyPondVersionToken import LilyPondVersionToken
 from MidiBlock import MidiBlock
 from PaperBlock import PaperBlock
