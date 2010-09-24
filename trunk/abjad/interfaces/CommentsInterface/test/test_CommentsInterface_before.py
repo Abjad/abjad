@@ -32,8 +32,10 @@ def test_CommentsInterface_before_02( ):
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   t.comments.before.append('Leaf comments before here.')
-   t.comments.before.append('More comments before.')
+   #t.comments.before.append('Leaf comments before here.')
+   #t.comments.before.append('More comments before.')
+   marktools.CommentMark('Leaf comments before here.', 'before')(t)
+   marktools.CommentMark('More comments before.', 'before')(t)
    
    r'''
    % Leaf comments before here.
@@ -43,4 +45,3 @@ def test_CommentsInterface_before_02( ):
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "% Leaf comments before here.\n% More comments before.\n\\once \\override Beam #'thickness = #3\nc'8"
-

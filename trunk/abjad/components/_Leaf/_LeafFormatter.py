@@ -49,6 +49,8 @@ class _LeafFormatter(_ComponentFormatter):
          _get_mark_format_contributions_for_slot
       from abjad.tools.formattools._get_left_slot_format_contributions import \
          _get_left_slot_format_contributions
+      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
+         _get_mark_format_contributions_for_slot
       from abjad.tools.formattools._get_right_slot_format_contributions import \
          _get_right_slot_format_contributions
       from abjad.tools.leaftools._get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \

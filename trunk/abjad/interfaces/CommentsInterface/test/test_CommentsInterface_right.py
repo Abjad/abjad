@@ -32,12 +32,15 @@ def test_CommentsInterface_right_02( ):
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   t.comments.right.append('Leaf comments right here.')
-   t.comments.right.append('More comments right.')
-   
+   #t.comments.right.append('Leaf comments right here.')
+   #t.comments.right.append('More comments right.')
+   marktools.CommentMark('Leaf comments right here.', 'right')(t)
+   marktools.CommentMark('More comments right.', 'right')(t)
+
    r'''
    \once \override Beam #'thickness = #3
-   c'8 % Leaf comments right here. % More comments right.'''
+   c'8 % Leaf comments right here. % More comments right.
+   '''
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\once \\override Beam #'thickness = #3\nc'8 % Leaf comments right here. % More comments right."

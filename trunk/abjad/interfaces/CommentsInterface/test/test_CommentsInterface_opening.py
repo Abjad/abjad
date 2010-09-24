@@ -29,14 +29,17 @@ def test_CommentsInterface_opening_02( ):
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   t.comments.opening.append('Leaf opening comments here.')
-   t.comments.opening.append('More leaf opening comments.')
-
+   #t.comments.opening.append('Leaf opening comments here.')
+   #t.comments.opening.append('More leaf opening comments.')
+   marktools.CommentMark('Leaf opening comments here.', 'opening')(t)
+   marktools.CommentMark('More leaf opening comments.', 'opening')(t)
+   
    r'''
    \once \override Beam #'thickness = #3
    % Leaf opening comments here.
    % More leaf opening comments.
-   c'8'''
+   c'8
+   '''
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\once \\override Beam #'thickness = #3\n% Leaf opening comments here.\n% More leaf opening comments.\nc'8"

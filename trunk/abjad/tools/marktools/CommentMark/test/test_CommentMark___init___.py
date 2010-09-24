@@ -11,7 +11,7 @@ def test_CommentMark___init____01( ):
 
    r'''
    \new Staff {
-      %% beginning of note content
+      % beginning of note content
       c'8 (
       d'8
       e'8
@@ -20,4 +20,4 @@ def test_CommentMark___init____01( ):
    '''
 
    assert componenttools.is_well_formed_component(staff)
-   assert staff.format == "\\new Staff {\n\t%% beginning of note content\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+   assert staff.format == "\\new Staff {\n\t% beginning of note content\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"

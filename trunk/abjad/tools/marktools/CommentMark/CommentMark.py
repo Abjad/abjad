@@ -36,4 +36,4 @@ class CommentMark(Mark):
    def format(self):
       command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(
          self._comment_name_string)
-      return r'%%%% %s' % command
+      return r'%% %s' % command
