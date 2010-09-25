@@ -7,8 +7,6 @@ from abjad.tools import durtools
 class TempoIndication(_StrictComparator, _Immutable):
    r'''Tempo indication token. 
    
-   Assign to :class:`~abjad.TempoSpanner` spanner ``indication``. ::
-
       abjad> t = Staff(macros.scale(4))
       abjad> tempo_spanner = spannertools.TempoSpanner(t[:])
       abjad> tempo_indication = TempoIndication(Rational(1, 8), 44)

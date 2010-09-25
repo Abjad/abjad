@@ -877,18 +877,15 @@ spannertools
    tools/spannertools/GlissandoSpanner/GlissandoSpanner
    tools/spannertools/HairpinSpanner/HairpinSpanner
    tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
-   tools/spannertools/InstrumentSpanner/InstrumentSpanner
    tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    tools/spannertools/MetricGridSpanner/MetricGridSpanner
    tools/spannertools/OctavationSpanner/OctavationSpanner
    tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
    tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
-   tools/spannertools/ProportionalTempoSpanner/ProportionalTempoSpanner
    tools/spannertools/SlurSpanner/SlurSpanner
    tools/spannertools/SpacingSpanner/SpacingSpanner
    tools/spannertools/Spanner/Spanner
    tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
-   tools/spannertools/TempoSpanner/TempoSpanner
    tools/spannertools/TextScriptSpanner/TextScriptSpanner
    tools/spannertools/TextSpanner/TextSpanner
    tools/spannertools/TieSpanner/TieSpanner

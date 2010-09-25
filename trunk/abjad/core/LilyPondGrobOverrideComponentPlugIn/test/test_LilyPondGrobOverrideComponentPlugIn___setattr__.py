@@ -399,24 +399,27 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18( ):
    '''Override LilyPond MetronomeMark grob.
    '''
 
-   t = Voice(macros.scale(4))
-   p = spannertools.TempoSpanner(t[:], tempotools.TempoIndication(Rational(1, 4), 58))
-   p.override.staff.metronome_mark.color = 'red'
-   
+   staff = Staff(macros.scale(4))
+   score = Score([staff])
+   marktools.TempoMark(Fraction(1, 4), 58)(staff[0])
+   score.override.metronome_mark.color = 'red'
+
    r'''
-   \new Voice {
-      \override Staff.MetronomeMark #'color = #red
-      \tempo 4=58
-      c'8
-      d'8
-      e'8
-      f'8
-      %% tempo 4=58 ends here
-      \revert Staff.MetronomeMark #'color
-   }
+   \new Score \with {
+      \override MetronomeMark #'color = #red
+   } <<
+      \new Staff {
+         \tempo 4=58
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+   >>
    '''
 
-   assert t.format == "\\new Voice {\n\t\\override Staff.MetronomeMark #'color = #red\n\t\\tempo 4=58\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t%% tempo 4=58 ends here\n\t\\revert Staff.MetronomeMark #'color\n}"
+   assert componenttools.is_well_formed_component(score)
+   assert score.format == "\\new Score \\with {\n\t\\override MetronomeMark #'color = #red\n} <<\n\t\\new Staff {\n\t\t\\tempo 4=58\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___19( ):
