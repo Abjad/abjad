@@ -2,7 +2,8 @@ from abjad.components.Container import Container
 from abjad.tools import listtools
 
 
-## TODO: Implement in-place containertools.partition_by_lengths( ) that doesn't climb to governor ##
+## TODO: Implement in-place containertools.partition_components_by_counts( ) ##
+## that doesn't climb to governor ##
 
 def clone_and_partition_governed_component_subtree_by_leaf_counts(container, leaf_counts):
    r'''Clone `container` and partition clone according to `leaf_counts`. ::

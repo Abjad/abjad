@@ -24,7 +24,7 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):
          tokens, durations)
       part_lengths = [len(part) for part in parts]
       cells = pitch_array_row.cells
-      grouped_cells = listtools.partition_by_lengths(cells, part_lengths)
+      grouped_cells = listtools.partition_list_once_by_counts_without_overhang(cells, part_lengths)
       for group in grouped_cells:
          pitch_array_row.merge(group)
       leaves = leaftools.iterate_leaves_forward_in_expr(leaf_iterable)

@@ -49,26 +49,4 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
       ``pitchtools.make_empty_pitch_array_from_list_of_pitch_lists( )``.
    '''
 
-#   from abjad.tools import leaftools
-#   from abjad.tools import partition
-#
-#   time_intervals = leaftools.composite_offset_difference_series(leaf_iterables)
-#
-#   array_width = len(time_intervals)
-#   array_depth = len(leaf_iterables)
-#
-#   pitch_array = PitchArray(array_depth, array_width)
-#
-#   tokens = notetools.make_quarter_notes_with_lilypond_multipliers([0], time_intervals)
-#   for leaf_list, pitch_array_row in zip(leaf_iterables, pitch_array.rows):
-#      durations = leaftools.list_prolated_durations_of_leaves_in_expr(leaf_list)
-#      parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(tokens, durations)
-#      part_lengths = [len(part) for part in parts]
-#      cells = pitch_array_row.cells
-#      grouped_cells = listtools.partition_by_lengths(cells, part_lengths)
-#      for group in grouped_cells:
-#         pitch_array_row.merge(group)
-#
-#   return pitch_array
-
    return _leaf_iterables_to_pitch_array(leaf_iterables, populate = False)

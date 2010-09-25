@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_KeySignature_name_01( ):
+def test_KeySignatureMark_name_01( ):
 
    assert marktools.KeySignatureMark('e', 'major').name == 'E major'
    assert marktools.KeySignatureMark('E', 'major').name == 'E major'

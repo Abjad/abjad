@@ -50,6 +50,8 @@ def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
       [Note(b', 8), Note(c'', 8)]
 
    Return list of lists.
+
+   .. note:: function works not just on components but on any durated objects including spanners.
    '''
    
    parts = _group_components_by_durations('prolated', components, prolated_durations, 

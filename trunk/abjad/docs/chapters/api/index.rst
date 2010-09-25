@@ -462,12 +462,15 @@ listtools
    tools/listtools/pairs_from_to
    tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums_zero
-   tools/listtools/partition_by_lengths
    tools/listtools/partition_by_restricted_growth_function
    tools/listtools/partition_by_weights
    tools/listtools/partition_by_weights_not_less_than
    tools/listtools/partition_by_weights_ratio
    tools/listtools/partition_elements_into_canonic_parts
+   tools/listtools/partition_list_cyclically_by_counts_with_overhang
+   tools/listtools/partition_list_cyclically_by_counts_without_overhang
+   tools/listtools/partition_list_once_by_counts_with_overhang
+   tools/listtools/partition_list_once_by_counts_without_overhang
    tools/listtools/permutations
    tools/listtools/permute
    tools/listtools/phasor

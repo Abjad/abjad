@@ -1,7 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools.listtools.is_uniform import is_uniform
-from abjad.tools.listtools.partition_by_lengths import \
-   partition_by_lengths
+from abjad.tools.listtools.partition_list_cyclically_by_counts_without_overhang import \
+   partition_list_cyclically_by_counts_without_overhang
 
 
 def get_period(iterable):
@@ -33,7 +33,7 @@ def get_period(iterable):
       return None
    for factor in sorted(mathtools.divisors(len(iterable))):
       #print 'factor is %s ...' % factor
-      parts = partition_by_lengths(iterable, [factor], cyclic = True)
+      parts = partition_list_cyclically_by_counts_without_overhang(iterable, [factor])
       if is_uniform(parts):
          return factor
    return factor

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_KeySignature___init____01( ):
+def test_KeySignatureMark___init____01( ):
    '''Initialize with pitch class letter string and mode string.
    '''
 

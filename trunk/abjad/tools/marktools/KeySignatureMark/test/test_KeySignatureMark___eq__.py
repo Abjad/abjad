@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_KeySignature___eq___01( ):
+def test_KeySignatureMark___eq___01( ):
 
    ks1 = marktools.KeySignatureMark('g', 'major')
    ks2 = marktools.KeySignatureMark('g', 'major')
