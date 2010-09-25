@@ -32,10 +32,10 @@ def make_rests(durations, direction='big-endian', tied=False):
       abjad> for r in _:
       ...     print r.tie.spanners
       ... 
-      set([])
+      set([ ])
       set([spannertools.TieSpanner(r16, r4)])
       set([spannertools.TieSpanner(r16, r4)])
-      set([])
+      set([ ])
 
    .. versionchanged:: 1.1.2
       renamed ``construct.rests( )`` to

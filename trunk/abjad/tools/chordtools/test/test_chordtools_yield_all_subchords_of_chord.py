@@ -9,7 +9,7 @@ def test_chordtools_yield_all_subchords_of_chord_01( ):
    pairs = [subchord.pairs for subchord in subchords]
 
    assert pairs == [
-      (),
+      ( ),
       (('c', 4),),
       (('d', 4),),
       (('c', 4), ('d', 4)),

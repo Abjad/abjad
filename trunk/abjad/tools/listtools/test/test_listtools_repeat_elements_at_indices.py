@@ -22,4 +22,4 @@ def test_listtools_repeat_elements_at_indices_02( ):
       [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]]
 
    t = list(listtools.repeat_elements_at_indices(range(10), [6, 7, 8], 0))
-   assert t == [0, 1, 2, 3, 4, 5, [], [], [], 9]
+   assert t == [0, 1, 2, 3, 4, 5, [ ], [ ], [ ], 9]

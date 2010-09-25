@@ -22,7 +22,7 @@ class MetricGridSpanner(Spanner):
       meters = self.meters
       #meter = meters.next( )
       meter, moffset, temp_hide = meters.next( )
-      leaves_in_meter = [[]]
+      leaves_in_meter = [[ ]]
       leaf = self.leaves[0]
       ## group leaves by measure.
       while leaf:
@@ -34,7 +34,7 @@ class MetricGridSpanner(Spanner):
             try:
                #meter = meters.next( )
                meter, moffset, temp_hide = meters.next( )
-               leaves_in_meter.append([])
+               leaves_in_meter.append([ ])
             except StopIteration:
                break
       ## group together leaves in same measure that are tied together.

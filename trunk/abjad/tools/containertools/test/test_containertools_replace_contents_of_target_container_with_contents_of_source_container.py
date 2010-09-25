@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_replace_contents_of_target_container_with_contents_of_source_container_01():
+def test_containertools_replace_contents_of_target_container_with_contents_of_source_container_01( ):
    
    staff = Staff(Tuplet((2, 3), macros.scale(3)) * 3)
    macros.diatonicize(staff)

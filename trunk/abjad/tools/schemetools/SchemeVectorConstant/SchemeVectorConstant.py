@@ -35,7 +35,7 @@ class SchemeVectorConstant(tuple, _Immutable):
 
    @property
    def _output_string(self):
-      vals = []
+      vals = [ ]
       for x in self:
           if isinstance(x, type(True)) and x:
               vals.append("#t")
@@ -57,4 +57,4 @@ class SchemeVectorConstant(tuple, _Immutable):
          abjad> scheme_vector_constant.format
          "#'#(#t #t #f)"
       '''
-      return "#'#%s" % self.__str__()
+      return "#'#%s" % self.__str__( )

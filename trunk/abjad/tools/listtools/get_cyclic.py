@@ -36,7 +36,7 @@ def get_cyclic(l, start_index, stop_index):
       abjad> listtools.get_cyclic(l, 10, 10)
       <generator object at 0x117daf8>
       abjad> list(_)
-      []
+      [ ]
 
    Note that the output of this function is a generator.
 

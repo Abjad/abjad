@@ -11,7 +11,7 @@ def truncate_subruns(l):
    Return empty list when *l* is empty::
 
       abjad> listtools.truncate_subruns([ ])
-      []
+      [ ]
 
    Raise :exc:`TypeError` when *l* is not a list::
 

@@ -17,7 +17,7 @@ def partition_integer_into_units(n):
    Return empty list when *n* is ``0``::
 
       abjad> mathtools.partition_integer_into_units(0)
-      []
+      [ ]
 
    Raise :exc:`TypeError` on noninteger *n*::
 

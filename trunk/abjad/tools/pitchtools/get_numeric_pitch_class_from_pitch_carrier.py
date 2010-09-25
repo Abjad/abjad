@@ -19,7 +19,7 @@ def get_numeric_pitch_class_from_pitch_carrier(pitch_carrier):
 
    Empty chords Raise :exc:`MissingPitchError`. ::
 
-      abjad> empty_chord = Chord([], (1, 4))
+      abjad> empty_chord = Chord([ ], (1, 4))
       abjad> pitchtools.get_numeric_pitch_class_from_pitch_carrier(empty_chord)
       MissingPitchError
 

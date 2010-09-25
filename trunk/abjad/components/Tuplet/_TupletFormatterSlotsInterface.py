@@ -31,9 +31,9 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> import pprint
          abjad> pprint.pprint(t.formatter.slots.slot_1)
-         ([(<CommentsInterface>, 'before'), []],
-          [(<DirectivesInterface>, 'before'), []],
-          [(<InterfaceAggregator>, 'overrides'), []])
+         ([(<CommentsInterface>, 'before'), [ ]],
+          [(<DirectivesInterface>, 'before'), [ ]],
+          [(<InterfaceAggregator>, 'overrides'), [ ]])
          abjad> print t.format
          \times 2/3 {
                  c'8
@@ -50,7 +50,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          abjad> import pprint
          abjad> pprint.pprint(t.formatter.slots.slot_1)
          ([(<CommentsInterface>, 'before'), ['% This is a tuplet']],
-          [(<DirectivesInterface>, 'before'), []],
+          [(<DirectivesInterface>, 'before'), [ ]],
           [(<InterfaceAggregator>, 'overrides'),
            ["\\override Dots #'color = #red", "\\override NoteHead #'color = #red"]])
          abjad> print t.format
@@ -121,7 +121,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       format contributions to slot 2::
 
          abjad> pprint.pprint(t.formatter.slots.slot_2)
-         ()
+         ( )
 
       You can make trivial tuplets format as actual tuplets
       by setting ``color = True`` on the class of

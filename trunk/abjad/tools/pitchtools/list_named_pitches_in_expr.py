@@ -40,12 +40,12 @@ def list_named_pitches_in_expr(expr):
    ::
       
       abjad> pitchtools.list_named_pitches_in_expr('foo')
-      ()
+      ( )
 
    ::
 
       abjad> pitchtools.list_named_pitches_in_expr(Rest((1, 4)))
-      ()
+      ( )
 
    Works with pitch sets. ::
 

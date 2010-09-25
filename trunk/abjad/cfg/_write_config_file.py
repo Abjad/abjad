@@ -24,7 +24,7 @@ def _write_config_file(path, dict):
 
    f.write(preamble)
 
-   for key in sorted(dict.keys()):
+   for key in sorted(dict.keys( )):
       f.write(dict[key]['comment'] + '\n')
       f.write('%s = ' % key)
       if isinstance(dict[key]['value'], str):

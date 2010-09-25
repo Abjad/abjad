@@ -27,7 +27,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
    No components cross prolated offset ``0``::
       
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 0)
-      []
+      [ ]
 
    Staff, measure and leaf cross prolated offset ``1/16``::
 
@@ -47,7 +47,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
    No components cross prolated offset ``99``::
 
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
-      []
+      [ ]
 
    .. versionchanged:: 1.1.2
       renamed ``componenttools.get_duration_crossers( )`` to

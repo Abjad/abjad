@@ -9,14 +9,14 @@ def _verify_config_file( ):
    try:
       f = open(ABJADCONFIG, 'r')
       f.close( )
-      user_dict = _config_file_to_dict()
+      user_dict = _config_file_to_dict( )
 
       ## TODO: This block overwrites user-specific config file additions like 'foo = 99' ##
       ##       Fix and allow user-specific config file additions?                        ##
       ##       Or remove the message about old keys being maintained?                    ##
 
-      default_keyset = set(default_dict.keys())
-      user_keyset = set(user_dict.keys())
+      default_keyset = set(default_dict.keys( ))
+      user_keyset = set(user_dict.keys( ))
       if default_keyset.intersection(user_keyset) != default_keyset:
          print ''
          print '   The config file "%s" in your home directory is out of date.' % ABJADCONFIG

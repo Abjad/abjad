@@ -12,7 +12,7 @@ def true_indices(l):
 
       abjad> l = [0, 0, 0, 0, 0, 0]
       abjad> listtools.true_indices(l)
-      []
+      [ ]
 
    Raise :exc:`TypeError` when *l* is neither list nor tuple::
 

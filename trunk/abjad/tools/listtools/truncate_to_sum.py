@@ -6,7 +6,7 @@ def truncate_to_sum(l, total):
       abjad> for n in range(10):
       ...     print n, listtools.truncate_to_sum([2, 2, 2], n)
       ... 
-      0 []
+      0 [ ]
       1 [1]
       2 [2]
       3 [2, 1]
@@ -23,7 +23,7 @@ def truncate_to_sum(l, total):
       abjad> for n in range(10):
       ...     print n, listtools.truncate_to_sum(l, n)
       ... 
-      0 []
+      0 [ ]
       1 [-1, 2]
       2 [-1, 2, -3, 4]
       3 [-1, 2, -3, 4, -5, 6]
@@ -37,7 +37,7 @@ def truncate_to_sum(l, total):
    Return empty list when ``total == 0``::
 
       abjad> listtools.truncate_to_sum([1, 2, 3, 4, 5], 0)
-      []
+      [ ]
 
    Raise :exc:`TypeError` when *l* is not a list::
 

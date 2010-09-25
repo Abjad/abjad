@@ -21,4 +21,4 @@ write_ly(staff, 'test') <hide
 The ``notes`` variable is now bound to a Python list of four Abjad notes.
 The ``staff`` variable is bound to an Abjad staff containing those notes.
 
-.. seealso:: See the API entry for :func:`macros.scale() <abjad.tools.macros.scale.scale>`.
+.. seealso:: See the API entry for :func:`macros.scale( ) <abjad.tools.macros.scale.scale>`.

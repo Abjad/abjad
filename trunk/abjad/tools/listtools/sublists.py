@@ -7,7 +7,7 @@ def sublists(l, min_length = None, max_length = None):
    Yield all sublists of list `l` in binary string order. ::
 
       abjad> list(listtools.sublists([1, 2, 3, 4]))
-      [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], 
+      [[ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], 
       [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
 
    Yield all sublists of list `l` greater than or equal to `min_length`. ::
@@ -18,7 +18,7 @@ def sublists(l, min_length = None, max_length = None):
    Yield all sublists of list `l` less than or equal to `max_length`. ::
 
       abjad> list(listtools.sublists([1, 2, 3, 4], max_length = 2))
-      [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [4], [1, 4], [2, 4], [3, 4]]
+      [[ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [4], [1, 4], [2, 4], [3, 4]]
 
    .. note :: ``listtools.sublists`` will deprecate when Abjad migrates to
       Python 2.6 because Python 2.6 includes built-in subset generation.

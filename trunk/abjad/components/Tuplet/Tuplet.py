@@ -85,7 +85,7 @@ class Tuplet(Container):
       def fset(self, arg):
          assert isinstance(arg, (bool, type(None)))
          self._is_invisible = arg
-      return property(**locals())
+      return property(**locals( ))
 
    @property
    def is_trivial(self):

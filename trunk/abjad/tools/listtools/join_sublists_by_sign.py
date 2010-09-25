@@ -11,9 +11,9 @@ def join_sublists_by_sign(l):
 
    ::
 
-      abjad> l = [[1, 2], [], [], [3, 4, 5], [6, 7]]
+      abjad> l = [[1, 2], [ ], [ ], [3, 4, 5], [6, 7]]
       abjad> t = listtools.join_sublists_by_sign(l)
-      [[1, 2], [], [3, 4, 5, 6, 7]]
+      [[1, 2], [ ], [3, 4, 5, 6, 7]]
    '''
 
    if not isinstance(l, list):

@@ -68,7 +68,7 @@ def iterate_thread_backward_from_component(component, klass = None):
    
    Note that this function is a special type of depth-first search.
 
-   Compare with :func:`threadtools.iterate_thread_backward_in_expr() 
+   Compare with :func:`threadtools.iterate_thread_backward_in_expr( ) 
    <abjad.tools.threadtools.iterate_thread_backward_in_expr>`.
 
    .. versionchanged:: 1.1.2

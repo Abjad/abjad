@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_StaffLinesSpanner_format_01():
+def test_StaffLinesSpanner_format_01( ):
    '''StaffLinesSpanner with int argument overrides StaffSymbol's line-count property.'''
 
    staff = Staff(macros.scale(8))
@@ -30,7 +30,7 @@ def test_StaffLinesSpanner_format_01():
    assert staff.format == "\\new Staff {\n\tc'8\n\td'8\n\t\\stopStaff\n\t\\override Staff.StaffSymbol #'line-count = #3\n\t\\startStaff\n\te'8\n\tf'8\n\tg'8\n\ta'8\n\tb'8\n\t\\stopStaff\n\t\\revert Staff.StaffSymbol #'line-count\n\t\\startStaff\n\tc''8\n}"
 
 
-def test_StaffLinesSpanner_format_02():
+def test_StaffLinesSpanner_format_02( ):
    '''StaffLinesSpanner with list argument overrides StaffSymbol's line-positions property.'''
 
    staff = Staff(macros.scale(8))
@@ -58,7 +58,7 @@ def test_StaffLinesSpanner_format_02():
    assert staff.format == "\\new Staff {\n\tc'8\n\td'8\n\t\\stopStaff\n\t\\override Staff.StaffSymbol #'line-positions = #'(-5 -4 -3 -2 -1 0 1.5 3 4.5)\n\t\\startStaff\n\te'8\n\tf'8\n\tg'8\n\ta'8\n\tb'8\n\t\\stopStaff\n\t\\revert Staff.StaffSymbol #'line-positions\n\t\\startStaff\n\tc''8\n}"
 
 
-def test_StaffLinesSpanner_format_03():
+def test_StaffLinesSpanner_format_03( ):
    '''StaffLinesSpanner's lines property can be changed.'''
 
    staff = Staff(macros.scale(8))

@@ -58,7 +58,7 @@ def test_tietools_get_tie_chains_in_expr_06( ):
    spannertools.TieSpanner(t[2:])
    chains = tietools.get_tie_chains_in_expr([t])
 
-   assert chains == []
+   assert chains == [ ]
 
 
 def test_tietools_get_tie_chains_in_expr_07( ):

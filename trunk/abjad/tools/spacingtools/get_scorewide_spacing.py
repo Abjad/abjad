@@ -19,7 +19,7 @@ def get_scorewide_spacing(component):
       True
    
    .. versionchanged:: 1.1.2
-      Name changed from ``spacing.get_global()`` to ``spacing.get_scorewide_spacing()``.
+      Name changed from ``spacing.get_global( )`` to ``spacing.get_scorewide_spacing( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``spacing.get_scorewide( )`` to

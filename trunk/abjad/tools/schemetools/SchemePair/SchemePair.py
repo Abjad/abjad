@@ -35,7 +35,7 @@ class SchemePair(tuple, _Immutable):
 
    @property
    def _output_string(self):
-      vals = []
+      vals = [ ]
       for x in self:
           if isinstance(x, BooleanType) and x:
               vals.append("#t")
@@ -50,4 +50,4 @@ class SchemePair(tuple, _Immutable):
    @property
    def format(self):
       '''LilyPond input representation of scheme pair.'''
-      return "#'%s" % self.__str__()
+      return "#'%s" % self.__str__( )

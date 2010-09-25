@@ -10,7 +10,7 @@ def truncate_to_weight(l, total):
       abjad> for x in range(10):
       ...     print x, listtools.truncate_to_weight([-2, 2, -2], x)
       ... 
-      0 []
+      0 [ ]
       1 [-1]
       2 [-2]
       3 [-2, 1]
@@ -27,7 +27,7 @@ def truncate_to_weight(l, total):
       abjad> for x in range(10):
       ...     print x, listtools.truncate_to_weight(l, x)
       ... 
-      0 []
+      0 [ ]
       1 [-1]
       2 [-1, 1]
       3 [-1, 2]
@@ -41,7 +41,7 @@ def truncate_to_weight(l, total):
    Return empty list when ``total == 0``::
 
       abjad> listtools.truncate_to_weight([1, 2, 3, 4, 5], 0)
-      []
+      [ ]
 
    Raise :exc:`TypeError` when *l* is not a list::
 

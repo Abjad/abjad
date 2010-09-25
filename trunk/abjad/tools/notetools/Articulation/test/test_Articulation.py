@@ -4,7 +4,7 @@ import py.test
 
 def test_Articulation_01( ):
    '''Articulations can be initialized from zero, one or two arguments.'''
-   a = notetools.Articulation()
+   a = notetools.Articulation( )
    assert a.string == None
    assert a.direction == '-'
    a = notetools.Articulation('^\\marcato')

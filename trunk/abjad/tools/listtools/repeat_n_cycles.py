@@ -12,7 +12,7 @@ def repeat_n_cycles(iterable, n):
    Yield nothing when `n` is zero. ::
 
       abjad> list(listtools.repeat_n_cycles([1, 2, 3, 4, 5], 0))
-      []
+      [ ]
    '''
 
    ## TODO: optimize with itertools.from_iterable( ) in Python 2.6 ##

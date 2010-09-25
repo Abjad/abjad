@@ -59,7 +59,7 @@ class PitchArrayCell(_StrictComparator):
    ::
 
       abjad> cell.pitches
-      []
+      [ ]
 
    ::
 

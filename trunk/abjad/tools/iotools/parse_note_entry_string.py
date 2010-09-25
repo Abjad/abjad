@@ -161,7 +161,7 @@ def parse_note_entry_string(note_entry_string):
             BeamSpanner(container[start_index:stop_index + 1])
             beam_start_leaf = None
 
-         elif token == '[]':
+         elif token == '[ ]':
             if in_beam:
                raise Exception('Attempting to create overlapping beams.')
             last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)

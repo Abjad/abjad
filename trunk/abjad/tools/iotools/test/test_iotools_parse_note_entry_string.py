@@ -53,7 +53,7 @@ def test_iotools_parse_note_entry_string_02( ):
 def test_iotools_parse_note_entry_string_03( ):
    '''Should handle simple beams.'''
 
-   note_entry_string = r'''c'4 ( d'4 e'8 fs'8 [ a'16. d'32 ] ) g'2 b16 [] ( c'16 b16 c'16 )'''
+   note_entry_string = r'''c'4 ( d'4 e'8 fs'8 [ a'16. d'32 ] ) g'2 b16 [ ] ( c'16 b16 c'16 )'''
    container = iotools.parse_note_entry_string(note_entry_string)
    staff = Staff([ ])
    staff[:] = container[:]

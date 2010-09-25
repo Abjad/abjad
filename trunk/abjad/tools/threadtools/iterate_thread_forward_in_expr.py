@@ -51,7 +51,7 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
    The important thing to note is that the function yields only
    those leaves that sit in the same thread.
 
-   Compare with :func:`componenttools.iterate_components_forward_in_expr() 
+   Compare with :func:`componenttools.iterate_components_forward_in_expr( ) 
    <abjad.tools.iterate.naive_forward>`.
 
    .. versionchanged:: 1.1.2

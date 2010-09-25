@@ -50,7 +50,7 @@ def divisors(n):
    ## If the number is a perfect square
    ## we dont want the sqrt in the list twice
    if divisors[-1] == codivisors[0]:
-      divisors.pop()
+      divisors.pop( )
       
    divisors.extend(codivisors)
  

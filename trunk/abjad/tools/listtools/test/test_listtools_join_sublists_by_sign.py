@@ -11,7 +11,7 @@ def test_listtools_join_sublists_by_sign_01( ):
 
 def test_listtools_join_sublists_by_sign_02( ):
 
-   l = [[1, 2], [], [], [3, 4, 5], [6, 7]]
+   l = [[1, 2], [ ], [ ], [3, 4, 5], [6, 7]]
    t = listtools.join_sublists_by_sign(l)
 
-   assert t == [[1, 2], [], [3, 4, 5, 6, 7]]
+   assert t == [[1, 2], [ ], [3, 4, 5, 6, 7]]

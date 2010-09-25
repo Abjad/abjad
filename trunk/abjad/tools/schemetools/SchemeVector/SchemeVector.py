@@ -57,4 +57,4 @@ class SchemeVector(tuple, _Immutable):
          abjad> scheme_vector.format
          "#'(#t #t #f)"
       '''
-      return "#'%s" % self.__str__()
+      return "#'%s" % self.__str__( )

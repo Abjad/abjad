@@ -15,12 +15,12 @@ def get_unordered_pairs(l):
    ::
 
       abjad> listtools.get_unordered_pairs([1])
-      []
+      [ ]
 
    ::
 
       abjad> listtools.get_unordered_pairs([ ])
-      []
+      [ ]
 
    ::
 

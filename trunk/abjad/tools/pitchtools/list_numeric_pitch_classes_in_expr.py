@@ -24,7 +24,7 @@ def list_numeric_pitch_classes_in_expr(expr):
 
       abjad> empty_chord = Chord([ ], (1, 4))
       abjad> pitchtools.list_numeric_pitch_classes_in_expr(empty_chord)
-      ()
+      ( )
 
    Works with one-note chords. ::
 

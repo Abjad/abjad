@@ -12,7 +12,7 @@ def inventory_aggregate_subsets( ):
       4096 
       abjad> for pcset in U_star[:20]:
          pcset
-      NumericPitchClassSet([])
+      NumericPitchClassSet([ ])
       NumericPitchClassSet([PitchClass(0)])
       NumericPitchClassSet([PitchClass(1)])
       NumericPitchClassSet([PitchClass(0), NumericPitchClass(1)])
