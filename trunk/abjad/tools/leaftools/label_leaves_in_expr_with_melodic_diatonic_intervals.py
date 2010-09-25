@@ -4,7 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import threadtools
 
 
-def label_leaves_in_expr_with_melodic_diatonic_intervals(expr):
+def label_leaves_in_expr_with_melodic_diatonic_intervals(expr, markup_direction = 'up'):
    r""".. versionadded:: 1.1.2
 
    Label the melodic diatonic interval of every leaf in `expr`. ::
@@ -33,7 +33,10 @@ def label_leaves_in_expr_with_melodic_diatonic_intervals(expr):
          thread_iterator.next( )
          next_leaf = thread_iterator.next( )
          if isinstance(next_leaf, Note):
-            mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(note, next_leaf)
-            note.markup.up.append(mdi)
+            mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
+               note, next_leaf)
+            #note.markup.up.append(mdi)
+            markup_list = getattr(note.markup, markup_direction)
+            markup_list.append(mdi)
       except StopIteration:
          pass

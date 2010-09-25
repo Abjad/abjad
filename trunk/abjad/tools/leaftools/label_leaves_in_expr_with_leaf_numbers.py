@@ -1,7 +1,7 @@
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
-def label_leaves_in_expr_with_leaf_numbers(expr, direction = 'below'):
+def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction = 'down'):
    r'''Label the number of every leaf in `expr`, starting at 1.
 
    ::
@@ -16,7 +16,7 @@ def label_leaves_in_expr_with_leaf_numbers(expr, direction = 'below'):
       } 
 
    .. versionadded:: 1.1.2:
-      new `direction` keyword parameter.
+      new `markup_direction` keyword parameter.
 
    .. versionchanged:: 1.1.2
       renamed ``label.leaf_numbers( )`` to
@@ -26,9 +26,9 @@ def label_leaves_in_expr_with_leaf_numbers(expr, direction = 'below'):
    for i, leaf in enumerate(iterate_leaves_forward_in_expr(expr)):
       leaf_number = i + 1
       label = r'\small %s' % leaf_number
-      if direction == 'below':
+      if markup_direction == 'down':
          leaf.markup.down.append(label)
-      elif direction == 'above':
+      elif markup_direction == 'up':
          leaf.markup.up.append(label)
       else:
-         raise ValueError("must be 'above' or 'below'.")
+         raise ValueError("must be 'up' or 'down'.")

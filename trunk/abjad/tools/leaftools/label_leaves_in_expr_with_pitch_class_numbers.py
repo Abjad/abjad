@@ -3,7 +3,8 @@ from abjad.tools import pitchtools
 from abjad.tools import threadtools
 
 
-def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = False):
+def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = False, 
+   markup_direction = 'down'):
    r'''Label the pitch-class of every leaf in `expr`.
 
    When ``number = True`` add markup below leaves.
@@ -49,6 +50,8 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
    for note in componenttools.iterate_components_forward_in_expr(expr, Note):
       if number:
          label = r'\small %s' % note.pitch.pc.number
-         note.markup.down.append(label)
+         #note.markup.down.append(label)
+         markup_list = getattr(note.markup, markup_direction)
+         markup_list.append(label)
       if color:
          pitchtools.color_note_head_by_numeric_pitch_class_color_map(note)

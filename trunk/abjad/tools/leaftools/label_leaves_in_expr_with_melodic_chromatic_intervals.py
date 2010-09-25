@@ -4,7 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import threadtools
 
 
-def label_leaves_in_expr_with_melodic_chromatic_intervals(expr):
+def label_leaves_in_expr_with_melodic_chromatic_intervals(expr, markup_direction = 'up'):
    r""".. versionadded:: 1.1.2
 
    Label the melodic chromatic interval of every leaf in `expr`. ::
@@ -35,6 +35,9 @@ def label_leaves_in_expr_with_melodic_chromatic_intervals(expr):
          if isinstance(next_leaf, Note):
             mci = pitchtools.calculate_melodic_chromatic_interval_from_pitch_to_pitch(
                note, next_leaf)
-            note.markup.up.append(mci)
+            if markup_direction == 'up':
+               note.markup.up.append(mci)
+            else:
+               note.markup.down.append(mci)
       except StopIteration:
          pass

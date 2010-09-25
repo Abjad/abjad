@@ -21,10 +21,10 @@ def test_leaftools_label_leaves_in_expr_with_leaf_numbers_01( ):
 
 
 def test_leaftools_label_leaves_in_expr_with_leaf_numbers_02( ):
-   '''Optional direction keyword.'''
+   '''Optional markup direction keyword.'''
 
    t = Staff(macros.scale(4))
-   leaftools.label_leaves_in_expr_with_leaf_numbers(t, direction = 'above')
+   leaftools.label_leaves_in_expr_with_leaf_numbers(t, markup_direction = 'up')
 
    r'''
    \new Staff {

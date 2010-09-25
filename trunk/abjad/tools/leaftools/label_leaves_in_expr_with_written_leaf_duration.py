@@ -2,7 +2,7 @@ from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import \
    _label_leaves_in_expr_with_leaf_durations
 
 
-def label_leaves_in_expr_with_written_leaf_duration(expr):
+def label_leaves_in_expr_with_written_leaf_duration(expr, markup_direction = 'down'):
    r'''Label leaves in `expr` with writen leaf duration::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), macros.scale(3))
@@ -18,4 +18,5 @@ def label_leaves_in_expr_with_written_leaf_duration(expr):
    '''
 
    show = ['written']
-   return _label_leaves_in_expr_with_leaf_durations(expr, show = show)
+   return _label_leaves_in_expr_with_leaf_durations(
+      expr, markup_direction = markup_direction, show = show)

@@ -4,7 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import threadtools
 
 
-def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr):
+def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup_direction = 'up'):
    r""".. versionadded:: 1.1.2
 
    Label the melodic counterpoint interval class between 
@@ -36,6 +36,8 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr):
          if isinstance(next_leaf, Note):
             cpi = pitchtools.calculate_melodic_counterpoint_interval_from_named_pitch_to_named_pitch(
                note, next_leaf)
-            note.markup.up.append(cpi.interval_class)
+            #note.markup.up.append(cpi.interval_class)
+            markup_list = getattr(note.markup, markup_direction)
+            markup_list.append(cpi.interval_class)
       except StopIteration:
          pass
