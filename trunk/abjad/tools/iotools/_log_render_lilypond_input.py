@@ -45,7 +45,8 @@ def _log_render_lilypond_input(expr, template = None):
    outfile.close( )
 
    if getattr(lily_file, '_is_temporary', False):
-      lily_file.pop( )
+      music = lily_file.score_block.pop( )
+      delattr(music, '_lily_file')
       del(lily_file)
 
    ## render

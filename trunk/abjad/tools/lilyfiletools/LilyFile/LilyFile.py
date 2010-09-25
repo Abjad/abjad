@@ -19,12 +19,12 @@ class LilyFile(list):
       abjad> lily_file.file_initial_user_includes.append('external-settings-file-2.ly')
       abjad> lily_file.default_paper_size = 'letter', 'portrait'
       abjad> lily_file.global_staff_size = 16
-      abjad> lily_file.header.composer = markuptools.Markup('Josquin')
-      abjad> lily_file.header.title = markuptools.Markup('Missa sexti tonus')
-      abjad> lily_file.layout.indent = 0
-      abjad> lily_file.layout.left_margin = 15
-      abjad> lily_file.paper.oddFooterMarkup = markuptools.Markup('The odd-page footer')
-      abjad> lily_file.paper.evenFooterMarkup = markuptools.Markup('The even-page footer')
+      abjad> lily_file.header_block.composer = markuptools.Markup('Josquin')
+      abjad> lily_file.header_block.title = markuptools.Markup('Missa sexti tonus')
+      abjad> lily_file.layout_block.indent = 0
+      abjad> lily_file.layout_block.left_margin = 15
+      abjad> lily_file.paper_block.oddFooterMarkup = markuptools.Markup('The odd-page footer')
+      abjad> lily_file.paper_block.evenFooterMarkup = markuptools.Markup('The even-page footer')
       
    ::
       
@@ -85,10 +85,10 @@ class LilyFile(list):
    ## OVERLOADS ##
 
    def __repr__(self):
-      if not len(self):
-         return '%s( )' % self.__class__.__name__
+      if hasattr(self, 'score_block') and 1 <= len(self.score_block):
+         return '%s(%s)' % (self.__class__.__name__, self.score_block[0])
       else:
-         return '%s(%s)' % (self.__class__.__name__, len(self))
+         return '%s( )' % self.__class__.__name__
 
    ## PRIVATE ATTRIBUTES ##
 

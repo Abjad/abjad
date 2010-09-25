@@ -2,6 +2,7 @@ from abjad.tools.lilyfiletools.HeaderBlock import HeaderBlock
 from abjad.tools.lilyfiletools.LayoutBlock import LayoutBlock
 from abjad.tools.lilyfiletools.LilyFile import LilyFile
 from abjad.tools.lilyfiletools.PaperBlock import PaperBlock
+from abjad.tools.lilyfiletools.ScoreBlock import ScoreBlock
 
 
 def make_basic_lily_file(music = None):
@@ -44,17 +45,21 @@ def make_basic_lily_file(music = None):
    '''
 
    lily_file = LilyFile( )
-   lily_file.append(HeaderBlock( ))
-   lily_file.append(LayoutBlock( ))
-   lily_file.append(PaperBlock( ))
+
+   header_block = HeaderBlock( )
+   layout_block = LayoutBlock( )
+   paper_block = PaperBlock( )
+   score_block = ScoreBlock( )
+
+   lily_file.extend([header_block, layout_block, paper_block, score_block])
+
+   lily_file.header_block = header_block
+   lily_file.layout_block = layout_block
+   lily_file.paper_block = paper_block
+   lily_file.score_block = score_block
 
    if music is not None:
-      lily_file.append(music)
+      score_block.append(music)
       music._lily_file = lily_file
-
-   lily_file.header = lily_file[0]
-   lily_file.layout = lily_file[1]
-   lily_file.paper = lily_file[2]
-   lily_file.music = music
 
    return lily_file
