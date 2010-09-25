@@ -23,17 +23,19 @@ def make_big_centered_page_number_markup(text = None):
 
    assert isinstance(text, (str, type(None)))
 
-   contents = r'''
-   \fill-line {
-   \bold \fontsize #3 \concat {
-   \on-the-fly #print-page-number-check-first
-   \fromproperty #'page:page-number-string'''
-
    if text is None:
-      contents += ' } }'
+      contents = r'''
+      \fill-line {
+      \bold \fontsize #3 \concat {
+      \on-the-fly #print-page-number-check-first
+      \fromproperty #'page:page-number-string } }'''
    else:
-      #contents += '\n   " - " %s } }' % text
-      contents += '\n " "  \char ##x2014 " " %s } }' % text
+      contents = r'''
+      \fill-line {
+      \bold \fontsize #3 \concat {
+      %s " " \char ##x2014 " "
+      \on-the-fly #print-page-number-check-first
+      \fromproperty #'page:page-number-string } }''' % text
 
    markup = Markup(contents)
 

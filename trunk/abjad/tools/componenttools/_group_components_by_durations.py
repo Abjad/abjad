@@ -74,7 +74,8 @@ def _group_components_by_durations(duration_type, components, durations,
             if target_duration is None:
                break
             if target_duration < cum_duration:
-               raise PartitionError
+               raise PartitionError('target duration "%s" is less than cumulative duration "%s"' %
+                  (target_duration, cum_duration))
          elif fill == 'greater':
             part.append(component)
             result.append(part)
