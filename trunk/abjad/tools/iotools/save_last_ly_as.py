@@ -6,7 +6,7 @@ import os
 def save_last_ly_as(file_name):
    r'''.. versionadded:: 1.1.2
 
-   Save last LilyPond file as `file_name`::
+   Save last ly file as `file_name`::
 
       abjad> show(score)
       abjad> iotools.save_last_ly_as('/project/output/example-1.ly')

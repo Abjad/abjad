@@ -32,7 +32,8 @@ def make_big_centered_page_number_markup(text = None):
    if text is None:
       contents += ' } }'
    else:
-      contents += '\n   " - " %s } }' % text
+      #contents += '\n   " - " %s } }' % text
+      contents += '\n " "  \char ##x2014 " " %s } }' % text
 
    markup = Markup(contents)
 
