@@ -1,7 +1,8 @@
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
+   iterate_vertical_moments_forward_in_expr
 
 
-def label_vertical_moments_in_expr_with_interval_class_vectors(expr):
+def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
    Label interval class vector of every vertical moment in `expr`. ::
@@ -45,7 +46,9 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr):
          continue
       interval_class_vector = pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches)
       formatted = _format_interval_class_vector(interval_class_vector)
-      vertical_moment.start_leaves[-1].markup.down.append(formatted)
+      #vertical_moment.start_leaves[-1].markup.down.append(formatted)
+      markup_list = getattr(vertical_moment.start_leaves[-1].markup, markup_direction)
+      markup_list.append(formatted)
 
 
 def _format_interval_class_vector(interval_class_vector):

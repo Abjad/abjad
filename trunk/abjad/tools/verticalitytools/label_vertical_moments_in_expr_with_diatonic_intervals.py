@@ -1,8 +1,9 @@
 from abjad.components.Note import Note
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
+   iterate_vertical_moments_forward_in_expr
 
 
-def label_vertical_moments_in_expr_with_diatonic_intervals(expr):
+def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
    Label diatonic intervals of every vertical moment in `expr`. ::
@@ -56,4 +57,6 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr):
       intervals = [x.number for x in diatonic_intervals]
       intervals = ' '.join([str(x) for x in intervals])
       intervals = r'\small { \column { %s } }' % intervals
-      vertical_moment.start_leaves[-1].markup.down.append(intervals)
+      #vertical_moment.start_leaves[-1].markup.down.append(intervals)
+      markup_list = getattr(vertical_moment.start_leaves[-1].markup, markup_direction)
+      markup_list.append(intervals)

@@ -1,7 +1,8 @@
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
+   iterate_vertical_moments_forward_in_expr
 
 
-def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr):
+def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
    Label pitch classes of every vertical moment in `expr`. ::
@@ -49,4 +50,6 @@ def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr):
       pitch_classes.reverse( )
       pitch_classes = ' '.join([str(x) for x in pitch_classes])
       pitch_classes = r'\small { \column { %s } }' % pitch_classes
-      vertical_moment.start_leaves[-1].markup.down.append(pitch_classes)
+      #vertical_moment.start_leaves[-1].markup.down.append(pitch_classes)
+      markup_list = getattr(vertical_moment.start_leaves[-1].markup, markup_direction)
+      markup_list.append(pitch_classes)

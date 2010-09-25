@@ -1,8 +1,9 @@
 from abjad.components.Note import Note
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
+   iterate_vertical_moments_forward_in_expr
 
 
-def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr):
+def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
    Label harmonic chromatic interval classes 
@@ -56,4 +57,6 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr):
          hcics.append(hcic)
       hcics = ' '.join([str(hcic) for hcic in hcics])
       hcics = r'\small { \column { %s } }' % hcics
-      vertical_moment.start_leaves[-1].markup.down.append(hcics)
+      #vertical_moment.start_leaves[-1].markup.down.append(hcics)
+      markup_list = getattr(vertical_moment.start_leaves[-1].markup, markup_direction)
+      markup_list.append(hcics)

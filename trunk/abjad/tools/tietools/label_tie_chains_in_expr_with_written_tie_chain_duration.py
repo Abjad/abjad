@@ -2,7 +2,7 @@ from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import \
    _label_leaves_in_expr_with_leaf_durations
 
 
-def label_tie_chains_in_expr_with_written_tie_chain_duration(expr):
+def label_tie_chains_in_expr_with_written_tie_chain_duration(expr, markup_direction = 'down'):
    r'''Label tie chains in `expr` with written tie chain duration.::
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
@@ -24,4 +24,5 @@ def label_tie_chains_in_expr_with_written_tie_chain_duration(expr):
    '''
 
    show = ['written']
-   return _label_leaves_in_expr_with_leaf_durations(expr, show = show, ties = 'together')
+   return _label_leaves_in_expr_with_leaf_durations(
+      expr, markup_direction = markup_direction, show = show, ties = 'together')

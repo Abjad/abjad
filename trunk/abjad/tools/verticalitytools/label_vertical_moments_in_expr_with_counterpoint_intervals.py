@@ -1,8 +1,9 @@
 from abjad.components.Note import Note
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
+   iterate_vertical_moments_forward_in_expr
 
 
-def label_vertical_moments_in_expr_with_counterpoint_intervals(expr):
+def label_vertical_moments_in_expr_with_counterpoint_intervals(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
    Label counterpoint interval of every vertical moment in `expr`. ::
@@ -60,4 +61,6 @@ def label_vertical_moments_in_expr_with_counterpoint_intervals(expr):
          hcpics.append(hcpic)
       intervals = ' '.join([str(x) for x in hcpics])
       intervals = r'\small { \column { %s } }' % intervals
-      vertical_moment.start_leaves[-1].markup.down.append(intervals)
+      #vertical_moment.start_leaves[-1].markup.down.append(intervals)
+      markup_list = getattr(vertical_moment.start_leaves[-1].markup, markup_direction)
+      markup_list.append(intervals)
