@@ -1008,7 +1008,6 @@ tonalitytools
    tools/tonalitytools/DoublingIndicator/DoublingIndicator
    tools/tonalitytools/ExtentIndicator/ExtentIndicator
    tools/tonalitytools/InversionIndicator/InversionIndicator
-   tools/tonalitytools/KeySignature/KeySignature
    tools/tonalitytools/Mode/Mode
    tools/tonalitytools/OmissionIndicator/OmissionIndicator
    tools/tonalitytools/QualityIndicator/QualityIndicator
