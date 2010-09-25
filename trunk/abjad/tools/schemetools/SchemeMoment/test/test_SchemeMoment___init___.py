@@ -2,6 +2,35 @@ from abjad import *
 
 
 def test_SchemeMoment___init____01( ):
+   '''Initialize scheme moment from fraction.
+   '''
 
-   t = schemetools.SchemeMoment(Rational(1, 68))
-   assert t.format == '#(ly:make-moment 1 68)'
+   scheme_moment = schemetools.SchemeMoment(Fraction(1, 68))
+   assert scheme_moment.format == '#(ly:make-moment 1 68)'
+
+
+def test_SchemeMoment___init____02( ):
+   '''Initialize scheme moment from integer pair.
+   '''
+
+   scheme_moment = schemetools.SchemeMoment((1, 68))
+   assert scheme_moment.format == '#(ly:make-moment 1 68)'
+
+
+def test_SchemeMoment___init____03( ):
+   '''Initialize scheme moment from two positive integers.
+   '''
+
+   scheme_moment = schemetools.SchemeMoment(1, 68)
+   assert scheme_moment.format == '#(ly:make-moment 1 68)'
+
+
+def test_SchemeMoment___init____04( ):
+   '''Initialize scheme moment from other scheme moment.
+   '''
+
+   scheme_moment_1 = schemetools.SchemeMoment(Fraction(1, 68))
+   scheme_moment_2 = schemetools.SchemeMoment(scheme_moment_1)
+   assert scheme_moment_1.format == '#(ly:make-moment 1 68)'
+   assert scheme_moment_2.format == '#(ly:make-moment 1 68)'
+   assert scheme_moment_1 is not scheme_moment_2
