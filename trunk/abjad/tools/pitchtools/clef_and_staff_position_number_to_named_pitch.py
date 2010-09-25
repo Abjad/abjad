@@ -6,7 +6,7 @@ def clef_and_staff_position_number_to_named_pitch(clef, staff_position_number):
 
    Convert `clef` and `staff_position_number` to pitch. ::
 
-      abjad> clef = stafftools.Clef('treble')
+      abjad> clef = marktools.ClefMark('treble')
       abjad> for n in range(-6, 6):
       ...   pitch = pitchtools.clef_and_staff_position_number_to_named_pitch(clef, n)
       ...   print '%s\t%s\t%s' % (clef.name, n, pitch)

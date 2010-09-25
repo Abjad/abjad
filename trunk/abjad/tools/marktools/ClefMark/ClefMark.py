@@ -28,8 +28,16 @@ class ClefMark(Mark):
          return self._clef_name_string == arg._clef_name_string
       return False
 
+   ## PRIVATE ATTRIBUTES ##
+
+   _clef_name_to_middle_c_position = { 'treble': -6, 'alto': 0, 'tenor': 2, 'bass': 6, }
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def format(self): 
       return r'\clef "%s"' % self._clef_name_string
+
+   @property
+   def middle_c_position(self):
+      return self._clef_name_to_middle_c_position[self._clef_name_string]

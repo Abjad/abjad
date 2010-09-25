@@ -11,7 +11,7 @@ def iterate_pitch_pairs_forward_in_expr(expr):
       abjad> score.append(Staff(notes))
       abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
       abjad> score.append(Staff(notes))
-      abjad> marktools.Clef('bass')(score[1])
+      abjad> marktools.ClefMark('bass')(score[1])
 
    ::
 

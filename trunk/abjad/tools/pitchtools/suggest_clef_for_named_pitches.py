@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
-from abjad.tools.stafftools import Clef
+from abjad.tools import marktools
 
 
 def suggest_clef_for_named_pitches(pitches, clefs = ['treble', 'bass']):
@@ -9,19 +9,19 @@ def suggest_clef_for_named_pitches(pitches, clefs = ['treble', 'bass']):
 
       abjad> pitches = [NamedPitch(x) for x in (-30, 10, 20)]
       abjad> pitchtools.suggest_clef_for_named_pitches(pitches)
-      Clef('bass')
+      ClefMark('bass')
 
    ::
 
       abjad> pitches = [NamedPitch(x) for x in (-5, 30)]
       abjad> pitchtools.suggest_clef_for_named_pitches(pitches)
-      Clef('treble')
+      ClefMark('treble')
 
    Works for arbitrary input expression. ::
 
       abjad> staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))
       abjad> pitchtools.suggest_clef_for_named_pitches(staff)
-      Clef('bass')
+      ClefMark('bass')
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.suggest_clef( )`` to
@@ -43,6 +43,6 @@ def suggest_clef_for_named_pitches(pitches, clefs = ['treble', 'bass']):
    candidate_steps_above_bass = max_altitude - highest_bass_line_altitude
 
    if candidate_steps_above_bass < candidate_steps_below_treble:
-      return Clef('bass')
+      return marktools.ClefMark('bass')
    else:
-      return Clef('treble')
+      return marktools.ClefMark('treble')

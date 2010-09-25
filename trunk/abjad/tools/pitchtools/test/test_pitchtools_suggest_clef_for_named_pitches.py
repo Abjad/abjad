@@ -6,7 +6,7 @@ def test_pitchtools_suggest_clef_for_named_pitches_01( ):
    pitches = [10, 20, 30]
    pitches = [pitchtools.NamedPitch(x) for x in pitches]
 
-   assert pitchtools.suggest_clef_for_named_pitches(pitches) == stafftools.Clef('treble')
+   assert pitchtools.suggest_clef_for_named_pitches(pitches) == marktools.ClefMark('treble')
 
 
 def test_pitchtools_suggest_clef_for_named_pitches_02( ):
@@ -14,7 +14,7 @@ def test_pitchtools_suggest_clef_for_named_pitches_02( ):
    pitches = [-10, -20, -30]
    pitches = [pitchtools.NamedPitch(x) for x in pitches]
 
-   assert pitchtools.suggest_clef_for_named_pitches(pitches) == stafftools.Clef('bass')
+   assert pitchtools.suggest_clef_for_named_pitches(pitches) == marktools.ClefMark('bass')
 
 
 def test_pitchtools_suggest_clef_for_named_pitches_03( ):
@@ -22,7 +22,7 @@ def test_pitchtools_suggest_clef_for_named_pitches_03( ):
    pitches = [10, 20, -30]
    pitches = [pitchtools.NamedPitch(x) for x in pitches]
 
-   assert pitchtools.suggest_clef_for_named_pitches(pitches) == stafftools.Clef('bass')
+   assert pitchtools.suggest_clef_for_named_pitches(pitches) == marktools.ClefMark('bass')
 
 
 def test_pitchtools_suggest_clef_for_named_pitches_04( ):
@@ -30,7 +30,7 @@ def test_pitchtools_suggest_clef_for_named_pitches_04( ):
    pitches = [-10, -20, 30]
    pitches = [pitchtools.NamedPitch(x) for x in pitches]
 
-   assert pitchtools.suggest_clef_for_named_pitches(pitches) == stafftools.Clef('treble')
+   assert pitchtools.suggest_clef_for_named_pitches(pitches) == marktools.ClefMark('treble')
 
 
 def test_pitchtools_suggest_clef_for_named_pitches_05( ):
@@ -38,4 +38,4 @@ def test_pitchtools_suggest_clef_for_named_pitches_05( ):
 
    staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))
    
-   assert pitchtools.suggest_clef_for_named_pitches(staff) == stafftools.Clef('bass')
+   assert pitchtools.suggest_clef_for_named_pitches(staff) == marktools.ClefMark('bass')
