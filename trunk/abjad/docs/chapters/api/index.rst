@@ -505,6 +505,7 @@ marktools
    :maxdepth: 1
 
    tools/marktools/ClefMark/ClefMark
+   tools/marktools/ClefMark/test_ClefMark_middle_c_position
    tools/marktools/CommentMark/CommentMark
    tools/marktools/DynamicMark/DynamicMark
    tools/marktools/InstrumentMark/InstrumentMark
@@ -929,7 +930,6 @@ stafftools
 .. toctree::
    :maxdepth: 1
 
-   tools/stafftools/Clef/Clef
    tools/stafftools/make_invisible_staff
    tools/stafftools/make_rhythmic_sketch_staff
    tools/stafftools/make_rhythmic_staff
