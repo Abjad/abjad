@@ -1,11 +1,8 @@
-'''Scheme tools.
-
-'''
-
 from abjad.tools.importtools._package_import import _package_import
 
 _package_import(__path__[0], globals( ))
 
+from SchemeAssociativeList import SchemeAssociativeList
 from SchemeColor import SchemeColor
 from SchemeFunction import SchemeFunction
 from SchemeMoment import SchemeMoment

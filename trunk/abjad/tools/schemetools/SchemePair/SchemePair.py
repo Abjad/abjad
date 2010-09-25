@@ -8,12 +8,19 @@ class SchemePair(tuple, _Immutable):
 
       abjad> schemetools.SchemePair('spacing', 4)
       SchemePair('spacing', 4)
+
+   Initialize Scheme pairs with a tuple, two separate values or another Scheme pair.
    '''
 
    def __new__(klass, *args):
-      if len(args) != 2:
-         raise Exception('Scheme pairs may contain only two values.')
-      self = tuple.__new__(klass, args)
+      if len(args) == 1 and isinstance(args[0], SchemePair):
+         self = tuple.__new__(klass, args[0][:])
+      elif len(args) == 1 and isinstance(args[0], tuple):
+         self = tuple.__new__(klass, args[0][:])
+      elif len(args) == 2:
+         self = tuple.__new__(klass, args)
+      else:
+         raise TypeError('can not initialize Scheme pair from "%s".' % str(args))
       return self
 
    def __getnewargs__(self):

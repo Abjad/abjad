@@ -810,6 +810,7 @@ schemetools
 .. toctree::
    :maxdepth: 1
 
+   tools/schemetools/SchemeAssociativeList/SchemeAssociativeList
    tools/schemetools/SchemeColor/SchemeColor
    tools/schemetools/SchemeFunction/SchemeFunction
    tools/schemetools/SchemeMoment/SchemeMoment
