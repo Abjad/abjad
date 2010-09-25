@@ -1,9 +1,9 @@
+from abjad.tools.marktools.KeySignatureMark import KeySignatureMark
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.NamedPitchClassSegment import NamedPitchClassSegment
-from abjad.tools.tonalitytools.KeySignature import KeySignature
 from abjad.tools.tonalitytools.ScaleDegree import ScaleDegree
 
 
@@ -15,14 +15,14 @@ class Scale(NamedPitchClassSegment):
 
    #def __init__(self, *args):
    def __new__(self, *args):
-      if len(args) == 1 and isinstance(args[0], KeySignature):
+      if len(args) == 1 and isinstance(args[0], KeySignatureMark):
          #self._init_by_key_signature(args[0])
          key_signature = args[0]
       elif len(args) == 1 and isinstance(args[0], Scale):
          #self._init_by_key_signature(args[0].key_signature)
          key_signature = args[0].key_signature
       elif len(args) == 2:
-         key_signature = KeySignature(*args)
+         key_signature = KeySignatureMark(*args)
          #self._init_by_key_signature(key_signature)
       else:
          raise TypeError

@@ -10,14 +10,14 @@ def analyze_tonal_function(expr, key_signature):
    Analyze `expr` and return tonal function according to `key_signature`. ::
 
       abjad> chord = Chord(['ef', 'g', 'bf'], (1, 4))
-      abjad> key_signature = tonalitytools.KeySignature('c', 'major')
+      abjad> key_signature = marktools.KeySignatureMark('c', 'major')
       abjad> tonalitytools.analyze_tonal_function(chord, key_signature)
       FlatIIIMajorTriadInRootPosition
 
    Return none when no tonal function is understood. ::
 
       abjad> chord = Chord(['c', 'cs', 'd'], (1, 4))
-      abjad> key_signature = tonalitytools.KeySignature('c', 'major')
+      abjad> key_signature = marktools.KeySignatureMark('c', 'major')
       abjad> tonalitytools.analyze_tonal_function(chord, key_signature) is None
       True
    '''
