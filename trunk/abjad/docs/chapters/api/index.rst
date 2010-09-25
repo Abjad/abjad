@@ -259,6 +259,7 @@ durtools
    tools/durtools/rational_to_flag_count
    tools/durtools/rational_to_fraction_string
    tools/durtools/rational_to_prolation_string
+   tools/durtools/rational_to_proper_fraction
    tools/durtools/rewrite_rational_under_new_tempo
    tools/durtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
    tools/durtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
