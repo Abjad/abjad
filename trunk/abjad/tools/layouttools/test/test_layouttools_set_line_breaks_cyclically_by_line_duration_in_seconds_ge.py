@@ -9,10 +9,6 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-
-   #tempo_spanner = spannertools.TempoSpanner(t[:])
-   #tempo_indication = tempotools.TempoIndication(Rational(1, 8), 44)
-   #tempo_spanner.tempo_indication = tempo_indication
    marktools.TempoMark(Fraction(1, 8), 44)(t)
 
    r'''

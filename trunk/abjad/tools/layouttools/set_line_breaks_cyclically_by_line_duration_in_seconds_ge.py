@@ -11,9 +11,7 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
 
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
       abjad> macros.diatonicize(t)
-      abjad> tempo_spanner = spannertools.TempoSpanner(t[:])
-      abjad> tempo_indication = TempoIndication(Rational(1, 8), 44)
-      abjad> tempo_spanner.tempo_indication = tempo_indication
+      abjad> tempo_mark = marktools.TempoMark(Fraction(1, 8), 44, target_context = Staff)(t)
       abjad> print t.format
       \new Staff {
                       \time 2/8
@@ -29,7 +27,6 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
                       \time 2/8
                       b'8
                       c''8
-                      %% tempo 8=44 ends here
       }
    
    ::
@@ -51,7 +48,6 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
                       \time 2/8
                       b'8
                       c''8
-                      %% tempo 8=44 ends here
       }
 
    Set ``adjust_eol = True`` to include a magic Scheme incantation

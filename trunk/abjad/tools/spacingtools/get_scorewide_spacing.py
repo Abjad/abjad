@@ -6,11 +6,11 @@ def get_scorewide_spacing(component):
    '''Return scorewide spacing of explicit score of `compoment`. ::
 
       abjad> score = Score([Staff(macros.scale(4))])
-      abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 8), 44)
-      abjad> spacing_indication = spacing.SpacingIndication(tempo_indication, Rational(1, 68))
+      abjad> tempo_mark = marktools.TempoMark(Fraction(1, 8), 44)
+      abjad> spacing_indication = spacing.SpacingIndication(tempo_mark, Rational(1, 68))
       abjad> score.spacing.scorewide = spacing_indication 
       abjad> spacing.get_scorewide_spacing(score.leaves[0])
-      SpacingIndication(TempoIndication(8, 44), 1/68)
+      SpacingIndication(TempoMark(8, 44), 1/68)
 
    If no explicit score, return none. ::
 

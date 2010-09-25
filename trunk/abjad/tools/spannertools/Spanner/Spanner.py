@@ -289,11 +289,7 @@ class Spanner(_StrictComparator):
          abjad> spanner.duration.prolated
          Rational(1, 2)
 
-      Spanner duration interface also implements ``seconds`` attribute. ::
-
-         abjad> spannertools.TempoSpanner(voice[:], TempoIndication(Rational(1, 8), 48))
-         abjad> spanner.duration.seconds
-         Rational(5, 1)
+      Spanner duration interface also implements ``seconds`` attribute.
       '''
 
       return self._duration
