@@ -1,9 +1,14 @@
 from abjad.core import _Immutable
-from types import BooleanType
 
 
 class SchemePair(tuple, _Immutable):
-   '''Abjad representation of Scheme pair.'''
+   '''Abjad model of Scheme pair:
+
+   ::
+
+      abjad> schemetools.SchemePair('spacing', 4)
+      SchemePair('spacing', 4)
+   '''
 
    def __new__(klass, *args):
       if len(args) != 2:
@@ -13,11 +18,6 @@ class SchemePair(tuple, _Immutable):
 
    def __getnewargs__(self):
       return tuple(self)
-
-#   def __init__(self, *args):
-#      if 2 < len(args):
-#          raise Exception('Scheme pairs may contain only two values.')
-#      list.__init__(self, args)
 
    ## OVERLOADS ##
 
@@ -31,15 +31,23 @@ class SchemePair(tuple, _Immutable):
 
    @property
    def _format_string(self):
-      return ', '.join([str(x) for x in self])
+      #return ', '.join([str(x) for x in self])
+      result = [ ]
+      for x in self:
+         if isinstance(x, str):
+            result.append("'%s'" % x)
+         else:
+            result.append(str(x))
+      result = ', '.join(result)
+      return result
 
    @property
    def _output_string(self):
       vals = [ ]
       for x in self:
-          if isinstance(x, BooleanType) and x:
+          if isinstance(x, type(True)) and x:
               vals.append("#t")
-          elif isinstance(x, BooleanType):
+          elif isinstance(x, type(True)):
               vals.append("#f")
           else:
               vals.append(x)
@@ -49,5 +57,12 @@ class SchemePair(tuple, _Immutable):
 
    @property
    def format(self):
-      '''LilyPond input representation of scheme pair.'''
+      '''LilyPond input format of Scheme pair:
+   
+      ::
+
+         abjad> scheme_pair = schemetools.SchemePair('spacing', 4)
+         abjad> scheme_pair.format
+         "#'(spacing . 4)"
+      '''
       return "#'%s" % self.__str__( )

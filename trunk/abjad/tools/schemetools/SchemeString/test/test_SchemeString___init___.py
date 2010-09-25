@@ -4,7 +4,6 @@ from abjad import *
 def test_SchemeString___init____01( ):
 
    t = Note(0, (1, 16))
-   #t.stem.stroke_style = schemetools.SchemeString('grace')
    t.override.stem.stroke_style = schemetools.SchemeString('grace')
 
    r'''

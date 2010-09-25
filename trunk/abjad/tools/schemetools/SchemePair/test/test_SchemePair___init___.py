@@ -10,4 +10,10 @@ def test_SchemePair___init____01( ):
 def test_SchemePair___init____02( ):
 
    pair = schemetools.SchemePair(True, False)
-   assert str(pair) == "(#t . #f)"
+   assert str(pair) == '(#t . #f)'
+
+
+def test_SchemePair___init____02( ):
+
+   pair = schemetools.SchemePair('spacing', 4)
+   assert str(pair) == '(spacing . 4)'

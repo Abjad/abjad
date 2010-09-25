@@ -1,9 +1,15 @@
-from abjad.core import _StrictComparator
 from abjad.core import _Immutable
+from abjad.core import _StrictComparator
 
 
 class SchemeFunction(_StrictComparator, _Immutable):
-   '''Wrapper for names of Scheme functions known to LilyPond.'''
+   '''Abjad model of Scheme function:
+
+   ::
+
+      abjad> schemetools.SchemeFunction('magstep', -3)
+      SchemeFunction('magstep', -3)
+   '''
 
    def __new__(klass, *args):
       self = object.__new__(klass)
@@ -19,16 +25,33 @@ class SchemeFunction(_StrictComparator, _Immutable):
       newargs.extend(self.args)
       return tuple(newargs)
 
-#   def __init__(self, name = '', *args):
-#      object.__setattr__(self, 'name', name)
-#      object.__setattr__(self, 'args', [ ])
-#      self.args.extend(args)
+   ## OVERLOADS ##
+
+   def __repr__(self):
+      return '%s(%s)' % (self.__class__.__name__, self._repr_contents_string)
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _repr_contents_string(self):
+      result = [ ]
+      result.append("'%s'" % self.name)
+      result.extend(self.args)
+      result = ', '.join(str(x) for x in result)
+      return result
 
    ## PUBLIC ATTRIBUTES ##
    
    @property
    def format(self):
-      '''LilyPond input representation of function.'''
+      '''LilyPond input format of Scheme function:
+
+      ::
+
+         abjad> scheme_function = schemetools.SchemeFunction('magstep', -3)
+         abjad> scheme_function.format
+         '#(magstep -3)'
+      '''
       if len(self.args) == 0:
          body = self.name
       elif len(self.args) == 1:
@@ -40,5 +63,5 @@ class SchemeFunction(_StrictComparator, _Immutable):
             raise ValueError
       ## TODO: Generalize for many arguments + parsing ##
       else:
-         raise ValueError('multiple scheme arguments not yet implemented.')
+         raise NotImplementedError('multiple scheme arguments not yet implemented.')
       return '#' + body

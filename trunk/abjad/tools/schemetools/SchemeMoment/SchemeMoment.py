@@ -11,7 +11,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
       abjad> schemetools.SchemeMoment(1, 68)
       SchemeMoment(1/68)
 
-   Initialize scheme moments with a fraction, integers or other scheme moment.
+   Initialize scheme moments with a single fraction, two integers or another scheme moment.
    '''
 
    __slots__ = ('_duration')
