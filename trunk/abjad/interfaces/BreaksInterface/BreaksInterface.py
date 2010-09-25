@@ -1,7 +1,7 @@
 from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import LineBreakError
 from abjad.exceptions import TypographicWhitespaceError
-from abjad.core import Rational
+from fractions import Fraction
 
 
 class BreaksInterface(_Interface):
@@ -236,14 +236,14 @@ class BreaksInterface(_Interface):
    @apply
    def whitespace( ):
       def fget(self):
-         r'''Rational-valued non-durative whitespace following client.
+         r'''Nondurative whitespace following client.
 
          Fake measure between ``\stopStaff``, ``\startStaff`` commands.
          '''
          return self._whitespace
       def fset(self, arg):
          from abjad.components._Leaf import _Leaf
-         assert isinstance(arg, (int, Rational, type(None)))
+         assert isinstance(arg, (int, Fraction, type(None)))
          if isinstance(self._client, _Leaf):
             raise TypographicWhitespaceError
          self._whitespace = arg

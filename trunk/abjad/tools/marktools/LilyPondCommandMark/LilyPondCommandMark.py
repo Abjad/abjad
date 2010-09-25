@@ -22,14 +22,15 @@ class LilyPondCommandMark(Mark):
    .. todo:: allow LilyPondCommandMark objects to attach to spanners.
    '''
 
-   _format_slot = 'opening'
+   #_format_slot = 'opening'
 
-   def __init__(self, command_name_string, target_context = None):
+   def __init__(self, command_name_string, format_slot = 'opening', target_context = None):
       Mark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._is_cosmetic_mark = True
       self._command_name_string = command_name_string
       self._contents_repr_string = "'%s'" % command_name_string
+      self._format_slot = format_slot
 
    ## OVERLOADS ##
    
