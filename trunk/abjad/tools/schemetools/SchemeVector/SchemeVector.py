@@ -1,9 +1,16 @@
 from abjad.core import _Immutable
-from types import BooleanType
 
 
 class SchemeVector(tuple, _Immutable):
-   '''Abjad representation of Scheme vector.'''
+   '''.. versionadded:: 1.1.2
+
+   Abjad model of Scheme vector::
+
+      abjad> schemetools.SchemeVector(True, True, False)
+      SchemeVector(True, True, False)
+
+   Scheme vectors and Scheme vector constants differ in only their LilyPond input format.
+   '''
 
    def __new__(klass, *args):
       self = tuple.__new__(klass, args)
@@ -11,9 +18,6 @@ class SchemeVector(tuple, _Immutable):
 
    def __getnewargs__(self):
       return tuple(self)
-
-#   def __init__(self, *args):
-#      list.__init__(self, args)
 
    ## OVERLOADS ##
 
@@ -31,11 +35,11 @@ class SchemeVector(tuple, _Immutable):
 
    @property
    def _output_string(self):
-      vals = []
+      vals = [ ]
       for x in self:
-          if isinstance(x, BooleanType) and x:
+          if isinstance(x, type(True)) and x:
               vals.append("#t")
-          elif isinstance(x, BooleanType):
+          elif isinstance(x, type(True)):
               vals.append("#f")
           else:
               vals.append(x)
@@ -45,5 +49,12 @@ class SchemeVector(tuple, _Immutable):
 
    @property
    def format(self):
-      '''LilyPond input representation of scheme vector.'''
+      '''LilyPond input format of Scheme vector:
+
+      ::
+
+         abjad> scheme_vector = schemetools.SchemeVector(True, True, False)
+         abjad> scheme_vector.format
+         "#'(#t #t #f)"
+      '''
       return "#'%s" % self.__str__()
