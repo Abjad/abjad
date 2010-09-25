@@ -505,7 +505,6 @@ marktools
    :maxdepth: 1
 
    tools/marktools/ClefMark/ClefMark
-   tools/marktools/ClefMark/test_ClefMark_middle_c_position
    tools/marktools/CommentMark/CommentMark
    tools/marktools/DynamicMark/DynamicMark
    tools/marktools/InstrumentMark/InstrumentMark
