@@ -10,6 +10,14 @@ def test_SchemeMoment___init____01( ):
 
 
 def test_SchemeMoment___init____02( ):
+   '''Initialize scheme moment from integer.
+   '''
+
+   scheme_moment = schemetools.SchemeMoment(1)
+   assert scheme_moment.format == '#(ly:make-moment 1 1)'
+
+
+def test_SchemeMoment___init____03( ):
    '''Initialize scheme moment from integer pair.
    '''
 
@@ -17,7 +25,7 @@ def test_SchemeMoment___init____02( ):
    assert scheme_moment.format == '#(ly:make-moment 1 68)'
 
 
-def test_SchemeMoment___init____03( ):
+def test_SchemeMoment___init____04( ):
    '''Initialize scheme moment from two positive integers.
    '''
 
@@ -25,7 +33,7 @@ def test_SchemeMoment___init____03( ):
    assert scheme_moment.format == '#(ly:make-moment 1 68)'
 
 
-def test_SchemeMoment___init____04( ):
+def test_SchemeMoment___init____05( ):
    '''Initialize scheme moment from other scheme moment.
    '''
 

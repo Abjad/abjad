@@ -18,8 +18,8 @@ class SchemeMoment(_StrictComparator, _Immutable):
 
    def __new__(klass, *args):
       self = object.__new__(klass)
-      if len(args) == 1 and isinstance(args[0], Fraction):
-         object.__setattr__(self, '_duration', args[0])
+      if len(args) == 1 and isinstance(args[0], (Fraction, int, long)):
+         object.__setattr__(self, '_duration', Fraction(args[0]))
       elif len(args) == 1 and isinstance(args[0], tuple):
          object.__setattr__(self, '_duration', Fraction(*args[0]))
       elif len(args) == 1 and isinstance(args[0], self.__class__):

@@ -26,7 +26,7 @@ def test_LilyPondCommandMark___init____01( ):
    assert staff.format == "\\new Staff {\n\t\\slurDotted\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
-def test_LilyPondCommandMark___init____01( ):
+def test_LilyPondCommandMark___init____02( ):
    '''Set LilyPond \slurUp command.
    '''
 
