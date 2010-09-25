@@ -25,11 +25,12 @@ class Markup(_StrictComparator):
       if isinstance(arg, str):
          contents = arg
          style = style
-      elif isinstance(self, Markup):
+      elif isinstance(arg, Markup):
          contents = arg.contents
          style = arg.style
       else:
-         raise TypeError('must be string or other markup instance.')
+         #raise TypeError('must be string or other markup instance.')
+         contents = str(arg)
       #object.__setattr__(self, 'contents', contents)
       #object.__setattr__(self, 'style', style)
       self.contents = contents
