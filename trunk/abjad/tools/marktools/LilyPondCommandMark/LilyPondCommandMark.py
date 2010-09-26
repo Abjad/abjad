@@ -5,7 +5,7 @@ from abjad.tools.marktools.Mark import Mark
 class LilyPondCommandMark(Mark):
    r'''.. versionadded:: 1.1.2
 
-   LilyPond command mark::
+   Abjad model of LilyPond command mark::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
@@ -19,7 +19,7 @@ class LilyPondCommandMark(Mark):
          f'8 )
       }
 
-   .. todo:: allow LilyPondCommandMark objects to attach to spanners.
+   .. todo:: extend LilyPond command marks to attach to spanners.
    '''
 
    #_format_slot = 'opening'
@@ -47,8 +47,20 @@ class LilyPondCommandMark(Mark):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def command_name_string(self):
+      '''Read-only command name string of LilyPond command mark:
+
+      ::
+
+         abjad> command_mark = marktools.LilyPondCommandMark('slurDotted')
+         abjad> command_mark.command_name_string
+         'slurDotted'
+      '''
+      return self._command_name_string
+
+   @property
    def format(self):
-      '''Format-time contribution of LilyPondCommandMark:
+      '''Read-only LilyPond input format of LilyPond command mark:
 
       ::
 
