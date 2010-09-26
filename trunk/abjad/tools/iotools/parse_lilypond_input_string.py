@@ -9,13 +9,13 @@ from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entr
 import re
 
 
-def parse_note_entry_string(note_entry_string):
+def parse_lilypond_input_string(note_entry_string):
    '''.. versionadded:: 1.1.2
 
    Parse LilyPond `note_entry_string`::
 
       abjad> note_entry_string = "g'2 a'2 g'4. fs'8 e'4 d'4"
-      abjad> iotools.parse_note_entry_string(note_entry_string)
+      abjad> iotools.parse_lilypond_input_string(note_entry_string)
       {g'4, a'4, a'2, fs'8, e'4, d'4}
 
    Return Abjad container of note, rest and chord instances.
@@ -25,7 +25,11 @@ def parse_note_entry_string(note_entry_string):
 
    .. versionchanged:: 1.1.2
       renamed ``lilyfiletools.parse_note_entry_string( )`` to
-      ``iotools.parse_note_entry_string( )``.
+      ``iotools.parse_lilypond_input_string( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``iotools.parse_note_entry_string( )`` to
+      ``iotools.parse_lilypond_input_string( )``.
    '''
    from abjad.tools import leaftools
    from abjad.tools import spannertools

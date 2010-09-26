@@ -299,7 +299,7 @@ iotools
    tools/iotools/list_settings
    tools/iotools/log
    tools/iotools/ly
-   tools/iotools/parse_note_entry_string
+   tools/iotools/parse_lilypond_input_string
    tools/iotools/pdf
    tools/iotools/play
    tools/iotools/profile_expr
