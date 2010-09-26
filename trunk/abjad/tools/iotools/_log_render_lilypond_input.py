@@ -45,8 +45,12 @@ def _log_render_lilypond_input(expr, template = None):
    outfile.close( )
 
    if getattr(lily_file, '_is_temporary', False):
-      music = lily_file.score_block.pop( )
-      delattr(music, '_lily_file')
+      ## TODO: eliminate this exception handler? ##
+      try:
+         music = lily_file.score_block.pop( )
+         delattr(music, '_lily_file')
+      except IndexError:
+         pass
       del(lily_file)
 
    ## render
