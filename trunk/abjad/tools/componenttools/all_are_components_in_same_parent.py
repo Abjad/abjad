@@ -4,12 +4,13 @@ import types
 
 def all_are_components_in_same_parent(expr, klasses = (_Component, ), allow_orphans = True):
    '''True when expr is a Python list of Abjad components,
-      and when all components have a parent and have the same parent.
-      Otherwise False.
+   and when all components have a parent and have the same parent.
+
+   Otherwise False.
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
-      raise TypeError('Must be list of Abjad components.')
+      raise TypeError('must be list of components: "%s".' % str(expr))
 
    if len(expr) == 0:
       return True 

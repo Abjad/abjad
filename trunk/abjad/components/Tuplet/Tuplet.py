@@ -74,7 +74,7 @@ class Tuplet(Container):
          if isinstance(arg, (bool, type(None))):
             self._force_fraction = arg
          else:
-            raise TypeError
+            raise TypeError('bad type for tuplet force fraction: "%s".' % arg)
       return property(**locals( ))
 
    @apply

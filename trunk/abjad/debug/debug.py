@@ -47,7 +47,7 @@ class _debug(_StrictComparator):
                
             component = args[0]
             if not self.check_function(component):
-               raise Warning("check not passed in %s" % f.__name__)
+               raise Warning('check not passed in: "%s".' % f.__name__)
          return result
 
       return wrapper 

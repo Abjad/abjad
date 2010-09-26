@@ -34,9 +34,3 @@ def test_LeafDurationInterface_assign_05( ):
    t = Note(1, (1, 4))
    t.duration.multiplier = 2
    assert t.duration.multiplier == Rational(2, 1)
-
-
-def test_LeafDurationInterface_assign_06( ):
-   '''Multiplier duration can NOT be assigned an tuple.'''
-   t = Note(1, (1, 4))
-   py.test.raises(ValueError, 't.duration.multiplier = (1, 2)')

@@ -6,17 +6,17 @@ from abjad.tools.componenttools._switch import _switch
 
 def _give_music_to(donors, recipient):
    '''Give any music belong to donor components 'donors'
-      to recipient component 'recipient'.
-      Works great when 'recipient' is an empty container.
-      Pass silently when recipient is a nonempty container 
-      or a leaf and when donors have no music.
-      Raises MusicContentsError when donors *do* have music
-      to music but when recipient is unable to accept music
-      (because recipient is nonempty container or leaf).
+   to recipient component 'recipient'.
+   Works great when 'recipient' is an empty container.
+   Pass silently when recipient is a nonempty container 
+   or a leaf and when donors have no music.
+   Raises MusicContentsError when donors *do* have music
+   to music but when recipient is unable to accept music
+   (because recipient is nonempty container or leaf).
 
-      Return donor components 'donors'.
+   Return donor components 'donors'.
 
-      Helper is not composer-safe and may cause discontiguous spanners.
+   Helper is not composer-safe and may cause discontiguous spanners.
    '''
    from abjad.tools import componenttools
 
@@ -29,7 +29,7 @@ def _give_music_to(donors, recipient):
       if all([len(x.music) == 0 for x in donors]):
          return donors
       else:
-         raise MusicContentsError('can not give music to leaf.')
+         raise MusicContentsError('can not give music to leaf: "%s".' % recipient)
       
    ## otherwise recipient is empty container, so proceed
    ## collect music from all donor components

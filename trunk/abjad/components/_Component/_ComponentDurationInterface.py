@@ -25,7 +25,7 @@ class _ComponentDurationInterface(_Interface):
 
    @property
    def preprolated(self):
-      raise NotImplemented
+      raise NotImplementedError('_ComponentDurationInterface.preprolated not implemented.')
 
    @property
    def prolated(self):

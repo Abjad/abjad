@@ -1,7 +1,10 @@
 class _Immutable(object):
-   '''Base from which immutable custom classes can inherit.
+   '''.. versionadded:: 1.1.2
 
-   .. todo:: write code to check all Abjad system objects with slots and make sure none has a dict defined and taking up memory in the namespace of the object.
+   Base from which immutable custom classes can inherit.
+
+   .. todo:: write code to check all Abjad system objects with slots and 
+      make sure none has a dict defined and taking up memory in the namespace of the object.
    '''
    
    __slots__ = ( )
@@ -14,13 +17,13 @@ class _Immutable(object):
    __deepcopy__ = __copy__
 
    def __delattr__(self, *args):
-      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
+      raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)
 
    def __getstate__(self):
       return { }
 
    def __setattr__(self, *args):
-      raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
+      raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)
 
    def __setstate__(self, state):
       pass

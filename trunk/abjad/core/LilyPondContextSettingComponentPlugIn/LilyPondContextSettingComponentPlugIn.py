@@ -25,7 +25,7 @@ class LilyPondContextSettingComponentPlugIn(object):
          try:
             return vars(self)[name]
          except KeyError:
-            raise AttributeError('%s object has no attribute %s.' % (
+            raise AttributeError('"%s" object has no attribute: "%s".' % (
                self.__class__.__name__, name))
       elif name in type(self)._known_lilypond_contexts:
          try:
@@ -38,7 +38,7 @@ class LilyPondContextSettingComponentPlugIn(object):
          try:
             return vars(self)[name]
          except KeyError:
-            raise AttributeError('%s object has no attribute %s.' % (
+            raise AttributeError('"%s" object has no attribute: "%s".' % (
                self.__class__.__name__, name))
 
    def __repr__(self):

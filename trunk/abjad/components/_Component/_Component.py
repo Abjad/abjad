@@ -396,7 +396,7 @@ class _Component(_StrictComparator):
          elif value == 'seconds':
             component._offset_values_of_in_seconds_are_current = False
          else:
-            raise ValueError
+            raise ValueError('unknown value: "%s"' % value)
 
    def _get_score_tree_state_flags(self):
       from abjad.tools import componenttools

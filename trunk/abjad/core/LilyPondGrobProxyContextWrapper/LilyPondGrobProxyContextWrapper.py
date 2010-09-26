@@ -47,7 +47,7 @@ class LilyPondGrobProxyContextWrapper(object):
             vars(self)[name] = LilyPondGrobProxy( )
             return vars(self)[name]
          else:
-            raise AttributeError('%s object can have only LilyPond grob attributes.' %
+            raise AttributeError('object can have only LilyPond grob attributes: "%s".' %
                self.__class__.__name__)
          
    def __repr__(self):

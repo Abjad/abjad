@@ -26,9 +26,9 @@ def _inspect_instance_attributes(instance):
       ## remember read / write class properties
       elif isinstance(class_attribute, property) and class_attribute.fset is not None:
          read_write_class_properties.append(class_attribute_name)
-      ## raise exception
+      ## handle exception
       else:
-         message = 'user property set on class %s rather than instance.'
+         message = 'user property set on class rather than instance: "%s".'
          raise ValueError(message % instance.__class__.__name__)
 
    ## inspect instance attributes

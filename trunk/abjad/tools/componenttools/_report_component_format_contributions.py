@@ -49,4 +49,4 @@ def _report_component_format_contributions(component, verbose = False, output = 
    elif isinstance(component, Spanner):
       return component._format.report(output = output)
    else:
-      raise TypeError
+      raise TypeError('neither component nor spanner: "%s".' % component)

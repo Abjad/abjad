@@ -65,7 +65,7 @@ class Rest(_Leaf):
          elif isinstance(arg, NamedPitch):
             self._pitch = arg
          else:
-            raise ValueError('Can not set Rest.pitch from %s' % str(arg))
+            raise ValueError('can not set  rest pitch: "%s".' % str(arg))
       return property(**locals( ))
 
    @property

@@ -98,10 +98,10 @@ class Measure(Container):
          numerator, denominator = args
          new_explicit_meter = marktools.TimeSignatureMark(numerator, denominator)
       else:
-         raise ValueError('args "%s" not understood.' % str(args))
+         raise ValueError('args not understood: "%s".' % str(args))
       partial = kwargs.get('partial', None)
       if partial is not None:
-         raise Exception('implement partial meter.')
+         raise NotImplementedError('partial meter not yet implemented.')
       if self._explicit_meter is not None:
          #print 'detaching old explicit meter ...'
          self._explicit_meter.detach_mark( )

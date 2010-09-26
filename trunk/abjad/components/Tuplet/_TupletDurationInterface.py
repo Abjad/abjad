@@ -100,11 +100,11 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          elif isinstance(expr, Fraction):
             rational = Fraction(expr)
          else:
-            raise ValueError('Can not set tuplet rational from %s.' % str(expr))
+            raise ValueError('can not set tuplet multiplier: "%s".' % str(expr))
          if 0 < rational:
             self._multiplier = rational
          else:
-            raise ValueError('Tuplet rational %s must be positive.' % rational)
+            raise ValueError('tuplet multiplier must be positive: "%s".' % rational)
       return property(**locals( ))
 
    @apply
@@ -117,9 +117,9 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       def fset(self, arg):
          if isinstance(arg, (int, long)):
             if not 0 < arg:
-               raise ValueError
+               raise ValueError('tuplet preferred denominator must be positive: "%s".' % arg)
          elif not isinstance(arg, type(None)):
-            raise TypeError
+            raise TypeError('bad tuplet preferred denominator type: "%s".' % arg)
          self._preferred_denominator = arg
       return property(**locals( ))
 

@@ -58,7 +58,7 @@ def _split_component_at_duration(
          split_point_multiplier = durtools.positive_integer_to_implied_prolation_multipler(
             split_point_denominator)
          if not measure_multiplier == split_point_multiplier:
-            raise Exception(NotImplemented)
+            raise NotImplementedError
       elif not mathtools.is_power_of_two(split_point_denominator):
          nonbinary_factors = mathtools.factors(
             mathtools.remove_powers_of_two(split_point_denominator))

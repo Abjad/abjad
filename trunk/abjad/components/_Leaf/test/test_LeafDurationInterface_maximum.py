@@ -3,8 +3,11 @@ import py.test
 
 
 def test_LeafDurationInterface_maximum_01( ):
-   '''Leaf durations can go up to 'maxima...': duration < (16, 1) '''
+   '''Leaf durations can go up to 'maxima...': duration < (16, 1).
+   '''
+
    t = Note(1, 2)
+
    assert t.format == "cs'\\breve"
    t.duration.written = Rational(3)
    assert t.format == "cs'\\breve."
@@ -22,5 +25,4 @@ def test_LeafDurationInterface_maximum_01( ):
    assert t.format == "cs'\\maxima.."
    t.duration.written = Rational(15)
    assert t.format == "cs'\\maxima..."
-   #assert py.test.raises(ValueError, 'Note(1, 16)')
    assert py.test.raises(AssignabilityError, 'Note(1, 16)')

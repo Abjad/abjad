@@ -3,7 +3,7 @@ from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import AssignabilityError
 from abjad.exceptions import UndefinedTempoError
 from abjad.tools import durtools
-from abjad.core import Rational
+from fractions import Fraction
 
 
 class _LeafDurationInterface(_ComponentDurationInterface):
@@ -13,7 +13,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    def __init__(self, _client, duration_token):
       _ComponentDurationInterface.__init__(self, _client)
       self.multiplier = None
-      self.written = Rational(*durtools.duration_token_to_reduced_duration_pair(duration_token))
+      self.written = Fraction(*durtools.duration_token_to_reduced_duration_pair(duration_token))
 
    ## OVERLOADS ##
 
@@ -39,7 +39,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
          if self.multiplier:
             return self.written * self.multiplier
          else:
-            return Rational(self.written)
+            return Fraction(self.written)
       else:
          return None
 
@@ -51,13 +51,14 @@ class _LeafDurationInterface(_ComponentDurationInterface):
          if expr is None:
             self._multiplier = None
          else:
-            #if isinstance(expr, Rational):
-            if hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
+            if isinstance(expr, Fraction):
                rational = expr
             elif isinstance(expr, (int, long)):
-               rational = Rational(expr)
+               rational = Fraction(expr)
+            elif isinstance(expr, tuple):
+               rational = Fraction(*expr)
             else:
-               raise ValueError('can not set duration multiplier')
+               raise TypeError('can not set duration multiplier: "%s".' % str(expr))
             assert 0 <= rational
             self._multiplier = rational
       return property(**locals( ))
@@ -71,7 +72,6 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    @property
    def seconds(self):
       from abjad.tools import marktools
-      #tempo = self._client.tempo.effective
       tempo = marktools.get_effective_tempo(self._client)
       if tempo is not None:
          return self.prolated / tempo.duration / tempo.units_per_minute * 60
@@ -82,14 +82,13 @@ class _LeafDurationInterface(_ComponentDurationInterface):
       def fget(self):
          return self._written
       def fset(self, expr):
-         #if isinstance(expr, Rational):
-         if hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
+         if isinstance(expr, Fraction):
             rational = expr
          elif isinstance(expr, (int, long)):
-            rational = Rational(expr)
+            rational = Fraction(expr)
          else:
-            raise ValueError('can not set written duration.')
+            raise ValueError('can not set written duration: "%s".' % str(expr))
          if not durtools.is_assignable_rational(rational):
-            raise AssignabilityError('%s' % str(rational))
+            raise AssignabilityError('not assignable duration: "%s".' % str(rational))
          self._written = rational
       return property(**locals( ))

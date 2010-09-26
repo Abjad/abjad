@@ -13,7 +13,7 @@ class Statement(object):
          return self._text
       def fset(self, arg):
          if not isinstance(arg, basestring):
-            raise TypeError('%s must be a string.' % arg)
+            raise TypeError('must be string: "%s".' % arg)
          self._text = arg
       return property(**locals( ))
 
@@ -27,5 +27,5 @@ class Statement(object):
          elif isinstance(arg, (list, tuple)):
             self._code = arg
          else:
-            raise TypeError('%s must be a list or a tuple of executable strings.' % arg)
+            raise TypeError('must be a list or a tuple of executable strings: "%s".' % arg)
       return property(**locals( ))

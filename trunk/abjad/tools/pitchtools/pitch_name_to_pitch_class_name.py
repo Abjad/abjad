@@ -20,7 +20,7 @@ def pitch_name_to_pitch_class_name(pitch_string):
 
    match = re.match('^([a-z]+)(\,*|\'*)$', pitch_string)
    if match is None:
-      raise PitchError('incorrect pitch string format.')
+      raise PitchError('incorrect pitch string format: "%s".' % pitch_string)
 
    name, octave_number = match.groups( )
 

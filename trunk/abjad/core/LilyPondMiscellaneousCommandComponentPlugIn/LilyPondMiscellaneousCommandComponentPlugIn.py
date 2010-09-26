@@ -27,7 +27,6 @@ class LilyPondMiscellaneousCommandComponentPlugIn(object):
       elif name in type(self)._known_lilypond_miscellaneous_commands.keys( ):
          vars(self)[name] = value
       else:
-         #raise AttributeError("unkown LilyPond command '%s'." % name)
          vars(self)[name] = value
 
    ## PRIVATE METHODS ##
