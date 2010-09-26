@@ -1,16 +1,16 @@
 def sum_preprolated_duration_of_components(components):
-   r'''Sum the preprolated duration of each component in `components`. ::
+   r'''Sum preprolated duration `components`::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> componenttools.sum_preprolated_duration_of_components(tuplet[:])
-      Rational(3, 8)
+      Fraction(3, 8)
 
-   Return zero on empty iterable. ::
+   Return zero on empty iterable::
 
       abjad> componenttools.sum_preprolated_duration_of_components([ ])
-      Rational(0)
+      Fraction(0)
 
-   Raise contiguity error on nonparent-contiguous `components`. ::
+   Raise contiguity error on nonparent-contiguous `components`::
 
       abjad> t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> macros.diatonicize(t)
