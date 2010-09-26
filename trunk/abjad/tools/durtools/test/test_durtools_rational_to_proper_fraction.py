@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_rational_to_proper_fraction_01( ):
+def test_durtools_rational_to_proper_fraction_01( ):
 
    assert durtools.rational_to_proper_fraction(Fraction(5, 5)) == (1, 0)
    assert durtools.rational_to_proper_fraction(Fraction(6, 5)) == (1, Fraction(1, 5))

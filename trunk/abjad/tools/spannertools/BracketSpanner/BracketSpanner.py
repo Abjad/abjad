@@ -46,10 +46,10 @@ class BracketSpanner(TextSpanner):
       TextSpanner.__init__(self, music)
       self._format = _BracketSpannerFormatInterface(self)
       self.override.text_spanner.bound_details__left__text = Markup(
-            "(markup #:draw-line '(0 . -1))", style = 'scheme')
+            "(markup #:draw-line '(0 . -1))", style_string = 'scheme')
       self.override.text_spanner.bound_details__left_broken__text = False
       self.override.text_spanner.bound_details__right__text = Markup(
-         "(markup #:draw-line '(0 . -1))", style = 'scheme')
+         "(markup #:draw-line '(0 . -1))", style_string = 'scheme')
       self.override.text_spanner.bound_details__right_broken__text = False
       self.override.text_spanner.color = 'red'
       self.override.text_spanner.dash_fraction = 1

@@ -33,7 +33,7 @@ class MarkupInterface(_Interface):
       result = [ ]
       for x in getattr(self, direction):
          if isinstance(x, Markup):
-            result.append(x.contents)
+            result.append(x.contents_string)
          else:
             result.append(str(x))
       if len(result) == 1:

@@ -2,43 +2,34 @@ from abjad.core import _StrictComparator
 
 
 class Markup(_StrictComparator):
-   r'''Abjad wrapper around LilyPond markup.
-
-   Class inserts ``\markup { }`` wrapper around contents at format time. ::
-
-      abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-      abjad> print markup.format
-      \markup { \bold { "This is markup text." } }
+   r'''Abjad model of LilyPond markup:
 
    ::
 
-      abjad> markup.contents = '"New markup contents."'
-      abjad> print markup.format
-      \markup { "New markup contents." }
-
-   Markup contents must be set by hand.
+      abjad> markuptools.Markup(r'\bold { "This is markup text." }')
+      Markup(\bold { "This is markup text." })
    '''
 
-   __slots__ = ('contents', 'style')
+   __slots__ = ('_contents_string', '_style_string')
 
-   def __init__(self, arg, style = 'backslash'):
+   def __init__(self, arg, style_string = 'backslash'):
       if isinstance(arg, str):
-         contents = arg
-         style = style
+         contents_string = arg
+         style_string = style_string
       elif isinstance(arg, Markup):
-         contents = arg.contents
-         style = arg.style
+         contents_string = arg.contents_string
+         style_string = arg.style_string
       else:
          #raise TypeError('must be string or other markup instance.')
-         contents = str(arg)
-      #object.__setattr__(self, 'contents', contents)
-      #object.__setattr__(self, 'style', style)
-      self.contents = contents
-      self.style = style
+         contents_string = str(arg)
+      #object.__setattr__(self, 'contents_string', contents)
+      #object.__setattr__(self, 'style_string', style_string)
+      self._contents_string = contents_string
+      self._style_string = style_string
       
    ## PRIVATE ATTRIBUTES ##
 
-   _styles = ('backslash', 'scheme')
+   _style_strings = ('backslash', 'scheme')
 
    ## OVERLOADS ##
 
@@ -52,7 +43,7 @@ class Markup(_StrictComparator):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.contents)
+      return '%s(%s)' % (self.__class__.__name__, self.contents_string)
 
    def __str__(self):
       return self.format
@@ -60,18 +51,42 @@ class Markup(_StrictComparator):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def format(self):
-      '''Read-only LilyPond string of `self`.
+   def contents_string(self):
+      r'''Read-only contents string of markup:
 
       ::
 
-         abjad> markup = markuptools.Markup('"This is markup text.'")
-         abjad> print markup.format
-         \markup { "This is markup text." }
+         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+         abjad> markup.contents_string
+         '\\bold { "This is markup text." }'
       '''
-      if self.style == 'backslash':
-         return r'\markup { %s }' % self.contents
-      elif self.style == 'scheme':
-         return '#%s' % self.contents
+      return self._contents_string
+   
+   @property
+   def format(self):
+      r'''Read-only LilyPond input format of markup:
+
+      ::
+
+         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+         abjad> markup.format
+         '\\markup { \\bold { "This is markup text." } }'
+      '''
+      if self.style_string == 'backslash':
+         return r'\markup { %s }' % self.contents_string
+      elif self.style_string == 'scheme':
+         return '#%s' % self.contents_string
       else:
-         raise ValueError('unknown markup style.')
+         raise ValueError('unknown markup style string: "%s".' % self.style_string)
+
+   @property
+   def style_string(self):
+      r'''Read-only style string of markup:
+
+      ::
+
+         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+         abjad> markup.style_string
+         'backslash'
+      '''
+      return self._style_string
