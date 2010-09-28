@@ -9,10 +9,7 @@ class CommentMark(Mark):
    .. todo:: make CommentMark format slot user-settable.
    '''
 
-   #_format_slot = 'opening'
-
    def __init__(self, comment_name_string, format_slot = 'opening'):
-      #Mark.__init__(self, target_context = None)
       Mark.__init__(self, target_context = _Component)
       if self.target_context is None:
          self._is_cosmetic_mark = True

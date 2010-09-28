@@ -3,7 +3,6 @@ from abjad.components._Context import _Context
 from fractions import Fraction
 
 
-## TODO: how to test _Context subtypes like Staff? ##
 class Mark(object):
    '''.. versionadded:: 1.1.2
 
