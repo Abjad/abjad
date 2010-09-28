@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Comment_closing_01( ):
+def test_CommentMark_closing_01( ):
    '''Test container comments closing.'''
 
    t = Voice(macros.scale(4))
@@ -24,7 +24,7 @@ def test_Comment_closing_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t% Voice closing comments here.\n\t% More voice closing comments.\n}"
 
 
-def test_Comment_closing_02( ):
+def test_CommentMark_closing_02( ):
    '''Test leaf comments closing.'''
 
    t = Note(0, (1, 8))

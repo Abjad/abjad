@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_marktools_get_comment_marks_attached_to_component_01( ):
+def test_marktools_get_comments_attached_to_component_01( ):
 
    staff = Staff(macros.scale(4))
    comment_mark_1 = marktools.Comment('comment 1')(staff[0])
@@ -18,7 +18,7 @@ def test_marktools_get_comment_marks_attached_to_component_01( ):
    }
    '''
 
-   marks = marktools.get_comment_marks_attached_to_component(staff[0]) 
+   marks = marktools.get_comments_attached_to_component(staff[0]) 
 
    assert comment_mark_1 in marks
    assert comment_mark_2 in marks

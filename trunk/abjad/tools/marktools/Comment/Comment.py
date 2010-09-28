@@ -6,13 +6,14 @@ from abjad.tools.contexttools.Mark import Mark
 class Comment(Mark):
    r'''.. versionadded:: 1.1.2
 
-   .. todo:: make Comment format slot user-settable.
+   Abjad model of user comment::
+   
+      abjad> marktools.Comment('this is a comment.')
+      Comment('this is a comment.')
    '''
 
    def __init__(self, comment_name_string, format_slot = 'opening'):
       Mark.__init__(self, target_context = _Component)
-      #if self.target_context is None:
-      #   self._is_cosmetic_mark = True
       self._comment_name_string = comment_name_string
       self._contents_repr_string = "'%s'" % comment_name_string
       self._format_slot = format_slot
@@ -33,6 +34,14 @@ class Comment(Mark):
 
    @property
    def format(self):
+      '''Read-only LilyPond input format of comment:
+
+      ::
+
+         abjad> comment = marktools.Comment('this is a comment.')
+         abjad> comment.format
+         '% this is a comment.'
+      '''
       command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(
          self._comment_name_string)
       return r'%% %s' % command

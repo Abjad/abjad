@@ -1,10 +1,10 @@
 from abjad.tools.marktools.Comment import Comment
 
 
-def get_comment_marks_attached_to_component(component):
+def get_comments_attached_to_component(component):
    r'''.. versionadded:: 1.1.2
 
-   Get comment marks attached to `component`::
+   Get comments attached to `component`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
@@ -22,10 +22,10 @@ def get_comment_marks_attached_to_component(component):
       
    ::
       
-      abjad> marktools.get_comment_marks_attached_to_component(staff[0]) 
+      abjad> marktools.get_comments_attached_to_component(staff[0]) 
       (Comment('comment 1')(c'8), Comment('comment 2')(c'8))
 
-   Return tuple of zero or more marks.
+   Return tuple of zero or more comments.
    '''
 
    result = [ ]

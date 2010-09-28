@@ -527,13 +527,12 @@ marktools
 
    tools/marktools/Annotation/Annotation
    tools/marktools/Articulation/Articulation
-   tools/marktools/CommentMark/CommentMark
+   tools/marktools/Comment/Comment
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
-   tools/marktools/get_all_comment_marks_attached_to_component
    tools/marktools/get_all_marks_attached_to_component
    tools/marktools/get_annotations_attached_to_component
    tools/marktools/get_articulations_attached_to_component
-   tools/marktools/get_comment_marks_attached_to_component
+   tools/marktools/get_comments_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
 
 

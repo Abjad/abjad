@@ -24,7 +24,7 @@ def get_articulations_attached_to_component(component):
       abjad> marktools.get_articulations_attached_to_component(staff[0]) 
       (Articulation('comment 1')(c'8), Articulation('comment 2')(c'8))
 
-   Return tuple of zero or more marks.
+   Return tuple of zero or more articulations.
    '''
 
    result = [ ]
