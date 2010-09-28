@@ -527,10 +527,12 @@ marktools
 .. toctree::
    :maxdepth: 1
 
+   tools/marktools/Annotation/Annotation
    tools/marktools/CommentMark/CommentMark
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
    tools/marktools/get_all_comment_marks_attached_to_component
    tools/marktools/get_all_marks_attached_to_component
+   tools/marktools/get_annotations_attached_to_component
    tools/marktools/get_comment_marks_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
 
