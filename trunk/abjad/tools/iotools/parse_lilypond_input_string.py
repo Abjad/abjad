@@ -74,7 +74,6 @@ def parse_lilypond_input_string(note_entry_string):
             leaf = _parse_chord_entry_token(' '.join(chord_tokens))
             if tie_next_leaf:
                last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-               #last_leaf.splice([leaf])
                componenttools.extend_in_parent_of_component_and_grow_spanners(last_leaf, [leaf])
                tie_next_leaf = False
             else:
@@ -98,7 +97,6 @@ def parse_lilypond_input_string(note_entry_string):
             leaf = _parse_note_entry_token(token)
             if tie_next_leaf:
                last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-               #last_leaf.splice([leaf])
                componenttools.extend_in_parent_of_component_and_grow_spanners(last_leaf, [leaf])
                tie_next_leaf = False
             else:

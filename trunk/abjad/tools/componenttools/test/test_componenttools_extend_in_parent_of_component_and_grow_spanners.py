@@ -6,7 +6,6 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_01( ):
 
    t = Voice(macros.scale(3))
    spannertools.BeamSpanner(t[:])
-   #result = t[-1].splice(macros.scale(3))
    result = componenttools.extend_in_parent_of_component_and_grow_spanners(
       t[-1], macros.scale(3))
 
@@ -31,7 +30,6 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_02( ):
 
    t = Voice(macros.scale(3))
    spannertools.BeamSpanner(t[:])
-   #result = t[1].splice([Note(2.5, (1, 8))])
    result = componenttools.extend_in_parent_of_component_and_grow_spanners(
       t[1], [Note(2.5, (1, 8))])
 
@@ -54,7 +52,6 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_03( ):
 
    t = Voice([tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
    spannertools.BeamSpanner(t[0])
-   #result = t[-1].splice([tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
    result = componenttools.extend_in_parent_of_component_and_grow_spanners(
       t[-1], [tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
 
@@ -83,7 +80,6 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_04( ):
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    spannertools.BeamSpanner(t.leaves)
-   #result = t[0].splice([Note(2.5, (1, 8))])
    result = componenttools.extend_in_parent_of_component_and_grow_spanners(
       t[0], [Note(2.5, (1, 8))])
 

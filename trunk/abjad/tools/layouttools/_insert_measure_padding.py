@@ -36,7 +36,6 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
          start_leaves = [x for x in start_components if isinstance(x, _Leaf)]
          for start_leaf in start_leaves:
             if splice:
-               #start_leaf.splice_left([klass.__class__(front)])
                componentools.extend_in_parent_of_component_and_grow_spanners(
                   start_leaf, [klass.__class__(front)])
             else:
@@ -47,12 +46,11 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
          stop_leaves = [x for x in stop_components if isinstance(x, _Leaf)]
          for stop_leaf in stop_leaves:
             if splice:
-               #stop_leaf.splice([klass.__class__(back)])
                componentools.extend_left_in_parent_of_component_and_grow_spanners(
                   start_leaf, [klass.__class__(front)])
             else:
                componentools.extend_left_in_parent_of_component_and_do_not_grow_spanners(
                   start_leaf, [klass.__class__(front)])
 
-   ## allow updates after all calls to splice( ) are done. ##
+   ## allow updates after all calls to spanner-growing functions are done ##
    root._update._allow_component_update( )
