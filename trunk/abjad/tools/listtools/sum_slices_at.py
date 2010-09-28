@@ -1,5 +1,5 @@
 from abjad.exceptions import InputSpecificationError
-from abjad.core import Rational
+from abjad.core import Fraction
 import types
 
 
@@ -29,7 +29,7 @@ def sum_slices_at(l, pairs, period = None, overhang = True):
    '''
 
    assert isinstance(l, list)
-   assert all([isinstance(x, (int, float, Rational)) for x in l])
+   assert all([isinstance(x, (int, float, Fraction)) for x in l])
    assert isinstance(period, (int, type(None)))
    assert isinstance(overhang, bool)
 

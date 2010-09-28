@@ -1,5 +1,5 @@
 from abjad.exceptions import PartitionError
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.listtools.flatten import flatten
 from abjad.tools.listtools.partition_by_weights import partition_by_weights
 from abjad.tools.listtools.weight import weight
@@ -109,9 +109,9 @@ def group_by_weights(l, weights,
    '''
 
    assert isinstance(l, list)
-   assert all([isinstance(x, (int, long, float, Rational)) for x in l])
+   assert all([isinstance(x, (int, long, float, Fraction)) for x in l])
    assert isinstance(weights, list)
-   assert all([isinstance(x, (int, long, float, Rational)) for x in weights])
+   assert all([isinstance(x, (int, long, float, Fraction)) for x in weights])
    assert all([0 < x for x in weights])
    assert fill in ('exact', 'less', 'greater')
    assert isinstance(cyclic, bool)

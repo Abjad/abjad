@@ -22,7 +22,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_01( ):
    }
    '''
 
-   notes = macros.scale(4, Rational(1, 16)) 
+   notes = macros.scale(4, Fraction(1, 16)) 
    measuretools.replace_contents_of_measures_in_expr(t, notes)
 
    r'''
@@ -118,7 +118,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_04( ):
    '''Raise StopIteration when not enough measures.'''
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
-   notes = macros.scale(6, Rational(1, 16))
+   notes = macros.scale(6, Fraction(1, 16))
 
    assert py.test.raises(StopIteration, 
       'measuretools.replace_contents_of_measures_in_expr(t, notes)')
@@ -128,7 +128,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_05( ):
    '''Populate measures even when not enough total measures.'''
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
-   notes = macros.scale(6, Rational(1, 16))
+   notes = macros.scale(6, Fraction(1, 16))
 
    try:
       measuretools.replace_contents_of_measures_in_expr(t, notes)

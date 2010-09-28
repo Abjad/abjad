@@ -1,11 +1,11 @@
 from abjad.components.Note import Note
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import mathtools
 
 
 def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine', 
-   written=Rational(1, 8)):
+   written=Fraction(1, 8)):
    '''Returns a train of notes with "continuously" changing effective 
    durations given as the written duration argument times the 
    computed interpolated multipliers. 
@@ -22,7 +22,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
       [Note(cs', 8 * 113/64), Note(d', 8 * 169/128), Note(cs', 8 * 117/128)]
       abjad> x = Voice(_)
       abjad> x.duration.prolated
-      Rational(1, 2)
+      Fraction(1, 2)
 
    .. versionchanged:: 1.1.2
       renamed ``construct.notes_curve( )`` to
@@ -33,15 +33,15 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
       ``notetools.make_accelerating_notes_with_lilypond_multipliers( )``.
    '''
 
-   total = Rational(*durtools.duration_token_to_reduced_duration_pair(total))
-   start = Rational(*durtools.duration_token_to_reduced_duration_pair(start))
-   stop = Rational(*durtools.duration_token_to_reduced_duration_pair(stop))
-   written = Rational(*durtools.duration_token_to_reduced_duration_pair(written))
+   total = Fraction(*durtools.duration_token_to_reduced_duration_pair(total))
+   start = Fraction(*durtools.duration_token_to_reduced_duration_pair(start))
+   stop = Fraction(*durtools.duration_token_to_reduced_duration_pair(stop))
+   written = Fraction(*durtools.duration_token_to_reduced_duration_pair(written))
 
    dts = mathtools.interpolate_divide(total, start, stop, exp)
 
    ## convert floats to rationals
-   dts = [Rational(int(round(x * 2**10)), 2**10) for x in dts]
+   dts = [Fraction(int(round(x * 2**10)), 2**10) for x in dts]
 
    ## make notes
    result = [ ]

@@ -12,7 +12,7 @@ def test_Chord_01( ):
    assert len(t) == 3
    assert len(t.note_heads) == 3
    assert len(t.pitches) == 3
-   assert t.duration.written == t.duration.prolated == Rational(1, 4)
+   assert t.duration.written == t.duration.prolated == Fraction(1, 4)
 
 
 ## TEST TWEAKED CHORD ##

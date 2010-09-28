@@ -5,7 +5,7 @@ def test_containertools_scale_contents_of_container_01( ):
    '''Scale leaves in voice by 3/2; ie, dot leaves.'''
 
    t = Voice(macros.scale(4))
-   containertools.scale_contents_of_container(t, Rational(3, 2))
+   containertools.scale_contents_of_container(t, Fraction(3, 2))
 
    r'''
    \new Voice {
@@ -24,7 +24,7 @@ def test_containertools_scale_contents_of_container_02( ):
    '''Scale leaves in voice by 5/4; ie, quarter-tie leaves.'''
 
    t = Voice(macros.scale(4))
-   containertools.scale_contents_of_container(t, Rational(5, 4))
+   containertools.scale_contents_of_container(t, Fraction(5, 4))
 
    r'''
    \new Voice {
@@ -48,7 +48,7 @@ def test_containertools_scale_contents_of_container_03( ):
        ie, tupletize notes.'''
 
    t = Voice(macros.scale(4))
-   containertools.scale_contents_of_container(t, Rational(4, 3))
+   containertools.scale_contents_of_container(t, Fraction(4, 3))
 
    r'''
    \new Voice {
@@ -76,7 +76,7 @@ def test_containertools_scale_contents_of_container_04( ):
        ie, tupletize notes.'''
 
    t = Voice(macros.scale(4))
-   containertools.scale_contents_of_container(t, Rational(5, 6))
+   containertools.scale_contents_of_container(t, Fraction(5, 6))
 
    r'''
    \new Voice {
@@ -122,7 +122,7 @@ def test_containertools_scale_contents_of_container_05( ):
    }
    '''
 
-   containertools.scale_contents_of_container(t, Rational(2, 3))
+   containertools.scale_contents_of_container(t, Fraction(2, 3))
 
    r'''
    \new Voice {
@@ -144,7 +144,7 @@ def test_containertools_scale_contents_of_container_06( ):
    '''Undo scale of 5/4 with scale of 4/5.'''
 
    t = Voice(macros.scale(4))
-   containertools.scale_contents_of_container(t, Rational(5, 4))
+   containertools.scale_contents_of_container(t, Fraction(5, 4))
 
    r'''
    \new Voice {
@@ -161,7 +161,7 @@ def test_containertools_scale_contents_of_container_06( ):
 
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
 
-   containertools.scale_contents_of_container(t, Rational(4, 5))
+   containertools.scale_contents_of_container(t, Fraction(4, 5))
 
    r'''
    \new Voice {
@@ -197,7 +197,7 @@ def test_containertools_scale_contents_of_container_07( ):
    }
    '''
 
-   containertools.scale_contents_of_container(t, Rational(2))
+   containertools.scale_contents_of_container(t, Fraction(2))
 
    r'''
    \new Voice {
@@ -239,7 +239,7 @@ def test_containertools_scale_contents_of_container_08( ):
    }
    '''
 
-   containertools.scale_contents_of_container(t, Rational(5, 4))
+   containertools.scale_contents_of_container(t, Fraction(5, 4))
 
    r'''
    \new Voice {

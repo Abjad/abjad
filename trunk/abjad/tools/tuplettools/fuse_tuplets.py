@@ -1,6 +1,6 @@
 from abjad.components.Container import Container
 from abjad.components.Tuplet import Tuplet
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.exceptions import TupletFuseError
 from abjad.tools.componenttools.component_to_score_root import component_to_score_root
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
@@ -11,7 +11,7 @@ def fuse_tuplets(tuplets):
 
       abjad> t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> spannertools.BeamSpanner(t1[:])
-      abjad> t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
+      abjad> t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
       abjad> spannertools.SlurSpanner(t2[:])
       abjad> staff = Staff([t1, t2])
       abjad> f(staff)

@@ -9,7 +9,7 @@ def test_Measure_formatter_number_01( ):
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips(
       [(2, 16), (3, 16), (3, 16)]))
-   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Fraction(1, 16))
    t[0]._formatter.number.self = 'comment'
 
    r'''
@@ -45,7 +45,7 @@ def test_Measure_formatter_number_02( ):
       LilyPond comments to many leaves at once.'''
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(2, 16), (3, 16), (3, 16)]))
-   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Fraction(1, 16))
    #t[0].formatter.number.leaves = 'markup'
    t[0]._formatter.number.leaves = 'markup'
 
@@ -82,7 +82,7 @@ def test_Measure_formatter_number_03( ):
 
    t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips(
       [(2, 16), (3, 16), (3, 16)]))
-   measuretools.fill_measures_in_expr_with_repeated_notes(t, Rational(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Fraction(1, 16))
    t[0]._formatter.number.self = 'comment'
    t[0]._formatter.number.leaves = 'markup'
 

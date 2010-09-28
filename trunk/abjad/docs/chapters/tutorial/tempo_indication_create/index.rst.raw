@@ -8,7 +8,7 @@ LilyPond tempo indications look like this. ::
 You can create LilyPond-style tempo indications with the 
 ``TempoIndication`` class in the Abjad ``tempotools`` package. ::
 
-   abjad> tempo_indication = tempotools.TempoIndication(Rational(3, 16), 72)
+   abjad> tempo_indication = tempotools.TempoIndication(Fraction(3, 16), 72)
    abjad> tempo_indication
    TempoIndication(8., 72)
 

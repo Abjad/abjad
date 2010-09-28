@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_get_first_element_starting_at_or_after_prolated_offset_01( ):
 
    staff = Staff(macros.scale(4))
-   element = containertools.get_first_element_starting_at_or_after_prolated_offset(staff, Rational(1, 8))
+   element = containertools.get_first_element_starting_at_or_after_prolated_offset(staff, Fraction(1, 8))
 
    assert element is staff[1]
 
@@ -13,7 +13,7 @@ def test_containertools_get_first_element_starting_at_or_after_prolated_offset_0
 def test_containertools_get_first_element_starting_at_or_after_prolated_offset_02( ):
 
    staff = Staff(macros.scale(4))
-   element = containertools.get_first_element_starting_at_or_after_prolated_offset(staff, Rational(3, 16))
+   element = containertools.get_first_element_starting_at_or_after_prolated_offset(staff, Fraction(3, 16))
 
    assert element is staff[2]
 

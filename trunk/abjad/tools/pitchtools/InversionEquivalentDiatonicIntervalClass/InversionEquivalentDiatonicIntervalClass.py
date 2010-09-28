@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 
 
@@ -91,7 +91,7 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicInterval):
       return inversions[quality_string]
 
    def _is_representative_number(self, arg):
-      if isinstance(arg, (int, long, float, Rational)):
+      if isinstance(arg, (int, long, float, Fraction)):
          if 1 <= arg <= 4 or arg == 8:
             return True
       return False 

@@ -8,7 +8,7 @@ def list_written_durations_of_leaves_in_expr(expr):
 
       abjad> staff = Staff(tuplettools.FixedDurationTuplet((2, 8), macros.scale(3)) * 2)
       abjad> leaftools.list_written_durations_of_leaves_in_expr(staff)
-      [Rational(1, 8), Rational(1, 8), Rational(1, 8), Rational(1, 8), Rational(1, 8), Rational(1, 8)]
+      [Fraction(1, 8), Fraction(1, 8), Fraction(1, 8), Fraction(1, 8), Fraction(1, 8), Fraction(1, 8)]
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.get_durations_written( )`` to

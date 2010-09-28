@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 
 
@@ -39,5 +39,5 @@ def positive_integer_to_implied_prolation_multipler(denominator):
       ``durtools.positive_integer_to_implied_prolation_multipler( )``.
    '''
 
-   return Rational(
+   return Fraction(
       mathtools.greatest_power_of_two_less_equal(denominator), denominator)

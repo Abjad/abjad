@@ -7,7 +7,7 @@ def rational_to_flag_count(rational):
    Convert `rational` to nonnegative integer number of flags
    required to notate. ::
 
-      abjad> durtools.rational_to_flag_count(Rational(1, 32))
+      abjad> durtools.rational_to_flag_count(Fraction(1, 32))
       3
    '''
 

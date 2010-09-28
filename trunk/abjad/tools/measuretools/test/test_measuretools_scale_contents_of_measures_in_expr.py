@@ -5,10 +5,10 @@ def test_measuretools_scale_contents_of_measures_in_expr_01( ):
    '''Quadruple binary meter.
       Meter denominator adjust appropriately.'''
 
-   t = Measure((3, 32), macros.scale(3, Rational(1, 32)))
+   t = Measure((3, 32), macros.scale(3, Fraction(1, 32)))
    spannertools.BeamSpanner(t[:])
 
-   measuretools.scale_contents_of_measures_in_expr(t, Rational(4))
+   measuretools.scale_contents_of_measures_in_expr(t, Fraction(4))
 
    r'''
    {
@@ -26,10 +26,10 @@ def test_measuretools_scale_contents_of_measures_in_expr_01( ):
 def test_measuretools_scale_contents_of_measures_in_expr_02( ):
    '''Triple binary meter.'''
 
-   t = Measure((3, 32), macros.scale(3, Rational(1, 32)))
+   t = Measure((3, 32), macros.scale(3, Fraction(1, 32)))
    spannertools.BeamSpanner(t[:])
 
-   measuretools.scale_contents_of_measures_in_expr(t, Rational(3))
+   measuretools.scale_contents_of_measures_in_expr(t, Fraction(3))
 
    r'''
    {
@@ -50,7 +50,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_03( ):
    t = Measure((3, 8), macros.scale(3))
    spannertools.BeamSpanner(t[:])
 
-   measuretools.scale_contents_of_measures_in_expr(t, Rational(2, 3))
+   measuretools.scale_contents_of_measures_in_expr(t, Fraction(2, 3))
 
    r'''
    {

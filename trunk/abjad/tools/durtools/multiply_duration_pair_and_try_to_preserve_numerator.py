@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
@@ -6,17 +6,17 @@ def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
    Hold `pair` numerator constant, if possible.
    Return new pair. ::
 
-      abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Rational(2, 3))
+      abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(2, 3))
       (9, 24)
 
    ::
 
-      abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Rational(1, 2))
+      abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(1, 2))
       (9, 32)
 
    ::
 
-      abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Rational(5, 6))
+      abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(5, 6))
       (45, 96)
 
    Intended for certain types of meter multiplication.
@@ -27,7 +27,7 @@ def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
    '''
 
    assert isinstance(pair, tuple)
-   assert isinstance(multiplier, Rational)
+   assert isinstance(multiplier, Fraction)
 
    pair_denominator = pair[1]
    candidate_result_denominator = pair_denominator / multiplier

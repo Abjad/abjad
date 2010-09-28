@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._ChromaticIntervalClass import _ChromaticIntervalClass
 from abjad.tools.pitchtools._Interval import _Interval
@@ -13,7 +13,7 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
    '''
 
    def __init__(self, token):
-      if isinstance(token, (int, float, long, Rational)):
+      if isinstance(token, (int, float, long, Fraction)):
          sign = mathtools.sign(token)
          abs_token = abs(token)
          if abs_token % 12 == 0 and 12 <= abs_token:

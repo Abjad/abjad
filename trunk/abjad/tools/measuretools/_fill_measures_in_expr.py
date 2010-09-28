@@ -1,5 +1,5 @@
 from abjad.components.Note import Note
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.components.Skip import Skip
 from abjad.tools import durtools
 from abjad.tools import leaftools

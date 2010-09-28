@@ -1,5 +1,5 @@
 from abjad.exceptions import PartitionError
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def _group_components_by_durations(duration_type, components, durations, 
@@ -20,25 +20,25 @@ def _group_components_by_durations(duration_type, components, durations,
    '''
 
    #assert isinstance(durations, list)
-   #assert all([isinstance(x, (int, float, Rational)) for x in durations])
+   #assert all([isinstance(x, (int, float, Fraction)) for x in durations])
    _durations = [  ]
    for duration in durations:
-      if isinstance(duration, (int, float, Rational)):
+      if isinstance(duration, (int, float, Fraction)):
          _durations.append(duration)
       else:
          try:
-            _durations.append(Rational(duration))
+            _durations.append(Fraction(duration))
          except TypeError:
             raise AssertionError
    durations = _durations
-   assert all([isinstance(x, (int, float, Rational)) for x in durations])
+   assert all([isinstance(x, (int, float, Fraction)) for x in durations])
    
    len_durations = len(durations)
    result = [ ]
    part = [ ]
    cur_duration_idx = 0
    target_duration = durations[cur_duration_idx]
-   cum_duration = Rational(0)
+   cum_duration = Fraction(0)
 
    components_copy = list(components[:])
    while True:
@@ -57,7 +57,7 @@ def _group_components_by_durations(duration_type, components, durations,
          part.append(component)
          result.append(part)
          part = [ ]
-         cum_duration = Rational(0)
+         cum_duration = Fraction(0)
          cur_duration_idx += 1
          target_duration = _get_next(durations, cur_duration_idx, cyclic)
       elif target_duration < candidate_duration:
@@ -80,7 +80,7 @@ def _group_components_by_durations(duration_type, components, durations,
             part.append(component)
             result.append(part)
             part = [ ]
-            cum_duration = Rational(0)
+            cum_duration = Fraction(0)
             cur_duration_idx += 1
             target_duration = _get_next(durations, cur_duration_idx, cyclic)
       if target_duration is None:

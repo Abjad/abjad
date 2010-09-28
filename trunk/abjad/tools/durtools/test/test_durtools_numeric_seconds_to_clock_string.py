@@ -14,12 +14,12 @@ def test_durtools_numeric_seconds_to_clock_string_01( ):
 
 def test_durtools_numeric_seconds_to_clock_string_02( ):
 
-   assert durtools.numeric_seconds_to_clock_string(Rational(0)) == "0'00\""
-   assert durtools.numeric_seconds_to_clock_string(Rational(3, 2)) == "0'01\""
-   assert durtools.numeric_seconds_to_clock_string(Rational(89, 14)) == "0'06\""
-   assert durtools.numeric_seconds_to_clock_string(Rational(116, 19)) == "0'06\""
-   assert durtools.numeric_seconds_to_clock_string(Rational(140, 3)) == "0'46\""
-   assert durtools.numeric_seconds_to_clock_string(Rational(180, 3)) == "1'00\""
+   assert durtools.numeric_seconds_to_clock_string(Fraction(0)) == "0'00\""
+   assert durtools.numeric_seconds_to_clock_string(Fraction(3, 2)) == "0'01\""
+   assert durtools.numeric_seconds_to_clock_string(Fraction(89, 14)) == "0'06\""
+   assert durtools.numeric_seconds_to_clock_string(Fraction(116, 19)) == "0'06\""
+   assert durtools.numeric_seconds_to_clock_string(Fraction(140, 3)) == "0'46\""
+   assert durtools.numeric_seconds_to_clock_string(Fraction(180, 3)) == "1'00\""
 
 
 def test_durtools_numeric_seconds_to_clock_string_03( ):

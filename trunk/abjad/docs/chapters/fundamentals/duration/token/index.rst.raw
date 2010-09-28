@@ -4,14 +4,14 @@ Duration token
 
 Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
 
-* Abjad :class:`Rational <abjad.core.rational.Rational>` instances
+* Abjad :class:`Fraction <abjad.core.rational.Fraction>` instances
 * Python pairs
 * Python `int` and `long` instances
 
 For example:
 
 <abjad>
-note = Note(0, Rational(1, 4))
+note = Note(0, Fraction(1, 4))
 measure = Measure((1, 4), [note]) <hide
 measure.meter.transparent = True <hide
 staff = RhythmicStaff([measure]) <hide

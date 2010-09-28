@@ -24,7 +24,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
    ::
 
       abjad> t = Staff(AnonymousMeasure(macros.scale(2)) * 2)
-      abjad> front, back = Rational(1, 32), Rational(1, 64)
+      abjad> front, back = Fraction(1, 32), Fraction(1, 64)
       abjad> measuretools.pad_measures_in_expr_with_rests(t, front, back)
       abjad> print t.format
 
@@ -51,7 +51,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
       abjad> measure.parallel = True
       abjad> t = Staff(measure * 2)
       abjad> macros.diatonicize(t)
-      abjad> measuretools.pad_measures_in_expr_with_rests(t, Rational(1, 32), Rational(1, 64))
+      abjad> measuretools.pad_measures_in_expr_with_rests(t, Fraction(1, 32), Fraction(1, 64))
 
    ::
 
@@ -91,7 +91,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
       abjad> t = DynamicMeasure(macros.scale(2))
       abjad> spannertools.BeamSpanner(t[:])
       abjad> t.formatter.number.self = 'comment'
-      abjad> measuretools.pad_measures_in_expr_with_rests(t, Rational(1, 32), Rational(1, 64), splice = True)
+      abjad> measuretools.pad_measures_in_expr_with_rests(t, Fraction(1, 32), Fraction(1, 64), splice = True)
 
    ::
 

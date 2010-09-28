@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 
 
@@ -6,12 +6,12 @@ def multiply_duration_pair_and_reduce_factors(pair, multiplier):
    '''Multiply `pair` by rational `multiplier`.
    Reduce common cross factors. ::
 
-      abjad> durtools.multiply_duration_pair_and_reduce_factors((4, 8), Rational(2, 3))
+      abjad> durtools.multiply_duration_pair_and_reduce_factors((4, 8), Fraction(2, 3))
       (4, 12)
 
    ::
 
-      durtools.multiply_duration_pair_and_reduce_factors((4, 8), Rational(6, 5))
+      durtools.multiply_duration_pair_and_reduce_factors((4, 8), Fraction(6, 5))
       (12, 20)
 
    Intended for certain types of meter multiplication.
@@ -22,7 +22,7 @@ def multiply_duration_pair_and_reduce_factors(pair, multiplier):
    '''
 
    assert isinstance(pair, tuple)
-   assert isinstance(multiplier, Rational)
+   assert isinstance(multiplier, Fraction)
 
    pair_numerator_factors = mathtools.factors(pair[0])   
    multiplier_denominator_factors = mathtools.factors(multiplier.denominator)

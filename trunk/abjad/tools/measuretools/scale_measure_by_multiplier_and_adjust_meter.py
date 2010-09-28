@@ -1,12 +1,12 @@
 from abjad.tools.metertools import Meter
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import marktools
 from abjad.tools import mathtools
 
 
-def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(1)):
+def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Fraction(1)):
    r'''Multiply the duration of every element in measure by multiplier.
       Then rewrite the meter of measure as appropriate.
 
@@ -17,7 +17,7 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(
       Example::
 
          abjad> t = Measure((3, 8), macros.scale(3))
-         abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Rational(2, 3))
+         abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(2, 3))
          abjad> print t.format
 
               \time 3/12
@@ -51,21 +51,21 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(
          old_pair, multiplier)      
       new_meter = Meter(new_pair)
       measure._attach_explicit_meter(new_meter)
-      remaining_multiplier = Rational(*reduced_pair)
-      if remaining_multiplier != Rational(1):
+      remaining_multiplier = Fraction(*reduced_pair)
+      if remaining_multiplier != Fraction(1):
          containertools.scale_contents_of_container(measure, remaining_multiplier)
    elif componenttools.all_are_components_scalable_by_multiplier(measure[:], multiplier):
       containertools.scale_contents_of_container(measure, multiplier)
       if old_meter.is_nonbinary or not mathtools.is_power_of_two(multiplier):
          new_pair = durtools.multiply_duration_pair_and_reduce_factors(old_pair, multiplier)
       ## multiplier is a negative power of two, like 1/2, 1/4, etc.
-      elif multiplier < Rational(0):
+      elif multiplier < Fraction(0):
          new_pair = durtools.multiply_duration_pair(old_pair, multiplier)
       ## multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
-      elif Rational(0) < multiplier:
+      elif Fraction(0) < multiplier:
          new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
             old_pair, multiplier)
-      elif multiplier == Rational(0):
+      elif multiplier == Fraction(0):
          raise ZeroDivisionError
       new_meter = Meter(new_pair)
       measure._attach_explicit_meter(new_meter)
@@ -75,6 +75,6 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Rational(
       new_meter = Meter(new_pair)
       measure._attach_explicit_meter(new_meter)
       remaining_multiplier = multiplier / new_meter.multiplier
-      if remaining_multiplier != Rational(1):
+      if remaining_multiplier != Fraction(1):
          containertools.scale_contents_of_container(measure, remaining_multiplier)
    return measure

@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.durtools.lilypond_duration_string_to_rational import \
    lilypond_duration_string_to_rational
 
@@ -6,9 +6,9 @@ from abjad.tools.durtools.lilypond_duration_string_to_rational import \
 def duration_token_to_reduced_duration_pair(duration_token):
    '''Return reduced numerator, denominator pair equal to `duration_token`.
 
-   Rationals are allowed. ::
+   Fractions are allowed. ::
 
-      abjad> durtools.duration_token_to_reduced_duration_pair(Rational(1, 4))
+      abjad> durtools.duration_token_to_reduced_duration_pair(Fraction(1, 4))
       (1, 4)
 
    Two-element integer tuples and lists are allowed. ::
@@ -53,12 +53,12 @@ def duration_token_to_reduced_duration_pair(duration_token):
    elif isinstance(duration_token, int):
       numerator = duration_token
       denominator = 1
-   elif isinstance(duration_token, Rational):
+   elif isinstance(duration_token, Fraction):
       numerator, denominator = duration_token.numerator, duration_token.denominator
    elif isinstance(duration_token, str):
       rational = lilypond_duration_string_to_rational(duration_token)
       numerator, denominator = rational.numerator, rational.denominator
    else:
-      raise TypeError('token must be of tuple, list, int or Rational.')
+      raise TypeError('token must be of tuple, list, int or Fraction.')
 
    return numerator, denominator 

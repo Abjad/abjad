@@ -6,19 +6,19 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
    rewrite according to `multiplier` with no ad hoc tuplets. ::
 
       abjad> t = [Note(0, (1, 8))]
-      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Rational(1, 2))
+      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Fraction(1, 2))
       True
 
    ::
 
       abjad> t = [Note(0, (1, 8))]
-      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Rational(3, 2))
+      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Fraction(3, 2))
       True
    
    False otherwise. ::
 
       abjad> t = [Note(0, (1, 8))]
-      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Rational(2, 3))
+      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Fraction(2, 3))
       False
 
    Note that `components` must be iterable.

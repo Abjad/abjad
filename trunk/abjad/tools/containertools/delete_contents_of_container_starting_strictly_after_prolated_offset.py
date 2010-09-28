@@ -20,7 +20,7 @@ def delete_contents_of_container_starting_strictly_after_prolated_offset(
       
    ::
       
-      abjad> containertools.delete_contents_of_container_starting_after_prolated_offset(staff, Rational(1, 8))
+      abjad> containertools.delete_contents_of_container_starting_after_prolated_offset(staff, Fraction(1, 8))
       Staff{2}
       
    ::

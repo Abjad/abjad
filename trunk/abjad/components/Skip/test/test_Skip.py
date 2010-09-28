@@ -7,7 +7,7 @@ def test_Skip_01( ):
    assert repr(s) == 'Skip(8)'
    assert str(s) == 's8'
    assert s.format == 's8'
-   assert s.duration.written == s.duration.prolated == Rational(1, 8)
+   assert s.duration.written == s.duration.prolated == Fraction(1, 8)
 
 
 def test_Skip_02( ):
@@ -15,7 +15,7 @@ def test_Skip_02( ):
    assert repr(s) == 'Skip(8.)'
    assert str(s) == 's8.'
    assert s.format == 's8.'
-   assert s.duration.written == s.duration.prolated == Rational(3, 16)
+   assert s.duration.written == s.duration.prolated == Fraction(3, 16)
 
 
 def test_Skip_03( ):

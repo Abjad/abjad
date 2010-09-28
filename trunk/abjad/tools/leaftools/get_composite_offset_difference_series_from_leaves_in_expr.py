@@ -30,7 +30,7 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
                  }
          >>
       abjad> leaftools.get_composite_offset_difference_series_from_leaves_in_expr(score)
-      [Rational(1, 8), Rational(1, 24), Rational(1, 12), Rational(1, 12), Rational(1, 24), Rational(1, 8)]
+      [Fraction(1, 8), Fraction(1, 24), Fraction(1, 12), Fraction(1, 12), Fraction(1, 24), Fraction(1, 8)]
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.get_composite_offset_difference_series( )`` to

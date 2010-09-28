@@ -1,6 +1,6 @@
 from abjad.exceptions import UndefinedTempoError
 from abjad.interfaces._Interface import _Interface
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 class OffsetInterface(_Interface):
@@ -31,7 +31,7 @@ class OffsetInterface(_Interface):
          if prev:
             self._start_in_seconds = prev.offset._stop_in_seconds
          else:
-            self._start_in_seconds = Rational(0)
+            self._start_in_seconds = Fraction(0)
          ## this one case is possible for containers only
          if self._start_in_seconds is None:
             raise UndefinedTempoError
@@ -44,7 +44,7 @@ class OffsetInterface(_Interface):
       if prev:
          self._start = prev.offset._stop
       else:
-         self._start = Rational(0)
+         self._start = Fraction(0)
       self._stop = self._start + self._client.duration.prolated
 
    ## PUBLIC ATTRIBUTES ##

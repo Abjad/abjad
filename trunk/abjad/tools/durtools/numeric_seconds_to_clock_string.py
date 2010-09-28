@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def numeric_seconds_to_clock_string(seconds):
@@ -14,7 +14,7 @@ def numeric_seconds_to_clock_string(seconds):
       ``durtools.numeric_seconds_to_clock_string( )``.
    '''
 
-   assert isinstance(seconds, (int, float, Rational))
+   assert isinstance(seconds, (int, float, Fraction))
    if seconds < 0:
       raise ValueError('total seconds must be positive.')
 

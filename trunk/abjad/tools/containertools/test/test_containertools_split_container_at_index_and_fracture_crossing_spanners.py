@@ -426,7 +426,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
 
-   t = Staff([Measure((3, 12), macros.scale(2, Rational(3, 16)))])
+   t = Staff([Measure((3, 12), macros.scale(2, Fraction(3, 16)))])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t.leaves)
 
@@ -471,7 +471,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
 
-   t = Staff([Measure((3, 8), macros.scale(2, Rational(3, 16)))])
+   t = Staff([Measure((3, 8), macros.scale(2, Fraction(3, 16)))])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t.leaves)
 

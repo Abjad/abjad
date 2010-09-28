@@ -26,7 +26,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_01( ):
    }
    '''
    
-   measuretools.pad_measures_in_expr_with_skips(t, Rational(1, 32), Rational(1, 64))   
+   measuretools.pad_measures_in_expr_with_skips(t, Fraction(1, 32), Fraction(1, 64))   
 
    r'''
    \new Staff {
@@ -90,7 +90,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_02( ):
    }
    '''
 
-   measuretools.pad_measures_in_expr_with_skips(t, Rational(1, 32), Rational(1, 64))
+   measuretools.pad_measures_in_expr_with_skips(t, Fraction(1, 32), Fraction(1, 64))
 
    r'''
    \new Staff {
@@ -139,7 +139,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_03( ):
    spannertools.BeamSpanner(t[:])
    measuretools.comment_measures_in_container_with_measure_numbers(t)
    measuretools.pad_measures_in_expr_with_skips(
-      t, Rational(1, 32), Rational(1, 64), splice = True)
+      t, Fraction(1, 32), Fraction(1, 64), splice = True)
 
    r'''
    % start measure 1

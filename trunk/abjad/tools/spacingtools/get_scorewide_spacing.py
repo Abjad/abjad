@@ -7,7 +7,7 @@ def get_scorewide_spacing(component):
 
       abjad> score = Score([Staff(macros.scale(4))])
       abjad> tempo_mark = marktools.TempoMark(Fraction(1, 8), 44)
-      abjad> spacing_indication = spacing.SpacingIndication(tempo_mark, Rational(1, 68))
+      abjad> spacing_indication = spacing.SpacingIndication(tempo_mark, Fraction(1, 68))
       abjad> score.spacing.scorewide = spacing_indication 
       abjad> spacing.get_scorewide_spacing(score.leaves[0])
       SpacingIndication(TempoMark(8, 44), 1/68)

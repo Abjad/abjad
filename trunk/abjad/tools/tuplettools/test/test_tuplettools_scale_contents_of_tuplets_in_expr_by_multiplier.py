@@ -5,7 +5,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01( ):
    '''Double tuplet.'''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(2))
 
    r'''
    \times 2/3 {
@@ -23,7 +23,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02( ):
    '''Halve tuplet.'''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(1, 2))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(1, 2))
 
    r'''
    \times 2/3 {
@@ -41,7 +41,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03( ):
    '''Quadruple tuplet.'''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(4))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(4))
 
    r'''
    \times 2/3 {
@@ -59,7 +59,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04( ):
    '''Quarter tuplet.'''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(1, 4))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(1, 4))
 
    r'''
    \times 2/3 {
@@ -77,7 +77,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05( ):
    '''Multiply tuplet by 3/2.'''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 2))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(3, 2))
 
    r'''
    \times 2/3 {
@@ -95,7 +95,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06( ):
    '''Multiply tuplet by 2/3.'''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2, 3))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(2, 3))
 
    r'''
    \times 8/9 {
@@ -113,7 +113,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07( ):
    '''Multiply tuplet by 3/5.'''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 5))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(3, 5))
 
    r'''
    \times 4/5 {
@@ -132,7 +132,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08( ):
       ie, add a single dot.'''
 
    t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 2))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(3, 2))
 
    r'''
    {
@@ -158,7 +158,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09( ):
    }
    '''
 
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2, 3))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(2, 3))
 
    r'''
    \times 4/5 {
@@ -183,7 +183,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_10( ):
    }
    '''
 
-   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2, 3))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(2, 3))
 
    r'''
    \times 8/15 {

@@ -23,7 +23,7 @@ def test_spannertools_give_dominant_to_01( ):
    }
    '''
 
-   recipient = Voice(notetools.make_repeated_notes(3, Rational(1, 16)))
+   recipient = Voice(notetools.make_repeated_notes(3, Fraction(1, 16)))
    spannertools.BeamSpanner(recipient)
 
    r'''

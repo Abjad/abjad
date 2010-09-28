@@ -1,5 +1,5 @@
 from abjad.exceptions import AssignabilityError
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.durtools.assignable_rational_to_dot_count import assignable_rational_to_dot_count
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 from abjad.tools.durtools.rational_to_equal_or_lesser_binary_rational \
@@ -11,12 +11,12 @@ def assignable_rational_to_lilypond_duration_string(rational):
 
    Convert `rational` to LilyPond-style duration string. ::
 
-      abjad> durtools.assignable_rational_to_lilypond_duration_string(Rational(3, 16))
+      abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
       '8.'
 
    Raise assignability error when `rational` is not notehead-assignable. ::
 
-      abjad> durtools.assignable_rational_to_lilypond_duration_string(Rational(5, 16))
+      abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(5, 16))
       AssignabilityError
 
    .. versionchanged:: 1.1.2
@@ -30,11 +30,11 @@ def assignable_rational_to_lilypond_duration_string(rational):
    undotted_rational = rational_to_equal_or_lesser_binary_rational(rational)
    if undotted_rational <= 1:
       undotted_duration_string = str(undotted_rational.denominator)
-   elif undotted_rational == Rational(2, 1):
+   elif undotted_rational == Fraction(2, 1):
       undotted_duration_string = r'\breve'
-   elif undotted_rational == Rational(4, 1):
+   elif undotted_rational == Fraction(4, 1):
       undotted_duration_string = r'\longa'
-   elif undotted_rational == Rational(8, 1):
+   elif undotted_rational == Fraction(8, 1):
       undotted_duration_string = r'\maxima'
    else:
       raise ValueError('can not process undotted rational: %s' % undotted_rational)

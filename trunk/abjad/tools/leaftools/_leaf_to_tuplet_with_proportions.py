@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
 from abjad.components.Note import Note
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
@@ -32,7 +32,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
       notes = [Note(0, x) for x in written_durations]
    except AssignabilityError:
       denominator = target_duration._denominator
-      note_durations = [Rational(x, denominator) for x in divisions]
+      note_durations = [Fraction(x, denominator) for x in divisions]
       notes = make_notes(0, note_durations)
 
    ## make tuplet

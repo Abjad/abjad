@@ -27,23 +27,23 @@ write(staff, 'example1', 'oedo') <hide
 ::
 
   abjad> tuplet.duration.multiplier
-  Rational(4, 5)
+  Fraction(4, 5)
 
 ::
 
   abjad> note = tuplet[0]
   abjad> note.duration.written
-  Rational(1, 8)
+  Fraction(1, 8)
 
 ::
 
   abjad> note.duration.prolation
-  Rational(5, 4)
+  Fraction(5, 4)
 
 ::
 
   abjad> note.duration.prolated
-  Rational(5, 32)
+  Fraction(5, 32)
 
 
 The tuplet here augments its contents and carries a tuplet multiplier equal to `4/5`.
@@ -72,7 +72,7 @@ write(staff, 'example2', 'oedo') <hide
 ::
 
   abjad> note.duration.prolated
-  Rational(1, 10)
+  Fraction(1, 10)
 
 
 The nonbinary `4/10` meter here prolates the contents of the measure it governs by a prolation factor equal to `4/5`.
@@ -101,18 +101,18 @@ write(staff, 'example3', 'oedo') <hide
 ::
 
   abjad> measure.duration.multiplier
-  Rational(4, 5)
+  Fraction(4, 5)
 
 ::
 
   abjad> note = measure.leaves[0]
   abjad> note.duration.prolation
-  Rational(32, 35)
+  Fraction(32, 35)
 
 ::
 
   abjad> note.duration.prolated
-  Rational(2, 35)
+  Fraction(2, 35)
 
 
 The tuplet here augments the notes it contains by a prolation factor equal to `8/7`.

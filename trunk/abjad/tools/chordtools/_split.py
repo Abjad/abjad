@@ -41,7 +41,7 @@ def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
 
    Example::
 
-      abjad> chord = Chord(range(12), Rational(1, 4))
+      abjad> chord = Chord(range(12), Fraction(1, 4))
       abjad> chord
       Chord(c' cs' d' ef' e' f' fs' g' af' a' bf' b', 4)
       abjad> chordtools.split(chord, NamedPitch(6))

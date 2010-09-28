@@ -5,7 +5,7 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
 
    n = Note(0, (1, 4))
    leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
-      n, Rational(3, 16))
+      n, Fraction(3, 16))
    assert n.format == "c'8. * 4/3"
 
 
@@ -13,7 +13,7 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
 
    n = Note(0, (1, 4))
    leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
-      n, Rational(7, 8))
+      n, Fraction(7, 8))
    assert n.format == "c'2.. * 2/7"
 
 
@@ -21,5 +21,5 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
 
    n = Note(0, (1, 4))
    leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
-      n, Rational(15, 16))
+      n, Fraction(15, 16))
    assert n.format == "c'2... * 4/15"

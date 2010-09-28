@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 
 
@@ -16,7 +16,7 @@ def is_assignable_rational(duration):
    Otherwise false. ::
 
       abjad> for numerator in range(0, 16 + 1):
-      ...     duration = Rational(numerator, 16)
+      ...     duration = Fraction(numerator, 16)
       ...     print '%s\t%s' % (duration, durtools.is_assignable_rational(duration))
       ... 
       0     False
@@ -46,7 +46,7 @@ def is_assignable_rational(duration):
       ``durtools.is_assignable_rational( )``.
    '''
 
-   duration = Rational(duration)
+   duration = Fraction(duration)
    return mathtools.is_power_of_two(duration.denominator) and \
       (0 < duration < 16) and \
       mathtools.is_assignable_integer(duration.numerator)

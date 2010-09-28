@@ -6,7 +6,7 @@ def test_VerticalMoment___eq___01( ):
    score = Score([ ])
    score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
-   piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
+   piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    marktools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
@@ -38,12 +38,12 @@ def test_VerticalMoment___eq___01( ):
    '''
 
    vertical_moment_1 = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
-      piano_staff, Rational(1, 8))
+      piano_staff, Fraction(1, 8))
 
    "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
    vertical_moment_2 = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
-      piano_staff, Rational(1, 8))
+      piano_staff, Fraction(1, 8))
 
    "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
@@ -56,7 +56,7 @@ def test_VerticalMoment___eq___02( ):
    score = Score([ ])
    score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
-   piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
+   piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    marktools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
@@ -88,12 +88,12 @@ def test_VerticalMoment___eq___02( ):
    '''
 
    vertical_moment_1 = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
-      piano_staff, Rational(1, 8))
+      piano_staff, Fraction(1, 8))
 
    "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
    vertical_moment_2 = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
-      (piano_staff[0], piano_staff[1]), Rational(1, 8))
+      (piano_staff[0], piano_staff[1]), Fraction(1, 8))
 
    "VerticalMoment(Staff{2}, a'4, Staff{4}, e'8)"
 

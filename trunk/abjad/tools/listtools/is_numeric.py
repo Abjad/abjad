@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def is_numeric(l):
@@ -7,13 +7,13 @@ def is_numeric(l):
    Return ``True`` when all elements in iterable `l` are numeric,
    otherwise ``False``. ::
 
-      abjad> listtools.is_numeric([1, 2, 4.5, 5.5, Rational(13, 8)])
+      abjad> listtools.is_numeric([1, 2, 4.5, 5.5, Fraction(13, 8)])
       True
 
-   Defined equal to ``all([isinstance(x, (int, long, float, Rational)) 
+   Defined equal to ``all([isinstance(x, (int, long, float, Fraction)) 
    for x in l])``.
 
    .. note:: implementation will probably change under Python 2.6.
    '''
 
-   return all([isinstance(x, (int, long, float, Rational)) for x in l])
+   return all([isinstance(x, (int, long, float, Fraction)) for x in l])

@@ -13,7 +13,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
       abjad> score = Score([ ])
       abjad> score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
       abjad> piano_staff = scoretools.PianoStaff([ ])
-      abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
+      abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
       abjad> marktools.ClefMark('bass')(piano_staff[1])
       abjad> score.append(piano_staff)
@@ -41,7 +41,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
                       }
               >>
       >>
-      abjad> vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(piano_staff, Rational(1, 8))
+      abjad> vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(piano_staff, Fraction(1, 8))
       abjad> vertical_moment.leaves
       (Note(a', 4), Note(e', 8))
 

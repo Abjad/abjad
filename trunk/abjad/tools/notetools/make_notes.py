@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
@@ -50,12 +50,12 @@ def make_notes(pitches, durations, direction='big-endian'):
    if durtools.is_duration_token(durations):
       durations = [durations]
 
-   # this block is a hack to allow the function to accept a Rational
+   # this block is a hack to allow the function to accept a Fraction
    # as the duration input parameter; better will be to change
-   # the rest of the implementation to allow for Rationals directly.
-   ## [VA] We don't want to convert to Rationals internally because
-   ## Rationals reduce fractions to their minimum expression. e.g. 
-   ## (3, 3) --> Rational(1, 1), and we sometimes generate duration
+   # the rest of the implementation to allow for Fractions directly.
+   ## [VA] We don't want to convert to Fractions internally because
+   ## Fractions reduce fractions to their minimum expression. e.g. 
+   ## (3, 3) --> Fraction(1, 1), and we sometimes generate duration
    ## tokens that are not reduced, so we want to preserve the denominator 3.
    ## [TB] When do we want (3, 3) instead of (1, 1)?
    ## Durations should always reduce;
@@ -86,8 +86,8 @@ def make_notes(pitches, durations, direction='big-endian'):
          denominator = ds[0][1]
          numerator = mathtools.greatest_power_of_two_less_equal(denominator)
          multiplier = (numerator, denominator)
-         ratio = 1 / Rational(*multiplier)
-         ds = [ratio * Rational(*d) for d in ds]
+         ratio = 1 / Fraction(*multiplier)
+         ds = [ratio * Fraction(*d) for d in ds]
          ## make notes
          ns = _construct_unprolated_notes(ps, ds, direction)
          #t = Tuplet(multiplier, ns)

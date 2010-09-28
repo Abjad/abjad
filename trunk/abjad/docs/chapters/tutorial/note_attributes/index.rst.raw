@@ -77,7 +77,7 @@ written duration of our note and come back to other topics in duration
 management later. ::
 
    abjad> note.duration.written
-   Rational(1, 4)
+   Fraction(1, 4)
 
 
 .. rubric:: Footnotes

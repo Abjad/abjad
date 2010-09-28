@@ -27,7 +27,7 @@ def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(c
 
    ::
 
-      abjad> halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], Rational(1, 32))
+      abjad> halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], Fraction(1, 32))
       abjad> f(t)
       \new Staff {
          {

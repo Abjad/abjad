@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def truncate_subruns(l):
@@ -22,7 +22,7 @@ def truncate_subruns(l):
    if not isinstance(l, list):
       raise TypeError
 
-   assert all([isinstance(x, (int, float, Rational)) for x in l])
+   assert all([isinstance(x, (int, float, Fraction)) for x in l])
 
    result = [ ]
 

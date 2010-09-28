@@ -4,7 +4,7 @@ from abjad import *
 def test_TimeSignatureMark_partial_01( ):
 
    t = Staff(macros.scale(4))
-   marktools.TimeSignatureMark(2, 8, partial = Rational(1, 8))(t)
+   marktools.TimeSignatureMark(2, 8, partial = Fraction(1, 8))(t)
 
    r'''
    \new Staff {

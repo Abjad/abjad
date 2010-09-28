@@ -2,7 +2,7 @@
 
    Modules in this package may freely import the following:
 
-      from abjad.core import Rational
+      from abjad.core import Fraction
       from abjad.tools import mathtools
       from abjad.tools import durtools
 '''

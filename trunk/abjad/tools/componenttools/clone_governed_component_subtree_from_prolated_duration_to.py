@@ -1,7 +1,7 @@
 from abjad.components._Component import _Component
 from abjad.components.Container import Container
 from abjad.components._Leaf import _Leaf
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 
 
@@ -102,13 +102,13 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
       True
    '''
    assert isinstance(component, _Component)
-   start = Rational(*durtools.duration_token_to_reduced_duration_pair(start))
+   start = Fraction(*durtools.duration_token_to_reduced_duration_pair(start))
    if start < 0:
-      start = Rational(0)
+      start = Fraction(0)
    if stop is None:
       stop = component.duration.prolated
    else:
-      stop = Rational(*durtools.duration_token_to_reduced_duration_pair(stop))
+      stop = Fraction(*durtools.duration_token_to_reduced_duration_pair(stop))
    assert start <= stop
    if isinstance(component, _Leaf):
       return _scopy_leaf(component, start, stop)
@@ -158,7 +158,7 @@ def _get_lcopy(container, start, stop):
    from abjad.tools.componenttools.clone_governed_component_subtree_by_leaf_range import \
       clone_governed_component_subtree_by_leaf_range
    from abjad.tools import leaftools
-   total_dur = Rational(0)
+   total_dur = Fraction(0)
    start_leaf, stop_leaf = None, None
    first_dif = second_dif = 0
    for i, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(container)):

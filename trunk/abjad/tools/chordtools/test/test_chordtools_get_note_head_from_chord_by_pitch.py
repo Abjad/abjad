@@ -5,7 +5,7 @@ import py.test
 def test_chordtools_get_note_head_from_chord_by_pitch_01( ):
    '''Return reference to note_head in chord with pitch equal to pitch.'''
 
-   chord = Chord([0, 2, 11], Rational(1, 4))
+   chord = Chord([0, 2, 11], Fraction(1, 4))
 
    note_head = chordtools.get_note_head_from_chord_by_pitch(chord, 0)
    assert note_head.pitch.number == 0
@@ -20,7 +20,7 @@ def test_chordtools_get_note_head_from_chord_by_pitch_01( ):
 def test_chordtools_get_note_head_from_chord_by_pitch_02( ):
    '''Raise MissingNoteHeadError and ExtraNoteHeadError as required.'''
 
-   chord = Chord([0, 2, 2], Rational(1, 4))
+   chord = Chord([0, 2, 2], Fraction(1, 4))
 
    assert py.test.raises(
       MissingNoteHeadError, 'chordtools.get_note_head_from_chord_by_pitch(chord, 9)')

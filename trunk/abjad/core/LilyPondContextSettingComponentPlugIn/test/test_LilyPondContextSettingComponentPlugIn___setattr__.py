@@ -163,7 +163,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___08( ):
    '''
 
    t = Score([Staff(macros.scale(4))])
-   t.set.proportional_notation_duration = schemetools.SchemeMoment(Rational(1, 56))
+   t.set.proportional_notation_duration = schemetools.SchemeMoment(Fraction(1, 56))
 
    r'''
    \new Score \with {

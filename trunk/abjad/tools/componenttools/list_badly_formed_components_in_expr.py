@@ -5,7 +5,7 @@ def list_badly_formed_components_in_expr(expr, allow_empty_containers = True):
    r'''List badly formed components in `expr`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> staff[1].duration.written = Rational(1, 4)
+      abjad> staff[1].duration.written = Fraction(1, 4)
       abjad> spannertools.BeamSpanner(staff[:])
       abjad> f(staff)
       \new Staff {

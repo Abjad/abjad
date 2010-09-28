@@ -1,6 +1,6 @@
 from abjad.components.Measure import Measure
 from abjad.tools.metertools import Meter
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import leaftools
 from abjad.tools.pitchtools.PitchArray.PitchArrayRow.PitchArrayRow \
    import PitchArrayRow
@@ -36,7 +36,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
 
    meter = Meter(pitch_array_row.width, cell_duration_denominator)
    measure = Measure(meter, [ ])
-   basic_cell_duration = Rational(1, cell_duration_denominator)
+   basic_cell_duration = Fraction(1, cell_duration_denominator)
    measure_pitches, measure_durations = [ ], [ ]
    for cell in pitch_array_row.cells:
       cell_pitches = cell.pitches

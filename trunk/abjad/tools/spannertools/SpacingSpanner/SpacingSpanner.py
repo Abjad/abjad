@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.spannertools.SpacingSpanner._SpacingSpannerFormatInterface import _SpacingSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
@@ -16,7 +16,7 @@ class SpacingSpanner(Spanner):
       abjad> macros.diatonicize(staff)
       abjad> spacing_spanner = spannertools.SpacingSpanner(staff[1:])
       abjad> spacing_spanner.new_section = True
-      abjad> spacing_spanner.override.score.spacing_spanner.proportional_notation_duration = Rational(1, 30)
+      abjad> spacing_spanner.override.score.spacing_spanner.proportional_notation_duration = Fraction(1, 30)
       abjad> spacing_spanner.override.score.spacing_spanner.strict_grace_spacing = True
       abjad> spacing_spanner.override.score.spacing_spanner.strict_note_spacing = True
       abjad> spacing_spanner.override.score.uniform_stretching = True
@@ -101,7 +101,7 @@ class SpacingSpanner(Spanner):
             abjad> staff = Staff(macros.scale(4))
             abjad> spacing_spanner = spannertools.SpacingSpanner(staff[2:])
             abjad> spacing_spanner.new_section = True
-            abjad> spacing_spanner.proportional_notation_duration = Rational(1, 30)
+            abjad> spacing_spanner.proportional_notation_duration = Fraction(1, 30)
             abjad> print t.format
             \new Staff {
                     c'8
@@ -119,6 +119,6 @@ class SpacingSpanner(Spanner):
          '''
          return self._proportional_notation_duration
       def fset(self, expr):
-         assert isinstance(expr, (Rational, type(None)))
+         assert isinstance(expr, (Fraction, type(None)))
          self._proportional_notation_duration = expr
       return property(**locals( ))

@@ -5,7 +5,7 @@ def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = T
    r'''Tabulate well-formedness violations in `expr`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> staff[1].duration.written = Rational(1, 4)
+      abjad> staff[1].duration.written = Fraction(1, 4)
       abjad> spannertools.BeamSpanner(staff[:])
       abjad> f(staff)
       \new Staff {

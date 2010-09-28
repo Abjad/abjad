@@ -5,7 +5,7 @@ from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
-from abjad.core import Rational
+from abjad.core import Fraction
 from copy import deepcopy as python_deepcopy
 
 
@@ -277,17 +277,17 @@ class Spanner(_StrictComparator):
       ::
 
          abjad> spanner.duration.written
-         Rational(1, 2)
+         Fraction(1, 2)
 
       ::
 
          abjad> spanner.duration.preprolated
-         Rational(1, 2)
+         Fraction(1, 2)
 
       ::
 
          abjad> spanner.duration.prolated
-         Rational(1, 2)
+         Fraction(1, 2)
 
       Spanner duration interface also implements ``seconds`` attribute.
       '''
@@ -347,12 +347,12 @@ class Spanner(_StrictComparator):
       ::
 
          abjad> spanner.offset.start
-         Rational(1, 4)
+         Fraction(1, 4)
 
       ::
 
          abjad> spanner.offset.stop
-         Rational(1, 2)
+         Fraction(1, 2)
       '''
          
       return self._offset

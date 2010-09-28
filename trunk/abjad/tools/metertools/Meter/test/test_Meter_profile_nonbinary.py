@@ -9,7 +9,7 @@ def test_Meter_profile_nonbinary_01( ):
    assert marktools.get_effective_time_signature(t) == marktools.TimeSignatureMark(5, 7)
    assert marktools.get_effective_time_signature(t).numerator == 5
    assert marktools.get_effective_time_signature(t).denominator == 7
-   assert marktools.get_effective_time_signature(t).duration == Rational(5, 7)
+   assert marktools.get_effective_time_signature(t).duration == Fraction(5, 7)
 
 
 def test_Meter_profile_nonbinary_02( ):
@@ -20,4 +20,4 @@ def test_Meter_profile_nonbinary_02( ):
    assert marktools.get_effective_time_signature(t) == marktools.TimeSignatureMark(6, 7)
    assert marktools.get_effective_time_signature(t).numerator == 6
    assert marktools.get_effective_time_signature(t).denominator == 7
-   assert marktools.get_effective_time_signature(t).duration == Rational(6, 7)
+   assert marktools.get_effective_time_signature(t).duration == Fraction(6, 7)

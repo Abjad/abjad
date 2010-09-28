@@ -1,5 +1,5 @@
 from abjad.components.Note import Note
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import listtools
 
@@ -36,10 +36,10 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
    quarter_notes = [ ]
 
    for pitch, duration in listtools.zip_cyclic(pitches, multiplied_durations):
-      quarter_note = Note(pitch, Rational(1, 4))
+      quarter_note = Note(pitch, Fraction(1, 4))
       duration_token = durtools.duration_token_to_reduced_duration_pair(duration)
-      duration = Rational(*duration_token)
-      multiplier = duration / Rational(1, 4)
+      duration = Fraction(*duration_token)
+      multiplier = duration / Fraction(1, 4)
       quarter_note.duration.multiplier = multiplier
       quarter_notes.append(quarter_note)
 

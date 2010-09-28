@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 class InversionEquivalentChromaticIntervalClass(_Immutable):
@@ -13,7 +13,7 @@ class InversionEquivalentChromaticIntervalClass(_Immutable):
          #self._number = interval_class_token.number
          _number = interval_class_token.number
 
-      elif isinstance(interval_class_token, (int, float, long, Rational)):
+      elif isinstance(interval_class_token, (int, float, long, Fraction)):
          if not 0 <= interval_class_token <= 6:
             raise ValueError('must be between 0 and 6, inclusive.')
          #self._number = interval_class_token

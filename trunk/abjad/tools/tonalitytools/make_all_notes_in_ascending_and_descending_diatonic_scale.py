@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
 from abjad.tools import componenttools
@@ -49,11 +49,11 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
    '''
 
    ascending_notes = make_first_n_notes_in_ascending_diatonic_scale(
-      8, Rational(1, 8), key_signature)
+      8, Fraction(1, 8), key_signature)
    descending_notes = componenttools.clone_components_and_remove_all_spanners(ascending_notes[:-1])
    descending_notes.reverse( )
    notes = ascending_notes + descending_notes
-   notes[-1].duration.written = Rational(1, 4)
+   notes[-1].duration.written = Fraction(1, 4)
    staff = Staff(notes)
    marktools.KeySignatureMark(key_signature.tonic, key_signature.mode)(staff)
    score = Score([staff])

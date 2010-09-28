@@ -1,10 +1,10 @@
 from abjad.components.Note import Note
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import pitchtools
 from abjad.tools.notetools.make_notes import make_notes
 
 
-def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = Rational(1, 8), key_signature = None):
+def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = Fraction(1, 8), key_signature = None):
    r'''Construct `count` notes with `written_duration`
    according to `key_signature`::
 

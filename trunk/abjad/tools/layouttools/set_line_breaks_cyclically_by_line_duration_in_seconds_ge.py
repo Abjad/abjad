@@ -31,7 +31,7 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
    
    ::
 
-      abjad> layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(t, Rational(6))
+      abjad> layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(t, Fraction(6))
       abjad> print t.format
       \new Staff {
                       \time 2/8

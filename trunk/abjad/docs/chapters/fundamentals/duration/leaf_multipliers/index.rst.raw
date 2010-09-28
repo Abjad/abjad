@@ -13,9 +13,9 @@ Abjad implements LilyPond multpliers as the settable
 
 <abjad>
     abjad> note = Note(0, (1, 4))
-    abjad> note.duration.multiplier = Rational(1, 2)
+    abjad> note.duration.multiplier = Fraction(1, 2)
     abjad> note.duration.multiplier
-    Rational(1, 2)
+    Fraction(1, 2)
 </abjad>
 
 <abjad>    
@@ -30,7 +30,7 @@ duration of a note, rest, chord or skip as affected by the multiplier
 
 <abjad>    
     abjad> note.duration.multiplied
-    Rational(1, 8)
+    Fraction(1, 8)
 </abjad>    
 
 LilyPond multipliers give the half notes here multiplied durations
@@ -39,7 +39,7 @@ equal to a quarter note.
 <abjad>    
     abjad> notes = Note(0, (1, 4)) * 4
     abjad> multiplied_note = Note(0, (1, 2))
-    abjad> multiplied_note.duration.multiplier = Rational(1, 2)
+    abjad> multiplied_note.duration.multiplier = Fraction(1, 2)
     abjad> multiplied_notes = multiplied_note * 4
     abjad> top = RhythmicStaff(notes)
     abjad> bottom = RhythmicStaff(multiplied_notes)

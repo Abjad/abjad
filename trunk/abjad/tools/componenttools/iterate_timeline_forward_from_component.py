@@ -12,7 +12,7 @@ def iterate_timeline_forward_from_component(expr, klass = _Leaf):
    starting from `expr`. ::
 
       abjad> score = Score([ ])
-      abjad> score.append(Staff(notetools.make_repeated_notes(4, Rational(1, 4))))
+      abjad> score.append(Staff(notetools.make_repeated_notes(4, Fraction(1, 4))))
       abjad> score.append(Staff(notetools.make_repeated_notes(4)))
       abjad> macros.diatonicize(score)
       abjad> f(score)

@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
 from abjad.components.Note import Note
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import notetools
@@ -39,7 +39,7 @@ def _make_tuplet_from_duration_with_proportions_and_encourage_dots(
       notes = [Note(0, x) for x in written_durations]
    except AssignabilityError:
       denominator = duration._denominator
-      note_durations = [Rational(x, denominator) for x in divisions]
+      note_durations = [Fraction(x, denominator) for x in divisions]
       notes = notetools.make_notes(0, note_durations)
 
    ## make tuplet

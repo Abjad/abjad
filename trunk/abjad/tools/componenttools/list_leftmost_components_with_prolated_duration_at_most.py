@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def list_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
@@ -6,8 +6,8 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
    the prolated duration of ``components[:i]``. ::
 
       abjad> voice = Voice(macros.scale(4))
-      abjad> componenttools.list_leftmost_components_with_prolated_duration_at_most(voice[:], Rational(1, 4))
-      ([Note(c', 8), Note(d', 8)], Rational(1, 4))
+      abjad> componenttools.list_leftmost_components_with_prolated_duration_at_most(voice[:], Fraction(1, 4))
+      ([Note(c', 8), Note(d', 8)], Fraction(1, 4))
 
    Maximize ``i`` such that the prolated duration of 
    ``components[:i]`` is no greater than `prolated_duration`.
@@ -31,7 +31,7 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   total_duration = Rational(0)
+   total_duration = Fraction(0)
    result = [ ]
    for component in components:
       cur_duration = component.duration.prolated

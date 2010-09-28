@@ -111,10 +111,10 @@ print n1.pitch <= n2.pitch
 Duration initialization
 -----------------------
 
-Initialize :class:`Note <abjad.components.Note.note.Note>` duration with a :class:`Rational <abjad.core.rational.Rational>`.
+Initialize :class:`Note <abjad.components.Note.note.Note>` duration with a :class:`Fraction <abjad.core.rational.Fraction>`.
 
 <abjad>
-note = Note(0, Rational(1, 8))
+note = Note(0, Fraction(1, 8))
 measure = Measure(note.duration.prolated, [note]) <hide
 measure.meter.transparent = True <hide
 write_ly(measure, 'duration_init1', 'oedo') <hide
@@ -185,30 +185,30 @@ note = Note(0, (1, 4))
 
 <abjad>
 note = Note(0, (1, 8))
-note.duration.written = Rational(3, 16)
+note.duration.written = Fraction(3, 16)
 measure = Measure(note.duration.prolated, [note]) <hide
 measure.meter.transparent = True <hide
 write_ly(measure, 'duration_assign1', 'oedo') <hide
 </abjad>
 
 You must use an :term:`assignable` 
-:class:`Rational <abjad.core.rational.Rational>`.
+:class:`Fraction <abjad.core.rational.Fraction>`.
 You can also assign ``note.duration.multiplier``.
 
 <abjad>
 note = Note(0, (1, 4))
-note.duration.multiplier = Rational(1, 6)
+note.duration.multiplier = Fraction(1, 6)
 </abjad>
 
 <abjad>
 note = Note(0, (1, 4))
-note.duration.multiplier = Rational(1, 6)
+note.duration.multiplier = Fraction(1, 6)
 print note.duration.written
 print note.duration.multiplier
 print note.duration.multiplied
 </abjad>
 
-Use any positive Rational.
+Use any positive Fraction.
 All other duration attributes are read-only.
 
 

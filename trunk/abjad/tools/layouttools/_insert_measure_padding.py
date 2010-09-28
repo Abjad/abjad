@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.components._Leaf import _Leaf
 from abjad.components.Rest import Rest
 from abjad.components.Skip import Skip
@@ -12,10 +12,10 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    '''
    from abjad.tools import measuretools
 
-   if not isinstance(front, (Rational, type(None))):
+   if not isinstance(front, (Fraction, type(None))):
       raise ValueError
 
-   if not isinstance(back, (Rational, type(None))):
+   if not isinstance(back, (Fraction, type(None))):
       raise ValueError
 
    if not isinstance(klass, (Rest, Skip)):

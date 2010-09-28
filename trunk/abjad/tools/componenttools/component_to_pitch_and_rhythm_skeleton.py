@@ -24,21 +24,21 @@ def component_to_pitch_and_rhythm_skeleton(component):
       Score([
          Staff([
             Measure(Meter(6, 16), [
-               tuplettools.FixedDurationTuplet(Rational(3, 8), [
-                  Note(('c', 4), Rational(1, 8)),
-                  Note(('d', 4), Rational(1, 8)),
-                  Note(('e', 4), Rational(1, 8)),
-                  Note(('f', 4), Rational(1, 8))
+               tuplettools.FixedDurationTuplet(Fraction(3, 8), [
+                  Note(('c', 4), Fraction(1, 8)),
+                  Note(('d', 4), Fraction(1, 8)),
+                  Note(('e', 4), Fraction(1, 8)),
+                  Note(('f', 4), Fraction(1, 8))
                ])
             ])
          ]),
          Staff([
             Measure(Meter(6, 16), [
-               tuplettools.FixedDurationTuplet(Rational(3, 8), [
-                  Note(('g', 4), Rational(1, 8)),
-                  Note(('a', 4), Rational(1, 8)),
-                  Note(('b', 4), Rational(1, 8)),
-                  Note(('c', 5), Rational(1, 8))
+               tuplettools.FixedDurationTuplet(Fraction(3, 8), [
+                  Note(('g', 4), Fraction(1, 8)),
+                  Note(('a', 4), Fraction(1, 8)),
+                  Note(('b', 4), Fraction(1, 8)),
+                  Note(('c', 5), Fraction(1, 8))
                ])
             ])
          ])

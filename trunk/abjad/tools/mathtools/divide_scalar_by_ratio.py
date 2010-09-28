@@ -1,5 +1,5 @@
 from __future__ import division
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def divide_scalar_by_ratio(scalar, ratio):
@@ -8,8 +8,8 @@ def divide_scalar_by_ratio(scalar, ratio):
 
    ::
 
-      abjad> mathtools.divide_scalar_by_ratio(Rational(1, 2), [1, 1, 3])
-      [Rational(1, 10), Rational(1, 10), Rational(3, 10)]
+      abjad> mathtools.divide_scalar_by_ratio(Fraction(1, 2), [1, 1, 3])
+      [Fraction(1, 10), Fraction(1, 10), Fraction(3, 10)]
 
    ::
 
@@ -25,7 +25,7 @@ def divide_scalar_by_ratio(scalar, ratio):
       return rational values instead of floats?
    '''
 
-   if not isinstance(scalar, (int, float, long, Rational)):
+   if not isinstance(scalar, (int, float, long, Fraction)):
       raise TypeError
 
    #return [scalar * p / sum(ratio) for p in ratio]

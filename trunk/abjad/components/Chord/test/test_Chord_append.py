@@ -7,7 +7,7 @@ def test_Chord_append_01( ):
    An \override an in incorrect format contribution below.
    '''
 
-   chord = Chord([0, 2], Rational(1, 4))
+   chord = Chord([0, 2], Fraction(1, 4))
    note_head = notetools.NoteHead(None, 11)
    note_head.tweak.style = 'harmonic'
    chord.append(note_head)

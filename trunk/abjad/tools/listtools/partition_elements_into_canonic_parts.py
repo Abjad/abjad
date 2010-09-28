@@ -23,7 +23,7 @@ def partition_elements_into_canonic_parts(l, direction = 'big-endian'):
 
    Raise :exc:`ValueError` on noninteger elements in `l`. ::
 
-      abjad> listtools.partition_elements_into_canonic_parts([Rational(1, 2), Rational(1, 2)])
+      abjad> listtools.partition_elements_into_canonic_parts([Fraction(1, 2), Fraction(1, 2)])
       ValueError
    '''
 

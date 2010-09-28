@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 from abjad.tools.listtools.weight import weight
 
@@ -75,8 +75,8 @@ def partition_by_weights(l, weights, cyclic = False, overhang = False):
       [[7], [13, -2], [-7], [-11, 4], [7], [9, -6], [-7]]
    '''
 
-   assert all([isinstance(x, (int, float, long, Rational)) for x in l])
-   assert all([isinstance(x, (int, float, long, Rational)) for x in weights])
+   assert all([isinstance(x, (int, float, long, Fraction)) for x in l])
+   assert all([isinstance(x, (int, float, long, Fraction)) for x in weights])
    assert all([0 < x for x in weights])
 
    copy_of_l = l[:]

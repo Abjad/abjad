@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def is_power_of_two(expr):
@@ -36,7 +36,7 @@ def is_power_of_two(expr):
 
    if isinstance(expr, (int, long)):
       return not bool(expr & (expr - 1))
-   elif isinstance(expr, Rational):
+   elif isinstance(expr, Fraction):
       return is_power_of_two(expr.numerator * expr.denominator)
    else:
       return False

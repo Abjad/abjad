@@ -10,10 +10,10 @@ def test_SpacingSpanner_proportional_notation_duration_01( ):
 #   t = Staff(macros.scale(4))
 #   spacing_spanner_1 = spannertools.SpacingSpanner(t[:2])
 #   spacing_spanner_1.new_section = True
-#   spacing_spanner_1.proportional_notation_duration = Rational(1, 15)
+#   spacing_spanner_1.proportional_notation_duration = Fraction(1, 15)
 #   spacing_spanner_2 = spannertools.SpacingSpanner(t[2:])
 #   spacing_spanner_2.new_section = True
-#   spacing_spanner_2.proportional_notation_duration = Rational(1, 30)
+#   spacing_spanner_2.proportional_notation_duration = Fraction(1, 30)
 
    t = Staff(macros.scale(4))
    marktools.LilyPondCommandMark('new_spacing_section')(t[0])

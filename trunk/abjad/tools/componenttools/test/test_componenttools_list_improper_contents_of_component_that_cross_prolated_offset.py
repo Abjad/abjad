@@ -18,7 +18,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
    }
    '''
 
-   result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Rational(1, 8))
+   result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Fraction(1, 8))
 
    assert result == [t, t[0]]
 
@@ -40,7 +40,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
    }
    '''
 
-   result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Rational(1, 16))
+   result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Fraction(1, 16))
 
    assert result == [t, t[0], t[0][0]]
 
@@ -62,7 +62,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
    }
    '''
 
-   result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Rational(0))
+   result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Fraction(0))
 
    assert result == [ ]
 
@@ -84,6 +84,6 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
    }
    '''
 
-   result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Rational(100))
+   result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Fraction(100))
 
    assert result == [ ]

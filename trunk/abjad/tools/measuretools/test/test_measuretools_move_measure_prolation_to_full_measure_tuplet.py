@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
    '''Project 3/12 meter onto measure contents.'''
 
-   inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Rational(1, 16)))
+   inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))
    notes = notetools.make_repeated_notes(2)
    outer = tuplettools.FixedDurationTuplet((2, 8), [inner] + notes)
    t = Measure((2, 8), [outer])

@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 import math
 
 
@@ -57,7 +57,7 @@ def least_power_of_two_greater_equal(n, i = 0):
       ValueError
    '''
 
-   if not isinstance(n, (int, long, float, Rational)):
+   if not isinstance(n, (int, long, float, Fraction)):
       raise TypeError
 
    if n <= 0:

@@ -6,7 +6,7 @@ def test_VerticalMoment_notes_01( ):
    score = Score([ ])
    score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
-   piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
+   piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    marktools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
@@ -38,7 +38,7 @@ def test_VerticalMoment_notes_01( ):
    '''
 
    vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
-      score, Rational(1, 8))
+      score, Fraction(1, 8))
    "(Note(d'', 8), Note(a', 4), Note(e', 8))"
    assert vertical_moment.notes == (
       score[0][0][0], piano_staff[0][0], piano_staff[1][1])

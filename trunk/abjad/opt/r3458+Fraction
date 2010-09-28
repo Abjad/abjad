@@ -55,7 +55,7 @@ r3458+Fraction:
    Partition of a set of 788120 objects. Total size = 82334816 bytes. (with opt)
 
 ## CONCLUSION:
-## Using built-in Python 2.6 Fraction in place of Abjad Rational
+## Using built-in Python 2.6 Fraction in place of Abjad Fraction
 ## isn't any faster but does save a small but measurable amount of memory.
 ## Memory usage goes from 84.8M (r3458) to 82.3M (r3458 + Fraction optimization).
 ## This represents a memory savings of about 9.7 %.

@@ -1,6 +1,6 @@
 from abjad.components._Component import _Component
 from abjad.components.Container import Container
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def _new_vertical_moments_forward_in(expr):
@@ -14,7 +14,7 @@ def _new_vertical_moments_forward_in(expr):
       raise TypeError('must be Abjad component.')
 
    governors = (expr, )
-   cur_offset, stop_offsets, buffer = Rational(0), [ ], [ ]
+   cur_offset, stop_offsets, buffer = Fraction(0), [ ], [ ]
    _buffer_components_starting_with(expr, buffer, stop_offsets)
    
    while buffer:

@@ -11,7 +11,7 @@ def assignable_rational_to_dot_count(rational):
 
       abjad> for n in range(1, 9):
       ...     try:
-      ...             rational = Rational(n, 16)
+      ...             rational = Fraction(n, 16)
       ...             dot_count = durtools.assignable_rational_to_dot_count(rational)
       ...             print '%s\t%s' % (rational, dot_count)
       ...     except AssignabilityError:
@@ -28,7 +28,7 @@ def assignable_rational_to_dot_count(rational):
 
    Raise assignability error when `rational` is not note-head-assignable. ::
 
-      abjad> durtools.assignable_rational_to_dot_count(Rational(5, 16))
+      abjad> durtools.assignable_rational_to_dot_count(Fraction(5, 16))
       AssignabilityError
 
    .. versionchanged:: 1.1.2

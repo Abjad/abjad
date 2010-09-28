@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def arithmetic_mean(l):
@@ -16,7 +16,7 @@ def arithmetic_mean(l):
 
       abjad> l = [1, 2, 20]
       abjad> listtools.arithmetic_mean(l)
-      Rational(23, 3)
+      Fraction(23, 3)
 
    Or return a float. ::
 
@@ -31,7 +31,7 @@ def arithmetic_mean(l):
    if isinstance(sum_l, float):
       return sum_l / len_l
 
-   result = Rational(sum(l), len(l))
+   result = Fraction(sum(l), len(l))
 
    int_result = int(result)
    if int_result == result:

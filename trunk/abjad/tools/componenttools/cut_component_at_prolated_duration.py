@@ -1,7 +1,7 @@
 from abjad.components._Component import _Component
 from abjad.exceptions import NegativeDurationError
 from abjad.components._Leaf import _Leaf
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most \
    import list_leftmost_components_with_prolated_duration_at_most
 
@@ -11,7 +11,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
-      abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(1, 32))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Fraction(1, 32))
       abjad> f(staff)
       \new Staff {
          c'16. [
@@ -24,7 +24,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
-      abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(3, 64))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Fraction(3, 64))
       abjad> f(staff)
       \new Staff {
          c'16 [ ~
@@ -38,7 +38,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
-      abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(1, 24))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Fraction(1, 24))
       abjad> f(staff)
       \new Staff {
          \times 2/3 {
@@ -65,7 +65,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
    from abjad.tools import leaftools
 
    assert isinstance(component, _Component)
-   assert isinstance(prolated_duration, Rational)
+   assert isinstance(prolated_duration, Fraction)
 
    if component.duration.prolated <= prolated_duration:
       raise NegativeDurationError('component durations must be positive.')

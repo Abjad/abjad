@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.durtools.is_duration_pair import is_duration_pair
 
 
@@ -13,7 +13,7 @@ def is_duration_token(duration_token):
 
    True when `duration_token` is a positive rational. ::
 
-      abjad> durtools.is_duration_token(Rational(1, 4))
+      abjad> durtools.is_duration_token(Fraction(1, 4))
       True
 
    True when `duration_token` is a positive integer. ::
@@ -29,7 +29,7 @@ def is_duration_token(duration_token):
 
    if is_duration_pair(duration_token):
       return True
-   elif isinstance(duration_token, Rational) and 0 < duration_token:
+   elif isinstance(duration_token, Fraction) and 0 < duration_token:
       return True
    elif isinstance(duration_token, (int, long)) and 0 < duration_token:
       return True

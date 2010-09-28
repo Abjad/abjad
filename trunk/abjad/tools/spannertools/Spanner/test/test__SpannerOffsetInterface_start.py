@@ -17,5 +17,5 @@ def test__SpannerOffsetInterface_start_01( ):
    }
    '''
 
-   assert beam.offset.start == Rational(1, 8)
-   assert glissando.offset.start == Rational(0)
+   assert beam.offset.start == Fraction(1, 8)
+   assert glissando.offset.start == Fraction(0)

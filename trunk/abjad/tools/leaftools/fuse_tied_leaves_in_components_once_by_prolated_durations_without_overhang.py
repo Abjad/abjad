@@ -18,7 +18,7 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
       
    ::
       
-      abjad> leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(staff, [Rational(3, 8), Rational(3, 8)])
+      abjad> leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(staff, [Fraction(3, 8), Fraction(3, 8)])
 
    ::
  

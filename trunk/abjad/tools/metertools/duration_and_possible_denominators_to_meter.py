@@ -9,22 +9,22 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
    Take denominator from smallest workable value in 'denominators'.
    Or take denominator from smallest workable multiple of 'factor'::
 
-      abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), [5, 6, 7, 8])
+      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), [5, 6, 7, 8])
       metertools.Meter(9, 6)
 
    ::
 
-      abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), [4, 8, 16, 32])
+      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), [4, 8, 16, 32])
       metertools.Meter(6, 4)
 
    ::
 
-      abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), factor = 5)
+      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), factor = 5)
       metertools.Meter(15, 10)
 
    ::
 
-      abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2))
+      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2))
       metertools.Meter(3, 2)
 
    .. versionchanged:: 1.1.2

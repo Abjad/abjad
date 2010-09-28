@@ -227,19 +227,19 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
    tuplet = t[0]
    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 5
-   assert tuplet.duration.target == Rational(7, 8)
-   assert tuplet.duration.prolated == Rational(2, 4)
+   assert tuplet.duration.target == Fraction(7, 8)
+   assert tuplet.duration.prolated == Fraction(2, 4)
    note = t[0][0]
-   assert note.duration.written == Rational(1, 4)
-   assert note.duration.prolated == Rational(1, 10)
+   assert note.duration.written == Fraction(1, 4)
+   assert note.duration.prolated == Fraction(1, 10)
    tuplet = t[1]
    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 6
-   assert tuplet.duration.target == Rational(4, 8)
-   assert tuplet.duration.prolated == Rational(2, 7)
+   assert tuplet.duration.target == Fraction(4, 8)
+   assert tuplet.duration.prolated == Fraction(2, 7)
    note = t[1][0]
-   assert note.duration.written == Rational(1, 8)
-   assert note.duration.prolated == Rational(1, 21)
+   assert note.duration.written == Fraction(1, 8)
+   assert note.duration.prolated == Fraction(1, 21)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -301,19 +301,19 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
    tuplet = t[0]
    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 6
-   assert tuplet.duration.target == Rational(2, 4)
-   assert tuplet.duration.prolated == Rational(2, 7)
+   assert tuplet.duration.target == Fraction(2, 4)
+   assert tuplet.duration.prolated == Fraction(2, 7)
    note = t[0][0]
-   assert note.duration.written == Rational(1, 8)
-   assert note.duration.prolated == Rational(1, 21)
+   assert note.duration.written == Fraction(1, 8)
+   assert note.duration.prolated == Fraction(1, 21)
    tuplet = t[1]
    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 1
-   assert tuplet.duration.target == Rational(7, 24)
-   assert tuplet.duration.prolated == Rational(1, 6)
+   assert tuplet.duration.target == Fraction(7, 24)
+   assert tuplet.duration.prolated == Fraction(1, 6)
    note = t[1][0]
-   assert note.duration.written == Rational(1, 4)
-   assert note.duration.prolated == Rational(1, 6)
+   assert note.duration.written == Fraction(1, 4)
+   assert note.duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -369,14 +369,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
    tuplet = t[0]
    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 7
-   assert tuplet.duration.target == Rational(2, 4)
-   assert tuplet.duration.prolated == Rational(2, 6)
+   assert tuplet.duration.target == Fraction(2, 4)
+   assert tuplet.duration.prolated == Fraction(2, 6)
    note = t[0][0]
-   assert note.duration.written == Rational(1, 8)
-   assert note.duration.prolated == Rational(1, 21)
+   assert note.duration.written == Fraction(1, 8)
+   assert note.duration.prolated == Fraction(1, 21)
    note = t[1]
-   assert note.duration.written == Rational(1, 4)
-   assert note.duration.prolated == Rational(1, 6)
+   assert note.duration.written == Fraction(1, 4)
+   assert note.duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -408,23 +408,23 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
    tuplet = t[0]
    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 3
-   assert tuplet.duration.target == Rational(1)
-   assert tuplet.duration.prolated == Rational(8, 9)
-   assert tuplet.duration.multiplier == Rational(3, 4)
+   assert tuplet.duration.target == Fraction(1)
+   assert tuplet.duration.prolated == Fraction(8, 9)
+   assert tuplet.duration.multiplier == Fraction(3, 4)
    note = t[0][0]
    assert isinstance(note, Note)
-   assert note.duration.written == Rational(1, 2)
-   assert note.duration.prolated == Rational(1, 3)
+   assert note.duration.written == Fraction(1, 2)
+   assert note.duration.prolated == Fraction(1, 3)
    tuplet = t[0][-1]
    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
    assert len(tuplet) == 2
-   assert tuplet.duration.target == Rational(1, 3)
-   assert tuplet.duration.prolated == Rational(2, 9)
-   assert tuplet.duration.multiplier == Rational(2, 3)
+   assert tuplet.duration.target == Fraction(1, 3)
+   assert tuplet.duration.prolated == Fraction(2, 9)
+   assert tuplet.duration.multiplier == Fraction(2, 3)
    note = t[0][-1][0]
    assert isinstance(note, Note)
-   assert note.duration.written == Rational(1, 4)
-   assert note.duration.prolated == Rational(1, 9)
+   assert note.duration.written == Fraction(1, 4)
+   assert note.duration.prolated == Fraction(1, 9)
 
    r'''
    \time 8/9
@@ -448,11 +448,11 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 5
-   assert t.duration.preprolated == Rational(5, 4)
-   assert t.duration.prolated == Rational(5, 4)
+   assert t.duration.preprolated == Fraction(5, 4)
+   assert t.duration.prolated == Fraction(5, 4)
    assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 4)
+   assert t[0].duration.written == Fraction(1, 4)
+   assert t[0].duration.prolated == Fraction(1, 4)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -462,11 +462,11 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 5
-   assert t.duration.preprolated == Rational(5, 4)
-   assert t.duration.prolated == Rational(5, 4)
+   assert t.duration.preprolated == Fraction(5, 4)
+   assert t.duration.prolated == Fraction(5, 4)
    assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 4)
+   assert t[0].duration.written == Fraction(1, 4)
+   assert t[0].duration.prolated == Fraction(1, 4)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -477,11 +477,11 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Voice)
    assert len(t) == 5
-   assert t.duration.preprolated == Rational(5, 4)
-   assert t.duration.prolated == Rational(5, 4)
+   assert t.duration.preprolated == Fraction(5, 4)
+   assert t.duration.prolated == Fraction(5, 4)
    assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 4)
+   assert t[0].duration.written == Fraction(1, 4)
+   assert t[0].duration.prolated == Fraction(1, 4)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -491,11 +491,11 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 5
-   assert t.duration.preprolated == Rational(5, 4)
-   assert t.duration.prolated == Rational(5, 4)
+   assert t.duration.preprolated == Fraction(5, 4)
+   assert t.duration.prolated == Fraction(5, 4)
    assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 4)
+   assert t[0].duration.written == Fraction(1, 4)
+   assert t[0].duration.prolated == Fraction(1, 4)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -506,14 +506,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Container)
    assert len(t) == 1
-   assert t.duration.preprolated == Rational(2, 4)
-   assert t.duration.prolated == Rational(2, 4)
+   assert t.duration.preprolated == Fraction(2, 4)
+   assert t.duration.prolated == Fraction(2, 4)
    assert isinstance(t[0], tuplettools.FixedDurationTuplet)
-   assert t[0].duration.target == Rational(2, 4)
-   assert t[0].duration.prolated == Rational(2, 4)
+   assert t[0].duration.target == Fraction(2, 4)
+   assert t[0].duration.prolated == Fraction(2, 4)
    assert isinstance(t[0][0], Note)
-   assert t[0][0].duration.written == Rational(1, 4)
-   assert t[0][0].duration.prolated == Rational(1, 6)
+   assert t[0][0].duration.written == Fraction(1, 4)
+   assert t[0][0].duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -524,14 +524,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Container)
    assert len(t) == 1
-   assert t.duration.preprolated == Rational(2, 4)
-   assert t.duration.prolated == Rational(2, 4)
+   assert t.duration.preprolated == Fraction(2, 4)
+   assert t.duration.prolated == Fraction(2, 4)
    assert isinstance(t[0], tuplettools.FixedDurationTuplet)
-   assert t[0].duration.target == Rational(2, 4)
-   assert t[0].duration.prolated == Rational(2, 4)
+   assert t[0].duration.target == Fraction(2, 4)
+   assert t[0].duration.prolated == Fraction(2, 4)
    assert isinstance(t[0][0], Note)
-   assert t[0][0].duration.written == Rational(1, 4)
-   assert t[0][0].duration.prolated == Rational(1, 6)
+   assert t[0][0].duration.written == Fraction(1, 4)
+   assert t[0][0].duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -542,14 +542,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Voice)
    assert len(t) == 1
-   assert t.duration.preprolated == Rational(2, 4)
-   assert t.duration.prolated == Rational(2, 4)
+   assert t.duration.preprolated == Fraction(2, 4)
+   assert t.duration.prolated == Fraction(2, 4)
    assert isinstance(t[0], tuplettools.FixedDurationTuplet)
-   assert t[0].duration.target == Rational(2, 4)
-   assert t[0].duration.prolated == Rational(2, 4)
+   assert t[0].duration.target == Fraction(2, 4)
+   assert t[0].duration.prolated == Fraction(2, 4)
    assert isinstance(t[0][0], Note)
-   assert t[0][0].duration.written == Rational(1, 4)
-   assert t[0][0].duration.prolated == Rational(1, 6)
+   assert t[0][0].duration.written == Fraction(1, 4)
+   assert t[0][0].duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -560,14 +560,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Staff)
    assert len(t) == 1
-   assert t.duration.preprolated == Rational(2, 4)
-   assert t.duration.prolated == Rational(2, 4)
+   assert t.duration.preprolated == Fraction(2, 4)
+   assert t.duration.prolated == Fraction(2, 4)
    assert isinstance(t[0], tuplettools.FixedDurationTuplet)
-   assert t[0].duration.target == Rational(2, 4)
-   assert t[0].duration.prolated == Rational(2, 4)
+   assert t[0].duration.target == Fraction(2, 4)
+   assert t[0].duration.prolated == Fraction(2, 4)
    assert isinstance(t[0][0], Note)
-   assert t[0][0].duration.written == Rational(1, 4)
-   assert t[0][0].duration.prolated == Rational(1, 6)
+   assert t[0][0].duration.written == Fraction(1, 4)
+   assert t[0][0].duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -578,14 +578,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 2
-   assert t.duration.preprolated == Rational(5, 6)
-   assert t.duration.prolated == Rational(5, 6)
+   assert t.duration.preprolated == Fraction(5, 6)
+   assert t.duration.prolated == Fraction(5, 6)
    assert isinstance(t[0], tuplettools.FixedDurationTuplet)
-   assert t[0].duration.target == Rational(2, 6)
-   assert t[0].duration.prolated == Rational(2, 6)
+   assert t[0].duration.target == Fraction(2, 6)
+   assert t[0].duration.prolated == Fraction(2, 6)
    assert isinstance(t[0][0], Note)
-   assert t[0][0].duration.written == Rational(1, 4)
-   assert t[0][0].duration.prolated == Rational(1, 6)
+   assert t[0][0].duration.written == Fraction(1, 4)
+   assert t[0][0].duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -596,14 +596,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 2
-   assert t.duration.preprolated == Rational(5, 6)
-   assert t.duration.prolated == Rational(5, 6)
+   assert t.duration.preprolated == Fraction(5, 6)
+   assert t.duration.prolated == Fraction(5, 6)
    assert isinstance(t[0], tuplettools.FixedDurationTuplet)
-   assert t[0].duration.target == Rational(2, 6)
-   assert t[0].duration.prolated == Rational(2, 6)
+   assert t[0].duration.target == Fraction(2, 6)
+   assert t[0].duration.prolated == Fraction(2, 6)
    assert isinstance(t[0][0], Note)
-   assert t[0][0].duration.written == Rational(1, 4)
-   assert t[0][0].duration.prolated == Rational(1, 6)
+   assert t[0][0].duration.written == Fraction(1, 4)
+   assert t[0][0].duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -614,14 +614,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Voice)
    assert len(t) == 2
-   assert t.duration.preprolated == Rational(5, 6)
-   assert t.duration.prolated == Rational(5, 6)
+   assert t.duration.preprolated == Fraction(5, 6)
+   assert t.duration.prolated == Fraction(5, 6)
    assert isinstance(t[0], tuplettools.FixedDurationTuplet)
-   assert t[0].duration.target == Rational(2, 6)
-   assert t[0].duration.prolated == Rational(2, 6)
+   assert t[0].duration.target == Fraction(2, 6)
+   assert t[0].duration.prolated == Fraction(2, 6)
    assert isinstance(t[0][0], Note)
-   assert t[0][0].duration.written == Rational(1, 4)
-   assert t[0][0].duration.prolated == Rational(1, 6)
+   assert t[0][0].duration.written == Fraction(1, 4)
+   assert t[0][0].duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -632,14 +632,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 2
-   assert t.duration.preprolated == Rational(5, 6)
-   assert t.duration.prolated == Rational(5, 6)
+   assert t.duration.preprolated == Fraction(5, 6)
+   assert t.duration.prolated == Fraction(5, 6)
    assert isinstance(t[0], tuplettools.FixedDurationTuplet)
-   assert t[0].duration.target == Rational(2, 6)
-   assert t[0].duration.prolated == Rational(2, 6)
+   assert t[0].duration.target == Fraction(2, 6)
+   assert t[0].duration.prolated == Fraction(2, 6)
    assert isinstance(t[0][0], Note)
-   assert t[0][0].duration.written == Rational(1, 4)
-   assert t[0][0].duration.prolated == Rational(1, 6)
+   assert t[0][0].duration.written == Fraction(1, 4)
+   assert t[0][0].duration.prolated == Fraction(1, 6)
    assert componenttools.is_well_formed_component(t)
 
 
@@ -653,12 +653,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20( ):
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
    assert isinstance(t, tuplettools.FixedDurationTuplet)
    assert len(t) == 2
-   assert t.duration.target == Rational(2, 6)
-   assert t.duration.multiplier == Rational(2, 3)
-   assert t.duration.prolated == Rational(2, 6)
+   assert t.duration.target == Fraction(2, 6)
+   assert t.duration.multiplier == Fraction(2, 3)
+   assert t.duration.prolated == Fraction(2, 6)
    assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 6)
+   assert t[0].duration.written == Fraction(1, 4)
+   assert t[0].duration.prolated == Fraction(1, 6)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21( ):

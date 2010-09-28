@@ -7,13 +7,13 @@ between tempo and the horizontal spacing of music in your score.
 First create a tempo indication. This tempo indication specifies
 72 dotted eighth-notes per minute. ::
 
-   abjad> tempo_indication = tempotools.TempoIndication(Rational(3, 16), 72)
+   abjad> tempo_indication = tempotools.TempoIndication(Fraction(3, 16), 72)
 
 Then create a spacing indication. This spacing indication sets up
 a relationship between our tempo indication of 72 dotted eighth-notes
 per minute and the rational number 1/68. ::
 
-   abjad> spacing_indication = spacing.SpacingIndication(tempo_indication, Rational(1, 68))
+   abjad> spacing_indication = spacing.SpacingIndication(tempo_indication, Fraction(1, 68))
    
 That's all there is to it. These two steps are what it takes to create
 a spacing indication. To understand what a spacing indication actually

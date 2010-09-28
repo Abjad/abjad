@@ -1,6 +1,6 @@
 from __future__ import division
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
@@ -111,7 +111,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    if durtools.is_duration_token(durations):
       durations = [durations]
 
-   ## convert Rationals to duration tokens.
+   ## convert Fractions to duration tokens.
    durations = [durtools.duration_token_to_reduced_duration_pair(dur) for dur in durations]
 
    ## set lists of pitches and durations to the same length
@@ -140,8 +140,8 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
          denominator = ds[0][1]
          numerator = mathtools.greatest_power_of_two_less_equal(denominator)
          multiplier = (numerator, denominator)
-         ratio = 1 / Rational(*multiplier)
-         ds = [ratio * Rational(*d) for d in ds]
+         ratio = 1 / Fraction(*multiplier)
+         ds = [ratio * Fraction(*d) for d in ds]
          ## make leaves
          leaves = [ ]
          for pch, dur in zip(ps, ds):

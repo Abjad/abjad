@@ -4,14 +4,14 @@ from abjad import *
 def test_leaftools_scale_preprolated_leaf_duration_01( ):
 
    t = Note(0, (1, 4))
-   leaftools.scale_preprolated_leaf_duration(t, Rational(1, 2))
+   leaftools.scale_preprolated_leaf_duration(t, Fraction(1, 2))
    assert t.format == "c'8"
 
 
 def test_leaftools_scale_preprolated_leaf_duration_02( ):
 
    t = Note(0, (1, 4))
-   leaftools.scale_preprolated_leaf_duration(t, Rational(2))
+   leaftools.scale_preprolated_leaf_duration(t, Fraction(2))
    assert t.format == "c'2"
 
 
@@ -19,7 +19,7 @@ def test_leaftools_scale_preprolated_leaf_duration_03( ):
 
    staff = Staff(macros.scale(4))
    spannertools.BeamSpanner(staff.leaves)
-   leaftools.scale_preprolated_leaf_duration(staff[1], Rational(5, 4))
+   leaftools.scale_preprolated_leaf_duration(staff[1], Fraction(5, 4))
 
    r'''
    \new Staff {
@@ -38,7 +38,7 @@ def test_leaftools_scale_preprolated_leaf_duration_04( ):
 
    staff = Staff(macros.scale(4))
    spannertools.BeamSpanner(staff.leaves)
-   leaftools.scale_preprolated_leaf_duration(staff[1], Rational(2, 3))
+   leaftools.scale_preprolated_leaf_duration(staff[1], Fraction(2, 3))
 
    r'''
    \new Staff {

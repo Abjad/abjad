@@ -1,6 +1,6 @@
 from abjad.tools.metertools import Meter
 from abjad.components.Tuplet import Tuplet
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import componenttools
 from abjad.tools import marktools
 from abjad.tools import mathtools
@@ -41,7 +41,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
             tuplet_denominator = tuplet_multiplier.denominator
             reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
             meter = marktools.get_effective_time_signature(measure)
-            meter_rational = Rational(meter.numerator, meter.denominator)
+            meter_rational = Fraction(meter.numerator, meter.denominator)
             numerator = meter_rational.numerator * reduced_denominator
             denominator = meter_rational.denominator * reduced_denominator
             measure._attach_explicit_meter(numerator, denominator)

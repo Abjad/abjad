@@ -10,7 +10,7 @@ class FixedStaffPositioning(_StrictComparator, _Immutable):
 
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
       abjad> macros.diatonicize(t)
-      abjad> layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))      
+      abjad> layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Fraction(4, 8))      
 
       \new Staff {
                       \time 2/8

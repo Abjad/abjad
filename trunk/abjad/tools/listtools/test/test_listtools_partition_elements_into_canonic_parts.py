@@ -27,4 +27,4 @@ def test_listtools_partition_elements_into_canonic_parts_03( ):
       TypeError, "listtools.partition_elements_into_canonic_parts('foo')")
    assert py.test.raises(ValueError, 
       'listtools.partition_elements_into_canonic_parts('
-      '[Rational(1, 2), Rational(1, 2)])')
+      '[Fraction(1, 2), Fraction(1, 2)])')

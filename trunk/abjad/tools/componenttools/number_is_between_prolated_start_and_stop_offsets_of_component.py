@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def number_is_between_prolated_start_and_stop_offsets_of_component(timepoint, component):
@@ -7,14 +7,14 @@ def number_is_between_prolated_start_and_stop_offsets_of_component(timepoint, co
    
       abjad> staff = Staff(macros.scale(4))
       abjad> leaf = staff.leaves[0]
-      abjad> componenttools.number_is_between_prolated_start_and_stop_offsets_of_component(Rational(1, 16), leaf)
+      abjad> componenttools.number_is_between_prolated_start_and_stop_offsets_of_component(Fraction(1, 16), leaf)
       True
-      abjad> componenttools.number_is_between_prolated_start_and_stop_offsets_of_component(Rational(1, 12), leaf)
+      abjad> componenttools.number_is_between_prolated_start_and_stop_offsets_of_component(Fraction(1, 12), leaf)
       True
 
    Otherwise false. ::
 
-      abjad> componenttools.number_is_between_prolated_start_and_stop_offsets_of_component(Rational(1, 4), t)
+      abjad> componenttools.number_is_between_prolated_start_and_stop_offsets_of_component(Fraction(1, 4), t)
       False
 
    .. versionchanged:: 1.1.2
@@ -23,7 +23,7 @@ def number_is_between_prolated_start_and_stop_offsets_of_component(timepoint, co
    '''
 
    try:
-      timepoint = Rational(timepoint)
+      timepoint = Fraction(timepoint)
    except TypeError:
       pass
 

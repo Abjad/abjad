@@ -26,7 +26,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    }
    '''
 
-   durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
+   durations = [Fraction(1, 32), Fraction(3, 32), Fraction(5, 32)]
    parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:1], durations)
 
    r'''
@@ -82,7 +82,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    }
    '''
 
-   durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
+   durations = [Fraction(1, 32), Fraction(3, 32), Fraction(5, 32)]
    parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:], durations)
 
    r'''
@@ -127,7 +127,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
    "[{c'8, d'8}, {e'8, f'8}]"
 
-   durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
+   durations = [Fraction(1, 32), Fraction(3, 32), Fraction(5, 32)]
    parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t, durations)
 
    "[[{c'32}], [{c'16.}], [{d'8}, {e'32}], [{e'16., f'8}]]"
@@ -142,7 +142,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
    "c'4"
 
-   durations = [Rational(1, 32), Rational(5, 32)]
+   durations = [Fraction(1, 32), Fraction(5, 32)]
    parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners([t], durations)
 
    "[[Note(c', 32)], [Note(c', 8), Note(c', 32)], [Note(c', 16)]]"
@@ -162,7 +162,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    }
    '''
 
-   durations = [Rational(1, 64), Rational(5, 64)]
+   durations = [Fraction(1, 64), Fraction(5, 64)]
    parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:], durations)
 
    r'''

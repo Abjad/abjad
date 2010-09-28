@@ -10,7 +10,7 @@ def test_leaftools_make_leaves_01( ):
    assert isinstance(leaves[1], Chord) 
    assert isinstance(leaves[2], Rest) 
    for l in leaves:
-      assert l.duration.written == Rational(1, 4)
+      assert l.duration.written == Fraction(1, 4)
 
 
 def test_leaftools_make_leaves_02( ):
@@ -26,17 +26,17 @@ def test_leaftools_make_leaves_02( ):
    assert isinstance(leaves[1], Tuplet)
    tuplet1 = leaves[0] 
    assert len(tuplet1) == 2
-   assert tuplet1.duration.multiplier == Rational(8, 9)
+   assert tuplet1.duration.multiplier == Fraction(8, 9)
    assert isinstance(tuplet1[0], Note) 
    assert isinstance(tuplet1[1], Chord) 
    tuplet2 = leaves[1] 
    assert len(tuplet2) == 1
-   assert tuplet2.duration.multiplier == Rational(4, 5)
+   assert tuplet2.duration.multiplier == Fraction(4, 5)
    assert isinstance(tuplet2[0], Rest) 
 
-   assert tuplet1[0].duration.written == Rational(2, 8)
-   assert tuplet1[1].duration.written == Rational(1, 16)
-   assert tuplet2[0].duration.written == Rational(1, 4)
+   assert tuplet1[0].duration.written == Fraction(2, 8)
+   assert tuplet1[1].duration.written == Fraction(1, 16)
+   assert tuplet2[0].duration.written == Fraction(1, 4)
 
 
 def test_leaftools_make_leaves_03( ):
@@ -52,11 +52,11 @@ def test_leaftools_make_leaves_03( ):
    assert isinstance(leaves[2], Tuplet)
    tuplet1 = leaves[0] 
    assert len(tuplet1) == 1
-   assert tuplet1.duration.multiplier == Rational(8, 9)
+   assert tuplet1.duration.multiplier == Fraction(8, 9)
    assert isinstance(tuplet1[0], Note) 
    tuplet2 = leaves[2] 
    assert len(tuplet2) == 1
-   assert tuplet2.duration.multiplier == Rational(4, 5)
+   assert tuplet2.duration.multiplier == Fraction(4, 5)
    assert isinstance(tuplet2[0], Rest) 
 
 

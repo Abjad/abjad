@@ -9,7 +9,7 @@ py.test.skip('skipping until clean way to pass multiline format contributions.')
 def test_layouttools__rational_to_whitespace_measure_string_01( ):
    '''Turn nonbinary rational into whitespace measure string.'''
 
-   t = layouttools__rational_to_whitespace_measure_string(Rational(1, 40))
+   t = layouttools__rational_to_whitespace_measure_string(Fraction(1, 40))
 
    r'''
    {
@@ -30,7 +30,7 @@ def test_layouttools__rational_to_whitespace_measure_string_01( ):
 def test_layouttools__rational_to_whitespace_measure_string_02( ):
    '''Turn binary rational into whitespace measure string.'''
 
-   t = layouttools__rational_to_whitespace_measure_string(Rational(1, 32))
+   t = layouttools__rational_to_whitespace_measure_string(Fraction(1, 32))
 
    r'''
    {

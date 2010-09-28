@@ -7,7 +7,7 @@ def test_componenttools_cut_component_at_prolated_duration_01( ):
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
 
-   componenttools.cut_component_at_prolated_duration(t, Rational(1, 8) + Rational(1, 20))
+   componenttools.cut_component_at_prolated_duration(t, Fraction(1, 8) + Fraction(1, 20))
 
    r'''
    \new Voice {
@@ -28,7 +28,7 @@ def test_componenttools_cut_component_at_prolated_duration_02( ):
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
 
-   componenttools.cut_component_at_prolated_duration(t, Rational(3, 16))
+   componenttools.cut_component_at_prolated_duration(t, Fraction(3, 16))
 
    r'''
    \new Voice {

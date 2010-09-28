@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def get_first_element_starting_strictly_before_prolated_offset(container, prolated_offset):
@@ -7,13 +7,13 @@ def get_first_element_starting_strictly_before_prolated_offset(container, prolat
    Return rightmost element in `container` starting before `prolated_offset`::
    
       abjad> staff = Staff(macros.scale(4))
-      abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Rational(1, 8))
+      abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Fraction(1, 8))
       Note(c', 8)
 
    Return none when no element in `container` starts before `prolated_offset`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Rational(0, 8)) is None
+      abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Fraction(0, 8)) is None
       True
 
    .. versionchanged:: 1.1.2
@@ -21,7 +21,7 @@ def get_first_element_starting_strictly_before_prolated_offset(container, prolat
       ``containertools.get_first_element_starting_strictly_before_prolated_offset( )``.
    '''
 
-   prolated_offset = Rational(prolated_offset)
+   prolated_offset = Fraction(prolated_offset)
 
    for element in reversed(container):
       if element.offset.start < prolated_offset:

@@ -1,5 +1,5 @@
 from abjad.tools.metertools import Meter
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import containertools
 from abjad.tools import marktools
 from abjad.tools import metertools
@@ -12,7 +12,7 @@ def fuse_measures(measures):
    r'''Fuse `measures`::
 
       abjad> staff = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-      abjad> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Rational(1, 16))
+      abjad> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Fraction(1, 16))
       abjad> macros.diatonicize(staff)
       abjad> spannertools.BeamSpanner(staff.leaves)
       abjad> f(staff)
@@ -88,7 +88,7 @@ def fuse_measures(measures):
    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(measures)
 
    old_denominators = [ ]
-   new_duration = Rational(0)
+   new_duration = Fraction(0)
    for measure in measures:
       effective_meter = marktools.get_effective_time_signature(measure)
       old_denominators.append(effective_meter.denominator)

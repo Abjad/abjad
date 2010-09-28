@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import marktools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
@@ -56,5 +56,5 @@ def multiply_contents_of_measures_in_expr(expr, n):
       old_meter = marktools.get_effective_time_signature(measure)
       containertools.repeat_contents_of_container(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)
-      new_pair = durtools.multiply_duration_pair(old_pair, Rational(n))
+      new_pair = durtools.multiply_duration_pair(old_pair, Fraction(n))
       measure._attach_explicit_meter(*new_pair)

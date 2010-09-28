@@ -2,7 +2,7 @@ from abjad.components.Container import Container
 from abjad.exceptions import ContainmentError
 from abjad.components._Leaf import _Leaf
 from abjad.components.Measure import Measure
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.spannertools import TieSpanner
 from abjad.tools import durtools
 from abjad.tools import mathtools
@@ -27,7 +27,7 @@ def _split_component_at_duration(
    from abjad.tools.leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian \
       import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
 
-   duration = Rational(duration)
+   duration = Fraction(duration)
    assert 0 <= duration
 
    ## if zero duration then return component

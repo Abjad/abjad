@@ -5,7 +5,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_pr
    
    staff = Staff(macros.scale(4))
    spannertools.BeamSpanner(staff.leaves)
-   containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, Rational(1, 8))
+   containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, Fraction(1, 8))
 
    r'''
    \new Staff {
@@ -23,7 +23,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_pr
 
    staff = Staff(macros.scale(4))
    spannertools.BeamSpanner(staff.leaves)
-   containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, Rational(3, 16))
+   containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, Fraction(3, 16))
 
    r'''
    \new Staff {

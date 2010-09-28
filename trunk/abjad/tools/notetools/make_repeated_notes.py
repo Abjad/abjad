@@ -1,8 +1,8 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.notetools.make_notes import make_notes
 
 
-def make_repeated_notes(count, written_duration = Rational(1, 8)):
+def make_repeated_notes(count, written_duration = Fraction(1, 8)):
    r'''Construct `count` notes on middle C with `written_duration`::
 
       abjad> notetools.make_repeated_notes(4)

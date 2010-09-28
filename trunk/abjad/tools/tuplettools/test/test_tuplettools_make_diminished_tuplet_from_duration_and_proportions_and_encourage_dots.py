@@ -3,7 +3,7 @@ from abjad import *
 
 def test_tuplettools_make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots_01( ):
 
-   duration = Rational(3, 16)
+   duration = Fraction(3, 16)
 
    t = tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(duration, [1])
    assert t.format == "{\n\tc'8.\n}"
@@ -24,7 +24,7 @@ def test_tuplettools_make_diminished_tuplet_from_duration_and_proportions_and_en
 
 def test_tuplettools_make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots_02( ):
 
-   duration = Rational(3, 16)
+   duration = Fraction(3, 16)
 
    t = tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(duration, [1])
    assert t.format == "{\n\tc'8.\n}"

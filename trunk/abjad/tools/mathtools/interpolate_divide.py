@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.mathtools.interpolate_cosine import interpolate_cosine
 from abjad.tools.mathtools.interpolate_exponential import interpolate_exponential
 
@@ -54,6 +54,6 @@ def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
 
    ## scale result to fit total exaclty
    result = [x * total / sum(result) for x in result]
-   #result = [Rational(int(round(x * 10000, 5)), 10000) for x in result]
+   #result = [Fraction(int(round(x * 10000, 5)), 10000) for x in result]
    return result
 

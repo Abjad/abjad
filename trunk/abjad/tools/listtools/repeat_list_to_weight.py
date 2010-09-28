@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 from abjad.tools.listtools.weight import weight
 
@@ -37,7 +37,7 @@ def repeat_list_to_weight(l, total_weight, remainder = 'chop'):
       [-5, -5, 5, -5, -3]
    '''
 
-   assert isinstance(total_weight, (int, float, long, Rational))
+   assert isinstance(total_weight, (int, float, long, Fraction))
    assert 0 <= total_weight
 
    result = [ ]

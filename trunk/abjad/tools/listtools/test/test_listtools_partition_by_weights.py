@@ -62,27 +62,27 @@ def test_listtools_partition_by_weights_04( ):
 
    l = [1, 1, 1]
 
-   t = listtools.partition_by_weights(l, [Rational(2, 3)])
-   assert t == [[Rational(2, 3)]]
+   t = listtools.partition_by_weights(l, [Fraction(2, 3)])
+   assert t == [[Fraction(2, 3)]]
 
-   t = listtools.partition_by_weights(l, [Rational(2, 3)], cyclic = True)   
+   t = listtools.partition_by_weights(l, [Fraction(2, 3)], cyclic = True)   
    assert t == [
-      [Rational(2, 3)], 
-      [Rational(1, 3), Rational(1, 3)], 
-      [Rational(2, 3)], 
-      [Rational(2, 3)]]
+      [Fraction(2, 3)], 
+      [Fraction(1, 3), Fraction(1, 3)], 
+      [Fraction(2, 3)], 
+      [Fraction(2, 3)]]
    
-   t = listtools.partition_by_weights(l, [Rational(2, 3)], overhang = True)
-   assert t == [[Rational(2, 3)], [Rational(1, 3), 1, 1]]
+   t = listtools.partition_by_weights(l, [Fraction(2, 3)], overhang = True)
+   assert t == [[Fraction(2, 3)], [Fraction(1, 3), 1, 1]]
 
    t = listtools.partition_by_weights(
-      l, [Rational(2, 3)], cyclic = True, overhang = True)
+      l, [Fraction(2, 3)], cyclic = True, overhang = True)
    assert t == [
-      [Rational(2, 3)], 
-      [Rational(1, 3), Rational(1, 3)], 
-      [Rational(2, 3)], 
-      [Rational(2, 3)], 
-      [Rational(1, 3)]]   
+      [Fraction(2, 3)], 
+      [Fraction(1, 3), Fraction(1, 3)], 
+      [Fraction(2, 3)], 
+      [Fraction(2, 3)], 
+      [Fraction(1, 3)]]   
 
 
 def test_listtools_partition_by_weights_05( ):
@@ -90,24 +90,24 @@ def test_listtools_partition_by_weights_05( ):
 
    l = [1, -1, 1]
 
-   t = listtools.partition_by_weights(l, [Rational(2, 3)])
-   assert t == [[Rational(2, 3)]]
+   t = listtools.partition_by_weights(l, [Fraction(2, 3)])
+   assert t == [[Fraction(2, 3)]]
 
-   t = listtools.partition_by_weights(l, [Rational(2, 3)], cyclic = True)   
+   t = listtools.partition_by_weights(l, [Fraction(2, 3)], cyclic = True)   
    assert t == [
-      [Rational(2, 3)], 
-      [Rational(1, 3), Rational(-1, 3)], 
-      [Rational(-2, 3)], 
-      [Rational(2, 3)]]
+      [Fraction(2, 3)], 
+      [Fraction(1, 3), Fraction(-1, 3)], 
+      [Fraction(-2, 3)], 
+      [Fraction(2, 3)]]
    
-   t = listtools.partition_by_weights(l, [Rational(2, 3)], overhang = True)
-   assert t == [[Rational(2, 3)], [Rational(1, 3), -1, 1]]
+   t = listtools.partition_by_weights(l, [Fraction(2, 3)], overhang = True)
+   assert t == [[Fraction(2, 3)], [Fraction(1, 3), -1, 1]]
 
    t = listtools.partition_by_weights(
-      l, [Rational(2, 3)], cyclic = True, overhang = True)
+      l, [Fraction(2, 3)], cyclic = True, overhang = True)
    assert t == [
-      [Rational(2, 3)], 
-      [Rational(1, 3), Rational(-1, 3)], 
-      [Rational(-2, 3)], 
-      [Rational(2, 3)], 
-      [Rational(1, 3)]]   
+      [Fraction(2, 3)], 
+      [Fraction(1, 3), Fraction(-1, 3)], 
+      [Fraction(-2, 3)], 
+      [Fraction(2, 3)], 
+      [Fraction(1, 3)]]   

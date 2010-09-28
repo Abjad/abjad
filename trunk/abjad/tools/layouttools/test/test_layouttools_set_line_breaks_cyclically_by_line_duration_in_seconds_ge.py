@@ -38,7 +38,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
    }
    '''
 
-   layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(t, Rational(6))
+   layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(t, Fraction(6))
 
    r'''
    \new Staff {

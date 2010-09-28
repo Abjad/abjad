@@ -16,7 +16,7 @@ def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(duration
    Where ``proportions[i] == 1`` for all ``i <= len(proportions) - 1``, 
    return tupletted notes strictly without dots. ::
 
-      abjad> duration = Rational(3, 16)
+      abjad> duration = Fraction(3, 16)
       abjad> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(duration, [1])
       {@ 4:3 c'4 @}
       abjad> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(duration, [1, 1])
@@ -31,7 +31,7 @@ def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(duration
    Where ``proportions[i] != 1`` for some ``i <= len(proportions) - 1``, 
    allow tupletted notes to return with dots. ::
 
-      abjad> duration = Rational(3, 16)
+      abjad> duration = Fraction(3, 16)
       abjad> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(duration, [1])
       {@ 4:3 c'4 @}
       abjad> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(duration, [1, 2])

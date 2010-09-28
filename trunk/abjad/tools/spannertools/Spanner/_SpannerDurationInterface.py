@@ -1,5 +1,5 @@
 from abjad.core import _StrictComparator
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 class _SpannerDurationInterface(_StrictComparator):
@@ -24,7 +24,7 @@ class _SpannerDurationInterface(_StrictComparator):
    @property
    def seconds(self):
       '''Sum of duration of all leaves in spanner, in seconds.'''
-      duration = Rational(0)
+      duration = Fraction(0)
       for leaf in self._client.leaves:
          duration += leaf.duration.seconds
       return duration

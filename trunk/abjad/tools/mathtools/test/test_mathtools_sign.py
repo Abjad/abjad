@@ -14,6 +14,6 @@ def test_mathtools_sign_01( ):
 def test_mathtools_sign_02( ):
    '''Test rational sign.'''
 
-   assert mathtools.sign(Rational(-3, 2)) == -1
-   assert mathtools.sign(Rational(0)) == 0
-   assert mathtools.sign(Rational(3, 2)) == 1
+   assert mathtools.sign(Fraction(-3, 2)) == -1
+   assert mathtools.sign(Fraction(0)) == 0
+   assert mathtools.sign(Fraction(3, 2)) == 1

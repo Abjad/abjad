@@ -1,5 +1,5 @@
 from abjad.tools.metertools.Meter import Meter
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 
 
@@ -12,7 +12,7 @@ def is_meter_token(meter_token):
 
    ::
 
-      abjad> metertools.is_meter_token(Rational(3, 8))
+      abjad> metertools.is_meter_token(Fraction(3, 8))
       True
 
    ::
@@ -28,7 +28,7 @@ def is_meter_token(meter_token):
 
    if isinstance(meter_token, Meter):
       return True
-   elif isinstance(meter_token, Rational):
+   elif isinstance(meter_token, Fraction):
       return True
    elif durtools.is_duration_pair(meter_token):
       return True

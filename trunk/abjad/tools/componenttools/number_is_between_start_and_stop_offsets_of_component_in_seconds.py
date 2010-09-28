@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, component):
@@ -6,7 +6,7 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
    of `component` in seconds. ::
    
       abjad> staff = Staff(macros.scale(4))
-      abjad> marktools.TempoMark(Rational(1, 2), 60, target_context = Staff)(staff)
+      abjad> marktools.TempoMark(Fraction(1, 2), 60, target_context = Staff)(staff)
       
       abjad> leaf = staff.leaves[0]
       abjad> componenttools.number_is_between_start_and_stop_offsets_of_component_in_seconds(0.1, leaf)
@@ -25,7 +25,7 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
    '''
 
    try:
-      timepoint = Rational(timepoint)
+      timepoint = Fraction(timepoint)
    except TypeError:
       pass
 

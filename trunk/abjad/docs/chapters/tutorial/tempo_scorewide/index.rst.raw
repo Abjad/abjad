@@ -7,7 +7,7 @@ on the top-level score component.
 <abjad>
 staff = RhythmicStaff(notetools.make_repeated_notes(8))
 score = Score([staff])
-tempo_indication = tempotools.TempoIndication(Rational(1, 8), 72)
+tempo_indication = tempotools.TempoIndication(Fraction(1, 8), 72)
 score.tempo.forced = tempo_indication
 show(score)
 write_ly(score, '1', 'oedo') <hide

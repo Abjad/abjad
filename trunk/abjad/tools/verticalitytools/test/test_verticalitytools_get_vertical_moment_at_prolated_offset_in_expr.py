@@ -6,7 +6,7 @@ def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_01( ):
    score = Score([ ])
    score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
-   piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
+   piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    marktools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
@@ -41,19 +41,19 @@ def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_01( ):
       return verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
          piano_staff, prolated_offset)
 
-   vm = piano_staff_moment(Rational(0, 8))
+   vm = piano_staff_moment(Fraction(0, 8))
    assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
 
-   vm = piano_staff_moment(Rational(1, 8))
+   vm = piano_staff_moment(Fraction(1, 8))
    assert vm.leaves == (piano_staff[0][0], piano_staff[1][1])
 
-   vm = piano_staff_moment(Rational(2, 8))
+   vm = piano_staff_moment(Fraction(2, 8))
    assert vm.leaves == (piano_staff[0][1], piano_staff[1][2])
 
-   vm = piano_staff_moment(Rational(3, 8))
+   vm = piano_staff_moment(Fraction(3, 8))
    assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
 
-   vm = piano_staff_moment(Rational(99, 8))
+   vm = piano_staff_moment(Fraction(99, 8))
    assert vm.leaves == ( )
 
    
@@ -62,7 +62,7 @@ def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_02( ):
    score = Score([ ])
    score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
-   piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
+   piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    marktools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
@@ -97,17 +97,17 @@ def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_02( ):
       return verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
          score, prolated_offset)
 
-   vm = scorewide_vertical_moment(Rational(0, 8))
+   vm = scorewide_vertical_moment(Fraction(0, 8))
    assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])
 
-   vm = scorewide_vertical_moment(Rational(1, 8))
+   vm = scorewide_vertical_moment(Fraction(1, 8))
    assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][1])
 
-   vm = scorewide_vertical_moment(Rational(2, 8))
+   vm = scorewide_vertical_moment(Fraction(2, 8))
    assert vm.leaves == (score[0][0][1], piano_staff[0][1], piano_staff[1][2])
 
-   vm = scorewide_vertical_moment(Rational(3, 8))
+   vm = scorewide_vertical_moment(Fraction(3, 8))
    assert vm.leaves == (score[0][0][2], piano_staff[0][1], piano_staff[1][3])
 
-   vm = scorewide_vertical_moment(Rational(99, 8))
+   vm = scorewide_vertical_moment(Fraction(99, 8))
    assert vm.leaves == ( )

@@ -22,10 +22,10 @@ def test_LeafDurationInterface_seconds_01( ):
    }
    '''
 
-   assert t[0].duration.seconds == Rational(15, 19)
-   assert t[1].duration.seconds == Rational(15, 19)
-   assert t[2].duration.seconds == Rational(5, 7)
-   assert t[3].duration.seconds == Rational(5, 7)
+   assert t[0].duration.seconds == Fraction(15, 19)
+   assert t[1].duration.seconds == Fraction(15, 19)
+   assert t[2].duration.seconds == Fraction(5, 7)
+   assert t[3].duration.seconds == Fraction(5, 7)
 
 
 def test_LeafDurationInterface_seconds_02( ):

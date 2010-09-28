@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools import marktools
 
@@ -51,7 +51,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
             spanner._slicing_metersFound = True
             result.append('<<')
             for meter, moffset, temp_hide in m:
-               s = Skip(Rational(1))
+               s = Skip(Fraction(1))
                #s.duration.multiplier = meter.offset - leaf.offset.start
                s.duration.multiplier = moffset - leaf.offset.start
                numerator, denominator = meter.numerator, meter.denominator

@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 import math
 
 
@@ -8,7 +8,7 @@ def is_binary_rational(rational):
    Otherwise false. ::
 
       abjad> for n in range(1, 17):
-      ...     rational = Rational(1, n)
+      ...     rational = Fraction(1, n)
       ...     print '%s\\t%s' % (rational, durtools.is_binary_rational(rational))
       ... 
       1       True
@@ -29,6 +29,6 @@ def is_binary_rational(rational):
       1/16    True
    '''
 
-   assert isinstance(rational, Rational)
+   assert isinstance(rational, Fraction)
    exponent = math.log(rational.denominator, 2)
    return int(exponent) == exponent

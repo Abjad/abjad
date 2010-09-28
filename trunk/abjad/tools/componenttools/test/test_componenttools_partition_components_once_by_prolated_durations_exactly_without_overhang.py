@@ -25,7 +25,7 @@ def test_componenttools_partition_components_once_by_prolated_durations_exactly_
 
    groups = \
       componenttools.partition_components_once_by_prolated_durations_exactly_without_overhang(
-      t.leaves, [Rational(3, 8)])
+      t.leaves, [Fraction(3, 8)])
 
    "[[Note(c'', 8), Note(b', 8), Note(a', 8)]]"
 

@@ -1,12 +1,12 @@
 from abjad.tools.metertools import Meter
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 from abjad.tools import marktools
 from abjad.tools import metertools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
-def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
+def scale_contents_of_measures_in_expr(expr, multiplier = Fraction(1)):
    '''Iterate expr. For every measure in expr:
 
       1. multiply measure's meter by multiplier
@@ -30,7 +30,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
    
    for measure in iterate_measures_forward_in_expr(expr):
 
-      if multiplier == Rational(1):
+      if multiplier == Fraction(1):
          continue
 
       if mathtools.is_power_of_two(multiplier) and 1 <= multiplier:
@@ -49,6 +49,6 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Rational(1)):
 
       contents_multiplier_denominator = \
          mathtools.greatest_power_of_two_less_equal(multiplier.denominator)
-      contents_multiplier = Rational(
+      contents_multiplier = Fraction(
          multiplier.numerator, contents_multiplier_denominator)
       containertools.scale_contents_of_container(measure, contents_multiplier)

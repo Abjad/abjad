@@ -33,7 +33,7 @@ def test_BreaksInterface_whitespace_01( ):
    }
    '''
 
-   t[1].breaks.whitespace = Rational(1, 32)
+   t[1].breaks.whitespace = Fraction(1, 32)
 
    r'''
    \new Staff {
@@ -64,7 +64,7 @@ def test_BreaksInterface_whitespace_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.duration.prolated == Rational(3, 4)
+   assert t.duration.prolated == Fraction(3, 4)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ]\n\t\t{\n\t\t\t\\override Staff.TimeSignature #'stencil = ##f\n\t\t\t\\time 1/32\n\t\t\t\\stopStaff\n\t\t\ts1 * 1/32\n\t\t\t\\startStaff\n\t\t\t\\revert Staff.TimeSignature #'stencil\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ] )\n\t}\n}"
    
 
@@ -75,4 +75,4 @@ def test_BreaksInterface_whitespace_02( ):
    t = Measure((2, 8), macros.scale(2))
 
    assert py.test.raises(
-      TypographicWhitespaceError, 't[0].breaks.whitespace = Rational(1, 32)')
+      TypographicWhitespaceError, 't[0].breaks.whitespace = Fraction(1, 32)')

@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.core import Rational
+from abjad.core import Fraction
 import py.test
 
 
@@ -29,11 +29,11 @@ def test_mathtools_fragment_03( ):
    '''
    fragment can take rationals.
    '''
-   t = mathtools.fragment(1, [Rational(1, 2), Rational(1, 3)])
+   t = mathtools.fragment(1, [Fraction(1, 2), Fraction(1, 3)])
    assert len(t) == 3
-   assert t[0] == Rational(1, 2)
-   assert t[1] == Rational(1, 3)
-   assert t[2] == Rational(1, 6)
+   assert t[0] == Fraction(1, 2)
+   assert t[1] == Fraction(1, 3)
+   assert t[2] == Fraction(1, 6)
 
 
 ## ERRORS ##

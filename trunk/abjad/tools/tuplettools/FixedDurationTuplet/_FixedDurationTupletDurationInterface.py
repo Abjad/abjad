@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.components.Tuplet._TupletDurationInterface import _TupletDurationInterface
 
 
@@ -42,12 +42,12 @@ class _FixedDurationTupletDurationInterface(_TupletDurationInterface):
          return self._target
       def fset(self, expr):
          if isinstance(expr, (int, long)):
-            rational = Rational(expr)
+            rational = Fraction(expr)
          elif isinstance(expr, tuple):
-            rational = Rational(*expr)
-         #elif isinstance(expr, Rational):
+            rational = Fraction(*expr)
+         #elif isinstance(expr, Fraction):
          elif hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
-            rational = Rational(expr)
+            rational = Fraction(expr)
          else:
             raise ValueError('Can not set tuplet rational from %s.' % 
                str(expr))

@@ -7,4 +7,4 @@ def test_durtools_lilypond_duration_string_to_rational_list_01( ):
    rationals = durtools.lilypond_duration_string_to_rational_list(duration_string)
 
    assert rationals == [
-      Rational(7, 32), Rational(1, 32), Rational(7, 32), Rational(1, 32)]
+      Fraction(7, 32), Fraction(1, 32), Fraction(7, 32), Fraction(1, 32)]

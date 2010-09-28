@@ -7,8 +7,8 @@ def test_marktools_get_effective_tempo_01( ):
    '''
 
    t = Staff(macros.scale(4))
-   marktools.TempoMark(Rational(1, 8), 38, target_context = Staff)(t)
-   marktools.TempoMark(Rational(1, 8), 42, target_context = Staff)(t[2])
+   marktools.TempoMark(Fraction(1, 8), 38, target_context = Staff)(t)
+   marktools.TempoMark(Fraction(1, 8), 42, target_context = Staff)(t[2])
 
    r'''
    \new Staff {
@@ -22,10 +22,10 @@ def test_marktools_get_effective_tempo_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert marktools.get_effective_tempo(t[0]) == marktools.TempoMark(Rational(1, 8), 38)
-   assert marktools.get_effective_tempo(t[1]) == marktools.TempoMark(Rational(1, 8), 38)
-   assert marktools.get_effective_tempo(t[2]) == marktools.TempoMark(Rational(1, 8), 42)
-   assert marktools.get_effective_tempo(t[3]) == marktools.TempoMark(Rational(1, 8), 42)
+   assert marktools.get_effective_tempo(t[0]) == marktools.TempoMark(Fraction(1, 8), 38)
+   assert marktools.get_effective_tempo(t[1]) == marktools.TempoMark(Fraction(1, 8), 38)
+   assert marktools.get_effective_tempo(t[2]) == marktools.TempoMark(Fraction(1, 8), 42)
+   assert marktools.get_effective_tempo(t[3]) == marktools.TempoMark(Fraction(1, 8), 42)
    assert t.format == "\\new Staff {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\t\\tempo 8=42\n\te'8\n\tf'8\n}"
 
 
@@ -35,7 +35,7 @@ def test_marktools_get_effective_tempo_02( ):
    '''
 
    t = Staff([Chord([2, 3, 4], (1, 4))])
-   marktools.TempoMark(Rational(1, 8), 38, target_context = Staff)(t[0])
+   marktools.TempoMark(Fraction(1, 8), 38, target_context = Staff)(t[0])
 
    r'''
    \new Staff {
@@ -51,7 +51,7 @@ def test_marktools_get_effective_tempo_03( ):
    '''Tempo interface accepts durations.'''
 
    staff = Staff([Note(0, (1, 4))])
-   marktools.TempoMark(Rational(1, 8), 38, target_context = Staff)(staff[0])
+   marktools.TempoMark(Fraction(1, 8), 38, target_context = Staff)(staff[0])
 
    r'''
    \new Staff {
@@ -68,7 +68,7 @@ def test_marktools_get_effective_tempo_04( ):
    '''
 
    staff = Staff([Note(0, (1, 4))])
-   tempo = marktools.TempoMark(Rational(1, 8), 38, target_context = Staff)(staff[0])
+   tempo = marktools.TempoMark(Fraction(1, 8), 38, target_context = Staff)(staff[0])
    tempo.detach_mark( )
    
 

@@ -1,6 +1,6 @@
 from abjad.core import _StrictComparator
 from abjad.core import _Immutable
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
 from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistances
 from abjad.tools.layouttools.SystemYOffsets import SystemYOffsets
@@ -17,14 +17,14 @@ class LayoutSchema(_StrictComparator, _Immutable):
    def __init__(self, line_break_duration, system_y_offsets_tuple,
       staff_alignment_offsets_tuple, in_seconds = False):
 
-#      self.line_break_duration = Rational(line_break_duration)
+#      self.line_break_duration = Fraction(line_break_duration)
 #      self.system_y_offsets = SystemYOffsets(*system_y_offsets_tuple)
 #      self.staff_alignment_offsets = StaffAlignmentDistances(*staff_alignment_offsets_tuple)
 #      self.fixed_staff_positioning = FixedStaffPositioning(
 #         self.system_y_offsets, self.staff_alignment_offsets)
 #      self.in_seconds = False
 
-      object.__setattr__(self, 'line_break_duration', Rational(line_break_duration))
+      object.__setattr__(self, 'line_break_duration', Fraction(line_break_duration))
       object.__setattr__(self, 'system_y_offsets', SystemYOffsets(*system_y_offsets_tuple))
       object.__setattr__(self, 'staff_alignment_offsets', 
          StaffAlignmentDistances(*staff_alignment_offsets_tuple))

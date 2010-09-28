@@ -3,17 +3,17 @@ import py.test
 
 
 def test_LeafDurationInterface_assign_01( ):
-   '''Written duration can be assigned a Rational.'''
+   '''Written duration can be assigned a Fraction.'''
    t = Note(1, (1, 4))
-   t.duration.written = Rational(1, 8)
-   assert t.duration.written == Rational(1, 8)
+   t.duration.written = Fraction(1, 8)
+   assert t.duration.written == Fraction(1, 8)
 
 
 def test_LeafDurationInterface_assign_02( ):
    '''Written duration can be assigned an int.'''
    t = Note(1, (1, 4))
    t.duration.written = 2
-   assert t.duration.written == Rational(2, 1)
+   assert t.duration.written == Fraction(2, 1)
 
 
 def test_LeafDurationInterface_assign_03( ):
@@ -23,14 +23,14 @@ def test_LeafDurationInterface_assign_03( ):
 
 
 def test_LeafDurationInterface_assign_04( ):
-   '''Multiplier duration can be assigned a Rational.'''
+   '''Multiplier duration can be assigned a Fraction.'''
    t = Note(1, (1, 4))
-   t.duration.multiplier = Rational(1, 8)
-   assert t.duration.multiplier == Rational(1, 8)
+   t.duration.multiplier = Fraction(1, 8)
+   assert t.duration.multiplier == Fraction(1, 8)
 
 
 def test_LeafDurationInterface_assign_05( ):
    '''Multiplier duration can be assigned an int.'''
    t = Note(1, (1, 4))
    t.duration.multiplier = 2
-   assert t.duration.multiplier == Rational(2, 1)
+   assert t.duration.multiplier == Fraction(2, 1)

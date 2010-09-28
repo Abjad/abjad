@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools import componenttools
 from abjad.tools import marktools
@@ -43,6 +43,6 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
          ## scale tuplet contents, if helpful
          if contents_multiplier is not None:
             #containertools.scale_contents_of_container(tuplet, ~contents_multiplier)
-            inverse_multiplier = Rational(
+            inverse_multiplier = Fraction(
                contents_multiplier.denominator, contents_multiplier.numerator)
             containertools.scale_contents_of_container(tuplet, inverse_multiplier)

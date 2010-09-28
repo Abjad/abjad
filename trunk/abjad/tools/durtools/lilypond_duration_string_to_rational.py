@@ -1,5 +1,5 @@
 from abjad.exceptions import DurationError
-from abjad.core import Rational
+from abjad.core import Fraction
 import re
 
 
@@ -9,17 +9,17 @@ def lilypond_duration_string_to_rational(duration_string):
    Convert LilyPond-style `duration_string` to rational. ::
 
       abjad> durtools.lilypond_duration_string_to_rational('8')
-      Rational(1, 8)
+      Fraction(1, 8)
 
    ::
 
       abjad> durtools.lilypond_duration_string_to_rational('8.')
-      Rational(3, 16)
+      Fraction(3, 16)
 
    ::
 
       abjad> durtools.lilypond_duration_string_to_rational('8..')
-      Rational(7, 32)
+      Fraction(7, 32)
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.duration_string_to_rational( )`` to
@@ -43,14 +43,14 @@ def lilypond_duration_string_to_rational(duration_string):
 
    try:
       body_denominator = int(body_string)
-      body_duration = Rational(1, body_denominator)
+      body_duration = Fraction(1, body_denominator)
    except ValueError:
       if body_string == r'\breve':
-         body_duration = Rational(2)
+         body_duration = Fraction(2)
       elif body_string == r'\longa':
-         body_duration = Rational(4)
+         body_duration = Fraction(4)
       elif body_string == r'\maxima':
-         body_duration = Rational(8)
+         body_duration = Fraction(8)
       else:
          raise ValueError('unknown body string %s.' % body_string)
 
@@ -58,7 +58,7 @@ def lilypond_duration_string_to_rational(duration_string):
    for n in range(len(dots_string)):
       exponent = n + 1
       denominator = 2 ** exponent
-      multiplier = Rational(1, denominator)
+      multiplier = Fraction(1, denominator)
       addend = multiplier * body_duration
       rational += addend
 

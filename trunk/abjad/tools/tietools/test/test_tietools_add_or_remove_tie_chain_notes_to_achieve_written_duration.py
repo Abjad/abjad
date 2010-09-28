@@ -7,7 +7,7 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_01( 
    t = Staff(notetools.make_repeated_notes(1))
    spannertools.BeamSpanner(t[:])
    tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(
-      tietools.get_tie_chain(t[0]), Rational(5, 32))
+      tietools.get_tie_chain(t[0]), Fraction(5, 32))
 
    r'''
    \new Staff {
@@ -26,7 +26,7 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_02( 
    t = Staff(notetools.make_notes(0, [(5, 32)]))
    spannertools.BeamSpanner(t[:])
    tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(
-      tietools.get_tie_chain(t[0]), Rational(4, 32))
+      tietools.get_tie_chain(t[0]), Fraction(4, 32))
 
    r'''
    \new Staff {

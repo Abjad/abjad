@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def is_duration_pair(arg):
@@ -31,7 +31,7 @@ def is_duration_pair(arg):
       return False
 
    try:
-      arg = Rational(*arg)
+      arg = Fraction(*arg)
    except:
       return False
 

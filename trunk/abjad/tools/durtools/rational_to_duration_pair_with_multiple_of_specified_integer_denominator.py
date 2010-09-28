@@ -6,35 +6,35 @@ def rational_to_duration_pair_with_multiple_of_specified_integer_denominator(dur
    the least common multiple of `desired_denominator` 
    and the denominator of `duration`. ::
 
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 2)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 2)
       (1, 2)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 4)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 4)
       (2, 4)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 8)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 8)
       (4, 8)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 16)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 16)
       (8, 16)
 
    ::
 
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 3)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 3)
       (3, 6)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 6)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 6)
       (3, 6)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 12)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 12)
       (6, 12)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 24)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 24)
       (12, 24)
 
    ::
 
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 5)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 5)
       (5, 10)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 10)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 10)
       (5, 10)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 20)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 20)
       (10, 20)
-      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Rational(1, 2), 40)
+      abjad> durtools.rational_to_duration_pair_with_specified_integer_denominator_binary_multiple(Fraction(1, 2), 40)
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.in_terms_of_binary_multiple( )`` to

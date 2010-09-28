@@ -7,7 +7,7 @@ def test_tuplettools_fuse_tuplets_01( ):
 
    t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    spannertools.BeamSpanner(t1[:])
-   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
+   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
    spannertools.SlurSpanner(t2[:])
 
    r'''
@@ -53,7 +53,7 @@ def test_tuplettools_fuse_tuplets_02( ):
 
    t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    spannertools.BeamSpanner(t1[:])
-   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Rational(1, 16)))
+   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
    spannertools.SlurSpanner(t2[:])
    t = Voice([t1, t2])
 

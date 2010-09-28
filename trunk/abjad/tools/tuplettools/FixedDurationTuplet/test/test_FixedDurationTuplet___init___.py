@@ -10,9 +10,9 @@ def test_FixedDurationTuplet___init____01( ):
    assert str(t) == "{@ 3:2 c'8, c'8, c'8 @}"
    assert t.format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
    assert len(t) == 3
-   assert t.duration.target == Rational(1, 4)
-   assert t.duration.multiplier == Rational(2, 3)
-   assert t.duration.prolated == Rational(1, 4)
+   assert t.duration.target == Fraction(1, 4)
+   assert t.duration.multiplier == Fraction(2, 3)
+   assert t.duration.prolated == Fraction(1, 4)
 
 
 def test_FixedDurationTuplet___init____02( ):
@@ -23,6 +23,6 @@ def test_FixedDurationTuplet___init____02( ):
    assert repr(t) == 'FixedDurationTuplet(1/4, [ ])'
    assert str(t) == '{@ 1/4 @}'
    assert len(t) == 0
-   assert t.duration.target == Rational(1, 4)
+   assert t.duration.target == Fraction(1, 4)
    assert t.duration.multiplier == None
-   assert t.duration.prolated == Rational(1, 4)
+   assert t.duration.prolated == Fraction(1, 4)

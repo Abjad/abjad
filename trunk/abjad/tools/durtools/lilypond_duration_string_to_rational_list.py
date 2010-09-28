@@ -9,7 +9,7 @@ def lilypond_duration_string_to_rational_list(duration_string):
    zero or more rationals. ::
 
       abjad> durtools.lilypond_duration_string_to_rationals('8.. 32 8.. 32')            
-      [Rational(7, 32), Rational(1, 32), Rational(7, 32), Rational(1, 32)]
+      [Fraction(7, 32), Fraction(1, 32), Fraction(7, 32), Fraction(1, 32)]
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.duration_string_to_rationals( )`` to

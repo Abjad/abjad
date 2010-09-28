@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_listtools_is_numeric_01( ):
-   assert listtools.is_numeric([1, 2, 5.5, Rational(8, 3)])
+   assert listtools.is_numeric([1, 2, 5.5, Fraction(8, 3)])
 
 
 def test_listtools_is_numeric_02( ):

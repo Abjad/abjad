@@ -1,11 +1,11 @@
 from abjad.tools.metertools.Meter import Meter
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import marktools
 from abjad.tools import mathtools
 
 
-def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Rational(1)):
+def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Fraction(1)):
    '''Change nonbinary `meter` to binary::
 
       abjad> metertools.meter_to_binary_meter(Meter(3, 12))
@@ -20,13 +20,13 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Rational(1)):
    
    ## check input
    assert isinstance(nonbinary_meter, (Meter, marktools.TimeSignatureMark))
-   assert isinstance(contents_multiplier, Rational)
+   assert isinstance(contents_multiplier, Fraction)
 
    ## save nonbinary meter and denominator
    nonbinary_denominator = nonbinary_meter.denominator
 
    ## find binary denominator
-   if contents_multiplier == Rational(1):
+   if contents_multiplier == Fraction(1):
       binary_denominator = mathtools.greatest_power_of_two_less_equal(
          nonbinary_denominator)
    else:

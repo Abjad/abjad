@@ -2,7 +2,7 @@ from abjad.components.Chord import Chord
 from abjad.exceptions import ExtraNoteHeadError
 from abjad.exceptions import MissingNoteHeadError
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def get_note_head_from_chord_by_pitch(chord, pitch):
@@ -10,21 +10,21 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
 
    Set `pitch` to an Abjad pitch instance or a number. ::
 
-      abjad> chord = Chord([12, 14, 23], Rational(1, 4))
+      abjad> chord = Chord([12, 14, 23], Fraction(1, 4))
       abjad> chordtools.get_note_head_from_chord_by_pitch(chord, 14)
       NoteHead('d', 5)
 
    Raise missing note head error when `chord` contains no 
    note head with pitch equal to `pitch`. ::
 
-      abjad> chord = Chord([12, 14, 23], Rational(1, 4))
+      abjad> chord = Chord([12, 14, 23], Fraction(1, 4))
       abjad> chordtools.get_note_head_from_chord_by_pitch(chord, 14)
       MissingNoteHeadError
 
    Raise extra note head error when `chord` contains more than 
    one note head with pitch equal to `pitch`. ::
 
-      abjad> chord = Chord([12, 12], Rational(1, 4))
+      abjad> chord = Chord([12, 12], Fraction(1, 4))
       abjad> chordtools.get_note_head_from_chord_by_pitch(chord, 12)
       ExtraNoteHeadError
 
@@ -36,7 +36,7 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
    if not isinstance(chord, Chord):
       raise ValueError('must be Abjad chord.')
 
-   if not isinstance(pitch, (NamedPitch, int, float, long, Rational)):
+   if not isinstance(pitch, (NamedPitch, int, float, long, Fraction)):
       raise ValueError('must be number or Abjad pitch.')
 
    result = [ ]

@@ -6,8 +6,8 @@ def test_componenttools_iterate_timeline_backward_in_expr_01( ):
    by score offset stop time.
    '''
 
-   staff_1 = Staff(notetools.make_repeated_notes(4, Rational(1, 4)))
-   staff_2 = Staff(notetools.make_repeated_notes(4, Rational(1, 8)))
+   staff_1 = Staff(notetools.make_repeated_notes(4, Fraction(1, 4)))
+   staff_2 = Staff(notetools.make_repeated_notes(4, Fraction(1, 8)))
    score_1 = Score([staff_1, staff_2])
    macros.diatonicize(score_1)   
 
@@ -46,8 +46,8 @@ def test_componenttools_iterate_timeline_backward_in_expr_02( ):
    and score index.
    '''
 
-   staff_1 = Staff(notetools.make_repeated_notes(4, Rational(1, 8)))
-   staff_2 = Staff(notetools.make_repeated_notes(4, Rational(1, 4)))
+   staff_1 = Staff(notetools.make_repeated_notes(4, Fraction(1, 8)))
+   staff_2 = Staff(notetools.make_repeated_notes(4, Fraction(1, 4)))
    score = Score([staff_1, staff_2])
    macros.diatonicize(score)   
 

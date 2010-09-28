@@ -24,7 +24,7 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
 
    ::
 
-      abjad> durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
+      abjad> durations = [Fraction(1, 32), Fraction(3, 32), Fraction(5, 32)]
       abjad> parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:1], durations)
       \new Staff {
          {

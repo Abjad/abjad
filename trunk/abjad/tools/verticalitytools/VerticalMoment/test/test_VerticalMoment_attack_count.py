@@ -6,7 +6,7 @@ def test_VerticalMoment_attack_count_01( ):
    score = Score([ ])
    score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
-   piano_staff.append(Staff(notetools.make_repeated_notes(2, Rational(1, 4))))
+   piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    marktools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
@@ -38,9 +38,9 @@ def test_VerticalMoment_attack_count_01( ):
    '''
 
    vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
-      score, Rational(0))
+      score, Fraction(0))
    assert vertical_moment.attack_count == 3
 
    vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
-      score, Rational(1, 8))
+      score, Fraction(1, 8))
    assert vertical_moment.attack_count == 1

@@ -25,7 +25,7 @@ def test_leaftools_label_leaves_in_expr_with_melodic_chromatic_intervals_01( ):
 
 def test_leaftools_label_leaves_in_expr_with_melodic_chromatic_intervals_02( ):
 
-   staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Rational(1, 8)]))
+   staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Fraction(1, 8)]))
    leaftools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
 
    r"""
@@ -50,7 +50,7 @@ def test_leaftools_label_leaves_in_expr_with_melodic_chromatic_intervals_02( ):
 def test_leaftools_label_leaves_in_expr_with_melodic_chromatic_intervals_03( ):
    '''Works with quartertones.'''
 
-   staff = Staff(notetools.make_notes([0, 25.5, 11.5, -4, -14, -13, 9, 10, 6.5, 5.5], [Rational(1, 8)]))
+   staff = Staff(notetools.make_notes([0, 25.5, 11.5, -4, -14, -13, 9, 10, 6.5, 5.5], [Fraction(1, 8)]))
    leaftools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
 
    r"""

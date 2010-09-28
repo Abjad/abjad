@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import listtools
 from abjad.tools import mathtools
 
@@ -17,7 +17,7 @@ def get_likely_multiplier_of_components(components):
          f'8..
       }
       abjad> componenttools.get_likely_multiplier_of_components(staff[:])
-      Rational(7, 4)
+      Fraction(7, 4)
    
    Return ``1`` on no likely multiplier. ::
 
@@ -30,7 +30,7 @@ def get_likely_multiplier_of_components(components):
          f'8
       }
       abjad> componenttools.get_likely_multiplier_of_components(staff[:])
-      Rational(1, 1)
+      Fraction(1, 1)
 
    Return none on more than one likely multiplier. ::
 
@@ -67,5 +67,5 @@ def get_likely_multiplier_of_components(components):
    if len(listtools.unique(chain_duration_numerators)) == 1:
       numerator = chain_duration_numerators[0]
       denominator = mathtools.greatest_power_of_two_less_equal(numerator)
-      likely_multiplier = Rational(numerator, denominator)
+      likely_multiplier = Fraction(numerator, denominator)
       return likely_multiplier

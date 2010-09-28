@@ -4,8 +4,8 @@ Comparing tempo indications
 Tempo indications compare equal only when their duration and
 per-minute attributes compare equal. ::
 
-   abjad> tempo_indication_1 = tempotools.TempoIndication(Rational(3, 8), 72)
-   abjad> tempo_indication_2 = tempotools.TempoIndication(Rational(1, 4), 96)
+   abjad> tempo_indication_1 = tempotools.TempoIndication(Fraction(3, 8), 72)
+   abjad> tempo_indication_2 = tempotools.TempoIndication(Fraction(1, 4), 96)
    abjad> tempo_indication_1 == tempo_indication_2
    False
 

@@ -33,7 +33,7 @@ def divide_chord_by_pitch_number(chord, pitch = NamedPitch('b', 3)):
 
    Example::
 
-      abjad> chord = Chord(range(12), Rational(1, 4))
+      abjad> chord = Chord(range(12), Fraction(1, 4))
       abjad> chord
       Chord(c' cs' d' ef' e' f' fs' g' af' a' bf' b', 4)
       abjad> chordtools.divide_chord_by_pitch_number(chord, NamedPitch(6))

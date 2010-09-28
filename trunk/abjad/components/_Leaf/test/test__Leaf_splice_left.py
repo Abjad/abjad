@@ -6,7 +6,7 @@ def test__Leaf_splice_left_01( ):
 
    t = Voice(macros.scale(3))
    spannertools.BeamSpanner(t[:])
-   result = t[0].splice_left(macros.scale(3, Rational(1, 16)))
+   result = t[0].splice_left(macros.scale(3, Fraction(1, 16)))
 
    r'''
    \new Voice {

@@ -5,4 +5,4 @@ from LilyPondContextSettingComponentPlugIn import LilyPondContextSettingComponen
 from LilyPondGrobOverrideComponentPlugIn import LilyPondGrobOverrideComponentPlugIn
 from LilyPondMiscellaneousCommandComponentPlugIn import LilyPondMiscellaneousCommandComponentPlugIn
 from LilyPondTweakReservoir import LilyPondTweakReservoir
-from fractions import Fraction as Rational
+from fractions import Fraction as Fraction

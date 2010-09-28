@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 import math
 
 
@@ -7,7 +7,7 @@ def rational_to_equal_or_greater_binary_rational(prolated_duration):
    greater than or equal to `prolated_duration`. ::
 
       abjad> for n in range(1, 17):
-      ...     prolated_duration = Rational(n, 16)
+      ...     prolated_duration = Fraction(n, 16)
       ...     written_duration = durtools.rational_to_equal_or_greater_binary_rational(prolated_duration)
       ...     print '%s/16\\t%s' % (n, written_duration)
       ... 
@@ -30,8 +30,8 @@ def rational_to_equal_or_greater_binary_rational(prolated_duration):
 
    ::
 
-      abjad> durtools.rational_to_equal_or_greater_binary_rational(Rational(1, 80))
-      Rational(1, 64)
+      abjad> durtools.rational_to_equal_or_greater_binary_rational(Fraction(1, 80))
+      Fraction(1, 64)
 
    Function intended to find written duration of notes inside tuplet.
 
@@ -46,7 +46,7 @@ def rational_to_equal_or_greater_binary_rational(prolated_duration):
    # find numerator, denominator and written duration
    numerator = 1
    denominator = 2 ** exponent
-   written_duration = Rational(numerator, denominator)
+   written_duration = Fraction(numerator, denominator)
 
    # return written duration
    return written_duration

@@ -1,6 +1,6 @@
 from abjad.tools.spannertools.DuratedComplexBeamSpanner._DuratedComplexBeamSpannerFormatInterface import _DuratedComplexBeamSpannerFormatInterface
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
-from abjad.core import Rational
+from abjad.core import Fraction
 import types
 
 
@@ -38,12 +38,12 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
          elif isinstance(arg, list):
             for i, d in enumerate(arg):
                if isinstance(d, tuple):
-                  arg[i] = Rational(*d)
+                  arg[i] = Fraction(*d)
                else:
-                  arg[i] = Rational(d)
+                  arg[i] = Fraction(d)
             self._durations = arg
          else:
-            raise ValueError('durations must be list of Rationals, or None.')
+            raise ValueError('durations must be list of Fractions, or None.')
       return property(**locals( ))
 
    @apply

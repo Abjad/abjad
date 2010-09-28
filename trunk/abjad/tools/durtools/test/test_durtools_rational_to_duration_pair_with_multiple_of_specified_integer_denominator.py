@@ -3,7 +3,7 @@ from abjad import *
 
 def test_durtools_rational_to_duration_pair_with_multiple_of_specified_integer_denominator_01( ):
 
-   duration = Rational(1, 2)
+   duration = Fraction(1, 2)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 2) == (1, 2)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 4) == (2, 4)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 8) == (4, 8)
@@ -12,7 +12,7 @@ def test_durtools_rational_to_duration_pair_with_multiple_of_specified_integer_d
 
 def test_durtools_rational_to_duration_pair_with_multiple_of_specified_integer_denominator_02( ):
 
-   duration = Rational(1, 2)
+   duration = Fraction(1, 2)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 3) == (3, 6)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 6) == (3, 6)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 12) == (6, 12)
@@ -21,7 +21,7 @@ def test_durtools_rational_to_duration_pair_with_multiple_of_specified_integer_d
 
 def test_durtools_rational_to_duration_pair_with_multiple_of_specified_integer_denominator_03( ):
 
-   duration = Rational(1, 2)
+   duration = Fraction(1, 2)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 5) == (5, 10)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 10) == (5, 10)
    assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 20) == (10, 20)

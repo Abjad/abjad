@@ -1,5 +1,5 @@
 from abjad.tools.metertools.Meter import Meter
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 
 
@@ -13,7 +13,7 @@ def is_meter_with_equivalent_binary_representation(meter):
    assert isinstance(meter, Meter)
 
    # express meter as rational and reduce to relatively prime terms
-   meter_as_rational = Rational(meter.numerator, meter.denominator)
+   meter_as_rational = Fraction(meter.numerator, meter.denominator)
 
    # return True if reduced meter denominator is power of two
    return mathtools.is_power_of_two(meter_as_rational.denominator)

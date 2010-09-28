@@ -30,7 +30,7 @@ _exceptions_path = os.path.join(__path__[0], 'exceptions')
 _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 
 from fractions import Fraction
-Rational = Fraction
+Fraction = Fraction
 Fraction
 
 from components import *

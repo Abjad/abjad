@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 
 
 def fragment(n, cell):
@@ -7,29 +7,29 @@ def fragment(n, cell):
 
    ::
 
-      abjad> mathtools.fragment(1, [Rational(1, 2), Rational(1, 4)])
-      [Rational(1, 2), Rational(1, 4), Rational(1, 4)]
+      abjad> mathtools.fragment(1, [Fraction(1, 2), Fraction(1, 4)])
+      [Fraction(1, 2), Fraction(1, 4), Fraction(1, 4)]
 
    ::
 
-      abjad> mathtools.fragment(Rational(1,2), [Rational(1, 6), Rational(1, 10)])
-      [Rational(1, 6), Rational(1, 10), Rational(7, 30)]
+      abjad> mathtools.fragment(Fraction(1,2), [Fraction(1, 6), Fraction(1, 10)])
+      [Fraction(1, 6), Fraction(1, 10), Fraction(7, 30)]
 
    Raise :exc:`TypeError` on nonnumeric *n*::
 
-      abjad> mathtools.fragment('foo', [Rational(1, 2), Rational(1, 4)])
+      abjad> mathtools.fragment('foo', [Fraction(1, 2), Fraction(1, 4)])
       TypeError
 
    Raise :exc:`ValueError` when ``sum(cell)`` is not 
    less than or equal to *n*::
 
-      abjad> mathtools.fragment(1, [Rational(3, 4), Rational(3, 4)]) 
+      abjad> mathtools.fragment(1, [Fraction(3, 4), Fraction(3, 4)]) 
       ValueError
 
    .. todo:: Generalize and rename this function.
    '''
 
-   if not isinstance(n, (int, float, long, Rational)):
+   if not isinstance(n, (int, float, long, Fraction)):
       raise TypeError
 
    if not sum(cell) <= n:

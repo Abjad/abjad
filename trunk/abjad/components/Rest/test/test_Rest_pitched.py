@@ -8,7 +8,7 @@ def test_Rest_pitched_01( ):
    assert isinstance(r.pitch, pitchtools.NamedPitch)
    assert repr(r) == 'Rest(4)'
    assert r.format == "c'4 \\rest"
-   assert r.duration.written == r.duration.prolated == Rational(1, 4)
+   assert r.duration.written == r.duration.prolated == Fraction(1, 4)
 
 
 def test_Rest_pitched_02( ):
@@ -18,7 +18,7 @@ def test_Rest_pitched_02( ):
    assert isinstance(r.pitch, pitchtools.NamedPitch)
    assert repr(r) == 'Rest(4)'
    assert r.format == "c'4 \\rest"
-   assert r.duration.written == r.duration.prolated == Rational(1, 4)
+   assert r.duration.written == r.duration.prolated == Fraction(1, 4)
 
 
 def test_Rest_pitched_03( ):
@@ -28,4 +28,4 @@ def test_Rest_pitched_03( ):
    assert isinstance(r.pitch, type(None))
    assert repr(r) == 'Rest(4)'
    assert r.format == "r4"
-   assert r.duration.written == r.duration.prolated == Rational(1, 4)
+   assert r.duration.written == r.duration.prolated == Fraction(1, 4)

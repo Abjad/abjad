@@ -67,8 +67,8 @@ def tet_rigid_measure_trim_06( ):
    '''Trim nonbinary measure, with denominator change.'''
 
    notes = macros.scale(4)
-   notes[0].duration.written = Rational(1, 16)
-   notes[1].duration.written = Rational(1, 16)
+   notes[0].duration.written = Fraction(1, 16)
+   notes[1].duration.written = Fraction(1, 16)
    t = Measure((3, 9), notes)
 
    r'''

@@ -16,7 +16,7 @@ def test_leaftools_set_preprolated_leaf_duration_01( ):
    }
    '''
 
-   leaftools.set_preprolated_leaf_duration(t[1], Rational(5, 32))
+   leaftools.set_preprolated_leaf_duration(t[1], Fraction(5, 32))
 
    r'''
    \new Voice {
@@ -49,7 +49,7 @@ def test_leaftools_set_preprolated_leaf_duration_02( ):
    }
    '''
 
-   leaftools.set_preprolated_leaf_duration(t[1], Rational(5, 32))
+   leaftools.set_preprolated_leaf_duration(t[1], Fraction(5, 32))
 
    r'''
    \new Voice {
@@ -67,7 +67,7 @@ def test_leaftools_set_preprolated_leaf_duration_02( ):
 
 def test_leaftools_set_preprolated_leaf_duration_03( ):
    '''Change leaf to nontied duration.
-      Same as t.duration.written = Rational(3, 16).'''
+      Same as t.duration.written = Fraction(3, 16).'''
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:2])
@@ -81,7 +81,7 @@ def test_leaftools_set_preprolated_leaf_duration_03( ):
    }
    '''
 
-   leaftools.set_preprolated_leaf_duration(t[1], Rational(3, 16))
+   leaftools.set_preprolated_leaf_duration(t[1], Fraction(3, 16))
 
    r'''
    \new Voice {
@@ -112,7 +112,7 @@ def test_leaftools_set_preprolated_leaf_duration_04( ):
    }
    '''
 
-   leaftools.set_preprolated_leaf_duration(t[1], Rational(5, 48))
+   leaftools.set_preprolated_leaf_duration(t[1], Fraction(5, 48))
 
    r'''
    \new Voice {
@@ -146,7 +146,7 @@ def test_leaftools_set_preprolated_leaf_duration_05( ):
    }
    '''
 
-   leaftools.set_preprolated_leaf_duration(t[1], Rational(1, 12))
+   leaftools.set_preprolated_leaf_duration(t[1], Fraction(1, 12))
 
    r'''
    \new Voice {
@@ -168,11 +168,11 @@ def test_leaftools_set_preprolated_leaf_duration_06( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Rational(1, 2)
+   t.duration.multiplier = Fraction(1, 2)
 
    "c'8 * 1/2"
 
-   leaftools.set_preprolated_leaf_duration(t, Rational(1, 32))
+   leaftools.set_preprolated_leaf_duration(t, Fraction(1, 32))
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 1/4"
@@ -183,11 +183,11 @@ def test_leaftools_set_preprolated_leaf_duration_07( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Rational(1, 2)
+   t.duration.multiplier = Fraction(1, 2)
 
    "c'8 * 1/2"
 
-   leaftools.set_preprolated_leaf_duration(t, Rational(3, 32))
+   leaftools.set_preprolated_leaf_duration(t, Fraction(3, 32))
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 3/4"
@@ -198,11 +198,11 @@ def test_leaftools_set_preprolated_leaf_duration_08( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Rational(1, 2)
+   t.duration.multiplier = Fraction(1, 2)
 
    "c'8 * 1/2"
 
-   leaftools.set_preprolated_leaf_duration(t, Rational(5, 32))
+   leaftools.set_preprolated_leaf_duration(t, Fraction(5, 32))
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 5/4"
@@ -213,11 +213,11 @@ def test_leaftools_set_preprolated_leaf_duration_09( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Rational(1, 2)
+   t.duration.multiplier = Fraction(1, 2)
 
    "c'8 * 1/2"
 
-   leaftools.set_preprolated_leaf_duration(t, Rational(1, 24))
+   leaftools.set_preprolated_leaf_duration(t, Fraction(1, 24))
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 1/3"
@@ -229,11 +229,11 @@ def test_leaftools_set_preprolated_leaf_duration_10( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Rational(1, 2)
+   t.duration.multiplier = Fraction(1, 2)
 
    "c'8 * 1/2"
 
-   leaftools.set_preprolated_leaf_duration(t, Rational(5, 24))
+   leaftools.set_preprolated_leaf_duration(t, Fraction(5, 24))
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 5/3"

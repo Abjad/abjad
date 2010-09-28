@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr
@@ -16,7 +16,7 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
    # check input
    if not isinstance(tuplet, FixedDurationTuplet):
       raise TypeError('must be tuplet.')
-   assert isinstance(multiplier, Rational)
+   assert isinstance(multiplier, Fraction)
 
    # find new target duration
    old_target_duration = tuplet.duration.target

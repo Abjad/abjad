@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 import math
 
@@ -16,10 +16,10 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
       abjad> for pair in pairs:
       ...     pair
       ... 
-      (Rational(1, 2), Rational(29, 1))
-      (Rational(1, 1), Rational(58, 1))
-      (Rational(3, 2), Rational(87, 1))
-      (Rational(2, 1), Rational(116, 1))
+      (Fraction(1, 2), Fraction(29, 1))
+      (Fraction(1, 1), Fraction(58, 1))
+      (Fraction(3, 2), Fraction(87, 1))
+      (Fraction(2, 1), Fraction(116, 1))
    '''
 
    pairs = [ ]
@@ -33,7 +33,7 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
       if maximum_numerator is not None:
          numerators = [x for x in numerators if x <= maximum_numerator]
       for numerator in numerators:
-         multiplier = Rational(numerator, divisor)
+         multiplier = Fraction(numerator, divisor)
          new_tempo = multiplier * integer_tempo
          pair = (multiplier, new_tempo)
          if pair not in pairs:

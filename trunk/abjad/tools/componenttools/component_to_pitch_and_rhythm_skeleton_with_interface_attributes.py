@@ -18,13 +18,13 @@ def component_to_pitch_and_rhythm_skeleton_with_interface_attributes(component):
       abjad> macros.diatonicize(score)
       abjad> note = score.leaves[0]
       abjad> note.override.beam.thickness = 3
-      abjad> note.duration.multiplier = Rational(1, 2)
+      abjad> note.duration.multiplier = Fraction(1, 2)
       abjad> note.harmonic.natural = True
       abjad> note.name = 'custom name'
       abjad> note.override.note_head.color = 'red'
       abjad> note.offset.prolated.foo = 'bar'
       abjad> next_note = score.leaves[1]
-      abjad> next_note.duration.multiplier = Rational(3, 2)
+      abjad> next_note.duration.multiplier = Fraction(3, 2)
       
    ::
       
@@ -33,29 +33,29 @@ def component_to_pitch_and_rhythm_skeleton_with_interface_attributes(component):
       Score([
          Staff([
             Measure(Meter(6, 16), [
-               tuplettools.FixedDurationTuplet(Rational(3, 8), [
-                  Note(('c', 4), Rational(1, 8), 
+               tuplettools.FixedDurationTuplet(Fraction(3, 8), [
+                  Note(('c', 4), Fraction(1, 8), 
                      beam__thickness = 3,
-                     duration__multiplier = Rational(1, 2),
+                     duration__multiplier = Fraction(1, 2),
                      harmonic__natural = True,
                      name = 'custom name',
                      note_head__color = 'red',
                      offset__prolated__foo = 'bar'),
-                  Note(('d', 4), Rational(1, 8), 
-                     duration__multiplier = Rational(3, 2)),
-                  Note(('e', 4), Rational(1, 8)),
-                  Note(('f', 4), Rational(1, 8))
+                  Note(('d', 4), Fraction(1, 8), 
+                     duration__multiplier = Fraction(3, 2)),
+                  Note(('e', 4), Fraction(1, 8)),
+                  Note(('f', 4), Fraction(1, 8))
                ])
             ])
          ], 
          context = 'Staff'),
          Staff([
             Measure(Meter(6, 16), [
-               tuplettools.FixedDurationTuplet(Rational(3, 8), [
-                  Note(('g', 4), Rational(1, 8)),
-                  Note(('a', 4), Rational(1, 8)),
-                  Note(('b', 4), Rational(1, 8)),
-                  Note(('c', 5), Rational(1, 8))
+               tuplettools.FixedDurationTuplet(Fraction(3, 8), [
+                  Note(('g', 4), Fraction(1, 8)),
+                  Note(('a', 4), Fraction(1, 8)),
+                  Note(('b', 4), Fraction(1, 8)),
+                  Note(('c', 5), Fraction(1, 8))
                ])
             ])
          ], 

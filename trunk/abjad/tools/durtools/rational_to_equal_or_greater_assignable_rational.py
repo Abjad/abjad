@@ -1,4 +1,4 @@
-from abjad.core import Rational
+from abjad.core import Fraction
 from abjad.tools import mathtools
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 from abjad.tools.durtools.rational_to_equal_or_greater_binary_rational \
@@ -12,7 +12,7 @@ def rational_to_equal_or_greater_assignable_rational(prolated_duration):
    less than `prolated_duration`. ::
 
       abjad> for n in range(1, 17):
-      ...     prolated = Rational(n, 16)
+      ...     prolated = Fraction(n, 16)
       ...     written = durtools.rational_to_equal_or_greater_assignable_rational(prolated)
       ...     print '%s/16\\t%s' % (n, written)
       ... 
@@ -55,11 +55,11 @@ def rational_to_equal_or_greater_assignable_rational(prolated_duration):
    #print good_denominator
 
    cur_numerator = prolated_duration.numerator
-   candidate = Rational(cur_numerator, good_denominator)
+   candidate = Fraction(cur_numerator, good_denominator)
 
    while not is_assignable_rational(candidate):
       #print cur_numerator
       cur_numerator += 1
-      candidate = Rational(cur_numerator, good_denominator)
+      candidate = Fraction(cur_numerator, good_denominator)
 
    return candidate

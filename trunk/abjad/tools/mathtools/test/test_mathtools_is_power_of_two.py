@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_mathtools_is_power_of_two_01( ):
-   '''Return True when expr is an integer or Rational power of two, 
+   '''Return True when expr is an integer or Fraction power of two, 
       otherwise False.'''
 
    assert mathtools.is_power_of_two(0)
@@ -21,7 +21,7 @@ def test_mathtools_is_power_of_two_01( ):
 
 
 def test_mathtools_is_power_of_two_02( ):
-   '''Return True when expr is an integer or Rational power of two, 
+   '''Return True when expr is an integer or Fraction power of two, 
       otherwise False.'''
 
    assert mathtools.is_power_of_two(0)
@@ -40,37 +40,37 @@ def test_mathtools_is_power_of_two_02( ):
 
 
 def test_mathtools_is_power_of_two_03( ):
-   '''Return True when expr is an integer or Rational power of two, 
+   '''Return True when expr is an integer or Fraction power of two, 
       otherwise False.'''
 
-   assert mathtools.is_power_of_two(Rational(0))
-   assert mathtools.is_power_of_two(Rational(1))
-   assert mathtools.is_power_of_two(Rational(2))
-   assert not mathtools.is_power_of_two(Rational(3))
-   assert mathtools.is_power_of_two(Rational(4))
-   assert not mathtools.is_power_of_two(Rational(5))
-   assert not mathtools.is_power_of_two(Rational(6))
-   assert not mathtools.is_power_of_two(Rational(7))
-   assert mathtools.is_power_of_two(Rational(8))
-   assert not mathtools.is_power_of_two(Rational(9))
-   assert not mathtools.is_power_of_two(Rational(10))
-   assert not mathtools.is_power_of_two(Rational(11))
-   assert not mathtools.is_power_of_two(Rational(12))
+   assert mathtools.is_power_of_two(Fraction(0))
+   assert mathtools.is_power_of_two(Fraction(1))
+   assert mathtools.is_power_of_two(Fraction(2))
+   assert not mathtools.is_power_of_two(Fraction(3))
+   assert mathtools.is_power_of_two(Fraction(4))
+   assert not mathtools.is_power_of_two(Fraction(5))
+   assert not mathtools.is_power_of_two(Fraction(6))
+   assert not mathtools.is_power_of_two(Fraction(7))
+   assert mathtools.is_power_of_two(Fraction(8))
+   assert not mathtools.is_power_of_two(Fraction(9))
+   assert not mathtools.is_power_of_two(Fraction(10))
+   assert not mathtools.is_power_of_two(Fraction(11))
+   assert not mathtools.is_power_of_two(Fraction(12))
    
 
 def test_mathtools_is_power_of_two_04( ):
-   '''Return True when expr is an integer or Rational power of two, 
+   '''Return True when expr is an integer or Fraction power of two, 
       otherwise False.'''
 
-   assert mathtools.is_power_of_two(Rational(1, 1))
-   assert mathtools.is_power_of_two(Rational(1, 2))
-   assert not mathtools.is_power_of_two(Rational(1, 3))
-   assert mathtools.is_power_of_two(Rational(1, 4))
-   assert not mathtools.is_power_of_two(Rational(1, 5))
-   assert not mathtools.is_power_of_two(Rational(1, 6))
-   assert not mathtools.is_power_of_two(Rational(1, 7))
-   assert mathtools.is_power_of_two(Rational(1, 8))
-   assert not mathtools.is_power_of_two(Rational(1, 9))
-   assert not mathtools.is_power_of_two(Rational(1, 10))
-   assert not mathtools.is_power_of_two(Rational(1, 11))
-   assert not mathtools.is_power_of_two(Rational(1, 12))
+   assert mathtools.is_power_of_two(Fraction(1, 1))
+   assert mathtools.is_power_of_two(Fraction(1, 2))
+   assert not mathtools.is_power_of_two(Fraction(1, 3))
+   assert mathtools.is_power_of_two(Fraction(1, 4))
+   assert not mathtools.is_power_of_two(Fraction(1, 5))
+   assert not mathtools.is_power_of_two(Fraction(1, 6))
+   assert not mathtools.is_power_of_two(Fraction(1, 7))
+   assert mathtools.is_power_of_two(Fraction(1, 8))
+   assert not mathtools.is_power_of_two(Fraction(1, 9))
+   assert not mathtools.is_power_of_two(Fraction(1, 10))
+   assert not mathtools.is_power_of_two(Fraction(1, 11))
+   assert not mathtools.is_power_of_two(Fraction(1, 12))
