@@ -106,6 +106,7 @@ def test_lily_voice_resolution_04( ):
    '''Container containing a run of leaves.
    Two like-structured parallels in the middle of the run.
    '''
+   py.test.skip('remove directives reference.')
 
    t = Container(notetools.make_repeated_notes(2))
    t[1:1] = Container(Voice(notetools.make_repeated_notes(2)) * 2) * 2

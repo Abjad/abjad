@@ -54,10 +54,8 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_opening_slot_format_contributions
       result = [ ]
       context = self.formatter.context
-      result.append(self.wrap(context.comments, 'opening'))
       result.append([('comment_marks', ''),
          _get_comment_contribution_for_slot(context, 'opening')])
-      result.append(self.wrap(context.directives, 'opening'))
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(context, 'opening')])
       result.append([('opening', 'opening'),
@@ -75,8 +73,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_closing_slot_format_contributions(self._client._client)])
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(context, 'closing')])
-      result.append(self.wrap(context.directives, 'closing'))
       result.append([('comment_marks', ''), _get_comment_contribution_for_slot(context, 'closing')])
-      result.append(self.wrap(context.comments, 'closing'))
       self._indent_slot_contributions(result)
       return tuple(result)

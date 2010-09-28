@@ -7,8 +7,6 @@ def test_CommentMark_right_01( ):
    t = Voice(macros.scale(4))
    beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
-   #t.comments.right.append('Voice right comments here.')
-   #t.comments.right.append('More voice right comments.')
    marktools.CommentMark('Voice right comments here.', 'right')(t)
    marktools.CommentMark('More voice right comments.', 'right')(t)
 
@@ -34,8 +32,6 @@ def test_CommentMark_right_02( ):
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   #t.comments.right.append('Leaf comments right here.')
-   #t.comments.right.append('More comments right.')
    marktools.CommentMark('Leaf comments right here.', 'right')(t)
    marktools.CommentMark('More comments right.', 'right')(t)
 

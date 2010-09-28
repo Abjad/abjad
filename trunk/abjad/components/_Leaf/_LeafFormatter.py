@@ -61,35 +61,20 @@ class _LeafFormatter(_ComponentFormatter):
       _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       result = [ ]
       client = self._client
-      directives = client.directives
       spanners = client.spanners
-
-      #result.extend(spanners._left)
       result.extend(
       _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
       self._client))
-
-      #result.extend(interfaces.left)
       result.extend(_get_left_slot_format_contributions(self._client))
-
       result.extend(self._nucleus)
       result.extend(self._tremolo_subdivision_contribution)
-
-      #result.extend(interfaces.right)
       result.extend(_get_right_slot_format_contributions(self._client))
-
-      ## marks
       result.extend(_get_context_mark_format_contributions_for_slot(self._client, 'right'))
-
-      #result.extend(spanners._right)
       result.extend(
       _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
       self._client))
-
-      result.extend(directives.right)
       result.extend(self._number_contribution)
       result.extend(_get_comment_contribution_for_slot(client, 'right'))
-      result.extend(['% ' + x for x in client.comments.right])
       return [' '.join(result)]
 
    @property

@@ -6,8 +6,6 @@ def test_CommentMark_opening_01( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   #t.comments.opening.append('Voice opening comments here.')
-   #t.comments.opening.append('More voice opening comments.')
    marktools.CommentMark('Voice opening comments here.', 'opening')(t)
    marktools.CommentMark('More voice opening comments.', 'opening')(t)
 
@@ -31,8 +29,6 @@ def test_CommentMark_opening_02( ):
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   #t.comments.opening.append('Leaf opening comments here.')
-   #t.comments.opening.append('More leaf opening comments.')
    marktools.CommentMark('Leaf opening comments here.', 'opening')(t)
    marktools.CommentMark('More leaf opening comments.', 'opening')(t)
    

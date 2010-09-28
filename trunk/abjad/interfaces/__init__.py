@@ -1,7 +1,5 @@
 from ArticulationInterface import ArticulationInterface
 from BreaksInterface import BreaksInterface
-from CommentsInterface import CommentsInterface
-from DirectivesInterface import DirectivesInterface
 from HistoryInterface import HistoryInterface
 from MarkupInterface import MarkupInterface
 from OffsetInterface import OffsetInterface

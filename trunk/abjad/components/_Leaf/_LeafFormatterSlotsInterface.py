@@ -30,34 +30,20 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(formatter, '_grace_body'))
-      result.append(self.wrap(leaf.comments, 'before'))
       result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'before')])
-      result.append(self.wrap(leaf.directives, 'before'))
       result.append([('lilypond_command_marks', ''), 
          _get_lilypond_command_mark_contribution_for_slot(leaf, 'before')])
-
-      ## marks
       result.append([('marks', 'marks'),
          _get_context_mark_format_contributions_for_slot(self._client._client, 'before')])
-
-      #result.append(self.wrap(leaf.interfaces, 'overrides'))
-      #result.append(self.wrap(leaf.interfaces, 'settings'))
-
       result.append([('overrides', 'overrides'),
          _get_grob_override_format_contributions(self._client._client)])
       result.append([('settings', 'settings'),
          _get_context_setting_format_contributions(self._client._client)])
-
-      #result.append(self.wrap(leaf.spanners, '_before'))
-      ## wrap format contributions by hand:
       result.append([(leaf.spanners, '_before'),
       _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
       leaf)])
-
-      #result.append(self.wrap(leaf.interfaces, 'before'))
       result.append([('before', 'before'),
          _get_before_slot_format_contributions(self._client._client)])
-
       return tuple(result)
 
    @property
@@ -69,20 +55,13 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
-      result.append(self.wrap(leaf.comments, 'opening'))
       result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'opening')])
-      result.append(self.wrap(leaf.directives, 'opening'))
       result.append([('lilypond_command_marks', ''), 
          _get_lilypond_command_mark_contribution_for_slot(leaf, 'opening')])
-
-      ## marks
       result.append([('marks', 'marks'),
          _get_context_mark_format_contributions_for_slot(self._client._client, 'opening')])
-
-      #result.append(self.wrap(leaf.interfaces, 'opening'))
       result.append([('opening', 'opening'),
          _get_opening_slot_format_contributions(self._client._client)])
-
       result.append(self.wrap(formatter, '_agrace_opening'))
       return tuple(result)
 
@@ -105,18 +84,11 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append(self.wrap(formatter, '_agrace_body'))
       result.append([('lilypond_command_marks', ''), 
          _get_lilypond_command_mark_contribution_for_slot(leaf, 'closing')])
-      result.append(self.wrap(leaf.directives, 'closing'))
-
-      #result.append(self.wrap(leaf.interfaces, 'closing'))
       result.append([('closing', 'closing'),
          _get_closing_slot_format_contributions(self._client._client)])
-
-      ## marks
       result.append([('marks', 'marks'),
          _get_context_mark_format_contributions_for_slot(self._client._client, 'closing')])
-
       result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'closing')])
-      result.append(self.wrap(leaf.comments, 'closing'))
       return tuple(result)
 
    @property
@@ -130,25 +102,16 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
-
-      #result.append(self.wrap(leaf.interfaces, 'after'))
       result.append([('after', 'after'),
          _get_after_slot_format_contributions(self._client._client)])
-
-      #result.append(self.wrap(leaf.spanners, '_after'))
       result.append([(leaf.spanners, '_after'),
       _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
       leaf)])
-
-      ## marks
       result.append([('marks', 'marks'),
          _get_context_mark_format_contributions_for_slot(self._client._client, 'after')])
-
       result.append([('lilypond_command_marks', ''), 
          _get_lilypond_command_mark_contribution_for_slot(leaf, 'after')])
-      result.append(self.wrap(leaf.directives, 'after'))
       result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'after')])
-      result.append(self.wrap(leaf.comments, 'after'))
       return tuple(result)
 
    ## PRIVATE METHODS ##

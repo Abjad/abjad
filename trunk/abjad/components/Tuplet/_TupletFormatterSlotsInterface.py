@@ -1,5 +1,9 @@
 from abjad.components.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
 from abjad.tools import durtools
+from abjad.tools.formattools._get_comment_contribution_for_slot import \
+   _get_comment_contribution_for_slot
+from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
+   _get_lilypond_command_mark_contribution_for_slot
 
 
 class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -21,7 +25,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       in the following canonic order:
 
       *  User comments to come before tuplet opening
-      *  User directives to come before tuplet opening
       *  Interface overrides
       *  Tuplet coloring
 
@@ -44,7 +47,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       Modified tuplets, on the other hand, may make
       format contributions to slot 1. ::
 
-         abjad> t.comments.append('This is a tuplet')
+         abjad> marktools.CommentMark('This is a tuplet', 'opening')(t)
          abjad> t.override.note_head.color = 'red'
          abjad> t.override.dots.color = 'red'
          abjad> import pprint
@@ -67,16 +70,14 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       '''
       from abjad.tools.formattools._get_grob_override_format_contributions import \
          _get_grob_override_format_contributions
-
       result = [ ]
       tuplet = self.formatter.tuplet
-      result.append(self.wrap(tuplet.comments, 'before'))
-      result.append(self.wrap(tuplet.directives, 'before'))
-
-      #result.append(self.wrap(tuplet.interfaces, 'overrides'))
+      result.append([('comment_marks', ''), 
+         _get_comment_contribution_for_slot(tuplet, 'before')])
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(tuplet, 'before')])
       result.append([('overrides', 'overrides'),
          _get_grob_override_format_contributions(self._client._client)])
-
       if tuplet.duration.multiplier == 1 and \
          hasattr(tuplet.__class__, 'color'):
          contributor = (tuplet.__class__, 'color')
@@ -183,7 +184,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                   '{'
                   )]
             else:
-               #contributions = [tuplet.brackets.open[0]]
                contributions = ['{']
             result.append([contributor, contributions])
       return tuple(result)
@@ -196,13 +196,12 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_opening_slot_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
-      result.append(self.wrap(tuplet.comments, 'opening'))
-      result.append(self.wrap(tuplet.directives, 'opening'))
-
-      #result.append(self.wrap(tuplet.interfaces, 'opening'))
+      result.append([('comment_marks', ''),
+         _get_comment_contribution_for_slot(tuplet, 'opening')])
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(tuplet, 'opening')])
       result.append([('opening', 'opening'),
          _get_opening_slot_format_contributions(self._client._client)])
-
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -214,13 +213,12 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_closing_slot_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
-
-      #result.append(self.wrap(tuplet.interfaces, 'closing'))
       result.append([('closing', 'closing'),
          _get_closing_slot_format_contributions(self._client._client)])
-
-      result.append(self.wrap(tuplet.directives, 'closing'))
-      result.append(self.wrap(tuplet.comments, 'closing'))
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(tuplet, 'closing')])
+      result.append([('comment_marks', ''),
+         _get_comment_contribution_for_slot(tuplet, 'closing')])
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -232,7 +230,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       tuplet = self.formatter.tuplet
       if tuplet.duration.multiplier:
-         #result.append(self.wrap(tuplet.brackets, 'close'))
          result.append([('tuplet_brackets', 'close'), '}'])
       return tuple(result)
 
@@ -244,11 +241,9 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_grob_revert_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
-      result.append(self.wrap(tuplet.directives, 'after'))
-
-      #result.append(self.wrap(tuplet.interfaces, 'reverts'))
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(tuplet, 'after')])
       result.append([('reverts', 'reverts'),
          _get_grob_revert_format_contributions(self._client._client)])
-
-      result.append(self.wrap(tuplet.comments, 'after'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(tuplet, 'after')])
       return tuple(result)

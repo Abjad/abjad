@@ -6,8 +6,6 @@ def test_CommentMark_closing_01( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   #t.comments.closing.append('Voice closing comments here.')
-   #t.comments.closing.append('More voice closing comments.')
    marktools.CommentMark('Voice closing comments here.', 'closing')(t)
    marktools.CommentMark('More voice closing comments.', 'closing')(t)
 
@@ -31,8 +29,6 @@ def test_CommentMark_closing_02( ):
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   #t.comments.closing.append('Leaf closing comments here.')
-   #t.comments.closing.append('More leaf closing comments.')
    marktools.CommentMark('Leaf closing comments here.', 'closing')(t)
    marktools.CommentMark('More leaf closing comments.', 'closing')(t)
 

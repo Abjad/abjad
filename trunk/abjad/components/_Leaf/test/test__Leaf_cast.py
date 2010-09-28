@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('DEPRECATED')
 
 
 def test__Leaf_cast_01( ):

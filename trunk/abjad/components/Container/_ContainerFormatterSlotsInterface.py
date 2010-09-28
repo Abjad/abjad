@@ -25,10 +25,8 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_1(self):
       result = [ ]
       container = self.formatter.container
-      result.append(self.wrap(container.comments, 'before'))
       result.append([('comment_marks', ''), 
          _get_comment_contribution_for_slot(container, 'before')])
-      result.append(self.wrap(container.directives, 'before'))
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(container, 'before')])
       return tuple(result)
@@ -53,10 +51,8 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          _get_context_setting_format_contributions
       result = [ ]
       container = self.formatter.container
-      result.append(self.wrap(container.comments, 'opening'))
       result.append([('comment_marks', ''), 
          _get_comment_contribution_for_slot(container, 'opening')])
-      result.append(self.wrap(container.directives, 'opening'))
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(container, 'opening')])
       result.append([('overrides', 'overrides'), 
@@ -88,10 +84,8 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          _get_grob_revert_format_contributions(self._client._client)])
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(container, 'closing')])
-      result.append(self.wrap(container.directives, 'closing'))
       result.append([('comment_marks', ''), 
          _get_comment_contribution_for_slot(container, 'closing')])
-      result.append(self.wrap(container.comments, 'closing'))
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -111,9 +105,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       container = self.formatter.container
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(container, 'after')])
-      result.append(self.wrap(container.directives, 'after'))
       result.append([('comment_marks', ''), _get_comment_contribution_for_slot(container, 'after')])
-      result.append(self.wrap(container.comments, 'after'))
       return tuple(result)
 
    ## PUBLIC METHODS ##

@@ -4,8 +4,6 @@ from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import BreaksInterface
-from abjad.interfaces import CommentsInterface
-from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import HistoryInterface
 #from abjad.interfaces import _NumberingInterface
 from abjad.interfaces import ParentageInterface
@@ -62,22 +60,6 @@ class _Component(_StrictComparator):
       if not hasattr(self, '_breaks'):
          self._breaks = BreaksInterface(self)
       return self._breaks
-
-   @property
-   def comments(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.comments.interface.CommentsInterface`.'''
-      if not hasattr(self, '_comments'):
-         self._comments = CommentsInterface( )
-      return self._comments
-
-   @property
-   def directives(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.directives.interface.DirectivesInterface`.'''
-      if not hasattr(self, '_directives'):
-         self._directives = DirectivesInterface(self)
-      return self._directives
 
    @property
    def duration(self):

@@ -7,8 +7,6 @@ def test_CommentMark_after_01( ):
    t = Voice(macros.scale(4))
    beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
-   #t.comments.after.append('Voice after comments here.')
-   #t.comments.after.append('More voice after comments.')
    marktools.CommentMark('Voice after comments here.', 'after')(t)
    marktools.CommentMark('More voice after comments.', 'after')(t)
 
@@ -33,8 +31,6 @@ def test_CommentMark_after_02( ):
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   #t.comments.after.append('Leaf comments after here.')
-   #t.comments.after.append('More comments after.')
    marktools.CommentMark('Leaf comments after here.', 'after')(t)
    marktools.CommentMark('More comments after.', 'after')(t)
 

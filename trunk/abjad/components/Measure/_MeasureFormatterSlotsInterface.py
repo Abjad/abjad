@@ -1,5 +1,9 @@
 from abjad.components.Container._ContainerFormatterSlotsInterface import \
    _ContainerFormatterSlotsInterface
+from abjad.tools.formattools._get_comment_contribution_for_slot import \
+   _get_comment_contribution_for_slot
+from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
+   _get_lilypond_command_mark_contribution_for_slot
 
 
 class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -43,18 +47,13 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_context_setting_format_contributions
       result = [ ]
       measure = self.formatter.container
-      result.append(self.wrap(measure.comments, 'opening'))
-      result.append(self.wrap(measure.directives, 'opening'))
-      #result.append(self.wrap(measure.interfaces, 'overrides'))
+      result.append([('comment_marks', ''), 
+         _get_comment_contribution_for_slot(measure, 'opening')])
       result.append(self._wrap_measure_interface_overrides( ))
-
-      #result.append(self.wrap(measure.interfaces, 'opening'))
-      #result.append(self.wrap(measure.interfaces, 'settings'))
       result.append([('opening', 'opening'),
          _get_opening_slot_format_contributions(self._client._client)])
       result.append([('settings', 'settings'),
          _get_context_setting_format_contributions(self._client._client)])
-
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -69,15 +68,11 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       measure = self.formatter.container
       result.append(self._wrap_bar_line_interface_overrides( ))
-
-      #result.append(self.wrap(measure.interfaces, 'closing'))
       result.append([('closing', 'closing'),
          _get_closing_slot_format_contributions(self._client._client)])
-
-      #result.append(self.wrap(measure.interfaces, 'reverts'))
       result.append(self._wrap_measure_interface_reverts( ))
-      result.append(self.wrap(measure.directives, 'closing'))
-      result.append(self.wrap(measure.comments, 'closing'))
+      result.append([('comment_marks', ''),
+         _get_comment_contribution_for_slot(measure, 'closing')])
       self._indent_slot_contributions(result)
       return tuple(result)
 

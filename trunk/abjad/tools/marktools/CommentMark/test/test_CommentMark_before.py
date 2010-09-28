@@ -7,8 +7,6 @@ def test_CommentMark_before_01( ):
    t = Voice(macros.scale(4))
    beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
-   #t.comments.before.append('Voice before comments here.')
-   #t.comments.before.append('More voice before comments.')
    marktools.CommentMark('Voice before comments here.', 'before')(t)
    marktools.CommentMark('More voice before comments.', 'before')(t)
 
@@ -34,8 +32,6 @@ def test_CommentMark_before_02( ):
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   #t.comments.before.append('Leaf comments before here.')
-   #t.comments.before.append('More comments before.')
    marktools.CommentMark('Leaf comments before here.', 'before')(t)
    marktools.CommentMark('More comments before.', 'before')(t)
    
