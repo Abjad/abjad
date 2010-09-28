@@ -1,7 +1,7 @@
-from abjad.core import Fraction
 from abjad.components._Leaf import _Leaf
 from abjad.components.Rest import Rest
 from abjad.components.Skip import Skip
+from fractions import Fraction
 
 
 def _insert_measure_padding(expr, front, back, klass, splice = False):
@@ -10,6 +10,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    Generalizes measuretools.pad_measures_in_expr_with_rests( ) and
    measuretools.pad_measures_in_expr_with_skips( ).
    '''
+   from abjad.tools import componenttools
    from abjad.tools import measuretools
 
    if not isinstance(front, (Fraction, type(None))):
@@ -35,7 +36,8 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
             if splice:
                start_leaf.splice_left([klass.__class__(front)])
             else:
-               start_leaf.extend_left_in_parent([klass.__class__(front)])
+               componentools.extend_in_parent_of_component_and_do_not_grow_spanners(
+                  start_leaf, [klass.__class__(front)])
       if back is not None:
          stop_components = measure._navigator._contemporaneous_stop_contents
          stop_leaves = [x for x in stop_components if isinstance(x, _Leaf)]
@@ -44,6 +46,8 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
                stop_leaf.splice([klass.__class__(back)])
             else:
                stop_leaf.extend_in_parent([klass.__class__(back)])
+               componentools.extend_left_in_parent_of_component_and_do_not_grow_spanners(
+                  start_leaf, [klass.__class__(front)])
 
    ## allow updates after all calls to splice( ) are done. ##
    root._update._allow_component_update( )

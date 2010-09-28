@@ -1,12 +1,13 @@
 from abjad import *
 
 
-def test__Leaf_extend_in_parent_01( ):
+def test_componenttools_extend_in_parent_of_component_and_do_not_grow_spanners_01( ):
    '''Extend leaves rightwards after leaf.'''
 
    t = Voice(macros.scale(3))
    spannertools.BeamSpanner(t[:])
-   result = t[-1].extend_in_parent(macros.scale(3))
+   result = componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(
+      t[-1], macros.scale(3))
 
    r'''
    \new Voice {
@@ -24,12 +25,13 @@ def test__Leaf_extend_in_parent_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test__Leaf_extend_in_parent_02( ):
+def test_componenttools_extend_in_parent_of_component_and_do_not_grow_spanners_02( ):
    '''Extend leaf rightwards after interior leaf.'''
 
    t = Voice(macros.scale(3))
    spannertools.BeamSpanner(t[:])
-   result = t[1].extend_in_parent([Note(2.5, (1, 8))])
+   result = componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(
+      t[1], [Note(2.5, (1, 8))])
 
    r'''
    \new Voice {
