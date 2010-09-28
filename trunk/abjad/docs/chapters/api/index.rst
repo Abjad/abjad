@@ -29,7 +29,6 @@ Score component interfaces
 
    interfaces/ArticulationInterface/ArticulationInterface
    interfaces/BreaksInterface/BreaksInterface
-   interfaces/HistoryInterface/HistoryInterface
    interfaces/MarkupInterface/MarkupInterface
    interfaces/OffsetInterface/OffsetInterface
    interfaces/ParentageInterface/ParentageInterface

@@ -4,7 +4,6 @@ from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import BreaksInterface
-from abjad.interfaces import HistoryInterface
 #from abjad.interfaces import _NumberingInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import OffsetInterface
@@ -71,14 +70,6 @@ class _Component(_StrictComparator):
       '''Read-only version of `self` as LilyPond input code.'''
       self._update_marks_of_entire_score_tree_if_necessary( )
       return self._formatter.format
-
-   @property
-   def history(self):
-      '''Read-only reference to 
-      :class:`~abjad.interfaces.history.interface.HistoryInterface`.'''
-      if not hasattr(self, '_history'):
-         self._history = HistoryInterface(self)
-      return self._history
 
    @property
    def leaves(self):
