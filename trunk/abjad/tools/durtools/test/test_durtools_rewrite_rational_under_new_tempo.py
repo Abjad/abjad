@@ -3,8 +3,8 @@ from abjad import *
 
 def test_durtools_rewrite_rational_under_new_tempo_01( ):
 
-   tempo_indication_1 = marktools.TempoMark(Fraction(1, 4), 60)
-   tempo_indication_2 = marktools.TempoMark(Fraction(1, 4), 90)
+   tempo_indication_1 = contexttools.TempoMark(Fraction(1, 4), 60)
+   tempo_indication_2 = contexttools.TempoMark(Fraction(1, 4), 90)
   
    result = durtools.rewrite_rational_under_new_tempo(
       Fraction(1, 8), tempo_indication_1, tempo_indication_2)

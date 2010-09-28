@@ -57,9 +57,9 @@ class _MeasureFormatter(_ContainerFormatter):
 
    @property
    def format(self):
-      from abjad.tools import marktools
+      from abjad.tools import contexttools
       client = self._client
-      effective_meter = marktools.get_effective_time_signature(self._client)
+      effective_meter = contexttools.get_effective_time_signature(self._client)
       if effective_meter.is_nonbinary and effective_meter.suppress:
          raise NonbinaryMeterSuppressionError
       if effective_meter.duration < client.duration.preprolated:

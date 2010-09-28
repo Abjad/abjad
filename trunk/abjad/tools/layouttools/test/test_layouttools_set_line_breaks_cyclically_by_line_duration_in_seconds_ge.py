@@ -9,7 +9,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   marktools.TempoMark(Fraction(1, 8), 44)(t)
+   contexttools.TempoMark(Fraction(1, 8), 44)(t)
 
    r'''
    \new Staff {

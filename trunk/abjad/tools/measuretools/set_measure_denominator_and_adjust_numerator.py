@@ -1,6 +1,6 @@
 from abjad.components.Measure import Measure
 from abjad.tools import durtools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools.metertools import Meter
 
 
@@ -53,7 +53,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
       if forced_meter is not None:
          old_meter = forced_meter
       else:
-         old_meter = marktools.get_effective_time_signature(measure)
+         old_meter = contexttools.get_effective_time_signature(measure)
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
          old_meter_pair, denominator)

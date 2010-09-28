@@ -1,6 +1,5 @@
 from abjad.core import Fraction
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
-from abjad.tools import marktools
 
 
 class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
@@ -29,6 +28,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
       '''Spanner format contribution before leaf.'''
       from abjad.components.Container import Container
       from abjad.components.Skip import Skip
+      from abjad.tools import contexttools
       result = [ ]
       spanner = self.spanner
       if not spanner.hide:
@@ -55,7 +55,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
                #s.duration.multiplier = meter.offset - leaf.offset.start
                s.duration.multiplier = moffset - leaf.offset.start
                numerator, denominator = meter.numerator, meter.denominator
-               mark = marktools.TimeSignatureMark(numerator, denominator)(s)
+               mark = contexttools.TimeSignatureMark(numerator, denominator)(s)
                mark._is_cosmetic_mark = True
                container = Container([s])
                result.append(container.format)

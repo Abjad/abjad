@@ -8,7 +8,7 @@ def test_VerticalMoment_prev_vertical_moment_01( ):
    piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-   marktools.ClefMark('bass')(piano_staff[1])
+   contexttools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
    macros.diatonicize(list(reversed(score.leaves)))
 

@@ -11,7 +11,7 @@ class SpacingIndication(_StrictComparator, _Immutable):
    will equal ``proportional_notation_duration`` when tempo
    equals ``tempo_indication``. ::
 
-      abjad> tempo = marktools.TempoMark(Fraction(1, 8), 44)
+      abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 44)
       abjad> spacing_indication = spacing.SpacingIndication(tempo, Fraction(1, 68))
       abjad> spacing_indication
       SpacingIndication(TempoMark(8., 72), 1/68)

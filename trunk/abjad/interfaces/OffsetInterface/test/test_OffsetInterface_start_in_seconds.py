@@ -24,7 +24,7 @@ def test_OffsetInterface_start_in_seconds_02( ):
    '''Offset seconds work with explicit tempo indication.'''
 
    t = Staff(macros.scale(4))
-   marktools.TempoMark(Fraction(1, 8), 48, target_context = Staff)(t)
+   contexttools.TempoMark(Fraction(1, 8), 48, target_context = Staff)(t)
    
    r'''
    \new Staff {

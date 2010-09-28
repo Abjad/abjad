@@ -2,7 +2,7 @@ from abjad.core import Fraction
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
 from abjad.tools import componenttools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools import schemetools
 from abjad.tools.tonalitytools.make_first_n_notes_in_ascending_diatonic_scale import \
    make_first_n_notes_in_ascending_diatonic_scale
@@ -14,7 +14,7 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
 
    Construct one up-down period of scale according to `key_signature`::
 
-      abjad> score = macros.scale_period(marktools.KeySignatureMark('E', 'major'))
+      abjad> score = macros.scale_period(contexttools.KeySignatureMark('E', 'major'))
       abjad> f(score)
       \new Score \with {
               tempoWholesPerMinute = #(ly:make-moment 30 1)
@@ -55,7 +55,7 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
    notes = ascending_notes + descending_notes
    notes[-1].duration.written = Fraction(1, 4)
    staff = Staff(notes)
-   marktools.KeySignatureMark(key_signature.tonic, key_signature.mode)(staff)
+   contexttools.KeySignatureMark(key_signature.tonic, key_signature.mode)(staff)
    score = Score([staff])
    score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(30)
 

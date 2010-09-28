@@ -1,5 +1,5 @@
 from abjad.tools import durtools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools.metertools import Meter
 from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
    clone_components_and_fracture_crossing_spanners
@@ -86,7 +86,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
 
    # new: remember parent denominator, if any
    if isinstance(parent, Measure):
-      parent_denominator = marktools.get_effective_time_signature(parent).denominator
+      parent_denominator = contexttools.get_effective_time_signature(parent).denominator
    else:
       parent_denominator = None
 
@@ -122,7 +122,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
 
    # new: rewrite result denominator, if available
    if parent_denominator is not None:
-      old_meter = marktools.get_effective_time_signature(result)
+      old_meter = contexttools.get_effective_time_signature(result)
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
          old_meter_pair, parent_denominator)

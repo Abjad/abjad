@@ -3,7 +3,7 @@ from abjad import *
 
 def test_pitchtools_named_pitch_and_clef_to_staff_position_number_01( ):
 
-   clef = marktools.ClefMark('treble')
+   clef = contexttools.ClefMark('treble')
 
    pitch = pitchtools.NamedPitch('c', 4)
    number = pitchtools.named_pitch_and_clef_to_staff_position_number(pitch, clef)
@@ -20,7 +20,7 @@ def test_pitchtools_named_pitch_and_clef_to_staff_position_number_01( ):
 
 def test_pitchtools_named_pitch_and_clef_to_staff_position_number_02( ):
 
-   clef = marktools.ClefMark('alto')
+   clef = contexttools.ClefMark('alto')
 
    pitch = pitchtools.NamedPitch('c', 4)
    number = pitchtools.named_pitch_and_clef_to_staff_position_number(pitch, clef)

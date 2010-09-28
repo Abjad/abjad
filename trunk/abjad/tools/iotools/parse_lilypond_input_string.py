@@ -1,7 +1,7 @@
 from abjad.components.Container import Container
 from abjad.components.Voice import Voice
 from abjad.exceptions import MissingSpannerError
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools.notetools import Articulation
 from abjad.tools.spannertools import BeamSpanner, SlurSpanner, TieSpanner
 from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
@@ -81,7 +81,7 @@ def parse_lilypond_input_string(note_entry_string):
             chord_tokens = [ ]
             if clef_string:
                last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-               marktools.ClefMark(clef_string)(last_leaf)
+               contexttools.ClefMark(clef_string)(last_leaf)
                clef_string = None
 
          elif re.match('\w+', token) is not None:
@@ -102,7 +102,7 @@ def parse_lilypond_input_string(note_entry_string):
                container.append(leaf) 
             if clef_string:
                last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-               marktools.ClefMark(clef_string)(last_leaf)
+               contexttools.ClefMark(clef_string)(last_leaf)
                clef_string = None
 
          elif re.match('<\w+', token) is not None:

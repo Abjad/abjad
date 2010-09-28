@@ -1,6 +1,6 @@
 from abjad.components.Measure.Measure import Measure
 from abjad.tools import durtools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface import \
    _DynamicMeasureDurationInterface
 
@@ -25,7 +25,7 @@ class DynamicMeasure(Measure):
             self.duration.contents, self.denominator)
       else:
          meter_pair = (self.duration.contents.numerator, self.duration.contents.denominator)
-      meter = marktools.TimeSignatureMark(*meter_pair, suppress = self.suppress_meter)
+      meter = contexttools.TimeSignatureMark(*meter_pair, suppress = self.suppress_meter)
       self._attach_explicit_meter(meter)
       self._explicit_meter_is_current = True
 

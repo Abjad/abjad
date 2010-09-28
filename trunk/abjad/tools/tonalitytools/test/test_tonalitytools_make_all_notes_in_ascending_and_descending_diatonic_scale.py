@@ -4,7 +4,7 @@ from abjad import *
 def test_tonalitytools_make_all_notes_in_ascending_and_descending_diatonic_scale_01( ):
 
    score = tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale(
-      marktools.KeySignatureMark('E', 'major'))
+      contexttools.KeySignatureMark('E', 'major'))
 
    r'''
    \new Score \with {

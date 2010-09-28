@@ -4,7 +4,7 @@ def named_pitch_and_clef_to_staff_position_number(pitch, clef):
    Convert `pitch` and `clef` to staff position number. ::
 
       abjad> staff = Staff(macros.scale(8))
-      abjad> clef = marktools.ClefMark('treble')
+      abjad> clef = contexttools.ClefMark('treble')
       abjad> for note in staff:
       ...   pitch = note.pitch
       ...   number = pitchtools.named_pitch_and_clef_to_staff_position_number(pitch, clef)

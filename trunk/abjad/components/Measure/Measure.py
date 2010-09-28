@@ -2,7 +2,7 @@ from abjad.components.Container import Container
 from abjad.components.Measure._MeasureDurationInterface import _MeasureDurationInterface
 from abjad.components.Measure._MeasureFormatter import _MeasureFormatter
 from abjad.tools import durtools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools.metertools import Meter
 
 
@@ -38,7 +38,7 @@ class Measure(Container):
    def __delitem__(self, i):
       '''Container deletion with meter adjustment.'''
       try:
-         old_denominator = marktools.get_effective_time_signature(self).denominator
+         old_denominator = contexttools.get_effective_time_signature(self).denominator
       except AttributeError:
          pass
       #_Measure.__delitem__(self, i)
@@ -70,7 +70,7 @@ class Measure(Container):
    def __str__(self):
       '''String form of measure with pipes for single string display.
       '''
-      forced_meter = marktools.get_effective_time_signature(self)
+      forced_meter = contexttools.get_effective_time_signature(self)
       summary = self._summary
       length = len(self)
       if forced_meter and length:
@@ -87,16 +87,16 @@ class Measure(Container):
    #def _attach_explicit_meter(self, numerator, denominator, partial = None):
    def _attach_explicit_meter(self, *args, **kwargs):
       #print 'attaching explicit meter ...'
-      from abjad.tools import marktools
+      from abjad.tools import contexttools
       from abjad.tools import metertools
-      if len(args) == 1 and isinstance(args[0], marktools.TimeSignatureMark):
+      if len(args) == 1 and isinstance(args[0], contexttools.TimeSignatureMark):
          new_explicit_meter = args[0]
       elif len(args) == 1 and isinstance(args[0], metertools.Meter):
          numerator, denominator = args[0].numerator, args[0].denominator
-         new_explicit_meter = marktools.TimeSignatureMark(numerator, denominator)
+         new_explicit_meter = contexttools.TimeSignatureMark(numerator, denominator)
       elif len(args) == 2:
          numerator, denominator = args
-         new_explicit_meter = marktools.TimeSignatureMark(numerator, denominator)
+         new_explicit_meter = contexttools.TimeSignatureMark(numerator, denominator)
       else:
          raise ValueError('args not understood: "%s".' % str(args))
       partial = kwargs.get('partial', None)
@@ -116,7 +116,7 @@ class Measure(Container):
       '''Display form of measure used for spanners to display
       potentially many spanned measures one after the other.
       '''
-      return '|%s(%s)|' % (marktools.get_effective_time_signature(self), len(self))
+      return '|%s(%s)|' % (contexttools.get_effective_time_signature(self), len(self))
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -124,7 +124,7 @@ class Measure(Container):
    def is_full(self):
       '''True if preprolated duration matches effective meter duration.
       '''
-      return marktools.get_effective_time_signature(self).duration == self.duration.preprolated
+      return contexttools.get_effective_time_signature(self).duration == self.duration.preprolated
 
 ## FIXME ##
 #   @property

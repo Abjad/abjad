@@ -1,6 +1,6 @@
 from abjad.components.Measure import Measure
 from abjad.components.Tuplet import Tuplet
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools.componenttools._get_leaf_keyword_attributes import _get_leaf_keyword_attributes
 
 
@@ -29,7 +29,7 @@ def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attribute
       keyword_attributes = ',\n'.join(keyword_attributes)
       keyword_attributes = '\n' + keyword_attributes
    if isinstance(container, Measure):
-      meter = repr(marktools.get_effective_time_signature(container))
+      meter = repr(contexttools.get_effective_time_signature(container))
       return '%s(%s, [\n%s\n])' % (class_name, meter, contents)
    elif isinstance(container, FixedDurationTuplet):
       duration = repr(container.duration.target)

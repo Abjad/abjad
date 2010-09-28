@@ -1,5 +1,4 @@
 from abjad.components._Context import _Context
-from abjad.tools import componenttools
 
 
 def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
@@ -32,6 +31,7 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
       renamed ``scoretools.set_accidental_style( )`` to
       ``containertools.set_accidental_style_on_sequential_contexts_in_expr( )``.
    '''
+   from abjad.tools import componenttools
 
    for context in componenttools.iterate_components_forward_in_expr(expr, _Context):
       if not context.parallel:

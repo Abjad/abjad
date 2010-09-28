@@ -8,7 +8,7 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_01( ):
    piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-   marktools.ClefMark('bass')(piano_staff[1])
+   contexttools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
    macros.diatonicize(list(reversed(score.leaves)))   
 
@@ -60,7 +60,7 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_02( ):
    piano_staff = scoretools.PianoStaff([ ])
    piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-   marktools.ClefMark('bass')(piano_staff[1])
+   contexttools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
    macros.diatonicize(list(reversed(score.leaves)))   
 

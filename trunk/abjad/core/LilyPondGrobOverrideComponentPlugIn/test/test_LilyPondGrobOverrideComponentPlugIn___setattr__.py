@@ -401,7 +401,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18( ):
 
    staff = Staff(macros.scale(4))
    score = Score([staff])
-   marktools.TempoMark(Fraction(1, 4), 58)(staff[0])
+   contexttools.TempoMark(Fraction(1, 4), 58)(staff[0])
    score.override.metronome_mark.color = 'red'
 
    r'''

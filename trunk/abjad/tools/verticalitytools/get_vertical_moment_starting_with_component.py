@@ -15,7 +15,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
       abjad> piano_staff = scoretools.PianoStaff([ ])
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-      abjad> marktools.ClefMark('bass')(piano_staff[1])
+      abjad> contexttools.ClefMark('bass')(piano_staff[1])
       abjad> score.append(piano_staff)
       abjad> macros.diatonicize(list(reversed(score.leaves)))  
       abjad> f(score)

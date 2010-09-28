@@ -1,7 +1,7 @@
 from abjad.tools.metertools import Meter
 from abjad.core import Fraction
 from abjad.tools import mathtools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools import metertools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
@@ -34,12 +34,12 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Fraction(1)):
          continue
 
       if mathtools.is_power_of_two(multiplier) and 1 <= multiplier:
-         old_numerator = marktools.get_effective_time_signature(measure).numerator
-         old_denominator = marktools.get_effective_time_signature(measure).denominator
+         old_numerator = contexttools.get_effective_time_signature(measure).numerator
+         old_denominator = contexttools.get_effective_time_signature(measure).denominator
          new_denominator = old_denominator / multiplier.numerator
          new_meter = metertools.Meter(old_numerator, new_denominator)
       else:
-         old_meter = marktools.get_effective_time_signature(measure)
+         old_meter = contexttools.get_effective_time_signature(measure)
          old_denominator = old_meter.denominator
          old_duration = old_meter.duration
          new_duration = multiplier * old_duration

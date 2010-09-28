@@ -5,7 +5,7 @@ def test_leaftools_is_bar_line_crossing_leaf_01( ):
 
    t = Staff(macros.scale(4))
    t[2].duration.written *= 2
-   marktools.TimeSignatureMark(2, 8, partial = Fraction(1, 8))(t)
+   contexttools.TimeSignatureMark(2, 8, partial = Fraction(1, 8))(t)
 
 
    r'''

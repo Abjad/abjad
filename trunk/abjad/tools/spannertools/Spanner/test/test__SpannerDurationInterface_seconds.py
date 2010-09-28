@@ -7,7 +7,7 @@ def test__SpannerDurationInterface_seconds_01( ):
 
    t = Voice([Measure((2, 12), macros.scale(2)), 
       Measure((2, 8), macros.scale(2))])
-   marktools.TempoMark(Fraction(1, 8), 42, target_context = Voice)(t)
+   contexttools.TempoMark(Fraction(1, 8), 42, target_context = Voice)(t)
    beam = spannertools.BeamSpanner(t.leaves)
    crescendo = spannertools.CrescendoSpanner(t[0][:])
    decrescendo = spannertools.DecrescendoSpanner(t[1][:])

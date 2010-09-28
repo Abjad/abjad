@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
-from abjad.tools import marktools
+from abjad.tools import contexttools
 
 
 def suggest_clef_for_named_pitches(pitches, clefs = ['treble', 'bass']):
@@ -43,6 +43,6 @@ def suggest_clef_for_named_pitches(pitches, clefs = ['treble', 'bass']):
    candidate_steps_above_bass = max_altitude - highest_bass_line_altitude
 
    if candidate_steps_above_bass < candidate_steps_below_treble:
-      return marktools.ClefMark('bass')
+      return contexttools.ClefMark('bass')
    else:
-      return marktools.ClefMark('treble')
+      return contexttools.ClefMark('treble')

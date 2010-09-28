@@ -224,6 +224,22 @@ contexttools
 .. toctree::
    :maxdepth: 1
 
+   tools/contexttools/ClefMark/ClefMark
+   tools/contexttools/DynamicMark/DynamicMark
+   tools/contexttools/InstrumentMark/InstrumentMark
+   tools/contexttools/KeySignatureMark/KeySignatureMark
+   tools/contexttools/Mark/Mark
+   tools/contexttools/StaffChangeMark/StaffChangeMark
+   tools/contexttools/TempoMark/TempoMark
+   tools/contexttools/TimeSignatureMark/TimeSignatureMark
+   tools/contexttools/get_effective_clef
+   tools/contexttools/get_effective_dynamic
+   tools/contexttools/get_effective_instrument
+   tools/contexttools/get_effective_key_signature
+   tools/contexttools/get_effective_mark
+   tools/contexttools/get_effective_staff
+   tools/contexttools/get_effective_tempo
+   tools/contexttools/get_effective_time_signature
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
 
@@ -508,26 +524,10 @@ marktools
 .. toctree::
    :maxdepth: 1
 
-   tools/marktools/ClefMark/ClefMark
    tools/marktools/CommentMark/CommentMark
-   tools/marktools/DynamicMark/DynamicMark
-   tools/marktools/InstrumentMark/InstrumentMark
-   tools/marktools/KeySignatureMark/KeySignatureMark
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
-   tools/marktools/Mark/Mark
-   tools/marktools/StaffChangeMark/StaffChangeMark
-   tools/marktools/TempoMark/TempoMark
-   tools/marktools/TimeSignatureMark/TimeSignatureMark
    tools/marktools/get_all_marks_attached_to_component
    tools/marktools/get_comment_marks_attached_to_component
-   tools/marktools/get_effective_clef
-   tools/marktools/get_effective_dynamic
-   tools/marktools/get_effective_instrument
-   tools/marktools/get_effective_key_signature
-   tools/marktools/get_effective_mark
-   tools/marktools/get_effective_staff
-   tools/marktools/get_effective_tempo
-   tools/marktools/get_effective_time_signature
    tools/marktools/get_lilypond_command_marks_attached_to_component
 
 

@@ -1,7 +1,7 @@
 from abjad.core import Fraction
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools import componenttools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
@@ -25,15 +25,15 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
    from abjad.tools import containertools
    for measure in iterate_measures_forward_in_expr(expr):
-      if marktools.get_effective_time_signature(measure).is_nonbinary:
+      if contexttools.get_effective_time_signature(measure).is_nonbinary:
 
          ## find meter and contents multipliers
-         meter_multiplier = marktools.get_effective_time_signature(measure).multiplier 
+         meter_multiplier = contexttools.get_effective_time_signature(measure).multiplier 
          contents_multiplier = componenttools.get_likely_multiplier_of_components(measure[:])
 
          ## update nonbinary meter to binary
          binary_meter = metertools.meter_to_binary_meter(
-            marktools.get_effective_time_signature(measure), contents_multiplier)
+            contexttools.get_effective_time_signature(measure), contents_multiplier)
          measure._attach_explicit_meter(binary_meter)
 
          ## find target duration and create tuplet

@@ -5,7 +5,7 @@ def test_spacingtools_get_scorewide_spacing_01( ):
    '''Return global_spacing of effective score of component.'''
 
    t = Score([Staff(macros.scale(4))])
-   tempo_indication = marktools.TempoMark(Fraction(1, 8), 38)
+   tempo_indication = contexttools.TempoMark(Fraction(1, 8), 38)
    spacing_indication = spacingtools.SpacingIndication(
       tempo_indication, Fraction(1, 68))
    t.scorewide_spacing = spacing_indication

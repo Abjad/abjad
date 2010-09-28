@@ -1,14 +1,14 @@
 from abjad import *
 
 
-def test_marktools_get_effective_staff_01( ):
+def test_contexttools_get_effective_staff_01( ):
    '''Staff changes work on the first note of a staff.'''
 
    piano = scoretools.PianoStaff(Staff(macros.scale(4)) * 2)
    piano.parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
-   marktools.StaffChangeMark(piano[1])(piano[0][0])
+   contexttools.StaffChangeMark(piano[1])(piano[0][0])
 
    r'''
    \new PianoStaff <<
@@ -29,27 +29,27 @@ def test_marktools_get_effective_staff_01( ):
    '''
 
    assert componenttools.is_well_formed_component(piano)
-   assert marktools.get_effective_staff(piano[0][0]) is piano[1]
-   assert marktools.get_effective_staff(piano[0][1]) is piano[1]
-   assert marktools.get_effective_staff(piano[0][2]) is piano[1]
-   assert marktools.get_effective_staff(piano[0][3]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][0]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][1]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][2]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][3]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][2]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][3]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][0]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][1]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][2]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][3]) is piano[1]
 
    assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_marktools_get_effective_staff_02( ):
+def test_contexttools_get_effective_staff_02( ):
    '''Staff changes work on middle notes of a staff.'''
 
    piano = scoretools.PianoStaff(Staff(macros.scale(4)) * 2)
    piano.parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
-   marktools.StaffChangeMark(piano[1])(piano[0][0])
-   marktools.StaffChangeMark(piano[0])(piano[0][2])
+   contexttools.StaffChangeMark(piano[1])(piano[0][0])
+   contexttools.StaffChangeMark(piano[0])(piano[0][2])
 
    r'''
    \new PianoStaff <<
@@ -71,26 +71,26 @@ def test_marktools_get_effective_staff_02( ):
    '''
 
    assert componenttools.is_well_formed_component(piano)
-   assert marktools.get_effective_staff(piano[0][0]) is piano[1]
-   assert marktools.get_effective_staff(piano[0][1]) is piano[1]
-   assert marktools.get_effective_staff(piano[0][2]) is piano[0]
-   assert marktools.get_effective_staff(piano[0][3]) is piano[0]
-   assert marktools.get_effective_staff(piano[1][0]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][1]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][2]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][3]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][2]) is piano[0]
+   assert contexttools.get_effective_staff(piano[0][3]) is piano[0]
+   assert contexttools.get_effective_staff(piano[1][0]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][1]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][2]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][3]) is piano[1]
 
    assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\td\'8\n\t\t\\change Staff = RH\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_marktools_get_effective_staff_03( ):
+def test_contexttools_get_effective_staff_03( ):
    '''Staff changes work on the last note of a staff.'''
 
    piano = scoretools.PianoStaff(Staff(macros.scale(4)) * 2)
    piano.parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
-   marktools.StaffChangeMark(piano[1])(piano[0][-1])
+   contexttools.StaffChangeMark(piano[1])(piano[0][-1])
 
    r'''
    \new PianoStaff <<
@@ -114,15 +114,15 @@ def test_marktools_get_effective_staff_03( ):
    assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\t\\change Staff = LH\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_marktools_get_effective_staff_04( ):
+def test_contexttools_get_effective_staff_04( ):
    '''Redudant staff changes are allowed.'''
 
    piano = scoretools.PianoStaff(Staff(macros.scale(4)) * 2)
    piano.parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
-   marktools.StaffChangeMark(piano[1])(piano[0][0])
-   marktools.StaffChangeMark(piano[1])(piano[0][1])
+   contexttools.StaffChangeMark(piano[1])(piano[0][0])
+   contexttools.StaffChangeMark(piano[1])(piano[0][1])
 
    r'''
    \new PianoStaff <<
@@ -144,13 +144,13 @@ def test_marktools_get_effective_staff_04( ):
    '''
 
    assert componenttools.is_well_formed_component(piano)
-   assert marktools.get_effective_staff(piano[0][0]) is piano[1]
-   assert marktools.get_effective_staff(piano[0][1]) is piano[1]
-   assert marktools.get_effective_staff(piano[0][2]) is piano[1]
-   assert marktools.get_effective_staff(piano[0][3]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][0]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][1]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][2]) is piano[1]
-   assert marktools.get_effective_staff(piano[1][3]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][2]) is piano[1]
+   assert contexttools.get_effective_staff(piano[0][3]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][0]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][1]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][2]) is piano[1]
+   assert contexttools.get_effective_staff(piano[1][3]) is piano[1]
 
    assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\t\\change Staff = LH\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'

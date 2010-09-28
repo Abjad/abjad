@@ -1,7 +1,7 @@
 from abjad.tools.metertools.Meter import Meter
 from abjad.core import Fraction
 from abjad.tools import durtools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools import mathtools
 
 
@@ -19,7 +19,7 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Fraction(1)):
    '''
    
    ## check input
-   assert isinstance(nonbinary_meter, (Meter, marktools.TimeSignatureMark))
+   assert isinstance(nonbinary_meter, (Meter, contexttools.TimeSignatureMark))
    assert isinstance(contents_multiplier, Fraction)
 
    ## save nonbinary meter and denominator

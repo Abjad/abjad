@@ -1,9 +1,13 @@
-from abjad.tools.marktools.StaffChangeMark import StaffChangeMark
-from abjad.tools.marktools.get_effective_mark import get_effective_mark
+from abjad.tools.contexttools.StaffChangeMark import StaffChangeMark
+from abjad.tools.contexttools.get_effective_mark import get_effective_mark
 
 
 def get_effective_staff(component):
    '''.. versionadded:: 1.1.2
+
+   .. versionchanged:: 1.1.2
+      renamed ``marktools.get_effective_staff( )`` to
+      ``contexttools.get_effective_staff( )``.
    '''
    from abjad.components import Staff
    from abjad.tools import componenttools

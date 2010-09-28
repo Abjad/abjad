@@ -51,7 +51,7 @@ def test_FixedDurationTuplet_in_place_apply_04( ):
    t = Measure((8, 8), [Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    tuplettools.FixedDurationTuplet((2, 8), t[0:3])
-   marktools.TimeSignatureMark(7, 8)(t)
+   contexttools.TimeSignatureMark(7, 8)(t)
    leaves_after = t.leaves
    assert leaves_before == leaves_after
    assert len(t) == 6

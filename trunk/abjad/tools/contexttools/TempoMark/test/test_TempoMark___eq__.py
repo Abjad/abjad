@@ -4,8 +4,8 @@ from abjad import *
 def test_TempoMark___eq___01( ):
    '''Tempo indications compare equal when duration and mark match.'''
    
-   t1 = marktools.TempoMark(Fraction(3, 32), 52)
-   t2 = marktools.TempoMark(Fraction(3, 32), 52)
+   t1 = contexttools.TempoMark(Fraction(3, 32), 52)
+   t2 = contexttools.TempoMark(Fraction(3, 32), 52)
    assert t1 == t2
    
 
@@ -14,6 +14,6 @@ def test_TempoMark___eq___02( ):
    when mathematically equal.
    '''
    
-   t1 = marktools.TempoMark(Fraction(3, 32), 52)
-   t2 = marktools.TempoMark(Fraction(6, 32), 104)
+   t1 = contexttools.TempoMark(Fraction(3, 32), 52)
+   t2 = contexttools.TempoMark(Fraction(6, 32), 104)
    assert not t1 == t2

@@ -9,11 +9,11 @@ def test_AnonymousMeasure_clef_change_01( ):
 
    t = Staff([ ])
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   marktools.ClefMark('treble')(t)
+   contexttools.ClefMark('treble')(t)
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   marktools.ClefMark('bass')(t[-1])
+   contexttools.ClefMark('bass')(t[-1])
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   marktools.ClefMark('treble')(t[-1])
+   contexttools.ClefMark('treble')(t[-1])
 
    r'''
    \new Staff {

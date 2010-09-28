@@ -3,7 +3,7 @@ from abjad import *
 
 def test_tonalitytools_analyze_tonal_function_01( ):
 
-   key_signature = marktools.KeySignatureMark('c', 'major')
+   key_signature = contexttools.KeySignatureMark('c', 'major')
    chord = Chord(['c', 'e', 'g'], (1, 4))
    tonal_function = tonalitytools.analyze_tonal_function(chord, key_signature)
    correct_tonal_function = tonalitytools.TonalFunction(1, 'major', 5, 0)
@@ -22,7 +22,7 @@ def test_tonalitytools_analyze_tonal_function_01( ):
 
 def test_tonalitytools_analyze_tonal_function_02( ):
 
-   key_signature = marktools.KeySignatureMark('c', 'major')
+   key_signature = contexttools.KeySignatureMark('c', 'major')
    chord = Chord(['c', 'ef', 'g'], (1, 4))
    tonal_function = tonalitytools.analyze_tonal_function(chord, key_signature)
    correct_tonal_function = tonalitytools.TonalFunction(1, 'minor', 5, 0)
@@ -41,7 +41,7 @@ def test_tonalitytools_analyze_tonal_function_02( ):
 
 def test_tonalitytools_analyze_tonal_function_03( ):
 
-   key_signature = marktools.KeySignatureMark('c', 'major')
+   key_signature = contexttools.KeySignatureMark('c', 'major')
    chord = Chord(['c', 'e', 'g', 'bf'], (1, 4))
    tonal_function = tonalitytools.analyze_tonal_function(chord, key_signature)
    correct_tonal_function = tonalitytools.TonalFunction(1, 'dominant', 7, 0)
@@ -65,7 +65,7 @@ def test_tonalitytools_analyze_tonal_function_03( ):
 
 def test_tonalitytools_analyze_tonal_function_04( ):
 
-   key_signature = marktools.KeySignatureMark('c', 'major')
+   key_signature = contexttools.KeySignatureMark('c', 'major')
    chord = Chord(['c', 'cs', 'd'], (1, 4))
    tonal_function = tonalitytools.analyze_tonal_function(chord, key_signature)
    assert tonal_function is None

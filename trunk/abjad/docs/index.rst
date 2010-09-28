@@ -45,21 +45,6 @@ Tutorial
    chapters/tutorial/measures/index
    chapters/tutorial/measure_comment_numbering/index
    chapters/tutorial/naming/index
-   #chapters/tutorial/tempo_indication_create/index
-   #chapters/tutorial/tempo_indication_change/index
-   #chapters/tutorial/tempo_indication_compare/index
-   #chapters/tutorial/tempo_spanner/index
-   #chapters/tutorial/tempo_spanner_proportional/index
-   #chapters/tutorial/tempo_interface/index
-   #chapters/tutorial/tempo_scorewide/index
-   #chapters/tutorial/tempo_sections/index
-   #chapters/tutorial/spacing_indication_create/index
-   #chapters/tutorial/spacing_indication_change/index
-   #chapters/tutorial/spacing_indication_compare/index
-   #chapters/tutorial/spacing_spanner/index
-   #chapters/tutorial/spacing_interface/index
-   #chapters/tutorial/spacing_scorewide/index
-   #chapters/tutorial/spacing_sections/index
    chapters/tutorial/format_reporting/index
 
 

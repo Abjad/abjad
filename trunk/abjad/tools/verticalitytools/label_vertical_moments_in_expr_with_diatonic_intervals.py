@@ -10,9 +10,9 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
 
       abjad> score = Score(Staff([ ]) * 3)
       abjad> score[0].extend(macros.scale(4))
-      abjad> marktools.ClefMark('alto')(score[1])
+      abjad> contexttools.ClefMark('alto')(score[1])
       abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
-      abjad> marktools.ClefMark('bass')(score[2])
+      abjad> contexttools.ClefMark('bass')(score[2])
       abjad> score[2].append(Note(-24, (1, 2)))
       abjad> verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals(score)
       abjad> f(score)

@@ -71,8 +71,8 @@ class _LeafDurationInterface(_ComponentDurationInterface):
 
    @property
    def seconds(self):
-      from abjad.tools import marktools
-      tempo = marktools.get_effective_tempo(self._client)
+      from abjad.tools import contexttools
+      tempo = contexttools.get_effective_tempo(self._client)
       if tempo is not None:
          return self.prolated / tempo.duration / tempo.units_per_minute * 60
       raise UndefinedTempoError

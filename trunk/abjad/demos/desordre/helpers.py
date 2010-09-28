@@ -10,14 +10,14 @@ def desordre_build(pitches):
    #piano = make_empty_piano_score( )[0]
    piano = scoretools.PianoStaff([ ])
    ## set tempo indication...
-   marktools.TempoMark(Fraction(1, 1), 60)(piano)
+   contexttools.TempoMark(Fraction(1, 1), 60)(piano)
    ## build music...
    for hand in pitches:
       seq = staff_build(hand)
       piano.append(seq)
    ## set clef and key to lower staff...
-   marktools.ClefMark('bass')(piano[1])
-   marktools.KeySignatureMark('b', 'major')(piano[1])
+   contexttools.ClefMark('bass')(piano[1])
+   contexttools.KeySignatureMark('b', 'major')(piano[1])
    return piano
 
 
@@ -36,7 +36,7 @@ def measure_build(pitches):
    for seq in pitches:
       result.append(desordre_cell(seq))
    ## make denominator 8
-   if marktools.get_effective_time_signature(result).denominator == 1:
+   if contexttools.get_effective_time_signature(result).denominator == 1:
       result.denominator = 8
    return result
 

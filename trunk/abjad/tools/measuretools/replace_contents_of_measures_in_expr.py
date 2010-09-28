@@ -1,5 +1,5 @@
 from abjad.components.Measure import Measure
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in_expr import append_spacer_skips_to_underfull_measures_in_expr
 from abjad.tools.measuretools.get_next_measure_from_component import get_next_measure_from_component
 
@@ -70,7 +70,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
    ## get first measure and first meter
    cur_measure = get_next_measure_from_component(expr) 
    result.append(cur_measure)
-   cur_meter = marktools.get_effective_time_signature(cur_measure)
+   cur_meter = contexttools.get_effective_time_signature(cur_measure)
    del(cur_measure[:])
 
    ## iterate new contents
@@ -96,7 +96,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
          if cur_measure is None:
             raise StopIteration
          result.append(cur_measure)
-         cur_meter = marktools.get_effective_time_signature(cur_measure)
+         cur_meter = contexttools.get_effective_time_signature(cur_measure)
          del(cur_measure[:])
 
    ## restore last iterated measure

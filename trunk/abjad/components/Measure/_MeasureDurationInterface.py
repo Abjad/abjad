@@ -1,6 +1,6 @@
 from abjad.components.Container._MultipliedContainerDurationInterface import \
    _MultipliedContainerDurationInterface
-from abjad.tools import marktools
+from abjad.tools import contexttools
 
 
 class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
@@ -23,7 +23,7 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
 
    @property
    def is_nonbinary(self):
-      return marktools.get_effective_time_signature(self._client).is_nonbinary
+      return contexttools.get_effective_time_signature(self._client).is_nonbinary
 
    @property
    def is_overfull(self):
@@ -32,7 +32,7 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
       True when prolated duration is greater than 
       effective meter duration.
       '''
-      return marktools.get_effective_time_signature(self._client).duration < self.prolated
+      return contexttools.get_effective_time_signature(self._client).duration < self.prolated
 
    @property
    def is_underfull(self):
@@ -41,13 +41,13 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
       True when prolated duration is less than 
       effective meter duration.
       '''
-      return self.prolated < marktools.get_effective_time_signature(self._client).duration
+      return self.prolated < contexttools.get_effective_time_signature(self._client).duration
 
    @property
    def multiplier(self):
-      return marktools.get_effective_time_signature(self._client).multiplier
+      return contexttools.get_effective_time_signature(self._client).multiplier
 
    @property
    def preprolated(self):
       '''Measure contents duration times effective meter multiplier.'''
-      return marktools.get_effective_time_signature(self._client).multiplier * self.contents
+      return contexttools.get_effective_time_signature(self._client).multiplier * self.contents

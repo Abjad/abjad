@@ -5,10 +5,14 @@ def get_effective_mark(component, klass):
    '''.. versionadded:: 1.1.2
 
    Get effective mark of mark `klass` for `component`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``marktools.get_effective_mark( )`` to
+      ``contexttools.get_effective_mark( )``.
    '''
    from abjad.components import Measure
    from abjad.tools import componenttools
-   from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
+   from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
 
    #print 'getting ready to get effective mark ...'
    component._update_prolated_offset_values_of_entire_score_tree_if_necessary( )

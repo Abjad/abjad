@@ -47,7 +47,7 @@ def test_pitchtools_set_ascending_diatonic_pitches_on_nontied_pitched_components
    '''Diatonicize tie chains in staff according to key signature.'''
 
    t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
-   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t, marktools.KeySignatureMark('fs', 'major'))
+   pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr(t, contexttools.KeySignatureMark('fs', 'major'))
 
    r'''
    \new Staff {

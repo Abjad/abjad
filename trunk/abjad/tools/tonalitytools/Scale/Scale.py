@@ -1,4 +1,4 @@
-from abjad.tools.marktools.KeySignatureMark import KeySignatureMark
+from abjad.tools.contexttools.KeySignatureMark import KeySignatureMark
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment

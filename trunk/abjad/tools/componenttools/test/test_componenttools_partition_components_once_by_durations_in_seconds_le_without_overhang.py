@@ -6,7 +6,7 @@ def test_componenttools_partition_components_once_by_durations_in_seconds_le_wit
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   marktools.TempoMark(Fraction(1, 4), 60, target_context = Staff)(t)
+   contexttools.TempoMark(Fraction(1, 4), 60, target_context = Staff)(t)
 
    r'''
    \new Staff {

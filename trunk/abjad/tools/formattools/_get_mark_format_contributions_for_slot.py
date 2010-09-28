@@ -4,7 +4,7 @@ from abjad.components._Leaf import _Leaf
 def _get_mark_format_contributions_for_slot(leaf, slot):
    from abjad.components import Measure
    from abjad.tools import componenttools
-   from abjad.tools.marktools.TimeSignatureMark import TimeSignatureMark
+   from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
 
    result = [ ]
    if not isinstance(leaf, _Leaf):

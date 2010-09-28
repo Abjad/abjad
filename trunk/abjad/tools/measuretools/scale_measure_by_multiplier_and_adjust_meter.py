@@ -2,7 +2,7 @@ from abjad.tools.metertools import Meter
 from abjad.core import Fraction
 from abjad.tools import componenttools
 from abjad.tools import durtools
-from abjad.tools import marktools
+from abjad.tools import contexttools
 from abjad.tools import mathtools
 
 
@@ -37,7 +37,7 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Fraction(
    if multiplier == 0:
       raise ZeroDivisionError
 
-   old_meter = marktools.get_effective_time_signature(measure)
+   old_meter = contexttools.get_effective_time_signature(measure)
    old_pair = (old_meter.numerator, old_meter.denominator)
    old_multiplier = old_meter.multiplier
    old_multiplier_pair = (old_multiplier.numerator, old_multiplier.denominator)
