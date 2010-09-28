@@ -6,9 +6,9 @@ def test_chordtools_divide_chord_by_pitch_altitude_01( ):
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_altitude(t, pitchtools.NamedPitch('d', 4))
    assert isinstance(treble, Chord)
-   assert treble.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
+   assert treble == Chord([2, 3, 4], (1, 4))
    assert isinstance(bass, Rest)
-   assert bass.signature == (( ), (1, 4))
+   assert bass == Rest((1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass
@@ -19,9 +19,9 @@ def test_chordtools_divide_chord_by_pitch_altitude_02( ):
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_altitude(t, pitchtools.NamedPitch('e', 4))
    assert isinstance(treble, Chord)
-   assert treble.signature == ((('ef', 4), ('e', 4)), (1, 4))
+   assert treble == Chord([3, 4], (1, 4))
    assert isinstance(bass, Note)
-   assert bass.signature == ((('d', 4), ), (1, 4))
+   assert bass == Note(2, (1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass
@@ -32,8 +32,8 @@ def test_chordtools_divide_chord_by_pitch_altitude_03( ):
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
    treble1, bass1 = chordtools.divide_chord_by_pitch_altitude(t, pitchtools.NamedPitch('e', 4))
    treble2, bass2 = chordtools.divide_chord_by_pitch_altitude(t, pitchtools.NamedPitch('ef', 4))
-   assert treble1.signature == treble2.signature
-   assert bass1.signature == bass2.signature
+   assert treble1 == treble2
+   assert bass1 == bass2
 
 
 def test_chordtools_divide_chord_by_pitch_altitude_04( ):
@@ -41,9 +41,9 @@ def test_chordtools_divide_chord_by_pitch_altitude_04( ):
    t = Chord([('d', 4), ('es', 4), ('ff', 4), ('g', 4)], (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_altitude(t, pitchtools.NamedPitch('f', 4))
    assert isinstance(treble, Chord)
-   assert treble.signature == ((('ff', 4), ('g', 4)), (1, 4))
+   assert treble == Chord([('ff', 4), ('g', 4)], (1, 4))
    assert isinstance(bass, Chord)
-   assert bass.signature == ((('d', 4), ('es', 4)), (1, 4))
+   assert bass == Chord([('d', 4), ('es', 4)], (1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass

@@ -16,7 +16,6 @@ def _withdraw_from_contained(components):
 
    ## withdraw from contained spanners
    for component in componenttools.iterate_components_forward_in_expr(components, _Component):
-      #component.spanners._detach( )
       _withdraw_component_from_attached_spanners(component)
 
    ## return components

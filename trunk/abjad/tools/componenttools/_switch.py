@@ -1,8 +1,8 @@
 def _switch(components, parent):
    '''NOT composer-safe.
-      Helper assigns parent to component.
-      Some other action should happen immediately afterwards.
-      Because it's still necessary to assign components to parent.
+   Helper assigns parent to component.
+   Some other action should happen immediately afterwards.
+   Because it's still necessary to assign components to parent.
    '''
    from abjad.tools import componenttools
 

@@ -18,7 +18,8 @@ class ParentageInterface(_Interface):
       client, parent = self._client, self.parent
       if parent is not None:
          index = parent.index(client)
-         parent._music.remove(client)
+         #parent._music.remove(client)
+         parent._music.pop(index)
       self._ignore( )
 
    def _ignore(self):

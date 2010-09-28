@@ -1,7 +1,5 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Rest.Rest import Rest
-#from abjad.components.Rest.MultiMeasureRest._MultiMeasureRestInitializer \
-#   import _MultiMeasureRestInitializer
 
 
 class MultiMeasureRest(Rest):
@@ -11,7 +9,6 @@ class MultiMeasureRest(Rest):
       from abjad.tools.resttools._initialize_multi_measure_rest import \
          _initialize_multi_measure_rest
       _initialize_multi_measure_rest(self, _Leaf, *args)
-      #self._initializer = _MultiMeasureRestInitializer(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##

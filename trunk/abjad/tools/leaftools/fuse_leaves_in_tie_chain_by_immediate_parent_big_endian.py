@@ -1,5 +1,3 @@
-
-
 def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
    r'''Fuse leaves in `tie_chain` by parent::
 
@@ -59,7 +57,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
 
    ## group leaves in tie chain by parent
    parts = tietools.group_leaves_in_tie_chain_by_immediate_parents(tie_chain)
-   
+
    ## fuse leaves in each part
    for part in parts:
       result.append(fuse_leaves_big_endian(part))

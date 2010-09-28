@@ -1,12 +1,12 @@
 from abjad.components.Measure import Measure
-from abjad.tools.metertools import Meter
-from abjad.core import Fraction
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools.get_proper_parentage_of_component import \
    get_proper_parentage_of_component
 from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import \
    remove_component_subtree_from_score_and_spanners
+from abjad.tools.metertools import Meter
+from fractions import Fraction
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):

@@ -26,6 +26,14 @@ class Chord(_Leaf):
    def __delitem__(self, i):
       del(self._note_heads[i])
 
+   def __eq__(self, arg):
+      if isinstance(arg, type(self)):
+         if self.duration.written == arg.duration.written:
+            if self.duration.multiplier == arg.duration.multiplier:
+               if self.pitches == arg.pitches:
+                  return True
+      return False
+
    def __getitem__(self, i):
       return self._note_heads[i]
 

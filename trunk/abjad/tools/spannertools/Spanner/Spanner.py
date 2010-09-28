@@ -51,7 +51,12 @@ class Spanner(_StrictComparator):
    ## OVERLOADS ##
 
    def __contains__(self, expr):
-      return self._components.__contains__(expr)
+      #return self._components.__contains__(expr)
+      for x in self._components:
+         if x is expr:
+            return True
+      else:
+         return False
 
    def __getitem__(self, expr):
       return self._components.__getitem__(expr)
@@ -222,12 +227,19 @@ class Spanner(_StrictComparator):
 
    def _remove(self, component):
       '''Remove 'component' from spanner.
-         Remove spanner from component's aggregator.
-         Not composer-safe and may leave discontiguous spanners.'''
+      Remove spanner from component's aggregator.
+      Not composer-safe and may leave discontiguous spanners.
+      '''
       self._sever_component(component)
 
    def _remove_component(self, component):
-      self._components.remove(component)
+      #self._components.remove(component)
+      for i, x in enumerate(self._components):
+         if x is component:
+            self._components.pop(i)
+            break
+      else:
+         raise ValueError('component "%s" not in spanner components list.' % component)
 
    def _sever_all_components(self):
       for n in reversed(range(len(self))):
@@ -617,7 +629,12 @@ class Spanner(_StrictComparator):
          0
       '''
 
-      return self._components.index(component)
+      #return self._components.index(component)
+      for i, x in enumerate(self._components):
+         if x is component:
+            return i
+      else:
+         raise IndexError
 
    def pop(self):
       '''Remove and return rightmost component in spanner. ::

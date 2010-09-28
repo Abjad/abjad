@@ -1,12 +1,14 @@
 from abjad import *
+import py.test
 
 
 def test_Container_remove_01( ):
    '''Containers remove leaves correctly.
-      Leaf detaches from parentage.
-      Leaf withdraws from crossing spanners.
-      Leaf carries covered spanners forward.
-      Leaf returns after removal.'''
+   Leaf detaches from parentage.
+   Leaf withdraws from crossing spanners.
+   Leaf carries covered spanners forward.
+   Leaf returns after removal.
+   '''
 
    t = Voice(macros.scale(4))
    spannertools.SlurSpanner(t[:])
@@ -42,10 +44,11 @@ def test_Container_remove_01( ):
 
 def test_Container_remove_02( ):
    '''Containers remove nested containers correctly.
-      Container detaches from parentage.
-      Container withdraws from crossing spanners.
-      Container carries covered spanners forward.
-      Container returns after removal.'''
+   Container detaches from parentage.
+   Container withdraws from crossing spanners.
+   Container carries covered spanners forward.
+   Container returns after removal.
+   '''
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
@@ -88,3 +91,13 @@ def test_Container_remove_02( ):
    
    assert componenttools.is_well_formed_component(sequential)
    assert sequential.format == "{\n\tc'8\n\td'8\n}"
+
+
+def test_Container_remove_03( ):
+   '''Container remove works on identity and not equality.
+   '''
+
+   note = Note(0, (1, 4))
+   container = Container([Note(0, (1, 4))])
+
+   assert py.test.raises(Exception, 'container.remove(note)')

@@ -27,14 +27,12 @@ def iterate_components_depth_first(component, capped = True, unique = True,
    queue.clear( )
 
 def _next_node_depth_first(component, total):
-   '''If client has unvisited music, 
-      return next unvisited node in client's music.
+   '''If client has unvisited music, return next unvisited node in client's music.
 
-      If client has no univisited music and has a parent,
-      return client's parent.
+   If client has no univisited music and has a parent, return client's parent.
 
-      If client has no univisited music and no parent,
-      return None. '''
+   If client has no univisited music and no parent, return None.
+   '''
 
    client = component
    if hasattr(client, '_music') and 0 < len(client) and total < len(client):
@@ -47,15 +45,12 @@ def _next_node_depth_first(component, total):
          return None, None
 
 def _prev_node_depth_first(component, total = 0):
-   '''If client has unvisited music, 
-      return prev unvisited node in client's music.
+   '''If client has unvisited music, return prev unvisited node in client's music.
 
-      If client has no univisited music and has a parent,
-      return client's parent.
+   If client has no univisited music and has a parent, return client's parent.
 
-      If client has no univisited music and no parent,
-      return None.
-      '''
+   If client has no univisited music and no parent, return None.
+   '''
 
    client = component
    if hasattr(client, '_music') and 0 < len(client) and total < len(client):

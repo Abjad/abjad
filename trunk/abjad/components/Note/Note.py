@@ -11,6 +11,14 @@ class Note(_Leaf):
 
    ## OVERLOADS ##
 
+   def __eq__(self, arg):
+      if isinstance(arg, type(self)):
+         if self.duration.written == arg.duration.written:
+            if self.duration.multiplier == arg.duration.multiplier:
+               if self.pitch == arg.pitch:
+                  return True
+      return False
+
    def __len__(self):
       if self.pitch is None:
          return 0

@@ -6,9 +6,9 @@ def test_chordtools_divide_chord_by_pitch_number_01( ):
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(t, pitchtools.NamedPitch('d', 4))
    assert isinstance(treble, Chord)
-   assert treble.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
+   assert treble == Chord([2, 3, 4], (1, 4))
    assert isinstance(bass, Rest)
-   assert bass.signature == (( ), (1, 4))
+   assert bass == Rest((1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass
@@ -19,9 +19,9 @@ def test_chordtools_divide_chord_by_pitch_number_02( ):
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(t, pitchtools.NamedPitch('ef', 4))
    assert isinstance(treble, Chord)
-   assert treble.signature == ((('ef', 4), ('e', 4)), (1, 4))
+   assert treble == Chord([3, 4], (1, 4))
    assert isinstance(bass, Note)
-   assert bass.signature == ((('d', 4), ), (1, 4))
+   assert bass == Note(2, (1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass
@@ -32,9 +32,9 @@ def test_chordtools_divide_chord_by_pitch_number_03( ):
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(t, pitchtools.NamedPitch('e', 4))
    assert isinstance(treble, Note)
-   assert treble.signature == ((('e', 4), ), (1, 4))
+   assert treble == Note(4, (1, 4))
    assert isinstance(bass, Chord)
-   assert bass.signature == ((('d', 4), ('ef', 4)), (1, 4))
+   assert bass == Chord([2, 3], (1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass
@@ -45,9 +45,9 @@ def test_chordtools_divide_chord_by_pitch_number_04( ):
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(t, pitchtools.NamedPitch('f', 4))
    assert isinstance(treble, Rest)
-   assert treble.signature == (( ), (1, 4))
+   assert treble == Rest((1, 4))
    assert isinstance(bass, Chord)
-   assert bass.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
+   assert bass == Chord([2, 3, 4], (1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass
@@ -58,9 +58,10 @@ def test_chordtools_divide_chord_by_pitch_number_05( ):
    t = Chord([('d', 4), ('es', 4), ('ff', 4), ('g', 4)], (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(t, pitchtools.NamedPitch('f', 4))
    assert isinstance(treble, Chord)
-   assert treble.signature == ((('es', 4), ('g', 4)), (1, 4))
+   assert treble == Chord([('es', 4), 7], (1, 4))
+   assert treble == Chord([('es', 4), ('g', 4)], (1, 4))
    assert isinstance(bass, Chord)
-   assert bass.signature == ((('d', 4), ('ff', 4)), (1, 4))
+   assert bass == Chord([('d', 4), ('ff', 4)], (1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass
@@ -71,9 +72,9 @@ def test_chordtools_divide_chord_by_pitch_number_06( ):
    note = Note(0, (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(note, pitchtools.NamedPitch('f', 4))
    assert isinstance(treble, Rest)
-   assert treble.signature == (( ), (1, 4))
+   assert treble == Rest((1, 4))
    assert isinstance(bass, Note)
-   assert bass.signature == ((('c', 4), ), (1, 4))
+   assert bass == Note(0, (1, 4))
    assert note is not treble
    assert note is not bass
    assert treble is not bass
@@ -84,9 +85,9 @@ def test_chordtools_divide_chord_by_pitch_number_07( ):
    note = Note(0, (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(note, pitchtools.NamedPitch('c', 4))
    assert isinstance(treble, Note)
-   assert treble.signature == ((('c', 4), ), (1, 4))
+   assert treble == Note(0, (1, 4))
    assert isinstance(bass, Rest)
-   assert bass.signature == (( ), (1, 4))
+   assert bass == Rest((1, 4))
    assert note is not treble
    assert note is not bass
    assert treble is not bass
@@ -97,9 +98,9 @@ def test_chordtools_divide_chord_by_pitch_number_08( ):
    note = Note(0, (1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(note, pitchtools.NamedPitch('f', 3))
    assert isinstance(treble, Note)
-   assert treble.signature == ((('c', 4), ), (1, 4))
+   assert treble == Note(0, (1, 4))
    assert isinstance(bass, Rest)
-   assert bass.signature == (( ), (1, 4))
+   assert bass == Rest((1, 4))
    assert note is not treble
    assert note is not bass
    assert treble is not bass
@@ -110,9 +111,9 @@ def test_chordtools_divide_chord_by_pitch_number_09( ):
    t = Rest((1, 4))
    treble, bass = chordtools.divide_chord_by_pitch_number(t)
    assert isinstance(treble, Rest)
-   assert treble.signature == (( ), (1, 4))
+   assert treble == Rest((1, 4))
    assert isinstance(bass, Rest)
-   assert bass.signature == (( ), (1, 4))
+   assert bass == Rest((1, 4))
    assert t is not treble
    assert t is not bass
    assert treble is not bass

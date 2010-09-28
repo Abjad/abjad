@@ -6,7 +6,6 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes
 
    t = Voice(notetools.make_repeated_notes(5, Fraction(1, 16)))
    spannertools.SlurSpanner(t[:])
-   #fuse.contents_by_counts(t, [1, 2, 2])
    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes(t, [1, 2, 2])
 
    r'''
@@ -26,7 +25,6 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes
 
    t = Voice(notetools.make_repeated_notes(5))
    spannertools.SlurSpanner(t[:])
-   #fuse.contents_by_counts(t, [5], direction = 'big-endian')
    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes(t, [5])
 
    r'''

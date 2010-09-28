@@ -337,7 +337,7 @@ class _NavigationInterface(_Interface):
       '''
       parent = self._client.parentage.parent
       if parent is not None:
-         return parent._music.index(self._client)
+         return parent.index(self._client)
       else:
          return None
 

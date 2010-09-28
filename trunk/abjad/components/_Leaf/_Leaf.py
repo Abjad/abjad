@@ -19,9 +19,19 @@ class _Leaf(_Component):
 
    def __and__(self, arg):
       return self._operate(arg, operator.__and__)
+   
+   def __eq__(self, arg):
+      if isinstance(arg, type(self)):
+         if self.duration.written == arg.duration.written:
+            if self.duration.multiplier == arg.duration.multiplier:
+               return True
+      return False
 
    def __or__(self, arg):
       return self._operate(arg, operator.__or__)
+
+   def __ne__(self, arg):
+      return not self == arg
 
    def __str__(self):
       return self._compact_representation
@@ -85,8 +95,8 @@ class _Leaf(_Component):
       '''Read-only reference to previous bead in thread.'''
       return self._navigator._prev_bead
 
-   @property
-   def signature(self):
-      '''Read-only signature of `self`.'''
-      return (self.pairs, 
-         (self.duration.written.numerator, self.duration.written.denominator))
+#   @property
+#   def signature(self):
+#      '''Read-only signature of `self`.'''
+#      return (self.pairs, 
+#         (self.duration.written.numerator, self.duration.written.denominator))

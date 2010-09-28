@@ -13,8 +13,7 @@ def test_listtools_pairwise_02( ):
    t = [Note(x, (1, 4)) for x in range(6)]
    pairs = listtools.pairwise(t)
    for i, pair in enumerate(pairs):
-      assert (pair[0].signature, pair[1].signature) == \
-             (t[i].signature, t[i + 1].signature)
+      assert (pair[0], pair[1]) == (t[i], t[i + 1])
 
 
 def test_listtools_pairwise_03( ):

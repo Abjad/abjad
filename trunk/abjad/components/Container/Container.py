@@ -29,13 +29,18 @@ class Container(_Component):
 
    def __contains__(self, expr):
       '''True if expr is in container, otherwise False.'''
-      return expr in self._music
+      #return expr in self._music
+      for x in self._music:
+         if x is expr:
+            return True
+      else:
+         return False
 
    def __delitem__(self, i):
       '''Find component(s) at index or slice 'i' in container.
-         Detach component(s) from parentage.
-         Withdraw component(s) from crossing spanners.
-         Preserve spanners that component(s) cover(s).'''
+      Detach component(s) from parentage.
+      Withdraw component(s) from crossing spanners.
+      Preserve spanners that component(s) cover(s).'''
       from abjad.tools.componenttools._switch import _switch
       from abjad.tools.spannertools._withdraw_from_crossing import _withdraw_from_crossing
       components = self[i]
@@ -46,9 +51,9 @@ class Container(_Component):
 
    def __getitem__(self, i):
       '''Return component at index i in container.
-         Shallow traversal of container for numeric indices only..
-         For deep, recursive traversal of container for named indices,
-         use Container.get(expr).'''
+      Shallow traversal of container for numeric indices only..
+      For deep, recursive traversal of container for named indices,
+      use Container.get(expr).'''
       return self._music[i]
             
    def __iadd__(self, expr):
@@ -201,7 +206,12 @@ class Container(_Component):
 
    def index(self, component):
       '''Return nonnegative integer index of component in container.'''
-      return self._music.index(component)
+      #return self._music.index(component)
+      for i, element in enumerate(self._music):
+         if element is component:
+            return i
+      else:
+         raise ValueError('component "%s" not in Abjad container.' % component)
 
    def insert(self, i, component):
       '''Insert component 'component' at index 'i' in container.

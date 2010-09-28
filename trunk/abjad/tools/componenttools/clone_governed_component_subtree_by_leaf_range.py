@@ -1,6 +1,6 @@
+from abjad.components._Leaf import _Leaf
 from abjad.components.Container import Container
 from abjad.exceptions import ContiguityError
-from abjad.components._Leaf import _Leaf
 
 
 def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = None):
@@ -55,7 +55,8 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
       ``componenttools.clone_governed_component_subtree_by_leaf_range( )``.
    '''
    from abjad.tools import leaftools
-   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
+   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
+      clone_components_and_fracture_crossing_spanners
 
    # trivial leaf lcopy
    if isinstance(component, _Leaf):
@@ -81,8 +82,14 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
 
    # new: find start and stop leaves in governor
    governor_leaves = list(governor.leaves)
-   start_index_in_governor = governor_leaves.index(start_leaf_in_component)
-   stop_index_in_governor = governor_leaves.index(stop_leaf_in_component)
+   #start_index_in_governor = governor_leaves.index(start_leaf_in_component)
+   #stop_index_in_governor = governor_leaves.index(stop_leaf_in_component)
+   for i, x in enumerate(governor_leaves):
+      if x is start_leaf_in_component:
+         start_index_in_governor = i
+   for i, x in enumerate(governor_leaves):
+      if x is stop_leaf_in_component:
+         stop_index_in_governor = i
 
    # copy governor
    governor_copy = clone_components_and_fracture_crossing_spanners([governor])[0]
@@ -97,7 +104,8 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
 
    while not _found_start_leaf:
       leaf = leaftools.iterate_leaves_forward_in_expr(governor_copy).next( )
-      if leaf == start_leaf:
+      #if leaf == start_leaf:
+      if leaf is start_leaf:
          _found_start_leaf = True
       else:
          leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)
@@ -109,7 +117,8 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
 
    while not _found_stop_leaf:
       leaf = leaftools.iterate_leaves_backward_in_expr(governor_copy).next( )
-      if leaf == stop_leaf:
+      #if leaf == stop_leaf:
+      if leaf is stop_leaf:
          _found_stop_leaf = True
       else:
          leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)

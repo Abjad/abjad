@@ -40,8 +40,7 @@ def delete_contents_of_container_starting_before_or_at_prolated_offset(
 
    ## get index
    try:
-      element = get_first_element_starting_before_or_at_prolated_offset(
-         container, prolated_offset)
+      element = get_first_element_starting_before_or_at_prolated_offset(container, prolated_offset)
       index = container.index(element)
 
    ## return container if no index

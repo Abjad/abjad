@@ -5,7 +5,6 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_rests
    '''Glom voice into rests.'''
 
    t = Voice(notetools.make_repeated_notes(5))
-   #fuse.contents_by_counts(t, [1, 2, 2], Rest)
    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_rests(t, [1, 2, 2])
 
    r'''

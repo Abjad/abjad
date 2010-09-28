@@ -1,12 +1,14 @@
 from abjad import *
+import py.test
 
 
-def test_Spanner_remove_01( ):
+def test_Spanner__remove_01( ):
    '''Remove interior component from spanner.
-      Remove spanner from component's aggregator.
-      Spanner is left discontiguous and score no longer checks.
-      Not composer-safe. 
-      Follow immediately with operation to remove component from score.'''
+   Remove spanner from component's aggregator.
+   Spanner is left discontiguous and score no longer checks.
+   Not composer-safe. 
+   Follow immediately with operation to remove component from score.
+   '''
 
    t = Voice(macros.scale(4))
    macros.diatonicize(t)
@@ -38,13 +40,14 @@ def test_Spanner_remove_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
    
 
-def test_Spanner_remove_02( ):
+def test_Spanner__remove_02( ):
    '''Remove last component from spanner.
-      Remove spanner from component's aggregator.
-      Here an end element removes from spanner.
-      So spanner is not left discontiguous and score checks.
-      Still not composer-safe.
-      Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.'''
+   Remove spanner from component's aggregator.
+   Here an end element removes from spanner.
+   So spanner is not left discontiguous and score checks.
+   Still not composer-safe.
+   Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.
+   '''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    macros.diatonicize(t)
@@ -88,3 +91,13 @@ def test_Spanner_remove_02( ):
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
+
+
+def test_Spanner__remove_03( ):
+   '''Remove works only on references and not on equality.
+   '''
+
+   note = Note(0, (1, 4))
+   spanner = spannertools.Spanner([Note(0, (1, 4))])
+
+   assert py.test.raises(Exception, 'spanner._remove(note)') 
