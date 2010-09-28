@@ -45,12 +45,12 @@ class _LeafFormatter(_ComponentFormatter):
 
    @property
    def _leaf_body(self):
-      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
-         _get_mark_format_contributions_for_slot
+      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+         _get_context_mark_format_contributions_for_slot
       from abjad.tools.formattools._get_left_slot_format_contributions import \
          _get_left_slot_format_contributions
-      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
-         _get_mark_format_contributions_for_slot
+      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+         _get_context_mark_format_contributions_for_slot
       from abjad.tools.formattools._get_right_slot_format_contributions import \
          _get_right_slot_format_contributions
       from abjad.tools.leaftools._get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
@@ -77,7 +77,7 @@ class _LeafFormatter(_ComponentFormatter):
       result.extend(_get_right_slot_format_contributions(self._client))
 
       ## marks
-      result.extend(_get_mark_format_contributions_for_slot(self._client, 'right'))
+      result.extend(_get_context_mark_format_contributions_for_slot(self._client, 'right'))
 
       #result.extend(spanners._right)
       result.extend(

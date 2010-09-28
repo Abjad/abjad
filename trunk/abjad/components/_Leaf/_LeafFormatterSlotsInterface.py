@@ -18,8 +18,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          _get_context_setting_format_contributions
       from abjad.tools.formattools._get_before_slot_format_contributions import \
          _get_before_slot_format_contributions
-      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
-         _get_mark_format_contributions_for_slot
+      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+         _get_context_mark_format_contributions_for_slot
       from abjad.tools.leaftools._get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
       _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       result = [ ]
@@ -31,7 +31,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
       ## marks
       result.append([('marks', 'marks'),
-         _get_mark_format_contributions_for_slot(self._client._client, 'before')])
+         _get_context_mark_format_contributions_for_slot(self._client._client, 'before')])
 
       #result.append(self.wrap(leaf.interfaces, 'overrides'))
       #result.append(self.wrap(leaf.interfaces, 'settings'))
@@ -57,8 +57,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_3(self):
       from abjad.tools.formattools._get_opening_slot_format_contributions import \
          _get_opening_slot_format_contributions
-      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
-         _get_mark_format_contributions_for_slot
+      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+         _get_context_mark_format_contributions_for_slot
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
@@ -67,7 +67,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
       ## marks
       result.append([('marks', 'marks'),
-         _get_mark_format_contributions_for_slot(self._client._client, 'opening')])
+         _get_context_mark_format_contributions_for_slot(self._client._client, 'opening')])
 
       #result.append(self.wrap(leaf.interfaces, 'opening'))
       result.append([('opening', 'opening'),
@@ -87,8 +87,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_5(self):
       from abjad.tools.formattools._get_closing_slot_format_contributions import \
          _get_closing_slot_format_contributions
-      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
-         _get_mark_format_contributions_for_slot
+      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+         _get_context_mark_format_contributions_for_slot
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
@@ -101,7 +101,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
       ## marks
       result.append([('marks', 'marks'),
-         _get_mark_format_contributions_for_slot(self._client._client, 'closing')])
+         _get_context_mark_format_contributions_for_slot(self._client._client, 'closing')])
 
       result.append(self.wrap(leaf.comments, 'closing'))
       return tuple(result)
@@ -112,8 +112,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          _get_after_slot_format_contributions
       from abjad.tools.leaftools._get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
       _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
-      from abjad.tools.formattools._get_mark_format_contributions_for_slot import \
-         _get_mark_format_contributions_for_slot
+      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+         _get_context_mark_format_contributions_for_slot
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
@@ -129,7 +129,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
       ## marks
       result.append([('marks', 'marks'),
-         _get_mark_format_contributions_for_slot(self._client._client, 'after')])
+         _get_context_mark_format_contributions_for_slot(self._client._client, 'after')])
 
       result.append(self.wrap(leaf.directives, 'after'))
       result.append(self.wrap(leaf.comments, 'after'))
