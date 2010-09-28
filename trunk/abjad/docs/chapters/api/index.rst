@@ -27,7 +27,6 @@ Score component interfaces
 .. toctree::
    :maxdepth: 1
 
-   interfaces/ArticulationInterface/ArticulationInterface
    interfaces/BreaksInterface/BreaksInterface
    interfaces/MarkupInterface/MarkupInterface
    interfaces/OffsetInterface/OffsetInterface
@@ -527,11 +526,13 @@ marktools
    :maxdepth: 1
 
    tools/marktools/Annotation/Annotation
+   tools/marktools/Articulation/Articulation
    tools/marktools/CommentMark/CommentMark
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
    tools/marktools/get_all_comment_marks_attached_to_component
    tools/marktools/get_all_marks_attached_to_component
    tools/marktools/get_annotations_attached_to_component
+   tools/marktools/get_articulations_attached_to_component
    tools/marktools/get_comment_marks_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
 
@@ -652,7 +653,6 @@ notetools
 .. toctree::
    :maxdepth: 1
 
-   tools/notetools/Articulation/Articulation
    tools/notetools/NaturalHarmonic/NaturalHarmonic
    tools/notetools/NoteHead/NoteHead
    tools/notetools/add_artificial_harmonic_to_note

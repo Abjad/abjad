@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_CommentMark___init____01( ):
+def test_Comment___init____01( ):
    '''Initialize LilyPond \slurDotted command.
    '''
 
    staff = Staff(macros.scale(4))
    slur = spannertools.SlurSpanner(staff.leaves)
-   comment_mark = marktools.CommentMark('beginning of note content')(staff[0])
+   comment_mark = marktools.Comment('beginning of note content')(staff[0])
 
    r'''
    \new Staff {

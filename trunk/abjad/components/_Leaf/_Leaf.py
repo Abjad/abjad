@@ -1,5 +1,4 @@
 from abjad.components._Component._Component import _Component
-from abjad.interfaces import ArticulationInterface
 from abjad.interfaces import MarkupInterface
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.components._Leaf._LeafFormatter import _LeafFormatter
@@ -52,14 +51,6 @@ class _Leaf(_Component):
          self._after_grace._carrier = self
          self._after_grace.kind = 'after'
       return self._after_grace
-
-   @property
-   def articulations(self):
-      '''Read-only reference to articulations interface.
-      '''
-      if not hasattr(self, '_articulations'):
-         self._articulations = ArticulationInterface(self)
-      return self._articulations
 
    @property
    def grace(self):

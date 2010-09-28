@@ -5,13 +5,13 @@ def get_all_marks_attached_to_component(component):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
-      abjad> comment_mark = marktools.CommentMark('beginning of note content')(staff[0])
+      abjad> comment_mark = marktools.Comment('beginning of note content')(staff[0])
       abjad> marktools.LilyPondCommandMark('slurDotted')(staff[0])
 
    ::
 
       abjad> marktools.get_all_marks_attached_to_component(staff[0]) 
-      (CommentMark('beginning of note content')(c'8), LilyPondCommandMark('slurDotted')(c'8))
+      (Comment('beginning of note content')(c'8), LilyPondCommandMark('slurDotted')(c'8))
 
    Return tuple of zero or more marks.
    '''

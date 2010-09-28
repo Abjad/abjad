@@ -47,7 +47,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       Modified tuplets, on the other hand, may make
       format contributions to slot 1. ::
 
-         abjad> marktools.CommentMark('This is a tuplet', 'opening')(t)
+         abjad> marktools.Comment('This is a tuplet', 'opening')(t)
          abjad> t.override.note_head.color = 'red'
          abjad> t.override.dots.color = 'red'
          abjad> import pprint

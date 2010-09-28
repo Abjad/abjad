@@ -1,3 +1,4 @@
+from abjad.components._Component import _Component
 #from abjad.core import _StrictComparator
 #from abjad.core import _Immutable
 from abjad.tools.contexttools.Mark import Mark
@@ -13,7 +14,7 @@ class Articulation(Mark):
       Articulation('^\staccato')
    '''
 
-   __slots__ = ('_string', '_direction')
+   __slots__ = ('_string', '_direction', '_format_slot')
 
 #   def __new__(klass, *args):
 #
@@ -61,6 +62,7 @@ class Articulation(Mark):
 
    def __init__(self, *args):
       assert len(args) in range(3)
+      Mark.__init__(self, target_context = _Component)
       if 2 <= len(args):
          assert isinstance(args[0], (str, type(None)))
          assert isinstance(args[1], (str, type(None)))
@@ -95,6 +97,7 @@ class Articulation(Mark):
       object.__setattr__(self, '_string', string)
       object.__setattr__(self, '_direction', direction)
       self._format_slot = 'right'
+      self._contents_repr_string = '%s, %s' % (repr(self.string), repr(self.direction))
 
    ## OVERLOADS ##
 

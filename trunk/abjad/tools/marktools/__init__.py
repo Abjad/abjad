@@ -4,5 +4,5 @@ _package_import(__path__[0], globals( ))
 
 from Annotation import Annotation
 from Articulation import Articulation
-from CommentMark import CommentMark
+from Comment import Comment
 from LilyPondCommandMark import LilyPondCommandMark

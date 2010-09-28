@@ -1,14 +1,14 @@
 from abjad import *
 
 
-def test_CommentMark_before_01( ):
+def test_Comment_before_01( ):
    '''Test context comments before.'''
 
    t = Voice(macros.scale(4))
    beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
-   marktools.CommentMark('Voice before comments here.', 'before')(t)
-   marktools.CommentMark('More voice before comments.', 'before')(t)
+   marktools.Comment('Voice before comments here.', 'before')(t)
+   marktools.Comment('More voice before comments.', 'before')(t)
 
    r'''
    % Voice before comments here.
@@ -27,13 +27,13 @@ def test_CommentMark_before_01( ):
    assert t.format == "% Voice before comments here.\n% More voice before comments.\n\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}"
 
 
-def test_CommentMark_before_02( ):
+def test_Comment_before_02( ):
    '''Leaf comments before.'''
 
    t = Note(0, (1, 8))
    t.override.beam.thickness = 3
-   marktools.CommentMark('Leaf comments before here.', 'before')(t)
-   marktools.CommentMark('More comments before.', 'before')(t)
+   marktools.Comment('Leaf comments before here.', 'before')(t)
+   marktools.Comment('More comments before.', 'before')(t)
    
    r'''
    % Leaf comments before here.

@@ -692,8 +692,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___33( ):
    '''
 
    t = Note(0, (1, 4))
-   t.articulations.append('staccato')
-   #t.articulations.color = 'red'
+   marktools.Articulation('staccato')(t)
    t.override.script.color = 'red'
 
    r'''

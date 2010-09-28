@@ -30,7 +30,8 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
    new_leaf = componenttools.clone_components_and_remove_all_spanners([leaf])[0]
    componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, [new_leaf])
    new_leaf.grace[:] = [ ]
-   new_leaf.articulations[:] = [ ]
+   ## TODO: maybe replace with logic to move marktools.Articulation ##
+   #new_leaf.articulations[:] = [ ]
    new_leaf.dynamic_mark = None
    leaf.after_grace[:] = [ ]
 

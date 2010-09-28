@@ -4,8 +4,8 @@ from abjad import *
 def test_marktools_get_comment_marks_attached_to_component_01( ):
 
    staff = Staff(macros.scale(4))
-   comment_mark_1 = marktools.CommentMark('comment 1')(staff[0])
-   comment_mark_2 = marktools.CommentMark('comment 2')(staff[0])
+   comment_mark_1 = marktools.Comment('comment 1')(staff[0])
+   comment_mark_2 = marktools.Comment('comment 2')(staff[0])
 
    r'''
    \new Staff {

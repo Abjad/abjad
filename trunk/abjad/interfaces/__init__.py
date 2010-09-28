@@ -1,4 +1,3 @@
-from ArticulationInterface import ArticulationInterface
 from BreaksInterface import BreaksInterface
 from MarkupInterface import MarkupInterface
 from OffsetInterface import OffsetInterface
