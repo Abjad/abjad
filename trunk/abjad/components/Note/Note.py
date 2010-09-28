@@ -70,14 +70,6 @@ class Note(_Leaf):
       else:
          return ( )
 
-   @property
-   def pairs(self):
-      '''Read-only pair of pitch of note.'''
-      if self.pitch:
-         return (self.pitch.pair, )
-      else:
-         return ( )
-
    @apply
    def pitch( ):
       def fget(self):

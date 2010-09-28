@@ -34,9 +34,5 @@ class Skip(_Leaf):
       return result
 
    @property
-   def pairs(self):
-      return ( )
-
-   @property
    def pitches(self):
       return ( )

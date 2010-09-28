@@ -45,11 +45,6 @@ class Rest(_Leaf):
       '''Read-only empty tuple because rests have no pitch.'''
       return ( )
   
-   @property
-   def pairs(self):
-      '''Read-only empty tuple because rests have no pitch.'''
-      return ( )
-
    @apply
    def pitch( ):
       def fget(self):

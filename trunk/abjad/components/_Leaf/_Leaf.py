@@ -47,7 +47,10 @@ class _Leaf(_Component):
    def _operate(self, arg, operator):
       assert isinstance(arg, _Leaf)
       from abjad.tools.leaftools._engender import _engender
-      pairs = operator(set(self.pairs), set(arg.pairs))
+      #pairs = operator(set(self.pairs), set(arg.pairs))
+      self_pairs = set([pitch.pair for pitch in self.pitches])
+      arg_pairs = set([pitch.pair for pitch in arg.pitches])
+      pairs = operator(self_pairs, arg_pairs)
       return _engender(pairs, self.duration.written)
 
    ## PUBLIC ATTRIBUTES ##
@@ -94,9 +97,3 @@ class _Leaf(_Component):
    def prev(self):
       '''Read-only reference to previous bead in thread.'''
       return self._navigator._prev_bead
-
-#   @property
-#   def signature(self):
-#      '''Read-only signature of `self`.'''
-#      return (self.pairs, 
-#         (self.duration.written.numerator, self.duration.written.denominator))

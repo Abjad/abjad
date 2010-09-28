@@ -115,11 +115,6 @@ class Chord(_Leaf):
       '''Return sorted immutable tuple of pitch numbers in self.'''
       return tuple([pitch.number for pitch in self.pitches])
 
-   @property
-   def pairs(self):
-      '''Return sorted immutable tuple of pitch pairs in self.'''
-      return tuple([pitch.pair for pitch in self.pitches])
-
    @apply
    def pitches( ):
       def fget(self):
