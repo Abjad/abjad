@@ -179,32 +179,32 @@ class _Component(_StrictComparator):
 
    ## PUBLIC METHODS ##
 
-   ## TODO: externalize ##
-   def splice(self, components):
-      '''Splice `components` after `self`.
-      Extend spanners rightwards to attach to all components in list.'''
-      from abjad.tools import componenttools
-      from abjad.tools import componenttools
-      from abjad.tools import spannertools
-      assert componenttools.all_are_components(components)
-      insert_offset = self.offset.stop
-      receipt = spannertools.get_spanners_that_dominate_components([self])
-      for spanner, index in receipt:
-         insert_component = spannertools.find_spanner_component_starting_at_exactly_score_offset(
-            spanner, insert_offset)
-         if insert_component is not None:
-            insert_index = spanner.index(insert_component)
-         else:
-            insert_index = len(spanner)
-         for component in reversed(components):
-            spanner._insert(insert_index, component)
-            component._spanners.add(spanner)
-      parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
-      if parent is not None:
-         for component in reversed(components):
-            component.parentage._switch(parent)
-            parent._music.insert(start + 1, component)
-      return [self] + components
+#   ## TODO: externalize ##
+#   def splice(self, components):
+#      '''Splice `components` after `self`.
+#      Extend spanners rightwards to attach to all components in list.'''
+#      from abjad.tools import componenttools
+#      from abjad.tools import componenttools
+#      from abjad.tools import spannertools
+#      assert componenttools.all_are_components(components)
+#      insert_offset = self.offset.stop
+#      receipt = spannertools.get_spanners_that_dominate_components([self])
+#      for spanner, index in receipt:
+#         insert_component = spannertools.find_spanner_component_starting_at_exactly_score_offset(
+#            spanner, insert_offset)
+#         if insert_component is not None:
+#            insert_index = spanner.index(insert_component)
+#         else:
+#            insert_index = len(spanner)
+#         for component in reversed(components):
+#            spanner._insert(insert_index, component)
+#            component._spanners.add(spanner)
+#      parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
+#      if parent is not None:
+#         for component in reversed(components):
+#            component.parentage._switch(parent)
+#            parent._music.insert(start + 1, component)
+#      return [self] + components
 
    ## TODO: externalize ##
    def splice_left(self, components):

@@ -99,6 +99,7 @@ componenttools
    tools/componenttools/component_to_tuplet_depth
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/extend_in_parent_of_component_and_do_not_grow_spanners
+   tools/componenttools/extend_in_parent_of_component_and_grow_spanners
    tools/componenttools/extend_left_in_parent_of_component_and_do_not_grow_spanners
    tools/componenttools/get_first_component_in_expr_with_name
    tools/componenttools/get_first_instance_of_klass_in_improper_parentage_of_component

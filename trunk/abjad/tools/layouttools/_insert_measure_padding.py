@@ -24,8 +24,10 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
 
    root = expr[0].parentage.root
 
-   ## forbid updates because _Component.splice_left( ) and ##
-   ## _Component.splice( ) call self.offset.stop  ##
+   ## forbid updates because i
+   ## componenttools.extend_in_parent_of_component_and_grow_spanners( ) and
+   ## componenttools.extend_left_in_parent_of_component_and_grow_spanners( )
+   ## call self.offset.stop  ##
    root._update._forbid_component_update( )
 
    for measure in measuretools.iterate_measures_forward_in_expr(expr):
@@ -34,7 +36,9 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
          start_leaves = [x for x in start_components if isinstance(x, _Leaf)]
          for start_leaf in start_leaves:
             if splice:
-               start_leaf.splice_left([klass.__class__(front)])
+               #start_leaf.splice_left([klass.__class__(front)])
+               componentools.extend_in_parent_of_component_and_grow_spanners(
+                  start_leaf, [klass.__class__(front)])
             else:
                componentools.extend_in_parent_of_component_and_do_not_grow_spanners(
                   start_leaf, [klass.__class__(front)])
@@ -43,9 +47,10 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
          stop_leaves = [x for x in stop_components if isinstance(x, _Leaf)]
          for stop_leaf in stop_leaves:
             if splice:
-               stop_leaf.splice([klass.__class__(back)])
+               #stop_leaf.splice([klass.__class__(back)])
+               componentools.extend_left_in_parent_of_component_and_grow_spanners(
+                  start_leaf, [klass.__class__(front)])
             else:
-               stop_leaf.extend_in_parent([klass.__class__(back)])
                componentools.extend_left_in_parent_of_component_and_do_not_grow_spanners(
                   start_leaf, [klass.__class__(front)])
 

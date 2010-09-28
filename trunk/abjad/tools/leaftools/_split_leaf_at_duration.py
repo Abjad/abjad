@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
-from abjad.core import Fraction
 from abjad.tools.spannertools import TieSpanner
+from fractions import Fraction
 
 
 def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after = False):
@@ -28,7 +28,7 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
       return ([leaf], [ ])
 
    new_leaf = componenttools.clone_components_and_remove_all_spanners([leaf])[0]
-   leaf.splice([new_leaf])
+   componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, [new_leaf])
    new_leaf.grace[:] = [ ]
    new_leaf.articulations[:] = [ ]
    new_leaf.dynamic_mark = None

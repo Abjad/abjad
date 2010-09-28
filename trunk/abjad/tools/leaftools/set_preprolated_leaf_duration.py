@@ -1,10 +1,10 @@
-from abjad.exceptions import AssignabilityError
 from abjad.components._Leaf import _Leaf
-from abjad.core import Fraction
+from abjad.components.Tuplet import Tuplet
+from abjad.exceptions import AssignabilityError
+from abjad.tools import componenttools
 from abjad.tools import spannertools
 from abjad.tools.notetools.make_notes import make_notes
-#from abjad.components.Tuplet import Tuplet
-from abjad.components.Tuplet import Tuplet
+from fractions import Fraction
 
    
 def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
@@ -92,8 +92,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
    ## If leaf carries LilyPond multiplier, change only LilyPond multiplier.
    if leaf.duration.multiplier is not None:
-      leaf.duration.multiplier = \
-         new_preprolated_duration / leaf.duration.written
+      leaf.duration.multiplier = new_preprolated_duration / leaf.duration.written
       return [leaf]
 
    ## If leaf does not carry LilyPond multiplier, change other values.
@@ -109,12 +108,10 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
-         leaf.splice(tied_leaves)
-         #if not leaf.tie.parented:
+         componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, tied_leaves)
          if not spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
             leaf, spannertools.TieSpanner):
             spannertools.TieSpanner(all_leaves)
-      #elif isinstance(duration_tokens[0], Tuplet):
       elif isinstance(duration_tokens[0], Tuplet):
          #print 'debug duration_tokens %s' % duration_tokens
          fmtuplet = duration_tokens[0]
@@ -125,13 +122,10 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
-         leaf.splice(tied_leaves)
-         #if not leaf.tie.spanned:
-         if not spannertools.is_component_with_spanner_attached(
-            leaf, spannertools.TieSpanner):
+         componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, tied_leaves)
+         if not spannertools.is_component_with_spanner_attached(leaf, spannertools.TieSpanner):
             spannertools.TieSpanner(all_leaves) 
          tuplet_multiplier = fmtuplet.duration.multiplier
-         #Tuplet(tuplet_multiplier, all_leaves)
          Tuplet(tuplet_multiplier, all_leaves)
       else:
          raise ValueError('unexpected output from notetools.make_notes.')

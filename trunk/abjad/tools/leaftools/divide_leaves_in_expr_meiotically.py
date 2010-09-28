@@ -1,3 +1,4 @@
+from abjad.tools import componenttools
 from abjad.tools.leaftools.divide_leaf_meiotically import divide_leaf_meiotically
 from abjad.tools.leaftools.iterate_leaves_backward_in_expr import iterate_leaves_backward_in_expr
 
@@ -57,6 +58,7 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
       ``leaftools.divide_leaves_in_expr_meiotically( )``.
    '''
 
-   ## can not wrap with update control because of leaf.splice( ) ##
+   ## can not wrap with update control because of        ##
+   ## extend_in_parent_of_component_and_grow_spanners( ) ##
    for leaf in iterate_leaves_backward_in_expr(expr):
       divide_leaf_meiotically(leaf, n)
