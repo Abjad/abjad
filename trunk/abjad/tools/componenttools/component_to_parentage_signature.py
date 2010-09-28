@@ -1,4 +1,3 @@
-#from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
 from abjad.tools.componenttools._ContainmentSignature import _ContainmentSignature
 
 
@@ -11,7 +10,7 @@ def component_to_parentage_signature(component):
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
-      abjad> print note.parentage.signature
+      abjad> print component_to_parentage_signature(note)
             root: Staff-18830800 (18830800)
            score: 
       staffgroup: 

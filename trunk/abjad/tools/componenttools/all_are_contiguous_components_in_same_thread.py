@@ -38,7 +38,6 @@ def all_are_contiguous_components_in_same_thread(expr, klasses = (_Component),
          return False
       if not component_is_orphan(cur):
          orphan_components = False
-      #cur_signature = cur.thread.signature
       cur_signature = threadtools.component_to_thread_signature(cur)
       if not cur_signature == first_signature:
          same_thread = False

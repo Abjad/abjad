@@ -64,7 +64,6 @@ def all_are_thread_contiguous_components(expr, klasses = (_Component), allow_orp
          return False
       if not component_is_orphan(cur):
          orphan_components = False
-      #if not cur.thread.signature == first_thread:
       if not threadtools.component_to_thread_signature(cur) == first_thread:
          same_thread = False
       if not prev._navigator._is_immediate_temporal_successor_of(cur):
@@ -97,9 +96,7 @@ def _are_thread_proper(component_1, component_2, klasses = (_Component)):
       return False
 
    ## if component_1 and component_2 do not share a thread
-   #first_thread = component_1.thread.signature
    first_thread = threadtools.component_to_thread_signature(component_1)
-   #if not first_thread == component_2.thread.signature:
    if not first_thread == threadtools.component_to_thread_signature(component_2):
       #print 'not same thread!'
       return False

@@ -31,7 +31,6 @@ def all_are_components_in_same_thread(expr, klasses = (_Component, ), allow_orph
    for component in expr[1:]:
       if not component_is_orphan(component):
          orphan_components = False
-      #if component.thread.signature != first_signature:
       if threadtools.component_to_thread_signature(component) != first_signature:
          same_thread = False
       if not allow_orphans and not same_thread:

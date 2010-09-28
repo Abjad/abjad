@@ -94,12 +94,10 @@ def iterate_thread_forward_from_component(component, klass = None):
       klass = _Component
 
    ## save thread signature of input component
-   #component_thread_signature = component.thread.signature
    component_thread_signature = component_to_thread_signature(component)
 
    ## iterate component depth-first allowing to crawl UP into score
    for x in iterate_components_depth_first(component, capped = False):
       if isinstance(x, klass):
-         #if x.thread.signature == component_thread_signature:
          if component_to_thread_signature(x) == component_thread_signature:
             yield x
