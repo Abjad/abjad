@@ -7,8 +7,10 @@ def test_CommentsInterface_right_01( ):
    t = Voice(macros.scale(4))
    beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
-   t.comments.right.append('Voice right comments here.')
-   t.comments.right.append('More voice right comments.')
+   #t.comments.right.append('Voice right comments here.')
+   #t.comments.right.append('More voice right comments.')
+   marktools.CommentMark('Voice right comments here.', 'right')(t)
+   marktools.CommentMark('More voice right comments.', 'right')(t)
 
    "Container slots interfaces do not collect contributions to right."
 

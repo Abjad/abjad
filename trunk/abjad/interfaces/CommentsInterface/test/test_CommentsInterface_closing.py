@@ -6,8 +6,10 @@ def test_CommentsInterface_closing_01( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   t.comments.closing.append('Voice closing comments here.')
-   t.comments.closing.append('More voice closing comments.')
+   #t.comments.closing.append('Voice closing comments here.')
+   #t.comments.closing.append('More voice closing comments.')
+   marktools.CommentMark('Voice closing comments here.', 'closing')(t)
+   marktools.CommentMark('More voice closing comments.', 'closing')(t)
 
    r'''
    \new Voice {

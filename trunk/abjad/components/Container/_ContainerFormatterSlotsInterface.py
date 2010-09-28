@@ -26,7 +26,8 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result = [ ]
       container = self.formatter.container
       result.append(self.wrap(container.comments, 'before'))
-      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(container, 'before')])
+      result.append([('comment_marks', ''), 
+         _get_comment_contribution_for_slot(container, 'before')])
       result.append(self.wrap(container.directives, 'before'))
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(container, 'before')])
@@ -35,7 +36,6 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_2(self):
       result = [ ]
-      #result.append(self.wrap(self.formatter.container.brackets, 'open'))
       if self._client._client.parallel:
          brackets_open = ['<<']
       else:
@@ -51,22 +51,20 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          _get_grob_override_format_contributions
       from abjad.tools.formattools._get_context_setting_format_contributions import \
          _get_context_setting_format_contributions
-
       result = [ ]
       container = self.formatter.container
       result.append(self.wrap(container.comments, 'opening'))
-      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(container, 'opening')])
+      result.append([('comment_marks', ''), 
+         _get_comment_contribution_for_slot(container, 'opening')])
       result.append(self.wrap(container.directives, 'opening'))
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(container, 'opening')])
-      
       result.append([('overrides', 'overrides'), 
          _get_grob_override_format_contributions(self._client._client)])
       result.append([('opening', 'opening'), 
          _get_opening_slot_format_contributions(self._client._client)])
       result.append([('settings', 'settings'), 
          _get_context_setting_format_contributions(self._client._client)])
-
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -82,21 +80,17 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          _get_closing_slot_format_contributions
       from abjad.tools.formattools._get_grob_revert_format_contributions import \
          _get_grob_revert_format_contributions
-
       result = [ ]
       container = self.formatter.container
-
-      #result.append(self.wrap(container.interfaces, 'closing'))
-      #result.append(self.wrap(container.interfaces, 'reverts'))
       result.append([('closing', 'closing'), 
          _get_closing_slot_format_contributions(self._client._client)])
       result.append([('reverts', 'reverts'), 
          _get_grob_revert_format_contributions(self._client._client)])
-
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_contribution_for_slot(container, 'closing')])
       result.append(self.wrap(container.directives, 'closing'))
-      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(container, 'closing')])
+      result.append([('comment_marks', ''), 
+         _get_comment_contribution_for_slot(container, 'closing')])
       result.append(self.wrap(container.comments, 'closing'))
       self._indent_slot_contributions(result)
       return tuple(result)
@@ -104,7 +98,6 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_6(self):
       result = [ ]
-      #result.append(self.wrap(self.formatter.container.brackets, 'close'))
       if self._client._client.parallel:
          brackets_close = ['>>']
       else:

@@ -6,8 +6,10 @@ def test_CommentsInterface_opening_01( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   t.comments.opening.append('Voice opening comments here.')
-   t.comments.opening.append('More voice opening comments.')
+   #t.comments.opening.append('Voice opening comments here.')
+   #t.comments.opening.append('More voice opening comments.')
+   marktools.CommentMark('Voice opening comments here.', 'opening')(t)
+   marktools.CommentMark('More voice opening comments.', 'opening')(t)
 
    r'''
    \new Voice {

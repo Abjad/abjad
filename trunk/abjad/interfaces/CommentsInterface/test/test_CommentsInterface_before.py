@@ -7,8 +7,10 @@ def test_CommentsInterface_before_01( ):
    t = Voice(macros.scale(4))
    beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
-   t.comments.before.append('Voice before comments here.')
-   t.comments.before.append('More voice before comments.')
+   #t.comments.before.append('Voice before comments here.')
+   #t.comments.before.append('More voice before comments.')
+   marktools.CommentMark('Voice before comments here.', 'before')(t)
+   marktools.CommentMark('More voice before comments.', 'before')(t)
 
    r'''
    % Voice before comments here.

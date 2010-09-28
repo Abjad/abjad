@@ -1,5 +1,9 @@
 from abjad.components.Container._ContainerFormatterSlotsInterface import \
    _ContainerFormatterSlotsInterface
+from abjad.tools.formattools._get_comment_contribution_for_slot import \
+   _get_comment_contribution_for_slot
+from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
+   _get_lilypond_command_mark_contribution_for_slot
 
 
 class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -18,22 +22,16 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       formatter = self.formatter
       context = formatter.context
-      #brackets_open = context.brackets.open
       if self._client._client.parallel:
          brackets_open = ['<<']
       else:
          brackets_open = ['{']
       engraver_removals = formatter._formatted_engraver_removals
       engraver_consists = formatter._formatted_engraver_consists
-
-      #overrides = context.interfaces.overrides
-      #settings = context.interfaces.settings
       overrides = _get_grob_override_format_contributions(self._client._client)
       settings = _get_context_setting_format_contributions(self._client._client)
-
       if engraver_removals or engraver_consists or overrides or settings:
          contributions = [formatter._invocation + r' \with {']
-         #result.append([(context.brackets, 'open'), contributions])
          result.append([('context_brackets', 'open'), contributions])
          contributions = ['\t' + x for x in engraver_removals]
          result.append([(formatter, 'engraver_removals'), contributions])
@@ -43,13 +41,9 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          result.append([('overrides', 'overrides'), contributions])
          contributions = ['\t' + x for x in settings] 
          result.append([('settings', 'settings'), contributions])
-         #contributions = ['} %s' % context.brackets.open[0]]
-         #result.append([(context.brackets, 'open'), contributions])
          contributions = ['} %s' % brackets_open[0]]
          result.append([('context_brackets', 'open'), contributions])
       else:
-         #contributions = [formatter._invocation + ' %s' % context.brackets.open[0]]
-         #result.append([(context.brackets, 'open'), contributions])
          contributions = [formatter._invocation + ' %s' % brackets_open[0]]
          result.append([('context_brackets', 'open'), contributions])
       return tuple(result)
@@ -61,12 +55,13 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       context = self.formatter.context
       result.append(self.wrap(context.comments, 'opening'))
+      result.append([('comment_marks', ''),
+         _get_comment_contribution_for_slot(context, 'opening')])
       result.append(self.wrap(context.directives, 'opening'))
-
-      #result.append(self.wrap(context.interfaces, 'opening'))
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(context, 'opening')])
       result.append([('opening', 'opening'),
          _get_opening_slot_format_contributions(self._client._client)])
-
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -76,12 +71,12 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_closing_slot_format_contributions
       result = [ ]
       context = self.formatter.context
-
-      #result.append(self.wrap(context.interfaces, 'closing'))
       result.append([('closing', 'closing'),
          _get_closing_slot_format_contributions(self._client._client)])
-
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(context, 'closing')])
       result.append(self.wrap(context.directives, 'closing'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(context, 'closing')])
       result.append(self.wrap(context.comments, 'closing'))
       self._indent_slot_contributions(result)
       return tuple(result)
