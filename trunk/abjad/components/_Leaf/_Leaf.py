@@ -47,7 +47,6 @@ class _Leaf(_Component):
    def _operate(self, arg, operator):
       assert isinstance(arg, _Leaf)
       from abjad.tools.leaftools._engender import _engender
-      #pairs = operator(set(self.pairs), set(arg.pairs))
       self_pairs = set([pitch.pair for pitch in self.pitches])
       arg_pairs = set([pitch.pair for pitch in arg.pitches])
       pairs = operator(self_pairs, arg_pairs)
