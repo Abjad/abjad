@@ -1,4 +1,8 @@
 from abjad.components._Component._ComponentFormatterSlotsInterface import _ComponentFormatterSlotsInterface
+from abjad.tools.formattools._get_comment_contribution_for_slot import \
+   _get_comment_contribution_for_slot
+from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
+   _get_lilypond_command_mark_contribution_for_slot
 
 
 class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
@@ -27,7 +31,10 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       leaf = formatter.leaf
       result.append(self.wrap(formatter, '_grace_body'))
       result.append(self.wrap(leaf.comments, 'before'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'before')])
       result.append(self.wrap(leaf.directives, 'before'))
+      result.append([('lilypond_command_marks', ''), 
+         _get_lilypond_command_mark_contribution_for_slot(leaf, 'before')])
 
       ## marks
       result.append([('marks', 'marks'),
@@ -63,7 +70,10 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(leaf.comments, 'opening'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'opening')])
       result.append(self.wrap(leaf.directives, 'opening'))
+      result.append([('lilypond_command_marks', ''), 
+         _get_lilypond_command_mark_contribution_for_slot(leaf, 'opening')])
 
       ## marks
       result.append([('marks', 'marks'),
@@ -93,6 +103,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(formatter, '_agrace_body'))
+      result.append([('lilypond_command_marks', ''), 
+         _get_lilypond_command_mark_contribution_for_slot(leaf, 'closing')])
       result.append(self.wrap(leaf.directives, 'closing'))
 
       #result.append(self.wrap(leaf.interfaces, 'closing'))
@@ -103,6 +115,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append([('marks', 'marks'),
          _get_context_mark_format_contributions_for_slot(self._client._client, 'closing')])
 
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'closing')])
       result.append(self.wrap(leaf.comments, 'closing'))
       return tuple(result)
 
@@ -131,7 +144,10 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append([('marks', 'marks'),
          _get_context_mark_format_contributions_for_slot(self._client._client, 'after')])
 
+      result.append([('lilypond_command_marks', ''), 
+         _get_lilypond_command_mark_contribution_for_slot(leaf, 'after')])
       result.append(self.wrap(leaf.directives, 'after'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'after')])
       result.append(self.wrap(leaf.comments, 'after'))
       return tuple(result)
 

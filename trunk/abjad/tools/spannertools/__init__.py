@@ -18,7 +18,6 @@ from OctavationSpanner import OctavationSpanner
 from PhrasingSlurSpanner import PhrasingSlurSpanner
 from PianoPedalSpanner import PianoPedalSpanner
 from SlurSpanner import SlurSpanner
-from SpacingSpanner import SpacingSpanner
 from Spanner import Spanner
 from StaffLinesSpanner import StaffLinesSpanner
 from TextScriptSpanner import TextScriptSpanner

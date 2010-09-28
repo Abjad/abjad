@@ -1,6 +1,8 @@
 from abjad.components._Component._ComponentFormatter import _ComponentFormatter
 from abjad.components._Leaf._LeafFormatterNumberInterface import _LeafFormatterNumberInterface
 from abjad.components._Leaf._LeafFormatterSlotsInterface import _LeafFormatterSlotsInterface
+from abjad.tools.formattools._get_comment_contribution_for_slot import \
+   _get_comment_contribution_for_slot
 
 
 class _LeafFormatter(_ComponentFormatter):
@@ -86,6 +88,7 @@ class _LeafFormatter(_ComponentFormatter):
 
       result.extend(directives.right)
       result.extend(self._number_contribution)
+      result.extend(_get_comment_contribution_for_slot(client, 'right'))
       result.extend(['% ' + x for x in client.comments.right])
       return [' '.join(result)]
 

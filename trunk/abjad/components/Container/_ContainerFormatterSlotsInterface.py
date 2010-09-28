@@ -1,5 +1,9 @@
 from abjad.components._Component._ComponentFormatterSlotsInterface import \
    _ComponentFormatterSlotsInterface
+from abjad.tools.formattools._get_comment_contribution_for_slot import \
+   _get_comment_contribution_for_slot
+from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
+   _get_lilypond_command_mark_contribution_for_slot
 
 
 class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
@@ -22,7 +26,10 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result = [ ]
       container = self.formatter.container
       result.append(self.wrap(container.comments, 'before'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(container, 'before')])
       result.append(self.wrap(container.directives, 'before'))
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(container, 'before')])
       return tuple(result)
 
    @property
@@ -48,11 +55,10 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result = [ ]
       container = self.formatter.container
       result.append(self.wrap(container.comments, 'opening'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(container, 'opening')])
       result.append(self.wrap(container.directives, 'opening'))
-
-      #result.append(self.wrap(container.interfaces, 'overrides'))
-      #result.append(self.wrap(container.interfaces, 'opening'))
-      #result.append(self.wrap(container.interfaces, 'settings'))
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(container, 'opening')])
       
       result.append([('overrides', 'overrides'), 
          _get_grob_override_format_contributions(self._client._client)])
@@ -87,7 +93,10 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append([('reverts', 'reverts'), 
          _get_grob_revert_format_contributions(self._client._client)])
 
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(container, 'closing')])
       result.append(self.wrap(container.directives, 'closing'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(container, 'closing')])
       result.append(self.wrap(container.comments, 'closing'))
       self._indent_slot_contributions(result)
       return tuple(result)
@@ -107,7 +116,10 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_7(self):
       result = [ ]
       container = self.formatter.container
+      result.append([('lilypond_command_marks', ''),
+         _get_lilypond_command_mark_contribution_for_slot(container, 'after')])
       result.append(self.wrap(container.directives, 'after'))
+      result.append([('comment_marks', ''), _get_comment_contribution_for_slot(container, 'after')])
       result.append(self.wrap(container.comments, 'after'))
       return tuple(result)
 
