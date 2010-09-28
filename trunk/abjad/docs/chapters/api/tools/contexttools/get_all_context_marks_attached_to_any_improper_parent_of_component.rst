@@ -1,0 +1,6 @@
+contexttools.get_all_context_marks_attached_to_any_improper_parent_of_component
+===============================================================================
+
+.. automodule:: abjad.tools.contexttools.get_all_context_marks_attached_to_any_improper_parent_of_component
+
+.. autofunction:: abjad.tools.contexttools.get_all_context_marks_attached_to_any_improper_parent_of_component

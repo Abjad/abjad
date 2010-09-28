@@ -29,8 +29,6 @@ Score component interfaces
 
    interfaces/ArticulationInterface/ArticulationInterface
    interfaces/BreaksInterface/BreaksInterface
-   interfaces/CommentsInterface/CommentsInterface
-   interfaces/DirectivesInterface/DirectivesInterface
    interfaces/HistoryInterface/HistoryInterface
    interfaces/MarkupInterface/MarkupInterface
    interfaces/OffsetInterface/OffsetInterface
@@ -232,6 +230,7 @@ contexttools
    tools/contexttools/StaffChangeMark/StaffChangeMark
    tools/contexttools/TempoMark/TempoMark
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
+   tools/contexttools/get_all_context_marks_attached_to_any_improper_parent_of_component
    tools/contexttools/get_effective_clef
    tools/contexttools/get_effective_dynamic
    tools/contexttools/get_effective_instrument
@@ -526,6 +525,7 @@ marktools
 
    tools/marktools/CommentMark/CommentMark
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
+   tools/marktools/get_all_comment_marks_attached_to_component
    tools/marktools/get_all_marks_attached_to_component
    tools/marktools/get_comment_marks_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
@@ -887,7 +887,6 @@ spannertools
    tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
    tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
    tools/spannertools/SlurSpanner/SlurSpanner
-   tools/spannertools/SpacingSpanner/SpacingSpanner
    tools/spannertools/Spanner/Spanner
    tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
    tools/spannertools/TextScriptSpanner/TextScriptSpanner
