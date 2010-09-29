@@ -147,8 +147,6 @@ def test_leaftools__split_leaf_at_duration_06( ):
    assert isinstance(halves[1][0], Note)
    assert halves[0][0].duration.written == Fraction(1, 8)
    assert halves[1][0].duration.written == Fraction(1, 8)
-   #assert not halves[0][0].tie.spanned
-   #assert not halves[1][0].tie.spanned
    assert not tietools.is_component_with_tie_spanner_attached(halves[0][0])
    assert not tietools.is_component_with_tie_spanner_attached(halves[1][0])
 
@@ -187,16 +185,12 @@ def test_leaftools__split_leaf_at_duration_08( ):
    assert halves[0][0].duration.written == Fraction(4, 32)
    assert halves[0][1].duration.written == Fraction(1, 32)
    assert halves[1][0].duration.written == Fraction(3, 32)
-   #assert halves[0][0].tie.spanned
-   #assert halves[0][1].tie.spanned
    assert tietools.is_component_with_tie_spanner_attached(halves[0][0])
    assert tietools.is_component_with_tie_spanner_attached(halves[0][1])
-   #assert halves[0][0].tie.spanner is halves[0][1].tie.spanner
    assert spannertools.get_the_only_spanner_attached_to_component(
       halves[0][0], spannertools.TieSpanner) is \
       spannertools.get_the_only_spanner_attached_to_component(
       halves[0][1], spannertools.TieSpanner)
-   #assert not halves[1][0].tie.spanned
    assert not tietools.is_component_with_tie_spanner_attached(halves[1][0])
 
 
@@ -209,9 +203,7 @@ def test_leaftools__split_leaf_at_duration_09( ):
 
    assert len(t) == 2
    for leaf in t.leaves:
-      #assert leaf.spanners.attached == set([s])
       assert leaf.spanners == set([s])
-      #assert leaf.tie.spanner is s
       assert spannertools.get_the_only_spanner_attached_to_component(
          leaf, spannertools.TieSpanner) is s
    assert componenttools.is_well_formed_component(t)
@@ -226,9 +218,7 @@ def test_leaftools__split_leaf_at_duration_10( ):
 
    assert len(t) == 5
    for l in t.leaves:
-      #assert l.spanners.attached == set([b])
       assert l.spanners == set([b])
-      #assert l.beam.spanner is b
       assert beamtools.get_beam_spanner(l) is b
    assert componenttools.is_well_formed_component(t)
 
@@ -245,9 +235,7 @@ def test_leaftools__split_leaf_at_duration_11( ):
    assert len(halves[0]) == 2
    assert len(halves[1]) == 1
    for l in t.leaves:
-      #assert l.spanners.attached == set([s])
       assert l.spanners == set([s])
-      #assert l.tie.spanner is s
       assert spannertools.get_the_only_spanner_attached_to_component(
          l, spannertools.TieSpanner) is s
    assert componenttools.is_well_formed_component(t)
@@ -261,11 +249,9 @@ def test_leaftools__split_leaf_at_duration_12( ):
    s = spannertools.TieSpanner(t)
    halves = _split_leaf_at_duration(t[0], Fraction(5, 64))
 
-   #assert t.tie.spanner is s
    assert spannertools.get_the_only_spanner_attached_to_component(t, spannertools.TieSpanner) is s
    assert s.components == (t, )
    for l in t.leaves:
-      #assert not l.spanners.attached 
       assert not l.spanners 
    assert componenttools.is_well_formed_component(t)
 
@@ -280,10 +266,8 @@ def test_leaftools__split_leaf_at_duration_13( ):
 
    assert s.components == tuple(t[:])
    for v in t:
-      #assert v.spanners.attached == set([s])
       assert v.spanners == set([s])
       for l in v.leaves:
-         #assert not l.spanners.attached 
          assert not l.spanners 
          assert l.parentage.parent is v
    assert componenttools.is_well_formed_component(t)
@@ -293,10 +277,10 @@ def test_leaftools__split_leaf_at_duration_14( ):
    '''After grace notes are removed from first leaf in bipartition.'''
 
    t = Note(0, (1, 4))
-   t.after_grace.append(Note(0, (1, 32)))
+   gracetools.Grace([Note(0, (1, 32))], kind = 'after')(t)
    halves = _split_leaf_at_duration(t, Fraction(1, 8))
 
-   assert len(halves[0][0].after_grace) == 0
+   assert not hasattr(halves[0][0], 'after_grace')
    assert len(halves[1][0].after_grace) == 1
 
 
@@ -304,12 +288,12 @@ def test_leaftools__split_leaf_at_duration_15( ):
    '''After grace notes are removed from first tied leaves in bipartition.'''
 
    t = Note(0, (1, 4))
-   t.after_grace.append(Note(0, (1, 32)))
+   gracetools.Grace([Note(0, (1, 32))], kind = 'after')(t)
    halves = _split_leaf_at_duration(t, Fraction(5, 32))
 
    assert len(halves) == 2
-   assert len(halves[0][0].after_grace) == 0
-   assert len(halves[0][1].after_grace) == 0
+   assert not hasattr(halves[0][0], 'after_grace')
+   assert not hasattr(halves[0][1], 'after_grace')
    assert len(halves[1]) == 1
    assert len(halves[1][0].after_grace) == 1
 
@@ -318,10 +302,10 @@ def test_leaftools__split_leaf_at_duration_16( ):
    '''Grace notes are removed from second leaf in bipartition.'''
 
    t = Note(0, (1, 4))
-   t.grace.append(Note(0, (1, 32)))
+   gracetools.Grace([Note(0, (1, 32))])(t)
    halves = _split_leaf_at_duration(t, Fraction(1, 16))
 
    assert len(halves[0]) == 1
    assert len(halves[1]) == 1
    assert len(halves[0][0].grace) == 1
-   assert len(halves[1][0].grace) == 0
+   assert not hasattr(halves[1][0], 'grace')

@@ -1,7 +1,7 @@
 from abjad.components._Component._Component import _Component
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.components._Leaf._LeafFormatter import _LeafFormatter
-from abjad.tools.gracetools import Grace
+#from abjad.tools.gracetools import Grace
 import operator
 
 
@@ -54,24 +54,24 @@ class _Leaf(_Component):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def after_grace(self):
-      '''Read-only after grace music.
-      '''
-      if not hasattr(self, '_after_grace'):
-         self._after_grace = Grace( )
-         self._after_grace._carrier = self
-         self._after_grace.kind = 'after'
-      return self._after_grace
-
-   @property
-   def grace(self):
-      '''Read-only grace music before leaf.
-      '''
-      if not hasattr(self, '_grace'):
-         self._grace = Grace( )
-         self._grace._carrier = self
-      return self._grace
+#   @property
+#   def after_grace(self):
+#      '''Read-only after grace music.
+#      '''
+#      if not hasattr(self, '_after_grace'):
+#         self._after_grace = Grace( )
+#         self._after_grace._carrier = self
+#         self._after_grace.kind = 'after'
+#      return self._after_grace
+#
+#   @property
+#   def grace(self):
+#      '''Read-only grace music before leaf.
+#      '''
+#      if not hasattr(self, '_grace'):
+#         self._grace = Grace( )
+#         self._grace._carrier = self
+#      return self._grace
    
    @property
    def next(self):

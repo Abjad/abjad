@@ -1,5 +1,5 @@
-from abjad.core import Fraction
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
+from fractions import Fraction
 
 
 class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):

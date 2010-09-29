@@ -29,11 +29,17 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
 
    new_leaf = componenttools.clone_components_and_remove_all_spanners([leaf])[0]
    componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, [new_leaf])
-   new_leaf.grace[:] = [ ]
+   ##new_leaf.grace[:] = [ ]
+   if hasattr(new_leaf, 'grace'):
+      delattr(new_leaf, '_grace')
+      delattr(new_leaf, 'grace')
    ## TODO: maybe replace with logic to move marktools.Articulation ##
    #new_leaf.articulations[:] = [ ]
    new_leaf.dynamic_mark = None
-   leaf.after_grace[:] = [ ]
+   ##leaf.after_grace[:] = [ ]
+   if hasattr(leaf, 'after_grace'):
+      delattr(leaf, '_after_grace')
+      delattr(leaf, 'after_grace')
 
    left_leaf_list = set_preprolated_leaf_duration(leaf, unprolated_split_dur)
    right_leaf_list = set_preprolated_leaf_duration(

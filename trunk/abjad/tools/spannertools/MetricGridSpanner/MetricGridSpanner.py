@@ -1,6 +1,8 @@
-from abjad.tools.spannertools.MetricGridSpanner._MetricGridSpannerFormatInterface import _MetricGridSpannerFormatInterface
-from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools.spannertools.MetricGridSpanner._MetricGridSpannerFormatInterface import \
+   _MetricGridSpannerFormatInterface
+from abjad.tools import gracetools
 from abjad.tools import mathtools
+from abjad.tools.spannertools.Spanner import Spanner
 
 
 class MetricGridSpanner(Spanner):
@@ -69,7 +71,8 @@ class MetricGridSpanner(Spanner):
             ## TODO: this is very hacky. Find better solution
             if 0 < len(r):
                #r[0].grace.after = r[-1].grace.after
-               r[0].after_grace.extend(r[-1].after_grace)
+               #r[0].after_grace.extend(r[-1].after_grace)
+               gracetools.Grace([r[-1]], kind = 'after')(r[0])
             leaftools.fuse_leaves_big_endian(r)
          
    def _matching_meter(self, leaf):
