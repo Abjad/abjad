@@ -1,5 +1,4 @@
 from abjad.components._Component._Component import _Component
-#from abjad.interfaces import MarkupInterface
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.components._Leaf._LeafFormatter import _LeafFormatter
 from abjad.tools.gracetools import Grace
@@ -74,15 +73,6 @@ class _Leaf(_Component):
          self._grace._carrier = self
       return self._grace
    
-#   @property
-#   def markup(self):
-#      '''Read-only reference to
-#      :class:`~abjad.marks.interface.MarkupInterface`.
-#      '''
-#      if not hasattr(self, '_markup'):
-#         self._markup = MarkupInterface(self)
-#      return self._markup
-
    @property
    def next(self):
       '''Read-only reference to next bead in thread.'''
