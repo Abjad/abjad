@@ -96,8 +96,8 @@ class _LeafFormatter(_ComponentFormatter):
    @property
    def _tremolo_subdivision_contribution(self):
       result = [ ]
-      #subdivision = self._client.tremolo.subdivision
-      subdivision = self._client.tremolo_subdivision
+      #subdivision = self._client.tremolo_subdivision
+      subdivision = getattr(self._client, 'tremolo_subdivision', None)
       if subdivision:
          result.append(':%s' % subdivision) 
       return result
