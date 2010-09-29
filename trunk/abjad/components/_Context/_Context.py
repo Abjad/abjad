@@ -9,6 +9,7 @@ class _Context(Container):
       self._formatter = _ContextFormatter(self)
       self._engraver_consists = set([ ])
       self._engraver_removals = set([ ])
+      self._name = None
 
    ## OVERLOADS ##
 
@@ -77,3 +78,13 @@ class _Context(Container):
          }
       '''
       return self._engraver_removals
+
+   @apply
+   def name( ):
+      def fget(self):
+         '''Read-write name of component. Must be string or none.'''
+         return self._name
+      def fset(self, arg):
+         assert isinstance(arg, (str, type(None)))
+         self._name = arg
+      return property(**locals( ))

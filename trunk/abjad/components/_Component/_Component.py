@@ -17,7 +17,6 @@ class _Component(_StrictComparator):
       self._marks_are_current = False
       self._marks_for_which_component_functions_as_effective_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )
-      self._name = None
       self._navigator = _NavigationInterface(self)
       self._offset = OffsetInterface(self)
       self._offset_values_in_seconds_are_current = False
@@ -42,7 +41,7 @@ class _Component(_StrictComparator):
    
    @property
    def _ID(self):
-      if self.name is not None:
+      if getattr(self, 'name', None) is not None:
          rhs = self.name
       else:
          rhs = id(self)
@@ -100,16 +99,6 @@ class _Component(_StrictComparator):
          return tuple(self._music)
       else:
          return tuple( )
-
-   @apply
-   def name( ):
-      def fget(self):
-         '''Read-write name of component. Must be string or none.'''
-         return self._name
-      def fset(self, arg):
-         assert isinstance(arg, (str, type(None)))
-         self._name = arg
-      return property(**locals( ))
 
    @property
    def offset(self):

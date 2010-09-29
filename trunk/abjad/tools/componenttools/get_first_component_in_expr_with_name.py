@@ -37,11 +37,7 @@ def get_first_component_in_expr_with_name(expr, name):
    result = [ ]
 
    for component in iterate_components_forward_in_expr(expr, _Component):
-      if name is None or component.name == name:
-#         if klass is None or isinstance(component, klass):
-#            if context is None or \
-#               getattr(component, 'context', None) == context:
-#               return component
+      if name is None or getattr(component, 'name', None) == name:
          return component
 
    raise MissingComponentError
