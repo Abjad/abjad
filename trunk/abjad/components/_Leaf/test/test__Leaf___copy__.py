@@ -20,7 +20,7 @@ def test__Leaf___copy___02( ):
 
 
 def test__Leaf___copy___03( ):
-   s = Skip((1, 8))
+   s = skiptools.Skip((1, 8))
    t = componenttools.clone_components_and_fracture_crossing_spanners([s])[0]
    assert id(s) != id(t)
    assert s.parentage.parent is None

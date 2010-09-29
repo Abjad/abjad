@@ -15,7 +15,6 @@ Abjad score components
    components/Note/Note
    components/Rest/Rest
    components/Score/Score
-   components/Skip/Skip
    components/Staff/Staff
    components/Tuplet/Tuplet
    components/Voice/Voice
@@ -858,6 +857,7 @@ skiptools
 .. toctree::
    :maxdepth: 1
 
+   tools/skiptools/Skip/Skip
    tools/skiptools/make_skips_with_multiplied_durations
    tools/skiptools/replace_leaves_in_expr_with_skips
 

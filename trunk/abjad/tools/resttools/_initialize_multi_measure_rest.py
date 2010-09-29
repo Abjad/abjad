@@ -3,7 +3,7 @@ def _initialize_multi_measure_rest(client, _Leaf, *args):
    from abjad.tools.scoretools._transfer_all_attributes import _transfer_all_attributes
    from abjad.components.Note import Note
    from abjad.components.Rest import Rest
-   from abjad.components.Skip import Skip
+   from abjad.tools.skiptools.Skip import Skip
    client._pitch = None
    if len(args) == 1 and isinstance(args[0], _Leaf):
       if isinstance(args[0], Note):

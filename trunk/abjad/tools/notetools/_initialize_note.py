@@ -6,7 +6,7 @@ def _initialize_note(client, _Leaf, *args):
    from abjad.components.Rest import Rest
    from abjad.components.Chord import Chord
    from abjad.components.Note import Note
-   from abjad.components.Skip import Skip
+   from abjad.tools.skiptools.Skip import Skip
    from abjad.tools import componenttools
    client.note_head = None
    if len(args) == 1 and isinstance(args[0], _Leaf):

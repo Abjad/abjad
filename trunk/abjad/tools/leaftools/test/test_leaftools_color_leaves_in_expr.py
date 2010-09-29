@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_color_leaves_in_expr_01( ):
 
-   t = Staff([Note(1, (3, 16)), Rest((3, 16)), Skip((3, 16)), 
+   t = Staff([Note(1, (3, 16)), Rest((3, 16)), skiptools.Skip((3, 16)), 
       Chord([0, 1, 9], (3, 16))])
    leaftools.color_leaves_in_expr(t, 'red')
 

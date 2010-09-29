@@ -16,7 +16,7 @@ def _initialize_chord(client, _Leaf, *args):
    from abjad.components.Chord import Chord
    from abjad.components.Note import Note
    from abjad.components.Rest import Rest
-   from abjad.components.Skip import Skip
+   from abjad.tools.skiptools.Skip import Skip
    from abjad.tools import componenttools
    from abjad.tools.scoretools._transfer_all_attributes import _transfer_all_attributes
    client.pitches = [ ]

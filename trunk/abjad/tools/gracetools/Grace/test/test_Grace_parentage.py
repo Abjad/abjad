@@ -66,8 +66,8 @@ def test_Grace_parentage_04( ):
 #   assert isinstance(t, Rest)
 #   assert t.grace.after._carrier is t
 #   assert t.grace.before._carrier is t
-#   t = Skip(n)
-#   assert isinstance(t, Skip)
+#   t = skiptools.Skip(n)
+#   assert isinstance(t, skiptools.Skip)
 #   assert t.grace.after._carrier is t
 #   assert t.grace.before._carrier is t
 #   t = Chord(n)
@@ -84,8 +84,8 @@ def test_Grace_parentage_04( ):
    assert isinstance(t, Rest)
    assert t.after_grace._carrier is t
    assert t.grace._carrier is t
-   t = Skip(n)
-   assert isinstance(t, Skip)
+   t = skiptools.Skip(n)
+   assert isinstance(t, skiptools.Skip)
    assert t.after_grace._carrier is t
    assert t.grace._carrier is t
    t = Chord(n)

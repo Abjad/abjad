@@ -44,7 +44,7 @@ def test_leaftools_fuse_leaves_big_endian_04( ):
 def test_leaftools_fuse_leaves_big_endian_05( ):
    '''Fuse leaves with differing LilyPond multipliers.'''
 
-   t = Staff([Skip((1, 1)), Skip((1, 1))])
+   t = Staff([skiptools.Skip((1, 1)), skiptools.Skip((1, 1))])
    t[0].duration.multiplier = Fraction(1, 16)
    t[1].duration.multiplier = Fraction(5, 16)
 

@@ -28,7 +28,7 @@ def test__StrictComparator___bool___01( ):
    assert bool(Note(0, (1, 4)))
    assert bool(Rest((1, 4)))
    assert bool(Chord([0, 2, 10], (1, 4)))
-   assert bool(Skip((1, 4)))
+   assert bool(skiptools.Skip((1, 4)))
 
 
 def test__StrictComparator___bool___02( ):

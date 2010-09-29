@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Rest import Rest
-from abjad.components.Skip import Skip
+from abjad.tools.skiptools.Skip import Skip
 from fractions import Fraction
 
 

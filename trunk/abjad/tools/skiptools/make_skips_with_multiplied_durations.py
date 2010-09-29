@@ -1,5 +1,5 @@
 from abjad.core import Fraction
-from abjad.components.Skip import Skip
+from abjad.tools.skiptools.Skip import Skip
 
 
 def make_skips_with_multiplied_durations(written_duration, multiplied_durations):

@@ -14,7 +14,7 @@ def test_pitchtools_expr_has_duplicate_named_pitch_02( ):
 
    assert not pitchtools.expr_has_duplicate_named_pitch(Note(13, (1, 4)))
    assert not pitchtools.expr_has_duplicate_named_pitch(Rest((1, 4)))
-   assert not pitchtools.expr_has_duplicate_named_pitch(Skip((1, 4)))
+   assert not pitchtools.expr_has_duplicate_named_pitch(skiptools.Skip((1, 4)))
 
 
 def test_pitchtools_expr_has_duplicate_named_pitch_03( ):

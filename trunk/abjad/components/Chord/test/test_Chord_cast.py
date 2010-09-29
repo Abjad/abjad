@@ -109,11 +109,11 @@ def test_Chord_cast_11( ):
    '''Cast noncontainerized chord as skip.'''
    c = Chord([2, 3, 4], (1, 4))
    duration = c.duration.written
-   s = Skip(c)
-   assert isinstance(s, Skip)
+   s = skiptools.Skip(c)
+   assert isinstance(s, skiptools.Skip)
    # check that attributes have not been removed or added.
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-   assert dir(s) == dir(Skip((1, 4)))
+   assert dir(s) == dir(skiptools.Skip((1, 4)))
    assert s.parentage.parent is None
    assert s.duration.written == duration
 
@@ -122,8 +122,8 @@ def test_Chord_cast_12( ):
    '''Cast tupletized chord as skip.'''
    t = tuplettools.FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration.written
-   Skip(t[0])
-   assert isinstance(t[0], Skip)
+   skiptools.Skip(t[0])
+   assert isinstance(t[0], skiptools.Skip)
    assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
@@ -132,8 +132,8 @@ def test_Chord_cast_13( ):
    '''Cast voice-contained chord as skip.'''
    v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
    d = v[0].duration.written
-   Skip(v[0])
-   assert isinstance(v[0], Skip)
+   skiptools.Skip(v[0])
+   assert isinstance(v[0], skiptools.Skip)
    assert v[0].parentage.parent is v
    assert v[0].duration.written == d
 
@@ -142,8 +142,8 @@ def test_Chord_cast_14( ):
    '''Cast staff-contained chord as skip.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration.written
-   Skip(t[0])
-   assert isinstance(t[0], Skip)
+   skiptools.Skip(t[0])
+   assert isinstance(t[0], skiptools.Skip)
    assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
@@ -152,6 +152,6 @@ def test_Chord_cast_15( ):
    '''Cast beamed chord as skip.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
    spannertools.BeamSpanner(t[:])
-   Skip(t[0])
-   assert isinstance(t[0], Skip)
+   skiptools.Skip(t[0])
+   assert isinstance(t[0], skiptools.Skip)
    assert t[0].parentage.parent is t

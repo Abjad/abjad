@@ -27,7 +27,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
    def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       from abjad.components.Container import Container
-      from abjad.components.Skip import Skip
+      from abjad.tools.skiptools.Skip import Skip
       from abjad.tools import contexttools
       result = [ ]
       spanner = self.spanner
