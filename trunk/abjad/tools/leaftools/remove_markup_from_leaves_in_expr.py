@@ -33,7 +33,5 @@ def remove_markup_from_leaves_in_expr(expr):
    '''
 
    for leaf in iterate_leaves_forward_in_expr(expr):
-      leaf.markup.up = [ ]
-      leaf.markup.down = [ ]   
       for markup in markuptools.get_markup_attached_to_component(leaf):
          markup( )

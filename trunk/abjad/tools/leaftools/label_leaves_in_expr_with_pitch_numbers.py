@@ -1,3 +1,4 @@
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
@@ -26,5 +27,4 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
       for pitch in reversed(pitchtools.list_named_pitches_in_expr(leaf)):
          if pitch is not None:
             pitch_number = r'\small %s' % pitch.number
-            markup_list = getattr(leaf.markup, markup_direction)
-            markup_list.append(pitch_number)
+            markuptools.Markup(pitch_number, markup_direction)(leaf)

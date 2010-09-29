@@ -1,4 +1,5 @@
 from abjad.tools import componenttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import threadtools
 
@@ -50,7 +51,6 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
    for note in componenttools.iterate_components_forward_in_expr(expr, Note):
       if number:
          label = r'\small %s' % note.pitch.pc.number
-         markup_list = getattr(note.markup, markup_direction)
-         markup_list.append(label)
+         markuptools.Markup(label, markup_direction)(note)
       if color:
          pitchtools.color_note_head_by_numeric_pitch_class_color_map(note)
