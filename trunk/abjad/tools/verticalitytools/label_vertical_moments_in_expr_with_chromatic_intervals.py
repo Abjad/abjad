@@ -1,4 +1,5 @@
 from abjad.components.Note import Note
+from abjad.tools import markuptools
 from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
    iterate_vertical_moments_forward_in_expr
 
@@ -57,6 +58,4 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(expr, markup_directi
          hcis.append(hci)
       hcis = ' '.join([str(hci) for hci in hcis])
       hcis = r'\small { \column { %s } }' % hcis
-      #vertical_moment.start_leaves[-1].markup.down.append(hcis)
-      markup_list = getattr(vertical_moment.start_leaves[-1].markup, markup_direction)
-      markup_list.append(hcis)
+      markuptools.Markup(hcis, markup_direction)(vertical_moment.start_leaves[-1])

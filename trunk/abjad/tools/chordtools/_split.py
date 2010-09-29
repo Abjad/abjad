@@ -1,11 +1,12 @@
-from abjad.components.Chord import Chord
 from abjad.components._Leaf import _Leaf
+from abjad.components.Chord import Chord
 from abjad.components.Note import Note
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.components.Rest import Rest
 from abjad.tools import componenttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
+from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
 def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
@@ -55,8 +56,10 @@ def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
    treble = componenttools.clone_components_and_remove_all_spanners([chord])[0]
    bass = componenttools.clone_components_and_remove_all_spanners([chord])[0]
 
-   treble.markup.down[:] = [ ]
-   bass.markup.up[:] = [ ]
+   #treble.markup.down[:] = [ ]
+   #bass.markup.up[:] = [ ]
+   markuptools.remove_markup_attached_to_component(treble)
+   markuptools.remove_markup_attached_to_component(bass)
    
    if isinstance(treble, Note):
       if getattr(treble.pitch, attr) < getattr(pitch, attr):

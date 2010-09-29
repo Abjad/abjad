@@ -43,8 +43,8 @@ class Markup(Mark):
    ## OVERLOADS ##
 
    def __copy__(self, *args):
-      return type(self)(
-         self._contents_string, direction = self.direction, target_context = self.target_context)
+      return type(self)(self._contents_string, 
+         direction_string = self.direction_string, style_string = self.style_string)
 
    __deepcopy__ = __copy__
 

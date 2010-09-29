@@ -13,7 +13,7 @@ class TextScriptSpanner(Spanner):
       abjad> staff = Staff(macros.scale(4))
       abjad> spanner = spannertools.TextScriptSpanner(staff[:])
       abjad> spanner.color = 'red'
-      abjad> staff[1].markup.up.append(r'\italic { espressivo }')
+      abjad> markuptools.Markup(r'\italic { espressivo }', 'up')(staff[1])
       abjad> f(staff)
       \new Staff {
               \override TextScript #'color = #red

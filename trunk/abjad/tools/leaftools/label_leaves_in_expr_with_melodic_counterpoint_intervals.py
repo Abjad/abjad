@@ -1,6 +1,7 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Note import Note
 from abjad.tools import componenttools
+from abjad.tools import markuptools
 from abjad.tools import threadtools
 
 
@@ -33,13 +34,9 @@ def label_leaves_in_expr_with_melodic_counterpoint_intervals(expr, markup_direct
          thread_iterator.next( )
          next_leaf = thread_iterator.next( )
          if isinstance(next_leaf, Note):
-            #mdi = note.pitch - next_leaf.pitch
-            #counterpoint_interval_number = mdi.staff_spaces
-            #note.markup.up.append(counterpoint_interval_number)
-            cpi = pitchtools.calculate_melodic_counterpoint_interval_from_named_pitch_to_named_pitch(
+            cpi = \
+               pitchtools.calculate_melodic_counterpoint_interval_from_named_pitch_to_named_pitch(
                note, next_leaf)
-            #note.markup.up.append(cpi)
-            markup_list = getattr(note.markup, markup_direction)
-            markup_list.append(cpi)
+            markuptools.Markup(cpi, markup_direction)(note)
       except StopIteration:
          pass

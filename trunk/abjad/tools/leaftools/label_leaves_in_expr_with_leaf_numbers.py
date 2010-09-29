@@ -1,4 +1,5 @@
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
+from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction = 'down'):
@@ -26,9 +27,4 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction = 'down'):
    for i, leaf in enumerate(iterate_leaves_forward_in_expr(expr)):
       leaf_number = i + 1
       label = r'\small %s' % leaf_number
-      if markup_direction == 'down':
-         leaf.markup.down.append(label)
-      elif markup_direction == 'up':
-         leaf.markup.up.append(label)
-      else:
-         raise ValueError("must be 'up' or 'down'.")
+      markuptools.Markup(label, markup_direction)(leaf)

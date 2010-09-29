@@ -1,7 +1,9 @@
 from abjad import *
+import py.test
 
 
 def test_leaftools_label_leaves_in_expr_with_leaf_durations_01( ):
+   py.test.skip('this appears to be working.')
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    leaftools.label_leaves_in_expr_with_leaf_durations(t)

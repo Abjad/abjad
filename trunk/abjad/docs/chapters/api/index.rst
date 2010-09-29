@@ -381,8 +381,8 @@ leaftools
    tools/leaftools/label_leaves_in_expr_with_melodic_chromatic_intervals
    tools/leaftools/label_leaves_in_expr_with_melodic_counterpoint_interval_classes
    tools/leaftools/label_leaves_in_expr_with_melodic_counterpoint_intervals
+   tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_interval_classes
    tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_intervals
-   tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_inteval_classes
    tools/leaftools/label_leaves_in_expr_with_pitch_class_numbers
    tools/leaftools/label_leaves_in_expr_with_pitch_numbers
    tools/leaftools/label_leaves_in_expr_with_prolated_leaf_duration
@@ -542,7 +542,9 @@ markuptools
    :maxdepth: 1
 
    tools/markuptools/Markup/Markup
+   tools/markuptools/get_markup_attached_to_component
    tools/markuptools/make_big_centered_page_number_markup
+   tools/markuptools/remove_markup_attached_to_component
 
 
 mathtools

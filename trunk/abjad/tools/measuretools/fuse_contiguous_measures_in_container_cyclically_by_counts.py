@@ -1,5 +1,6 @@
 from abjad.components.Container import Container
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools.measuretools.fuse_measures import fuse_measures
 from abjad.tools.measuretools.get_next_measure_from_component import get_next_measure_from_component
 
@@ -107,7 +108,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
             meter_sum_str = '"%s"' % meter_sum_str
             new = fuse_measures(measures_to_fuse)
             if mark:
-               new.leaves[0].markup.up.append(meter_sum_str)
+               markuptools.Markup(meter_sum_str, 'up')(new.leaves[0])
             cur_measure = new
          cur_measure = get_next_measure_from_component(cur_measure)
          if cur_measure is None:

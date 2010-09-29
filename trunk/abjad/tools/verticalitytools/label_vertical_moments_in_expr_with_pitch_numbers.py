@@ -1,5 +1,6 @@
 from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
    iterate_vertical_moments_forward_in_expr
+from abjad.tools import markuptools
 
 
 def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
@@ -47,6 +48,4 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction = '
       pitch_numbers = [pitch.number for pitch in pitches]
       pitch_numbers = ' '.join([str(x) for x in pitch_numbers])
       pitch_numbers = r'\small { \column { %s } }' % pitch_numbers
-      #vertical_moment.start_leaves[-1].markup.down.append(pitch_numbers)
-      markup_list = getattr(vertical_moment.start_leaves[-1].markup, markup_direction)
-      markup_list.append(pitch_numbers)
+      markuptools.Markup(pitch_numbers, markup_direction)(vertical_moment.start_leaves[-1])

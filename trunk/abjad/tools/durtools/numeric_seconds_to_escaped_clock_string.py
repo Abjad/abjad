@@ -10,7 +10,7 @@ def numeric_seconds_to_escaped_clock_string(seconds):
       abjad> durtools.numeric_seconds_to_clock_string(117)
       '1\'57\\"'
       abjad> clock_string = _
-      abjad> t.markup.up.append('"%s"' % clock_string)
+      abjad> markuptools.Markup('"%s"' % clock_string, 'up')(t)
       abjad> print t.format
       c'4 ^ \markup { "1'57\"" }
 

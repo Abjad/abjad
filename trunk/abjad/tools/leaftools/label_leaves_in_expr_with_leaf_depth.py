@@ -30,6 +30,4 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction = 'down'):
 
    for leaf in iterate_leaves_forward_in_expr(expr):
       label = r'\small %s' % leaf.parentage.depth
-      #leaf.markup.down.append(label)
-      markup_list = getattr(leaf.markup, markup_direction)
-      markup_list.append(label)
+      markuptools.Markup(label, markup_direction)(leaf)

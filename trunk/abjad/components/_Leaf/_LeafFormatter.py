@@ -72,10 +72,10 @@ class _LeafFormatter(_ComponentFormatter):
       result.extend(self._tremolo_subdivision_contribution)
       result.extend(_get_right_slot_format_contributions(self._client))
       result.extend(_get_context_mark_format_contributions_for_slot(self._client, 'right'))
+      result.extend(_get_markup_format_contribution(client))
       result.extend(
       _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
       self._client))
-      result.extend(_get_markup_format_contribution(client))
       result.extend(self._number_contribution)
       result.extend(_get_comment_contribution_for_slot(client, 'right'))
       return [' '.join(result)]

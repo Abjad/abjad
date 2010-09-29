@@ -50,7 +50,6 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
    for note in componenttools.iterate_components_forward_in_expr(expr, Note):
       if number:
          label = r'\small %s' % note.pitch.pc.number
-         #note.markup.down.append(label)
          markup_list = getattr(note.markup, markup_direction)
          markup_list.append(label)
       if color:

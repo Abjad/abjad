@@ -1,6 +1,7 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Note import Note
 from abjad.tools import componenttools
+from abjad.tools import markuptools
 from abjad.tools import threadtools
 
 
@@ -35,8 +36,6 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
             mdi = note.pitch - next_leaf.pitch
             mci = mdi.melodic_chromatic_interval
             mcic = mci.interval_class
-            #note.markup.up.append(mcic)
-            markup_list = getattr(note.markup, markup_direction)
-            markup_list.append(mcic)
+            markuptools.Markup(mcic, markup_direction)(note)
       except StopIteration:
          pass

@@ -1,6 +1,7 @@
 from abjad.components._Leaf import _Leaf
 from abjad.components.Note import Note
 from abjad.tools import componenttools
+from abjad.tools import markuptools
 from abjad.tools import threadtools
 
 
@@ -35,8 +36,6 @@ def label_leaves_in_expr_with_melodic_diatonic_intervals(expr, markup_direction 
          if isinstance(next_leaf, Note):
             mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
                note, next_leaf)
-            #note.markup.up.append(mdi)
-            markup_list = getattr(note.markup, markup_direction)
-            markup_list.append(mdi)
+            markuptools.Markup(mdi, markup_direction)(note)
       except StopIteration:
          pass
