@@ -1,3 +1,4 @@
+from abjad.tools import sievetools
 from abjad.tools.sievetools.ResidueClass import ResidueClass
 import py.test
 
