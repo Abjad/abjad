@@ -1,7 +1,8 @@
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
+from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import \
+   get_named_pitch_from_pitch_carrier
 from abjad.tools.spannertools import Spanner
-from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
 
 
 def list_named_pitches_in_expr(expr):
@@ -62,6 +63,7 @@ def list_named_pitches_in_expr(expr):
       renamed ``pitchtools.get_named_pitch_from_pitch_carrieres( )`` to
       ``pitchtools.list_named_pitches_in_expr( )``.
    '''
+   from abjad.components import Rest
    from abjad.tools import leaftools
    from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
 
@@ -74,7 +76,10 @@ def list_named_pitches_in_expr(expr):
          result.extend(expr.pitches)
       elif isinstance(expr, Spanner):
          for leaf in expr.leaves:
-            result.extend(leaf.pitches)
+            if hasattr(leaf, 'pitch') and not isinstance(leaf, Rest):
+               result.append(leaf.pitch)
+            elif hasattr(leaf, 'pitches'):
+               result.extend(leaf.pitches)
       elif isinstance(expr, NamedPitchSet):
          pitches = list(expr)
          pitches.sort( )
@@ -85,5 +90,8 @@ def list_named_pitches_in_expr(expr):
             result.extend(list_named_pitches_in_expr(x))
       else:
          for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-            result.extend(leaf.pitches)
+            if hasattr(leaf, 'pitch') and not isinstance(leaf, Rest):
+               result.append(leaf.pitch)
+            elif hasattr(leaf, 'pitches'):
+               result.extend(leaf.pitches)
       return tuple(result)

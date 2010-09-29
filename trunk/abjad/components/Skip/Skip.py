@@ -2,6 +2,8 @@ from abjad.components._Leaf import _Leaf
 
 
 class Skip(_Leaf):
+   '''The Abjad model of the LilyPond skip.
+   '''
 
    def __init__(self, *args, **kwargs):
       from abjad.tools.skiptools._initialize_skip import _initialize_skip
@@ -32,7 +34,3 @@ class Skip(_Leaf):
       result = [ ]
       result.append('s%s' % self.duration)
       return result
-
-   @property
-   def pitches(self):
-      return ( )

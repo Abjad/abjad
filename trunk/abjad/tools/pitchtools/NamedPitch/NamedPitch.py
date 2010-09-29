@@ -98,7 +98,8 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __ge__(self, arg):
       if not isinstance(arg, NamedPitch):
-         raise ValueError
+         #raise ValueError
+         return False
       return self.altitude > arg.altitude or \
          (self.altitude == arg.altitude and \
          self.accidental.semitones >= arg.accidental.semitones) or \
@@ -121,7 +122,8 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __le__(self, arg):
       if not isinstance(arg, NamedPitch):
-         raise ValueError
+         #raise ValueError
+         return False
       if not self.altitude == arg.altitude:
          return self.altitude <= arg.altitude
       if not self.accidental == arg.accidental:
@@ -130,7 +132,8 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __lt__(self, arg):
       if not isinstance(arg, NamedPitch):
-         raise ValueError
+         #raise ValueError
+         return False
       return self.altitude < arg.altitude or \
          (self.altitude == arg.altitude and \
          self.accidental.semitones < arg.accidental.semitones) or \

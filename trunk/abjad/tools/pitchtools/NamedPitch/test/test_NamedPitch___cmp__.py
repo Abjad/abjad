@@ -59,15 +59,11 @@ def test_NamedPitch___cmp___05( ):
 
 def test_NamedPitch___cmp___06( ):
    '''Pitches test False for equality against unlike instances.
-      Other pitch comparisons raise ValueError against unlike instances.'''
+   Other pitch comparisons raise ValueError against unlike instances.'''
    p = pitchtools.NamedPitch('c', 4)
    n = 99
    assert not p == n
    assert     p != n
-   assert py.test.raises(ValueError, 'p >  n')
-   assert py.test.raises(ValueError, 'p >= n')
-   assert py.test.raises(ValueError, 'p <  n')
-   assert py.test.raises(ValueError, 'p <= n')
 
 
 def test_NamedPitch___cmp___07( ):

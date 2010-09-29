@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 def get_named_pitch_from_pitch_carrier(pitch_carrier):
    '''Get Abjad pitch instance from pitch, note, note head
-   of chord `pitch_carrier`. ::
+   of chord `pitch_carrier`::
 
       abjad> pitch = NamedPitch('df', 5)
       abjad> pitch
@@ -118,5 +118,4 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
       else:
          raise ExtraPitchError
    else:
-      raise TypeError(
-         '%s must be Pitch, Note, NoteHead or Chord.' % pitch_carrier)
+      raise TypeError('%s must be Pitch, Note, NoteHead or Chord.' % pitch_carrier)

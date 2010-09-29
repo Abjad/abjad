@@ -12,8 +12,6 @@ class _Leaf(_Component):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
-      #self.dynamic_mark = None
-      #self.tremolo_subdivision = None
 
    ## OVERLOADS ##
 
@@ -47,8 +45,11 @@ class _Leaf(_Component):
    def _operate(self, arg, operator):
       assert isinstance(arg, _Leaf)
       from abjad.tools.leaftools._engender import _engender
-      self_pairs = set([pitch.pair for pitch in self.pitches])
-      arg_pairs = set([pitch.pair for pitch in arg.pitches])
+      from abjad.tools import pitchtools
+      self_pairs = set([
+         x.pair for x in pitchtools.list_named_pitches_in_expr(self) if x is not None])
+      arg_pairs = set([
+         x.pair for x in pitchtools.list_named_pitches_in_expr(arg) if x is not None])
       pairs = operator(self_pairs, arg_pairs)
       return _engender(pairs, self.duration.written)
 

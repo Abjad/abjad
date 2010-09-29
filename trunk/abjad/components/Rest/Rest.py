@@ -3,7 +3,8 @@ from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
 class Rest(_Leaf):
-   '''The Abjad model of a single rest.'''
+   '''The Abjad model of a rest.
+   '''
 
    def __init__(self, *args, **kwargs):
       from abjad.tools.resttools._initialize_rest import _initialize_rest
@@ -62,8 +63,3 @@ class Rest(_Leaf):
          else:
             raise ValueError('can not set  rest pitch: "%s".' % str(arg))
       return property(**locals( ))
-
-   @property
-   def pitches(self):
-      '''Read-only empty tuple because rests have no pitch.'''
-      return ( )

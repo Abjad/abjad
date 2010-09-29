@@ -3,6 +3,8 @@ from abjad.components._Leaf import _Leaf
 
 
 class Chord(_Leaf):
+   '''The Abjad model of a chord.
+   '''
 
    def __init__(self, *args, **kwargs):
       from abjad.tools.chordtools._initialize_chord import _initialize_chord

@@ -2,7 +2,8 @@ from abjad.components._Leaf import _Leaf
 
 
 class Note(_Leaf):
-   '''The Abjad model of a single note.'''
+   '''The Abjad model of a note.
+   '''
    
    def __init__(self, *args, **kwargs):
       from abjad.tools.notetools._initialize_note import _initialize_note
@@ -91,11 +92,3 @@ class Note(_Leaf):
                pitch = pitchtools.NamedPitch(arg)
                self.note_head.pitch = pitch
       return property(**locals( ))
-
-   @property
-   def pitches(self):
-      '''Read-only one-tuple of pitch of note.'''
-      if self.pitch:
-         return (self.pitch, )
-      else:
-         return ( )
