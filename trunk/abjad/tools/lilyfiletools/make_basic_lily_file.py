@@ -60,6 +60,6 @@ def make_basic_lily_file(music = None):
 
    if music is not None:
       score_block.append(music)
-      music._lily_file = lily_file
+      music.lily_file = lily_file
 
    return lily_file

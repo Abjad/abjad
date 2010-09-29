@@ -14,7 +14,6 @@ class _Component(_StrictComparator):
    def __init__(self):
       #self.__is_current = False
       #self._is_current = False
-      self._lily_file = None
       self._marks_are_current = False
       self._marks_for_which_component_functions_as_effective_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )
@@ -77,13 +76,6 @@ class _Component(_StrictComparator):
       '''
       from abjad.tools import leaftools
       return tuple(leaftools.iterate_leaves_forward_in_expr(self))
-
-   @property
-   def lily_file(self):
-      '''.. versionadded:: 1.1.2
-      Read-only reference to .ly file in which 
-      component is housed, if any.'''
-      return self._lily_file
 
    @property
    def marks(self):
