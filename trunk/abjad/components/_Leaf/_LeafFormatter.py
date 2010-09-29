@@ -3,6 +3,8 @@ from abjad.components._Leaf._LeafFormatterNumberInterface import _LeafFormatterN
 from abjad.components._Leaf._LeafFormatterSlotsInterface import _LeafFormatterSlotsInterface
 from abjad.tools.formattools._get_comment_contribution_for_slot import \
    _get_comment_contribution_for_slot
+from abjad.tools.formattools._get_markup_format_contribution import \
+   _get_markup_format_contribution
 
 
 class _LeafFormatter(_ComponentFormatter):
@@ -73,6 +75,7 @@ class _LeafFormatter(_ComponentFormatter):
       result.extend(
       _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
       self._client))
+      result.extend(_get_markup_format_contribution(client))
       result.extend(self._number_contribution)
       result.extend(_get_comment_contribution_for_slot(client, 'right'))
       return [' '.join(result)]

@@ -1,5 +1,5 @@
 from abjad.interfaces._Interface import _Interface
-from abjad.tools.markuptools import Markup
+#from abjad.tools.markuptools import Markup
 
 
 class MarkupInterface(_Interface):
@@ -30,6 +30,7 @@ class MarkupInterface(_Interface):
    ## PRIVATE METHODS ##
 
    def _direction_to_format_string(self, direction):
+      from abjad.tools.markuptools import Markup
       result = [ ]
       for x in getattr(self, direction):
          if isinstance(x, Markup):
