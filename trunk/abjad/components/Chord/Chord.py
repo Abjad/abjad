@@ -83,7 +83,10 @@ class Chord(_Leaf):
    @property
    def center(self):
       '''Return arithmetic mean of pitch numbers in self.'''
-      numbers = self.numbers
+      #numbers = self.numbers
+      numbers = [ ]
+      for pitch in self.pitches:
+         numbers.append(pitch.number)
       if numbers:
          return sum(numbers).__truediv__(len(numbers))
       else:
@@ -110,10 +113,10 @@ class Chord(_Leaf):
          self._sort( )
       return property(**locals( ))
 
-   @property
-   def numbers(self):
-      '''Return sorted immutable tuple of pitch numbers in self.'''
-      return tuple([pitch.number for pitch in self.pitches])
+#   @property
+#   def numbers(self):
+#      '''Return sorted immutable tuple of pitch numbers in self.'''
+#      return tuple([pitch.number for pitch in self.pitches])
 
    @apply
    def pitches( ):

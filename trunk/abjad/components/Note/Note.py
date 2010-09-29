@@ -62,13 +62,13 @@ class Note(_Leaf):
             self._note_head = note_head
       return property(**locals( ))
 
-   @property
-   def numbers(self):
-      '''Read-only sorted tuple of pitch number of note, if any.'''
-      if self.pitch:
-         return (self.pitch.number, )
-      else:
-         return ( )
+#   @property
+#   def numbers(self):
+#      '''Read-only sorted tuple of pitch number of note, if any.'''
+#      if self.pitch:
+#         return (self.pitch.number, )
+#      else:
+#         return ( )
 
    @apply
    def pitch( ):

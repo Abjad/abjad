@@ -40,10 +40,10 @@ class Rest(_Leaf):
          result += r' \rest'
       return [result]
 
-   @property
-   def numbers(self):
-      '''Read-only empty tuple because rests have no pitch.'''
-      return ( )
+#   @property
+#   def numbers(self):
+#      '''Read-only empty tuple because rests have no pitch.'''
+#      return ( )
   
    @apply
    def pitch( ):
