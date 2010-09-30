@@ -3,7 +3,7 @@ from abjad.interfaces._Interface import _Interface
 from abjad.core import Fraction
 
 
-class OffsetInterface(_Interface):
+class _OffsetInterface(_Interface):
    '''Offset interface.
    '''
 

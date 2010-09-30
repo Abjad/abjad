@@ -1,5 +1,5 @@
 from BreaksInterface import BreaksInterface
-from OffsetInterface import OffsetInterface
 from ParentageInterface import ParentageInterface
+from _OffsetInterface import _OffsetInterface
 from _NavigationInterface import _NavigationInterface
 from _NumberingInterface import _NumberingInterface

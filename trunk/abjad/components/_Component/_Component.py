@@ -3,10 +3,10 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
-from abjad.interfaces import BreaksInterface
 #from abjad.interfaces import _NumberingInterface
+from abjad.interfaces import _OffsetInterface
+from abjad.interfaces import BreaksInterface
 from abjad.interfaces import ParentageInterface
-from abjad.interfaces import OffsetInterface
 
 
 class _Component(_StrictComparator):
@@ -18,7 +18,7 @@ class _Component(_StrictComparator):
       self._marks_for_which_component_functions_as_effective_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )
       self._navigator = _NavigationInterface(self)
-      self._offset = OffsetInterface(self)
+      self._offset = _OffsetInterface(self)
       self._offset_values_in_seconds_are_current = False
       self._parentage = ParentageInterface(self)
       self._prolated_offset_values_are_current = False
