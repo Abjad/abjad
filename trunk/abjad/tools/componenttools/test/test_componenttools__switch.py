@@ -16,7 +16,7 @@ def test_componenttools__switch_01( ):
    "Container t now assigned to components."
    "But components not in container t."
    
-   assert components[0].parentage.parent is t
+   assert components[0]._parentage.parent is t
    assert components[0] not in t
 
    t._music.extend(components)
@@ -24,5 +24,5 @@ def test_componenttools__switch_01( ):
    "Components now in container t."
 
    assert componenttools.is_well_formed_component(t)
-   assert components[0].parentage.parent is t
+   assert components[0]._parentage.parent is t
    assert components[0] in t

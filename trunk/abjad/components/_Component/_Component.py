@@ -109,12 +109,6 @@ class _Component(_StrictComparator):
       return self._override
 
    @property
-   def parentage(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.parentage.interface.ParentageInterface`.'''
-      return self._parentage
-
-   @property
    def set(self):
       '''Read-only reference LilyPond context setting component plug-in.
       '''

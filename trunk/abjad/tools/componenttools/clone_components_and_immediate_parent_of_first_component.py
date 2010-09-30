@@ -79,7 +79,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    assert componenttools.all_are_thread_contiguous_components(components)
 
    # remember parent
-   parent = components[0].parentage.parent
+   parent = components[0]._parentage.parent
 
    # new: remember parent multiplier, if any
    parent_multiplier = getattr(parent.duration, 'multiplier', 1)
@@ -91,7 +91,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
       parent_denominator = None
 
    # remember parent's music
-   parents_music = components[0].parentage.parent._music
+   parents_music = components[0]._parentage.parent._music
 
    # strip parent of music temporarily
    parent._music = [ ]
@@ -110,7 +110,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
 
    # point elements in result to result as new parent
    for element in result:
-      element.parentage._switch(result)
+      element._parentage._switch(result)
 
    ## TODO: change hard-coded class name testing to isinstance testing instead
    # new: resize result to match parent_multiplier, if resizable

@@ -22,7 +22,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    if not isinstance(klass, (Rest, Skip)):
       raise TypeError
 
-   root = expr[0].parentage.root
+   root = expr[0]._parentage.root
 
    ## forbid updates because i
    ## componenttools.extend_in_parent_of_component_and_grow_spanners( ) and

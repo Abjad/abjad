@@ -4,5 +4,5 @@ def _restore(receipt):
       Return None.'''
 
    for component, parent in receipt:
-      assert component.parentage.parent is None
-      component.parentage._switch(parent)
+      assert component._parentage.parent is None
+      component._parentage._switch(parent)

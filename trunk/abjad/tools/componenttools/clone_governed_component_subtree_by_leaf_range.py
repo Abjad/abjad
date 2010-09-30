@@ -78,7 +78,7 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
    stop_leaf_in_component = leaves[stop - 1]
 
    # find governor
-   governor = leaves[start].parentage.governor
+   governor = leaves[start]._parentage.governor
 
    # new: find start and stop leaves in governor
    governor_leaves = list(governor.leaves)

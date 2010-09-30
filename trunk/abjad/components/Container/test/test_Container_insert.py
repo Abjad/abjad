@@ -146,4 +146,4 @@ def test_Container_insert_07( ):
    assert componenttools.is_well_formed_component(v)
    assert componenttools.is_well_formed_component(t)
    assert not note in v
-   assert note.parentage.parent is t
+   assert note._parentage.parent is t

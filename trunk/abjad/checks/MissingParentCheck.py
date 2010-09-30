@@ -8,16 +8,16 @@ class MissingParentCheck(_Check):
    def _run(self, expr):
       class Visitor(object):
          def __init__(self, target):
-            self.parents = [target.parentage.parent]
+            self.parents = [target._parentage.parent]
             self.total = 0
             self.bad = 0
             self.violators = [ ]
          def visit(self, node):
             self.total += 1
-            if node.parentage.parent != self.parents[-1]:
+            if node._parentage.parent != self.parents[-1]:
                self.bad += 1
                print '%s has parent %s instead of expected %s.\n' % (
-                  node, node.parentage.parent, self.parents[-1])
+                  node, node._parentage.parent, self.parents[-1])
                self.violators.append(node)
             if hasattr(node, '_music'):
                self.parents.append(node)

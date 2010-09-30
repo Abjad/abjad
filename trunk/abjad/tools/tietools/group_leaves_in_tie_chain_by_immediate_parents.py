@@ -39,7 +39,7 @@ def group_leaves_in_tie_chain_by_immediate_parents(tie_chain):
    
    ## create partition with itertools
    result = [ ]
-   pairs_generator = itertools.groupby(tie_chain, lambda x: x.parentage.parent)
+   pairs_generator = itertools.groupby(tie_chain, lambda x: x._parentage.parent)
    for key, values_generator in pairs_generator:
       result.append(list(values_generator))
 

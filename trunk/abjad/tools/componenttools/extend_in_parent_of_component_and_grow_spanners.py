@@ -24,6 +24,6 @@ def extend_in_parent_of_component_and_grow_spanners(component, new_components):
    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
    if parent is not None:
       for new_component in reversed(new_components):
-         new_component.parentage._switch(parent)
+         new_component._parentage._switch(parent)
          parent._music.insert(start + 1, new_component)
    return [component] + new_components

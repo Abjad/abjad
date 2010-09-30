@@ -9,17 +9,17 @@ def component_to_tuplet_depth(component):
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
-      abjad> note.parentage.depth_tuplet
+      abjad> note._parentage.depth_tuplet
       1
 
    Tuplets do not count as containing themselves. ::
 
-      abjad> tuplet.parentage.depth_tuplet
+      abjad> tuplet._parentage.depth_tuplet
       0
 
    Zero when there is no tuplet in the proper parentage of component. ::
 
-      abjad> staff.parentage.depth_tuplet
+      abjad> staff._parentage.depth_tuplet
       0
    '''
    from abjad.components.Tuplet import Tuplet

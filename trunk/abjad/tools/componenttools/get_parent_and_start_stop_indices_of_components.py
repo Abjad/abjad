@@ -38,7 +38,7 @@ def get_parent_and_start_stop_indices_of_components(components):
 
    if 0 < len(components):
       first, last = components[0], components[-1]
-      parent = first.parentage.parent
+      parent = first._parentage.parent
       if parent is not None:
          first_index = parent.index(first)
          last_index = parent.index(last)

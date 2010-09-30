@@ -12,8 +12,8 @@ def _ignore(components):
 
    receipt = set([ ])
    for component in components:
-      parent = component.parentage.parent
-      component.parentage._ignore( )
+      parent = component._parentage.parent
+      component._parentage._ignore( )
       receipt.add((component, parent))
 
    return receipt
