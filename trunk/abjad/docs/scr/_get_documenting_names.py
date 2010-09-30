@@ -21,6 +21,9 @@ def _get_documenting_names( ):
             name = line.split(' ')[1].split('(')[0]
             names.append({'name': name, 'kind': 'class', 'module': module})
    names.sort(lambda x, y: cmp(x['name'], y['name']))
+   for name in names[:]:
+      if 'ParentageInterface' in name['name']:
+         names.remove(name)
    return names
 
 if __name__ == '__main__':

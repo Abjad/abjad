@@ -67,15 +67,13 @@ def make_sphinx_module_listing(package_path, file):
 
       ## document global public classes like Chord
       elif auto_type == 'autoclass' and not page_title.startswith('_') \
-         and not page_title.endswith('Interface') \
-         and not page_title.endswith('Aggregator'):
+         and not page_title.endswith('Interface'):
          result += '.. %s:: abjad.%s\n' % (auto_type, page_title)   
          result = _append_class_options(result)
 
       ## document public interface like ChordInterface
       elif auto_type == 'autoclass' and not page_title.startswith('_') \
-         and ((page_title.endswith('Interface') and 'Parentage' not in page_title) or 
-         page_title.endswith('Aggregator')):
+         and (page_title.endswith('Interface') and 'Parentage' not in page_title):
          result += '.. %s:: %s.%s\n' % (auto_type, module, page_title)   
          result = _append_class_options(result)
 

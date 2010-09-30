@@ -13,7 +13,6 @@ Abjad score components
    components/Container/Container
    components/Measure/Measure
    components/Note/Note
-   interfaces/ParentageInterface/ParentageInterface
    components/Rest/Rest
    components/Score/Score
    components/Staff/Staff

@@ -1,4 +1,3 @@
-#from _create_subdirs_interactive import _create_subdirs_interactive
 from _create_subdirectories import _create_subdirectories
 from _get_documenting_directories import _get_documenting_directories
 from populate_sphinx_directory import populate_sphinx_directory
@@ -21,6 +20,8 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
                directories.remove(directory)
             elif directory.startswith('_'):
                directories.remove(directory)
+            elif 'ParentageInterface' in directory:
+               directories.remove(directory)
          directories.sort( )
       
          ## remove files that should not document
@@ -34,7 +35,6 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
          ## make subdirectories in docs if needed
          abjad_subdir = current_root.split('abjad')[-1].strip(os.path.sep)
          root_dir = os.path.join(api_doc_path, abjad_subdir)
-         #_create_subdirs_interactive(root_dir, directories, interactive)
          _create_subdirectories(root_dir, directories, interactive)
 
          ## populate sphinx directory with sphinx files
