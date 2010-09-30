@@ -17,7 +17,7 @@ def make_sphinx_toc( ):
          if 'exceptions' not in name['module']:
             if 'tools' in name['module']:
                tools.append(name)
-            elif 'Interface' in name['name']:
+            elif 'Interface' in name['name'] and not 'Parentage' in name['name']:
                interfaces.append(name)
             elif 'spanner' in name['module']:
                spanners.append(name)

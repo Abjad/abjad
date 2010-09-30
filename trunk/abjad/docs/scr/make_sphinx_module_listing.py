@@ -74,7 +74,7 @@ def make_sphinx_module_listing(package_path, file):
 
       ## document public interface like ChordInterface
       elif auto_type == 'autoclass' and not page_title.startswith('_') \
-         and (page_title.endswith('Interface') or 
+         and ((page_title.endswith('Interface') and 'Parentage' not in page_title) or 
          page_title.endswith('Aggregator')):
          result += '.. %s:: %s.%s\n' % (auto_type, module, page_title)   
          result = _append_class_options(result)
@@ -83,8 +83,12 @@ def make_sphinx_module_listing(package_path, file):
       elif auto_type == 'autoclass' and page_title.startswith('_'):
          return None
 
+      ## do not document parentage interface:
+      elif page_title == 'ParentageInterface':
+         return None
+
       ## shouldn't be anything else
       else:
-         raise ValueError('unknown autodoc type!')
+         raise ValueError('unknown auto type "%s" or page title "%s".' % (auto_type, page_title))
 
    return result

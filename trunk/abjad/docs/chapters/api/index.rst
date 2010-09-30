@@ -13,6 +13,7 @@ Abjad score components
    components/Container/Container
    components/Measure/Measure
    components/Note/Note
+   interfaces/ParentageInterface/ParentageInterface
    components/Rest/Rest
    components/Score/Score
    components/Staff/Staff
@@ -27,7 +28,6 @@ Score component interfaces
    :maxdepth: 1
 
    interfaces/BreaksInterface/BreaksInterface
-   interfaces/ParentageInterface/ParentageInterface
 
 
 Abjad composition packages
