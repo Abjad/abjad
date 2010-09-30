@@ -17,5 +17,5 @@ def test__SpannerOffsetInterface_stop_01( ):
    }
    '''
 
-   assert beam.offset.stop == Fraction(3, 8)
-   assert glissando.offset.stop == Fraction(4, 8)
+   assert beam._offset.stop == Fraction(3, 8)
+   assert glissando._offset.stop == Fraction(4, 8)

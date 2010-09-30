@@ -29,7 +29,7 @@ class OffsetInterface(_Interface):
          cur_duration_in_seconds = self._client.duration.seconds
          prev = self._client._navigator._prev
          if prev:
-            self._start_in_seconds = prev.offset._stop_in_seconds
+            self._start_in_seconds = prev._offset._stop_in_seconds
          else:
             self._start_in_seconds = Fraction(0)
          ## this one case is possible for containers only
@@ -42,7 +42,7 @@ class OffsetInterface(_Interface):
    def _update_prolated_offset_values_of_component(self):
       prev = self._client._navigator._prev
       if prev:
-         self._start = prev.offset._stop
+         self._start = prev._offset._stop
       else:
          self._start = Fraction(0)
       self._stop = self._start + self._client.duration.prolated

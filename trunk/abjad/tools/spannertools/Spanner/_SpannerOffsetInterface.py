@@ -13,7 +13,7 @@ class _SpannerOffsetInterface(_StrictComparator):
    def start(self):
       client = self._client
       if len(client):
-         return client[0].offset.start
+         return client[0]._offset.start
       else:
          return Fraction(0)
 
@@ -22,6 +22,6 @@ class _SpannerOffsetInterface(_StrictComparator):
       client = self._client
       if len(client):
          last = client[-1]
-         return last.offset.stop
+         return last._offset.stop
       else:
          return Fraction(0)

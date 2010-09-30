@@ -22,7 +22,7 @@ def component_to_pitch_and_rhythm_skeleton_with_interface_attributes(component):
       abjad> note.harmonic.natural = True
       abjad> note.name = 'custom name'
       abjad> note.override.note_head.color = 'red'
-      abjad> note.offset.prolated.foo = 'bar'
+      abjad> note._offset.prolated.foo = 'bar'
       abjad> next_note = score.leaves[1]
       abjad> next_note.duration.multiplier = Fraction(3, 2)
       

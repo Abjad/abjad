@@ -21,7 +21,7 @@ def _get_context_mark_format_contributions_for_slot(leaf, slot):
          #print mark
          if candidate._format_slot == slot:
             if candidate.start_component is not None:
-               if candidate.start_component.offset.start == leaf.offset.start:
+               if candidate.start_component._offset.start == leaf._offset.start:
                   marks.add(candidate)
    #print marks
    for mark in marks:

@@ -101,12 +101,6 @@ class _Component(_StrictComparator):
          return tuple( )
 
    @property
-   def offset(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.offset.interface.OffsetInterface`.'''
-      return self._offset
-
-   @property
    def override(self):
       '''Read-only reference to LilyPond grob override component plug-in.
       '''
@@ -195,7 +189,7 @@ class _Component(_StrictComparator):
          capped = True, unique = True, forbid = None, direction = 'left')
       for component in components:
          #print '\tnow updating %s offset values in seconds ...' % str(component.__class__.__name__)
-         component.offset._update_offset_values_of_component_in_seconds( )
+         component._offset._update_offset_values_of_component_in_seconds( )
          component._offset_values_in_seconds_are_current = True
          total_components_iterated += 1
       #print 'done updating all offset values in seconds in score.'
@@ -211,7 +205,7 @@ class _Component(_StrictComparator):
       components = componenttools.iterate_components_depth_first(score, 
          capped = True, unique = True, forbid = None, direction = 'left')
       for component in components:
-         component.offset._update_prolated_offset_values_of_component( )
+         component._offset._update_prolated_offset_values_of_component( )
          component._prolated_offset_values_are_current = True
          total_components_iterated += 1
       #print total_components_iterated, '... prolated offset values updated.'

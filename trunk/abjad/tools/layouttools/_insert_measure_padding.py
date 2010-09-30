@@ -27,7 +27,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    ## forbid updates because i
    ## componenttools.extend_in_parent_of_component_and_grow_spanners( ) and
    ## componenttools.extend_left_in_parent_of_component_and_grow_spanners( )
-   ## call self.offset.stop  ##
+   ## call self._offset.stop  ##
    root._update._forbid_component_update( )
 
    for measure in measuretools.iterate_measures_forward_in_expr(expr):

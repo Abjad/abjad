@@ -52,8 +52,8 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
             result.append('<<')
             for meter, moffset, temp_hide in m:
                s = Skip(Fraction(1))
-               #s.duration.multiplier = meter.offset - leaf.offset.start
-               s.duration.multiplier = moffset - leaf.offset.start
+               #s.duration.multiplier = meter._offset - leaf._offset.start
+               s.duration.multiplier = moffset - leaf._offset.start
                numerator, denominator = meter.numerator, meter.denominator
                mark = contexttools.TimeSignatureMark(numerator, denominator)(s)
                mark._is_cosmetic_mark = True

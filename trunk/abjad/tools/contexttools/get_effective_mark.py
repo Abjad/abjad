@@ -29,17 +29,17 @@ def get_effective_mark(component, klass):
                if isinstance(mark.start_component, Measure):
                   candidate_marks.add(mark)
    candidate_marks = sorted(candidate_marks, 
-      cmp = lambda m, n: cmp(m.start_component.offset.start, n.start_component.offset.start)) 
+      cmp = lambda m, n: cmp(m.start_component._offset.start, n.start_component._offset.start)) 
    #print candidate_marks
    #for x in candidate_marks:
-   #   print x, x.start_component.offset.start
+   #   print x, x.start_component._offset.start
    first_winner = None
    for candidate_mark in reversed(candidate_marks):
-      if candidate_mark.start_component.offset.start <= component.offset.start:
+      if candidate_mark.start_component._offset.start <= component._offset.start:
          if first_winner is None:
             first_winner = candidate_mark
-         elif candidate_mark.start_component.offset.start == \
-            first_winner.start_component.offset.start:
+         elif candidate_mark.start_component._offset.start == \
+            first_winner.start_component._offset.start:
             raise ExtraMarkError('%s and %s start at the same time.' % (
                first_winner, candidate_mark))
          else:

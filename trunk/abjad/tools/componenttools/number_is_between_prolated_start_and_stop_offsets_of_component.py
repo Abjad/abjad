@@ -27,5 +27,5 @@ def number_is_between_prolated_start_and_stop_offsets_of_component(timepoint, co
    except TypeError:
       pass
 
-   return component.offset.start <= timepoint < \
-      component.offset.stop
+   return component._offset.start <= timepoint < \
+      component._offset.stop

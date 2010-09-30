@@ -358,12 +358,12 @@ class Spanner(_StrictComparator):
 
       ::
 
-         abjad> spanner.offset.start
+         abjad> spanner._offset.start
          Fraction(1, 4)
 
       ::
 
-         abjad> spanner.offset.stop
+         abjad> spanner._offset.stop
          Fraction(1, 2)
       '''
          
