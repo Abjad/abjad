@@ -27,7 +27,6 @@ Score component interfaces
    :maxdepth: 1
 
    interfaces/BreaksInterface/BreaksInterface
-   interfaces/OffsetInterface/OffsetInterface
    interfaces/ParentageInterface/ParentageInterface
 
 
