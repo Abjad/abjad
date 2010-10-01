@@ -2,7 +2,7 @@ from abjad.components.Chord import Chord
 from abjad.exceptions import ExtraNoteHeadError
 from abjad.exceptions import MissingNoteHeadError
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def get_note_head_from_chord_by_pitch(chord, pitch):

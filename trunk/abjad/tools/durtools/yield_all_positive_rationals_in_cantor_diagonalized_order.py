@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.durtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order import \
    yield_all_positive_integer_pairs_in_cantor_diagonalized_order
 

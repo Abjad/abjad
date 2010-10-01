@@ -1,6 +1,6 @@
 from abjad.tools.metertools import Meter
 from abjad.components.Tuplet import Tuplet
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import mathtools

@@ -1,5 +1,5 @@
 from abjad.exceptions import PartitionError
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def _group_components_by_durations(duration_type, components, durations, 

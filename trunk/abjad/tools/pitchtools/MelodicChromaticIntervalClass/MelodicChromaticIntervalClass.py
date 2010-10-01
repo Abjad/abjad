@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._ChromaticIntervalClass import _ChromaticIntervalClass
 from abjad.tools.pitchtools._Interval import _Interval

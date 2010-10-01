@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.verticalitytools._new_vertical_moments_forward_in import _new_vertical_moments_forward_in
 
 

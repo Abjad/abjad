@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools import durtools
 from abjad.tools import contexttools
 from abjad.tools import metertools

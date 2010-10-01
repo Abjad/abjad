@@ -1,6 +1,6 @@
 from abjad.components.Container import Container
 from abjad.components.Tuplet import Tuplet
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.exceptions import TupletFuseError
 from abjad.tools.componenttools.component_to_score_root import component_to_score_root
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet

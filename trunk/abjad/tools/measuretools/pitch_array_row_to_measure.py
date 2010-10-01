@@ -1,6 +1,6 @@
 from abjad.components.Measure import Measure
 from abjad.tools.metertools import Meter
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools import leaftools
 from abjad.tools.pitchtools.PitchArray.PitchArrayRow.PitchArrayRow \
    import PitchArrayRow

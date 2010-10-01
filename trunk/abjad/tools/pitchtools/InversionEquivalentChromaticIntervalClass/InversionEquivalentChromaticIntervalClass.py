@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 class InversionEquivalentChromaticIntervalClass(_Immutable):

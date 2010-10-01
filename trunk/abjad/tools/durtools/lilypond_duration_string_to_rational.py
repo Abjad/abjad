@@ -1,5 +1,5 @@
 from abjad.exceptions import DurationError
-from abjad.core import Fraction
+from fractions import Fraction
 import re
 
 

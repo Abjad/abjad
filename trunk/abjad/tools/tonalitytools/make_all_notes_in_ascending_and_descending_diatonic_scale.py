@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.components.Score import Score
 from abjad.components.Staff import Staff
 from abjad.tools import componenttools

@@ -5,7 +5,7 @@ from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
-from abjad.core import Fraction
+from fractions import Fraction
 from copy import deepcopy as python_deepcopy
 
 

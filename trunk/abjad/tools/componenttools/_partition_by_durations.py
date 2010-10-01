@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.componenttools._split_component_at_duration import _split_component_at_duration
 
 

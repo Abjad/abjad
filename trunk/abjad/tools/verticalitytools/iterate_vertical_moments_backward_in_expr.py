@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.verticalitytools.get_vertical_moment_at_prolated_offset_in_expr import get_vertical_moment_at_prolated_offset_in_expr
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 

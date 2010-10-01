@@ -1,5 +1,5 @@
 from abjad.tools.metertools import Meter
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools import contexttools
 from abjad.tools import metertools

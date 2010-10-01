@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def remove_weighted_subrun_at(l, weight, i):

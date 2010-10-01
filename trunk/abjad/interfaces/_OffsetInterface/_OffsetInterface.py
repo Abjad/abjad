@@ -1,6 +1,6 @@
 from abjad.exceptions import UndefinedTempoError
 from abjad.interfaces._Interface import _Interface
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 class _OffsetInterface(_Interface):

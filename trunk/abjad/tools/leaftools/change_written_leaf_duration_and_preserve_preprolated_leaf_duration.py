@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, written_duration):

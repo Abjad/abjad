@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.tuplettools.FixedDurationTuplet._FixedDurationTupletDurationInterface \
    import _FixedDurationTupletDurationInterface
 from abjad.components.Tuplet.Tuplet import Tuplet

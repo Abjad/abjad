@@ -1,5 +1,5 @@
 from abjad.exceptions import AssignabilityError
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.durtools.assignable_rational_to_dot_count import assignable_rational_to_dot_count
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 from abjad.tools.durtools.rational_to_equal_or_lesser_binary_rational \

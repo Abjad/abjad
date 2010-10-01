@@ -1,6 +1,6 @@
 from abjad.core import _StrictComparator
 from abjad.core import _Immutable
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools import tempotools
 
 

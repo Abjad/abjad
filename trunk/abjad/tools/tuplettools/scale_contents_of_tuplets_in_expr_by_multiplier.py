@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr

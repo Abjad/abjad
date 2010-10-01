@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.durtools.lilypond_duration_string_to_rational import \
    lilypond_duration_string_to_rational
 

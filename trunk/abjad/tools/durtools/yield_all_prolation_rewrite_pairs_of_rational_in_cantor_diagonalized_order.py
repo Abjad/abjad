@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order import \
    yield_all_assignable_rationals_in_cantor_diagonalized_order
 

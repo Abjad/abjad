@@ -2,7 +2,7 @@ from abjad.components.Chord import Chord
 from abjad.components._Leaf import _Leaf
 from abjad.components.Measure import Measure
 from abjad.components.Note import Note
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.core import _Immutable
 from abjad.tools import componenttools
 

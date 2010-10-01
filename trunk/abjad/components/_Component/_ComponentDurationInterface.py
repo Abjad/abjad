@@ -1,6 +1,6 @@
 from abjad.interfaces._Interface import _Interface
 from abjad.tools import listtools
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 class _ComponentDurationInterface(_Interface):

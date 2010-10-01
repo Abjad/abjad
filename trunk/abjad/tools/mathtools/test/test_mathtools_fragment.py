@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.core import Fraction
+from fractions import Fraction
 import py.test
 
 

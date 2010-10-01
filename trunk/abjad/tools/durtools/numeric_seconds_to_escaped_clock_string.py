@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def numeric_seconds_to_escaped_clock_string(seconds):

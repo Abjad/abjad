@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def number_is_between_prolated_start_and_stop_offsets_of_component(timepoint, component):

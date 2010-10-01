@@ -1,6 +1,6 @@
 from abjad.tools.spannertools.ComplexBeamSpanner._ComplexBeamSpannerFormatInterface import _ComplexBeamSpannerFormatInterface
 from abjad.tools.spannertools.BeamSpanner.BeamSpanner import BeamSpanner
-from abjad.core import Fraction
+from fractions import Fraction
 import types
 
 

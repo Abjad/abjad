@@ -1,6 +1,6 @@
 from __future__ import division
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools

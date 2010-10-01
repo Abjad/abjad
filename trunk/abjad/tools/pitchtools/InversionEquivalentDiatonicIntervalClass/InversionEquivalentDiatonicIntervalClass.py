@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 
 

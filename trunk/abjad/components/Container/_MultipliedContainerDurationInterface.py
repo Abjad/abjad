@@ -1,5 +1,5 @@
 from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 class _MultipliedContainerDurationInterface(_ContainerDurationInterface):

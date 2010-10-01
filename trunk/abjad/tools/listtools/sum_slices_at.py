@@ -1,5 +1,5 @@
 from abjad.exceptions import InputSpecificationError
-from abjad.core import Fraction
+from fractions import Fraction
 import types
 
 

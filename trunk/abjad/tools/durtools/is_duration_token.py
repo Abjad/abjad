@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.durtools.is_duration_pair import is_duration_pair
 
 

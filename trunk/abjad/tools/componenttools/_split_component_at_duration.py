@@ -2,7 +2,7 @@ from abjad.components.Container import Container
 from abjad.exceptions import ContainmentError
 from abjad.components._Leaf import _Leaf
 from abjad.components.Measure import Measure
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.spannertools import TieSpanner
 from abjad.tools import durtools
 from abjad.tools import mathtools

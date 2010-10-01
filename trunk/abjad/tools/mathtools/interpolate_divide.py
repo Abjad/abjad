@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.tools.mathtools.interpolate_cosine import interpolate_cosine
 from abjad.tools.mathtools.interpolate_exponential import interpolate_exponential
 

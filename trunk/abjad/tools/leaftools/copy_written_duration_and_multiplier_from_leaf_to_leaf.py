@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_leaf):

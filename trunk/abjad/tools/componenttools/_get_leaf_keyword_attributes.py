@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.core import Fraction
+from fractions import Fraction
 from abjad.exceptions import MissingSpannerError
 from abjad.exceptions import UndefinedTempoError
 from abjad.interfaces._Interface import _Interface

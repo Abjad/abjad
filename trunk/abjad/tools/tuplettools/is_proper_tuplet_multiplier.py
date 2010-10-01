@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def is_proper_tuplet_multiplier(multiplier):

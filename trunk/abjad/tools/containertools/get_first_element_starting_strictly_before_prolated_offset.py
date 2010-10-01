@@ -1,4 +1,4 @@
-from abjad.core import Fraction
+from fractions import Fraction
 
 
 def get_first_element_starting_strictly_before_prolated_offset(container, prolated_offset):
