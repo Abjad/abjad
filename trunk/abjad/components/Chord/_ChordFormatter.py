@@ -12,8 +12,8 @@ class _ChordFormatter(_LeafFormatter):
    @property
    def _nucleus(self):
       '''String representation of note_heads in chord.
-         Return list like all other format-time contributions.
-         .. todo:: return immutable tuple of contributions.'''
+      Return list like all other format-time contributions.
+      '''
       result =  [ ]
       chord = self.leaf
       note_heads = chord.note_heads

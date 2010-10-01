@@ -4,12 +4,17 @@ from abjad.tools.formattools._get_comment_contribution_for_slot import \
    _get_comment_contribution_for_slot
 from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
    _get_lilypond_command_mark_contribution_for_slot
+from abjad.tools.formattools._get_grob_override_format_contributions import \
+   _get_grob_override_format_contributions
+from abjad.tools.formattools._get_opening_slot_format_contributions import \
+   _get_opening_slot_format_contributions
+from abjad.tools.formattools._get_closing_slot_format_contributions import \
+   _get_closing_slot_format_contributions
+from abjad.tools.formattools._get_grob_revert_format_contributions import \
+   _get_grob_revert_format_contributions
 
 
 class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
-   '''Collect all tuplet format contributions and
-   order by the seven canonical format slots.
-   '''
 
    def __init__(self, _client):
       _ContainerFormatterSlotsInterface.__init__(self, _client)
@@ -68,8 +73,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          \revert Dots #'color
          \revert NoteHead #'color
       '''
-      from abjad.tools.formattools._get_grob_override_format_contributions import \
-         _get_grob_override_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append([('comment_marks', ''), 
@@ -192,8 +195,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_3(self):
       '''Read-only tuple of format contributions to appear
       immediately after tuplet opening.'''
-      from abjad.tools.formattools._get_opening_slot_format_contributions import \
-         _get_opening_slot_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append([('comment_marks', ''),
@@ -209,8 +210,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_5(self):
       '''Read-only tuple of format contributions to appear
       immediately before tuplet closing.'''
-      from abjad.tools.formattools._get_closing_slot_format_contributions import \
-         _get_closing_slot_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append([('closing', 'closing'),
@@ -237,8 +236,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_7(self):
       '''Read-only tuple of format contributions
       to appear immediately after tuplet closing.'''
-      from abjad.tools.formattools._get_grob_revert_format_contributions import \
-         _get_grob_revert_format_contributions
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append([('lilypond_command_marks', ''),

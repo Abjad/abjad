@@ -4,6 +4,14 @@ from abjad.tools.formattools._get_comment_contribution_for_slot import \
    _get_comment_contribution_for_slot
 from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
    _get_lilypond_command_mark_contribution_for_slot
+from abjad.tools.formattools._get_grob_override_format_contributions import \
+   _get_grob_override_format_contributions
+from abjad.tools.formattools._get_context_setting_format_contributions import \
+   _get_context_setting_format_contributions
+from abjad.tools.formattools._get_opening_slot_format_contributions import \
+   _get_opening_slot_format_contributions
+from abjad.tools.formattools._get_closing_slot_format_contributions import \
+   _get_closing_slot_format_contributions
 
 
 class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -15,10 +23,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_2(self):
-      from abjad.tools.formattools._get_grob_override_format_contributions import \
-         _get_grob_override_format_contributions
-      from abjad.tools.formattools._get_context_setting_format_contributions import \
-         _get_context_setting_format_contributions
       result = [ ]
       formatter = self.formatter
       context = formatter.context
@@ -50,8 +54,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_3(self):
-      from abjad.tools.formattools._get_opening_slot_format_contributions import \
-         _get_opening_slot_format_contributions
       result = [ ]
       context = self.formatter.context
       result.append([('comment_marks', ''),
@@ -65,8 +67,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_5(self):
-      from abjad.tools.formattools._get_closing_slot_format_contributions import \
-         _get_closing_slot_format_contributions
       result = [ ]
       context = self.formatter.context
       result.append([('closing', 'closing'),

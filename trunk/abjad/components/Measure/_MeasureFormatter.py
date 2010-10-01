@@ -66,11 +66,8 @@ class _MeasureFormatter(_ContainerFormatter):
          raise OverfullMeasureError
       if client.duration.preprolated < effective_meter.duration:
          raise UnderfullMeasureError
-      #return _MeasureFormatter.format.fget(self)
       return _ContainerFormatter.format.fget(self)
 
    @property
    def slots(self):
-      '''Read-only reference to measure formatter slots interface.
-      '''
       return self._slots
