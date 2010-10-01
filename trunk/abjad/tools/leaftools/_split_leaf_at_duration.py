@@ -36,7 +36,6 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
       delattr(new_leaf, 'grace')
    ## TODO: maybe replace with logic to move marktools.Articulation ##
    #new_leaf.articulations[:] = [ ]
-   new_leaf.dynamic_mark = None
    contexttools.detach_context_marks_attached_to_start_component(new_leaf,
       klasses = (contexttools.DynamicMark, ))
    ##leaf.after_grace[:] = [ ]

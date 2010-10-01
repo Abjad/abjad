@@ -7,6 +7,7 @@ class IntermarkedHairpinCheck(_Check):
    '''
 
    def _run(self, expr):
+      from abjad.tools import contexttools
       from abjad.tools import spannertools
       violators = [ ]
       total, bad = 0, 0
@@ -15,7 +16,7 @@ class IntermarkedHairpinCheck(_Check):
       for hairpin in hairpins:
          if 2 < len(hairpin.leaves):
             for leaf in hairpin.leaves[1:-1]:
-               if getattr(leaf, 'dynamic_mark', None) is not None:
+               if contexttools.get_dynamic_marks_attached_to_start_component(leaf):
                   violators.append(hairpin)
                   bad += 1
                   break
