@@ -7,6 +7,6 @@ def _get_before_slot_format_contributions(component):
    result = [ ]
    for contributor in _get_format_contributor_component_interfaces(component):
       result.extend(getattr(contributor, '_before', [ ]))
-   result.extend(component.misc._get_formatted_commands_for_target_slot('before'))
+   #result.extend(component.misc._get_formatted_commands_for_target_slot('before'))
    result.sort( )
    return result

@@ -32,9 +32,9 @@ def _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_
                      _make_lilypond_revert_string(grob_name, grob_attribute))
          spanner_override_contributions.sort( )
          spanner_contributions.extend(spanner_override_contributions)
-         spanner_contributions.extend(
-            spanner.misc._get_formatted_commands_for_target_slot('closing'))
-         spanner_contributions.extend(
-            spanner.misc._get_formatted_commands_for_target_slot('after'))
+#         spanner_contributions.extend(
+#            spanner.misc._get_formatted_commands_for_target_slot('closing'))
+#         spanner_contributions.extend(
+#            spanner.misc._get_formatted_commands_for_target_slot('after'))
       result.extend(spanner_contributions)
    return result

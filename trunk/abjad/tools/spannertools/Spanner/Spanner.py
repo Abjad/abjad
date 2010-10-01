@@ -1,7 +1,7 @@
 from abjad.core import _StrictComparator
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import LilyPondContextSettingComponentPlugIn
-from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
+#from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
@@ -335,13 +335,13 @@ class Spanner(_StrictComparator):
       result = tuple(result)
       return result
 
-   @property
-   def misc(self):
-      '''LilyPond miscellaneous command component plug-in.
-      '''
-      if not hasattr(self, '_misc'):
-         self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
-      return self._misc
+#   @property
+#   def misc(self):
+#      '''LilyPond miscellaneous command component plug-in.
+#      '''
+#      if not hasattr(self, '_misc'):
+#         self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
+#      return self._misc
 
    @property
    def offset(self):

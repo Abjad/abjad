@@ -6,6 +6,6 @@ def _get_after_slot_format_contributions(component):
    result = [ ]
    for contributor in _get_format_contributor_component_interfaces(component):
       result.extend(getattr(contributor, '_after', [ ]))
-   result.extend(component.misc._get_formatted_commands_for_target_slot('after'))
+   #result.extend(component.misc._get_formatted_commands_for_target_slot('after'))
    result.sort( )
    return result
