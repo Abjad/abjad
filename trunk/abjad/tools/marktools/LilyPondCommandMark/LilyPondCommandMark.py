@@ -69,6 +69,8 @@ class LilyPondCommandMark(Mark):
          abjad> lilypond_command.format
          '\\slurDotted'
       '''
-      command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(
-         self._command_name_string)
-      return r'\%s' % command
+      command = self._command_name_string
+      if command.startswith('#'):
+         return command
+      else:
+         return '\\' + stringtools.underscore_delimited_lowercase_to_lowercamelcase(command)

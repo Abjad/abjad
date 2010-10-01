@@ -10,8 +10,9 @@ def test_Measure_parallel_01( ):
    measure.parallel = True
    #measure[0].voice.number = 1
    #measure[1].voice.number = 2
-   measure[0].misc.voice_one = None
-   measure[1].misc.voice_two = None
+   marktools.LilyPondCommandMark('voiceOne')(measure[0])
+   marktools.LilyPondCommandMark('voiceTwo')(measure[1])
+     
    t = Staff([measure])
    macros.diatonicize(t)
 

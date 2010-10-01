@@ -23,8 +23,7 @@ def test_TextSpanner_position_02( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    p = spannertools.TextSpanner(t[:])
-   #p.position = 'neutral'
-   p.misc.text_spanner_neutral = None
+   marktools.LilyPondCommandMark('textSpannerNeutral')(p[0])
 
    r'''
    \new Staff {
@@ -43,8 +42,7 @@ def test_TextSpanner_position_03( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    p = spannertools.TextSpanner(t[:])
-   #p.position = 'up'
-   p.misc.text_spanner_up = None
+   marktools.LilyPondCommandMark('textSpannerUp')(p[0])
 
    r'''
    \new Staff {
@@ -63,8 +61,7 @@ def test_TextSpanner_position_04( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    p = spannertools.TextSpanner(t[:])
-   #p.position = 'down'
-   p.misc.text_spanner_down = None
+   marktools.LilyPondCommandMark('textSpannerDown')(p[0])
 
    r'''
    \new Staff {

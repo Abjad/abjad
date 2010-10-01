@@ -37,7 +37,7 @@ class Mark(object):
       return type(self)(target_context = self._target_context)
 
    __deepcopy__ = __copy__
-      
+
    def __delattr__(self, *args):
       raise AttributeError('can not delete %s attributes.' % self.__class__.__name__)
 

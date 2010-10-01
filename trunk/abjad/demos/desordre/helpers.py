@@ -1,7 +1,7 @@
 from abjad import *
 import math
-#from abjad.tools import template
-from abjad.tools.scoretools.make_empty_piano_score import make_rigid_measures_with_full_measure_spacer_skips_empty_piano_score
+from abjad.tools.scoretools.make_empty_piano_score import \
+   make_rigid_measures_with_full_measure_spacer_skips_empty_piano_score
 
 
 def desordre_build(pitches):
@@ -52,7 +52,7 @@ def desordre_cell(pitches):
    v_lower = Voice(notes)
    v_lower.name = 'rh_lower'
    #v_lower.voice.number = 2
-   v_lower.misc.voice_two = None
+   marktools.LilyPondCommandMark('voiceTwo')(v_lower)
 
    n = int(math.ceil(len(pitches) / 2.))
    chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
@@ -60,7 +60,7 @@ def desordre_cell(pitches):
    v_higher = Voice([chord])
    v_higher.name = 'rh_higher'
    #v_higher.voice.number = 1
-   v_higher.misc.voice_one = None
+   marktools.LilyPondCommandMark('voiceOne')(v_higher)
    p = Container([v_lower, v_higher])
    p.parallel = True
    ## make all 1/8 beats breakable

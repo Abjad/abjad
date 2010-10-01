@@ -1,7 +1,8 @@
 from abjad.tools.markuptools import Markup
-from abjad.components.Staff import Staff
+from abjad.components import Staff
 from abjad.tools import componenttools
 from abjad.tools import lilyfiletools
+from abjad.tools import marktools
 from abjad.tools.scoretools.make_piano_score_from_leaves import make_piano_score_from_leaves
 
 
@@ -27,7 +28,6 @@ def make_piano_sketch_score_from_leaves(leaves):
    score.span_bar.stencil = False
 
    for staff in componenttools.iterate_components_forward_in_expr(score, klass = Staff):
-      #staff.accidental.style = 'forget'
-      staff.misc.set_accidental_style = 'forget'
+      marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(staff)
 
    return score, treble_staff, bass_staff

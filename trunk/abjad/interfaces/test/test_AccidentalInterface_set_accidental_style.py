@@ -6,8 +6,7 @@ def test_AccidentalInterface_set_accidental_style_01( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.accidental.style = 'forget'
-   t.misc.set_accidental_style = 'forget'
+   marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
 
    r'''
    \new Staff {
@@ -27,8 +26,7 @@ def test_AccidentalInterface_set_accidental_style_02( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t[1].accidental.style = 'forget'
-   t[1].misc.set_accidental_style = 'forget'
+   marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t[1])
 
    r'''
    \new Staff {

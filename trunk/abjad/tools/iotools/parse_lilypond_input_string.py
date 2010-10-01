@@ -58,7 +58,8 @@ def parse_lilypond_input_string(note_entry_string):
       if waiting_on_bar_string:
          bar_string = eval(token)
          last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-         last_leaf.misc.bar = bar_string
+         bar_command_string = r'bar "%s"' % bar_string
+         marktools.LilyPondCommandMark(bar_command_string, format_slot = 'closing')(last_leaf)
          waiting_on_bar_string = False
 
       elif waiting_on_clef_string:
@@ -130,10 +131,8 @@ def parse_lilypond_input_string(note_entry_string):
             last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
             try:
                if 0 <= token.index('\\'):
-                  #last_leaf.articulations.append(token)
                   marktools.Articulation(token)(last_leaf)
             except:
-               #last_leaf.articulations.append(Articulation(token[1], token[0]))
                marktools.Articulation(token[1], token[0])(last_leaf)
 
          elif token == '(':
