@@ -5,8 +5,7 @@ def test_BarLineInterface_kind_01( ):
    '''Barline after leaf.'''
 
    t = Note(0, (1, 4))
-   #t.bar_line.kind = '|.'
-   t.misc.bar = '|.'
+   marktools.LilyPondCommandMark(r'bar "|."', 'after')(t)
 
    r'''
    c'4
@@ -20,8 +19,7 @@ def test_BarLineInterface_kind_02( ):
    '''Barline at container closing.'''
 
    t = Staff( )
-   #t.bar_line.kind = '|.'
-   t.misc.bar = '|.'
+   marktools.LilyPondCommandMark(r'bar "|."')(t)
 
    r'''
    \new Staff {
@@ -36,8 +34,7 @@ def test_BarLineInterface_kind_03( ):
    '''Empty LilyPond bar line string.'''
 
    t = Staff(macros.scale(4))
-   #t[0].bar_line.kind = ''
-   t[0].misc.bar = ''
+   marktools.LilyPondCommandMark(r'bar ""', 'after')(t[0])
 
    r'''
    \new Staff {
