@@ -151,6 +151,13 @@ class Container(_Component):
 
    ## PUBLIC ATTRIBUTES ##
 
+   @property
+   def leaves(self):
+      '''Read-only tuple of leaves in container.
+      '''
+      from abjad.tools import leaftools
+      return tuple(leaftools.iterate_leaves_forward_in_expr(self))
+
    @apply
    def parallel( ):
       def fget(self):

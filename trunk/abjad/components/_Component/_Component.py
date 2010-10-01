@@ -61,13 +61,6 @@ class _Component(_StrictComparator):
       return self._formatter.format
 
    @property
-   def leaves(self):
-      '''Read-only tuple of all leaves in `self`.
-      '''
-      from abjad.tools import leaftools
-      return tuple(leaftools.iterate_leaves_forward_in_expr(self))
-
-   @property
    def marks(self):
       '''Read-only reference to ordered list of marks attached to component.
       '''
