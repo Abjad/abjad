@@ -225,6 +225,8 @@ contexttools
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
    tools/contexttools/detach_context_marks_attached_to_start_component
    tools/contexttools/get_all_context_marks_attached_to_any_improper_parent_of_component
+   tools/contexttools/get_context_marks_attached_to_start_component
+   tools/contexttools/get_dynamic_marks_attached_to_start_component
    tools/contexttools/get_effective_clef
    tools/contexttools/get_effective_dynamic
    tools/contexttools/get_effective_instrument
