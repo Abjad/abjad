@@ -7,6 +7,16 @@ from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot im
    _get_lilypond_command_mark_contribution_for_slot
 from abjad.tools.formattools._get_markup_format_contribution import \
    _get_markup_format_contribution
+from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+   _get_context_mark_format_contributions_for_slot
+from abjad.tools.formattools._get_left_slot_format_contributions import \
+   _get_left_slot_format_contributions
+from abjad.tools.formattools._get_right_slot_format_contributions import \
+   _get_right_slot_format_contributions
+from abjad.tools.formattools._get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+   _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
+from abjad.tools.formattools._get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+   _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
 
 
 class _LeafFormatter(_ComponentFormatter):
@@ -23,7 +33,6 @@ class _LeafFormatter(_ComponentFormatter):
    @property
    def _agrace_body(self):
       result = [ ]
-      #agrace = self._client.grace.after
       if hasattr(self._client, '_after_grace'):
          after_grace = self._client.after_grace
          if len(after_grace):
@@ -34,7 +43,6 @@ class _LeafFormatter(_ComponentFormatter):
    def _agrace_opening(self):
       result = [ ]
       if hasattr(self._client, '_after_grace'):
-         #if len(self._client.grace.after):
          if len(self._client.after_grace):
             result.append(r'\afterGrace')
       return result
@@ -42,7 +50,6 @@ class _LeafFormatter(_ComponentFormatter):
    @property
    def _grace_body(self):
       result = [ ]
-      #grace = self._client.grace.before
       if hasattr(self._client, '_grace'):
          grace = self._client.grace
          if len(grace):
@@ -51,18 +58,6 @@ class _LeafFormatter(_ComponentFormatter):
 
    @property
    def _leaf_body(self):
-      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
-         _get_context_mark_format_contributions_for_slot
-      from abjad.tools.formattools._get_left_slot_format_contributions import \
-         _get_left_slot_format_contributions
-      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
-         _get_context_mark_format_contributions_for_slot
-      from abjad.tools.formattools._get_right_slot_format_contributions import \
-         _get_right_slot_format_contributions
-      from abjad.tools.leaftools._get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
-      _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
-      from abjad.tools.leaftools._get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
-      _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
       result = [ ]
       client = self._client
       spanners = client.spanners
@@ -102,7 +97,6 @@ class _LeafFormatter(_ComponentFormatter):
    @property
    def _tremolo_subdivision_contribution(self):
       result = [ ]
-      #subdivision = self._client.tremolo_subdivision
       subdivision = getattr(self._client, 'tremolo_subdivision', None)
       if subdivision:
          result.append(':%s' % subdivision) 

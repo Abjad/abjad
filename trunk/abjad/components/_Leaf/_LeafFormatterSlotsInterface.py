@@ -1,8 +1,27 @@
-from abjad.components._Component._ComponentFormatterSlotsInterface import _ComponentFormatterSlotsInterface
+from abjad.components._Component._ComponentFormatterSlotsInterface import \
+   _ComponentFormatterSlotsInterface
+from abjad.tools.formattools._get_after_slot_format_contributions import \
+   _get_after_slot_format_contributions
+from abjad.tools.formattools._get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+   _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
+from abjad.tools.formattools._get_before_slot_format_contributions import \
+   _get_before_slot_format_contributions
+from abjad.tools.formattools._get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+   _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
+from abjad.tools.formattools._get_closing_slot_format_contributions import \
+   _get_closing_slot_format_contributions
 from abjad.tools.formattools._get_comment_contribution_for_slot import \
    _get_comment_contribution_for_slot
+from abjad.tools.formattools._get_context_setting_format_contributions import \
+   _get_context_setting_format_contributions
+from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+   _get_context_mark_format_contributions_for_slot
+from abjad.tools.formattools._get_grob_override_format_contributions import \
+   _get_grob_override_format_contributions
 from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
    _get_lilypond_command_mark_contribution_for_slot
+from abjad.tools.formattools._get_opening_slot_format_contributions import \
+   _get_opening_slot_format_contributions
 
 
 class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
@@ -16,19 +35,9 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_1(self):
-      from abjad.tools.formattools._get_grob_override_format_contributions import \
-         _get_grob_override_format_contributions
-      from abjad.tools.formattools._get_context_setting_format_contributions import \
-         _get_context_setting_format_contributions
-      from abjad.tools.formattools._get_before_slot_format_contributions import \
-         _get_before_slot_format_contributions
-      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
-         _get_context_mark_format_contributions_for_slot
-      from abjad.tools.leaftools._get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
-      _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
-      result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
+      result = [ ]
       result.append(self.wrap(formatter, '_grace_body'))
       result.append([('comment_marks', ''), _get_comment_contribution_for_slot(leaf, 'before')])
       result.append([('lilypond_command_marks', ''), 
@@ -48,10 +57,6 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_3(self):
-      from abjad.tools.formattools._get_opening_slot_format_contributions import \
-         _get_opening_slot_format_contributions
-      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
-         _get_context_mark_format_contributions_for_slot
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
@@ -74,10 +79,6 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_5(self):
-      from abjad.tools.formattools._get_closing_slot_format_contributions import \
-         _get_closing_slot_format_contributions
-      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
-         _get_context_mark_format_contributions_for_slot
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
@@ -93,12 +94,6 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_7(self):
-      from abjad.tools.formattools._get_after_slot_format_contributions import \
-         _get_after_slot_format_contributions
-      from abjad.tools.leaftools._get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
-      _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
-      from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
-         _get_context_mark_format_contributions_for_slot
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
@@ -131,8 +126,6 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       if prev_measure is None:
          return [('Special', 'reverts'), [ ]]
       bar_line_reverts = [ ]
-      #bar_line_reverts.extend(prev_measure.bar_line._reverts)
-      #bar_line_reverts.extend(prev_measure.span_bar._reverts)
       ## FIXME
       #bar_line_reverts.extend(prev_measure.override.bar_line._reverts)
       #bar_line_reverts.extend(prev_measure.override.span_bar._reverts)

@@ -1,7 +1,5 @@
-from abjad.components._Leaf import _Leaf
-
-
 def _get_context_mark_format_contributions_for_slot(leaf, slot):
+   from abjad.components._Leaf import _Leaf
    from abjad.components import Measure
    from abjad.tools import componenttools
    from abjad.tools import contexttools
