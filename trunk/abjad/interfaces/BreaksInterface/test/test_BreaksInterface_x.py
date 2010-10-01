@@ -1,4 +1,7 @@
 from abjad import *
+import py.test
+py.test.skip('breaks interface deprecated.')
+
 
 def test_BreaksInterface_x_01( ):
    '''``BreaksInterface.x`` formats the \

@@ -5,7 +5,7 @@ from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
 #from abjad.interfaces import _NumberingInterface
 from abjad.interfaces import _OffsetInterface
-from abjad.interfaces import BreaksInterface
+#from abjad.interfaces import BreaksInterface
 from abjad.interfaces import ParentageInterface
 
 
@@ -50,13 +50,13 @@ class _Component(_StrictComparator):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def breaks(self):
-      '''Read-only reference to
-      :class:`~abjad.interfaces.breaks.interface.BreaksInterface`.'''
-      if not hasattr(self, '_breaks'):
-         self._breaks = BreaksInterface(self)
-      return self._breaks
+#   @property
+#   def breaks(self):
+#      '''Read-only reference to
+#      :class:`~abjad.interfaces.breaks.interface.BreaksInterface`.'''
+#      if not hasattr(self, '_breaks'):
+#         self._breaks = BreaksInterface(self)
+#      return self._breaks
 
    @property
    def duration(self):

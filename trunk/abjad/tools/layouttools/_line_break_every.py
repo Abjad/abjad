@@ -1,6 +1,7 @@
 from abjad.components.Measure import Measure
-from abjad.core import Fraction
 from abjad.tools import componenttools
+from abjad.tools import marktools
+from fractions import Fraction
 
 
 def _line_break_every(expr, line_duration, klass = Measure, 
@@ -25,18 +26,24 @@ def _line_break_every(expr, line_duration, klass = Measure,
       if candidate_duration < line_duration:
          cum_duration += cur_duration
       elif candidate_duration == line_duration:
-         cur.breaks.line = True
+         #cur.breaks.line = True
+         marktools.LilyPondCommandMark('break', format_slot = 'closing')(cur)
          if adjust_eol:
-            cur.breaks.eol_adjustment = True
+            #cur.breaks.eol_adjustment = True
+            marktools.LilyPondCommandMark(
+               'adjustEOLMeterBarlineExtraOffset', format_slot = 'closing')(cur)
          if add_empty_bars:
             if cur.bar_line.kind is None:
                cur.bar_line.kind = ''
          cum_duration = Fraction(0)
       else:
          if prev is not None:
-            prev.breaks.line = True
+            #prev.breaks.line = True
+            marktools.LilyPondCommandMark('break', format_slot = 'closing')(prev)
             if adjust_eol:
-               prev.breaks.eol_adjustment = True
+               #prev.breaks.eol_adjustment = True
+               marktools.LilyPondCommandMark(
+                  'adjustEOLMeterBarlineExtraOffset', format_slot = 'closing')(prev)
             if add_empty_bars:
                if cur.bar_line.kind is None:
                   cur.bar_line.kind = ''

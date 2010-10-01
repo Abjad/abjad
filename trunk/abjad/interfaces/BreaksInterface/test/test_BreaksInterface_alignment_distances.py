@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('breaks interface deprecated')
 
 
 def test_BreaksInterface_alignment_distances_01( ):

@@ -1,5 +1,6 @@
 from abjad import *
 import py.test
+py.test.skip('breaks interface deprecated.')
 
 
 def test_BreaksInterface_eol_adjustment_01( ):

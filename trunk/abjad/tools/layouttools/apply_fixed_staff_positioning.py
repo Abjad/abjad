@@ -1,5 +1,6 @@
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools import componenttools
+from abjad.tools import marktools
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
 from abjad.tools.layouttools.StaffAlignmentOffsets import StaffAlignmentOffsets
 from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistances
@@ -91,13 +92,14 @@ def apply_fixed_staff_positioning(expr, positioning, klass = Measure):
    line_breaks_found = 0
    prev = None
    for cur in componenttools.iterate_components_forward_in_expr(expr, klass):
-      if prev is None or prev.breaks.line:
+      #if prev is None or prev.breaks.line:
+      if prev is None or marktools.is_component_with_lilypond_command_mark_attached(prev, 'break'):
          system_on_page = line_breaks_found + starting_system
          system_on_page %= systems_per_page
          y_offset = positioning.system_y_offsets[system_on_page]
-         cur.breaks.y = y_offset
-         if isinstance(positioning.staff_alignment_offsets, 
-            StaffAlignmentOffsets):
+         ## TODO: update this if functionality is still desired ##
+         #cur.breaks.y = y_offset
+         if isinstance(positioning.staff_alignment_offsets, StaffAlignmentOffsets):
             cur.breaks.alignment_offsets = alignment_values
          elif isinstance(positioning.staff_alignment_offsets, 
             StaffAlignmentDistances):

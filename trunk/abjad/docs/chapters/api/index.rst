@@ -534,6 +534,7 @@ marktools
    tools/marktools/get_articulations_attached_to_component
    tools/marktools/get_comments_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
+   tools/marktools/is_component_with_lilypond_command_mark_attached
 
 
 markuptools

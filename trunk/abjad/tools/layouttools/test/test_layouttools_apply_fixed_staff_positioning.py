@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('possibly deprecated. decide later.')
 
 
 def test_layouttools_apply_fixed_staff_positioning_01( ):

@@ -1,6 +1,6 @@
 from abjad import *
 import py.test
-py.test.skip('skipping until clean way to pass multiline overrides.')
+py.test.skip('breaks interface deprecated.')
 
 
 def test_BreaksInterface_whitespace_01( ):
