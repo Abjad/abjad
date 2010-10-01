@@ -8,10 +8,6 @@ from abjad.tools.formattools._get_grob_override_format_contributions import \
    _get_grob_override_format_contributions
 from abjad.tools.formattools._get_context_setting_format_contributions import \
    _get_context_setting_format_contributions
-from abjad.tools.formattools._get_opening_slot_format_contributions import \
-   _get_opening_slot_format_contributions
-from abjad.tools.formattools._get_closing_slot_format_contributions import \
-   _get_closing_slot_format_contributions
 
 
 class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -60,8 +56,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_comment_format_contributions_for_slot(context, 'opening')])
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_format_contributions_for_slot(context, 'opening')])
-      result.append([('opening', 'opening'),
-         _get_opening_slot_format_contributions(self._client._client)])
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -69,10 +63,9 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_5(self):
       result = [ ]
       context = self.formatter.context
-      result.append([('closing', 'closing'),
-         _get_closing_slot_format_contributions(self._client._client)])
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_format_contributions_for_slot(context, 'closing')])
-      result.append([('comment_marks', ''), _get_comment_format_contributions_for_slot(context, 'closing')])
+      result.append([('comment_marks', ''), 
+         _get_comment_format_contributions_for_slot(context, 'closing')])
       self._indent_slot_contributions(result)
       return tuple(result)

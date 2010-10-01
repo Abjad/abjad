@@ -8,12 +8,8 @@ from abjad.tools.formattools._get_grob_override_format_contributions import \
    _get_grob_override_format_contributions
 from abjad.tools.formattools._get_grob_revert_format_contributions import \
    _get_grob_revert_format_contributions
-from abjad.tools.formattools._get_opening_slot_format_contributions import \
-   _get_opening_slot_format_contributions
 from abjad.tools.formattools._get_context_setting_format_contributions import \
    _get_context_setting_format_contributions
-from abjad.tools.formattools._get_closing_slot_format_contributions import \
-   _get_closing_slot_format_contributions
 
 
 class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
@@ -61,8 +57,6 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          _get_lilypond_command_mark_format_contributions_for_slot(container, 'opening')])
       result.append([('overrides', 'overrides'), 
          _get_grob_override_format_contributions(self._client._client)])
-      result.append([('opening', 'opening'), 
-         _get_opening_slot_format_contributions(self._client._client)])
       result.append([('settings', 'settings'), 
          _get_context_setting_format_contributions(self._client._client)])
       self._indent_slot_contributions(result)
@@ -78,8 +72,6 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_5(self):
       result = [ ]
       container = self.formatter.container
-      result.append([('closing', 'closing'), 
-         _get_closing_slot_format_contributions(self._client._client)])
       result.append([('reverts', 'reverts'), 
          _get_grob_revert_format_contributions(self._client._client)])
       result.append([('lilypond_command_marks', ''),
