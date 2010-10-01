@@ -6,7 +6,7 @@ from fractions import Fraction
 class TempoMark(Mark):
    '''.. versionadded:: 1.1.2
 
-   Tempo mark.
+   The Abjad model of a tempo indication.
    '''
 
    _format_slot = 'opening'

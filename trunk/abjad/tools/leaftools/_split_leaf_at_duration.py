@@ -1,4 +1,5 @@
 from abjad.components._Leaf import _Leaf
+from abjad.tools import contexttools
 from abjad.tools.spannertools import TieSpanner
 from fractions import Fraction
 
@@ -36,6 +37,8 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
    ## TODO: maybe replace with logic to move marktools.Articulation ##
    #new_leaf.articulations[:] = [ ]
    new_leaf.dynamic_mark = None
+   contexttools.detach_context_marks_attached_to_start_component(new_leaf,
+      klasses = (contexttools.DynamicMark, ))
    ##leaf.after_grace[:] = [ ]
    if hasattr(leaf, 'after_grace'):
       delattr(leaf, '_after_grace')

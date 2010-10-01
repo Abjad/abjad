@@ -3,6 +3,8 @@ from abjad.tools.contexttools.Mark import Mark
 
 class KeySignatureMark(Mark):
    '''.. versionadded:: 1.1.2
+   
+   The Abjad model of a key signature setting or key signature change.
    '''
 
    #__slots__ = ('_tonic', '_mode')

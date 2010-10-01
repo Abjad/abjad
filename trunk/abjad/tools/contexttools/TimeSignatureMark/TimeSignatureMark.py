@@ -6,6 +6,8 @@ from fractions import Fraction
 
 class TimeSignatureMark(Mark):
    '''.. versionadded:: 1.1.2
+
+   The Abjad model of a time signature.
    '''
 
    _format_slot = 'opening'

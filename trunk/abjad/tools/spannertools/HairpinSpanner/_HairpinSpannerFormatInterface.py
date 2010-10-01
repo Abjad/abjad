@@ -10,8 +10,9 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
 
    def _right(self, leaf):
       '''Spanner format contribution right of leaf.'''
-      from abjad.components.Chord import Chord
-      from abjad.components.Note import Note
+      from abjad.components import Chord
+      from abjad.components import Note
+      from abjad.tools import contexttools
       result = [ ]
       spanner = self.spanner
       if not spanner.trim:
@@ -20,11 +21,12 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
             if spanner.start:
                result.append('\\%s' % spanner.start)
          if spanner._is_my_last_leaf(leaf):
+            effective_dynamic = contexttools.get_effective_dynamic(leaf)
             if spanner.stop:
                result.append('\\%s' % spanner.stop)
-            #elif not leaf.dynamics.mark:
-            #elif leaf.dynamic_mark is None:
-            elif getattr(leaf, 'dynamic_mark', None) is None:
+            elif getattr(leaf, 'dynamic_mark', None) is None and \
+               (effective_dynamic is None or effective_dynamic not in
+               leaf._marks_for_which_component_functions_as_start_component):
                result.append('\\!')
       else:
          if spanner._is_my_first(leaf, (Chord, Note)):

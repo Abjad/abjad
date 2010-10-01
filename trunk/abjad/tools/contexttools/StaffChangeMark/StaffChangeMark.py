@@ -3,6 +3,8 @@ from abjad.tools.contexttools.Mark import Mark
 
 class StaffChangeMark(Mark):
    '''.. versionadded:: 1.1.2
+
+   The Abjad model of a staff change.
    '''
 
    _format_slot = 'opening'

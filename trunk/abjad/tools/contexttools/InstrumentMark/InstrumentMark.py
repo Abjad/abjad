@@ -3,6 +3,8 @@ from abjad.tools.contexttools.Mark import Mark
 
 class InstrumentMark(Mark):
    '''.. versionadded:: 1.1.2
+
+   The Abjad model of an instrument change.
    '''
 
    _format_slot = 'opening'

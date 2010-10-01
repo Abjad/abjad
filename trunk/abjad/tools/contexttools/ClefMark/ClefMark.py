@@ -3,6 +3,8 @@ from abjad.tools.contexttools.Mark import Mark
 
 class ClefMark(Mark):
    '''.. versionadded:: 1.1.2
+
+   The Abjad model of a clef.
    '''
 
    _format_slot = 'opening'

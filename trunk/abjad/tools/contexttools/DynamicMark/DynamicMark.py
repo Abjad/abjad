@@ -3,6 +3,11 @@ from abjad.tools.contexttools.Mark import Mark
 
 class DynamicMark(Mark):
    '''.. versionadded:: 1.1.2
+
+   The Abjad model of a dynamic mark::
+
+      abjad> contexttools.DynamicMark('f')
+      DynamicMark('f')
    '''
 
    _format_slot = 'right'
@@ -17,6 +22,19 @@ class DynamicMark(Mark):
 
    ## OVERLOADS ##
 
+   def __call__(self, *args):
+      from abjad.exceptions import WellFormednessError
+      from abjad.tools import spannertools
+      if len(args) == 1:
+         dynamic_spanners = \
+            spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+            args[0], klass = (spannertools.DynamicTextSpanner, spannertools.HairpinSpanner))
+         for dynamic_spanner in dynamic_spanners:
+            if not dynamic_spanner._is_exterior_leaf(args[0]):
+               raise WellFormednessError(
+                  '\n\tCan not attach dynamic mark to interior component of dynamic spanner.')
+      return Mark.__call__(self, *args)
+
    def __copy__(self, *args):
       return type(self)(self._dynamic_name_string, target_contex = self.target_context)
 
@@ -29,4 +47,12 @@ class DynamicMark(Mark):
 
    @property
    def format(self):
+      '''Read-only LilyPond input format of dynamic mark:
+
+      ::
+
+         abjad> dynamic_mark = contexttools.DynamicMark('f')
+         abjad> dynamic_mark.format
+         '\\f'
+      '''
       return r'\%s' % self._dynamic_name_string

@@ -1,6 +1,7 @@
 from abjad import *
 from abjad.checks import IntermarkedHairpinCheck
 from abjad.checks import ShortHairpinCheck
+import py.test
 
 
 def test_HairpinSpanner_01( ):
@@ -8,9 +9,6 @@ def test_HairpinSpanner_01( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.CrescendoSpanner(t[:4])
-
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    r'''
    \new Staff {
@@ -25,6 +23,9 @@ def test_HairpinSpanner_01( ):
    }
    '''
 
+   assert componenttools.is_well_formed_component(t)
+   assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+
 
 def test_HairpinSpanner_02( ):
    '''Hairpins spanning a single leaf are allowed but not well-formed.'''
@@ -32,9 +33,6 @@ def test_HairpinSpanner_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.CrescendoSpanner(t[0:1])
    checker = ShortHairpinCheck( )
-
-   assert not checker.check(t)
-   assert t.format == "\\new Staff {\n\tc'8 \\< \\!\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    r'''
    \new Staff {
@@ -49,17 +47,17 @@ def test_HairpinSpanner_02( ):
    }
    '''
 
+   assert not checker.check(t)
+   assert t.format == "\\new Staff {\n\tc'8 \\< \\!\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+
 
 def test_HairpinSpanner_03( ):
    '''Hairpins and dynamics apply separately.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.CrescendoSpanner(t[:4])
-   t[0].dynamic_mark = 'p'
-   t[3].dynamic_mark = 'f'
-
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   contexttools.DynamicMark('p')(t[0])
+   contexttools.DynamicMark('f')(t[3])
 
    r'''
    \new Staff {
@@ -74,46 +72,29 @@ def test_HairpinSpanner_03( ):
    }
    '''
 
+   assert componenttools.is_well_formed_component(t)
+   assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+
 
 def test_HairpinSpanner_04( ):
-   '''Internal marks are allowed but not well-formed.'''
+   '''Internal marks raise well-formedness error.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    spannertools.CrescendoSpanner(t[:4])
-   t[2].dynamic_mark = 'p'
-   checker = IntermarkedHairpinCheck( )
-
-   assert not checker.check(t)
-   assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8 \\p\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-
-   r'''
-   \new Staff {
-           c'8 \<
-           cs'8
-           d'8 \p
-           ef'8 \!
-           e'8
-           f'8
-           fs'8
-           g'8
-   }
-   '''
+   assert py.test.raises(WellFormednessError, "contexttools.DynamicMark('p')(t[2])")
 
 
 def test_HairpinSpanner_05( ):
    '''Apply back-to-back hairpins separately.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   t[0].dynamic_mark = 'p'
+   contexttools.DynamicMark('p')(t[0])
    spannertools.CrescendoSpanner(t[0:3])
-   t[2].dynamic_mark = 'f'
+   contexttools.DynamicMark('f')(t[2])
    spannertools.DecrescendoSpanner(t[2:5])
-   t[4].dynamic_mark = 'p'
+   contexttools.DynamicMark('p')(t[4])
    spannertools.CrescendoSpanner(t[4:7])
-   t[6].dynamic_mark = 'f'
-
-   assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
-   assert componenttools.is_well_formed_component(t)
+   contexttools.DynamicMark('f')(t[6])
 
    r'''
    \new Staff {
@@ -128,6 +109,9 @@ def test_HairpinSpanner_05( ):
    }
    '''
 
+   assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
+   assert componenttools.is_well_formed_component(t)
+
 
 def test_HairpinSpanner_06( ):
    '''Hairpins format rests.'''
@@ -135,8 +119,6 @@ def test_HairpinSpanner_06( ):
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
    spannertools.CrescendoSpanner(t[:])
 
-   assert t.format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
-   assert componenttools.is_well_formed_component(t)
 
    r'''
    \new Staff {
@@ -150,6 +132,9 @@ def test_HairpinSpanner_06( ):
            g'8 \!
    }
    '''
+
+   assert t.format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_HairpinSpanner_07( ):
