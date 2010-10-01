@@ -16,11 +16,11 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
       if spanner._is_my_only_leaf(leaf):
          left, right = self._get_left_right_for_lone_leaf(leaf)
       # first
-      elif spanner._is_my_first_leaf(leaf) or not leaf.prev:
+      elif spanner._is_my_first_leaf(leaf) or not leaf._navigator._prev_bead:
          left = 0
          right = durtools.rational_to_flag_count(leaf.duration.written)
       # last
-      elif spanner._is_my_last_leaf(leaf) or not leaf.next:
+      elif spanner._is_my_last_leaf(leaf) or not leaf._navigator._next_bead:
          left = durtools.rational_to_flag_count(leaf.duration.written)
          right = 0
       else:
@@ -33,28 +33,25 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
       Interior leaves may be surrounded by unbeamable leaves.
       Four cases total for beamability of surrounding leaves.'''
       from abjad.tools import componenttools
-      prev_written = leaf.prev.duration.written
+      prev_written = leaf._navigator._prev_bead.duration.written
       cur_written = leaf.duration.written
-      next_written = leaf.next.duration.written
+      next_written = leaf._navigator._next_bead.duration.written
       prev_flag_count = durtools.rational_to_flag_count(prev_written)
       cur_flag_count = durtools.rational_to_flag_count(cur_written)
       next_flag_count = durtools.rational_to_flag_count(next_written)
       # [unbeamable leaf beamable]
-      #if not leaf.prev.beam.beamable and leaf.next.beam.beamable:
-      if not componenttools.is_beamable_component(leaf.prev) and \
-         componenttools.is_beamable_component(leaf.next):
+      if not componenttools.is_beamable_component(leaf._navigator._prev_bead) and \
+         componenttools.is_beamable_component(leaf._navigator._next_bead):
          left = cur_flag_count
          right = min(cur_flag_count, next_flag_count)
       # [beamable leaf unbeamable]
-      #elif leaf.prev.beam.beamable and not leaf.next.beam.beamable:
-      if componenttools.is_beamable_component(leaf.prev) and \
-         not componenttools.is_beamable_component(leaf.next):
+      if componenttools.is_beamable_component(leaf._navigator._prev_bead) and \
+         not componenttools.is_beamable_component(leaf._navigator._next_bead):
          left = min(cur_flag_count, prev_flag_count)
          right = cur_flag_count
       # [unbeamable leaf unbeamable]
-      #elif not leaf.prev.beam.beamable and not leaf.next.beam.beamable:
-      elif not componenttools.is_beamable_component(leaf.prev) and \
-         not componenttools.is_beamable_component(leaf.next):
+      elif not componenttools.is_beamable_component(leaf._navigator._prev_bead) and \
+         not componenttools.is_beamable_component(leaf._navigator._next_bead):
          left = cur_flag_count
          right = cur_flag_count
       # [beamable leaf beamable]
@@ -117,19 +114,15 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
             if spanner.lone:
                result.append('[')
          # otherwise
-         #elif spanner._is_my_first_leaf(leaf) or not leaf.prev or \
-         #   not leaf.prev.beam.beamable:
-         elif spanner._is_my_first_leaf(leaf) or not leaf.prev or \
-            not componenttools.is_beamable_component(leaf.prev):
+         elif spanner._is_my_first_leaf(leaf) or not leaf._navigator._prev_bead or \
+            not componenttools.is_beamable_component(leaf._navigator._prev_bead):
             result.append('[')
          # lone
          if spanner._is_my_only_leaf(leaf):
             if spanner.lone:
                result.append(']')
          # otherwise
-         #elif spanner._is_my_last_leaf(leaf) or not leaf.next or \
-         #   not leaf.next.beam.beamable:
-         elif spanner._is_my_last_leaf(leaf) or not leaf.next or \
-            not componenttools.is_beamable_component(leaf.next):
+         elif spanner._is_my_last_leaf(leaf) or not leaf._navigator._next_bead or \
+            not componenttools.is_beamable_component(leaf._navigator._next_bead):
             result.append(']')
       return result

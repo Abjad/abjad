@@ -152,13 +152,12 @@ class Spanner(_StrictComparator):
       '''Insert component in spanner at index i.
       Not composer-safe and may mangle spanners.
       '''
-      #component.spanners._add(self)
       component._spanners.add(self)
       self._components.insert(i, component)
    
    def _is_exterior_leaf(self, leaf):
       '''True if leaf is first or last in spanner.
-      True leaf.next or leaf.prev is None.
+      True if next leaf or prev leaf is None.
       False otherwise.
 
       .. todo:: Write Spanner._is_exterior_leaf( ) tests.
@@ -167,7 +166,7 @@ class Spanner(_StrictComparator):
          return True
       elif self._is_my_last_leaf(leaf):
          return True
-      elif not leaf.prev or not leaf.next:
+      elif not leaf._navigator._prev_bead or not leaf._navigator._next_bead:
          return True
       else:
          return False

@@ -100,7 +100,7 @@ def _split_component_at_duration(
          if leaf._offset.start == global_split_point:
             right = leaf
             leaf_right_of_split = right
-            leaf_left_of_split = right.prev
+            leaf_left_of_split = right._navigator._prev_bead
             break
       else:
          raise ContainmentError('can not split empty container.')

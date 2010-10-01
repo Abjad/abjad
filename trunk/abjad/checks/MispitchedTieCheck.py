@@ -15,13 +15,12 @@ class MispitchedTieCheck(_Check):
       total = 0
       for leaf in componenttools.iterate_components_forward_in_expr(expr, Note):
          total += 1
-         #if leaf.tie.spanned and not leaf.tie.last and leaf.next:
          spanners = spannertools.get_all_spanners_attached_to_component(
             leaf, spannertools.TieSpanner)
          if spanners:
             spanner = spanners.pop( )
             if not spanner._is_my_last_leaf(leaf):
-               if leaf.next:
-                  if leaf.pitch != leaf.next.pitch:
+               if leaf._navigator._next_bead:
+                  if leaf.pitch != leaf._navigator._next_bead.pitch:
                      violators.append(leaf)
       return violators, total

@@ -360,6 +360,7 @@ leaftools
    tools/leaftools/get_composite_offset_series_from_leaves_in_expr
    tools/leaftools/get_leaf_at_index_in_measure_number_in_expr
    tools/leaftools/get_nth_leaf_in_expr
+   tools/leaftools/get_nth_leaf_in_thread_from_leaf
    tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/iterate_leaf_pairs_forward_in_expr
    tools/leaftools/iterate_leaves_backward_in_expr
