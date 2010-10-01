@@ -1,9 +1,9 @@
 from abjad.components.Container._ContainerFormatterSlotsInterface import \
    _ContainerFormatterSlotsInterface
-from abjad.tools.formattools._get_comment_contribution_for_slot import \
-   _get_comment_contribution_for_slot
-from abjad.tools.formattools._get_lilypond_command_mark_contribution_for_slot import \
-   _get_lilypond_command_mark_contribution_for_slot
+from abjad.tools.formattools._get_comment_format_contributions_for_slot import \
+   _get_comment_format_contributions_for_slot
+from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for_slot import \
+   _get_lilypond_command_mark_format_contributions_for_slot
 from abjad.tools.formattools._get_opening_slot_format_contributions import \
    _get_opening_slot_format_contributions
 from abjad.tools.formattools._get_context_setting_format_contributions import \
@@ -51,7 +51,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       measure = self.formatter.container
       result.append([('comment_marks', ''), 
-         _get_comment_contribution_for_slot(measure, 'opening')])
+         _get_comment_format_contributions_for_slot(measure, 'opening')])
       result.append(self._wrap_measure_interface_overrides( ))
       result.append([('opening', 'opening'),
          _get_opening_slot_format_contributions(self._client._client)])
@@ -73,7 +73,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_closing_slot_format_contributions(self._client._client)])
       result.append(self._wrap_measure_interface_reverts( ))
       result.append([('comment_marks', ''),
-         _get_comment_contribution_for_slot(measure, 'closing')])
+         _get_comment_format_contributions_for_slot(measure, 'closing')])
       self._indent_slot_contributions(result)
       return tuple(result)
 
