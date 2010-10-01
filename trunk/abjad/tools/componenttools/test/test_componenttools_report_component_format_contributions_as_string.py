@@ -34,8 +34,8 @@ def test_componenttools_report_component_format_contributions_as_string_03( ):
    '''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   t.misc.set_accidental_style = 'forget'
-   t.misc.bar = '|.'
+   marktools.LilyPondCommandMark("#(set-accidental-style 'forget")(t)
+   marktools.LilyPondCommandMark('bar "|."')(t)
    staff = Staff([t])
    contexttools.ClefMark('treble')(t)
 

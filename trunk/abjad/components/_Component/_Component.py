@@ -1,7 +1,6 @@
 from abjad.core import _StrictComparator
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
-#from abjad.core import LilyPondMiscellaneousCommandComponentPlugIn
 from abjad.interfaces import _NavigationInterface
 #from abjad.interfaces import _NumberingInterface
 from abjad.interfaces import _OffsetInterface
@@ -67,14 +66,6 @@ class _Component(_StrictComparator):
       return tuple(set(
          self._marks_for_which_component_functions_as_start_component +
          self._marks_for_which_component_functions_as_effective_context))
-
-#   @property
-#   def misc(self):
-#      '''Read-only reference LilyPond miscellaneous command component plug-in.
-#      '''
-#      if not hasattr(self, '_misc'):
-#         self._misc = LilyPondMiscellaneousCommandComponentPlugIn( )
-#      return self._misc
 
    @property
    def override(self):

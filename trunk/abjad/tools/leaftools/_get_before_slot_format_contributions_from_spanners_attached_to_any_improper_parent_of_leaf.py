@@ -37,10 +37,6 @@ def _get_before_slot_format_contributions_from_spanners_attached_to_any_improper
                      grob_value, is_once = False))
          spanner_override_contributions.sort( )
          spanner_contributions.extend(spanner_override_contributions)
-#         spanner_contributions.extend(
-#            spanner.misc._get_formatted_commands_for_target_slot('before'))
-#         spanner_contributions.extend(
-#            spanner.misc._get_formatted_commands_for_target_slot('opening'))
       spanner_contributions.extend(spanner._format._before(leaf))
       result.extend(spanner_contributions)
    return result

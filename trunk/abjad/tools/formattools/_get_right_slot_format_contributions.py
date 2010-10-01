@@ -13,6 +13,5 @@ def _get_right_slot_format_contributions(component):
    if dynamic_mark is not None:
       result.append(r'\%s' % dynamic_mark)
    result.extend(_get_articulation_contribution(component))
-   #result.extend(component.misc._get_formatted_commands_for_target_slot('right'))
    result.sort( )
    return result
