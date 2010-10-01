@@ -158,6 +158,12 @@ class Container(_Component):
       from abjad.tools import leaftools
       return tuple(leaftools.iterate_leaves_forward_in_expr(self))
 
+   @property
+   def music(self):
+      '''Read-only tuple of music in container.
+      '''
+      return tuple(self._music)
+
    @apply
    def parallel( ):
       def fget(self):

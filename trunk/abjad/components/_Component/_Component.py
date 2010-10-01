@@ -77,14 +77,6 @@ class _Component(_StrictComparator):
       return self._misc
 
    @property
-   def music(self):
-      '''Read-only tuple of music in `self`.'''
-      if hasattr(self, '_music'):
-         return tuple(self._music)
-      else:
-         return tuple( )
-
-   @property
    def override(self):
       '''Read-only reference to LilyPond grob override component plug-in.
       '''

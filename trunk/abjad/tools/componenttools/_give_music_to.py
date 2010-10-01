@@ -35,7 +35,8 @@ def _give_music_to(donors, recipient):
    ## collect music from all donor components
    donor_music = [ ]
    for donor in donors:
-      donor_music.extend(donor.music)
+      #donor_music.extend(donor.music)
+      donor_music.extend(getattr(donor, 'music', ( )))
 
    ## give music from donor components to recipient component
    recipient._music.extend(donor_music)
