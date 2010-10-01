@@ -1,11 +1,11 @@
 def _get_context_setting_format_contributions(component):
    '''Ordered data structure of format-time context settings.
    '''
-   from abjad.tools.formattools._get_format_contributor_component_interfaces import \
-      _get_format_contributor_component_interfaces
+#   from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+#      _get_format_contributor_component_interfaces
    result = [ ]
-   for contributor in _get_format_contributor_component_interfaces(component):
-      result.extend(getattr(contributor, 'settings', [ ]))
+#   for contributor in _get_format_contributor_component_interfaces(component):
+#      result.extend(getattr(contributor, 'settings', [ ]))
    from abjad.components._Leaf import _Leaf
    from abjad.components import Measure
    from abjad.tools.lilyfiletools._format_lilypond_context_setting_inline import \

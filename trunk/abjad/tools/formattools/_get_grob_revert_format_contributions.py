@@ -6,12 +6,12 @@ def _get_grob_revert_format_contributions(component):
    from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
    from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
       _make_lilypond_revert_string
-   from abjad.tools.formattools._get_format_contributor_component_interfaces import \
-      _get_format_contributor_component_interfaces
+#   from abjad.tools.formattools._get_format_contributor_component_interfaces import \
+#      _get_format_contributor_component_interfaces
 
    result = [ ]
-   for contributor in _get_format_contributor_component_interfaces(component):
-      result.extend(getattr(contributor, '_reverts', [ ]))
+#   for contributor in _get_format_contributor_component_interfaces(component):
+#      result.extend(getattr(contributor, '_reverts', [ ]))
    if not isinstance(component, _Leaf):
       for name, value in vars(component.override).iteritems( ):
          #print name, value
