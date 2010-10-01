@@ -57,18 +57,18 @@ def make_sphinx_toc( ):
          result += '   %s\n' % doc_path
    result += '\n\n'
   
-   section_title = 'Score component interfaces'
-   result += '%s\n' % section_title
-   result += '-' * (len(section_title))
-   result += '\n\n'
-   result += '.. toctree::\n'
-   result += '   :maxdepth: 1\n'
-   result += '\n'
-   for name in interfaces:
-      if not name['name'].startswith('_'):
-         doc_path = _module_path_to_doc_path(name['module'])
-         result += '   %s\n' % doc_path
-   result += '\n\n'
+#   section_title = 'Score component interfaces'
+#   result += '%s\n' % section_title
+#   result += '-' * (len(section_title))
+#   result += '\n\n'
+#   result += '.. toctree::\n'
+#   result += '   :maxdepth: 1\n'
+#   result += '\n'
+#   for name in interfaces:
+#      if not name['name'].startswith('_'):
+#         doc_path = _module_path_to_doc_path(name['module'])
+#         result += '   %s\n' % doc_path
+#   result += '\n\n'
   
 #   result += 'Spanners\n'
 #   result += '-' * (len('Spanners'))

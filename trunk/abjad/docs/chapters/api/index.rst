@@ -20,15 +20,6 @@ Abjad score components
    components/Voice/Voice
 
 
-Score component interfaces
---------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   interfaces/BreaksInterface/BreaksInterface
-
-
 Abjad composition packages
 --------------------------
 
