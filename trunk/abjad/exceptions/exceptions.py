@@ -100,7 +100,7 @@ class NonbinaryMeterSuppressionError(Exception):
    pass
 
 class NoteHeadError(Exception):
-   '''General note_head error.'''
+   '''General note head error.'''
    pass
 
 class ExtraNoteHeadError(Exception):

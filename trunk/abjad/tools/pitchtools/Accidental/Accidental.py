@@ -11,7 +11,7 @@ class Accidental(_StrictComparator, _Immutable):
       Accidental(sharp)
    '''
 
-   __slots__ = ('_alphabetic_string', '_is_adjusted', '_name', 
+   __slots__ = ('_alphabetic_string', '_is_adjusted', '_name_string', 
       '_semitones', '_symbolic_string')
 
    def __new__(klass, arg = ''):
@@ -23,8 +23,8 @@ class Accidental(_StrictComparator, _Immutable):
          _alphabetic_string = arg
       elif arg in self._all_accidental_symbolic_strings:
          _alphabetic_string = self._symbolic_string_to_alphabetic_string[arg]
-      elif arg in self._all_accidental_names:
-         _alphabetic_string = self._name_to_alphabetic_string[arg]
+      elif arg in self._all_accidental_name_strings:
+         _alphabetic_string = self._name_string_to_alphabetic_string[arg]
       elif arg in self._all_accidental_semitone_values:
          _alphabetic_string = self._semitones_to_alphabetic_string[arg]
       elif isinstance(arg, Accidental):
@@ -38,8 +38,8 @@ class Accidental(_StrictComparator, _Immutable):
       ## initialize derived attributes
       _semitones = self._alphabetic_string_to_semitones[self.alphabetic_string]
       object.__setattr__(self, '_semitones', _semitones)
-      _name = self._alphabetic_string_to_name[self.alphabetic_string]
-      object.__setattr__(self, '_name', _name)
+      _name_string = self._alphabetic_string_to_name_string[self.alphabetic_string]
+      object.__setattr__(self, '_name_string', _name_string)
       _is_adjusted = not self.semitones == 0
       object.__setattr__(self, '_is_adjusted', _is_adjusted)
       _symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
@@ -49,41 +49,6 @@ class Accidental(_StrictComparator, _Immutable):
 
    def __getnewargs__(self):
       return (self.alphabetic_string,)
-
-#   def __init__(self, arg = ''):
-#   
-#      ## initializer symbolic string from arg
-#      if arg in self._all_accidental_alphabetic_strings:
-#         #self._alphabetic_string = arg
-#         _alphabetic_string = arg
-#      elif arg in self._all_accidental_symbolic_strings:
-#         _alphabetic_string = self._symbolic_string_to_alphabetic_string[arg]
-#         #self._alphabetic_string = _alphabetic_string
-#      elif arg in self._all_accidental_names:
-#         _alphabetic_string = self._name_to_alphabetic_string[arg]
-#         #self._alphabetic_string = _alphabetic_string
-#      elif arg in self._all_accidental_semitone_values:
-#         _alphabetic_string = self._semitones_to_alphabetic_string[arg]
-#         #self._alphabetic_string = _alphabetic_string
-#      elif isinstance(arg, Accidental):
-#         #self._alphabetic_string = arg.alphabetic_string 
-#         _alphabetic_string = arg.alphabetic_string 
-#      elif isinstance(arg, type(None)):
-#         #self._alphabetic_string = ''
-#         _alphabetic_string = ''
-#      else:
-#         raise ValueError('can not initialize accidental from value: %s' % arg)
-#      object.__setattr__(self, '_alphabetic_string', _alphabetic_string)
-
-#      ## initialize derived attributes
-#      _semitones = self._alphabetic_string_to_semitones[self.alphabetic_string]
-#      object.__setattr__(self, '_semitones', _semitones)
-#      _name = self._alphabetic_string_to_name[self.alphabetic_string]
-#      object.__setattr__(self, '_name', _name)
-#      _is_adjusted = not self.semitones == 0
-#      object.__setattr__(self, '_is_adjusted', _is_adjusted)
-#      _symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
-#      object.__setattr__(self, '_symbolic_string', _symbolic_string)
 
    ## OVERLOADS ##
 
@@ -138,7 +103,7 @@ class Accidental(_StrictComparator, _Immutable):
    def _all_accidental_alphabetic_strings(self):
       return self._alphabetic_string_to_symbolic_string.keys( )
 
-   _alphabetic_string_to_name = {
+   _alphabetic_string_to_name_string = {
       'ss'  : 'double sharp',
       'tqs' : 'three-quarters sharp',
       's'   : 'sharp',
@@ -167,7 +132,7 @@ class Accidental(_StrictComparator, _Immutable):
        's': '#',     'qs': '#-',
    }
 
-   _name_to_alphabetic_string = {
+   _name_string_to_alphabetic_string = {
       'double sharp'          : 'ss',
       'three-quarters sharp'  : 'tqs',
       'sharp'                 : 's',
@@ -198,8 +163,8 @@ class Accidental(_StrictComparator, _Immutable):
    }
 
    @property
-   def _all_accidental_names(self):
-      return self._name_to_alphabetic_string.keys( )
+   def _all_accidental_name_strings(self):
+      return self._name_string_to_alphabetic_string.keys( )
 
    @property
    def _all_accidental_semitone_values(self):
@@ -211,28 +176,21 @@ class Accidental(_StrictComparator, _Immutable):
 
    ## PUBLIC ATTRIBUTES ##
 
-#   @apply
-#   def alphabetic_string( ):
-#      def fget(self):
-#         '''Read / write alphabetic string of accidental:
-#      
-#         ::
-#      
-#            abjad> accidental = pitchtools.Accidental('s')
-#            abjad> accidental.alphabetic_string
-#            's'
-#         '''
-#         return self._alphabetic_string
-#      return property(**locals( ))
-
    @property
    def alphabetic_string(self):
-      '''Alphabetic string of accidental.'''
+      '''Read-only alphabetic string of accidental:
+
+      ::
+
+         abjad> accidental = pitchtools.Accidental('s')
+         abjad> accidental.alphabetic_string
+         's'
+      '''
       return self._alphabetic_string
 
    @property
    def format(self):
-      '''Read-only LilyPond format of accidental:
+      '''Read-only LilyPond input format of accidental:
 
       ::
    
@@ -240,7 +198,7 @@ class Accidental(_StrictComparator, _Immutable):
          abjad> accidental.format
          's' 
 
-      Defined equal to the alphabetic string of accidental.
+      Defined equal to alphabetic string of accidental.
       '''
       return self._alphabetic_string
 
@@ -256,25 +214,23 @@ class Accidental(_StrictComparator, _Immutable):
 
       True for all accidentals equal to a nonzero number of semitones.
       '''
-      #return not self.semitones == 0
       return self._is_adjusted
 
    @property
-   def name(self):
-      '''Read-only name of accidental:
+   def name_string(self):
+      '''Read-only name string of accidental:
 
       ::
 
          abjad> accidental = pitchtools.Accidental('s')
-         abjad> accidental.name
+         abjad> accidental.name_string
          'sharp'
       '''
-      #return self._alphabetic_string_to_name[self.alphabetic_string]
-      return self._name
+      return self._name_string
 
    @property
    def semitones(self):
-      '''Read-only number of semitones to which accidental is equal:
+      '''Read-only semitones of accidental:
 
       ::
 
@@ -294,7 +250,4 @@ class Accidental(_StrictComparator, _Immutable):
          abjad> accidental.symbolic_string
          '#'
       '''
-      #symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
-      #return symbolic_string
       return self._symbolic_string
-

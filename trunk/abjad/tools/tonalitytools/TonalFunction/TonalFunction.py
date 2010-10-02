@@ -62,7 +62,7 @@ class TonalFunction(_Immutable):
    def _accidental_name_string(self):
       accidental = self.scale_degree.accidental
       if accidental.is_adjusted:
-         return accidental.name.title( )
+         return accidental.name_string.title( )
       return ''
 
    @property
