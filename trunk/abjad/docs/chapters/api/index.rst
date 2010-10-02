@@ -702,6 +702,7 @@ pitchtools
    tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
    tools/pitchtools/MelodicDiatonicIntervalSet/MelodicDiatonicIntervalSet
+   tools/pitchtools/NamedDiatonicPitchClass/NamedDiatonicPitchClass
    tools/pitchtools/NamedPitch/NamedPitch
    tools/pitchtools/NamedPitchClass/NamedPitchClass
    tools/pitchtools/NamedPitchClassSegment/NamedPitchClassSegment
@@ -709,6 +710,7 @@ pitchtools
    tools/pitchtools/NamedPitchSegment/NamedPitchSegment
    tools/pitchtools/NamedPitchSet/NamedPitchSet
    tools/pitchtools/NamedPitchVector/NamedPitchVector
+   tools/pitchtools/NumericDiatonicPitchClass/NumericDiatonicPitchClass
    tools/pitchtools/NumericPitch/NumericPitch
    tools/pitchtools/NumericPitchClass/NumericPitchClass
    tools/pitchtools/NumericPitchClassColorMap/NumericPitchClassColorMap

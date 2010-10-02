@@ -1,0 +1,1 @@
+from NamedDiatonicPitchClass import NamedDiatonicPitchClass
