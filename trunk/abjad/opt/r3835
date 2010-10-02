@@ -1,0 +1,27 @@
+         r3458         r3545          r3546         r3643        r3656         r3835
+    ==========    ==========      =========     =========      ========     ========
+
+1.      84.9 M        12.2 M         6.26 M        1.18 M       1.18 M        1.08 M
+
+2.    5.44 sec      0.73 sec       0.45 sec      0.23 sec     0.23 sec      0.23 sec
+
+3.    1.99 sec      1.19 sec       0.98 sec      1.40 sec     1.27 sec      0.75 sec
+
+4.  2998 calls     347 calls      239 calls     131 calls    131 calls     121 calls
+
+5.  2336 calls    1581 calls     1122 calls    1575 calls   1167 calls     404 calls
+
+6.                                                        ~92000 calls   68168 calls
+
+7.                                                            0.12 sec      0.08 sec
+
+Key:
+   1: create 1000 notes (memory)
+   2. create 1000 notes (seconds)
+   3. format 1000 notes (seconds)
+   4: create 1 note (number of function calls)
+   5. format 1 note (number of function calls)
+   6. format staff of 1000 notes (number of function calls)
+   7. format staff of 1000 note (seconds)
+
+(Tested under OS 10.6.4 on 2-core Intel iMac with 1.85 GHz / 1.5 GB.)

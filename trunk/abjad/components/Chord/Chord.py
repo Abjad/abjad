@@ -1,4 +1,3 @@
-from abjad.components.Chord._ChordFormatter import _ChordFormatter
 from abjad.components._Leaf import _Leaf
 
 

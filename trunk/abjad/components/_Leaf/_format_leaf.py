@@ -1,5 +1,3 @@
-from abjad.components._Component._ComponentFormatterSlotsInterface import \
-   _ComponentFormatterSlotsInterface
 from abjad.tools.formattools._get_comment_format_contributions_for_slot import \
    _get_comment_format_contributions_for_slot
 from abjad.tools.formattools._get_context_setting_format_contributions import \
@@ -13,9 +11,6 @@ from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for
 from abjad.tools.formattools._get_spanner_format_contributions_for_leaf_slot import \
    _get_spanner_format_contributions_for_leaf_slot
 
-from abjad.components._Component._ComponentFormatter import _ComponentFormatter
-from abjad.components._Leaf._LeafFormatterNumberInterface import _LeafFormatterNumberInterface
-from abjad.components._Leaf._LeafFormatterSlotsInterface import _LeafFormatterSlotsInterface
 from abjad.tools.formattools._get_articulation_format_contributions import \
    _get_articulation_format_contributions
 from abjad.tools.formattools._get_comment_format_contributions_for_slot import \

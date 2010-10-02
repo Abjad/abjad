@@ -1,6 +1,5 @@
 from abjad.components._Component._Component import _Component
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
-#from abjad.components._Leaf._LeafFormatter import _LeafFormatter
 from abjad.components._Leaf._format_leaf import _format_leaf
 import operator
 
@@ -10,7 +9,6 @@ class _Leaf(_Component):
    def __init__(self, duration):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, duration)
-      #self._formatter = _LeafFormatter(self)
 
    ## OVERLOADS ##
 
@@ -57,8 +55,3 @@ class _Leaf(_Component):
    @property
    def format(self):
       return _format_leaf(self)
-
-#   @property
-#   def number(self):
-#      '''Read-only number of `self` in thread.'''
-#      return self._numbering._leaf
