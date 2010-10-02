@@ -31,9 +31,9 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_1(self):
       result = [ ]
       container = self.formatter.container
-      result.append([('comment_marks', ''), 
+      result.append([('comments', ''), 
          _get_comment_format_contributions_for_slot(container, 'before')])
-      result.append([('lilypond_command_marks', ''),
+      result.append([('lilypond command marks', ''),
          _get_lilypond_command_mark_format_contributions_for_slot(container, 'before')])
       return tuple(result)
 
@@ -44,21 +44,21 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          brackets_open = ['<<']
       else:
          brackets_open = ['{']
-      result.append([('container_brackets', 'open'), brackets_open])
+      result.append([('open brackets', ''), brackets_open])
       return tuple(result)
 
    @property
    def slot_3(self):
       result = [ ]
       container = self.formatter.container
-      result.append([('comment_marks', ''), 
+      result.append([('comments', ''), 
          _get_comment_format_contributions_for_slot(container, 'opening')])
-      result.append([('lilypond_command_marks', ''),
+      result.append([('lilypond command marks', ''),
          _get_lilypond_command_mark_format_contributions_for_slot(container, 'opening')])
-      result.append([('overrides', 'overrides'), 
-         _get_grob_override_format_contributions(self._client._client)])
-      result.append([('settings', 'settings'), 
-         _get_context_setting_format_contributions(self._client._client)])
+      result.append([('grob overrides', ''), 
+         _get_grob_override_format_contributions(container)])
+      result.append([('context settings', ''), 
+         _get_context_setting_format_contributions(container)])
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -72,11 +72,11 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_5(self):
       result = [ ]
       container = self.formatter.container
-      result.append([('reverts', 'reverts'), 
-         _get_grob_revert_format_contributions(self._client._client)])
-      result.append([('lilypond_command_marks', ''),
+      result.append([('grob reverts', ''), 
+         _get_grob_revert_format_contributions(container)])
+      result.append([('lilypond command marks', ''),
          _get_lilypond_command_mark_format_contributions_for_slot(container, 'closing')])
-      result.append([('comment_marks', ''), 
+      result.append([('comments', ''), 
          _get_comment_format_contributions_for_slot(container, 'closing')])
       self._indent_slot_contributions(result)
       return tuple(result)
@@ -88,16 +88,17 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          brackets_close = ['>>']
       else:
          brackets_close = ['}']
-      result.append([('context_brackets', 'close'), brackets_close])
+      result.append([('close brackets', ''), brackets_close])
       return tuple(result)
 
    @property
    def slot_7(self):
       result = [ ]
       container = self.formatter.container
-      result.append([('lilypond_command_marks', ''),
+      result.append([('lilypond command marks', ''),
          _get_lilypond_command_mark_format_contributions_for_slot(container, 'after')])
-      result.append([('comment_marks', ''), _get_comment_format_contributions_for_slot(container, 'after')])
+      result.append([('comments', ''), 
+         _get_comment_format_contributions_for_slot(container, 'after')])
       return tuple(result)
 
    ## PUBLIC METHODS ##
