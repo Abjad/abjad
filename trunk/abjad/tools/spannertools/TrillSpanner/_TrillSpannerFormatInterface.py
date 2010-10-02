@@ -8,7 +8,8 @@ class _TrillSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def _left(self, leaf):
+   #def _left(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution left of leaf.'''
       result = [ ]
       spanner = self.spanner

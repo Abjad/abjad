@@ -10,7 +10,8 @@ def test_TrillSpanner_pitch_01( ):
 
    r'''
    \new Staff {
-      \pitchedTrill c'8 \startTrillSpan cs'
+      \pitchedTrill 
+      c'8 \startTrillSpan cs'
       d'8 \stopTrillSpan
       e'8
       f'8
@@ -18,7 +19,7 @@ def test_TrillSpanner_pitch_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Staff {\n\t\\pitchedTrill c'8 \\startTrillSpan cs'\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
+   assert t.format == "\\new Staff {\n\t\\pitchedTrill\n\tc'8 \\startTrillSpan cs'\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
 
 
 def test_TrillSpanner_pitch_02( ):
@@ -30,7 +31,8 @@ def test_TrillSpanner_pitch_02( ):
 
    r'''
    \new Staff {
-      \pitchedTrill c'8 \startTrillSpan cs'
+      \pitchedTrill 
+      c'8 \startTrillSpan cs'
       d'8 \stopTrillSpan
       e'8
       f'8
@@ -38,7 +40,7 @@ def test_TrillSpanner_pitch_02( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Staff {\n\t\\pitchedTrill c'8 \\startTrillSpan cs'\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
+   assert t.format == "\\new Staff {\n\t\\pitchedTrill\n\tc'8 \\startTrillSpan cs'\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
 
 
 def test_TrillSpanner_pitch_03( ):

@@ -13,8 +13,6 @@ from abjad.tools.formattools._get_context_mark_format_contributions_for_slot imp
    _get_context_mark_format_contributions_for_slot
 from abjad.tools.formattools._get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
    _get_right_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
-from abjad.tools.formattools._get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
-   _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
 
 
 class _LeafFormatter(_ComponentFormatter):
@@ -59,9 +57,6 @@ class _LeafFormatter(_ComponentFormatter):
       result = [ ]
       client = self._client
       spanners = client.spanners
-      result.extend(
-      _get_left_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
-      self._client))
       result.extend(self._nucleus)
       result.extend(self._tremolo_subdivision_contribution)
       result.extend(_get_articulation_format_contributions(self._client))
