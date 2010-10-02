@@ -9,18 +9,13 @@ def _get_context_mark_format_contributions_for_slot(leaf, slot):
    if not isinstance(leaf, _Leaf):
       return result
    marks = set([ ])
-   #for component in componenttools.get_improper_parentage_of_component(leaf):
-   #   #print component.__class__.__name__
-   #   for mark in component.marks:
    candidates = contexttools.get_all_context_marks_attached_to_any_improper_parent_of_component(
       leaf)
    for candidate in candidates:
-      if True:
-         #print mark
-         if candidate._format_slot == slot:
-            if candidate.start_component is not None:
-               if candidate.start_component._offset.start == leaf._offset.start:
-                  marks.add(candidate)
+      if candidate._format_slot == slot:
+         if candidate.start_component is not None:
+            if candidate.start_component._offset.start == leaf._offset.start:
+               marks.add(candidate)
    #print marks
    for mark in marks:
       #print mark, mark.format

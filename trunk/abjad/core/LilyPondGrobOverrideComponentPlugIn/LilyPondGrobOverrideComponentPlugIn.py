@@ -76,3 +76,40 @@ class LilyPondGrobOverrideComponentPlugIn(object):
 
    def __repr__(self):
       return '%s( )' % self.__class__.__name__
+
+   ## PRIVATE METHODS ##
+
+   def _list_format_contributions(self, contribution_type, is_once = False):
+      from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
+      from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
+      from abjad.tools.lilyfiletools._make_lilypond_override_string import \
+         _make_lilypond_override_string
+      from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
+         _make_lilypond_revert_string
+      assert contribution_type in ('override', 'revert')
+      result = [ ]
+      for name, value in vars(self).iteritems( ):
+         #print name, value
+         if isinstance(value, LilyPondGrobProxyContextWrapper):
+            context_name, context_wrapper = name.lstrip('_'), value
+            #print context_name, context_wrapper
+            for grob_name, grob_override_namespace in vars(context_wrapper).iteritems( ):
+               #print grob_name, grob_override_namespace
+               for grob_attribute, grob_value in vars(grob_override_namespace).iteritems( ):
+                  #print grob_attribute, grob_value
+                  if contribution_type == 'override':
+                     result.append(_make_lilypond_override_string(grob_name, grob_attribute, 
+                        grob_value, context_name = context_name, is_once = is_once))
+                  else:
+                     result.append(_make_lilypond_revert_string(
+                        grob_name, grob_attribute, context_name = context_name))
+         elif isinstance(value, LilyPondGrobProxy):
+            grob_name, grob_namespace = name, value
+            for grob_attribute, grob_value in vars(grob_namespace).iteritems( ):
+               if contribution_type == 'override':
+                  result.append(_make_lilypond_override_string(grob_name, grob_attribute,
+                     grob_value, is_once = is_once))
+               else:
+                  result.append(_make_lilypond_revert_string(grob_name, grob_attribute))
+      result.sort( )
+      return result
