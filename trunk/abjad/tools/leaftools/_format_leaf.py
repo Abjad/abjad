@@ -27,13 +27,13 @@ from abjad.tools.formattools._get_spanner_format_contributions_for_leaf_slot imp
 
 def _format_leaf(leaf):
    result = [ ]
-   result.extend(slot_1(leaf))
-   #result.extend(slot_2(leaf))
-   result.extend(slot_3(leaf))
-   result.extend(slot_4(leaf))
-   result.extend(slot_5(leaf))
-   #result.extend(slot_6(leaf))
-   result.extend(slot_7(leaf))
+   result.extend(_get_slot_1(leaf))
+   #result.extend(_get_slot_2(leaf))
+   result.extend(_get_slot_3(leaf))
+   result.extend(_get_slot_4(leaf))
+   result.extend(_get_slot_5(leaf))
+   #result.extend(_get_slot_6(leaf))
+   result.extend(_get_slot_7(leaf))
    contributions = [ ]
    for contributor, contribution in result:
       contributions.extend(contribution)
@@ -121,7 +121,7 @@ def _tremolo_subdivision_contribution(leaf):
       result.append(':%s' % subdivision) 
    return result
 
-def slot_1(leaf):
+def _get_slot_1(leaf):
    result = [ ]
    result.append([('grace body', ''), _grace_body(leaf)])
    result.append([('comments', ''), 
@@ -138,7 +138,7 @@ def slot_1(leaf):
       _get_spanner_format_contributions_for_leaf_slot(leaf, 'before')])
    return result
 
-def slot_3(leaf):
+def _get_slot_3(leaf):
    result = [ ]
    result.append([('comments', ''), 
       _get_comment_format_contributions_for_slot(leaf, 'opening')])
@@ -149,13 +149,13 @@ def slot_3(leaf):
    result.append([('agrace opening', ''), _agrace_opening(leaf)])
    return result
 
-def slot_4(leaf):
+def _get_slot_4(leaf):
    result = [ ]
    result.append([('leaf body', ''),
       _leaf_body(leaf)]),
    return result
 
-def slot_5(leaf):
+def _get_slot_5(leaf):
    result = [ ]
    result.append([('agrace body', ''), _agrace_body(leaf)])
    result.append([('lilypond command marks', ''), 
@@ -166,7 +166,7 @@ def slot_5(leaf):
       _get_comment_format_contributions_for_slot(leaf, 'closing')])
    return result
 
-def slot_7(leaf):
+def _get_slot_7(leaf):
    result = [ ]
    result.append([('spanners', ''), 
       _get_spanner_format_contributions_for_leaf_slot(leaf, 'after')])

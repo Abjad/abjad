@@ -48,6 +48,7 @@ chordtools
    tools/chordtools/color_chord_note_heads_by_numeric_pitch_class
    tools/chordtools/divide_chord_by_pitch_altitude
    tools/chordtools/divide_chord_by_pitch_number
+   tools/chordtools/get_arithmetic_mean_of_chord
    tools/chordtools/get_note_head_from_chord_by_pitch
    tools/chordtools/yield_all_subchords_of_chord
 
@@ -345,11 +346,6 @@ leaftools
 .. toctree::
    :maxdepth: 1
 
-   tools/leaftools/_format_leaf
-   tools/leaftools/_format_leaf
-   tools/leaftools/_format_leaf
-   tools/leaftools/_format_leaf
-   tools/leaftools/_format_leaf
    tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
    tools/leaftools/color_leaf
    tools/leaftools/color_leaves_in_expr
