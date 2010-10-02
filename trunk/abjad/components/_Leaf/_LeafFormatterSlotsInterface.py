@@ -1,9 +1,9 @@
 from abjad.components._Component._ComponentFormatterSlotsInterface import \
    _ComponentFormatterSlotsInterface
-from abjad.tools.formattools._get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
-   _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
-from abjad.tools.formattools._get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
-   _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
+#from abjad.tools.formattools._get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+#   _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
+#from abjad.tools.formattools._get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf import \
+#   _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf
 from abjad.tools.formattools._get_comment_format_contributions_for_slot import \
    _get_comment_format_contributions_for_slot
 from abjad.tools.formattools._get_context_setting_format_contributions import \
@@ -14,6 +14,8 @@ from abjad.tools.formattools._get_grob_override_format_contributions import \
    _get_grob_override_format_contributions
 from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for_slot import \
    _get_lilypond_command_mark_format_contributions_for_slot
+from abjad.tools.formattools._get_spanner_format_contributions_for_leaf_slot import \
+   _get_spanner_format_contributions_for_leaf_slot
 
 
 class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
@@ -41,9 +43,11 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
          _get_grob_override_format_contributions(self._client._client)])
       result.append([('settings', 'settings'),
          _get_context_setting_format_contributions(self._client._client)])
-      result.append([(leaf.spanners, '_before'),
-      _get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
-      leaf)])
+      #result.append([(leaf.spanners, '_before'),
+      #_get_before_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
+      #leaf)])
+      result.append([('spanners', 'before'),
+         _get_spanner_format_contributions_for_leaf_slot(leaf, 'before')])
       return tuple(result)
 
    @property
@@ -86,11 +90,13 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
-      result.append([(leaf.spanners, '_after'),
-      _get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
-      leaf)])
+      #result.append([(leaf.spanners, '_after'),
+      #_get_after_slot_format_contributions_from_spanners_attached_to_any_improper_parent_of_leaf(
+      #leaf)])
+      result.append([('spanners', ''), 
+         _get_spanner_format_contributions_for_leaf_slot(leaf, 'after')])
       result.append([('marks', 'marks'),
-         _get_context_mark_format_contributions_for_slot(self._client._client, 'after')])
+         _get_context_mark_format_contributions_for_slot(leaf, 'after')])
       result.append([('lilypond_command_marks', ''), 
          _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after')])
       result.append([('comment_marks', ''), 
