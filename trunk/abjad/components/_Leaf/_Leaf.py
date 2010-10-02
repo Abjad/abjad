@@ -1,6 +1,5 @@
 from abjad.components._Component._Component import _Component
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
-from abjad.components._Leaf._format_leaf import _format_leaf
 import operator
 
 
@@ -54,4 +53,5 @@ class _Leaf(_Component):
 
    @property
    def format(self):
+      from abjad.tools.leaftools._format_leaf import _format_leaf
       return _format_leaf(self)

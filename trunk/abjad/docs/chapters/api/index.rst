@@ -345,6 +345,11 @@ leaftools
 .. toctree::
    :maxdepth: 1
 
+   tools/leaftools/_format_leaf
+   tools/leaftools/_format_leaf
+   tools/leaftools/_format_leaf
+   tools/leaftools/_format_leaf
+   tools/leaftools/_format_leaf
    tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
    tools/leaftools/color_leaf
    tools/leaftools/color_leaves_in_expr
