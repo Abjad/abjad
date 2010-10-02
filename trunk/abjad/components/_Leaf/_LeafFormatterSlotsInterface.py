@@ -29,17 +29,17 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       leaf = formatter.leaf
       result = [ ]
       result.append(self.wrap(formatter, '_grace_body'))
-      result.append([('comment_marks', ''), 
+      result.append([('comments', ''), 
          _get_comment_format_contributions_for_slot(leaf, 'before')])
-      result.append([('lilypond_command_marks', ''), 
+      result.append([('lilypond command marks', ''), 
          _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'before')])
-      result.append([('marks', 'marks'),
-         _get_context_mark_format_contributions_for_slot(self._client._client, 'before')])
-      result.append([('overrides', 'overrides'),
-         _get_grob_override_format_contributions(self._client._client)])
-      result.append([('settings', 'settings'),
-         _get_context_setting_format_contributions(self._client._client)])
-      result.append([('spanners', 'before'),
+      result.append([('context marks', ''),
+         _get_context_mark_format_contributions_for_slot(leaf, 'before')])
+      result.append([('grob overrides', ''),
+         _get_grob_override_format_contributions(leaf)])
+      result.append([('context settings', ''),
+         _get_context_setting_format_contributions(leaf)])
+      result.append([('spanners', ''),
          _get_spanner_format_contributions_for_leaf_slot(leaf, 'before')])
       return tuple(result)
 
@@ -48,12 +48,12 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result = [ ]
       formatter = self.formatter
       leaf = formatter.leaf
-      result.append([('comment_marks', ''), 
+      result.append([('comments', ''), 
          _get_comment_format_contributions_for_slot(leaf, 'opening')])
-      result.append([('lilypond_command_marks', ''), 
+      result.append([('lilypond command marks', ''), 
          _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening')])
-      result.append([('marks', 'marks'),
-         _get_context_mark_format_contributions_for_slot(self._client._client, 'opening')])
+      result.append([('context marks', ''),
+         _get_context_mark_format_contributions_for_slot(leaf, 'opening')])
       result.append(self.wrap(formatter, '_agrace_opening'))
       return tuple(result)
 
@@ -70,11 +70,11 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(formatter, '_agrace_body'))
-      result.append([('lilypond_command_marks', ''), 
+      result.append([('lilypond command marks', ''), 
          _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing')])
-      result.append([('marks', 'marks'),
-         _get_context_mark_format_contributions_for_slot(self._client._client, 'closing')])
-      result.append([('comment_marks', ''), 
+      result.append([('context marks', ''),
+         _get_context_mark_format_contributions_for_slot(leaf, 'closing')])
+      result.append([('comments', ''), 
          _get_comment_format_contributions_for_slot(leaf, 'closing')])
       return tuple(result)
 
@@ -85,11 +85,11 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       leaf = formatter.leaf
       result.append([('spanners', ''), 
          _get_spanner_format_contributions_for_leaf_slot(leaf, 'after')])
-      result.append([('marks', 'marks'),
+      result.append([('context marks', ''),
          _get_context_mark_format_contributions_for_slot(leaf, 'after')])
-      result.append([('lilypond_command_marks', ''), 
+      result.append([('lilypond command marks', ''), 
          _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after')])
-      result.append([('comment_marks', ''), 
+      result.append([('comments', ''), 
          _get_comment_format_contributions_for_slot(leaf, 'after')])
       return tuple(result)
 
@@ -101,7 +101,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       from abjad.tools import componenttools
       from abjad.tools import measuretools
       leaf = self.formatter._client
-      containing_measure = componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(leaf, Measure)
+      containing_measure = \
+         componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(leaf, Measure)
       if containing_measure is None:
          return [('Special', 'reverts'), [ ]]
       if leaf is not containing_measure.leaves[0]:
