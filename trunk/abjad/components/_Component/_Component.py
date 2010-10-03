@@ -2,9 +2,9 @@ from abjad.core import _StrictComparator
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.interfaces import _NavigationInterface
-#from abjad.interfaces import _NumberingInterface
 from abjad.interfaces import _OffsetInterface
 from abjad.interfaces import ParentageInterface
+from fractions import Fraction
 
 
 class _Component(_StrictComparator):
@@ -106,7 +106,12 @@ class _Component(_StrictComparator):
       attribute_chain = key.split('__')
       plug_in_name = attribute_chain[0]
       names = attribute_chain[1:]
-      if plug_in_name == 'override':
+      if plug_in_name == 'duration':
+         attribute_name = names[0]
+         command = 'self.%s.%s = %s' % (plug_in_name, attribute_name, repr(value))
+         print command
+         exec(command)
+      elif plug_in_name == 'override':
          if len(names) == 2:
             grob_name, attribute_name = names
             exec('self.override.%s.%s = %s' % (grob_name, attribute_name, repr(value)))

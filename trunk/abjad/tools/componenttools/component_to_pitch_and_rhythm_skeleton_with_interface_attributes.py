@@ -1,7 +1,9 @@
 from abjad.components._Component import _Component
 from abjad.components._Leaf import _Leaf
-from abjad.tools.componenttools._container_to_pitch_and_rhythm_skeleton import _container_to_pitch_and_rhythm_skeleton
-from abjad.tools.componenttools._leaf_to_pitch_and_rhythm_skeleton import _leaf_to_pitch_and_rhythm_skeleton
+from abjad.tools.componenttools._container_to_pitch_and_rhythm_skeleton import \
+   _container_to_pitch_and_rhythm_skeleton
+from abjad.tools.componenttools._leaf_to_pitch_and_rhythm_skeleton import \
+   _leaf_to_pitch_and_rhythm_skeleton
 
 
 def component_to_pitch_and_rhythm_skeleton_with_interface_attributes(component):

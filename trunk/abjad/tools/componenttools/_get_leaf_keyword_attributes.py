@@ -30,6 +30,8 @@ def _get_leaf_keyword_attributes(leaf):
       #print ''
       #print 'handling read / write leaf.%s ...' % read_write_property
       result.extend(_handle_read_write_property(None, leaf, read_write_property))
+   result.extend(leaf.override._get_skeleton_strings( ))
+   result.extend(leaf.set._get_skeleton_strings( ))
    result.sort( )
    return result
 

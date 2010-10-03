@@ -45,6 +45,7 @@ class LilyPondContextSettingComponentPlugIn(object):
       body_string = ' '
       skeleton_strings = self._get_skeleton_strings( )
       if skeleton_strings:
+         skeleton_string = [x.strip('set__') for x in skeleton_strings]
          body_string = ', '.join(skeleton_strings)
       return '%s(%s)' % (self.__class__.__name__, body_string)
 
@@ -62,6 +63,7 @@ class LilyPondContextSettingComponentPlugIn(object):
             result.append('%s = %s' % (key, repr(attribute_value)))
          else:
             raise ValueError
+      result = ['set__' + x for x in result]
       return result
 
    def _get_attribute_tuples(self):
