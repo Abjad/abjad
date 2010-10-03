@@ -18,7 +18,6 @@ def _initialize_note(client, _Leaf, *args):
          rest = args[0]
          _Leaf.__init__(client, rest.duration.written)
          _transfer_all_attributes(rest, client)
-         #del client._pitch
       elif isinstance(args[0], Chord):
          chord = args[0]
          _Leaf.__init__(client, chord.duration.written)
@@ -34,8 +33,7 @@ def _initialize_note(client, _Leaf, *args):
          _Leaf.__init__(client, skip.duration.written)
          _transfer_all_attributes(skip, client)
    elif len(args) == 1 and isinstance(args[0], str):
-      from abjad.tools.lilyfiletools._lilypond_leaf_regex import \
-         _lilypond_leaf_regex
+      from abjad.tools.lilyfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
       match = re.match(_lilypond_leaf_regex, args[0])
       name, ticks, duration_body, dots = match.groups( )
       pitch_string = name + ticks
@@ -44,9 +42,7 @@ def _initialize_note(client, _Leaf, *args):
       client.note_head = pitch_string
    elif len(args) == 2:
       pitch, duration = args
-      #print pitch, duration, type(pitch)
       _Leaf.__init__(client, duration)
       client.note_head = pitch
-      #client.pitch = pitch
    else:
       raise ValueError('can not initialize note.')
