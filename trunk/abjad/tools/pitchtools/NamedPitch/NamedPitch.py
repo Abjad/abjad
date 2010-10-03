@@ -236,12 +236,17 @@ class NamedPitch(_StrictComparator, _Pitch):
    @property
    def degree(self):
       '''Diatonic scale degree with ``1`` for C, ``2`` for D, etc.'''
-      from abjad.tools.pitchtools.pitch_letter_to_one_indexed_diatonic_scale_degree_number \
-         import pitch_letter_to_one_indexed_diatonic_scale_degree_number
-      if self.letter:
-         return pitch_letter_to_one_indexed_diatonic_scale_degree_number(self.letter)
-      else:
+#      from abjad.tools.pitchtools.pitch_letter_to_one_indexed_diatonic_scale_degree_number \
+#         import pitch_letter_to_one_indexed_diatonic_scale_degree_number
+#      if self.letter:
+#         return pitch_letter_to_one_indexed_diatonic_scale_degree_number(self.letter)
+#      else:
+#         return None
+      diatonic_pitch_class_number = self.diatonic_pitch_class_number
+      if diatonic_pitch_class_number is None:
          return None
+      else:
+         return self.diatonic_pitch_class_number + 1
 
    @property
    def deviation(self):
@@ -269,6 +274,19 @@ class NamedPitch(_StrictComparator, _Pitch):
          return (self.octave - 4) * 7 + self.degree - 1
       else:
          return None
+
+   @property
+   def diatonic_pitch_class_number(self):
+      '''Read-only diatonic pitch-class number of named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.diatonic_pitch_class_number
+         0
+      '''
+      from abjad.tools import pitchtools
+      return pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number(self.letter)
 
    @property
    def format(self):

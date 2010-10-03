@@ -742,6 +742,7 @@ pitchtools
    tools/pitchtools/color_note_head_by_numeric_pitch_class_color_map
    tools/pitchtools/concatenate_pitch_arrays
    tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
+   tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number
    tools/pitchtools/expr_has_duplicate_named_pitch
    tools/pitchtools/expr_has_duplicate_numeric_pitch_class
    tools/pitchtools/expr_to_melodic_chromatic_interval_segment
