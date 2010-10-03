@@ -59,17 +59,10 @@ class Note(_Leaf):
          elif isinstance(arg, NoteHead):
             self._note_head = arg
          else:
-            note_head = NoteHead(self, pitch = arg)
+            #note_head = NoteHead(self, pitch = arg)
+            note_head = NoteHead(self, arg)
             self._note_head = note_head
       return property(**locals( ))
-
-#   @property
-#   def numbers(self):
-#      '''Read-only sorted tuple of pitch number of note, if any.'''
-#      if self.pitch:
-#         return (self.pitch.number, )
-#      else:
-#         return ( )
 
    @apply
    def pitch( ):

@@ -53,9 +53,9 @@ class Chord(_Leaf):
       from abjad.tools import pitchtools
       from abjad.tools.notetools.NoteHead import NoteHead
       if isinstance(arg, (int, long, float)):
-         self._note_heads[i] = NoteHead(self, pitch = arg)
+         self._note_heads[i] = NoteHead(self, arg)
       elif isinstance(arg, pitchtools.NamedPitch):
-         self._note_heads[i] = NoteHead(self, pitch = arg)
+         self._note_heads[i] = NoteHead(self, arg)
       elif isinstance(arg, NoteHead):
          self._note_heads[i] = arg
          arg._client = self
@@ -115,7 +115,7 @@ class Chord(_Leaf):
          if isinstance(arglist, str):
             arglist = arglist.split( )
          for arg in arglist:
-            note_head = NoteHead(self, pitch = arg)
+            note_head = NoteHead(self, arg)
             self._note_heads.append(note_head)
          self._sort( )
       return property(**locals( ))
@@ -166,9 +166,9 @@ class Chord(_Leaf):
       from abjad.tools.notetools.NoteHead import NoteHead
       from abjad.exceptions import NoteHeadError
       if isinstance(note_head_token, (int, float, long)):
-         self._note_heads.append(NoteHead(self, pitch = note_head_token))
+         self._note_heads.append(NoteHead(self, note_head_token))
       elif isinstance(note_head_token, pitchtools.NamedPitch):
-         self._note_heads.append(NoteHead(self, pitch = note_head_token))
+         self._note_heads.append(NoteHead(self, note_head_token))
       elif isinstance(note_head_token, NoteHead):
          self._note_heads.append(note_head_token)
          note_head_token._client = self

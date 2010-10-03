@@ -13,10 +13,17 @@ class NoteHead(object):
 
    __slots__ = ('_client', '_pitch', 'tweak')
 
-   def __init__(self, client, pitch = None):
-      self._client = client
-      self.tweak = LilyPondTweakReservoir( )
+   def __init__(self, *args):
+      if len(args) == 1:
+         _client = None
+         pitch = args[0]
+      elif len(args) == 2:
+         _client, pitch = args
+      else:
+         raise ValueError('\n\tCan not initialize note head from args: "%s".' % str(args))
+      self._client = _client
       self.pitch = pitch
+      self.tweak = LilyPondTweakReservoir( )
 
    ## OVERLOADS ##
 

@@ -10,7 +10,7 @@ def test_Chord___contains___01( ):
    assert pitchtools.NamedPitch(17) in chord
    assert pitchtools.NamedPitch("f''") in chord
    assert chord[1] in chord
-   assert not notetools.NoteHead("f''") in chord
+   assert notetools.NoteHead("f''") in chord
 
 
 def test_Chord___contains___02( ):
