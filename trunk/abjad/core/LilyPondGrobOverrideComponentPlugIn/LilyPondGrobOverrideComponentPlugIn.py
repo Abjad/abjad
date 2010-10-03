@@ -5,7 +5,7 @@ from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextW
 class LilyPondGrobOverrideComponentPlugIn(object):
    '''.. versionadded:: 1.1.2
 
-   LilyPond grob override component plug-in..
+   LilyPond grob override component plug-in.
    '''
 
    def __init__(self):
@@ -84,7 +84,7 @@ class LilyPondGrobOverrideComponentPlugIn(object):
 
    ## PRIVATE ATTRIBUTES ##
 
-   def _get_grob_override_tuples(self):
+   def _get_attribute_tuples(self):
       result = [ ]
       for name, value in vars(self).iteritems( ):
          if isinstance(value, LilyPondGrobProxy):
@@ -100,7 +100,7 @@ class LilyPondGrobOverrideComponentPlugIn(object):
 
    def _get_skeleton_strings(self):
       skeleton_strings = [ ]
-      grob_override_tuples = self._get_grob_override_tuples( )
+      grob_override_tuples = self._get_attribute_tuples( )
       for grob_override_tuple in grob_override_tuples:
          most = '__'.join(grob_override_tuple[:-1])
          value = grob_override_tuple[-1]
@@ -110,7 +110,6 @@ class LilyPondGrobOverrideComponentPlugIn(object):
       
    ## PRIVATE METHODS ##
 
-   ## TODO: simplify in terms of _get_grob_override_tuples( ) ##
    def _list_format_contributions(self, contribution_type, is_once = False):
       from abjad.tools.lilyfiletools._make_lilypond_override_string import \
          _make_lilypond_override_string
@@ -118,28 +117,19 @@ class LilyPondGrobOverrideComponentPlugIn(object):
          _make_lilypond_revert_string
       assert contribution_type in ('override', 'revert')
       result = [ ]
-      for name, value in vars(self).iteritems( ):
-         #print name, value
-         if isinstance(value, LilyPondGrobProxyContextWrapper):
-            context_name, context_wrapper = name.lstrip('_'), value
-            #print context_name, context_wrapper
-            for grob_name, grob_override_namespace in vars(context_wrapper).iteritems( ):
-               #print grob_name, grob_override_namespace
-               for grob_attribute, grob_value in vars(grob_override_namespace).iteritems( ):
-                  #print grob_attribute, grob_value
-                  if contribution_type == 'override':
-                     result.append(_make_lilypond_override_string(grob_name, grob_attribute, 
-                        grob_value, context_name = context_name, is_once = is_once))
-                  else:
-                     result.append(_make_lilypond_revert_string(
-                        grob_name, grob_attribute, context_name = context_name))
-         elif isinstance(value, LilyPondGrobProxy):
-            grob_name, grob_namespace = name, value
-            for grob_attribute, grob_value in vars(grob_namespace).iteritems( ):
-               if contribution_type == 'override':
-                  result.append(_make_lilypond_override_string(grob_name, grob_attribute,
-                     grob_value, is_once = is_once))
-               else:
-                  result.append(_make_lilypond_revert_string(grob_name, grob_attribute))
+      for attribute_tuple in self._get_attribute_tuples( ):
+         if len(attribute_tuple) == 3:
+            context_name = None
+            grob_name, attribute_name, attribute_value = attribute_tuple
+         elif len(attribute_tuple) == 4:
+            context_name, grob_name, attribute_name, attribute_value = attribute_tuple
+         else:
+            raise ValueError
+         if contribution_type == 'override':
+            result.append(_make_lilypond_override_string(grob_name, attribute_name, 
+               attribute_value, context_name = context_name, is_once = is_once))
+         else:
+            result.append(
+               _make_lilypond_revert_string(grob_name, attribute_name, context_name = context_name))
       result.sort( )
       return result
