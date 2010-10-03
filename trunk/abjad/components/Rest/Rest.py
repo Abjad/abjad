@@ -6,8 +6,8 @@ class Rest(_Leaf):
 
    ::
 
-      abjad> Rest((3, 8))
-      Rest('4.')
+      abjad> Rest((3, 16))
+      Rest('r8.')
    '''
 
    def __init__(self, *args, **kwargs):
@@ -21,15 +21,9 @@ class Rest(_Leaf):
       return 0
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, repr(str(self.duration)))
+      return '%s(%s)' % (self.__class__.__name__, repr(self.format))
 
    ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _compact_representation(self):
-      return 'r%s' % self.duration
-
-   ## PUBLIC ATTRIBUTES ##
 
    @property
    def _body(self):
@@ -45,3 +39,7 @@ class Rest(_Leaf):
       if vertical_positioning_pitch:
          result += r' \rest'
       return [result]
+
+   @property
+   def _compact_representation(self):
+      return 'r%s' % self.duration

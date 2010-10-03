@@ -4,7 +4,6 @@ def _initialize_rest(client, _Leaf, *args):
    from abjad.components.Note import Note
    from abjad.components.Rest import Rest
    from abjad.tools.skiptools.Skip import Skip
-   #client.pitch = None
    if len(args) == 1 and isinstance(args[0], _Leaf):
       if isinstance(args[0], Note):
          note = args[0]
@@ -25,7 +24,10 @@ def _initialize_rest(client, _Leaf, *args):
          _Leaf.__init__(client, skip.duration.written)
          _transfer_all_attributes(skip, client)
    elif len(args) == 1:
-      duration = args[0]
+      if isinstance(args[0], str):
+         duration = args[0].strip('r')
+      else:
+         duration = args[0]
       _Leaf.__init__(client, duration)
    else:
       raise ValueError('can not initialize rest.')

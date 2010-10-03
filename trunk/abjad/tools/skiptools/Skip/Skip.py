@@ -6,8 +6,8 @@ class Skip(_Leaf):
 
    ::
 
-      abjad> skiptools.Skip((1, 4))
-      Skip('4')
+      abjad> skiptools.Skip((3, 16))
+      Skip('s8.')
    '''
 
    def __init__(self, *args, **kwargs):
@@ -21,7 +21,6 @@ class Skip(_Leaf):
       return 0
 
    def __repr__(self):
-      #return '%s(%s)' % (self.__class__.__name__, self.duration)
       return '%s(%s)' % (self.__class__.__name__, repr(str(self.duration)))
 
    def __str__(self):

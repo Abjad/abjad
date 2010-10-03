@@ -14,7 +14,6 @@ def _initialize_skip(client, _Leaf, *args):
          rest = args[0]
          _Leaf.__init__(client, rest.duration.written)
          _transfer_all_attributes(rest, client)
-         #del client._pitch
       elif isinstance(args[0], Chord):
          chord = args[0]
          _Leaf.__init__(client, chord.duration.written)
@@ -25,7 +24,10 @@ def _initialize_skip(client, _Leaf, *args):
          _Leaf.__init__(client, skip.duration.written)
          _transfer_all_attributes(skip, client)
    elif len(args) == 1:
-      duration = args[0]
+      if isinstance(args[0], str):
+         duration = args[0].strip('s')
+      else:
+         duration = args[0]
       _Leaf.__init__(client, duration)
    else:
       raise ValueError('can not initialize skip.')
