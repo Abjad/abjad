@@ -14,5 +14,5 @@ def test_NamedPitch__init_empty_01( ):
    assert p.number == None
    assert p.octave == None
    assert p.pair == None
-   assert p.pc == None
+   assert p.pitch_class == None
    assert p.ticks == None

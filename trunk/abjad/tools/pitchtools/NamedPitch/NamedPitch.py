@@ -6,17 +6,23 @@ from abjad.tools.pitchtools._Pitch import _Pitch
 _accidental_spelling = _read_config_file( )['accidental_spelling']
 
 class NamedPitch(_StrictComparator, _Pitch):
-   '''Abjad model of named pitch.
+   '''Abjad model of named pitch:
+
+   ::
+
+      abjad> pitchtools.NamedPitch("cs'")
+      NamedPitch("cs'")
    '''
 
    accidental_spelling = _accidental_spelling
 
    __slots__ = ('_accidental', '_deviation', '_letter', '_octave')
 
-   def __new__(klass, *args):
+   def __new__(klass, *args, **kwargs):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
-      object.__setattr__(self, '_deviation', None)
+      _deviation = kwargs.get('deviation', None)
+      object.__setattr__(self, '_deviation', _deviation)
       if not args:
          self._init_empty( )
       elif len(args) == 1 and isinstance(args[0], (int, long, float)):
@@ -114,10 +120,13 @@ class NamedPitch(_StrictComparator, _Pitch):
    def __repr__(self):
       if self.name and not self.octave is None:
          if self.deviation is None:
-            return '%s(%s, %s)' % (self.__class__.__name__, self.name, self.octave)
+            #return '%s(%s, %s)' % (self.__class__.__name__, self.name, self.octave)
+            return '%s(%s)' % (self.__class__.__name__, repr(str(self)))
          else:
-            return '%s(%s, %s, %s)' % (self.__class__.__name__,
-               self.name, self.octave, self.deviation)
+            #return '%s(%s, %s, %s)' % (self.__class__.__name__,
+            #   self.name, self.octave, self.deviation)
+            return '%s(%s, deviation = %s)' % (self.__class__.__name__,
+               repr(str(self)), self.deviation)
       else:
          return '%s( )' % self.__class__.__name__
 
@@ -214,6 +223,14 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    @property
    def accidental(self):
+      '''Read-only accidental of named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.accidental
+         Accidental('s')
+      '''
       return self._accidental
 
    @property
@@ -228,11 +245,25 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    @property
    def deviation(self):
+      '''Read-only deviation of named pitch in cents:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.deviation is None
+         True
+      '''
       return self._deviation
 
    @property
    def diatonic_pitch_number(self):
-      '''Read-only diatonic pitch number of named pitch.
+      '''Read-only diatonic pitch number of named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.diatonic_pitch_number
+         0
       '''
       if self.letter:
          return (self.octave - 4) * 7 + self.degree - 1
@@ -241,15 +272,38 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    @property
    def format(self):
-      '''Read-only LilyPond format of pitch.'''
+      '''Read-only LilyPond input format of pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.format
+         "cs'"
+      '''
       return str(self)
 
    @property
    def letter(self):
+      '''Read-only diatonic pitch-class named of pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.letter
+         'c'
+      '''
       return self._letter
 
    @property
    def name(self):
+      '''Read-only pitch-class name of pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.name
+         'cs'
+      '''
       if self.letter and self.accidental:
          return '%s%s' % (self.letter, self.accidental)
       else:
@@ -257,12 +311,27 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    @property
    def named_pitch_class(self):
+      '''New named pitch class from named pitch::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.named_pitch_class
+         NamedPitchClass(cs)
+
+      Return named pitch class.
+      '''
       from abjad.tools import pitchtools
       return pitchtools.NamedPitchClass(self.name)
 
    @property
    def number(self):
-      '''Read / write numeric value of pitch with middle C equal to ``0``.'''
+      '''Read-only pitch number of named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.number
+         1
+      '''
       from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import \
          pitch_letter_to_pitch_class_number
       if not self.octave is None:
@@ -277,6 +346,14 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    @property
    def octave(self):
+      '''Read-only integer octave number of named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.octave
+         4
+      '''
       return self._octave
 
    @property
@@ -288,26 +365,15 @@ class NamedPitch(_StrictComparator, _Pitch):
          return None
 
    @property
-   def pc(self):
-      '''Read-only pitch-class corresponding to pitch.
-
-      .. note:: 
-         deprecated. Use `pitch_class` instead.
-      '''
-      from abjad.tools import pitchtools
-      number = self.number
-      if number is not None:
-         return pitchtools.NumericPitchClass(number % 12)
-      else:
-         return None
-      
-
-   @property
    def pitch_class(self):
-      '''Read-only pitch-class corresponding to pitch.
+      '''New numeric pitch-class from named pitch::
 
-      .. versionchanged:: 1.1.2
-         now returns Abjad pitch-class instance instead of number.'''
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.pitch_class
+         NumericPitchClass(1)
+   
+      Return numeric pitch class.
+      '''
       from abjad.tools import pitchtools
       number = self.number
       if number is not None:
@@ -317,13 +383,26 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    @property
    def semitones(self):
-      '''Read-only number of semitones to which pitch is equal.'''
+      '''Read-only semitones of named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.semitones
+         1
+      '''
       return self.number
 
    @property
    def ticks(self):
-      '''Read-only European indicator of octave of pitch with
-      the octave of middle C equal to a single ``'`` tick.'''
+      '''Read-only octave tick string of named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.ticks
+         "'"
+      '''
       if self.octave is not None:
          if self.octave <= 2:
             return ',' * (3 - self.octave)

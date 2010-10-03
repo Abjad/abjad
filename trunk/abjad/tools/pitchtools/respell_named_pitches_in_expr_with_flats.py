@@ -55,13 +55,13 @@ def respell_named_pitches_in_expr_with_flats(expr):
 
 #def _pitch_renotate_flats(pitch):
 #   octave = pitch_number_to_octave_number(pitch.number)
-#   name = pitch_class_number_to_pitch_name_with_flats(pitch.pc)
+#   name = pitch_class_number_to_pitch_name_with_flats(pitch.pitch_class)
 #   pitch.octave = octave
 #   pitch.name = name
 
 
 def _new_pitch_with_flats(pitch):
    octave = pitch_number_to_octave_number(pitch.number)
-   name = pitch_class_number_to_pitch_name_with_flats(pitch.pc)
+   name = pitch_class_number_to_pitch_name_with_flats(pitch.pitch_class)
    pitch = type(pitch)(name, octave)
    return pitch

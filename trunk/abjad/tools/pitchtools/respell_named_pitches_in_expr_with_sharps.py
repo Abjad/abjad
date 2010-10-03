@@ -53,14 +53,14 @@ def respell_named_pitches_in_expr_with_sharps(expr):
 
 #def _pitch_renotate_sharps(pitch):
 #   octave = pitch_number_to_octave_number(pitch.number)
-#   name = pitch_class_number_to_pitch_name_with_sharps(pitch.pc)
+#   name = pitch_class_number_to_pitch_name_with_sharps(pitch.pitch_class)
 #   pitch.octave = octave
 #   pitch.name = name
 
 
 def _new_pitch_with_sharps(pitch):
    octave = pitch_number_to_octave_number(pitch.number)
-   name = pitch_class_number_to_pitch_name_with_sharps(pitch.pc)
+   name = pitch_class_number_to_pitch_name_with_sharps(pitch.pitch_class)
    #pitch.octave = octave
    #pitch.name = name
    pitch = type(pitch)(name, octave)

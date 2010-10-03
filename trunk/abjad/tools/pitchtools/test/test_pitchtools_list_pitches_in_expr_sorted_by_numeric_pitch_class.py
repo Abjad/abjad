@@ -12,7 +12,7 @@ def test_pitchtools_list_pitches_in_expr_sorted_by_numeric_pitch_class_01( ):
    '''
 
    sorted_pitch_numbers = [pitch.number for pitch in sorted_pitches]
-   sorted_pcs = [pitch.pc for pitch in sorted_pitches]
+   sorted_pcs = [pitch.pitch_class for pitch in sorted_pitches]
 
    assert sorted_pitch_numbers == [
       -12, 37, -10, 27, 4, 17, 30, 19, 8, 33, -2, 11]

@@ -22,7 +22,7 @@ def list_pitches_in_expr_sorted_by_numeric_pitch_class(pitch_carriers):
 
    result = list(pitch_carriers[:])
    result.sort(lambda x, y: cmp(
-         list_named_pitches_in_expr(x)[0].pc.number, 
-         list_named_pitches_in_expr(y)[0].pc.number))
+         list_named_pitches_in_expr(x)[0].pitch_class.number, 
+         list_named_pitches_in_expr(y)[0].pitch_class.number))
 
    return result
