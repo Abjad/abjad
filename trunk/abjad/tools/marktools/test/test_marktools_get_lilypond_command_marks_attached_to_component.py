@@ -26,7 +26,7 @@ def test_marktools_get_lilypond_command_marks_attached_to_component_01( ):
    assert len(marks) == 2
 
 
-def test_marktools_get_lilypond_command_marks_attached_to_component_01( ):
+def test_marktools_get_lilypond_command_marks_attached_to_component_02( ):
    '''Get LilyPond command marks with command name string.
    '''
 

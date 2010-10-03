@@ -749,11 +749,16 @@ pitchtools
    tools/pitchtools/insert_and_transpose_nested_subruns_in_lpitch_class_number_list
    tools/pitchtools/inventory_aggregate_subsets
    tools/pitchtools/inventory_inversion_equivalent_diatonic_interval_classes
+   tools/pitchtools/is_alphabetic_accidental_string
    tools/pitchtools/is_diatonic_pitch_class_name_string
+   tools/pitchtools/is_diatonic_pitch_name_string_with_octave_ticks
    tools/pitchtools/is_named_pitch_pair
    tools/pitchtools/is_named_pitch_token
+   tools/pitchtools/is_octave_tick_string
    tools/pitchtools/is_pitch_carrier
+   tools/pitchtools/is_pitch_class_name_string
    tools/pitchtools/is_pitch_name
+   tools/pitchtools/is_pitch_name_string_with_octave_ticks
    tools/pitchtools/iterate_pitch_pairs_forward_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr

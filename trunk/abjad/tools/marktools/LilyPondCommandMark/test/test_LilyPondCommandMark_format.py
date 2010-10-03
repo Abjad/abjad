@@ -41,7 +41,7 @@ def test_LilyPondCommandMark_format_02( ):
    assert t.format == "\\new Staff {\n\tc'8\n\t#(set-accidental-style 'forget)\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondCommandMark_format_01( ):
+def test_LilyPondCommandMark_format_03( ):
    '''Barline after leaf.'''
 
    t = Note(0, (1, 4))
@@ -55,7 +55,7 @@ def test_LilyPondCommandMark_format_01( ):
    assert t.format == 'c\'4\n\\bar "|."'
 
 
-def test_LilyPondCommandMark_format_02( ):
+def test_LilyPondCommandMark_format_04( ):
    '''Barline at container closing.'''
 
    t = Staff( )
@@ -70,7 +70,7 @@ def test_LilyPondCommandMark_format_02( ):
    assert t.format == '\\new Staff {\n\t\\bar "|."\n}' 
 
 
-def test_LilyPondCommandMark_format_03( ):
+def test_LilyPondCommandMark_format_05( ):
    '''Empty LilyPond bar line string.'''
 
    t = Staff(macros.scale(4))
@@ -90,7 +90,7 @@ def test_LilyPondCommandMark_format_03( ):
    assert t.format == '\\new Staff {\n\tc\'8\n\t\\bar ""\n\td\'8\n\te\'8\n\tf\'8\n}'
 
 
-def test_LilyPondCommandMark_format_01( ):
+def test_LilyPondCommandMark_format_06( ):
    '''Add a natural harmonic.'''
 
    t = Note(0, (1, 4))
@@ -98,7 +98,7 @@ def test_LilyPondCommandMark_format_01( ):
    assert t.format == "c'4 \\flageolet"
 
 
-def test_LilyPondCommandMark_format_02( ):
+def test_LilyPondCommandMark_format_07( ):
    '''Add and then remove natural harmonic.'''
 
    t = Note(0, (1, 4))
@@ -107,7 +107,7 @@ def test_LilyPondCommandMark_format_02( ):
    assert t.format == "c'4"
 
 
-def test_LilyPondCommandMark_format_01( ):
+def test_LilyPondCommandMark_format_08( ):
 
    staff = Staff([Note(0, (1, 4))])
    marktools.LilyPondCommandMark('compressFullBarRests')(staff[0])
@@ -122,7 +122,7 @@ def test_LilyPondCommandMark_format_01( ):
    assert staff.format == "\\new Staff {\n\t\\compressFullBarRests\n\tc'4\n}"
 
 
-def test_LilyPondCommandMark_format_02( ):
+def test_LilyPondCommandMark_format_09( ):
 
    staff = Staff([Note(0, (1, 4))])
    marktools.LilyPondCommandMark('expandFullBarRests')(staff[0])
@@ -137,7 +137,7 @@ def test_LilyPondCommandMark_format_02( ):
    assert staff.format == "\\new Staff {\n\t\\expandFullBarRests\n\tc'4\n}"   
 
 
-def test_LilyPondCommandMark_format_02( ):
+def test_LilyPondCommandMark_format_10( ):
    '''Voice number can be set on leaves.'''
 
    t = Voice(notetools.make_repeated_notes(4))
@@ -146,7 +146,7 @@ def test_LilyPondCommandMark_format_02( ):
    assert t.format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_LilyPondCommandMark_format_03( ):
+def test_LilyPondCommandMark_format_11( ):
    '''Voice number can be set to 1, 2, 3, 4, or None.
    Anyhing else will throw a ValueError exception.
    '''
@@ -171,7 +171,7 @@ def test_LilyPondCommandMark_format_03( ):
    assert t.format == "\\new Voice {\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_LilyPondCommandMark_format_04( ):
+def test_LilyPondCommandMark_format_12( ):
    '''Voice number can be set on a Voice container and on one of the leaves contained in it.
    '''
 
