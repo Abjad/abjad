@@ -7,7 +7,6 @@ def test_NamedPitch__init_by_number_01( ):
    p = pitchtools.NamedPitch(13)
 
    assert p.diatonic_pitch_number == 7
-   assert p.degree == 1
    assert p.format == "cs''"
    assert p.letter == 'c'
    assert p.name == 'cs'

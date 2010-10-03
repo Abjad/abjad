@@ -6,7 +6,6 @@ def test_NamedPitch__init_by_name_and_octave_01( ):
 
    p = pitchtools.NamedPitch('df', 5)
    assert p.diatonic_pitch_number == 8
-   assert p.degree == 2
    assert p.format == "df''"
    assert p.letter == 'd'
    assert p.name == 'df'

@@ -234,21 +234,6 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self._accidental
 
    @property
-   def degree(self):
-      '''Diatonic scale degree with ``1`` for C, ``2`` for D, etc.'''
-#      from abjad.tools.pitchtools.pitch_letter_to_one_indexed_diatonic_scale_degree_number \
-#         import pitch_letter_to_one_indexed_diatonic_scale_degree_number
-#      if self.letter:
-#         return pitch_letter_to_one_indexed_diatonic_scale_degree_number(self.letter)
-#      else:
-#         return None
-      diatonic_pitch_class_number = self.diatonic_pitch_class_number
-      if diatonic_pitch_class_number is None:
-         return None
-      else:
-         return self.diatonic_pitch_class_number + 1
-
-   @property
    def deviation(self):
       '''Read-only deviation of named pitch in cents:
 
@@ -271,7 +256,8 @@ class NamedPitch(_StrictComparator, _Pitch):
          0
       '''
       if self.letter:
-         return (self.octave - 4) * 7 + self.degree - 1
+         #return (self.octave - 4) * 7 + self.degree - 1
+         return (self.octave - 4) * 7 + self.diatonic_pitch_class_number
       else:
          return None
 

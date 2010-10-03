@@ -7,7 +7,6 @@ def test_NamedPitch__init_empty_01( ):
    p = pitchtools.NamedPitch( )
 
    assert p.diatonic_pitch_number == None
-   assert p.degree == None
    assert p.format == ''
    assert p.letter == None
    assert p.name == None
