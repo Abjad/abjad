@@ -724,6 +724,7 @@ pitchtools
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/pitchtools/all_are_named_pitch_tokens
+   tools/pitchtools/apply_accidental_to_named_pitch
    tools/pitchtools/apply_octavation_spanner_to_pitched_components
    tools/pitchtools/calculate_harmonic_chromatic_interval_class_from_pitch_to_pitch
    tools/pitchtools/calculate_harmonic_chromatic_interval_from_pitch_to_pitch

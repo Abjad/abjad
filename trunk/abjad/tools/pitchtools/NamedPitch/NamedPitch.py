@@ -21,7 +21,7 @@ class NamedPitch(_StrictComparator, _Pitch):
          self._init_empty( )
       elif len(args) == 1 and isinstance(args[0], (int, long, float)):
          self._init_by_number(*args)
-      elif len(args) == 1 and isinstance(args[0], NamedPitch):
+      elif len(args) == 1 and isinstance(args[0], type(self)):
          self._init_by_reference(*args)
       elif len(args) == 1 and pitchtools.is_named_pitch_pair(args[0]):
          self._init_by_pair(*args)
@@ -56,10 +56,10 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __copy__(self):
       '''.. versionadded:: 1.1.2'''
-      return NamedPitch(self)
+      return type(self)(self)
 
    def __eq__(self, arg):
-      if isinstance(arg, NamedPitch):
+      if isinstance(arg, type(self)):
          if self.diatonic_pitch_number == arg.diatonic_pitch_number:
             if self.accidental.semitones == arg.accidental.semitones:
                if self.deviation == arg.deviation:
@@ -67,7 +67,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       return False
 
    def __ge__(self, arg):
-      if not isinstance(arg, NamedPitch):
+      if not isinstance(arg, type(self)):
          return False
       return self.diatonic_pitch_number > arg.diatonic_pitch_number or \
          (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
@@ -77,7 +77,7 @@ class NamedPitch(_StrictComparator, _Pitch):
          self._deviation_numeric >= arg._deviation_numeric)
 
    def __gt__(self, arg):
-      if not isinstance(arg, NamedPitch):
+      if not isinstance(arg, type(self)):
          return False
       return self.diatonic_pitch_number > arg.diatonic_pitch_number or \
          (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
@@ -90,7 +90,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       return hash(repr(self))
 
    def __le__(self, arg):
-      if not isinstance(arg, NamedPitch):
+      if not isinstance(arg, type(self)):
          return False
       if not self.diatonic_pitch_number == arg.diatonic_pitch_number:
          return self.diatonic_pitch_number <= arg.diatonic_pitch_number
@@ -99,7 +99,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self._deviation_numeric <= arg._deviation_numeric
 
    def __lt__(self, arg):
-      if not isinstance(arg, NamedPitch):
+      if not isinstance(arg, type(self)):
          return False
       return self.diatonic_pitch_number < arg.diatonic_pitch_number or \
          (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
@@ -129,7 +129,7 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __sub__(self, arg):
       from abjad.tools import pitchtools
-      if isinstance(arg, NamedPitch):
+      if isinstance(arg, type(self)):
          return pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
             self, arg)
       else:
@@ -333,13 +333,3 @@ class NamedPitch(_StrictComparator, _Pitch):
             return "'" * (self.octave - 3)
       else:
          return None
-
-   ## PUBLIC METHODS ##
-
-   def apply_accidental(self, accidental = None):
-      '''Apply accidental and emit new pitch instance.'''
-      from abjad.tools.pitchtools.Accidental import Accidental
-      accidental = Accidental(accidental)
-      new_accidental = self.accidental + accidental
-      new_name = self.letter + new_accidental.alphabetic_string
-      return type(self)(new_name, self.octave)
