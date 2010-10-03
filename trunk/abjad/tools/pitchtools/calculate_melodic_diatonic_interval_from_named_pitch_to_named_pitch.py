@@ -2,7 +2,8 @@ from abjad.tools.pitchtools.diatonic_interval_number_and_chromatic_interval_numb
 from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
 
 
-def calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(pitch_carrier_1, pitch_carrier_2):
+def calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
+   pitch_carrier_1, pitch_carrier_2):
    '''.. versionadded:: 1.1.2
 
    Return melodic diatonic interval from `pitch_carrier_1` to 
@@ -28,9 +29,9 @@ def calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(pitch_ca
    pitch_1 = get_named_pitch_from_pitch_carrier(pitch_carrier_1)
    pitch_2 = get_named_pitch_from_pitch_carrier(pitch_carrier_2)
 
-   degree_1 = pitch_1.absolute_diatonic_scale_degree
-   degree_2 = pitch_2.absolute_diatonic_scale_degree
-
+   degree_1 = pitch_1.diatonic_pitch_number
+   degree_2 = pitch_2.diatonic_pitch_number
+   
    diatonic_interval_number = abs(degree_1 - degree_2) + 1
    
    chromatic_interval_number = abs(pitch_1.number - pitch_2.number)

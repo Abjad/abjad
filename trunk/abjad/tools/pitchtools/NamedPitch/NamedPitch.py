@@ -213,10 +213,6 @@ class NamedPitch(_StrictComparator, _Pitch):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def absolute_diatonic_scale_degree(self):
-      return 7 * self.octave + self.degree
-
-   @property
    def accidental(self):
       return self._accidental
 
