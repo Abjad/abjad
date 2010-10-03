@@ -18,26 +18,17 @@ class Chord(_Leaf):
    ## OVERLOADS ##
 
    def __contains__(self, arg):
-      from abjad.tools import pitchtools
       from abjad.tools.notetools.NoteHead import NoteHead
-      if isinstance(arg, (int, float, long)):
-         return pitchtools.NamedPitch(arg) in self.pitches
-      elif isinstance(arg, pitchtools.NamedPitch):
-         return arg in self.pitches
-      elif isinstance(arg, NoteHead):
-         return arg in self.note_heads
-      else:
-         return False
+      note_head = NoteHead(arg)
+      return note_head in self.note_heads
 
    def __delitem__(self, i):
       del(self._note_heads[i])
 
    def __eq__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.duration.written == arg.duration.written:
-            if self.duration.multiplier == arg.duration.multiplier:
-               if self.pitches == arg.pitches:
-                  return True
+      if _Leaf.__eq__(self, arg):
+         if self.pitches == arg.pitches:
+            return True
       return False
 
    def __getitem__(self, i):
@@ -50,15 +41,13 @@ class Chord(_Leaf):
       return '%s(%s, %s)' % (self.__class__.__name__, self._summary, self.duration)
 
    def __setitem__(self, i, arg):
-      from abjad.tools import pitchtools
       from abjad.tools.notetools.NoteHead import NoteHead
-      if isinstance(arg, (int, long, float)):
-         self._note_heads[i] = NoteHead(self, arg)
-      elif isinstance(arg, pitchtools.NamedPitch):
-         self._note_heads[i] = NoteHead(self, arg)
-      elif isinstance(arg, NoteHead):
-         self._note_heads[i] = arg
-         arg._client = self
+      if isinstance(arg, NoteHead):
+         note_head = arg
+      else:
+         note_head = NoteHead(arg)
+      note_head._client = self
+      self._note_heads[i] = note_head
       self._sort( )
 
    ## PRIVATE ATTRIBUTES ##
@@ -84,7 +73,7 @@ class Chord(_Leaf):
    def _summary(self):
       '''Read-only string summary of noteh eads in chord.
       '''
-      return ' '.join([str(x) for x in self._note_heads])
+      return ' '.join([str(x) for x in self])
 
    ## PUBLIC ATTRIBUTES ## 
 
@@ -104,20 +93,12 @@ class Chord(_Leaf):
             abjad> chord
             Chord(c' d' fs', 4)
          '''
-         result = [ ]
-         for note_head in self._note_heads:
-            result.append(note_head)
-         return tuple(result)
-      def fset(self, arglist):
-         from abjad.tools.notetools.NoteHead import NoteHead
-         assert isinstance(arglist, (list, tuple, set, str))
+         return tuple(self)
+      def fset(self, note_head_tokens):
          self._note_heads = [ ]
-         if isinstance(arglist, str):
-            arglist = arglist.split( )
-         for arg in arglist:
-            note_head = NoteHead(self, arg)
-            self._note_heads.append(note_head)
-         self._sort( )
+         if isinstance(note_head_tokens, str):
+            note_head_tokens = note_head_tokens.split( )
+         self.extend(note_head_tokens)
       return property(**locals( ))
 
    @apply
@@ -136,13 +117,9 @@ class Chord(_Leaf):
             abjad> chord
             Chord(c' d' fs', 4)
          '''
-         result = [ ]
-         for note_head in self._note_heads:
-            if note_head.pitch:
-               result.append(note_head.pitch)   
-         return tuple(result)
-      def fset(self, arglist):
-         self.note_heads = arglist
+         return tuple([note_head.pitch for note_head in self])
+      def fset(self, pitch_tokens):
+         self.note_heads = pitch_tokens
       return property(**locals( ))
 
    ## PUBLIC METHODS ## 
@@ -162,18 +139,13 @@ class Chord(_Leaf):
 
       Sort chord note heads automatically after append and return none.
       '''
-      from abjad.tools import pitchtools
       from abjad.tools.notetools.NoteHead import NoteHead
-      from abjad.exceptions import NoteHeadError
-      if isinstance(note_head_token, (int, float, long)):
-         self._note_heads.append(NoteHead(self, note_head_token))
-      elif isinstance(note_head_token, pitchtools.NamedPitch):
-         self._note_heads.append(NoteHead(self, note_head_token))
-      elif isinstance(note_head_token, NoteHead):
-         self._note_heads.append(note_head_token)
-         note_head_token._client = self
+      if isinstance(note_head_token, NoteHead):
+         note_head = note_head_token
       else:
-         raise NoteHeadError('\n\tCan not append to chord: "%s"' % note_head_token)
+         note_head = NoteHead(note_head_token)
+      note_head._client = self
+      self._note_heads.append(note_head)
       self._sort( )
 
    def extend(self, note_head_tokens):
@@ -191,10 +163,8 @@ class Chord(_Leaf):
 
       Sort chord note heads automatically after extend and return none.
       '''
-      assert isinstance(arglist, (tuple, list))
-      for arg in arglist:
-         self.append(arg)
-      self._sort( )
+      for note_head_token in note_head_tokens:
+         self.append(note_head_token)
 
    def pop(self, i = -1):
       '''Remove note head at index `i` in chord::

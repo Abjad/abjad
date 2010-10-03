@@ -3,7 +3,8 @@ import py.test
 
 
 def test_NoteHead_pitch_01( ):
-   '''Set NoteHead pitch with integer.'''
+   '''Set Note head pitch with integer.
+   '''
 
    t = Note(13, (1, 4))
    t.note_head.pitch = 14
@@ -14,7 +15,8 @@ def test_NoteHead_pitch_01( ):
 
 
 def test_NoteHead_pitch_02( ):
-   '''Set NoteHead pitch with Abjad Pitch object.'''
+   '''Set Note head pitch with pitch.
+   '''
 
    t = Note(13, (1, 4))
    t.note_head.pitch = pitchtools.NamedPitch(14)
@@ -25,7 +27,8 @@ def test_NoteHead_pitch_02( ):
 
 
 def test_NoteHead_pitch_03( ):
-   '''Set NoteHead pitch to None.'''
+   '''Set Note head pitch to none.
+   '''
 
    t = Note(13, (1, 4))
    t.note_head.pitch = None
@@ -36,8 +39,9 @@ def test_NoteHead_pitch_03( ):
 
 
 def test_NoteHead_pitch_04( ):
-   '''Set NoteHead pitch from another note or note_head.
-   Make sure this does not cause reference problems.'''
+   '''Set note head pitch from another note or note head.
+   Make sure this does not cause reference problems.
+   '''
 
    n1 = Note(12, (1, 4))
    n2 = Note(14, (1, 4))
