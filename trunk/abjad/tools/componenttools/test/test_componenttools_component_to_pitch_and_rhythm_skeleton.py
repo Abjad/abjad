@@ -1,6 +1,4 @@
 from abjad import *
-import py
-py.test.skip('skipping until Fraction completely replaces Fraction.')
 
 
 def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
@@ -17,7 +15,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(chord)
    assert skeleton == "Chord((('c', 4), ('d', 4), ('e', 4)), Fraction(1, 4))"
 
-   skip = Skip((1, 4))
+   skip = skiptools.Skip((1, 4))
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(skip)
    assert skeleton == "Skip(Fraction(1, 4))"
 
@@ -45,7 +43,6 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_02( ):
 
 
 def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
-
 
    tuplet = tuplettools.FixedDurationTuplet((3, 8), macros.scale(4))
    measure = Measure((6, 16), [tuplet])
@@ -85,8 +82,8 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
    r'''
    Score([
       Staff([
-         Measure(Meter(6, 16), [
-            tuplettools.FixedDurationTuplet(Fraction(3, 8), [
+         Measure((6, 16), [
+            FixedDurationTuplet(Fraction(3, 8), [
                Note(('c', 4), Fraction(1, 8)),
                Note(('d', 4), Fraction(1, 8)),
                Note(('e', 4), Fraction(1, 8)),
@@ -95,8 +92,8 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
          ])
       ]),
       Staff([
-         Measure(Meter(6, 16), [
-            tuplettools.FixedDurationTuplet(Fraction(3, 8), [
+         Measure((6, 16), [
+            FixedDurationTuplet(Fraction(3, 8), [
                Note(('g', 4), Fraction(1, 8)),
                Note(('a', 4), Fraction(1, 8)),
                Note(('b', 4), Fraction(1, 8)),
@@ -107,9 +104,10 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
    ])
    '''
 
-   assert skeleton == "Score([\n\tStaff([\n\t\tMeasure(Meter(6, 16), [\n\t\t\tFixedDurationTuplet(Fraction(3, 8), [\n\t\t\t\tNote(('c', 4), Fraction(1, 8)),\n\t\t\t\tNote(('d', 4), Fraction(1, 8)),\n\t\t\t\tNote(('e', 4), Fraction(1, 8)),\n\t\t\t\tNote(('f', 4), Fraction(1, 8))\n\t\t\t])\n\t\t])\n\t]),\n\tStaff([\n\t\tMeasure(Meter(6, 16), [\n\t\t\tFixedDurationTuplet(Fraction(3, 8), [\n\t\t\t\tNote(('g', 4), Fraction(1, 8)),\n\t\t\t\tNote(('a', 4), Fraction(1, 8)),\n\t\t\t\tNote(('b', 4), Fraction(1, 8)),\n\t\t\t\tNote(('c', 5), Fraction(1, 8))\n\t\t\t])\n\t\t])\n\t])\n])"
+   assert skeleton == "Score([\n\tStaff([\n\t\tMeasure((6, 16), [\n\t\t\tFixedDurationTuplet(Fraction(3, 8), [\n\t\t\t\tNote(('c', 4), Fraction(1, 8)),\n\t\t\t\tNote(('d', 4), Fraction(1, 8)),\n\t\t\t\tNote(('e', 4), Fraction(1, 8)),\n\t\t\t\tNote(('f', 4), Fraction(1, 8))\n\t\t\t])\n\t\t])\n\t]),\n\tStaff([\n\t\tMeasure((6, 16), [\n\t\t\tFixedDurationTuplet(Fraction(3, 8), [\n\t\t\t\tNote(('g', 4), Fraction(1, 8)),\n\t\t\t\tNote(('a', 4), Fraction(1, 8)),\n\t\t\t\tNote(('b', 4), Fraction(1, 8)),\n\t\t\t\tNote(('c', 5), Fraction(1, 8))\n\t\t\t])\n\t\t])\n\t])\n])"
 
+   from abjad.tools.tuplettools import FixedDurationTuplet
    new = eval(skeleton)
    
    assert componenttools.is_well_formed_component(new)
-   assert new.format == "\\new Score <<\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 6/16\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tc'8\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 6/16\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tg'8\n\t\t\t\ta'8\n\t\t\t\tb'8\n\t\t\t\tc''8\n\t\t\t}\n\t\t}\n\t}\n>>"
+   assert new.format == "\\new Score <<\n\t\\new Staff {\n\t\t{\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\t\\time 6/16\n\t\t\t\tc'8\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n\t\\new Staff {\n\t\t{\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\t\\time 6/16\n\t\t\t\tg'8\n\t\t\t\ta'8\n\t\t\t\tb'8\n\t\t\t\tc''8\n\t\t\t}\n\t\t}\n\t}\n>>"

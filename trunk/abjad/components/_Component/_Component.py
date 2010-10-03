@@ -96,13 +96,37 @@ class _Component(_StrictComparator):
          self._set_keyword_value(key, value)
 
    def _set_keyword_value(self, key, value):
+#      attribute_chain = key.split('__')
+#      most_attributes = attribute_chain[:-1]
+#      last_attribute = attribute_chain[-1]
+#      target_object = self
+#      for attribute in most_attributes:
+#         target_object = getattr(target_object, attribute)
+#      setattr(target_object, last_attribute, value)
       attribute_chain = key.split('__')
-      most_attributes = attribute_chain[:-1]
-      last_attribute = attribute_chain[-1]
-      target_object = self
-      for attribute in most_attributes:
-         target_object = getattr(target_object, attribute)
-      setattr(target_object, last_attribute, value)
+      plug_in_name = attribute_chain[0]
+      names = attribute_chain[1:]
+      if plug_in_name == 'override':
+         if len(names) == 2:
+            grob_name, attribute_name = names
+            exec('self.override.%s.%s = %s' % (grob_name, attribute_name, repr(value)))
+         elif len(names) == 3:
+            context_name, grob_name, attribute_name = names
+            exec('self.override.%s.%s.%s = %s' % (
+               context_name, grob_name, attribute_name, repr(value)))
+         else:
+            raise ValueError
+      elif plug_in_name == 'set':
+         if len(names) == 1:
+            setting_name = names
+            exec('self.set.%s = %s' % (setting_name, repr(value)))
+         elif len(names) == 2:
+            context_name, setting_name = names
+            exec('self.set.%s.%s = %s' % (context_name, setting_name, repr(value)))
+         else:
+            raise ValueError
+      else:
+         raise ValueError('\n\t: Unknown keyword argument plug-in name: "%s".' % plug_in_name)
 
    ## MANGLED METHODS ##
 

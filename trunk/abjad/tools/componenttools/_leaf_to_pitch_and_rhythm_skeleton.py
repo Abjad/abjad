@@ -1,5 +1,5 @@
-from abjad.components.Chord import Chord
-from abjad.components.Note import Note
+from abjad.components import Chord
+from abjad.components import Note
 from abjad.tools.componenttools._get_leaf_keyword_attributes import _get_leaf_keyword_attributes
 
 
@@ -18,10 +18,10 @@ def _leaf_to_pitch_and_rhythm_skeleton(leaf, include_keyword_attributes = False)
       keyword_attributes = '\n' + keyword_attributes
       keyword_attributes = [keyword_attributes]
    if isinstance(leaf, Note):
-      arguments = [leaf.pitch.pair, duration]
+      arguments = [(leaf.pitch.name, leaf.pitch.octave), duration]
    elif isinstance(leaf, Chord):
-      leaf_pairs = tuple([pitch.pair for pitch in leaf])
-      argument = [leaf_pairs, duration]
+      leaf_pairs = tuple([(note_head.pitch.name, note_head.pitch.octave) for note_head in leaf])
+      arguments = [leaf_pairs, duration]
    else:
       arguments = [duration]
    arguments = [str(x) for x in arguments]

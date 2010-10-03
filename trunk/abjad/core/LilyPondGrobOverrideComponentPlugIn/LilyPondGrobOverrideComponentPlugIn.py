@@ -75,13 +75,43 @@ class LilyPondGrobOverrideComponentPlugIn(object):
          return vars(self)[name]
 
    def __repr__(self):
-      return '%s( )' % self.__class__.__name__
+      body_string = ' '
+      skeleton_strings = self._get_grob_override_skeleton_strings( )
+      if skeleton_strings:
+         skeleton_strings = [x.strip('override__') for x in skeleton_strings]
+         body_string = ', '.join(skeleton_strings)
+      return '%s(%s)' % (self.__class__.__name__, body_string)
 
+   ## PRIVATE ATTRIBUTES ##
+
+   def _get_grob_override_tuples(self):
+      result = [ ]
+      for name, value in vars(self).iteritems( ):
+         if isinstance(value, LilyPondGrobProxy):
+            grob_name, grob_proxy = name, value
+            for attribute_name, attribute_value in vars(grob_proxy).iteritems( ):
+               result.append((grob_name, attribute_name, attribute_value))
+         else:
+            context_name, context_proxy = name.strip('_'), value
+            for grob_name, grob_proxy in vars(context_proxy).iteritems( ):
+               for attribute_name, attribute_value in vars(grob_proxy).iteritems( ):
+                  result.append((context_name, grob_name, attribute_name, attribute_value))
+      return tuple(result)
+
+   def _get_grob_override_skeleton_strings(self):
+      skeleton_strings = [ ]
+      grob_override_tuples = self._get_grob_override_tuples( )
+      for grob_override_tuple in grob_override_tuples:
+         most = '__'.join(grob_override_tuple[:-1])
+         value = grob_override_tuple[-1]
+         skeleton_string = 'override__%s = %s' % (most, repr(value))
+         skeleton_strings.append(skeleton_string)
+      return tuple(skeleton_strings)
+      
    ## PRIVATE METHODS ##
 
+   ## TODO: simplify in terms of _get_grob_override_tuples( ) ##
    def _list_format_contributions(self, contribution_type, is_once = False):
-      from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
-      from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
       from abjad.tools.lilyfiletools._make_lilypond_override_string import \
          _make_lilypond_override_string
       from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
