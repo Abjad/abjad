@@ -27,7 +27,7 @@ class NamedPitchClass(_PitchClass):
       from abjad.tools import pitchtools
       dummy = NamedPitch(self.name, 4)
       mdi = melodic_diatonic_interval
-      new = pitchtools.tranpose_pitch_by_melodic_diatonic_interval(dummy, mdi)
+      new = pitchtools.transpose_pitch_by_melodic_diatonic_interval(dummy, mdi)
       return new.named_pitch_class
 
    def __copy__(self):
@@ -166,9 +166,9 @@ class NamedPitchClass(_PitchClass):
    def transpose(self, mdi):
       '''Transpose pitch class by melodic diatonic interval.'''
       from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-      from abjad.tools.pitchtools.tranpose_pitch_by_melodic_diatonic_interval \
-         import tranpose_pitch_by_melodic_diatonic_interval
+      from abjad.tools.pitchtools.transpose_pitch_by_melodic_diatonic_interval \
+         import transpose_pitch_by_melodic_diatonic_interval
       pitch = NamedPitch(self, 4)
-      transposed_pitch = tranpose_pitch_by_melodic_diatonic_interval(pitch, mdi)
+      transposed_pitch = transpose_pitch_by_melodic_diatonic_interval(pitch, mdi)
       transposed_named_pitch_class = transposed_pitch.named_pitch_class
       return transposed_named_pitch_class

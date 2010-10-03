@@ -26,7 +26,7 @@ def test_pitchtools_zero_indexed_diatonic_scale_degree_number_to_pitch_number_01
 
 
 def test_pitchtools_zero_indexed_diatonic_scale_degree_number_to_pitch_number_02( ):
-   '''Diatonic scale can be tranposed.'''
+   '''Diatonic scale can be transposed.'''
 
    assert pitchtools.zero_indexed_diatonic_scale_degree_number_to_pitch_number(0, 2) == 2
    assert pitchtools.zero_indexed_diatonic_scale_degree_number_to_pitch_number(1, 2) == 4

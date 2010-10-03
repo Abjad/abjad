@@ -804,9 +804,9 @@ pitchtools
    tools/pitchtools/set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr
    tools/pitchtools/set_default_accidental_spelling
    tools/pitchtools/suggest_clef_for_named_pitches
-   tools/pitchtools/tranpose_pitch_by_melodic_diatonic_interval
    tools/pitchtools/transpose_named_pitch_by_melodic_chromatic_interval_and_respell_enharmonically
    tools/pitchtools/transpose_pitch_by_melodic_chromatic_interval
+   tools/pitchtools/transpose_pitch_by_melodic_diatonic_interval
    tools/pitchtools/transpose_pitch_by_melodic_interval
    tools/pitchtools/transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number
    tools/pitchtools/transpose_pitch_number_by_octave_transposition_mapping

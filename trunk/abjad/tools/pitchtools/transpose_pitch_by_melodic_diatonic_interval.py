@@ -6,19 +6,19 @@ from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterv
 from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_pitch_class_name import one_indexed_diatonic_scale_degree_number_to_pitch_class_name
 
 
-def tranpose_pitch_by_melodic_diatonic_interval(pitch_carrier, melodic_diatonic_interval):
+def transpose_pitch_by_melodic_diatonic_interval(pitch_carrier, melodic_diatonic_interval):
    '''.. versionadded:: 1.1.2
 
    Transpose `pitch_carrier` by `melodic_diatonic_interval`. ::
 
       abjad> pitch = NamedPitch(12)
       abjad> mdi = pitchtools.MelodicDiatonicInterval('minor', -3)
-      abjad> pitchtools.tranpose_pitch_by_melodic_diatonic_interval(pitch, mdi)
+      abjad> pitchtools.transpose_pitch_by_melodic_diatonic_interval(pitch, mdi)
       NamedPitch(a, 4)
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.transpose_by_melodic_diatonic_interval( )`` to
-      ``pitchtools.tranpose_pitch_by_melodic_diatonic_interval( )``.
+      ``pitchtools.transpose_pitch_by_melodic_diatonic_interval( )``.
    '''
 
    if not isinstance(melodic_diatonic_interval, MelodicDiatonicInterval):

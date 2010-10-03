@@ -18,7 +18,7 @@ def test_pitchtools_zero_indexed_pentatonic_scale_degree_number_to_pitch_number_
 
 
 def test_pitchtools_zero_indexed_pentatonic_scale_degree_number_to_pitch_number_02( ):
-   '''Pentatonic scale can be tranposed.'''
+   '''Pentatonic scale can be transposed.'''
 
    assert pitchtools.zero_indexed_pentatonic_scale_degree_number_to_pitch_number(0, 0) == 0
    assert pitchtools.zero_indexed_pentatonic_scale_degree_number_to_pitch_number(1, 0) == 2
