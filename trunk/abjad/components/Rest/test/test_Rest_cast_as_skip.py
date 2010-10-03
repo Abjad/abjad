@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('deprecated.')
 
 
 def test_Rest_cast_as_skip_01( ):

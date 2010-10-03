@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_transpose_pitch_by_melodic_diatonic_interval_01( ):
+def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_01( ):
    '''Transpose pitch.'''
 
    pitch = pitchtools.NamedPitch(12)
@@ -11,7 +11,7 @@ def test_pitchtools_transpose_pitch_by_melodic_diatonic_interval_01( ):
    assert new is not pitch
 
 
-def test_pitchtools_transpose_pitch_by_melodic_diatonic_interval_02( ):
+def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_02( ):
    '''Transpose note.'''
 
    note = Note(12, (1, 4))
@@ -21,7 +21,7 @@ def test_pitchtools_transpose_pitch_by_melodic_diatonic_interval_02( ):
    assert new is not note
 
 
-def test_pitchtools_transpose_pitch_by_melodic_diatonic_interval_03( ):
+def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_03( ):
    '''Transpose chord.'''
 
    chord = Chord([12, 13, 14], (1, 4))

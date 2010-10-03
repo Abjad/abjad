@@ -821,6 +821,7 @@ resttools
 
    tools/resttools/MultiMeasureRest/MultiMeasureRest
    tools/resttools/make_rests
+   tools/resttools/set_vertical_positioning_pitch_on_rest
 
 
 schemetools

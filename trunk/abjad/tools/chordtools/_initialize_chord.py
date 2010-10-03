@@ -39,7 +39,7 @@ def _initialize_chord(client, _Leaf, *args):
          _Leaf.__init__(client, rest.duration.written)
          #client._formatter = _ChordFormatter(client)
          _transfer_all_attributes(rest, client)
-         del client._pitch
+         #del client._pitch
       elif isinstance(args[0], Chord):
          chord = args[0]
          _Leaf.__init__(client, chord.duration.written)

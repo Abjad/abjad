@@ -14,7 +14,7 @@ def _initialize_skip(client, _Leaf, *args):
          rest = args[0]
          _Leaf.__init__(client, rest.duration.written)
          _transfer_all_attributes(rest, client)
-         del client._pitch
+         #del client._pitch
       elif isinstance(args[0], Chord):
          chord = args[0]
          _Leaf.__init__(client, chord.duration.written)

@@ -1,5 +1,4 @@
 from abjad.components._Leaf import _Leaf
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
 class Rest(_Leaf):
@@ -29,37 +28,15 @@ class Rest(_Leaf):
 
    @property
    def _body(self):
-      '''Read-only list of string representation of body of rest.
-      Picked up as format contribution at format-time.'''
+      '''Read-only body of rest.
+      '''
       result = ''
-      if self.pitch:
-         result += str(self.pitch)
+      vertical_positioning_pitch = getattr(self, '_vertical_positioning_pitch', None)
+      if vertical_positioning_pitch:
+         result += str(vertical_positioning_pitch)
       else:
          result += 'r'
       result += str(self.duration)
-      if self.pitch:
+      if vertical_positioning_pitch:
          result += r' \rest'
       return [result]
-
-#   @property
-#   def numbers(self):
-#      '''Read-only empty tuple because rests have no pitch.'''
-#      return ( )
-  
-   @apply
-   def pitch( ):
-      def fget(self):
-         '''Read / write value for so-called pitched rest.'''
-         return self._pitch
-      def fset(self, arg):
-         if isinstance(arg, type(None)):
-            self._pitch = None
-         elif isinstance(arg, (int, float, long)):
-            self._pitch = NamedPitch(arg)
-         elif isinstance(arg, tuple):
-            self._pitch = NamedPitch(*arg)
-         elif isinstance(arg, NamedPitch):
-            self._pitch = arg
-         else:
-            raise ValueError('can not set  rest pitch: "%s".' % str(arg))
-      return property(**locals( ))
