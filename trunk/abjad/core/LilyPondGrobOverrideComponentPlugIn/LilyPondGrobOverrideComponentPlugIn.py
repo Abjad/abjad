@@ -76,7 +76,7 @@ class LilyPondGrobOverrideComponentPlugIn(object):
 
    def __repr__(self):
       body_string = ' '
-      skeleton_strings = self._get_grob_override_skeleton_strings( )
+      skeleton_strings = self._get_skeleton_strings( )
       if skeleton_strings:
          skeleton_strings = [x.strip('override__') for x in skeleton_strings]
          body_string = ', '.join(skeleton_strings)
@@ -98,7 +98,7 @@ class LilyPondGrobOverrideComponentPlugIn(object):
                   result.append((context_name, grob_name, attribute_name, attribute_value))
       return tuple(result)
 
-   def _get_grob_override_skeleton_strings(self):
+   def _get_skeleton_strings(self):
       skeleton_strings = [ ]
       grob_override_tuples = self._get_grob_override_tuples( )
       for grob_override_tuple in grob_override_tuples:

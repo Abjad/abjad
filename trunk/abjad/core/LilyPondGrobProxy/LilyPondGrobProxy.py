@@ -8,15 +8,18 @@ class LilyPondGrobProxy(object):
 
    def __repr__(self):
       body_string = ' '
-      skeleton_strings = self._get_grob_override_skeleton_strings( )
+      skeleton_strings = self._get_skeleton_strings( )
       if skeleton_strings:
          body_string = ', '.join(skeleton_strings)
       return '%s(%s)' % (self.__class__.__name__, body_string)
 
    ## PRIVATE METHODS ##
 
-   def _get_grob_override_skeleton_strings(self):
+   def _get_attribute_pairs(self):
+      return tuple(vars(self).iteritems( ))
+
+   def _get_skeleton_strings(self):
       result = [ ]
-      for attribute_name, attribute_value in vars(self).iteritems( ):
-         result.append('%s = %s' % (attribute_name, repr(attribute_value)))
+      for attribute_name, attribute_value in self._get_attribute_pairs( ):
+         result.append('%s = %s' % (repr(attribute_name), repr(attribute_value)))
       return result

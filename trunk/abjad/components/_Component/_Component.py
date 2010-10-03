@@ -118,7 +118,7 @@ class _Component(_StrictComparator):
             raise ValueError
       elif plug_in_name == 'set':
          if len(names) == 1:
-            setting_name = names
+            setting_name = names[0]
             exec('self.set.%s = %s' % (setting_name, repr(value)))
          elif len(names) == 2:
             context_name, setting_name = names
