@@ -7,8 +7,8 @@ def test_Chord__sort_01( ):
    assert len(t.pitches) == 2
    assert t.pitches[0].diatonic_pitch_number != t.pitches[1].diatonic_pitch_number
    assert t.pitches[0].number != t.pitches[1].number
-   assert t.pitches[0].pair == ('c', 4)
-   assert t.pitches[1].pair == ('d', 4)
+   assert t.pitches[0] == pitchtools.NamedPitch('c', 4)
+   assert t.pitches[1] == pitchtools.NamedPitch('d', 4)
 
 
 def test_Chord__sort_02( ):
@@ -17,8 +17,8 @@ def test_Chord__sort_02( ):
    assert len(t.pitches) == 2
    assert t.pitches[0].diatonic_pitch_number != t.pitches[1].diatonic_pitch_number
    assert t.pitches[0].number != t.pitches[1].number
-   assert t.pitches[0].pair == ('c', 4)
-   assert t.pitches[1].pair == ('d', 4)
+   assert t.pitches[0] == pitchtools.NamedPitch('c', 4)
+   assert t.pitches[1] == pitchtools.NamedPitch('d', 4)
 
 
 def test_Chord__sort_03( ):
@@ -27,8 +27,8 @@ def test_Chord__sort_03( ):
    assert len(t.pitches) == 2
    assert t.pitches[0].diatonic_pitch_number == t.pitches[1].diatonic_pitch_number
    assert t.pitches[0].number != t.pitches[1].number
-   assert t.pitches[0].pair == ('c', 4)
-   assert t.pitches[1].pair == ('cs', 4)
+   assert t.pitches[0] == pitchtools.NamedPitch('c', 4)
+   assert t.pitches[1] == pitchtools.NamedPitch('cs', 4)
    
 
 def test_Chord__sort_04( ):
@@ -37,8 +37,8 @@ def test_Chord__sort_04( ):
    assert len(t.pitches) == 2
    assert t.pitches[0].diatonic_pitch_number == t.pitches[1].diatonic_pitch_number
    assert t.pitches[0].number != t.pitches[1].number
-   assert t.pitches[0].pair == ('c', 4)
-   assert t.pitches[1].pair == ('cs', 4)
+   assert t.pitches[0] == pitchtools.NamedPitch('c', 4)
+   assert t.pitches[1] == pitchtools.NamedPitch('cs', 4)
    
 
 def test_Chord__sort_05( ):
@@ -47,8 +47,8 @@ def test_Chord__sort_05( ):
    assert len(t.pitches) == 2
    assert t.pitches[0].diatonic_pitch_number != t.pitches[1].diatonic_pitch_number
    assert t.pitches[0].number == t.pitches[1].number
-   assert t.pitches[0].pair == ('cs', 4)
-   assert t.pitches[1].pair == ('df', 4)
+   assert t.pitches[0] == pitchtools.NamedPitch('cs', 4)
+   assert t.pitches[1] == pitchtools.NamedPitch('df', 4)
 
 
 def test_Chord__sort_06( ):
@@ -57,8 +57,8 @@ def test_Chord__sort_06( ):
    assert len(t.pitches) == 2
    assert t.pitches[0].diatonic_pitch_number != t.pitches[1].diatonic_pitch_number
    assert t.pitches[0].number == t.pitches[1].number
-   assert t.pitches[0].pair == ('cs', 4)
-   assert t.pitches[1].pair == ('df', 4)
+   assert t.pitches[0] == pitchtools.NamedPitch('cs', 4)
+   assert t.pitches[1] == pitchtools.NamedPitch('df', 4)
 
 
 def test_Chord__sort_07( ):
@@ -67,8 +67,8 @@ def test_Chord__sort_07( ):
    assert len(t.pitches) == 2
    assert t.pitches[0].diatonic_pitch_number != t.pitches[1].diatonic_pitch_number
    assert t.pitches[0].number != t.pitches[1].number
-   assert t.pitches[0].pair == ('css', 4)
-   assert t.pitches[1].pair == ('dff', 4)
+   assert t.pitches[0] == pitchtools.NamedPitch('css', 4)
+   assert t.pitches[1] == pitchtools.NamedPitch('dff', 4)
 
 
 def test_Chord__sort_08( ):
@@ -77,5 +77,5 @@ def test_Chord__sort_08( ):
    assert len(t.pitches) == 2
    assert t.pitches[0].diatonic_pitch_number != t.pitches[1].diatonic_pitch_number
    assert t.pitches[0].number != t.pitches[1].number
-   assert t.pitches[0].pair == ('css', 4)
-   assert t.pitches[1].pair == ('dff', 4)
+   assert t.pitches[0] == pitchtools.NamedPitch('css', 4)
+   assert t.pitches[1] == pitchtools.NamedPitch('dff', 4)

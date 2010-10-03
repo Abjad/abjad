@@ -7,7 +7,8 @@ def test_pitchtools_get_named_pitch_from_pitch_carrier_01( ):
    pitch = pitchtools.NamedPitch('df', 5)
    t = pitchtools.get_named_pitch_from_pitch_carrier(pitch)
 
-   assert t.pair == ('df', 5)
+   #assert t.pair == ('df', 5)
+   assert t == pitchtools.NamedPitch('df', 5)
    
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_02( ):
@@ -15,7 +16,8 @@ def test_pitchtools_get_named_pitch_from_pitch_carrier_02( ):
    note = Note(('df', 5), (1, 4))
    t = pitchtools.get_named_pitch_from_pitch_carrier(note)
 
-   assert t.pair == ('df', 5)
+   #assert t.pair == ('df', 5)
+   assert t == pitchtools.NamedPitch('df', 5)
    
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_03( ):
@@ -23,7 +25,8 @@ def test_pitchtools_get_named_pitch_from_pitch_carrier_03( ):
    note = Note(('df', 5), (1, 4))
    t = pitchtools.get_named_pitch_from_pitch_carrier(note.note_head)
 
-   assert t.pair == ('df', 5)
+   #assert t.pair == ('df', 5)
+   assert t == pitchtools.NamedPitch('df', 5)
    
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_04( ):
@@ -31,7 +34,8 @@ def test_pitchtools_get_named_pitch_from_pitch_carrier_04( ):
    chord = Chord([('df', 5)], (1, 4))
    t = pitchtools.get_named_pitch_from_pitch_carrier(chord)
 
-   assert t.pair == ('df', 5)
+   #assert t.pair == ('df', 5)
+   assert t == pitchtools.NamedPitch('df', 5)
    
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_05( ):

@@ -357,14 +357,6 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self._octave
 
    @property
-   def pair(self):
-      '''Read-only ``(name, octave)`` pair of pitch.'''
-      if self.name and self.octave is not None:
-         return (self.name, self.octave)
-      else:
-         return None
-
-   @property
    def pitch_class(self):
       '''New numeric pitch-class from named pitch::
 
