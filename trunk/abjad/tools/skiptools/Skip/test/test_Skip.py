@@ -4,7 +4,6 @@ from abjad import *
 def test_Skip_01( ):
    '''skiptools.Skip public interface.'''
    s = skiptools.Skip((1, 8))
-   assert repr(s) == 'Skip(8)'
    assert str(s) == 's8'
    assert s.format == 's8'
    assert s.duration.written == s.duration.prolated == Fraction(1, 8)
@@ -12,7 +11,6 @@ def test_Skip_01( ):
 
 def test_Skip_02( ):
    s = skiptools.Skip((3, 16))
-   assert repr(s) == 'Skip(8.)'
    assert str(s) == 's8.'
    assert s.format == 's8.'
    assert s.duration.written == s.duration.prolated == Fraction(3, 16)

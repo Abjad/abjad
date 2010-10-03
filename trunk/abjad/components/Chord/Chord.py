@@ -7,7 +7,7 @@ class Chord(_Leaf):
    ::
 
       abjad> Chord([4, 13, 17], (1, 4))
-      Chord(e' cs'' f'', 4)
+      Chord("ef' cs'' f''", '4')
    '''
 
    def __init__(self, *args, **kwargs):
@@ -38,7 +38,8 @@ class Chord(_Leaf):
       return len(self._note_heads)
 
    def __repr__(self):
-      return '%s(%s, %s)' % (self.__class__.__name__, self._summary, self.duration)
+      #return '%s(%s, %s)' % (self.__class__.__name__, self._summary, self.duration)
+      return '%s(%s, %s)' % (self.__class__.__name__, repr(self._summary), repr(str(self.duration)))
 
    def __setitem__(self, i, arg):
       from abjad.tools.notetools.NoteHead import NoteHead

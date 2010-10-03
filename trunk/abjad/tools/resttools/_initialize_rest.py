@@ -4,7 +4,7 @@ def _initialize_rest(client, _Leaf, *args):
    from abjad.components.Note import Note
    from abjad.components.Rest import Rest
    from abjad.tools.skiptools.Skip import Skip
-   client.pitch = None
+   #client.pitch = None
    if len(args) == 1 and isinstance(args[0], _Leaf):
       if isinstance(args[0], Note):
          note = args[0]

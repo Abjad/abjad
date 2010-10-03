@@ -2,7 +2,12 @@ from abjad.components._Leaf import _Leaf
 
 
 class Rest(_Leaf):
-   '''The Abjad model of a rest.
+   '''The Abjad model of a rest:
+
+   ::
+
+      abjad> Rest((3, 8))
+      Rest('4.')
    '''
 
    def __init__(self, *args, **kwargs):
@@ -16,7 +21,7 @@ class Rest(_Leaf):
       return 0
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.duration)
+      return '%s(%s)' % (self.__class__.__name__, repr(str(self.duration)))
 
    ## PRIVATE ATTRIBUTES ##
 

@@ -47,20 +47,12 @@ def test_pitchtools_get_named_pitch_from_pitch_carrier_05( ):
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_06( ):
 
-   note = Note(('df', 5), (1, 4))
-   note.pitch = None
-   assert py.test.raises(
-      MissingPitchError, 't = pitchtools.get_named_pitch_from_pitch_carrier(note.note_head)')
-
-
-def test_pitchtools_get_named_pitch_from_pitch_carrier_07( ):
-
    chord = Chord([ ], (1, 4))
    assert py.test.raises(
       MissingPitchError, 't = pitchtools.get_named_pitch_from_pitch_carrier(chord)')
 
 
-def test_pitchtools_get_named_pitch_from_pitch_carrier_08( ):
+def test_pitchtools_get_named_pitch_from_pitch_carrier_07( ):
 
    chord = Chord([0, 2, 11], (1, 4))
    assert py.test.raises(

@@ -2,7 +2,12 @@ from abjad.components._Leaf import _Leaf
 
 
 class Skip(_Leaf):
-   '''The Abjad model of the LilyPond skip.
+   '''The Abjad model of a LilyPond skip:
+
+   ::
+
+      abjad> skiptools.Skip((1, 4))
+      Skip('4')
    '''
 
    def __init__(self, *args, **kwargs):
@@ -16,21 +21,20 @@ class Skip(_Leaf):
       return 0
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.duration)
+      #return '%s(%s)' % (self.__class__.__name__, self.duration)
+      return '%s(%s)' % (self.__class__.__name__, repr(str(self.duration)))
 
    def __str__(self):
       return 's%s' % self.duration
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _body(self):
+      result = [ ]
+      result.append('s%s' % self.duration)
+      return result
 
    @property
    def _compact_representation(self):
       return 's%s' % self.duration
-  
-   @property
-   def _body(self):
-      '''String representation of body of skip at format-time.
-         Return list like all other format-time contributions.'''
-      result = [ ]
-      result.append('s%s' % self.duration)
-      return result

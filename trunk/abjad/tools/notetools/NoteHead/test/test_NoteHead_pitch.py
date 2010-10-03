@@ -10,6 +10,7 @@ def test_NoteHead_pitch_01( ):
    t.note_head.pitch = 14
 
    "NoteHead(d'')"
+
    assert t.note_head.format == "d''"
    assert t.note_head.pitch.number == 14
 
@@ -22,20 +23,18 @@ def test_NoteHead_pitch_02( ):
    t.note_head.pitch = pitchtools.NamedPitch(14)
 
    "NoteHead(d'')"
+
    assert t.note_head.format == "d''"
    assert t.note_head.pitch.number == 14
 
 
 def test_NoteHead_pitch_03( ):
-   '''Set Note head pitch to none.
+   '''Can not set note head pitch to none.
    '''
 
    t = Note(13, (1, 4))
-   t.note_head.pitch = None
 
-   "NoteHead( )"
-   assert t.note_head.pitch == None
-   assert py.test.raises(AssertionError, 't.note_head.format')
+   assert py.test.raises(Exception, 't.note_head.pitch = None')
 
 
 def test_NoteHead_pitch_04( ):

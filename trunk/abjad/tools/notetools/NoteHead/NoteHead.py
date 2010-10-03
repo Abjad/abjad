@@ -2,13 +2,12 @@ from abjad.core import LilyPondTweakReservoir
 
 
 class NoteHead(object):
-   r'''Note or chord note head:
+   r'''The Abjad model of a note head:
 
    ::
 
-      abjad> note = Note(1, (1, 4))
-      abjad> note.note_head
-      NoteHead(cs')
+      abjad> notetools.NoteHead(13)
+      NoteHead("cs''")
    '''
 
    __slots__ = ('_client', '_pitch', 'tweak')
@@ -37,7 +36,7 @@ class NoteHead(object):
       return not self == expr
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+      return '%s(%s)' % (self.__class__.__name__, repr(self._format_string))
 
    def __str__(self):
       if self.pitch:
@@ -57,37 +56,48 @@ class NoteHead(object):
 
    @property
    def format(self):
-      '''Read-only format string of note_head:
+      '''Read-only LilyPond input format of note head:
 
       ::
       
          abjad> note = Note(1, (1, 4))
-         abjad> note.nothead.format
+         abjad> note.note_head.format
          "cs'"
       '''
       from abjad.tools.notetools._format_note_head import _format_note_head
       return _format_note_head(self)
 
+   @property
+   def named_pitch(self):
+      return self.pitch
+
+   ## TODO: rename pitch as named pitch ##
    @apply
    def pitch( ):
       def fget(self):
-         '''Read / write pitch of note head:
+         '''Get named pitch of note head::
 
-         ::
+            abjad> note_head = notetools.NoteHead(13)
+            abjad> note_head.pitch
+            NamedPitch("cs''")
 
-            abjad> note = Note(1, (1, 4))
-            abjad> note.note_head.pitch = 2
-            abjad> print note.format
-            d'4
+         Set named pitch of note head::
+
+            abjad> note_head = notetools.NoteHead(13)
+            abjad> note_head.pitch = 14
+            abjad> note_head.pitch
+            NamedPitch("d''")
          '''
          return self._pitch
       def fset(self, arg):
          from abjad.tools import pitchtools
-         if arg is None:
-            self._pitch = None
-         elif isinstance(arg, NoteHead):
-            self._pitch = arg.pitch
-         else:
-            pitch = pitchtools.NamedPitch(arg)
-            self._pitch = pitch
+#         if arg is None:
+#            self._pitch = None
+#         elif isinstance(arg, NoteHead):
+#            self._pitch = arg.pitch
+#         else:
+#            pitch = pitchtools.NamedPitch(arg)
+#            self._pitch = pitch
+         pitch = pitchtools.NamedPitch(arg)
+         self._pitch = pitch
       return property(**locals( ))

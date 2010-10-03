@@ -2,7 +2,12 @@ from abjad.components._Leaf import _Leaf
 
 
 class Note(_Leaf):
-   '''The Abjad model of a note.
+   '''The Abjad model of a note:
+
+   ::
+
+      abjad> Note(13, (3, 16))
+      Note("cs''8.")
    '''
    
    def __init__(self, *args, **kwargs):
@@ -25,9 +30,17 @@ class Note(_Leaf):
          return 1
 
    def __repr__(self):
-      return '%s(%s, %s)' % (self.__class__.__name__, self.pitch, self.duration)
+      return '%s(%s)' % (self.__class__.__name__, repr(self._compact_representation))
 
    ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _body(self):
+      result = ''
+      if self.pitch:
+         result += str(self.pitch)
+      result += str(self.duration)
+      return [result] 
 
    @property
    def _compact_representation(self):
@@ -35,20 +48,22 @@ class Note(_Leaf):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def _body(self):
-      '''Read-only list of string representation of body of note.
-      Picked up as format contribution at format-time.'''
-      result = ''
-      if self.pitch:
-         result += str(self.pitch)
-      result += str(self.duration)
-      return [result] 
-
    @apply
    def note_head( ):
       def fget(self):
-         '''Read / write reference to Abjad note_head instance.'''
+         '''Get note head of note::
+
+            abjad> note = Note(13, (3, 16))
+            abjad> note.note_head
+            NoteHead("cs''")
+
+         Set note head of note::
+
+            abjad> note = Note(13, (3, 16))
+            abjad> note.note_head = 14
+            abjad> note
+            Note("d''8.")
+         '''
          return self._note_head
       def fset(self, arg):
          from abjad.tools.notetools.NoteHead import NoteHead
@@ -57,7 +72,6 @@ class Note(_Leaf):
          elif isinstance(arg, NoteHead):
             self._note_head = arg
          else:
-            #note_head = NoteHead(self, pitch = arg)
             note_head = NoteHead(self, arg)
             self._note_head = note_head
       return property(**locals( ))
@@ -65,7 +79,19 @@ class Note(_Leaf):
    @apply
    def pitch( ):
       def fget(self):
-         '''Read / write pitch of note.'''
+         '''Get named pitch of note::
+
+            abjad> note = Note(13, (3, 16))
+            abjad> note.pitch
+            NamedPitch("cs''")
+
+         Set named pitch of note::
+
+            abjad> note = Note(13, (3, 16))
+            abjad> note.pitch = 14
+            abjad> note
+            Note("d''8.")
+         '''
          if self.note_head is not None and hasattr(self.note_head, 'pitch'):
             return self._note_head.pitch
          else:

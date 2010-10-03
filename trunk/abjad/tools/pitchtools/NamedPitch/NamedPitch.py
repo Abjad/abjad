@@ -29,6 +29,8 @@ class NamedPitch(_StrictComparator, _Pitch):
          self._init_by_number(*args)
       elif len(args) == 1 and isinstance(args[0], type(self)):
          self._init_by_reference(*args)
+      elif len(args) == 1 and hasattr(args[0], 'named_pitch'):
+         self._init_by_reference(args[0].named_pitch)
       elif len(args) == 1 and pitchtools.is_named_pitch_pair(args[0]):
          self._init_by_pair(*args)
       elif len(args) == 1 and isinstance(args[0], str):
@@ -47,7 +49,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       elif len(args) == 3:
          self._init_by_name_octave_and_deviation(*args)
       else:
-         raise ValueError('%s not valid pitch token.' % str(args))
+         raise ValueError('\n\tNot a valid pitch token: "%s".' % str(args))
       return self
 
    def __getnewargs__(self):
