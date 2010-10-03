@@ -7,11 +7,11 @@ def divide_chord_by_pitch_number(chord, pitch = NamedPitch('b', 3)):
    r'''Create two new disjunct `treble`, `bass` chords from `chord`,
    based on the number of `pitch`.
 
-   For every note head in `chord` with altitude greater than or equal
+   For every note head in `chord` with diatonic pitch number greater than or equal
    to the pitch number of `pitch`, add a note head to the treble chord
    returned by this function.
 
-   For every note head in `chord` with altitude strictly less than
+   For every note head in `chord` with diatonic pitch number strictly less than
    the pitch number of `pitch`, add a note head to the bass chord returned
    by this function.
 

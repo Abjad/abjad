@@ -23,4 +23,4 @@ def named_pitch_and_clef_to_staff_position_number(pitch, clef):
       ``pitchtools.named_pitch_and_clef_to_staff_position_number( )``.
    '''
 
-   return pitch.altitude + clef.middle_c_position   
+   return pitch.diatonic_pitch_number + clef.middle_c_position   

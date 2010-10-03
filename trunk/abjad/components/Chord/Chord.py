@@ -59,14 +59,14 @@ class Chord(_Leaf):
    ## PRIVATE METHODS ##
 
    def _sort(self):
-      '''Sort note heads in chord by pitch altitude.
+      '''Sort note heads in chord by diatonic pitch number.
       '''
       def _helper(nh1, nh2):
-         altitude_cmp = cmp(nh1.pitch.altitude, nh2.pitch.altitude)
-         if altitude_cmp == 0:
-            return cmp(nh1.pitch.number, nh2.pitch.number)
+         result = cmp(nh1.pitch.diatonic_pitch_number, nh2.pitch.diatonic_pitch_number)
+         if result:
+            return result
          else:
-            return altitude_cmp
+            return cmp(nh1.pitch.number, nh2.pitch.number)
       self._note_heads.sort(_helper)
 
    @property

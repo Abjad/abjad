@@ -2,16 +2,16 @@ from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.chordtools._split import _split
 
 
-def divide_chord_by_pitch_altitude(chord, pitch = NamedPitch('b', 3)):
+def divide_chord_by_diatonic_pitch_number(chord, pitch = NamedPitch('b', 3)):
    r'''Create two new disjunct `treble`, `bass` chords from `chord`,
-   based on the altitude of `pitch`.
+   based on the diatonic pitch number of `pitch`.
 
-   For every note head in `chord` with altitude greater than or equal
-   to the altitude of `pitch`, add a note head to the treble chord
+   For every note head in `chord` with diatonic pitch number greater than or equal
+   to the diatonic pitch number of `pitch`, add a note head to the treble chord
    returned by this function.
 
-   For every note head in `chord` with altitude strictly less than
-   the altitude of `pitch`, add a note head to the bass chord returned
+   For every note head in `chord` with diatonic pitch number strictly less than
+   the diatonic pitch number of `pitch`, add a note head to the bass chord returned
    by this function.
 
    In the usual case, `chord` is an Abjad chord instance. But `chord`
@@ -35,7 +35,7 @@ def divide_chord_by_pitch_altitude(chord, pitch = NamedPitch('b', 3)):
       abjad> chord = Chord(range(12), Fraction(1, 4))
       abjad> chord
       Chord(c' cs' d' ef' e' f' fs' g' af' a' bf' b', 4)
-      abjad> chordtools.divide_chord_by_pitch_altitude(chord, NamedPitch(6))
+      abjad> chordtools.divide_chord_by_diatonic_pitch_number(chord, NamedPitch(6))
       (Chord(fs' g' af' a' bf' b', 4), Chord(c' cs' d' ef' e' f', 4))
 
    Preserve note head coloring. ::
@@ -59,7 +59,7 @@ def divide_chord_by_pitch_altitude(chord, pitch = NamedPitch('b', 3)):
 
    ::
 
-      abjad> treble, bass = chordtools.divide_chord_by_pitch_altitude(t, 2)     
+      abjad> treble, bass = chordtools.divide_chord_by_diatonic_pitch_number(t, 2)     
       abjad> f(treble)
       <
               \tweak #'color #blue
@@ -70,9 +70,13 @@ def divide_chord_by_pitch_altitude(chord, pitch = NamedPitch('b', 3)):
 
    .. versionchanged:: 1.1.2
       renamed ``chordtools.split_by_altitude( )`` to
-      ``chordtools.divide_chord_by_pitch_altitude( )``.
+      ``chordtools.divide_chord_by_diatonic_pitch_number( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``chordtools.divide_chord_by_pitch_altitude( )`` to
+      ``chordtools.divide_chord_by_diatonic_pitch_number( )``.
    '''
 
-   treble, bass = _split(chord, pitch = pitch, attr = 'altitude')
+   treble, bass = _split(chord, pitch = pitch, attr = 'diatonic_pitch_number')
 
    return treble, bass

@@ -60,7 +60,7 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __eq__(self, arg):
       if isinstance(arg, NamedPitch):
-         if self.altitude == arg.altitude:
+         if self.diatonic_pitch_number == arg.diatonic_pitch_number:
             if self.accidental.semitones == arg.accidental.semitones:
                if self.deviation == arg.deviation:
                   return True
@@ -68,22 +68,21 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __ge__(self, arg):
       if not isinstance(arg, NamedPitch):
-         #raise ValueError
          return False
-      return self.altitude > arg.altitude or \
-         (self.altitude == arg.altitude and \
+      return self.diatonic_pitch_number > arg.diatonic_pitch_number or \
+         (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
          self.accidental.semitones >= arg.accidental.semitones) or \
-         (self.altitude == arg.altitude and \
+         (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
          self.accidental == arg.accidental and \
          self._deviation_numeric >= arg._deviation_numeric)
 
    def __gt__(self, arg):
       if not isinstance(arg, NamedPitch):
-         raise ValueError
-      return self.altitude > arg.altitude or \
-         (self.altitude == arg.altitude and \
+         return False
+      return self.diatonic_pitch_number > arg.diatonic_pitch_number or \
+         (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
          self.accidental.semitones > arg.accidental.semitones) or \
-         (self.altitude == arg.altitude and \
+         (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
          self.accidental == arg.accidental and \
          self._deviation_numeric > arg._deviation_numeric)
 
@@ -92,22 +91,20 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __le__(self, arg):
       if not isinstance(arg, NamedPitch):
-         #raise ValueError
          return False
-      if not self.altitude == arg.altitude:
-         return self.altitude <= arg.altitude
+      if not self.diatonic_pitch_number == arg.diatonic_pitch_number:
+         return self.diatonic_pitch_number <= arg.diatonic_pitch_number
       if not self.accidental == arg.accidental:
          return self.accidental <= arg.accidental
       return self._deviation_numeric <= arg._deviation_numeric
 
    def __lt__(self, arg):
       if not isinstance(arg, NamedPitch):
-         #raise ValueError
          return False
-      return self.altitude < arg.altitude or \
-         (self.altitude == arg.altitude and \
+      return self.diatonic_pitch_number < arg.diatonic_pitch_number or \
+         (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
          self.accidental.semitones < arg.accidental.semitones) or \
-         (self.altitude == arg.altitude and \
+         (self.diatonic_pitch_number == arg.diatonic_pitch_number and \
          self.accidental == arg.accidental and \
          self._deviation_numeric < arg._deviation_numeric)
 
@@ -154,16 +151,12 @@ class NamedPitch(_StrictComparator, _Pitch):
       from abjad.tools import pitchtools
       letter = name[0]
       accidental_string = name[1:]
-      #self.letter = letter
-      #self.accidental = pitchtools.Accidental(accidental_string)
-      #self.octave = octave
       object.__setattr__(self, '_letter', letter)
       object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
       object.__setattr__(self, '_octave', octave)
 
    def _init_by_name_octave_and_deviation(self, name, octave, deviation):
       self._init_by_name_and_octave(name, octave)
-      #self.deviation = deviation
       object.__setattr__(self, '_deviation', deviation)
 
    def _init_by_named_pitch_class_and_octave_number(self, npc, octave_number):
@@ -174,9 +167,6 @@ class NamedPitch(_StrictComparator, _Pitch):
       spelling = self.accidental_spelling
       triple = pitchtools.pitch_number_to_pitch_letter_alphabetic_accidental_string_and_octave_number_triple(number, spelling)
       letter, accidental_string, octave = triple
-      #self.letter = letter
-      #self.accidental = pitchtools.Accidental(accidental_string)
-      #self.octave = octave
       object.__setattr__(self, '_letter', letter)
       object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
       object.__setattr__(self, '_octave', octave)
@@ -185,9 +175,6 @@ class NamedPitch(_StrictComparator, _Pitch):
       from abjad.tools import pitchtools
       pair = pitchtools.number_letter_to_accidental_octave(number, letter)
       accidental_string, octave = pair
-      #self.letter = letter
-      #self.accidental = pitchtools.Accidental(accidental_string)
-      #self.octave = octave
       object.__setattr__(self, '_letter', letter)
       object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
       object.__setattr__(self, '_octave', octave)
@@ -201,9 +188,6 @@ class NamedPitch(_StrictComparator, _Pitch):
       name, octave = pair
       letter = name[0]
       accidental_string = name[1:]
-      #self.letter = letter
-      #self.accidental = pitchtools.Accidental(accidental_string)
-      #self.octave = octave
       object.__setattr__(self, '_letter', letter)
       object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
       object.__setattr__(self, '_octave', octave)
@@ -216,18 +200,12 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def _init_by_reference(self, pitch):
       from abjad.tools import pitchtools
-      #self.letter = pitch.letter
-      #self.accidental = pitchtools.Accidental(pitch.accidental.alphabetic_string)
-      #self.octave = pitch.octave
       object.__setattr__(self, '_letter', pitch.letter)
       accidental = pitchtools.Accidental(pitch.accidental.alphabetic_string)
       object.__setattr__(self, '_accidental', accidental)
       object.__setattr__(self, '_octave', pitch.octave)
 
    def _init_empty(self):
-      #self.letter = None
-      #self.accidental = None
-      #self.octave = None
       object.__setattr__(self, '_letter', None)
       object.__setattr__(self, '_accidental', None)
       object.__setattr__(self, '_octave', None)
@@ -238,35 +216,10 @@ class NamedPitch(_StrictComparator, _Pitch):
    def absolute_diatonic_scale_degree(self):
       return 7 * self.octave + self.degree
 
-#   @apply
-#   def accidental( ):
-#      def fget(self):
-#         '''Read / write reference to any accidental attaching to pitch.'''
-#         return self._accidental
-#      def fset(self, expr):
-#         from abjad.tools import pitchtools
-#         if expr is None:
-#            self._accidental = pitchtools.Accidental('')
-#         elif isinstance(expr, str):
-#            self._accidental = pitchtools.Accidental(expr)
-#         elif isinstance(expr, pitchtools.Accidental):
-#            self._accidental = expr
-#         else:
-#            raise ValueError('can not set accidental.')
-#      return property(**locals( ))
-
    @property
    def accidental(self):
       return self._accidental
 
-   @property
-   def altitude(self):
-      '''See :term:`altitude`.'''
-      if self.letter:
-         return (self.octave - 4) * 7 + self.degree - 1
-      else:
-         return None
-      
    @property
    def degree(self):
       '''Diatonic scale degree with ``1`` for C, ``2`` for D, etc.'''
@@ -277,20 +230,18 @@ class NamedPitch(_StrictComparator, _Pitch):
       else:
          return None
 
-#   @apply
-#   def deviation( ):
-#      def fget(self):
-#         '''Read / write number of cents by which pitch deviates
-#            from 12-ET intonation.'''
-#         return self._deviation
-#      def fset(self, arg):
-#         assert isinstance(arg, (int, float, type(None)))
-#         self._deviation = arg
-#      return property(**locals( ))
-
    @property
    def deviation(self):
       return self._deviation
+
+   @property
+   def diatonic_pitch_number(self):
+      '''Read-only diatonic pitch number of named pitch.
+      '''
+      if self.letter:
+         return (self.octave - 4) * 7 + self.degree - 1
+      else:
+         return None
 
    @property
    def format(self):
@@ -300,23 +251,6 @@ class NamedPitch(_StrictComparator, _Pitch):
    @property
    def letter(self):
       return self._letter
-
-#   @apply
-#   def name( ):
-#      def fget(self):
-#         '''Read / write letter and accidental of pitch concatenated
-#         as a single string.'''
-#         if self.letter and self.accidental:
-#            return '%s%s' % (self.letter, self.accidental)
-#         else:
-#            return None
-#      def fset(self, name):
-#         from abjad.tools.pitchtools.pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair \
-#            import pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair
-#         letter, accidental = pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair(name)
-#         self.letter = letter
-#         self.accidental = accidental
-#      return property(**locals( ))
 
    @property
    def name(self):
@@ -330,29 +264,11 @@ class NamedPitch(_StrictComparator, _Pitch):
       from abjad.tools import pitchtools
       return pitchtools.NamedPitchClass(self.name)
 
-#   @apply
-#   def number( ):
-#      def fget(self):
-#         '''Read / write numeric value of pitch
-#         with middle C equal to ``0``.'''
-#         from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import pitch_letter_to_pitch_class_number
-#         if not self.octave is None:
-#            if self.letter:
-#               if self.accidental:
-#                  octave = 12 * (self.octave - 4)
-#                  pc = pitch_letter_to_pitch_class_number(self.letter)
-#                  semitones = self.accidental.semitones
-#                  return octave + pc + semitones
-#         else:
-#            return None
-#      def fset(self, arg):
-#         self.__init__(arg)
-#      return property(**locals( ))
-
    @property
    def number(self):
       '''Read / write numeric value of pitch with middle C equal to ``0``.'''
-      from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import pitch_letter_to_pitch_class_number
+      from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import \
+         pitch_letter_to_pitch_class_number
       if not self.octave is None:
          if self.letter:
             if self.accidental:

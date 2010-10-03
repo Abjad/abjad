@@ -50,7 +50,7 @@ def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
 
    assert isinstance(chord, _Leaf)
    assert pitchtools.is_named_pitch_token(pitch)
-   assert attr in ('number', 'altitude')
+   assert attr in ('number', 'diatonic_pitch_number')
 
    pitch = NamedPitch(pitch)
    treble = componenttools.clone_components_and_remove_all_spanners([chord])[0]
@@ -85,23 +85,7 @@ def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
    else:
       raise ValueError('must be note, rest or chord.')
 
-#   treble_note_head_attrs = [ ]
-#   if isinstance(treble, Chord):
-#      if len(treble) == 1:
-#         treble_note_head_attrs = [(k, v) for k, v in treble[0].__dict__.items( ) 
-#            if not k.startswith('_')]
-#   bass_note_head_attrs = [ ]
-#   if isinstance(bass, Chord):
-#      if len(bass) == 1:
-#         bass_note_head_attrs = [(k, v) for k, v in bass[0].__dict__.items( ) 
-#            if not k.startswith('_')]
-
    treble = cast_defective_chord(treble)
    bass = cast_defective_chord(bass)
-
-#   for k, v in treble_note_head_attrs:
-#      setattr(treble.note_head, k, v)
-#   for k, v in bass_note_head_attrs:
-#      setattr(bass.note_head, k, v)
 
    return treble, bass

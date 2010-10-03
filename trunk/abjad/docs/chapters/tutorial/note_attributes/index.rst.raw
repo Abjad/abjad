@@ -53,7 +53,7 @@ But Abjad implements some less familiar pitch attributes, too. ::
 
 ::
 
-   abjad> note.pitch.altitude
+   abjad> note.pitch.diatonic_pitch_number
    7
 
 The :class:`~abjad.tools.pitchtools.NamedPitch.NamedPitch.pitch.Pitch` entry in the Abjad API
