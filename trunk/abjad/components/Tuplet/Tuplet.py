@@ -4,11 +4,19 @@ from abjad.components.Tuplet._TupletFormatter import _TupletFormatter
 
 
 class Tuplet(Container):
-   '''Abjad tuplet formalization.
+   r'''The Abjad model of a tuplet:
+
+   ::
+
+      abjad> tuplet = Tuplet((2, 3), macros.scale(3))
+      abjad> f(tuplet)
+      \times 2/3 {
+         c'8
+         d'8
+         e'8
+      }
    '''
 
-   #def __init__(self, music = None):
-   #def __init__(self, multiplier, music = None):
    def __init__(self, multiplier, music = None, **kwargs):
       Container.__init__(self, music)
       self._duration = _TupletDurationInterface(self, multiplier)
@@ -27,17 +35,9 @@ class Tuplet(Container):
       new = tuplettools.fuse_tuplets([self, arg])
       return new
       
-#   def __repr__(self):
-#      if 0 < len(self):
-#         return '_Tuplet(%s)' % self._summary
-#      else:
-#         return '_Tuplet( )'
-
    def __repr__(self):
-      #return '%s(%s, [%s])' % ( 
-      #   self.__class__.__name__, self.duration.multiplier, self._summary)
       return '%s(%s, [%s])' % (
-         'Tuplet', self.duration.multiplier, self._summary)
+         self.__class__.__name__, self.duration.multiplier, self._summary)
 
    def __str__(self):
       if 0 < len(self):

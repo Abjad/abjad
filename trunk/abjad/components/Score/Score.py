@@ -2,7 +2,28 @@ from abjad.components._Context import _Context
 
 
 class Score(_Context):
-   '''Abjad model of the musical score.
+   r'''Abjad model of a score:
+
+   ::
+
+      abjad> staff_1 = Staff(macros.scale(4))
+      abjad> staff_2 = Staff(macros.scale(4))
+      abjad> score = Score([staff_1, staff_2])
+      abjad> f(score)
+      \new Score <<
+         \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+         }
+         \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+         }
+      >>
    '''
 
    def __init__(self, music = None, **kwargs):

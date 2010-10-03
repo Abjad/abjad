@@ -4,6 +4,19 @@ from abjad.components.Container._ContainerFormatter import _ContainerFormatter
 
 
 class Container(_Component):
+   '''The Abjad model of a music container:
+
+   ::
+
+      abjad> container = Container(macros.scale(4))
+      abjad> f(container)
+      {
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+   '''
 
    def __init__(self, music = None, **kwargs):
       _Component.__init__(self)
@@ -17,10 +30,11 @@ class Container(_Component):
 
    def __add__(self, expr):
       '''Concatenate containers self and expr.
-         The operation c = a + b returns a new Container c with
-         the content of both a and b.
-         The operation is non-commutative: the content of the first
-         operand will be placed before the content of the second operand.'''
+      The operation c = a + b returns a new Container c with
+      the content of both a and b.
+      The operation is non-commutative: the content of the first
+      operand will be placed before the content of the second operand.
+      '''
       from abjad.tools import componenttools
       from abjad.tools import containertools
       left = componenttools.clone_components_and_fracture_crossing_spanners([self])[0]
@@ -29,7 +43,6 @@ class Container(_Component):
 
    def __contains__(self, expr):
       '''True if expr is in container, otherwise False.'''
-      #return expr in self._music
       for x in self._music:
          if x is expr:
             return True
@@ -105,7 +118,6 @@ class Container(_Component):
          componenttools.remove_component_subtree_from_score_and_spanners([old])
          for spanner, index in spanners_receipt:
             spanner._insert(index, expr)
-            #expr.spanners._add(spanner)
             expr._spanners.add(spanner)
       # slice assignment
       else:
@@ -128,7 +140,6 @@ class Container(_Component):
          for spanner, index in spanners_receipt:
             for component in reversed(expr):
                spanner._insert(index, component)
-               #component.spanners._add(spanner)
                component._spanners.add(spanner)
 
    ## PRIVATE ATTRIBUTES ##
@@ -188,7 +199,8 @@ class Container(_Component):
       from abjad.tools.componenttools._switch import _switch
       music = music or [ ]
       assert componenttools.all_are_contiguous_components_in_same_thread(music)
-      parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(music)
+      parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
+         music)
       self._music = list(music)
       _switch(self._music, self)
       if parent is not None:
@@ -202,8 +214,6 @@ class Container(_Component):
       return leaf in self._navigator._contemporaneous_stop_contents
 
    ## PUBLIC METHODS ## 
-
-   ## TODO: Spanner get silently stripped sometimes! ##
 
    def append(self, component):
       '''Append component to the end of container.
@@ -219,7 +229,6 @@ class Container(_Component):
 
    def index(self, component):
       '''Return nonnegative integer index of component in container.'''
-      #return self._music.index(component)
       for i, element in enumerate(self._music):
          if element is component:
             return i

@@ -2,10 +2,21 @@ from abjad.components._Context import _Context
 
 
 class Staff(_Context):
-   '''Abjad model of one staff in score.'''
+   r'''Abjad model of a staff:
+
+   ::
+
+      abjad> staff = Staff(macros.scale(4))
+      abjad> f(staff)
+      \new Staff {
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+   '''
 
    def __init__(self, music = None, **kwargs):
-      '''Init staff as type of Abjad context.'''
       _Context.__init__(self, music)
       self.context = 'Staff'
       self._initialize_keyword_values(**kwargs)

@@ -7,10 +7,21 @@ from abjad.tools.metertools import Meter
 
 
 class Measure(Container):
-   '''Abstract base class of Abjad model of one measure in score.
+   r'''The Abjad model of a measure:
+
+   ::
+
+      abjad> measure = Measure((4, 8), macros.scale(4))
+      abjad> f(measure)
+      {
+         \time 4/8
+         c'8
+         d'8
+         e'8
+         f'8
+      }
    '''
 
-   #def __init__(self, music = None):
    def __init__(self, meter, music = None, **kwargs):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
@@ -84,7 +95,6 @@ class Measure(Container):
 
    ## PRIVATE METHODS ##
 
-   #def _attach_explicit_meter(self, numerator, denominator, partial = None):
    def _attach_explicit_meter(self, *args, **kwargs):
       #print 'attaching explicit meter ...'
       from abjad.tools import contexttools
@@ -125,12 +135,3 @@ class Measure(Container):
       '''True if preprolated duration matches effective meter duration.
       '''
       return contexttools.get_effective_time_signature(self).duration == self.duration.preprolated
-
-## FIXME ##
-#   @property
-#   def number(self):
-#      '''Read-only measure number STARTING AT ONE, not zero.'''
-#      #self._numbering._update_all_observer_interfaces_in_score_if_necessary( )
-#      self._numbering._update_prolated_offset_values_of_all_score_components_if_necessary( )
-#      self._numbering._update_observer_interfaces_of_all_score_components_if_necessary( )
-#      return self._numbering._measure
