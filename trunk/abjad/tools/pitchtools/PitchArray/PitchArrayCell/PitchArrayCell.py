@@ -305,15 +305,17 @@ class PitchArrayCell(_StrictComparator):
          return self.width
       elif len(self.pitches) == 1:
          if self.width == 1:
-            return self.pitches[0].pitch_class_name, self.pitches[0].octave_number
+            return self.pitches[0].named_pitch_class.name, self.pitches[0].octave_number
          else:
-            return (self.pitches[0].pitch_class_name, self.pitches[0].octave_number), self.width
+            return (self.pitches[0].named_pitch_class.name, self.pitches[0].octave_number), \
+               self.width
       else:
          if self.width == 1:
-            return [(pitch.pitch_class_name, pitch.octave_number) for pitch in self.pitches]
+            return [(pitch.named_pitch_class.name, pitch.octave_number) for pitch in self.pitches]
          else:
             return [
-               (pitch.pitch_class_name, pitch.octave_number) for pitch in self.pitches], self.width
+               (pitch.named_pitch_class.name, pitch.octave_number) for pitch in self.pitches], \
+               self.width
 
    @property
    def weight(self):

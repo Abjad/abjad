@@ -8,7 +8,7 @@ def test_NamedPitch___init____01( ):
    assert p.diatonic_pitch_number == 8
    assert p.format == "df''"
    assert p.diatonic_pitch_class_name == 'd'
-   assert p.pitch_class_name == 'df'
+   assert p.named_pitch_class == pitchtools.NamedPitchClass('df')
    assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numeric_pitch_class == pitchtools.NumericPitchClass(1)
@@ -31,7 +31,7 @@ def test_NamedPitch___init____03( ):
    assert p.diatonic_pitch_number == 7
    assert p.format == "cs''"
    assert p.diatonic_pitch_class_name == 'c'
-   assert p.pitch_class_name == 'cs'
+   assert p.named_pitch_class == pitchtools.NamedPitchClass('cs')
    assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numeric_pitch_class == pitchtools.NumericPitchClass(1)
@@ -46,7 +46,7 @@ def test_NamedPitch___init____04( ):
    assert p.diatonic_pitch_number == 8
    assert p.format == "df''"
    assert p.diatonic_pitch_class_name == 'd'
-   assert p.pitch_class_name == 'df'
+   assert p.named_pitch_class == pitchtools.NamedPitchClass('df')
    assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numeric_pitch_class == pitchtools.NumericPitchClass(1)
@@ -61,7 +61,7 @@ def test_NamedPitch___init____05( ):
    assert p.diatonic_pitch_number == 8
    assert p.format == "df''"
    assert p.diatonic_pitch_class_name == 'd'
-   assert p.pitch_class_name == 'df'
+   assert p.named_pitch_class == pitchtools.NamedPitchClass('df')
    assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numeric_pitch_class == pitchtools.NumericPitchClass(1)
@@ -89,7 +89,7 @@ def test_NamedPitch___init____07( ):
    assert p.diatonic_pitch_number == 8
    assert p.format == "df''"
    assert p.diatonic_pitch_class_name == 'd'
-   assert p.pitch_class_name == 'df'
+   assert p.named_pitch_class == pitchtools.NamedPitchClass('df')
    assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numeric_pitch_class == pitchtools.NumericPitchClass(1)
@@ -103,7 +103,7 @@ def test_NamedPitch___init____08( ):
    assert p.diatonic_pitch_number == None
    assert p.format == ''
    assert p.diatonic_pitch_class_name == None
-   assert p.pitch_class_name == None
+   assert p.named_pitch_class is None
    assert p.pitch_number == None
    assert p.octave_number == None
    assert p.numeric_pitch_class == None

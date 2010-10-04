@@ -53,7 +53,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self
 
    def __getnewargs__(self):
-      return (self.pitch_class_name, self.octave_number)
+      return (self._pitch_class_name, self.octave_number)
 
    ## OVERLOADS ##
 
@@ -120,7 +120,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       return not self == arg
 
    def __repr__(self):
-      if self.pitch_class_name and not self.octave_number is None:
+      if self._pitch_class_name and not self.octave_number is None:
          if self.deviation is None:
             return '%s(%s)' % (self.__class__.__name__, repr(str(self)))
          else:
@@ -130,8 +130,8 @@ class NamedPitch(_StrictComparator, _Pitch):
          return '%s( )' % self.__class__.__name__
 
    def __str__(self):
-      if self.pitch_class_name and not self.octave_number is None:
-         return '%s%s' % (self.pitch_class_name, self._ticks_string)
+      if self._pitch_class_name and not self.octave_number is None:
+         return '%s%s' % (self._pitch_class_name, self._ticks_string)
       else:
          return ''
 
@@ -318,7 +318,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self._diatonic_pitch_class_name
 
    @property
-   def pitch_class_name(self):
+   def _pitch_class_name(self):
       '''Read-only pitch-class name of pitch:
 
       ::
@@ -343,7 +343,10 @@ class NamedPitch(_StrictComparator, _Pitch):
       Return named pitch class.
       '''
       from abjad.tools import pitchtools
-      return pitchtools.NamedPitchClass(self.pitch_class_name)
+      if self._pitch_class_name is not None:
+         return pitchtools.NamedPitchClass(self._pitch_class_name)
+      else:
+         return None
 
    @property
    def pitch_number(self):

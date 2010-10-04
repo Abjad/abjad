@@ -18,7 +18,7 @@ class NamedPitchClass(_PitchClass):
          self._init_by_name_string(arg.name)
       else:
          pitch = get_named_pitch_from_pitch_carrier(arg)
-         object.__setattr__(self, '_name', pitch.pitch_class_name)
+         object.__setattr__(self, '_name', pitch.named_pitch_class.name)
 
    ## OVERLOADS ##
 
