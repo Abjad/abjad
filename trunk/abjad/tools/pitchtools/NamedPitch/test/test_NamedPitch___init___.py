@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_NamedPitch___init____01( ):
@@ -96,14 +97,7 @@ def test_NamedPitch___init____07( ):
 
 
 def test_NamedPitch___init____08( ):
-   '''Init empty.'''
+   '''Empty pitches now allowed.
+   '''
 
-   p = pitchtools.NamedPitch( )
-
-   assert p.diatonic_pitch_number == None
-   assert p.format == ''
-   assert p.diatonic_pitch_class_name == None
-   assert p.named_pitch_class is None
-   assert p.pitch_number == None
-   assert p.octave_number == None
-   assert p.numeric_pitch_class == None
+   assert py.test.raises(Exception, 'pitchtools.NamedPitch( )')

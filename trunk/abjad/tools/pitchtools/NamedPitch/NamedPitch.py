@@ -250,9 +250,7 @@ class NamedPitch(_Pitch):
       object.__setattr__(self, '_octave', pitch.octave_number)
 
    def _init_empty(self):
-      object.__setattr__(self, '_diatonic_pitch_class_name', None)
-      object.__setattr__(self, '_accidental', None)
-      object.__setattr__(self, '_octave', None)
+      raise ValueError('\n\tEmpty pitch not allowed.')
 
    ## PUBLIC ATTRIBUTES ##
 
