@@ -68,7 +68,7 @@ class Chord(_Leaf):
          if result:
             return result
          else:
-            return cmp(nh1.pitch.number, nh2.pitch.number)
+            return cmp(nh1.pitch.pitch_number, nh2.pitch.pitch_number)
       self._note_heads.sort(_helper)
 
    @property

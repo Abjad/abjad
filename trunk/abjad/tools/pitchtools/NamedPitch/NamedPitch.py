@@ -346,13 +346,13 @@ class NamedPitch(_StrictComparator, _Pitch):
       return pitchtools.NamedPitchClass(self.pitch_class_name)
 
    @property
-   def number(self):
+   def pitch_number(self):
       '''Read-only pitch number of named pitch:
 
       ::
 
          abjad> named_pitch = pitchtools.NamedPitch("cs'")
-         abjad> named_pitch.number
+         abjad> named_pitch.pitch_number
          1
       '''
       from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import \
@@ -390,7 +390,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       Return numeric pitch class.
       '''
       from abjad.tools import pitchtools
-      number = self.number
+      number = self.pitch_number
       if number is not None:
          return pitchtools.NumericPitchClass(number % 12)
       else:
@@ -406,4 +406,4 @@ class NamedPitch(_StrictComparator, _Pitch):
          abjad> named_pitch.semitones
          1
       '''
-      return self.number
+      return self.pitch_number

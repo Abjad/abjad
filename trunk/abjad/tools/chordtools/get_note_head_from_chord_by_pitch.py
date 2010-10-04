@@ -47,7 +47,7 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
             result.append(note_head)
    else:
       for note_head in chord.note_heads:
-         if note_head.pitch.number == pitch:
+         if note_head.pitch.pitch_number == pitch:
             result.append(note_head)
 
    count = len(result)

@@ -25,5 +25,5 @@ def test_NoteHead___init____03( ):
    new = notetools.NoteHead(t)
 
    assert t is not new
-   assert t.pitch.number == 6
-   assert new.pitch.number == 6
+   assert t.pitch.pitch_number == 6
+   assert new.pitch.pitch_number == 6

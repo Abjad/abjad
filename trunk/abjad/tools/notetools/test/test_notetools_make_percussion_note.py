@@ -6,13 +6,11 @@ def test_notetools_make_percussion_note_01( ):
    t = notetools.make_percussion_note(1, (5, 64), (1, 1))
 
    assert len(t) == 2
-   assert t[0].pitch.number == 1
+   assert t[0].pitch.pitch_number == 1
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
    assert t[0].duration.written == Fraction(1, 16)
    assert t[1].duration.written == Fraction(1, 64)
-   #assert not t[0].tie.spanned
-   #assert not t[1].tie.spanned
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
    assert not tietools.is_component_with_tie_spanner_attached(t[1])
 
@@ -27,8 +25,6 @@ def test_notetools_make_percussion_note_02( ):
    assert isinstance(t[1], Rest)
    assert t[0].duration.written == Fraction(1, 64)
    assert t[1].duration.written == Fraction(1, 16)
-   #assert not t[0].tie.spanned
-   #assert not t[1].tie.spanned
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
    assert not tietools.is_component_with_tie_spanner_attached(t[1])
 
@@ -53,8 +49,6 @@ def test_notetools_make_percussion_note_04( ):
    assert isinstance(t[1], Rest)
    assert t[0].duration.written == Fraction(1, 64)
    assert t[1].duration.written == Fraction(1, 32)
-   #assert not t[0].tie.spanned
-   #assert not t[1].tie.spanned
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
    assert not tietools.is_component_with_tie_spanner_attached(t[1])
 

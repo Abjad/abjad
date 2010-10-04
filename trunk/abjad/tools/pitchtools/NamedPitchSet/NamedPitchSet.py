@@ -60,7 +60,6 @@ class NamedPitchSet(_PitchSet):
    @property
    def _str_format_string(self):
       ## TODO: implement NumericPitchSet ##
-      #return ', '.join([str(pitch.number) for pitch in self.pitches])
       return ', '.join([str(pitch) for pitch in self.pitches])
 
    ## PUBLIC ATTRIBUTES ##
@@ -82,7 +81,7 @@ class NamedPitchSet(_PitchSet):
 
    @property
    def numbers(self):
-      return tuple(sorted([pitch.number for pitch in self]))
+      return tuple(sorted([pitch.pitch_number for pitch in self]))
 
    @property
    def pitch_classes(self):

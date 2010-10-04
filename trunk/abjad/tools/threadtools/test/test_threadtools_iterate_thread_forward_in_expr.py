@@ -61,7 +61,7 @@ def test_threadtools_iterate_thread_forward_in_expr_06( ):
    assert len(iter) == 2
    for e in iter:
       assert isinstance(e, Note)
-      assert e.pitch.number == 0
+      assert e.pitch.pitch_number == 0
 
 
 def test_threadtools_iterate_thread_forward_in_expr_07( ):
@@ -78,4 +78,4 @@ def test_threadtools_iterate_thread_forward_in_expr_07( ):
    assert len(iter) == 2
    for e in iter:
       assert isinstance(e, Note)
-      assert e.pitch.number == 0
+      assert e.pitch.pitch_number == 0

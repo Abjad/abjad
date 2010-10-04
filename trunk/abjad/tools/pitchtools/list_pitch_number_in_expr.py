@@ -23,7 +23,7 @@ def list_pitch_number_in_expr(expr):
 
    pitches = list_named_pitches_in_expr(expr)
 
-   pitch_numbers = [pitch.number for pitch in pitches]
+   pitch_numbers = [pitch.pitch_number for pitch in pitches]
    pitch_numbers = tuple(pitch_numbers)
 
    return pitch_numbers

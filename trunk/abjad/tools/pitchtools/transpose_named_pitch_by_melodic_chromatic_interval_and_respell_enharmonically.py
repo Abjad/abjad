@@ -1,8 +1,10 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_pitch_class_name import one_indexed_diatonic_scale_degree_number_to_pitch_class_name
+from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_pitch_class_name import \
+   one_indexed_diatonic_scale_degree_number_to_pitch_class_name
 
 
-def transpose_named_pitch_by_melodic_chromatic_interval_and_respell_enharmonically(pitch, staff_spaces, absolute_interval):
+def transpose_named_pitch_by_melodic_chromatic_interval_and_respell_enharmonically(
+   pitch, staff_spaces, absolute_interval):
    '''Transpose `pitch` by `absolute_interval` and renotate on the
    scale degree `staff_spaces` above or below. 
 
@@ -17,7 +19,7 @@ def transpose_named_pitch_by_melodic_chromatic_interval_and_respell_enharmonical
       ``pitchtools.transpose_named_pitch_by_melodic_chromatic_interval_and_respell_enharmonically( )``.
    '''
 
-   pitch_number = pitch.number + absolute_interval
+   pitch_number = pitch.pitch_number + absolute_interval
    #diatonic_scale_degree = pitch.degree + staff_spaces
    diatonic_scale_degree = (pitch.diatonic_pitch_class_number + 1) + staff_spaces
    letter = one_indexed_diatonic_scale_degree_number_to_pitch_class_name(diatonic_scale_degree)

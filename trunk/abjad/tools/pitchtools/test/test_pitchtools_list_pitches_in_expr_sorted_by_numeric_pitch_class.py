@@ -11,7 +11,7 @@ def test_pitchtools_list_pitches_in_expr_sorted_by_numeric_pitch_class_01( ):
    [pitchtools.NamedPitch(c, 3), pitchtools.NamedPitch(cs, 7), pitchtools.NamedPitch(d, 3), pitchtools.NamedPitch(ef, 6), pitchtools.NamedPitch(e, 4), pitchtools.NamedPitch(f, 5), pitchtools.NamedPitch(fs, 6), pitchtools.NamedPitch(g, 5), pitchtools.NamedPitch(af, 4), pitchtools.NamedPitch(a, 6), pitchtools.NamedPitch(bf, 3), pitchtools.NamedPitch(b, 4)]
    '''
 
-   sorted_pitch_numbers = [pitch.number for pitch in sorted_pitches]
+   sorted_pitch_numbers = [pitch.pitch_number for pitch in sorted_pitches]
    sorted_pcs = [pitch.pitch_class for pitch in sorted_pitches]
 
    assert sorted_pitch_numbers == [

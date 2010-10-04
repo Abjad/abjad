@@ -49,8 +49,8 @@ def _transpose_pitch_by_melodic_diatonic_interval(
    pitch, melodic_diatonic_interval):
    if not isinstance(pitch, NamedPitch):
       raise TypeError('must be pitch.')
-   chromatic_pitch_number = pitch.number + melodic_diatonic_interval.semitones
-   #diatonic_scale_degree = pitch.degree + melodic_diatonic_interval.staff_spaces
-   diatonic_scale_degree = (pitch.diatonic_pitch_class_number + 1) + melodic_diatonic_interval.staff_spaces
+   chromatic_pitch_number = pitch.pitch_number + melodic_diatonic_interval.semitones
+   diatonic_scale_degree = (pitch.diatonic_pitch_class_number + 1) + \
+      melodic_diatonic_interval.staff_spaces
    letter = one_indexed_diatonic_scale_degree_number_to_pitch_class_name(diatonic_scale_degree)
    return NamedPitch(chromatic_pitch_number, letter)

@@ -4,9 +4,12 @@ from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
 from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
 from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment import InversionEquivalentChromaticIntervalClassSegment
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet import InversionEquivalentChromaticIntervalClassSet
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector import InversionEquivalentChromaticIntervalClassVector
+from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment import \
+   InversionEquivalentChromaticIntervalClassSegment
+from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet import \
+   InversionEquivalentChromaticIntervalClassSet
+from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector import \
+   InversionEquivalentChromaticIntervalClassVector
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 from abjad.tools.pitchtools.NumericPitchClassVector import NumericPitchClassVector
@@ -122,7 +125,7 @@ class NamedPitchSegment(_PitchSegment):
 
    @property
    def numbers(self):
-      return [pitch.number for pitch in self]
+      return [pitch.pitch_number for pitch in self]
 
    @property
    def pitch_class_segment(self):

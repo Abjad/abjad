@@ -45,7 +45,7 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction = '
       pitches = pitchtools.list_named_pitches_in_expr(leaves)
       if not pitches:
          continue
-      pitch_numbers = [pitch.number for pitch in pitches]
+      pitch_numbers = [pitch.pitch_number for pitch in pitches]
       pitch_numbers = ' '.join([str(x) for x in pitch_numbers])
       pitch_numbers = r'\small { \column { %s } }' % pitch_numbers
       markuptools.Markup(pitch_numbers, markup_direction)(vertical_moment.start_leaves[-1])

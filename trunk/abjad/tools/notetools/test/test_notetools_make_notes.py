@@ -10,7 +10,6 @@ def test_notetools_make_notes_01( ):
    assert len(t) == 1
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Fraction(1, 4)
-   #assert not t[0].tie.spanned
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
 
 
@@ -22,8 +21,6 @@ def test_notetools_make_notes_02( ):
    assert isinstance(t[1], Note)
    assert t[0].duration.written == Fraction(4, 8)
    assert t[1].duration.written == Fraction(1, 8)
-   #assert t[0].tie.spanned
-   #assert t[1].tie.spanned
    assert tietools.is_component_with_tie_spanner_attached(t[0])
    assert tietools.is_component_with_tie_spanner_attached(t[1])
 
@@ -33,8 +30,8 @@ def test_notetools_make_notes_03( ):
    '''
    t = notetools.make_notes([1, 2], (1, 4))
    assert len(t) == 2
-   assert t[0].pitch.number == 1
-   assert t[1].pitch.number == 2
+   assert t[0].pitch.pitch_number == 1
+   assert t[1].pitch.pitch_number == 2
 
 def test_notetools_make_notes_04( ):
    '''
@@ -42,8 +39,8 @@ def test_notetools_make_notes_04( ):
    '''
    t = notetools.make_notes(1, [(1, 8), (1, 4)])
    assert len(t) == 2
-   assert t[0].pitch.number == 1
-   assert t[1].pitch.number == 1
+   assert t[0].pitch.pitch_number == 1
+   assert t[1].pitch.pitch_number == 1
    assert t[0].duration.written == Fraction(1, 8)
    assert t[1].duration.written == Fraction(1, 4)
 
@@ -53,8 +50,8 @@ def test_notetools_make_notes_05( ):
    '''
    t = notetools.make_notes([0, 1], [(1, 8), (1, 4)])
    assert len(t) == 2
-   assert t[0].pitch.number == 0
-   assert t[1].pitch.number == 1
+   assert t[0].pitch.pitch_number == 0
+   assert t[1].pitch.pitch_number == 1
    assert t[0].duration.written == Fraction(1, 8)
    assert t[1].duration.written == Fraction(1, 4)
 
@@ -104,7 +101,6 @@ def test_notetools_make_notes_10( ):
    '''
    t = notetools.make_notes(1, (1, 36))
    assert len(t) == 1
-   #assert isinstance(t[0], Tuplet)
    assert isinstance(t[0], Tuplet)
    assert len(t[0]) == 1
    assert t[0].duration.prolated == Fraction(1, 36)
@@ -118,7 +114,6 @@ def test_notetools_make_notes_11( ):
    '''
    t = notetools.make_notes(1, [(1, 12), (1, 6), (1, 8)])
    assert len(t) == 2
-   #assert isinstance(t[0], Tuplet)
    assert isinstance(t[0], Tuplet)
    assert isinstance(t[1], Note)
    assert len(t[0]) == 2
@@ -144,7 +139,6 @@ def test_notetools_make_notes_12( ):
    t = notetools.make_notes(1, [(5, 12), (1, 6), (1, 8)], \
       direction='little-endian')
    assert len(t) == 2
-   #assert isinstance(t[0], Tuplet)
    assert isinstance(t[0], Tuplet)
    assert isinstance(t[1], Note)
    assert len(t[0]) == 3

@@ -1,7 +1,8 @@
 from abjad.components.Note import Note
 from abjad.tools import componenttools
 from abjad.tools import listtools
-from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import \
+   get_named_pitch_from_pitch_carrier
 
 
 def insert_and_transpose_nested_subruns_in_lpitch_class_number_list(notes, subrun_indicators):
@@ -28,9 +29,9 @@ def insert_and_transpose_nested_subruns_in_lpitch_class_number_list(notes, subru
 
       abjad> for x in notes:
          try:
-            t.append(x.pitch.number)
+            t.append(x.pitch.pitch_number)
          except AttributeError:
-            t.append([y.pitch.number for y in x])
+            t.append([y.pitch.pitch_number for y in x])
 
       abjad> t
       [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]
@@ -94,7 +95,7 @@ def _get_intervals_in_subrun(subrun_source):
    for first, second in listtools.pairwise(subrun_source):
       first_pitch = get_named_pitch_from_pitch_carrier(first)
       second_pitch = get_named_pitch_from_pitch_carrier(second)
-      interval = second_pitch.number - first_pitch.number
+      interval = second_pitch.pitch_number - first_pitch.pitch_number
       result.append(interval + result[-1])
    result.pop(0)
    return result
@@ -115,7 +116,7 @@ def _make_index_length_pairs(subrun_indicator):
 def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
    new_notes = [ ]
    for subrun_interval in subrun_intervals:
-      new_pc = (anchor_pitch.number + subrun_interval) % 12
+      new_pc = (anchor_pitch.pitch_number + subrun_interval) % 12
       new_note = Note(new_pc, anchor_written_duration)
       new_notes.append(new_note)
    return new_notes

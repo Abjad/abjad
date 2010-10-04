@@ -2,7 +2,8 @@ from abjad.components.Chord import Chord
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.PitchRange import PitchRange
 from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
-from abjad.tools.pitchtools.transpose_pitch_by_melodic_chromatic_interval import transpose_pitch_by_melodic_chromatic_interval
+from abjad.tools.pitchtools.transpose_pitch_by_melodic_chromatic_interval import \
+   transpose_pitch_by_melodic_chromatic_interval
 
 
 ## TODO: Reimplement pitchtools.list_octave_transpositions_of_pitch_within_pitch_range( ) to work on Abjad PitchSet, Note and Chord objects only. ##
@@ -57,8 +58,8 @@ def list_octave_transpositions_of_pitch_within_pitch_range(pitches, pitch_range)
 def _pitch_number_list_octave_transpositions(pitch_number_list, pitch_range):
    result = [ ]
    ps = set(pitch_number_list)
-   start_pitch_number = pitch_range._start_pitch.number
-   stop_pitch_number = pitch_range._stop_pitch.number
+   start_pitch_number = pitch_range._start_pitch.pitch_number
+   stop_pitch_number = pitch_range._stop_pitch.pitch_number
    R = set(range(start_pitch_number, stop_pitch_number + 1))
    while ps.issubset(R):
       next = list(ps)

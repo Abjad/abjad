@@ -9,7 +9,7 @@ from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 
 
-def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
+def _split(chord, pitch = NamedPitch('b', 3), attr = 'pitch_number'):
    r'''Split ``chord`` into a disjunt ``(treble, bass)`` pair
    of parts about ``pitch``. 
    Place pitches in ``chord`` greater than or equal to 
@@ -22,7 +22,7 @@ def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
    be an Abjad :class:`~abjad.components.Note.note.Note` or 
    :class:`~abjad.components.Rest.rest.Rest`.
 
-   * ``attr``: ``number``, ``alititude``. 
+   * ``attr``: ``pitch_number``, ``alititude``. 
 
    Length treatment:
 
@@ -50,7 +50,7 @@ def _split(chord, pitch = NamedPitch('b', 3), attr = 'number'):
 
    assert isinstance(chord, _Leaf)
    assert pitchtools.is_named_pitch_token(pitch)
-   assert attr in ('number', 'diatonic_pitch_number')
+   assert attr in ('pitch_number', 'diatonic_pitch_number')
 
    pitch = NamedPitch(pitch)
    treble = componenttools.clone_components_and_remove_all_spanners([chord])[0]

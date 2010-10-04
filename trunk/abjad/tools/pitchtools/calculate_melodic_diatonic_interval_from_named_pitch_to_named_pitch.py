@@ -34,7 +34,7 @@ def calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
    
    diatonic_interval_number = abs(degree_1 - degree_2) + 1
    
-   chromatic_interval_number = abs(pitch_1.number - pitch_2.number)
+   chromatic_interval_number = abs(pitch_1.pitch_number - pitch_2.pitch_number)
 
    absolute_diatonic_interval = \
       diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(

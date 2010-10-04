@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedPitch__init_by_name_and_octave_01( ):
+def test_NamedPitch___init____01( ):
    '''Init by name and octave.'''
 
    p = pitchtools.NamedPitch('df', 5)
@@ -9,12 +9,12 @@ def test_NamedPitch__init_by_name_and_octave_01( ):
    assert p.format == "df''"
    assert p.letter == 'd'
    assert p.pitch_class_name == 'df'
-   assert p.number == 13
+   assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
 
 
-def test_NamedPitch__init_by_named_pitch_class_and_octave_number_01( ):
+def test_NamedPitch___init____02( ):
 
    npc = pitchtools.NamedPitchClass('cs')
    octave_number = 5
@@ -23,7 +23,7 @@ def test_NamedPitch__init_by_named_pitch_class_and_octave_number_01( ):
    assert pitch == pitchtools.NamedPitch('cs', 5)
 
 
-def test_NamedPitch__init_by_number_01( ):
+def test_NamedPitch___init____03( ):
    '''Init by number.'''
 
    p = pitchtools.NamedPitch(13)
@@ -32,13 +32,13 @@ def test_NamedPitch__init_by_number_01( ):
    assert p.format == "cs''"
    assert p.letter == 'c'
    assert p.pitch_class_name == 'cs'
-   assert p.number == 13
+   assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
 
 
 
-def test_NamedPitch__init_by_number_and_letter_01( ):
+def test_NamedPitch___init____04( ):
    '''Init by number and letter.'''
 
    p = pitchtools.NamedPitch(13, 'd')
@@ -47,13 +47,13 @@ def test_NamedPitch__init_by_number_and_letter_01( ):
    assert p.format == "df''"
    assert p.letter == 'd'
    assert p.pitch_class_name == 'df'
-   assert p.number == 13
+   assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
 
 
 
-def test_NamedPitch__init_by_pair_01( ):
+def test_NamedPitch___init____05( ):
    '''Init by pair.'''
 
    p = pitchtools.NamedPitch(('df', 5))
@@ -62,13 +62,13 @@ def test_NamedPitch__init_by_pair_01( ):
    assert p.format == "df''"
    assert p.letter == 'd'
    assert p.pitch_class_name == 'df'
-   assert p.number == 13
+   assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
 
 
 
-def test_NamedPitch__init_by_pitch_string_01( ):
+def test_NamedPitch___init____06( ):
   
    assert pitchtools.NamedPitch("cs'''") == pitchtools.NamedPitch('cs', 6)
    assert pitchtools.NamedPitch("cs''") == pitchtools.NamedPitch('cs', 5)
@@ -80,7 +80,7 @@ def test_NamedPitch__init_by_pitch_string_01( ):
 
 
 
-def test_NamedPitch__init_by_reference_01( ):
+def test_NamedPitch___init____07( ):
    '''Init by reference.'''
 
    r = pitchtools.NamedPitch('df', 5)
@@ -90,12 +90,12 @@ def test_NamedPitch__init_by_reference_01( ):
    assert p.format == "df''"
    assert p.letter == 'd'
    assert p.pitch_class_name == 'df'
-   assert p.number == 13
+   assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
 
 
-def test_NamedPitch__init_empty_01( ):
+def test_NamedPitch___init____08( ):
    '''Init empty.'''
 
    p = pitchtools.NamedPitch( )
@@ -104,6 +104,6 @@ def test_NamedPitch__init_empty_01( ):
    assert p.format == ''
    assert p.letter == None
    assert p.pitch_class_name == None
-   assert p.number == None
+   assert p.pitch_number == None
    assert p.octave_number == None
    assert p.pitch_class == None

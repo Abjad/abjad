@@ -12,7 +12,7 @@ def test_NoteHead_pitch_01( ):
    "NoteHead(d'')"
 
    assert t.note_head.format == "d''"
-   assert t.note_head.pitch.number == 14
+   assert t.note_head.pitch.pitch_number == 14
 
 
 def test_NoteHead_pitch_02( ):
@@ -25,7 +25,7 @@ def test_NoteHead_pitch_02( ):
    "NoteHead(d'')"
 
    assert t.note_head.format == "d''"
-   assert t.note_head.pitch.number == 14
+   assert t.note_head.pitch.pitch_number == 14
 
 
 def test_NoteHead_pitch_03( ):

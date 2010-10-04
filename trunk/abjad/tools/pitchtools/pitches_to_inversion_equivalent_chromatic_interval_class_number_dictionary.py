@@ -52,7 +52,7 @@ def pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(p
    for pitch in pitches:
       if not isinstance(pitch, NamedPitch):
          raise ValueError
-      numbers.append(pitch.number)
+      numbers.append(pitch.pitch_number)
 
    pairs = listtools.get_unordered_pairs(numbers)
 

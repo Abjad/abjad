@@ -1,5 +1,6 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import \
+   get_named_pitch_from_pitch_carrier
 from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 
@@ -80,7 +81,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitches(pitch_carri
    for first_carrier, second_carrier in pairs:
       first_pitch = get_named_pitch_from_pitch_carrier(first_carrier)
       second_pitch = get_named_pitch_from_pitch_carrier(second_carrier)
-      signed_interval = second_pitch.number - first_pitch.number
+      signed_interval = second_pitch.pitch_number - first_pitch.pitch_number
       result.append(signed_interval)
 
    return result
