@@ -16,7 +16,7 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    accidental_spelling = _accidental_spelling
 
-   __slots__ = ('_accidental', '_deviation', '_letter', '_octave')
+   __slots__ = ('_accidental', '_deviation', '_diatonic_pitch_class_name', '_octave')
 
    def __new__(klass, *args, **kwargs):
       from abjad.tools import pitchtools
@@ -177,9 +177,9 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def _init_by_name_and_octave(self, name, octave):
       from abjad.tools import pitchtools
-      letter = name[0]
+      diatonic_pitch_class_name = name[0]
       accidental_string = name[1:]
-      object.__setattr__(self, '_letter', letter)
+      object.__setattr__(self, '_diatonic_pitch_class_name', diatonic_pitch_class_name)
       object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
       object.__setattr__(self, '_octave', octave)
 
@@ -194,29 +194,29 @@ class NamedPitch(_StrictComparator, _Pitch):
       from abjad.tools import pitchtools
       spelling = self.accidental_spelling
       triple = pitchtools.pitch_number_to_pitch_letter_alphabetic_accidental_string_and_octave_number_triple(number, spelling)
-      letter, accidental_string, octave = triple
-      object.__setattr__(self, '_letter', letter)
+      diatonic_pitch_class_name, accidental_string, octave = triple
+      object.__setattr__(self, '_diatonic_pitch_class_name', diatonic_pitch_class_name)
       object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
       object.__setattr__(self, '_octave', octave)
 
-   def _init_by_number_and_letter(self, number, letter):
+   def _init_by_number_and_letter(self, number, diatonic_pitch_class_name):
       from abjad.tools import pitchtools
-      pair = pitchtools.number_letter_to_accidental_octave(number, letter)
+      pair = pitchtools.number_letter_to_accidental_octave(number, diatonic_pitch_class_name)
       accidental_string, octave = pair
-      object.__setattr__(self, '_letter', letter)
+      object.__setattr__(self, '_diatonic_pitch_class_name', diatonic_pitch_class_name)
       object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
       object.__setattr__(self, '_octave', octave)
 
    def _init_by_number_and_named_pitch_class(self, pitch_number, npc):
-      letter = npc.name[:1]
-      self._init_by_number_and_letter(pitch_number, letter)
+      diatonic_pitch_class_name = npc.name[:1]
+      self._init_by_number_and_letter(pitch_number, diatonic_pitch_class_name)
 
    def _init_by_pair(self, pair):
       from abjad.tools import pitchtools
       name, octave = pair
-      letter = name[0]
+      diatonic_pitch_class_name = name[0]
       accidental_string = name[1:]
-      object.__setattr__(self, '_letter', letter)
+      object.__setattr__(self, '_diatonic_pitch_class_name', diatonic_pitch_class_name)
       object.__setattr__(self, '_accidental', pitchtools.Accidental(accidental_string))
       object.__setattr__(self, '_octave', octave)
 
@@ -228,13 +228,13 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def _init_by_reference(self, pitch):
       from abjad.tools import pitchtools
-      object.__setattr__(self, '_letter', pitch.letter)
+      object.__setattr__(self, '_diatonic_pitch_class_name', pitch.diatonic_pitch_class_name)
       accidental = pitchtools.Accidental(pitch.accidental.alphabetic_string)
       object.__setattr__(self, '_accidental', accidental)
       object.__setattr__(self, '_octave', pitch.octave_number)
 
    def _init_empty(self):
-      object.__setattr__(self, '_letter', None)
+      object.__setattr__(self, '_diatonic_pitch_class_name', None)
       object.__setattr__(self, '_accidental', None)
       object.__setattr__(self, '_octave', None)
 
@@ -274,8 +274,7 @@ class NamedPitch(_StrictComparator, _Pitch):
          abjad> named_pitch.diatonic_pitch_number
          0
       '''
-      if self.letter:
-         #return (self.octave_number - 4) * 7 + self.degree - 1
+      if self.diatonic_pitch_class_name:
          return (self.octave_number - 4) * 7 + self.diatonic_pitch_class_number
       else:
          return None
@@ -291,7 +290,8 @@ class NamedPitch(_StrictComparator, _Pitch):
          0
       '''
       from abjad.tools import pitchtools
-      return pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number(self.letter)
+      return pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number(
+         self.diatonic_pitch_class_name)
 
    @property
    def format(self):
@@ -306,16 +306,16 @@ class NamedPitch(_StrictComparator, _Pitch):
       return str(self)
 
    @property
-   def letter(self):
-      '''Read-only diatonic pitch-class named of pitch:
+   def diatonic_pitch_class_name(self):
+      '''Read-only diatonic pitch-class name of pitch:
 
       ::
 
          abjad> named_pitch = pitchtools.NamedPitch("cs'")
-         abjad> named_pitch.letter
+         abjad> named_pitch.diatonic_pitch_class_name
          'c'
       '''
-      return self._letter
+      return self._diatonic_pitch_class_name
 
    @property
    def pitch_class_name(self):
@@ -327,8 +327,8 @@ class NamedPitch(_StrictComparator, _Pitch):
          abjad> named_pitch.pitch_class_name
          'cs'
       '''
-      if self.letter and self.accidental:
-         return '%s%s' % (self.letter, self.accidental)
+      if self.diatonic_pitch_class_name and self.accidental:
+         return '%s%s' % (self.diatonic_pitch_class_name, self.accidental)
       else:
          return None
 
@@ -358,10 +358,10 @@ class NamedPitch(_StrictComparator, _Pitch):
       from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import \
          pitch_letter_to_pitch_class_number
       if not self.octave_number is None:
-         if self.letter:
+         if self.diatonic_pitch_class_name:
             if self.accidental:
                octave = 12 * (self.octave_number - 4)
-               pc = pitch_letter_to_pitch_class_number(self.letter)
+               pc = pitch_letter_to_pitch_class_number(self.diatonic_pitch_class_name)
                semitones = self.accidental.semitones
                return octave + pc + semitones
       else:
