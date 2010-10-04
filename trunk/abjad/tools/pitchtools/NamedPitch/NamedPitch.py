@@ -333,14 +333,32 @@ class NamedPitch(_Pitch):
 
    @property
    def named_diatonic_pitch(self):
-      from abjad.tools import pitchtools
-      if self._diatonic_pitch_class_name is not None:
-         name_and_ticks = self._diatonic_pitch_class_name
-         name_and_ticks += self._ticks_string
-         return pitchtools.NamedDiatonicPitch(name_and_tickes)
-      else:
-         return None
+      '''Named diatonic pitch from named pitch:
 
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs''")
+         abjad> named_pitch.named_diatonic_pitch
+         NamedDiatonicPitch("c''")
+      '''
+      from abjad.tools import pitchtools
+      name_and_ticks = self._diatonic_pitch_class_name
+      name_and_ticks += self._ticks_string
+      return pitchtools.NamedDiatonicPitch(name_and_ticks)
+
+   @property
+   def named_diatonic_pitch_class(self):
+      '''Named diatonic pitch-class from named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs''")
+         abjad> named_pitch.named_diatonic_pitch_class
+         NamedDiatonicPitchClass('c')
+      '''
+      from abjad.tools import pitchtools
+      return pitchtools.NamedDiatonicPitchClass(self._diatonic_pitch_class_name)
+   
    @property
    def named_pitch_class(self):
       '''New named pitch class from named pitch::
@@ -390,6 +408,34 @@ class NamedPitch(_Pitch):
          4
       '''
       return self._octave
+
+   @property
+   def numeric_diatonic_pitch(self):
+      '''Numeric diatonic pitch from named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs''")
+         abjad> named_pitch.numeric_diatonic_pitch
+         NumericDiatonicPitch(7)
+      '''
+      from abjad.tools import pitchtools
+      name_and_ticks = self._diatonic_pitch_class_name
+      name_and_ticks += self._ticks_string
+      return pitchtools.NumericDiatonicPitch(name_and_ticks)
+
+   @property
+   def numeric_diatonic_pitch_class(self):
+      '''Numeric diatonic pitch from named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs''")
+         abjad> named_pitch.numeric_diatonic_pitch_class
+         NumericDiatonicPitchClass(0)
+      '''
+      from abjad.tools import pitchtools
+      return pitchtools.NumericDiatonicPitchClass(self._diatonic_pitch_class_name)
 
    @property
    def numeric_pitch_class(self):

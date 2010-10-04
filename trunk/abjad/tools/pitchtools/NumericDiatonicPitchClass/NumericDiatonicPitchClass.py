@@ -31,7 +31,7 @@ class NumericDiatonicPitchClass(_DiatonicPitchClass):
    ## OVERLOADS ##
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, repr(self.diatonic_pitch_class_number))
+      return '%s(%s)' % (self.__class__.__name__, repr(self._diatonic_pitch_class_number))
 
    ## PUBLIC ATTRIBUTES ##
 
