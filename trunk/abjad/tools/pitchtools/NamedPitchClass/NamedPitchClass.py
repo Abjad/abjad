@@ -1,7 +1,8 @@
 from abjad.tools.pitchtools._PitchClass import _PitchClass
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import \
+   get_named_pitch_from_pitch_carrier
 
 
 class NamedPitchClass(_PitchClass):
@@ -17,8 +18,7 @@ class NamedPitchClass(_PitchClass):
          self._init_by_name_string(arg.name)
       else:
          pitch = get_named_pitch_from_pitch_carrier(arg)
-         #self._name = pitch.name
-         object.__setattr__(self, '_name', pitch.name)
+         object.__setattr__(self, '_name', pitch.pitch_class_name)
 
    ## OVERLOADS ##
 

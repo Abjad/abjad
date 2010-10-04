@@ -9,8 +9,8 @@ def test_chordtools_yield_all_subchords_of_chord_01( ):
    pairs = [ ]
    for subchord in subchords:
       named_pitches = pitchtools.list_named_pitches_in_expr(subchord)
-      pairs_tuple = tuple(
-         [(pitch.name, pitch.octave_number) for pitch in named_pitches if pitch is not None])
+      pairs_tuple = tuple([(pitch.pitch_class_name, pitch.octave_number) 
+         for pitch in named_pitches if pitch is not None])
       pairs.append(pairs_tuple)
 
    assert pairs == [

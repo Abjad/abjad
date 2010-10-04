@@ -1,6 +1,5 @@
 from abjad.core import _StrictComparator
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-import types
 
 
 class PitchArrayCell(_StrictComparator):
@@ -306,14 +305,15 @@ class PitchArrayCell(_StrictComparator):
          return self.width
       elif len(self.pitches) == 1:
          if self.width == 1:
-            return self.pitches[0].name, self.pitches[0].octave_number
+            return self.pitches[0].pitch_class_name, self.pitches[0].octave_number
          else:
-            return (self.pitches[0].name, self.pitches[0].octave_number), self.width
+            return (self.pitches[0].pitch_class_name, self.pitches[0].octave_number), self.width
       else:
          if self.width == 1:
-            return [(pitch.name, pitch.octave_number) for pitch in self.pitches]
+            return [(pitch.pitch_class_name, pitch.octave_number) for pitch in self.pitches]
          else:
-            return [(pitch.name, pitch.octave_number) for pitch in self.pitches], self.width
+            return [
+               (pitch.pitch_class_name, pitch.octave_number) for pitch in self.pitches], self.width
 
    @property
    def weight(self):

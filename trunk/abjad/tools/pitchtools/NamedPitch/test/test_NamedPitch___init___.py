@@ -8,7 +8,7 @@ def test_NamedPitch__init_by_name_and_octave_01( ):
    assert p.diatonic_pitch_number == 8
    assert p.format == "df''"
    assert p.letter == 'd'
-   assert p.name == 'df'
+   assert p.pitch_class_name == 'df'
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
@@ -31,7 +31,7 @@ def test_NamedPitch__init_by_number_01( ):
    assert p.diatonic_pitch_number == 7
    assert p.format == "cs''"
    assert p.letter == 'c'
-   assert p.name == 'cs'
+   assert p.pitch_class_name == 'cs'
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
@@ -46,7 +46,7 @@ def test_NamedPitch__init_by_number_and_letter_01( ):
    assert p.diatonic_pitch_number == 8
    assert p.format == "df''"
    assert p.letter == 'd'
-   assert p.name == 'df'
+   assert p.pitch_class_name == 'df'
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
@@ -61,7 +61,7 @@ def test_NamedPitch__init_by_pair_01( ):
    assert p.diatonic_pitch_number == 8
    assert p.format == "df''"
    assert p.letter == 'd'
-   assert p.name == 'df'
+   assert p.pitch_class_name == 'df'
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
@@ -89,7 +89,7 @@ def test_NamedPitch__init_by_reference_01( ):
    assert p.diatonic_pitch_number == 8
    assert p.format == "df''"
    assert p.letter == 'd'
-   assert p.name == 'df'
+   assert p.pitch_class_name == 'df'
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
@@ -103,7 +103,7 @@ def test_NamedPitch__init_empty_01( ):
    assert p.diatonic_pitch_number == None
    assert p.format == ''
    assert p.letter == None
-   assert p.name == None
+   assert p.pitch_class_name == None
    assert p.number == None
    assert p.octave_number == None
    assert p.pitch_class == None

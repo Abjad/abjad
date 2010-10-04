@@ -53,7 +53,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self
 
    def __getnewargs__(self):
-      return (self.name, self.octave_number)
+      return (self.pitch_class_name, self.octave_number)
 
    ## OVERLOADS ##
 
@@ -120,21 +120,18 @@ class NamedPitch(_StrictComparator, _Pitch):
       return not self == arg
 
    def __repr__(self):
-      if self.name and not self.octave_number is None:
+      if self.pitch_class_name and not self.octave_number is None:
          if self.deviation is None:
-            #return '%s(%s, %s)' % (self.__class__.__name__, self.name, self.octave_number)
             return '%s(%s)' % (self.__class__.__name__, repr(str(self)))
          else:
-            #return '%s(%s, %s, %s)' % (self.__class__.__name__,
-            #   self.name, self.octave_number, self.deviation)
             return '%s(%s, deviation = %s)' % (self.__class__.__name__,
                repr(str(self)), self.deviation)
       else:
          return '%s( )' % self.__class__.__name__
 
    def __str__(self):
-      if self.name and not self.octave_number is None:
-         return '%s%s' % (self.name, self._ticks_string)
+      if self.pitch_class_name and not self.octave_number is None:
+         return '%s%s' % (self.pitch_class_name, self._ticks_string)
       else:
          return ''
 
@@ -321,13 +318,13 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self._letter
 
    @property
-   def name(self):
+   def pitch_class_name(self):
       '''Read-only pitch-class name of pitch:
 
       ::
 
          abjad> named_pitch = pitchtools.NamedPitch("cs'")
-         abjad> named_pitch.name
+         abjad> named_pitch.pitch_class_name
          'cs'
       '''
       if self.letter and self.accidental:
@@ -346,7 +343,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       Return named pitch class.
       '''
       from abjad.tools import pitchtools
-      return pitchtools.NamedPitchClass(self.name)
+      return pitchtools.NamedPitchClass(self.pitch_class_name)
 
    @property
    def number(self):
