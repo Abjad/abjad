@@ -29,10 +29,10 @@ def permute_pitch_list_by_twelve_tone_row(pitches, row):
       matching_pitches = [ ]
       for pitch in pitches:
          if isinstance(pitch, NamedPitch):
-            if pitch.pitch_class == pc:   
+            if pitch.numeric_pitch_class == pc:   
                matching_pitches.append(pitch)
          elif isinstance(pitch, Note):
-            if pitch.pitch.pitch_class == pc:
+            if pitch.pitch.numeric_pitch_class == pc:
                matching_pitches.append(pitch)
          else:
             raise TypeError('must be Abjad Pitch or Note.')

@@ -380,11 +380,11 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self._octave
 
    @property
-   def pitch_class(self):
+   def numeric_pitch_class(self):
       '''New numeric pitch-class from named pitch::
 
          abjad> named_pitch = pitchtools.NamedPitch("cs'")
-         abjad> named_pitch.pitch_class
+         abjad> named_pitch.numeric_pitch_class
          NumericPitchClass(1)
    
       Return numeric pitch class.

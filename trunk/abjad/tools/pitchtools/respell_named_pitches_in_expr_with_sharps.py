@@ -37,13 +37,9 @@ def respell_named_pitches_in_expr_with_sharps(expr):
    from abjad.tools import leaftools
 
    if isinstance(expr, NamedPitch):
-      #_pitch_renotate_sharps(expr)
       return _new_pitch_with_sharps(expr)
    else:
       for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-         #if hasattr(leaf, 'pitches'):
-         #   for pitch in leaf.pitches:
-         #      _pitch_renotate_sharps(pitch)
          if isinstance(leaf, Chord):
             for note_head in leaf.note_heads:
                note_head.pitch = _new_pitch_with_sharps(note_head.pitch)
@@ -51,17 +47,8 @@ def respell_named_pitches_in_expr_with_sharps(expr):
             leaf.pitch = _new_pitch_with_sharps(leaf.pitch)
 
 
-#def _pitch_renotate_sharps(pitch):
-#   octave = pitch_number_to_octave_number(pitch.pitch_number)
-#   name = pitch_class_number_to_pitch_name_with_sharps(pitch.pitch_class)
-#   pitch.octave = octave
-#   pitch.name = name
-
-
 def _new_pitch_with_sharps(pitch):
    octave = pitch_number_to_octave_number(pitch.pitch_number)
-   name = pitch_class_number_to_pitch_name_with_sharps(pitch.pitch_class)
-   #pitch.octave = octave
-   #pitch.name = name
+   name = pitch_class_number_to_pitch_name_with_sharps(pitch.numeric_pitch_class)
    pitch = type(pitch)(name, octave)
    return pitch

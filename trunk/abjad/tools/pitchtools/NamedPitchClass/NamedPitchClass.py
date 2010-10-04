@@ -143,7 +143,7 @@ class NamedPitchClass(_PitchClass):
    def numeric_pitch_class(self):
       '''Read-only numeric pitch-class.'''
       pitch = NamedPitch(self.name, 4)
-      return pitch.pitch_class
+      return pitch.numeric_pitch_class
 
    @property
    def symbolic_name(self):

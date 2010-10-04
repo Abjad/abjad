@@ -3,7 +3,8 @@ from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
 from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
-from abjad.tools.pitchtools.transpose_pitch_by_melodic_chromatic_interval import transpose_pitch_by_melodic_chromatic_interval
+from abjad.tools.pitchtools.transpose_pitch_by_melodic_chromatic_interval import \
+   transpose_pitch_by_melodic_chromatic_interval
 
 
 ## TODO: Make PitchSet and PCSet both inherit for a shared base class. ##
@@ -69,7 +70,7 @@ class NamedPitchSet(_PitchSet):
       pitch_classes = [ ]
       duplicate_pitch_classes = [ ]
       for pitch in self:
-         pitch_class = pitch.pitch_class
+         pitch_class = pitch.numeric_pitch_class
          if pitch_class in pitch_classes:
             duplicate_pitch_classes.append(pitch_class)
          pitch_classes.append(pitch_class)
@@ -85,7 +86,7 @@ class NamedPitchSet(_PitchSet):
 
    @property
    def pitch_classes(self):
-      return tuple([pitch.pitch_class for pitch in self.pitches])
+      return tuple([pitch.numeric_pitch_class for pitch in self.pitches])
 
    @property
    def pitch_class_set(self):
