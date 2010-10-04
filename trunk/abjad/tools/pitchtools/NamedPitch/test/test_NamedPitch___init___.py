@@ -12,7 +12,6 @@ def test_NamedPitch__init_by_name_and_octave_01( ):
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
-   assert p.ticks == "''"
 
 
 def test_NamedPitch__init_by_named_pitch_class_and_octave_number_01( ):
@@ -36,7 +35,6 @@ def test_NamedPitch__init_by_number_01( ):
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
-   assert p.ticks == "''"
 
 
 
@@ -52,7 +50,6 @@ def test_NamedPitch__init_by_number_and_letter_01( ):
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
-   assert p.ticks == "''"
 
 
 
@@ -68,7 +65,6 @@ def test_NamedPitch__init_by_pair_01( ):
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
-   assert p.ticks == "''"
 
 
 
@@ -97,7 +93,6 @@ def test_NamedPitch__init_by_reference_01( ):
    assert p.number == 13
    assert p.octave_number == 5
    assert p.pitch_class == pitchtools.NumericPitchClass(1)
-   assert p.ticks == "''"
 
 
 def test_NamedPitch__init_empty_01( ):
@@ -112,4 +107,3 @@ def test_NamedPitch__init_empty_01( ):
    assert p.number == None
    assert p.octave_number == None
    assert p.pitch_class == None
-   assert p.ticks == None

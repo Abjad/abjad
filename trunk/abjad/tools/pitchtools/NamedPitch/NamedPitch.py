@@ -134,7 +134,7 @@ class NamedPitch(_StrictComparator, _Pitch):
 
    def __str__(self):
       if self.name and not self.octave_number is None:
-         return '%s%s' % (self.name, self.ticks)
+         return '%s%s' % (self.name, self._ticks_string)
       else:
          return ''
 
@@ -155,6 +155,26 @@ class NamedPitch(_StrictComparator, _Pitch):
          return 0
       else:
          return self.deviation
+
+   @property
+   def _ticks_string(self):
+      '''Read-only octave tick string of named pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch._ticks_string
+         "'"
+      '''
+      if self.octave_number is not None:
+         if self.octave_number <= 2:
+            return ',' * (3 - self.octave_number)
+         elif self.octave_number == 3:
+            return ''
+         else:
+            return "'" * (self.octave_number - 3)
+      else:
+         return None
 
    ## PRIVATE METHODS ##
 
@@ -390,23 +410,3 @@ class NamedPitch(_StrictComparator, _Pitch):
          1
       '''
       return self.number
-
-   @property
-   def ticks(self):
-      '''Read-only octave tick string of named pitch:
-
-      ::
-
-         abjad> named_pitch = pitchtools.NamedPitch("cs'")
-         abjad> named_pitch.ticks
-         "'"
-      '''
-      if self.octave_number is not None:
-         if self.octave_number <= 2:
-            return ',' * (3 - self.octave_number)
-         elif self.octave_number == 3:
-            return ''
-         else:
-            return "'" * (self.octave_number - 3)
-      else:
-         return None
