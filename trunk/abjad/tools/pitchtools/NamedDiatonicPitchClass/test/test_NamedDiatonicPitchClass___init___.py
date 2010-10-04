@@ -6,7 +6,7 @@ def test_NamedDiatonicPitchClass___init____01( ):
    '''
 
    ndpc = pitchtools.NamedDiatonicPitchClass('c')
-   assert ndpc.diatonic_pitch_class_name_string == 'c'
+   assert isinstance(ndpc, pitchtools.NamedDiatonicPitchClass)
 
    
 def test_NamedDiatonicPitchClass___init____02( ):
@@ -14,4 +14,4 @@ def test_NamedDiatonicPitchClass___init____02( ):
    '''
 
    ndpc = pitchtools.NamedDiatonicPitchClass(0)
-   assert ndpc.diatonic_pitch_class_name_string == 'c'
+   assert isinstance(ndpc, pitchtools.NamedDiatonicPitchClass)

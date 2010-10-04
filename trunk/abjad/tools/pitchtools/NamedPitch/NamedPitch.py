@@ -1,11 +1,10 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.core import _StrictComparator
 from abjad.tools.pitchtools._Pitch import _Pitch
 
 
 _accidental_spelling = _read_config_file( )['accidental_spelling']
 
-class NamedPitch(_StrictComparator, _Pitch):
+class NamedPitch(_Pitch):
    '''Abjad model of named pitch:
 
    ::
@@ -173,6 +172,23 @@ class NamedPitch(_StrictComparator, _Pitch):
       else:
          return None
 
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _pitch_class_name(self):
+      '''Read-only pitch-class name of pitch:
+
+      ::
+
+         abjad> named_pitch = pitchtools.NamedPitch("cs'")
+         abjad> named_pitch.pitch_class_name
+         'cs'
+      '''
+      if self.diatonic_pitch_class_name and self.accidental:
+         return '%s%s' % (self.diatonic_pitch_class_name, self.accidental)
+      else:
+         return None
+
    ## PRIVATE METHODS ##
 
    def _init_by_name_and_octave(self, name, octave):
@@ -318,17 +334,12 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self._diatonic_pitch_class_name
 
    @property
-   def _pitch_class_name(self):
-      '''Read-only pitch-class name of pitch:
-
-      ::
-
-         abjad> named_pitch = pitchtools.NamedPitch("cs'")
-         abjad> named_pitch.pitch_class_name
-         'cs'
-      '''
-      if self.diatonic_pitch_class_name and self.accidental:
-         return '%s%s' % (self.diatonic_pitch_class_name, self.accidental)
+   def named_diatonic_pitch(self):
+      from abjad.tools import pitchtools
+      if self._diatonic_pitch_class_name is not None:
+         name_and_ticks = self._diatonic_pitch_class_name
+         name_and_ticks += self._ticks_string
+         return pitchtools.NamedDiatonicPitch(name_and_tickes)
       else:
          return None
 

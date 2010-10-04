@@ -702,6 +702,7 @@ pitchtools
    tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
    tools/pitchtools/MelodicDiatonicIntervalSet/MelodicDiatonicIntervalSet
+   tools/pitchtools/NamedDiatonicPitch/NamedDiatonicPitch
    tools/pitchtools/NamedDiatonicPitchClass/NamedDiatonicPitchClass
    tools/pitchtools/NamedPitch/NamedPitch
    tools/pitchtools/NamedPitchClass/NamedPitchClass
@@ -710,6 +711,7 @@ pitchtools
    tools/pitchtools/NamedPitchSegment/NamedPitchSegment
    tools/pitchtools/NamedPitchSet/NamedPitchSet
    tools/pitchtools/NamedPitchVector/NamedPitchVector
+   tools/pitchtools/NumericDiatonicPitch/NumericDiatonicPitch
    tools/pitchtools/NumericDiatonicPitchClass/NumericDiatonicPitchClass
    tools/pitchtools/NumericPitch/NumericPitch
    tools/pitchtools/NumericPitchClass/NumericPitchClass
@@ -778,6 +780,7 @@ pitchtools
    tools/pitchtools/make_populated_pitch_array_from_list_of_pitch_lists
    tools/pitchtools/named_pitch_and_clef_to_staff_position_number
    tools/pitchtools/number_letter_to_accidental_octave
+   tools/pitchtools/octave_number_to_octave_tick_string
    tools/pitchtools/octave_tick_string_to_octave_number
    tools/pitchtools/one_indexed_diatonic_scale_degree_number_to_pitch_class_name
    tools/pitchtools/ordered_pitch_class_numbers_are_within_ordered_pitch_numbers

@@ -40,11 +40,13 @@ from MelodicDiatonicIntervalClass import MelodicDiatonicIntervalClass
 from MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from MelodicDiatonicIntervalSet import MelodicDiatonicIntervalSet
 from NamedDiatonicPitchClass import NamedDiatonicPitchClass
+from NamedDiatonicPitch import NamedDiatonicPitch
 from NamedPitch import NamedPitch
 from NamedPitchClass import NamedPitchClass
 from NamedPitchClassSegment import NamedPitchClassSegment
 from NamedPitchClassSet import NamedPitchClassSet
 from NumericDiatonicPitchClass import NumericDiatonicPitchClass
+from NumericDiatonicPitch import NumericDiatonicPitch
 from NumericPitch import NumericPitch
 from NumericPitchClass import NumericPitchClass
 from NumericPitchClassColorMap import NumericPitchClassColorMap

@@ -35,17 +35,17 @@ class NumericDiatonicPitchClass(_DiatonicPitchClass):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def diatonic_pitch_class_number(self):
-      '''Read-only number of diatonic pitch class:
-
-      ::
-
-         abjad> numeric_diatonic_pitch_class = pitchtools.NumericDiatonicPitchClass(0)
-         abjad> numeric_diatonic_pitch_class.diatonic_pitch_class_number
-         0
-      '''
-      return self._diatonic_pitch_class_number
+#   @property
+#   def diatonic_pitch_class_number(self):
+#      '''Read-only number of diatonic pitch class:
+#
+#      ::
+#
+#         abjad> numeric_diatonic_pitch_class = pitchtools.NumericDiatonicPitchClass(0)
+#         abjad> numeric_diatonic_pitch_class.diatonic_pitch_class_number
+#         0
+#      '''
+#      return self._diatonic_pitch_class_number
 
    @property
    def named_diatonic_pitch_class(self):
