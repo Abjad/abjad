@@ -42,10 +42,10 @@ class _Leaf(_Component):
       assert isinstance(arg, _Leaf)
       from abjad.tools.leaftools._engender import _engender
       from abjad.tools import pitchtools
-      self_pairs = set([
-         (x.name, x.octave) for x in pitchtools.list_named_pitches_in_expr(self) if x is not None])
-      arg_pairs = set([
-         (x.name, x.octave) for x in pitchtools.list_named_pitches_in_expr(arg) if x is not None])
+      self_pairs = set([(x.name, x.octave_number) 
+         for x in pitchtools.list_named_pitches_in_expr(self) if x is not None])
+      arg_pairs = set([(x.name, x.octave_number) 
+         for x in pitchtools.list_named_pitches_in_expr(arg) if x is not None])
       pairs = operator(self_pairs, arg_pairs)
       return _engender(pairs, self.duration.written)
 

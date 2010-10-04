@@ -53,7 +53,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       return self
 
    def __getnewargs__(self):
-      return (self.name, self.octave)
+      return (self.name, self.octave_number)
 
    ## OVERLOADS ##
 
@@ -120,20 +120,20 @@ class NamedPitch(_StrictComparator, _Pitch):
       return not self == arg
 
    def __repr__(self):
-      if self.name and not self.octave is None:
+      if self.name and not self.octave_number is None:
          if self.deviation is None:
-            #return '%s(%s, %s)' % (self.__class__.__name__, self.name, self.octave)
+            #return '%s(%s, %s)' % (self.__class__.__name__, self.name, self.octave_number)
             return '%s(%s)' % (self.__class__.__name__, repr(str(self)))
          else:
             #return '%s(%s, %s, %s)' % (self.__class__.__name__,
-            #   self.name, self.octave, self.deviation)
+            #   self.name, self.octave_number, self.deviation)
             return '%s(%s, deviation = %s)' % (self.__class__.__name__,
                repr(str(self)), self.deviation)
       else:
          return '%s( )' % self.__class__.__name__
 
    def __str__(self):
-      if self.name and not self.octave is None:
+      if self.name and not self.octave_number is None:
          return '%s%s' % (self.name, self.ticks)
       else:
          return ''
@@ -214,7 +214,7 @@ class NamedPitch(_StrictComparator, _Pitch):
       object.__setattr__(self, '_letter', pitch.letter)
       accidental = pitchtools.Accidental(pitch.accidental.alphabetic_string)
       object.__setattr__(self, '_accidental', accidental)
-      object.__setattr__(self, '_octave', pitch.octave)
+      object.__setattr__(self, '_octave', pitch.octave_number)
 
    def _init_empty(self):
       object.__setattr__(self, '_letter', None)
@@ -258,8 +258,8 @@ class NamedPitch(_StrictComparator, _Pitch):
          0
       '''
       if self.letter:
-         #return (self.octave - 4) * 7 + self.degree - 1
-         return (self.octave - 4) * 7 + self.diatonic_pitch_class_number
+         #return (self.octave_number - 4) * 7 + self.degree - 1
+         return (self.octave_number - 4) * 7 + self.diatonic_pitch_class_number
       else:
          return None
 
@@ -340,10 +340,10 @@ class NamedPitch(_StrictComparator, _Pitch):
       '''
       from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import \
          pitch_letter_to_pitch_class_number
-      if not self.octave is None:
+      if not self.octave_number is None:
          if self.letter:
             if self.accidental:
-               octave = 12 * (self.octave - 4)
+               octave = 12 * (self.octave_number - 4)
                pc = pitch_letter_to_pitch_class_number(self.letter)
                semitones = self.accidental.semitones
                return octave + pc + semitones
@@ -351,13 +351,13 @@ class NamedPitch(_StrictComparator, _Pitch):
          return None
 
    @property
-   def octave(self):
+   def octave_number(self):
       '''Read-only integer octave number of named pitch:
 
       ::
 
          abjad> named_pitch = pitchtools.NamedPitch("cs'")
-         abjad> named_pitch.octave
+         abjad> named_pitch.octave_number
          4
       '''
       return self._octave
@@ -401,12 +401,12 @@ class NamedPitch(_StrictComparator, _Pitch):
          abjad> named_pitch.ticks
          "'"
       '''
-      if self.octave is not None:
-         if self.octave <= 2:
-            return ',' * (3 - self.octave)
-         elif self.octave == 3:
+      if self.octave_number is not None:
+         if self.octave_number <= 2:
+            return ',' * (3 - self.octave_number)
+         elif self.octave_number == 3:
             return ''
          else:
-            return "'" * (self.octave - 3)
+            return "'" * (self.octave_number - 3)
       else:
          return None

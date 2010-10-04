@@ -10,7 +10,7 @@ def test_chordtools_yield_all_subchords_of_chord_01( ):
    for subchord in subchords:
       named_pitches = pitchtools.list_named_pitches_in_expr(subchord)
       pairs_tuple = tuple(
-         [(pitch.name, pitch.octave) for pitch in named_pitches if pitch is not None])
+         [(pitch.name, pitch.octave_number) for pitch in named_pitches if pitch is not None])
       pairs.append(pairs_tuple)
 
    assert pairs == [
