@@ -3,14 +3,19 @@ _diatonic_pitch_class_name_to_diatonic_pitch_class_number = {
 
 
 def diatonic_pitch_class_name_to_diatonic_pitch_class_number(diatonic_pitch_class_name):
-   '''Get diatonic pitch-class number from `diatonic_pitch_class_name`:
+   '''.. versionadded:: 1.1.2
 
-   ::
+   Convert `diatonic_pitch_class_name` to diatonic pitc-class number::
+
       abjad> pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number('c')
       0
    '''
-   
+
+   error_message = '\n\tNot diatonic pitch class name: "%s".' % diatonic_pitch_class_name
+   if not isinstance(diatonic_pitch_class_name, str):
+      raise TypeError(error_message)
+
    try:
       return _diatonic_pitch_class_name_to_diatonic_pitch_class_number[diatonic_pitch_class_name]
    except KeyError:
-      return None
+      raise ValueError(error_message)

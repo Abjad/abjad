@@ -740,11 +740,22 @@ pitchtools
    tools/pitchtools/calculate_melodic_counterpoint_interval_from_named_pitch_to_named_pitch
    tools/pitchtools/calculate_melodic_diatonic_interval_class_from_named_pitch_to_named_pitch
    tools/pitchtools/calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch
+   tools/pitchtools/chromatic_pitch_class_name_to_chromatic_pitch_class_number
+   tools/pitchtools/chromatic_pitch_name_to_chromatic_pitch_class_name
+   tools/pitchtools/chromatic_pitch_name_to_chromatic_pitch_number
+   tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_class_name
+   tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_name
+   tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_number
+   tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_name
    tools/pitchtools/clef_and_staff_position_number_to_named_pitch
    tools/pitchtools/color_note_head_by_numeric_pitch_class_color_map
    tools/pitchtools/concatenate_pitch_arrays
    tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
    tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number
+   tools/pitchtools/diatonic_pitch_class_number_to_chromatic_pitch_class_number
+   tools/pitchtools/diatonic_pitch_class_number_to_diatonic_pitch_class_name
+   tools/pitchtools/diatonic_pitch_name_to_diatonic_pitch_class_name
+   tools/pitchtools/diatonic_pitch_name_to_diatonic_pitch_number
    tools/pitchtools/expr_has_duplicate_named_pitch
    tools/pitchtools/expr_has_duplicate_numeric_pitch_class
    tools/pitchtools/expr_to_melodic_chromatic_interval_segment
@@ -753,16 +764,19 @@ pitchtools
    tools/pitchtools/insert_and_transpose_nested_subruns_in_lpitch_class_number_list
    tools/pitchtools/inventory_aggregate_subsets
    tools/pitchtools/inventory_inversion_equivalent_diatonic_interval_classes
-   tools/pitchtools/is_alphabetic_accidental_string
-   tools/pitchtools/is_diatonic_pitch_class_name_string
-   tools/pitchtools/is_diatonic_pitch_name_string_with_octave_ticks
-   tools/pitchtools/is_named_pitch_pair
+   tools/pitchtools/is_alphabetic_accidental_abbreviation
+   tools/pitchtools/is_chromatic_pitch_class_name
+   tools/pitchtools/is_chromatic_pitch_class_name_octave_number_pair
+   tools/pitchtools/is_chromatic_pitch_class_number
+   tools/pitchtools/is_chromatic_pitch_name
+   tools/pitchtools/is_chromatic_pitch_number
+   tools/pitchtools/is_diatonic_pitch_class_name
+   tools/pitchtools/is_diatonic_pitch_class_number
+   tools/pitchtools/is_diatonic_pitch_name
+   tools/pitchtools/is_diatonic_pitch_number
    tools/pitchtools/is_named_pitch_token
    tools/pitchtools/is_octave_tick_string
    tools/pitchtools/is_pitch_carrier
-   tools/pitchtools/is_pitch_class_name_string
-   tools/pitchtools/is_pitch_name
-   tools/pitchtools/is_pitch_name_string_with_octave_ticks
    tools/pitchtools/iterate_pitch_pairs_forward_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr

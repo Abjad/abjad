@@ -16,7 +16,7 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
       if isinstance(arg, str):
-         assert pitchtools.is_diatonic_pitch_class_name_string(arg)
+         assert pitchtools.is_diatonic_pitch_class_name(arg)
          _diatonic_pitch_class_name_string = arg
       elif isinstance(arg, (int, long)):
          _diatonic_pitch_class_number = arg % 7

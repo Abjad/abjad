@@ -18,7 +18,7 @@ class NumericDiatonicPitch(_DiatonicPitch):
       if isinstance(arg, (int, long)):
          diatonic_pitch_number = arg
       elif isinstance(arg, str):
-         assert pitchtools.is_diatonic_pitch_name_string_with_octave_ticks(arg)
+         assert pitchtools.is_diatonic_pitch_name(arg)
          diatonic_pitch_class_name = arg[0]
          octave_tick_string = arg[1:]
          diatonic_pitch_class_number = \

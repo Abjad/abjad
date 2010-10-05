@@ -16,7 +16,7 @@ class NumericDiatonicPitchClass(_DiatonicPitchClass):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
       if isinstance(arg, str):
-         assert pitchtools.is_diatonic_pitch_class_name_string(arg)
+         assert pitchtools.is_diatonic_pitch_class_name(arg)
          _diatonic_pitch_class_name_string = arg
          _diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_string_to_diatonic_pitch_class_number[

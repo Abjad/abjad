@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.is_named_pitch_pair import is_named_pitch_pair
+from abjad.tools.pitchtools.is_chromatic_pitch_class_name_octave_number_pair import is_chromatic_pitch_class_name_octave_number_pair
 
 
 def is_named_pitch_token(pitch_token):
@@ -23,7 +23,7 @@ def is_named_pitch_token(pitch_token):
 
    if isinstance(pitch_token, NamedPitch):
       return True
-   elif is_named_pitch_pair(pitch_token):
+   elif is_chromatic_pitch_class_name_octave_number_pair(pitch_token):
       return True
    elif isinstance(pitch_token, (int, long)):
       return True

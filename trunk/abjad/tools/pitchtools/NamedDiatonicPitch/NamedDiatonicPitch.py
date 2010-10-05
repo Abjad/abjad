@@ -22,7 +22,7 @@ class NamedDiatonicPitch(_DiatonicPitch):
          octave_number = arg.octave_number
          tick_string = pitchtools.octave_number_to_octave_tick_string(octave_number)
       elif isinstance(arg, str):
-         assert pitchtools.is_diatonic_pitch_name_string_with_octave_ticks(arg)
+         assert pitchtools.is_diatonic_pitch_name(arg)
          diatonic_pitch_class_name = arg[0]
          diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_string_to_diatonic_pitch_class_number[

@@ -17,8 +17,14 @@ def octave_number_to_octave_tick_string(octave_number):
       8  '''''
    """
 
-   if not isinstance(octave_number, int):
+   if not isinstance(octave_number, (int, long, float)):
       raise TypeError('\n\tOctave number must be int: "%s".' % octave_number)
+
+   if isinstance(octave_number, float):
+      if not int(octave_number) == octave_number:
+         raise ValueError('\n\tOctave number must equal to int: "%s".' % octave_number)      
+      else:
+         octave_number = int(octave_number)
 
    if octave_number < 3:
       return (3 - octave_number) * ','
