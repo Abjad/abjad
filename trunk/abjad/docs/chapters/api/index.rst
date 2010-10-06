@@ -757,7 +757,9 @@ pitchtools
    tools/pitchtools/diatonic_pitch_class_number_to_diatonic_pitch_class_name
    tools/pitchtools/diatonic_pitch_name_to_diatonic_pitch_class_name
    tools/pitchtools/diatonic_pitch_name_to_diatonic_pitch_number
+   tools/pitchtools/diatonic_pitch_number_to_diatonic_pitch_class_name
    tools/pitchtools/diatonic_pitch_number_to_diatonic_pitch_class_number
+   tools/pitchtools/diatonic_pitch_number_to_diatonic_pitch_name
    tools/pitchtools/expr_has_duplicate_named_pitch
    tools/pitchtools/expr_has_duplicate_numeric_pitch_class
    tools/pitchtools/expr_to_melodic_chromatic_interval_segment

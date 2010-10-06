@@ -11,7 +11,7 @@ class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
       NumericDiatonicPitch(7)
    '''
 
-   __slots__ = ('_diatonic_pitch_number', '_diatonic_pitch_class_number')
+   __slots__ = ('_diatonic_pitch_number', )
 
    def __new__(klass, arg):
       from abjad.tools import mathtools
@@ -30,6 +30,36 @@ class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
       return self
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def named_diatonic_pitch(self):
+      '''Named diatonic pitch from numeric diatonic pitch:
+   
+      ::   
+
+         abjad> numeric_diatonic_pitch = pitchtools.NumericDiatonicPitch(7)
+         abjad> numeric_diatonic_pitch.named_diatonic_pitch
+         NamedDiatonicPitch("c''")
+      '''
+      from abjad.tools import pitchtools
+      tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_name
+      diatonic_pitch_name = tmp(self._diatonic_pitch_number)
+      return pitchtools.NamedDiatonicPitch(diatonic_pitch_name)
+
+   @property
+   def named_diatonic_pitch_class(self):
+      '''Named diatonic pitch-class from numeric diatonic pitch:
+
+      ::
+
+         abjad> numeric_diatonic_pitch = pitchtools.NumericDiatonicPitch(7)
+         abjad> numeric_diatonic_pitch.named_diatonic_pitch_class
+         NamedDiatonicPitchClass('c')
+      '''
+      from abjad.tools import pitchtools
+      tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name
+      diatonic_pitch_class_name = tmp(self._diatonic_pitch_number)
+      return pitchtools.NamedDiatonicPitchClass(diatonic_pitch_class_name)
 
    @property
    def numeric_diatonic_pitch_class(self):
