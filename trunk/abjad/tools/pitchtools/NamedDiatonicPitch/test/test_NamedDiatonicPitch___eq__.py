@@ -16,3 +16,8 @@ def test_NamedDiatonicPitch___eq___01( ):
    assert not named_diatonic_pitch_3 == named_diatonic_pitch_1
    assert not named_diatonic_pitch_3 == named_diatonic_pitch_2
    assert     named_diatonic_pitch_3 == named_diatonic_pitch_3
+
+
+def test_NamedDiatonicPitch___eq___01( ):
+
+   assert pitchtools.NamedDiatonicPitch("c''") == 7
