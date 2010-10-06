@@ -5,7 +5,7 @@ from abjad.tools.pitchtools._NumericPitchClass import _NumericPitchClass
 class NumericDiatonicPitchClass(_NumericPitchClass, _DiatonicPitchClass):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of numeric diatonic pitch class::
+   Abjad model of a numeric diatonic pitch class::
 
       abjad> pitchtools.NumericDiatonicPitchClass(0)
       NumericDiatonicPitchClass(0)
@@ -14,41 +14,24 @@ class NumericDiatonicPitchClass(_NumericPitchClass, _DiatonicPitchClass):
    __slots__ = ('_diatonic_pitch_class_number', )
 
    def __new__(klass, arg):
+      from abjad.tools import mathtools
       from abjad.tools import pitchtools
       self = object.__new__(klass)
-      if isinstance(arg, str):
+      if hasattr(arg, '_diatonic_pitch_class_number'):
+         diatonic_pitch_class_number = arg._diatonic_pitch_class_number
+      elif isinstance(arg, str):
          if not pitchtools.is_diatonic_pitch_class_name(arg):
             raise ValueError
-         _diatonic_pitch_class_name_string = arg
-         _diatonic_pitch_class_number = \
-            self._diatonic_pitch_class_name_string_to_diatonic_pitch_class_number[
-            _diatonic_pitch_class_name_string]
-      elif isinstance(arg, (int, long)):
-         _diatonic_pitch_class_number = arg % 7
+         diatonic_pitch_class_name = arg
+         tmp = pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number
+         diatonic_pitch_class_number = tmp(diatonic_pitch_class_name)
+      elif mathtools.is_integer_equivalent_number(arg):
+         diatonic_pitch_class_number = int(arg) % 7
       else:
-         raise TypeError('\n\tMust be int or str: "%s".' % arg)
-      object.__setattr__(self, '_diatonic_pitch_class_number', _diatonic_pitch_class_number)
-      object.__setattr__(self, '_comparison_attribute', _diatonic_pitch_class_number)
+         raise TypeError
+      object.__setattr__(self, '_diatonic_pitch_class_number', diatonic_pitch_class_number)
+      object.__setattr__(self, '_comparison_attribute', diatonic_pitch_class_number)
       return self
-
-   ## OVERLOADS ##
-
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, repr(self._diatonic_pitch_class_number))
-
-   ## PUBLIC ATTRIBUTES ##
-
-#   @property
-#   def diatonic_pitch_class_number(self):
-#      '''Read-only number of diatonic pitch class:
-#
-#      ::
-#
-#         abjad> numeric_diatonic_pitch_class = pitchtools.NumericDiatonicPitchClass(0)
-#         abjad> numeric_diatonic_pitch_class.diatonic_pitch_class_number
-#         0
-#      '''
-#      return self._diatonic_pitch_class_number
 
    @property
    def named_diatonic_pitch_class(self):

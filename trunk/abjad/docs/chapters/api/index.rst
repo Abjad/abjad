@@ -568,6 +568,7 @@ mathtools
    tools/mathtools/interpolate_linear
    tools/mathtools/is_assignable_integer
    tools/mathtools/is_dotted_integer
+   tools/mathtools/is_integer_equivalent_number
    tools/mathtools/is_power_of_two
    tools/mathtools/least_common_multiple
    tools/mathtools/least_multiple_greater_equal
@@ -756,6 +757,7 @@ pitchtools
    tools/pitchtools/diatonic_pitch_class_number_to_diatonic_pitch_class_name
    tools/pitchtools/diatonic_pitch_name_to_diatonic_pitch_class_name
    tools/pitchtools/diatonic_pitch_name_to_diatonic_pitch_number
+   tools/pitchtools/diatonic_pitch_number_to_diatonic_pitch_class_number
    tools/pitchtools/expr_has_duplicate_named_pitch
    tools/pitchtools/expr_has_duplicate_numeric_pitch_class
    tools/pitchtools/expr_to_melodic_chromatic_interval_segment

@@ -14,24 +14,18 @@ class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
    __slots__ = ('_diatonic_pitch_number', '_diatonic_pitch_class_number')
 
    def __new__(klass, arg):
+      from abjad.tools import mathtools
       from abjad.tools import pitchtools
       self = object.__new__(klass)
       if hasattr(arg, '_diatonic_pitch_number'):
          diatonic_pitch_number = arg._diatonic_pitch_number
-      elif isinstance(arg, (int, long)):
+      elif mathtools.is_integer_equivalent_number(arg):
          diatonic_pitch_number = arg
-      elif isinstance(arg, str):
-         assert pitchtools.is_diatonic_pitch_name(arg)
-         diatonic_pitch_class_name = arg[0]
-         octave_tick_string = arg[1:]
-         diatonic_pitch_class_number = \
-            self._diatonic_pitch_class_name_string_to_diatonic_pitch_class_number[
-            diatonic_pitch_class_name]
-         octave_number = pitchtools.octave_tick_string_to_octave_number(octave_tick_string)
-         diatonic_pitch_number = 7 * (octave_number - 4) + diatonic_pitch_class_number
-      diatonic_pitch_class_number = diatonic_pitch_number % 7
+      elif pitchtools.is_diatonic_pitch_name(arg):
+         diatonic_pitch_number = pitchtools.diatonic_pitch_name_to_diatonic_pitch_number(arg)
+      else:
+         raise TypeError
       object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)
-      object.__setattr__(self, '_diatonic_pitch_class_number', diatonic_pitch_class_number)
       object.__setattr__(self, '_comparison_attribute', diatonic_pitch_number)
       return self
 
@@ -48,4 +42,6 @@ class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
          NumericDiatonicPitchClass(0)
       '''
       from abjad.tools import pitchtools
-      return pitchtools.NumericDiatonicPitchClass(self._diatonic_pitch_class_number)
+      tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_number
+      diatonic_pitch_class_number = tmp(self._diatonic_pitch_number)
+      return pitchtools.NumericDiatonicPitchClass(diatonic_pitch_class_number)
