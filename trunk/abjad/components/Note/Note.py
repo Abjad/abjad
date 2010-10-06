@@ -9,6 +9,9 @@ class Note(_Leaf):
       abjad> Note(13, (3, 16))
       Note("cs''8.")
    '''
+
+   ## TODO: remove _note_heads attribute after removing casting code ##
+   #__slots__ = ('_note_head', '_note_heads', '_pitch', )
    
    def __init__(self, *args, **kwargs):
       from abjad.tools.notetools._initialize_note import _initialize_note

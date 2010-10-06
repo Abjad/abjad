@@ -9,9 +9,13 @@ from fractions import Fraction
 
 class _Component(_StrictComparator):
 
+   __slots__ = ('_marks_are_current', 
+      '_marks_for_which_component_functions_as_effective_context',
+      '_marks_for_which_component_functions_as_start_component', '_navigator', 
+      '_offset', '_offset_values_in_seconds_are_current', '_override', '_parentage', 
+      '_prolated_offset_values_are_current', '_set', '_spanners', )
+
    def __init__(self):
-      #self.__is_current = False
-      #self._is_current = False
       self._marks_are_current = False
       self._marks_for_which_component_functions_as_effective_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )

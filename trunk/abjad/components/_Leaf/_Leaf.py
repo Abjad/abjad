@@ -5,6 +5,10 @@ import operator
 
 class _Leaf(_Component):
 
+   ## TODO: remove 'after_grace' attribute and replace with grace getter tools function ##
+   ## TODO: remove 'grace' attribute and replace with grace getter tools function ##
+   #__slots__ = ('_after_grace', 'after_grace', '_duration', '_grace', 'grace')
+
    def __init__(self, duration):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, duration)
