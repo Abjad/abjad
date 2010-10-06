@@ -3,7 +3,7 @@ import py.test
 py.test.skip('unskip test after removing casting code.')
 
 
-def test_foo_01( ):
+def test_Note___slots___01( ):
    '''Slots constrain note attributes.
    '''
 

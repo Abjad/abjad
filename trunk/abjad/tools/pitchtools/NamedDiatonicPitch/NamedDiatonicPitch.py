@@ -16,7 +16,11 @@ class NamedDiatonicPitch(_DiatonicPitch):
    def __new__(klass, arg):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
-      if hasattr(arg, 'diatonic_pitch_class'):
+      if hasattr(arg, '_diatonic_pitch_name'):
+         diatonic_pitch_name = arg._diatonic_pitch_name
+         object.__setattr__(self, '_diatonic_pitch_name', diatonic_pitch_name)
+         return self
+      elif hasattr(arg, 'diatonic_pitch_class'):
          diatonic_pitch_class_name = arg.diatonic_pitch_class.name
          diatonic_pitch_class_number = arg.diatonic_pitch_class.number
          octave_number = arg.octave_number
@@ -50,6 +54,13 @@ class NamedDiatonicPitch(_DiatonicPitch):
       return self
 
    ## OVERLOADS ##
+
+   def __eq__(self, arg):
+      try:
+         arg = type(self)(arg)
+         return self._diatonic_pitch_name == arg._diatonic_pitch_name
+      except (TypeError, ValueError):
+         return False
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, repr(self._diatonic_pitch_name))

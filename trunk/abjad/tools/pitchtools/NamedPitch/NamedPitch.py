@@ -341,7 +341,6 @@ class NamedPitch(_Pitch):
          abjad> named_pitch.diatonic_pitch_class_name
          'c'
       '''
-      #return self._diatonic_pitch_class_name
       from abjad.tools import pitchtools
       return pitchtools.chromatic_pitch_name_to_diatonic_pitch_class_name(
          self._chromatic_pitch_name)
@@ -357,9 +356,9 @@ class NamedPitch(_Pitch):
          NamedDiatonicPitch("c''")
       '''
       from abjad.tools import pitchtools
-      name_and_ticks = self._diatonic_pitch_class_name
-      name_and_ticks += self._octave_tick_string
-      return pitchtools.NamedDiatonicPitch(name_and_ticks)
+      tmp = pitchtools.chromatic_pitch_name_to_diatonic_pitch_name
+      diatonic_pitch_name = tmp(self._chromatic_pitch_name)
+      return pitchtools.NamedDiatonicPitch(diatonic_pitch_name)
 
    @property
    def named_diatonic_pitch_class(self):

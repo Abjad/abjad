@@ -14,3 +14,6 @@ class _Pitch(_Immutable, _StrictComparator):
 
    def __hash__(self):
       return hash(repr(self))
+
+   def __ne__(self, arg):
+      return not self == arg
