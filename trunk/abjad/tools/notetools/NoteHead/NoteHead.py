@@ -10,7 +10,7 @@ class NoteHead(object):
       NoteHead("cs''")
    '''
 
-   __slots__ = ('_client', '_pitch', 'tweak')
+   __slots__ = ('_client', '_pitch', '_tweak')
 
    def __init__(self, *args):
       if len(args) == 1:
@@ -22,12 +22,11 @@ class NoteHead(object):
          raise ValueError('\n\tCan not initialize note head from args: "%s".' % str(args))
       self._client = _client
       self.pitch = pitch
-      self.tweak = LilyPondTweakReservoir( )
 
    ## OVERLOADS ##
 
    def __eq__(self, expr):
-      if isinstance(expr, NoteHead):
+      if isinstance(expr, type(self)):
          if self.pitch == expr.pitch:
             return True
       return False
@@ -91,13 +90,14 @@ class NoteHead(object):
          return self._pitch
       def fset(self, arg):
          from abjad.tools import pitchtools
-#         if arg is None:
-#            self._pitch = None
-#         elif isinstance(arg, NoteHead):
-#            self._pitch = arg.pitch
-#         else:
-#            pitch = pitchtools.NamedPitch(arg)
-#            self._pitch = pitch
          pitch = pitchtools.NamedPitch(arg)
          self._pitch = pitch
       return property(**locals( ))
+
+   @property
+   def tweak(self):
+      '''Read-only reference to LilyPond tweak reservoir.
+      '''
+      if not hasattr(self, '_tweak'):
+         self._tweak = LilyPondTweakReservoir( )
+      return self._tweak
