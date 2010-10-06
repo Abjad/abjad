@@ -1,8 +1,9 @@
+from _FlexEqualityComparator import _FlexEqualityComparator
 from _Immutable import _Immutable
 from _ImmutableDictionary import _ImmutableDictionary
 from _StrictComparator import _StrictComparator
+from _UnaryComparator import _UnaryComparator
 from LilyPondContextSettingComponentPlugIn import LilyPondContextSettingComponentPlugIn
 from LilyPondGrobOverrideComponentPlugIn import LilyPondGrobOverrideComponentPlugIn
-#from LilyPondMiscellaneousCommandComponentPlugIn import LilyPondMiscellaneousCommandComponentPlugIn
 from LilyPondTweakReservoir import LilyPondTweakReservoir
 from fractions import Fraction as Fraction

@@ -1,7 +1,8 @@
 from abjad.tools.pitchtools._DiatonicPitchClass import _DiatonicPitchClass
+from abjad.tools.pitchtools._NumericPitchClass import _NumericPitchClass
 
 
-class NumericDiatonicPitchClass(_DiatonicPitchClass):
+class NumericDiatonicPitchClass(_NumericPitchClass, _DiatonicPitchClass):
    '''.. versionadded:: 1.1.2
 
    Abjad model of numeric diatonic pitch class::
@@ -16,7 +17,8 @@ class NumericDiatonicPitchClass(_DiatonicPitchClass):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
       if isinstance(arg, str):
-         assert pitchtools.is_diatonic_pitch_class_name(arg)
+         if not pitchtools.is_diatonic_pitch_class_name(arg):
+            raise ValueError
          _diatonic_pitch_class_name_string = arg
          _diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_string_to_diatonic_pitch_class_number[
@@ -26,6 +28,7 @@ class NumericDiatonicPitchClass(_DiatonicPitchClass):
       else:
          raise TypeError('\n\tMust be int or str: "%s".' % arg)
       object.__setattr__(self, '_diatonic_pitch_class_number', _diatonic_pitch_class_number)
+      object.__setattr__(self, '_comparison_attribute', _diatonic_pitch_class_number)
       return self
 
    ## OVERLOADS ##

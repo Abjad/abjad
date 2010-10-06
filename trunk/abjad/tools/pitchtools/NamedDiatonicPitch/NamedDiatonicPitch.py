@@ -62,6 +62,10 @@ class NamedDiatonicPitch(_DiatonicPitch):
       except (TypeError, ValueError):
          return False
 
+#   def __ge__(self, arg):
+#      try:
+#         arg = type(self)
+
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, repr(self._diatonic_pitch_name))
 

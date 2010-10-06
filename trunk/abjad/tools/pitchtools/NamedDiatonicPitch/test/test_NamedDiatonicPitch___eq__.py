@@ -18,6 +18,6 @@ def test_NamedDiatonicPitch___eq___01( ):
    assert     named_diatonic_pitch_3 == named_diatonic_pitch_3
 
 
-def test_NamedDiatonicPitch___eq___01( ):
+def test_NamedDiatonicPitch___eq___02( ):
 
    assert pitchtools.NamedDiatonicPitch("c''") == 7

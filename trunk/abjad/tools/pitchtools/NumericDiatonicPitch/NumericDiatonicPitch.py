@@ -1,7 +1,8 @@
 from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
+from abjad.tools.pitchtools._NumericPitch import _NumericPitch
 
 
-class NumericDiatonicPitch(_DiatonicPitch):
+class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a numeric diatonic pitch::
@@ -15,7 +16,9 @@ class NumericDiatonicPitch(_DiatonicPitch):
    def __new__(klass, arg):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
-      if isinstance(arg, (int, long)):
+      if hasattr(arg, '_diatonic_pitch_number'):
+         diatonic_pitch_number = arg._diatonic_pitch_number
+      elif isinstance(arg, (int, long)):
          diatonic_pitch_number = arg
       elif isinstance(arg, str):
          assert pitchtools.is_diatonic_pitch_name(arg)
@@ -29,13 +32,9 @@ class NumericDiatonicPitch(_DiatonicPitch):
       diatonic_pitch_class_number = diatonic_pitch_number % 7
       object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)
       object.__setattr__(self, '_diatonic_pitch_class_number', diatonic_pitch_class_number)
+      object.__setattr__(self, '_comparison_attribute', diatonic_pitch_number)
       return self
 
-   ## OVERLOADS ##
-
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._diatonic_pitch_number)
-      
    ## PUBLIC ATTRIBUTES ##
 
    @property
