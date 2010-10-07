@@ -666,6 +666,21 @@ notetools
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
 
 
+pitcharraytools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/pitcharraytools/PitchArray/PitchArray
+   tools/pitcharraytools/PitchArray/PitchArrayCell/PitchArrayCell
+   tools/pitcharraytools/PitchArray/PitchArrayColumn/PitchArrayColumn
+   tools/pitcharraytools/PitchArray/PitchArrayRow/PitchArrayRow
+   tools/pitcharraytools/concatenate_pitch_arrays
+   tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
+   tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
+   tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
+
+
 pitchtools
 
 .. toctree::
@@ -720,10 +735,6 @@ pitchtools
    tools/pitchtools/NumericPitchClassSegment/NumericPitchClassSegment
    tools/pitchtools/NumericPitchClassSet/NumericPitchClassSet
    tools/pitchtools/NumericPitchClassVector/NumericPitchClassVector
-   tools/pitchtools/PitchArray/PitchArray
-   tools/pitchtools/PitchArray/PitchArrayCell/PitchArrayCell
-   tools/pitchtools/PitchArray/PitchArrayColumn/PitchArrayColumn
-   tools/pitchtools/PitchArray/PitchArrayRow/PitchArrayRow
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/pitchtools/all_are_named_pitch_tokens
@@ -750,7 +761,6 @@ pitchtools
    tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_name
    tools/pitchtools/clef_and_staff_position_number_to_named_pitch
    tools/pitchtools/color_note_head_by_numeric_pitch_class_color_map
-   tools/pitchtools/concatenate_pitch_arrays
    tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
    tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_number_to_chromatic_pitch_class_number
@@ -786,16 +796,13 @@ pitchtools
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
    tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_pitches
    tools/pitchtools/list_named_pitches_in_expr
-   tools/pitchtools/list_nonspanning_subarrays_of_pitch_array
    tools/pitchtools/list_numeric_pitch_classes_in_expr
    tools/pitchtools/list_octave_transpositions_of_pitch_within_pitch_range
    tools/pitchtools/list_ordered_pitch_pairs_from_expr_cross_to_expr
    tools/pitchtools/list_pitch_number_in_expr
    tools/pitchtools/list_pitches_in_expr_sorted_by_numeric_pitch_class
    tools/pitchtools/list_unordered_pitch_pairs_in_expr
-   tools/pitchtools/make_empty_pitch_array_from_list_of_pitch_lists
    tools/pitchtools/make_named_pitches_from_pitch_tokens
-   tools/pitchtools/make_populated_pitch_array_from_list_of_pitch_lists
    tools/pitchtools/named_pitch_and_clef_to_staff_position_number
    tools/pitchtools/number_letter_to_accidental_octave
    tools/pitchtools/octave_number_to_octave_tick_string

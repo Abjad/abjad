@@ -3,21 +3,21 @@ from abjad import *
 
 def test_pitcharraytools_concatenate_pitch_arrays_01( ):
 
-   array_1 = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+   array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
    '''
    [ ] [     ] [ ]
    [     ] [ ] [ ]
    '''
 
-   array_2 = pitchtools.PitchArray([[3, 4], [4, 3]])
+   array_2 = pitcharraytools.PitchArray([[3, 4], [4, 3]])
 
    '''
    [     ] [         ]
    [         ] [     ]
    '''
 
-   array_3 = pitchtools.PitchArray([[1, 1], [1, 1]])
+   array_3 = pitcharraytools.PitchArray([[1, 1], [1, 1]])
 
    '''
    [ ] [ ]

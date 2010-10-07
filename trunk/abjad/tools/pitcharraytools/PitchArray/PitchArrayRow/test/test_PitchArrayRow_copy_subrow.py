@@ -3,7 +3,7 @@ from abjad import *
 
 def test_PitchArrayRow_copy_subrow_01( ):
 
-   array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+   array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
    array[0].cells[0].pitches.append(0)
    array[0].cells[1].pitches.append(2)
    array[1].cells[2].pitches.append(4)

@@ -8,10 +8,10 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
 
    Change `pitch_arrays` to score with one staff per pitch array row. ::
 
-      abjad> array_1 = pitchtools.PitchArray([
+      abjad> array_1 = pitcharraytools.PitchArray([
       ...   [1, (2, 1), ([-2, -1.5], 2)],
       ...   [(7, 2), (6, 1), 1]])
-      abjad> array_2 = pitchtools.PitchArray([
+      abjad> array_2 = pitcharraytools.PitchArray([
       ...   [1, 1, 1],
       ...   [1, 1, 1]])
 

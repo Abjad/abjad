@@ -2,7 +2,7 @@ from abjad.components.Measure import Measure
 from abjad.tools.metertools import Meter
 from fractions import Fraction
 from abjad.tools import leaftools
-from abjad.tools.pitchtools.PitchArray.PitchArrayRow.PitchArrayRow \
+from abjad.tools.pitcharraytools.PitchArray.PitchArrayRow.PitchArrayRow \
    import PitchArrayRow
 
 
@@ -12,7 +12,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
    Change `pitch_array_row` to measure with meter 
    `pitch_array_row.width` over `cell_duration_denominator`. ::
 
-      abjad> array = pitchtools.PitchArray([
+      abjad> array = pitcharraytools.PitchArray([
       ...     [1, (2, 1), ([-2, -1.5], 2)],
       ...     [(7, 2), (6, 1), 1]])
       abjad> print array

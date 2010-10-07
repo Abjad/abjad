@@ -1,6 +1,6 @@
 from abjad.core import _StrictComparator
 from abjad.tools import listtools
-from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
+from abjad.tools.pitcharraytools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
 
 
 class PitchArrayColumn(_StrictComparator):
@@ -8,7 +8,7 @@ class PitchArrayColumn(_StrictComparator):
 
    Column in a pitch array. ::
 
-      abjad> array = pitchtools.PitchArray([
+      abjad> array = pitcharraytools.PitchArray([
          [1, (2, 1), (-1.5, 2)],
          [(7, 2), (6, 1), 1]])
 

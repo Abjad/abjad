@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.PitchArray import PitchArray
+from abjad.tools.pitcharraytools.PitchArray import PitchArray
 import copy
 
 
@@ -7,20 +7,20 @@ def concatenate_pitch_arrays(pitch_arrays):
 
    Merge `pitch_arrays`. ::
 
-      abjad> array_1 = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+      abjad> array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
       abjad> print array_1
       [ ] [     ] [ ]
       [     ] [ ] [ ]
    
    ::
 
-      abjad> array_2 = pitchtools.PitchArray([[3, 4], [4, 3]])
+      abjad> array_2 = pitcharraytools.PitchArray([[3, 4], [4, 3]])
       [     ] [         ]
       [         ] [     ]
    
    ::
 
-      abjad> array_3 = pitchtools.PitchArray([[1, 1], [1, 1]])
+      abjad> array_3 = pitcharraytools.PitchArray([[1, 1], [1, 1]])
       [ ] [ ]
       [ ] [ ]
 

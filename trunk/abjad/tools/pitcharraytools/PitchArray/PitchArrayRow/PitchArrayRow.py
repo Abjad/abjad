@@ -1,5 +1,5 @@
 from abjad.core import _StrictComparator
-from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
+from abjad.tools.pitcharraytools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
 import copy
 
@@ -9,7 +9,7 @@ class PitchArrayRow(_StrictComparator):
 
    One row in pitch array. ::
 
-      abjad> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+      abjad> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
       abjad> array[0].cells[0].pitches.append(0)
       abjad> array[0].cells[1].pitches.append(2)
       abjad> array[1].cells[2].pitches.append(4)

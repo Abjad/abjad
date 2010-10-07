@@ -1,11 +1,11 @@
 from abjad import *
-from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell \
+from abjad.tools.pitcharraytools.PitchArray.PitchArrayCell.PitchArrayCell \
    import PitchArrayCell
 
 
 def test_PitchArrayCell_is_first_in_row_01( ):
 
-   array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+   array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
    '''
    [ ] [     ] [ ]

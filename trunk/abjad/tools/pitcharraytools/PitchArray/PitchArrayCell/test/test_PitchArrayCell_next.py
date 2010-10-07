@@ -1,12 +1,12 @@
 from abjad import *
-from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell \
+from abjad.tools.pitcharraytools.PitchArray.PitchArrayCell.PitchArrayCell \
     import PitchArrayCell
 import py.test
 
 
 def test_PitchArrayCell_next_01( ):
 
-   array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+   array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
    '''
    [ ] [     ] [ ]
@@ -18,7 +18,7 @@ def test_PitchArrayCell_next_01( ):
 
 def test_PitchArrayCell_next_02( ):
 
-   array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+   array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
    '''
    [ ] [     ] [ ]

@@ -7,7 +7,7 @@ class PitchArrayCell(_StrictComparator):
 
    One cell in a pitch array. ::
 
-      abjad> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+      abjad> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
       abjad> print array
       [ ] [     ] [ ]
       [     ] [ ] [ ]

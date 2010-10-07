@@ -3,7 +3,7 @@ from abjad import *
 
 def test_PitchArrayCell_pitches_append_01( ):
 
-   array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+   array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
    '''
    [ ] [     ] [ ]

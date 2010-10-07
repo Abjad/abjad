@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell \
+from abjad.tools.pitcharraytools.PitchArray.PitchArrayCell.PitchArrayCell \
    import PitchArrayCell
 import py.test
 

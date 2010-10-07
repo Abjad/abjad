@@ -32,7 +32,7 @@ def test_pitchtools_list_named_pitches_in_expr_03( ):
 def test_pitchtools_list_named_pitches_in_expr_04( ):
    '''Works with pitch arrays.'''
 
-   array = pitchtools.PitchArray([
+   array = pitcharraytools.PitchArray([
       [1, (2, 1), (-1.5, 2)],
       [(7, 2), (6, 1), 1],
       ]) 

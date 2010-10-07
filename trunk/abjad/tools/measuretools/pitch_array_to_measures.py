@@ -9,7 +9,7 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator = 8):
    `row.width` over `cell_duration_denominator` for each
    row in `pitch_array`. ::
 
-      abjad> array = pitchtools.PitchArray([
+      abjad> array = pitcharraytools.PitchArray([
       ...     [1, (2, 1), ([-2, -1.5], 2)],
       ...     [(7, 2), (6, 1), 1]])
       abjad> print array

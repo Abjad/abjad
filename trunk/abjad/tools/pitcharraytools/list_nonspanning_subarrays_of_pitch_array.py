@@ -1,5 +1,5 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.PitchArray import PitchArray
+from abjad.tools.pitcharraytools.PitchArray import PitchArray
 
 
 def list_nonspanning_subarrays_of_pitch_array(array):
@@ -7,7 +7,7 @@ def list_nonspanning_subarrays_of_pitch_array(array):
 
    Yield left-to-right nonspanning subarrays in `array`. ::
 
-      abjad> array = pitchtools.PitchArray([
+      abjad> array = pitcharraytools.PitchArray([
       ...     [2, 2, 3, 1],
       ...     [1, 2, 1, 1, 2, 1],
       ...     [1, 1, 1, 1, 1, 1, 1, 1]])

@@ -3,12 +3,12 @@ from abjad import *
 
 def test_scoretools_make_pitch_array_score_from_pitch_arrays_01( ):
 
-   array_1 = pitchtools.PitchArray([
+   array_1 = pitcharraytools.PitchArray([
       [1, (2, 1), ([-2, -1.5], 2)],
       [(7, 2), (6, 1), 1],
       ])
 
-   array_2 = pitchtools.PitchArray([
+   array_2 = pitcharraytools.PitchArray([
       [1, 1, 1],
       [1, 1, 1]])
 
