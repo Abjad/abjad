@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
+from abjad.core import _UnaryComparator
 
 
-class NamedDiatonicPitch(_DiatonicPitch):
+class NamedDiatonicPitch(_UnaryComparator):
    '''.. versionadded:: 1.1.2
 
    Abjad model of named diatonic pitch::
@@ -10,61 +10,30 @@ class NamedDiatonicPitch(_DiatonicPitch):
       NamedDiatonicPitch("c''")
    '''
 
-   __slots__ = ('_diatonic_pitch_class_name', '_diatonic_pitch_class_number', 
-      '_octave_number', '_tick_string')
+   __slots__ = ('_diatonic_pitch_name', )
 
    def __new__(klass, arg):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
       if hasattr(arg, '_diatonic_pitch_name'):
          diatonic_pitch_name = arg._diatonic_pitch_name
-         object.__setattr__(self, '_diatonic_pitch_name', diatonic_pitch_name)
-         return self
-      elif hasattr(arg, 'diatonic_pitch_class'):
-         diatonic_pitch_class_name = arg.diatonic_pitch_class.name
-         diatonic_pitch_class_number = arg.diatonic_pitch_class.number
-         octave_number = arg.octave_number
-         tick_string = pitchtools.octave_number_to_octave_tick_string(octave_number)
-      elif isinstance(arg, str):
-         assert pitchtools.is_diatonic_pitch_name(arg)
-         diatonic_pitch_class_name = arg[0]
-         diatonic_pitch_class_number = \
-            self._diatonic_pitch_class_name_string_to_diatonic_pitch_class_number[
-            diatonic_pitch_class_name]
-         tick_string = arg[1:]
-         octave_number = pitchtools.octave_tick_string_to_octave_number(tick_string)
-         diatonic_pitch_number = 7 * (octave_number - 4) + diatonic_pitch_class_number
-      elif isinstance(arg, (int, long)):
-         diatonic_pitch_number = arg
-         diatonic_pitch_class_number = arg % 7
-         diatonic_pitch_class_name = \
-            self._diatonic_pitch_class_number_to_diatonic_pitch_class_name_string[
-            diatonic_pitch_class_number]
-         octave_number = arg // 7 + 4
-         tick_string = pitchtools.octave_number_to_octave_tick_string(octave_number)
+      elif hasattr(arg, '_diatonic_pitch_number'):
+         tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_name
+         diatonic_pitch_name = tmp(arg._diatonic_pitch_number)
+      elif pitchtools.is_diatonic_pitch_name(arg):
+         diatonic_pitch_name = arg
+      elif pitchtools.is_diatonic_pitch_number(arg):
+         diatonic_pitch_name = pitchtools.diatonic_pitch_number_to_diatonic_pitch_name(arg)
       else:
          raise TypeError('\n\tCan not initialize named diatonic pitch: "%s".' % arg)
-      object.__setattr__(self, '_diatonic_pitch_class_name', 
-         diatonic_pitch_class_name)
-      object.__setattr__(self, '_octave_number', octave_number)
-      object.__setattr__(self, '_tick_string', tick_string)
-      diatonic_pitch_name = diatonic_pitch_class_name + tick_string
+      tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_number
+      diatonic_pitch_number = tmp(diatonic_pitch_name)
       object.__setattr__(self, '_diatonic_pitch_name', diatonic_pitch_name)
-      object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)
+      object.__setattr__(self, '_comparison_attribute', diatonic_pitch_number)
+      object.__setattr__(self, '_format_string', repr(diatonic_pitch_name))
       return self
 
    ## OVERLOADS ##
-
-   def __eq__(self, arg):
-      try:
-         arg = type(self)(arg)
-         return self._diatonic_pitch_name == arg._diatonic_pitch_name
-      except (TypeError, ValueError):
-         return False
-
-#   def __ge__(self, arg):
-#      try:
-#         arg = type(self)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, repr(self._diatonic_pitch_name))
@@ -94,7 +63,8 @@ class NamedDiatonicPitch(_DiatonicPitch):
          NamedDiatonicPitchClass('c')
       '''
       from abjad.tools import pitchtools
-      return pitchtools.NamedDiatonicPitchClass(self._diatonic_pitch_class_name)
+      tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name
+      return pitchtools.NamedDiatonicPitchClass(tmp(self._diatonic_pitch_name))
 
    @property
    def numeric_diatonic_pitch(self):
@@ -107,7 +77,8 @@ class NamedDiatonicPitch(_DiatonicPitch):
          NumericDiatonicPitch(7)
       '''
       from abjad.tools import pitchtools
-      return pitchtools.NumericDiatonicPitch(self._diatonic_pitch_number)
+      tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_number
+      return pitchtools.NumericDiatonicPitch(tmp(self._diatonic_pitch_name))
 
    @property
    def numeric_diatonic_pitch_class(self):
@@ -120,4 +91,5 @@ class NamedDiatonicPitch(_DiatonicPitch):
          NumericDiatonicPitchClass(0)
       '''
       from abjad.tools import pitchtools
-      return pitchtools.NumericDiatonicPitchClass(self._diatonic_pitch_class_name)
+      tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_number
+      return pitchtools.NumericDiatonicPitchClass(tmp(self._diatonic_pitch_name))

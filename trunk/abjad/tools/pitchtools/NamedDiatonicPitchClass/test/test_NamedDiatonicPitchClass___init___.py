@@ -2,16 +2,26 @@ from abjad import *
 
 
 def test_NamedDiatonicPitchClass___init____01( ):
-   '''Init named diatonic pitch class with diatonic pitch class name string.
+   '''Init named diatonic pitch-class with diatonic pitch class name.
    '''
 
-   ndpc = pitchtools.NamedDiatonicPitchClass('c')
-   assert isinstance(ndpc, pitchtools.NamedDiatonicPitchClass)
+   named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass('c')
+   assert isinstance(named_diatonic_pitch_class, pitchtools.NamedDiatonicPitchClass)
 
    
 def test_NamedDiatonicPitchClass___init____02( ):
-   '''Init named diatonic pitch class with diatonic pitch class number.
+   '''Init named diatonic pitch-class with diatonic pitch class number.
    '''
 
-   ndpc = pitchtools.NamedDiatonicPitchClass(0)
-   assert isinstance(ndpc, pitchtools.NamedDiatonicPitchClass)
+   named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass(0)
+   assert isinstance(named_diatonic_pitch_class, pitchtools.NamedDiatonicPitchClass)
+
+
+def test_NamedDiatonicPitchClass___init____03( ):
+   '''Init named diatonic pitch-class with named diatonic pitch-class.
+   '''
+
+   named_diatonic_pitch_class_1 = pitchtools.NamedDiatonicPitchClass(0)
+   named_diatonic_pitch_class_2 = pitchtools.NamedDiatonicPitchClass(named_diatonic_pitch_class_1)
+   assert isinstance(named_diatonic_pitch_class_1, pitchtools.NamedDiatonicPitchClass)
+   assert isinstance(named_diatonic_pitch_class_2, pitchtools.NamedDiatonicPitchClass)

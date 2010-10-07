@@ -21,3 +21,8 @@ def test_pitchtools_is_diatonic_pitch_class_name_02( ):
    assert pitchtools.is_diatonic_pitch_class_name('G')
    assert pitchtools.is_diatonic_pitch_class_name('A')
    assert pitchtools.is_diatonic_pitch_class_name('B')
+
+
+def test_pitchtools_is_diatonic_pitch_class_name_03( ):
+
+   assert not pitchtools.is_diatonic_pitch_class_name(8)

@@ -23,4 +23,7 @@ def is_chromatic_pitch_class_name(expr):
    The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies this predicate.
    '''
 
+   if not isinstance(expr, str):
+      return False
+
    return bool(chromatic_pitch_class_name_regex.match(expr))

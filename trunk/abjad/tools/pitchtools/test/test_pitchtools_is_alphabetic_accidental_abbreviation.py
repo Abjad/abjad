@@ -25,3 +25,8 @@ def test_pitchtools_is_alphabetic_accidental_abbreviation_02( ):
    assert pitchtools.is_alphabetic_accidental_abbreviation('tqs!')
    assert pitchtools.is_alphabetic_accidental_abbreviation('qf!')
    assert pitchtools.is_alphabetic_accidental_abbreviation('tqf!')
+
+
+def test_pitchtools_is_alphabetic_accidental_abbreviation_03( ):
+
+   assert not pitchtools.is_alphabetic_accidental_abbreviation(8)

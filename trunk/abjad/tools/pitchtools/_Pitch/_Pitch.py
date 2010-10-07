@@ -8,7 +8,7 @@ class _Pitch(_Immutable, _StrictComparator):
    Abstract pitch class from which concrete classes inherit.
    '''
 
-   __slots__ = ( )
+   __slots__ = ('_format_string', )
 
    ## OVERLOADS ##
 
@@ -17,3 +17,6 @@ class _Pitch(_Immutable, _StrictComparator):
 
    def __ne__(self, arg):
       return not self == arg
+   
+   def __repr__(self):
+      return '%s(%s)' % (self.__class__.__name__, self._format_string)

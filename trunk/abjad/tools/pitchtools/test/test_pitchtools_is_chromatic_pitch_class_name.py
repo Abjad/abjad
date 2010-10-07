@@ -18,3 +18,4 @@ def test_pitchtools_is_chromatic_pitch_class_name_02( ):
 
    assert not pitchtools.is_chromatic_pitch_class_name('c,')
    assert not pitchtools.is_chromatic_pitch_class_name("c'")
+   assert not pitchtools.is_chromatic_pitch_class_name(8)

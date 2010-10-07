@@ -1,8 +1,10 @@
-from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
-from abjad.tools.pitchtools._NumericPitch import _NumericPitch
+from abjad.core import _UnaryComparator
+#from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
+#from abjad.tools.pitchtools._NumericPitch import _NumericPitch
 
 
-class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
+#class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
+class NumericDiatonicPitch(_UnaryComparator):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a numeric diatonic pitch::
@@ -27,6 +29,7 @@ class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
          raise TypeError
       object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)
       object.__setattr__(self, '_comparison_attribute', diatonic_pitch_number)
+      object.__setattr__(self, '_format_string', diatonic_pitch_number)
       return self
 
    ## PUBLIC ATTRIBUTES ##

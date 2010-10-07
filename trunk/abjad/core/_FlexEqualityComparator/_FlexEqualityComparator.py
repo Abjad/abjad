@@ -7,7 +7,7 @@ class _FlexEqualityComparator(_StrictComparator):
    Flex equality comparators attempt type coercion on eq, ne.
    '''
 
-   __slots__ = ('_comparison_attribute', )
+   __slots__ = ('_comparison_attribute', '_format_string')
 
    ## OVERLOADS ##
 
@@ -19,7 +19,7 @@ class _FlexEqualityComparator(_StrictComparator):
       return not self == arg
       
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._comparison_attribute)
+      return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
    ## PRIVATE METHODS ##
 

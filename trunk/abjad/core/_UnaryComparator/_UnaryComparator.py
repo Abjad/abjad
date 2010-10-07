@@ -5,7 +5,7 @@ class _UnaryComparator(_StrictComparator):
    '''Mix-in base class to confer unary comparison behavior to any custom class.
    '''
    
-   __slots__ = ('_comparison_attribute', )
+   __slots__ = ('_comparison_attribute', '_format_string')
 
    ## OVERLOADS ##
 

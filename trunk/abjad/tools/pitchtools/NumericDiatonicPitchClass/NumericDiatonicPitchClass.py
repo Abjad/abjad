@@ -31,6 +31,7 @@ class NumericDiatonicPitchClass(_NumericPitchClass, _DiatonicPitchClass):
          raise TypeError
       object.__setattr__(self, '_diatonic_pitch_class_number', diatonic_pitch_class_number)
       object.__setattr__(self, '_comparison_attribute', diatonic_pitch_class_number)
+      object.__setattr__(self, '_format_string', diatonic_pitch_class_number)
       return self
 
    @property

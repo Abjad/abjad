@@ -20,4 +20,7 @@ def is_octave_tick_string(expr):
    The regex ``^,+|'+|$`` underlies this predicate.
    '''
 
+   if not isinstance(expr, str):
+      return False
+
    return bool(octave_tick_regex.match(expr))
