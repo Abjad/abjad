@@ -37,6 +37,7 @@ from components import *
 from abjad.tools import *
 del pitcharraytools
 del sievetools
+del tonalitytools
 import macros
 
 ## import tools and io

@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import tonalitytools
 
 
 def test_InversionIndicator___eq___01( ):

@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import tonalitytools
 
 
 def test_Scale_scale_degrees_01( ):

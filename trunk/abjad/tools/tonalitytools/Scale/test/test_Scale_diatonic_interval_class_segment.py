@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import tonalitytools
 
 
 def test_Scale_diatonic_interval_class_segment_01( ):

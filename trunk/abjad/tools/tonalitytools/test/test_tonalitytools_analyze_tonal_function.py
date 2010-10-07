@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import tonalitytools
 
 
 def test_tonalitytools_analyze_tonal_function_01( ):

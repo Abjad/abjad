@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import tonalitytools
 
 
 def test_tonalitytools_are_stepwise_ascending_notes_01( ):

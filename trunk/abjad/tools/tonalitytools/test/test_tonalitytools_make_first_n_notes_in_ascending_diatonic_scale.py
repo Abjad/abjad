@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import tonalitytools
 
 
 def test_tonalitytools_make_first_n_notes_in_ascending_diatonic_scale_01( ):
