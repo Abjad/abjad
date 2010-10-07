@@ -666,21 +666,6 @@ notetools
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
 
 
-pitcharraytools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/pitcharraytools/PitchArray/PitchArray
-   tools/pitcharraytools/PitchArrayCell/PitchArrayCell
-   tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
-   tools/pitcharraytools/PitchArrayRow/PitchArrayRow
-   tools/pitcharraytools/concatenate_pitch_arrays
-   tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
-   tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
-   tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
-
-
 pitchtools
 
 .. toctree::
@@ -881,16 +866,6 @@ scoretools
    tools/scoretools/make_pitch_array_score_from_pitch_arrays
 
 
-sievetools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/sievetools/ResidueClass/ResidueClass
-   tools/sievetools/ResidueClassExpression/ResidueClassExpression
-   tools/sievetools/cycle_tokens_to_sieve
-
-
 skiptools
 
 .. toctree::
@@ -1045,42 +1020,6 @@ tietools
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
 
 
-tonalitytools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/tonalitytools/ChordClass/ChordClass
-   tools/tonalitytools/ChordQualityIndicator/ChordQualityIndicator
-   tools/tonalitytools/DoublingIndicator/DoublingIndicator
-   tools/tonalitytools/ExtentIndicator/ExtentIndicator
-   tools/tonalitytools/InversionIndicator/InversionIndicator
-   tools/tonalitytools/Mode/Mode
-   tools/tonalitytools/OmissionIndicator/OmissionIndicator
-   tools/tonalitytools/QualityIndicator/QualityIndicator
-   tools/tonalitytools/Scale/Scale
-   tools/tonalitytools/ScaleDegree/ScaleDegree
-   tools/tonalitytools/SuspensionIndicator/SuspensionIndicator
-   tools/tonalitytools/TonalFunction/TonalFunction
-   tools/tonalitytools/analyze_chord
-   tools/tonalitytools/analyze_incomplete_chord
-   tools/tonalitytools/analyze_incomplete_tonal_function
-   tools/tonalitytools/analyze_tonal_function
-   tools/tonalitytools/are_scalar_notes
-   tools/tonalitytools/are_stepwise_ascending_notes
-   tools/tonalitytools/are_stepwise_descending_notes
-   tools/tonalitytools/are_stepwise_notes
-   tools/tonalitytools/chord_class_cardinality_to_extent
-   tools/tonalitytools/chord_class_extent_to_cardinality
-   tools/tonalitytools/chord_class_extent_to_extent_name
-   tools/tonalitytools/diatonic_interval_class_segment_to_chord_quality_string
-   tools/tonalitytools/is_neighbor_note
-   tools/tonalitytools/is_passing_tone
-   tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
-   tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
-   tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
-
-
 tuplettools
 
 .. toctree::
@@ -1120,3 +1059,72 @@ verticalitytools
    tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
    tools/verticalitytools/label_vertical_moments_in_expr_with_numeric_pitch_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
+
+
+Additional Abjad composition packages (load manually)
+-----------------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+
+
+pitcharraytools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/pitcharraytools/PitchArray/PitchArray
+   tools/pitcharraytools/PitchArrayCell/PitchArrayCell
+   tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
+   tools/pitcharraytools/PitchArrayRow/PitchArrayRow
+   tools/pitcharraytools/concatenate_pitch_arrays
+   tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
+   tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
+   tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
+
+
+sievetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/sievetools/ResidueClass/ResidueClass
+   tools/sievetools/ResidueClassExpression/ResidueClassExpression
+   tools/sievetools/cycle_tokens_to_sieve
+
+
+tonalitytools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tonalitytools/ChordClass/ChordClass
+   tools/tonalitytools/ChordQualityIndicator/ChordQualityIndicator
+   tools/tonalitytools/DoublingIndicator/DoublingIndicator
+   tools/tonalitytools/ExtentIndicator/ExtentIndicator
+   tools/tonalitytools/InversionIndicator/InversionIndicator
+   tools/tonalitytools/Mode/Mode
+   tools/tonalitytools/OmissionIndicator/OmissionIndicator
+   tools/tonalitytools/QualityIndicator/QualityIndicator
+   tools/tonalitytools/Scale/Scale
+   tools/tonalitytools/ScaleDegree/ScaleDegree
+   tools/tonalitytools/SuspensionIndicator/SuspensionIndicator
+   tools/tonalitytools/TonalFunction/TonalFunction
+   tools/tonalitytools/analyze_chord
+   tools/tonalitytools/analyze_incomplete_chord
+   tools/tonalitytools/analyze_incomplete_tonal_function
+   tools/tonalitytools/analyze_tonal_function
+   tools/tonalitytools/are_scalar_notes
+   tools/tonalitytools/are_stepwise_ascending_notes
+   tools/tonalitytools/are_stepwise_descending_notes
+   tools/tonalitytools/are_stepwise_notes
+   tools/tonalitytools/chord_class_cardinality_to_extent
+   tools/tonalitytools/chord_class_extent_to_cardinality
+   tools/tonalitytools/chord_class_extent_to_extent_name
+   tools/tonalitytools/diatonic_interval_class_segment_to_chord_quality_string
+   tools/tonalitytools/is_neighbor_note
+   tools/tonalitytools/is_passing_tone
+   tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
+   tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
+   tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale

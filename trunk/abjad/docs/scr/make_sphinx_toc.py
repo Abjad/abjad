@@ -57,33 +57,16 @@ def make_sphinx_toc( ):
          result += '   %s\n' % doc_path
    result += '\n\n'
   
-#   section_title = 'Score component interfaces'
-#   result += '%s\n' % section_title
-#   result += '-' * (len(section_title))
-#   result += '\n\n'
-#   result += '.. toctree::\n'
-#   result += '   :maxdepth: 1\n'
-#   result += '\n'
-#   for name in interfaces:
-#      if not name['name'].startswith('_'):
-#         doc_path = _module_path_to_doc_path(name['module'])
-#         result += '   %s\n' % doc_path
-#   result += '\n\n'
-  
-#   result += 'Spanners\n'
-#   result += '-' * (len('Spanners'))
-#   result += '\n\n'
-#   result += '.. toctree::\n'
-#   result += '   :maxdepth: 1\n'
-#   result += '\n'
-#   for name in spanners:
-#      if not name['name'].startswith('_'):
-#         doc_path = _module_path_to_doc_path(name['module'])
-#         result += '   %s\n' % doc_path
-#   result += '\n\n'
-  
+   ## separate autoloading tools packages from manually loading tools packages
    tools.sort(lambda x, y: cmp(x['module'], y['module']))
-
+   manual_loading_tools = [ ]
+   manual_loading_tools_names = ('pitcharraytools', 'sievetools', 'tonalitytools', )
+   for dictionary in tools[:]:
+      for tools_name in manual_loading_tools_names:
+         if tools_name in dictionary['module']:
+            manual_loading_tools.append(dictionary)
+            tools.remove(dictionary)
+   
    section_title = 'Abjad composition packages'
    result += '%s\n' % section_title
    result += '-' * (len(section_title))
@@ -94,6 +77,30 @@ def make_sphinx_toc( ):
 
    last_tools_module = ''
    for name in tools:
+      if not name['name'].startswith('_'):
+         doc_path = _module_path_to_doc_path(name['module'])
+         cur_tools_module = doc_path.split(os.sep)[1]
+         if not cur_tools_module == last_tools_module:
+            result += '\n\n'
+            result += cur_tools_module
+            result += '\n\n'
+            result += '.. toctree::\n'
+            result += '   :maxdepth: 1\n'
+            result += '\n'
+            last_tools_module = cur_tools_module
+         result += '   %s\n' % doc_path
+   result += '\n\n'
+
+   section_title = 'Additional Abjad composition packages (load manually)'
+   result += '%s\n' % section_title
+   result += '-' * (len(section_title))
+   result += '\n\n'
+   result += '.. toctree::\n'
+   result += '   :maxdepth: 1\n'
+   result += '\n'
+
+   last_tools_module = ''
+   for name in manual_loading_tools:
       if not name['name'].startswith('_'):
          doc_path = _module_path_to_doc_path(name['module'])
          cur_tools_module = doc_path.split(os.sep)[1]
