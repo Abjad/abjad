@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_pitchtools_pitches_to_harmonic_chromatic_interval_class_number_dictionary_01( ):
+def test_pitchtools_named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary_01( ):
 
    chord = Chord([0, 2, 11], (1, 4))
-   vector = pitchtools.pitches_to_harmonic_chromatic_interval_class_number_dictionary(chord.pitches)
+   vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(chord.pitches)
 
    assert vector == {
       0: 0,
@@ -21,11 +21,11 @@ def test_pitchtools_pitches_to_harmonic_chromatic_interval_class_number_dictiona
      11: 1}
 
 
-def test_pitchtools_pitches_to_harmonic_chromatic_interval_class_number_dictionary_02( ):
+def test_pitchtools_named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary_02( ):
 
    t = Staff(macros.scale(4) + macros.scale(4) + macros.scale(4))
    pitches = pitchtools.list_named_pitches_in_expr(t)
-   vector = pitchtools.pitches_to_harmonic_chromatic_interval_class_number_dictionary(pitches)
+   vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(pitches)
 
    assert vector == {
       0: 12,

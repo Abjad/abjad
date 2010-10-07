@@ -1,6 +1,6 @@
 from abjad.components.Chord import Chord
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.pitch_number_to_octave_number import pitch_number_to_octave_number
+from abjad.tools.pitchtools.chromatic_pitch_number_to_octave_number import chromatic_pitch_number_to_octave_number
 from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_flats import pitch_class_number_to_pitch_name_with_flats
 
 
@@ -50,7 +50,7 @@ def respell_named_pitches_in_expr_with_flats(expr):
 
 
 def _new_pitch_with_flats(pitch):
-   octave = pitch_number_to_octave_number(pitch.pitch_number)
+   octave = chromatic_pitch_number_to_octave_number(pitch.pitch_number)
    name = pitch_class_number_to_pitch_name_with_flats(pitch.numeric_pitch_class)
    pitch = type(pitch)(name, octave)
    return pitch

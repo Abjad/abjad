@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
 
 
-def pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
+def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
    r'''Return the interval class vector of *pitches* as a Python dictionary.
 
    The interval vector implemented here gives the number of ``i0, ..., i6``
@@ -11,7 +11,7 @@ def pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(p
    ::
 
       abjad> chord = Chord([0, 2, 11], (1, 4))
-      abjad> vector = pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(chord.pitches)
+      abjad> vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(chord.pitches)
       abjad> for i in range(7):
       ...     print '\t%s\t%s' % (i, vector[i])
       ... 
@@ -27,7 +27,7 @@ def pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(p
 
       abjad> staff = Staff(macros.scale(4) + macros.scale(4) + macros.scale(4))
       abjad> pitches = pitchtools.list_named_pitches_in_expr(staff)
-      abjad> vector = pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches)
+      abjad> vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches)
       abjad> for i in range(7):
       ...     print '\t%s\t%s' % (i, vector[i])
       ... 
@@ -44,7 +44,11 @@ def pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(p
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.get_interval_class_vector( )`` to
-      ``pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary( )``.
+      ``pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary( )`` to
+      ``pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary( )``.
    '''
 
    numbers = [ ]

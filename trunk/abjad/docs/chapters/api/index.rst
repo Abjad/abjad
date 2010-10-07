@@ -743,12 +743,16 @@ pitchtools
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_class_name
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_name
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_number
+   tools/pitchtools/chromatic_pitch_number_and_accidental_semitones_to_octave_number
    tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_name
+   tools/pitchtools/chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_string_and_octave_number_triple
+   tools/pitchtools/chromatic_pitch_number_to_octave_number
    tools/pitchtools/clef_and_staff_position_number_to_named_pitch
    tools/pitchtools/color_note_head_by_numeric_pitch_class_color_map
    tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
    tools/pitchtools/diatonic_pitch_class_name_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number
+   tools/pitchtools/diatonic_pitch_class_name_to_one_indexed_diatonic_scale_degree_number
    tools/pitchtools/diatonic_pitch_class_number_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_number_to_diatonic_pitch_class_name
    tools/pitchtools/diatonic_pitch_name_to_diatonic_pitch_class_name
@@ -789,6 +793,8 @@ pitchtools
    tools/pitchtools/list_pitches_in_expr_sorted_by_numeric_pitch_class
    tools/pitchtools/list_unordered_pitch_pairs_in_expr
    tools/pitchtools/make_named_pitches_from_pitch_tokens
+   tools/pitchtools/named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary
+   tools/pitchtools/named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary
    tools/pitchtools/named_pitch_and_clef_to_staff_position_number
    tools/pitchtools/number_letter_to_accidental_octave
    tools/pitchtools/octave_number_to_octave_tick_string
@@ -799,18 +805,12 @@ pitchtools
    tools/pitchtools/pitch_class_number_to_pitch_name
    tools/pitchtools/pitch_class_number_to_pitch_name_with_flats
    tools/pitchtools/pitch_class_number_to_pitch_name_with_sharps
-   tools/pitchtools/pitch_letter_to_one_indexed_diatonic_scale_degree_number
    tools/pitchtools/pitch_name_input_string_to_named_pitch_list
    tools/pitchtools/pitch_name_to_named_pitch
    tools/pitchtools/pitch_name_to_octave_number
    tools/pitchtools/pitch_name_to_pitch_class_name
    tools/pitchtools/pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair
-   tools/pitchtools/pitch_number_and_accidental_semitones_to_octave_number
-   tools/pitchtools/pitch_number_to_octave_number
-   tools/pitchtools/pitch_number_to_pitch_letter_alphabetic_accidental_string_and_octave_number_triple
-   tools/pitchtools/pitches_to_harmonic_chromatic_interval_class_number_dictionary
-   tools/pitchtools/pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary
-   tools/pitchtools/register_pitch_class_numbers_by_pitch_number_aggregate
+   tools/pitchtools/register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate
    tools/pitchtools/respell_named_pitches_in_expr_with_flats
    tools/pitchtools/respell_named_pitches_in_expr_with_sharps
    tools/pitchtools/set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr
