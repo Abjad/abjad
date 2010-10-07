@@ -5,7 +5,7 @@ import copy
 def concatenate_pitch_arrays(pitch_arrays):
    '''.. versionadded:: 1.1.2
 
-   Merge `pitch_arrays`. ::
+   Concatenate `pitch_arrays`::
 
       abjad> array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
       abjad> print array_1
@@ -30,10 +30,6 @@ def concatenate_pitch_arrays(pitch_arrays):
       abjad> print merged_array
       [ ] [     ] [ ] [     ] [         ] [ ] [ ]
       [     ] [ ] [ ] [         ] [     ] [ ] [ ]
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.merge_pitch_arrays( )`` to
-      ``pitcharraytools.concatenate_pitch_arrays( )``.
    '''
 
    if not all([isinstance(x, PitchArray) for x in pitch_arrays]):

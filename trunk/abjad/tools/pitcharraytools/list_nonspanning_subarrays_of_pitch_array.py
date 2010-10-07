@@ -2,10 +2,10 @@ from abjad.tools import listtools
 from abjad.tools.pitcharraytools.PitchArray import PitchArray
 
 
-def list_nonspanning_subarrays_of_pitch_array(array):
+def list_nonspanning_subarrays_of_pitch_array(pitch_array):
    r'''.. versionadded:: 1.1.2
 
-   Yield left-to-right nonspanning subarrays in `array`. ::
+   List nonspanning subarrays of `pitch_array`::
 
       abjad> array = pitcharraytools.PitchArray([
       ...     [2, 2, 3, 1],
@@ -42,26 +42,22 @@ def list_nonspanning_subarrays_of_pitch_array(array):
       [ ]
       [ ]
       [ ]
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.array_to_nonspanning_subarrays( )`` to
-      ``pitcharraytools.list_nonspanning_subarrays_of_pitch_array( )``.
    '''
 
-   if not isinstance(array, PitchArray):
+   if not isinstance(pitch_array, PitchArray):
       raise TypeError('must be pitch array.')
    
    unspanned_indices = [ ]
-   for i in range(array.width + 1):
-      if not array.has_spanning_cell_over_index(i):
+   for i in range(pitch_array.width + 1):
+      if not pitch_array.has_spanning_cell_over_index(i):
          unspanned_indices.append(i)
 
-   array_depth = array.depth
+   array_depth = pitch_array.depth
    subarrays = [ ]
    for start_column, stop_column in listtools.pairwise(unspanned_indices):
       upper_left_pair = (0, start_column)
       lower_right_pair = (array_depth, stop_column)
-      subarray = array.copy_subarray(upper_left_pair, lower_right_pair)
+      subarray = pitch_array.copy_subarray(upper_left_pair, lower_right_pair)
       subarrays.append(subarray)
       
    return subarrays

@@ -5,7 +5,7 @@ from abjad.tools.pitcharraytools._leaf_iterables_to_pitch_array import \
 def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
    r'''.. versionadded:: 1.1.2
 
-   Return empty pitch array corresponding to `leaf_iterables`. ::
+   Make empty pitch array from `leaf_iterables`::
 
       abjad> score = Score([ ])
       abjad> score.append(Staff(macros.scale(4)))
@@ -44,10 +44,6 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
       [     ] [     ] [     ] [     ]
       [             ] [             ]
       [ ] [     ] [ ] [ ] [     ] [ ]
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.leaf_iterables_to_pitch_array_empty( )`` to
-      ``pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists( )``.
    '''
 
    return _leaf_iterables_to_pitch_array(leaf_iterables, populate = False)
