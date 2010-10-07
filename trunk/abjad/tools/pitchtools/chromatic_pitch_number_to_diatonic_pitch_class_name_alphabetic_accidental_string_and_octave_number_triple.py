@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools.pitch_class_number_to_pitch_name import pitch_class_number_to_pitch_name
-from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_flats import pitch_class_number_to_pitch_name_with_flats
-from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_sharps import pitch_class_number_to_pitch_name_with_sharps
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
 import math
 
 
@@ -40,9 +40,9 @@ def chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_st
    if spelling == 'mixed':
       pitch_name = pitch_class_number_to_pitch_name(pc)
    elif spelling == 'sharps':
-      pitch_name = pitch_class_number_to_pitch_name_with_sharps(pc)
+      pitch_name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(pc)
    elif spelling == 'flats':
-      pitch_name = pitch_class_number_to_pitch_name_with_flats(pc)
+      pitch_name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pc)
    else:
       raise ValueError('unknown accidental spelling.')
 

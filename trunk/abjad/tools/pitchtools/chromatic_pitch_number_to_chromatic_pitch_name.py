@@ -3,10 +3,10 @@ from abjad.tools.pitchtools.octave_number_to_octave_tick_string import \
    octave_number_to_octave_tick_string
 from abjad.tools.pitchtools.pitch_class_number_to_pitch_name import \
    pitch_class_number_to_pitch_name
-from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_flats import \
-   pitch_class_number_to_pitch_name_with_flats
-from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_sharps import \
-   pitch_class_number_to_pitch_name_with_sharps
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import \
+   chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import \
+   chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
 
 
 def chromatic_pitch_number_to_chromatic_pitch_name(
@@ -34,10 +34,10 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
       chromatic_pitch_class_name = pitch_class_number_to_pitch_name(
          chromatic_pitch_class_number)
    elif accidental_spelling == 'sharps':
-      chromatic_pitch_class_name = pitch_class_number_to_pitch_name_with_sharps(
+      chromatic_pitch_class_name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(
          chromatic_pitch_class_number)
    elif accidental_spelling == 'flats':
-      chromatic_pitch_class_name = pitch_class_number_to_pitch_name_with_flats(
+      chromatic_pitch_class_name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
          chromatic_pitch_class_number)
    else:
       raise ValueError('unknown accidental spelling: "%s".' % accidental_spelling)

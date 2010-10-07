@@ -1,10 +1,10 @@
 from abjad.components.Chord import Chord
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.chromatic_pitch_number_to_octave_number import chromatic_pitch_number_to_octave_number
-from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_sharps import pitch_class_number_to_pitch_name_with_sharps
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
 
 
-def respell_named_pitches_in_expr_with_sharps(expr):
+def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
    r'''Renotate every pitch in `expr` with zero 
    or more sharps. ::
 
@@ -19,7 +19,7 @@ def respell_named_pitches_in_expr_with_sharps(expr):
          e'8
          f'8
       }
-      abjad> pitchtools.respell_named_pitches_in_expr_with_sharps(staff)
+      abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
       abjad> f(staff)
       \new Staff {
          c'8
@@ -32,7 +32,11 @@ def respell_named_pitches_in_expr_with_sharps(expr):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.make_sharp( )`` to
-      ``pitchtools.respell_named_pitches_in_expr_with_sharps( )``.
+      ``pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.respell_named_pitches_in_expr_with_sharps( )`` to
+      ``pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( )``.
    '''
    from abjad.tools import leaftools
 
@@ -49,6 +53,6 @@ def respell_named_pitches_in_expr_with_sharps(expr):
 
 def _new_pitch_with_sharps(pitch):
    octave = chromatic_pitch_number_to_octave_number(pitch.pitch_number)
-   name = pitch_class_number_to_pitch_name_with_sharps(pitch.numeric_pitch_class)
+   name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(pitch.numeric_pitch_class)
    pitch = type(pitch)(name, octave)
    return pitch

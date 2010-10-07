@@ -1,10 +1,10 @@
-def pitch_class_number_to_pitch_name_with_sharps(pc):
+def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(pc):
    '''Return pitch name string corresponding to `pc` spelled
    with zero or more sharps. ::
 
       abjad> for n in range(13):
       ...     pc = n / 2.0
-      ...     name = pitchtools.pitch_class_number_to_pitch_name_with_flats_sharps(pc)
+      ...     name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats_sharps(pc)
       ...     print '%s\\t%s' % (pc, name)
       ... 
       0.0   c
@@ -23,7 +23,11 @@ def pitch_class_number_to_pitch_name_with_sharps(pc):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.pc_to_pitch_name_sharps( )`` to
-      ``pitchtools.pitch_class_number_to_pitch_name_with_sharps( )``.
+      ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.pitch_class_number_to_pitch_name_with_sharps( )`` to
+      ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )``.
    '''
 
    try:

@@ -1,10 +1,10 @@
 from abjad.components.Chord import Chord
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.chromatic_pitch_number_to_octave_number import chromatic_pitch_number_to_octave_number
-from abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_flats import pitch_class_number_to_pitch_name_with_flats
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
 
 
-def respell_named_pitches_in_expr_with_flats(expr):
+def respell_named_chromatic_pitches_in_expr_with_flats(expr):
    r'''Renotate every pitch in `expr` with zero or more flats.
 
    ::
@@ -20,7 +20,7 @@ def respell_named_pitches_in_expr_with_flats(expr):
          e'8
          f'8
       }
-      abjad> pitchtools.respell_named_pitches_in_expr_with_flats(staff)
+      abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
       abjad> f(staff)
       \new Staff {
          c'8
@@ -33,7 +33,11 @@ def respell_named_pitches_in_expr_with_flats(expr):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.make_flat( )`` to
-      ``pitchtools.respell_named_pitches_in_expr_with_flats( )``.
+      ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.respell_named_pitches_in_expr_with_flats( )`` to
+      ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( )``.
    '''
    from abjad.tools import leaftools
 
@@ -51,6 +55,6 @@ def respell_named_pitches_in_expr_with_flats(expr):
 
 def _new_pitch_with_flats(pitch):
    octave = chromatic_pitch_number_to_octave_number(pitch.pitch_number)
-   name = pitch_class_number_to_pitch_name_with_flats(pitch.numeric_pitch_class)
+   name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pitch.numeric_pitch_class)
    pitch = type(pitch)(name, octave)
    return pitch

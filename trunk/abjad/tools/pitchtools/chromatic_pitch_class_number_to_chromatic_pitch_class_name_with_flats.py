@@ -1,10 +1,10 @@
-def pitch_class_number_to_pitch_name_with_flats(pc):
+def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pc):
    '''Return pitch name string corresponding to `pc` spelled
    with zero or more flats. ::
 
       abjad> for n in range(13):
       ...     pc = n / 2.0
-      ...     name = pitchtools.pitch_class_number_to_pitch_name_with_flats_flats(pc)
+      ...     name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats_flats(pc)
       ...     print '%s\\t%s' % (pc, name)
       ... 
       0.0   c
@@ -23,7 +23,11 @@ def pitch_class_number_to_pitch_name_with_flats(pc):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.pc_to_pitch_name_flats( )`` to
-      ``pitchtools.pitch_class_number_to_pitch_name_with_flats( )``.
+      ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.pitch_class_number_to_pitch_name_with_flats( )`` to
+      ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats( )``.
    '''
   
    try:
