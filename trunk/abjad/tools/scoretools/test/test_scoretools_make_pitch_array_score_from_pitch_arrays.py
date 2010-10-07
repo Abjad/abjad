@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import pitcharraytools
 
 
 def test_scoretools_make_pitch_array_score_from_pitch_arrays_01( ):

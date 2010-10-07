@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import pitcharraytools
 
 
 def test_PitchArrayRow_has_spanning_cell_over_index_01( ):

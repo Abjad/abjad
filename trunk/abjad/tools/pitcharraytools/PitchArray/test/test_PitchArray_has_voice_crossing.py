@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import pitcharraytools
 
 
 def test_PitchArray_has_voice_crossing_01( ):

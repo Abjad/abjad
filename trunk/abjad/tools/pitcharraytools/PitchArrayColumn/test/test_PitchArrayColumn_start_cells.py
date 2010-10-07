@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import pitcharraytools
 
 
 def test_PitchArrayColumn_start_cells_01( ):

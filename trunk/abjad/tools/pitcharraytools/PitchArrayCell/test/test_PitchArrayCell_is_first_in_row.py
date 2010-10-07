@@ -1,6 +1,6 @@
 from abjad import *
-from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
-   import PitchArrayCell
+from abjad.tools import pitcharraytools
+from abjad.tools.pitcharraytools import PitchArrayCell
 
 
 def test_PitchArrayCell_is_first_in_row_01( ):

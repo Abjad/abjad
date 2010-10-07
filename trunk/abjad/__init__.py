@@ -35,6 +35,7 @@ Fraction
 
 from components import *
 from abjad.tools import *
+del pitcharraytools
 del sievetools
 import macros
 

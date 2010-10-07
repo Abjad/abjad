@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import pitcharraytools
 
 
 def test_pitcharraytools_concatenate_pitch_arrays_01( ):

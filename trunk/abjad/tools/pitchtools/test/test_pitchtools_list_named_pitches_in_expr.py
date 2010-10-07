@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import pitcharraytools
 
 
 def test_pitchtools_list_named_pitches_in_expr_01( ):

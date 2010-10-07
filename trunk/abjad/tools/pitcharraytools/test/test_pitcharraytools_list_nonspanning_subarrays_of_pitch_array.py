@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import pitcharraytools
 
 
 def test_pitcharraytools_list_nonspanning_subarrays_of_pitch_array_01( ):

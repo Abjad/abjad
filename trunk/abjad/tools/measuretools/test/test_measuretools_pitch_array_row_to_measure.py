@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import pitcharraytools
 
 
 def test_measuretools_pitch_array_row_to_measure_01( ):
