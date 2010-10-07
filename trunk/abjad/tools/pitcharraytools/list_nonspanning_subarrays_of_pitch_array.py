@@ -18,7 +18,7 @@ def list_nonspanning_subarrays_of_pitch_array(array):
 
    ::
 
-      abjad> subarrays = pitchtools.list_nonspanning_subarrays_of_pitch_array(array)
+      abjad> subarrays = pitcharraytools.list_nonspanning_subarrays_of_pitch_array(array)
       abjad> len(subarrays)
       3
 
@@ -45,7 +45,7 @@ def list_nonspanning_subarrays_of_pitch_array(array):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.array_to_nonspanning_subarrays( )`` to
-      ``pitchtools.list_nonspanning_subarrays_of_pitch_array( )``.
+      ``pitcharraytools.list_nonspanning_subarrays_of_pitch_array( )``.
    '''
 
    if not isinstance(array, PitchArray):

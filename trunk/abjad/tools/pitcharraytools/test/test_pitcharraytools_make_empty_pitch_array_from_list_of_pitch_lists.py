@@ -34,7 +34,7 @@ def test_pitcharraytools_make_empty_pitch_array_from_list_of_pitch_lists_01( ):
    >>
    '''
 
-   pitch_array = pitchtools.make_empty_pitch_array_from_list_of_pitch_lists(score)
+   pitch_array = pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists(score)
 
    '''
    [ ] [ ] [ ] [ ] [ ] [ ]
@@ -81,7 +81,7 @@ def test_pitcharraytools_make_empty_pitch_array_from_list_of_pitch_lists_02( ):
    >>
    '''
 
-   pitch_array = pitchtools.make_empty_pitch_array_from_list_of_pitch_lists(score)
+   pitch_array = pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists(score)
 
    '''
    [     ] [     ] [     ] [     ]

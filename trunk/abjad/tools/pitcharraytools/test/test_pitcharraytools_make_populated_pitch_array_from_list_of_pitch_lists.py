@@ -34,7 +34,7 @@ def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_01(
    >>
    '''
 
-   pitch_array = pitchtools.make_populated_pitch_array_from_list_of_pitch_lists(score)
+   pitch_array = pitcharraytools.make_populated_pitch_array_from_list_of_pitch_lists(score)
 
    '''
    [c'] [d'] [e'] [f'] [g'] [a']
@@ -81,7 +81,7 @@ def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_02(
    >>
    '''
 
-   pitch_array = pitchtools.make_populated_pitch_array_from_list_of_pitch_lists(score)
+   pitch_array = pitcharraytools.make_populated_pitch_array_from_list_of_pitch_lists(score)
 
    '''
    [c'     ] [d'     ] [e'     ] [f'     ]

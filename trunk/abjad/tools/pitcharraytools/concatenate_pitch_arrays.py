@@ -26,14 +26,14 @@ def concatenate_pitch_arrays(pitch_arrays):
 
    ::
 
-      abjad> merged_array = pitchtools.concatenate_pitch_arrays([array_1, array_2, array_3])
+      abjad> merged_array = pitcharraytools.concatenate_pitch_arrays([array_1, array_2, array_3])
       abjad> print merged_array
       [ ] [     ] [ ] [     ] [         ] [ ] [ ]
       [     ] [ ] [ ] [         ] [     ] [ ] [ ]
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.merge_pitch_arrays( )`` to
-      ``pitchtools.concatenate_pitch_arrays( )``.
+      ``pitcharraytools.concatenate_pitch_arrays( )``.
    '''
 
    if not all([isinstance(x, PitchArray) for x in pitch_arrays]):

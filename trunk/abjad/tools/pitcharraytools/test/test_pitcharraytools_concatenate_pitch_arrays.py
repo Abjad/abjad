@@ -24,7 +24,7 @@ def test_pitcharraytools_concatenate_pitch_arrays_01( ):
    [ ] [ ]
    '''
 
-   merged_array = pitchtools.concatenate_pitch_arrays([array_1, array_2, array_3])
+   merged_array = pitcharraytools.concatenate_pitch_arrays([array_1, array_2, array_3])
 
    '''
    [ ] [     ] [ ] [     ] [         ] [ ] [ ]

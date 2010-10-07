@@ -39,7 +39,7 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
 
    ::
 
-      abjad> array = pitchtools.make_empty_pitch_array_from_list_of_pitch_lists(score)
+      abjad> array = pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists(score)
       abjad> print array
       [     ] [     ] [     ] [     ]
       [             ] [             ]
@@ -47,7 +47,7 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.leaf_iterables_to_pitch_array_empty( )`` to
-      ``pitchtools.make_empty_pitch_array_from_list_of_pitch_lists( )``.
+      ``pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists( )``.
    '''
 
    return _leaf_iterables_to_pitch_array(leaf_iterables, populate = False)

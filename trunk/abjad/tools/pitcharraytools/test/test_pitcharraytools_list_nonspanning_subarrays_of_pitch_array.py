@@ -15,7 +15,7 @@ def test_pitcharraytools_list_nonspanning_subarrays_of_pitch_array_01( ):
    [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ]
    '''
 
-   subarrays = pitchtools.list_nonspanning_subarrays_of_pitch_array(array)
+   subarrays = pitcharraytools.list_nonspanning_subarrays_of_pitch_array(array)
 
    '''
    [     ] [     ]
