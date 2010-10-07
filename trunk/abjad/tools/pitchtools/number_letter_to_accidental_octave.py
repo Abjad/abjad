@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.Accidental import Accidental
-from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import pitch_letter_to_pitch_class_number as pitchtools_pitch_letter_to_pitch_class_number
+from abjad.tools.pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number import diatonic_pitch_class_name_to_chromatic_pitch_class_number as pitchtools_diatonic_pitch_class_name_to_chromatic_pitch_class_number
 from abjad.tools.pitchtools.transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number import transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number as pitchtools_transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number
 from abjad.tools.pitchtools.pitch_number_and_accidental_semitones_to_octave_number import pitch_number_and_accidental_semitones_to_octave_number
 
@@ -35,7 +35,7 @@ def number_letter_to_accidental_octave(number, letter):
       raise ValueError
    
    ## find accidental semitones
-   pc = pitchtools_pitch_letter_to_pitch_class_number(letter)
+   pc = pitchtools_diatonic_pitch_class_name_to_chromatic_pitch_class_number(letter)
    nearest_neighbor = pitchtools_transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number(number, pc)
    semitones = number - nearest_neighbor
    

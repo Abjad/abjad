@@ -399,13 +399,13 @@ class NamedPitch(_Pitch):
          abjad> named_pitch.pitch_number
          1
       '''
-      from abjad.tools.pitchtools.pitch_letter_to_pitch_class_number import \
-         pitch_letter_to_pitch_class_number
+      from abjad.tools.pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number import \
+         diatonic_pitch_class_name_to_chromatic_pitch_class_number
       if not self.octave_number is None:
          if self.diatonic_pitch_class_name:
             if self.accidental:
                octave = 12 * (self.octave_number - 4)
-               pc = pitch_letter_to_pitch_class_number(self.diatonic_pitch_class_name)
+               pc = diatonic_pitch_class_name_to_chromatic_pitch_class_number(self.diatonic_pitch_class_name)
                semitones = self.accidental.semitones
                return octave + pc + semitones
       else:

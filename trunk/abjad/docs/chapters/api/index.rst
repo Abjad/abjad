@@ -747,6 +747,7 @@ pitchtools
    tools/pitchtools/clef_and_staff_position_number_to_named_pitch
    tools/pitchtools/color_note_head_by_numeric_pitch_class_color_map
    tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
+   tools/pitchtools/diatonic_pitch_class_name_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_number_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_number_to_diatonic_pitch_class_name
@@ -799,7 +800,6 @@ pitchtools
    tools/pitchtools/pitch_class_number_to_pitch_name_with_flats
    tools/pitchtools/pitch_class_number_to_pitch_name_with_sharps
    tools/pitchtools/pitch_letter_to_one_indexed_diatonic_scale_degree_number
-   tools/pitchtools/pitch_letter_to_pitch_class_number
    tools/pitchtools/pitch_name_input_string_to_named_pitch_list
    tools/pitchtools/pitch_name_to_named_pitch
    tools/pitchtools/pitch_name_to_octave_number
