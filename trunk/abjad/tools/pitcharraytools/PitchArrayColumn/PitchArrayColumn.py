@@ -1,6 +1,6 @@
 from abjad.core import _StrictComparator
 from abjad.tools import listtools
-from abjad.tools.pitcharraytools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
+from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 
 
 class PitchArrayColumn(_StrictComparator):

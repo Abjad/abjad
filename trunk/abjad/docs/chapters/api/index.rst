@@ -672,9 +672,9 @@ pitcharraytools
    :maxdepth: 1
 
    tools/pitcharraytools/PitchArray/PitchArray
-   tools/pitcharraytools/PitchArray/PitchArrayCell/PitchArrayCell
-   tools/pitcharraytools/PitchArray/PitchArrayColumn/PitchArrayColumn
-   tools/pitcharraytools/PitchArray/PitchArrayRow/PitchArrayRow
+   tools/pitcharraytools/PitchArrayCell/PitchArrayCell
+   tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
+   tools/pitcharraytools/PitchArrayRow/PitchArrayRow
    tools/pitcharraytools/concatenate_pitch_arrays
    tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
    tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists

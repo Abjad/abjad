@@ -1,5 +1,5 @@
 from abjad.core import _StrictComparator
-from abjad.tools.pitcharraytools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
+from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
 import copy
 

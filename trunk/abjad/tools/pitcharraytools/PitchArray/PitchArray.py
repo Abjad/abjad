@@ -1,9 +1,9 @@
 from abjad.core import _StrictComparator
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
-from abjad.tools.pitcharraytools.PitchArray.PitchArrayCell.PitchArrayCell import PitchArrayCell
-from abjad.tools.pitcharraytools.PitchArray.PitchArrayColumn.PitchArrayColumn import PitchArrayColumn
-from abjad.tools.pitcharraytools.PitchArray.PitchArrayRow.PitchArrayRow import PitchArrayRow
+from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
+from abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn import PitchArrayColumn
+from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
 
 
 class PitchArray(_StrictComparator):

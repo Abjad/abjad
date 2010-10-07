@@ -2,7 +2,7 @@ from abjad.components.Measure import Measure
 from abjad.tools.metertools import Meter
 from fractions import Fraction
 from abjad.tools import leaftools
-from abjad.tools.pitcharraytools.PitchArray.PitchArrayRow.PitchArrayRow \
+from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow \
    import PitchArrayRow
 
 
