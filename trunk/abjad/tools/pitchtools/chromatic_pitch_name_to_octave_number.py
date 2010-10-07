@@ -1,19 +1,24 @@
 from abjad.exceptions import PitchError
-from abjad.tools.pitchtools.octave_tick_string_to_octave_number import octave_tick_string_to_octave_number
+from abjad.tools.pitchtools.octave_tick_string_to_octave_number import \
+   octave_tick_string_to_octave_number
 import re
 
 
-def pitch_name_to_octave_number(pitch_string):
+def chromatic_pitch_name_to_octave_number(pitch_string):
    '''.. versionadded:: 1.1.2
 
    Convert `pitch_string` to American octave number. ::
 
-      abjad> pitchtools.pitch_name_to_pitch_class_name('cs')
+      abjad> pitchtools.chromatic_pitch_name_to_octave_number('cs')
       3
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.pitch_string_to_octave_number( )`` to
-      ``pitchtools.pitch_name_to_octave_number( )``.
+      ``pitchtools.chromatic_pitch_name_to_octave_number( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.pitch_name_to_octave_number( )`` to
+      ``pitchtools.chromatic_pitch_name_to_octave_number( )``.
    '''
 
    if not isinstance(pitch_string, str):

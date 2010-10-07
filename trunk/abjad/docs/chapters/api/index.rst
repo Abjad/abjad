@@ -738,11 +738,14 @@ pitchtools
    tools/pitchtools/calculate_melodic_diatonic_interval_class_from_named_pitch_to_named_pitch
    tools/pitchtools/calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch
    tools/pitchtools/chromatic_pitch_class_name_to_chromatic_pitch_class_number
+   tools/pitchtools/chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_string_pair
    tools/pitchtools/chromatic_pitch_name_to_chromatic_pitch_class_name
    tools/pitchtools/chromatic_pitch_name_to_chromatic_pitch_number
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_class_name
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_name
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_number
+   tools/pitchtools/chromatic_pitch_name_to_octave_number
+   tools/pitchtools/chromatic_pitch_names_string_to_named_chromatic_pitch_list
    tools/pitchtools/chromatic_pitch_number_and_accidental_semitones_to_octave_number
    tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_name
    tools/pitchtools/chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_string_and_octave_number_triple
@@ -805,11 +808,6 @@ pitchtools
    tools/pitchtools/pitch_class_number_to_pitch_name
    tools/pitchtools/pitch_class_number_to_pitch_name_with_flats
    tools/pitchtools/pitch_class_number_to_pitch_name_with_sharps
-   tools/pitchtools/pitch_name_input_string_to_named_pitch_list
-   tools/pitchtools/pitch_name_to_named_pitch
-   tools/pitchtools/pitch_name_to_octave_number
-   tools/pitchtools/pitch_name_to_pitch_class_name
-   tools/pitchtools/pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair
    tools/pitchtools/register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate
    tools/pitchtools/respell_named_pitches_in_expr_with_flats
    tools/pitchtools/respell_named_pitches_in_expr_with_sharps
