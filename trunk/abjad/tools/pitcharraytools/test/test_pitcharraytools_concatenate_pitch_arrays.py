@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_concatenate_pitch_arrays_01( ):
+def test_pitcharraytools_concatenate_pitch_arrays_01( ):
 
    array_1 = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
 

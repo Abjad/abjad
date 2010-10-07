@@ -12,6 +12,7 @@ from abjad.tools import markuptools
 from abjad.tools import measuretools
 from abjad.tools import metertools
 from abjad.tools import notetools
+from abjad.tools import pitchtarraytools
 from abjad.tools import pitchtools
 from abjad.tools import resttools
 from abjad.tools import schemetools

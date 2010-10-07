@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_make_populated_pitch_array_from_list_of_pitch_lists_01( ):
+def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_01( ):
 
    score = Score([ ])
    score.append(Staff(macros.scale(6)))
@@ -47,7 +47,7 @@ def test_pitchtools_make_populated_pitch_array_from_list_of_pitch_lists_01( ):
    assert pitch_array[2].pitches == pitchtools.list_named_pitches_in_expr(score[2])
 
 
-def test_pitchtools_make_populated_pitch_array_from_list_of_pitch_lists_02( ):
+def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_02( ):
 
    score = Score([ ])
    score.append(Staff(macros.scale(4)))

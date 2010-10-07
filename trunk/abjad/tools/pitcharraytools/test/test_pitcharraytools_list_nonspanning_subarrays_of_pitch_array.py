@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_list_nonspanning_subarrays_of_pitch_array_01( ):
+def test_pitcharraytools_list_nonspanning_subarrays_of_pitch_array_01( ):
 
    array = pitchtools.PitchArray([
       [2, 2, 3, 1],

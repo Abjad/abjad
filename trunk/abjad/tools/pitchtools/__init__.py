@@ -53,7 +53,6 @@ from NumericPitchClassColorMap import NumericPitchClassColorMap
 from NumericPitchClassSegment import NumericPitchClassSegment
 from NumericPitchClassSet import NumericPitchClassSet
 from NumericPitchClassVector import NumericPitchClassVector
-from PitchArray import PitchArray
 from PitchRange import PitchRange
 from NamedPitchSegment import NamedPitchSegment
 from NamedPitchSet import NamedPitchSet
