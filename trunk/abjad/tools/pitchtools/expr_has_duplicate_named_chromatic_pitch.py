@@ -23,7 +23,7 @@ def expr_has_duplicate_named_chromatic_pitch(expr):
       ``pitchtools.expr_has_duplicate_named_chromatic_pitch( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.expr_has_duplicate_named_pitch( )`` to
+      renamed ``pitchtools.expr_has_duplicate_named_chromatic_pitch( )`` to
       ``pitchtools.expr_has_duplicate_named_chromatic_pitch( )``.
    '''
 

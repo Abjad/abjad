@@ -29,8 +29,8 @@ class Scale(NamedChromaticPitchClassSegment):
       #self._key_signature = key_signature
       npcs = [key_signature.tonic]
       for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
-         named_pitch_class = npcs[-1] + mdi
-         npcs.append(named_pitch_class)
+         named_chromatic_pitch_class = npcs[-1] + mdi
+         npcs.append(named_chromatic_pitch_class)
       #self.extend(npcs)
       new = tuple.__new__(self, npcs)
       tuple.__setattr__(new, '_key_signature', key_signature)
@@ -55,8 +55,8 @@ class Scale(NamedChromaticPitchClassSegment):
 #      self._key_signature = key_signature
 #      npcs = [key_signature.tonic]
 #      for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
-#         named_pitch_class = npcs[-1] + mdi
-#         npcs.append(named_pitch_class)
+#         named_chromatic_pitch_class = npcs[-1] + mdi
+#         npcs.append(named_chromatic_pitch_class)
 #      self.extend(npcs)
 
    ## PUBLIC ATTRIBUTES ##
@@ -106,7 +106,7 @@ class Scale(NamedChromaticPitchClassSegment):
 
    ## PUBLIC METHODS ##
 
-   def named_pitch_class_to_scale_degree(self, *args):
+   def named_chromatic_pitch_class_to_scale_degree(self, *args):
       foreign_pitch_class = NamedChromaticPitchClass(*args)
       letter = foreign_pitch_class.letter
       for i, pc in enumerate(self):
@@ -120,7 +120,7 @@ class Scale(NamedChromaticPitchClassSegment):
       accidental = foreign_pitch.accidental - native_pitch.accidental
       return ScaleDegree(accidental, scale_degree_number)
 
-   def scale_degree_to_named_pitch_class(self, *args):
+   def scale_degree_to_named_chromatic_pitch_class(self, *args):
       scale_degree = ScaleDegree(*args)
       scale_index = scale_degree.number - 1
       pitch_class = self[scale_index]

@@ -20,7 +20,7 @@ def all_are_chromatic_pitch_class_name_octave_number_pairs(pitch_tokens):
       ``pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.all_are_named_pitch_tokens( )`` to
+      renamed ``pitchtools.all_are_named_chromatic_pitch_tokens( )`` to
       ``pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs( )``.
    '''
 

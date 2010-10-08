@@ -35,7 +35,7 @@ def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
       ``pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.respell_named_pitches_in_expr_with_sharps( )`` to
+      renamed ``pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( )`` to
       ``pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( )``.
    '''
    from abjad.tools import leaftools

@@ -28,7 +28,7 @@ def suggest_clef_for_named_chromatic_pitches(pitches, clefs = ['treble', 'bass']
       ``pitchtools.suggest_clef_for_named_chromatic_pitches( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.suggest_clef_for_named_pitches( )`` to
+      renamed ``pitchtools.suggest_clef_for_named_chromatic_pitches( )`` to
       ``pitchtools.suggest_clef_for_named_chromatic_pitches( )``.
    '''
 

@@ -19,7 +19,7 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
       ``pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.transpose_named_pitch_by_melodic_chromatic_interval_and_respell_enharmonically( )`` to
+      renamed ``pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell_enharmonically( )`` to
       ``pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell( )``.
    '''
 

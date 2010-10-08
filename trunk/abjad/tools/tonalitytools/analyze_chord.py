@@ -44,7 +44,7 @@ def analyze_chord(expr):
       return None
 
    root = ordered_npcs[0]
-   bass = min(pitches).named_pitch_class
+   bass = min(pitches).named_chromatic_pitch_class
    inversion = ordered_npcs.index(bass)
    dic_seg =  ordered_npcs.diatonic_interval_class_segment
    cardinality = len(ordered_npcs)

@@ -21,7 +21,7 @@ def is_named_chromatic_pitch_token(pitch_token):
       ``pitchtools.is_named_chromatic_pitch_token( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.is_named_pitch_token( )`` to
+      renamed ``pitchtools.is_named_chromatic_pitch_token( )`` to
       ``pitchtools.is_named_chromatic_pitch_token( )``.
    '''
 

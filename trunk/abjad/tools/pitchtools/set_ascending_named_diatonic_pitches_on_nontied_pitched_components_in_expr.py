@@ -54,10 +54,10 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(e
 
    for i, tie_chain in enumerate(tietools.iterate_tie_chains_forward_in_expr(expr)):
       #pitch = int(i / length) * 12 + diatonic_residues[i % length] 
-      #named_pitch_class = scale[i % length]
-      #pitch_class_number = named_pitch_class.pitch_class.number
+      #named_chromatic_pitch_class = scale[i % length]
+      #pitch_class_number = named_chromatic_pitch_class.pitch_class.number
       #pitch_number = int(i / length) * 12 + pitch_class_number
-      #pitch = NamedChromaticPitch(pitch_number, named_pitch_class)
+      #pitch = NamedChromaticPitch(pitch_number, named_chromatic_pitch_class)
       if isinstance(tie_chain[0], Note):
          for note in tie_chain:
             note.pitch = pitch

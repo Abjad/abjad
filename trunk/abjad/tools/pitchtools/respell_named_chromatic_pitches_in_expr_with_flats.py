@@ -36,7 +36,7 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
       ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.respell_named_pitches_in_expr_with_flats( )`` to
+      renamed ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( )`` to
       ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( )``.
    '''
    from abjad.tools import leaftools

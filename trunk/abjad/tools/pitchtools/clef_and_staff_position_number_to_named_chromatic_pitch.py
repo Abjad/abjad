@@ -28,7 +28,7 @@ def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position
       ``pitchtools.clef_and_staff_position_number_to_named_chromatic_pitch( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.clef_and_staff_position_number_to_named_pitch( )`` to
+      renamed ``pitchtools.clef_and_staff_position_number_to_named_chromatic_pitch( )`` to
       ``pitchtools.clef_and_staff_position_number_to_named_chromatic_pitch( )``.
    '''
 

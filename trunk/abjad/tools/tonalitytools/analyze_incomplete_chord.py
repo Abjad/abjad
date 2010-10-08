@@ -61,7 +61,7 @@ def analyze_incomplete_chord(expr):
 
    #print 'model npcs are %s ...' % model_npcs
 
-   bass = min(pitches).named_pitch_class
+   bass = min(pitches).named_chromatic_pitch_class
 
    try: 
       npcseg = npcset.order_by(pitchtools.NamedChromaticPitchClassSegment(model_npcs))
@@ -74,6 +74,6 @@ def analyze_incomplete_chord(expr):
    return ChordClass(root, quality, extent, inversion)
 
 
-def _make_dicv(*named_pitch_classes):
-   npcset = pitchtools.NamedChromaticPitchClassSet(named_pitch_classes)
+def _make_dicv(*named_chromatic_pitch_classes):
+   npcset = pitchtools.NamedChromaticPitchClassSet(named_chromatic_pitch_classes)
    return npcset.diatonic_interval_class_vector

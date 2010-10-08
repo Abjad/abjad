@@ -67,7 +67,7 @@ class NoteHead(object):
       return _format_note_head(self)
 
    @property
-   def named_pitch(self):
+   def named_chromatic_pitch(self):
       return self.pitch
 
    ## TODO: rename pitch as named pitch ##

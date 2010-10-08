@@ -20,7 +20,7 @@ def calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named
       ``pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.calculate_harmonic_counterpoint_interval_from_named_pitch_to_named_pitch( )`` to
+      renamed ``pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch( )`` to
       ``pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch( )``.
    '''
 

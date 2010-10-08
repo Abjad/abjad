@@ -64,7 +64,7 @@ def list_named_chromatic_pitches_in_expr(expr):
       ``pitchtools.list_named_chromatic_pitches_in_expr( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_named_pitches_in_expr( )`` to
+      renamed ``pitchtools.list_named_chromatic_pitches_in_expr( )`` to
       ``pitchtools.list_named_chromatic_pitches_in_expr( )``.
    '''
    from abjad.components import Rest

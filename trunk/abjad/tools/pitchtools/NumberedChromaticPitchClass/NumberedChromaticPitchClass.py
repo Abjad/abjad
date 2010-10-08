@@ -24,8 +24,8 @@ class NumberedChromaticPitchClass(_PitchClass):
       elif isinstance(arg, type(self)):
          number = arg.number
       elif isinstance(arg, str):
-         named_pitch_class = NamedChromaticPitchClass(arg)
-         number = named_pitch_class.numbered_chromatic_pitch_class.number
+         named_chromatic_pitch_class = NamedChromaticPitchClass(arg)
+         number = named_chromatic_pitch_class.numbered_chromatic_pitch_class.number
       elif isinstance(arg, NamedChromaticPitch):
          number = arg.pitch_number % 12
       elif isinstance(arg, NamedChromaticPitchClass):

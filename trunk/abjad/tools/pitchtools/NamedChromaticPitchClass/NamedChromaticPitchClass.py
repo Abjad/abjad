@@ -18,7 +18,7 @@ class NamedChromaticPitchClass(_PitchClass):
          self._init_by_name_string(arg.name)
       else:
          pitch = get_named_chromatic_pitch_from_pitch_carrier(arg)
-         object.__setattr__(self, '_name', pitch.named_pitch_class.name)
+         object.__setattr__(self, '_name', pitch.named_chromatic_pitch_class.name)
 
    ## OVERLOADS ##
 
@@ -28,7 +28,7 @@ class NamedChromaticPitchClass(_PitchClass):
       dummy = NamedChromaticPitch(self.name, 4)
       mdi = melodic_diatonic_interval
       new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(dummy, mdi)
-      return new.named_pitch_class
+      return new.named_chromatic_pitch_class
 
    def __copy__(self):
       return NamedChromaticPitchClass(self)
@@ -170,5 +170,5 @@ class NamedChromaticPitchClass(_PitchClass):
          import transpose_pitch_carrier_by_melodic_diatonic_interval
       pitch = NamedChromaticPitch(self, 4)
       transposed_pitch = transpose_pitch_carrier_by_melodic_diatonic_interval(pitch, mdi)
-      transposed_named_pitch_class = transposed_pitch.named_pitch_class
-      return transposed_named_pitch_class
+      transposed_named_chromatic_pitch_class = transposed_pitch.named_chromatic_pitch_class
+      return transposed_named_chromatic_pitch_class

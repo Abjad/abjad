@@ -23,7 +23,7 @@ def named_chromatic_pitch_tokens_to_named_chromatic_pitches(pitch_tokens):
       ``pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.make_named_pitches_from_pitch_tokens( )`` to
+      renamed ``pitchtools.make_named_chromatic_pitches_from_pitch_tokens( )`` to
       ``pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches( )``.
    '''
 

@@ -94,7 +94,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.get_named_pitch_from_pitch_carrier( )`` to
+      renamed ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier( )`` to
       ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier( )``.
    '''
    from abjad.tools.notetools.NoteHead import NoteHead

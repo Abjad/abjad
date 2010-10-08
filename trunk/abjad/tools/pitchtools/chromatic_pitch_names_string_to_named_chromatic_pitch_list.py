@@ -15,7 +15,7 @@ def chromatic_pitch_names_string_to_named_chromatic_pitch_list(pitch_string):
       ``pitchtools.chromatic_pitch_names_string_to_named_chromatic_pitch_list( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pitch_name_input_string_to_named_pitch_list( )`` to
+      renamed ``pitchtools.pitch_name_input_string_to_named_chromatic_pitch_list( )`` to
       ``pitchtools.chromatic_pitch_names_string_to_named_chromatic_pitch_list( )``.
    '''
 

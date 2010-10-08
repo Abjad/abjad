@@ -26,7 +26,7 @@ def calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chro
       ``pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch( )`` to
+      renamed ``pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch( )`` to
       ``pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch( )``.
    '''
 

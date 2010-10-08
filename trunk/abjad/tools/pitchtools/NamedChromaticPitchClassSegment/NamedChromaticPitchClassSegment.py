@@ -14,9 +14,9 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
    Ordered collection of named pitch-class instances.
    '''
 
-   #def __init__(self, named_pitch_class_tokens):
-   def __new__(self, named_pitch_class_tokens):
-      npcs = [NamedChromaticPitchClass(x) for x in named_pitch_class_tokens]
+   #def __init__(self, named_chromatic_pitch_class_tokens):
+   def __new__(self, named_chromatic_pitch_class_tokens):
+      npcs = [NamedChromaticPitchClass(x) for x in named_chromatic_pitch_class_tokens]
       #self.extend(npcs)
       return tuple.__new__(self, npcs)
 
@@ -44,11 +44,11 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
       return InversionEquivalentDiatonicIntervalClassSegment(dics)
 
    @property
-   def named_pitch_class_set(self):
+   def named_chromatic_pitch_class_set(self):
       return NamedChromaticPitchClassSet(self)
 
    @property
-   def named_pitch_classes(self):
+   def named_chromatic_pitch_classes(self):
       return tuple(self[:])
 
    @property
@@ -80,8 +80,8 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
 
    def rotate(self, n):
       from abjad.tools import listtools
-      named_pitch_classes = listtools.rotate(self.named_pitch_classes, n)
-      return NamedChromaticPitchClassSegment(named_pitch_classes)
+      named_chromatic_pitch_classes = listtools.rotate(self.named_chromatic_pitch_classes, n)
+      return NamedChromaticPitchClassSegment(named_chromatic_pitch_classes)
       
    def transpose(self, melodic_diatonic_interval):
       return NamedChromaticPitchClassSegment([

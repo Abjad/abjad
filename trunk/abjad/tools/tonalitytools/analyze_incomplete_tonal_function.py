@@ -18,7 +18,7 @@ def analyze_incomplete_tonal_function(expr, key_signature):
       chord_class = analyze_incomplete_chord(expr)
    root = chord_class.root
    scale = Scale(key_signature)
-   scale_degree = scale.named_pitch_class_to_scale_degree(root)
+   scale_degree = scale.named_chromatic_pitch_class_to_scale_degree(root)
    quality = chord_class.quality_indicator.quality_string
    extent = chord_class.extent
    inversion = chord_class.inversion
