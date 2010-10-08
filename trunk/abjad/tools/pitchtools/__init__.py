@@ -45,8 +45,8 @@ from NamedPitch import NamedPitch
 from NamedPitchClass import NamedPitchClass
 from NamedPitchClassSegment import NamedPitchClassSegment
 from NamedPitchClassSet import NamedPitchClassSet
-from NumericDiatonicPitchClass import NumericDiatonicPitchClass
-from NumericDiatonicPitch import NumericDiatonicPitch
+from NumberedDiatonicPitchClass import NumberedDiatonicPitchClass
+from NumberedDiatonicPitch import NumberedDiatonicPitch
 from NumericPitch import NumericPitch
 from NumericPitchClass import NumericPitchClass
 from NumericPitchClassColorMap import NumericPitchClassColorMap

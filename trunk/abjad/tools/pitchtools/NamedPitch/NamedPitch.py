@@ -436,12 +436,12 @@ class NamedPitch(_Pitch):
 
          abjad> named_pitch = pitchtools.NamedPitch("cs''")
          abjad> named_pitch.numeric_diatonic_pitch
-         NumericDiatonicPitch(7)
+         NumberedDiatonicPitch(7)
       '''
       from abjad.tools import pitchtools
       name_and_ticks = self._diatonic_pitch_class_name
       name_and_ticks += self._octave_tick_string
-      return pitchtools.NumericDiatonicPitch(name_and_ticks)
+      return pitchtools.NumberedDiatonicPitch(name_and_ticks)
 
    @property
    def numeric_diatonic_pitch_class(self):
@@ -451,10 +451,10 @@ class NamedPitch(_Pitch):
 
          abjad> named_pitch = pitchtools.NamedPitch("cs''")
          abjad> named_pitch.numeric_diatonic_pitch_class
-         NumericDiatonicPitchClass(0)
+         NumberedDiatonicPitchClass(0)
       '''
       from abjad.tools import pitchtools
-      return pitchtools.NumericDiatonicPitchClass(self._diatonic_pitch_class_name)
+      return pitchtools.NumberedDiatonicPitchClass(self._diatonic_pitch_class_name)
 
    @property
    def numeric_pitch_class(self):

@@ -44,8 +44,8 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
 
          abjad> named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass('c')
          abjad> named_diatonic_pitch_class.numeric_diatonic_pitch_class
-         NumericDiatonicPitchClass(0)
+         NumberedDiatonicPitchClass(0)
       '''
       from abjad.tools import pitchtools
       tmp = pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number
-      return pitchtools.NumericDiatonicPitchClass(tmp(self.diatonic_pitch_class_name))
+      return pitchtools.NumberedDiatonicPitchClass(tmp(self.diatonic_pitch_class_name))

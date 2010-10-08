@@ -3,14 +3,14 @@ from abjad.core import _UnaryComparator
 #from abjad.tools.pitchtools._NumericPitch import _NumericPitch
 
 
-#class NumericDiatonicPitch(_DiatonicPitch, _NumericPitch):
-class NumericDiatonicPitch(_UnaryComparator):
+#class NumberedDiatonicPitch(_DiatonicPitch, _NumericPitch):
+class NumberedDiatonicPitch(_UnaryComparator):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a numeric diatonic pitch::
 
-      abjad> pitchtools.NumericDiatonicPitch(7)
-      NumericDiatonicPitch(7)
+      abjad> pitchtools.NumberedDiatonicPitch(7)
+      NumberedDiatonicPitch(7)
    '''
 
    __slots__ = ('_diatonic_pitch_number', )
@@ -40,7 +40,7 @@ class NumericDiatonicPitch(_UnaryComparator):
    
       ::   
 
-         abjad> numeric_diatonic_pitch = pitchtools.NumericDiatonicPitch(7)
+         abjad> numeric_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
          abjad> numeric_diatonic_pitch.named_diatonic_pitch
          NamedDiatonicPitch("c''")
       '''
@@ -55,7 +55,7 @@ class NumericDiatonicPitch(_UnaryComparator):
 
       ::
 
-         abjad> numeric_diatonic_pitch = pitchtools.NumericDiatonicPitch(7)
+         abjad> numeric_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
          abjad> numeric_diatonic_pitch.named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
       '''
@@ -70,11 +70,11 @@ class NumericDiatonicPitch(_UnaryComparator):
 
       ::
 
-         abjad> numeric_diatonic_pitch = pitchtools.NumericDiatonicPitch(7)
+         abjad> numeric_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
          abjad> numeric_diatonic_pitch.numeric_diatonic_pitch_class
-         NumericDiatonicPitchClass(0)
+         NumberedDiatonicPitchClass(0)
       '''
       from abjad.tools import pitchtools
       tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_number
       diatonic_pitch_class_number = tmp(self._diatonic_pitch_number)
-      return pitchtools.NumericDiatonicPitchClass(diatonic_pitch_class_number)
+      return pitchtools.NumberedDiatonicPitchClass(diatonic_pitch_class_number)

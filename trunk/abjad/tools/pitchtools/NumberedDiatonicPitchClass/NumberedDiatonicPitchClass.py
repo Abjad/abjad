@@ -2,13 +2,13 @@ from abjad.tools.pitchtools._DiatonicPitchClass import _DiatonicPitchClass
 from abjad.tools.pitchtools._NumericPitchClass import _NumericPitchClass
 
 
-class NumericDiatonicPitchClass(_NumericPitchClass, _DiatonicPitchClass):
+class NumberedDiatonicPitchClass(_NumericPitchClass, _DiatonicPitchClass):
    '''.. versionadded:: 1.1.2
 
    Abjad model of a numeric diatonic pitch class::
 
-      abjad> pitchtools.NumericDiatonicPitchClass(0)
-      NumericDiatonicPitchClass(0)
+      abjad> pitchtools.NumberedDiatonicPitchClass(0)
+      NumberedDiatonicPitchClass(0)
    '''
 
    __slots__ = ('_diatonic_pitch_class_number', )
@@ -40,7 +40,7 @@ class NumericDiatonicPitchClass(_NumericPitchClass, _DiatonicPitchClass):
 
       ::
 
-         abjad> numeric_diatonic_pitch_class = pitchtools.NumericDiatonicPitchClass(0)
+         abjad> numeric_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0)
          abjad> numeric_diatonic_pitch_class.named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
       '''
