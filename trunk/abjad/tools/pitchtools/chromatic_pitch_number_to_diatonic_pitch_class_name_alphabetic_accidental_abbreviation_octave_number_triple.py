@@ -4,23 +4,27 @@ from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_clas
 import math
 
 
-def chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_string_and_octave_number_triple(number, spelling = 'mixed'):
+def chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(number, spelling = 'mixed'):
    '''.. versionadded: 1.1.1
 
    Convert pitch `number` and optional `spelling` to unique triple
    of letter, accidental and octave. ::
 
-      abjad> pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_string_and_octave_number_triple(13, 'sharps')
+      abjad> pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(13, 'sharps')
 
    .. todo: Write tests.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.number_to_letter_accidental_octave( )`` to
-      ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_string_and_octave_number_triple( )``.
+      ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.pitch_number_to_pitch_letter_alphabetic_accidental_string_and_octave_number_triple( )`` to
-      ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_string_and_octave_number_triple( )``.
+      ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_string_and_octave_number_triple( )`` to
+      ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple( )``.
    '''
 
    ## check input

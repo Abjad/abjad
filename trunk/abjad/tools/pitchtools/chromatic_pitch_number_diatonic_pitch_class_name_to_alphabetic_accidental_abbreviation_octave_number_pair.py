@@ -4,28 +4,32 @@ from abjad.tools.pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to
 from abjad.tools.pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number import chromatic_pitch_number_and_accidental_semitones_to_octave_number
 
 
-def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_string_octave_number_pair(number, letter):
+def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(number, letter):
    '''.. versionadded:: 1.1.1
 
    Return accidental, octave pair necessary to notate pitch `number`
    spelled starting with pitch `letter`. ::
 
-      abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_string_octave_number_pair(14, 'c')
+      abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'c')
       ('ss', 5)
 
    ::
 
-      abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_string_octave_number_pair(14, 'd')
+      abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'd')
       ('', 5)
 
    ::
 
-      abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_string_octave_number_pair(14, 'e')
+      abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'e')
       ('ff', 5)
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.number_letter_to_accidental_octave( )`` to
-      ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_string_octave_number_pair( )``.
+      ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_string_octave_number_pair( )`` to
+      ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair( )``.
    '''
 
    ## check input
