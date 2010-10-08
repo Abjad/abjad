@@ -792,7 +792,7 @@ pitchtools
    tools/pitchtools/list_chromatic_pitch_numbers_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
-   tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_ppitch_carriers
+   tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers
    tools/pitchtools/list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class
    tools/pitchtools/list_named_chromatic_pitches_in_expr
    tools/pitchtools/list_numeric_chromatic_pitch_classes_in_expr
