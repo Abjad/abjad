@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumericPitchClassSet_invert_01( ):
+def test_NumberedChromaticPitchClassSet_invert_01( ):
 
    assert pitchtools.NumberedChromaticPitchClassSet([0, 1, 5]).invert( ) == \
       pitchtools.NumberedChromaticPitchClassSet([0, 7, 11])

@@ -11,6 +11,8 @@ class NumberedDiatonicPitch(_UnaryComparator):
 
       abjad> pitchtools.NumberedDiatonicPitch(7)
       NumberedDiatonicPitch(7)
+
+   Numbered diatonic pitches are immutable.
    '''
 
    __slots__ = ('_diatonic_pitch_number', )
