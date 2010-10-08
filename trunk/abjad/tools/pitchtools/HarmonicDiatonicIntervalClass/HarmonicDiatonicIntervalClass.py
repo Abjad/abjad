@@ -90,12 +90,12 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
          HarmonicDiatonicIntervalClass(minor seventh)
       '''
       from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-      from abjad.tools.pitchtools.calculate_harmonic_diatonic_interval_class_from_named_pitch_to_named_pitch import calculate_harmonic_diatonic_interval_class_from_named_pitch_to_named_pitch
+      from abjad.tools.pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch
       low = NamedPitch('c', 4)
       quality_string, number = self._quality_string, self.number
       mdi = MelodicDiatonicInterval(quality_string, number)
       middle = low + mdi
       octave = MelodicDiatonicInterval('perfect', 8)
       high = low + octave
-      hdi = calculate_harmonic_diatonic_interval_class_from_named_pitch_to_named_pitch(middle, high)
+      hdi = calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(middle, high)
       return hdi

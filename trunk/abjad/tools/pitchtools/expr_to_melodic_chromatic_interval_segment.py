@@ -1,7 +1,7 @@
 from abjad.tools import listtools
 from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
-from abjad.tools.pitchtools.calculate_melodic_chromatic_interval_from_pitch_to_pitch import calculate_melodic_chromatic_interval_from_pitch_to_pitch
+from abjad.tools.pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier import calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier
 
 
 def expr_to_melodic_chromatic_interval_segment(expr):
@@ -18,7 +18,7 @@ def expr_to_melodic_chromatic_interval_segment(expr):
    pitches = list_named_chromatic_pitches_in_expr(expr)
    mcis = [ ]
    for left, right in listtools.pairwise(pitches):
-      mci = calculate_melodic_chromatic_interval_from_pitch_to_pitch(left, right)
+      mci = calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(left, right)
       mcis.append(mci)
 
    return MelodicChromaticIntervalSegment(mcis)

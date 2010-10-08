@@ -34,7 +34,7 @@ def label_leaves_in_expr_with_melodic_chromatic_intervals(expr, markup_direction
          thread_iterator.next( )
          next_leaf = thread_iterator.next( )
          if isinstance(next_leaf, Note):
-            mci = pitchtools.calculate_melodic_chromatic_interval_from_pitch_to_pitch(
+            mci = pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
                note, next_leaf)
             markuptools.Markup(mci, markup_direction)(note)
       except StopIteration:

@@ -12,7 +12,7 @@ def _engender(pitches, duration):
       ``construct.leaves( )``.
    '''
 
-   assert pitchtools.all_are_named_pitch_tokens(pitches)
+   assert pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs(pitches)
    assert durtools.is_duration_token(duration)
    if len(pitches) == 0:
       return Rest(duration)
