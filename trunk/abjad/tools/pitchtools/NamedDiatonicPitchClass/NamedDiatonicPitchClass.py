@@ -5,10 +5,12 @@ from abjad.tools.pitchtools._DiatonicPitchClass import _DiatonicPitchClass
 class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of named diatonic pitch class::
+   The Abjad model of a named diatonic pitch-class::
 
       abjad> pitchtools.NamedDiatonicPitchClass('c')
       NamedDiatonicPitchClass('c')
+
+   Named diatonic pitch-classes are immutable.
    '''
 
    __slots__ = ('_diatonic_pitch_class_name', )

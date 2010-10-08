@@ -4,10 +4,12 @@ from abjad.core import _UnaryComparator
 class NamedDiatonicPitch(_UnaryComparator):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of named diatonic pitch::
+   The Abjad model of a named diatonic pitch::
 
       abjad> pitchtools.NamedDiatonicPitch("c''")
       NamedDiatonicPitch("c''")
+
+   Named diatonic pitches are immutable.
    '''
 
    __slots__ = ('_diatonic_pitch_name', )
