@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumericDiatonicPitch_numeric_diatonic_pitch_class_01( ):
+def test_NumberedDiatonicPitch_numeric_diatonic_pitch_class_01( ):
 
    numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(-1)
    numbered_diatonic_pitch_class = numbered_diatonic_pitch.numbered_diatonic_pitch_class
