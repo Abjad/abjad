@@ -66,7 +66,7 @@ class NamedChromaticPitchClass(_PitchClass):
       if not isinstance(arg, NamedChromaticPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.numbered_chromatic_pitch_class >= arg.numbered_chromatic_pitch_class
+         return abs(self.numbered_chromatic_pitch_class) >= abs(arg.numbered_chromatic_pitch_class)
       else:
          return self._letter_string >= arg._letter_string
 
@@ -74,7 +74,7 @@ class NamedChromaticPitchClass(_PitchClass):
       if not isinstance(arg, NamedChromaticPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.numbered_chromatic_pitch_class > arg.numbered_chromatic_pitch_class
+         return abs(self.numbered_chromatic_pitch_class) > abs(arg.numbered_chromatic_pitch_class)
       else:
          return self._letter_string > arg._letter_string
 
@@ -85,7 +85,7 @@ class NamedChromaticPitchClass(_PitchClass):
       if not isinstance(arg, NamedChromaticPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.numbered_chromatic_pitch_class <= arg.numbered_chromatic_pitch_class
+         return abs(self.numbered_chromatic_pitch_class) <= abs(arg.numbered_chromatic_pitch_class)
       else:
          return self._letter_string <= arg._letter_string
 
@@ -93,7 +93,7 @@ class NamedChromaticPitchClass(_PitchClass):
       if not isinstance(arg, NamedChromaticPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.numbered_chromatic_pitch_class < arg.numbered_chromatic_pitch_class
+         return abs(self.numbered_chromatic_pitch_class) < abs(arg.numbered_chromatic_pitch_class)
       else:
          return self._letter_string < arg._letter_string
 

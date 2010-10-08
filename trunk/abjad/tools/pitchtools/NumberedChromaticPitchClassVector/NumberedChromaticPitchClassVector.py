@@ -10,14 +10,11 @@ class NumberedChromaticPitchClassVector(_Vector):
 
    def __init__(self, pitch_class_tokens):
       for pcn in range(12):
-         #self[pcn] = 0
-         #self[pcn + 0.5] = 0
          dict.__setitem__(self, pcn, 0)
          dict.__setitem__(self, pcn + 0.5, 0)
       for token in pitch_class_tokens:
          pitch_class = NumberedChromaticPitchClass(token)
-         #self[pitch_class.number] += 1
-         dict.__setitem__(self, pitch_class.number, self[pitch_class.number] + 1)
+         dict.__setitem__(self, abs(pitch_class), self[abs(pitch_class)] + 1)
          
    ## OVERLOADS ##
 
@@ -107,7 +104,7 @@ class NumberedChromaticPitchClassVector(_Vector):
 
    @property
    def numbers(self):
-      numbers = [pitch_class.number for pitch_class in self.pitch_classes]
+      numbers = [abs(pitch_class) for pitch_class in self.pitch_classes]
       numbers.sort( )
       return numbers
 

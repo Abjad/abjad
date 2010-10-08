@@ -17,7 +17,7 @@ class NumberedChromaticPitchClass(_PitchClass):
    Numbered chromatic pitch-classes are immutable.
    '''
 
-   __slots__ = ('_chromatic_pitch_number', )
+   __slots__ = ('_chromatic_pitch_class_number', )
 
    ## TODO: use __new__ ##
    
@@ -29,93 +29,53 @@ class NumberedChromaticPitchClass(_PitchClass):
          number = \
             pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(arg)
       elif isinstance(arg, type(self)):
-         number = arg.number
+         number = abs(arg)
       elif pitchtools.is_chromatic_pitch_name(arg):
          number = pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number(arg)
       elif isinstance(arg, NamedChromaticPitch):
-         number = arg.numbered_chromatic_pitch._chromatic_pitch_number % 12
+         number = abs(arg.numbered_chromatic_pitch) % 12
       elif isinstance(arg, NamedChromaticPitchClass):
-         number = arg.numbered_chromatic_pitch_class.number
+         number = abs(arg.numbered_chromatic_pitch_class)
       else:
          pitch = get_named_chromatic_pitch_from_pitch_carrier(arg)
-         number = pitch.numbered_chromatic_pitch._chromatic_pitch_number % 12
-      object.__setattr__(self, '_number', number)
+         number = abs(pitch.numbered_chromatic_pitch) % 12
+      object.__setattr__(self, '_chromatic_pitch_class_number', number)
+      object.__setattr__(self, '_comparison_attribute', number)
 
    ## OVERLOADS ##
 
    def __abs__(self):
-      return NumberedChromaticPitchClass(abs(self.semitones))
+      return self._chromatic_pitch_class_number
 
    def __add__(self, arg):
       '''Addition defined against melodic chromatic intervals only.'''
       if not isinstance(arg, MelodicChromaticInterval):
          raise TypeError('must be melodic chromatic interval.')
-      return NumberedChromaticPitchClass(self.number + arg.number % 12)
+      return NumberedChromaticPitchClass(abs(self) + arg.number % 12)
       
-   def __eq__(self, arg):
-      if isinstance(arg, type(self)):
-         return self.number == arg.number
-      return False
-
-   def __ge__(self, arg):
-      if not isinstance(arg, type(self)):
-         raise TypeError
-      return self.number >= arg.number
-
-   def __gt__(self, arg):
-      if not isinstance(arg, type(self)):
-         raise TypeError
-      return self.number > arg.number
-
-   def __hash__(self):
-      return hash(repr(self))
-
-   def __le__(self, arg):
-      if not isinstance(arg, type(self)):
-         raise TypeError
-      return self.number <= arg.number
-
-   def __lt__(self, arg):
-      if not isinstance(arg, type(self)):
-         raise TypeError
-      return self.number < arg.number
-
-   def __ne__(self, arg):
-      return not self == arg
-
    def __neg__(self):
-      return NumberedChromaticPitchClass(-self.semitones)
+      return NumberedChromaticPitchClass(-abs(self))
    
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.number)
+      return '%s(%s)' % (self.__class__.__name__, abs(self))
 
    def __str__(self):
-      return '%s' % self.number
+      return str(abs(self))
 
    def __sub__(self, arg):
       '''Subtraction defined against both melodic chromatic intervals
       and against other pitch classes.'''
       if isinstance(arg, type(self)):
-         interval_class_number = abs(self.number - arg.number)
+         interval_class_number = abs(abs(self) - abs(arg))
          if 6 < interval_class_number:
             interval_class_number = 12 - interval_class_number
          return InversionEquivalentChromaticIntervalClass(interval_class_number)
       elif isinstance(arg, InversionEquivalentChromaticIntervalClass):
-         return NumberedChromaticPitchClass(self.number - arg.number % 12)
+         return NumberedChromaticPitchClass(abs(self) - arg.number % 12)
       else:
          raise TypeError('must be pitch class or interval class.')
      
    ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def number(self):
-      '''Read-only numeric value of pitch-class.'''
-      return self._number
-
-   @property
-   def semitones(self):
-      '''Read-only number of semitones.'''
-      return self.number
 
    ## PUBLIC METHODS ##
 
@@ -123,17 +83,17 @@ class NumberedChromaticPitchClass(_PitchClass):
       '''Emit new numeric pitch class as sum of self and accidental.'''
       from abjad.tools.pitchtools.Accidental import Accidental
       accidental = Accidental(accidental)
-      semitones = self.semitones + accidental.semitones
+      semitones = abs(self) + accidental.semitones
       return NumberedChromaticPitchClass(semitones)
 
    def invert(self):
       '''Invert pitch class.'''
-      return NumberedChromaticPitchClass(12 - self.number)
+      return NumberedChromaticPitchClass(12 - abs(self))
 
    def multiply(self, n):
       '''Multiply pitch class by n.'''
-      return NumberedChromaticPitchClass(self.number * n)
+      return NumberedChromaticPitchClass(abs(self) * n)
 
    def transpose(self, n):
       '''Transpose pitch class by n.'''
-      return NumberedChromaticPitchClass(self.number + n)
+      return NumberedChromaticPitchClass(abs(self) + n)

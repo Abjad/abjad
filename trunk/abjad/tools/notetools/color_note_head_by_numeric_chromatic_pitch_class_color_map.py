@@ -46,7 +46,7 @@ def color_note_head_by_numeric_chromatic_pitch_class_color_map(pitch_carrier):
    '''
    
    pitch = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier)
-   color = _pc_number_to_color(pitch.numbered_chromatic_pitch_class.number)
+   color = _pc_number_to_color(abs(pitch.numbered_chromatic_pitch_class))
    if color is not None:
       pitch_carrier.override.note_head.color = color
 

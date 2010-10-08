@@ -8,13 +8,11 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
    Twelve tone row.
    '''
 
-   #def __init__(self, pitch_classes):
    def __new__(self, pitch_classes):
       from abjad.tools.pitchtools.TwelveToneRow._validate_pitch_classes import \
          _validate_pitch_classes
       pitch_classes = [NumberedChromaticPitchClass(pc) for pc in pitch_classes]
       _validate_pitch_classes(pitch_classes)
-      #self._pitch_classes = pitch_classes
       return NumberedChromaticPitchClassSegment.__new__(self, pitch_classes)
 
    ## OVERLOADS ##
@@ -55,36 +53,21 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
 
    @property
    def _contents_string(self):
-      return ', '.join([str(pc.number) for pc in self.pitch_classes])
-
-#   ## PRIVATE METHODS ##
-#
-#   def _validate_pitch_classes(self, pitch_classes):
-#      numbers = [pc.number for pc in pitch_classes]
-#      numbers.sort( )
-#      if not numbers == range(12):
-#         raise ValueError('must contain all twelve pitch classes.')
-
-   ## PUBLIC ATTRIBUTES ##
-
-#   @property
-#   def pitch_classes(self):
-#      '''Read-only tuple of pitch-classes in row.'''
-#      return tuple(self._pitch_classes)
+      return ', '.join([str(abs(pc)) for pc in self.pitch_classes])
 
    ## PUBLIC METHODS ##
 
    def alpha(self):
       numbers = [ ]
       for pc in self.pitch_classes:
-         if pc.number % 2 == 0:
-            numbers.append((pc.number + 1) % 12)
+         if abs(pc) % 2 == 0:
+            numbers.append((abs(pc) + 1) % 12)
          else:
-            numbers.append(pc.number - 1)
+            numbers.append(abs(pc) - 1)
       return TwelveToneRow(numbers)
 
    def invert(self):
-      numbers = [12 - pc.number for pc in self.pitch_classes]
+      numbers = [12 - abs(pc) for pc in self.pitch_classes]
       return TwelveToneRow(numbers)
 
    def reverse(self):
@@ -93,5 +76,5 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
    def transpose(self, n):
       if not isinstance(n, int):
          raise TypeError
-      numbers = [(pc.number + n) % 12 for pc in self.pitch_classes]
+      numbers = [(abs(pc) + n) % 12 for pc in self.pitch_classes]
       return TwelveToneRow(numbers)

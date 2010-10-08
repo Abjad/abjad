@@ -5,43 +5,38 @@ import py.test
 def test_NumberedChromaticPitchClass___init____01( ):
    '''Pitch class initialization works with numbers.'''
 
-   pc = pitchtools.NumberedChromaticPitchClass(0)
-   assert pc.number == 0
-
-   pc = pitchtools.NumberedChromaticPitchClass(0.5)
-   assert pc.number == 0.5
-
-   pc = pitchtools.NumberedChromaticPitchClass(1)
-   assert pc.number == 1
-
-   pc = pitchtools.NumberedChromaticPitchClass(1.5)
-   assert pc.number == 1.5
-
-   pc = pitchtools.NumberedChromaticPitchClass(13)
-   assert pc.number == 1
-
-   pc = pitchtools.NumberedChromaticPitchClass(13.5)
-   assert pc.number == 1.5
+   assert isinstance(pitchtools.NumberedChromaticPitchClass(0), 
+      pitchtools.NumberedChromaticPitchClass)
+   assert isinstance(pitchtools.NumberedChromaticPitchClass(0.5), 
+      pitchtools.NumberedChromaticPitchClass)
+   assert isinstance(pitchtools.NumberedChromaticPitchClass(1), 
+      pitchtools.NumberedChromaticPitchClass)
+   assert isinstance(pitchtools.NumberedChromaticPitchClass(1.5), 
+      pitchtools.NumberedChromaticPitchClass)
+   assert isinstance(pitchtools.NumberedChromaticPitchClass(13), 
+      pitchtools.NumberedChromaticPitchClass)
+   assert isinstance(pitchtools.NumberedChromaticPitchClass(13.5), 
+      pitchtools.NumberedChromaticPitchClass)
 
 
 def test_NumberedChromaticPitchClass___init____02( ):
    '''Pitch class initialization works with other pitch classes.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NumberedChromaticPitchClass(0))
-   assert pc.number == 0
+   assert isinstance(pc, pitchtools.NumberedChromaticPitchClass)
 
    pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NumberedChromaticPitchClass(12))
-   assert pc.number == 0
+   assert isinstance(pc, pitchtools.NumberedChromaticPitchClass)
 
 
 def test_NumberedChromaticPitchClass___init____03( ):
    '''PitchClass initialization works with pitches.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NamedChromaticPitch(0))
-   assert pc.number == 0
+   assert isinstance(pc, pitchtools.NumberedChromaticPitchClass)
 
    pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NamedChromaticPitch(12))
-   assert pc.number == 0
+   assert isinstance(pc, pitchtools.NumberedChromaticPitchClass)
 
 
 def test_NumberedChromaticPitchClass___init____04( ):
@@ -91,7 +86,7 @@ def test_NumberedChromaticPitchClass___init____09( ):
 def test_NumberedChromaticPitchClass___init____10( ):
    '''Init from named pitch class string.'''
 
-   assert pitchtools.NumberedChromaticPitchClass('c').number == 0
-   assert pitchtools.NumberedChromaticPitchClass('cs').number == 1
-   assert pitchtools.NumberedChromaticPitchClass('cf').number == 11
-   assert pitchtools.NumberedChromaticPitchClass('css').number == 2
+   assert pitchtools.NumberedChromaticPitchClass('c') == 0
+   assert pitchtools.NumberedChromaticPitchClass('cs') == 1
+   assert pitchtools.NumberedChromaticPitchClass('cf') == 11
+   assert pitchtools.NumberedChromaticPitchClass('css') == 2

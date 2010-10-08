@@ -33,7 +33,7 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pc):
    try:
       return _pcToPitchNameFlats[pc]
    except KeyError:
-      return _pcToPitchNameFlats[pc.number]
+      return _pcToPitchNameFlats[abs(pc)]
 
 
 _pcToPitchNameFlats = {

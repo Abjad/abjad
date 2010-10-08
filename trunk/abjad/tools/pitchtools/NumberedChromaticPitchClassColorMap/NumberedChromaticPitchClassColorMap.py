@@ -28,7 +28,7 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
 
    def __getitem__(self, pc):
       pc = NumberedChromaticPitchClass(pc)
-      color = self._color_dictionary[pc.number]
+      color = self._color_dictionary[abs(pc)]
       return color
 
    def __repr__(self):
@@ -42,10 +42,10 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
       for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
          for pitch in pitch_iterable:
             pc = NumberedChromaticPitchClass(pitch)
-            if pc.number in self._color_dictionary.keys( ):
+            if abs(pc) in self._color_dictionary.keys( ):
                print pc, self._color_dictionary.keys( )
                raise KeyError('Duplicated pitch class %s in color dictionary.' % pc)
-            self._color_dictionary[pc.number] = color
+            self._color_dictionary[abs(pc)] = color
 
    ## PUBLIC ATTRIBUTES ##
 

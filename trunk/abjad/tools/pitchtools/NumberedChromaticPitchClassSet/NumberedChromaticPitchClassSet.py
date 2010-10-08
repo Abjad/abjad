@@ -65,7 +65,10 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
 
    @property
    def _format_string(self):
-      return ', '.join([str(x) for x in sorted(self)])
+      result = list(self)
+      result.sort(lambda x, y: cmp(abs(x), abs(y)))
+      #return ', '.join([str(x) for x in sorted(self)])
+      return ', '.join([str(x) for x in result])
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -89,7 +92,10 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
 
    @property
    def pitch_classes(self):
-      return tuple(sorted(self))
+      result = list(self)
+      result.sort(lambda x, y: cmp(abs(x), abs(y)))
+      #return tuple(sorted(self))
+      return tuple(result)
 
    @property
    def prime_form(self):

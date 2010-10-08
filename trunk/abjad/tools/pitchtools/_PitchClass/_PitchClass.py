@@ -1,8 +1,8 @@
+from abjad.core import _FlexEqualityComparator
 from abjad.core import _Immutable
-from abjad.core import _StrictComparator
 
 
-class _PitchClass(_Immutable, _StrictComparator):
+class _PitchClass(_Immutable, _FlexEqualityComparator):
    '''.. versionadded:: 1.1.2
 
    Abstract pitch-class class.

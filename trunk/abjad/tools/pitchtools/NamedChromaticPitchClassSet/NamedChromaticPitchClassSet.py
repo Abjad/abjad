@@ -82,6 +82,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
    @property
    def named_chromatic_pitch_classes(self):
+      result = list(self)
       return tuple(sorted(self))
 
    @property

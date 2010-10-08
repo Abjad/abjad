@@ -26,7 +26,7 @@ def list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitc
 
    result = list(pitch_carriers[:])
    result.sort(lambda x, y: cmp(
-         list_named_chromatic_pitches_in_expr(x)[0].numbered_chromatic_pitch_class.number, 
-         list_named_chromatic_pitches_in_expr(y)[0].numbered_chromatic_pitch_class.number))
+         abs(list_named_chromatic_pitches_in_expr(x)[0].numbered_chromatic_pitch_class),
+         abs(list_named_chromatic_pitches_in_expr(y)[0].numbered_chromatic_pitch_class)))
 
    return result

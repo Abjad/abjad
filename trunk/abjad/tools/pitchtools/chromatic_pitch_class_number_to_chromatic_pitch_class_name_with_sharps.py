@@ -33,7 +33,7 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(pc):
    try:
       return _pcToPitchNameSharps[pc]
    except KeyError:
-      return _pcToPitchNameSharps[pc.number]
+      return _pcToPitchNameSharps[abs(pc)]
 
 
 _pcToPitchNameSharps = {

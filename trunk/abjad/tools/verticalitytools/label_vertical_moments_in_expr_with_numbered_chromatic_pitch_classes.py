@@ -45,7 +45,7 @@ def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(expr, m
       pitches = pitchtools.list_named_chromatic_pitches_in_expr(leaves)
       if not pitches:
          continue
-      pitch_classes = [pitch.numbered_chromatic_pitch_class.number for pitch in pitches]
+      pitch_classes = [abs(pitch.numbered_chromatic_pitch_class) for pitch in pitches]
       pitch_classes = list(set(pitch_classes))
       pitch_classes.sort( )
       pitch_classes.reverse( )

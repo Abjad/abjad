@@ -8,9 +8,9 @@ def test_NumberedChromaticPitchClassSet_pitch_classes_01( ):
 
    assert isinstance(pitch_classes, tuple)
 
-   assert pitch_classes[0].number == 0
-   assert pitch_classes[1].number == 2
-   assert pitch_classes[2].number == 4
-   assert pitch_classes[3].number == 6
-   assert pitch_classes[4].number == 9
-   assert pitch_classes[5].number == 10
+   assert pitch_classes[0] == 0
+   assert pitch_classes[1] == 2
+   assert pitch_classes[2] == 4
+   assert pitch_classes[3] == 6
+   assert pitch_classes[4] == 9
+   assert pitch_classes[5] == 10
