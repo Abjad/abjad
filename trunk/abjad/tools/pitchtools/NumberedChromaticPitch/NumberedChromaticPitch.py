@@ -2,13 +2,15 @@ from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.Accidental import Accidental
 
 
-
 class NumberedChromaticPitch(_Pitch):
    '''.. versionadded:: 1.1.2
 
-   Numeric pitch with middle C defined equal to 0.
-   
-   Numeric pitches are value objects and can not be changed after creation.
+   The Abjad model of a numbered chromatic pitch::
+
+      abjad> pitchtools.NumberedChromaticPitch(13)
+      NumberedChromaticPitch(13)
+
+   Numbered chromatic pitches are immutable.
    '''
 
    __slots__ = ('_chromatic_pitch_number', )

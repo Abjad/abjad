@@ -10,10 +10,12 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 class NumberedChromaticPitchClass(_PitchClass):
    '''.. versionadded:: 1.1.2
 
-   Numeric 12-ET pitch-class ranging from [0, 12).
+   The Abjad model of a numbered chromatic pitch-class::
 
-   Initialization works with pitch numbers, pitch instances,
-   other pitch class instances, notes, and one-note chords.
+      abjad> pitchtools.NumberedChromaticPitchClass(13)
+      NumberedChromaticPitchClass(1)
+
+   Numbered chromatic pitch-classes are immutable.
    '''
 
    __slots__ = ('_chromatic_pitch_number', )
