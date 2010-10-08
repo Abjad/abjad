@@ -1,0 +1,1 @@
+from NumberedChromaticPitchClassSegment import NumberedChromaticPitchClassSegment

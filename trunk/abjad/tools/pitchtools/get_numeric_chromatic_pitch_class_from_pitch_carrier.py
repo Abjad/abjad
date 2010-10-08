@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
-from abjad.tools.pitchtools.NumericPitchClass import NumericPitchClass
+from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromaticPitchClass
 
 
 def get_numeric_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
@@ -9,13 +9,13 @@ def get_numeric_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
 
       abjad> note = Note(13, (1, 4))
       abjad> pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrier(note)
-      NumericPitchClass(1)
+      NumberedChromaticPitchClass(1)
 
    One-note chords work fine. ::
 
       abjad> one_note_chord = Chord([13], (1, 4))
       abjad> pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrier(one_note_chord)
-      NumericPitchClass(1)
+      NumberedChromaticPitchClass(1)
 
    Empty chords Raise :exc:`MissingPitchError`. ::
 
@@ -39,5 +39,5 @@ def get_numeric_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
    '''
 
    pitch = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier)
-   pitch_class = NumericPitchClass(pitch)
+   pitch_class = NumberedChromaticPitchClass(pitch)
    return pitch_class

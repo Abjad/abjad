@@ -2,7 +2,7 @@ from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import listtools
 from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector import InversionEquivalentDiatonicIntervalClassVector
-from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
+from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
 from abjad.tools.pitchtools.list_numeric_chromatic_pitch_classes_in_expr import list_numeric_chromatic_pitch_classes_in_expr
@@ -80,7 +80,7 @@ class NamedPitchClassSet(_PitchClassSet):
 
    @property
    def pitch_class_set(self):
-      return NumericPitchClassSet(self)
+      return NumberedChromaticPitchClassSet(self)
 
    @property
    def pitch_classes(self):

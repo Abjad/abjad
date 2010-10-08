@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.list_numeric_chromatic_pitch_classes_in_expr import list_numeric_chromatic_pitch_classes_in_expr
-from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
+from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 
 
 def expr_has_duplicate_numeric_chromatic_pitch_class(expr):
@@ -28,5 +28,5 @@ def expr_has_duplicate_numeric_chromatic_pitch_class(expr):
    '''
  
    pitch_classes = list_numeric_chromatic_pitch_classes_in_expr(expr)
-   pitch_class_set = NumericPitchClassSet(expr)
+   pitch_class_set = NumberedChromaticPitchClassSet(expr)
    return not len(pitch_classes) == len(pitch_class_set) 

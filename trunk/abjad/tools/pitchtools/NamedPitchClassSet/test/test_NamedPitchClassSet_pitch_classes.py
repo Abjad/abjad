@@ -11,6 +11,6 @@ def test_NamedPitchClassSet_pitch_classes_01( ):
 
    assert isinstance(pitch_classes, tuple)
 
-   assert pitch_classes[0] == pitchtools.NumericPitchClass(0)
-   assert pitch_classes[1] == pitchtools.NumericPitchClass(2)
-   assert pitch_classes[2] == pitchtools.NumericPitchClass(4)
+   assert pitch_classes[0] == pitchtools.NumberedChromaticPitchClass(0)
+   assert pitch_classes[1] == pitchtools.NumberedChromaticPitchClass(2)
+   assert pitch_classes[2] == pitchtools.NumberedChromaticPitchClass(4)

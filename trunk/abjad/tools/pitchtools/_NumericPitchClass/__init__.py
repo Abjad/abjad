@@ -1,1 +1,1 @@
-from _NumericPitchClass import _NumericPitchClass
+from _NumberedChromaticPitchClass import _NumberedChromaticPitchClass

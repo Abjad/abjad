@@ -17,4 +17,4 @@ def test_pitchtools_list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeri
    assert sorted_pitch_numbers == [
       -12, 37, -10, 27, 4, 17, 30, 19, 8, 33, -2, 11]
    assert sorted_pcs == [
-      pitchtools.NumericPitchClass(n) for n in 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+      pitchtools.NumberedChromaticPitchClass(n) for n in 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]

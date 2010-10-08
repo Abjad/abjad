@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools._PitchSet import _PitchSet
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
-from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
+from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interval import \
    transpose_pitch_carrier_by_melodic_chromatic_interval
@@ -60,7 +60,7 @@ class NamedPitchSet(_PitchSet):
 
    @property
    def _str_format_string(self):
-      ## TODO: implement NumericPitchSet ##
+      ## TODO: implement NumberedChromaticPitchSet ##
       return ', '.join([str(pitch) for pitch in self.pitches])
 
    ## PUBLIC ATTRIBUTES ##
@@ -74,7 +74,7 @@ class NamedPitchSet(_PitchSet):
          if pitch_class in pitch_classes:
             duplicate_pitch_classes.append(pitch_class)
          pitch_classes.append(pitch_class)
-      return NumericPitchClassSet(duplicate_pitch_classes)
+      return NumberedChromaticPitchClassSet(duplicate_pitch_classes)
 
    @property
    def is_pitch_class_unique(self):
@@ -90,7 +90,7 @@ class NamedPitchSet(_PitchSet):
 
    @property
    def pitch_class_set(self):
-      return NumericPitchClassSet(self)
+      return NumberedChromaticPitchClassSet(self)
       
    @property
    def pitches(self):

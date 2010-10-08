@@ -6,14 +6,14 @@ def test_pitchtools_get_numeric_chromatic_pitch_class_from_pitch_carrier_01( ):
    '''Works on notes.'''
 
    note = Note(13, (1, 4))
-   assert pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrier(note) == pitchtools.NumericPitchClass(1)
+   assert pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrier(note) == pitchtools.NumberedChromaticPitchClass(1)
 
 
 def test_pitchtools_get_numeric_chromatic_pitch_class_from_pitch_carrier_02( ):
    '''Works on one-note chords.'''
 
    chord = Chord([13], (1, 4))
-   assert pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrier(chord) == pitchtools.NumericPitchClass(1)
+   assert pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrier(chord) == pitchtools.NumberedChromaticPitchClass(1)
 
 
 def test_pitchtools_get_numeric_chromatic_pitch_class_from_pitch_carrier_03( ):

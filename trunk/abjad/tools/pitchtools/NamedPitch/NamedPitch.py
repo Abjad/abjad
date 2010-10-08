@@ -462,14 +462,14 @@ class NamedPitch(_Pitch):
 
          abjad> named_pitch = pitchtools.NamedPitch("cs'")
          abjad> named_pitch.numeric_pitch_class
-         NumericPitchClass(1)
+         NumberedChromaticPitchClass(1)
    
       Return numeric pitch class.
       '''
       from abjad.tools import pitchtools
       number = self.pitch_number
       if number is not None:
-         return pitchtools.NumericPitchClass(number % 12)
+         return pitchtools.NumberedChromaticPitchClass(number % 12)
       else:
          return None
 

@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
+from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 
 
 def inventory_aggregate_subsets( ):
@@ -12,26 +12,26 @@ def inventory_aggregate_subsets( ):
       4096 
       abjad> for pcset in U_star[:20]:
          pcset
-      NumericPitchClassSet([ ])
-      NumericPitchClassSet([PitchClass(0)])
-      NumericPitchClassSet([PitchClass(1)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1)])
-      NumericPitchClassSet([PitchClass(2)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(2)])
-      NumericPitchClassSet([PitchClass(1), NumericPitchClass(2)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(2)])
-      NumericPitchClassSet([PitchClass(3)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(3)])
-      NumericPitchClassSet([PitchClass(1), NumericPitchClass(3)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(3)])
-      NumericPitchClassSet([PitchClass(2), NumericPitchClass(3)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(2), NumericPitchClass(3)])
-      NumericPitchClassSet([PitchClass(1), NumericPitchClass(2), NumericPitchClass(3)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(2), NumericPitchClass(3)])
-      NumericPitchClassSet([PitchClass(4)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(4)])
-      NumericPitchClassSet([PitchClass(1), NumericPitchClass(4)])
-      NumericPitchClassSet([PitchClass(0), NumericPitchClass(1), NumericPitchClass(4)])
+      NumberedChromaticPitchClassSet([ ])
+      NumberedChromaticPitchClassSet([PitchClass(0)])
+      NumberedChromaticPitchClassSet([PitchClass(1)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(1)])
+      NumberedChromaticPitchClassSet([PitchClass(2)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(2)])
+      NumberedChromaticPitchClassSet([PitchClass(1), NumberedChromaticPitchClass(2)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(1), NumberedChromaticPitchClass(2)])
+      NumberedChromaticPitchClassSet([PitchClass(3)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(3)])
+      NumberedChromaticPitchClassSet([PitchClass(1), NumberedChromaticPitchClass(3)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(1), NumberedChromaticPitchClass(3)])
+      NumberedChromaticPitchClassSet([PitchClass(2), NumberedChromaticPitchClass(3)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(2), NumberedChromaticPitchClass(3)])
+      NumberedChromaticPitchClassSet([PitchClass(1), NumberedChromaticPitchClass(2), NumberedChromaticPitchClass(3)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(1), NumberedChromaticPitchClass(2), NumberedChromaticPitchClass(3)])
+      NumberedChromaticPitchClassSet([PitchClass(4)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(4)])
+      NumberedChromaticPitchClassSet([PitchClass(1), NumberedChromaticPitchClass(4)])
+      NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(1), NumberedChromaticPitchClass(4)])
 
    This is ``U*`` in [Morris 1987].
 
@@ -50,7 +50,7 @@ def inventory_aggregate_subsets( ):
    for x in range(4096):
       subset = ''.join(list(reversed(mathtools.integer_to_binary_string(x).zfill(12))))
       subset = _helper(subset)
-      subset = NumericPitchClassSet(subset)
+      subset = NumberedChromaticPitchClassSet(subset)
       result.append(subset)
 
    return result

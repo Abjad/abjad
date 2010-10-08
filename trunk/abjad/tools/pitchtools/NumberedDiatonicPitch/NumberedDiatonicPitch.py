@@ -1,9 +1,9 @@
 from abjad.core import _UnaryComparator
 #from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
-#from abjad.tools.pitchtools._NumericPitch import _NumericPitch
+#from abjad.tools.pitchtools._NumberedChromaticPitch import _NumberedChromaticPitch
 
 
-#class NumberedDiatonicPitch(_DiatonicPitch, _NumericPitch):
+#class NumberedDiatonicPitch(_DiatonicPitch, _NumberedChromaticPitch):
 class NumberedDiatonicPitch(_UnaryComparator):
    '''.. versionadded:: 1.1.2
 

@@ -12,7 +12,7 @@ def color_chord_note_heads_by_numeric_pitch_class(chord, color_map):
 
       abjad> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]   
       abjad> colors = ['red', 'blue', 'green']   
-      abjad> color_map = pitchtools.NumericPitchClassColorMap(pitches, colors)
+      abjad> color_map = pitchtools.NumberedChromaticPitchClassColorMap(pitches, colors)
 
    ::
 
@@ -54,7 +54,7 @@ def color_chord_note_heads_by_numeric_pitch_class(chord, color_map):
       ``chordtools.color_chord_note_heads_by_numeric_pitch_class( )``.
    '''
 
-   assert isinstance(color_map, pitchtools.NumericPitchClassColorMap)
+   assert isinstance(color_map, pitchtools.NumberedChromaticPitchClassColorMap)
    
    if isinstance(chord, Chord):
       for note_head in chord:

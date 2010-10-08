@@ -3,8 +3,8 @@ from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.NamedPitchClassSet import NamedPitchClassSet
-from abjad.tools.pitchtools.NumericPitchClassSegment import NumericPitchClassSegment
-from abjad.tools.pitchtools.NumericPitchClassSet import NumericPitchClassSet
+from abjad.tools.pitchtools.NumberedChromaticPitchClassSegment import NumberedChromaticPitchClassSegment
+from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 import copy
 
 
@@ -53,11 +53,11 @@ class NamedPitchClassSegment(_PitchClassSegment):
 
    @property
    def pitch_class_segment(self):
-      return NumericPitchClassSegment(self)
+      return NumberedChromaticPitchClassSegment(self)
 
    @property
    def pitch_class_set(self):
-      return NumericPitchClassSet(self)
+      return NumberedChromaticPitchClassSet(self)
 
    @property
    def pitch_classes(self):
