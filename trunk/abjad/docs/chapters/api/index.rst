@@ -744,8 +744,10 @@ pitchtools
    tools/pitchtools/chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
    tools/pitchtools/chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
    tools/pitchtools/chromatic_pitch_name_to_chromatic_pitch_class_name
+   tools/pitchtools/chromatic_pitch_name_to_chromatic_pitch_class_number
    tools/pitchtools/chromatic_pitch_name_to_chromatic_pitch_number
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_class_name
+   tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_class_number
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_name
    tools/pitchtools/chromatic_pitch_name_to_diatonic_pitch_number
    tools/pitchtools/chromatic_pitch_name_to_octave_number

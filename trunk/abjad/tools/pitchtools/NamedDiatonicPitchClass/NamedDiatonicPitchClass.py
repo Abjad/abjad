@@ -21,8 +21,8 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
       elif hasattr(arg, '_diatonic_pitch_class_number'):
          tmp = pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name
          diaotnic_pitch_class_name = tmp(arg._diatonic_pitch_class_number)
-      elif pitchtools.is_diatonic_pitch_name(arg):
-         tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name
+      elif pitchtools.is_chromatic_pitch_name(arg):
+         tmp = pitchtools.chromatic_pitch_name_to_diatonic_pitch_class_name
          diatonic_pitch_class_name = tmp(arg)
       elif pitchtools.is_diatonic_pitch_number(arg):
          tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name

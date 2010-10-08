@@ -11,5 +11,6 @@ def apply_accidental_to_named_chromatic_pitch(named_chromatic_pitch, accidental 
    from abjad.tools.pitchtools.Accidental import Accidental
    accidental = Accidental(accidental)
    new_accidental = named_chromatic_pitch.accidental + accidental
-   new_name = named_chromatic_pitch.diatonic_pitch_class_name + new_accidental.alphabetic_string
+   new_name = named_chromatic_pitch.named_diatonic_pitch_class._diatonic_pitch_class_name + \
+      new_accidental.alphabetic_string
    return type(named_chromatic_pitch)(new_name, named_chromatic_pitch.octave_number)

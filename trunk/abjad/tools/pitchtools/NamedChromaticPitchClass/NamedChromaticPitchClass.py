@@ -11,14 +11,33 @@ class NamedChromaticPitchClass(_PitchClass):
    Named pitch-class ranging over c, cqs, cs, ..., bf, bqf, b. 
    '''
 
+   __slots__ = ('_chromatic_pitch_class_name', )
+
+   ## TODO: use __new__ ##
+
    def __init__(self, arg):
-      if isinstance(arg, str):
-         self._init_by_name_string(arg)
-      elif isinstance(arg, NamedChromaticPitchClass):
-         self._init_by_name_string(arg.name)
+      from abjad.tools import pitchtools
+      if hasattr(arg, '_chromatic_pitch_class_name'):
+         chromatic_pitch_class_name = arg._chromatic_pitch_class_name
+      elif pitchtools.is_chromatic_pitch_name(arg):
+         chromatic_pitch_class_name = \
+            pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(arg)
       else:
-         pitch = get_named_chromatic_pitch_from_pitch_carrier(arg)
-         object.__setattr__(self, '_name', pitch.named_chromatic_pitch_class.name)
+         try:
+            named_chromatic_pitch_carrier = get_named_chromatic_pitch_from_pitch_carrier(arg)
+         except (ValueError, TypeError):
+            raise ValueError
+         if hasattr(named_chromatic_pitch_carrier, '_chromatic_pitch_name'):
+            chromatic_pitch_name = named_chromatic_pitch_carrier._chromatic_pitch_name
+         elif hasattr(named_chromatic_pitch_carrier, 'pitch'):
+            named_chromatic_pitch = named_chromatic_pitch_carrier.pitch
+            chromatic_pitch_name = named_chromatic_pitch._chromatic_pitch_name
+         else:
+            raise TypeError
+         chromatic_pitch_class_name = \
+            pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name)
+      chromatic_pitch_class_name = chromatic_pitch_class_name.lower( )
+      object.__setattr__(self, '_chromatic_pitch_class_name', chromatic_pitch_class_name)
 
    ## OVERLOADS ##
 
@@ -109,8 +128,7 @@ class NamedChromaticPitchClass(_PitchClass):
    def _init_by_name_string(self, name):
       if not self._is_acceptable_name(name.lower( )):
          raise ValueError("unknown pitch-class name '%s'." % name)
-      #self._name = name.lower( )
-      object.__setattr__(self, '_name', name.lower( ))
+      object.__setattr__(self, '_chromatic_pitch_class_name', name.lower( ))
 
    def _is_acceptable_name(self, name):
       return name in (
@@ -137,7 +155,7 @@ class NamedChromaticPitchClass(_PitchClass):
    @property
    def name(self):
       '''Read-only name of pitch-class.'''
-      return self._name
+      return self._chromatic_pitch_class_name
 
    @property
    def numbered_chromatic_pitch_class(self):

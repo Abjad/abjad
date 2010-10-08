@@ -19,12 +19,9 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
       self = object.__new__(klass)
       if hasattr(arg, '_diatonic_pitch_class_number'):
          diatonic_pitch_class_number = arg._diatonic_pitch_class_number
-      elif isinstance(arg, str):
-         if not pitchtools.is_diatonic_pitch_class_name(arg):
-            raise ValueError
-         diatonic_pitch_class_name = arg
-         tmp = pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number
-         diatonic_pitch_class_number = tmp(diatonic_pitch_class_name)
+      elif pitchtools.is_chromatic_pitch_name(arg):
+         tmp = pitchtools.chromatic_pitch_name_to_diatonic_pitch_class_number
+         diatonic_pitch_class_number = tmp(arg)
       elif mathtools.is_integer_equivalent_number(arg):
          diatonic_pitch_class_number = int(arg) % 7
       else:
