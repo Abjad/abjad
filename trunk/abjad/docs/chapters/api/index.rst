@@ -713,14 +713,14 @@ pitchtools
    tools/pitchtools/NamedPitchSegment/NamedPitchSegment
    tools/pitchtools/NamedPitchSet/NamedPitchSet
    tools/pitchtools/NamedPitchVector/NamedPitchVector
+   tools/pitchtools/NumberedChromaticPitch/NumberedChromaticPitch
+   tools/pitchtools/NumberedChromaticPitchClass/NumberedChromaticPitchClass
+   tools/pitchtools/NumberedChromaticPitchClassColorMap/NumberedChromaticPitchClassColorMap
+   tools/pitchtools/NumberedChromaticPitchClassSegment/NumberedChromaticPitchClassSegment
+   tools/pitchtools/NumberedChromaticPitchClassSet/NumberedChromaticPitchClassSet
+   tools/pitchtools/NumberedChromaticPitchClassVector/NumberedChromaticPitchClassVector
    tools/pitchtools/NumberedDiatonicPitch/NumberedDiatonicPitch
    tools/pitchtools/NumberedDiatonicPitchClass/NumberedDiatonicPitchClass
-   tools/pitchtools/NumericPitch/NumericPitch
-   tools/pitchtools/NumericPitchClass/NumericPitchClass
-   tools/pitchtools/NumericPitchClassColorMap/NumericPitchClassColorMap
-   tools/pitchtools/NumericPitchClassSegment/NumericPitchClassSegment
-   tools/pitchtools/NumericPitchClassSet/NumericPitchClassSet
-   tools/pitchtools/NumericPitchClassVector/NumericPitchClassVector
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/pitchtools/all_are_chromatic_pitch_class_name_octave_number_pairs
