@@ -10,12 +10,12 @@ def list_unordered_named_chromatic_pitch_pairs_in_expr(expr):
       abjad> for pair in pitchtools.list_unordered_named_chromatic_pitch_pairs_in_expr(Chord([0, 1, 2, 3], (1, 4))):
       ...     pair
       ... 
-      (NamedPitch(c, 4), NamedPitch(cs, 4))
-      (NamedPitch(c, 4), NamedPitch(d, 4))
-      (NamedPitch(c, 4), NamedPitch(ef, 4))
-      (NamedPitch(d, 4), NamedPitch(cs, 4))
-      (NamedPitch(cs, 4), NamedPitch(ef, 4))
-      (NamedPitch(d, 4), NamedPitch(ef, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(cs, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(ef, 4))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(cs, 4))
+      (NamedChromaticPitch(cs, 4), NamedChromaticPitch(ef, 4))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(ef, 4))
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.pitch_pairs_within( )`` to

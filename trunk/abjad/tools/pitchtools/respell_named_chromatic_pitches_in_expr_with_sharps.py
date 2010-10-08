@@ -1,5 +1,5 @@
 from abjad.components.Chord import Chord
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.chromatic_pitch_number_to_octave_number import chromatic_pitch_number_to_octave_number
 from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
 
@@ -40,7 +40,7 @@ def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
    '''
    from abjad.tools import leaftools
 
-   if isinstance(expr, NamedPitch):
+   if isinstance(expr, NamedChromaticPitch):
       return _new_pitch_with_sharps(expr)
    else:
       for leaf in leaftools.iterate_leaves_forward_in_expr(expr):

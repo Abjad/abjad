@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position_number):
@@ -43,6 +43,6 @@ def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position
    octave = 4 + int(n / 7) + 1
    if pitch_name == 'b':
       octave -= 1
-   pitch = NamedPitch(pitch_name, octave)
+   pitch = NamedChromaticPitch(pitch_name, octave)
 
    return pitch

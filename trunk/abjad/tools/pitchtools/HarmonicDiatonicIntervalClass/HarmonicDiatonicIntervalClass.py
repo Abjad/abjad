@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
 from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 
@@ -91,7 +91,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
       '''
       from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
       from abjad.tools.pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch
-      low = NamedPitch('c', 4)
+      low = NamedChromaticPitch('c', 4)
       quality_string, number = self._quality_string, self.number
       mdi = MelodicDiatonicInterval(quality_string, number)
       middle = low + mdi

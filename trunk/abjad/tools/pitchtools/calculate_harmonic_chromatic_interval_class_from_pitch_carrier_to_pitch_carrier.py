@@ -7,12 +7,12 @@ def calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carr
    Return harmonic chromatic interval class from `pitch_carrier_1` to
    `pitch_carrier_2`. ::
 
-      abjad> pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier(NamedPitch(-2), NamedPitch(12))
+      abjad> pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier(NamedChromaticPitch(-2), NamedChromaticPitch(12))
       HarmonicChromaticIntervalClass(2)
 
    ::
 
-      abjad> pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier(NamedPitch(12), NamedPitch(-2))
+      abjad> pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier(NamedChromaticPitch(12), NamedChromaticPitch(-2))
       HarmonicChromaticIntervalClass(2)
 
    .. versionchanged:: 1.1.2

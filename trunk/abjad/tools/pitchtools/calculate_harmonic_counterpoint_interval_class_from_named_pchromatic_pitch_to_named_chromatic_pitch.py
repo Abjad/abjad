@@ -8,12 +8,12 @@ def calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_t
    Return harmonic counterpoint interval class from `pitch_carrier_1` to
    `pitch_carrier_2`. ::
 
-      abjad> pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch(NamedPitch(-2), NamedPitch(12))
+      abjad> pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch(NamedChromaticPitch(-2), NamedChromaticPitch(12))
       HarmonicCounterpointIntervalClass(2)
 
    ::
 
-      abjad> pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch(NamedPitch(12), NamedPitch(-2))
+      abjad> pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch(NamedChromaticPitch(12), NamedChromaticPitch(-2))
       HarmonicCounterpointIntervalClass(2)
 
    .. versionchanged:: 1.1.2

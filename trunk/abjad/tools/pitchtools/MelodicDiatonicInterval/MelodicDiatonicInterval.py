@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
@@ -38,7 +38,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
       if not isinstance(arg, MelodicDiatonicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
-      dummy_pitch = NamedPitch(0)
+      dummy_pitch = NamedChromaticPitch(0)
       new_pitch = dummy_pitch + self + arg 
       return calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
          dummy_pitch, new_pitch)
@@ -47,11 +47,11 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
       if not isinstance(arg, (int, long)):
          raise TypeError('%s must be int.' % arg)
-      dummy_pitch = NamedPitch(0)
+      dummy_pitch = NamedChromaticPitch(0)
       for i in range(arg):
          dummy_pitch += self
       return calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-         NamedPitch(0), dummy_pitch)
+         NamedChromaticPitch(0), dummy_pitch)
 
    def __neg__(self):
       return MelodicDiatonicInterval(self.quality_string, -self.number)
@@ -73,7 +73,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
       if not isinstance(arg, MelodicDiatonicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
-      dummy_pitch = NamedPitch(0)
+      dummy_pitch = NamedChromaticPitch(0)
       new_pitch = dummy_pitch + self - arg 
       return calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
          dummy_pitch, new_pitch)

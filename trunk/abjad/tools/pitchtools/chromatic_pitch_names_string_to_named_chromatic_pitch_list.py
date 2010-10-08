@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 
 
 def chromatic_pitch_names_string_to_named_chromatic_pitch_list(pitch_string):
@@ -8,7 +8,7 @@ def chromatic_pitch_names_string_to_named_chromatic_pitch_list(pitch_string):
    to list of zero or more Abjad pitch instances::
 
       abjad> pitchtools.chromatic_pitch_names_string_to_named_chromatic_pitch_list("cs, cs cs' cs''")
-      [NamedPitch(c, 2), NamedPitch(c, 3), NamedPitch(c, 4), NamedPitch(c, 5)]
+      [NamedChromaticPitch(c, 2), NamedChromaticPitch(c, 3), NamedChromaticPitch(c, 4), NamedChromaticPitch(c, 5)]
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.pitch_string_to_pitches( )`` to
@@ -22,7 +22,7 @@ def chromatic_pitch_names_string_to_named_chromatic_pitch_list(pitch_string):
    pitches = [ ]
    pitch_strings = pitch_string.split( )
    for pitch_string in pitch_strings:
-      pitch = NamedPitch(pitch_string)
+      pitch = NamedChromaticPitch(pitch_string)
       pitches.append(pitch)
 
    return pitches

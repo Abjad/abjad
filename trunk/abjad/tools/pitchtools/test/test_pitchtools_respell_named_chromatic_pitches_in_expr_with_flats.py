@@ -3,23 +3,23 @@ from abjad import *
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_01( ):
    '''The pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( ) helper renotates an individual pitch.'''
-   t = pitchtools.NamedPitch('cs', 4)
-   #assert t == pitchtools.NamedPitch('df', 4)
-   assert pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(t) == pitchtools.NamedPitch('df', 4)
+   t = pitchtools.NamedChromaticPitch('cs', 4)
+   #assert t == pitchtools.NamedChromaticPitch('df', 4)
+   assert pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(t) == pitchtools.NamedChromaticPitch('df', 4)
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_02( ):
    '''The pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( ) helper renotates the pitch of one note.'''
    t = Note(('cs', 4), 4)
    pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(t)
-   assert t.pitch == pitchtools.NamedPitch('df', 4)
+   assert t.pitch == pitchtools.NamedChromaticPitch('df', 4)
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_03( ):
    '''The pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( ) helper renotates the pitches of all notes in a chord.'''
    t = Chord([('cs', 4), ('f', 4), ('as', 4)], (1, 4))
    pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(t)
-   assert t.pitches == (pitchtools.NamedPitch('df', 4), pitchtools.NamedPitch('f', 4), pitchtools.NamedPitch('bf', 4)) 
+   assert t.pitches == (pitchtools.NamedChromaticPitch('df', 4), pitchtools.NamedChromaticPitch('f', 4), pitchtools.NamedChromaticPitch('bf', 4)) 
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_04( ):

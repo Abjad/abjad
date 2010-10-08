@@ -4,10 +4,10 @@ from abjad import *
 def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_01( ):
    '''Transpose pitch.'''
 
-   pitch = pitchtools.NamedPitch(12)
+   pitch = pitchtools.NamedChromaticPitch(12)
    interval = pitchtools.MelodicDiatonicInterval('minor', -3)
    new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(pitch, interval)
-   assert new == pitchtools.NamedPitch(9)
+   assert new == pitchtools.NamedChromaticPitch(9)
    assert new is not pitch
 
 
@@ -17,7 +17,7 @@ def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_02( ):
    note = Note(12, (1, 4))
    interval = pitchtools.MelodicDiatonicInterval('minor', -3)
    new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(note, interval)
-   assert new.pitch == pitchtools.NamedPitch(9)
+   assert new.pitch == pitchtools.NamedChromaticPitch(9)
    assert new is not note
 
 
@@ -28,5 +28,5 @@ def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_03( ):
    interval = pitchtools.MelodicDiatonicInterval('minor', -3)
    new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(chord, interval)
    assert new.pitches == new.pitches == (
-      pitchtools.NamedPitch('a', 4), pitchtools.NamedPitch('as', 4), pitchtools.NamedPitch('b', 4))
+      pitchtools.NamedChromaticPitch('a', 4), pitchtools.NamedChromaticPitch('as', 4), pitchtools.NamedChromaticPitch('b', 4))
    assert new is not chord

@@ -5,15 +5,15 @@ def test_pitchtools_calculate_harmonic_diatonic_interval_class_from_named_chroma
    '''Ascending intervals greater than an octave.'''
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(-3), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 3)
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('major', 2)
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(-1), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-1), pitchtools.NamedChromaticPitch(12))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 2)
 
 
@@ -21,7 +21,7 @@ def test_pitchtools_calculate_harmonic_diatonic_interval_class_from_named_chroma
    '''Ascending octave.'''
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(0), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('perfect', 8)
 
 
@@ -29,15 +29,15 @@ def test_pitchtools_calculate_harmonic_diatonic_interval_class_from_named_chroma
    '''Ascending intervals less than an octave.'''
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(9), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 3)
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(10), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(10), pitchtools.NamedChromaticPitch(12))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('major', 2)
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(11), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(11), pitchtools.NamedChromaticPitch(12))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 2)
 
 
@@ -45,7 +45,7 @@ def test_pitchtools_calculate_harmonic_diatonic_interval_class_from_named_chroma
    '''Unison.'''
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('perfect', 1)
 
 
@@ -53,15 +53,15 @@ def test_pitchtools_calculate_harmonic_diatonic_interval_class_from_named_chroma
    '''Descending intervals greater than an octave.'''
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-3))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 3)
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('major', 2)
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-1))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-1))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 2)
 
 
@@ -69,7 +69,7 @@ def test_pitchtools_calculate_harmonic_diatonic_interval_class_from_named_chroma
    '''Descending octave.'''
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(0))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('perfect', 8)
 
 
@@ -77,13 +77,13 @@ def test_pitchtools_calculate_harmonic_diatonic_interval_class_from_named_chroma
    '''Descending intervals less than an octave.'''
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(9))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 3)
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(10))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(10))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('major', 2)
 
    hdic = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(11))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
    assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 2)

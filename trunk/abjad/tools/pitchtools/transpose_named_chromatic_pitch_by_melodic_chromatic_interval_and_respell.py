@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name import \
    one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name
 
@@ -10,9 +10,9 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
 
    Return new pitch instance. ::
 
-      abjad> pitch = NamedPitch(0)
+      abjad> pitch = NamedChromaticPitch(0)
       abjad> pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(pitch, 1, 0.5)
-      NamedPitch('dtqf', 4)
+      NamedChromaticPitch('dtqf', 4)
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.staff_space_transpose( )`` to
@@ -27,4 +27,4 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
    #diatonic_scale_degree = pitch.degree + staff_spaces
    diatonic_scale_degree = (pitch.diatonic_pitch_class_number + 1) + staff_spaces
    letter = one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name(diatonic_scale_degree)
-   return NamedPitch(pitch_number, letter)
+   return NamedChromaticPitch(pitch_number, letter)

@@ -1,6 +1,6 @@
 from abjad.components.Chord import Chord
 from abjad.components.Note import Note
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 
 
@@ -50,14 +50,14 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(e
    length = len(dicg)
 
    octave_number = 4
-   pitch = NamedPitch(scale[0], octave_number)
+   pitch = NamedChromaticPitch(scale[0], octave_number)
 
    for i, tie_chain in enumerate(tietools.iterate_tie_chains_forward_in_expr(expr)):
       #pitch = int(i / length) * 12 + diatonic_residues[i % length] 
       #named_pitch_class = scale[i % length]
       #pitch_class_number = named_pitch_class.pitch_class.number
       #pitch_number = int(i / length) * 12 + pitch_class_number
-      #pitch = NamedPitch(pitch_number, named_pitch_class)
+      #pitch = NamedChromaticPitch(pitch_number, named_pitch_class)
       if isinstance(tie_chain[0], Note):
          for note in tie_chain:
             note.pitch = pitch

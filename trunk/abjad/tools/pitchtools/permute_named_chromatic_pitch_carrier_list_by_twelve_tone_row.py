@@ -1,5 +1,5 @@
 from abjad.components.Note import Note
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.TwelveToneRow import TwelveToneRow
 
 
@@ -32,7 +32,7 @@ def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
    for pc in row:
       matching_pitches = [ ]
       for pitch in pitches:
-         if isinstance(pitch, NamedPitch):
+         if isinstance(pitch, NamedChromaticPitch):
             if pitch.numbered_chromatic_pitch_class == pc:   
                matching_pitches.append(pitch)
          elif isinstance(pitch, Note):

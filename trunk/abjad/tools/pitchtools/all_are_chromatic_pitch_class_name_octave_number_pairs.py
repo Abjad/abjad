@@ -5,7 +5,7 @@ def all_are_chromatic_pitch_class_name_octave_number_pairs(pitch_tokens):
    '''True when iterable `pitch_tokens` all have the form of an
    Abjad pitch token. ::
 
-      abjad> pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs([('c', 4), ('d', 4), NamedPitch('e', 4)])
+      abjad> pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs([('c', 4), ('d', 4), NamedChromaticPitch('e', 4)])
       True
       abjad> pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs([0, 2, 4])
       True

@@ -5,15 +5,15 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_class_from_named_chr
    '''Ascending intervals greater than an octave.'''
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(-3), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(3)
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(2)
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(-1), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-1), pitchtools.NamedChromaticPitch(12))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(2)
 
 
@@ -21,7 +21,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_class_from_named_chr
    '''Ascending octave.'''
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(0), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(8)
 
 
@@ -29,15 +29,15 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_class_from_named_chr
    '''Ascending intervals less than an octave.'''
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(9), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(3)
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(10), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(10), pitchtools.NamedChromaticPitch(12))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(2)
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(11), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(11), pitchtools.NamedChromaticPitch(12))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(2)
 
 
@@ -45,7 +45,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_class_from_named_chr
    '''Unison.'''
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(1)
 
 
@@ -53,15 +53,15 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_class_from_named_chr
    '''Descending intervals greater than an octave.'''
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-3))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-3)
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-2)
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-1))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-1))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-2)
 
 
@@ -69,7 +69,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_class_from_named_chr
    '''Descending octave.'''
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(0))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-8)
 
 
@@ -77,13 +77,13 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_class_from_named_chr
    '''Descending intervals less than an octave.'''
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(9))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-3)
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(10))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(10))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-2)
 
    mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(11))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
    assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-2)

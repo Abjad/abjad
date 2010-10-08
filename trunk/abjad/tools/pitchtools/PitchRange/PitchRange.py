@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
@@ -19,25 +19,25 @@ class PitchRange(_Immutable):
       if start is None:
          start = start
       elif isinstance(start, (int, long, float)):
-         pitch = NamedPitch(start)
+         pitch = NamedChromaticPitch(start)
          start = (pitch, 'inclusive')
       else:
          assert len(start) == 2
          pitch, containment = start
          assert containment in ('inclusive', 'exclusive')
-         pitch = NamedPitch(pitch)
+         pitch = NamedChromaticPitch(pitch)
          start = (pitch, containment)
       object.__setattr__(self, '_start', start)
       if stop is None:
          stop = stop
       elif isinstance(stop, (int, long, float)):
-         pitch = NamedPitch(stop)
+         pitch = NamedChromaticPitch(stop)
          stop = (pitch, 'inclusive')
       else:
          assert len(stop) == 2
          pitch, containment = stop
          assert containment in ('inclusive', 'exclusive')
-         pitch = NamedPitch(pitch)
+         pitch = NamedChromaticPitch(pitch)
          stop = (pitch, containment)
       object.__setattr__(self, '_stop', stop)
    
@@ -45,9 +45,9 @@ class PitchRange(_Immutable):
 
    def __contains__(self, arg):
       if isinstance(arg, (int, long, float)):
-         pitch = NamedPitch(arg)
+         pitch = NamedChromaticPitch(arg)
          return self._contains_pitch(pitch)
-      elif isinstance(arg, NamedPitch):
+      elif isinstance(arg, NamedChromaticPitch):
          return self._contains_pitch(arg)
       else:
          pitches = list_named_chromatic_pitches_in_expr(arg)
@@ -131,13 +131,13 @@ class PitchRange(_Immutable):
 #         if arg is None:
 #            self._start = arg
 #         elif isinstance(arg, (int, long, float)):
-#            pitch = NamedPitch(arg)
+#            pitch = NamedChromaticPitch(arg)
 #            self._start = (pitch, 'inclusive')
 #         else:
 #            assert len(arg) == 2
 #            pitch, containment = arg
 #            assert containment in ('inclusive', 'exclusive')
-#            pitch = NamedPitch(pitch)
+#            pitch = NamedChromaticPitch(pitch)
 #            self._start = (pitch, containment)
 #      return property(**locals( ))
 #
@@ -149,13 +149,13 @@ class PitchRange(_Immutable):
 #         if arg is None:
 #            self._stop = arg
 #         elif isinstance(arg, (int, long, float)):
-#            pitch = NamedPitch(arg)
+#            pitch = NamedChromaticPitch(arg)
 #            self._stop = (pitch, 'inclusive')
 #         else:
 #            assert len(arg) == 2
 #            pitch, containment = arg
 #            assert containment in ('inclusive', 'exclusive')
-#            pitch = NamedPitch(pitch)
+#            pitch = NamedChromaticPitch(pitch)
 #            self._stop = (pitch, containment)
 #      return property(**locals( ))
 

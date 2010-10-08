@@ -3,40 +3,40 @@ from abjad import *
 
 def test_pitchtools_calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_01( ):
 
-   pitch = pitchtools.NamedPitch(12)
+   pitch = pitchtools.NamedChromaticPitch(12)
 
-   interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(pitch, pitchtools.NamedPitch(12))
+   interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(pitch, pitchtools.NamedChromaticPitch(12))
    assert interval == pitchtools.MelodicDiatonicInterval('perfect', 1)
 
    interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitch, pitchtools.NamedPitch('b', 4))
+      pitch, pitchtools.NamedChromaticPitch('b', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('minor', -2)
 
    interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitch, pitchtools.NamedPitch('bf', 4))
+      pitch, pitchtools.NamedChromaticPitch('bf', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('major', -2)
 
    interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch('as', 4))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch('as', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('diminished', -3)
 
 
 def test_pitchtools_calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_02( ):
 
-   pitch = pitchtools.NamedPitch(12)
+   pitch = pitchtools.NamedChromaticPitch(12)
 
    interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch('a', 4))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch('a', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('minor', -3)
 
    interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch('af', 4))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch('af', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('major', -3)
 
    interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch('gs', 4))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch('gs', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('diminished', -4)
 
    interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch('g', 4))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch('g', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('perfect', -4)

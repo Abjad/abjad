@@ -17,18 +17,18 @@ class NumberedChromaticPitchClass(_PitchClass):
    '''
 
    def __init__(self, arg):
-      from abjad.tools.pitchtools.NamedPitch import NamedPitch
-      from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
+      from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
+      from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
       if isinstance(arg, (int, long, float)):
          number = arg % 12
       elif isinstance(arg, type(self)):
          number = arg.number
       elif isinstance(arg, str):
-         named_pitch_class = NamedPitchClass(arg)
+         named_pitch_class = NamedChromaticPitchClass(arg)
          number = named_pitch_class.numbered_chromatic_pitch_class.number
-      elif isinstance(arg, NamedPitch):
+      elif isinstance(arg, NamedChromaticPitch):
          number = arg.pitch_number % 12
-      elif isinstance(arg, NamedPitchClass):
+      elif isinstance(arg, NamedChromaticPitchClass):
          number = arg.numbered_chromatic_pitch_class.number
       else:
          pitch = get_named_chromatic_pitch_from_pitch_carrier(arg)

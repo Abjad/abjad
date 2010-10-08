@@ -11,12 +11,12 @@ def list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(expr_1, expr_
       abjad> chord_2 = Chord([3, 4], (1, 4))
       abjad> for pair in pitchtools.list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(chord_1, chord_2):
       ...      pair
-      (NamedPitch(c, 4), NamedPitch(ef, 4))
-      (NamedPitch(c, 4), NamedPitch(e, 4))
-      (NamedPitch(cs, 4), NamedPitch(ef, 4))
-      (NamedPitch(cs, 4), NamedPitch(e, 4))
-      (NamedPitch(d, 4), NamedPitch(ef, 4))
-      (NamedPitch(d, 4), NamedPitch(e, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(ef, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(e, 4))
+      (NamedChromaticPitch(cs, 4), NamedChromaticPitch(ef, 4))
+      (NamedChromaticPitch(cs, 4), NamedChromaticPitch(e, 4))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(ef, 4))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4))
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.pitch_pairs_from_to( )`` to

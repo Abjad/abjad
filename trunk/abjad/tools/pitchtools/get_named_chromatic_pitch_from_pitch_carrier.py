@@ -2,18 +2,18 @@ from abjad.components.Chord import Chord
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.components.Note import Note
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
    '''Get Abjad pitch instance from pitch, note, note head
    of chord `pitch_carrier`::
 
-      abjad> pitch = NamedPitch('df', 5)
+      abjad> pitch = NamedChromaticPitch('df', 5)
       abjad> pitch
-      NamedPitch(df, 5)
+      NamedChromaticPitch(df, 5)
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch)
-      NamedPitch(df, 5)
+      NamedChromaticPitch(df, 5)
 
    ::
 
@@ -21,7 +21,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       abjad> note
       Note(df'', 4)
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note)
-      NamedPitch(df, 5)
+      NamedChromaticPitch(df, 5)
 
    ::
 
@@ -29,7 +29,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       abjad> note.note_head
       NoteHead(df'')
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note.note_head)
-      NamedPitch(df, 5)
+      NamedChromaticPitch(df, 5)
 
    ::
 
@@ -37,7 +37,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       abjad> chord
       Chord(df'', 4)
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
-      NamedPitch(df, 5)
+      NamedChromaticPitch(df, 5)
 
    Raise :exc:`~abjad.exceptions.MissingPitchError` when
    `pitch_carrier` carries no pitch. ::
@@ -99,7 +99,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
    '''
    from abjad.tools.notetools.NoteHead import NoteHead
    
-   if isinstance(pitch_carrier, NamedPitch):
+   if isinstance(pitch_carrier, NamedChromaticPitch):
       return pitch_carrier
    elif isinstance(pitch_carrier, Note):
       pitch = pitch_carrier.pitch

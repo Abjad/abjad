@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.is_chromatic_pitch_class_name_octave_number_pair import is_chromatic_pitch_class_name_octave_number_pair
 
 
@@ -8,7 +8,7 @@ def is_named_chromatic_pitch_token(pitch_token):
 
       abjad> pitchtools.is_named_chromatic_pitch_token(('c', 4))
       True
-      abjad> pitchtools.is_named_chromatic_pitch_token(NamedPitch('c', 4))
+      abjad> pitchtools.is_named_chromatic_pitch_token(NamedChromaticPitch('c', 4))
       True
 
    Otherwise false. ::
@@ -25,7 +25,7 @@ def is_named_chromatic_pitch_token(pitch_token):
       ``pitchtools.is_named_chromatic_pitch_token( )``.
    '''
 
-   if isinstance(pitch_token, NamedPitch):
+   if isinstance(pitch_token, NamedChromaticPitch):
       return True
    elif is_chromatic_pitch_class_name_octave_number_pair(pitch_token):
       return True

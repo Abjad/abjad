@@ -3,24 +3,24 @@ from abjad import *
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_01( ):
    '''The pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( ) helper renotates an individual pitch.'''
-   t = pitchtools.NamedPitch('df', 4)
+   t = pitchtools.NamedChromaticPitch('df', 4)
    #pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t)
-   #assert t == pitchtools.NamedPitch('cs', 4)
-   assert pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t) == pitchtools.NamedPitch('cs', 4)
+   #assert t == pitchtools.NamedChromaticPitch('cs', 4)
+   assert pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t) == pitchtools.NamedChromaticPitch('cs', 4)
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_02( ):
    '''The pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( ) helper renotates the pitch of one note.'''
    t = Note(('df', 4), 4)
    pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t)
-   assert t.pitch == pitchtools.NamedPitch('cs', 4)
+   assert t.pitch == pitchtools.NamedChromaticPitch('cs', 4)
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_03( ):
    '''The pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( ) helper renotates the pitches of all notes in a chord.'''
    t = Chord([('df', 4), ('f', 4), ('af', 4)], (1, 4))
    pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t)
-   assert t.pitches == (pitchtools.NamedPitch('cs', 4), pitchtools.NamedPitch('f', 4), pitchtools.NamedPitch('gs', 4)) 
+   assert t.pitches == (pitchtools.NamedChromaticPitch('cs', 4), pitchtools.NamedChromaticPitch('f', 4), pitchtools.NamedChromaticPitch('gs', 4)) 
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_04( ):

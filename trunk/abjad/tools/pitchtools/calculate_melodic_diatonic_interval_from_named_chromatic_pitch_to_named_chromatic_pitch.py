@@ -9,12 +9,12 @@ def calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chro
    Return melodic diatonic interval from `pitch_carrier_1` to 
    `pitch_carrier_2`. ::
 
-      abjad> pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(NamedPitch(-2), NamedPitch(12))
+      abjad> pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(NamedChromaticPitch(-2), NamedChromaticPitch(12))
       MelodicDiatonicInterval(ascending major ninth)
 
    ::
 
-      abjad> pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(NamedPitch(12), NamedPitch(-2))
+      abjad> pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(NamedChromaticPitch(12), NamedChromaticPitch(-2))
       MelodicDiatonicInterval(descending major ninth)
 
    .. versionchanged:: 1.1.2

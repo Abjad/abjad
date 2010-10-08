@@ -1,7 +1,7 @@
 from abjad.components.Chord import Chord
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.PitchRange import PitchRange
-from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
+from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
 from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interval import \
    transpose_pitch_carrier_by_melodic_chromatic_interval
 
@@ -27,7 +27,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitches, pitc
    if all([isinstance(x, (int, long, float)) for x in pitches]):
       return _pitch_number_list_octave_transpositions(pitches, pitch_range)
 
-   if not isinstance(pitches, (Chord, NamedPitchSet)):
+   if not isinstance(pitches, (Chord, NamedChromaticPitchSet)):
       raise TypeError('must be pitches or pitch set.')
 
    result = [ ]

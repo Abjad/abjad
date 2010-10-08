@@ -5,15 +5,15 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_from_pitch_carrier_to_
    '''Ascending intervals greater than an octave.'''
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(-3), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
    assert hci == pitchtools.HarmonicChromaticInterval(15)
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
    assert hci == pitchtools.HarmonicChromaticInterval(14)
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(-1), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(-1), pitchtools.NamedChromaticPitch(12))
    assert hci == pitchtools.HarmonicChromaticInterval(13)
 
 
@@ -21,7 +21,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_from_pitch_carrier_to_
    '''Ascending octave.'''
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(0), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
    assert hci == pitchtools.HarmonicChromaticInterval(12)
 
 
@@ -29,15 +29,15 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_from_pitch_carrier_to_
    '''Ascending intervals less than an octave.'''
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(9), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
    assert hci == pitchtools.HarmonicChromaticInterval(3)
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(10), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(10), pitchtools.NamedChromaticPitch(12))
    assert hci == pitchtools.HarmonicChromaticInterval(2)
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(11), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(11), pitchtools.NamedChromaticPitch(12))
    assert hci == pitchtools.HarmonicChromaticInterval(1)
 
 
@@ -45,7 +45,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_from_pitch_carrier_to_
    '''Unison.'''
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(12))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
    assert hci == pitchtools.HarmonicChromaticInterval(0)
 
 
@@ -53,15 +53,15 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_from_pitch_carrier_to_
    '''Descending intervals greater than an octave.'''
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-3))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
    assert hci == pitchtools.HarmonicChromaticInterval(15)
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2))
    assert hci == pitchtools.HarmonicChromaticInterval(14)
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-1))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-1))
    assert hci == pitchtools.HarmonicChromaticInterval(13)
 
 
@@ -69,7 +69,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_from_pitch_carrier_to_
    '''Descending octave.'''
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(0))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
    assert hci == pitchtools.HarmonicChromaticInterval(12)
 
 
@@ -77,15 +77,15 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_from_pitch_carrier_to_
    '''Descending intervals less than an octave.'''
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(9))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))
    assert hci == pitchtools.HarmonicChromaticInterval(3)
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(10))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(10))
    assert hci == pitchtools.HarmonicChromaticInterval(2)
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(11))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
    assert hci == pitchtools.HarmonicChromaticInterval(1)
 
 
@@ -93,5 +93,5 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_from_pitch_carrier_to_
    '''Works with quartertones.'''
 
    hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-      pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2.5))
+      pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2.5))
    assert hci == pitchtools.HarmonicChromaticInterval(14.5)

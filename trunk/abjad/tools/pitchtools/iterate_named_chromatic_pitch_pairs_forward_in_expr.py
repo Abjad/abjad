@@ -37,21 +37,21 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
       abjad> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(score):
       ...     pair
       ... 
-      (NamedPitch(c, 4), NamedPitch(c, 3))
-      (NamedPitch(c, 4), NamedPitch(d, 4))
-      (NamedPitch(c, 3), NamedPitch(d, 4))
-      (NamedPitch(d, 4), NamedPitch(e, 4))
-      (NamedPitch(d, 4), NamedPitch(a, 2))
-      (NamedPitch(c, 3), NamedPitch(e, 4))
-      (NamedPitch(c, 3), NamedPitch(a, 2))
-      (NamedPitch(e, 4), NamedPitch(a, 2))
-      (NamedPitch(e, 4), NamedPitch(f, 4))
-      (NamedPitch(a, 2), NamedPitch(f, 4))
-      (NamedPitch(f, 4), NamedPitch(g, 4))
-      (NamedPitch(f, 4), NamedPitch(g, 2))
-      (NamedPitch(a, 2), NamedPitch(g, 4))
-      (NamedPitch(a, 2), NamedPitch(g, 2))
-      (NamedPitch(g, 4), NamedPitch(g, 2))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(c, 3))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4))
+      (NamedChromaticPitch(c, 3), NamedChromaticPitch(d, 4))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(a, 2))
+      (NamedChromaticPitch(c, 3), NamedChromaticPitch(e, 4))
+      (NamedChromaticPitch(c, 3), NamedChromaticPitch(a, 2))
+      (NamedChromaticPitch(e, 4), NamedChromaticPitch(a, 2))
+      (NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 4))
+      (NamedChromaticPitch(a, 2), NamedChromaticPitch(f, 4))
+      (NamedChromaticPitch(f, 4), NamedChromaticPitch(g, 4))
+      (NamedChromaticPitch(f, 4), NamedChromaticPitch(g, 2))
+      (NamedChromaticPitch(a, 2), NamedChromaticPitch(g, 4))
+      (NamedChromaticPitch(a, 2), NamedChromaticPitch(g, 2))
+      (NamedChromaticPitch(g, 4), NamedChromaticPitch(g, 2))
 
    Chords are handled correctly. ::
 
@@ -71,16 +71,16 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
       abjad> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(staff):
       ...   print pair
-      (NamedPitch(c, 4), NamedPitch(d, 4))
-      (NamedPitch(c, 4), NamedPitch(e, 4))
-      (NamedPitch(d, 4), NamedPitch(e, 4))
-      (NamedPitch(c, 4), NamedPitch(f, 5))
-      (NamedPitch(c, 4), NamedPitch(g, 5))
-      (NamedPitch(d, 4), NamedPitch(f, 5))
-      (NamedPitch(d, 4), NamedPitch(g, 5))
-      (NamedPitch(e, 4), NamedPitch(f, 5))
-      (NamedPitch(e, 4), NamedPitch(g, 5))
-      (NamedPitch(f, 5), NamedPitch(g, 5))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(e, 4))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(f, 5))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(g, 5))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(f, 5))
+      (NamedChromaticPitch(d, 4), NamedChromaticPitch(g, 5))
+      (NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 5))
+      (NamedChromaticPitch(e, 4), NamedChromaticPitch(g, 5))
+      (NamedChromaticPitch(f, 5), NamedChromaticPitch(g, 5))
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.pitch_pairs_forward_in( )`` to

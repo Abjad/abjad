@@ -6,37 +6,37 @@ from abjad.tools.spannertools import Spanner
 
 
 def list_named_chromatic_pitches_in_expr(expr):
-   '''Get tuple of zero or more Abjad :class:`~abjad.tools.pitchtools.NamedPitch.NamedPitch` 
+   '''Get tuple of zero or more Abjad :class:`~abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch` 
    instances from almost any expression. ::
 
       abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> pitchtools.list_named_chromatic_pitches_in_expr(t)
-      ((NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4))
+      ((NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4))
 
    ::
 
       abjad> t = Staff(macros.scale(4))
       abjad> beam = spannertools.BeamSpanner(t[:])
       abjad> pitchtools.list_named_chromatic_pitches_in_expr(beam)
-      ((NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4), NamedPitch(f, 4))
+      ((NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 4))
 
    ::
 
-      abjad> pitch = NamedPitch('df', 5)
+      abjad> pitch = NamedChromaticPitch('df', 5)
       abjad> pitchtools.list_named_chromatic_pitches_in_expr(pitch)
-      (NamedPitch(df, 5),)
+      (NamedChromaticPitch(df, 5),)
 
    ::
 
       abjad> note = Note(('df', 5), (1, 4))
       abjad> pitchtools.list_named_chromatic_pitches_in_expr(note)
-      (NamedPitch(df, 5),)
+      (NamedChromaticPitch(df, 5),)
 
    ::
 
       abjad> chord = Chord([0, 2, 10], (1, 4))
       abjad> pitchtools.list_named_chromatic_pitches_in_expr(chord)
-      (NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(bf, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(bf, 4))
 
    ::
       
@@ -50,9 +50,9 @@ def list_named_chromatic_pitches_in_expr(expr):
 
    Works with pitch sets. ::
 
-      abjad> pitch_set = pitchtools.NamedPitchSet([0, 2, 4, 5])
+      abjad> pitch_set = pitchtools.NamedChromaticPitchSet([0, 2, 4, 5])
       abjad> pitchtools.list_named_chromatic_pitches_in_expr(pitch_set)
-      (NamedPitch(c, 4), NamedPitch(d, 4), NamedPitch(e, 4), NamedPitch(f, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 4))
 
    Raises neither :exc:`MissingPitchError` nor :exc:`ExtraPitchError`.
 
@@ -69,7 +69,7 @@ def list_named_chromatic_pitches_in_expr(expr):
    '''
    from abjad.components import Rest
    from abjad.tools import leaftools
-   from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
+   from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
 
    try:
       result = get_named_chromatic_pitch_from_pitch_carrier(expr)
@@ -84,7 +84,7 @@ def list_named_chromatic_pitches_in_expr(expr):
                result.append(leaf.pitch)
             elif hasattr(leaf, 'pitches'):
                result.extend(leaf.pitches)
-      elif isinstance(expr, NamedPitchSet):
+      elif isinstance(expr, NamedChromaticPitchSet):
          pitches = list(expr)
          pitches.sort( )
          pitches = tuple(pitches)

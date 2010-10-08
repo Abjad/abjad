@@ -8,7 +8,7 @@ def test_pitchtools_list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeri
    sorted_pitches = pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class(chord.pitches)
 
    r'''
-   [pitchtools.NamedPitch(c, 3), pitchtools.NamedPitch(cs, 7), pitchtools.NamedPitch(d, 3), pitchtools.NamedPitch(ef, 6), pitchtools.NamedPitch(e, 4), pitchtools.NamedPitch(f, 5), pitchtools.NamedPitch(fs, 6), pitchtools.NamedPitch(g, 5), pitchtools.NamedPitch(af, 4), pitchtools.NamedPitch(a, 6), pitchtools.NamedPitch(bf, 3), pitchtools.NamedPitch(b, 4)]
+   [pitchtools.NamedChromaticPitch(c, 3), pitchtools.NamedChromaticPitch(cs, 7), pitchtools.NamedChromaticPitch(d, 3), pitchtools.NamedChromaticPitch(ef, 6), pitchtools.NamedChromaticPitch(e, 4), pitchtools.NamedChromaticPitch(f, 5), pitchtools.NamedChromaticPitch(fs, 6), pitchtools.NamedChromaticPitch(g, 5), pitchtools.NamedChromaticPitch(af, 4), pitchtools.NamedChromaticPitch(a, 6), pitchtools.NamedChromaticPitch(bf, 3), pitchtools.NamedChromaticPitch(b, 4)]
    '''
 
    sorted_pitch_numbers = [pitch.pitch_number for pitch in sorted_pitches]

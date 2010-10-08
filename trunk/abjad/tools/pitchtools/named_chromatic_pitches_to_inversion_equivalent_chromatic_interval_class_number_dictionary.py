@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import listtools
 
 
@@ -54,7 +54,7 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
    numbers = [ ]
 
    for pitch in pitches:
-      if not isinstance(pitch, NamedPitch):
+      if not isinstance(pitch, NamedChromaticPitch):
          raise ValueError
       numbers.append(pitch.pitch_number)
 
