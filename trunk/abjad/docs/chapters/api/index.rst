@@ -713,8 +713,8 @@ pitchtools
    tools/pitchtools/NamedPitchSegment/NamedPitchSegment
    tools/pitchtools/NamedPitchSet/NamedPitchSet
    tools/pitchtools/NamedPitchVector/NamedPitchVector
-   tools/pitchtools/NumericDiatonicPitch/NumericDiatonicPitch
-   tools/pitchtools/NumericDiatonicPitchClass/NumericDiatonicPitchClass
+   tools/pitchtools/NumberedDiatonicPitch/NumberedDiatonicPitch
+   tools/pitchtools/NumberedDiatonicPitchClass/NumberedDiatonicPitchClass
    tools/pitchtools/NumericPitch/NumericPitch
    tools/pitchtools/NumericPitchClass/NumericPitchClass
    tools/pitchtools/NumericPitchClassColorMap/NumericPitchClassColorMap

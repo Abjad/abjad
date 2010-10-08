@@ -5,14 +5,14 @@ def test_NumberedDiatonicPitchClass___init____01( ):
    '''Init numeric diatonic pitch class from diatonic pitch class number.
    '''
 
-   numeric_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0)
-   assert isinstance(numeric_diatonic_pitch_class, pitchtools.NumberedDiatonicPitchClass)
+   numbered_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0)
+   assert isinstance(numbered_diatonic_pitch_class, pitchtools.NumberedDiatonicPitchClass)
 
-   numeric_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0.0)
-   assert isinstance(numeric_diatonic_pitch_class, pitchtools.NumberedDiatonicPitchClass)
+   numbered_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0.0)
+   assert isinstance(numbered_diatonic_pitch_class, pitchtools.NumberedDiatonicPitchClass)
 
-   numeric_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(Fraction(0))
-   assert isinstance(numeric_diatonic_pitch_class, pitchtools.NumberedDiatonicPitchClass)
+   numbered_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(Fraction(0))
+   assert isinstance(numbered_diatonic_pitch_class, pitchtools.NumberedDiatonicPitchClass)
 
 
 def test_NumberedDiatonicPitchClass___init____02( ):

@@ -40,8 +40,8 @@ class NumberedDiatonicPitch(_UnaryComparator):
    
       ::   
 
-         abjad> numeric_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
-         abjad> numeric_diatonic_pitch.named_diatonic_pitch
+         abjad> numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
+         abjad> numbered_diatonic_pitch.named_diatonic_pitch
          NamedDiatonicPitch("c''")
       '''
       from abjad.tools import pitchtools
@@ -55,8 +55,8 @@ class NumberedDiatonicPitch(_UnaryComparator):
 
       ::
 
-         abjad> numeric_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
-         abjad> numeric_diatonic_pitch.named_diatonic_pitch_class
+         abjad> numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
+         abjad> numbered_diatonic_pitch.named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
       '''
       from abjad.tools import pitchtools
@@ -65,13 +65,13 @@ class NumberedDiatonicPitch(_UnaryComparator):
       return pitchtools.NamedDiatonicPitchClass(diatonic_pitch_class_name)
 
    @property
-   def numeric_diatonic_pitch_class(self):
+   def numbered_diatonic_pitch_class(self):
       '''Numeric diatonic pitch-class from numeric diatonic pitch:
 
       ::
 
-         abjad> numeric_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
-         abjad> numeric_diatonic_pitch.numeric_diatonic_pitch_class
+         abjad> numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
+         abjad> numbered_diatonic_pitch.numbered_diatonic_pitch_class
          NumberedDiatonicPitchClass(0)
       '''
       from abjad.tools import pitchtools

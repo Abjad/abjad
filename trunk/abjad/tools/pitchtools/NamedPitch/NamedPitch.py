@@ -429,13 +429,13 @@ class NamedPitch(_Pitch):
       return pitchtools.octave_tick_string_to_octave_number(octave_tick_string)
 
    @property
-   def numeric_diatonic_pitch(self):
+   def numbered_diatonic_pitch(self):
       '''Numeric diatonic pitch from named pitch:
 
       ::
 
          abjad> named_pitch = pitchtools.NamedPitch("cs''")
-         abjad> named_pitch.numeric_diatonic_pitch
+         abjad> named_pitch.numbered_diatonic_pitch
          NumberedDiatonicPitch(7)
       '''
       from abjad.tools import pitchtools
@@ -444,13 +444,13 @@ class NamedPitch(_Pitch):
       return pitchtools.NumberedDiatonicPitch(name_and_ticks)
 
    @property
-   def numeric_diatonic_pitch_class(self):
+   def numbered_diatonic_pitch_class(self):
       '''Numeric diatonic pitch from named pitch:
 
       ::
 
          abjad> named_pitch = pitchtools.NamedPitch("cs''")
-         abjad> named_pitch.numeric_diatonic_pitch_class
+         abjad> named_pitch.numbered_diatonic_pitch_class
          NumberedDiatonicPitchClass(0)
       '''
       from abjad.tools import pitchtools

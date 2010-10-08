@@ -37,13 +37,13 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def numeric_diatonic_pitch_class(self):
+   def numbered_diatonic_pitch_class(self):
       '''Numeric diatonic pitch class from named diatonic pitch class:
 
       ::
 
          abjad> named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass('c')
-         abjad> named_diatonic_pitch_class.numeric_diatonic_pitch_class
+         abjad> named_diatonic_pitch_class.numbered_diatonic_pitch_class
          NumberedDiatonicPitchClass(0)
       '''
       from abjad.tools import pitchtools

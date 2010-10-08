@@ -40,8 +40,8 @@ class NumberedDiatonicPitchClass(_NumericPitchClass, _DiatonicPitchClass):
 
       ::
 
-         abjad> numeric_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0)
-         abjad> numeric_diatonic_pitch_class.named_diatonic_pitch_class
+         abjad> numbered_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0)
+         abjad> numbered_diatonic_pitch_class.named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
       '''
       from abjad.tools.pitchtools.NamedDiatonicPitchClass import NamedDiatonicPitchClass
