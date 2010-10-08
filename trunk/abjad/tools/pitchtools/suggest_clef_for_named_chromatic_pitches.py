@@ -34,20 +34,19 @@ def suggest_clef_for_named_chromatic_pitches(pitches, clefs = ['treble', 'bass']
 
    pitches = list_named_chromatic_pitches_in_expr(pitches)
 
-   diatonic_pitch_numbers = [
-      pitch.numbered_diatonic_pitch._diatonic_pitch_number for pitch in pitches]
+   diatonic_pitch_numbers = [int(pitch.numbered_diatonic_pitch) for pitch in pitches]
    max_diatonic_pitch_number = max(diatonic_pitch_numbers)
    min_diatonic_pitch_number = min(diatonic_pitch_numbers)
 
    lowest_treble_line_pitch = NamedChromaticPitch('e', 4)
    lowest_treble_line_diatonic_pitch_number = \
-      lowest_treble_line_pitch.numbered_diatonic_pitch._diatonic_pitch_number
+      int(lowest_treble_line_pitch.numbered_diatonic_pitch)
    candidate_steps_below_treble = \
       lowest_treble_line_diatonic_pitch_number - min_diatonic_pitch_number
 
    highest_bass_line_pitch = NamedChromaticPitch('a', 3)
    highest_bass_line_diatonic_pitch_number = \
-      highest_bass_line_pitch.numbered_diatonic_pitch._diatonic_pitch_number
+      int(highest_bass_line_pitch.numbered_diatonic_pitch)
    candidate_steps_above_bass = max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
 
    if candidate_steps_above_bass < candidate_steps_below_treble:

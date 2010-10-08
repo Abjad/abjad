@@ -1,10 +1,8 @@
-from abjad.core import _UnaryComparator
-#from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
-#from abjad.tools.pitchtools._NumberedChromaticPitch import _NumberedChromaticPitch
+from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
+from abjad.tools.pitchtools._NumberedPitch import _NumberedPitch
 
 
-#class NumberedDiatonicPitch(_DiatonicPitch, _NumberedChromaticPitch):
-class NumberedDiatonicPitch(_UnaryComparator):
+class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a numeric diatonic pitch::
@@ -35,6 +33,14 @@ class NumberedDiatonicPitch(_UnaryComparator):
       object.__setattr__(self, '_comparison_attribute', diatonic_pitch_number)
       object.__setattr__(self, '_format_string', diatonic_pitch_number)
       return self
+
+   ## OVERLOADS ##
+
+   def __abs__(self):
+      return self._diatonic_pitch_class
+
+   def __int__(self):
+      return self._diatonic_pitch_number
 
    ## PUBLIC ATTRIBUTES ##
 

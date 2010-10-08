@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools._Pitch import _Pitch
-from abjad.tools.pitchtools.Accidental import Accidental
+from abjad.tools.pitchtools._ChromaticPitch import _ChromaticPitch
+from abjad.tools.pitchtools._NumberedPitch import _NumberedPitch
 
 
-class NumberedChromaticPitch(_Pitch):
+class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a numbered chromatic pitch::
@@ -76,6 +76,7 @@ class NumberedChromaticPitch(_Pitch):
 
    def apply_accidental(self, accidental = None):
       '''Emit new numeric pitch as sum of self and accidental.'''
+      from abjad.tools.pitchtools.Accidental import Accidental
       accidental = Accidental(accidental)
       semitones = self.semitones + accidental.semitones
       return type(self)(semitones)

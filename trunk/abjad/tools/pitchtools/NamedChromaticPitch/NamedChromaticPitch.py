@@ -153,15 +153,7 @@ class NamedChromaticPitch(_Pitch):
 
    @property
    def _diatonic_pitch_number(self):
-      '''Read-only diatonic pitch number of named pitch:
-
-      ::
-
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
-         abjad> named_chromatic_pitch._diatonic_pitch_number
-         0
-      '''
-      return self.numbered_diatonic_pitch._diatonic_pitch_number
+      return int(self.numbered_diatonic_pitch)
 
    @property
    def _numeric_deviation(self):

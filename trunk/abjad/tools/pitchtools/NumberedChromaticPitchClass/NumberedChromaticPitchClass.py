@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._PitchClass import _PitchClass
-from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import \
    InversionEquivalentChromaticIntervalClass
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
@@ -122,6 +121,7 @@ class NumberedChromaticPitchClass(_PitchClass):
 
    def apply_accidental(self, accidental = None):
       '''Emit new numeric pitch class as sum of self and accidental.'''
+      from abjad.tools.pitchtools.Accidental import Accidental
       accidental = Accidental(accidental)
       semitones = self.semitones + accidental.semitones
       return NumberedChromaticPitchClass(semitones)
