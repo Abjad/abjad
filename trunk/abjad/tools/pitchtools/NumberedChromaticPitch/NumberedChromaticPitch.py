@@ -31,46 +31,36 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
       return self
 
    def __getnewargs__(self):
-      return (self.number,)
+      return (self._chromatic_pitch_number, )
 
    ## OVERLOADS ##
 
    def __abs__(self):
-      return self.semitones
+      return self._chromatic_pitch_number
 
    def __add__(self, arg):
       arg = NumberedChromaticPitch(arg)
-      semitones = self.semitones + arg.semitones
+      semitones = abs(self) + abs(arg)
       return NumberedChromaticPitch(semitones)
       
    def __hash__(self):
       return hash(repr(self))
 
    def __neg__(self):
-      return NumberedChromaticPitch(-self.semitones)
+      return NumberedChromaticPitch(-abs(self))
    
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.number)
+      return '%s(%s)' % (self.__class__.__name__, abs(self))
 
    def __str__(self):
-      return '%s' % self.number
+      return '%s' % abs(self)
 
    def __sub__(self, arg):
       arg = NumberedChromaticPitch(arg)
-      semitones = self.semitones - arg.semitones
+      semitones = abs(self) - abs(arg)
       return NumberedChromaticPitch(semitones)
      
    ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def number(self):
-      '''Read-only numeric value of numeric pitch.'''
-      return self._chromatic_pitch_number
-
-   @property
-   def semitones(self):
-      '''Read-only number of semitones.'''
-      return self.number
 
    ## PUBLIC METHODS ##
 
@@ -78,10 +68,10 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
       '''Emit new numeric pitch as sum of self and accidental.'''
       from abjad.tools.pitchtools.Accidental import Accidental
       accidental = Accidental(accidental)
-      semitones = self.semitones + accidental.semitones
+      semitones = abs(self) + accidental.semitones
       return type(self)(semitones)
 
    def transpose(self, n = 0):
       '''Transpose numeric pitch by n.'''
-      semitones = self.semitones + n
+      semitones = abs(self) + n
       return type(self)(semitones)
