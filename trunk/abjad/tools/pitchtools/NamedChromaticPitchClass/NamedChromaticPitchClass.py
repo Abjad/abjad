@@ -8,7 +8,12 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 class NamedChromaticPitchClass(_PitchClass):
    '''.. versionadded:: 1.1.2
 
-   Named pitch-class ranging over c, cqs, cs, ..., bf, bqf, b. 
+   Abjad model of named chromatic pitch-class::
+
+      abjad> pitchtools.NamedChromaticPitchClass('cs')
+      NamedChromaticPitchClass('cs')
+
+   Named chromatic pitch-classes are immutable.
    '''
 
    __slots__ = ('_chromatic_pitch_class_name', )
@@ -96,7 +101,7 @@ class NamedChromaticPitchClass(_PitchClass):
       return not self == arg
    
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.name)
+      return '%s(%s)' % (self.__class__.__name__, self._repr_string)
 
    def __str__(self):
       return '%s' % self.name
@@ -122,6 +127,10 @@ class NamedChromaticPitchClass(_PitchClass):
    @property
    def _letter_string(self):
       return self.name[0]
+
+   @property
+   def _repr_string(self):
+      return repr(self.name)
 
    ## PRIVATE METHODS ##
 

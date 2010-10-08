@@ -1,7 +1,10 @@
-class _Set(frozenset):
+from abjad.core import _Immutable
+
+
+class _Set(frozenset, _Immutable):
    '''.. versionadded:: 1.1.2
 
-   Abstract pitch tools immutable set.
+   Mix-in base class for immutable set objects.
    '''
 
    pass

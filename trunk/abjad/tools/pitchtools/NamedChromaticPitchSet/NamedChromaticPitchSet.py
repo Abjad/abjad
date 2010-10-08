@@ -7,28 +7,26 @@ from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interva
    transpose_pitch_carrier_by_melodic_chromatic_interval
 
 
-## TODO: Make PitchSet and PCSet both inherit for a shared base class. ##
-
-## TODO: Make PitchSet inherit from frozenset instead of set. ##
-
 class NamedChromaticPitchSet(_PitchSet):
    '''.. versionadded:: 1.1.2
 
-   12-ET pitch set from American pitch-class theory.
+   The Abjad model of a named chromatic pitch set::
+
+      abjad> pitchtools.NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
+      NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'"])
+
+   Named chromatic pitch sets are immutable.
    '''
 
-   #def __init__(self, pitch_tokens):
    def __new__(self, pitch_tokens):
       from abjad.tools.notetools.NoteHead import NoteHead
       pitches = [ ]
       for token in pitch_tokens:
          if isinstance(token, NoteHead):
             pitch = NamedChromaticPitch(token.pitch)
-            #self.add(pitch)
             pitches.append(pitch)
          else:
             pitch = NamedChromaticPitch(token)
-            #self.add(pitch)
             pitches.append(pitch)
       return frozenset.__new__(self, pitches)
 
@@ -47,21 +45,20 @@ class NamedChromaticPitchSet(_PitchSet):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.format_string)
+      return '%s([%s])' % (self.__class__.__name__, self._repr_string)
 
    def __str__(self):
-      return '{%s}' % self._str_format_string
+      return '{%s}' % ' '.join([str(pitch) for pitch in self.pitches])
 
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def format_string(self):
+   def _format_string(self):
       return ', '.join([str(pitch) for pitch in self.pitches])
 
    @property
-   def _str_format_string(self):
-      ## TODO: implement NumberedChromaticPitchSet ##
-      return ', '.join([str(pitch) for pitch in self.pitches])
+   def _repr_string(self):
+      return ', '.join([repr(str(pitch)) for pitch in self.pitches])
 
    ## PUBLIC ATTRIBUTES ##
 

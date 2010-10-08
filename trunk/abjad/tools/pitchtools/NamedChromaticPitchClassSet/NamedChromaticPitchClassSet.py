@@ -8,13 +8,15 @@ from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list
 from abjad.tools.pitchtools.list_numeric_chromatic_pitch_classes_in_expr import list_numeric_chromatic_pitch_classes_in_expr
 
 
-## TODO: Make NamedChromaticPitchClassSet and PitchSet both inherit ##
-## from a shared base class. ##
-
 class NamedChromaticPitchClassSet(_PitchClassSet):
    '''.. versionadded:: 1.1.2
 
-   Unordered set of named pitch-classes.
+   The Abjad model of a named chromatic pitch-class set::
+
+      abjad> pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
+      NamedChromaticPitchClassSet(['as', 'c', 'cs', 'g', 'gs'])
+
+   Named chromatic pitch-class sets are immutable.
    '''
 
    def __new__(self, expr):
@@ -56,16 +58,20 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.format_string)
+      return '%s([%s])' % (self.__class__.__name__, self._repr_string)
    
    def __str__(self):
-      return '{%s}' % self.format_string
+      return '{%s}' % self._format_string
 
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def format_string(self):
+   def _format_string(self):
       return ', '.join([str(x) for x in sorted(self)])
+
+   @property
+   def _repr_string(self):
+      return ', '.join([repr(str(x)) for x in sorted(self)])
 
    ## PUBLIC ATTRIBUTES ##
 

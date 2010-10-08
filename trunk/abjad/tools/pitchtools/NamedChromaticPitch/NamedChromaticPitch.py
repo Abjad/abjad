@@ -6,12 +6,12 @@ from abjad.tools.pitchtools._Pitch import _Pitch
 _accidental_spelling = _read_config_file( )['accidental_spelling']
 
 class NamedChromaticPitch(_Pitch):
-   '''Abjad model of named chromatic pitch:
-
-   ::
+   '''Abjad model of named chromatic pitch::
 
       abjad> pitchtools.NamedChromaticPitch("cs'")
       NamedChromaticPitch("cs'")
+
+   Named chromatic pitches are immutable.
    '''
 
    ## TODO: remove ##

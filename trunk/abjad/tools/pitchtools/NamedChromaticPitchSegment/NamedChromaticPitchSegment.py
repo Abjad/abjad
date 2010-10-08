@@ -20,24 +20,32 @@ from abjad.tools.pitchtools.NamedChromaticPitchVector import NamedChromaticPitch
 class NamedChromaticPitchSegment(_PitchSegment):
    '''.. versionadded:: 1.1.2
 
-   Ordered collection of pitch instances. ::
+   The Abjad model of a named chromatic pitch segment::
 
-      abjad> pitch_segment = pitchtools.NamedChromaticPitchSegment([-2, -1.5, 6, 7, -1.5, 7])
-      abjad> pitch_segment
-      NamedChromaticPitchSegment(bf, bqf, fs', g', bqf, g')
+      abjad> pitchtools.NamedChromaticPitchSegment(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
+      NamedChromaticPitchSegment(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
+
+   Named chromtic pitch segments are immutable.
    '''
 
-   #def __init__(self, pitch_tokens):
    def __new__(self, pitch_tokens):
       pitches = [NamedChromaticPitch(x) for x in pitch_tokens]
-      #self.extend(pitches)
       return tuple.__new__(self, pitches)
 
    ## OVERLOADS ##
 
    def __repr__(self):
-      contents_string = ', '.join([str(x) for x in self])
-      return '%s(%s)' % (self.__class__.__name__, contents_string)
+      return '%s([%s])' % (self.__class__.__name__, self._repr_string)
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _contents_string(self):
+      return ', '.join([str(x) for x in self])
+
+   @property
+   def _repr_string(self):
+      return ', '.join([repr(str(x)) for x in self])
 
    ## PUBLIC ATTRIBUTES ##
 

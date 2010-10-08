@@ -14,6 +14,8 @@ class ChordClass(NamedChromaticPitchClassSet):
    Note that notions like G 7 represent an entire *class of* chords because
    there are many different spacings and registrations of a G 7 chord.
    '''
+   
+   __slots__ = ('_bass', '_quality_indicator', '_root', )
 
    def __new__(klass, root, *args):
       root = NamedChromaticPitchClass(root)
@@ -25,9 +27,9 @@ class ChordClass(NamedChromaticPitchClassSet):
          npcs.append(npc)
       bass = npcs[0]
       self = NamedChromaticPitchClassSet.__new__(klass, npcs)
-      self._root = root
-      self._quality_indicator = quality_indicator
-      self._bass = bass
+      object.__setattr__(self, '_root', root)
+      object.__setattr__(self, '_quality_indicator', quality_indicator)
+      object.__setattr__(self, '_bass', bass)
       return self
 
    ## OVERLOADS ##
