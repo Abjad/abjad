@@ -1,6 +1,6 @@
-pitchtools.pitch_class_number_to_pitch_name_with_sharps
-=======================================================
+pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
+=================================================================================
 
-.. automodule:: abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_sharps
+.. automodule:: abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
 
-.. autofunction:: abjad.tools.pitchtools.pitch_class_number_to_pitch_name_with_sharps
+.. autofunction:: abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps

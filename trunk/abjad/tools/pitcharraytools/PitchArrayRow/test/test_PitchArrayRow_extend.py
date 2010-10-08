@@ -24,8 +24,8 @@ def test_PitchArrayRow_extend_01( ):
 
    assert array[0].dimensions == (1, 7)
    assert array[0].cell_widths == (1, 2, 1, 1, 1, 1)
-   assert array[0].pitches == tuple(pitchtools.make_named_pitches_from_pitch_tokens([0, 2]))
+   assert array[0].pitches == tuple(pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches([0, 2]))
 
    assert array[1].dimensions == (1, 7)
    assert array[1].cell_widths == (2, 1, 1, 3)
-   assert array[1].pitches == tuple(pitchtools.make_named_pitches_from_pitch_tokens([4]))
+   assert array[1].pitches == tuple(pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches([4]))

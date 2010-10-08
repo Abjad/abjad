@@ -1,8 +1,8 @@
 from abjad.tools.pitchtools.is_chromatic_pitch_number import is_chromatic_pitch_number
 from abjad.tools.pitchtools.octave_number_to_octave_tick_string import \
    octave_number_to_octave_tick_string
-from abjad.tools.pitchtools.pitch_class_number_to_pitch_name import \
-   pitch_class_number_to_pitch_name
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name import \
+   chromatic_pitch_class_number_to_chromatic_pitch_class_name
 from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import \
    chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
 from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import \
@@ -31,7 +31,7 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
    chromatic_pitch_class_number = chromatic_pitch_number % 12
 
    if accidental_spelling == 'mixed':
-      chromatic_pitch_class_name = pitch_class_number_to_pitch_name(
+      chromatic_pitch_class_name = chromatic_pitch_class_number_to_chromatic_pitch_class_name(
          chromatic_pitch_class_number)
    elif accidental_spelling == 'sharps':
       chromatic_pitch_class_name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(

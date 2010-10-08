@@ -3,7 +3,7 @@ from abjad.components.Note import Note
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
 from abjad.tools import componenttools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_pitch_class_name import one_indexed_diatonic_scale_degree_number_to_pitch_class_name
+from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name import one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name
 
 
 def transpose_pitch_by_melodic_diatonic_interval(pitch_carrier, melodic_diatonic_interval):
@@ -52,5 +52,5 @@ def _transpose_pitch_by_melodic_diatonic_interval(
    chromatic_pitch_number = pitch.pitch_number + melodic_diatonic_interval.semitones
    diatonic_scale_degree = (pitch.diatonic_pitch_class_number + 1) + \
       melodic_diatonic_interval.staff_spaces
-   letter = one_indexed_diatonic_scale_degree_number_to_pitch_class_name(diatonic_scale_degree)
+   letter = one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name(diatonic_scale_degree)
    return NamedPitch(chromatic_pitch_number, letter)

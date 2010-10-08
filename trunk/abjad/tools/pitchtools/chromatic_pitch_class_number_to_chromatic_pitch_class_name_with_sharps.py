@@ -26,7 +26,7 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(pc):
       ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pitch_class_number_to_pitch_name_with_sharps( )`` to
+      renamed ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )`` to
       ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )``.
    '''
 
