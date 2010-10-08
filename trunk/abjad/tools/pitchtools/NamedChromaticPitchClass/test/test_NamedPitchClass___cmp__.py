@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClass___cmp___01( ):
+def test_NamedPitchClass___cmp___01( ):
    '''Referentially equal named pitch classes compare equally.'''
 
    npc = pitchtools.NamedChromaticPitchClass('fs')
@@ -13,7 +13,7 @@ def test_NamedChromaticPitchClass___cmp___01( ):
    assert     npc <= npc
 
 
-def test_NamedChromaticPitchClass___cmp___02( ):
+def test_NamedPitchClass___cmp___02( ):
    '''Different letter strings.'''
 
    npc_1 = pitchtools.NamedChromaticPitchClass('fs')
@@ -26,7 +26,7 @@ def test_NamedChromaticPitchClass___cmp___02( ):
    assert     npc_1 <= npc_2 
 
 
-def test_NamedChromaticPitchClass___cmp___03( ):
+def test_NamedPitchClass___cmp___03( ):
    '''Same letter strings.'''
 
    npc_1 = pitchtools.NamedChromaticPitchClass('f')

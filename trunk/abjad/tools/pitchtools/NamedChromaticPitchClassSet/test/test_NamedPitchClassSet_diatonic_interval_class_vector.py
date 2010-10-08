@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSet_diatonic_interval_class_vector_01( ):
+def test_NamedPitchClassSet_diatonic_interval_class_vector_01( ):
 
    npcset = pitchtools.NamedChromaticPitchClassSet(['c', 'e', 'g', 'b'])
    dicv = npcset.diatonic_interval_class_vector

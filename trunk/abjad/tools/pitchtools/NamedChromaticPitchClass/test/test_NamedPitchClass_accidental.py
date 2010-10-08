@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClass_accidental_01( ):
+def test_NamedPitchClass_accidental_01( ):
    
    assert pitchtools.NamedChromaticPitchClass('c').accidental.alphabetic_string == ''
    assert pitchtools.NamedChromaticPitchClass('cqs').accidental.alphabetic_string == 'qs'

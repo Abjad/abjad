@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClass___sub___01( ):
+def test_NamedPitchClass___sub___01( ):
 
    mdi = pitchtools.NamedChromaticPitchClass('c') - pitchtools.NamedChromaticPitchClass('d')
    assert mdi == pitchtools.InversionEquivalentDiatonicIntervalClass('major', 2)
@@ -10,7 +10,7 @@ def test_NamedChromaticPitchClass___sub___01( ):
    assert mdi == pitchtools.InversionEquivalentDiatonicIntervalClass('major', 2)
 
 
-def test_NamedChromaticPitchClass___sub___02( ):
+def test_NamedPitchClass___sub___02( ):
 
    mdi = pitchtools.NamedChromaticPitchClass('c') - pitchtools.NamedChromaticPitchClass('cf')
    assert mdi == pitchtools.InversionEquivalentDiatonicIntervalClass('augmented', 1)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSegment_is_equivalent_under_transposition_01( ):
+def test_NamedPitchClassSegment_is_equivalent_under_transposition_01( ):
 
    npc_seg_1 = pitchtools.NamedChromaticPitchClassSegment(['c', 'e', 'b'])
    npc_seg_2 = pitchtools.NamedChromaticPitchClassSegment(['f', 'a', 'e'])

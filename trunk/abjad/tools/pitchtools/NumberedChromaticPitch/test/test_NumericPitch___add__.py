@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedChromaticPitch___add___01( ):
+def test_NumericPitch___add___01( ):
    '''Add numeric pitch to numeric pitch.'''
 
    p = pitchtools.NumberedChromaticPitch(12)
@@ -10,7 +10,7 @@ def test_NumberedChromaticPitch___add___01( ):
    assert p + q == pitchtools.NumberedChromaticPitch(25)
 
 
-def test_NumberedChromaticPitch___add___02( ):
+def test_NumericPitch___add___02( ):
    '''Add number to numeric pitch.'''
 
    p = pitchtools.NumberedChromaticPitch(12)

@@ -74,6 +74,6 @@ def divide_chord_by_pitch_number(chord, pitch = NamedChromaticPitch('b', 3)):
       ``chordtools.divide_chord_by_pitch_number( )``.
    '''
 
-   treble, bass = _split(chord, pitch = pitch, attr = 'pitch_number')
+   treble, bass = _split(chord, pitch = pitch, attr = 'numbered_chromatic_pitch')
 
    return treble, bass

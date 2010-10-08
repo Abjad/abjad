@@ -77,6 +77,6 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch = NamedChromaticPitch('b'
       ``chordtools.divide_chord_by_diatonic_pitch_number( )``.
    '''
 
-   treble, bass = _split(chord, pitch = pitch, attr = 'diatonic_pitch_number')
+   treble, bass = _split(chord, pitch = pitch, attr = 'numbered_diatonic_pitch')
 
    return treble, bass

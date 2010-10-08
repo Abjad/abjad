@@ -64,7 +64,7 @@ class Chord(_Leaf):
       '''Sort note heads in chord by diatonic pitch number.
       '''
       def _helper(nh1, nh2):
-         result = cmp(nh1.pitch.diatonic_pitch_number, nh2.pitch.diatonic_pitch_number)
+         result = cmp(nh1.pitch.numbered_diatonic_pitch, nh2.pitch.numbered_diatonic_pitch)
          if result:
             return result
          else:

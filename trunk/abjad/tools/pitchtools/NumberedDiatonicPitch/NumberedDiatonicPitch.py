@@ -25,6 +25,8 @@ class NumberedDiatonicPitch(_UnaryComparator):
          diatonic_pitch_number = arg
       elif pitchtools.is_diatonic_pitch_name(arg):
          diatonic_pitch_number = pitchtools.diatonic_pitch_name_to_diatonic_pitch_number(arg)
+      elif pitchtools.is_chromatic_pitch_name(arg):
+         diatonic_pitch_number = pitchtools.chromatic_pitch_name_to_diatonic_pitch_number(arg)
       else:
          raise TypeError
       object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchSet___contains___01( ):
+def test_NamedPitchSet___contains___01( ):
    '''Pitch set containment works as expected.'''
 
    pset = pitchtools.NamedChromaticPitchSet([12, 14, 18, 19])

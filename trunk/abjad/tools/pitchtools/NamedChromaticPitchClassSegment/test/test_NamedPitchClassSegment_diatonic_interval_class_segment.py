@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSegment_diatonic_interval_class_segment_01( ):
+def test_NamedPitchClassSegment_diatonic_interval_class_segment_01( ):
 
    npcseg = pitchtools.NamedChromaticPitchClassSegment(['c', 'd', 'e', 'f'])
    dicseg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([

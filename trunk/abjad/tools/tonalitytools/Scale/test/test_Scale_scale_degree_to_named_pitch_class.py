@@ -3,7 +3,7 @@ from abjad.tools import tonalitytools
 import py.test
 
 
-def test_Scale_scale_degree_to_named_chromatic_pitch_class_01( ):
+def test_Scale_scale_degree_to_named_pitch_class_01( ):
 
    scale = tonalitytools.Scale('c', 'major')
 
@@ -23,7 +23,7 @@ def test_Scale_scale_degree_to_named_chromatic_pitch_class_01( ):
       pitchtools.NamedChromaticPitchClass('b')
 
 
-def test_Scale_scale_degree_to_named_chromatic_pitch_class_02( ):
+def test_Scale_scale_degree_to_named_pitch_class_02( ):
 
    scale = tonalitytools.Scale('c', 'major')
 
@@ -43,7 +43,7 @@ def test_Scale_scale_degree_to_named_chromatic_pitch_class_02( ):
       pitchtools.NamedChromaticPitchClass('bf')
 
 
-def test_Scale_scale_degree_to_named_chromatic_pitch_class_03( ):
+def test_Scale_scale_degree_to_named_pitch_class_03( ):
 
    scale = tonalitytools.Scale('c', 'major')
 
@@ -63,7 +63,7 @@ def test_Scale_scale_degree_to_named_chromatic_pitch_class_03( ):
       pitchtools.NamedChromaticPitchClass('bs')
 
 
-def test_Scale_scale_degree_to_named_chromatic_pitch_class_04( ):
+def test_Scale_scale_degree_to_named_pitch_class_04( ):
 
    scale = tonalitytools.Scale('c', 'major')
 

@@ -9,7 +9,7 @@ from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
-def _split(chord, pitch = NamedChromaticPitch('b', 3), attr = 'pitch_number'):
+def _split(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_chromatic_pitch'):
    r'''Split ``chord`` into a disjunt ``(treble, bass)`` pair
    of parts about ``pitch``. 
    Place pitches in ``chord`` greater than or equal to 
@@ -22,7 +22,7 @@ def _split(chord, pitch = NamedChromaticPitch('b', 3), attr = 'pitch_number'):
    be an Abjad :class:`~abjad.components.Note.note.Note` or 
    :class:`~abjad.components.Rest.rest.Rest`.
 
-   * ``attr``: ``pitch_number``, ``alititude``. 
+   * ``attr``: ``chromatic_pitch_number``, ``numbered_diatonic_pitch``. 
 
    Length treatment:
 
@@ -50,7 +50,7 @@ def _split(chord, pitch = NamedChromaticPitch('b', 3), attr = 'pitch_number'):
 
    assert isinstance(chord, _Leaf)
    assert pitchtools.is_named_chromatic_pitch_token(pitch)
-   assert attr in ('pitch_number', 'diatonic_pitch_number')
+   assert attr in ('numbered_chromatic_pitch', 'numbered_diatonic_pitch')
 
    pitch = NamedChromaticPitch(pitch)
    treble = componenttools.clone_components_and_remove_all_spanners([chord])[0]

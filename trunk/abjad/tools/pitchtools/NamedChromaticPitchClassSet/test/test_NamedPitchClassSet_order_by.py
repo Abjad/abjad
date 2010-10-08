@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSet_order_by_01( ):
+def test_NamedPitchClassSet_order_by_01( ):
 
    npc_set = pitchtools.NamedChromaticPitchClassSet(['c', 'e', 'b'])
    npc_seg = pitchtools.NamedChromaticPitchClassSegment(['e', 'a', 'f'])

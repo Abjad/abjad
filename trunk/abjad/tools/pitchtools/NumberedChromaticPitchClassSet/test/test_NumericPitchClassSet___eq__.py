@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedChromaticPitchClassSet___eq___01( ):
+def test_NumericPitchClassSet___eq___01( ):
    '''PCset equality works as expected.'''
 
    pcset1 = pitchtools.NumberedChromaticPitchClassSet([0, 2, 6, 7])

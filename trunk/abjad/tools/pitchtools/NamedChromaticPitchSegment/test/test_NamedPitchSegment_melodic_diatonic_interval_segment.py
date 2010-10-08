@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchSegment_melodic_diatonic_interval_segment_01( ):
+def test_NamedPitchSegment_melodic_diatonic_interval_segment_01( ):
 
    pitch_segment = pitchtools.NamedChromaticPitchSegment([-2, -1, 6, 7, -1, 7])
 

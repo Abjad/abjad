@@ -54,7 +54,6 @@ class NamedChromaticPitch(_Pitch):
       return self
 
    def __getnewargs__(self):
-      #return (self._chromatic_pitch_class_name, self.octave_number)
       return (self._chromatic_pitch_name, self._deviation)
 
    ## OVERLOADS ##
@@ -166,10 +165,6 @@ class NamedChromaticPitch(_Pitch):
          return (self.octave_number - 4) * 7 + self.diatonic_pitch_class_number
       else:
          return None
-
-   @property
-   def diatonic_pitch_number(self):
-      return self._diatonic_pitch_number
 
    @property
    def _numeric_deviation(self):
@@ -438,10 +433,8 @@ class NamedChromaticPitch(_Pitch):
          abjad> named_chromatic_pitch.numbered_diatonic_pitch
          NumberedDiatonicPitch(7)
       '''
-      from abjad.tools import pitchtools
-      name_and_ticks = self._diatonic_pitch_class_name
-      name_and_ticks += self._octave_tick_string
-      return pitchtools.NumberedDiatonicPitch(name_and_ticks)
+      from abjad.tools.pitchtools import NumberedDiatonicPitch
+      return NumberedDiatonicPitch(self._chromatic_pitch_name)
 
    @property
    def numbered_diatonic_pitch_class(self):
@@ -455,6 +448,19 @@ class NamedChromaticPitch(_Pitch):
       '''
       from abjad.tools import pitchtools
       return pitchtools.NumberedDiatonicPitchClass(self._diatonic_pitch_class_name)
+
+   @property
+   def numbered_chromatic_pitch(self):
+      '''New numbered chromatic pitch from named chromatic pitch:
+
+      ::
+
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
+         abjad> named_chromatic_pitch.numbered_chromatic_pitch_class
+         NumberedChromaticPitchClass(1)
+      '''
+      from abjad.tools import pitchtools
+      return pitchtools.NumberedChromaticPitch(self._chromatic_pitch_name)
 
    @property
    def numbered_chromatic_pitch_class(self):

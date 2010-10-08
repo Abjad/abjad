@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_NumberedChromaticPitchClass___sub___01( ):
+def test_NumericPitchClass___sub___01( ):
    '''Subtracting one pitch class from another.'''
 
    pc1 = pitchtools.NumberedChromaticPitchClass(6)
@@ -12,7 +12,7 @@ def test_NumberedChromaticPitchClass___sub___01( ):
    assert pc2 - pc1 == pitchtools.InversionEquivalentChromaticIntervalClass(1)
 
 
-def test_NumberedChromaticPitchClass___sub___02( ):
+def test_NumericPitchClass___sub___02( ):
    '''Subtracting an interval class from a pitch class.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(0)

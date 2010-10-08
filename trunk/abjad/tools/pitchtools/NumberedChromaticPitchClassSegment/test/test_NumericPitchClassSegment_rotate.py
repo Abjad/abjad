@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedChromaticPitchClassSegment_rotate_01( ):
+def test_NumericPitchClassSegment_rotate_01( ):
 
    pcseg = pitchtools.NumberedChromaticPitchClassSegment([0, 6, 10, 4, 9, 2])
    PCSeg = pitchtools.NumberedChromaticPitchClassSegment
@@ -9,7 +9,7 @@ def test_NumberedChromaticPitchClassSegment_rotate_01( ):
    assert pcseg.rotate(0) == PCSeg([0, 6, 10, 4, 9, 2])
 
 
-def test_NumberedChromaticPitchClassSegment_rotate_02( ):
+def test_NumericPitchClassSegment_rotate_02( ):
    '''Rotate right.'''
 
    pcseg = pitchtools.NumberedChromaticPitchClassSegment([0, 6, 10, 4, 9, 2])
@@ -23,7 +23,7 @@ def test_NumberedChromaticPitchClassSegment_rotate_02( ):
    assert pcseg.rotate(6) == PCSeg([0, 6, 10, 4, 9, 2])
 
 
-def test_NumberedChromaticPitchClassSegment_rotate_03( ):
+def test_NumericPitchClassSegment_rotate_03( ):
    '''Rotate left.'''
 
    pcseg = pitchtools.NumberedChromaticPitchClassSegment([0, 6, 10, 4, 9, 2])

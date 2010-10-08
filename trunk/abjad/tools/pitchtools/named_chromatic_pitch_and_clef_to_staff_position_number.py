@@ -27,4 +27,4 @@ def named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef):
       ``pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number( )``.
    '''
 
-   return pitch.diatonic_pitch_number + clef.middle_c_position   
+   return pitch.numbered_diatonic_pitch._diatonic_pitch_number + clef.middle_c_position   

@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_NamedChromaticPitch___copy___01( ):
+def test_NamedPitch___copy___01( ):
 
    pitch = pitchtools.NamedChromaticPitch(13)
    new = copy.copy(pitch)
