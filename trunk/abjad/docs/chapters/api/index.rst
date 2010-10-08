@@ -45,7 +45,7 @@ chordtools
    tools/chordtools/Cluster/Cluster
    tools/chordtools/arpeggiate_chord
    tools/chordtools/cast_defective_chord
-   tools/chordtools/color_chord_note_heads_by_numeric_pitch_class
+   tools/chordtools/color_chord_note_heads_by_numbered_chromatic_pitch_class
    tools/chordtools/divide_chord_by_diatonic_pitch_number
    tools/chordtools/divide_chord_by_pitch_number
    tools/chordtools/get_arithmetic_mean_of_chord
@@ -1054,7 +1054,7 @@ verticalitytools
    tools/verticalitytools/label_vertical_moments_in_expr_with_counterpoint_intervals
    tools/verticalitytools/label_vertical_moments_in_expr_with_diatonic_intervals
    tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
-   tools/verticalitytools/label_vertical_moments_in_expr_with_numeric_pitch_classes
+   tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
 
 
