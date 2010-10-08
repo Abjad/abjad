@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.is_named_pitch_token import is_named_pitch_token
+from abjad.tools.pitchtools.is_named_chromatic_pitch_token import is_named_chromatic_pitch_token
 
 
 def all_are_named_pitch_tokens(pitch_tokens):
@@ -21,6 +21,6 @@ def all_are_named_pitch_tokens(pitch_tokens):
    '''
 
    if isinstance(pitch_tokens, (list, tuple, set)):
-      if all([is_named_pitch_token(x) for x in pitch_tokens]):
+      if all([is_named_chromatic_pitch_token(x) for x in pitch_tokens]):
          return True
    return False

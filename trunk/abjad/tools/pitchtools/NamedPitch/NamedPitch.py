@@ -62,7 +62,7 @@ class NamedPitch(_Pitch):
    def __add__(self, melodic_interval):
       '''.. versionadded:: 1.1.2'''
       from abjad.tools import pitchtools
-      return pitchtools.transpose_pitch_by_melodic_interval(self, melodic_interval)
+      return pitchtools.transpose_pitch_carrier_by_melodic_interval(self, melodic_interval)
 
    def __copy__(self):
       '''.. versionadded:: 1.1.2'''
@@ -148,7 +148,7 @@ class NamedPitch(_Pitch):
             self, arg)
       else:
          interval = arg
-         return pitchtools.transpose_pitch_by_melodic_interval(self, -interval)
+         return pitchtools.transpose_pitch_carrier_by_melodic_interval(self, -interval)
 
    ## PRIVATE ATTRIBUTES ##
 

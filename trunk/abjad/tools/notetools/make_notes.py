@@ -44,7 +44,7 @@ def make_notes(pitches, durations, direction='big-endian'):
    '''
    from abjad.tools.leaftools._construct_unprolated_notes import _construct_unprolated_notes
 
-   if pitchtools.is_named_pitch_token(pitches):
+   if pitchtools.is_named_chromatic_pitch_token(pitches):
       pitches = [pitches]
    
    if durtools.is_duration_token(durations):

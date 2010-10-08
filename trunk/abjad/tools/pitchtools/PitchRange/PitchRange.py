@@ -1,6 +1,6 @@
 from abjad.core import _Immutable
 from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
+from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
 class PitchRange(_Immutable):
@@ -50,7 +50,7 @@ class PitchRange(_Immutable):
       elif isinstance(arg, NamedPitch):
          return self._contains_pitch(arg)
       else:
-         pitches = list_named_pitches_in_expr(arg)
+         pitches = list_named_chromatic_pitches_in_expr(arg)
          if pitches:
             return all([self._contains_pitch(x) for x in pitches])
       return False

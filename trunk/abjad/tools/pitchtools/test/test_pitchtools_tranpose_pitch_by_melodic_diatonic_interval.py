@@ -6,7 +6,7 @@ def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_01( ):
 
    pitch = pitchtools.NamedPitch(12)
    interval = pitchtools.MelodicDiatonicInterval('minor', -3)
-   new = pitchtools.transpose_pitch_by_melodic_diatonic_interval(pitch, interval)
+   new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(pitch, interval)
    assert new == pitchtools.NamedPitch(9)
    assert new is not pitch
 
@@ -16,7 +16,7 @@ def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_02( ):
 
    note = Note(12, (1, 4))
    interval = pitchtools.MelodicDiatonicInterval('minor', -3)
-   new = pitchtools.transpose_pitch_by_melodic_diatonic_interval(note, interval)
+   new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(note, interval)
    assert new.pitch == pitchtools.NamedPitch(9)
    assert new is not note
 
@@ -26,7 +26,7 @@ def test_pitchtools_tranpose_pitch_by_melodic_diatonic_interval_03( ):
 
    chord = Chord([12, 13, 14], (1, 4))
    interval = pitchtools.MelodicDiatonicInterval('minor', -3)
-   new = pitchtools.transpose_pitch_by_melodic_diatonic_interval(chord, interval)
+   new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(chord, interval)
    assert new.pitches == new.pitches == (
       pitchtools.NamedPitch('a', 4), pitchtools.NamedPitch('as', 4), pitchtools.NamedPitch('b', 4))
    assert new is not chord

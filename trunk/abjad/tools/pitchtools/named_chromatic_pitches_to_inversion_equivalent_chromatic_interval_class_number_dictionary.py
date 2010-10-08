@@ -26,7 +26,7 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
    ::
 
       abjad> staff = Staff(macros.scale(4) + macros.scale(4) + macros.scale(4))
-      abjad> pitches = pitchtools.list_named_pitches_in_expr(staff)
+      abjad> pitches = pitchtools.list_named_chromatic_pitches_in_expr(staff)
       abjad> vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches)
       abjad> for i in range(7):
       ...     print '\t%s\t%s' % (i, vector[i])

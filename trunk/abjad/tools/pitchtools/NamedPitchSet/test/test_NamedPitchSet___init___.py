@@ -17,7 +17,7 @@ def test_NamedPitchSet___init____03( ):
    '''Works with notes.'''
 
    note = Note(13, (1, 4))
-   pitch_set = pitchtools.NamedPitchSet(pitchtools.list_named_pitches_in_expr(note))
+   pitch_set = pitchtools.NamedPitchSet(pitchtools.list_named_chromatic_pitches_in_expr(note))
    assert len(pitch_set) == 1
 
 
@@ -25,7 +25,7 @@ def test_NamedPitchSet___init____04( ):
    '''Works with chords.'''
 
    chord = Chord([13, 14, 15], (1, 4))
-   pitch_set = pitchtools.NamedPitchSet(pitchtools.list_named_pitches_in_expr(chord))
+   pitch_set = pitchtools.NamedPitchSet(pitchtools.list_named_chromatic_pitches_in_expr(chord))
    assert len(pitch_set) == 3
 
 
@@ -33,7 +33,7 @@ def test_NamedPitchSet___init____05( ):
    '''Works with chords with duplicate pitches.'''
 
    chord = Chord([13, 13, 13, 14], (1, 4))
-   pitch_set = pitchtools.NamedPitchSet(pitchtools.list_named_pitches_in_expr(chord))
+   pitch_set = pitchtools.NamedPitchSet(pitchtools.list_named_chromatic_pitches_in_expr(chord))
    assert len(pitch_set) == 2
 
 
@@ -41,7 +41,7 @@ def test_NamedPitchSet___init____06( ):
    '''Works with empty chords.'''
 
    chord = Chord([ ], (1, 4))
-   pitch_set = pitchtools.NamedPitchSet(pitchtools.list_named_pitches_in_expr(chord))
+   pitch_set = pitchtools.NamedPitchSet(pitchtools.list_named_chromatic_pitches_in_expr(chord))
    assert len(pitch_set) == 0
 
 

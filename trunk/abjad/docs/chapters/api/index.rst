@@ -770,9 +770,9 @@ pitchtools
    tools/pitchtools/expr_has_duplicate_named_pitch
    tools/pitchtools/expr_has_duplicate_numeric_pitch_class
    tools/pitchtools/expr_to_melodic_chromatic_interval_segment
-   tools/pitchtools/get_named_pitch_from_pitch_carrier
-   tools/pitchtools/get_numeric_pitch_class_from_pitch_carrier
-   tools/pitchtools/insert_and_transpose_nested_subruns_in_lpitch_class_number_list
+   tools/pitchtools/get_named_chromatic_pitch_from_pitch_carrier
+   tools/pitchtools/get_numeric_chromatic_pitch_class_from_pitch_carrier
+   tools/pitchtools/insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list
    tools/pitchtools/inventory_aggregate_subsets
    tools/pitchtools/inventory_inversion_equivalent_diatonic_interval_classes
    tools/pitchtools/is_alphabetic_accidental_abbreviation
@@ -785,18 +785,18 @@ pitchtools
    tools/pitchtools/is_diatonic_pitch_class_number
    tools/pitchtools/is_diatonic_pitch_name
    tools/pitchtools/is_diatonic_pitch_number
-   tools/pitchtools/is_named_pitch_token
+   tools/pitchtools/is_named_chromatic_pitch_token
    tools/pitchtools/is_octave_tick_string
    tools/pitchtools/is_pitch_carrier
-   tools/pitchtools/iterate_pitch_pairs_forward_in_expr
+   tools/pitchtools/iterate_named_chromatic_pitch_pairs_forward_in_expr
    tools/pitchtools/list_chromatic_pitch_numbers_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
-   tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_pitches
+   tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_ppitch_carriers
    tools/pitchtools/list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class
-   tools/pitchtools/list_named_pitches_in_expr
-   tools/pitchtools/list_numeric_pitch_classes_in_expr
-   tools/pitchtools/list_octave_transpositions_of_pitch_within_pitch_range
+   tools/pitchtools/list_named_chromatic_pitches_in_expr
+   tools/pitchtools/list_numeric_chromatic_pitch_classes_in_expr
+   tools/pitchtools/list_octave_transpositions_of_pitch_carrier_within_pitch_range
    tools/pitchtools/list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2
    tools/pitchtools/list_unordered_named_chromatic_pitch_pairs_in_expr
    tools/pitchtools/named_chromatic_pitch_and_clef_to_staff_position_number
@@ -807,22 +807,21 @@ pitchtools
    tools/pitchtools/octave_tick_string_to_octave_number
    tools/pitchtools/one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name
    tools/pitchtools/ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers
+   tools/pitchtools/pentatonic_pitch_number_to_chromatic_pitch_number
    tools/pitchtools/permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row
    tools/pitchtools/register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_flats
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_sharps
-   tools/pitchtools/set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr
-   tools/pitchtools/set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr
+   tools/pitchtools/set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr
+   tools/pitchtools/set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr
    tools/pitchtools/set_default_accidental_spelling
-   tools/pitchtools/suggest_clef_for_named_pitches
-   tools/pitchtools/transpose_named_pitch_by_melodic_chromatic_interval_and_respell_enharmonically
-   tools/pitchtools/transpose_pitch_by_melodic_chromatic_interval
-   tools/pitchtools/transpose_pitch_by_melodic_diatonic_interval
-   tools/pitchtools/transpose_pitch_by_melodic_interval
-   tools/pitchtools/transpose_pitch_class_number_by_octaves_to_nearest_neigbor_of_pitch_number
-   tools/pitchtools/transpose_pitch_number_by_octave_transposition_mapping
-   tools/pitchtools/zero_indexed_diatonic_scale_degree_number_to_pitch_number
-   tools/pitchtools/zero_indexed_pentatonic_scale_degree_number_to_pitch_number
+   tools/pitchtools/suggest_clef_for_named_chromatic_pitches
+   tools/pitchtools/transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number
+   tools/pitchtools/transpose_chromatic_pitch_number_by_octave_transposition_mapping
+   tools/pitchtools/transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell
+   tools/pitchtools/transpose_pitch_carrier_by_melodic_chromatic_interval
+   tools/pitchtools/transpose_pitch_carrier_by_melodic_diatonic_interval
+   tools/pitchtools/transpose_pitch_carrier_by_melodic_interval
 
 
 resttools

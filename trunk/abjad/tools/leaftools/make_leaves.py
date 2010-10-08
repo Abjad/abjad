@@ -105,7 +105,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
          raise ValueError("Unknown pitch token %s." % pch)
       return leaves
 
-   if pitchtools.is_named_pitch_token(pitches):
+   if pitchtools.is_named_chromatic_pitch_token(pitches):
       pitches = [pitches]
    
    if durtools.is_duration_token(durations):

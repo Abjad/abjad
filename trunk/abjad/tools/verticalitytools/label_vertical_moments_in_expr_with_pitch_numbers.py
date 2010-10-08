@@ -42,7 +42,7 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction = '
 
    for vertical_moment in iterate_vertical_moments_forward_in_expr(expr):
       leaves = vertical_moment.leaves
-      pitches = pitchtools.list_named_pitches_in_expr(leaves)
+      pitches = pitchtools.list_named_chromatic_pitches_in_expr(leaves)
       if not pitches:
          continue
       pitch_numbers = [pitch.pitch_number for pitch in pitches]

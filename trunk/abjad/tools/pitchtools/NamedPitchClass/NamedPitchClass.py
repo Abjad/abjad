@@ -1,8 +1,8 @@
 from abjad.tools.pitchtools._PitchClass import _PitchClass
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import \
-   get_named_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
+   get_named_chromatic_pitch_from_pitch_carrier
 
 
 class NamedPitchClass(_PitchClass):
@@ -17,7 +17,7 @@ class NamedPitchClass(_PitchClass):
       elif isinstance(arg, NamedPitchClass):
          self._init_by_name_string(arg.name)
       else:
-         pitch = get_named_pitch_from_pitch_carrier(arg)
+         pitch = get_named_chromatic_pitch_from_pitch_carrier(arg)
          object.__setattr__(self, '_name', pitch.named_pitch_class.name)
 
    ## OVERLOADS ##
@@ -27,7 +27,7 @@ class NamedPitchClass(_PitchClass):
       from abjad.tools import pitchtools
       dummy = NamedPitch(self.name, 4)
       mdi = melodic_diatonic_interval
-      new = pitchtools.transpose_pitch_by_melodic_diatonic_interval(dummy, mdi)
+      new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(dummy, mdi)
       return new.named_pitch_class
 
    def __copy__(self):
@@ -166,9 +166,9 @@ class NamedPitchClass(_PitchClass):
    def transpose(self, mdi):
       '''Transpose pitch class by melodic diatonic interval.'''
       from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
-      from abjad.tools.pitchtools.transpose_pitch_by_melodic_diatonic_interval \
-         import transpose_pitch_by_melodic_diatonic_interval
+      from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval \
+         import transpose_pitch_carrier_by_melodic_diatonic_interval
       pitch = NamedPitch(self, 4)
-      transposed_pitch = transpose_pitch_by_melodic_diatonic_interval(pitch, mdi)
+      transposed_pitch = transpose_pitch_carrier_by_melodic_diatonic_interval(pitch, mdi)
       transposed_named_pitch_class = transposed_pitch.named_pitch_class
       return transposed_named_pitch_class

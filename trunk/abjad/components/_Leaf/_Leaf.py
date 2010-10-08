@@ -47,9 +47,9 @@ class _Leaf(_Component):
       from abjad.tools.leaftools._engender import _engender
       from abjad.tools import pitchtools
       self_pairs = set([(x.named_pitch_class.name, x.octave_number) 
-         for x in pitchtools.list_named_pitches_in_expr(self) if x is not None])
+         for x in pitchtools.list_named_chromatic_pitches_in_expr(self) if x is not None])
       arg_pairs = set([(x.named_pitch_class.name, x.octave_number) 
-         for x in pitchtools.list_named_pitches_in_expr(arg) if x is not None])
+         for x in pitchtools.list_named_chromatic_pitches_in_expr(arg) if x is not None])
       pairs = operator(self_pairs, arg_pairs)
       return _engender(pairs, self.duration.written)
 

@@ -22,7 +22,7 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
    ::
 
       abjad> staff = Staff(macros.scale(4) + macros.scale(4) + macros.scale(4))
-      abjad> pitches = pitchtools.list_named_pitches_in_expr(staff)
+      abjad> pitches = pitchtools.list_named_chromatic_pitches_in_expr(staff)
       abjad> vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(pitches)
       abjad> vector
       {0: 12, 1: 9, 2: 18, 3: 9, 4: 9, 5: 9, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0}

@@ -1,7 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
-from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import \
-   get_named_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
+   get_named_chromatic_pitch_from_pitch_carrier
 
 
 def calculate_melodic_chromatic_interval_from_pitch_to_pitch(pitch_carrier_1, pitch_carrier_2):
@@ -24,8 +24,8 @@ def calculate_melodic_chromatic_interval_from_pitch_to_pitch(pitch_carrier_1, pi
    '''
 
    ## get pitches
-   pitch_1 = get_named_pitch_from_pitch_carrier(pitch_carrier_1)
-   pitch_2 = get_named_pitch_from_pitch_carrier(pitch_carrier_2)
+   pitch_1 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_1)
+   pitch_2 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_2)
 
    ## get difference in semitones
    number = pitch_2.pitch_number - pitch_1.pitch_number

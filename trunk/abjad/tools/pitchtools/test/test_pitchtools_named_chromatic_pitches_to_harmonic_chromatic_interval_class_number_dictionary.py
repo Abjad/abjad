@@ -24,7 +24,7 @@ def test_pitchtools_named_chromatic_pitches_to_harmonic_chromatic_interval_class
 def test_pitchtools_named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary_02( ):
 
    t = Staff(macros.scale(4) + macros.scale(4) + macros.scale(4))
-   pitches = pitchtools.list_named_pitches_in_expr(t)
+   pitches = pitchtools.list_named_chromatic_pitches_in_expr(t)
    vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(pitches)
 
    assert vector == {

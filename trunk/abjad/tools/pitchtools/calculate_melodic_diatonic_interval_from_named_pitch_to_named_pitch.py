@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval import diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
-from abjad.tools.pitchtools.get_named_pitch_from_pitch_carrier import get_named_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
 def calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
@@ -26,8 +26,8 @@ def calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch(
       ``pitchtools.calculate_melodic_diatonic_interval_from_named_pitch_to_named_pitch( )``.
    '''
 
-   pitch_1 = get_named_pitch_from_pitch_carrier(pitch_carrier_1)
-   pitch_2 = get_named_pitch_from_pitch_carrier(pitch_carrier_2)
+   pitch_1 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_1)
+   pitch_2 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_2)
 
    degree_1 = pitch_1.diatonic_pitch_number
    degree_2 = pitch_2.diatonic_pitch_number

@@ -23,7 +23,7 @@ def analyze_incomplete_chord(expr):
 
    #print 'expr is %s ...' % str(expr)
 
-   pitches = pitchtools.list_named_pitches_in_expr(expr)
+   pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
    npcset = pitchtools.NamedPitchClassSet(pitches)
    dicv = npcset.diatonic_interval_class_vector
 

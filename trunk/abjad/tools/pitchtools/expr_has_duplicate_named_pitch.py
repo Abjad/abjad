@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
+from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 from abjad.tools.pitchtools.NamedPitchSet import NamedPitchSet
 
 
@@ -23,6 +23,6 @@ def expr_has_duplicate_named_pitch(expr):
       ``pitchtools.expr_has_duplicate_named_pitch( )``.
    '''
 
-   pitches = list_named_pitches_in_expr(expr)
+   pitches = list_named_chromatic_pitches_in_expr(expr)
    pitch_set = NamedPitchSet(pitches)
    return not len(pitches) == len(pitch_set)

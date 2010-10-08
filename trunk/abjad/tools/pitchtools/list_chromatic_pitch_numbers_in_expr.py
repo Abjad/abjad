@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
+from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
 def list_chromatic_pitch_numbers_in_expr(expr):
@@ -17,7 +17,7 @@ def list_chromatic_pitch_numbers_in_expr(expr):
       (0, 2, 4, 5)
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.get_named_pitch_from_pitch_carrier_numbers( )`` to
+      renamed ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier_numbers( )`` to
       ``pitchtools.list_chromatic_pitch_numbers_in_expr( )``.
 
    .. versionchanged:: 1.1.2
@@ -25,7 +25,7 @@ def list_chromatic_pitch_numbers_in_expr(expr):
       ``pitchtools.list_chromatic_pitch_numbers_in_expr( )``.
    '''
 
-   pitches = list_named_pitches_in_expr(expr)
+   pitches = list_named_chromatic_pitches_in_expr(expr)
 
    pitch_numbers = [pitch.pitch_number for pitch in pitches]
    pitch_numbers = tuple(pitch_numbers)

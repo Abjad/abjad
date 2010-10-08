@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.list_named_pitches_in_expr import list_named_pitches_in_expr
+from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
 def list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class(pitch_carriers):
@@ -26,7 +26,7 @@ def list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitc
 
    result = list(pitch_carriers[:])
    result.sort(lambda x, y: cmp(
-         list_named_pitches_in_expr(x)[0].numeric_pitch_class.number, 
-         list_named_pitches_in_expr(y)[0].numeric_pitch_class.number))
+         list_named_chromatic_pitches_in_expr(x)[0].numeric_pitch_class.number, 
+         list_named_chromatic_pitches_in_expr(y)[0].numeric_pitch_class.number))
 
    return result
