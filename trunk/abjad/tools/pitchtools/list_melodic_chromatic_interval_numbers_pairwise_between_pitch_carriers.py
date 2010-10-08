@@ -98,7 +98,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
    for first_carrier, second_carrier in pairs:
       first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first_carrier)
       second_pitch = get_named_chromatic_pitch_from_pitch_carrier(second_carrier)
-      signed_interval = second_pitch.pitch_number - first_pitch.pitch_number
+      signed_interval = second_pitch.numbered_chromatic_pitch._chromatic_pitch_number - first_pitch.numbered_chromatic_pitch._chromatic_pitch_number
       result.append(signed_interval)
 
    return result

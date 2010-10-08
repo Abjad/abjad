@@ -38,7 +38,7 @@ def test_leaftools_fuse_leaves_big_endian_04( ):
       fused[1], spannertools.TieSpanner)
    assert t[0] is fused[0]
    assert t[1] is fused[1]
-   assert t[0].pitch.pitch_number == t[1].pitch.pitch_number
+   assert t[0].pitch.numbered_chromatic_pitch == t[1].pitch.numbered_chromatic_pitch
 
 
 def test_leaftools_fuse_leaves_big_endian_05( ):

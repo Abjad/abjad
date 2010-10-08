@@ -28,11 +28,13 @@ def transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic
       raise TypeError('must be melodic chromatic interval.')
    
    if isinstance(pitch_carrier, NamedChromaticPitch):
-      return NamedChromaticPitch(pitch_carrier.pitch_number + melodic_chromatic_interval.number)
+      return NamedChromaticPitch(
+         pitch_carrier.numbered_chromatic_pitch._chromatic_pitch_number + 
+         melodic_chromatic_interval.number)
    elif isinstance(pitch_carrier, Note):
       new_note = componenttools.clone_components_and_remove_all_spanners([pitch_carrier])[0]
       new_pitch = NamedChromaticPitch(
-         pitch_carrier.pitch.pitch_number + melodic_chromatic_interval.number)
+         pitch_carrier.pitch.numbered_chromatic_pitch._chromatic_pitch_number + melodic_chromatic_interval.number)
       new_note.pitch = new_pitch
       return new_note
    elif isinstance(pitch_carrier, Chord):
@@ -40,7 +42,7 @@ def transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic
       for new_nh, old_nh in zip(
          new_chord.note_heads, pitch_carrier.note_heads):
          new_pitch = NamedChromaticPitch(
-            old_nh.pitch.pitch_number + melodic_chromatic_interval.number)
+            old_nh.pitch.numbered_chromatic_pitch._chromatic_pitch_number + melodic_chromatic_interval.number)
          new_nh.pitch = new_pitch
       return new_chord
    else:

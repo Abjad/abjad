@@ -93,11 +93,11 @@ def test_leaftools_make_leaves_06( ):
    '''Works with quarter-tone pitch numbers.'''
 
    leaves = leaftools.make_leaves([12, 12.5, 13, 13.5], [(1, 4)])
-   assert [leaf.pitch.pitch_number for leaf in leaves] == [12, 12.5, 13, 13.5]
+   assert [leaf.pitch.numbered_chromatic_pitch._chromatic_pitch_number for leaf in leaves] == [12, 12.5, 13, 13.5]
 
 
 def test_leaftools_make_leaves_07( ):
    '''Works with pitch instances.'''
 
    leaves = leaftools.make_leaves([pitchtools.NamedChromaticPitch(0)], [(1, 8), (1, 8), (1, 4)])
-   assert [leaf.pitch.pitch_number for leaf in leaves] == [0, 0, 0]
+   assert [leaf.pitch.numbered_chromatic_pitch._chromatic_pitch_number for leaf in leaves] == [0, 0, 0]

@@ -16,23 +16,30 @@ class NumberedChromaticPitchClass(_PitchClass):
    other pitch class instances, notes, and one-note chords.
    '''
 
+   __slots__ = ('_chromatic_pitch_number', )
+
+   ## TODO: use __new__ ##
+   
    def __init__(self, arg):
+      from abjad.tools import pitchtools
       from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
       from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
-      if isinstance(arg, (int, long, float)):
-         number = arg % 12
+      #if isinstance(arg, (int, long, float)):
+      if pitchtools.is_chromatic_pitch_number(arg):
+         number = \
+            pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(arg)
       elif isinstance(arg, type(self)):
          number = arg.number
-      elif isinstance(arg, str):
-         named_chromatic_pitch_class = NamedChromaticPitchClass(arg)
-         number = named_chromatic_pitch_class.numbered_chromatic_pitch_class.number
+      elif pitchtools.is_chromatic_pitch_name(arg):
+         number = pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number(arg)
       elif isinstance(arg, NamedChromaticPitch):
-         number = arg.pitch_number % 12
+         #number = arg.pitch_number % 12
+         number = arg.numbered_chromatic_pitch._chromatic_pitch_number % 12
       elif isinstance(arg, NamedChromaticPitchClass):
          number = arg.numbered_chromatic_pitch_class.number
       else:
          pitch = get_named_chromatic_pitch_from_pitch_carrier(arg)
-         number = pitch.pitch_number % 12
+         number = pitch.numbered_chromatic_pitch._chromatic_pitch_number % 12
       object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##

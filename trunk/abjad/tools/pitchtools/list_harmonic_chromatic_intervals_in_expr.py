@@ -29,7 +29,7 @@ def list_harmonic_chromatic_intervals_in_expr(expr):
    pitches = list_named_chromatic_pitches_in_expr(expr)
    unordered_pitch_pairs = listtools.get_unordered_pairs(pitches)
    for first_pitch, second_pitch in unordered_pitch_pairs:
-      chromatic_interval_number = abs(first_pitch.pitch_number - second_pitch.pitch_number)
+      chromatic_interval_number = abs(first_pitch.numbered_chromatic_pitch._chromatic_pitch_number - second_pitch.numbered_chromatic_pitch._chromatic_pitch_number)
       chromatic_interval = HarmonicChromaticInterval(chromatic_interval_number)
       chromatic_intervals.append(chromatic_interval)      
    

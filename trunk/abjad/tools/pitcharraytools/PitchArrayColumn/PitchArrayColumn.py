@@ -171,7 +171,7 @@ class PitchArrayColumn(_StrictComparator):
       for upper, lower in listtools.pairwise(self.cells):
          for lower_pitch in lower.pitches:
             for upper_pitch in upper.pitches:
-               if upper_pitch.pitch_number < lower_pitch.pitch_number:
+               if upper_pitch.numbered_chromatic_pitch < lower_pitch.numbered_chromatic_pitch:
                   return True
       return False
 

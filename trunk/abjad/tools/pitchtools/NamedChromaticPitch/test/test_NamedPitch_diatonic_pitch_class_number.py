@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedPitch_numbered_diatonic_pitch_class_01( ):
+def test_NamedPitch_diatonic_pitch_class_number_01( ):
 
    assert pitchtools.NamedChromaticPitch("c''").numbered_diatonic_pitch_class == 0
    assert pitchtools.NamedChromaticPitch("cs''").numbered_diatonic_pitch_class == 0

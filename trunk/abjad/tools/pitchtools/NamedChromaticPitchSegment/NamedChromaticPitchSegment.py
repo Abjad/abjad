@@ -125,7 +125,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def numbers(self):
-      return [pitch.pitch_number for pitch in self]
+      return [pitch.numbered_chromatic_pitch._chromatic_pitch_number for pitch in self]
 
    @property
    def pitch_class_segment(self):

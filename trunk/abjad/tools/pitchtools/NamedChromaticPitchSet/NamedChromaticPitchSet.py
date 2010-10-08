@@ -82,7 +82,7 @@ class NamedChromaticPitchSet(_PitchSet):
 
    @property
    def numbers(self):
-      return tuple(sorted([pitch.pitch_number for pitch in self]))
+      return tuple(sorted([pitch.numbered_chromatic_pitch._chromatic_pitch_number for pitch in self]))
 
    @property
    def pitch_classes(self):

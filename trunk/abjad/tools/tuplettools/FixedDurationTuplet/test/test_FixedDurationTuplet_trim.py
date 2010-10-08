@@ -9,8 +9,8 @@ def test_FixedDurationTuplet_trim_01( ):
       leaf.pitch = i
    t.trim(0)
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 1
-   assert t[1].pitch.pitch_number == 2
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 
 def test_FixedDurationTuplet_trim_02( ):
@@ -20,8 +20,8 @@ def test_FixedDurationTuplet_trim_02( ):
       leaf.pitch = i
    t.trim(1)
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 0
-   assert t[1].pitch.pitch_number == 2
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 
 def test_FixedDurationTuplet_trim_03( ):
@@ -31,8 +31,8 @@ def test_FixedDurationTuplet_trim_03( ):
       leaf.pitch = i
    t.trim(2)
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 0
-   assert t[1].pitch.pitch_number == 1
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
 
 
 def test_FixedDurationTuplet_trim_04( ):
@@ -50,9 +50,9 @@ def test_FixedDurationTuplet_trim_05( ):
       leaf.pitch = i
    t.trim(0, 0)
    assert len(t) == 3
-   assert t[0].pitch.pitch_number == 0
-   assert t[1].pitch.pitch_number == 1
-   assert t[2].pitch.pitch_number == 2
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+   assert t[2].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 
 def test_FixedDurationTuplet_trim_06( ):
@@ -62,8 +62,8 @@ def test_FixedDurationTuplet_trim_06( ):
       leaf.pitch = i
    t.trim(0, 1)
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 1
-   assert t[1].pitch.pitch_number == 2
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 
 def test_FixedDurationTuplet_trim_07( ):
@@ -73,8 +73,8 @@ def test_FixedDurationTuplet_trim_07( ):
       leaf.pitch = i
    t.trim(1, 2)
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 0
-   assert t[1].pitch.pitch_number == 2
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 
 def test_FixedDurationTuplet_trim_08( ):
@@ -84,8 +84,8 @@ def test_FixedDurationTuplet_trim_08( ):
       leaf.pitch = i
    t.trim(2, 3)
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 0
-   assert t[1].pitch.pitch_number == 1
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
 
 
 def test_FixedDurationTuplet_trim_09( ):

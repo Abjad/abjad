@@ -7,7 +7,7 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_01( ):
    t = notetools.make_accelerating_notes_with_lilypond_multipliers([1], Fraction(2), Fraction(1, 2), Fraction(1, 2))
    assert len(t) == 4
    for n in t:
-      assert n.pitch.pitch_number == 1
+      assert n.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02( ):
@@ -16,9 +16,9 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02( ):
    assert len(t) == 4
    for i, n in enumerate(t):
       if i % 2 == 0:
-         assert n.pitch.pitch_number == 1
+         assert n.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
       else:
-         assert n.pitch.pitch_number == 2
+         assert n.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_03( ):

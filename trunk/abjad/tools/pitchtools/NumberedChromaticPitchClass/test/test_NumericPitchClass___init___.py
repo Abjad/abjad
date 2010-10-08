@@ -71,14 +71,14 @@ def test_NumericPitchClass___init____06( ):
 def test_NumericPitchClass___init____07( ):
    '''PitchClass initialization raises ValueError.'''
 
-   assert py.test.raises(ValueError, "pitchtools.NumberedChromaticPitchClass('foo')")
+   assert py.test.raises(Exception, "pitchtools.NumberedChromaticPitchClass('foo')")
 
 
 def test_NumericPitchClass___init____08( ):
    '''PitchClass initialization raises TypeError on rest.'''
 
    rest = Rest((1, 4))
-   assert py.test.raises(TypeError, 'pitchtools.NumberedChromaticPitchClass(rest)')
+   assert py.test.raises(Exception, 'pitchtools.NumberedChromaticPitchClass(rest)')
 
 
 def test_NumericPitchClass___init____09( ):

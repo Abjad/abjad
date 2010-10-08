@@ -32,7 +32,7 @@ def calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(pit
    pitch_2 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_2)
 
    ## get difference in semitones
-   number = pitch_2.pitch_number - pitch_1.pitch_number
+   number = pitch_2.numbered_chromatic_pitch._chromatic_pitch_number - pitch_1.numbered_chromatic_pitch._chromatic_pitch_number
 
    ## change 1.0, 2.0, ... into 1, 2, ...
    number = mathtools.trivial_float_to_int(number)   

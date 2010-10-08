@@ -30,8 +30,8 @@ def test_notetools_make_notes_03( ):
    '''
    t = notetools.make_notes([1, 2], (1, 4))
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 1
-   assert t[1].pitch.pitch_number == 2
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 def test_notetools_make_notes_04( ):
    '''
@@ -39,8 +39,8 @@ def test_notetools_make_notes_04( ):
    '''
    t = notetools.make_notes(1, [(1, 8), (1, 4)])
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 1
-   assert t[1].pitch.pitch_number == 1
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
    assert t[0].duration.written == Fraction(1, 8)
    assert t[1].duration.written == Fraction(1, 4)
 
@@ -50,8 +50,8 @@ def test_notetools_make_notes_05( ):
    '''
    t = notetools.make_notes([0, 1], [(1, 8), (1, 4)])
    assert len(t) == 2
-   assert t[0].pitch.pitch_number == 0
-   assert t[1].pitch.pitch_number == 1
+   assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
+   assert t[1].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
    assert t[0].duration.written == Fraction(1, 8)
    assert t[1].duration.written == Fraction(1, 4)
 

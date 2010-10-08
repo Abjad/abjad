@@ -56,7 +56,7 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
    for pitch in pitches:
       if not isinstance(pitch, NamedChromaticPitch):
          raise ValueError
-      numbers.append(pitch.pitch_number)
+      numbers.append(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
 
    pairs = listtools.get_unordered_pairs(numbers)
 

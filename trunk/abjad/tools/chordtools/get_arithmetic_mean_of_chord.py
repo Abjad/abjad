@@ -16,7 +16,7 @@ def get_arithmetic_mean_of_chord(chord):
 
    numbers = [ ]
    for pitch in chord.pitches:
-      numbers.append(pitch.pitch_number)
+      numbers.append(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
    if numbers:
       return sum(numbers).__truediv__(len(numbers))
    else:

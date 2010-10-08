@@ -10,7 +10,7 @@ def test_NamedPitch___init____01( ):
    assert p.format == "df''"
    #assert p.diatonic_pitch_class_name == 'd'
    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-   assert p.pitch_number == 13
+   #assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
@@ -33,7 +33,7 @@ def test_NamedPitch___init____03( ):
    assert p.format == "cs''"
    #assert p.diatonic_pitch_class_name == 'c'
    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('cs')
-   assert p.pitch_number == 13
+   #assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
@@ -48,7 +48,7 @@ def test_NamedPitch___init____04( ):
    assert p.format == "df''"
    #assert p.diatonic_pitch_class_name == 'd'
    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-   assert p.pitch_number == 13
+   #assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
@@ -63,7 +63,7 @@ def test_NamedPitch___init____05( ):
    assert p.format == "df''"
    #assert p.diatonic_pitch_class_name == 'd'
    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-   assert p.pitch_number == 13
+   #assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
@@ -91,7 +91,7 @@ def test_NamedPitch___init____07( ):
    assert p.format == "df''"
    #assert p.diatonic_pitch_class_name == 'd'
    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-   assert p.pitch_number == 13
+   #assert p.pitch_number == 13
    assert p.octave_number == 5
    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 

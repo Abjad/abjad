@@ -52,7 +52,7 @@ def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
 
 
 def _new_pitch_with_sharps(pitch):
-   octave = chromatic_pitch_number_to_octave_number(pitch.pitch_number)
+   octave = chromatic_pitch_number_to_octave_number(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
    name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(pitch.numbered_chromatic_pitch_class)
    pitch = type(pitch)(name, octave)
    return pitch

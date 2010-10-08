@@ -27,7 +27,7 @@ def list_chromatic_pitch_numbers_in_expr(expr):
 
    pitches = list_named_chromatic_pitches_in_expr(expr)
 
-   pitch_numbers = [pitch.pitch_number for pitch in pitches]
+   pitch_numbers = [pitch.numbered_chromatic_pitch._chromatic_pitch_number for pitch in pitches]
    pitch_numbers = tuple(pitch_numbers)
 
    return pitch_numbers

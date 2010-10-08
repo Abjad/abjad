@@ -8,13 +8,13 @@ def test_chordtools_get_note_head_from_chord_by_pitch_01( ):
    chord = Chord([0, 2, 11], Fraction(1, 4))
 
    note_head = chordtools.get_note_head_from_chord_by_pitch(chord, 0)
-   assert note_head.pitch.pitch_number == 0
+   assert note_head.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
 
    note_head = chordtools.get_note_head_from_chord_by_pitch(chord, 2)
-   assert note_head.pitch.pitch_number == 2
+   assert note_head.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
    note_head = chordtools.get_note_head_from_chord_by_pitch(chord, 11)
-   assert note_head.pitch.pitch_number == 11
+   assert note_head.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 11
 
 
 def test_chordtools_get_note_head_from_chord_by_pitch_02( ):

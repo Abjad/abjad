@@ -100,7 +100,7 @@ def _get_intervals_in_subrun(subrun_source):
    for first, second in listtools.pairwise(subrun_source):
       first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first)
       second_pitch = get_named_chromatic_pitch_from_pitch_carrier(second)
-      interval = second_pitch.pitch_number - first_pitch.pitch_number
+      interval = second_pitch.numbered_chromatic_pitch._chromatic_pitch_number - first_pitch.numbered_chromatic_pitch._chromatic_pitch_number
       result.append(interval + result[-1])
    result.pop(0)
    return result
@@ -121,7 +121,7 @@ def _make_index_length_pairs(subrun_indicator):
 def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
    new_notes = [ ]
    for subrun_interval in subrun_intervals:
-      new_pc = (anchor_pitch.pitch_number + subrun_interval) % 12
+      new_pc = (anchor_pitch.numbered_chromatic_pitch._chromatic_pitch_number + subrun_interval) % 12
       new_note = Note(new_pc, anchor_written_duration)
       new_notes.append(new_note)
    return new_notes

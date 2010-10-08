@@ -346,17 +346,17 @@ class NamedChromaticPitch(_Pitch):
       from abjad.tools.pitchtools import NamedChromaticPitchClass
       return NamedChromaticPitchClass(self._chromatic_pitch_name)
 
-   @property
-   def pitch_number(self):
-      '''Read-only pitch number of named pitch:
-
-      ::
-
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
-         abjad> named_chromatic_pitch.pitch_number
-         1
-      '''
-      return self.numbered_chromatic_pitch._chromatic_pitch_number
+#   @property
+#   def pitch_number(self):
+#      '''Read-only pitch number of named pitch:
+#
+#      ::
+#
+#         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
+#         abjad> named_chromatic_pitch.pitch_number
+#         1
+#      '''
+#      return self.numbered_chromatic_pitch._chromatic_pitch_number
 
    @property
    def octave_number(self):
@@ -424,12 +424,8 @@ class NamedChromaticPitch(_Pitch):
    
       Return numeric pitch class.
       '''
-      from abjad.tools import pitchtools
-      number = self.pitch_number
-      if number is not None:
-         return pitchtools.NumberedChromaticPitchClass(number % 12)
-      else:
-         return None
+      from abjad.tools.pitchtools import NumberedChromaticPitchClass
+      return NumberedChromaticPitchClass(self._chromatic_pitch_name)
 
    @property
    def semitones(self):

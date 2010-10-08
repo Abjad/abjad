@@ -6,7 +6,7 @@ def test_Chord__sort_01( ):
    t = Chord([pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].numbered_diatonic_pitch != t.pitches[1].numbered_diatonic_pitch
-   assert t.pitches[0].pitch_number != t.pitches[1].pitch_number
+   assert t.pitches[0].numbered_chromatic_pitch != t.pitches[1].numbered_chromatic_pitch
    assert t.pitches[0] == pitchtools.NamedChromaticPitch('c', 4)
    assert t.pitches[1] == pitchtools.NamedChromaticPitch('d', 4)
 
@@ -16,7 +16,7 @@ def test_Chord__sort_02( ):
    t = Chord([pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('c', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].numbered_diatonic_pitch != t.pitches[1].numbered_diatonic_pitch
-   assert t.pitches[0].pitch_number != t.pitches[1].pitch_number
+   assert t.pitches[0].numbered_chromatic_pitch != t.pitches[1].numbered_chromatic_pitch
    assert t.pitches[0] == pitchtools.NamedChromaticPitch('c', 4)
    assert t.pitches[1] == pitchtools.NamedChromaticPitch('d', 4)
 
@@ -26,7 +26,7 @@ def test_Chord__sort_03( ):
    t = Chord([pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('cs', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].numbered_diatonic_pitch == t.pitches[1].numbered_diatonic_pitch
-   assert t.pitches[0].pitch_number != t.pitches[1].pitch_number
+   assert t.pitches[0].numbered_chromatic_pitch != t.pitches[1].numbered_chromatic_pitch
    assert t.pitches[0] == pitchtools.NamedChromaticPitch('c', 4)
    assert t.pitches[1] == pitchtools.NamedChromaticPitch('cs', 4)
    
@@ -36,7 +36,7 @@ def test_Chord__sort_04( ):
    t = Chord([pitchtools.NamedChromaticPitch('cs', 4), pitchtools.NamedChromaticPitch('c', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].numbered_diatonic_pitch == t.pitches[1].numbered_diatonic_pitch
-   assert t.pitches[0].pitch_number != t.pitches[1].pitch_number
+   assert t.pitches[0].numbered_chromatic_pitch != t.pitches[1].numbered_chromatic_pitch
    assert t.pitches[0] == pitchtools.NamedChromaticPitch('c', 4)
    assert t.pitches[1] == pitchtools.NamedChromaticPitch('cs', 4)
    
@@ -46,7 +46,7 @@ def test_Chord__sort_05( ):
    t = Chord([pitchtools.NamedChromaticPitch('cs', 4), pitchtools.NamedChromaticPitch('df', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].numbered_diatonic_pitch != t.pitches[1].numbered_diatonic_pitch
-   assert t.pitches[0].pitch_number == t.pitches[1].pitch_number
+   assert t.pitches[0].numbered_chromatic_pitch == t.pitches[1].numbered_chromatic_pitch
    assert t.pitches[0] == pitchtools.NamedChromaticPitch('cs', 4)
    assert t.pitches[1] == pitchtools.NamedChromaticPitch('df', 4)
 
@@ -56,7 +56,7 @@ def test_Chord__sort_06( ):
    t = Chord([pitchtools.NamedChromaticPitch('df', 4), pitchtools.NamedChromaticPitch('cs', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].numbered_diatonic_pitch != t.pitches[1].numbered_diatonic_pitch
-   assert t.pitches[0].pitch_number == t.pitches[1].pitch_number
+   assert t.pitches[0].numbered_chromatic_pitch == t.pitches[1].numbered_chromatic_pitch
    assert t.pitches[0] == pitchtools.NamedChromaticPitch('cs', 4)
    assert t.pitches[1] == pitchtools.NamedChromaticPitch('df', 4)
 
@@ -66,7 +66,7 @@ def test_Chord__sort_07( ):
    t = Chord([pitchtools.NamedChromaticPitch('css', 4), pitchtools.NamedChromaticPitch('dff', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].numbered_diatonic_pitch != t.pitches[1].numbered_diatonic_pitch
-   assert t.pitches[0].pitch_number != t.pitches[1].pitch_number
+   assert t.pitches[0].numbered_chromatic_pitch != t.pitches[1].numbered_chromatic_pitch
    assert t.pitches[0] == pitchtools.NamedChromaticPitch('css', 4)
    assert t.pitches[1] == pitchtools.NamedChromaticPitch('dff', 4)
 
@@ -76,6 +76,6 @@ def test_Chord__sort_08( ):
    t = Chord([pitchtools.NamedChromaticPitch('dff', 4), pitchtools.NamedChromaticPitch('css', 4)], (1, 4))
    assert len(t.pitches) == 2
    assert t.pitches[0].numbered_diatonic_pitch != t.pitches[1].numbered_diatonic_pitch
-   assert t.pitches[0].pitch_number != t.pitches[1].pitch_number
+   assert t.pitches[0].numbered_chromatic_pitch != t.pitches[1].numbered_chromatic_pitch
    assert t.pitches[0] == pitchtools.NamedChromaticPitch('css', 4)
    assert t.pitches[1] == pitchtools.NamedChromaticPitch('dff', 4)
