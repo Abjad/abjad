@@ -656,6 +656,7 @@ notetools
    tools/notetools/NaturalHarmonic/NaturalHarmonic
    tools/notetools/NoteHead/NoteHead
    tools/notetools/add_artificial_harmonic_to_note
+   tools/notetools/color_note_head_by_numeric_chromatic_pitch_class_color_map
    tools/notetools/iterate_notes_backward_in_expr
    tools/notetools/iterate_notes_forward_in_expr
    tools/notetools/make_accelerating_notes_with_lilypond_multipliers
@@ -755,7 +756,6 @@ pitchtools
    tools/pitchtools/chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_string_and_octave_number_triple
    tools/pitchtools/chromatic_pitch_number_to_octave_number
    tools/pitchtools/clef_and_staff_position_number_to_named_chromatic_pitch
-   tools/pitchtools/color_note_head_by_numeric_chromatic_pitch_class_color_map
    tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
    tools/pitchtools/diatonic_pitch_class_name_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number

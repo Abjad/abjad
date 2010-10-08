@@ -11,7 +11,7 @@ def color_note_head_by_numeric_chromatic_pitch_class_color_map(pitch_carrier):
    ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> pitchtools.color_note_head_by_numeric_chromatic_pitch_class_color_map(t)
+      abjad> notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map(t)
       abjad> print t.format
       \once \override NoteHead #'color = #(x11-color 'red)
       c'4
@@ -34,11 +34,15 @@ def color_note_head_by_numeric_chromatic_pitch_class_color_map(pitch_carrier):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.color_by_pc( )`` to
-      ``pitchtools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )``.
+      ``notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.color_note_head_by_numeric_pitch_class_color_map( )`` to
-      ``pitchtools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )``.
+      ``notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )`` to
+      ``notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )``.
    '''
    
    pitch = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier)
