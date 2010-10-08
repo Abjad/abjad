@@ -7,19 +7,22 @@ import copy
 class NumberedChromaticPitchClassSegment(_PitchClassSegment):
    '''.. versionadded:: 1.1.2
 
-   Ordered collection of pitch class instances.
+   The Abjad model of a numbered chromatic pitch-class segment::
+
+      abjad> pitchtools.NumberedChromaticPitchClassSegment([-2, -1.5, 6, 7, -1.5, 7])
+      NumberedChromaticPitchClassSegment(10, 10.5, 6, 7, 10.5, 7)
+
+   Numbered chromatic pitch-class segments are immutable.
    '''
 
-   #def __init__(self, pitch_class_tokens):
    def __new__(self, pitch_class_tokens):
       pitch_classes = [NumberedChromaticPitchClass(x) for x in pitch_class_tokens]
-      #self.extend(pitch_classes)
       return tuple.__new__(self, pitch_classes)
 
    ## OVERLOADS ##
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+      return '%s([%s])' % (self.__class__.__name__, self._repr_string)
 
    def __str__(self):
       return '<%s>' % self._format_string
@@ -29,6 +32,10 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
    @property
    def _format_string(self):
       return ', '.join([str(x) for x in self])
+
+   @property
+   def _repr_string(self):
+      return self._format_string
 
    ## PUBLIC ATTRIBUTES ##
 

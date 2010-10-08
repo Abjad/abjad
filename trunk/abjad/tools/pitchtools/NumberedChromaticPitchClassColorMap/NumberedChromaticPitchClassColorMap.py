@@ -1,14 +1,28 @@
+from abjad.core import _Immutable
 from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromaticPitchClass
 
 
-class NumberedChromaticPitchClassColorMap(object):
-   '''Color pitch-classes according to colors.'''
+class NumberedChromaticPitchClassColorMap(_Immutable):
+   '''The Abjad model of a numbered chromatic pitch-class color map::
 
-   def __init__(self, pitch_iterables, colors):
+      abjad> chromatic_pitch_class_numbered = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
+      abjad> colors = ['red', 'green', 'blue']
+      abjad> pitchtools.NumberedChromaticPitchClassColorMap(chromatic_pitch_class_numbers, colors)
+      NumberedChromaticPitchClassColorMap([[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]], ['red', 'green', 'blue'])
+
+   Numbered chromatic pitch-class color maps are immutable.
+   '''
+
+   __slots__ = ('_color_dictionary', '_colors', '_pitch_iterables', )
+
+   def __new__(klass, pitch_iterables, colors):
+      self = object.__new__(klass)
       assert len(pitch_iterables) == len(colors)
-      self._pitch_iterables = pitch_iterables
-      self._colors = colors
+      object.__setattr__(self, '_pitch_iterables', pitch_iterables)
+      object.__setattr__(self, '_colors', colors)
+      object.__setattr__(self, '_color_dictionary', { })
       self._init_color_dictionary( )
+      return self
 
    ## OVERLOADS ##
 
@@ -20,19 +34,17 @@ class NumberedChromaticPitchClassColorMap(object):
    def __repr__(self):
       sorted_keys = self._color_dictionary.keys( )
       sorted_keys.sort( )
-      return '%s(%s)' % (self.__class__.__name__, sorted_keys)
+      return '%s(%s, %s)' % (self.__class__.__name__, self._pitch_iterables, self._colors)
 
    ## PRIVATE METHODS ##
 
    def _init_color_dictionary(self):
-      self._color_dictionary = { }
       for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
          for pitch in pitch_iterable:
             pc = NumberedChromaticPitchClass(pitch)
             if pc.number in self._color_dictionary.keys( ):
                print pc, self._color_dictionary.keys( )
-               raise KeyError(
-                  'Duplicated pitch class %s in color dictionary.' % pc)
+               raise KeyError('Duplicated pitch class %s in color dictionary.' % pc)
             self._color_dictionary[pc.number] = color
 
    ## PUBLIC ATTRIBUTES ##

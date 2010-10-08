@@ -9,6 +9,8 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
 
       abjad> pitchtools.NumberedDiatonicPitchClass(0)
       NumberedDiatonicPitchClass(0)
+   
+   Numbered diatonic pitch-classes are immutable.
    '''
 
    __slots__ = ('_diatonic_pitch_class_number', )

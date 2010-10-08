@@ -9,7 +9,12 @@ from abjad.tools.pitchtools.list_numeric_chromatic_pitch_classes_in_expr import 
 class  NumberedChromaticPitchClassSet(_PitchClassSet):
    '''.. versionadded:: 1.1.2
 
-   12-ET pitch-class set from American pitch-class theory.
+   The Abjad model of a numbered chromatic pitch-class set::
+
+      abjad> pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+      NumberedChromaticPitchClassSet([6, 7, 10, 10.5])
+
+   Numbered chromatic pitch-class sets are immutable.
    '''
 
    def __new__(self, expr):
@@ -51,7 +56,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+      return '%s([%s])' % (self.__class__.__name__, self._format_string)
    
    def __str__(self):
       return '{%s}' % self._format_string
