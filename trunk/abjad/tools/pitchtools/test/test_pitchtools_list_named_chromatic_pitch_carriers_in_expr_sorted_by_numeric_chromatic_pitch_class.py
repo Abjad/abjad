@@ -11,7 +11,7 @@ def test_pitchtools_list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeri
    [pitchtools.NamedChromaticPitch(c, 3), pitchtools.NamedChromaticPitch(cs, 7), pitchtools.NamedChromaticPitch(d, 3), pitchtools.NamedChromaticPitch(ef, 6), pitchtools.NamedChromaticPitch(e, 4), pitchtools.NamedChromaticPitch(f, 5), pitchtools.NamedChromaticPitch(fs, 6), pitchtools.NamedChromaticPitch(g, 5), pitchtools.NamedChromaticPitch(af, 4), pitchtools.NamedChromaticPitch(a, 6), pitchtools.NamedChromaticPitch(bf, 3), pitchtools.NamedChromaticPitch(b, 4)]
    '''
 
-   sorted_pitch_numbers = [pitch.numbered_chromatic_pitch._chromatic_pitch_number for pitch in sorted_pitches]
+   sorted_pitch_numbers = [abs(pitch.numbered_chromatic_pitch) for pitch in sorted_pitches]
    sorted_pcs = [pitch.numbered_chromatic_pitch_class for pitch in sorted_pitches]
 
    assert sorted_pitch_numbers == [

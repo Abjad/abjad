@@ -40,7 +40,8 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
       dummy_pitch = NamedChromaticPitch(0)
       new_pitch = dummy_pitch + self + arg 
-      return calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+      return \
+         calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
          dummy_pitch, new_pitch)
 
    def __mul__(self, arg):

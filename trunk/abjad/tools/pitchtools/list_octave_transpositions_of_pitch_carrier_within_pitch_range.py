@@ -58,8 +58,8 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitches, pitc
 def _pitch_number_list_octave_transpositions(pitch_number_list, pitch_range):
    result = [ ]
    ps = set(pitch_number_list)
-   start_pitch_number = pitch_range._start_pitch.numbered_chromatic_pitch._chromatic_pitch_number
-   stop_pitch_number = pitch_range._stop_pitch.numbered_chromatic_pitch._chromatic_pitch_number
+   start_pitch_number = abs(pitch_range._start_pitch.numbered_chromatic_pitch)
+   stop_pitch_number = abs(pitch_range._stop_pitch.numbered_chromatic_pitch)
    R = set(range(start_pitch_number, stop_pitch_number + 1))
    while ps.issubset(R):
       next = list(ps)

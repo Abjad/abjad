@@ -26,7 +26,6 @@ class NumberedChromaticPitchClass(_PitchClass):
       from abjad.tools import pitchtools
       from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
       from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
-      #if isinstance(arg, (int, long, float)):
       if pitchtools.is_chromatic_pitch_number(arg):
          number = \
             pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(arg)
@@ -35,7 +34,6 @@ class NumberedChromaticPitchClass(_PitchClass):
       elif pitchtools.is_chromatic_pitch_name(arg):
          number = pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number(arg)
       elif isinstance(arg, NamedChromaticPitch):
-         #number = arg.pitch_number % 12
          number = arg.numbered_chromatic_pitch._chromatic_pitch_number % 12
       elif isinstance(arg, NamedChromaticPitchClass):
          number = arg.numbered_chromatic_pitch_class.number
