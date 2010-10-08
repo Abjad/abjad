@@ -6,7 +6,7 @@ Abjad notes and chords accept all of the following as pitch input:
 
 #. Python `int` and `long` instances
 #. Python `float` instances
-#. Abjad :class:`Pitch <abjad.tools.pitchtools.NamedPitch.NamedPitch.pitch.Pitch>` instances
+#. Abjad :class:`Pitch <abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.pitch.Pitch>` instances
 
 
 For example:
@@ -30,7 +30,7 @@ write(measure, 'pitch_token2', 'oedo') <hide
 And:
 
 <abjad>
-note = Note(NamedPitch(13), (1, 4))
+note = Note(NamedChromaticPitch(13), (1, 4))
 measure = Measure((1, 4), [note]) <hide
 measure.meter.transparent = True <hide
 write(measure, 'pitch_token3', 'oedo') <hide

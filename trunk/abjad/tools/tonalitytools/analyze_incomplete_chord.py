@@ -24,7 +24,7 @@ def analyze_incomplete_chord(expr):
    #print 'expr is %s ...' % str(expr)
 
    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
-   npcset = pitchtools.NamedPitchClassSet(pitches)
+   npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
    dicv = npcset.diatonic_interval_class_vector
 
    #print npcset
@@ -64,7 +64,7 @@ def analyze_incomplete_chord(expr):
    bass = min(pitches).named_pitch_class
 
    try: 
-      npcseg = npcset.order_by(pitchtools.NamedPitchClassSegment(model_npcs))
+      npcseg = npcset.order_by(pitchtools.NamedChromaticPitchClassSegment(model_npcs))
    except ValueError:
       raise TonalHarmonyError('can not identify incomplete tertian chord.')
 
@@ -75,5 +75,5 @@ def analyze_incomplete_chord(expr):
 
 
 def _make_dicv(*named_pitch_classes):
-   npcset = pitchtools.NamedPitchClassSet(named_pitch_classes)
+   npcset = pitchtools.NamedChromaticPitchClassSet(named_pitch_classes)
    return npcset.diatonic_interval_class_vector

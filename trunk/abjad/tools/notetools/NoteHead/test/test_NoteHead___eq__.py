@@ -6,8 +6,8 @@ def test_NoteHead___eq___01( ):
    '''
 
    assert notetools.NoteHead(14) == notetools.NoteHead(14)
-   assert notetools.NoteHead(pitchtools.NamedPitch('df', 5)) == \
-      notetools.NoteHead(pitchtools.NamedPitch('df', 5))
+   assert notetools.NoteHead(pitchtools.NamedChromaticPitch('df', 5)) == \
+      notetools.NoteHead(pitchtools.NamedChromaticPitch('df', 5))
 
 
 def test_NoteHead___eq___02( ):
@@ -15,5 +15,5 @@ def test_NoteHead___eq___02( ):
    '''
 
    assert not notetools.NoteHead(14) == notetools.NoteHead(15)
-   assert not notetools.NoteHead(pitchtools.NamedPitch('cs', 5)) == \
-      notetools.NoteHead(pitchtools.NamedPitch('df', 5))
+   assert not notetools.NoteHead(pitchtools.NamedChromaticPitch('cs', 5)) == \
+      notetools.NoteHead(pitchtools.NamedChromaticPitch('df', 5))

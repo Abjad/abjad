@@ -24,9 +24,9 @@ def analyze_chord(expr):
    '''
 
    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
-   npcset = pitchtools.NamedPitchClassSet(pitches)
+   npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
 
-   #ordered_npcs = pitchtools.NamedPitchClassSegment([ ])
+   #ordered_npcs = pitchtools.NamedChromaticPitchClassSegment([ ])
    ordered_npcs = [ ]
    letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
    for letter in letters:
@@ -34,7 +34,7 @@ def analyze_chord(expr):
          if npc.letter == letter:
             ordered_npcs.append(npc)
 
-   ordered_npcs = pitchtools.NamedPitchClassSegment(ordered_npcs)
+   ordered_npcs = pitchtools.NamedChromaticPitchClassSegment(ordered_npcs)
    for x in range(len(ordered_npcs)):
       ordered_npcs = ordered_npcs.rotate(1)
       if ordered_npcs.diatonic_interval_class_segment.is_tertian:

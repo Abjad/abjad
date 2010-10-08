@@ -6,7 +6,7 @@ def test_NoteHead___init____01( ):
    '''
 
    t = notetools.NoteHead(6)
-   assert t.pitch == pitchtools.NamedPitch(6)
+   assert t.pitch == pitchtools.NamedChromaticPitch(6)
 
 
 def test_NoteHead___init____02( ):
@@ -14,7 +14,7 @@ def test_NoteHead___init____02( ):
    '''
 
    t = notetools.NoteHead( 'cs,,,')
-   assert t.pitch == pitchtools.NamedPitch('cs,,,')
+   assert t.pitch == pitchtools.NamedChromaticPitch('cs,,,')
 
 
 def test_NoteHead___init____03( ):

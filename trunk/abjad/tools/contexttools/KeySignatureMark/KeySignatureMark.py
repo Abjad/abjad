@@ -18,7 +18,7 @@ class KeySignatureMark(Mark):
       Mark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
-      tonic = pitchtools.NamedPitchClass(tonic)
+      tonic = pitchtools.NamedChromaticPitchClass(tonic)
       mode = tonalitytools.Mode(mode)
       #object.__setattr__(self, '_tonic', tonic)
       #object.__setattr__(self, '_mode', mode)

@@ -78,19 +78,19 @@ class NoteHead(object):
 
             abjad> note_head = notetools.NoteHead(13)
             abjad> note_head.pitch
-            NamedPitch("cs''")
+            NamedChromaticPitch("cs''")
 
          Set named pitch of note head::
 
             abjad> note_head = notetools.NoteHead(13)
             abjad> note_head.pitch = 14
             abjad> note_head.pitch
-            NamedPitch("d''")
+            NamedChromaticPitch("d''")
          '''
          return self._pitch
       def fset(self, arg):
          from abjad.tools import pitchtools
-         pitch = pitchtools.NamedPitch(arg)
+         pitch = pitchtools.NamedChromaticPitch(arg)
          self._pitch = pitch
       return property(**locals( ))
 

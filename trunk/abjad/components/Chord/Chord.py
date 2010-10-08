@@ -110,7 +110,7 @@ class Chord(_Leaf):
 
             abjad> chord = Chord([7, 12, 16], (1, 4))
             abjad> chord.pitches
-            (NamedPitch(g, 4), NamedPitch(c, 5), NamedPitch(e, 5))
+            (NamedChromaticPitch(g, 4), NamedChromaticPitch(c, 5), NamedChromaticPitch(e, 5))
 
          Set chord pitches from any iterable::
 

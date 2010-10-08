@@ -47,5 +47,5 @@ def _parse_note_entry_token(note_entry_token):
       return Skip(duration_string)
    else:
       pitch_string = name + ticks
-      pitch = pitchtools.NamedPitch(pitch_string)
+      pitch = pitchtools.NamedChromaticPitch(pitch_string)
       return Note(pitch, duration_string)

@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.chordtools._split import _split
 
 
-def divide_chord_by_diatonic_pitch_number(chord, pitch = NamedPitch('b', 3)):
+def divide_chord_by_diatonic_pitch_number(chord, pitch = NamedChromaticPitch('b', 3)):
    r'''Create two new disjunct `treble`, `bass` chords from `chord`,
    based on the diatonic pitch number of `pitch`.
 
@@ -35,7 +35,7 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch = NamedPitch('b', 3)):
       abjad> chord = Chord(range(12), Fraction(1, 4))
       abjad> chord
       Chord(c' cs' d' ef' e' f' fs' g' af' a' bf' b', 4)
-      abjad> chordtools.divide_chord_by_diatonic_pitch_number(chord, NamedPitch(6))
+      abjad> chordtools.divide_chord_by_diatonic_pitch_number(chord, NamedChromaticPitch(6))
       (Chord(fs' g' af' a' bf' b', 4), Chord(c' cs' d' ef' e' f', 4))
 
    Preserve note head coloring. ::

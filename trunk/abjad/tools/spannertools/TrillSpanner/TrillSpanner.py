@@ -36,13 +36,13 @@ class TrillSpanner(Spanner):
    
             *  Default value: ``None``.
             *  Acceptable values: \
-               :class:`Pitch <abjad.tools.pitchtools.NamedPitch.NamedPitch>`, ``None``.
+               :class:`Pitch <abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch>`, ``None``.
 
             ::
 
                abjad> t = Staff(macros.scale(4))
                abjad> trill = spannertools.TrillSpanner(t[:2])
-               abjad> trill.pitch = pitchtools.NamedPitch('cs', 4)
+               abjad> trill.pitch = pitchtools.NamedChromaticPitch('cs', 4)
 
                abjad> print t.format
                \new Staff {
@@ -59,6 +59,6 @@ class TrillSpanner(Spanner):
          if expr is None:
             self._pitch = expr
          else:
-            pitch = pitchtools.NamedPitch(expr)
+            pitch = pitchtools.NamedChromaticPitch(expr)
             self._pitch = pitch
       return property(**locals( ))

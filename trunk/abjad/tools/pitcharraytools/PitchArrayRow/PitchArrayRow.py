@@ -35,7 +35,7 @@ class PitchArrayRow(_StrictComparator):
    ::
 
       abjad> array[0].pitches
-      (NamedPitch(c, 4), NamedPitch(d, 4))
+      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4))
    '''
 
    def __init__(self, cells):

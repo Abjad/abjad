@@ -3,7 +3,7 @@ from abjad.tools import listtools
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn import PitchArrayColumn
 from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 class PitchArray(_StrictComparator):
@@ -42,7 +42,7 @@ class PitchArray(_StrictComparator):
          return arg in self.columns
       elif isinstance(arg, PitchArrayCell):
          return arg in self.cells
-      elif isinstance(arg, NamedPitch):
+      elif isinstance(arg, NamedChromaticPitch):
          for pitch in self.pitches:
             if arg == pitch:
                return True

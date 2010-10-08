@@ -6,10 +6,10 @@ def test_Scale_scale_degrees_01( ):
 
    scale = tonalitytools.Scale('g', 'major')
 
-   assert scale.tonic == pitchtools.NamedPitchClass('g')
-   assert scale.superdominant == pitchtools.NamedPitchClass('a')
-   assert scale.mediant == pitchtools.NamedPitchClass('b')
-   assert scale.subdominant == pitchtools.NamedPitchClass('c')
-   assert scale.dominant == pitchtools.NamedPitchClass('d')
-   assert scale.submediant == pitchtools.NamedPitchClass('e')
-   assert scale.leading_tone == pitchtools.NamedPitchClass('fs')
+   assert scale.tonic == pitchtools.NamedChromaticPitchClass('g')
+   assert scale.superdominant == pitchtools.NamedChromaticPitchClass('a')
+   assert scale.mediant == pitchtools.NamedChromaticPitchClass('b')
+   assert scale.subdominant == pitchtools.NamedChromaticPitchClass('c')
+   assert scale.dominant == pitchtools.NamedChromaticPitchClass('d')
+   assert scale.submediant == pitchtools.NamedChromaticPitchClass('e')
+   assert scale.leading_tone == pitchtools.NamedChromaticPitchClass('fs')

@@ -8,5 +8,5 @@ def test_KeySignatureMark___init____01( ):
 
    ks = contexttools.KeySignatureMark('g', 'major')
    
-   assert ks.tonic == pitchtools.NamedPitchClass('g')
+   assert ks.tonic == pitchtools.NamedChromaticPitchClass('g')
    assert ks.mode == tonalitytools.Mode('major')

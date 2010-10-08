@@ -6,7 +6,7 @@ def test_TrillSpanner_pitch_01( ):
 
    t = Staff(macros.scale(4))
    trill = spannertools.TrillSpanner(t[:2])
-   trill.pitch = pitchtools.NamedPitch(1)
+   trill.pitch = pitchtools.NamedChromaticPitch(1)
 
    r'''
    \new Staff {
@@ -48,7 +48,7 @@ def test_TrillSpanner_pitch_03( ):
 
    t = Staff(macros.scale(4))
    trill = spannertools.TrillSpanner(t[:2])
-   trill.pitch = pitchtools.NamedPitch(1)
+   trill.pitch = pitchtools.NamedChromaticPitch(1)
    trill.pitch = None
 
    r'''

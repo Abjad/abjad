@@ -1,5 +1,5 @@
 from __future__ import division
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from fractions import Fraction
 from abjad.tools import durtools
 from abjad.tools import listtools
@@ -17,7 +17,7 @@ from abjad.components.Tuplet import Tuplet
 ##       Examples: leaftools.make_leaves([('c', 4), ('cs', 4)], [(1, 4)])
 
 ## TODO: Extend leaftools.make_leaves( ) to accept Abjad Pitch instances. Ex:
-##       Example: leaftools.make_leaves([NamedPitch('cs', 4)], [(1, 4)])
+##       Example: leaftools.make_leaves([NamedChromaticPitch('cs', 4)], [(1, 4)])
 
 ## TODO: Deprecate construct.engender( ) in favor of leaftools.make_leaves( );
 ##       Only possible after the two extensions to leaftools.make_leaves( ), above.
@@ -95,7 +95,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    '''
 
    def _make_leaf_on_pitch(pch, ds, direction):
-      if isinstance(pch, (int, long, float, NamedPitch)):
+      if isinstance(pch, (int, long, float, NamedChromaticPitch)):
          leaves = _construct_tied_note(pch, ds, direction)
       elif isinstance(pch, (tuple, list)):
          leaves = _construct_tied_chord(pch, ds, direction)

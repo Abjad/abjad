@@ -22,9 +22,9 @@ the octave of middle C. [#]_
 We can ask Abjad directly about the pitch of our note. ::
 
     abjad> note.pitch
-    NamedPitch(cs, 5)
+    NamedChromaticPitch(cs, 5)
 
-Abjad responds with a reference to the :class:`~abjad.tools.pitchtools.NamedPitch.NamedPitch.pitch.Pitch`
+Abjad responds with a reference to the :class:`~abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.pitch.Pitch`
 instance bound to our note. Abjad pitch instances have many different
 attributes which will be familiar to most composers. ::
 
@@ -56,7 +56,7 @@ But Abjad implements some less familiar pitch attributes, too. ::
    abjad> note.pitch.diatonic_pitch_number
    7
 
-The :class:`~abjad.tools.pitchtools.NamedPitch.NamedPitch.pitch.Pitch` entry in the Abjad API
+The :class:`~abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.pitch.Pitch` entry in the Abjad API
 lists all pitch attributes available in Abjad.
 
 

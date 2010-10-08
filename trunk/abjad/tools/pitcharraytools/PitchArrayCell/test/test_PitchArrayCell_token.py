@@ -5,8 +5,8 @@ from abjad.tools import pitcharraytools
 def test_PitchArrayCell_token_01( ):
 
    array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
-   array[0].cells[0].pitches.append(pitchtools.NamedPitch(0))
-   array[0].cells[1].pitches.extend([pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)])
+   array[0].cells[0].pitches.append(pitchtools.NamedChromaticPitch(0))
+   array[0].cells[1].pitches.extend([pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)])
 
    '''
    [c'] [d' e'    ] [ ]

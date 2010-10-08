@@ -60,7 +60,7 @@ def make_sphinx_module_listing(package_path, file):
       if auto_type == 'autofunction' and 'tools' in module:
          result += '.. %s:: abjad.tools.%s\n' % (auto_type, page_title)
 
-      ## document public class in tools package like pitchtools.NamedPitchClass
+      ## document public class in tools package like pitchtools.NamedChromaticPitchClass
       elif auto_type == 'autoclass' and 'tools' in module:
          result += '.. %s:: abjad.tools.%s\n' % (auto_type, page_title)   
          result = _append_class_options(result)

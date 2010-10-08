@@ -86,7 +86,7 @@ class Note(_Leaf):
 
             abjad> note = Note(13, (3, 16))
             abjad> note.pitch
-            NamedPitch("cs''")
+            NamedChromaticPitch("cs''")
 
          Set named pitch of note::
 
@@ -109,6 +109,6 @@ class Note(_Leaf):
             if self.note_head is None:
                self.note_head = NoteHead(self, pitch = None)
             else:
-               pitch = pitchtools.NamedPitch(arg)
+               pitch = pitchtools.NamedChromaticPitch(arg)
                self.note_head.pitch = pitch
       return property(**locals( ))

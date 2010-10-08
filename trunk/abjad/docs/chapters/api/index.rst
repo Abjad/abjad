@@ -704,15 +704,15 @@ pitchtools
    tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
    tools/pitchtools/MelodicDiatonicIntervalSet/MelodicDiatonicIntervalSet
+   tools/pitchtools/NamedChromaticPitch/NamedChromaticPitch
+   tools/pitchtools/NamedChromaticPitchClass/NamedChromaticPitchClass
+   tools/pitchtools/NamedChromaticPitchClassSegment/NamedChromaticPitchClassSegment
+   tools/pitchtools/NamedChromaticPitchClassSet/NamedChromaticPitchClassSet
+   tools/pitchtools/NamedChromaticPitchSegment/NamedChromaticPitchSegment
+   tools/pitchtools/NamedChromaticPitchSet/NamedChromaticPitchSet
+   tools/pitchtools/NamedChromaticPitchVector/NamedChromaticPitchVector
    tools/pitchtools/NamedDiatonicPitch/NamedDiatonicPitch
    tools/pitchtools/NamedDiatonicPitchClass/NamedDiatonicPitchClass
-   tools/pitchtools/NamedPitch/NamedPitch
-   tools/pitchtools/NamedPitchClass/NamedPitchClass
-   tools/pitchtools/NamedPitchClassSegment/NamedPitchClassSegment
-   tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet
-   tools/pitchtools/NamedPitchSegment/NamedPitchSegment
-   tools/pitchtools/NamedPitchSet/NamedPitchSet
-   tools/pitchtools/NamedPitchVector/NamedPitchVector
    tools/pitchtools/NumberedChromaticPitch/NumberedChromaticPitch
    tools/pitchtools/NumberedChromaticPitchClass/NumberedChromaticPitchClass
    tools/pitchtools/NumberedChromaticPitchClassColorMap/NumberedChromaticPitchClassColorMap

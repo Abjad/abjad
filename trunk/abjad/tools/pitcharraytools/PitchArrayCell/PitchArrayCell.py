@@ -1,5 +1,5 @@
 from abjad.core import _StrictComparator
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 class PitchArrayCell(_StrictComparator):
@@ -168,7 +168,7 @@ class PitchArrayCell(_StrictComparator):
             pitches, width = [ ], cell_token
          else:
             raise ValueError('integer width token must be positive.')
-      elif isinstance(cell_token, NamedPitch):
+      elif isinstance(cell_token, NamedChromaticPitch):
          pitches, width = [cell_token], 1
       elif isinstance(cell_token, list):
          pitch_token, width = cell_token, 1
@@ -190,14 +190,14 @@ class PitchArrayCell(_StrictComparator):
 
    def _parse_pitch_token(self, pitch_token):
       pitches = [ ]
-      if isinstance(pitch_token, (int, float, NamedPitch)):
-         pitch = NamedPitch(pitch_token)
+      if isinstance(pitch_token, (int, float, NamedChromaticPitch)):
+         pitch = NamedChromaticPitch(pitch_token)
          pitches.append(pitch)
       elif isinstance(pitch_token, tuple):
-         pitches.append(NamedPitch(*pitch_token))
+         pitches.append(NamedChromaticPitch(*pitch_token))
       elif isinstance(pitch_token, list):
          for element in pitch_token:
-            pitch = NamedPitch(element)
+            pitch = NamedChromaticPitch(element)
             pitches.append(pitch)
       else:
          raise TypeError('pitch token must be number, pitch or list.')
@@ -275,8 +275,8 @@ class PitchArrayCell(_StrictComparator):
    def pitches( ):
       def fget(self):
          for i, pitch in enumerate(self._pitches):
-            if not isinstance(pitch, NamedPitch):
-               self._pitches[i] = NamedPitch(pitch)
+            if not isinstance(pitch, NamedChromaticPitch):
+               self._pitches[i] = NamedChromaticPitch(pitch)
          return self._pitches
       def fset(self, arg):
          if not isinstance(arg, (list, tuple)):

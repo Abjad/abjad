@@ -8,7 +8,7 @@ def test_resttools_set_vertical_positioning_pitch_on_rest_01( ):
    r = Rest((1, 4))
    resttools.set_vertical_positioning_pitch_on_rest(r, 0)
 
-   assert isinstance(r._vertical_positioning_pitch, pitchtools.NamedPitch)
+   assert isinstance(r._vertical_positioning_pitch, pitchtools.NamedChromaticPitch)
    assert r.format == "c'4 \\rest"
 
 
@@ -17,9 +17,9 @@ def test_resttools_set_vertical_positioning_pitch_on_rest_02( ):
    '''
 
    r = Rest((1, 4))
-   resttools.set_vertical_positioning_pitch_on_rest(r, pitchtools.NamedPitch(0))
+   resttools.set_vertical_positioning_pitch_on_rest(r, pitchtools.NamedChromaticPitch(0))
 
-   assert isinstance(r._vertical_positioning_pitch, pitchtools.NamedPitch)
+   assert isinstance(r._vertical_positioning_pitch, pitchtools.NamedChromaticPitch)
    assert r.format == "c'4 \\rest"
 
 

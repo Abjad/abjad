@@ -20,7 +20,7 @@ def set_vertical_positioning_pitch_on_rest(rest, pitch):
       raise TypeError('\n\tMust be rest: "%s".' % rest)
 
    if pitch is not None:
-      pitch = pitchtools.NamedPitch(pitch)
+      pitch = pitchtools.NamedChromaticPitch(pitch)
 
    rest._vertical_positioning_pitch = pitch
 

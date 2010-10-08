@@ -1,13 +1,13 @@
 from abjad.tools.contexttools.KeySignatureMark import KeySignatureMark
-from abjad.tools.pitchtools.NamedPitch.NamedPitch import NamedPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
-from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
-from abjad.tools.pitchtools.NamedPitchClassSegment import NamedPitchClassSegment
+from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
+from abjad.tools.pitchtools.NamedChromaticPitchClassSegment import NamedChromaticPitchClassSegment
 from abjad.tools.tonalitytools.ScaleDegree import ScaleDegree
 
 
-class Scale(NamedPitchClassSegment):
+class Scale(NamedChromaticPitchClassSegment):
    '''.. versionadded:: 1.1.2
 
    Abjad model of diatonic scale.
@@ -107,7 +107,7 @@ class Scale(NamedPitchClassSegment):
    ## PUBLIC METHODS ##
 
    def named_pitch_class_to_scale_degree(self, *args):
-      foreign_pitch_class = NamedPitchClass(*args)
+      foreign_pitch_class = NamedChromaticPitchClass(*args)
       letter = foreign_pitch_class.letter
       for i, pc in enumerate(self):
          if pc.letter == letter:
@@ -115,8 +115,8 @@ class Scale(NamedPitchClassSegment):
             scale_degree_index = i
             scale_degree_number = scale_degree_index + 1
             break
-      native_pitch = NamedPitch(native_pitch_class, 4)
-      foreign_pitch = NamedPitch(foreign_pitch_class, 4)
+      native_pitch = NamedChromaticPitch(native_pitch_class, 4)
+      foreign_pitch = NamedChromaticPitch(foreign_pitch_class, 4)
       accidental = foreign_pitch.accidental - native_pitch.accidental
       return ScaleDegree(accidental, scale_degree_number)
 

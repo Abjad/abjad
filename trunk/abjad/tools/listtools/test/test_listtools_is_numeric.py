@@ -10,4 +10,4 @@ def test_listtools_is_numeric_02( ):
 
 
 def test_listtools_is_numeric_03( ):
-   assert not listtools.is_numeric([1, 2, pitchtools.NamedPitch(3)])
+   assert not listtools.is_numeric([1, 2, pitchtools.NamedChromaticPitch(3)])

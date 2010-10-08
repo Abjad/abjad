@@ -37,7 +37,7 @@ def _get_title_type_members(source_full_path):
          page_title = page_title.split('.')
          page_title = page_title[:-1]
          page_title = '.'.join(page_title)
-         ## page title is now something like pitchtools.NamedPitchClass
+         ## page title is now something like pitchtools.NamedChromaticPitchClass
          auto_type = 'autoclass'
          functions = _get_module_members(source_full_path, 'class')
       public_functions = [x for x in functions if not x.startswith('_')]

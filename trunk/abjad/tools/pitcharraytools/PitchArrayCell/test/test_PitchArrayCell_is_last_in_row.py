@@ -24,6 +24,6 @@ def test_PitchArrayCell_is_last_in_row_01( ):
 
 def test_PitchArrayCell_is_last_in_row_02( ):
 
-   cell = PitchArrayCell([pitchtools.NamedPitch(1)])
+   cell = PitchArrayCell([pitchtools.NamedChromaticPitch(1)])
 
    assert not cell.is_last_in_row

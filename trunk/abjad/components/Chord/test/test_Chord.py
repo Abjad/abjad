@@ -91,7 +91,7 @@ def test_Chord_08( ):
    '''
 
    t = Chord([ ], (1,4))
-   t.pitches = [pitchtools.NamedPitch(4), pitchtools.NamedPitch(3), pitchtools.NamedPitch(2)]
+   t.pitches = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
    assert t.format == "<d' ef' e'>4"
 
@@ -101,7 +101,7 @@ def test_Chord_09( ):
    '''
 
    t = Chord([ ], (1,4))
-   t.pitches = [4, pitchtools.NamedPitch(3), pitchtools.NamedPitch(2)]
+   t.pitches = [4, pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
    assert t.format == "<d' ef' e'>4"
 
@@ -121,7 +121,7 @@ def test_Chord_11( ):
    '''
 
    t = Chord([ ], (1,4))
-   t.note_heads = [pitchtools.NamedPitch(4), pitchtools.NamedPitch(3), pitchtools.NamedPitch(2)]
+   t.note_heads = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
    assert t.format == "<d' ef' e'>4"
 
@@ -131,7 +131,7 @@ def test_Chord_12( ):
    '''
 
    t = Chord([ ], (1,4))
-   t.note_heads = [pitchtools.NamedPitch(4), 3, pitchtools.NamedPitch(2)]
+   t.note_heads = [pitchtools.NamedChromaticPitch(4), 3, pitchtools.NamedChromaticPitch(2)]
 
    assert t.format == "<d' ef' e'>4"
 
@@ -141,7 +141,7 @@ def test_Chord_13( ):
    '''
 
    t = Chord([2, 4], (1,4))
-   t[0] = pitchtools.NamedPitch(5)
+   t[0] = pitchtools.NamedChromaticPitch(5)
    assert t.format == "<e' f'>4"
 
    t[0] = 7

@@ -7,8 +7,8 @@ def test_Chord___contains___01( ):
 
    assert 17 in chord
    assert 17.0 in chord
-   assert pitchtools.NamedPitch(17) in chord
-   assert pitchtools.NamedPitch("f''") in chord
+   assert pitchtools.NamedChromaticPitch(17) in chord
+   assert pitchtools.NamedChromaticPitch("f''") in chord
    assert chord[1] in chord
    assert notetools.NoteHead("f''") in chord
 
@@ -19,7 +19,7 @@ def test_Chord___contains___02( ):
 
    assert not 18 in chord
    assert not 18.0 in chord
-   assert not pitchtools.NamedPitch(18) in chord
-   assert not pitchtools.NamedPitch("fs''") in chord
+   assert not pitchtools.NamedChromaticPitch(18) in chord
+   assert not pitchtools.NamedChromaticPitch("fs''") in chord
    assert not notetools.NoteHead(18) in chord
    assert not notetools.NoteHead("fs''") in chord
