@@ -1,7 +1,4 @@
-from abjad.core._StrictComparator import _StrictComparator
-
-
-class _UnaryComparator(_StrictComparator):
+class _UnaryComparator(object):
    '''Mix-in base class to confer unary comparison behavior to any custom class.
    '''
    

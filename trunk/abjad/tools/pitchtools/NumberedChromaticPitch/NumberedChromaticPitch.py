@@ -27,6 +27,7 @@ class NumberedChromaticPitch(_Pitch):
       else:
          raise TypeError('can not initialize numeric pitch from "%s".' % arg)
       object.__setattr__(self, '_chromatic_pitch_number', chromatic_pitch_number)
+      object.__setattr__(self, '_comparison_attribute', chromatic_pitch_number)
       return self
 
    def __getnewargs__(self):
@@ -42,37 +43,8 @@ class NumberedChromaticPitch(_Pitch):
       semitones = self.semitones + arg.semitones
       return NumberedChromaticPitch(semitones)
       
-   def __eq__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.number == arg.number:
-            return True
-      return False
-
-   def __ge__(self, arg):
-      if not isinstance(arg, type(self)):
-         raise TypeError
-      return self.number >= arg.number
-
-   def __gt__(self, arg):
-      if not isinstance(arg, type(self)):
-         raise TypeError
-      return self.number > arg.number
-
    def __hash__(self):
       return hash(repr(self))
-
-   def __le__(self, arg):
-      if not isinstance(arg, type(self)):
-         raise TypeError
-      return self.number <= arg.number
-
-   def __lt__(self, arg):
-      if not isinstance(arg, type(self)):
-         raise TypeError
-      return self.number < arg.number
-
-   def __ne__(self, arg):
-      return not self == arg
 
    def __neg__(self):
       return NumberedChromaticPitch(-self.semitones)

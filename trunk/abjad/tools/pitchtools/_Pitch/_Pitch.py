@@ -1,8 +1,8 @@
 from abjad.core import _Immutable
-from abjad.core import _StrictComparator
+from abjad.core import _UnaryComparator
 
 
-class _Pitch(_Immutable, _StrictComparator):
+class _Pitch(_Immutable, _UnaryComparator):
    '''.. versionadded:: 1.1.2
 
    Abstract pitch class from which concrete classes inherit.
