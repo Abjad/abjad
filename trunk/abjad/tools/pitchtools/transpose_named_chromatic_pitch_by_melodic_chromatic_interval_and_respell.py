@@ -23,7 +23,7 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
       ``pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell( )``.
    '''
 
-   pitch_number = pitch.numbered_chromatic_pitch._chromatic_pitch_number + absolute_interval
+   pitch_number = abs(pitch.numbered_chromatic_pitch) + absolute_interval
    #diatonic_scale_degree = pitch.degree + staff_spaces
    diatonic_scale_degree = \
       (pitch.numbered_diatonic_pitch_class._diatonic_pitch_class_number + 1) + staff_spaces

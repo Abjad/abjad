@@ -36,7 +36,7 @@ class NumberedChromaticPitch(_Pitch):
    ## OVERLOADS ##
 
    def __abs__(self):
-      return NumberedChromaticPitch(abs(self.semitones))
+      return self.semitones
 
    def __add__(self, arg):
       arg = NumberedChromaticPitch(arg)

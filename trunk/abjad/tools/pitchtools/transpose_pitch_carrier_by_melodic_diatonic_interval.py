@@ -54,7 +54,7 @@ def _transpose_pitch_by_melodic_diatonic_interval(
    if not isinstance(pitch, NamedChromaticPitch):
       raise TypeError('must be pitch.')
    chromatic_pitch_number = \
-      pitch.numbered_chromatic_pitch._chromatic_pitch_number + melodic_diatonic_interval.semitones
+      abs(pitch.numbered_chromatic_pitch) + melodic_diatonic_interval.semitones
    diatonic_scale_degree = \
       (pitch.numbered_diatonic_pitch_class._diatonic_pitch_class_number + 1) + \
       melodic_diatonic_interval.staff_spaces
