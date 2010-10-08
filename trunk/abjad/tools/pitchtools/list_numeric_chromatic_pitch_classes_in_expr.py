@@ -37,7 +37,7 @@ def list_numeric_chromatic_pitch_classes_in_expr(expr):
       ``pitchtools.list_numeric_chromatic_pitch_classes_in_expr( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_numeric_pitch_classes_in_expr( )`` to
+      renamed ``pitchtools.list_numbered_chromatic_pitch_classes_in_expr( )`` to
       ``pitchtools.list_numeric_chromatic_pitch_classes_in_expr( )``.
    '''
 

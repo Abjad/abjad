@@ -50,7 +50,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
    from abjad.components.Note import Note
    for note in componenttools.iterate_components_forward_in_expr(expr, Note):
       if number:
-         label = r'\small %s' % note.pitch.numeric_pitch_class.number
+         label = r'\small %s' % note.pitch.numbered_chromatic_pitch_class.number
          markuptools.Markup(label, markup_direction)(note)
       if color:
          notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map(note)

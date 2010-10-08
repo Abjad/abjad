@@ -70,7 +70,7 @@ class NamedPitchSet(_PitchSet):
       pitch_classes = [ ]
       duplicate_pitch_classes = [ ]
       for pitch in self:
-         pitch_class = pitch.numeric_pitch_class
+         pitch_class = pitch.numbered_chromatic_pitch_class
          if pitch_class in pitch_classes:
             duplicate_pitch_classes.append(pitch_class)
          pitch_classes.append(pitch_class)
@@ -86,7 +86,7 @@ class NamedPitchSet(_PitchSet):
 
    @property
    def pitch_classes(self):
-      return tuple([pitch.numeric_pitch_class for pitch in self.pitches])
+      return tuple([pitch.numbered_chromatic_pitch_class for pitch in self.pitches])
 
    @property
    def pitch_class_set(self):

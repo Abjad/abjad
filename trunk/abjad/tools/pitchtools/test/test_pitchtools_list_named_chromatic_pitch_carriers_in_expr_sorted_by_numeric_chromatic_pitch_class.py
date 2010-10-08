@@ -12,7 +12,7 @@ def test_pitchtools_list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeri
    '''
 
    sorted_pitch_numbers = [pitch.pitch_number for pitch in sorted_pitches]
-   sorted_pcs = [pitch.numeric_pitch_class for pitch in sorted_pitches]
+   sorted_pcs = [pitch.numbered_chromatic_pitch_class for pitch in sorted_pitches]
 
    assert sorted_pitch_numbers == [
       -12, 37, -10, 27, 4, 17, 30, 19, 8, 33, -2, 11]

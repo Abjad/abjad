@@ -23,7 +23,7 @@ def expr_has_duplicate_numeric_chromatic_pitch_class(expr):
       ``pitchtools.expr_has_duplicate_numeric_chromatic_pitch_class( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.expr_has_duplicate_numeric_pitch_class( )`` to
+      renamed ``pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class( )`` to
       ``pitchtools.expr_has_duplicate_numeric_chromatic_pitch_class( )``.
    '''
  

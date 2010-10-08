@@ -12,7 +12,7 @@ def test_NamedPitch___init____01( ):
    assert p.named_pitch_class == pitchtools.NamedPitchClass('df')
    assert p.pitch_number == 13
    assert p.octave_number == 5
-   assert p.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+   assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 def test_NamedPitch___init____02( ):
@@ -35,7 +35,7 @@ def test_NamedPitch___init____03( ):
    assert p.named_pitch_class == pitchtools.NamedPitchClass('cs')
    assert p.pitch_number == 13
    assert p.octave_number == 5
-   assert p.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+   assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 
@@ -50,7 +50,7 @@ def test_NamedPitch___init____04( ):
    assert p.named_pitch_class == pitchtools.NamedPitchClass('df')
    assert p.pitch_number == 13
    assert p.octave_number == 5
-   assert p.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+   assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 
@@ -65,7 +65,7 @@ def test_NamedPitch___init____05( ):
    assert p.named_pitch_class == pitchtools.NamedPitchClass('df')
    assert p.pitch_number == 13
    assert p.octave_number == 5
-   assert p.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+   assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 
@@ -93,7 +93,7 @@ def test_NamedPitch___init____07( ):
    assert p.named_pitch_class == pitchtools.NamedPitchClass('df')
    assert p.pitch_number == 13
    assert p.octave_number == 5
-   assert p.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+   assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 def test_NamedPitch___init____08( ):

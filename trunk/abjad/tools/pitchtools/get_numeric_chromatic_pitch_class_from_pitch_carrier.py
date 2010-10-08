@@ -34,7 +34,7 @@ def get_numeric_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
       ``pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrier( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.get_numeric_pitch_class_from_pitch_carrier( )`` to
+      renamed ``pitchtools.get_numbered_chromatic_pitch_class_from_pitch_carrier( )`` to
       ``pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrier( )``.
    '''
 

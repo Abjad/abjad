@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_verticalitytools_label_vertical_moments_in_expr_with_numeric_pitch_classes_01( ):
+def test_verticalitytools_label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes_01( ):
 
    score = Score(Staff([ ]) * 3)
    score[0].extend(macros.scale(4))
@@ -9,7 +9,7 @@ def test_verticalitytools_label_vertical_moments_in_expr_with_numeric_pitch_clas
    score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
    contexttools.ClefMark('bass')(score[2])
    score[2].append(Note(-24, (1, 2)))
-   verticalitytools.label_vertical_moments_in_expr_with_numeric_pitch_classes(score)
+   verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(score)
 
    r'''
    \new Score <<

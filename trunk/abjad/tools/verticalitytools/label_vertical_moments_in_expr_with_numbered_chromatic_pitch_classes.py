@@ -3,7 +3,7 @@ from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr impor
    iterate_vertical_moments_forward_in_expr
 
 
-def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr, markup_direction = 'down'):
+def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
    Label pitch classes of every vertical moment in `expr`. ::
@@ -14,7 +14,7 @@ def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr, markup_direc
       abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
       abjad> contexttools.ClefMark('bass')(score[2])
       abjad> score[2].append(Note(-24, (1, 2)))
-      abjad> verticalitytools.label_vertical_moments_in_expr_with_numeric_pitch_classes(score)
+      abjad> verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(score)
       abjad> f(score)
       \new Score <<
               \new Staff {
@@ -36,7 +36,7 @@ def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr, markup_direc
 
    .. versionchanged:: 1.1.2
       renamed ``label.vertical_moment_pitch_classes( )`` to
-      ``verticalitytools.label_vertical_moments_in_expr_with_numeric_pitch_classes( )``.
+      ``verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes( )``.
    '''
    from abjad.tools import pitchtools
 
@@ -45,7 +45,7 @@ def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr, markup_direc
       pitches = pitchtools.list_named_chromatic_pitches_in_expr(leaves)
       if not pitches:
          continue
-      pitch_classes = [pitch.numeric_pitch_class.number for pitch in pitches]
+      pitch_classes = [pitch.numbered_chromatic_pitch_class.number for pitch in pitches]
       pitch_classes = list(set(pitch_classes))
       pitch_classes.sort( )
       pitch_classes.reverse( )

@@ -20,13 +20,13 @@ def list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitc
       ``pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_pitches_in_expr_sorted_by_numeric_pitch_class( )`` to
+      renamed ``pitchtools.list_pitches_in_expr_sorted_by_numbered_chromatic_pitch_class( )`` to
       ``pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class( )``.
    '''
 
    result = list(pitch_carriers[:])
    result.sort(lambda x, y: cmp(
-         list_named_chromatic_pitches_in_expr(x)[0].numeric_pitch_class.number, 
-         list_named_chromatic_pitches_in_expr(y)[0].numeric_pitch_class.number))
+         list_named_chromatic_pitches_in_expr(x)[0].numbered_chromatic_pitch_class.number, 
+         list_named_chromatic_pitches_in_expr(y)[0].numbered_chromatic_pitch_class.number))
 
    return result

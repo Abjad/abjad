@@ -1,16 +1,16 @@
 from abjad import *
 
 
-def test_NamedPitchClass_numeric_pitch_class_01( ):
+def test_NamedPitchClass_numbered_chromatic_pitch_class_01( ):
 
    npc = pitchtools.NamedPitchClass('c')
-   assert npc.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(0)
+   assert npc.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(0)
 
    npc = pitchtools.NamedPitchClass('cs')
-   assert npc.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+   assert npc.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
    npc = pitchtools.NamedPitchClass('cf')
-   assert npc.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(11)
+   assert npc.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(11)
 
    npc = pitchtools.NamedPitchClass('cqs')
-   assert npc.numeric_pitch_class == pitchtools.NumberedChromaticPitchClass(0.5)
+   assert npc.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(0.5)

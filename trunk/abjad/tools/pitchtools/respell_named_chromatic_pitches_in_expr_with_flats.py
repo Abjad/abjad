@@ -55,6 +55,6 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
 
 def _new_pitch_with_flats(pitch):
    octave = chromatic_pitch_number_to_octave_number(pitch.pitch_number)
-   name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pitch.numeric_pitch_class)
+   name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pitch.numbered_chromatic_pitch_class)
    pitch = type(pitch)(name, octave)
    return pitch

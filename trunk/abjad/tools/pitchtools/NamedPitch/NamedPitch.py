@@ -457,11 +457,11 @@ class NamedPitch(_Pitch):
       return pitchtools.NumberedDiatonicPitchClass(self._diatonic_pitch_class_name)
 
    @property
-   def numeric_pitch_class(self):
+   def numbered_chromatic_pitch_class(self):
       '''New numeric pitch-class from named pitch::
 
          abjad> named_pitch = pitchtools.NamedPitch("cs'")
-         abjad> named_pitch.numeric_pitch_class
+         abjad> named_pitch.numbered_chromatic_pitch_class
          NumberedChromaticPitchClass(1)
    
       Return numeric pitch class.

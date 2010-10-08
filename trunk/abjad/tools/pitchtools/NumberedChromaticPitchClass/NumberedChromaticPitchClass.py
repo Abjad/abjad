@@ -25,11 +25,11 @@ class NumberedChromaticPitchClass(_PitchClass):
          number = arg.number
       elif isinstance(arg, str):
          named_pitch_class = NamedPitchClass(arg)
-         number = named_pitch_class.numeric_pitch_class.number
+         number = named_pitch_class.numbered_chromatic_pitch_class.number
       elif isinstance(arg, NamedPitch):
          number = arg.pitch_number % 12
       elif isinstance(arg, NamedPitchClass):
-         number = arg.numeric_pitch_class.number
+         number = arg.numbered_chromatic_pitch_class.number
       else:
          pitch = get_named_chromatic_pitch_from_pitch_carrier(arg)
          number = pitch.pitch_number % 12

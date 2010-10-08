@@ -42,7 +42,7 @@ class NamedPitchClass(_PitchClass):
       if not isinstance(arg, NamedPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.numeric_pitch_class >= arg.numeric_pitch_class
+         return self.numbered_chromatic_pitch_class >= arg.numbered_chromatic_pitch_class
       else:
          return self._letter_string >= arg._letter_string
 
@@ -50,7 +50,7 @@ class NamedPitchClass(_PitchClass):
       if not isinstance(arg, NamedPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.numeric_pitch_class > arg.numeric_pitch_class
+         return self.numbered_chromatic_pitch_class > arg.numbered_chromatic_pitch_class
       else:
          return self._letter_string > arg._letter_string
 
@@ -61,7 +61,7 @@ class NamedPitchClass(_PitchClass):
       if not isinstance(arg, NamedPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.numeric_pitch_class <= arg.numeric_pitch_class
+         return self.numbered_chromatic_pitch_class <= arg.numbered_chromatic_pitch_class
       else:
          return self._letter_string <= arg._letter_string
 
@@ -69,7 +69,7 @@ class NamedPitchClass(_PitchClass):
       if not isinstance(arg, NamedPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.numeric_pitch_class < arg.numeric_pitch_class
+         return self.numbered_chromatic_pitch_class < arg.numbered_chromatic_pitch_class
       else:
          return self._letter_string < arg._letter_string
 
@@ -140,10 +140,10 @@ class NamedPitchClass(_PitchClass):
       return self._name
 
    @property
-   def numeric_pitch_class(self):
+   def numbered_chromatic_pitch_class(self):
       '''Read-only numeric pitch-class.'''
       pitch = NamedPitch(self.name, 4)
-      return pitch.numeric_pitch_class
+      return pitch.numbered_chromatic_pitch_class
 
    @property
    def symbolic_name(self):
