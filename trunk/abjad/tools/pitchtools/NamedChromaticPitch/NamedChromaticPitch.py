@@ -293,19 +293,6 @@ class NamedChromaticPitch(_Pitch):
       '''
       return self._deviation
 
-
-   @property
-   def diatonic_pitch_class_number(self):
-      '''Read-only diatonic pitch-class number of named pitch:
-
-      ::
-
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
-         abjad> named_chromatic_pitch.diatonic_pitch_class_number
-         0
-      '''
-      return self.numbered_diatonic_pitch_class._diatonic_pitch_class_number
-
    @property
    def format(self):
       '''Read-only LilyPond input format of pitch:

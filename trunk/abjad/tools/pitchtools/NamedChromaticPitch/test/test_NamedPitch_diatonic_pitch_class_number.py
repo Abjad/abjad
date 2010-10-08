@@ -1,17 +1,17 @@
 from abjad import *
 
 
-def test_NamedPitch_diatonic_pitch_class_number_01( ):
+def test_NamedPitch_numbered_diatonic_pitch_class_01( ):
 
-   assert pitchtools.NamedChromaticPitch("c''").diatonic_pitch_class_number == 0
-   assert pitchtools.NamedChromaticPitch("cs''").diatonic_pitch_class_number == 0
-   assert pitchtools.NamedChromaticPitch("d''").diatonic_pitch_class_number == 1
-   assert pitchtools.NamedChromaticPitch("ef''").diatonic_pitch_class_number == 2
-   assert pitchtools.NamedChromaticPitch("e''").diatonic_pitch_class_number == 2
-   assert pitchtools.NamedChromaticPitch("f''").diatonic_pitch_class_number == 3
-   assert pitchtools.NamedChromaticPitch("fs''").diatonic_pitch_class_number == 3
-   assert pitchtools.NamedChromaticPitch("g''").diatonic_pitch_class_number == 4
-   assert pitchtools.NamedChromaticPitch("af''").diatonic_pitch_class_number == 5
-   assert pitchtools.NamedChromaticPitch("a''").diatonic_pitch_class_number == 5
-   assert pitchtools.NamedChromaticPitch("bf''").diatonic_pitch_class_number == 6
-   assert pitchtools.NamedChromaticPitch("b''").diatonic_pitch_class_number == 6
+   assert pitchtools.NamedChromaticPitch("c''").numbered_diatonic_pitch_class == 0
+   assert pitchtools.NamedChromaticPitch("cs''").numbered_diatonic_pitch_class == 0
+   assert pitchtools.NamedChromaticPitch("d''").numbered_diatonic_pitch_class == 1
+   assert pitchtools.NamedChromaticPitch("ef''").numbered_diatonic_pitch_class == 2
+   assert pitchtools.NamedChromaticPitch("e''").numbered_diatonic_pitch_class == 2
+   assert pitchtools.NamedChromaticPitch("f''").numbered_diatonic_pitch_class == 3
+   assert pitchtools.NamedChromaticPitch("fs''").numbered_diatonic_pitch_class == 3
+   assert pitchtools.NamedChromaticPitch("g''").numbered_diatonic_pitch_class == 4
+   assert pitchtools.NamedChromaticPitch("af''").numbered_diatonic_pitch_class == 5
+   assert pitchtools.NamedChromaticPitch("a''").numbered_diatonic_pitch_class == 5
+   assert pitchtools.NamedChromaticPitch("bf''").numbered_diatonic_pitch_class == 6
+   assert pitchtools.NamedChromaticPitch("b''").numbered_diatonic_pitch_class == 6
