@@ -1,6 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import markuptools
-from abjad.tools import pitchtools
+from abjad.tools import notetools
 from abjad.tools import threadtools
 
 
