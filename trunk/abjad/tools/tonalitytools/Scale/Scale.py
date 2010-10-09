@@ -13,25 +13,19 @@ class Scale(NamedChromaticPitchClassSegment):
    Abjad model of diatonic scale.
    '''
 
-   #def __init__(self, *args):
    def __new__(self, *args):
       if len(args) == 1 and isinstance(args[0], KeySignatureMark):
-         #self._init_by_key_signature(args[0])
          key_signature = args[0]
       elif len(args) == 1 and isinstance(args[0], Scale):
-         #self._init_by_key_signature(args[0].key_signature)
          key_signature = args[0].key_signature
       elif len(args) == 2:
          key_signature = KeySignatureMark(*args)
-         #self._init_by_key_signature(key_signature)
       else:
          raise TypeError
-      #self._key_signature = key_signature
       npcs = [key_signature.tonic]
       for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
          named_chromatic_pitch_class = npcs[-1] + mdi
          npcs.append(named_chromatic_pitch_class)
-      #self.extend(npcs)
       new = tuple.__new__(self, npcs)
       tuple.__setattr__(new, '_key_signature', key_signature)
       return new
@@ -117,12 +111,12 @@ class Scale(NamedChromaticPitchClassSegment):
             break
       native_pitch = NamedChromaticPitch(native_pitch_class, 4)
       foreign_pitch = NamedChromaticPitch(foreign_pitch_class, 4)
-      accidental = foreign_pitch.accidental - native_pitch.accidental
+      accidental = foreign_pitch._accidental - native_pitch._accidental
       return ScaleDegree(accidental, scale_degree_number)
 
    def scale_degree_to_named_chromatic_pitch_class(self, *args):
       scale_degree = ScaleDegree(*args)
       scale_index = scale_degree.number - 1
       pitch_class = self[scale_index]
-      pitch_class = pitch_class.apply_accidental(scale_degree.accidental)
+      pitch_class = pitch_class.apply_accidental(scale_degree._accidental)
       return pitch_class

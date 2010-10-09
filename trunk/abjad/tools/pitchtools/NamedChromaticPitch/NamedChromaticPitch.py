@@ -82,9 +82,9 @@ class NamedChromaticPitch(_Pitch):
          arg = type(self)(arg)
          return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
             (self._diatonic_pitch_number == arg._diatonic_pitch_number and
-            self.accidental.semitones >= arg.accidental.semitones) or \
+            self._accidental.semitones >= arg._accidental.semitones) or \
             (self._diatonic_pitch_number == arg._diatonic_pitch_number and
-            self.accidental == arg.accidental and
+            self._accidental == arg._accidental and
             self._numeric_deviation >= arg._numeric_deviation)
       except (TypeError, ValueError):
          return False
@@ -94,9 +94,9 @@ class NamedChromaticPitch(_Pitch):
          return False
       return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self.accidental.semitones > arg.accidental.semitones) or \
+         self._accidental.semitones > arg._accidental.semitones) or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self.accidental == arg.accidental and \
+         self._accidental == arg._accidental and \
          self._numeric_deviation > arg._numeric_deviation)
 
    def __hash__(self):
@@ -107,8 +107,8 @@ class NamedChromaticPitch(_Pitch):
          return False
       if not self._diatonic_pitch_number == arg._diatonic_pitch_number:
          return self._diatonic_pitch_number <= arg._diatonic_pitch_number
-      if not self.accidental == arg.accidental:
-         return self.accidental <= arg.accidental
+      if not self._accidental == arg._accidental:
+         return self._accidental <= arg._accidental
       return self._numeric_deviation <= arg._numeric_deviation
 
    def __lt__(self, arg):
@@ -116,9 +116,9 @@ class NamedChromaticPitch(_Pitch):
          return False
       return self._diatonic_pitch_number < arg._diatonic_pitch_number or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self.accidental.semitones < arg.accidental.semitones) or \
+         self._accidental.semitones < arg._accidental.semitones) or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self.accidental == arg.accidental and \
+         self._accidental == arg._accidental and \
          self._numeric_deviation < arg._numeric_deviation)
 
    def __ne__(self, arg):
@@ -257,7 +257,7 @@ class NamedChromaticPitch(_Pitch):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def accidental(self):
+   def _accidental(self):
       '''Read-only accidental of named chromatic pitch:
 
       ::

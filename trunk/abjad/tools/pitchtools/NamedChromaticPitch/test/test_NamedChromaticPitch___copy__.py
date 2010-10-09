@@ -8,4 +8,4 @@ def test_NamedChromaticPitch___copy___01( ):
    new = copy.copy(pitch)
 
    assert new is not pitch
-   assert new.accidental is not pitch.accidental
+   assert new._accidental is not pitch._accidental
