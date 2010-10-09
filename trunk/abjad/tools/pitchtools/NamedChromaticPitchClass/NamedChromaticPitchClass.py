@@ -65,18 +65,18 @@ class NamedChromaticPitchClass(_PitchClass):
    def __ge__(self, arg):
       if not isinstance(arg, NamedChromaticPitchClass):
          raise TypeError
-      if self._letter_string == arg._letter_string:
+      if self._diatonic_pitch_class_name == arg._diatonic_pitch_class_name:
          return abs(self.numbered_chromatic_pitch_class) >= abs(arg.numbered_chromatic_pitch_class)
       else:
-         return self._letter_string >= arg._letter_string
+         return self._diatonic_pitch_class_name >= arg._diatonic_pitch_class_name
 
    def __gt__(self, arg):
       if not isinstance(arg, NamedChromaticPitchClass):
          raise TypeError
-      if self._letter_string == arg._letter_string:
+      if self._diatonic_pitch_class_name == arg._diatonic_pitch_class_name:
          return abs(self.numbered_chromatic_pitch_class) > abs(arg.numbered_chromatic_pitch_class)
       else:
-         return self._letter_string > arg._letter_string
+         return self._diatonic_pitch_class_name > arg._diatonic_pitch_class_name
 
    def __hash__(self):
       return hash(repr(self))
@@ -84,18 +84,18 @@ class NamedChromaticPitchClass(_PitchClass):
    def __le__(self, arg):
       if not isinstance(arg, NamedChromaticPitchClass):
          raise TypeError
-      if self._letter_string == arg._letter_string:
+      if self._diatonic_pitch_class_name == arg._diatonic_pitch_class_name:
          return abs(self.numbered_chromatic_pitch_class) <= abs(arg.numbered_chromatic_pitch_class)
       else:
-         return self._letter_string <= arg._letter_string
+         return self._diatonic_pitch_class_name <= arg._diatonic_pitch_class_name
 
    def __lt__(self, arg):
       if not isinstance(arg, NamedChromaticPitchClass):
          raise TypeError
-      if self._letter_string == arg._letter_string:
+      if self._diatonic_pitch_class_name == arg._diatonic_pitch_class_name:
          return abs(self.numbered_chromatic_pitch_class) < abs(arg.numbered_chromatic_pitch_class)
       else:
-         return self._letter_string < arg._letter_string
+         return self._diatonic_pitch_class_name < arg._diatonic_pitch_class_name
 
    def __ne__(self, arg):
       return not self == arg
@@ -123,10 +123,6 @@ class NamedChromaticPitchClass(_PitchClass):
    @property
    def _accidental_string(self):
       return self.name[1:]
-
-   @property
-   def _letter_string(self):
-      return self.name[0]
 
    @property
    def _repr_string(self):
@@ -157,7 +153,8 @@ class NamedChromaticPitchClass(_PitchClass):
       return Accidental(self.name[1:])
 
    @property
-   def letter(self):
+   #def letter(self):
+   def _diatonic_pitch_class_name(self):
       '''Read-only first letter of pitch-class name.'''
       return self.name[0]
 
@@ -179,7 +176,7 @@ class NamedChromaticPitchClass(_PitchClass):
          '': '', 's': '#', 'f': 'b', 'ss': '##', 'ff': 'bb',
          'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}
       symbol = accidental_to_symbol[self.accidental.alphabetic_string]
-      return self.letter + symbol
+      return self._diatonic_pitch_class_name + symbol
 
    ## PUBLIC METHODS ##
 
@@ -187,7 +184,7 @@ class NamedChromaticPitchClass(_PitchClass):
       '''Apply accidental and emit new named pitch class instance.'''
       accidental = Accidental(accidental)
       new_accidental = self.accidental + accidental
-      new_name = self.letter + new_accidental.alphabetic_string
+      new_name = self._diatonic_pitch_class_name + new_accidental.alphabetic_string
       return type(self)(new_name)
 
    def transpose(self, mdi):

@@ -102,9 +102,9 @@ class Scale(NamedChromaticPitchClassSegment):
 
    def named_chromatic_pitch_class_to_scale_degree(self, *args):
       foreign_pitch_class = NamedChromaticPitchClass(*args)
-      letter = foreign_pitch_class.letter
+      letter = foreign_pitch_class._diatonic_pitch_class_name
       for i, pc in enumerate(self):
-         if pc.letter == letter:
+         if pc._diatonic_pitch_class_name == letter:
             native_pitch_class = pc
             scale_degree_index = i
             scale_degree_number = scale_degree_index + 1
