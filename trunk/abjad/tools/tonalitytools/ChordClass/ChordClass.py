@@ -46,7 +46,7 @@ class ChordClass(NamedChromaticPitchClassSet):
       return not self == arg
          
    def __repr__(self):
-      root = self.root.name.title( )
+      root = str(self.root).title( )
       quality = self.quality_indicator._title_case_name
       return root + quality
 
@@ -56,9 +56,9 @@ class ChordClass(NamedChromaticPitchClassSet):
    def _markup_root(self):
       if self.quality_indicator._quality_string in (
          'major', 'augmented', 'dominant'):
-         root = self.root.name.upper( )
+         root = str(self.root).upper( )
       else:
-         root = self.root.name.lower( )
+         root = str(self.root).lower( )
       if len(root) == 2:
          adjustment = r'\hspace #-1 \raise #1 \fontsize #-3'
          if root[-1] == 's':
@@ -174,7 +174,7 @@ class ChordClass(NamedChromaticPitchClassSet):
    @property
    def root_string(self):
       capitalized_qualities = ('major', 'dominant', 'augmented')
-      symbolic_name = self.root.symbolic_name
+      symbolic_name = self.root._symbolic_name
       letter, accidental = symbolic_name[0], symbolic_name[1:]
       if self.quality_indicator.quality_string in capitalized_qualities:
          letter = letter.upper( )

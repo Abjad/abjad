@@ -67,12 +67,26 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
    @property
    def _format_string(self):
-      return ', '.join([str(x) for x in sorted(self)])
+      #return ', '.join([str(x) for x in sorted(self)])
+      return ', '.join([str(x) for x in self._sort_self( )])
 
    @property
    def _repr_string(self):
-      return ', '.join([repr(str(x)) for x in sorted(self)])
+      #return ', '.join([repr(str(x)) for x in sorted(self)])
+      return ', '.join([repr(str(x)) for x in self._sort_self( )])
 
+   ## PRIVATE METHODS ##
+
+   def _sort_self(self):
+      def helper(x, y):
+         if x._diatonic_pitch_class_name == y._diatonic_pitch_class_name:
+            return cmp(abs(x.numbered_chromatic_pitch_class), abs(y.numbered_chromatic_pitch_class))
+         else:
+            return cmp(x._diatonic_pitch_class_name, y._diatonic_pitch_class_name)
+      result = list(self)
+      result.sort(helper)
+      return result
+   
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -83,7 +97,8 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
    @property
    def named_chromatic_pitch_classes(self):
       result = list(self)
-      return tuple(sorted(self))
+      #return tuple(sorted(self))
+      return tuple(self._sort_self( ))
 
    @property
    def pitch_class_set(self):

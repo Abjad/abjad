@@ -18,10 +18,11 @@ def _leaf_to_pitch_and_rhythm_skeleton(leaf, include_keyword_attributes = False)
       keyword_attributes = '\n' + keyword_attributes
       keyword_attributes = [keyword_attributes]
    if isinstance(leaf, Note):
-      arguments = [(leaf.pitch.named_chromatic_pitch_class.name, leaf.pitch.octave_number), duration]
+      arguments = [(str(leaf.pitch.named_chromatic_pitch_class), leaf.pitch.octave_number), 
+         duration]
    elif isinstance(leaf, Chord):
       leaf_pairs = tuple([
-         (note_head.pitch.named_chromatic_pitch_class.name, note_head.pitch.octave_number) 
+         (str(note_head.pitch.named_chromatic_pitch_class), note_head.pitch.octave_number) 
          for note_head in leaf])
       arguments = [leaf_pairs, duration]
    else:

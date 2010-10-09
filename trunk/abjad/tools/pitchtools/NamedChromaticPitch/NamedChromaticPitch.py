@@ -211,7 +211,7 @@ class NamedChromaticPitch(_Pitch):
       object.__setattr__(self, '_deviation', deviation)
 
    def _init_by_named_chromatic_pitch_class_and_octave_number(self, npc, octave_number):
-      self._init_by_chromatic_pitch_class_name_and_octave_number(npc.name, octave_number)
+      self._init_by_chromatic_pitch_class_name_and_octave_number(npc._chromatic_pitch_class_name, octave_number)
 
    def _init_by_chromatic_pitch_number(self, chromatic_pitch_number):
       from abjad.tools import pitchtools

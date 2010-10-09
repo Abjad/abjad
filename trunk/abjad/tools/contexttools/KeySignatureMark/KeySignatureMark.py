@@ -52,9 +52,9 @@ class KeySignatureMark(Mark):
    @property
    def name(self):
       if self.mode.mode_name_string == 'major':
-         tonic = self.tonic.name.upper( )   
+         tonic = str(self.tonic).upper( )   
       else:
-         tonic = self.tonic.name
+         tonic = str(self.tonic)
       return '%s %s' % (tonic, self.mode.mode_name_string)
 
    @property
