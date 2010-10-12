@@ -43,16 +43,6 @@ class Scale(NamedChromaticPitchClassSegment):
       mode = self.key_signature.mode.mode_name_string.title( )
       return '%s%s' % (letter, mode)
 
-#   ## PRIVATE METHODS ##
-#
-#   def _init_by_key_signature(self, key_signature):
-#      self._key_signature = key_signature
-#      npcs = [key_signature.tonic]
-#      for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
-#         named_chromatic_pitch_class = npcs[-1] + mdi
-#         npcs.append(named_chromatic_pitch_class)
-#      self.extend(npcs)
-
    ## PUBLIC ATTRIBUTES ##
 
    @property
