@@ -3,6 +3,10 @@ class _LilyPondComponentPlugIn(object):
 
    Shared LilyPond grob proxy and LilyPond context proxy functionality.
    '''
+
+   def __init__(self, **kwargs):
+      for key, value in kwargs.iteritems( ):
+         setattr(self, key, value)
    
    ## OVERLOADS ##
    

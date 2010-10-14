@@ -9,9 +9,6 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
    LilyPond grob override component plug-in.
    '''
 
-   def __init__(self):
-      pass
-
    _known_lilypond_context_names = set([
       'choir_staff', 'chord_names', 'cue_voice', 'devnull', 'drum_staff',
       'drum_voice', 'dynamics', 'figured_bass', 'fret_boards', 'global',
