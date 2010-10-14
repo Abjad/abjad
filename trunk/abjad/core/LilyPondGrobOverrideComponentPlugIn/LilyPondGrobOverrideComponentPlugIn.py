@@ -1,8 +1,9 @@
+from abjad.core._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
 from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
 from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
 
 
-class LilyPondGrobOverrideComponentPlugIn(object):
+class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
    '''.. versionadded:: 1.1.2
 
    LilyPond grob override component plug-in.

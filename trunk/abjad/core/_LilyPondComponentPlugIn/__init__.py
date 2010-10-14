@@ -1,0 +1,1 @@
+from _LilyPondComponentPlugIn import _LilyPondComponentPlugIn
