@@ -10,6 +10,9 @@ class _LilyPondObjectProxy(object):
    
    ## OVERLOADS ##
    
+   def __copy__(self):
+      return eval(repr(self))
+
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
          return self._get_attribute_pairs( ) == arg._get_attribute_pairs( )

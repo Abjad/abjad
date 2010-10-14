@@ -6,3 +6,6 @@ class LilyPondGrobProxy(_LilyPondObjectProxy):
 
    LilyPond grob proxy.
    '''
+
+   def __copy__(self):
+      return eval(repr(self))
