@@ -56,36 +56,40 @@ def test_Chord___init____08( ):
 
 
 def test_Chord___init____09( ):
+   '''Init chord from skip.
+   '''
+
    t = tuplettools.FixedDurationTuplet((2, 8), skiptools.Skip((1, 8)) * 3)
    d = t[0].duration.written
-   Chord(t[0])
-   assert isinstance(t[0], Chord)
+   chord = Chord(t[0])
+   assert isinstance(t[0], skiptools.Skip)
+   assert isinstance(chord, Chord)
    assert t[0]._parentage.parent is t
    assert t[0].duration.written == d
+   assert chord._parentage.parent is None
 
 
 def test_Chord___init____10( ):
+   '''Init chord from containerized skip.
+   '''
+
    v = Voice(skiptools.Skip((1, 8)) * 3)
    d = v[0].duration.written
-   Chord(v[0])
-   assert isinstance(v[0], Chord)
+   chord = Chord(v[0])
+   assert isinstance(v[0], skiptools.Skip)
+   assert isinstance(chord, Chord)
    assert v[0]._parentage.parent is v
    assert v[0].duration.written == d
+   assert chord._parentage.parent is None
 
 
 def test_Chord___init____11( ):
-   t = Staff(skiptools.Skip((1, 8)) * 3)
-   d = t[0].duration.written
-   Chord(t[0])
-   assert isinstance(t[0], Chord)
-   assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   '''Init chord from beamed skip.
+   '''
 
-
-def test_Chord___init____12( ):
-   '''Works fine when skip is beamed.'''
    t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
    spannertools.BeamSpanner(t[:])
-   Chord(t[1])
-   assert isinstance(t[1], Chord)
+   chord = Chord(t[1])
+   assert isinstance(t[1], skiptools.Skip)
+   assert isinstance(chord, Chord)
    assert t[1]._parentage.parent is t
