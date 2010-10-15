@@ -49,4 +49,4 @@ def _initialize_chord(client, _Leaf, *args):
       _Leaf.__init__(client, duration)
       client.pitches = pitches
    else:
-      raise ValueError('can not initialize chord.')
+      raise ValueError('can not initialize chord from "%s".' % str(args))

@@ -43,5 +43,10 @@ def _initialize_note(client, _Leaf, *args):
       pitch, duration = args
       _Leaf.__init__(client, duration)
       client.note_head = pitch
+   elif len(args) == 3:
+      pitch, written_duration, lilypond_multiplier = args
+      _Leaf.__init__(client, written_duration)
+      client.duration.multiplier = lilypond_multiplier
+      client.note_head = pitch
    else:
-      raise ValueError('can not initialize note.')
+      raise ValueError('can not initialize note from "%s".' % str(args))

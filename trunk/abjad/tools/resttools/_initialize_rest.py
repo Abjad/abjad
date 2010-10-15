@@ -33,4 +33,4 @@ def _initialize_rest(client, _Leaf, *args):
       _Leaf.__init__(client, written_duration)
       client.duration.multiplier = lilypond_multiplier
    else:
-      raise ValueError('can not initialize rest.')
+      raise ValueError('can not initialize rest from "%s".' % str(args))

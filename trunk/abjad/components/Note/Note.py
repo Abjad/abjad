@@ -1,4 +1,5 @@
 from abjad.components._Leaf import _Leaf
+import copy
 
 
 class Note(_Leaf):
@@ -26,14 +27,27 @@ class Note(_Leaf):
 
    ## OVERLOADS ##
 
+   def __copy__(self, *args):
+      new = type(self)(*self.__getnewargs__( ))
+      if getattr(self, '_override', None) is not None:
+         new._override = copy.copy(self.override)
+      if getattr(self, '_set', None) is not None:
+         new._set = copy.copy(self.set)
+      return new
+
    def __eq__(self, arg):
       if _Leaf.__eq__(self, arg):
          if self.pitch == arg.pitch:
             return True
       return False
 
-   #def __repr__(self):
-   #   return '%s(%s)' % (self.__class__.__name__, repr(self._compact_representation))
+   def __getnewargs__(self):
+      result = [ ]
+      result.append(self.pitch)
+      result.append(self.duration.written)
+      if self.duration.multiplier is not None:
+         result.append(self.duration.multiplier)
+      return tuple(result)
 
    ## PRIVATE ATTRIBUTES ##
 

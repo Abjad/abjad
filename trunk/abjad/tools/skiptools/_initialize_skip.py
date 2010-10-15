@@ -28,5 +28,9 @@ def _initialize_skip(client, _Leaf, *args):
    elif len(args) == 1:
       duration = args[0]
       _Leaf.__init__(client, duration)
+   elif len(args) == 2:
+      written_duration, lilypond_multiplier = args
+      _Leaf.__init__(client, written_duration)
+      client.duration.multiplier = lilypond_multiplier
    else:
-      raise ValueError('can not initialize skip.')
+      raise ValueError('can not initialize skip from "%s".' % str(args))

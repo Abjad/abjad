@@ -30,7 +30,7 @@ def test_Rest___copy___02( ):
    assert rest_1 is not rest_2
 
 
-def test_Rest___copy___02( ):
+def test_Rest___copy___03( ):
    '''Copy rest with LilyPond grob overrides and LilyPond context settings.
    '''
 
