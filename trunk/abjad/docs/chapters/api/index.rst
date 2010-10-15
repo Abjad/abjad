@@ -835,6 +835,7 @@ resttools
    :maxdepth: 1
 
    tools/resttools/MultiMeasureRest/MultiMeasureRest
+   tools/resttools/is_lilypond_rest_string
    tools/resttools/make_rests
    tools/resttools/set_vertical_positioning_pitch_on_rest
 
