@@ -1,3 +1,4 @@
+import copy
 import re
 
 
@@ -6,31 +7,44 @@ def _initialize_note(client, _Leaf, *args):
    from abjad.components import Chord
    from abjad.components import Note
    from abjad.tools import componenttools
-   from abjad.tools.scoretools._transfer_all_attributes import _transfer_all_attributes
+   #from abjad.tools.scoretools._transfer_all_attributes import _transfer_all_attributes
    from abjad.tools.skiptools import Skip
-   client.note_head = None
-   if isinstance(args[0], Note):
-      note = args[0]
-      _Leaf.__init__(client, note.duration.written)
-      _transfer_all_attributes(note, client)
-   elif isinstance(args[0], Rest):
-      rest = args[0]
-      _Leaf.__init__(client, rest.duration.written)
-      _transfer_all_attributes(rest, client)
-   elif isinstance(args[0], Chord):
-      chord = args[0]
-      _Leaf.__init__(client, chord.duration.written)
-      # must copy chord BEFORE _transfer_all_attributes
-      if 0 < len(chord):
-         copy = componenttools.clone_components_and_fracture_crossing_spanners([chord])[0]
-      _transfer_all_attributes(chord, client)
-      del client._note_heads
-      if 0 < len(chord):
-         client.note_head = copy.note_heads[0]
-   elif isinstance(args[0], Skip):
-      skip = args[0]
-      _Leaf.__init__(client, skip.duration.written)
-      _transfer_all_attributes(skip, client)
+#   client.note_head = None
+#   if isinstance(args[0], Note):
+#      note = args[0]
+#      _Leaf.__init__(client, note.duration.written)
+#      _transfer_all_attributes(note, client)
+#   elif isinstance(args[0], Rest):
+#      rest = args[0]
+#      _Leaf.__init__(client, rest.duration.written)
+#      _transfer_all_attributes(rest, client)
+#   elif isinstance(args[0], Chord):
+#      chord = args[0]
+#      _Leaf.__init__(client, chord.duration.written)
+#      # must copy chord BEFORE _transfer_all_attributes
+#      if 0 < len(chord):
+#         copy = componenttools.clone_components_and_fracture_crossing_spanners([chord])[0]
+#      _transfer_all_attributes(chord, client)
+#      del client._note_heads
+#      if 0 < len(chord):
+#         client.note_head = copy.note_heads[0]
+#   elif isinstance(args[0], Skip):
+#      skip = args[0]
+#      _Leaf.__init__(client, skip.duration.written)
+#      _transfer_all_attributes(skip, client)
+   if len(args) == 1 and isinstance(args[0], (Note, Rest, Chord, Skip)):
+      _Leaf.__init__(client, args[0].duration.written, args[0].duration.multiplier)
+      if hasattr(args[0], 'pitch'):
+         pitch = args[0].pitch
+      elif hasattr(args[0], 'pitches'):
+         pitch = args[0].pitches[0]
+      else:
+         pitch = None
+      client.note_head = pitch
+      if getattr(args[0], '_override', None) is not None:
+         client._override = copy.copy(args[0].override)
+      if getattr(args[0], '_set', None) is not None:
+         client._set = copy.copy(args[0].set)
    elif len(args) == 1 and isinstance(args[0], str):
       from abjad.tools.lilyfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
       match = re.match(_lilypond_leaf_regex, args[0])

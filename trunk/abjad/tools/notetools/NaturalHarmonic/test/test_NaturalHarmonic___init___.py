@@ -1,12 +1,14 @@
 from abjad import *
 
 
-def test_NaturalHarmonic_cast_01( ):
+def test_NaturalHarmonic___init____01( ):
    '''It is possible to cast notes into natural harmonics.'''
 
    t = Staff(macros.scale(4))
-   notetools.NaturalHarmonic(t[1])
-
+   natural_harmonic = notetools.NaturalHarmonic(t[1])
+   componenttools.move_parentage_and_spanners_from_components_to_components(
+      t[1:2], [natural_harmonic])
+   
    r'''
    \new Staff {
            c'8

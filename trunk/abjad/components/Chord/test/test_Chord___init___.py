@@ -41,3 +41,51 @@ def test_Chord___init____07( ):
    '''Init chord with complete LilyPond-style chord string.'''
    t = Chord("<d' ef' e'>4")
    assert t.format == "<d' ef' e'>4"
+
+
+def test_Chord___init____08( ):
+   '''Cast skip as chord.'''
+   s = skiptools.Skip((1, 8))
+   d = s.duration.written
+   c = Chord(s)
+   assert isinstance(c, Chord)
+   assert dir(s) == dir(skiptools.Skip((1, 4)))
+   assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
+   assert c._parentage.parent is None
+   assert c.duration.written == d
+
+
+def test_Chord___init____09( ):
+   t = tuplettools.FixedDurationTuplet((2, 8), skiptools.Skip((1, 8)) * 3)
+   d = t[0].duration.written
+   Chord(t[0])
+   assert isinstance(t[0], Chord)
+   assert t[0]._parentage.parent is t
+   assert t[0].duration.written == d
+
+
+def test_Chord___init____10( ):
+   v = Voice(skiptools.Skip((1, 8)) * 3)
+   d = v[0].duration.written
+   Chord(v[0])
+   assert isinstance(v[0], Chord)
+   assert v[0]._parentage.parent is v
+   assert v[0].duration.written == d
+
+
+def test_Chord___init____11( ):
+   t = Staff(skiptools.Skip((1, 8)) * 3)
+   d = t[0].duration.written
+   Chord(t[0])
+   assert isinstance(t[0], Chord)
+   assert t[0]._parentage.parent is t
+   assert t[0].duration.written == d
+
+
+def test_Chord___init____12( ):
+   '''Works fine when skip is beamed.'''
+   t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
+   spannertools.BeamSpanner(t[:])
+   Chord(t[1])
+   assert isinstance(t[1], Chord)
+   assert t[1]._parentage.parent is t
