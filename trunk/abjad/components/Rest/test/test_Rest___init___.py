@@ -114,3 +114,89 @@ def test_Rest___init____09( ):
    assert t[1] in t
    assert isinstance(rest, Rest)
    assert rest not in t
+
+
+def test_Rest___init____10( ):
+   '''Init rest from unincorporated note.
+   '''
+
+   n = Note(2, (1, 8))
+   d = n.duration.written
+   r = Rest(n)
+   assert isinstance(r, Rest)
+   # check that attributes have not been removed or added.
+   assert dir(n) == dir(Note(0, (1, 8)))
+   assert dir(r) == dir(Rest((1, 4)))
+   assert r.format == 'r8'
+   assert r._parentage.parent is None
+   assert r.duration.written == d
+
+
+def test_Rest___init____11( ):
+   '''Init rest from tupletized note.
+   '''
+
+   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   d = t[0].duration.written
+   rest = Rest(t[0])
+   assert isinstance(t[0], Note)
+   assert isinstance(rest, Rest)
+   assert t[0]._parentage.parent is t
+   assert t[0].duration.written == d
+   assert rest._parentage.parent is None
+
+
+def test_Rest___init____12( ):
+   '''Init rest from beamed note.
+   '''
+
+   t = Staff(Note(0, (1, 8)) * 3)
+   spannertools.BeamSpanner(t[:])
+   rest = Rest(t[0])
+   assert isinstance(t[0], Note)
+   assert isinstance(rest, Rest)
+   assert t[0]._parentage.parent is t
+   assert rest._parentage.parent is None
+
+
+def test_Rest___init____13( ):
+   '''Init rest from spanned note.
+   '''
+
+   t = Voice(macros.scale(4))
+   spannertools.BeamSpanner(t[:])
+   rest = Rest(t[-1])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
+
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      r8 ]
+   }
+   '''
+
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tr8 ]\n}"
+
+
+def test_Rest___init____14( ):
+   '''Init multiple rests from spanned notes.
+   '''
+
+   t = Voice(macros.scale(4))
+   spannertools.BeamSpanner(t[:])
+   for note in t:
+      rest = Rest(note)
+      componenttools.move_parentage_and_spanners_from_components_to_components([note], [rest])
+
+   r'''
+   \new Voice {
+      r8 [
+      r8
+      r8
+      r8 ]
+   }
+   '''
+
+   assert t.format == '\\new Voice {\n\tr8 [\n\tr8\n\tr8\n\tr8 ]\n}'

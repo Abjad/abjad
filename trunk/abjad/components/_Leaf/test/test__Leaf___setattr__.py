@@ -4,7 +4,7 @@ import py.test
 py.test.skip('unskip test after removing casting code.')
 
 
-def test__Leaf___slots___01( ):
+def test__Leaf___setattr___01( ):
    '''Slots constrain leaf attributes.
    '''
 

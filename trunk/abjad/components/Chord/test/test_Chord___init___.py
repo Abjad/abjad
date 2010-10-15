@@ -93,3 +93,91 @@ def test_Chord___init____11( ):
    assert isinstance(t[1], skiptools.Skip)
    assert isinstance(chord, Chord)
    assert t[1]._parentage.parent is t
+
+
+def test_Chord___init____12( ):
+   '''Init chord from rest.
+   '''
+
+   r = Rest((1, 8))
+   d = r.duration.written
+   c = Chord(r)
+   assert isinstance(c, Chord)
+   # check that attributes have not been removed or added.
+   assert dir(r) == dir(Rest((1, 4)))
+   assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
+   assert c._parentage.parent is None
+   assert c.duration.written == d
+
+
+def test_Chord___init____13( ):
+   '''Init chord from tupletized rest.
+   '''
+
+   t = tuplettools.FixedDurationTuplet((2, 8), Rest((1, 8)) * 3)
+   d = t[0].duration.written
+   chord = Chord(t[0])
+   assert isinstance(t[0], Rest)
+   assert isinstance(chord, Chord)
+   assert t[0]._parentage.parent is t
+   assert t[0].duration.written == d
+   assert chord._parentage.parent is None
+
+
+def test_Chord___init____14( ):
+   '''Init chord from rest.
+   '''
+
+   t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
+   spannertools.BeamSpanner(t[:])
+   chord = Chord(t[1])
+   assert isinstance(t[1], Rest)
+   assert isinstance(chord, Chord)
+   assert t[1]._parentage.parent is t
+   assert chord._parentage.parent is None
+
+
+def test_Chord___init____15( ):
+   '''Init chord from note.
+   '''
+
+   n = Note(2, (1, 8))
+   h, p, d = n.note_head, n.pitch, n.duration.written
+   c = Chord(n)
+   assert isinstance(c, Chord)
+   # check that attributes have not been removed or added.
+   assert dir(n) == dir(Note(0, (1, 4)))
+   assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
+   assert c.format == "<d'>8"
+   assert c._parentage.parent is None
+   assert c.note_heads[0] is not h
+   assert c.pitches[0] == p
+   assert c.duration.written == d
+
+
+def test_Chord___init____16( ):
+   '''Init chord from tupletized note.
+   '''
+
+   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   h, p, d = t[0].note_head, t[0].pitch, t[0].duration.written
+   chord = Chord(t[0])
+   assert isinstance(t[0], Note)
+   assert isinstance(chord, Chord)
+   assert chord.format == "<c'>8"
+   assert t[0]._parentage.parent is t
+   assert chord.note_heads[0] is not h
+   assert chord.pitches[0] == p
+   assert chord.duration.written == d
+
+
+def test_Chord___init____17( ):
+   '''Init chord from beamed note.
+   '''
+
+   t = Staff(Note(0, (1, 8)) * 3)
+   spannertools.BeamSpanner(t[:])
+   chord = Chord(t[0])
+   assert isinstance(t[0], Note)
+   assert isinstance(chord, Chord)
+   assert t[0]._parentage.parent is t

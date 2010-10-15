@@ -58,3 +58,80 @@ def test_Skip___init____05( ):
    assert isinstance(skip, skiptools.Skip)
    assert t[0]._parentage.parent is t
    assert skip._parentage.parent is None
+
+
+def test_Skip___init____06( ):
+   n = Note(2, (1, 8))
+   d = n.duration.written
+   s = skiptools.Skip(n)
+   assert isinstance(s, skiptools.Skip)
+   # check that attributes have not been removed or added.
+   assert dir(n) == dir(Note(0, (1, 4)))
+   assert dir(s) == dir(skiptools.Skip((1, 4)))
+   assert s.format == 's8'
+   assert s._parentage.parent is None
+   assert s.duration.written == d
+
+
+def test_Skip___init____07( ):
+   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   d = t[0].duration.written
+   skip = skiptools.Skip(t[0])
+   assert isinstance(t[0], Note)
+   assert isinstance(skip, skiptools.Skip)
+   assert t[0]._parentage.parent is t
+   assert t[0].duration.written == d
+
+
+def test_Skip___init____08( ):
+   '''Init skip from beamed note.
+   '''
+
+   t = Staff(Note(0, (1, 8)) * 3)
+   spannertools.BeamSpanner(t[:])
+   skip = skiptools.Skip(t[0])
+   assert isinstance(t[0], Note)
+   assert isinstance(skip, skiptools.Skip)
+   assert t[0]._parentage.parent is t
+
+
+def test_Skip___init____09( ):
+   '''Init skip from unincorporaed rest.
+   '''
+
+   r = Rest((1, 8))
+   d = r.duration.written
+   s = skiptools.Skip(r)
+   assert isinstance(s, skiptools.Skip)
+   # check that attributes have not been removed or added.
+   assert dir(r) == dir(Rest((1, 4)))
+   assert dir(s) == dir(skiptools.Skip((1, 4)))
+   assert s._parentage.parent is None
+   assert s.duration.written == d
+
+
+def test_Skip___init____10( ):
+   '''Init skip from tupletized rest.
+   '''
+
+   t = tuplettools.FixedDurationTuplet((2, 8), Rest((1, 8)) * 3)
+   d = t[0].duration.written
+   skip = skiptools.Skip(t[0])
+   assert isinstance(skip, skiptools.Skip)
+   assert isinstance(t[0], Rest)
+   assert t[0]._parentage.parent is t
+   assert t[0].duration.written == d
+   assert skip._parentage.parent is None
+
+
+def test_Skip___init____11( ):
+   '''Init skip from spanned rest.
+   '''
+
+   t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
+   spannertools.BeamSpanner(t[:])
+   skip = skiptools.Skip(t[1])
+   assert isinstance(skip, skiptools.Skip)
+   assert isinstance(t[1], Rest)
+   assert t[1]._parentage.parent is t
+   assert skip._parentage.parent is None

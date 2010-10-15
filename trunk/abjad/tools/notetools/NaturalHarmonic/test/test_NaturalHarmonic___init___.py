@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_NaturalHarmonic___init____01( ):
-   '''It is possible to cast notes into natural harmonics.'''
+   '''Init natural harmonic from note.
+   '''
 
    t = Staff(macros.scale(4))
    natural_harmonic = notetools.NaturalHarmonic(t[1])
