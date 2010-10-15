@@ -26,7 +26,6 @@ class Rest(_Leaf):
          new._set = copy.copy(self.set)
       return new
 
-
    def __getnewargs__(self):
       result = [ ]
       result.append(self.duration.written)
