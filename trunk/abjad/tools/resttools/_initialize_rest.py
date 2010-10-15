@@ -28,5 +28,9 @@ def _initialize_rest(client, _Leaf, *args):
    elif len(args) == 1 and not isinstance(args[0], str):
       duration = args[0]
       _Leaf.__init__(client, duration)
+   elif len(args) == 2:
+      written_duration, lilypond_multiplier = args
+      _Leaf.__init__(client, written_duration)
+      client.duration.multiplier = lilypond_multiplier
    else:
       raise ValueError('can not initialize rest.')

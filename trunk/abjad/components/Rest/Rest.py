@@ -1,4 +1,5 @@
 from abjad.components._Leaf import _Leaf
+import copy
 
 
 class Rest(_Leaf):
@@ -17,11 +18,20 @@ class Rest(_Leaf):
 
    ## OVERRIDES ##
 
+   def __copy__(self, *args):
+      new = type(self)(*self.__getnewargs__( ))
+      if getattr(self, '_override', None) is not None:
+         new._override = copy.copy(self.override)
+      if getattr(self, '_set', None) is not None:
+         new._set = copy.copy(self.set)
+      return new
+
    def __getnewargs__(self):
+      result = [ ]
+      result.append(self.duration.written)
       if self.duration.multiplier is not None:
-         return (self.duration.written, self.duration.multiplier)
-      else:
-         return (self.duration.written, )
+         result.append(self.duration.multiplier)
+      return tuple(result)
    
    ## PRIVATE ATTRIBUTES ##
 
