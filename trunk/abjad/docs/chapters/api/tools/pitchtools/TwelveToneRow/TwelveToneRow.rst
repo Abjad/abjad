@@ -1,8 +1,6 @@
 pitchtools.TwelveToneRow
 ========================
 
-.. automodule:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow
-
 .. autoclass:: abjad.tools.pitchtools.TwelveToneRow
    :members:
    :undoc-members:

@@ -51,8 +51,8 @@ def make_sphinx_module_listing(package_path, file):
 
    module = os.path.join(package_path, file)
    module = module.replace(os.path.sep, '.')
-   result += '.. automodule:: %s\n' % module
-   result += '\n'
+   #result += '.. automodule:: %s\n' % module
+   #result += '\n'
 
    for member in members:
 

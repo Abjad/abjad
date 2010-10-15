@@ -1,8 +1,6 @@
 Container
 =========
 
-.. automodule:: abjad.components.Container.Container
-
 .. autoclass:: abjad.Container
    :members:
    :undoc-members:
