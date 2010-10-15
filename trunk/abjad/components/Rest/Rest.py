@@ -17,11 +17,11 @@ class Rest(_Leaf):
 
    ## OVERRIDES ##
 
-#   def __getnewargs__(self):
-#      if self.duration.multiplier is not None:
-#         return (self.duration.written, self.duration.multiplier)
-#      else:
-#         return (self.duration.written, )
+   def __getnewargs__(self):
+      if self.duration.multiplier is not None:
+         return (self.duration.written, self.duration.multiplier)
+      else:
+         return (self.duration.written, )
    
    ## PRIVATE ATTRIBUTES ##
 
