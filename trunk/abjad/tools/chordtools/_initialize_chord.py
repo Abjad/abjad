@@ -48,5 +48,10 @@ def _initialize_chord(client, _Leaf, *args):
       pitches, duration = args
       _Leaf.__init__(client, duration)
       client.pitches = pitches
+   elif len(args) == 3:
+      pitches, written_duration, lilypond_multiplier = args
+      _Leaf.__init__(client, written_duration)
+      client.duration.multiplier = lilypond_multiplier
+      client.pitches = pitches
    else:
       raise ValueError('can not initialize chord from "%s".' % str(args))

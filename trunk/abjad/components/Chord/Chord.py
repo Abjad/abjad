@@ -1,4 +1,5 @@
 from abjad.components._Leaf import _Leaf
+import copy
 
 
 class Chord(_Leaf):
@@ -17,6 +18,14 @@ class Chord(_Leaf):
 
    ## OVERLOADS ##
 
+   def __copy__(self, *args):
+      new = type(self)(*self.__getnewargs__( ))
+      if getattr(self, '_override', None) is not None:
+         new._override = copy.copy(self.override)
+      if getattr(self, '_set', None) is not None:
+         new._set = copy.copy(self.set)
+      return new
+
    def __contains__(self, arg):
       from abjad.tools.notetools.NoteHead import NoteHead
       note_head = NoteHead(arg)
@@ -33,6 +42,14 @@ class Chord(_Leaf):
 
    def __getitem__(self, i):
       return self._note_heads[i]
+
+   def __getnewargs__(self):
+      result = [ ]
+      result.append(self.pitches)
+      result.append(self.duration.written)
+      if self.duration.multiplier is not None:
+         result.append(self.duration.multiplier)
+      return tuple(result)
 
    def __len__(self):
       return len(self.note_heads)
