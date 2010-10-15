@@ -25,6 +25,12 @@ class _Leaf(_Component):
                return True
       return False
 
+#   def __getnewargs__(self):
+#      if self.duration.mutliplier is not None:
+#         return (self.duration.written, self.duration.multiplier)
+#      else:
+#         return (self.duration.written, )
+
    def __or__(self, arg):
       return self._operate(arg, operator.__or__)
 
