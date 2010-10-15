@@ -8,7 +8,8 @@ def test__Leaf_cast_spanned_01( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   Rest(t[-1])
+   rest = Rest(t[-1])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
 
    r'''
    \new Voice {
@@ -30,7 +31,8 @@ def test__Leaf_cast_spanned_02( ):
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
    for note in t:
-      Rest(note)
+      rest = Rest(note)
+      componenttools.move_parentage_and_spanners_from_components_to_components([note], [rest])
 
    r'''
    \new Voice {

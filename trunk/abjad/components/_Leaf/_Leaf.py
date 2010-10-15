@@ -9,9 +9,10 @@ class _Leaf(_Component):
    ## TODO: remove 'grace' attribute and replace with grace getter tools function ##
    #__slots__ = ('_after_grace', 'after_grace', '_duration', '_grace', 'grace')
 
-   def __init__(self, duration):
+   def __init__(self, written_duration, lilypond_multiplier = None):
       _Component.__init__(self)
-      self._duration = _LeafDurationInterface(self, duration)
+      self._duration = _LeafDurationInterface(self, written_duration)
+      self._duration.multiplier = lilypond_multiplier
 
    ## OVERLOADS ##
 

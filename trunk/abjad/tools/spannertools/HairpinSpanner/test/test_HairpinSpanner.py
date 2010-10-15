@@ -187,8 +187,10 @@ def test_HairpinSpanner_09( ):
    '''Trim hairpins with dynamic marks behave as expected.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Rest(t[0])
-   Rest(t[-1])
+   rest = Rest(t[0])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[0:1], [rest])
+   rest = Rest(t[-1])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
    spannertools.HairpinSpanner(t.leaves, 'p < f', trim = True)
 
    spanner = spannertools.get_the_only_spanner_attached_to_component(

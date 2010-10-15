@@ -21,7 +21,8 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
    '''Container with rest.'''
    
    t = Container(macros.scale(3))
-   Rest(t[1])
+   rest = Rest(t[1])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [rest])
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''
@@ -71,7 +72,6 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_05( ):
    '''Fixed multiplier tuplet.'''
 
-   #t = Tuplet((2, 3), macros.scale(3))
    t = Tuplet((2, 3), macros.scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
