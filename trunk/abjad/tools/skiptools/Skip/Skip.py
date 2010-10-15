@@ -11,6 +11,8 @@ class Skip(_Leaf):
       Skip('s8.')
    '''
 
+   __slots__ = ( )
+
    def __init__(self, *args, **kwargs):
       from abjad.tools.skiptools._initialize_skip import _initialize_skip
       _initialize_skip(self, _Leaf, *args)

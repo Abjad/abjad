@@ -1,20 +1,18 @@
 from abjad.components._Leaf import _Leaf
-from abjad.components.Rest.Rest import Rest
+from abjad.components import Rest
 
 
 class MultiMeasureRest(Rest):
-   '''The Abjad model of a multi-measure rest.'''
+   '''The Abjad model of a multi-measure rest.
+   '''
    
+   __slots__ = ( )
+
    def __init__(self, *args, **kwargs):
       from abjad.tools.resttools._initialize_multi_measure_rest import \
          _initialize_multi_measure_rest
       _initialize_multi_measure_rest(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
-
-   ## OVERLOADS ##
-
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.duration)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -31,10 +29,10 @@ class MultiMeasureRest(Rest):
       result = 'R' + str(self.duration)
       return [result]
 
-   @property
-   def pitch(self):
-      '''Read-only empty tuple.
-      Multi-measure rests do not support so-called pitched rest.
-      To change a multi-measure rest's staff position,
-      override the grob's staff-position property instead.'''
-      return ( )
+#   @property
+#   def pitch(self):
+#      '''Read-only empty tuple.
+#      Multi-measure rests do not support so-called pitched rest.
+#      To change a multi-measure rest's staff position,
+#      override the grob's staff-position property instead.'''
+#      return ( )

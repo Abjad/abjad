@@ -1,9 +1,10 @@
 from abjad import *
 import py.test
-py.test.skip('not yet implemented')
 
 
 def test_Rest___setattr___01( ):
+   '''Slots constrain rest attributes.
+   '''
 
    rest = Rest((1, 4))
 

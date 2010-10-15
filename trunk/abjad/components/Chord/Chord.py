@@ -11,6 +11,8 @@ class Chord(_Leaf):
       Chord("ef' cs'' f''", '4')
    '''
 
+   __slots__ = ('_note_heads', '_pitches', )
+
    def __init__(self, *args, **kwargs):
       from abjad.tools.chordtools._initialize_chord import _initialize_chord
       _initialize_chord(self, _Leaf, *args)

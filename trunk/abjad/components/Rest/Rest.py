@@ -11,6 +11,9 @@ class Rest(_Leaf):
       Rest('r8.')
    '''
 
+   ## TODO: add vertical positioning pitch only as needed ##
+   __slots__ = ('_vertical_positioning_pitch', )
+
    def __init__(self, *args, **kwargs):
       from abjad.tools.resttools._initialize_rest import _initialize_rest
       _initialize_rest(self, _Leaf, *args)
