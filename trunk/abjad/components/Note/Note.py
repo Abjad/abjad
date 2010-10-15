@@ -11,18 +11,11 @@ class Note(_Leaf):
       Note("cs''8.")
    '''
 
-   ## TODO: remove _note_heads attribute after removing casting code ##
-   #__slots__ = ('_note_head', '_note_heads', '_pitch', )
+   __slots__ = ('_note_head', '_pitch', )
    
    def __init__(self, *args, **kwargs):
       from abjad.tools.notetools._initialize_note import _initialize_note
-      #written_duration, pitch = (1, 4), 0
-      #if isinstance(args[0], Note):
-      if False:
-         note = args[0]
-         written_duration, pitch = note.duration.written, note.pitch
-      else:
-         _initialize_note(self, _Leaf, *args)
+      _initialize_note(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##

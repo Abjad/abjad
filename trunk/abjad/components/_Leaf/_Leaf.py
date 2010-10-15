@@ -5,9 +5,9 @@ import operator
 
 class _Leaf(_Component):
 
-   ## TODO: remove 'after_grace' attribute and replace with grace getter tools function ##
-   ## TODO: remove 'grace' attribute and replace with grace getter tools function ##
-   #__slots__ = ('_after_grace', 'after_grace', '_duration', '_grace', 'grace')
+   ## TODO: encapsuate grace and tremolo attributes ##
+   __slots__ = ('_after_grace', '_duration', '_grace', 'after_grace', 'grace', 
+      'tremolo_subdivision', )
 
    def __init__(self, written_duration, lilypond_multiplier = None):
       _Component.__init__(self)

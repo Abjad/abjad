@@ -1,6 +1,5 @@
 from abjad import *
 import py.test
-py.test.skip('unskip test after removing casting code.')
 
 
 def test_Note___setattr___01( ):
