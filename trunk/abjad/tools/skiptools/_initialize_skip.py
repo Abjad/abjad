@@ -1,27 +1,17 @@
+import copy
+
+
 def _initialize_skip(client, _Leaf, *args): 
    from abjad.components import Chord
    from abjad.components import Note
    from abjad.components import Rest
-   from abjad.tools.scoretools._transfer_all_attributes import _transfer_all_attributes
    from abjad.tools.skiptools import Skip
-   if isinstance(args[0], Note):
-      note = args[0]
-      _Leaf.__init__(client, note.duration.written)
-      _transfer_all_attributes(note, client)
-      del client._note_head
-   elif isinstance(args[0], Rest):
-      rest = args[0]
-      _Leaf.__init__(client, rest.duration.written)
-      _transfer_all_attributes(rest, client)
-   elif isinstance(args[0], Chord):
-      chord = args[0]
-      _Leaf.__init__(client, chord.duration.written)
-      _transfer_all_attributes(chord, client)
-      del client._note_heads
-   elif isinstance(args[0], Skip):
-      skip = args[0]
-      _Leaf.__init__(client, skip.duration.written)
-      _transfer_all_attributes(skip, client)
+   if len(args) == 1 and isinstance(args[0], (Note, Rest, Chord, Skip)):
+      _Leaf.__init__(client, args[0].duration.written, args[0].duration.multiplier)
+      if getattr(args[0], '_override', None) is not None:
+         client._override = copy.copy(args[0].override)
+      if getattr(args[0], '_set', None) is not None:
+         client._set = copy.copy(args[0].set)
    elif len(args) == 1 and isinstance(args[0], str):
       duration = args[0].strip('s')
       _Leaf.__init__(client, duration)

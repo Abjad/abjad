@@ -33,6 +33,8 @@ def replace_leaves_in_expr_with_skips(expr):
       renamed ``leaftools.replace_leaves_in_expr_with_skips( )`` to
       ``skiptools.replace_leaves_in_expr_with_skips( )``.
    '''
+   from abjad.tools import componenttools
 
    for leaf in iterate_leaves_forward_in_expr(expr):
-      Skip(leaf)
+      skip = Skip(leaf)
+      componenttools.move_parentage_and_spanners_from_components_to_components([leaf], [skip])

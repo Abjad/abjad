@@ -1,3 +1,6 @@
+import copy
+
+
 def _initialize_rest(client, _Leaf, *args): 
    from abjad.components import Chord
    from abjad.components import Note
