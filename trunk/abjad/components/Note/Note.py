@@ -35,6 +35,8 @@ class Note(_Leaf):
          new._set = copy.copy(self.set)
       return new
 
+   #__deepcopy__ = __copy__
+
    def __eq__(self, arg):
       if _Leaf.__eq__(self, arg):
          if self.pitch == arg.pitch:

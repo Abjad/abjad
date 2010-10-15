@@ -18,6 +18,11 @@ class Chord(_Leaf):
 
    ## OVERLOADS ##
 
+   def __contains__(self, arg):
+      from abjad.tools.notetools.NoteHead import NoteHead
+      note_head = NoteHead(arg)
+      return note_head in self.note_heads
+
    def __copy__(self, *args):
       new = type(self)(*self.__getnewargs__( ))
       if getattr(self, '_override', None) is not None:
@@ -26,10 +31,7 @@ class Chord(_Leaf):
          new._set = copy.copy(self.set)
       return new
 
-   def __contains__(self, arg):
-      from abjad.tools.notetools.NoteHead import NoteHead
-      note_head = NoteHead(arg)
-      return note_head in self.note_heads
+   #__deepcopy__ = __copy__
 
    def __delitem__(self, i):
       del(self._note_heads[i])

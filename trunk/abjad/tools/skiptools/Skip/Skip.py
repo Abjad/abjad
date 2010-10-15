@@ -25,6 +25,8 @@ class Skip(_Leaf):
       if getattr(self, '_set', None) is not None:
          new._set = copy.copy(self.set)
       return new
+
+   #__deepcopy__ = __copy__
       
    def __getnewargs__(self):
       result = [ ]
