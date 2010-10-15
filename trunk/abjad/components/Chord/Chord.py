@@ -50,26 +50,13 @@ class Chord(_Leaf):
          note_head = NoteHead(arg)
       note_head._client = self
       self._note_heads[i] = note_head
-      self._sort( )
+      self._note_heads.sort( )
 
    ## PRIVATE ATTRIBUTES ##
 
    @property
    def _compact_representation(self):
       return '<%s>%s' % (self._summary, self.duration)
-
-   ## PRIVATE METHODS ##
-
-   def _sort(self):
-      '''Sort note heads in chord by diatonic pitch number.
-      '''
-      def _helper(nh1, nh2):
-         result = cmp(nh1.pitch.numbered_diatonic_pitch, nh2.pitch.numbered_diatonic_pitch)
-         if result:
-            return result
-         else:
-            return cmp(nh1.pitch.numbered_chromatic_pitch._chromatic_pitch_number, nh2.pitch.numbered_chromatic_pitch._chromatic_pitch_number)
-      self._note_heads.sort(_helper)
 
    @property
    def _summary(self):
@@ -148,7 +135,7 @@ class Chord(_Leaf):
          note_head = NoteHead(note_head_token)
       note_head._client = self
       self._note_heads.append(note_head)
-      self._sort( )
+      self._note_heads.sort( )
 
    def extend(self, note_head_tokens):
       '''Extend chord with `note_head_tokens`::
