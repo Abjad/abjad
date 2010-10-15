@@ -15,7 +15,13 @@ class Note(_Leaf):
    
    def __init__(self, *args, **kwargs):
       from abjad.tools.notetools._initialize_note import _initialize_note
-      _initialize_note(self, _Leaf, *args)
+      #written_duration, pitch = (1, 4), 0
+      #if isinstance(args[0], Note):
+      if False:
+         note = args[0]
+         written_duration, pitch = note.duration.written, note.pitch
+      else:
+         _initialize_note(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##

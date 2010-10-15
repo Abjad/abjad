@@ -1,7 +1,8 @@
+from abjad.core import _UnaryComparator
 from abjad.core import LilyPondTweakReservoir
 
 
-class NoteHead(object):
+class NoteHead(_UnaryComparator):
    r'''The Abjad model of a note head:
 
    ::
@@ -19,20 +20,21 @@ class NoteHead(object):
       elif len(args) == 2:
          _client, pitch = args
       else:
-         raise ValueError('\n\tCan not initialize note head from args: "%s".' % str(args))
+         raise ValueError('\n\tCan not initialize note head from args "%s".' % str(args))
       self._client = _client
       self.pitch = pitch
+      ## must assign comparison attribute after pitch initialization ##
+      self._comparison_attribute = self.pitch
 
    ## OVERLOADS ##
 
-   def __eq__(self, expr):
-      if isinstance(expr, type(self)):
-         if self.pitch == expr.pitch:
-            return True
-      return False
+   def __copy__(self, *args):
+      return type(self)(*self.__getnewargs__( ))
 
-   def __ne__(self, expr):
-      return not self == expr
+   __deepcopy__ = __copy__
+      
+   def __getnewargs__(self):
+      return (self.pitch, )
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, repr(self._format_string))
