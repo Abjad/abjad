@@ -6,7 +6,10 @@ def test_Skip___repr___01( ):
    '''Skip repr is evaluable.
    '''
 
-   skip = Skip('s8.')
-   new_skip = eval(repr(skip))
+   skip_1 = Skip('s8.')
+   skip_2 = eval(repr(skip_1))
 
-   assert new_skip == skip
+   assert isinstance(skip_1, Skip)
+   assert isinstance(skip_2, Skip)
+   assert skip_1 == skip_2
+   assert skip_1 is not skip_2

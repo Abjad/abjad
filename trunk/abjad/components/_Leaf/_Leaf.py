@@ -31,6 +31,9 @@ class _Leaf(_Component):
    def __ne__(self, arg):
       return not self == arg
 
+   def __repr__(self):
+      return '%s(%s)' % (self.__class__.__name__, repr(self._compact_representation))
+
    def __str__(self):
       return self._compact_representation
 

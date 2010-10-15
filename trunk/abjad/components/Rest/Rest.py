@@ -15,14 +15,6 @@ class Rest(_Leaf):
       _initialize_rest(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
    
-   ## OVERLOADS ##
-
-   def __len__(self):
-      return 0
-
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, repr(self.format))
-
    ## PRIVATE ATTRIBUTES ##
 
    @property

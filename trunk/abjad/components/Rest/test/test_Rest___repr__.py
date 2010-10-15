@@ -2,10 +2,13 @@ from abjad import *
 
 
 def test_Rest___repr___01( ):
-   '''Rest rest is evaluable.
+   '''Rest repr is evaluable.
    '''
 
-   rest = Rest((1, 4))
-   new_rest = eval(repr(rest))
+   rest_1 = Rest((1, 4))
+   rest_2 = eval(repr(rest_1))
 
-   new_rest == rest
+   assert isinstance(rest_1, Rest)
+   assert isinstance(rest_2, Rest)
+   assert rest_1 == rest_2
+   assert rest_1 is not rest_2

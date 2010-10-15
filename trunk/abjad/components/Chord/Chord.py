@@ -35,12 +35,7 @@ class Chord(_Leaf):
       return self._note_heads[i]
 
    def __len__(self):
-      return len(self._note_heads)
-
-   def __repr__(self):
-      #return '%s(%s, %s)' % (self.__class__.__name__, self._summary, self.duration)
-      #return '%s(%s, %s)' % (self.__class__.__name__, repr(self._summary), repr(str(self.duration)))
-      return '%s(%s)' % (self.__class__.__name__, repr(self._compact_representation))
+      return len(self.note_heads)
 
    def __setitem__(self, i, arg):
       from abjad.tools.notetools.NoteHead import NoteHead

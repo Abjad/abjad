@@ -32,14 +32,8 @@ class Note(_Leaf):
             return True
       return False
 
-   def __len__(self):
-      if self.pitch is None:
-         return 0
-      else:
-         return 1
-
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, repr(self._compact_representation))
+   #def __repr__(self):
+   #   return '%s(%s)' % (self.__class__.__name__, repr(self._compact_representation))
 
    ## PRIVATE ATTRIBUTES ##
 
