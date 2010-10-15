@@ -14,6 +14,14 @@ class Rest(_Leaf):
       from abjad.tools.resttools._initialize_rest import _initialize_rest
       _initialize_rest(self, _Leaf, *args)
       self._initialize_keyword_values(**kwargs)
+
+   ## OVERRIDES ##
+
+#   def __getnewargs__(self):
+#      if self.duration.multiplier is not None:
+#         return (self.duration.written, self.duration.multiplier)
+#      else:
+#         return (self.duration.written, )
    
    ## PRIVATE ATTRIBUTES ##
 

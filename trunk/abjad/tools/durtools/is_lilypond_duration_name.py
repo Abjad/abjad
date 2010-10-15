@@ -9,7 +9,7 @@ lilypond_duration_name_regex = re.compile('^%s$' %
    lilypond_duration_name_regex_body, re.VERBOSE)
 
 def is_lilypond_duration_name(expr):
-   '''True when `expr` is a LilyPond duartion name. Otherwise false::
+   r'''True when `expr` is a LilyPond duartion name. Otherwise false::
 
       abjad> durtools.is_lilypond_duration_name('breve')
       True
