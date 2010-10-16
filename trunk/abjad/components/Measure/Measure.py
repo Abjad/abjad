@@ -22,18 +22,17 @@ class Measure(Container):
       }
    '''
 
+   __slots__ = ('_explicit_meter', )
+
    def __init__(self, meter, music = None, **kwargs):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self._explicit_meter = None
       self._formatter = _MeasureFormatter(self)
-
       meter = Meter(meter)
       numerator, denominator = meter.numerator, meter.denominator
       self._attach_explicit_meter(numerator, denominator)
-
       self._initialize_keyword_values(**kwargs)
-
 
    ## OVERLOADS ##
 

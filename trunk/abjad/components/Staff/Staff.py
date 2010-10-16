@@ -16,6 +16,8 @@ class Staff(_Context):
       }
    '''
 
+   __slots__ = ( )
+
    def __init__(self, music = None, **kwargs):
       _Context.__init__(self, music)
       self.context = 'Staff'

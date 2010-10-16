@@ -18,6 +18,8 @@ class Container(_Component):
       }
    '''
 
+   __slots__ = ('_formatter', '_music', '_parallel', )
+
    def __init__(self, music = None, **kwargs):
       _Component.__init__(self)
       self._initialize_music(music)

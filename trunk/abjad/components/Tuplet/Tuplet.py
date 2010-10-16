@@ -17,6 +17,8 @@ class Tuplet(Container):
       }
    '''
 
+   __slots__ = ('_force_fraction', '_is_invisible', '_signifier', )
+
    def __init__(self, multiplier, music = None, **kwargs):
       Container.__init__(self, music)
       self._duration = _TupletDurationInterface(self, multiplier)
