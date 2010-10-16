@@ -1,5 +1,6 @@
 from abjad.components._Component._Component import _Component
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
+import copy
 import operator
 
 
@@ -18,7 +19,15 @@ class _Leaf(_Component):
 
    def __and__(self, arg):
       return self._operate(arg, operator.__and__)
-   
+
+   def __copy__(self, *args):
+      new = type(self)(*self.__getnewargs__( ))
+      if getattr(self, '_override', None) is not None:
+         new._override = copy.copy(self.override)
+      if getattr(self, '_set', None) is not None:
+         new._set = copy.copy(self.set)
+      return new
+
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
          if self.duration.written == arg.duration.written:
@@ -26,11 +35,12 @@ class _Leaf(_Component):
                return True
       return False
 
-#   def __getnewargs__(self):
-#      if self.duration.mutliplier is not None:
-#         return (self.duration.written, self.duration.multiplier)
-#      else:
-#         return (self.duration.written, )
+   def __getnewargs__(self):
+      result = [ ]
+      result.append(self.duration.written)
+      if self.duration.multiplier is not None:
+         result.append(self.duration.multiplier)
+      return tuple(result)
 
    def __or__(self, arg):
       return self._operate(arg, operator.__or__)
@@ -51,6 +61,12 @@ class _Leaf(_Component):
       return self._operate(arg, operator.__xor__)
 
    ## PRIVATE METHODS ##
+
+   def _copy_override_and_set_from_leaf(self, leaf):
+      if getattr(leaf, '_override', None) is not None:
+         self._override = copy.copy(leaf.override)
+      if getattr(leaf, '_set', None) is not None:
+         self._set = copy.copy(leaf.set)
 
    def _operate(self, arg, operator):
       assert isinstance(arg, _Leaf)

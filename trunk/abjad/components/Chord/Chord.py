@@ -1,5 +1,6 @@
 from abjad.components._Leaf import _Leaf
 import copy
+import re
 
 
 class Chord(_Leaf):
@@ -14,8 +15,31 @@ class Chord(_Leaf):
    __slots__ = ('_note_heads', '_pitches', )
 
    def __init__(self, *args, **kwargs):
-      from abjad.tools.chordtools._initialize_chord import _initialize_chord
-      _initialize_chord(self, _Leaf, *args)
+      if len(args) == 1 and isinstance(args[0], _Leaf):
+         leaf = args[0]
+         written_duration = leaf.duration.written
+         lilypond_multiplier = leaf.duration.multiplier
+         if hasattr(leaf, 'pitch'):
+            pitches = [leaf.pitch]
+         elif hasattr(leaf, 'pitches'):
+            pitches = leaf.pitches
+         else:
+            pitches = [ ]
+         self._copy_override_and_set_from_leaf(leaf)
+      elif len(args) == 1 and isinstance(args[0], str):
+         pattern = '^<(.+)>\s*(.+)'
+         match = re.match(pattern, args[0])
+         pitches, written_duration = match.groups( )
+         lilypond_multiplier = None
+      elif len(args) == 2:
+         pitches, written_duration = args
+         lilypond_multiplier = None
+      elif len(args) == 3:
+         pitches, written_duration, lilypond_multiplier = args
+      else:
+         raise ValueError('can not initialize chord from "%s".' % str(args))
+      _Leaf.__init__(self, written_duration, lilypond_multiplier)
+      self.pitches = pitches
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
@@ -24,14 +48,6 @@ class Chord(_Leaf):
       from abjad.tools.notetools.NoteHead import NoteHead
       note_head = NoteHead(arg)
       return note_head in self.note_heads
-
-   def __copy__(self, *args):
-      new = type(self)(*self.__getnewargs__( ))
-      if getattr(self, '_override', None) is not None:
-         new._override = copy.copy(self.override)
-      if getattr(self, '_set', None) is not None:
-         new._set = copy.copy(self.set)
-      return new
 
    #__deepcopy__ = __copy__
 
@@ -50,9 +66,7 @@ class Chord(_Leaf):
    def __getnewargs__(self):
       result = [ ]
       result.append(self.pitches)
-      result.append(self.duration.written)
-      if self.duration.multiplier is not None:
-         result.append(self.duration.multiplier)
+      result.extend(_Leaf.__getnewargs__(self))
       return tuple(result)
 
    def __len__(self):

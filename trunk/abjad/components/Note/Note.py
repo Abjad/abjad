@@ -1,5 +1,6 @@
 from abjad.components._Leaf import _Leaf
 import copy
+import re
 
 
 class Note(_Leaf):
@@ -14,19 +15,36 @@ class Note(_Leaf):
    __slots__ = ('_note_head', '_pitch', )
    
    def __init__(self, *args, **kwargs):
-      from abjad.tools.notetools._initialize_note import _initialize_note
-      _initialize_note(self, _Leaf, *args)
+      from abjad.tools.lilyfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
+      if len(args) == 1 and isinstance(args[0], _Leaf):
+         leaf = args[0]
+         written_duration = leaf.duration.written
+         lilypond_multiplier = leaf.duration.multiplier
+         if hasattr(leaf, 'pitch'):
+            pitch = leaf.pitch
+         elif hasattr(leaf, 'pitches') and 0 < len(leaf.pitches):
+            pitch = leaf.pitches[0]
+         else:
+            pitch = None
+         self._copy_override_and_set_from_leaf(leaf)
+      elif len(args) == 1 and isinstance(args[0], str):
+         match = re.match(_lilypond_leaf_regex, args[0])
+         chromatic_pitch_class_name, octave_tick_string, duration_body, dots = match.groups( )
+         pitch = chromatic_pitch_class_name + octave_tick_string
+         written_duration = duration_body + dots
+         lilypond_multiplier = None
+      elif len(args) == 2:
+         pitch, written_duration = args
+         lilypond_multiplier = None
+      elif len(args) == 3:
+         pitch, written_duration, lilypond_multiplier = args
+      else:
+         raise ValueError('can not initialize note from "%s".' % str(args))
+      _Leaf.__init__(self, written_duration, lilypond_multiplier)
+      self.note_head = pitch
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
-
-   def __copy__(self, *args):
-      new = type(self)(*self.__getnewargs__( ))
-      if getattr(self, '_override', None) is not None:
-         new._override = copy.copy(self.override)
-      if getattr(self, '_set', None) is not None:
-         new._set = copy.copy(self.set)
-      return new
 
    #__deepcopy__ = __copy__
 
@@ -39,9 +57,7 @@ class Note(_Leaf):
    def __getnewargs__(self):
       result = [ ]
       result.append(self.pitch)
-      result.append(self.duration.written)
-      if self.duration.multiplier is not None:
-         result.append(self.duration.multiplier)
+      result.extend(_Leaf.__getnewargs__(self))
       return tuple(result)
 
    ## PRIVATE ATTRIBUTES ##

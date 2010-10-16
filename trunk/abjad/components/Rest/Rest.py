@@ -15,29 +15,28 @@ class Rest(_Leaf):
    __slots__ = ('_vertical_positioning_pitch', )
 
    def __init__(self, *args, **kwargs):
-      from abjad.tools.resttools._initialize_rest import _initialize_rest
-      _initialize_rest(self, _Leaf, *args)
+      if len(args) == 1 and isinstance(args[0], _Leaf):
+         leaf = args[0]
+         written_duration = leaf.duration.written
+         lilypond_multiplier = leaf.duration.multiplier
+         self._copy_override_and_set_from_leaf(leaf)
+      elif len(args) == 1 and isinstance(args[0], str):
+         written_duration = args[0].strip('r')
+         lilypond_multiplier = None
+      elif len(args) == 1 and not isinstance(args[0], str):
+         written_duration = args[0]
+         lilypond_multiplier = None
+      elif len(args) == 2:
+         written_duration, lilypond_multiplier = args
+      else:
+         raise ValueError('can not initialize rest from "%s".' % str(args))
+      _Leaf.__init__(self, written_duration, lilypond_multiplier)
       self._initialize_keyword_values(**kwargs)
 
    ## OVERRIDES ##
 
-   def __copy__(self, *args):
-      new = type(self)(*self.__getnewargs__( ))
-      if getattr(self, '_override', None) is not None:
-         new._override = copy.copy(self.override)
-      if getattr(self, '_set', None) is not None:
-         new._set = copy.copy(self.set)
-      return new
-   
    #__deepcopy__ = __copy__
 
-   def __getnewargs__(self):
-      result = [ ]
-      result.append(self.duration.written)
-      if self.duration.multiplier is not None:
-         result.append(self.duration.multiplier)
-      return tuple(result)
-   
    ## PRIVATE ATTRIBUTES ##
 
    @property
