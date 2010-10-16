@@ -1,6 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import mathtools
-from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
+from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change_defective_chord_to_note_or_rest
 
 
 def yield_all_subchords_of_chord(chord):
@@ -52,5 +52,5 @@ def yield_all_subchords_of_chord(chord):
             note_heads_to_remove.append(new_chord[j])
       for note_head in note_heads_to_remove:
             new_chord.remove(note_head)
-      new_chord = cast_defective_chord(new_chord)
+      new_chord = change_defective_chord_to_note_or_rest(new_chord)
       yield new_chord

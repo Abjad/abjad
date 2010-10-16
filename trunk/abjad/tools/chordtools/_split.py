@@ -5,7 +5,7 @@ from abjad.components.Rest import Rest
 from abjad.tools import componenttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
+from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change_defective_chord_to_note_or_rest
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
@@ -85,7 +85,7 @@ def _split(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_chromati
    else:
       raise ValueError('must be note, rest or chord.')
 
-   treble = cast_defective_chord(treble)
-   bass = cast_defective_chord(bass)
+   treble = change_defective_chord_to_note_or_rest(treble)
+   bass = change_defective_chord_to_note_or_rest(bass)
 
    return treble, bass

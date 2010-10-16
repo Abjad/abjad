@@ -44,7 +44,7 @@ chordtools
 
    tools/chordtools/Cluster/Cluster
    tools/chordtools/arpeggiate_chord
-   tools/chordtools/cast_defective_chord
+   tools/chordtools/change_defective_chord_to_note_or_rest
    tools/chordtools/color_chord_note_heads_by_numbered_chromatic_pitch_class
    tools/chordtools/divide_chord_by_diatonic_pitch_number
    tools/chordtools/divide_chord_by_pitch_number
