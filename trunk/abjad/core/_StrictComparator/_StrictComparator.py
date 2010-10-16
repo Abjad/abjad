@@ -1,6 +1,6 @@
 class _StrictComparator(object):
    '''Mix-in base class to confer strict comparison behavior 
-   to any custom class. Note This class will be unnecessary 
+   to any custom class. Note that this class will be unnecessary 
    in some future release because Python 3.0 implements strict 
    comparison behavior by default.
    '''

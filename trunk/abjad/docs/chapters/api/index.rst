@@ -885,7 +885,6 @@ spacingtools
    :maxdepth: 1
 
    tools/spacingtools/SpacingIndication/SpacingIndication
-   tools/spacingtools/get_scorewide_spacing
 
 
 spannertools

@@ -10,6 +10,7 @@ class _Context(Container):
 
    def __init__(self, music = None):
       Container.__init__(self, music)
+      self._context = '_Context'
       self._formatter = _ContextFormatter(self)
       self._engraver_consists = set([ ])
       self._engraver_removals = set([ ])
