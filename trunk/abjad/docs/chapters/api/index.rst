@@ -961,9 +961,9 @@ stafftools
 .. toctree::
    :maxdepth: 1
 
+   tools/stafftools/RhythmicStaff/RhythmicStaff
    tools/stafftools/make_invisible_staff
    tools/stafftools/make_rhythmic_sketch_staff
-   tools/stafftools/make_rhythmic_staff
 
 
 stringtools
