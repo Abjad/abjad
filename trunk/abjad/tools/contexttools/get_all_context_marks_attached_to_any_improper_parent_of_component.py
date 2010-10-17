@@ -16,7 +16,8 @@ def get_all_context_marks_attached_to_any_improper_parent_of_component(component
 
    for component in componenttools.get_improper_parentage_of_component(component):
       for mark in component.marks:
-         if mark.target_context is not None:
+         #if mark.target_context is not None:
+         if getattr(mark, 'target_context', None) is not None:
             if issubclass(mark.target_context, _Context):
                result.add(mark)
 

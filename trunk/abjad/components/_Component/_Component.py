@@ -170,7 +170,8 @@ class _Component(_StrictComparator):
       for component in components:
          #print '\tnow updating %s marks ...' % str(component.__class__.__name__)
          for mark in component._marks_for_which_component_functions_as_start_component:
-            mark._update_effective_context( )
+            if hasattr(mark, '_update_effective_context'):
+               mark._update_effective_context( )
          component._marks_are_current = True
          total_components_iterated += 1
       #print '... done updating all marks in score (from %s).' % str(self.__class__.__name__)

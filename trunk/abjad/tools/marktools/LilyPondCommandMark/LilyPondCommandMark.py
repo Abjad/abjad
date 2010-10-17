@@ -1,8 +1,10 @@
 from abjad.tools import stringtools
-from abjad.tools.contexttools.ContextMark import ContextMark
+#from abjad.tools.contexttools.ContextMark import ContextMark
+from abjad.tools.marktools.Mark import Mark
 
 
-class LilyPondCommandMark(ContextMark):
+#class LilyPondCommandMark(ContextMark):
+class LilyPondCommandMark(Mark):
    r'''.. versionadded:: 1.1.2
 
    Abjad model of LilyPond command mark::
@@ -24,9 +26,11 @@ class LilyPondCommandMark(ContextMark):
 
    #_format_slot = 'opening'
 
-   def __init__(self, command_name_string, format_slot = 'opening', target_context = None):
-      ContextMark.__init__(self, target_context = target_context)
-      if self.target_context is None:
+   def __init__(self, command_name_string, format_slot = 'opening'):
+      #ContextMark.__init__(self, target_context = target_context)
+      Mark.__init__(self)
+      #if self.target_context is None:
+      if True:
          self._is_cosmetic_mark = True
       self._command_name_string = command_name_string
       self._contents_repr_string = "'%s'" % command_name_string
@@ -35,7 +39,8 @@ class LilyPondCommandMark(ContextMark):
    ## OVERLOADS ##
    
    def __copy__(self, *args):
-      return type(self)(self._command_name_string, target_context = self.target_context)
+      #return type(self)(self._command_name_string, target_context = self.target_context)
+      return type(self)(self._command_name_string)
 
    __deepcopy__ = __copy__
 

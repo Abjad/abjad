@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.components._Component import _Component
 
 
 def test_Annotation___call___01( ):
@@ -16,5 +15,4 @@ def test_Annotation___call___01( ):
    }
    '''
 
-   assert annotation.target_context is _Component
-   assert annotation.effective_context is staff[0]
+   assert annotation.start_component is staff[0]

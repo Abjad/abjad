@@ -1,3 +1,6 @@
+from abjad.components._Component import _Component
+
+
 class Mark(object):
    '''.. versionadded:: 1.1.2
 
