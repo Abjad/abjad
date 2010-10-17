@@ -2,11 +2,11 @@ from abjad import *
 import py.test
 
 
-def test_componenttools_group_components_by_like_preprolated_duration_01( ):
+def test_componenttools_yield_components_grouped_by_preprolated_duration_01( ):
 
    notes = notetools.make_notes(
       [0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
-   groups = componenttools.group_components_by_like_preprolated_duration(notes)
+   groups = componenttools.yield_components_grouped_by_preprolated_duration(notes)
 
    assert groups.next( ) == (notes[0], notes[1])
    assert groups.next( ) == (notes[2], )

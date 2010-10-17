@@ -1,13 +1,13 @@
 import itertools
 
 
-def group_topmost_components_in_expr_by_type_and_yield_groups(expr):
+def yield_topmost_components_grouped_by_type(expr):
    '''.. versionadded:: 1.1.2
 
    Group elements in `expr` by type and yield groups::
 
       abjad> staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
-      abjad> for x in componenttools.group_topmost_components_in_expr_by_type_and_yield_groups(staff):
+      abjad> for x in componenttools.yield_topmost_components_grouped_by_type(staff):
       ...     x
       ... 
       (Note(c', 8), Note(d', 8), Note(e', 8))
@@ -16,15 +16,19 @@ def group_topmost_components_in_expr_by_type_and_yield_groups(expr):
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.group_by_leaf_type( )`` to
-      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups( )``.
+      ``componenttools.yield_topmost_components_grouped_by_type( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.group_by_type_and_yield_groups( )`` to
-      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups( )``.
+      ``componenttools.yield_topmost_components_grouped_by_type( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.group_topmost_components_in_expr_by_type_and_yield_groups( )`` to
-      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups( )``.
+      ``componenttools.yield_topmost_components_grouped_by_type( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups( )`` to
+      ``componenttools.yield_topmost_components_grouped_by_type( )``.
    '''
 
    grouper = itertools.groupby(expr, type)

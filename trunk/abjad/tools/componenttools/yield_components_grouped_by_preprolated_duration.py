@@ -1,11 +1,11 @@
-def group_components_by_like_prolated_duration(components):
+def yield_components_grouped_by_preprolated_duration(components):
    '''.. versionadded:: 1.1.2
 
    Yield successive tuples from `components` with like
-   prolated duration. ::
+   preprolated duration. ::
 
       abjad> notes = notetools.make_notes([0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
-      abjad> for x in componenttools.group_components_by_like_prolated_duration(notes):
+      abjad> for x in componenttools.yield_components_grouped_by_preprolated_duration(notes):
       ...     x
       ... 
       (Note(c', 4), Note(c', 4))
@@ -13,16 +13,20 @@ def group_components_by_like_prolated_duration(components):
       (Note(c', 16), Note(c', 16), Note(c', 16))
 
    .. versionchanged:: 1.1.2
-      renamed ``durtools.group_by_duration_prolated( )`` to
-      ``componenttools.group_components_by_like_prolated_duration( )``.
+      renamed ``durtools.group_by_duration_preprolated( )`` to
+      ``componenttools.yield_components_grouped_by_preprolated_duration( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.group_components_by_like_preprolated_duration( )`` to
+      ``componenttools.yield_components_grouped_by_preprolated_duration( )``.
    '''
       
    cur_group = [ ]
    for component in components:
       if cur_group:
          prev_component = cur_group[-1]
-         prev_duration = prev_component.duration.prolated
-         cur_duration = component.duration.prolated
+         prev_duration = prev_component.duration.preprolated
+         cur_duration = component.duration.preprolated
          if cur_duration == prev_duration:
             cur_group.append(component)
          else:

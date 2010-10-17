@@ -1,5 +1,5 @@
-from abjad.tools.componenttools.group_topmost_components_in_expr_by_type_and_yield_groups import \
-   group_topmost_components_in_expr_by_type_and_yield_groups
+from abjad.tools.componenttools.yield_topmost_components_grouped_by_type import \
+   yield_topmost_components_grouped_by_type
 
 
 def group_topmost_components_in_expr_by_type_and_yield_groups_of_klass(expr, klass):
@@ -17,21 +17,21 @@ def group_topmost_components_in_expr_by_type_and_yield_groups_of_klass(expr, kla
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.subruns_of_type( )`` to
-      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
+      ``componenttools.yield_topmost_components_grouped_by_type_of_klass( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )`` to
-      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
+      renamed ``componenttools.yield_topmost_components_grouped_by_type_of_klass( )`` to
+      ``componenttools.yield_topmost_components_grouped_by_type_of_klass( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )`` to
-      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
+      ``componenttools.yield_topmost_components_grouped_by_type_of_klass( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.group_by_type_and_yield_groups_of_klass( )`` to
-      ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )``.
+      ``componenttools.yield_topmost_components_grouped_by_type_of_klass( )``.
    '''
 
-   for group in group_topmost_components_in_expr_by_type_and_yield_groups(expr):
+   for group in yield_topmost_components_grouped_by_type(expr):
       if isinstance(group[0], klass):
          yield group

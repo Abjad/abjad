@@ -101,9 +101,6 @@ componenttools
    tools/componenttools/get_nth_namesake_from_component
    tools/componenttools/get_parent_and_start_stop_indices_of_components
    tools/componenttools/get_proper_parentage_of_component
-   tools/componenttools/group_components_by_like_preprolated_duration
-   tools/componenttools/group_components_by_like_prolated_duration
-   tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups
    tools/componenttools/group_topmost_components_in_expr_by_type_and_yield_groups_of_klass
    tools/componenttools/is_beamable_component
    tools/componenttools/is_well_formed_component
@@ -165,6 +162,9 @@ componenttools
    tools/componenttools/sum_preprolated_duration_of_components
    tools/componenttools/sum_prolated_duration_of_components
    tools/componenttools/tabulate_well_formedness_violations_in_expr
+   tools/componenttools/yield_components_grouped_by_preprolated_duration
+   tools/componenttools/yield_components_grouped_by_prolated_duration
+   tools/componenttools/yield_topmost_components_grouped_by_type
 
 
 containertools
