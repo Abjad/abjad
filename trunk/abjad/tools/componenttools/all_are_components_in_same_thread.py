@@ -4,15 +4,27 @@ from abjad.tools.componenttools.component_is_orphan import component_is_orphan
 import types
 
 
-def all_are_components_in_same_thread(expr, klasses = (_Component, ), allow_orphans = True):
-   '''True when expr is a Python list of Abjad components such
-      that all components in list carry the same thread signature.
+def all_are_components_in_same_thread(expr, klasses = None, allow_orphans = True):
+   '''True when elements in `expr` are all components in same thread. Otherwise false::
 
-      Otherwise False.
+      abjad> voice = Voice(macros.scale(3))
+      abjad> componenttools.all_are_components_in_same_thread(voice.leaves) 
+      True
+
+   True when elements in `expr` are all `klasses` in same thread. Otherwise false::
+
+      abjad> voice = Voice(macros.scale(3))
+      abjad> componenttools.all_are_components_in_same_thread(voice.leaves, klasses = Note) 
+      True
+
+   Return boolean.
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
+
+   if klasses is None:
+      klasses = _Component
 
    if len(expr) == 0:
       return True

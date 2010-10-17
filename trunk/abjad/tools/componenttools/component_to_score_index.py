@@ -1,6 +1,5 @@
 def component_to_score_index(component):
-   r'''Exact numeric location of component in score as
-   a tuple of zero or more nonnegative integers::
+   r'''Get score index of `component`::
 
       abjad> staff_1 = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> staff_2 = Staff([tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))])
@@ -32,7 +31,7 @@ def component_to_score_index(component):
    ::
 
       abjad> for leaf in score.leaves:
-      ...     leaf, leaf.score.index
+      ...     leaf, componenttools.component_to_score_index(leaf)
       ... 
       (Note(c', 8), (0, 0, 0))
       (Note(d', 8), (0, 0, 1))
@@ -43,6 +42,8 @@ def component_to_score_index(component):
       (Note(b', 8), (1, 0, 0))
       (Note(c'', 8), (1, 0, 1))
       (Note(d'', 8), (1, 0, 2))
+
+   Return tuple of zero or more nonnegative integers.
    '''
 
    result = [ ]

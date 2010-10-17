@@ -3,13 +3,27 @@ from abjad.tools.componenttools.component_is_orphan import component_is_orphan
 import types
 
 
-def all_are_contiguous_components(expr, klasses = (_Component, ), allow_orphans = True):
-   '''True expr is a Python list of strictly contiguous components.
-      Otherwise False.
+def all_are_contiguous_components(expr, klasses = None, allow_orphans = True):
+   '''True when elements in `expr` are all contiguous components. Otherwise false::
+
+      abjad> staff = Staff(macros.scale(3))
+      abjad> componenttools.all_are_contiguous_components(staff.leaves) 
+      True
+
+   True when elements in `expr` are all contiguous `klasses`. Otherwise false::
+
+      abjad> staff = Staff(macros.scale(3))
+      abjad> componenttools.all_are_contiguous_components(staff.leaves, klasses = Note) 
+      True
+
+   Return boolean.
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
+
+   if klasses is None:
+      klasses = _Component
 
    if len(expr) == 0:
       return True

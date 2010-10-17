@@ -1,14 +1,6 @@
 def get_parent_and_start_stop_indices_of_components(components):
-   r'''Return ``(parent, start, stop)`` triple with
+   r'''Get parent and start / stop indices of `componens`::
    
-   *  ``parent`` a reference to the parent of ``components``
-   *  ``start`` the index of ``components[0]`` in ``parent``
-   *  ``stop`` the index of ``components[-1]`` in ``parent``
-
-   Any of the three return values may equal ``None``.
-
-   ::
-
       abjad> t = Staff(macros.scale(6))
       abjad> print t.format
       \new Staff {
@@ -27,6 +19,9 @@ def get_parent_and_start_stop_indices_of_components(components):
       [Note(g', 8), Note(a', 8)]
       abjad> componenttools.get_parent_and_start_stop_indices_of_components(leaves)
       (Staff{6}, 4, 5)
+
+   Return parent / start index / stop index triple. Return parent as component or none.
+   Return nonnegative integer start index and nonnegative index stop index.
 
    .. versionchanged:: 1.1.2
       renamed ``componenttools.get_with_indices( )`` to

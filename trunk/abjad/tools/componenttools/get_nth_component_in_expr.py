@@ -5,7 +5,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 def get_nth_component_in_expr(expr, klasses, n = 0):
    r'''.. versionadded:: 1.1.1
 
-   Return element `n` in the `klasses` of `expr`. ::
+   Get component `n` in the `klasses` of `expr`::
 
       abjad> staff = Staff([ ])
       abjad> durations = [Fraction(n, 16) for n in range(1, 5)]
@@ -53,7 +53,7 @@ def get_nth_component_in_expr(expr, klasses, n = 0):
       abjad> componenttools.get_nth_component_in_expr(staff, Staff)
       Staff{8}
 
-   Read right-to-left for negative values of `n`. ::
+   Read right-to-left for negative values of `n`::
 
       abjad> for n in range(3, -1, -1):
       ...      componenttools.get_nth_component_in_expr(staff, Rest, n)
@@ -63,17 +63,10 @@ def get_nth_component_in_expr(expr, klasses, n = 0):
       Rest(8)
       Rest(16)      
 
-   .. todo:: combine with :func:`~abjad.tools.componenttools.get_first_component_in_expr_with_name`.
+   Return component or none.
 
    .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth( )`` to ``componenttools.get_nth_component_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_component( )`` to
-      ``componenttools.get_nth_component_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_component_in_expr( )`` to
+      renamed ``iterate.get_nth( )`` to 
       ``componenttools.get_nth_component_in_expr( )``.
    '''
 

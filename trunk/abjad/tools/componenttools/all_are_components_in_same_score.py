@@ -4,14 +4,27 @@ from abjad.tools.componenttools.component_to_score_root import component_to_scor
 import types
 
 
-def all_are_components_in_same_score(expr, klasses = (_Component, ), allow_orphans = True):
-   '''True when expr is a Python list of Abjad components,
-      and when all components have the same score root.
-      Otherwise False.
+def all_are_components_in_same_score(expr, klasses = None, allow_orphans = True):
+   '''True when elements in `expr` are all components in same score. Otherwise false::
+
+      abjad> score = Score([Staff(macros.scale(3))])
+      abjad> componenttools.all_are_components_in_same_score(score.leaves) 
+      True
+
+   True when elements in `expr` are all `klasses` in same score. Otherwise false::
+
+      abjad> score = Score([Staff(macros.scale(3))])
+      abjad> componenttools.all_are_components_in_same_score(score.leaves, klasses = (Note, )) 
+      True
+
+   Return boolean.
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
+
+   if klasses is None:
+      klasses = _Component
       
    if len(expr) == 0:
       return True 

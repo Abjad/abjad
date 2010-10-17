@@ -5,30 +5,28 @@ from abjad.tools.componenttools.iterate_namesakes_forward_from_component import 
 def get_nth_namesake_from_component(component, n):
    '''.. versionadded:: 1.1.2
 
-   For positive `n`, return namesake to the right of `component`. ::
+   For positive `n`, return namesake to the right of `component`::
 
       abjad> t = Staff(macros.scale(4))
       abjad> componenttools.get_nth_namesake_from_component(t[1], 1)
       Note(e', 8)
 
-   For negative `n`, return namesake to the left of `component`. ::
+   For negative `n`, return namesake to the left of `component`::
 
       abjad> t = Staff(macros.scale(4))
       abjad> componenttools.get_nth_namesake_from_component(t[1], -1)
       Note(c', 8)
 
-   Return `component` when `n` is zero. ::
+   Return `component` when `n` is zero::
 
       abjad> t = Staff(macros.scale(4))
       abjad> componenttools.get_nth_namesake_from_component(t[1], 0)
       Note(d', 8)
 
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_namesake_from( )`` to
-      ``componenttools.get_nth_namesake_from_component( )``.
+   Return component or none.
 
    .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_namesake_from_component( )`` to
+      renamed ``iterate.get_nth_namesake_from( )`` to
       ``componenttools.get_nth_namesake_from_component( )``.
    '''
 

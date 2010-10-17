@@ -2,21 +2,20 @@ from abjad.tools.componenttools._ContainmentSignature import _ContainmentSignatu
 
 
 def component_to_parentage_signature(component):
-   '''Containment signature of `component`.
-
-   Containment signature defined equal to first voice, first staff,
-   first staffgroup, first score and root in parentage::
+   '''Get parentage signature of `component`::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
-      abjad> print component_to_parentage_signature(note)
+      abjad> print componenttools.component_to_parentage_signature(note)
             root: Staff-18830800 (18830800)
            score: 
       staffgroup: 
            staff: Staff-18830800
            voice: 
             self: Note-18619728
+
+   Return parentage signature.
    '''
    from abjad.components import Score
    from abjad.components import Staff

@@ -1,9 +1,38 @@
 def extend_in_parent_of_component_and_grow_spanners(component, new_components):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   Extend `new_components` in parent of `component`.
+   Extend `new_components` in parent of `component` and grow spanners::
 
-   Grow spanners.
+      abjad> voice = Voice(macros.scale(3))
+      abjad> spannertools.BeamSpanner(voice[:])
+      
+   ::
+      
+      abjad> f(voice)
+      \new Voice {
+         c'8 [
+         d'8
+         e'8 ]
+      }
+      
+   ::
+      
+      abjad> new_components = macros.scale(3)
+      abjad> componenttools.extend_in_parent_of_component_and_grow_spanners(voice.leaves[-1], new_components)
+      
+   ::
+      
+      abjad> f(voice)
+      \new Voice {
+         c'8 [
+         d'8
+         e'8
+         c'8
+         d'8
+         e'8 ]
+      }
+
+   Return `component` and `new_components` together in list.
    '''
    from abjad.tools import componenttools
    from abjad.tools import componenttools

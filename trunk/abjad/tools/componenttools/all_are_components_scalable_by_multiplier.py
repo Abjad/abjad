@@ -2,26 +2,19 @@ from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 
 
 def all_are_components_scalable_by_multiplier(components, multiplier):
-   '''True when every component in `components` can
-   rewrite according to `multiplier` with no ad hoc tuplets. ::
+   '''True when `components` are all scalable by `multiplier`::
 
-      abjad> t = [Note(0, (1, 8))]
-      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Fraction(1, 2))
-      True
-
-   ::
-
-      abjad> t = [Note(0, (1, 8))]
-      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Fraction(3, 2))
+      abjad> components = [Note(0, (1, 8))]
+      abjad> componenttools.all_are_components_scalable_by_multiplier(components, Fraction(3, 2))
       True
    
-   False otherwise. ::
+   Otherwise false::
 
-      abjad> t = [Note(0, (1, 8))]
-      abjad> componenttools.all_are_components_scalable_by_multiplier(t, Fraction(2, 3))
+      abjad> components = [Note(0, (1, 8))]
+      abjad> componenttools.all_are_components_scalable_by_multiplier(components, Fraction(2, 3))
       False
 
-   Note that `components` must be iterable.
+   Return boolean.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.are_scalable( )`` to

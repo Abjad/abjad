@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 ## TODO: Maybe move get_likely_multiplier_of_components( ) from durtools to measuretools? ##
 
 def get_likely_multiplier_of_components(components):
-   r'''Get likely multiplier of arbitrary `components`. ::
+   r'''Get likely multiplier of `components`::
 
       abjad> staff = Staff(macros.scale(4, (7, 32)))
       abjad> f(staff)
@@ -19,7 +19,7 @@ def get_likely_multiplier_of_components(components):
       abjad> componenttools.get_likely_multiplier_of_components(staff[:])
       Fraction(7, 4)
    
-   Return ``1`` on no likely multiplier. ::
+   Return 1 when no multiplier is likely::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> f(staff)
@@ -32,7 +32,7 @@ def get_likely_multiplier_of_components(components):
       abjad> componenttools.get_likely_multiplier_of_components(staff[:])
       Fraction(1, 1)
 
-   Return none on more than one likely multiplier. ::
+   Return none when more than one multiplier is likely::
 
       abjad> staff = Staff(notetools.make_notes([0, 2, 4, 5], [(3, 16), (7, 32)]))
       abjad> f(staff)
@@ -45,9 +45,7 @@ def get_likely_multiplier_of_components(components):
       abjad> componenttools.get_likely_multiplier_of_components(staff[:]) is None
       True
 
-   Function implemented to help reverse measure subsumption.
-   
-   .. todo:: move to ``durtools``?
+   Return fraction or none.
 
    .. versionchanged:: 1.1.2
       renamed ``componenttools.get_likely_multiplier( )`` to

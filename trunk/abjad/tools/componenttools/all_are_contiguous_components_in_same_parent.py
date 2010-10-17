@@ -3,18 +3,29 @@ from abjad.tools.componenttools.component_is_orphan import component_is_orphan
 import types
 
 
-def all_are_contiguous_components_in_same_parent(expr, klasses = (_Component, ), 
-   allow_orphans = True):
-   '''True when expr is a Python list of Abjad components such that
+def all_are_contiguous_components_in_same_parent(expr, klasses = None, allow_orphans = True):
+   '''True when elements in `expr` are all contiguous components in same parent.
+   Otherwise false::
 
-         1. all components in list are strictly contiguous, and
-         2. every component in list has the same parent.
+      abjad> staff = Staff(macros.scale(3))
+      abjad> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves) 
+      True
 
-      Otherwise False.
+   True when elements in `expr` are all contiguous `klasses` in same parent.
+   Otherwise false::
+
+      abjad> staff = Staff(macros.scale(3))
+      abjad> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves, klasses = Note) 
+      True
+
+   Return boolean.
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
+
+   if klasses is None:
+      klasses = _Component
 
    if len(expr) == 0:
       return True

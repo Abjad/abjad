@@ -6,12 +6,8 @@ from abjad.tools.componenttools.iterate_components_depth_first import \
 import types
 
 
-def all_are_thread_contiguous_components(expr, klasses = (_Component), allow_orphans = True):
-   r'''True when `expr` is a Python list of Abjad components, and
-   when there exists no foreign component C_f not in list such that
-   C_f occurs temporally between any of the components in list.
-
-   Thread-contiguous components are definitionally spannable::
+def all_are_thread_contiguous_components(expr, klasses = None, allow_orphans = True):
+   r'''True when elements in `expr` are all thread-contiguous components::
 
       t = Voice(notetools.make_repeated_notes(4))
       t.insert(2, Voice(notetools.make_repeated_notes(2)))
@@ -38,10 +34,17 @@ def all_are_thread_contiguous_components(expr, klasses = (_Component), allow_orp
       assert _are_thread_contiguous_components(t[0][:] + t[-1:])
       assert _are_thread_contiguous_components(t[0:1] + t[-1][:])
       assert _are_thread_contiguous_components(t[0][:] + t[-1][:])
+
+   Return boolean.
+
+   Thread-contiguous components are, by definition, spannable.
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
+
+   if klasses is None:
+      klasses = _Component
 
    if len(expr) == 0:
       return True 

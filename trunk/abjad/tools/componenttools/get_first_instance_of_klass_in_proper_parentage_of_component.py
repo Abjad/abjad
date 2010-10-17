@@ -5,15 +5,13 @@ from abjad.tools.componenttools.get_proper_parentage_of_component import \
 def get_first_instance_of_klass_in_proper_parentage_of_component(component, klass):
    '''.. versionadded:: 1.1.1
 
-   Return first instance of `klass` in parentage of `component`. ::
+   Get first instance of `klass` in parentage of `component`. ::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(staff[0], Staff)
       Staff{4}
 
-   Otherwise return ``None``.
-
-   .. todo:: implement corresponding function for improper parentage.
+   Return component or none.
 
    .. versionchanged:: 1.1.2
       renamed ``componenttools.get_first( )`` to

@@ -1,9 +1,38 @@
 def extend_left_in_parent_of_component_and_grow_spanners(component, new_components):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
    
-   Extend `new_components` left in parent of `component`.
-   
-   Grow spanners.
+   Extend `new_components` left in parent of `component` and grow spanners::
+
+      abjad> voice = Voice(macros.scale(3))
+      abjad> spannertools.BeamSpanner(voice[:])
+      
+   ::
+      
+      abjad> f(voice)
+      \new Voice {
+         c'8 [
+         d'8
+         e'8 ]
+      }
+      
+   ::
+      
+      abjad> new_components = 3 * Note(0, (1, 16))
+      abjad> componenttools.extend_left_in_parent_of_component_and_grow_spanners(voice[0], new_components)
+      
+   ::
+      
+      abjad> f(voice)
+      \new Voice {
+         c'16 [
+         c'16
+         c'16
+         c'8
+         d'8
+         e'8 ]
+      }
+
+   Return `new_components` and `component` together in newly created list.
 
    .. versionchanged:: renamed ``splice_left( )`` to
       ``componenttools.extend_left_in_parent_of_component_and_grow_spanners( )``.

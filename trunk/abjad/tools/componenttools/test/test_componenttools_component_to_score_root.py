@@ -1,0 +1,13 @@
+from abjad import *
+
+
+def test_componenttools_component_to_score_root_01( ):
+
+   tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   staff = Staff([tuplet])
+
+   assert componenttools.component_to_score_root(staff) is staff
+   assert componenttools.component_to_score_root(tuplet) is staff
+   assert componenttools.component_to_score_root(staff.leaves[0]) is staff
+   assert componenttools.component_to_score_root(staff.leaves[1]) is staff
+   assert componenttools.component_to_score_root(staff.leaves[2]) is staff

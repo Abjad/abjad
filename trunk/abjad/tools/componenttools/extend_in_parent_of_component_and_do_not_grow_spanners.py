@@ -6,7 +6,7 @@ from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components 
 def extend_in_parent_of_component_and_do_not_grow_spanners(component, components):
    r'''.. versionadded:: 1.1.1
 
-   Extend `components` rightwards in parent of `component`::
+   Extend `components` in parent of `component` and do not grow spanners::
 
       abjad> t = Voice(macros.scale(3))
       abjad> spannertools.BeamSpanner(t[:])
@@ -23,6 +23,8 @@ def extend_in_parent_of_component_and_do_not_grow_spanners(component, components
          d'8
          e'8
       }
+
+   Return list of `component` and `components`.
 
    .. versionchanged:: renamed ``extend_in_parent( )`` to
       ``extend_in_parent_of_component_and_do_not_grow_spanners( )``.
