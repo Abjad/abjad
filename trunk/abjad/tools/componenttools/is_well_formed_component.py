@@ -19,6 +19,8 @@ def is_well_formed_component(expr, allow_empty_containers = True):
       False
       
    Beamed quarter notes are not well formed.
+
+   Return boolean.
    '''
    
    if not isinstance(expr, _Component):

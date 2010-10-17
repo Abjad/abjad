@@ -2,7 +2,7 @@ from abjad.tools.componenttools.yield_topmost_components_grouped_by_type import 
    yield_topmost_components_grouped_by_type
 
 
-def group_topmost_components_in_expr_by_type_and_yield_groups_of_klass(expr, klass):
+def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
    '''.. versionadded:: 1.1.2
 
    Group elements in `expr` by type and yield only those
@@ -30,6 +30,10 @@ def group_topmost_components_in_expr_by_type_and_yield_groups_of_klass(expr, kla
    .. versionchanged:: 1.1.2
       renamed ``iterate.group_by_type_and_yield_groups_of_klass( )`` to
       ``componenttools.yield_topmost_components_grouped_by_type_of_klass( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups_of_klass( )`` to
+      ``componenttools.yield_topmost_components_of_klass_grouped_by_type( )``.
    '''
 
    for group in yield_topmost_components_grouped_by_type(expr):

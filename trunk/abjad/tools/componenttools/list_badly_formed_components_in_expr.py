@@ -18,6 +18,8 @@ def list_badly_formed_components_in_expr(expr, allow_empty_containers = True):
       [Note(d', 4)]
 
    Beamed quarter notes are not well formed.
+
+   Return newly created list of zero or more components.
    '''
    
    badly_formed_components = [ ]
