@@ -2,7 +2,7 @@ from abjad.components._Component import _Component
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-class Annotation(Mark):
+class Annotation(ContextMark):
    r'''.. versionadded:: 1.1.2
 
    User-defined annotation that makes no format contribution::
@@ -18,7 +18,7 @@ class Annotation(Mark):
    _format_slot = None
 
    def __init__(self, contents):
-      Mark.__init__(self, target_context = _Component)
+      ContextMark.__init__(self, target_context = _Component)
       self._contents = contents
       
    ## OVERLOADS ##

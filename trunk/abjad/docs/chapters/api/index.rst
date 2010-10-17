@@ -225,10 +225,10 @@ contexttools
    :maxdepth: 1
 
    tools/contexttools/ClefMark/ClefMark
+   tools/contexttools/ContextMark/ContextMark
    tools/contexttools/DynamicMark/DynamicMark
    tools/contexttools/InstrumentMark/InstrumentMark
    tools/contexttools/KeySignatureMark/KeySignatureMark
-   tools/contexttools/Mark/Mark
    tools/contexttools/StaffChangeMark/StaffChangeMark
    tools/contexttools/TempoMark/TempoMark
    tools/contexttools/TimeSignatureMark/TimeSignatureMark

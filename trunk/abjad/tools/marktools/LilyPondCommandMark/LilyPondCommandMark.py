@@ -2,7 +2,7 @@ from abjad.tools import stringtools
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-class LilyPondCommandMark(Mark):
+class LilyPondCommandMark(ContextMark):
    r'''.. versionadded:: 1.1.2
 
    Abjad model of LilyPond command mark::
@@ -25,7 +25,7 @@ class LilyPondCommandMark(Mark):
    #_format_slot = 'opening'
 
    def __init__(self, command_name_string, format_slot = 'opening', target_context = None):
-      Mark.__init__(self, target_context = target_context)
+      ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._is_cosmetic_mark = True
       self._command_name_string = command_name_string

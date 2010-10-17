@@ -3,7 +3,7 @@ from abjad.tools import stringtools
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-class Comment(Mark):
+class Comment(ContextMark):
    r'''.. versionadded:: 1.1.2
 
    Abjad model of user comment::
@@ -13,7 +13,7 @@ class Comment(Mark):
    '''
 
    def __init__(self, comment_name_string, format_slot = 'opening'):
-      Mark.__init__(self, target_context = _Component)
+      ContextMark.__init__(self, target_context = _Component)
       self._comment_name_string = comment_name_string
       self._contents_repr_string = "'%s'" % comment_name_string
       self._format_slot = format_slot

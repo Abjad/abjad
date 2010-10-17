@@ -4,7 +4,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 #class Markup(_StrictComparator):
-class Markup(Mark):
+class Markup(ContextMark):
    r'''Abjad model of LilyPond markup:
 
    ::
@@ -17,7 +17,7 @@ class Markup(Mark):
 
    #def __init__(self, arg, style_string = 'backslash'):
    def __init__(self, arg, direction_string = None, style_string = 'backslash'):
-      Mark.__init__(self, target_context = _Component)
+      ContextMark.__init__(self, target_context = _Component)
       if isinstance(arg, str):
          contents_string = arg
          style_string = style_string

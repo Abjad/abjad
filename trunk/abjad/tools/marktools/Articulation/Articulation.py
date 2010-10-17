@@ -5,7 +5,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 #class Articulation(_StrictComparator, _Immutable):
-class Articulation(Mark):
+class Articulation(ContextMark):
    '''Abjad model of music articulation:
 
    ::
@@ -62,7 +62,7 @@ class Articulation(Mark):
 
    def __init__(self, *args):
       assert len(args) in range(3)
-      Mark.__init__(self, target_context = _Component)
+      ContextMark.__init__(self, target_context = _Component)
       if 2 <= len(args):
          assert isinstance(args[0], (str, type(None)))
          assert isinstance(args[1], (str, type(None)))
