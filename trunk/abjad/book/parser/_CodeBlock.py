@@ -64,7 +64,7 @@ class _CodeBlock(object):
 
    def _collect_images(self):
       for line in self.preProcessedCode:
-         if line.startswith('write'):
+         if line.startswith('iotools.write'):
             self.images.append(_get_image_name(line))
 
 

@@ -51,7 +51,7 @@ Tutorial
 Fundamentals
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    chapters/fundamentals/lcs/index
    chapters/fundamentals/duration/index

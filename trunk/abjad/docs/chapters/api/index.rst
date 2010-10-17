@@ -37,6 +37,14 @@ beamtools
    tools/beamtools/is_component_with_beam_spanner_attached
 
 
+cfgtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/cfgtools/list_templates
+
+
 chordtools
 
 .. toctree::

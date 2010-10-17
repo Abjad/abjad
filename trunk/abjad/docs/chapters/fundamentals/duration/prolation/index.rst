@@ -18,39 +18,39 @@ Fixed-duration tuplets and fixed-multiplier tuplets both **prolate** their conte
 
 ::
 
-	abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
-	abjad> staff = RhythmicStaff([RigidMeasure((5, 8), [tuplet])])
-	abjad> Beam(tuplet)
-	abjad> print tuplet.duration.augmentation
+	abjad> tuplet = tuplettools.FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
+	abjad> staff = stafftools.make_rhythmic_staff([Measure((5, 8), [tuplet])])
+	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> print tuplet.duration.is_augmentation
 	True
+	oedo
 
 .. image:: images/example1.png
 
 ::
 
   abjad> tuplet.duration.multiplier
-  Rational(4, 5)
+  Fraction(4, 5)
 
 ::
 
   abjad> note = tuplet[0]
   abjad> note.duration.written
-  Rational(1, 8)
+  Fraction(1, 8)
 
 ::
 
   abjad> note.duration.prolation
-  Rational(5, 4)
+  Fraction(5, 4)
 
 ::
 
   abjad> note.duration.prolated
-  Rational(5, 32)
+  Fraction(5, 32)
 
 
-The tuplet here augments its contents and carries a tuplet multiplier 
-equal to `4/5`.  Notes here with :doc:`written duration 
-</chapters/fundamentals/duration/types/index>` equal to `1/8` carry **prolation factor** equal to `4/5` and :doc:`prolated duration <../prolation/index>` equal to `5/4 * 1/8 = 5/32`.
+The tuplet here augments its contents and carries a tuplet multiplier equal to `4/5`.
+Notes here with :doc:`written duration </chapters/duration/types/index>` equal to `1/8` carry **prolation factor** equal to `4/5` and :doc:`prolated duration <../prolation/index>` equal to `5/4 * 1/8 = 5/32`.
 
 
 
@@ -65,23 +65,24 @@ Such **nonbinary meters** prolate the music they contain.
 
 ::
 
-	abjad> measure = RigidMeasure((4, 10), Note(0, (1, 8)) * 4)
-	abjad> Beam(measure)
-	abjad> staff = RhythmicStaff([measure])
+	abjad> measure = Measure((4, 10), Note(0, (1, 8)) * 4)
+	abjad> spannertools.BeamSpanner(measure)
+	abjad> staff = stafftools.make_rhythmic_staff([measure])
 	abjad> note = staff.leaves[0]
 	abjad> print note.duration.prolation
 	4/5
+	oedo
 
 .. image:: images/example2.png
 
 ::
 
   abjad> note.duration.prolated
-  Rational(1, 10)
+  Fraction(1, 10)
 
 
 The nonbinary `4/10` meter here prolates the contents of the measure it governs by a prolation factor equal to `4/5`.
-The notes here with written duration of `1/8` carry prolated duration equal to `4/5 * 1/8 = 1/10`.
+The notes here with :doc:`written duration <../written/index>` of `1/8` carry :doc:`prolated duration` equal to `4/5 * 1/8 = 1/10`.
 
 
 
@@ -96,30 +97,31 @@ Tuplets nest. And tuplet prolation and meter prolation combine freely. When two 
 
 ::
 
-	abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
-	abjad> Beam(tuplet)
-	abjad> measure = RigidMeasure((4, 10), [tuplet])
-	abjad> staff = RhythmicStaff([measure])
+	abjad> tuplet = tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
+	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> measure = Measure((4, 10), [tuplet])
+	abjad> staff = stafftools.make_rhythmic_staff([measure])
 	abjad> print tuplet.duration.multiplier
 	8/7
+	oedo
 
 .. image:: images/example3.png
 
 ::
 
   abjad> measure.duration.multiplier
-  Rational(4, 5)
+  Fraction(4, 5)
 
 ::
 
   abjad> note = measure.leaves[0]
   abjad> note.duration.prolation
-  Rational(32, 35)
+  Fraction(32, 35)
 
 ::
 
   abjad> note.duration.prolated
-  Rational(2, 35)
+  Fraction(2, 35)
 
 
 The tuplet here augments the notes it contains by a prolation factor equal to `8/7`.

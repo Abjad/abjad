@@ -18,10 +18,10 @@ Fixed-duration tuplets and fixed-multiplier tuplets both **prolate** their conte
 
 <abjad>
 tuplet = tuplettools.FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
-staff = RhythmicStaff([Measure((5, 8), [tuplet])])
+staff = stafftools.make_rhythmic_staff([Measure((5, 8), [tuplet])])
 spannertools.BeamSpanner(tuplet)
-print tuplet.duration.augmentation
-write(staff, 'example1', 'oedo') <hide
+print tuplet.duration.is_augmentation
+iotools.write_expr_to_ly(staff, 'example1', 'oedo') <hide
 </abjad>
 
 ::
@@ -63,10 +63,10 @@ Such **nonbinary meters** prolate the music they contain.
 <abjad>
 measure = Measure((4, 10), Note(0, (1, 8)) * 4)
 spannertools.BeamSpanner(measure)
-staff = RhythmicStaff([measure])
+staff = stafftools.make_rhythmic_staff([measure])
 note = staff.leaves[0]
 print note.duration.prolation
-write(staff, 'example2', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'example2', 'oedo') <hide
 </abjad>
 
 ::
@@ -93,9 +93,9 @@ Tuplets nest. And tuplet prolation and meter prolation combine freely. When two 
 tuplet = tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
 spannertools.BeamSpanner(tuplet)
 measure = Measure((4, 10), [tuplet])
-staff = RhythmicStaff([measure])
+staff = stafftools.make_rhythmic_staff([measure])
 print tuplet.duration.multiplier
-write(staff, 'example3', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'example3', 'oedo') <hide
 </abjad>
 
 ::

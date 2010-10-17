@@ -1,4 +1,5 @@
-from abjad.components.Container._MultipliedContainerDurationInterface import _MultipliedContainerDurationInterface
+from abjad.components.Container._MultipliedContainerDurationInterface import \
+   _MultipliedContainerDurationInterface
 from abjad.tools import mathtools
 from fractions import Fraction
 
@@ -7,16 +8,13 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    r'''Manage duration attributes common to both fixed-duration and fixed-multiplier tuplets.
    '''
 
-   #def __init__(self, _client):
    def __init__(self, _client, multiplier):
       _MultipliedContainerDurationInterface.__init__(self, _client)
       self._preferred_denominator = None
-      ## new ##
       self.multiplier = multiplier
 
    ## PRVIATE ATTRIBUTES ##
 
-   ## new ##
    @property
    def _duration(self):
       if 0 < len(self._client):
@@ -28,8 +26,6 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    def _multiplier_fraction_string(self):
       from abjad.tools import durtools
       if self.preferred_denominator is not None:
-         #d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
-         #   ~self.multiplier, self.preferred_denominator)
          inverse_multiplier = Fraction(self.multiplier.denominator, self.multiplier.numerator)
          d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             inverse_multiplier, self.preferred_denominator)
@@ -48,7 +44,6 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          abjad> t.duration.is_augmentation
          False
       '''
-
       if self.multiplier:
          return 1 < self.multiplier
       else:
@@ -72,7 +67,6 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          abjad> t.duration.is_diminution
          True
       '''
-
       if self.multiplier:
          return self.multiplier < 1
       else:
@@ -82,12 +76,10 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    def is_nonbinary(self):
       return not self.is_binary
 
-   ## new ##
    @property
    def multiplied(self):
       return self.multiplier * self.contents
 
-   ## new ##
    @apply
    def multiplier( ):
       def fget(self):
@@ -133,5 +125,4 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          abjad> t.duration.preprolated
          Fraction(1, 4)
       '''
-
       return self.multiplied

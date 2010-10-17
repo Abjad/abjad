@@ -38,8 +38,9 @@ class _AbjadTag(_TagParser):
       os.chdir('..')
       _create_directory('images') 
       for element in os.listdir('tmp_out'):
-         #if element.endswith('.png'):
          if element[-4:] in ('.png', '.pdf'):
+            if os.path.isfile(os.path.join('images', element)):
+               os.remove(os.path.join('images', element))
             shutil.move(os.path.join('tmp_out', element), 'images')
       shutil.rmtree('tmp_out')
 
@@ -93,7 +94,7 @@ class _AbjadTag(_TagParser):
    def _render_images(self):
       for file in os.listdir(os.curdir):
          if file.endswith('.ly'):
-            print 'Rendering "%s"...' % file
+            print 'Rendering "%s" ...' % file
             if 'latex' in self.__class__.__name__.lower( ):
                self._render_pdf_image(file)
             else:
@@ -101,7 +102,7 @@ class _AbjadTag(_TagParser):
 
    def _render_pdf_image(self, filename):
       file_base = filename.replace('.ly', '')
-      p = subprocess.Popen('lilypond  %s' % filename,
+      p = subprocess.Popen('lilypond %s' % filename,
          shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
       out, err = p.communicate( )
       output = 'pdfcrop %s.pdf %s.pdf'
@@ -144,6 +145,5 @@ def _execute_abjad_code(lines):
       print os.linesep + "ERROR in Abjad script compilation:"
       print err
       sys.exit(2)
-   #out = out.split('\n')
    out = out.splitlines( )
    return out
