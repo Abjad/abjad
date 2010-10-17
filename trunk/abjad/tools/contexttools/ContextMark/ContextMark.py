@@ -1,6 +1,5 @@
 from abjad.components._Component import _Component
 from abjad.components._Context import _Context
-from fractions import Fraction
 
 
 class ContextMark(object):
