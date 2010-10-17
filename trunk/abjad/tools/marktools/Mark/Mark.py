@@ -60,8 +60,6 @@ class Mark(object):
       self.__unbind_start_component( )
       start_component._marks_for_which_component_functions_as_start_component.append(self)
       self._start_component = start_component
-      ## unnecessary next line?
-      #self._start_component._mark_entire_score_tree_for_later_update('marks')
 
    def __unbind_start_component(self):
       start_component = self._start_component
@@ -86,5 +84,4 @@ class Mark(object):
 
    def detach_mark(self):
       self.__unbind_start_component( )
-      #self.__unbind_effective_context( )
       return self
