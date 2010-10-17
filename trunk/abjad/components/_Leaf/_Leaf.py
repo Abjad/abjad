@@ -79,6 +79,12 @@ class _Leaf(_Component):
       pairs = operator(self_pairs, arg_pairs)
       return _engender(pairs, self.duration.written)
 
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _format_pieces(self):
+      return self.format.split('\n')
+
    ## PUBLIC ATTRIBUTES ##
 
    @property

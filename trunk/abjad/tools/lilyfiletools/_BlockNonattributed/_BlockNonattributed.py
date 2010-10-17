@@ -1,5 +1,6 @@
 class _BlockNonattributed(list):
-   r'''Abjad model of the LilyPond input file blocks with no attributes.'''
+   r'''Abjad model of the LilyPond input file blocks with no attributes.
+   '''
 
    ## OVERLOADS ##
 
@@ -7,8 +8,7 @@ class _BlockNonattributed(list):
       if not len(self):
          return '%s( )' % self.__class__.__name__
       else:
-         return '%s(%s)' % (
-            self.__class__.__name__, len(self))
+         return '%s(%s)' % (self.__class__.__name__, len(self))
 
    ## PRIVATE ATTRIBUTES ##
 
