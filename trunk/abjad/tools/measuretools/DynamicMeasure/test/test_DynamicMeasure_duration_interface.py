@@ -47,8 +47,7 @@ def test_DynamicMeasure_duration_interface_02( ):
    assert t.duration.prolated == Fraction(2, 8)
    assert t.duration.prolation == 1
 
-   #assert t.format == "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
-   assert t.format == "{\n\t\\times 2/3 {\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+   assert t.format == "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
 
 
 def test_DynamicMeasure_duration_interface_03( ):
@@ -74,5 +73,4 @@ def test_DynamicMeasure_duration_interface_03( ):
    assert t.duration.prolated == Fraction(4, 12)
    assert t.duration.prolation == 1
 
-   #assert t.format == "{\n\t\\time 4/12\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
-   assert t.format == "{\n\t\\times 2/3 {\n\t\t\\time 4/12\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
+   assert t.format == "{\n\t\\time 4/12\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"

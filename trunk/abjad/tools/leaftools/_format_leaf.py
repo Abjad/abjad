@@ -1,26 +1,17 @@
-from abjad.tools.formattools._get_comment_format_contributions_for_slot import \
-   _get_comment_format_contributions_for_slot
-from abjad.tools.formattools._get_context_setting_format_contributions import \
-   _get_context_setting_format_contributions
-from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
-   _get_context_mark_format_contributions_for_slot
-from abjad.tools.formattools._get_grob_override_format_contributions import \
-   _get_grob_override_format_contributions
-from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for_slot import \
-   _get_lilypond_command_mark_format_contributions_for_slot
-from abjad.tools.formattools._get_spanner_format_contributions_for_leaf_slot import \
-   _get_spanner_format_contributions_for_leaf_slot
-
 from abjad.tools.formattools._get_articulation_format_contributions import \
    _get_articulation_format_contributions
 from abjad.tools.formattools._get_comment_format_contributions_for_slot import \
    _get_comment_format_contributions_for_slot
+from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+   _get_context_mark_format_contributions_for_slot
+from abjad.tools.formattools._get_context_setting_format_contributions import \
+   _get_context_setting_format_contributions
+from abjad.tools.formattools._get_grob_override_format_contributions import \
+   _get_grob_override_format_contributions
 from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for_slot import \
    _get_lilypond_command_mark_format_contributions_for_slot
 from abjad.tools.formattools._get_markup_format_contributions import \
    _get_markup_format_contributions
-from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
-   _get_context_mark_format_contributions_for_slot
 from abjad.tools.formattools._get_spanner_format_contributions_for_leaf_slot import \
    _get_spanner_format_contributions_for_leaf_slot
 
@@ -71,6 +62,7 @@ def _leaf_body(leaf):
    result.extend(_tremolo_subdivision_contribution(leaf))
    result.extend(_get_articulation_format_contributions(leaf))
    result.extend(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'right'))
+   ## remove next line ##
    result.extend(_get_context_mark_format_contributions_for_slot(leaf, 'right'))
    result.extend(_get_markup_format_contributions(client))
    result.extend(_get_spanner_format_contributions_for_leaf_slot(client, 'right'))
@@ -128,6 +120,7 @@ def _get_slot_1(leaf):
       _get_comment_format_contributions_for_slot(leaf, 'before')])
    result.append([('lilypond command marks', ''), 
       _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'before')])
+   ## remove next two lines ##
    result.append([('context marks', ''),
       _get_context_mark_format_contributions_for_slot(leaf, 'before')])
    result.append([('grob overrides', ''),
@@ -144,6 +137,7 @@ def _get_slot_3(leaf):
       _get_comment_format_contributions_for_slot(leaf, 'opening')])
    result.append([('lilypond command marks', ''), 
       _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening')])
+   ## remove next two lines ##
    result.append([('context marks', ''),
       _get_context_mark_format_contributions_for_slot(leaf, 'opening')])
    result.append([('agrace opening', ''), _agrace_opening(leaf)])
@@ -160,6 +154,7 @@ def _get_slot_5(leaf):
    result.append([('agrace body', ''), _agrace_body(leaf)])
    result.append([('lilypond command marks', ''), 
       _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing')])
+   ## remove next two lines ##
    result.append([('context marks', ''),
       _get_context_mark_format_contributions_for_slot(leaf, 'closing')])
    result.append([('comments', ''), 
@@ -170,6 +165,7 @@ def _get_slot_7(leaf):
    result = [ ]
    result.append([('spanners', ''), 
       _get_spanner_format_contributions_for_leaf_slot(leaf, 'after')])
+   ## remove next two lines ##
    result.append([('context marks', ''),
       _get_context_mark_format_contributions_for_slot(leaf, 'after')])
    result.append([('lilypond command marks', ''), 

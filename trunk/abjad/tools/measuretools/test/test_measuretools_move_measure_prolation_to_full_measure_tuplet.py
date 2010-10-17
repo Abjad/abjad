@@ -26,8 +26,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
    }
    '''
 
-   #assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
-   assert t.format == "{\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\t\\time 3/12\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
+   assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
 
 
    measuretools.move_measure_prolation_to_full_measure_tuplet(t)
@@ -48,8 +47,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   #assert t.format == "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
-   assert t.format == "{\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\t\\time 2/8\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
+   assert t.format == "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
 
 
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02( ):
@@ -78,8 +76,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02( ):
    }
    '''
 
-   #assert t.format == "{\n\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}\n}"
-   assert t.format == "{\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\time 15/24\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}\n}"
+   assert t.format == "{\n\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}\n}"
 
    measuretools.move_measure_prolation_to_full_measure_tuplet(t)
 
@@ -98,5 +95,4 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   #assert t.format == "{\n\t\\time 5/8\n\t\\fraction \\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
-   assert t.format == "{\n\t\\fraction \\times 5/6 {\n\t\t\\time 5/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+   assert t.format == "{\n\t\\time 5/8\n\t\\fraction \\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"

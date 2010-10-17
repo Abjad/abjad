@@ -115,4 +115,4 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
    new = eval(skeleton)
    
    assert componenttools.is_well_formed_component(new)
-   assert new.format == "\\new Score <<\n\t\\new Staff {\n\t\t{\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\t\\time 6/16\n\t\t\t\tc'8\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n\t\\new Staff {\n\t\t{\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\t\\time 6/16\n\t\t\t\tg'8\n\t\t\t\ta'8\n\t\t\t\tb'8\n\t\t\t\tc''8\n\t\t\t}\n\t\t}\n\t}\n>>"
+   assert new.format == "\\new Score <<\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 6/16\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tc'8\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 6/16\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tg'8\n\t\t\t\ta'8\n\t\t\t\tb'8\n\t\t\t\tc''8\n\t\t\t}\n\t\t}\n\t}\n>>"

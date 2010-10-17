@@ -210,8 +210,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_07( ):
 
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(u)
-   #assert u.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
-   assert u.format == "{\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\t\\time 3/10\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
+   assert u.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
 
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
@@ -255,8 +254,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
 
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(u)
-   #assert u.format == "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
-   assert u.format == "\\new Voice {\n\t{\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\t\\time 3/10\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
+   assert u.format == "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
 
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
@@ -303,8 +301,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
 
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(u)
-   #assert u.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
-   assert u.format == "{\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\t\\time 5/12\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
+   assert u.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
 
 
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_10( ):
@@ -474,5 +471,4 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_13( ):
    
    assert componenttools.is_well_formed_component(t)
    assert componenttools.is_well_formed_component(u)
-   #assert u.format == "\\new Staff {\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
-   assert u.format == "\\new Staff {\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 2/9\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
+   assert u.format == "\\new Staff {\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"

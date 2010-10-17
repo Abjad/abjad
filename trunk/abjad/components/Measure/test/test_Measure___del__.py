@@ -59,8 +59,8 @@ def test_Measure___del___05( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   #assert t.format == "{\n\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
-   assert t.format == "{\n\t\\scaleDurations #'(8 . 9) {\n\t\t\\time 3/9\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
+   assert t.format == "{\n\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
+   #assert t.format == "{\n\t\\scaleDurations #'(8 . 9) {\n\t\t\\time 3/9\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
 def tet_rigid_measure_trim_06( ):

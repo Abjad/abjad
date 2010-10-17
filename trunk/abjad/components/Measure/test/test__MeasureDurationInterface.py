@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Measure_duration_interface_01( ):
+def test__MeasureDurationInterface_01( ):
    '''Binary meter, properly filled.'''
 
    t = Measure((3, 8), macros.scale(3))
@@ -24,7 +24,7 @@ def test_Measure_duration_interface_01( ):
    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_Measure_duration_interface_02( ):
+def test__MeasureDurationInterface_02( ):
    '''Nonbinary meter, properly filled.'''
 
    t = Measure((3, 10), macros.scale(3))
@@ -45,12 +45,12 @@ def test_Measure_duration_interface_02( ):
    assert t.duration.prolated == Fraction(3, 10)
    assert t.duration.prolation == 1
 
-   #assert t.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
-   assert t.format == "{\n\t\\scaleDurations #'(4 . 5) {\n\t\t\\time 3/10\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+   assert t.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+   #assert t.format == "{\n\t\\scaleDurations #'(4 . 5) {\n\t\t\\time 3/10\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
 
 
 
-def test_Measure_duration_interface_03( ):
+def test__MeasureDurationInterface_03( ):
    '''Binary meter, improperly filled.'''
 
    t = Measure((3, 8), macros.scale(4))
@@ -63,7 +63,7 @@ def test_Measure_duration_interface_03( ):
    assert t.duration.prolation == 1
 
 
-def test_Measure_duration_interface_04( ):
+def test__MeasureDurationInterface_04( ):
    '''Nonbinary meter, improperly filled.'''
 
    t = Measure((3, 10), macros.scale(4))

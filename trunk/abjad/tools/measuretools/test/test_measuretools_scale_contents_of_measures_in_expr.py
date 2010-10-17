@@ -64,6 +64,4 @@ def test_measuretools_scale_contents_of_measures_in_expr_03( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   #assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t}\n}"
-   assert t.format == "{\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\time 3/12\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t}\n}"
-
+   assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t}\n}"

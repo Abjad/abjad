@@ -2,14 +2,16 @@ from abjad.components.Container._ContainerFormatterSlotsInterface import \
    _ContainerFormatterSlotsInterface
 from abjad.tools.formattools._get_comment_format_contributions_for_slot import \
    _get_comment_format_contributions_for_slot
-from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for_slot import \
-   _get_lilypond_command_mark_format_contributions_for_slot
+from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+   _get_context_mark_format_contributions_for_slot
 from abjad.tools.formattools._get_context_setting_format_contributions import \
    _get_context_setting_format_contributions
 from abjad.tools.formattools._get_grob_override_format_contributions import \
    _get_grob_override_format_contributions
 from abjad.tools.formattools._get_grob_revert_format_contributions import \
    _get_grob_revert_format_contributions
+from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for_slot import \
+   _get_lilypond_command_mark_format_contributions_for_slot
 
 
 class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -21,7 +23,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_2(self):
-      '''Start-of-measure numbering indicator. Open bracket..
+      '''Optional start-of-measure numbering indicator. Open bracket.
       '''
       result = [ ]
       formatter = self._client
@@ -50,7 +52,9 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          _get_comment_format_contributions_for_slot(measure, 'opening')])
       result.append(self._wrap_measure_interface_overrides( ))
       result.append([('settings', 'settings'),
-         _get_context_setting_format_contributions(self._client._client)])
+         _get_context_setting_format_contributions(measure)])
+      result.append([('context_marks', 'context_marks'),
+         _get_context_mark_format_contributions_for_slot(measure, 'opening')])
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -64,6 +68,8 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       measure = self.formatter.container
       result.append(self._wrap_bar_line_interface_overrides( ))
       result.append(self._wrap_measure_interface_reverts( ))
+      result.append([('context_marks', 'context_marks'),
+         _get_context_mark_format_contributions_for_slot(measure, 'closing')])
       result.append([('comment_marks', ''),
          _get_comment_format_contributions_for_slot(measure, 'closing')])
       self._indent_slot_contributions(result)
@@ -71,7 +77,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_6(self):
-      '''Close brackets. End-of-measure numbering comments.
+      '''Close bracket. Optional end-of-measure numbering indicator.
       '''
       result = [ ]
       formatter = self._client

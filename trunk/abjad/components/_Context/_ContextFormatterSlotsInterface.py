@@ -2,12 +2,14 @@ from abjad.components.Container._ContainerFormatterSlotsInterface import \
    _ContainerFormatterSlotsInterface
 from abjad.tools.formattools._get_comment_format_contributions_for_slot import \
    _get_comment_format_contributions_for_slot
+from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import \
+   _get_context_mark_format_contributions_for_slot
+from abjad.tools.formattools._get_context_setting_format_contributions import \
+   _get_context_setting_format_contributions
 from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for_slot import \
    _get_lilypond_command_mark_format_contributions_for_slot
 from abjad.tools.formattools._get_grob_override_format_contributions import \
    _get_grob_override_format_contributions
-from abjad.tools.formattools._get_context_setting_format_contributions import \
-   _get_context_setting_format_contributions
 
 
 class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -54,6 +56,8 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       context = self.formatter.context
       result.append([('comment_marks', ''),
          _get_comment_format_contributions_for_slot(context, 'opening')])
+      result.append([('context_marks', 'context_marks'),
+         _get_context_mark_format_contributions_for_slot(context, 'opening')])
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_format_contributions_for_slot(context, 'opening')])
       self._indent_slot_contributions(result)
@@ -63,6 +67,8 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_5(self):
       result = [ ]
       context = self.formatter.context
+      result.append([('context_marks', 'context_marks'),
+         _get_context_mark_format_contributions_for_slot(context, 'closing')])
       result.append([('lilypond_command_marks', ''),
          _get_lilypond_command_mark_format_contributions_for_slot(context, 'closing')])
       result.append([('comment_marks', ''), 

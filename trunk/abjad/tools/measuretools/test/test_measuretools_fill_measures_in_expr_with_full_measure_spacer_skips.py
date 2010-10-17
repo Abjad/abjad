@@ -17,8 +17,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01( )
    '''
    
    assert componenttools.is_well_formed_component(t)
-   #assert t.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\ts1 * 5/16\n\t}\n}"
-   assert t.format == "{\n\t\\scaleDurations #'(8 . 9) {\n\t\t\\time 5/18\n\t\ts1 * 5/16\n\t}\n}"
+   assert t.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\ts1 * 5/16\n\t}\n}"
 
 
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02( ):

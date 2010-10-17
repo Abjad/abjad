@@ -47,7 +47,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___03( ):
    '''
 
    score = Score([Staff(macros.scale(8))])
-   #score.bar_number.break_visibility = schemetools.SchemeFunction('end-of-line-invisible')
    score.override.bar_number.break_visibility = schemetools.SchemeFunction('end-of-line-invisible')
 
    r'''
@@ -75,7 +74,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___04( ):
    '''
 
    t = Score([Staff(macros.scale(4))])
-   #t.bar_number.color = 'red'
    t.override.bar_number.color = 'red'
 
    r'''
@@ -101,7 +99,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___05( ):
 
    t = Voice(macros.scale(4))
    p = spannertools.BeamSpanner(t[:])
-   #p.positions = (4, 4)
    p.override.beam.positions = (4, 4)
 
    r'''
@@ -223,7 +220,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___10( ):
    }
    '''
 
-   #assert t.format == "\\new Voice {\n\t\\override DynamicLineSpanner #'staff-padding = #4\n\tc'8 \\< \\pX\n\td'8\n\te'8\n\tf'8 \\fX\n\t\\revert DynamicLineSpanner #'staff-padding\n}"
    assert t.format == "\\new Voice {\n\t\\override DynamicLineSpanner #'staff-padding = #4\n\tc'8 \\< \\p\n\td'8\n\te'8\n\tf'8 \\f\n\t\\revert DynamicLineSpanner #'staff-padding\n}"
 
 
@@ -232,8 +228,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___11( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.dynamic_line_spanner.staff_padding = 2
-   #t.dynamic_line_spanner.Y_extent = (-1.5, 1.5)
    t.override.dynamic_line_spanner.staff_padding = 2
    t.override.dynamic_line_spanner.Y_extent = (-1.5, 1.5)
 
@@ -281,8 +275,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___13( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.dynamic_text.staff_padding = 2
-   #t.dynamic_text.Y_extent = (-1.5, 1.5)
    t.override.dynamic_text.staff_padding = 2
    t.override.dynamic_text.Y_extent = (-1.5, 1.5)
 
@@ -306,8 +298,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___14( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.dynamic_text_spanner.staff_padding = 2
-   #t.dynamic_text_spanner.Y_extent = (-1.5, 1.5)
    t.override.dynamic_text_spanner.staff_padding = 2
    t.override.dynamic_text_spanner.Y_extent = (-1.5, 1.5)
 
@@ -419,7 +409,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18( ):
    '''
 
    assert componenttools.is_well_formed_component(score)
-   assert score.format == "\\new Score \\with {\n\t\\override MetronomeMark #'color = #red\n} <<\n\t\\new Staff {\n\t\t\\tempo 4=58\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+   assert score.format == "\\new Score \\with {\n\t\\override MetronomeMark #'color = #red\n} <<\n\t\\tempo 4=58\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___19( ):
@@ -445,8 +435,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___20( ):
    '''
 
    t = Score([Staff(macros.scale(4))])
-   #t.non_musical_paper_column.line_break_permission = False
-   #t.non_musical_paper_column.page_break_permission = False
    t.override.non_musical_paper_column.line_break_permission = False
    t.override.non_musical_paper_column.page_break_permission = False
 
@@ -473,7 +461,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___21( ):
    '''
 
    t = Note(0, (1, 4))
-   #t.note_column.ignore_collision = True
    t.override.note_column.ignore_collision = True
 
    r'''
@@ -490,7 +477,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___22( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.note_column.ignore_collision = True
    t.override.note_column.ignore_collision = True
 
    r'''
@@ -646,8 +632,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___31( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.rehearsal_mark.staff_padding = 2
-   #t.rehearsal_mark.Y_extent = (-1.5, 1.5)
    t.override.rehearsal_mark.staff_padding = 2
    t.override.rehearsal_mark.Y_extent = (-1.5, 1.5)
 
@@ -708,8 +692,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___34( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.script.staff_padding = 2
-   #t.script.Y_extent = (-1.5, 1.5)
    t.override.script.staff_padding = 2
    t.override.script.Y_extent = (-1.5, 1.5)
 
@@ -733,7 +715,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35( ):
    '''
 
    t = Staff(macros.scale(4))
-   #p = spannertools.SpacingSpanner(t[:])
    p = spannertools.Spanner(t[:])
    p.override.score.spacing_spanner.strict_grace_spacing = True
    p.override.score.spacing_spanner.strict_note_spacing = True
@@ -767,7 +748,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
-   #p = spannertools.SpacingSpanner(t[:])
    p = spannertools.Spanner(t[:])
    p.override.score.spacing_spanner.strict_grace_spacing = True
    p.override.score.spacing_spanner.strict_note_spacing = True
@@ -796,8 +776,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   #assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n\t}\n}"
-   assert t.format == "\\new Staff {\n\t{\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n\t}\n}"
+   #assert t.format == "\\new Staff {\n\t{\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n\t}\n}"
+
+
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___37( ):
    '''Override LilyPond SpacingSpanner grob.
    '''
@@ -923,7 +905,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___42( ):
    '''
 
    t = Note(0, (1, 16))
-   #t.stem.stroke_style = schemetools.SchemeString('grace')
    t.override.stem.stroke_style = schemetools.SchemeString('grace')
 
    r'''
@@ -939,8 +920,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___43( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.stem_tremolo.staff_padding = 2
-   #t.stem_tremolo.Y_extent = (-1.5, 1.5)
    t.override.stem_tremolo.staff_padding = 2
    t.override.stem_tremolo.Y_extent = (-1.5, 1.5)
 
@@ -996,7 +975,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___45( ):
 
    t = Staff(macros.scale(4))
    text_script_spanner = spannertools.TextScriptSpanner(t[:])
-   #text_script_spanner.color = 'red'
    text_script_spanner.override.text_script.color = 'red'
 
    r'''
@@ -1116,8 +1094,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___51( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.trill_pitch_accidental.staff_padding = 2
-   #t.trill_pitch_accidental.Y_extent = (-1.5, 1.5)
    t.override.trill_pitch_accidental.staff_padding = 2
    t.override.trill_pitch_accidental.Y_extent = (-1.5, 1.5)
 
@@ -1142,7 +1118,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___52( ):
 
    t = Voice(macros.scale(4))
    p = spannertools.TrillSpanner(t[:])
-   #p.color = 'red'   
    p.override.trill_spanner.color = 'red'
 
    r'''
@@ -1165,7 +1140,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   #t.tuplet_bracket.direction = 'down'
    t.override.tuplet_bracket.direction = 'down'
 
    r'''
@@ -1189,7 +1163,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   #t[1].tuplet_bracket.direction = 'down'
    t[1].override.tuplet_bracket.direction = 'down'
 
    r'''
@@ -1211,7 +1184,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55( ):
    '''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   #t.tuplet_number.fraction = True
    t.override.tuplet_number.fraction = True
 
    r'''
@@ -1234,7 +1206,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   #t.tuplet_number.fraction = True
    t.override.tuplet_number.fraction = True
 
    r'''
@@ -1258,7 +1229,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   #t[1].tuplet_number.fraction = True
    t[1].override.tuplet_number.fraction = True
 
    r'''
@@ -1281,7 +1251,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58( ):
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   #t.tuplet_number.text = markuptools.Markup('"6:4"')
    t.override.tuplet_number.text = markuptools.Markup('"6:4"')
 
    r'''
@@ -1304,8 +1273,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___59( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.vertical_alignment.staff_padding = 2
-   #t.vertical_alignment.Y_extent = (-1.5, 1.5)
    t.override.vertical_alignment.staff_padding = 2
    t.override.vertical_alignment.Y_extent = (-1.5, 1.5)
 
@@ -1329,8 +1296,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___60( ):
    '''
 
    t = Staff(macros.scale(4))
-   #t.vertical_axis_group.staff_padding = 2
-   #t.vertical_axis_group.Y_extent = (-1.5, 1.5)
    t.override.vertical_axis_group.staff_padding = 2
    t.override.vertical_axis_group.Y_extent = (-1.5, 1.5)
 
