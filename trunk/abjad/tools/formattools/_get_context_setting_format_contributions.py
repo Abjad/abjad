@@ -1,5 +1,5 @@
 def _get_context_setting_format_contributions(component):
-   '''Ordered data structure of format-time context settings.
+   '''Sorted list of format-time context settings.
    '''
    result = [ ]
    from abjad.components._Leaf import _Leaf

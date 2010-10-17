@@ -16,7 +16,7 @@ Notes, rests, chords and skips carry some duration attributes:
 
 .. image:: images/example1.png
 
-Tuplets, measures, voices, staves and the other containers carry even more:
+Tuplets, measures, voices, staves and the other containers carry duration attributes, too:
 
 ::
 

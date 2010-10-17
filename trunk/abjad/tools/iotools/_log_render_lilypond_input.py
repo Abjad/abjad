@@ -49,7 +49,7 @@ def _log_render_lilypond_input(expr, template = None):
       try:
          music = lily_file.score_block.pop( )
          delattr(music, '_lily_file')
-      except IndexError:
+      except (IndexError, AttributeError):
          pass
       del(lily_file)
 

@@ -8,10 +8,9 @@ score.
 The LCS model can be schematically visualized as a superposition of
 two complementary and completely independent layers of structure: a
 *tree* that includes the Containers and the Leaves, and a layer of
-free floating *connectors* or Spanners. [#f1]_
+free floating *connectors* or Spanners.
 
 .. image:: images/container_spanner.png
-
 
 There can be any number of Spanners, they may overlap, and they may
 connect to different levels of the tree hierarchy. The spanner
@@ -64,8 +63,16 @@ relationships between the elements of a score, it is not enough.
 Consider the tuplet example again with the following beaming
 alternatives:
 
+Beaming alternative 1:
+
 .. image:: images/2.png
+
+Beaming alternative 2:
+
 .. image:: images/3.png
+
+Beaming alternative 3:
+
 .. image:: images/4.png
 
 Clearly the beaming of notes can be totally independent from the
@@ -79,7 +86,7 @@ Below we have the score of our tuplet example with alternative beaming
 and its the Leaf-Container-Spanner graph. Notice that the colored blocks
 represent spanners.
 
-.. image:: images/5.png
+Beaming alternative 3 (graph):
 
 .. image:: images/lcs_tuplet_spanned.png
 
@@ -140,9 +147,3 @@ based on our tree structure, across tree nodes. So do the slurs, the
 dynamics markings and the ritardando indication at the top of the
 score. As we have seen in the tuplets example, all these groups
 running across the tree structure can be defined with *spanners*.
-
-
-.. rubric:: Footnotes
-
-.. [#f1] Leaves include notes, rests, chords and skips. Containers include staves, voices, measures and tuplets. Spanners include beams, trills, ties, glissandi, and pedal markings, among others.
-

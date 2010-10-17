@@ -15,7 +15,7 @@ print repr(note.duration.written) <hide
 iotools.write_expr_to_ly(staff, 'example1', 'oedo') <hide
 </abjad>
 
-Tuplets, measures, voices, staves and the other containers carry even more:
+Tuplets, measures, voices, staves and the other containers carry duration attributes, too:
 
 <abjad>
 tuplet = tuplettools.FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)

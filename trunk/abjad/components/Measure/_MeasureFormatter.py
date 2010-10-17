@@ -9,25 +9,6 @@ from abjad.components.Measure._MeasureFormatterSlotsInterface import \
 
 
 class _MeasureFormatter(_ContainerFormatter):
-   '''Encapsulate all dynamic measure and anonymous measure
-   format logic::
-
-      abjad> measure = AnonymousMeasure(macros.scale(3))
-      abjad> measure.formatter
-      <_MeasureFormatter>
-
-   ::
-
-      abjad> measure = DynamicMeasure(macros.scale(3))
-      abjad> measure.formatter
-      <_MeasureFormatter>
-
-   Measure instances implement a special formatter which inherits from this base class. ::
-
-      abjad> measure = Measure((3, 8), macros.scale(3))
-      abjad> measure.formatter
-      <_MeasureFormatter>
-   '''
 
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)

@@ -21,7 +21,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_2(self):
-      '''Optional class-level start comments in LilyPond output.
+      '''Start-of-measure numbering indicator. Open bracket..
       '''
       result = [ ]
       formatter = self._client
@@ -71,8 +71,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_6(self):
-      '''Sequential or parallel close brackets.
-      Also Optional class-level stop comments in LilyPond output.
+      '''Close brackets. End-of-measure numbering comments.
       '''
       result = [ ]
       formatter = self._client
@@ -103,8 +102,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [('overrides', 'overrides'),
          _get_grob_override_format_contributions(self._client._client)]
       override_list = result[-1]
-      override_list = [x for x in override_list 
-         if 'BarLine' not in x and 'SpanBar' not in x]
+      override_list = [x for x in override_list if 'BarLine' not in x and 'SpanBar' not in x]
       result[-1] = override_list
       return result
 
@@ -114,7 +112,6 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [('reverts', 'reverts'),
          _get_grob_revert_format_contributions(self._client._client)]
       override_list = result[-1]
-      override_list = [x for x in override_list 
-         if 'BarLine' not in x and 'SpanBar' not in x]
+      override_list = [x for x in override_list if 'BarLine' not in x and 'SpanBar' not in x]
       result[-1] = override_list
       return result
