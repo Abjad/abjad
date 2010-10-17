@@ -1,7 +1,7 @@
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-class DynamicMark(Mark):
+class DynamicMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a dynamic mark::
@@ -14,7 +14,7 @@ class DynamicMark(Mark):
 
    def __init__(self, dynamic_name_string, target_context = None):
       from abjad.components import Staff
-      Mark.__init__(self, target_context = target_context)
+      ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
       self._dynamic_name_string = dynamic_name_string
@@ -33,7 +33,7 @@ class DynamicMark(Mark):
             if not dynamic_spanner._is_exterior_leaf(args[0]):
                raise WellFormednessError(
                   '\n\tCan not attach dynamic mark to interior component of dynamic spanner.')
-      return Mark.__call__(self, *args)
+      return ContextMark.__call__(self, *args)
 
    def __copy__(self, *args):
       return type(self)(self._dynamic_name_string, target_contex = self.target_context)

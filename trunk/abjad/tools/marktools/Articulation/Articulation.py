@@ -1,7 +1,7 @@
 from abjad.components._Component import _Component
 #from abjad.core import _StrictComparator
 #from abjad.core import _Immutable
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 #class Articulation(_StrictComparator, _Immutable):

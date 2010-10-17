@@ -1,7 +1,7 @@
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-class StaffChangeMark(Mark):
+class StaffChangeMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a staff change.
@@ -11,7 +11,7 @@ class StaffChangeMark(Mark):
 
    def __init__(self, staff, target_context = None):
       from abjad.components import Staff
-      Mark.__init__(self, target_context = target_context)
+      ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
       self._staff = staff

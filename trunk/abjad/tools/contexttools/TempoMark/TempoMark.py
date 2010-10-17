@@ -1,9 +1,9 @@
 from abjad.tools import durtools
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 from fractions import Fraction
 
 
-class TempoMark(Mark):
+class TempoMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a tempo indication.
@@ -13,7 +13,7 @@ class TempoMark(Mark):
 
    def __init__(self, *args, **kwargs):
       from abjad.components import Score
-      Mark.__init__(self, **kwargs)
+      ContextMark.__init__(self, **kwargs)
       if self.target_context is None:
          self._target_context = Score
       if len(args) == 1 and isinstance(args[0], type(self)):

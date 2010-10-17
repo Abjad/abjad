@@ -1,10 +1,10 @@
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 from fractions import Fraction
 
 
-class TimeSignatureMark(Mark):
+class TimeSignatureMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a time signature.
@@ -18,7 +18,7 @@ class TimeSignatureMark(Mark):
    def __init__(self, *args, **kwargs):
       from abjad.components import Staff
       target_context = kwargs.get('target_context', None)
-      Mark.__init__(self, target_context = target_context)
+      ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
       ## initialize numerator and denominator from *args
@@ -72,7 +72,7 @@ class TimeSignatureMark(Mark):
 
    def __call__(self, *args):
       from abjad.components.Measure import Measure
-      Mark.__call__(self, *args)
+      ContextMark.__call__(self, *args)
       if isinstance(self._start_component, Measure):
          if self._start_component._explicit_meter is not None:
             self._start_component._explicit_meter.detach_mark( )
@@ -83,7 +83,7 @@ class TimeSignatureMark(Mark):
       return type(self)(self.numerator, self.denominator, 
          partial = self.partial, target_context = self.target_context)
 
-   ## TODO: can this be removed bc defined on Mark superclass?
+   ## TODO: can this be removed bc defined on ContextMark superclass?
    __deepcopy__ = __copy__
 
    def __eq__(self, arg):

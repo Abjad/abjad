@@ -1,5 +1,5 @@
 from abjad.tools import stringtools
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class LilyPondCommandMark(Mark):

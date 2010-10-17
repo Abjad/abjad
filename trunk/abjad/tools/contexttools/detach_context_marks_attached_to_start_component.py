@@ -1,7 +1,7 @@
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-def detach_context_marks_attached_to_start_component(start_component, klasses = (Mark, )):
+def detach_context_marks_attached_to_start_component(start_component, klasses = (ContextMark, )):
    r'''.. versionadded:: 1.1.2
 
    Detach context marks attached to `start_component`::

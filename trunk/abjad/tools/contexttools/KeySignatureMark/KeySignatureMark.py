@@ -1,7 +1,7 @@
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-class KeySignatureMark(Mark):
+class KeySignatureMark(ContextMark):
    '''.. versionadded:: 1.1.2
    
    The Abjad model of a key signature setting or key signature change.
@@ -15,7 +15,7 @@ class KeySignatureMark(Mark):
       from abjad.components import Staff
       from abjad.tools import pitchtools
       from abjad.tools import tonalitytools
-      Mark.__init__(self, target_context = target_context)
+      ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
       tonic = pitchtools.NamedChromaticPitchClass(tonic)

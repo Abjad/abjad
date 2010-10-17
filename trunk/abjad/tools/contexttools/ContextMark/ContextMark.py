@@ -3,7 +3,7 @@ from abjad.components._Context import _Context
 from fractions import Fraction
 
 
-class Mark(object):
+class ContextMark(object):
    '''.. versionadded:: 1.1.2
 
    Mark models time signatures, key signatures, clef, dynamics

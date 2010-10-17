@@ -1,7 +1,7 @@
-from abjad.tools.contexttools.Mark import Mark
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-class InstrumentMark(Mark):
+class InstrumentMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of an instrument change.
@@ -12,7 +12,7 @@ class InstrumentMark(Mark):
    def __init__(self, instrument_name, short_instrument_name, target_context = None):
       from abjad.components import Staff
       from abjad.tools.markuptools import Markup
-      Mark.__init__(self, target_context = target_context)
+      ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
       self._instrument_name = Markup(instrument_name)
