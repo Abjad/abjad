@@ -15,7 +15,7 @@ Tuplets prolate their contents:
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
+	abjad> tuplet = Tuplet((5, 4), 4 * Note("c'8"))
 	abjad> staff = stafftools.RhythmicStaff([Measure((5, 8), [tuplet])])
 	abjad> spannertools.BeamSpanner(tuplet)
 	abjad> show(staff)
