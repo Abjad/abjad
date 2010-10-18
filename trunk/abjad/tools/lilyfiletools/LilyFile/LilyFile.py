@@ -1,5 +1,5 @@
 from abjad.cfg.cfg import ABJADPATH
-from abjad.tools.lilyfiletools.AbjadVersionToken import AbjadVersionToken
+from abjad.tools.lilyfiletools.AbjadRevisionToken import AbjadRevisionToken
 from abjad.tools.lilyfiletools.DateTimeToken import DateTimeToken
 from abjad.tools.lilyfiletools.LilyPondLanguageToken import LilyPondLanguageToken
 from abjad.tools.lilyfiletools.LilyPondVersionToken import LilyPondVersionToken
@@ -71,7 +71,7 @@ class LilyFile(list):
    def __init__(self):
       list.__init__(self)
       self._file_initial_system_comments = [ ]
-      self._file_initial_system_comments.append(AbjadVersionToken( ))
+      self._file_initial_system_comments.append(AbjadRevisionToken( ))
       self._file_initial_system_comments.append(DateTimeToken( ))
       self._file_initial_user_comments = [ ]
       self._file_initial_system_includes = [ ]

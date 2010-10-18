@@ -418,7 +418,7 @@ lilyfiletools
 .. toctree::
    :maxdepth: 1
 
-   tools/lilyfiletools/AbjadVersionToken/AbjadVersionToken
+   tools/lilyfiletools/AbjadRevisionToken/AbjadRevisionToken
    tools/lilyfiletools/BookBlock/BookBlock
    tools/lilyfiletools/BookpartBlock/BookpartBlock
    tools/lilyfiletools/DateTimeToken/DateTimeToken

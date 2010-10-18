@@ -2,7 +2,7 @@ from abjad.tools.importtools._package_import import _package_import
 
 _package_import(__path__[0], globals( ))
 
-from AbjadVersionToken import AbjadVersionToken
+from AbjadRevisionToken import AbjadRevisionToken
 from BookBlock import BookBlock
 from BookpartBlock import BookpartBlock
 from DateTimeToken import DateTimeToken
