@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from abjad.tools.iotools.get_abjad_version_string import get_abjad_version_string
+from abjad.tools.cfgtools.get_abjad_revision_string import get_abjad_revision_string
 
 
 class AbjadVersionToken(_Immutable):
@@ -27,5 +27,5 @@ class AbjadVersionToken(_Immutable):
          abjad> lilyfiletools.AbjadVersionToken( ).format
          'Abjad revision 3719'
       '''
-      abjad_version_string = get_abjad_version_string( )
-      return 'Abjad revision %s' % abjad_version_string
+      abjad_revision_string = get_abjad_revision_string( )
+      return 'Abjad revision %s' % abjad_revision_string

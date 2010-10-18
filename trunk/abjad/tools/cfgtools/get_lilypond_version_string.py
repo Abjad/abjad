@@ -4,16 +4,17 @@ import subprocess
 
 
 def get_lilypond_version_string( ):
-   '''Get LilyPond version:
+   '''.. versionadded:: 1.1.2
 
-   ::
+   Get LilyPond version string::
 
-      abjad> iotools.get_lilypond_version_string( )
+      abjad> cfgtools.get_lilypond_version_string( )
       '2.13.34'
+
+   Return string.
    '''
 
    if subprocess.mswindows and not 'LilyPond' in os.environ.get('PATH'):
-      #lilypond = '"C:\\Program Files\\LilyPond\\usr\\bin\\lilypond.exe"'
       command = r'dir "C:\Program Files\*.exe" /s /b | find "lilypond.exe"'
       proc = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
       lilypond = proc.stdout.readline( )

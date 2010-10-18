@@ -42,6 +42,11 @@ cfgtools
 .. toctree::
    :maxdepth: 1
 
+   tools/cfgtools/get_abjad_revision_string
+   tools/cfgtools/get_abjad_version_string
+   tools/cfgtools/get_lilypond_version_string
+   tools/cfgtools/get_python_version_string
+   tools/cfgtools/list_environment_variables
    tools/cfgtools/list_templates
 
 
@@ -314,11 +319,8 @@ iotools
    :maxdepth: 1
 
    tools/iotools/f
-   tools/iotools/get_abjad_version_string
    tools/iotools/get_last_output_file_name
-   tools/iotools/get_lilypond_version_string
    tools/iotools/get_next_output_file_name
-   tools/iotools/list_settings
    tools/iotools/log
    tools/iotools/ly
    tools/iotools/parse_lilypond_input_string

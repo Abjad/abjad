@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from abjad.tools.iotools.get_lilypond_version_string import get_lilypond_version_string
+from abjad.tools.cfgtools.get_lilypond_version_string import get_lilypond_version_string
 
 
 class LilyPondVersionToken(_Immutable):

@@ -3,12 +3,16 @@ import os
 
 
 def list_templates( ):
-   '''List templates::
+   '''.. versionadded:: 1.1.2
+
+   List Abjad templates::
 
       abjad> cfgtools.list_templates( )
-      ['coventry.ly', 'lagos.ly', 'oedo.ly', 'paris.ly', 'tangiers.ly', 'thebes.ly', 'tirnaveni.ly']
+      ('coventry.ly', 'lagos.ly', 'oedo.ly', 'paris.ly', 'tangiers.ly', 'thebes.ly', 'tirnaveni.ly')
 
-   Return list of zero or more strings.
+   Return tuple of zero or more strings.
+
+   .. note:: Abjad templates are housed in ``abjad/templates``.
    '''
 
    file_names = [ ]
@@ -16,4 +20,4 @@ def list_templates( ):
       if file_name.endswith('.ly'):
          if not file_name.startswith('_'):
             file_names.append(file_name)
-   return file_names
+   return tuple(file_names)
