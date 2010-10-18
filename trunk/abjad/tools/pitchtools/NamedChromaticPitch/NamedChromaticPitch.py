@@ -153,7 +153,7 @@ class NamedChromaticPitch(_Pitch):
 
    @property
    def _diatonic_pitch_number(self):
-      return int(self.numbered_diatonic_pitch)
+      return abs(self.numbered_diatonic_pitch)
 
    @property
    def _numeric_deviation(self):

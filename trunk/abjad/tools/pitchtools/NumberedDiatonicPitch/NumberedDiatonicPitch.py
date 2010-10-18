@@ -37,9 +37,6 @@ class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
    ## OVERLOADS ##
 
    def __abs__(self):
-      return self._diatonic_pitch_class
-
-   def __int__(self):
       return self._diatonic_pitch_number
 
    ## PUBLIC ATTRIBUTES ##

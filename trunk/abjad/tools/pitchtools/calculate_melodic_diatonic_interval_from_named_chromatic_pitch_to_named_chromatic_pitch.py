@@ -33,8 +33,8 @@ def calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chro
    pitch_1 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_1)
    pitch_2 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_2)
 
-   degree_1 = int(pitch_1.numbered_diatonic_pitch)
-   degree_2 = int(pitch_2.numbered_diatonic_pitch)
+   degree_1 = abs(pitch_1.numbered_diatonic_pitch)
+   degree_2 = abs(pitch_2.numbered_diatonic_pitch)
    
    diatonic_interval_number = abs(degree_1 - degree_2) + 1
    

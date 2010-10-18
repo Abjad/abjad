@@ -2,8 +2,8 @@ from abjad import *
 import py.test
 
 
-def test_NumberedDiatonicPitch___slots___01( ):
-   '''Numbered diatonic pitches are immutable.
+def test_NumberedDiatonicPitch___setattr___01( ):
+   '''Slots constrain numbere diatonic pitch attributes.
    '''
 
    numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
