@@ -2,12 +2,12 @@ from abjad.cfg.cfg import ABJADPATH
 import os
 
 
-def list_templates( ):
+def list_abjad_templates( ):
    '''.. versionadded:: 1.1.2
 
    List Abjad templates::
 
-      abjad> cfgtools.list_templates( )
+      abjad> cfgtools.list_abjad_templates( )
       ('coventry.ly', 'lagos.ly', 'oedo.ly', 'paris.ly', 'tangiers.ly', 'thebes.ly', 'tirnaveni.ly')
 
    Return tuple of zero or more strings.

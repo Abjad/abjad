@@ -46,8 +46,9 @@ cfgtools
    tools/cfgtools/get_abjad_version_string
    tools/cfgtools/get_lilypond_version_string
    tools/cfgtools/get_python_version_string
-   tools/cfgtools/list_environment_variables
-   tools/cfgtools/list_templates
+   tools/cfgtools/list_abjad_environment_variables
+   tools/cfgtools/list_abjad_templates
+   tools/cfgtools/set_default_accidental_spelling
 
 
 chordtools
@@ -831,7 +832,6 @@ pitchtools
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_sharps
    tools/pitchtools/set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr
    tools/pitchtools/set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr
-   tools/pitchtools/set_default_accidental_spelling
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches
    tools/pitchtools/transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number
    tools/pitchtools/transpose_chromatic_pitch_number_by_octave_transposition_mapping

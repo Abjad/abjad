@@ -3,24 +3,24 @@ import pprint
 import types
 
 
-def list_environment_variables( ):
+def list_abjad_environment_variables( ):
    '''.. versionadded:: 1.1.1
 
    List Abjad environment variables::
 
-      abjad> cfgtools.list_environment_variables( )
+      abjad> cfgtools.list_abjad_environment_variables( )
       (('ABJADCONFIG', '/Users/foo/bar/.abjad/config.py'),
        ('ABJADPATH', '/Users/foo/bar/Documents/abjad/trunk/abjad/'),
        ('ABJADVERSIONFILE', '/Users/foo/bar/Documents/abjad/trunk/abjad/.version'),
        ('HOME', '/Users/foo/bar'))
 
-   Return tuple of environment variable / setting pairs.
+   Return tuple of zero or more environment variable / setting pairs.
 
    .. note:: Abjad environment variables are defined in ``abjad/cfg/cfg.py``.
 
    .. versionchanged:: 1.1.2
       renamed ``cfgtools.list_settings( )`` to
-      ``cfgtools.list_environment_variables( )``.
+      ``cfgtools.list_abjad_environment_variables( )``.
    '''
 
    result = [ ]
