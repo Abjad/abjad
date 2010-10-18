@@ -35,7 +35,7 @@ def _log_render_lilypond_input(expr, template = None):
 
    ## catch Abjad tight loops that result in excessive format time
    start_format_time = time.time( )
-   lily_file = _insert_expr_into_lily_file(expr)
+   lily_file = _insert_expr_into_lily_file(expr, template = template)
    formatted_lily_file = lily_file.format
    stop_format_time = time.time( )
    actual_format_time = int(stop_format_time - start_format_time)

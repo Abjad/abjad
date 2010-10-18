@@ -24,12 +24,7 @@ def write_expr_to_ly(expr, file_name, template = None):
       file_name += '.ly'
    try:
       outfile = open(file_name, 'w')
-      lily_file = _insert_expr_into_lily_file(expr)
-      if template is not None:
-         if not template.endswith('.ly'):
-            template += '.ly'
-         full_path_to_template = os.path.join(ABJADPATH, 'templates', template)
-         lily_file.file_initial_system_includes.append(full_path_to_template)
+      lily_file = _insert_expr_into_lily_file(expr, template = template)
       outfile.write(lily_file.format)
       outfile.close( )
    except IOError:

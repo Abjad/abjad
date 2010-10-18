@@ -1,17 +1,15 @@
-Pitch altitude values
-=====================
+Diatonic pitch numbers
+======================
 
+.. image:: images/diatonic-pitch-numbers.png
 
-.. image:: images/pitch-altitude-values.png
+The code to generate this table is as follows::
 
+   score, treble_staff, bass_staff = scoretools.make_empty_piano_score( )
+   duration = Fraction(1, 32)
 
-The code to generate this table is as follows. ::
-
-   score, treble_staff, bass_staff = scoretools.make_piano_staff( )
-   duration = Rational(1, 32)
-
-   treble = AnonymousMeasure([ ])
-   bass = AnonymousMeasure([ ])
+   treble = measuretools.AnonymousMeasure([ ])
+   bass = measuretools.AnonymousMeasure([ ])
 
    treble_staff.append(treble)
    bass_staff.append(bass)
@@ -23,22 +21,23 @@ The code to generate this table is as follows. ::
    pitches.extend([-12 + x for x in diatonic_pitches])
    pitches.extend([0 + x for x in diatonic_pitches])
    pitches.extend([12 + x for x in diatonic_pitches])
-   pitches.extend([24 + x for x in diatonic_pitches])
-   pitchtools.change_default_accidental_spelling('sharps')
+   pitches.append(24)
+   cfgtools.set_default_accidental_spelling('sharps')
 
    for i in pitches:
       note = Note(i, duration)
       rest = Rest(duration)
-      clef = pitchtools.suggest_clef([note.pitch])
-      if clef == Clef('treble'):
+      clef = pitchtools.suggest_clef_for_named_chromatic_pitches([note.pitch])
+      if clef == contexttools.ClefMark('treble'):
          treble.append(note)
          bass.append(rest)
       else:
          treble.append(rest)
          bass.append(note)
-      bass[-1].markup.down.append(note.pitch.altitude)
+      diatonic_pitch_number = abs(note.pitch.numbered_diatonic_pitch)
+      markuptools.Markup(diatonic_pitch_number, 'down')(bass[-1])
 
-   score.rest.transparent = True
-   score.stem.stencil = False
+   score.override.rest.transparent = True
+   score.override.stem.stencil = False
 
-   show(score, 'paris')
+   show(score, 'paris.ly')

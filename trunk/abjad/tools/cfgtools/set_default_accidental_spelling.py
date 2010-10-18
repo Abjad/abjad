@@ -28,6 +28,8 @@ def set_default_accidental_spelling(spelling = 'mixed'):
       abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
       [Note(cs'', 5), Note(ef'', 5)]
 
+   Return none.
+
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.change_default_accidental_spelling( )`` to
       ``cfgtools.set_default_accidental_spelling( )``.

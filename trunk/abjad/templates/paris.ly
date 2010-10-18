@@ -11,6 +11,9 @@
 %%%   * Collisions are ignored
 %%%   * Paper layout is landscape
 
+\header {
+   tagline = ""
+}
 
 \layout {
    indent = #0

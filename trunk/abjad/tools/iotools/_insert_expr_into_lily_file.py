@@ -1,8 +1,9 @@
 from abjad.components._Context import _Context
 from abjad.tools import lilyfiletools
+from abjad.tools.iotools._template_name_to_template_path import _template_name_to_template_path
 
 
-def _insert_expr_into_lily_file(expr):
+def _insert_expr_into_lily_file(expr, template = None):
 
    if isinstance(expr, lilyfiletools.LilyFile):
       lily_file = expr
@@ -16,5 +17,9 @@ def _insert_expr_into_lily_file(expr):
       lily_file.append(score_block)
       lily_file.score = score_block
       lily_file._is_temporary = True
+
+   if template is not None:
+      template_path = _template_name_to_template_path(template)
+      lily_file.file_initial_user_includes.append(template_path)
 
    return lily_file
