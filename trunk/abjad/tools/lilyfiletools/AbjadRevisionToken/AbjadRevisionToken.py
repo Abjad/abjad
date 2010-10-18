@@ -2,13 +2,13 @@ from abjad.core import _Immutable
 from abjad.tools.cfgtools.get_abjad_revision_string import get_abjad_revision_string
 
 
-class AbjadVersionToken(_Immutable):
+class AbjadRevisionToken(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Abjad version token::
 
-      abjad> lilyfiletools.AbjadVersionToken( )
-      AbjadVersionToken(Abjad revision 3719)
+      abjad> lilyfiletools.AbjadRevisionToken( )
+      AbjadRevisionToken(Abjad revision 3719)
    '''
 
    ## OVERLOADS ##
@@ -24,7 +24,7 @@ class AbjadVersionToken(_Immutable):
 
       ::
 
-         abjad> lilyfiletools.AbjadVersionToken( ).format
+         abjad> lilyfiletools.AbjadRevisionToken( ).format
          'Abjad revision 3719'
       '''
       abjad_revision_string = get_abjad_revision_string( )
