@@ -1,13 +1,13 @@
+Working with comments
+=====================
+
+LilyPond comments begin with the ``%`` sign.
+Abjad models LilyPond comments as marks.
+
 Adding comments
-===============
+---------------
 
-It is easy to add comments to any Abjad component.
-
-
-Adding leaf comments
---------------------
-
-You can add comments to any note, rest, chord or skip.
+You can add comments before, after or to the right of any note, rest or chord:
 
 ::
 
@@ -18,82 +18,112 @@ You can add comments to any note, rest, chord or skip.
 
 ::
 
-   abjad> note.comments.before.append('This is a comment before the note.')
-   abjad> note.comments.before.append('This is another comment before the note.')
+	abjad> marktools.Comment('This is a comment before the note.', 'before')(note)
+	abjad> marktools.Comment('This is a comment to the right of the note.', 'right')(note)
+
 
 ::
 
-   abjad> print note.format
-   % This is a comment before the note.
-   % This is another comment before the note.
-   cs''4
-
-Leaf comments go before, after or to the right of the note they modify.
+	abjad> f(note)
+	% This is a comment before the note.
+	cs''4 % This is a comment to the right of the note.
 
 
-Adding container comments
--------------------------
-
-You can also add comments to any container.
+You can add comments before, after, in the opening or in the closing of any container:
 
 ::
 
-	abjad> staff = Staff(construct.scale(4))
+	abjad> staff = Staff(macros.scale(4))
 	abjad> show(staff)
 
 .. image:: images/staff-ex.png
 
 ::
 
-   abjad> staff.comments.before.append('Here is a comment before the staff.')
-   abjad> staff.comments.opening.append('Here is a comment in the staff opening.')
-   abjad> staff.comments.opening.append('Here is another comment in the staff opening.')
-   abjad> staff.comments.closing.append('Comment in the staff closing.')
-   abjad> staff.comments.after.append('Comment after the staff.')
+	abjad> marktools.Comment('Here is a comment before the staff.', 'before')(staff)
+	abjad> marktools.Comment('Here is a comment in the staff opening.', 'opening')(staff)
+	abjad> marktools.Comment('Here is another comment in the staff opening.', 'opening')(staff)
+	abjad> marktools.Comment('Comment in the staff closing.', 'closing')(staff)
+	abjad> marktools.Comment('Comment after the staff.', 'after')(staff)
+
 
 ::
 
-   abjad> print staff.format
-   % Here is a comment before the staff.
-   \new Staff {
-           % Here is a comment in the staff opening.
-           % Here is another comment in the staff opening.
-           c'8
-           d'8
-           e'8
-           f'8
-           % Comment in the staff closing.
-   }
-   % Comment after the staff.
-
-The complete set of container comment locations is ``before``, ``after``, 
-``opening`` and ``closing``.
+	abjad> f(staff)
+	% Here is a comment before the staff.
+	\new Staff {
+		% Here is a comment in the staff opening.
+		% Here is another comment in the staff opening.
+		c'8
+		d'8
+		e'8
+		f'8
+		% Comment in the staff closing.
+	}
+	% Comment after the staff.
 
 
-Removing comments
------------------
+Getting comments
+----------------
 
-Comment locations are all built-in Python lists.
-
-This means you can add and remove comments with the usual list methods. ::
-
-   abjad> staff.comments.before.pop( )
-   abjad> 'Here is a comment before the staff.'
-   abjad> staff.comment.opening.pop( )
-   abjad> 'Here is another comment in the staff opening.'
+Use mark tools to get comments:
 
 ::
 
-   abjad> print staff.format
-   \new Staff {
-           % Here is a comment in the staff opening.
-           c'8
-           d'8
-           e'8
-           f'8
-           % Comment in the staff closing.
-   }
-   % Comment after the staff.
+	abjad> marktools.get_comments_attached_to_component(note)
+	(Comment('This is a comment before the note.')(cs''4), Comment('This is a comment to the right of the note.')(cs''4))
 
 
-.. seealso:: :class:`~abjad.comments.interface.CommentsInterface` API entry.
+Detaching comments
+------------------
+
+Detach comments by hand:
+
+::
+
+	abjad> comment_1, comment_2 = marktools.get_comments_attached_to_component(note)
+
+
+::
+
+	abjad> comment_1.detach_mark( )
+	Comment('This is a comment before the note.')
+	abjad> comment_2.detach_mark( )
+	Comment('This is a comment to the right of the note.')
+
+
+::
+
+	abjad> f(note)
+	cs''4
+
+
+::
+
+	abjad> marktools.get_comments_attached_to_component(note)
+	()
+
+
+Or use mark tools to detach comments automatically:
+
+::
+
+	abjad> marktools.detach_comments_attached_to_component(staff)
+
+
+::
+
+	abjad> f(staff)
+	\new Staff {
+		c'8
+		d'8
+		e'8
+		f'8
+	}
+
+
+::
+
+	abjad> marktools.get_comments_attached_to_component(staff)
+	()
+

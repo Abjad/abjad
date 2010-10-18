@@ -1,0 +1,19 @@
+#! /usr/bin/env python
+
+import os
+
+
+def _remove_tmp_out_directories( ):
+   total_file_names = 0
+   bad_files, good_files = [ ], [ ]
+   for dir_path, dir_names, file_names in os.walk('.'):
+      for dir_name in dir_names:
+         if dir_name == 'tmp_out':
+            full_path = os.path.abspath(os.path.join(dir_path, dir_name))
+            os.rmdir(full_path)
+   print ''
+   
+
+if __name__ == '__main__':
+   os.system('clear')
+   _remove_tmp_out_directories( )

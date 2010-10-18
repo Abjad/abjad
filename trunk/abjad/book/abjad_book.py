@@ -94,7 +94,8 @@ def _abjad_book( ):
       sys.exit(2)
    fn = args[0]
    out_fn = args[1]
-   print "Processing '%s'. Will write output to '%s'..." % (fn, out_fn)
+   print "Processing '%s' ...." % fn
+   print "Will write output to '%s'..." % out_fn
 
    ## parse file name
    fn_dir = os.path.dirname(os.path.abspath(fn))
