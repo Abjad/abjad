@@ -31,14 +31,22 @@ class InstrumentMark(ContextMark):
                return True
       return False
 
+   ## PRIVATE ATTRIBUTES ##
+
+   ## will probably need to change definition at some point ##
+   @property
+   def _target_context_name(self):
+      return self.target_context.__name__
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def format(self):
       result = [ ]
-      result.append(r'\set %s.instrumentName = %s' % (self.target_context, self.instrument_name))
+      result.append(r'\set %s.instrumentName = %s' % (
+         self._target_context_name, self.instrument_name))
       result.append(r'\set %s.shortInstrumentName = %s' % (
-         self.target_context, self.short_instrument_name))
+         self._target_context_name, self.short_instrument_name))
       return result
 
    @property

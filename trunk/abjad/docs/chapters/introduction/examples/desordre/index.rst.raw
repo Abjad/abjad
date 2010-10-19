@@ -33,13 +33,13 @@ pitches = [1,2,3]
 notes = notetools.make_notes(pitches, [(1, 8)])
 spannertools.BeamSpanner(notes)
 spannertools.SlurSpanner(notes)
-notes[0].dynamics.mark = 'f'
-notes[1].dynamics.mark = 'p'
+contexttools.DynamicMark('f')(notes[0])
+contexttools.DynamicMark('p')(notes[1])
 </abjad>
 <abjad>
 voice_lower = Voice(notes)
 voice_lower.name = 'rh_lower'
-voice_lower.voice.number = 2
+marktools.LilyPondCommandMark('voiceTwo')(voice_lower)
 </abjad>
 
 The notes belonging to the eighth note run are first beamed and slurred. Then we add the dynamic marks to the first two notes, and finally we put them inside a Voice. After naming the voice we number it ``2`` so that the stems of the notes point down.
@@ -50,12 +50,12 @@ Now we construct the octave:
 import math
 n = int(math.ceil(len(pitches) / 2.))
 chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
-chord.articulations.append('>')
+marktools.Articulation('>')(chord)
 </abjad>
 <abjad>
 voice_higher = Voice([chord])
 voice_higher.name = 'rh_higher'
-voice_higher.voice.number = 1
+marktools.LilyPondCommandMark('voiceOne')(voice_higher)
 </abjad>
 
 The duration of the chord is half the duration of the running eighth notes if the duration of the running notes is divisible by two. Otherwise the duration of the chord is the next integer greater than this half.
@@ -72,7 +72,7 @@ This results in the complete *Désordre* *cell*:
 
 <abjad>[hide = True]
 cell = Staff([p])
-write_ly(cell, 'desordre_cell') 
+iotools.write_expr_to_ly(cell, 'desordre_cell') 
 </abjad>
 
 Because this *cell* appears over and over again, we want to reuse this code to generate any number of these *cells*. We here encapsulate it in a function that will take only a list of pitches::
@@ -84,18 +84,18 @@ Because this *cell* appears over and over again, we want to reuse this code to g
       notes = [Note(p, (1, 8)) for p in pitches]
       spannertools.BeamSpanner(notes)
       spannertools.SlurSpanner(notes)
-      notes[0].dynamics.mark = 'f'
-      notes[1].dynamics.mark = 'p'
+      contexttools.DynamicMark('f')(notes[0])
+      contexttools.DynamicMark('p')(notes[1])
       v_lower = Voice(notes)
       v_lower.name = 'rh_lower'
-      v_lower.voice.number = 2
+      marktools.LilyPondCommandMark('voiceTwo')(v_lower)
 
       n = int(math.ceil(len(pitches) / 2.))
       chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
-      chord.articulations.append('>')
+      marktools.Articulation('>')(chord)
       v_higher = Voice([chord])
       v_higher.name = 'rh_higher'
-      v_higher.voice.number = 1
+      marktools.LilyPondCommandMark('voiceOne')(v_higher)
       p = Container([v_lower, v_higher])
       p.parallel = True
       ## make all 1/8 beats breakable
@@ -127,7 +127,7 @@ To construct a Ligeti measure we would call the function like so:
 <abjad>
 from abjad.demos.desordre.helpers import * <hide
 measure = measure_build([[0,4,7], [0,4,7,9], [4,7,9,11]])
-write_ly(Staff([measure]), 'desordre_measure') <hide
+iotools.write_expr_to_ly(Staff([measure]), 'desordre_measure') <hide
 show(Staff([measure]))
 </abjad>
 
@@ -151,7 +151,7 @@ As with measures, we can now create full measure sequences with this new functio
 <abjad>
 pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
 staff = staff_build(pitches)
-write_ly(staff, 'desordre_staff') <hide
+iotools.write_expr_to_ly(staff, 'desordre_staff') <hide
 show(staff)
 </abjad>
 
@@ -184,7 +184,7 @@ top = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]], [[2, 4, 5,
 bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
 
 desordre = desordre_build([top, bottom])
-write_ly(desordre, 'desordre_final', template = 'tirnaveni') <hide
+iotools.write_expr_to_ly(desordre, 'desordre_final', template = 'tirnaveni') <hide
 show(desordre)
 </abjad>
 

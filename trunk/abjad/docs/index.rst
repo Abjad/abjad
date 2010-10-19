@@ -37,16 +37,13 @@ Tutorial
    chapters/tutorial/start/index
    chapters/tutorial/one_note/index
    chapters/tutorial/many_notes/index
-   chapters/tutorial/note_attributes/index
    chapters/tutorial/pitch_deviation/index
    chapters/tutorial/lists_of_numbers/index
    chapters/tutorial/comments/index
+   chapters/tutorial/working_with_instrument_marks/index
    chapters/tutorial/inspecting_output/index
    chapters/tutorial/measures/index
-   chapters/tutorial/measure_comment_numbering/index
-   chapters/tutorial/naming/index
-   chapters/tutorial/format_reporting/index
-
+   chapters/tutorial/naming_containers/index
 
 Fundamentals
 
@@ -55,7 +52,6 @@ Fundamentals
 
    chapters/fundamentals/lcs/index
    chapters/fundamentals/duration/index
-   chapters/fundamentals/pitch/index
    chapters/fundamentals/note_basics/index
    chapters/fundamentals/parentage/index
    chapters/fundamentals/grobhandlers/index

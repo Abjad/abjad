@@ -1,7 +1,7 @@
 from abjad import *
 import math
 from abjad.tools.scoretools.make_empty_piano_score import \
-   make_rigid_measures_with_full_measure_spacer_skips_empty_piano_score
+   make_empty_piano_score
 
 
 def desordre_build(pitches):
@@ -32,7 +32,7 @@ def staff_build(pitches):
 
 def measure_build(pitches):
    '''Returns a DynamicMeasure containing Ligeti "cells".'''
-   result = DynamicMeasure([ ])
+   result = measuretools.DynamicMeasure([ ])
    for seq in pitches:
       result.append(desordre_cell(seq))
    ## make denominator 8
@@ -43,29 +43,28 @@ def measure_build(pitches):
 
 def desordre_cell(pitches):
    '''Returns a parallel container encapsulating a Ligeti "cell".'''
-   Pitch.accidental_spelling = 'sharps'
+   pitchtools.NamedChromaticPitch.accidental_spelling = 'sharps'
    notes = [Note(p, (1, 8)) for p in pitches]
    spannertools.BeamSpanner(notes)
    spannertools.SlurSpanner(notes)
-   notes[0].dynamics.mark = 'f'
-   notes[1].dynamics.mark = 'p'
+   contexttools.DynamicMark('f')(notes[0])
+   contexttools.DynamicMark('p')(notes[1])
    v_lower = Voice(notes)
    v_lower.name = 'rh_lower'
-   #v_lower.voice.number = 2
    marktools.LilyPondCommandMark('voiceTwo')(v_lower)
 
    n = int(math.ceil(len(pitches) / 2.))
    chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
-   chord.articulations.append('>')
+   marktools.Articulation('>')(chord)
    v_higher = Voice([chord])
    v_higher.name = 'rh_higher'
-   #v_higher.voice.number = 1
    marktools.LilyPondCommandMark('voiceOne')(v_higher)
    p = Container([v_lower, v_higher])
    p.parallel = True
    ## make all 1/8 beats breakable
    for n in v_lower.leaves[:-1]:
-      n.bar_line.kind = ''
+      #n.bar_line.kind = ''
+      marktools.LilyPondCommandMark('bar ""', format_slot = 'closing')(n)
    return p
 
 

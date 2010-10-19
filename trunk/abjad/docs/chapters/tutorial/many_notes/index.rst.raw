@@ -1,24 +1,17 @@
-Make many notes
-===============
+Making many notes
+=================
 
-Type the following and hit return. ::
-
-   abjad> notes = macros.scale(4)
-   abjad> notes
-   [Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8)]
-
-Abjad creates the first four notes of an ascending C major scale.
-
-Wrap these notes in a staff and then show.
+Use the scale macro to create many notes at once:
 
 <abjad>
-notes = macros.scale(4) <hide
-staff = Staff(notes)
-show(staff)
-write_ly(staff, 'test') <hide
+macros.scale(4)
+print repr(macros.scale(4)) <hide
 </abjad>
 
-The ``notes`` variable is now bound to a Python list of four Abjad notes.
-The ``staff`` variable is bound to an Abjad staff containing those notes.
+Show these notes in a staff:
 
-.. seealso:: See the API entry for :func:`macros.scale( ) <abjad.tools.macros.scale.scale>`.
+<abjad>
+staff = Staff(macros.scale(4))
+show(staff)
+iotools.write_expr_to_ly(staff, 'test') <hide
+</abjad>

@@ -1,0 +1,33 @@
+Naming containers
+=================
+
+You can name Abjad containers:
+
+<abjad>
+flute_staff = Staff(macros.scale(4))
+flute_staff.name = 'Flute'
+violin_staff = Staff(macros.scale(4))
+violin_staff.name = 'Violin'
+staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
+score = Score([staff_group])
+</abjad>
+
+Container names appear in LilyPond input:
+
+<abjad>
+f(score)
+</abjad>
+
+And make it easy to retrieve containers later:
+
+<abjad>
+componenttools.get_first_component_in_expr_with_name(score, 'Flute')
+print repr(componenttools.get_first_component_in_expr_with_name(score, 'Flute')) <hide
+</abjad>
+
+But container names do not appear in notational output:
+
+<abjad>
+show(score)
+iotools.write_expr_to_ly(score, 'example-1') <hide
+</abjad>

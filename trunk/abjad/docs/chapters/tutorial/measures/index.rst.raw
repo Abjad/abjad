@@ -1,61 +1,84 @@
-Three types of measure
-======================
+Working with measures
+=====================
 
+Measures
+--------
 
-Rigid measures
---------------
-
-The easiest way to build a measure full of music is with
-:class:`~abjad.RigidMeasure`.  
-To use a rigid measure, you need to know the duration of the 
-measure you want to make before you make it.
+Create a measure with a meter and music:
 
 <abjad>
 measure = Measure((3, 8), macros.scale(3))
-print measure.format
-show(measure)
-write_ly(measure, '1') <hide
 </abjad>
 
+<abjad>
+f(measure)
+</abjad>
+
+<abjad>
+show(measure)
+iotools.write_expr_to_ly(measure, 'example-1') <hide
+</abjad>
 
 Dynamic measures
 ----------------
 
-If you want a measure that grows and shinks as you add  and remove music,
-you can use a :class:`~abjad.DynamicMeasure`.
+Use a dynamic measure if you want a measure that grows and shinks 
+as you add and remove music:
 
 <abjad>
-measure = DynamicMeasure(macros.scale(4))
-print measure.format
+measure = measuretools.DynamicMeasure(macros.scale(4))
+</abjad>
+
+<abjad>
+f(measure)
+</abjad>
+
+<abjad>
 show(measure)
-write_ly(measure, '2') <hide
+iotools.write_expr_to_ly(measure, 'example-2') <hide
 </abjad>
 
 <abjad>
 measure.pop(-1)
-print measure.format
-show(measure)
-write_ly(measure, '3') <hide
 </abjad>
 
+<abjad>
+f(measure)
+</abjad>
+
+<abjad>
+show(measure)
+iotools.write_expr_to_ly(measure, 'example-3') <hide
+</abjad>
 
 Anonymous measures
 ------------------
 
-If you want this same dynamic behavior in a measure that hides 
-its time signature, use an
-:class:`~abjad.AnonymousMeasure`.
+Use an anonymous measure is you want a measure that grows and shrinks
+as you add music and that also hides its time signature:
 
 <abjad>
-measure = AnonymousMeasure(macros.scale(4))
-print measure.format
+measure = measuretools.AnonymousMeasure(macros.scale(4))
+</abjad>
+
+<abjad>
+f(measure)
+</abjad>
+
+<abjad>
 show(measure)
-write_ly(measure, '4') <hide
+iotools.write_expr_to_ly(measure, 'example-4') <hide
 </abjad>
 
 <abjad>
 measure.pop(-1)
-print measure.format
+</abjad>
+
+<abjad>
+f(measure)
+</abjad>
+
+<abjad>
 show(measure)
-write_ly(measure, '5') <hide
+iotools.write_expr_to_ly(measure, 'example-5') <hide
 </abjad>
