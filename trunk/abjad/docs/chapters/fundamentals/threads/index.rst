@@ -166,21 +166,21 @@ by printing it:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> vA_thread_signature
-	<      root: Staff-7702712 (7702712) *      score:  * staffgroup:  *      staff: Staff-7702712 *      voice: Voice-7702296 *       self: Voice-7702296 >
+	<      root: Staff-7702608 (7702608) *      score:  * staffgroup:  *      staff: Staff-7702608 *      voice: Voice-7702192 *       self: Voice-7702192 >
 
 
 ::
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> vB_thread_signature
-	<      root: Staff-7702712 (7702712) *      score:  * staffgroup:  *      staff: Staff-7702712 *      voice: Voice-7702504 *       self: Voice-7702504 >
+	<      root: Staff-7706704 (7706704) *      score:  * staffgroup:  *      staff: Staff-7706704 *      voice: Voice-7706496 *       self: Voice-7706496 >
 
 
 ::
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> vC_thread_signature
-	<      root: Staff-7702712 (7702712) *      score:  * staffgroup:  *      staff: Staff-7702712 *      voice: Voice-7702608 *       self: Voice-7702608 >
+	<      root: Staff-7706704 (7706704) *      score:  * staffgroup:  *      staff: Staff-7706704 *      voice: Voice-7706600 *       self: Voice-7706600 >
 
 
 And by comparing them with the binary equality operator:
@@ -219,10 +219,10 @@ Note how the thread signatures have changed:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> print vA_thread_signature
-	      root: Staff-7706808 (7706808)
+	      root: Staff-7706704 (7706704)
 	     score:
 	staffgroup:
-	     staff: Staff-7706808
+	     staff: Staff-7706704
 	     voice: Voice-piccolo
 	      self: Voice-piccolo
 
@@ -231,10 +231,10 @@ Note how the thread signatures have changed:
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> print vB_thread_signature
-	      root: Staff-7706808 (7706808)
+	      root: Staff-7706704 (7706704)
 	     score:
 	staffgroup:
-	     staff: Staff-7706808
+	     staff: Staff-7706704
 	     voice: Voice-piccolo
 	      self: Voice-piccolo
 
@@ -243,12 +243,12 @@ Note how the thread signatures have changed:
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> print vC_thread_signature
-	      root: Staff-7706808 (7706808)
+	      root: Staff-7706704 (7706704)
 	     score:
 	staffgroup:
-	     staff: Staff-7706808
-	     voice: Voice-7706704
-	      self: Voice-7706704
+	     staff: Staff-7706704
+	     voice: Voice-7706600
+	      self: Voice-7706600
 
 
 And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns 
