@@ -85,19 +85,15 @@ terms of magnitude: d = 1/4 = 1/8 * 2 = 1/8 + 1/16 * 2 ... etc. So,
 for example, while equivalent in magnitude, these are not the same
 notated durations:
 
-   <abjad>
-      hide> m1 = Measure((1, 4), [Note(0, (1, 4))])
-      hide> m1.meter.transparent = True
-      hide> m2 = Measure((1, 4), Note(0, (1, 8)) * 2)
-      hide> spannertools.TieSpanner(m2)
-      hide> m2.meter.transparent = True
-      hide> m3 = Measure((1, 4), [Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
-      hide> spannertools.TieSpanner(m3)
-      hide> m3.meter.transparent = True
-      hide> r = RhythmicStaff([m1, m2, m3])
-      hide> write(r, 'example1')
-   </abjad>
-
+<abjad>
+m1 = measuretools.AnonymousMeasure([Note(0, (1, 4))])
+m2 = measuretools.AnonymousMeasure(Note(0, (1, 8)) * 2)
+spannertools.TieSpanner(m2)
+m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
+spannertools.TieSpanner(m3)
+r = stafftools.RhythmicStaff([m1, m2, m3])
+iotools.write_expr_to_ly(r, 'example1')
+</abjad>
 
 Written note pitch vs. midi note-on
 -----------------------------------
@@ -106,16 +102,12 @@ A similar thing happens with pitches. In MIDI, key (pitch) number 61
 is a half tone above middle C. But how is this pitch to be notated? As
 a C sharp or a B flat?
 
-   <abjad>
-      hide> m1 = Measure((1, 4), [Note(1, (1, 4))])
-      hide> m1.meter.transparent = True
-      hide> m2 = Measure((1, 4), [Note(('df', 4), (1, 4))])
-      hide> m2.meter.transparent = True
-      hide> r = Staff([m1, m2])
-      hide> write(r, 'example2')
-   </abjad>
-
-
+<abjad>
+m1 = measuretools.AnonymousMeasure([Note(1, (1, 4))])
+m2 = measuretools.AnonymousMeasure([Note(('df', 4), (1, 4))])
+r = Staff([m1, m2])
+iotools.write_expr_to_ly(r, 'example2')
+</abjad>
 
 Conclusion
 ----------
@@ -124,6 +116,3 @@ MIDI was not designed for score representation. MIDI is a simple
 communication protocol intended for real-time control. As such, it
 naturally lacks the adequate model to represent the full range of
 information found in printed scores.
-
-
-

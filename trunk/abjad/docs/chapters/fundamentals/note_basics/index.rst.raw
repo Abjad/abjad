@@ -1,199 +1,160 @@
 Working with notes
 ==================
 
-
 Creating notes
 --------------
 
-Create notes with a `pitch token` and a `duration token`.
+Create notes with a name:
 
 <abjad>
-note = Note(0, (1, 4))
-measure = Measure(note.duration.prolated, [note]) <hide
-measure.meter.transparent = True <hide
-write_ly(measure, 'note1', 'oedo') <hide
+note = Note("c'4")
+measure = measuretools.AnonymousMeasure([note]) <hide
+iotools.write_expr_to_ly(measure, 'example-1', 'oedo.ly') <hide
 </abjad>
 
-
-Pitch assignment
-----------------
-
-Change pitch with a number:
+Or with numbers:
 
 <abjad>
-note = Note(0, (1, 4))
-note.pitch = 2
-measure = Measure(note.duration.prolated, [note]) <hide
-measure.meter.transparent = True <hide
-write_ly(measure, 'pitch1', 'oedo') <hide
+note = Note(0, Fraction(1, 4))
+measure = measuretools.AnonymousMeasure([note]) <hide
+iotools.write_expr_to_ly(measure, 'example-2', 'oedo.ly') <hide
+</abjad>
+
+Changing pitch
+--------------
+
+Change pitch with a name:
+
+<abjad>
+note.pitch = "d'"
+iotools.write_expr_to_ly(measure, 'example-3', 'oedo.ly') <hide
 </abjad>
 
 With a pair:
 
 <abjad>
-note = Note(2, (1, 4))
 note.pitch = ('e', 4)
-measure = Measure(note.duration.prolated, [note]) <hide
-measure.meter.transparent = True <hide
-write_ly(measure, 'example3', 'oedo') <hide
+iotools.write_expr_to_ly(measure, 'example-4', 'oedo.ly') <hide
 </abjad>
 
-Or with a :class:`Pitch <abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.pitch.Pitch>` instance:
+With a number:
 
 <abjad>
-note = Note(('e', 4), (1, 4))
-note.pitch = NamedChromaticPitch('f', 4)
-measure = Measure(note.duration.prolated, [note]) <hide
-measure.meter.transparent = True <hide
-write_ly(measure, 'example4', 'oedo') <hide
+note.pitch = 5
+iotools.write_expr_to_ly(measure, 'example-5', 'oedo.ly') <hide
 </abjad>
 
-Any `pitch token` will work.
-
-
-Pitch comparison
-----------------
-
-To a :class:`Pitch <abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.pitch.Pitch>` instance:
+Or with a pitch object:
 
 <abjad>
-note = Note(0, (1, 4))
-note.pitch == NamedChromaticPitch('c', 4)
+note.pitch = pitchtools.NamedChromaticPitch('g', 4)
+iotools.write_expr_to_ly(measure, 'example-6', 'oedo.ly') <hide
 </abjad>
 
-Or to another pitched Abjad object:
+Making pitch comparisons
+------------------------
+
+Compare one named chromatic pitch to another:
 
 <abjad>
-note = Note(0, (1, 4))
-chord = Chord([0, 2, 10], (1, 4))
-note.pitch == chord.note_heads[0].pitch
+note.pitch
+print repr(note.pitch) <hide
 </abjad>
 
-
-Types of pitch comparison
--------------------------
+<abjad>
+note.pitch == pitchtools.NamedChromaticPitch('c', 4)
+print repr(note.pitch == pitchtools.NamedChromaticPitch('c', 4)) <hide
+</abjad>
 
 All six Python comparison operators work as expected.
+
 <abjad>
-n1 = Note(0, (1, 4))
-n2 = Note(2, (1, 4))
+note_1 = Note("c'4")
+note_2 = Note("d'4")
 </abjad>
 
 <abjad>
-print n1.pitch == n2.pitch
+note_1.pitch == note_2.pitch
+print repr(note_1.pitch == note_2.pitch) <hide
 </abjad>
 
 <abjad>
-print n1.pitch != n2.pitch
+note_1.pitch != note_2.pitch
+print repr(note_1.pitch != note_2.pitch) <hide
 </abjad>
 
 <abjad>
-print n1.pitch > n2.pitch
+note_1.pitch > note_2.pitch
+print repr(note_1.pitch > note_2.pitch) <hide
 </abjad>
 
 <abjad>
-print n1.pitch < n2.pitch
+note_1.pitch < note_2.pitch
+print repr(note_1.pitch < note_2.pitch) <hide
 </abjad>
 
 <abjad>
-print n1.pitch >= n2.pitch
+note_1.pitch >= note_2.pitch
+print repr(note_1.pitch >= note_2.pitch) <hide
 </abjad>
 
 <abjad>
-print n1.pitch <= n2.pitch
+note_1.pitch <= note_2.pitch
+print repr(note_1.pitch <= note_2.pitch) <hide
 </abjad>
 
-.. note::
-   
-   Is this the comparison we want?
+Inspecting duration attributes
+------------------------------
 
-
-Duration initialization
------------------------
-
-Initialize :class:`Note <abjad.components.Note.note.Note>` duration with a :class:`Fraction <abjad.core.rational.Fraction>`.
+Leaves bundle six duration attributes.
 
 <abjad>
-note = Note(0, Fraction(1, 8))
-measure = Measure(note.duration.prolated, [note]) <hide
-measure.meter.transparent = True <hide
-write_ly(measure, 'duration_init1', 'oedo') <hide
-</abjad>
-
-You can also use a `duration token` as a shortcut.
-
-
-
-Duration attributes
--------------------
-
-:class:`Note <abjad.components.Note.note.Note>`  has a :class:`_LeafDurationInterface <abjad.components._Leaf.duration._LeafDurationInterface>`.
-
-<abjad>
-tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+tuplet = Tuplet((2, 3), macros.scale(3))
 note = tuplet[0]
-print note.duration
-</abjad>
-
-:class:`_LeafDurationInterface <abjad.components._Leaf.duration._LeafDurationInterface>` bundles six public attributes.
-
-<abjad>
-tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-note = tuplet[0]
-print note.duration.multiplied
+note.duration.multiplied
+print repr(note.duration.multiplied) <hide
 </abjad>
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-note = tuplet[0]
-print note.duration.multiplier
+note.duration.multiplier
+print repr(note.duration.multiplier) <hide
 </abjad>
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-note = tuplet[0]
-print note.duration.preprolated
+note.duration.preprolated
+print repr(note.duration.preprolated) <hide
 </abjad>
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-note = tuplet[0]
-print note.duration.prolated
+note.duration.prolated
+print repr(note.duration.prolated) <hide
 </abjad>
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-note = tuplet[0]
-print note.duration.prolation
+note.duration.prolation
+print repr(note.duration.prolation) <hide
 </abjad>
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-note = tuplet[0]
-print note.duration.written
+note.duration.written
+print repr(note.duration.written) <hide
 </abjad>
 
+Reassigning duration attributes
+-------------------------------
 
-Duration attribute assignment
------------------------------
-
-You can reassign ``note.duration.written``.
+You can reassign written duration:
 
 <abjad>
 note = Note(0, (1, 4))
 </abjad>
 
 <abjad>
-note = Note(0, (1, 8))
 note.duration.written = Fraction(3, 16)
-measure = Measure(note.duration.prolated, [note]) <hide
-measure.meter.transparent = True <hide
-write_ly(measure, 'duration_assign1', 'oedo') <hide
+iotools.write_expr_to_ly(measure, 'example-7', 'oedo.ly') <hide
 </abjad>
 
-You must use an :term:`assignable` 
-:class:`Fraction <abjad.core.rational.Fraction>`.
-You can also assign ``note.duration.multiplier``.
+You can assign a LilyPond multiplier:
 
 <abjad>
 note = Note(0, (1, 4))
@@ -201,14 +162,16 @@ note.duration.multiplier = Fraction(1, 6)
 </abjad>
 
 <abjad>
-note = Note(0, (1, 4))
-note.duration.multiplier = Fraction(1, 6)
-print note.duration.written
-print note.duration.multiplier
-print note.duration.multiplied
+note.duration.written
+print repr(note.duration.written) <hide
+note.duration.multiplier
+print repr(note.duration.multiplier) <hide
+note.duration.multiplied
+print repr(note.duration.multiplied) <hide
 </abjad>
 
-Use any positive Fraction.
 All other duration attributes are read-only.
 
+.. seealso:: 
 
+   :doc:`Pitch conventions (appendix) </chapters/appendices/pitch_conventions/index>`

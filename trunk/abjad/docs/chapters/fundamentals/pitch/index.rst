@@ -6,4 +6,3 @@ Pitches
 
    overview/index
    pitch_token/index
-   notehead_token/index

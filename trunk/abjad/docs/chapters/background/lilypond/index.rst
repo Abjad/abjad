@@ -1,0 +1,120 @@
+Why LilyPond is right for Abjad
+===============================
+
+Early versions of Abjad wrote MIDI files for input to Finale and Sibelius. 
+Later versions of Abjad wrote ``.pbx`` files for input into Leland Smith's SCORE.
+Over time we found LilyPond superior to Finale, Sibelius and SCORE.
+
+Nested tuplets works out of the box
+-----------------------------------
+
+LilyPond uses a single construct to nest tuplets arbitrarily:
+
+::
+    
+   \new stafftools.RhythmicStaff {
+      \time 7/8
+      \times 7/8 {
+         c8.
+         \times 7/5 { c16 c16 c16 c16 c16 }
+         \times 3/5 { c8 c8 c8 c8 c8 }
+      }
+   }
+
+::
+
+	abjad> staff = stafftools.RhythmicStaff([Measure((7, 8), [ ])])
+	abjad> measure = staff[0]
+	abjad> measure.append(Note('c8.'))
+	abjad> measure.append(Tuplet((7, 5), 5 * Note('c16')))
+	abjad> spannertools.BeamSpanner(measure[-1])
+	abjad> measure.append(Tuplet((3, 5), 5 * Note('c8')))
+	abjad> spannertools.BeamSpanner(measure[-1])
+	abjad> Tuplet((7, 8), measure.music)
+	abjad> staff.override.tuplet_bracket.bracket_visibility = True
+	abjad> staff.override.tuplet_bracket.padding = 1.6
+	abjad> show(staff)
+
+.. image:: images/example-1.png
+
+LilyPond's tuplet input syntax works the same as any other recursive construct.
+
+Broken tuplets work out of the box
+----------------------------------
+
+LilyPond engraves tupletted notes interrupted by nontupletted notes correctly:
+
+::
+    
+    \new Staff {
+       \times 4/7 { c'16 c'16 c'16 c'16 }
+       c'8 c'8
+       \times 4/7 { c'16 c'16 c'16 }
+    }
+
+::
+
+	abjad> t = Tuplet((4, 7), Note(0, (1, 16)) * 4)
+	abjad> notes = Note(0, (1, 8)) * 2
+	abjad> u = Tuplet((4, 7), Note(0, (1, 16)) * 3)
+	abjad> spannertools.BeamSpanner(t)
+	abjad> spannertools.BeamSpanner(notes)
+	abjad> spannertools.BeamSpanner(u)
+	abjad> measure = Measure((4, 8), [t] + notes + [u])
+	abjad> staff = stafftools.RhythmicStaff([measure])
+	abjad> show(staff)
+
+.. image:: images/example-2.png
+
+Nonbinary meters work out of the box
+------------------------------------
+
+The rhythm above rewrites with time signatures in place of tuplets:
+
+::
+
+    \new Staff {
+       \time 4/28 c'16 c'16 c'16 c'16 |
+       \time 2/8  c'8  c'8 |
+       \time 3/28 c'16 c'16 c'16 |
+    }
+
+::
+
+	abjad> t = Measure((4, 28), Note(0, (1, 16)) * 4)
+	abjad> u = Measure((2, 8), Note(0, (1, 8)) * 2)
+	abjad> v = Measure((3, 28), Note(0, (1, 16)) * 3)
+	abjad> spannertools.BeamSpanner(t)
+	abjad> spannertools.BeamSpanner(u)
+	abjad> spannertools.BeamSpanner(v)
+	abjad> staff = stafftools.RhythmicStaff([t, u, v])
+	abjad> show(staff)
+
+.. image:: images/example-3.png
+
+The time signatures ``4/28`` and ``3/28`` here have a denominator not
+equal to ``4``, ``8``, ``16`` or any other nonnegative integer power of two. 
+Abjad calls such time signatures **nonbinary meters** and LilyPond engraves them correctly.
+
+Lilypond models the musical measure correctly
+---------------------------------------------
+
+Most engraving packages make the concept of the measure out to be
+more important than it should. We see evidence of this wherever an
+engraving package makes it difficult for either a long note
+or the notes of a tuplet to cross a barline.
+These difficulties come from working the idea of measure-as-container
+deep into object model of the package.
+
+There is a competing way to model the musical measure that we might call 
+the measure-as-background way of thinking about things. 
+Western notation pratice started absent any concept of the barline, 
+introduced the idea gradually, 
+and has since retreated from the necessity of the convention.
+Engraving packages that pick out an understanding of the barline 
+from the 18th or 19th centuries subscribe to the measure-as-container
+view of things and oversimplify the problem.
+One result of this is to render certain barline-crossing rhythmic figures 
+either an inelegant hack or an outright impossibility. 
+LilyPond eschews the measure-as-container model in favor of the measure-as-background
+model better able to handle both earlier and later notation practice.

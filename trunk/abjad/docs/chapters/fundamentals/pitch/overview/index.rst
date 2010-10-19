@@ -30,8 +30,3 @@ Abjad implements quartertones only.
 
    For the conventions these chapters follow, refer to the appendix on 
    :doc:`pitch conventions </chapters/appendices/pitch_conventions/index>`.
-
-.. todo::
-
-   Implement support for LilyPond arrowed accidentals.
-
