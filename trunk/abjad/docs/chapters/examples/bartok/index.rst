@@ -1,11 +1,14 @@
-Bartók
-======
+Bartók: Wandering
+=================
 
 This example reconstructs the last five measures of Bartók's *Wandering* from Mikrokosmos vol. III.  It demonstrates the use of many of the main classes in Abjad. The end result is just a few measures long, but the example covert most of the basic features you'll usually need.
 
 Here is what we want to end up with:
 
 .. image :: images/bartok_final.png
+
+The score
+---------
 
 We will construct the fragment `top-down`, going from the high level containers to the details. We could have done it the other way around, but it will be easier to keep the big picture in mind this way. We encourage you to try rebuilding the example `bottom-down` as an exercise. 
 First let's create the high level framework of the score:
@@ -22,6 +25,9 @@ First let's create the high level framework of the score:
 Here we created an empty piano staff and we've assigned it to the ``piano`` variable.
 Then we created two staves and assigned them to the ``upper_staff`` and ``lower_staff`` variables.
 Finally, we appended the staves to the piano staff.  
+
+The measures
+------------
 
 Now let's add some measures to the framework:
 
@@ -53,6 +59,9 @@ Notice also that the measures are added to their corresponding staff via the ``e
 
    Remember that ``extend`` is used for appending multiple objects that are 
    grouped together in an iterable while ``append`` is used for single objects.
+
+The notes
+---------
 
 Now lets actually start adding some notes. Let's begin with the upper staff:
 
@@ -141,14 +150,25 @@ Let's see what we have up till now:
 
 .. image:: images/bartok_framework.png
 
-Ok, let's add some detail. First, notice that the bottom staff has a treble clef, just like the top staff. Let's change that:
+The details
+-----------
+
+Ok, let's add some detail. First, notice that the bottom staff has a treble clef, 
+just like the top staff. 
+Let's change that:
 
 ::
 
 	abjad> contexttools.ClefMark('bass')(lower_staff)
 
 
-Now let's sprinkle some dynamic markings. For the top staff, we will add them to the first note of the first measure and the second note of the second measure. For the bottom staff, we will add dynamic markings to the second note of the first measure and the fourth note of the second measure. Note that because we created Voices inside the measures of the lower staff, we need to index those too:
+Now let's sprinkle some dynamic markings. 
+For the top staff, we will add them to the first note of the first measure 
+and the second note of the second measure. 
+For the bottom staff, we will add dynamic markings to the second note 
+of the first measure and the fourth note of the second measure. 
+Note that because we created Voices inside the measures of the lo
+wer staff, we need to index those too:
 
 ::
 
@@ -173,7 +193,11 @@ Let's see how this is coming out:
 
 .. image:: images/bartok_notes.png
 
-Notice that the beams of the eighth and sixteenth notes appear as you would usually expect: grouped by beat. We get this for free thanks to LilyPond's default rendering algorithm. This is not, however, the way Bartok notated his score. Let's set the beams as Bartok did, running some across the bar lines: 
+Notice that the beams of the eighth and sixteenth notes appear as you would usually expect: 
+grouped by beat. 
+We get this for free thanks to LilyPond's default rendering algorithm. 
+This is not, however, the way Bartok notated his score. 
+Let's set the beams as Bartok did, running some across the bar lines: 
 
 ::
 
@@ -199,7 +223,9 @@ Now some slurs:
 	abjad> slr.position = 'down'
 
 
-Notice that we store the last slur in the `slr` variable to change its ``position`` attribute to ``'down'``. This does what you would expect!
+Notice that we store the last slur in the `slr` variable to change 
+its ``position`` attribute to ``'down'``. 
+This does what you would expect!
 
 Now hairpins:
 

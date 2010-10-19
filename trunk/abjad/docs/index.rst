@@ -28,9 +28,9 @@ Examples
    :maxdepth: 2
    :numbered:
 
-   chapters/introduction/examples/desordre/index
-   chapters/introduction/examples/bartok/index
-   chapters/introduction/examples/slicing/index
+   chapters/examples/bartok/index
+   chapters/examples/lehman/index
+   chapters/examples/ligeti/index
 
 Tutorial
 
