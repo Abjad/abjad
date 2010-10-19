@@ -1,0 +1,135 @@
+Ferneyhough: Unsichtbare Farben
+===============================
+
+Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare Farben` in 
+`The OM Composer's Book 2`.
+
+Malt details Ferneyhough's use of OpenMusic:
+
+   The composer first created an exhaustive catalogue of rhythmic cells with
+   two characteristics:
+   
+   1. They are subdivided into two pulses, with proportions from ``1/1`` to ``1/11``.
+
+   2. The second pulse is subdivided successively by ``1``, ``2``, ``3``, ``4``, ``5`` and ``6``.
+
+Here we recreate Malt's results in Abjad.
+
+The proportions
+---------------
+
+First we define proportions:
+
+<abjad>
+proportions = [(1, n) for n in range(1, 11 + 1)]
+proportions
+print repr(proportions) <hide
+</abjad>
+
+The transforms
+--------------
+
+Then we make aliases:
+
+<abjad>
+make_tuplet = tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots
+tie_chain_to_tuplet = tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
+</abjad>
+
+And create a helper:
+
+<abjad>
+def divide_tuplet(tuplet, n): <hide
+   last_tie_chain = tietools.get_tie_chain(tuplet[-1]) <hide
+   proportions = n * [1] <hide
+   new = tie_chain_to_tuplet(last_tie_chain, proportions) <hide
+   return new <hide
+</abjad>
+
+::
+
+   def divide_tuplet(tuplet, n):
+      last_tie_chain = tietools.get_tie_chain(tuplet[-1])
+      proportions = n * [1]
+      new = tie_chain_to_tuplet(last_tie_chain, proportions)
+      return new
+
+The rhythms
+-----------
+
+We set tuplet duration:
+
+<abjad>
+duration = Fraction(1, 4)
+</abjad>
+
+And make the rhythms:
+
+<abjad>
+music = [ ] <hide
+for proportion in proportions: <hide
+   tuplets = [ ] <hide
+   for n in range(1, 6 + 1): <hide
+      tuplet = make_tuplet(duration, proportion) <hide
+      divide_tuplet(tuplet, n) <hide
+      tuplets.append(tuplet) <hide
+   music.extend(tuplets) <hide
+</abjad>
+
+::
+
+   for proportion in proportions:
+      tuplets = [ ]
+      for n in range(1, 6 + 1):
+         tuplet = make_tuplet(duration, proportion)
+         divide_tuplet(tuplet, n)
+         tuplets.append(tuplet)
+      staff.extend(tuplets)
+
+The score
+---------
+
+Finally we make the score:
+
+<abjad>
+staff = stafftools.RhythmicStaff(music)
+score = Score([staff])
+lily_file = lilyfiletools.make_basic_lily_file(score)
+</abjad>
+
+Configure containers:
+
+<abjad>
+contexttools.TimeSignatureMark((1, 4))(staff)
+score.override.bar_number.transparent = True
+score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
+score.set.tuplet_full_length = True
+score.override.spacing_spanner.uniform_stretching = True
+score.override.spacing_spanner.strict_note_spacing = True
+score.override.tuplet_bracket.padding = 2
+score.override.tuplet_bracket.staff_padding = 4
+score.override.tuplet_number.text = schemetools.SchemeFunction('tuplet-number::calc-fraction-text')
+score.override.time_signature.stencil = False
+score.override.bar_line.stencil = False
+</abjad>
+
+Configure the LilyPond file:
+
+<abjad>
+lily_file.default_paper_size = '11x17', 'portrait'
+lily_file.global_staff_size = 12
+lily_file.layout_block.indent = 0
+lily_file.layout_block.ragged_right = True
+lily_file.paper_block.ragged_bottom = True
+space = schemetools.SchemePair('space', 18)
+stretchability = schemetools.SchemePair('stretchability', 0)
+vector = schemetools.SchemeVector(space, stretchability)
+lily_file.paper_block.between_system_spacing = vector
+</abjad>
+
+And show the result:
+
+<abjad>
+show(lily_file)
+iotools.write_expr_to_ly(lily_file, 'example-1') <hide
+</abjad>
