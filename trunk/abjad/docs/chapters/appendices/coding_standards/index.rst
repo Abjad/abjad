@@ -12,8 +12,6 @@ Introduce comments with two pound signs and a single space::
    def foo(x, y):
       return x + y
 
-Limit lines to 80 characters and use ``\`` to break lines where necessary.
-
 Favor early imports at the head of each module. Only one ``import`` per line::
 
       from foo import x
@@ -45,8 +43,6 @@ Use paired apostrophes to delimit strings::
 Use paired quotation marks to delimit strings within a string::
 
    s = 'foo and "bar"'
-
-Eliminate trivial slice indices. Use ``s[:4]`` instead of ``s[0:4]``.
 
 Name classes in upper camelcase::
 
@@ -143,14 +139,18 @@ Include a single space in between empty parentheses::
       ...
       ...
 
-Do not abbreviate variable names.
-
-Name variables that represent a list or other collection of objects in the plural.
-
 Use ``<`` less-than signs in preference to greater-than signs::
 
    if x < y < z:
       ...
+
+Limit lines to 80 characters and use ``\`` to break lines where necessary.
+
+Eliminate trivial slice indices. Use ``s[:4]`` instead of ``s[0:4]``.
+
+Do not abbreviate variable names.
+
+Name variables that represent a list or other collection of objects in the plural.
 
 Implement only one class per module.
 

@@ -12,6 +12,10 @@
 %%% of the figures they govern.
 
 
+\header {
+   tagline = ""
+}
+
 \layout {
    ragged-right = ##t
 

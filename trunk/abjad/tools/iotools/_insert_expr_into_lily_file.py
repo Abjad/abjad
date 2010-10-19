@@ -1,9 +1,10 @@
 from abjad.components._Context import _Context
 from abjad.tools import lilyfiletools
+from abjad.tools import markuptools
 from abjad.tools.iotools._template_name_to_template_path import _template_name_to_template_path
 
 
-def _insert_expr_into_lily_file(expr, template = None):
+def _insert_expr_into_lily_file(expr, template = None, tagline = False):
 
    if isinstance(expr, lilyfiletools.LilyFile):
       lily_file = expr
@@ -21,5 +22,8 @@ def _insert_expr_into_lily_file(expr, template = None):
    if template is not None:
       template_path = _template_name_to_template_path(template)
       lily_file.file_initial_user_includes.append(template_path)
+
+   if not tagline:
+      lily_file.header_block.tagline = markuptools.Markup('""')
 
    return lily_file

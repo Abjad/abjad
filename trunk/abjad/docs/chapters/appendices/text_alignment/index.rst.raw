@@ -1,21 +1,19 @@
 Text alignment
 ==============
 
-LilyPond provides many different ways to positiong text.
-The appendix here outlines some of the most important.
-
+LilyPond provides many ways to position text.
 
 Default alignment
 -----------------
 
-LilyPond LEFT aligns markup relative to the LEFT edge-of-note_head by default.
+LilyPond left-aligns markup relative to the left edge of note head by default.
 
 <abjad>
 notes = notetools.make_repeated_notes(1, Fraction(1, 4))
-staff = RhythmicStaff(notes)
+staff = stafftools.RhythmicStaff(notes)
 leaves = staff.leaves
-leaves[0].markup.up.append('XX')
-write_ly(staff, 'default-alignment', template = 'thebes') <hide
+markuptools.Markup('XX', 'up')(leaves[0])
+iotools.write_expr_to_ly(staff, 'default-alignment', template = 'thebes') <hide
 show(staff, 'thebes')
 </abjad>
 
@@ -23,24 +21,24 @@ show(staff, 'thebes')
 ``TextScript #'self-alignment-X``
 ---------------------------------
 
-Use ``#'self-alignment-X`` to LEFT-, CENTER- or RIGHT-align markup
-relative to the LEFT edge-of-note_head.
+Use ``#'self-alignment-X`` to left-, center- or right-align markup
+relative to the left edge of note head.
 
 .. note:: changes to ``#'self-alignment-X`` do not change the fact
    that markup positioning is by default relative to the 
-   LEFT edge-of-note_head.
+   LEFT edge of note head.
 
 <abjad>
 notes = notetools.make_repeated_notes(3, Fraction(1, 4))
-staff = RhythmicStaff(notes)
+staff = stafftools.RhythmicStaff(notes)
 leaves = staff.leaves
-leaves[0].markup.up.append('XX')
-leaves[0].text.self_alignment_X = 'left'
-leaves[1].markup.up.append('XX')
-leaves[1].text.self_alignment_X = 'center'
-leaves[2].markup.up.append('XX')
-leaves[2].text.self_alignment_X = 'right'
-write_ly(staff, 'self-alignment-X-alone', template = 'thebes') <hide
+markuptools.Markup('XX', 'up')(leaves[0])
+leaves[0].override.text_script.self_alignment_X = 'left'
+markuptools.Markup('XX', 'up')(leaves[1])
+leaves[1].override.text_script.self_alignment_X = 'center'
+markuptools.Markup('XX', 'up')(leaves[2])
+leaves[2].override.text_script.self_alignment_X = 'right'
+iotools.write_expr_to_ly(staff, 'self-alignment-X-alone', template = 'thebes') <hide
 show(staff, 'thebes')
 </abjad>
 
@@ -48,8 +46,7 @@ show(staff, 'thebes')
 ``TextScript #'X-offset``
 -------------------------
 
-Use ``#'X-offset`` to OFFSET markup by some number of magic units
-in the horizontal direction.
+Use ``#'X-offset`` to offset markup by some number of magic units in the horizontal direction.
 
 .. note:: Specify ``#'X-offset`` arguments as numbers like ``#2.5``.
    Do not specify ``#'X-offset`` arguments as direction contstants 
@@ -57,20 +54,20 @@ in the horizontal direction.
 
 .. note:: changes to ``#'X-offset`` do not change the fact
    that markup positioning is by default relative to the 
-   LEFT edge-of-note_head.
+   LEFT edge of note head.
 
 <abjad>
 notes = notetools.make_repeated_notes(4, Fraction(1, 4))
-staff = RhythmicStaff(notes)
+staff = stafftools.RhythmicStaff(notes)
 leaves = staff.leaves
-leaves[0].markup.up.append('XX')
-leaves[0].text.X_offset = 0
-leaves[1].markup.up.append('XX')
-leaves[1].text.X_offset = 2
-leaves[2].markup.up.append('XX')
-leaves[2].text.X_offset = 4
-leaves[3].markup.up.append('XX')
-leaves[3].text.X_offset = 6
-write_ly(staff, 'X-offset-alone', template = 'thebes') <hide
+markuptools.Markup('XX', 'up')(leaves[0])
+leaves[0].override.text_script.X_offset = 0
+markuptools.Markup('XX', 'up')(leaves[1])
+leaves[1].override.text_script.X_offset = 2
+markuptools.Markup('XX', 'up')(leaves[2])
+leaves[2].override.text_script.X_offset = 4
+markuptools.Markup('XX', 'up')(leaves[3])
+leaves[3].override.text_script.X_offset = 6
+iotools.write_expr_to_ly(staff, 'X-offset-alone', template = 'thebes') <hide
 show(staff, 'thebes')
 </abjad>

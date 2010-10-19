@@ -5,23 +5,23 @@ Threads
 What is a thread?
 -----------------
 
-Abjad has the notion of a :term:`thread`. A thread is a structural relationship binding a set of strictly sequential :class:`~abjad.components.Voice.voice.Voice` level Abjad component, such as notes, rests, chords, tuplets or plain containers.
+A thread is a structural relationship binding a set of strictly sequential voice-level components.
 
-Threads may be *explicitly* defined via :class:`~abjad.components.Voice.voice.Voice` instances: 
+Threads may be explicitly defined via voice instances:
 
 <abjad>
 v = Voice( )
 </abjad>
 
-or they may exist *implicitly* in certain score constructs in the absence of :class:`~abjad.components.Voice.voice.Voice` containers:
+Or they may exist implicitly in certain score constructs in the absence of voice containers:
 
 <abjad>
 staff = Staff(macros.scale(4))
 </abjad>
 
-The existence of :class:`~abjad.components.Voice.voice.Voice` objects does not, however, guarantee the existence of a thread between the element contained in different voices. Two contiguous voices *must* have the same name in order to be part of the same thread. 
+Two contiguous voices must have the same name in order to be part of the same thread. 
 
-Here a thread does *not* exist between notes in the different :class:`~abjad.components.Voice.voice.Voice` contexts:
+Here a thread does **not** exist between notes in different voices:
 
 <abjad>
 v_one = Voice(macros.scale(4, (1, 16)))
@@ -29,7 +29,6 @@ v_two = Voice(macros.scale(2))
 staff = Staff([v_one, v_two])
 f(staff)
 </abjad>
-
 
 Here a thread does exist:
 
@@ -39,8 +38,6 @@ v_two.name = 'flute'
 f(staff)
 </abjad>
 
-
-
 What are threads for?
 ---------------------
 
@@ -48,36 +45,45 @@ Consider the following situation:
 
 .. image:: images/thread-resolution_1.png
 
-
-Are the two eighth notes in the second half of the measure the continuation of the ascending line in the first half, or is it the quarter note? 
+Are the two eighth notes in the second half of the measure the continuation 
+of the ascending line in the first half, or is it the quarter note? 
 Is the very last *C* the continuation of the top melodic line or is it the *A*?  
 The stems might suggest an answer, but for Abjad, stem direction is not structural.  
-What path should Abjad take to traverse this little score from the first note to the last *A*? This same problem appears when trying to apply spanners to parallel structures.  Thus, threads are important in both score navigation (also called score traversal) and :class:`~abjad.spanner.spanner.Spanner` application.
-In fact, threads are a *requirement* for :class:`~abjad.spanner.spanner.Spanner` application. 
+What path should Abjad take to traverse this little score from the first note to the last *A*? 
+This same problem appears when trying to apply spanners to parallel structures.  
+Thus, threads are important in both score navigation and the application of spanners.
+In fact, threads are a requirement for spanner application.
 
-In Abjad, the ambiguity is resolved through the explicit use of named Voices, i.e. the explicit definition of threads. 
+In Abjad, the ambiguity is resolved through the explicit use of named voices.
 
-The above musical fragment is constructed with the following code:
+The musical fragment above is constructed with the following code:
 
 <abjad>
 vA = Voice(notetools.make_notes([5, 7, 9, 11], [(1, 8)] * 4))
 vB = Voice(notetools.make_notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
 vC = Voice(Note(12, (1, 4)) * 2)
-vA.voice.number = 1
-vB.voice.number = 1
-vC.voice.number = 2
+marktools.LilyPondCommandMark('voiceOne')(vA[0])
+marktools.LilyPondCommandMark('voiceOne')(vB[0])
+marktools.LilyPondCommandMark('voiceTwo')(vC[0])
 p = Container([vB, vC])
 p.parallel = True
 staff = Staff([vA, p])
-write_ly(staff, 'thread-resolution_1', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'thread-resolution_1', 'oedo') <hide
 </abjad>
 
-There's a :class:`~abjad.components.Staff.staff.Staff` that sequentially contains a :class:`~abjad.components.Voice.voice.Voice` and a parallel :class:`~abjad.components.Container.container.Container`. The :class:`~abjad.components.Container.container.Container` in turn holds two Voices running simultaneously. 
+There's a staff that sequentially contains a voice and a parallel container.
+The container in turn holds two voices running simultaneously. 
 
-It is now clear from the code that the last *A* belongs with the two descending eighth notes. But there's still no indication about a relationship of continuity between the first :class:`~abjad.components.Voice.voice.Voice` in the sequence (`vA`) and any of the two following Voices. 
-Note that, while the voice number setting (``vA.voice.number = 1``) may suggest that vA and vB belong together, this is not the case. The ``voice.number`` attribute simply sets the direction of the stems in the final printed output. 
+It is now clear from the code that the last *A* belongs with the two descending eighth notes. 
+But there's still no indication about a relationship of continuity between the first voice 
+in the sequence (`vA`) and any of the two following voices. 
+Note that, while the LilyPond voice number commands setting may suggest 
+that vA and vB belong together, this is not the case. 
+The LilyPond voice number commands simply set the direction of stems in printed output.
 
-To see this more clearly, suppose we want to add a :class:`~abjad.slur.spanner.Slur` starting on the first :class:`~abjad.components.Note.note.Note` and ending on one of the last simultaneous Notes. To attach the :class:`~abjad.slur.slur.Slur` spanner to Voices we could either try: 
+To see this more clearly, suppose we want to add a slur spanner starting on the 
+first note and ending on one of the last simultaneous notes.
+To attach the slur spanner to the voices we could try either:
 
 ::
 
@@ -89,126 +95,147 @@ or
 
    abjad> spannertools.SlurSpanner([vA, vC])
 
-but both throw a :class:`~abjad.exceptions.exceptions.ContiguityError`. Abjad needs to see an explicit connection between either `vA` and `vB` or `vA` and `vC`. 
+But both raise a contiguity error.
+Abjad needs to see an explicit connection between either `vA` and `vB` or between `vA` and `vC`. 
 
-Observe the behavior of the :func:`~abjad.tools.iterate.thread.thread` iterator on the `staff`.
+Observe the behavior of the 
+:func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr` 
+iterator on the `staff`::
 
 <abjad>
-notes = iterate.thread(staff, Note, vA.thread.signature)
+vA_thread_signature = threadtools.component_to_thread_signature(vA)
+notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
-notes = iterate.thread(staff, Note, vB.thread.signature)
+vB_thread_signature = threadtools.component_to_thread_signature(vB)
+notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vB_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
-notes = iterate.thread(staff, Note, vC.thread.signature)
+vC_thread_signature = threadtools.component_to_thread_signature(vC)
+notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vC_thread_signature)
 print list(notes)
 </abjad>
 
-In each case we are passing a different *thread signature* to the :func:`~abjad.tools.iterate.thread.thread` iterator, so each case returns a different list of Notes.
+In each case we are passing a different **thread signature** to the 
+:func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr`
+iterator, so each case returns a different list of notes.
 
-.. note::
-   All Abjad Components have a :class:`~abjad.thread.interface.ThreadInterface`.
-
-
-We can see that the *thread signature* of each voice is indeed different by calling the ``report( )`` method on each of the Voice's :class:`~abjad.thread.interface.ThreadInterface`.
+We can see that the thread signature of each voice is indeed different 
+by printing it:
 
 <abjad>
-vA.thread.report( )
+vA_thread_signature = threadtools.component_to_thread_signature(vA)
+vA_thread_signature
+print repr(vA_thread_signature) <hide
 </abjad>
 
 <abjad>
-vB.thread.report( )
+vB_thread_signature = threadtools.component_to_thread_signature(vB)
+vB_thread_signature
+print repr(vB_thread_signature) <hide
 </abjad>
 
 <abjad>
-vC.thread.report( )
+vC_thread_signature = threadtools.component_to_thread_signature(vC)
+vC_thread_signature
+print repr(vC_thread_signature) <hide
 </abjad>
 
-And by comparing them with the ``==`` binary operator:
+And by comparing them with the binary equality operator:
 
 <abjad>
-print vA.thread.signature == vB.thread.signature
-print vA.thread.signature == vC.thread.signature
-print vB.thread.signature == vC.thread.signature
+vA_thread_signature == vB_thread_signature
+print repr(vA_thread_signature == vB_thread_signature) <hide
+vA_thread_signature == vC_thread_signature
+print repr(vA_thread_signature == vC_thread_signature) <hide
+vB_thread_signature == vC_thread_signature
+print repr(vB_thread_signature == vC_thread_signature) <hide
 </abjad>
 
-To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging together, we explicitly define a thread between them. To do this  all we need to do is name these Voices equally:
+To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging together, 
+we explicitly define a thread between them. 
+To do this  all we need to do is give both voices the same name:
 
 <abjad>
 vA.name = 'piccolo'
 vB.name = 'piccolo'
 </abjad>
 
-Now `vA` and `vB` and all their content belong to the same thread.
+Now `vA` and `vB` and all their content belong to the same thread:
 
 <abjad>
-print vA.thread.signature == vB.thread.signature
+vA_thread_signature == vB_thread_signature
+print repr(vA_thread_signature == vB_thread_signature) <hide
 </abjad>
 
-Note how the *thread signatures* have changed:
+Note how the thread signatures have changed:
 
 <abjad>
-vA.thread.report( )
+vA_thread_signature = threadtools.component_to_thread_signature(vA)
+print vA_thread_signature
 </abjad>
 
 <abjad>
-vB.thread.report( )
+vB_thread_signature = threadtools.component_to_thread_signature(vB)
+print vB_thread_signature
 </abjad>
 
 <abjad>
-vC.thread.report( )
+vC_thread_signature = threadtools.component_to_thread_signature(vC)
+print vC_thread_signature
 </abjad>
 
-
-And how the ``iterate.thread( )`` function returns all the Notes belonging to both `vA` and `vB` when passing it the full `staff` and the *thread signature* of `vA`.
+And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns 
+all the notes belonging to both `vA` and `vB` when passing it the full staff 
+and the thread signature of `vA`:
 
 <abjad>
-notes = iterate.thread(staff, Note, vA.thread.signature)
+notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 print list(notes)
 </abjad>
 
-Now the :class:`~abjad.slur.spanner.Slur` spanner can be applied to Voices `vA` and `vB`:
+Now the slur spanner can be applied to voices `vA` and `vB`:
 
 ::
 
    abjad> spannertools.SlurSpanner([vA, vB])
 
-or directly to the Notes returned by the :func:`~abjad.tools.iterate.thread.thread` iteration tool, which are the Notes belonging to both `vA` and `vB`:
+or directly to the notes returned by the 
+:func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr`
+iteration tool, which are the notes belonging to both `vA` and `vB`:
 
 <abjad>
-notes = iterate.thread(staff, Note, vA.thread.signature)
+notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 spannertools.SlurSpanner(list(notes))
 </abjad>
 
 <abjad>
 show(staff)
-write_ly(staff, 'thread-resolution_2', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'thread-resolution_2', 'oedo') <hide
 </abjad>
 
 
 Coda
 ^^^^
 
-Incidentally, we could have constructed this score in a simpler way with only two Voices, one of them starting with a :class:`~abjad.components.Skip.skip.Skip`:
+We could have constructed this score in a simpler way with only two voices, 
+one of them starting with a LilyPond skip:
 
 .. note:: 
-   A :class:`~abjad.components.Skip.skip.Skip` is like an invisible :class:`~abjad.components.Rest.rest.Rest`.
-
+   A LilyPond skip is like an invisible rest.
 
 <abjad>
 vX = Voice(notetools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
-vY = Voice([Skip((2, 4))] + Note(12, (1, 4)) * 2)
-vX.voice.number = 1
-vY.voice.number = 2
+vY = Voice([skiptools.Skip((2, 4))] + Note(12, (1, 4)) * 2)
+marktools.LilyPondCommandMark('voiceOne')(vX[0])
+marktools.LilyPondCommandMark('voiceTwo')(vY[0])
 staff = Staff([vX, vY])
 staff.parallel = True
-write_ly(staff, 'thread-resolution_3', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'thread-resolution_3', 'oedo') <hide
 </abjad>
 
-
 But that would have defeated the purpose of this section!
-

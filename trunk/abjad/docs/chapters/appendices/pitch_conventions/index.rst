@@ -1,19 +1,14 @@
 Pitch conventions
 =================
 
-Abjad follows the following pitch conventions.
+Accidental abbreviations
+------------------------
 
+Abjad abbreviates accidentals according to the LilyPond ``english.ly`` module:
 
-Names
------
-
-Abjad names pitches according to the LilyPond ``english.ly`` module.
-
-Abjad names accidentals according to the table below.
-
-   ======================       ========
-   accidental                    symbol
-   ======================       ========
+   ======================       ============================
+   accidental name              abbreviation
+   ======================       ============================
    quarter sharp                 'qs'
    quarter flat                  'qf' 
    sharp                         's' 
@@ -22,22 +17,99 @@ Abjad names accidentals according to the table below.
    three-quarters flat           'tqf' 
    double sharp                  'ss' 
    double flat                   'ff'
-   ======================       ========
+   ======================       ============================
 
 
-Numbers
--------
+Chromatic pitch numbers
+-----------------------
 
-Abjad sets middle C equal to 0. This follows the presentation of
-American pitch-class theory in, for example, [Morris1987]_ .
+Abjad numbers chromatic pitches by semitone with middle C set equal to 0:
 
-IRCAM / MIDI pitch numbers equal Abjad pitch numbers plus 60.
+.. image:: images/chromatic-pitch-numbers.png
 
+The code to generate this table is as follows::
 
-Octaves
--------
+   score, treble_staff, bass_staff = scoretools.make_empty_piano_score( )
+   duration = Fraction(1, 32)
 
-Abjad represents octaves with both numbers and ticks.
+   treble = measuretools.AnonymousMeasure([ ])
+   bass = measuretools.AnonymousMeasure([ ])
+
+   treble_staff.append(treble)
+   bass_staff.append(bass)
+
+   pitches = range(-12, 12 + 1)
+
+   cfgtools.set_default_accidental_spelling('sharps')
+
+   for i in pitches:
+      note = Note(i, duration)
+      rest = Rest(duration)
+      clef = pitchtools.suggest_clef_for_named_chromatic_pitches([note.pitch])
+      if clef == contexttools.ClefMark('treble'):
+         treble.append(note)
+         bass.append(rest)
+      else:
+         treble.append(rest)
+         bass.append(note)
+      diatonic_pitch_number = str(note.pitch.numbered_chromatic_pitch)
+      markuptools.Markup(diatonic_pitch_number, 'down')(bass[-1])
+
+   score.override.rest.transparent = True
+   score.override.stem.stencil = False
+
+   show(score, 'paris.ly')
+
+Diatonic pitch numbers
+----------------------
+
+Abjad numbers diatonic pitches by staff space with middle C set equal to 0:
+
+.. image:: images/diatonic-pitch-numbers.png
+
+The code to generate this table is as follows::
+
+   score, treble_staff, bass_staff = scoretools.make_empty_piano_score( )
+   duration = Fraction(1, 32)
+
+   treble = measuretools.AnonymousMeasure([ ])
+   bass = measuretools.AnonymousMeasure([ ])
+
+   treble_staff.append(treble)
+   bass_staff.append(bass)
+
+   pitches =[ ]
+   diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
+
+   pitches.extend([-24 + x for x in diatonic_pitches])
+   pitches.extend([-12 + x for x in diatonic_pitches])
+   pitches.extend([0 + x for x in diatonic_pitches])
+   pitches.extend([12 + x for x in diatonic_pitches])
+   pitches.append(24)
+   cfgtools.set_default_accidental_spelling('sharps')
+
+   for i in pitches:
+      note = Note(i, duration)
+      rest = Rest(duration)
+      clef = pitchtools.suggest_clef_for_named_chromatic_pitches([note.pitch])
+      if clef == contexttools.ClefMark('treble'):
+         treble.append(note)
+         bass.append(rest)
+      else:
+         treble.append(rest)
+         bass.append(note)
+      diatonic_pitch_number = abs(note.pitch.numbered_diatonic_pitch)
+      markuptools.Markup(diatonic_pitch_number, 'down')(bass[-1])
+
+   score.override.rest.transparent = True
+   score.override.stem.stencil = False
+
+   show(score, 'paris.ly')
+
+Octave designation
+------------------
+
+Abjad designates octaves with both numbers and ticks:
 
    ===============      =============
    Octave notation      Tick notation
@@ -51,73 +123,50 @@ Abjad represents octaves with both numbers and ticks.
          C1                   c,,
    ===============      =============
 
-Abjad follows American usage and sets the octave of middle C equal to 4.
-usage.
-
-Abjad uses ticks in LilyPond output only.
-
-
 Accidental spelling
 -------------------
 
-Abjad chooses between enharmonic spellings at pitch-initialization
-time according to the following table.
+Abjad chooses between enharmonic spellings at pitch-initialization 
+according to the following table:
 
-   ===============      ================
-   PC number            Default spelling
-   ===============      ================
-      0                    C 
-      1                    C♯ 
-      2                    D 
-      3                    E♭ 
-      4                    E 
-      5                    F 
-      6                    F♯ 
-      7                    G 
-      8                    G♭ 
-      9                    A 
-      10                   B♭ 
-      11                   B
-   ===============      ================
+   ============================      ====================================
+   Chromatic pitch-class number      Chromatic pitch-class name (default)
+   ============================      ====================================
+      0                              C 
+      1                              C♯ 
+      2                              D 
+      3                              E♭ 
+      4                              E 
+      5                              F 
+      6                              F♯ 
+      7                              G 
+      8                              G♭ 
+      9                              A 
+      10                             B♭ 
+      11                             B
+   ============================      ====================================
 
-For example::
+::
 
-   abjad> t = Staff([Note(n, (1, 8)) for n in range(12)])
-   abjad> print t.format
-   \new Staff {
-           c'8
-           cs'8
-           d'8
-           ef'8
-           e'8
-           f'8
-           fs'8
-           g'8
-           af'8
-           a'8
-           bf'8
-           b'8
-   }
+	abjad> staff = Staff([Note(n, (1, 8)) for n in range(12)])
+	abjad> show(staff)
 
-You can use :func:`pitchtools.make_sharp() 
-<abjad.tools.pitchtools.make_sharp.make_sharp>` and 
-:func:`pitchtools.make_flat() 
-<abjad.tools.pitchtools.make_flat.make_flat>` to respell accidentals
-after initialization::
+.. image:: images/example-1.png
 
-   abjad> pitchtools.make_sharp(t)
-   abjad> print t.format
-   \new Staff {
-           c'8
-           cs'8
-           d'8
-           ds'8
-           e'8
-           f'8
-           fs'8
-           g'8
-           gs'8
-           a'8
-           as'8
-           b'8
-   }
+Use pitch tools to respell with sharps:
+
+::
+
+	abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
+	abjad> show(staff)
+
+.. image:: images/example-2.png
+
+Or flats:
+
+::
+
+	abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
+	abjad> show(staff)
+
+.. image:: images/example-3.png
