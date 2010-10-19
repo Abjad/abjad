@@ -1,10 +1,9 @@
-Ligeti's *Désordre*: modeling music structure by exploiting redundancy
-======================================================================
+Ligeti
+======
 
 This example demonstrates the power of exploiting redundancy to model musical structure. The piece that concerns us here is Ligeti's *Désordre*: the first piano study from Book I. Specifically, we will focus on modeling the first section of the piece:
 
 .. image :: images/desordre.jpg
-
 
 The redundancy is immediately evident in the repeating pattern found in both staves. The pattern is hierarchical. At the smallest level we have what we will here call a *cell*: 
 
@@ -14,7 +13,6 @@ There are two of these cells per measure. Notice that the cells are strictly con
 Finally there's the piano staff, which is composed of the right hand and left hand staves.
 
 In what follows we will model this structure in this order (*cell*, measure, staff, piano staff), from bottom to top.
-
 
 The *cell*
 ----------
@@ -105,7 +103,6 @@ Because this *cell* appears over and over again, we want to reuse this code to g
          n.bar_line.kind = ''
       return p
 
-
 Now we can call this function to create any number of *cells*. That was actually the hardest part of reconstructing the opening of Ligeti's *Désordre*. Because the repetition of patters occurs also at the level of measures and staves, we will now define functions to create these other higher level constructs.
 
 The measure 
@@ -122,7 +119,6 @@ We define a function to create a measure from a list of lists of numbers::
       for seq in pitches:
          result.append(desordre_cell(seq))
 
-
 The function is very simple. It simply creates a DynamicMeasure and then populates it with *cells* that are created internally with the function previously defined. The function takes a list `pitches` which is actually a list of lists of pitches (e.g., ``[[1,2,3], [2,3,4]]``. The list of lists of pitches is iterated to create each of the *cells* to be appended to the DynamicMeasures. We could have defined the function to take ready made *cells* directly, but we are building the hierarchy of functions so that we can pass simple lists of lists of numbers to generate the full structure.
 To construct a Ligeti measure we would call the function like so:
 
@@ -132,7 +128,6 @@ To construct a Ligeti measure we would call the function like so:
 	abjad> show(Staff([measure]))
 
 .. image:: images/desordre_measure.png
-
 
 The staff
 ---------
@@ -175,7 +170,6 @@ Finally a function that will generate the whole opening section of the piece *D�
       piano[1].clef.forced = stafftools.Clef('bass')
       piano[1].key_signature.forced = tonalitytools.KeySignature('b', 'major')
       return piano
-
 
 The function creates a PianoStaff, constructs Staves with Ligeti music and appends these to the empty PianoStaff. Finally it sets the clef and key signature of the lower staff to match the original score.
 The argument of the function is a list of length 2, depth 3. The first element in the list corresponds to the upper staff, the second to the lower staff. 

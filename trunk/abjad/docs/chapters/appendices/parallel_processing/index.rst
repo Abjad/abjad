@@ -1,4 +1,4 @@
-Parallel Processing
+Parallel processing
 ===================
 
 Generating and acting upon score objects, especially large ones, can be very 

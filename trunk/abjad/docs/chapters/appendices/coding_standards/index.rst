@@ -1,4 +1,4 @@
-Coding Standards
+Coding standards
 ================
 
 Indent with spaces, not with tabs. Use three spaces at a time::

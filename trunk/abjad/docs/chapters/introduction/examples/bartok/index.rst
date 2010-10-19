@@ -1,5 +1,5 @@
-Bartók's *Wandering*
-====================
+Bartók
+======
 
 This example reconstructs the last five measures of Bartók's *Wandering* from Mikrokosmos vol. III.  It demonstrates the use of many of the main classes in Abjad. The end result is just a few measures long, but the example covert most of the basic features you'll usually need.
 
