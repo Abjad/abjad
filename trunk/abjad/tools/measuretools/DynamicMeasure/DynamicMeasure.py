@@ -7,16 +7,14 @@ from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface im
 
 class DynamicMeasure(Measure):
 
-   __slots__ = ('_denominator', '_explicit_meter_is_current', 'suppress_meter', )
+   __slots__ = ('_denominator', '_explicit_meter_is_current', '_suppress_meter', )
 
    def __init__(self, music = None, **kwargs):
-      #_Measure.__init__(self, music)
       Measure.__init__(self, meter = (99, 99), music = music, **kwargs)
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
       self._explicit_meter_is_current = False
-      #self._initialize_keyword_values(**kwargs)
-      self.suppress_meter = False
+      self._suppress_meter = False
       self._update_explicit_meter( )
 
    ## PRIVATE METHODS ##
@@ -40,6 +38,16 @@ class DynamicMeasure(Measure):
       def fset(self, arg):
          assert isinstance(arg, (int, long, type(None)))
          self._denominator = arg
+         self._update_explicit_meter( )
+      return property(**locals( ))
+
+   @apply
+   def suppress_meter( ):
+      def fget(self):
+         return self._suppress_meter
+      def fset(self, arg):
+         assert isinstance(arg, (type(True), type(None)))
+         self._suppress_meter = arg
          self._update_explicit_meter( )
       return property(**locals( ))
 
