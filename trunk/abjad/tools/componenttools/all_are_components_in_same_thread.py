@@ -21,7 +21,8 @@ def all_are_components_in_same_thread(expr, klasses = None, allow_orphans = True
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
-      raise TypeError('Must be list of Abjad components.')
+      #raise TypeError('Must be list of Abjad components.')
+      return False
 
    if klasses is None:
       klasses = _Component

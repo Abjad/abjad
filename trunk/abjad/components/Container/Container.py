@@ -56,13 +56,15 @@ class Container(_Component):
       Detach component(s) from parentage.
       Withdraw component(s) from crossing spanners.
       Preserve spanners that component(s) cover(s).'''
-      from abjad.tools.componenttools._switch import _switch
+      #from abjad.tools.componenttools._switch import _switch
+      from abjad.tools.componenttools._switch_components_to_parent import \
+         _switch_components_to_parent
       from abjad.tools.spannertools._withdraw_from_crossing import _withdraw_from_crossing
       components = self[i]
       if not isinstance(components, list):
          components = [components]
       _withdraw_from_crossing(components)
-      _switch(components, None)
+      _switch_components_to_parent(components, None)
 
    def __getitem__(self, i):
       '''Return component at index i in container.
@@ -194,20 +196,25 @@ class Container(_Component):
    ## PRIVATE METHODS ##
 
    def _initialize_music(self, music):
-      '''Insert `music` components in in container.
-      Set parent of `music` components to container.'''
       from abjad.tools import componenttools
-      from abjad.tools import componenttools
-      from abjad.tools.componenttools._switch import _switch
+      from abjad.tools import iotools
+      #from abjad.tools.componenttools._switch import _switch
+      from abjad.tools.componenttools._switch_components_to_parent import \
+         _switch_components_to_parent
       music = music or [ ]
-      assert componenttools.all_are_contiguous_components_in_same_thread(music)
+      #if componenttools.all_are_contiguous_components_in_same_thread(music):
       parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
          music)
       self._music = list(music)
-      _switch(self._music, self)
+      _switch_components_to_parent(self._music, self)
       if parent is not None:
          parent._music.insert(index, self)
          self._parentage._switch(parent)
+#      elif isinstance(music, str):
+#         music = iotools.parse_lilypond_input_string(music)
+#         self._initialize_music(music.music)
+#      else:
+#         raise TypeError('can not initialize container from "%s".' % str(music))
 
    def _is_one_of_my_first_leaves(self, leaf):
       return leaf in self._navigator._contemporaneous_start_contents
@@ -218,7 +225,9 @@ class Container(_Component):
    ## PUBLIC METHODS ## 
 
    def append(self, component):
-      '''Append component to the end of container.
+      '''Append `component` to the end of container:
+
+      
       Attach no new spanners to component.'''
       self[len(self):len(self)] = [component]
 

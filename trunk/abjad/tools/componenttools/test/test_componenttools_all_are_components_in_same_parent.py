@@ -56,10 +56,14 @@ def test_componenttools_all_are_components_in_same_parent_02( ):
 
 
 def test_componenttools_all_are_components_in_same_parent_03( ):
-   '''Nonlist input raises TypeError.'''
+   #'''Nonlist input raises TypeError.'''
+   '''Noniterable input returns false.
+   '''
 
-   assert py.test.raises(TypeError, 
-      'componenttools.all_are_components_in_same_parent(Note(0, (1, 8)))')
+   #assert py.test.raises(TypeError, 
+   #   'componenttools.all_are_components_in_same_parent(Note(0, (1, 8)))')
+
+   assert not componenttools.all_are_components_in_same_parent(Note(0, (1, 8)))
 
 
 def test_componenttools_all_are_components_in_same_parent_04( ):

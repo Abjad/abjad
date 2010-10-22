@@ -1,6 +1,6 @@
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import \
    get_parent_and_start_stop_indices_of_components
-from abjad.tools.componenttools._switch import _switch
+from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 
 
 def _give_position_to(donors, recipients):
@@ -27,7 +27,7 @@ def _give_position_to(donors, recipients):
       return donors
 
    parent._music[start:start] = recipients
-   _switch(recipients, parent)
-   _switch(donors, None)
+   _switch_components_to_parent(recipients, parent)
+   _switch_components_to_parent(donors, None)
 
    return donors

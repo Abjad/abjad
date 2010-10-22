@@ -1,11 +1,13 @@
 from abjad.tools.metertools import Meter
-from fractions import Fraction
 from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import metertools
 from abjad.tools import componenttools
-from abjad.tools.componenttools._switch import _switch
+#from abjad.tools.componenttools._switch import _switch
+from abjad.tools.componenttools._switch_components_to_parent import \
+   _switch_components_to_parent
 from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
+from fractions import Fraction
 
 
 def fuse_measures(measures):
@@ -104,7 +106,7 @@ def fuse_measures(measures):
          contexttools.get_effective_time_signature(measure).multiplier / new_meter.multiplier
       containertools.scale_contents_of_container(measure, multiplier)
       measure_music = measure[:]
-      _switch(measure_music, None)
+      _switch_components_to_parent(measure_music, None)
       #containertools.scale_contents_of_container(measure_music, multiplier)
       music += measure_music
 
@@ -113,7 +115,7 @@ def fuse_measures(measures):
    if parent is not None:
       _give_dominant_to(measures, [new_measure])
 
-   _switch(measures, None)
+   _switch_components_to_parent(measures, None)
    if parent is not None:
       parent.insert(start, new_measure)
 

@@ -1,7 +1,7 @@
 from abjad.components.Container import Container
 from abjad.exceptions import MusicContentsError
 from abjad.components._Leaf import _Leaf
-from abjad.tools.componenttools._switch import _switch
+from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 
 
 def _give_music_to(donors, recipient):
@@ -40,7 +40,7 @@ def _give_music_to(donors, recipient):
 
    ## give music from donor components to recipient component
    recipient._music.extend(donor_music)
-   _switch(recipient[:], recipient)
+   _switch_components_to_parent(recipient[:], recipient)
 
    ## return donor components
    return donors

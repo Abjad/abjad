@@ -19,7 +19,8 @@ def all_are_components_in_same_parent(expr, klasses = None, allow_orphans = True
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
-      raise TypeError('must be list of components: "%s".' % str(expr))
+      #raise TypeError('must be list of components: "%s".' % str(expr))
+      return False
 
    if klasses is None:
       klasses = (_Component, )

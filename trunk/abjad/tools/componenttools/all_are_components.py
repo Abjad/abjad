@@ -19,7 +19,8 @@ def all_are_components(expr, klasses = None):
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
-      raise TypeError('must be a list of Abjad components: "%s".' % str(expr))
+      #raise TypeError('must be a list of Abjad components: "%s".' % str(expr))
+      return False
 
    if klasses is None:
       klasses = _Component

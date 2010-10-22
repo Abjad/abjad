@@ -1,14 +1,14 @@
 from abjad import *
-from abjad.tools.componenttools._switch import _switch
+from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 
 
-def test_componenttools__switch_01( ):
+def test_componenttools__switch_components_to_parent_01( ):
 
    t = Voice([ ])
    u = Voice(macros.scale(4))
 
    components = u[:]
-   _switch(components, t)
+   _switch_components_to_parent(components, t)
 
    assert componenttools.is_well_formed_component(u)
    assert len(u) == 0

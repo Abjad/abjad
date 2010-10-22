@@ -103,8 +103,8 @@ def test_Container_extend_05( ):
    t = Voice(macros.scale(2))
    spannertools.BeamSpanner(t[:])
 
-   assert py.test.raises(TypeError, 't.extend(7)')
-   assert py.test.raises(TypeError, "t.extend('foo')")
+   assert py.test.raises(Exception, 't.extend(7)')
+   assert py.test.raises(Exception, "t.extend('foo')")
 
 
 def test_Container_extend_06( ):
