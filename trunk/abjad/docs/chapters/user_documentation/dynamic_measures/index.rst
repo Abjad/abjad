@@ -60,15 +60,6 @@ You can set the denominator of dynamic measures to any integer power of ``2``:
 ::
 
 	abjad> measure.denominator = 32
-	abjad> print measure.denominator
-	32
-	abjad> f(measure)
-	{
-		\time 12/32
-		c'8
-		fs'8
-		gs'8
-	}
 
 
 ::
@@ -89,6 +80,12 @@ You can temporarily suppress the meter of dynamic measures:
 
 ::
 
-	abjad> show(measure)
+	abjad> f(measure)
+	{
+		c'8
+		fs'8
+		gs'8
+	}
 
-.. image:: images/example-5.png
+
+LilyPond will engrave the last active meter.

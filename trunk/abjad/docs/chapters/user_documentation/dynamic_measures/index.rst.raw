@@ -53,8 +53,6 @@ You can set the denominator of dynamic measures to any integer power of ``2``:
 
 <abjad>
 measure.denominator = 32
-print measure.denominator
-f(measure)
 </abjad>
 
 <abjad>
@@ -72,6 +70,7 @@ measure.suppress_meter = True
 </abjad>
 
 <abjad>
-show(measure)
-iotools.write_expr_to_ly(measure, 'example-5') <hide
+f(measure)
 </abjad>
+
+LilyPond will engrave the last active meter.
