@@ -39,5 +39,5 @@ Glossary
 
    thread
       Time-sequential components within a voice.
-      See the chapter on :doc:`/chapters/fundamentals/threads/index` 
+      See the chapter on :doc:`/chapters/user_documentation/threads/index` 
       for a detailed discussion.

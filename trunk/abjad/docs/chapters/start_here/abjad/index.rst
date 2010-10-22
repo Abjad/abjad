@@ -30,7 +30,7 @@ Python and we are happy to add our voice to the chorus. We find Python
 to be an excellent all-purpose language that scales well, tests well,
 develops quickly, and keeps total lines of code to a minimum. For more
 on the benefits (and some limitations) of Python, see our page on 
-:doc:`/chapters/background/python/index`.
+:doc:`/chapters/appendices/python/index`.
 
 
 
@@ -51,4 +51,4 @@ western music correctly: broken tuplets, nonbinary meters, and
 durations that cross measure and line boundaries all work correctly
 out of the box. For these and other details relating to our selection
 of LilyPond as the notational engine for Abjad, see our page on 
-:doc:`/chapters/background/lilypond/index`.
+:doc:`/chapters/appendices/lilypond/index`.

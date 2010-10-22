@@ -180,7 +180,7 @@ by printing it:
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> vC_thread_signature
-	<      root: Staff-7702608 (7702608) *      score:  * staffgroup:  *      staff: Staff-7702608 *      voice: Voice-7702504 *       self: Voice-7702504 >
+	<      root: Staff-7706704 (7706704) *      score:  * staffgroup:  *      staff: Staff-7706704 *      voice: Voice-7706600 *       self: Voice-7706600 >
 
 
 And by comparing them with the binary equality operator:
@@ -219,10 +219,10 @@ Note how the thread signatures have changed:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> print vA_thread_signature
-	      root: Staff-7706704 (7706704)
+	      root: Staff-7710800 (7710800)
 	     score:
 	staffgroup:
-	     staff: Staff-7706704
+	     staff: Staff-7710800
 	     voice: Voice-piccolo
 	      self: Voice-piccolo
 
@@ -231,10 +231,10 @@ Note how the thread signatures have changed:
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> print vB_thread_signature
-	      root: Staff-7706704 (7706704)
+	      root: Staff-7710800 (7710800)
 	     score:
 	staffgroup:
-	     staff: Staff-7706704
+	     staff: Staff-7710800
 	     voice: Voice-piccolo
 	      self: Voice-piccolo
 
@@ -243,12 +243,12 @@ Note how the thread signatures have changed:
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> print vC_thread_signature
-	      root: Staff-7706704 (7706704)
+	      root: Staff-7710800 (7710800)
 	     score:
 	staffgroup:
-	     staff: Staff-7706704
-	     voice: Voice-7706600
-	      self: Voice-7706600
+	     staff: Staff-7710800
+	     voice: Voice-7710696
+	      self: Voice-7710696
 
 
 And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns 
@@ -284,15 +284,11 @@ iteration tool, which are the notes belonging to both `vA` and `vB`:
 
 .. image:: images/thread-resolution_2.png
 
-
 Coda
-^^^^
+----
 
 We could have constructed this score in a simpler way with only two voices, 
 one of them starting with a LilyPond skip:
-
-.. note:: 
-   A LilyPond skip is like an invisible rest.
 
 ::
 
@@ -304,5 +300,3 @@ one of them starting with a LilyPond skip:
 	abjad> staff.is_parallel = True
 
 .. image:: images/thread-resolution_3.png
-
-But that would have defeated the purpose of this section!

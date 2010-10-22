@@ -218,15 +218,11 @@ show(staff)
 iotools.write_expr_to_ly(staff, 'thread-resolution_2', 'oedo') <hide
 </abjad>
 
-
 Coda
-^^^^
+----
 
 We could have constructed this score in a simpler way with only two voices, 
 one of them starting with a LilyPond skip:
-
-.. note:: 
-   A LilyPond skip is like an invisible rest.
 
 <abjad>
 vX = Voice(notetools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
@@ -237,5 +233,3 @@ staff = Staff([vX, vY])
 staff.is_parallel = True
 iotools.write_expr_to_ly(staff, 'thread-resolution_3', 'oedo') <hide
 </abjad>
-
-But that would have defeated the purpose of this section!

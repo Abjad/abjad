@@ -18,14 +18,12 @@ other notational elements in any score.
 Start here
 
 .. toctree::
-   :maxdepth: 1
 
-   chapters/introduction/abjad/index
+   chapters/start_here/abjad/index
 
 Examples
 
 .. toctree::
-   :maxdepth: 2
    :numbered:
 
    chapters/examples/bartok/index
@@ -33,34 +31,52 @@ Examples
    chapters/examples/lehman/index
    chapters/examples/ligeti/index
 
-User documentation
+User documentation --- core classes
 
 .. toctree::
-   :maxdepth: 2
    :numbered:
    
-   chapters/user_documentation/start/index
-   chapters/user_documentation/one_note/index
-   chapters/user_documentation/many_notes/index
-   chapters/user_documentation/lcs/index
    chapters/user_documentation/note_basics/index
-   chapters/user_documentation/duration/index
+   chapters/user_documentation/containers/index
    chapters/user_documentation/measures/index
    chapters/user_documentation/dynamic_measures/index
    chapters/user_documentation/anonymous_measures/index
-   chapters/user_documentation/containers/index
    chapters/user_documentation/comments/index
    chapters/user_documentation/working_with_instrument_marks/index
-   chapters/user_documentation/lists_of_numbers/index
+
+User documentation --- typography
+
+.. toctree::
+   :numbered:
+
    chapters/user_documentation/grobs/index
+
+User documentation --- combinatorics
+
+.. toctree::
+
+   chapters/user_documentation/lists_of_numbers/index
+
+User documentation --- score structure
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/lcs/index
    chapters/user_documentation/parentage/index
    chapters/user_documentation/threads/index
+
+User documentation --- input / output
+
+.. toctree::
+   :numbered:
+
    chapters/user_documentation/inspecting_output/index
-   chapters/user_documentation/pitch_deviation/index
 
 Developer documentation
 
 .. toctree::
+   :numbered:
 
    chapters/developer_documentation/codebase/index
    chapters/developer_documentation/documentation/index
@@ -77,14 +93,17 @@ Appendices
 
 .. toctree::
    :numbered:
+   :maxdepth: 1
 
    chapters/appendices/history/index
    chapters/appendices/lilypond/index
    chapters/appendices/python/index
    chapters/appendices/midi_not_enough/index
-   chapters/introduction/configuration/index
+   chapters/appendices/configuration/index
    chapters/appendices/coding_standards/index
    chapters/appendices/pitch_conventions/index
+   chapters/appendices/pitch_deviation/index
+   chapters/appendices/duration_conventions/index
    chapters/appendices/abjad_templates/index
    chapters/appendices/text_alignment/index
    chapters/appendices/abjad_book/index
@@ -92,8 +111,8 @@ Appendices
    chapters/appendices/parallel_processing/index
    chapters/appendices/glossary/index
    chapters/appendices/bibliography/index
-   chapters/developer_documentation/versions/index
-   chapters/introduction/whatnext/index
+   chapters/appendices/versions/index
+   chapters/appendices/whatnext/index
 
 Abjad API
 ---------
