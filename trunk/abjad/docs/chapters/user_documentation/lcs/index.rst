@@ -104,7 +104,7 @@ musical notation.
 
 .. note::
    Please refer to the :doc:`Bartok example 
-   </chapters/introduction/examples/bartok/index>` for a step by step 
+   </chapters/examples/bartok/index>` for a step by step 
    construction of the musical fragment and its full Abjad code.
 
 There are many musical signs of different types on the pages: notes,
@@ -125,7 +125,7 @@ and only one measure, i.e. measures seem to contain notes.
 There is not one note that is at once in two measures  
 (this is standard practice in musical notation, but it need not always be the
 case. See the 
-:doc:`metric grid example </chapters/introduction/examples/slicing/index>` 
+:doc:`metric grid example </chapters/examples/slicing/index>` 
 for a non-containment approach to meters). 
 
 As we continue describing the relationships between the

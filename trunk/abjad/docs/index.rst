@@ -33,43 +33,43 @@ Examples
    chapters/examples/lehman/index
    chapters/examples/ligeti/index
 
-Tutorial
+User documentation
 
 .. toctree::
    :maxdepth: 2
    :numbered:
    
-   chapters/tutorial/start/index
-   chapters/tutorial/one_note/index
-   chapters/tutorial/many_notes/index
-   chapters/tutorial/pitch_deviation/index
-   chapters/tutorial/lists_of_numbers/index
-   chapters/tutorial/comments/index
-   chapters/tutorial/working_with_instrument_marks/index
-   chapters/tutorial/inspecting_output/index
-   chapters/tutorial/measures/index
-   chapters/tutorial/naming_containers/index
-   chapters/fundamentals/lcs/index
-   chapters/fundamentals/duration/index
-   chapters/fundamentals/note_basics/index
-   chapters/fundamentals/parentage/index
-   chapters/fundamentals/grobhandlers/index
-   chapters/fundamentals/threads/index
+   chapters/user_documentation/start/index
+   chapters/user_documentation/one_note/index
+   chapters/user_documentation/many_notes/index
+   chapters/user_documentation/pitch_deviation/index
+   chapters/user_documentation/lists_of_numbers/index
+   chapters/user_documentation/comments/index
+   chapters/user_documentation/working_with_instrument_marks/index
+   chapters/user_documentation/inspecting_output/index
+   chapters/user_documentation/measures/index
+   chapters/user_documentation/naming_containers/index
+   chapters/user_documentation/lcs/index
+   chapters/user_documentation/duration/index
+   chapters/user_documentation/note_basics/index
+   chapters/user_documentation/parentage/index
+   chapters/user_documentation/grobhandlers/index
+   chapters/user_documentation/threads/index
 
-Development
+Developer documentation
 
 .. toctree::
 
-   chapters/devel/codebase/index
-   chapters/devel/documentation/index
-   chapters/devel/tests/index
-   chapters/devel/scripts/index
-   chapters/devel/optimization/timing/index
-   chapters/devel/optimization/profiling/index
-   chapters/devel/optimization/memory/index
-   chapters/devel/optimization/class_attributes/index
-   chapters/devel/optimization/slots/index
-   chapters/devel/todo/index
+   chapters/developer_documentation/codebase/index
+   chapters/developer_documentation/documentation/index
+   chapters/developer_documentation/tests/index
+   chapters/developer_documentation/scripts/index
+   chapters/developer_documentation/optimization/timing/index
+   chapters/developer_documentation/optimization/profiling/index
+   chapters/developer_documentation/optimization/memory/index
+   chapters/developer_documentation/optimization/class_attributes/index
+   chapters/developer_documentation/optimization/slots/index
+   chapters/developer_documentation/todo/index
 
 Appendices
 
@@ -90,7 +90,7 @@ Appendices
    chapters/appendices/parallel_processing/index
    chapters/appendices/glossary/index
    chapters/appendices/bibliography/index
-   chapters/devel/versions/index
+   chapters/developer_documentation/versions/index
    chapters/introduction/whatnext/index
 
 Abjad API
