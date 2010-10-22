@@ -16,7 +16,7 @@ def test_Container___init____01( ):
    assert container.format == '{\n}'
 
 
-def test_Container___init___02( ):
+def test_Container___init____02( ):
    '''Init container with LilyPond note-entry string.
    '''
 

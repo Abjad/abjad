@@ -200,9 +200,50 @@ class Container(_Component):
    @apply
    def parallel( ):
       def fget(self):
-         '''Set parallel container::
+         r'''Set parallel container::
 
+            abjad> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
 
+         ::
+
+            abjad> f(container)
+            {
+               \new Voice {
+                  c'8
+                  d'8
+                  e'8
+               }
+               \new Voice {
+                  g4.
+               }
+            }
+
+         ::
+
+            abjad> container.parallel = True
+
+         ::
+
+            abjad> f(container)
+            <<
+               \new Voice {
+                  c'8
+                  d'8
+                  e'8
+               }
+               \new Voice {
+                  g4.
+               }
+            >>
+
+         Return none.
+
+         Get parallel container::
+
+            abjad> container.parallel
+            True
+
+         Return boolean.
          '''
          return self._parallel
       def fset(self, expr):
@@ -222,9 +263,7 @@ class Container(_Component):
       from abjad.tools.componenttools._switch_components_to_parent import \
          _switch_components_to_parent
       music = music or [ ]
-      ## TODO: change this restriction to merely components ##
       if componenttools.all_are_contiguous_components_in_same_thread(music):
-      #if componenttools.all_are_components(music):
          parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
             music)
          self._music = list(music)
@@ -233,8 +272,9 @@ class Container(_Component):
             parent._music.insert(index, self)
             self._parentage._switch(parent)
       elif isinstance(music, str):
-         music = iotools.parse_lilypond_input_string(music)
-         self._initialize_music(music.music)
+         music_container = iotools.parse_lilypond_input_string(music)
+         self._music = [ ]
+         self[:] = music_container.music
       else:
          raise TypeError('can not initialize container from "%s".' % str(music))
 
