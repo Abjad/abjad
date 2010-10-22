@@ -18,6 +18,7 @@ other notational elements in any score.
 Start here
 
 .. toctree::
+   :maxdepth: 1
 
    chapters/start_here/abjad/index
 
@@ -31,31 +32,42 @@ Examples
    chapters/examples/lehman/index
    chapters/examples/ligeti/index
 
-User documentation --- core classes
+Core classes
 
 .. toctree::
    :numbered:
    
-   chapters/user_documentation/note_basics/index
-   chapters/user_documentation/containers/index
+   chapters/user_documentation/notes/index
+   chapters/user_documentation/rests/index
+   chapters/user_documentation/chords/index
+   chapters/user_documentation/tuplets/index
    chapters/user_documentation/measures/index
-   chapters/user_documentation/dynamic_measures/index
-   chapters/user_documentation/anonymous_measures/index
-   chapters/user_documentation/comments/index
-   chapters/user_documentation/working_with_instrument_marks/index
+   chapters/user_documentation/voices/index
+   chapters/user_documentation/staves/index
+   chapters/user_documentation/scores/index
 
-User documentation --- typography
+User documentation --- containers
 
 .. toctree::
    :numbered:
 
-   chapters/user_documentation/grobs/index
+   chapters/user_documentation/containers/index
 
-User documentation --- combinatorics
+User documentation --- marks
 
 .. toctree::
+   :numbered:
 
-   chapters/user_documentation/lists_of_numbers/index
+   chapters/user_documentation/comments/index
+   chapters/user_documentation/instrument_marks/index
+
+User documentation --- measures
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/dynamic_measures/index
+   chapters/user_documentation/anonymous_measures/index
 
 User documentation --- score structure
 
@@ -66,12 +78,12 @@ User documentation --- score structure
    chapters/user_documentation/parentage/index
    chapters/user_documentation/threads/index
 
-User documentation --- input / output
+User documentation --- spanners
 
 .. toctree::
    :numbered:
-
-   chapters/user_documentation/inspecting_output/index
+   
+   chapters/user_documentation/spanners/index
 
 Developer documentation
 
@@ -100,7 +112,10 @@ Appendices
    chapters/appendices/python/index
    chapters/appendices/midi_not_enough/index
    chapters/appendices/configuration/index
+   chapters/appendices/input_output/index
+   chapters/appendices/grobs/index
    chapters/appendices/coding_standards/index
+   chapters/appendices/lists_of_numbers/index
    chapters/appendices/pitch_conventions/index
    chapters/appendices/pitch_deviation/index
    chapters/appendices/duration_conventions/index
