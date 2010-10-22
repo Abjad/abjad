@@ -198,23 +198,22 @@ class Container(_Component):
    def _initialize_music(self, music):
       from abjad.tools import componenttools
       from abjad.tools import iotools
-      #from abjad.tools.componenttools._switch import _switch
       from abjad.tools.componenttools._switch_components_to_parent import \
          _switch_components_to_parent
       music = music or [ ]
-      #if componenttools.all_are_contiguous_components_in_same_thread(music):
-      parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
-         music)
-      self._music = list(music)
-      _switch_components_to_parent(self._music, self)
-      if parent is not None:
-         parent._music.insert(index, self)
-         self._parentage._switch(parent)
-#      elif isinstance(music, str):
-#         music = iotools.parse_lilypond_input_string(music)
-#         self._initialize_music(music.music)
-#      else:
-#         raise TypeError('can not initialize container from "%s".' % str(music))
+      if componenttools.all_are_contiguous_components_in_same_thread(music):
+         parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
+            music)
+         self._music = list(music)
+         _switch_components_to_parent(self._music, self)
+         if parent is not None:
+            parent._music.insert(index, self)
+            self._parentage._switch(parent)
+      elif isinstance(music, str):
+         music = iotools.parse_lilypond_input_string(music)
+         self._initialize_music(music.music)
+      else:
+         raise TypeError('can not initialize container from "%s".' % str(music))
 
    def _is_one_of_my_first_leaves(self, leaf):
       return leaf in self._navigator._contemporaneous_start_contents
