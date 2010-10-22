@@ -25,7 +25,7 @@ class _Context(Container):
          summary = str(len(self))
       else:
          summary = ' '
-      if self.parallel:
+      if self.is_parallel:
          open, close = '<<', '>>'
       else:
          open, close = '{', '}'

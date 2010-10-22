@@ -6,7 +6,7 @@ class Cluster(Container):
 
    def __init__(self, music = None, **kwargs):
       Container.__init__(self, music)
-      self.parallel = False
+      self.is_parallel = False
       self._formatter = _ClusterFormatter(self)
       self._initialize_keyword_values(**kwargs)
    

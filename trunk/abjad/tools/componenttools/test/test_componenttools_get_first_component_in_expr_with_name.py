@@ -40,10 +40,10 @@ def test_componenttools_get_first_component_in_expr_with_name_03( ):
 
    s1 = Staff([vh1, vl1])
    s1.name = 'mystaff'
-   s1.parallel = True
+   s1.is_parallel = True
    s2 = Staff([vh2, vl2])
    s2.name = 'mystaff'
-   s2.parallel = True
+   s2.is_parallel = True
 
    fn = vl1[0]
 

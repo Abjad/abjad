@@ -61,7 +61,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
    cur_prolation, i = Fraction(1), 0
    parent = leaf._parentage.parent
 
-   while parent is not None and not parent.parallel:
+   while parent is not None and not parent.is_parallel:
       cur_prolation *= prolations[i]
       if isinstance(parent, FixedDurationTuplet):
          candidate_new_parent_dur = parent.duration.target - cur_prolation * leaf.duration.written

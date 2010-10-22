@@ -16,7 +16,7 @@ def test__NavigationInterface_last_leaves_02( ):
    '''Return last leaves from parallel containers.'''
 
    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-   t.parallel = True
+   t.is_parallel = True
    macros.diatonicize(t)
    leaves = t._navigator._last_leaves
 
@@ -53,7 +53,7 @@ def test__NavigationInterface_last_leaves_04( ):
    '''Return last leaves from empty parallel containes.'''
 
    t = Container(Voice([ ]) * 2)
-   t.parallel = True
+   t.is_parallel = True
    leaves = t._navigator._last_leaves
 
    assert len(leaves) == 0

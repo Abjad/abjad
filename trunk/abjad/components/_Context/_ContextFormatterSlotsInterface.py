@@ -24,7 +24,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       formatter = self.formatter
       context = formatter.context
-      if self._client._client.parallel:
+      if self._client._client.is_parallel:
          brackets_open = ['<<']
       else:
          brackets_open = ['{']

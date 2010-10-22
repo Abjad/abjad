@@ -57,7 +57,7 @@ v2a= Voice([Note(-1, (1, 4)), Note(-3, (1, 4))])
 v2a.name = 'v2'
 v2a.voice.number = 2
 p = Container([v1a, v2a])
-p.parallel = True
+p.is_parallel = True
 lower_measures[3].append(p)
 
 v1b= Voice([Note(-1, (1, 2))])
@@ -68,7 +68,7 @@ v2b.name = 'v2'
 v2b.voice.number = 2
 
 p = Container([v1b, v2b])
-p.parallel = True
+p.is_parallel = True
 lower_measures[4].append(p)
 
 ## embelish
@@ -166,7 +166,7 @@ show(piano)
 #v2a.name = 'v2'
 #v2a.voice.number = 2
 #p = Container([v1a, v2a])
-#p.parallel = True
+#p.is_parallel = True
 #m = Measure((2, 4), [p])
 ##m = Measure((2, 4), [v1a, v2a])
 #s.append(m)
@@ -177,7 +177,7 @@ show(piano)
 #v2b.name = 'v2'
 #v2b.voice.number = 2
 #p = Container([v1b, v2b])
-#p.parallel = True
+#p.is_parallel = True
 #m = Measure((2, 4), [p])
 ##m = Measure((2, 4), [v1b, v2b])
 #s.append(m)

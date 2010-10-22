@@ -8,7 +8,7 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
    `thread_signature`. ::
 
       abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-      abjad> container.parallel = True
+      abjad> container.is_parallel = True
       abjad> container[0].name = 'voice 1'
       abjad> container[1].name = 'vocie 2'
       abjad> staff = Staff(container * 2)

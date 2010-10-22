@@ -40,7 +40,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_2(self):
       result = [ ]
-      if self._client._client.parallel:
+      if self._client._client.is_parallel:
          brackets_open = ['<<']
       else:
          brackets_open = ['{']
@@ -84,7 +84,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_6(self):
       result = [ ]
-      if self._client._client.parallel:
+      if self._client._client.is_parallel:
          brackets_close = ['>>']
       else:
          brackets_close = ['}']

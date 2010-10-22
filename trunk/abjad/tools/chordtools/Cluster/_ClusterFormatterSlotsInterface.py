@@ -14,7 +14,7 @@ class _ClusterFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       cluster = self.formatter.cluster
       contributor = ('cluster_brackets', 'open')
-      if self._client._client.parallel:
+      if self._client._client.is_parallel:
          brackets_open = ['<<']
       else:
          brackets_open = ['{']

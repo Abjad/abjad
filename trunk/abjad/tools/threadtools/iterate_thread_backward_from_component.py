@@ -15,7 +15,7 @@ def iterate_thread_backward_from_component(component, klass = None):
    yield only `klass` instances in the thread of `component`. ::
 
       abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-      abjad> container.parallel = True
+      abjad> container.is_parallel = True
       abjad> container[0].name = 'voice 1'
       abjad> container[1].name = 'voice 2'
       abjad> staff = Staff(container * 2)

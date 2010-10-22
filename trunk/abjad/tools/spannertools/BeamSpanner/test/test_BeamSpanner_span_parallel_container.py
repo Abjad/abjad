@@ -6,7 +6,7 @@ def test_BeamSpanner_span_parallel_container_01( ):
    '''Abjad spanners will not inspect the contents of parallel containers.'''
 
    t = Container([ ])
-   t.parallel = True
+   t.is_parallel = True
    p = spannertools.BeamSpanner(t)
 
    assert len(p.components) == 1
@@ -19,7 +19,7 @@ def test_BeamSpanner_span_parallel_container_02( ):
    '''Nonempty spanned parallel container.'''
 
    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-   t.parallel = True
+   t.is_parallel = True
    macros.chromaticize(t)
 
    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
@@ -50,7 +50,7 @@ def test_BeamSpanner_span_parallel_container_03( ):
       even lodged within parallel parent container.'''
 
    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-   t.parallel = True
+   t.is_parallel = True
    macros.chromaticize(t)
    p = spannertools.BeamSpanner(t[0])
 
@@ -80,7 +80,7 @@ def test_BeamSpanner_span_parallel_container_04( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-   new.parallel = True
+   new.is_parallel = True
    t.insert(2, new)
    macros.chromaticize(t)
 
@@ -93,7 +93,7 @@ def test_BeamSpanner_span_parallel_container_05( ):
 
    t = Staff(notetools.make_repeated_notes(4))
    new = Container([ ])
-   new.parallel = True
+   new.is_parallel = True
    t.insert(2, new)
    macros.chromaticize(t)
    p = spannertools.BeamSpanner(t)
@@ -121,7 +121,7 @@ def test_BeamSpanner_span_parallel_container_06( ):
    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    t[0].name, t[1].name = 'foo', 'foo'
    new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-   new.parallel = True
+   new.is_parallel = True
    t.insert(1, new)
    t[1][0].name = 'foo'
    t[1][1].name = 'bar'

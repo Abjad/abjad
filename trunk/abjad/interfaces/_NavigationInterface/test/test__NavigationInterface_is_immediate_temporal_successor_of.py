@@ -68,7 +68,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_03( ):
 #      any of the others temporally.'''
 #
 #   t = Container([Note(i, (1, 8)) for i in range(4)])
-#   t.parallel = True
+#   t.is_parallel = True
 #
 #   assert not t[0]._navigator._is_immediate_temporal_successor_of(t[1])
 #   assert not t[1]._navigator._is_immediate_temporal_successor_of(t[2])
@@ -322,9 +322,9 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_12( ):
    vh1 = Voice([Note(i, (1, 8)) for i in range(12, 16)])
    vh2 = Voice([Note(i, (1, 8)) for i in range(16, 20)])
    s1 = Staff([vh1, vl1])
-   s1.parallel = True
+   s1.is_parallel = True
    s2 = Staff([vl2, vh2])
-   s2.parallel = True
+   s2.is_parallel = True
    seq = Container([s1, s2])
 
    assert seq[0]._navigator._is_immediate_temporal_successor_of(seq[1])

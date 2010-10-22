@@ -29,7 +29,7 @@ def _buffer_components_starting_with(component, buffer, stop_offsets):
    buffer.append(component)
    stop_offsets.append(component._offset.stop)
    if isinstance(component, Container):
-      if component.parallel:
+      if component.is_parallel:
          for x in component.music:
             _buffer_components_starting_with(x, buffer, stop_offsets)
       else:
@@ -46,7 +46,7 @@ def _next_in_parent(component):
    if parent is None:
       raise StopIteration
    ## can not advance within parallel parent
-   if parent.parallel:
+   if parent.is_parallel:
       raise StopIteration
    try:
       return parent[start + 1]

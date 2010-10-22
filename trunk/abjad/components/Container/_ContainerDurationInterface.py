@@ -18,7 +18,7 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
    @property
    def contents(self):
       client = self._client
-      if client.parallel: 
+      if client.is_parallel: 
          return max(
             [Fraction(0)] + [x.duration.preprolated for x in client])
       else:
@@ -36,7 +36,7 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
    @property
    def seconds(self):
       client = self._client
-      if client.parallel:
+      if client.is_parallel:
          return max(
             [Fraction(0)] + [x.duration.seconds for x in client])
       else:

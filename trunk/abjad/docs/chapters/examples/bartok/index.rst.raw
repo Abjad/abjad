@@ -112,7 +112,7 @@ main_voice_m4 = Voice([Note(-1, (1, 4)), Note(-3, (1, 4))])
 main_voice_m4.name = 'main_voice'
 marktools.LilyPondCommandMark('voiceTwo')(main_voice_m4)
 p = Container([appendix_voice_m4, main_voice_m4])
-p.parallel = True
+p.is_parallel = True
 lower_measures[3].append(p)
 </abjad>
 
@@ -130,7 +130,7 @@ main_voice_m5 =  Voice([Note(-5, (1, 2))])
 main_voice_m5.name = 'main_voice'
 marktools.LilyPondCommandMark('voiceTwo')(main_voice_m5)
 p = Container([appendix_voice_m5, main_voice_m5])
-p.parallel = True
+p.is_parallel = True
 lower_measures[4].append(p)
 </abjad>
 

@@ -151,7 +151,7 @@ class Container(_Component):
    @property
    def _compact_representation(self):
       '''Compact form used in spanner display.'''
-      if not self.parallel:
+      if not self.is_parallel:
          return '{%s}' % self._summary
       else:
          return '<<%s>>' % self._summary
@@ -165,6 +165,64 @@ class Container(_Component):
          return ' '
 
    ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def is_parallel( ):
+      def fget(self):
+         r'''Get parallel container::
+
+            abjad> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
+
+         ::
+
+            abjad> f(container)
+            {
+               \new Voice {
+                  c'8
+                  d'8
+                  e'8
+               }
+               \new Voice {
+                  g4.
+               }
+            }
+
+         ::
+
+            abjad> container.is_parallel
+            False
+
+         Return boolean.
+
+         Set parallel container::
+
+            abjad> container.is_parallel = True
+
+         ::
+
+            abjad> f(container)
+            <<
+               \new Voice {
+                  c'8
+                  d'8
+                  e'8
+               }
+               \new Voice {
+                  g4.
+               }
+            >>
+
+         Return none.
+         '''
+         return self._parallel
+      def fset(self, expr):
+         from abjad.components._Context import _Context
+         from abjad.tools import componenttools
+         assert isinstance(expr, (bool, type(None)))
+         if expr == True:
+            assert componenttools.all_are_components(self._music, klasses = (_Context, ))
+         self._parallel = expr
+      return property(**locals( ))
 
    @property
    def leaves(self):
@@ -196,64 +254,6 @@ class Container(_Component):
       Return tuple or zero or more components.
       '''
       return tuple(self._music)
-
-   @apply
-   def parallel( ):
-      def fget(self):
-         r'''Set parallel container::
-
-            abjad> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
-
-         ::
-
-            abjad> f(container)
-            {
-               \new Voice {
-                  c'8
-                  d'8
-                  e'8
-               }
-               \new Voice {
-                  g4.
-               }
-            }
-
-         ::
-
-            abjad> container.parallel = True
-
-         ::
-
-            abjad> f(container)
-            <<
-               \new Voice {
-                  c'8
-                  d'8
-                  e'8
-               }
-               \new Voice {
-                  g4.
-               }
-            >>
-
-         Return none.
-
-         Get parallel container::
-
-            abjad> container.parallel
-            True
-
-         Return boolean.
-         '''
-         return self._parallel
-      def fset(self, expr):
-         from abjad.components._Context import _Context
-         from abjad.tools import componenttools
-         assert isinstance(expr, (bool, type(None)))
-         if expr == True:
-            assert componenttools.all_are_components(self._music, klasses = (_Context, ))
-         self._parallel = expr
-      return property(**locals( ))
 
    ## PRIVATE METHODS ##
 

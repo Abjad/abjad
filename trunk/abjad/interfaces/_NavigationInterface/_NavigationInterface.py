@@ -32,7 +32,7 @@ class _NavigationInterface(_Interface):
       client = self._client
       result.append(client)
       if isinstance(client, Container):
-         if client.parallel:
+         if client.is_parallel:
             for x in client:
                result.extend(x._navigator._contemporaneous_start_contents)
          elif len(client):
@@ -49,7 +49,7 @@ class _NavigationInterface(_Interface):
       result = [client]
       prev = client
       for parent in componenttools.get_proper_parentage_of_component(client):
-         if parent.parallel:
+         if parent.is_parallel:
             result.append(parent)
          elif parent.index(prev) == 0:
             result.append(parent)
@@ -77,7 +77,7 @@ class _NavigationInterface(_Interface):
       client = self._client
       result.append(client)
       if isinstance(client, Container):
-         if client.parallel:
+         if client.is_parallel:
             client_duration = client.duration.preprolated
             for x in client:
                if x.duration.preprolated == client_duration:
@@ -96,7 +96,7 @@ class _NavigationInterface(_Interface):
       result = [client]
       prev = client
       for parent in componenttools.get_proper_parentage_of_component(client):
-         if parent.parallel:
+         if parent.is_parallel:
             if prev.duration.prolated == parent.duration.prolated:
                result.append(parent)
             else:
@@ -118,7 +118,7 @@ class _NavigationInterface(_Interface):
          return [client]
       elif isinstance(client, Container):
          leaves = [ ]
-         if self._client.parallel:
+         if self._client.is_parallel:
             for e in self._client:
                leaves.extend(e._navigator._first_leaves)
          elif len(self._client):
@@ -139,7 +139,7 @@ class _NavigationInterface(_Interface):
          return [client]
       elif isinstance(client, Container):
          leaves = [ ]
-         if self._client.parallel:
+         if self._client.is_parallel:
             for e in self._client:
                leaves.extend(e._navigator._last_leaves)
          elif len(self._client):
@@ -218,7 +218,7 @@ class _NavigationInterface(_Interface):
       None otherwise.
       '''
       rank = self._rank( )
-      if (not rank is None) and (not self._client._parentage.parent.parallel): 
+      if (not rank is None) and (not self._client._parentage.parent.is_parallel): 
          if rank + 1 < len(self._client._parentage.parent._music):
             return self._client._parentage.parent._music[rank + 1]
       else:
@@ -275,7 +275,7 @@ class _NavigationInterface(_Interface):
       None otherwise.
       '''
       rank = self._rank( )
-      if (not rank is None) and (not self._client._parentage.parent.parallel): 
+      if (not rank is None) and (not self._client._parentage.parent.is_parallel): 
          if 0 <= rank - 1:
             return self._client._parentage.parent._music[rank - 1]
       else:

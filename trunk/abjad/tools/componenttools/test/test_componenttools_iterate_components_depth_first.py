@@ -6,7 +6,7 @@ import py.test
 
 t = Staff(notetools.make_repeated_notes(4))
 t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-t[2].parallel = True
+t[2].is_parallel = True
 macros.chromaticize(t)
 
 r'''

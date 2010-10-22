@@ -2,48 +2,48 @@ from abjad import *
 import py.test
 
 
-def test_Container_parallel_01( ):
+def test_Container_is_parallel_01( ):
    '''True when container encloses contents in LilyPond << >> brackets,
       otherwise False.'''
 
-   assert not Container([ ]).parallel
-   assert not tuplettools.FixedDurationTuplet((2, 8), [ ]).parallel
-   assert not Tuplet((2, 3), [ ]).parallel
-   assert scoretools.GrandStaff([ ]).parallel
-   assert not stafftools.make_rhythmic_sketch_staff([ ]).parallel
-   assert not stafftools.RhythmicStaff([ ]).parallel
-   assert not Measure((4, 8), [ ]).parallel
-   assert Score([ ]).parallel
-   assert not Container([ ]).parallel
-   assert not Staff([ ]).parallel
-   assert scoretools.StaffGroup([ ]).parallel
-   assert not Voice([ ]).parallel
+   assert not Container([ ]).is_parallel
+   assert not tuplettools.FixedDurationTuplet((2, 8), [ ]).is_parallel
+   assert not Tuplet((2, 3), [ ]).is_parallel
+   assert scoretools.GrandStaff([ ]).is_parallel
+   assert not stafftools.make_rhythmic_sketch_staff([ ]).is_parallel
+   assert not stafftools.RhythmicStaff([ ]).is_parallel
+   assert not Measure((4, 8), [ ]).is_parallel
+   assert Score([ ]).is_parallel
+   assert not Container([ ]).is_parallel
+   assert not Staff([ ]).is_parallel
+   assert scoretools.StaffGroup([ ]).is_parallel
+   assert not Voice([ ]).is_parallel
 
 
-def test_Container_parallel_02( ):
+def test_Container_is_parallel_02( ):
    '''True when container encloses contents in LilyPond << >> brackets,
       otherwise False.'''
 
    t = Container([ ])
-   t.parallel = True
-   assert t.parallel
+   t.is_parallel = True
+   assert t.is_parallel
 
 
-def test_Container_parallel_03( ):
+def test_Container_is_parallel_03( ):
    '''Container 'parallel' is settable.'''
 
    t = Container([ ])
-   assert not t.parallel
+   assert not t.is_parallel
 
-   t.parallel = True
-   assert t.parallel
+   t.is_parallel = True
+   assert t.is_parallel
 
 
-def test_Container_parallel_04( ):
+def test_Container_is_parallel_04( ):
    '''A parallel container can hold Contexts.'''
    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    macros.chromaticize(t)
-   t.parallel = True
+   t.is_parallel = True
    assert t.format == "<<\n\t\\new Voice {\n\t\tc'8\n\t\tcs'8\n\t}\n\t\\new Voice {\n\t\td'8\n\t\tef'8\n\t}\n>>"
 
    r'''
@@ -62,17 +62,17 @@ def test_Container_parallel_04( ):
 
 ## Parallel Errors ##
 
-def test_Container_parallel_05( ):
+def test_Container_is_parallel_05( ):
    '''Parallel containers must contain only Contexts.
    It cannot take leaves.'''
 
    t = Container(notetools.make_repeated_notes(4))
-   py.test.raises(AssertionError, 't.parallel = True')
+   py.test.raises(AssertionError, 't.is_parallel = True')
 
 
-def test_Container_parallel_06( ):
+def test_Container_is_parallel_06( ):
    '''Parallel containers must contain only Contexts.
    It cannot take Containers.'''
 
    t = Container(Container(notetools.make_repeated_notes(4)) * 2)
-   py.test.raises(AssertionError, 't.parallel = True')
+   py.test.raises(AssertionError, 't.is_parallel = True')

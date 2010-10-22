@@ -58,7 +58,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
    g = componenttools.iterate_components_depth_first(expr, direction = 'right')
    for cmp in g:
       next = cmp._navigator._next_namesake
-      if isinstance(next, Container) and not next.parallel and \
+      if isinstance(next, Container) and not next.is_parallel and \
          not isinstance(next, Tuplet) and \
          componenttools.all_are_contiguous_components_in_same_score(
             [cmp, next], allow_orphans = True):
@@ -82,7 +82,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
 #   
 #   result = expr[0]
 #   for cmp in expr[1:]:
-#      if isinstance(cmp, Container) and not cmp.parallel:
+#      if isinstance(cmp, Container) and not cmp.is_parallel:
 #         componenttools.remove_component_subtree_from_score_and_spanners([cmp])
 #         result.extend(cmp)
 #   return result

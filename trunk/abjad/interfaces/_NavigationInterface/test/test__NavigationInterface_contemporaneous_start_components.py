@@ -59,7 +59,7 @@ def test__NavigationInterface_contemporaneous_start_components_01( ):
 #   '''With parallel containers.'''
 #
 #   t = Voice([Container(Container(notetools.make_repeated_notes(2)) * 2)] + notetools.make_repeated_notes(2))
-#   t[0].parallel = True
+#   t[0].is_parallel = True
 #   macros.diatonicize(t)
 #
 #   r'''\new Voice {

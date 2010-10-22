@@ -3,11 +3,11 @@ def iterate_namesakes_forward_from_component(component, start = 0, stop = None):
    from `component`. ::
 
       abjad> container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
-      abjad> container.parallel = True
+      abjad> container.is_parallel = True
       abjad> container[0].name = 'staff 1'
       abjad> container[1].name = 'staff 2'
       abjad> score = Score([ ])
-      abjad> score.parallel = False
+      abjad> score.is_parallel = False
       abjad> score.extend(container * 2)
       abjad> macros.diatonicize(score)
       abjad> print score.format

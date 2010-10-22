@@ -60,7 +60,7 @@ def desordre_cell(pitches):
    v_higher.name = 'rh_higher'
    marktools.LilyPondCommandMark('voiceOne')(v_higher)
    p = Container([v_lower, v_higher])
-   p.parallel = True
+   p.is_parallel = True
    ## make all 1/8 beats breakable
    for n in v_lower.leaves[:-1]:
       #n.bar_line.kind = ''

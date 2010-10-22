@@ -5,11 +5,11 @@ import py.test
 def test_componenttools_iterate_namesakes_forward_from_component_01( ):
 
    container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
-   container.parallel = True
+   container.is_parallel = True
    container[0].name = 'staff 1'
    container[1].name = 'staff 2'
    score = Score([ ])
-   score.parallel = False
+   score.is_parallel = False
    score.extend(container * 2)
    macros.diatonicize(score)
 
@@ -52,11 +52,11 @@ def test_componenttools_iterate_namesakes_forward_from_component_01( ):
 def test_componenttools_iterate_namesakes_forward_from_component_02( ):
 
    container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
-   container.parallel = True
+   container.is_parallel = True
    container[0].name = 'staff 1'
    container[1].name = 'staff 2'
    score = Score([ ])
-   score.parallel = False
+   score.is_parallel = False
    score.extend(container * 2)
    macros.diatonicize(score)
 

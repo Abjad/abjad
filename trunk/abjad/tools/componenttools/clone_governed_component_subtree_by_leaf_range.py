@@ -63,7 +63,7 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
       return clone_components_and_fracture_crossing_spanners([component])[0]
 
    # copy leaves from sequential containers only.
-   if component.parallel:
+   if component.is_parallel:
       raise ContiguityError('can not lcopy leaves from parallel container.')
 
    # assert valid start and stop

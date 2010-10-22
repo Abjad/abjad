@@ -76,7 +76,7 @@ def test__NavigationInterface_bead_navigation_03( ):
 #def test__NavigationInterface_bead_navigation_04( ):
 #   '''NextBead and prev_bead work on simple Parallel.'''
 #   t = Container([Note(i, (1,8)) for i in range(4)])
-#   t.parallel = True
+#   t.is_parallel = True
 #   assert t[0]._navigator._next_bead is None
 #   assert t[1]._navigator._next_bead is None
 #   assert t[2]._navigator._next_bead is None
@@ -340,10 +340,10 @@ def test__NavigationInterface_bead_navigation_12( ):
 
    s1 = Staff([vh1, vl1])
    s1.name = 'mystaff'
-   s1.parallel = True
+   s1.is_parallel = True
    s2 = Staff([vl2, vh2])
    s2.name = 'mystaff'
-   s2.parallel = True
+   s2.is_parallel = True
 
    seq = Container([s1, s2])
 

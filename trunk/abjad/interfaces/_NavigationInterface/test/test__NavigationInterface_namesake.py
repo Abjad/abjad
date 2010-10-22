@@ -72,11 +72,11 @@ def test__NavigationInterface_namesake_07( ):
    a = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    a[0].name = 'voiceOne'
    a[1].name = 'voiceTwo'
-   a.parallel = True
+   a.is_parallel = True
    b = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    b[0].name = 'voiceOne'
    b[1].name = 'voiceTwo'
-   b.parallel = True
+   b.is_parallel = True
    t = Staff([a, b])
 
    r'''

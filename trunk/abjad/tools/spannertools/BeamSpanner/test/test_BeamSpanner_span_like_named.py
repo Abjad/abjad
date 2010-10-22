@@ -65,8 +65,8 @@ def test_BeamSpanner_span_like_named_03( ):
    '''
 
    t = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-   t[0].parallel = True
-   t[1].parallel = True
+   t[0].is_parallel = True
+   t[1].is_parallel = True
    t[0][0].name, t[1][1].name = 'first', 'first'
    t[0][1].name, t[1][0].name = 'second', 'second'
    macros.chromaticize(t)
@@ -118,8 +118,8 @@ def test_BeamSpanner_span_like_named_04( ):
    '''
 
    t = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-   t[0].parallel = True
-   t[1].parallel = True
+   t[0].is_parallel = True
+   t[1].is_parallel = True
    t[0][0].name, t[1][0].name = 'first', 'first'
    t[0][1].name, t[1][1].name = 'second', 'second'
    del(t[1][1])

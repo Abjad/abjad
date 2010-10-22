@@ -143,13 +143,13 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09( ):
    v3 = Voice(Note(4, (1, 4))*2)
    v3.name = '3'
    t1 = Staff([v1, v2, v3])
-   t1.parallel = True
+   t1.is_parallel = True
    t1.name = 'staff1'
    t2 = componenttools.clone_components_and_fracture_crossing_spanners([t1])[0]
-   t2.parallel = True
+   t2.is_parallel = True
    t2.name = 'staff2'
    t3 = componenttools.clone_components_and_fracture_crossing_spanners([t1])[0]
-   t3.parallel = True
+   t3.is_parallel = True
    t3.name = 'staff3'
    s1 = scoretools.StaffGroup([t1, t2, t3])
    s1.name = 'sg'

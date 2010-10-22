@@ -82,9 +82,9 @@ def test_Container___add___06( ):
 #def test_Container___add___07( ):
 #   '''Addition raises exception on parallels of notes.'''
 #   t1 = Container(Note(0, (1, 4))*2)
-#   t1.parallel = True
+#   t1.is_parallel = True
 #   t2 = Container(Note(0, (1, 4))*2)
-#   t2.parallel = True
+#   t2.is_parallel = True
 #   assert t1 + t2 is None
     
 
@@ -92,16 +92,16 @@ def test_Container___add___08( ):
    '''Addition works on two matching parallel containers each with 
    a single threadable Voice child.'''
    t1 = Container([Voice(Note(0, (1, 4))*2)])
-   t1.parallel = True
+   t1.is_parallel = True
    t2 = Container([Voice(Note(0, (1, 4))*2)])
-   t2.parallel = True
+   t2.is_parallel = True
    t1[0].name = t2[0].name = 'voiceOne'
    tadd = t1 + t2
    assert componenttools.is_well_formed_component(tadd)
    assert componenttools.is_well_formed_component(t1)
    assert componenttools.is_well_formed_component(t2)
    assert isinstance(tadd, Container)  
-   assert tadd.parallel
+   assert tadd.is_parallel
    assert len(tadd) == 1
    assert isinstance(tadd[0], Voice)
    assert len(tadd[0]) == 4
@@ -120,13 +120,13 @@ def test_Container___add___09( ):
    v4 = Voice(Note(1, (1, 4))*2)
    v4.name = '2'
    t1 = Staff([v1, v2])
-   t1.parallel = True
+   t1.is_parallel = True
    t2 = Staff([v3, v4])
-   t2.parallel = True
+   t2.is_parallel = True
    t1.name = t2.name = 'staffOne'
    tadd = t1 + t2
    assert isinstance(tadd, Staff)
-   assert tadd.parallel
+   assert tadd.is_parallel
    assert len(tadd) == 2
    assert isinstance(tadd[0], Voice)
    assert isinstance(tadd[1], Voice)

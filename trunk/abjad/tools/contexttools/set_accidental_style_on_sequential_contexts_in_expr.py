@@ -35,5 +35,5 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
    from abjad.tools import componenttools
 
    for context in componenttools.iterate_components_forward_in_expr(expr, _Context):
-      if not context.parallel:
+      if not context.is_parallel:
          marktools.LilyPondCommandMark("#(set-accidental-style '%s)" % accidental_style)(context)

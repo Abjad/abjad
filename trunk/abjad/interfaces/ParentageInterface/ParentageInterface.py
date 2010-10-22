@@ -44,7 +44,7 @@ class ParentageInterface(_Interface):
       the parent of `Q` is either a parallel container or ``None``. ::
 
          abjad> t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
-         abjad> t[0].parallel = True
+         abjad> t[0].is_parallel = True
          abjad> macros.diatonicize(t)
          abjad> t[0][0].name = 'voice 1'
          abjad> t[0][1].name = 'voice 2'
@@ -87,11 +87,11 @@ class ParentageInterface(_Interface):
 
       #for component in self.improper_parentage:
       for component in componenttools.get_improper_parentage_of_component(self._client):
-         if isinstance(component, Container) and not component.parallel:
+         if isinstance(component, Container) and not component.is_parallel:
             parent = component._parentage.parent
             if parent is None:
                return component
-            if isinstance(parent, Container) and parent.parallel:
+            if isinstance(parent, Container) and parent.is_parallel:
                return component
 
    @property

@@ -77,7 +77,7 @@ def test_componenttools_get_component_start_offset_10( ):
    v1 = Voice(notetools.make_repeated_notes(16))
    v2 = Voice(notetools.make_repeated_notes(16))
    t = Staff([v1, v2])
-   t.parallel = True
+   t.is_parallel = True
    for i, x in enumerate(v1):
       assert componenttools.get_component_start_offset(x) == i * Fraction(1, 8)
    for i, x in enumerate(v2):
@@ -113,7 +113,7 @@ def test_componenttools_get_component_start_offset_13( ):
    v1 = Voice(notetools.make_repeated_notes(4))
    v2 = Voice(notetools.make_repeated_notes(4))
    t = Staff([v1, v2])
-   t.parallel = True
+   t.is_parallel = True
    for i, x in enumerate(v1.leaves):
       assert componenttools.get_component_start_offset(x) == i * Fraction(1, 8)
    for i, x in enumerate(v2.leaves):
@@ -127,7 +127,7 @@ def test_componenttools_get_component_start_offset_14( ):
    v2 = Voice(notetools.make_repeated_notes(4))
    v3 = Voice(notetools.make_repeated_notes(4))
    t = Staff([Container([v1, v2]), v3])
-   t[0].parallel = True
+   t[0].is_parallel = True
    for i, x in enumerate(v3.leaves):
       assert componenttools.get_component_start_offset(x) == i * Fraction(1, 8) + Fraction(1, 2)
 
@@ -139,7 +139,7 @@ def test_componenttools_get_component_start_offset_15( ):
    v2 = Voice(notetools.make_repeated_notes(4))
    v3 = Voice(notetools.make_repeated_notes(4))
    t = Staff([v3, Container([v1, v2])])
-   t[1].parallel = True
+   t[1].is_parallel = True
    for i, x in enumerate(v1.leaves):
       assert componenttools.get_component_start_offset(x) == i * Fraction(1, 8) + Fraction(1, 2)
    for i, x in enumerate(v2.leaves):
@@ -218,7 +218,7 @@ def test_componenttools_get_component_start_offset_23( ):
    v1 = Voice(notetools.make_repeated_notes(4))
    v2 = Voice(notetools.make_repeated_notes(4))
    t = Staff([v1, v2])
-   t.parallel = True
+   t.is_parallel = True
    assert componenttools.get_component_start_offset(t[0]) == 0
    assert componenttools.get_component_start_offset(t[1]) == 0
 

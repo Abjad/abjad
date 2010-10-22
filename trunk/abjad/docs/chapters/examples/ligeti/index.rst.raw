@@ -63,7 +63,7 @@ Finally we combine the two voices in a parallel Container:
 
 <abjad>
 p = Container([voice_lower, voice_higher])
-p.parallel = True
+p.is_parallel = True
 </abjad>
 
 This results in the complete *Désordre* *cell*:
@@ -95,7 +95,7 @@ Because this *cell* appears over and over again, we want to reuse this code to g
       v_higher.name = 'rh_higher'
       marktools.LilyPondCommandMark('voiceOne')(v_higher)
       p = Container([v_lower, v_higher])
-      p.parallel = True
+      p.is_parallel = True
       ## make all 1/8 beats breakable
       for n in v_lower.leaves[:-1]:
          n.bar_line.kind = ''

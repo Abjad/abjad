@@ -5,7 +5,7 @@ def test_contexttools_get_effective_staff_01( ):
    '''Staff changes work on the first note of a staff.'''
 
    piano = scoretools.PianoStaff(Staff(macros.scale(4)) * 2)
-   piano.parallel = True
+   piano.is_parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
    contexttools.StaffChangeMark(piano[1])(piano[0][0])
@@ -45,7 +45,7 @@ def test_contexttools_get_effective_staff_02( ):
    '''Staff changes work on middle notes of a staff.'''
 
    piano = scoretools.PianoStaff(Staff(macros.scale(4)) * 2)
-   piano.parallel = True
+   piano.is_parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
    contexttools.StaffChangeMark(piano[1])(piano[0][0])
@@ -87,7 +87,7 @@ def test_contexttools_get_effective_staff_03( ):
    '''Staff changes work on the last note of a staff.'''
 
    piano = scoretools.PianoStaff(Staff(macros.scale(4)) * 2)
-   piano.parallel = True
+   piano.is_parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
    contexttools.StaffChangeMark(piano[1])(piano[0][-1])
@@ -118,7 +118,7 @@ def test_contexttools_get_effective_staff_04( ):
    '''Redudant staff changes are allowed.'''
 
    piano = scoretools.PianoStaff(Staff(macros.scale(4)) * 2)
-   piano.parallel = True
+   piano.is_parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
    contexttools.StaffChangeMark(piano[1])(piano[0][0])

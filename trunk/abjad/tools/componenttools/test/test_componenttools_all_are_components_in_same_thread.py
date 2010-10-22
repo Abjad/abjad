@@ -53,7 +53,7 @@ def test_componenttools_all_are_components_in_same_thread_03( ):
 #      to a different thread.'''
 #
 #   t = Container(macros.scale(4))
-#   t.parallel = True
+#   t.is_parallel = True
 #
 #   r'''<<
 #      c'8
@@ -263,8 +263,8 @@ def test_componenttools_all_are_components_in_same_thread_13( ):
 
    t = Container(Staff(Voice(notetools.make_repeated_notes(2)) * 2) * 2)
    macros.diatonicize(t)
-   t[0].parallel = True
-   t[1].parallel = True
+   t[0].is_parallel = True
+   t[1].is_parallel = True
 
    r'''
    {
@@ -809,7 +809,7 @@ def test_componenttools_all_are_components_in_same_thread_32( ):
    vtop = Voice(Note(12, (1, 8)) * 4)
    vbottom = Voice(Note(0, (1, 8)) * 4)
    p = Container([vtop, vbottom])
-   p.parallel = True
+   p.is_parallel = True
    t = Container(notes + [p])
 
    r'''
@@ -844,7 +844,7 @@ def test_componenttools_all_are_components_in_same_thread_33( ):
    
    t = Container(
       [Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
-   t[0].parallel = True
+   t[0].is_parallel = True
    macros.chromaticize(t)
 
    r'''
@@ -1217,7 +1217,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #   '''A parallel Staff and only leaves as it's content DO NOT thread.'''
 #
 #   t = Staff(macros.scale(4))
-#   t.parallel = True
+#   t.is_parallel = True
 #
 #   r'''\new Staff <<
 #      c'8
@@ -1236,7 +1236,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #   a chord. '''
 #
 #   t = Staff(macros.scale(4))
-#   t.parallel = True
+#   t.is_parallel = True
 #
 #   r'''\new Staff <<
 #      c'8
@@ -1254,7 +1254,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #
 #   t = Container(Note(0, (1, 8)) * 4)
 #   p = Container(Note(0, (1, 8)) * 4)
-#   p.parallel = True
+#   p.is_parallel = True
 #   t.insert(2, p)
 #   macros.chromaticize(t)
 #
@@ -1280,7 +1280,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #
 #   t = Voice(Note(0, (1, 8)) * 4)
 #   p = Container(Note(0, (1, 8)) * 4)
-#   p.parallel = True
+#   p.is_parallel = True
 #   t.insert(2, p)
 #   macros.chromaticize(t)
 #
@@ -1307,7 +1307,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #      But all components do belong to the same thread.'''
 #
 #   t = Container(Container(Note(0, (1, 8)) * 4) * 2)
-#   t.parallel = True
+#   t.is_parallel = True
 #   macros.chromaticize(t)
 #
 #   r'''<<
@@ -1331,7 +1331,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #   '''Everything threads.'''
 #
 #   p = Container(Container(Note(0, (1, 8)) * 4) * 2)
-#   p.parallel = True
+#   p.is_parallel = True
 #   t = Container(Note(0, (1, 8)) * 4)
 #   t.insert(2, p)
 #   macros.chromaticize(t)
@@ -1364,7 +1364,7 @@ def test_componenttools_all_are_components_in_same_thread_49( ):
    '''Can not thread across differently named anonymous voices.'''
 
    p = Container(Voice(Note(0, (1, 8)) * 4) * 2)
-   p.parallel = True
+   p.is_parallel = True
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(2, p)
    macros.chromaticize(t)

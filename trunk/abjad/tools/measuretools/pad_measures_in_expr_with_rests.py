@@ -48,7 +48,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
    Works when measures contain stacked voices. ::
 
       abjad> measure = DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
-      abjad> measure.parallel = True
+      abjad> measure.is_parallel = True
       abjad> t = Staff(measure * 2)
       abjad> macros.diatonicize(t)
       abjad> measuretools.pad_measures_in_expr_with_rests(t, Fraction(1, 32), Fraction(1, 64))

@@ -59,7 +59,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_02( ):
    '''Works when measures contain stacked voices.'''
 
    measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
-   measure.parallel = True
+   measure.is_parallel = True
    t = Staff(measure * 2)
    macros.diatonicize(t)
    

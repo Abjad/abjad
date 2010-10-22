@@ -11,7 +11,7 @@ def test_lily_voice_resolution_01( ):
 
    t = Voice(notetools.make_repeated_notes(4))
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-   t[2].parallel = True
+   t[2].is_parallel = True
    macros.diatonicize(t)
    t.override.note_head.color = 'red'
 
@@ -53,7 +53,7 @@ def test_lily_voice_resolution_02( ):
    t = Voice(notetools.make_repeated_notes(4))
    t.name = 'foo'
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-   t[2].parallel = True
+   t[2].is_parallel = True
    t[2][0].name = 'foo'
    macros.diatonicize(t)
    t.override.note_head.color = 'red'
@@ -110,7 +110,7 @@ def test_lily_voice_resolution_04( ):
 
    t = Container(notetools.make_repeated_notes(2))
    t[1:1] = Container(Voice(notetools.make_repeated_notes(2)) * 2) * 2
-   t[1].parallel = True
+   t[1].is_parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'

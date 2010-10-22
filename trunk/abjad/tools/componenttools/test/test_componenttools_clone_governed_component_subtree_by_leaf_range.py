@@ -93,7 +93,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_03( ):
 
    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
    macros.diatonicize(t)
-   t.parallel = True
+   t.is_parallel = True
 
    assert py.test.raises(ContiguityError, 
       'componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 5)')
@@ -103,7 +103,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_04( ):
    '''Works fine on voices nested inside parallel context.'''
 
    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-   t.parallel = True
+   t.is_parallel = True
    macros.diatonicize(t)
 
    r'''

@@ -7,7 +7,7 @@ def iterate_components_forward_in_expr(expr, klass = _Component, start = 0, stop
    r'''Yield left-to-right instances of `klass` in `expr`. ::
 
       abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-      abjad> container.parallel = True
+      abjad> container.is_parallel = True
       abjad> container[0].name = 'voice 1'
       abjad> container[1].name = 'vocie 2'
       abjad> staff = Staff(container * 2)

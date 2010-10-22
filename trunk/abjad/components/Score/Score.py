@@ -31,5 +31,5 @@ class Score(_Context):
    def __init__(self, music = None, **kwargs):
       _Context.__init__(self, music)
       self.context = 'Score'
-      self.parallel = True
+      self.is_parallel = True
       self._initialize_keyword_values(**kwargs)

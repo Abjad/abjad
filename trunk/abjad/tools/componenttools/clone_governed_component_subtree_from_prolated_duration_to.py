@@ -40,7 +40,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
    Raise contiguity error if asked to slice a parallel container. ::
 
       abjad> staff = Staff(Voice(macros.scale(2)) * 2)
-      abjad> staff.parallel = True
+      abjad> staff.is_parallel = True
       abjad> f(staff)
       \new Staff <<
         \new Voice {
