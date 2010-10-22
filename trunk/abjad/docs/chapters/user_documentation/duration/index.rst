@@ -1,5 +1,5 @@
-Durations
-=========
+Working with durations
+======================
 
 .. toctree::
    :maxdepth: 1

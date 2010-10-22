@@ -48,7 +48,7 @@ User documentation
    chapters/user_documentation/measures/index
    chapters/user_documentation/dynamic_measures/index
    chapters/user_documentation/anonymous_measures/index
-   chapters/user_documentation/naming_containers/index
+   chapters/user_documentation/containers/index
    chapters/user_documentation/comments/index
    chapters/user_documentation/working_with_instrument_marks/index
    chapters/user_documentation/lists_of_numbers/index
@@ -78,10 +78,10 @@ Appendices
 .. toctree::
    :numbered:
 
-   chapters/background/history/index
-   chapters/background/lilypond/index
-   chapters/background/python/index
-   chapters/background/midi_not_enough/index
+   chapters/appendices/history/index
+   chapters/appendices/lilypond/index
+   chapters/appendices/python/index
+   chapters/appendices/midi_not_enough/index
    chapters/introduction/configuration/index
    chapters/appendices/coding_standards/index
    chapters/appendices/pitch_conventions/index
