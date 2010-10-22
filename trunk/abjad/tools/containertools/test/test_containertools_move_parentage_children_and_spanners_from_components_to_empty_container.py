@@ -201,3 +201,34 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    tuplet = tuplettools.FixedDurationTuplet((3, 8), [ ])
    assert py.test.raises(AssertionError, 
       'containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t[0], t[2]], tuplet)')
+
+
+def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07( ):
+   '''Move parentage, children and spanners from multiple dynamic measure to empty measure.'''
+
+   t = measuretools.DynamicMeasure(macros.scale(4))
+
+   r'''
+   {
+           \time 1/2
+           c'8
+           d'8
+           e'8
+           f'8
+   }
+   '''
+
+   u = Measure((4, 8), [ ])
+   containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t], u)
+
+   r'''
+   {
+           \time 4/8
+           c'8
+           d'8
+           e'8
+           f'8
+   }
+   '''
+
+   assert u.format == "{\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

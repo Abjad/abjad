@@ -42,19 +42,21 @@ User documentation
    chapters/user_documentation/start/index
    chapters/user_documentation/one_note/index
    chapters/user_documentation/many_notes/index
-   chapters/user_documentation/pitch_deviation/index
-   chapters/user_documentation/lists_of_numbers/index
+   chapters/user_documentation/lcs/index
+   chapters/user_documentation/note_basics/index
+   chapters/user_documentation/duration/index
+   chapters/user_documentation/measures/index
+   chapters/user_documentation/dynamic_measures/index
+   chapters/user_documentation/anonymous_measures/index
+   chapters/user_documentation/naming_containers/index
    chapters/user_documentation/comments/index
    chapters/user_documentation/working_with_instrument_marks/index
-   chapters/user_documentation/inspecting_output/index
-   chapters/user_documentation/measures/index
-   chapters/user_documentation/naming_containers/index
-   chapters/user_documentation/lcs/index
-   chapters/user_documentation/duration/index
-   chapters/user_documentation/note_basics/index
+   chapters/user_documentation/lists_of_numbers/index
+   chapters/user_documentation/grobs/index
    chapters/user_documentation/parentage/index
-   chapters/user_documentation/grobhandlers/index
    chapters/user_documentation/threads/index
+   chapters/user_documentation/inspecting_output/index
+   chapters/user_documentation/pitch_deviation/index
 
 Developer documentation
 

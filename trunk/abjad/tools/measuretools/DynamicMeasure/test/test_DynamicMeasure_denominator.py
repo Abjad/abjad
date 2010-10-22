@@ -2,10 +2,13 @@ from abjad import *
 
 
 def test_DynamicMeasure_denominator_01( ):
-   '''You can control the denominator of dynamic measures.'''
+   '''You can control the denominator of dynamic measures.
+   '''
 
    t = measuretools.DynamicMeasure(macros.scale(4))
    t.denominator = 32
+
+   assert contexttools.get_effective_time_signature(t) == (16, 32)
    
    r'''
    {
@@ -21,7 +24,8 @@ def test_DynamicMeasure_denominator_01( ):
 
 
 def test_DynamicMeasure_denominator_02( ):
-   '''Bad denominator values have no effect.'''
+   '''Bad denominator values have no effect.
+   '''
 
    t = measuretools.DynamicMeasure(macros.scale(4))
    t.denominator = 117

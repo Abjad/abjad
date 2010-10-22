@@ -1,5 +1,5 @@
-Threads
-=======
+Working with threads
+====================
 
 
 What is a thread?
@@ -95,7 +95,7 @@ The musical fragment above is constructed with the following code:
 	abjad> marktools.LilyPondCommandMark('voiceOne')(vB[0])
 	abjad> marktools.LilyPondCommandMark('voiceTwo')(vC[0])
 	abjad> p = Container([vB, vC])
-	abjad> p.parallel = True
+	abjad> p.is_parallel = True
 	abjad> staff = Staff([vA, p])
 
 .. image:: images/thread-resolution_1.png
@@ -173,14 +173,14 @@ by printing it:
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> vB_thread_signature
-	<      root: Staff-7706704 (7706704) *      score:  * staffgroup:  *      staff: Staff-7706704 *      voice: Voice-7706496 *       self: Voice-7706496 >
+	<      root: Staff-7702608 (7702608) *      score:  * staffgroup:  *      staff: Staff-7702608 *      voice: Voice-7702400 *       self: Voice-7702400 >
 
 
 ::
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> vC_thread_signature
-	<      root: Staff-7706704 (7706704) *      score:  * staffgroup:  *      staff: Staff-7706704 *      voice: Voice-7706600 *       self: Voice-7706600 >
+	<      root: Staff-7702608 (7702608) *      score:  * staffgroup:  *      staff: Staff-7702608 *      voice: Voice-7702504 *       self: Voice-7702504 >
 
 
 And by comparing them with the binary equality operator:
@@ -301,7 +301,7 @@ one of them starting with a LilyPond skip:
 	abjad> marktools.LilyPondCommandMark('voiceOne')(vX[0])
 	abjad> marktools.LilyPondCommandMark('voiceTwo')(vY[0])
 	abjad> staff = Staff([vX, vY])
-	abjad> staff.parallel = True
+	abjad> staff.is_parallel = True
 
 .. image:: images/thread-resolution_3.png
 

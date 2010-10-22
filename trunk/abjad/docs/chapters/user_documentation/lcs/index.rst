@@ -125,7 +125,7 @@ and only one measure, i.e. measures seem to contain notes.
 There is not one note that is at once in two measures  
 (this is standard practice in musical notation, but it need not always be the
 case. See the 
-:doc:`metric grid example </chapters/examples/slicing/index>` 
+:doc:`metric grid example </chapters/examples/lehman/index>` 
 for a non-containment approach to meters). 
 
 As we continue describing the relationships between the

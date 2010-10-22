@@ -1,5 +1,5 @@
-Parentage
-=========
+Working with component parentage
+================================
 
 Many score objects contain other score objects.
 
@@ -68,6 +68,6 @@ Or to find whether a component has no (proper) parentage at all:
 
 ::
 
-	abjad> componenttools.component_is_orphan(note)
+	abjad> componenttools.is_orphan_component(note)
 	False
 

@@ -1,5 +1,5 @@
-Grobs
-=====
+Overriding LilyPond grobs
+=========================
 
 The term 'grob' stands for 'graphical object' and is borrowed from LilyPond:
 

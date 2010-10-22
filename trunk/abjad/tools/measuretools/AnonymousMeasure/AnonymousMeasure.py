@@ -35,10 +35,11 @@ class AnonymousMeasure(DynamicMeasure):
       }
    '''
 
+   __slots__ = ( )
+
    def __init__(self, music = None, **kwargs):
       '''Initialize music and hide TimeSignature stencil.
       '''
 
       DynamicMeasure.__init__(self, music = music, **kwargs)
       self.override.staff.time_signature.stencil = False
-      #self._initialize_keyword_values(**kwargs)

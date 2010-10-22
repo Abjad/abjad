@@ -6,7 +6,6 @@ def test_DynamicMeasure_meter_suppress_01( ):
    '''
 
    t = measuretools.DynamicMeasure(macros.scale(4))
-   #t.meter.suppress = True
    t.suppress_meter = True
 
    r'''
