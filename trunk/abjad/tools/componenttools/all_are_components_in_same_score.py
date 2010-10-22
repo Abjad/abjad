@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.tools.componenttools.component_is_orphan import component_is_orphan
+from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 from abjad.tools.componenttools.component_to_score_root import component_to_score_root
 import types
 
@@ -40,7 +40,7 @@ def all_are_components_in_same_score(expr, klasses = None, allow_orphans = True)
       if not isinstance(element, klasses):
          return False
       if component_to_score_root(element) is not first_score:
-         if not (allow_orphans and component_is_orphan(element)):
+         if not (allow_orphans and is_orphan_component(element)):
             return False
 
    return True

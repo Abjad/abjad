@@ -81,6 +81,7 @@ componenttools
    tools/componenttools/all_are_contiguous_components_in_same_parent
    tools/componenttools/all_are_contiguous_components_in_same_score
    tools/componenttools/all_are_contiguous_components_in_same_thread
+   tools/componenttools/all_are_orphan_components
    tools/componenttools/all_are_thread_contiguous_components
    tools/componenttools/clone_and_partition_governed_component_subtree_by_leaf_counts
    tools/componenttools/clone_components_and_covered_spanners
@@ -89,7 +90,6 @@ componenttools
    tools/componenttools/clone_components_and_remove_all_spanners
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
-   tools/componenttools/component_is_orphan
    tools/componenttools/component_to_parentage_signature
    tools/componenttools/component_to_pitch_and_rhythm_skeleton
    tools/componenttools/component_to_pitch_and_rhythm_skeleton_with_interface_attributes
@@ -116,6 +116,7 @@ componenttools
    tools/componenttools/get_parent_and_start_stop_indices_of_components
    tools/componenttools/get_proper_parentage_of_component
    tools/componenttools/is_beamable_component
+   tools/componenttools/is_orphan_component
    tools/componenttools/is_well_formed_component
    tools/componenttools/iterate_components_backward_in_expr
    tools/componenttools/iterate_components_depth_first

@@ -1,4 +1,4 @@
-from abjad.tools.componenttools.component_is_orphan import component_is_orphan
+from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 
 
 def move_component_subtree_to_right_in_immediate_parent_of_component(component):
@@ -65,7 +65,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
    '''
 
    # swap positions in parent
-   if not component_is_orphan(component):
+   if not is_orphan_component(component):
       parent = component._parentage.parent
       parent_index = parent.index(component)
       try:

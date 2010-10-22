@@ -1,6 +1,6 @@
 from abjad.components._Component import _Component
 from abjad.tools import threadtools
-from abjad.tools.componenttools.component_is_orphan import component_is_orphan
+from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 from abjad.tools.componenttools.iterate_components_depth_first import \
    iterate_components_depth_first
 import types
@@ -55,7 +55,7 @@ def all_are_thread_contiguous_components(expr, klasses = None, allow_orphans = T
       return False
 
    orphan_components = True
-   if not component_is_orphan(first):
+   if not is_orphan_component(first):
       orphan_components = False
 
    same_thread = True
@@ -66,7 +66,7 @@ def all_are_thread_contiguous_components(expr, klasses = None, allow_orphans = T
    for cur in expr[1:]:
       if not isinstance(cur, klasses):
          return False
-      if not component_is_orphan(cur):
+      if not is_orphan_component(cur):
          orphan_components = False
       if not threadtools.component_to_thread_signature(cur) == first_thread:
          same_thread = False

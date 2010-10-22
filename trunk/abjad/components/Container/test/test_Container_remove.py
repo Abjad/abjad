@@ -23,7 +23,9 @@ def test_Container_remove_01( ):
    }
    '''
 
-   result = t.remove(t[1])
+   #result = t.remove(t[1])
+   note = t[1]
+   t.remove(note)
 
    r'''
     \new Voice {
@@ -36,10 +38,12 @@ def test_Container_remove_01( ):
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
-   "Result is now d'8 [ ]"
+   "Note is now d'8 [ ]"
 
-   assert componenttools.is_well_formed_component(result)
-   assert result.format == "d'8 [ ]"
+   #assert componenttools.is_well_formed_component(result)
+   assert componenttools.is_well_formed_component(note)
+   #assert result.format == "d'8 [ ]"
+   assert note.format == "d'8 [ ]"
 
 
 def test_Container_remove_02( ):

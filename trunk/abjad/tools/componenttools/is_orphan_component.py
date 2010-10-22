@@ -2,14 +2,18 @@ from abjad.tools.componenttools.get_proper_parentage_of_component import \
    get_proper_parentage_of_component
 
 
-def component_is_orphan(component):
+def is_orphan_component(component):
    '''True when `component` has no parent. Otherwise false::
 
       abjad> note = Note(0, (1, 4))
-      abjad> componenttools.component_is_orphan(note)
+      abjad> componenttools.is_orphan_component(note)
       True
    
    Return boolean.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.component_is_orphan( )`` to
+      ``componenttools.is_orphan_component( )``.
    '''
 
    return not get_proper_parentage_of_component(component)

@@ -168,21 +168,42 @@ class Container(_Component):
 
    @property
    def leaves(self):
-      '''Read-only tuple of leaves in container.
+      '''Read-only tuple of leaves in container::
+
+         abjad> container = Container("c'8 d'8 e'8")
+
+      ::
+
+         abjad> container.leaves
+         (Note("c'8"), Note("d'8"), Note("e'8"))
+
+      Return tuple of zero or more leaves.
       '''
       from abjad.tools import leaftools
       return tuple(leaftools.iterate_leaves_forward_in_expr(self))
 
    @property
    def music(self):
-      '''Read-only tuple of music in container.
+      '''Read-only tuple of components in container::
+
+         abjad> container = Container("c'8 d'8 e'8")
+
+      ::
+
+         abjad> container.music
+         (Note("c'8"), Note("d'8"), Note("e'8"))
+
+      Return tuple or zero or more components.
       '''
       return tuple(self._music)
 
    @apply
    def parallel( ):
       def fget(self):
-         '''Read / write boolean for paralllel / sequential containers.'''
+         '''Set parallel container::
+
+
+         '''
          return self._parallel
       def fset(self, expr):
          from abjad.components._Context import _Context
@@ -201,7 +222,9 @@ class Container(_Component):
       from abjad.tools.componenttools._switch_components_to_parent import \
          _switch_components_to_parent
       music = music or [ ]
+      ## TODO: change this restriction to merely components ##
       if componenttools.all_are_contiguous_components_in_same_thread(music):
+      #if componenttools.all_are_components(music):
          parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
             music)
          self._music = list(music)
@@ -224,21 +247,92 @@ class Container(_Component):
    ## PUBLIC METHODS ## 
 
    def append(self, component):
-      '''Append `component` to the end of container:
+      r'''Append `component` to container::
 
-      
-      Attach no new spanners to component.'''
+         abjad> container = Container("c'8 d'8 e'8")
+         abjad> beam = spannertools.BeamSpanner(container.music)
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8
+            e'8 ]
+         }
+
+      ::
+
+         abjad> container.append(Note("f'8"))
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8
+            e'8 ]
+            f'8
+         }
+
+      Return none.
+      '''
       self[len(self):len(self)] = [component]
 
    def extend(self, expr):
-      '''Extend container with components in 'expr'.
-      Change no container spanners.
-      Return container.'''
+      '''Extend `expr` against container::
+
+         abjad> container = Container("c'8 d'8 e'8")
+         abjad> beam = spannertools.BeamSpanner(container.music)
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8
+            e'8 ]
+         }
+
+      ::
+
+         abjad> container.extend([Note("cs'8"), Note("ds'8"), Note("es'8")])
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8
+            e'8 ]
+            cs'8
+            ds'8
+            es'8
+         }
+      
+      Return none.
+      '''
       self[len(self):len(self)] = expr[:]
-      return self
+      #return self
 
    def index(self, component):
-      '''Return nonnegative integer index of component in container.'''
+      '''Index `component` in container::
+
+         abjad> container = Container("c'8 d'8 e'8")
+
+      ::
+
+         abjad> note = container[-1]
+         abjad> note
+         Note("e'8")
+
+      ::
+
+         abjad> container.index(note)
+         2
+
+      Return nonnegative integer.
+      '''
       for i, element in enumerate(self._music):
          if element is component:
             return i
@@ -246,26 +340,107 @@ class Container(_Component):
          raise ValueError('component "%s" not in Abjad container.' % component)
 
    def insert(self, i, component):
-      '''Insert component 'component' at index 'i' in container.
-      Attach spanners that dominate index 'i' to 'component'.'''
+      '''Insert `component` in container at index `i`::
+
+         abjad> container = Container("c'8 d'8 e'8")
+         abjad> beam = spannertools.BeamSpanner(container.music)
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8
+            e'8 ]
+         }
+
+      ::
+
+         abjad> container.insert(1, Note("cs'8"))
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            cs'8
+            d'8
+            e'8 ]
+         }
+
+      Return none.
+      '''
       self[i:i] = [component]
 
    def pop(self, i = -1):
-      '''Find component at index 'i' in container.
-      Detach component from parentage.
-      Withdraw component from crossing spanners.
-      Preserve spanners that component covers.
-      Return component.'''
+      '''Pop component at index `i` from container::
+
+         abjad> container = Container("c'8 d'8 e'8")
+         abjad> beam = spannertools.BeamSpanner(container.music)
+   
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8
+            e'8 ]
+         }
+
+      ::
+
+         abjad> container.pop(-1)
+         Note("e'8")
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8 ]
+         }
+
+      Return component.
+      '''
       component = self[i]
       del(self[i])
       return component
 
    def remove(self, component):
-      '''Assert 'component' in container.
-      Detach 'component' from parentage.
-      Withdraw 'component' from crossing spanners.
-      Carry covered spanners forward on 'component'.
-      Return 'component'.'''
+      '''Remove `component` from container::
+
+         abjad> container = Container("c'8 d'8 e'8")
+         abjad> beam = spannertools.BeamSpanner(container.music)
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8
+            e'8 ]
+         }
+
+      ::
+
+         abjad> note = container[-1]
+         abjad> note
+         Note("e'8")
+
+      ::
+
+         abjad> container.remove(note)
+
+      ::
+
+         abjad> f(container)
+         {
+            c'8 [
+            d'8 ]
+         }
+
+      Return none.
+      '''
       i = self.index(component)
       del(self[i])
-      return component
+      #return component

@@ -61,6 +61,6 @@ print repr(componenttools.component_to_score_root(note)) <hide>
 Or to find whether a component has no (proper) parentage at all:
 
 <abjad>
-componenttools.component_is_orphan(note)
-print repr(componenttools.component_is_orphan(note)) <hide>
+componenttools.is_orphan_component(note)
+print repr(componenttools.is_orphan_component(note)) <hide>
 </abjad>
