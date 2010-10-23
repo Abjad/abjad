@@ -440,6 +440,7 @@ listtools
 .. toctree::
    :maxdepth: 1
 
+   tools/listtools/all_are_powers_of_two
    tools/listtools/all_ordered_sublists
    tools/listtools/all_restricted_growth_functions_of_length
    tools/listtools/all_rotations
