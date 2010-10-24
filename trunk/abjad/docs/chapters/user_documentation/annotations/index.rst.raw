@@ -1,0 +1,60 @@
+Working with annotations
+========================
+
+Add annotations to mark any component with user-specific information for future use.
+
+Annotations do not impact formatting in any way.
+
+Creating annotations
+--------------------
+
+Create annotations like this:
+
+<abjad>
+annotation = marktools.Annotation('annotated information')
+</abjad>
+
+<abjad>
+annotation
+print repr(annotation) <hide
+</abjad>
+
+Attaching annotations to a component
+------------------------------------
+
+Attach annotations to a component by calling the annotation on the component:
+
+<abjad>
+note = Note("c'4")
+</abjad>
+
+<abjad>
+annotation(note)
+</abjad>
+
+<abjad>
+annotation
+print repr(annotation) <hide
+</abjad>
+
+Creating annotations and attaching them to components in one step
+-----------------------------------------------------------------
+
+You can combine the two steps above like this:
+
+<abjad>
+another_annotation = marktools.Annotation('special information about note')(note)
+</abjad>
+
+<abjad>
+another_annotation
+print another_annotation <hide
+</abjad>
+
+Getting annotations
+-------------------
+
+Use mark tools to get annotations:
+
+<abjad>
+

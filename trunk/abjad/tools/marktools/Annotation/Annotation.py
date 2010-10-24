@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-#from abjad.tools.contexttools.ContextMark import ContextMark
 from abjad.tools.marktools.Mark import Mark
 
 
@@ -16,17 +15,17 @@ class Annotation(Mark):
    Annotation replaces elements added to history interface.
    '''
 
+   __slots__ = ('_contents', '_format_slot', )
+
    _format_slot = None
 
    def __init__(self, contents):
-      #ContextMark.__init__(self, target_context = _Component)
       Mark.__init__(self)
       self._contents = contents
       
    ## OVERLOADS ##
    
    def __copy__(self, *args):
-      #return type(self)(self.contents, target_context = self.target_context)
       return type(self)(self.contents)
 
    __deepcopy__ = __copy__

@@ -1,10 +1,8 @@
 from abjad.components._Component import _Component
 from abjad.tools import stringtools
-#from abjad.tools.contexttools.ContextMark import ContextMark
 from abjad.tools.marktools.Mark import Mark
 
 
-#class Comment(ContextMark):
 class Comment(Mark):
    r'''.. versionadded:: 1.1.2
 
@@ -14,8 +12,9 @@ class Comment(Mark):
       Comment('this is a comment.')
    '''
 
+   __slots__ = ('_comment_name_string', '_format_slot', )
+
    def __init__(self, comment_name_string, format_slot = 'opening'):
-      #ContextMark.__init__(self, target_context = _Component)
       Mark.__init__(self)
       self._comment_name_string = comment_name_string
       self._contents_repr_string = "'%s'" % comment_name_string
