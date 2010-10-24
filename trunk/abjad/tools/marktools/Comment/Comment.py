@@ -17,7 +17,6 @@ class Comment(Mark):
    def __init__(self, comment_name_string, format_slot = 'opening'):
       Mark.__init__(self)
       self._comment_name_string = comment_name_string
-      self._contents_repr_string = "'%s'" % comment_name_string
       self._format_slot = format_slot
       
    ## OVERLOADS ##
@@ -31,6 +30,12 @@ class Comment(Mark):
       if isinstance(arg, type(self)):
          return self._comment_name_string == arg._comment_name_string
       return False
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _contents_repr_string(self):
+      return repr(self._comment_name_string)
 
    ## PUBLIC ATTRIBUTES ##
 

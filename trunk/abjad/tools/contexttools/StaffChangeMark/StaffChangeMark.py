@@ -15,7 +15,6 @@ class StaffChangeMark(ContextMark):
       if self.target_context is None:
          self._target_context = Staff
       self._staff = staff
-      self._contents_repr_string = repr(staff)
 
    ## OVERLOADS ##
 
@@ -26,6 +25,12 @@ class StaffChangeMark(ContextMark):
       if isinstance(arg, type(self)):
          return self.staff is arg.staff
       return False
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _contents_repr_string(self):
+      return repr(self.staff)
 
    ## PUBLIC ATTRIBUTES ##
 

@@ -30,7 +30,6 @@ class TempoMark(ContextMark):
          raise ValueError('can not initialize tempo indication.')
       object.__setattr__(self, '_duration', duration)
       object.__setattr__(self, '_units_per_minute', units_per_minute)
-      self._contents_repr_string = '%s, %s' % (self._dotted, self.units_per_minute)
 
    ## OVERLOADS ##
 
@@ -67,10 +66,6 @@ class TempoMark(ContextMark):
          new_tempo_indication = type(self)(new_duration, new_units_per_minute)
          return new_tempo_indication
 
-#   def __repr__(self):
-#      return '%s(%s, %s)' % (
-#         self.__class__.__name__, self._dotted, self.units_per_minute)
-
    def __sub__(self, expr):
       if isinstance(expr, type(self)):
          new_quarters_per_minute = self.quarters_per_minute - expr.quarters_per_minute
@@ -83,6 +78,10 @@ class TempoMark(ContextMark):
          return new_tempo_indication
 
    ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _contents_repr_string(self):
+      return '%s, %s' % (self._dotted, self.units_per_minute)
 
    @property
    def _dotted(self):

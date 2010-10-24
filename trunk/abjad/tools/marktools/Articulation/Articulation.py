@@ -97,7 +97,6 @@ class Articulation(Mark):
       object.__setattr__(self, '_string', string)
       object.__setattr__(self, '_direction', direction)
       self._format_slot = 'right'
-      self._contents_repr_string = '%s, %s' % (repr(self.string), repr(self.direction))
 
    ## OVERLOADS ##
 
@@ -125,6 +124,8 @@ class Articulation(Mark):
       else:
          return ''
 
+   ## PRIVA
+
    ## PRIVATE ATTRIBUTES ##
 
    _articulations_supported = ('accent', 'marcato', 
@@ -147,6 +148,10 @@ class Articulation(Mark):
    _shortcut_to_word = {
          '^':'marcato', '+':'stopped', '-':'tenuto', '|':'staccatissimo', 
          '>':'accent', '.':'staccato', '_':'portato' }
+
+   @property
+   def _contents_repr_string(self):
+      return '%s, %s' % (repr(self.string), repr(self.direction))
 
    ## PUBLIC ATTRIBUTES ##
 

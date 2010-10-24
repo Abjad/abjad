@@ -66,7 +66,7 @@ class TimeSignatureMark(ContextMark):
       self._multiplier = _multiplier
       self._is_nonbinary = not mathtools.is_power_of_two(self.denominator)
 
-      self._contents_repr_string = '%s/%s' % (self.numerator, self.denominator)
+      #self._contents_repr_string = '%s/%s' % (self.numerator, self.denominator)
 
    ## OVERLOADS ##
 
@@ -129,6 +129,12 @@ class TimeSignatureMark(ContextMark):
          self.denominator, self._partial_repr_string, self._attachment_repr_string)
 
    def __str__(self):
+      return '%s/%s' % (self.numerator, self.denominator)
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _contents_repr_string(self):
       return '%s/%s' % (self.numerator, self.denominator)
 
    ## PUBLIC ATTRIBUTES ##

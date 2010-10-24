@@ -18,7 +18,6 @@ class DynamicMark(ContextMark):
       if self.target_context is None:
          self._target_context = Staff
       self._dynamic_name_string = dynamic_name_string
-      self._contents_repr_string = "'%s'" % dynamic_name_string
 
    ## OVERLOADS ##
 
@@ -42,6 +41,12 @@ class DynamicMark(ContextMark):
       if isinstance(arg, type(self)):
          return self._dynamic_name_string == arg._dynamic_name_string
       return False
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _contents_repr_string(self):
+      return repr(self.dynamic_name_string)
 
    ## PUBLIC ATTRIBUTES ##
 

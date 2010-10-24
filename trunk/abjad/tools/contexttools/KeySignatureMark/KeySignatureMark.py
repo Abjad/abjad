@@ -24,7 +24,6 @@ class KeySignatureMark(ContextMark):
       #object.__setattr__(self, '_mode', mode)
       self._tonic = tonic
       self._mode = mode
-      self._contents_repr_string = "'%s', '%s'" % (tonic, mode)
 
    ## OVERLOADS ##
 
@@ -37,6 +36,12 @@ class KeySignatureMark(ContextMark):
 
    def __str__(self):
       return '%s-%s' % (self.tonic, self.mode)
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _contents_name_string(self):
+      return "%s, %s" % (repr(tonic), repr(mode))
 
    ## PUBLIC ATTRIBUTES ##
 

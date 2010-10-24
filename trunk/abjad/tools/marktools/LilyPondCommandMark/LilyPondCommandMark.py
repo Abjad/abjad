@@ -28,7 +28,7 @@ class LilyPondCommandMark(Mark):
    def __init__(self, command_name_string, format_slot = 'opening'):
       Mark.__init__(self)
       self._command_name_string = command_name_string
-      self._contents_repr_string = "'%s'" % command_name_string
+      #self._contents_repr_string = "'%s'" % command_name_string
       self._format_slot = format_slot
 
    ## OVERLOADS ##
@@ -42,6 +42,12 @@ class LilyPondCommandMark(Mark):
       if isinstance(arg, type(self)):
          return self._command_name_string == arg._command_name_string
       return False
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _contents_repr_string(self):
+      return repr(self.command_name_string)
 
    ## PUBLIC ATTRIBUTES ##
 

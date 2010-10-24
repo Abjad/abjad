@@ -8,10 +8,9 @@ class Mark(object):
    and other symbols that attach directly to a note, rest or chord.
    '''
 
-   __slots__ = ('_contents_repr_string', '_start_component', )
+   __slots__ = ('_start_component', )
 
    def __init__(self):
-      self._contents_repr_string = ' '
       self._start_component = None
 
    ## OVERLOADS ##
@@ -52,6 +51,13 @@ class Mark(object):
          return ''
       else:
          return '(%s)' % str(self.start_component)
+
+   @property
+   def _contents_repr_string(self):
+      if hasattr(self, 'contents'):
+         return repr(self.contents)
+      else:
+         return ' '
 
    ## MANGLED METHODS ##
 

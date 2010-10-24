@@ -542,6 +542,7 @@ marktools
    tools/marktools/Comment/Comment
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
    tools/marktools/Mark/Mark
+   tools/marktools/detach_annotations_attached_to_component
    tools/marktools/detach_comments_attached_to_component
    tools/marktools/detach_lilypond_command_marks_attached_to_component
    tools/marktools/get_all_marks_attached_to_component

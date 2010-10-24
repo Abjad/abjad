@@ -16,7 +16,6 @@ class ClefMark(ContextMark):
       if self.target_context is None:
          self._target_context = Staff
       self._clef_name_string = clef_name_string
-      self._contents_repr_string = "'%s'" % clef_name_string
 
    ## OVERLOADS ##
 
@@ -33,6 +32,10 @@ class ClefMark(ContextMark):
    ## PRIVATE ATTRIBUTES ##
 
    _clef_name_to_middle_c_position = { 'treble': -6, 'alto': 0, 'tenor': 2, 'bass': 6, }
+
+   @property
+   def _contents_repr_string(self):
+      return repr(self.clef_name_string)
 
    ## PUBLIC ATTRIBUTES ##
 
