@@ -58,6 +58,7 @@ User documentation --- marks
 .. toctree::
    :numbered:
 
+   chapters/user_documentation/annotations/index
    chapters/user_documentation/comments/index
    chapters/user_documentation/instrument_marks/index
 

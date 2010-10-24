@@ -22,6 +22,7 @@ class Annotation(Mark):
    def __init__(self, contents):
       Mark.__init__(self)
       self._contents = contents
+      self._contents_repr_string = "'%s'" % contents
       
    ## OVERLOADS ##
    
@@ -35,9 +36,6 @@ class Annotation(Mark):
          return self.contents == arg.contents
       return False
    
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, repr(self.contents))
-
    ## PUBLIC ATTRIBUTES ##
 
    @property

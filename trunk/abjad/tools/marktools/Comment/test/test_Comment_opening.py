@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_CommentMark_opening_01( ):
+def test_Comment_opening_01( ):
    '''Opening comments in container.'''
 
    t = Voice(macros.scale(4))
@@ -24,7 +24,7 @@ def test_CommentMark_opening_01( ):
    assert t.format == "\\new Voice {\n\t% Voice opening comments here.\n\t% More voice opening comments.\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_CommentMark_opening_02( ):
+def test_Comment_opening_02( ):
    '''Opening comments on leaf.'''
 
    t = Note(0, (1, 8))

@@ -1,0 +1,126 @@
+Working with annotations
+========================
+
+Annotate components with user-specific information for future use.
+
+Annotations do not impact formatting.
+
+Creating annotations
+--------------------
+
+Use mark tools to create annotations:
+
+::
+
+	abjad> annotation = marktools.Annotation('special information')
+
+
+::
+
+	abjad> annotation
+	Annotation('special information')
+
+
+Attaching annotations
+---------------------
+
+Attach annotations by calling them:
+
+::
+
+	abjad> note = Note("c'4")
+	abjad> annotation(note)
+
+
+::
+
+	abjad> annotation
+	Annotation('special information')(c'4)
+
+
+Creating and attaching annotations in one step
+----------------------------------------------
+
+Create and attach annotations in one step like this:
+
+::
+
+	abjad> another_annotation = marktools.Annotation('more special information')(note)
+
+
+::
+
+	abjad> another_annotation
+	Annotation('more special information')(c'4)
+
+
+Getting annotations
+-------------------
+
+Use mark tools to get annotations:
+
+::
+
+	abjad> marktools.get_annotations_attached_to_component(note)
+	(Annotation('special information')(c'4), Annotation('more special information')(c'4))
+
+
+Detaching annotations by hand
+-----------------------------
+
+Detach annotations by hand:
+
+::
+
+	abjad> annotation.detach_mark( )
+
+
+::
+
+	abjad> annotation
+	Annotation('special information')
+
+
+Detaching annotations automatically
+-----------------------------------
+
+Or use mark tools to detach all annotations at once:
+
+::
+
+	abjad> print marktools.detach_annotations_attached_to_component(note)
+	(Annotation('more special information'),)
+
+
+::
+
+	abjad> marktools.get_annotations_attached_to_component(note)
+	()
+
+
+Inspecting attachment
+---------------------
+
+Use ``start_component`` to inspect attachment:
+
+::
+
+	abjad> annotation(note)
+
+
+::
+
+	abjad> annotation.start_component
+	Note("c'4")
+
+
+Inspecting contents
+-------------------
+
+And use ``contents`` to get the contents of any annotation:
+
+::
+
+	abjad> annotation.contents
+	'special information'
+
