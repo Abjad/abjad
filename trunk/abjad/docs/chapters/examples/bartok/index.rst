@@ -78,7 +78,7 @@ Now lets actually start adding some notes. Let's begin with the upper staff:
 Let's now create the notes for the lower staff. This will be a more intricate process that that needed for the upper staff. Notice that, for the upper staff, we simply added notes directly to the measures. This will not be possible for the lower staff due to the parallel `threads` (voices or melodic lines) found in the last two measures. 
 
 .. note::
-   The usual term for a melodic line is `voice`. Generally speaking, the language developed in Abjad uses the term *thread* to refer to this notion. A `thread` however, has a more concrete interpretation in Abjad. Please refer to the :doc:`/chapters/fundamentals/threads/index` section for a complete explanation of `threads`.
+   The usual term for a melodic line is `voice`. Generally speaking, the language developed in Abjad uses the term *thread* to refer to this notion. A `thread` however, has a more concrete interpretation in Abjad. Please refer to the :doc:`/chapters/user_documentation/threads/index` section for a complete explanation of `threads`.
    The term Voice (with upper case) we use specifically for either the voice class or an instance of the class. 
 
 When two or more melodic lines are simultaneously present in the same staff, we need some way of grouping notes to disambiguate the paths of the possible melodic lines. We do this by creating explicit threads via the instantiation of the voice class. Here we create two threads: one called ``main_voice`` the other called ``appendix_voice``. The threads are made explicit by instantiating voice classes and by naming them appropriately.  
@@ -119,7 +119,7 @@ It is in the last two measures where we suddenly have two simultaneous voices in
 	abjad> main_voice_m4.name = 'main_voice'
 	abjad> marktools.LilyPondCommandMark('voiceTwo')(main_voice_m4)
 	abjad> p = Container([appendix_voice_m4, main_voice_m4])
-	abjad> p.parallel = True
+	abjad> p.is_parallel = True
 	abjad> lower_measures[3].append(p)
 
 
@@ -138,7 +138,7 @@ We now do a similar thing for the last measure:
 	abjad> main_voice_m5.name = 'main_voice'
 	abjad> marktools.LilyPondCommandMark('voiceTwo')(main_voice_m5)
 	abjad> p = Container([appendix_voice_m5, main_voice_m5])
-	abjad> p.parallel = True
+	abjad> p.is_parallel = True
 	abjad> lower_measures[4].append(p)
 
 

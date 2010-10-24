@@ -440,12 +440,8 @@ listtools
 .. toctree::
    :maxdepth: 1
 
+   tools/listtools/all_are_assignable_integers
    tools/listtools/all_are_powers_of_two
-   tools/listtools/all_ordered_sublists
-   tools/listtools/all_restricted_growth_functions_of_length
-   tools/listtools/all_rotations
-   tools/listtools/all_set_partitions
-   tools/listtools/are_assignable_integers
    tools/listtools/arithmetic_mean
    tools/listtools/contiguous_sublists
    tools/listtools/count_repetitions
@@ -528,6 +524,10 @@ listtools
    tools/listtools/truncate_to_weight
    tools/listtools/unique
    tools/listtools/weight
+   tools/listtools/yield_all_ordered_sublists_of_iterable
+   tools/listtools/yield_all_restricted_growth_functions_of_length
+   tools/listtools/yield_all_rotations_of_iterable
+   tools/listtools/yield_all_set_partitions_of_iterable
    tools/listtools/zip_cyclic
    tools/listtools/zip_nontruncating
 

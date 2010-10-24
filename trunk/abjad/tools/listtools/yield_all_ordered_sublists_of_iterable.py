@@ -1,12 +1,12 @@
 from abjad.tools import mathtools
 
 
-def all_ordered_sublists(l):
+def yield_all_ordered_sublists_of_iterable(l):
    '''.. versionadded:: 1.1.2
 
    Yield all ordered sublists of list `l`. ::
 
-      abjad> for x in listtools.all_ordered_sublists(l):
+      abjad> for x in listtools.yield_all_ordered_sublists_of_iterable(l):
       ...     x
       ... 
       [[0, 1, 2, 3]]
@@ -20,6 +20,10 @@ def all_ordered_sublists(l):
 
 
    .. todo:: write tests.
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.all_ordered_sublists( )`` to
+      ``listtools.yield_all_ordered_sublists_of_iterable( )``.
    '''
 
    if not isinstance(l, list):

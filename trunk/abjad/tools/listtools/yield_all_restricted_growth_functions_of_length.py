@@ -1,9 +1,9 @@
-def all_restricted_growth_functions_of_length(n):
+def yield_all_restricted_growth_functions_of_length(n):
    '''.. versionadded:: 1.1.2
 
    Yield all restricted growth functions of length `n` in lex order. ::
 
-      abjad> for rgf in listtools.all_restricted_growth_functions_of_length(4):
+      abjad> for rgf in listtools.yield_all_restricted_growth_functions_of_length(4):
       ...     rgf
       ... 
       [1, 1, 1, 1]
@@ -21,6 +21,10 @@ def all_restricted_growth_functions_of_length(n):
       [1, 2, 3, 2]
       [1, 2, 3, 3]
       [1, 2, 3, 4]
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.all_restricted_growth_functions_of_length( )`` to
+      ``listtools.yield_all_restricted_growth_functions_of_length( )``.
    '''
 
    if not isinstance(n, int):
