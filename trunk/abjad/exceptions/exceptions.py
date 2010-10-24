@@ -18,6 +18,10 @@ class ExtraMarkError(Exception):
    '''Operation assumes only one mark but more than one mark are present.'''
    pass
 
+class MissingMarkError(Exception):
+   '''Operation assumes a mark but no mark is present.'''
+   pass
+
 class MeasureError(Exception):
    '''General measure error.'''
    pass
