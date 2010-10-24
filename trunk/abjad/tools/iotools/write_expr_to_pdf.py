@@ -21,7 +21,8 @@ def write_expr_to_pdf(expr, file_name, template = None):
    if not file_name.endswith('.pdf'):
       file_name += '.pdf'
 
-   name = _log_render_lilypond_input(expr, template = template)
+   name, actual_format_time, actual_lily_file = _log_render_lilypond_input(
+      expr, template = template)
 
    ## copy PDF file to file_name
    pdf_name = name[:-3] + '.pdf'
@@ -29,4 +30,4 @@ def write_expr_to_pdf(expr, file_name, template = None):
    full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
    shutil.move(full_path_pdf_name, file_name)
 
-   print 'LilyPond PDF written to %s.' % os.path.basename(file_name)
+   print 'PDF written to "%s" ...' % os.path.basename(file_name)

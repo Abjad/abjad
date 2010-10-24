@@ -48,7 +48,7 @@ def redo(target = -1, lily_time = 10):
    os.chdir(current_directory)
 
    if lily_time <= actual_lily_time:
-      print 'LilyPond processing time equal to %s sec.' % actual_lily_time
+      print 'LilyPond processing time equal to %s seconds ...' % actual_lily_time
 
    ## TODO: Encapsulate as cfg._open_pdf( )
    ## open pdf

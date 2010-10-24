@@ -33,4 +33,4 @@ def write_expr_to_ly(expr, file_name, template = None):
       if dirname:
          print 'Make sure "%s" exists in your system.' % dirname
 
-   print 'LilyPond input file written to %s' % os.path.basename(file_name)
+   print 'LilyPond input file written to "%s" ...' % os.path.basename(file_name)

@@ -63,6 +63,6 @@ def _log_render_lilypond_input(expr, template = None):
 
    ## catch LilyPond taking a long time to render
    if lily_time <= actual_lily_time:
-      print 'LilyPond processing time equal to %s sec.' % actual_lily_time
+      print 'LilyPond processing time equal to %s seconds ...' % actual_lily_time
 
    return name, actual_format_time, actual_lily_time
