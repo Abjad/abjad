@@ -456,6 +456,7 @@ listtools
    tools/listtools/flatten_iterable_at_indices
    tools/listtools/forward_and_backward_nonoverlapping
    tools/listtools/forward_and_backward_overlapping
+   tools/listtools/generate_all_restricted_growth_functions_of_length
    tools/listtools/get_cyclic
    tools/listtools/get_element_at_cyclic_index
    tools/listtools/get_elements_at_indices
@@ -525,7 +526,6 @@ listtools
    tools/listtools/yield_all_contiguous_subsequences_of_iterable
    tools/listtools/yield_all_ordered_sublists_of_iterable
    tools/listtools/yield_all_permutations_of_iterable
-   tools/listtools/yield_all_restricted_growth_functions_of_length
    tools/listtools/yield_all_rotations_of_iterable
    tools/listtools/yield_all_set_partitions_of_iterable
    tools/listtools/zip_cyclic
