@@ -29,7 +29,7 @@ def integer_compositions(n):
       (1, 1, 1, 1, 1)
    '''
 
-   from abjad.tools.listtools.permutations import permutations
+   from abjad.tools.listtools.yield_all_permutations_of_iterable import yield_all_permutations_of_iterable
 
    ## Finds small values of n easily.
    ## Takes ca. 4 seconds for n = 17.

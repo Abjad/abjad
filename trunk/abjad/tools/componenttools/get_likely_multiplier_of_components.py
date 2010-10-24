@@ -62,7 +62,7 @@ def get_likely_multiplier_of_components(components):
          chain_duration = tietools.get_preprolated_tie_chain_duration(expr)   
          chain_duration_numerators.append(chain_duration.numerator)
        
-   if len(listtools.unique(chain_duration_numerators)) == 1:
+   if len(listtools.remove_duplicates_from_iterable(chain_duration_numerators)) == 1:
       numerator = chain_duration_numerators[0]
       denominator = mathtools.greatest_power_of_two_less_equal(numerator)
       likely_multiplier = Fraction(numerator, denominator)

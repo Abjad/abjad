@@ -114,7 +114,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
       from abjad.tools.pitchtools.NamedChromaticPitchClassSegment import NamedChromaticPitchClassSegment
       if not len(self) == len(npc_seg):
          raise ValueError('set and segment must be of equal length.')
-      for npcs in listtools.permutations(self.named_chromatic_pitch_classes):
+      for npcs in listtools.yield_all_permutations_of_iterable(self.named_chromatic_pitch_classes):
          candidate_npc_seg = NamedChromaticPitchClassSegment(npcs)
          if candidate_npc_seg.is_equivalent_under_transposition(npc_seg):
             return candidate_npc_seg

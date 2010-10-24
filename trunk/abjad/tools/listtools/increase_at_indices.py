@@ -1,4 +1,4 @@
-from abjad.tools.listtools.flatten import flatten
+from abjad.tools.listtools.flatten_iterable import flatten_iterable
 
 
 def increase_at_indices(l, addenda, indices):
@@ -13,7 +13,7 @@ def increase_at_indices(l, addenda, indices):
    '''
 
    # assert no overlaps
-   tmp = flatten([range(i, len(addenda)) for i in indices])
+   tmp = flatten_iterable([range(i, len(addenda)) for i in indices])
    assert len(tmp) == len(set(tmp))
 
    result = l[:]

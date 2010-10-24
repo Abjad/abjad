@@ -53,19 +53,19 @@ class Mode(_Immutable):
       M2 = MelodicDiatonicInterval('major', 2)
       dorian = [M2, m2, M2, M2, M2, m2, M2]
       if mode_name_string == 'dorian':
-         mdi_segment.extend(listtools.rotate(dorian, 0))
+         mdi_segment.extend(listtools.rotate_iterable(dorian, 0))
       elif mode_name_string == 'phrygian':
-         mdi_segment.extend(listtools.rotate(dorian, -1))
+         mdi_segment.extend(listtools.rotate_iterable(dorian, -1))
       elif mode_name_string == 'lydian':
-         mdi_segment.extend(listtools.rotate(dorian, -2))
+         mdi_segment.extend(listtools.rotate_iterable(dorian, -2))
       elif mode_name_string == 'mixolydian':
-         mdi_segment.extend(listtools.rotate(dorian, -3))
+         mdi_segment.extend(listtools.rotate_iterable(dorian, -3))
       elif mode_name_string in ('aeolian', 'minor'):
-         mdi_segment.extend(listtools.rotate(dorian, -4))
+         mdi_segment.extend(listtools.rotate_iterable(dorian, -4))
       elif mode_name_string == 'locrian':
-         mdi_segment.extend(listtools.rotate(dorian, -5))
+         mdi_segment.extend(listtools.rotate_iterable(dorian, -5))
       elif mode_name_string in ('ionian', 'major'):
-         mdi_segment.extend(listtools.rotate(dorian, -6))
+         mdi_segment.extend(listtools.rotate_iterable(dorian, -6))
       else:
          raise ValueError("unknown mode name string '%s'." % mode_name_string)
       #self._mode_name_string = mode_name_string

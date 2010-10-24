@@ -87,7 +87,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
 
    def rotate(self, n):
       from abjad.tools import listtools
-      named_chromatic_pitch_classes = listtools.rotate(self.named_chromatic_pitch_classes, n)
+      named_chromatic_pitch_classes = listtools.rotate_iterable(self.named_chromatic_pitch_classes, n)
       return NamedChromaticPitchClassSegment(named_chromatic_pitch_classes)
       
    def transpose(self, melodic_diatonic_interval):

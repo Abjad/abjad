@@ -1,6 +1,6 @@
 from abjad.exceptions import PartitionError
 from fractions import Fraction
-from abjad.tools.listtools.flatten import flatten
+from abjad.tools.listtools.flatten_iterable import flatten_iterable
 from abjad.tools.listtools.partition_by_weights import partition_by_weights
 from abjad.tools.listtools.weight import weight
 
@@ -129,7 +129,7 @@ def group_by_weights(l, weights,
 
 def _group_by_weights_exact(l, weights, cyclic, overhang):
    candidate = partition_by_weights(l, weights, cyclic, overhang) 
-   flattened_candidate = flatten(candidate)
+   flattened_candidate = flatten_iterable(candidate)
    if flattened_candidate == l[:len(flattened_candidate)]:
       return candidate
    else:

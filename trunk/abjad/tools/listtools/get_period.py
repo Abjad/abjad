@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.listtools.is_uniform import is_uniform
+from abjad.tools.listtools.all_are_equal import all_are_equal
 from abjad.tools.listtools.partition_list_cyclically_by_counts_without_overhang import \
    partition_list_cyclically_by_counts_without_overhang
 
@@ -34,6 +34,6 @@ def get_period(iterable):
    for factor in sorted(mathtools.divisors(len(iterable))):
       #print 'factor is %s ...' % factor
       parts = partition_list_cyclically_by_counts_without_overhang(iterable, [factor])
-      if is_uniform(parts):
+      if all_are_equal(parts):
          return factor
    return factor

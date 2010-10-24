@@ -441,17 +441,19 @@ listtools
    :maxdepth: 1
 
    tools/listtools/all_are_assignable_integers
+   tools/listtools/all_are_equal
+   tools/listtools/all_are_numbers
    tools/listtools/all_are_powers_of_two
+   tools/listtools/all_are_unequal
    tools/listtools/arithmetic_mean
-   tools/listtools/contiguous_sublists
    tools/listtools/count_repetitions
    tools/listtools/cumulative_products
    tools/listtools/cumulative_sums
    tools/listtools/cumulative_sums_zero
    tools/listtools/cumulative_weights_signed
    tools/listtools/difference_series
-   tools/listtools/flatten
-   tools/listtools/flatten_at_indices
+   tools/listtools/flatten_iterable
+   tools/listtools/flatten_iterable_at_indices
    tools/listtools/forward_and_backward_nonoverlapping
    tools/listtools/forward_and_backward_overlapping
    tools/listtools/get_cyclic
@@ -466,16 +468,13 @@ listtools
    tools/listtools/increase_at_indices
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
-   tools/listtools/interlace
+   tools/listtools/interlace_iterables
    tools/listtools/is_decreasing_monotonically
    tools/listtools/is_decreasing_strictly
    tools/listtools/is_increasing_monotonically
    tools/listtools/is_increasing_strictly
-   tools/listtools/is_numeric
    tools/listtools/is_repetition_free
    tools/listtools/is_restricted_growth_function
-   tools/listtools/is_uniform
-   tools/listtools/is_unique
    tools/listtools/join_sublists_by_sign
    tools/listtools/lengths_to_counts
    tools/listtools/negate_elements_at_indices
@@ -497,34 +496,35 @@ listtools
    tools/listtools/partition_list_cyclically_by_counts_without_overhang
    tools/listtools/partition_list_once_by_counts_with_overhang
    tools/listtools/partition_list_once_by_counts_without_overhang
-   tools/listtools/permutations
-   tools/listtools/permute
+   tools/listtools/permute_iterable
    tools/listtools/phasor
+   tools/listtools/remove_consecutive_duplicates_from_iterable
+   tools/listtools/remove_duplicates_from_iterable
    tools/listtools/remove_elements_at_indices
    tools/listtools/remove_elements_at_indices_cyclic
-   tools/listtools/remove_repetitions
    tools/listtools/remove_weighted_subrun_at
    tools/listtools/repeat_elements_at_indices
    tools/listtools/repeat_elements_at_indices_cyclic
    tools/listtools/repeat_elements_to_count
-   tools/listtools/repeat_list_to_length
-   tools/listtools/repeat_list_to_weight
-   tools/listtools/repeat_n_cycles
+   tools/listtools/repeat_iterable_n_times
+   tools/listtools/repeat_iterable_to_length
+   tools/listtools/repeat_iterable_to_weight
    tools/listtools/repeat_subruns_to_count
    tools/listtools/replace_elements_cyclic
    tools/listtools/retain_elements_at_indices
    tools/listtools/retain_elements_at_indices_cyclic
-   tools/listtools/rotate
-   tools/listtools/sublists
+   tools/listtools/rotate_iterable
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
    tools/listtools/true_indices
    tools/listtools/truncate_subruns
    tools/listtools/truncate_to_sum
    tools/listtools/truncate_to_weight
-   tools/listtools/unique
    tools/listtools/weight
+   tools/listtools/yield_all_combinations_of_iterable
+   tools/listtools/yield_all_contiguous_subsequences_of_iterable
    tools/listtools/yield_all_ordered_sublists_of_iterable
+   tools/listtools/yield_all_permutations_of_iterable
    tools/listtools/yield_all_restricted_growth_functions_of_length
    tools/listtools/yield_all_rotations_of_iterable
    tools/listtools/yield_all_set_partitions_of_iterable

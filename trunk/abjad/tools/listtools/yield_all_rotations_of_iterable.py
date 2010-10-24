@@ -1,4 +1,4 @@
-from abjad.tools.listtools.rotate import rotate
+from abjad.tools.listtools.rotate_iterable import rotate_iterable
 
 def yield_all_rotations_of_iterable(lst):
    '''.. versionadded:: 1.1.2
@@ -19,5 +19,5 @@ def yield_all_rotations_of_iterable(lst):
       ``listtools.yield_all_rotations_of_iterable( )``.
    '''
    for i in range(len(lst)):
-      yield rotate(lst, -i)
+      yield rotate_iterable(lst, -i)
    

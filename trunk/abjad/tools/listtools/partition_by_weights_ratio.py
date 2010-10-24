@@ -1,7 +1,7 @@
 from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools.listtools.cumulative_sums import cumulative_sums
-from abjad.tools.listtools.flatten import flatten
+from abjad.tools.listtools.flatten_iterable import flatten_iterable
 from abjad.tools.listtools.weight import weight
 
 
@@ -44,7 +44,7 @@ def partition_by_weights_ratio(l, ratio):
       if not isinstance(n, (int, long, float, Fraction)):
          raise TypeError('must be number.')
       sublist.append(n)
-      while cur_cumulative_weight <= weight(flatten(result)):
+      while cur_cumulative_weight <= weight(flatten_iterable(result)):
          try:
             cur_cumulative_weight = cumulative_weights.pop(0)
             sublist = [ ]

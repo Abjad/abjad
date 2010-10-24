@@ -179,7 +179,7 @@ class PitchArray(_StrictComparator):
 
    @property
    def pitches(self):
-      return listtools.flatten(self.pitches_by_row)
+      return listtools.flatten_iterable(self.pitches_by_row)
 
    @property
    def pitches_by_row(self):

@@ -1,5 +1,5 @@
-from abjad.tools.listtools.yield_all_restricted_growth_functions_of_length import \
-   yield_all_restricted_growth_functions_of_length
+from abjad.tools.listtools.generate_all_restricted_growth_functions_of_length import \
+   generate_all_restricted_growth_functions_of_length
 from abjad.tools.listtools.partition_by_restricted_growth_function import \
    partition_by_restricted_growth_function
 
@@ -33,6 +33,6 @@ def yield_all_set_partitions_of_iterable(l):
       ``listtools.yield_all_set_partitions_of_iterable( )``.
    '''
 
-   for rgf in yield_all_restricted_growth_functions_of_length(len(l)):
+   for rgf in generate_all_restricted_growth_functions_of_length(len(l)):
       partition = partition_by_restricted_growth_function(l, rgf)
       yield partition

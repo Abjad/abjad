@@ -65,8 +65,8 @@ def make_notes(pitches, durations, direction='big-endian'):
 
    ## set lists of pitches and durations to the same length
    size = max(len(durations), len(pitches))
-   durations = listtools.repeat_list_to_length(durations, size)
-   pitches = listtools.repeat_list_to_length(pitches, size)
+   durations = listtools.repeat_iterable_to_length(durations, size)
+   pitches = listtools.repeat_iterable_to_length(pitches, size)
 
    durations = durtools.group_duration_tokens_by_implied_prolation(durations)
 

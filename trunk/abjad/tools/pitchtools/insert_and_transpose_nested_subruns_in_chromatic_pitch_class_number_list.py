@@ -42,11 +42,11 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
       to allow inspection of the structural changes to *notes*
       immediately after the function returns.
       For this reason most calls to this function will be followed
-      by ``notes = listtools.flatten(notes)``.
+      by ``notes = listtools.flatten_iterable(notes)``.
 
    ::
 
-      abjad> notes = listtools.flatten(notes)
+      abjad> notes = listtools.flatten_iterable(notes)
       abjad> notes
       [0, 5, 7, 2, 4, 0, 6, 11, 7, 9, 5, 10, 6, 8, 11, 7, 4]
 
