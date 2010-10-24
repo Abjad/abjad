@@ -1,0 +1,174 @@
+Working with named chromatic pitches
+====================================
+
+Named chromatic pitches are the everyday pitches attached to notes and chords:
+
+<abjad>
+note = Note("cs''8")
+</abjad>
+
+<abjad>
+note.pitch
+print repr(note.pitch) <hide
+</abjad>
+
+Creation
+--------
+
+Use pitch tools to create named chromatic pitches:
+
+<abjad>
+named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+</abjad>
+
+<abjad>
+named_chromatic_pitch
+print repr(named_chromatic_pitch) <hide
+</abjad>
+
+Name inspection
+---------------
+
+Use ``str( )`` to get the name of named chromatic pitches:
+
+<abjad>
+str(named_chromatic_pitch)
+print str(named_chromatic_pitch) <hide
+</abjad>
+
+Octave inspection
+-----------------
+
+Get the octave number of named chromatic pitches with ``octave_number``:
+
+<abjad>
+named_chromatic_pitch.octave_number
+print named_chromatic_pitch.octave_number <hide
+</abjad>
+
+Sorting
+-------
+
+Named chromatic pitches sort by octave, diatonic pitch-class and accidental,
+in that order:
+
+<abjad>
+pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')
+print repr(pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')) <hide
+</abjad>
+
+Pitch comparison
+----------------
+
+Compare named chromatic pitches to each other:
+
+<abjad>
+named_chromatic_pitch_1 = pitchtools.NamedChromaticPitch("c''")
+named_chromatic_pitch_2 = pitchtools.NamedChromaticPitch("d''")
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 == named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 == named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 != named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 != named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 > named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 > named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 < named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 < named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 >= named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 >= named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 <= named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 <= named_chromatic_pitch_2) <hide
+</abjad>
+
+Pitch conversion
+----------------
+
+Convert any named chromatic pitch to a named diatonic pitch:
+
+<abjad>
+named_chromatic_pitch.named_diatonic_pitch
+print repr(named_chromatic_pitch.named_diatonic_pitch) <hide
+</abjad>
+
+To a numbered chromatic pitch:
+
+<abjad>
+named_chromatic_pitch.numbered_chromatic_pitch
+print repr(named_chromatic_pitch.numbered_chromatic_pitch) <hide
+</abjad>
+
+Or to a numbered diatonic pitch:
+
+<abjad>
+named_chromatic_pitch.numbered_diatonic_pitch
+print repr(named_chromatic_pitch.numbered_diatonic_pitch) <hide
+</abjad>
+
+Pitch-class conversion
+----------------------
+
+Convert any named chromatic pitch to a named chromatic pitch-class:
+
+<abjad>
+named_chromatic_pitch.named_chromatic_pitch_class
+print repr(named_chromatic_pitch.named_chromatic_pitch_class) <hide
+</abjad>
+
+To a named diatonic pitch-class:
+
+<abjad>
+named_chromatic_pitch.named_diatonic_pitch_class
+print repr(named_chromatic_pitch.named_diatonic_pitch_class) <hide
+</abjad>
+
+To a numbered chromatic pitch-class:
+
+<abjad>
+named_chromatic_pitch.numbered_chromatic_pitch_class
+print repr(named_chromatic_pitch.numbered_chromatic_pitch_class) <hide
+</abjad>
+
+Or to a numbered diatonic pitch-class:
+
+<abjad>
+named_chromatic_pitch.numbered_diatonic_pitch_class
+print repr(named_chromatic_pitch.numbered_diatonic_pitch_class) <hide
+</abjad>
+
+Copying
+-------
+
+Use ``copy.copy( )`` to copy named chromatic pitches:
+
+<abjad>
+import copy
+</abjad>
+
+<abjad>
+copy.copy(named_chromatic_pitch)
+print repr(copy.copy(named_chromatic_pitch)) <hide
+</abjad>
+
+Or use ``copy.deepcopy( )`` to do the same thing:
+
+<abjad>
+copy.deepcopy(named_chromatic_pitch)
+print repr(copy.deepcopy(named_chromatic_pitch)) <hide
+</abjad>

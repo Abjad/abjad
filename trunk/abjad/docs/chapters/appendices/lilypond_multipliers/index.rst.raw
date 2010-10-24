@@ -1,0 +1,26 @@
+Working with LilyPond multipliers
+=================================
+
+The LilyPond ``*`` operator allows the creation of duration multipliers
+against notes, rests, chords and skips.
+
+You can assign LilyPond multipliers in Abjad:
+
+<abjad>
+note = Note(0, (1, 4))
+note.duration.multiplier = Fraction(1, 6)
+</abjad>
+
+LilyPond multipliers change the multiplied duration of notes, rests, chords and skips:
+
+<abjad>
+note.duration.multiplied
+print repr(note.duration.multiplied) <hide
+</abjad>
+
+LilyPond multipliers leave written duration unchanged:
+
+<abjad>
+note.duration.written
+print repr(note.duration.written) <hide
+</abjad>

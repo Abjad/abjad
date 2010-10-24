@@ -70,6 +70,13 @@ User documentation --- measures
    chapters/user_documentation/dynamic_measures/index
    chapters/user_documentation/anonymous_measures/index
 
+User documentation -- pitch
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/pitch/named_chromatic_pitch/index
+
 User documentation --- score structure
 
 .. toctree::
@@ -115,6 +122,7 @@ Appendices
    chapters/appendices/configuration/index
    chapters/appendices/input_output/index
    chapters/appendices/grobs/index
+   chapters/appendices/lilypond_multipliers/index
    chapters/appendices/coding_standards/index
    chapters/appendices/lists_of_numbers/index
    chapters/appendices/pitch_conventions/index

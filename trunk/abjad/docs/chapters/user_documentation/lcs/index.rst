@@ -17,13 +17,8 @@ connect to different levels of the tree hierarchy. The spanner
 attach to the elements of the tree, so a tree structure must exist for
 spanners to be made manifest.
 
-
-The LCS by example
-------------------
-
-
 Example 1
-^^^^^^^^^
+---------
 
 To understand the whys and hows of the LCS model implemented in
 Abjad, it is probably easier to base the discussion on concrete
@@ -57,7 +52,6 @@ just described it has two important properties:
 What we are describing here is a tree, and it is the structure of
 Abjad *containers*.
 
-
 While this tree structure seem like the right way to represent the
 relationships between the elements of a score, it is not enough.
 Consider the tuplet example again with the following beaming
@@ -90,10 +84,8 @@ Beaming alternative 3 (graph):
 
 .. image:: images/lcs_tuplet_spanned.png
 
-
-
 Example 2
-^^^^^^^^^
+---------
 
 As a second example let's look at the last five measures of Bartók's
 *Wandering* from Mikrokosmos vol. III. As simple as it may seem, these

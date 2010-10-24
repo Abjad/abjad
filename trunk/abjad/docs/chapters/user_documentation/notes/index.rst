@@ -4,148 +4,99 @@ Working with notes
 Creating notes
 --------------
 
-Create notes with a name:
+Create notes with a string:
 
 ::
 
 	abjad> note = Note("c'4")
 
+
+::
+
+	abjad> show(note)
+
 .. image:: images/example-1.png
 
-Or with numbers:
+(You can also use ``Note(0, Fraction(1, 4))`` to create notes with numbers.)
 
-::
+Getting pitch
+-------------
 
-	abjad> note = Note(0, Fraction(1, 4))
-
-.. image:: images/example-2.png
-
-Changing pitch
---------------
-
-Change pitch with a name:
-
-::
-
-	abjad> note.pitch = "d'"
-
-.. image:: images/example-3.png
-
-With a pair:
-
-::
-
-	abjad> note.pitch = ('e', 4)
-
-.. image:: images/example-4.png
-
-With a number:
-
-::
-
-	abjad> note.pitch = 5
-
-.. image:: images/example-5.png
-
-Or with a pitch object:
-
-::
-
-	abjad> note.pitch = pitchtools.NamedChromaticPitch('g', 4)
-
-.. image:: images/example-6.png
-
-Making pitch comparisons
-------------------------
-
-Compare one named chromatic pitch to another:
+You can get the pitch of notes:
 
 ::
 
 	abjad> note.pitch
-	NamedChromaticPitch("g'")
+	NamedChromaticPitch("c'")
 
 
-::
+Changing pitch
+--------------
 
-	abjad> note.pitch == pitchtools.NamedChromaticPitch('c', 4)
-	False
-
-
-All six Python comparison operators work as expected.
+And you can change the pitch of notes:
 
 ::
 
-	abjad> note_1 = Note("c'4")
-	abjad> note_2 = Note("d'4")
+	abjad> note.pitch = "cs'"
 
+.. image:: images/example-2.png
 
-::
+(You can use ``note.pitch = 1`` to change pitch with numbers, too.)
 
-	abjad> note_1.pitch == note_2.pitch
-	False
+Duration attributes
+-------------------
 
-
-::
-
-	abjad> note_1.pitch != note_2.pitch
-	True
-
+Get the written duration of notes like this:
 
 ::
 
-	abjad> note_1.pitch > note_2.pitch
-	False
+	abjad> note.duration.written
+	Fraction(1, 4)
 
 
-::
-
-	abjad> note_1.pitch < note_2.pitch
-	True
-
-
-::
-
-	abjad> note_1.pitch >= note_2.pitch
-	False
-
-
-::
-
-	abjad> note_1.pitch <= note_2.pitch
-	True
-
-
-Inspecting duration attributes
-------------------------------
-
-Leaves bundle six duration attributes.
-
-::
-
-	abjad> tuplet = Tuplet((2, 3), macros.scale(3))
-	abjad> note = tuplet[0]
-	abjad> note.duration.multiplied
-	Fraction(1, 8)
-
-
-::
-
-	abjad> note.duration.multiplier
-	None
-
+Which is usually the same as preprolated duration:
 
 ::
 
 	abjad> note.duration.preprolated
-	Fraction(1, 8)
+	Fraction(1, 4)
 
+
+And prolated duration:
 
 ::
 
 	abjad> note.duration.prolated
-	Fraction(1, 12)
+	Fraction(1, 4)
 
+
+Except for notes inside a tuplet:
+
+::
+
+	abjad> tuplet = Tuplet((2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
+
+
+::
+
+	abjad> show(tuplet)
+
+.. image:: images/example-3.png
+
+::
+
+	abjad> note = tuplet[0]
+
+
+Tupletted notes carry written duration:
+
+::
+
+	abjad> note.duration.written
+	Fraction(1, 4)
+
+
+Prolation:
 
 ::
 
@@ -153,48 +104,30 @@ Leaves bundle six duration attributes.
 	Fraction(2, 3)
 
 
-::
-
-	abjad> note.duration.written
-	Fraction(1, 8)
-
-
-Reassigning duration attributes
--------------------------------
-
-You can reassign written duration:
+And prolated duration that is the product of the two:
 
 ::
 
-	abjad> note = Note(0, (1, 4))
-
-
-::
-
-	abjad> note.duration.written = Fraction(3, 16)
-
-.. image:: images/example-7.png
-
-You can assign a LilyPond multiplier:
-
-::
-
-	abjad> note = Note(0, (1, 4))
-	abjad> note.duration.multiplier = Fraction(1, 6)
-
-
-::
-
-	abjad> note.duration.written
-	Fraction(1, 4)
-	abjad> note.duration.multiplier
+	abjad> note.duration.prolated
 	Fraction(1, 6)
-	abjad> note.duration.multiplied
-	Fraction(1, 24)
 
 
-All other duration attributes are read-only.
+Changing duration
+-----------------
 
-.. seealso:: 
+You can change the written duration of notes:
 
-   :doc:`Pitch conventions (appendix) </chapters/appendices/pitch_conventions/index>`
+::
+
+	abjad> tuplet[0].duration.written = Fraction(1, 8)
+	abjad> tuplet[1].duration.written = Fraction(1, 8)
+	abjad> tuplet[2].duration.written = Fraction(1, 8)
+
+
+::
+
+	abjad> show(tuplet)
+
+.. image:: images/example-4.png
+
+Other duration attributes are read-only.

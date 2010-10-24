@@ -4,174 +4,118 @@ Working with notes
 Creating notes
 --------------
 
-Create notes with a name:
+Create notes with a string:
 
 <abjad>
 note = Note("c'4")
+</abjad>
+
+<abjad>
+show(note)
 measure = measuretools.AnonymousMeasure([note]) <hide
 iotools.write_expr_to_ly(measure, 'example-1', 'oedo.ly') <hide
 </abjad>
 
-Or with numbers:
+(You can also use ``Note(0, Fraction(1, 4))`` to create notes with numbers.)
 
-<abjad>
-note = Note(0, Fraction(1, 4))
-measure = measuretools.AnonymousMeasure([note]) <hide
-iotools.write_expr_to_ly(measure, 'example-2', 'oedo.ly') <hide
-</abjad>
+Getting pitch
+-------------
 
-Changing pitch
---------------
-
-Change pitch with a name:
-
-<abjad>
-note.pitch = "d'"
-iotools.write_expr_to_ly(measure, 'example-3', 'oedo.ly') <hide
-</abjad>
-
-With a pair:
-
-<abjad>
-note.pitch = ('e', 4)
-iotools.write_expr_to_ly(measure, 'example-4', 'oedo.ly') <hide
-</abjad>
-
-With a number:
-
-<abjad>
-note.pitch = 5
-iotools.write_expr_to_ly(measure, 'example-5', 'oedo.ly') <hide
-</abjad>
-
-Or with a pitch object:
-
-<abjad>
-note.pitch = pitchtools.NamedChromaticPitch('g', 4)
-iotools.write_expr_to_ly(measure, 'example-6', 'oedo.ly') <hide
-</abjad>
-
-Making pitch comparisons
-------------------------
-
-Compare one named chromatic pitch to another:
+You can get the pitch of notes:
 
 <abjad>
 note.pitch
 print repr(note.pitch) <hide
 </abjad>
 
-<abjad>
-note.pitch == pitchtools.NamedChromaticPitch('c', 4)
-print repr(note.pitch == pitchtools.NamedChromaticPitch('c', 4)) <hide
-</abjad>
+Changing pitch
+--------------
 
-All six Python comparison operators work as expected.
+And you can change the pitch of notes:
 
 <abjad>
-note_1 = Note("c'4")
-note_2 = Note("d'4")
+note.pitch = "cs'"
+iotools.write_expr_to_ly(measure, 'example-2', 'oedo.ly') <hide
 </abjad>
+
+(You can use ``note.pitch = 1`` to change pitch with numbers, too.)
+
+Duration attributes
+-------------------
+
+Get the written duration of notes like this:
 
 <abjad>
-note_1.pitch == note_2.pitch
-print repr(note_1.pitch == note_2.pitch) <hide
+note.duration.written
+print repr(note.duration.written) <hide
 </abjad>
 
-<abjad>
-note_1.pitch != note_2.pitch
-print repr(note_1.pitch != note_2.pitch) <hide
-</abjad>
-
-<abjad>
-note_1.pitch > note_2.pitch
-print repr(note_1.pitch > note_2.pitch) <hide
-</abjad>
-
-<abjad>
-note_1.pitch < note_2.pitch
-print repr(note_1.pitch < note_2.pitch) <hide
-</abjad>
-
-<abjad>
-note_1.pitch >= note_2.pitch
-print repr(note_1.pitch >= note_2.pitch) <hide
-</abjad>
-
-<abjad>
-note_1.pitch <= note_2.pitch
-print repr(note_1.pitch <= note_2.pitch) <hide
-</abjad>
-
-Inspecting duration attributes
-------------------------------
-
-Leaves bundle six duration attributes.
-
-<abjad>
-tuplet = Tuplet((2, 3), macros.scale(3))
-note = tuplet[0]
-note.duration.multiplied
-print repr(note.duration.multiplied) <hide
-</abjad>
-
-<abjad>
-note.duration.multiplier
-print repr(note.duration.multiplier) <hide
-</abjad>
+Which is usually the same as preprolated duration:
 
 <abjad>
 note.duration.preprolated
 print repr(note.duration.preprolated) <hide
 </abjad>
 
+And prolated duration:
+
 <abjad>
 note.duration.prolated
 print repr(note.duration.prolated) <hide
 </abjad>
+
+Except for notes inside a tuplet:
+
+<abjad>
+tuplet = Tuplet((2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
+</abjad>
+
+<abjad>
+show(tuplet)
+measure = measuretools.AnonymousMeasure([tuplet]) <hide
+iotools.write_expr_to_ly(measure, 'example-3', 'oedo.ly') <hide
+</abjad>
+
+<abjad>
+note = tuplet[0]
+</abjad>
+
+Tupletted notes carry written duration:
+
+<abjad>
+note.duration.written
+print repr(note.duration.written) <hide
+</abjad>
+
+Prolation:
 
 <abjad>
 note.duration.prolation
 print repr(note.duration.prolation) <hide
 </abjad>
 
+And prolated duration that is the product of the two:
+
 <abjad>
-note.duration.written
-print repr(note.duration.written) <hide
+note.duration.prolated
+print repr(note.duration.prolated) <hide
 </abjad>
 
-Reassigning duration attributes
--------------------------------
+Changing duration
+-----------------
 
-You can reassign written duration:
-
-<abjad>
-note = Note(0, (1, 4))
-</abjad>
+You can change the written duration of notes:
 
 <abjad>
-note.duration.written = Fraction(3, 16)
-iotools.write_expr_to_ly(measure, 'example-7', 'oedo.ly') <hide
-</abjad>
-
-You can assign a LilyPond multiplier:
-
-<abjad>
-note = Note(0, (1, 4))
-note.duration.multiplier = Fraction(1, 6)
+tuplet[0].duration.written = Fraction(1, 8)
+tuplet[1].duration.written = Fraction(1, 8)
+tuplet[2].duration.written = Fraction(1, 8)
+spannertools.BeamSpanner(tuplet) <hide
 </abjad>
 
 <abjad>
-note.duration.written
-print repr(note.duration.written) <hide
-note.duration.multiplier
-print repr(note.duration.multiplier) <hide
-note.duration.multiplied
-print repr(note.duration.multiplied) <hide
+show(tuplet)
+iotools.write_expr_to_ly(measure, 'example-4', 'oedo.ly') <hide
 </abjad>
 
-All other duration attributes are read-only.
-
-.. seealso:: 
-
-   :doc:`Pitch conventions (appendix) </chapters/appendices/pitch_conventions/index>`
+Other duration attributes are read-only.
