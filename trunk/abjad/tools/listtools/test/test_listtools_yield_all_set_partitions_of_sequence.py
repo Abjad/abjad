@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_listtools_yield_all_set_partitions_of_iterable_01( ):
+def test_listtools_yield_all_set_partitions_of_sequence_01( ):
 
    l = [1, 2, 3, 4]
-   set_partitions = listtools.yield_all_set_partitions_of_iterable(l)
+   set_partitions = listtools.yield_all_set_partitions_of_sequence(l)
 
    assert set_partitions.next( ) == [[1, 2, 3, 4]]
    assert set_partitions.next( ) == [[1, 2, 3], [4]]

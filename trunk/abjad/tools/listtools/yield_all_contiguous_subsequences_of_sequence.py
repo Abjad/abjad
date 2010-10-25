@@ -1,4 +1,4 @@
-def yield_all_contiguous_subsequences_of_iterable(l, min_length = 0, max_length = None):
+def yield_all_contiguous_subsequences_of_sequence(l, min_length = 0, max_length = None):
    '''.. versionadded:: 1.1.2
 
    Yield all left-to-right contiguous sublists in l
@@ -6,7 +6,7 @@ def yield_all_contiguous_subsequences_of_iterable(l, min_length = 0, max_length 
    at most `max_length`. ::
 
       abjad> l = range(10)
-      abjad> for sublist in listtools.yield_all_contiguous_subsequences_of_iterable(l, 4, 5):
+      abjad> for sublist in listtools.yield_all_contiguous_subsequences_of_sequence(l, 4, 5):
       ...     sublist
       ... 
       [0, 1, 2, 3]
@@ -25,7 +25,11 @@ def yield_all_contiguous_subsequences_of_iterable(l, min_length = 0, max_length 
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.contiguous_sublists( )`` to
-      ``listtools.yield_all_contiguous_subsequences_of_iterable( )``.
+      ``listtools.yield_all_contiguous_subsequences_of_sequence( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.yield_all_contiguous_subsequences_of_iterable( )`` to
+      ``listtools.yield_all_contiguous_subsequences_of_sequence( )``.
    '''
 
    len_l = len(l)

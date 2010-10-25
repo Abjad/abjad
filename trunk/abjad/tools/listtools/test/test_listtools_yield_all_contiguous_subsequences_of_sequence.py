@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_listtools_yield_all_contiguous_subsequences_of_iterable_01( ):
+def test_listtools_yield_all_contiguous_subsequences_of_sequence_01( ):
    
    l = range(10)
-   sublists = list(listtools.yield_all_contiguous_subsequences_of_iterable(l, 4, 5))
+   sublists = list(listtools.yield_all_contiguous_subsequences_of_sequence(l, 4, 5))
 
    assert len(sublists) == 13
    assert sublists[0] == [0, 1, 2, 3]

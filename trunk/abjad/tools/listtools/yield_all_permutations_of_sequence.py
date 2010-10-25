@@ -1,10 +1,10 @@
 import itertools
 
 
-def yield_all_permutations_of_iterable(iterable):
+def yield_all_permutations_of_sequence(iterable):
    '''Yield all permutations of `iterable`::
 
-      abjad> listtools.yield_all_permutations_of_iterable([1, 2, 3])
+      abjad> listtools.yield_all_permutations_of_sequence([1, 2, 3])
       <itertools.permutations object at 0x75dab0>
 
    ::
@@ -16,7 +16,11 @@ def yield_all_permutations_of_iterable(iterable):
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.permutations( )`` to
-      ``listtools.yield_all_permutations_of_iterable( )``.
+      ``listtools.yield_all_permutations_of_sequence( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.yield_all_permutations_of_iterable( )`` to
+      ``listtools.yield_all_permutations_of_sequence( )``.
    '''
 
    return itertools.permutations(iterable)

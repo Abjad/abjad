@@ -2,32 +2,36 @@ from abjad.tools import mathtools
 import copy
 
 
-def yield_all_combinations_of_iterable(sequence, min_length = None, max_length = None):
+def yield_all_combinations_of_sequence(sequence, min_length = None, max_length = None):
    '''.. versionadded:: 1.1.2
 
    Yield all combinations of `sequence` in binary string order::
 
-      abjad> list(listtools.yield_all_combinations_of_iterable([1, 2, 3, 4]))
+      abjad> list(listtools.yield_all_combinations_of_sequence([1, 2, 3, 4]))
       [[ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], 
       [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
 
    Yield all combinations of `sequence` greater than or equal to `min_length`
    in binary string order::
 
-      abjad> list(listtools.yield_all_combinations_of_iterable([1, 2, 3, 4], min_length = 3))
+      abjad> list(listtools.yield_all_combinations_of_sequence([1, 2, 3, 4], min_length = 3))
       [[1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
 
    Yield all combinations of `sequence` less than or equal to `max_length`
    in binary string order::
 
-      abjad> list(listtools.yield_all_combinations_of_iterable([1, 2, 3, 4], max_length = 2))
+      abjad> list(listtools.yield_all_combinations_of_sequence([1, 2, 3, 4], max_length = 2))
       [[ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [4], [1, 4], [2, 4], [3, 4]]
 
    Return generator of newly created `sequence` objects.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.sublists( )`` to
-      ``listtools.yield_all_combinations_of_iterable( )``.
+      ``listtools.yield_all_combinations_of_sequence( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.yield_all_combinations_of_iterable( )`` to
+      ``listtools.yield_all_combinations_of_sequence( )``.
    '''
 
    len_l = len(sequence)
