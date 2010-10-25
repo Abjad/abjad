@@ -1,18 +1,26 @@
-def all_are_unequal(l):
+def all_are_unequal(sequence):
    '''.. versionadded:: 1.1.1
 
-   Return ``True`` when the elements in iterable `l` are unique,
-   otherwise ``False``. ::
+   True when all elements in `sequence` are unequal::
 
-      abjad> l = [1, 1, 1, 2, 3, 3, 4, 5]
-      abjad> listtools.all_are_unequal(l)
+      abjad> listtools.all_are_unequal([1, 2, 3, 4, 9])
+      True
+
+   True on empty `sequence`::
+
+      abjad> listtools.all_are_unequal([ ])
+      True
+
+   False otherwise::
+
+      abjad> listtools.all_are_unequal([1, 2, 3, 4, 4])
       False
 
-   Defined equal to ``l == type(l)(set(l))``.
+   Return boolean.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.is_unique( )`` to
       ``listtools.all_are_unequal( )``.
    '''
 
-   return l == type(l)(set(l))
+   return sequence == type(sequence)(set(sequence))

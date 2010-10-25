@@ -33,7 +33,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = Fraction(1)):
       if multiplier == Fraction(1):
          continue
 
-      if mathtools.is_power_of_two(multiplier) and 1 <= multiplier:
+      if mathtools.is_nonnegative_integer_power_of_two(multiplier) and 1 <= multiplier:
          old_numerator = contexttools.get_effective_time_signature(measure).numerator
          old_denominator = contexttools.get_effective_time_signature(measure).denominator
          new_denominator = old_denominator / multiplier.numerator

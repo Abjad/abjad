@@ -38,7 +38,7 @@ class Meter(_StrictComparator, _Immutable):
       object.__setattr__(self, '_format', r'\time %s/%s' % (numerator, denominator))
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
       object.__setattr__(self, '_multiplier', _multiplier)
-      object.__setattr__(self, '_is_nonbinary', not mathtools.is_power_of_two(self.denominator))
+      object.__setattr__(self, '_is_nonbinary', not mathtools.is_nonnegative_integer_power_of_two(self.denominator))
 
    ## OVERLOADS ##
 

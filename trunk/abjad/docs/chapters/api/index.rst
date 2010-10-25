@@ -442,8 +442,8 @@ listtools
 
    tools/listtools/all_are_assignable_integers
    tools/listtools/all_are_equal
+   tools/listtools/all_are_nonnegative_integer_powers_of_two
    tools/listtools/all_are_numbers
-   tools/listtools/all_are_powers_of_two
    tools/listtools/all_are_unequal
    tools/listtools/arithmetic_mean
    tools/listtools/count_repetitions
@@ -591,7 +591,7 @@ mathtools
    tools/mathtools/is_assignable_integer
    tools/mathtools/is_dotted_integer
    tools/mathtools/is_integer_equivalent_number
-   tools/mathtools/is_power_of_two
+   tools/mathtools/is_nonnegative_integer_power_of_two
    tools/mathtools/least_common_multiple
    tools/mathtools/least_multiple_greater_equal
    tools/mathtools/least_power_of_two_greater_equal

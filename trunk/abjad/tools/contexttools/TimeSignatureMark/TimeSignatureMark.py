@@ -60,11 +60,11 @@ class TimeSignatureMark(ContextMark):
       #object.__setattr__(self, '_format', r'\time %s/%s' % (numerator, denominator))
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
       #object.__setattr__(self, '_multiplier', _multiplier)
-      #object.__setattr__(self, '_is_nonbinary', not mathtools.is_power_of_two(self.denominator))
+      #object.__setattr__(self, '_is_nonbinary', not mathtools.is_nonnegative_integer_power_of_two(self.denominator))
       self._duration = Fraction(numerator, denominator)
       self._format = r'\time %s/%s' % (numerator, denominator)
       self._multiplier = _multiplier
-      self._is_nonbinary = not mathtools.is_power_of_two(self.denominator)
+      self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
 
       #self._contents_repr_string = '%s/%s' % (self.numerator, self.denominator)
 

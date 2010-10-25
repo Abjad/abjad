@@ -55,7 +55,7 @@ def divide_leaf_meiotically(leaf, n = 2):
    ## or come up with something else.
 
    assert isinstance(leaf, _Leaf)
-   assert mathtools.is_power_of_two(n)
+   assert mathtools.is_nonnegative_integer_power_of_two(n)
    assert 0 < n
 
    new_leaves = componenttools.clone_components_and_remove_all_spanners([leaf], n - 1)

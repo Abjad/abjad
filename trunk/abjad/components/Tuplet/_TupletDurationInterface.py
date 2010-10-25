@@ -54,7 +54,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       '''True when multiplier numerator is power of two, otherwise False.
       '''
       if self.multiplier:
-         return mathtools.is_power_of_two(self.multiplier.numerator)
+         return mathtools.is_nonnegative_integer_power_of_two(self.multiplier.numerator)
       else:
          return True
    

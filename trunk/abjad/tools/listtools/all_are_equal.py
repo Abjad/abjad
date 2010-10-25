@@ -1,15 +1,22 @@
-def all_are_equal(iterable):
+def all_are_equal(sequence):
    '''.. versionadded:: 1.1.2
 
-   True when elements in `iterable` are all the same. ::
+   True when all elements in `sequence` are equal::
 
       abjad> listtools.all_are_equal([99, 99, 99, 99, 99, 99])
       True
 
-   Otherwise false. ::
+   True on empty `sequence`::
+
+      abjad> listtools.all_are_equal([ ])
+      True
+
+   False otherwise::
 
       abjad> listtools.all_are_equal([99, 99, 99, 99, 99, 100])
       False
+
+   Return boolean.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.is_uniform( )`` to
@@ -17,7 +24,7 @@ def all_are_equal(iterable):
    '''
 
    first_element = None
-   for element in iterable:
+   for element in sequence:
       if first_element is None:
          first_element = element
       else:
