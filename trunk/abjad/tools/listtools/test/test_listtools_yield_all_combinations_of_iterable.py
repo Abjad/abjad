@@ -3,20 +3,22 @@ from abjad import *
 
 def test_listtools_yield_all_combinations_of_iterable_01( ):
 
-   l = [1, 2, 3, 4]
-   generator = listtools.yield_all_combinations_of_iterable(l)
-   assert list(generator) == [[ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
+   assert list(listtools.yield_all_combinations_of_iterable([1, 2, 3, 4])) == [
+      [ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], 
+      [1, 4], [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
 
 
 def test_listtools_yield_all_combinations_of_iterable_02( ):
    
-   l = list('text')
-   generator = listtools.yield_all_combinations_of_iterable(l) 
-   assert list(generator) == [[ ], ['t'], ['e'], ['t', 'e'], ['x'], ['t', 'x'], ['e', 'x'], ['t', 'e', 'x'], ['t'], ['t', 't'], ['e', 't'], ['t', 'e', 't'], ['x', 't'], ['t', 'x', 't'], ['e', 'x', 't'], ['t', 'e', 'x', 't']]
+   assert list(listtools.yield_all_combinations_of_iterable('text')) == [
+      '', 't', 'e', 'te', 'x', 'tx', 'ex', 'tex', 
+      't', 'tt', 'et', 'tet', 'xt', 'txt', 'ext', 'text']
 
 
 def test_listtools_yield_all_combinations_of_iterable_03( ):
+   '''Yield all combinations of iterable at least minimum length
+   and with at most maximum length.
+   '''
 
-   l = [1, 2, 3, 4]
-   generator = listtools.yield_all_combinations_of_iterable(l, 2, 2)
-   assert list(generator) == [[1, 2], [1, 3], [2, 3], [1, 4], [2, 4], [3, 4]]
+   assert list(listtools.yield_all_combinations_of_iterable([1, 2, 3, 4], 2, 2)) == [
+      [1, 2], [1, 3], [2, 3], [1, 4], [2, 4], [3, 4]]
