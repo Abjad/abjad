@@ -4,13 +4,13 @@ from abjad.tools.listtools.partition_by_restricted_growth_function import \
    partition_by_restricted_growth_function
 
 
-def yield_all_set_partitions_of_sequence(l):
+def yield_all_set_partitions_of_sequence(sequence):
    '''.. versionadded:: 1.1.2
 
-   Yield all set partitions of `l` in restricted growth function order. ::
+   Yield all set partitions of `sequence` in restricted growth function order::
 
-      abjad> for x in listtools.yield_all_set_partitions_of_sequence([21, 22, 23, 24]):
-      ...     x
+      abjad> for set_parition in listtools.yield_all_set_partitions_of_sequence([21, 22, 23, 24]):
+      ...     set_partition
       ... 
       [[21, 22, 23, 24]]
       [[21, 22, 23], [24]]
@@ -28,15 +28,13 @@ def yield_all_set_partitions_of_sequence(l):
       [[21], [22], [23, 24]]
       [[21], [22], [23], [24]]
 
+   Return generator of list of lists.
+
    .. versionchanged:: 1.1.2
       renamed ``listtools.all_set_partitions( )`` to
       ``listtools.yield_all_set_partitions_of_sequence( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``listtools.yield_all_set_partitions_of_iterable( )`` to
-      ``listtools.yield_all_set_partitions_of_sequence( )``.
    '''
 
-   for rgf in generate_all_restricted_growth_functions_of_length(len(l)):
-      partition = partition_by_restricted_growth_function(l, rgf)
+   for rgf in generate_all_restricted_growth_functions_of_length(len(sequence)):
+      partition = partition_by_restricted_growth_function(sequence, rgf)
       yield partition

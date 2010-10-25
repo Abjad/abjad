@@ -1,13 +1,13 @@
 from abjad.tools import mathtools
 
 
-def yield_all_ordered_subsequences_of_sequence(l):
+def yield_all_partitions_of_sequence(sequence):
    '''.. versionadded:: 1.1.2
 
-   Yield all ordered sublists of list `l`. ::
+   Yield all partitions of `sequence`::
 
-      abjad> for x in listtools.yield_all_ordered_subsequences_of_sequence(l):
-      ...     x
+      abjad> for partition in listtools.yield_all_partitions_of_sequence(sequence):
+      ...     partition
       ... 
       [[0, 1, 2, 3]]
       [[0, 1, 2], [3]]
@@ -18,30 +18,26 @@ def yield_all_ordered_subsequences_of_sequence(l):
       [[0], [1], [2, 3]]
       [[0], [1], [2], [3]]
 
-
-   .. todo:: write tests.
+   Return generator of newly created lists.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.all_ordered_sublists( )`` to
-      ``listtools.yield_all_ordered_subsequences_of_sequence( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``listtools.yield_all_ordered_sublists_of_iterable( )`` to
-      ``listtools.yield_all_ordered_subsequences_of_sequence( )``.
+      ``listtools.yield_all_partitions_of_sequence( )``.
    '''
 
-   if not isinstance(l, list):
-      raise TypeError('%s must be list.' % l)
+   ## TODO: remove type restriction ##
+   if not isinstance(sequence, list):
+      raise TypeError('%s must be list.' % sequence)
 
    partitions = [ ]
 
-   len_l_minus_1 = len(l) - 1
+   len_l_minus_1 = len(sequence) - 1
    for i in range(2 ** len_l_minus_1):
       binary_string = mathtools.integer_to_binary_string(i)
       binary_string = binary_string.zfill(len_l_minus_1)
-      part = l[0:1]
+      part = sequence[0:1]
       partition = [part]
-      for n, indicator in zip(l[1:], binary_string):
+      for n, indicator in zip(sequence[1:], binary_string):
          if int(indicator) == 0:
             part.append(n)
          else:
@@ -50,4 +46,3 @@ def yield_all_ordered_subsequences_of_sequence(l):
       partitions.append(partition)
 
    return partitions
-      

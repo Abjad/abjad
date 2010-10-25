@@ -8,7 +8,7 @@ def test_listtools_all_are_nonnegative_integer_powers_of_two_01( ):
    assert listtools.all_are_nonnegative_integer_powers_of_two([1, 2, 256, 8, 16, 16, 16])
 
 
-def test_foo_02( ):
+def test_listtools_all_are_nonnegative_integer_powers_of_two_02( ):
    '''True on empty sequence.
    '''
 

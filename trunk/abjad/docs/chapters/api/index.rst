@@ -524,11 +524,11 @@ listtools
    tools/listtools/truncate_to_weight
    tools/listtools/weight
    tools/listtools/yield_all_combinations_of_sequence
-   tools/listtools/yield_all_contiguous_subsequences_of_sequence
-   tools/listtools/yield_all_ordered_subsequences_of_sequence
+   tools/listtools/yield_all_partitions_of_sequence
    tools/listtools/yield_all_permutations_of_sequence
    tools/listtools/yield_all_rotations_of_sequence
    tools/listtools/yield_all_set_partitions_of_sequence
+   tools/listtools/yield_all_subsequences_of_sequence
    tools/listtools/zip_cyclic
    tools/listtools/zip_nontruncating
 

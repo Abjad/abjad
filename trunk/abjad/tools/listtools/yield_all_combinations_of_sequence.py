@@ -23,6 +23,12 @@ def yield_all_combinations_of_sequence(sequence, min_length = None, max_length =
       abjad> list(listtools.yield_all_combinations_of_sequence([1, 2, 3, 4], max_length = 2))
       [[ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [4], [1, 4], [2, 4], [3, 4]]
 
+   Yield all combiantions of `sequence` greater than or equal to `min_length` and
+   less than or equal to `max_length` in lex order::
+
+      abjad> list(listtools.yield_all_combinations_of_sequence([1, 2, 3, 4], min_length = 2, max_length = 2))
+      [[1, 2], [1, 3], [2, 3], [1, 4], [2, 4], [3, 4]]
+
    Return generator of newly created `sequence` objects.
 
    .. versionchanged:: 1.1.2
