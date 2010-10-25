@@ -456,6 +456,7 @@ listtools
    tools/listtools/flatten_iterable_at_indices
    tools/listtools/forward_and_backward_nonoverlapping
    tools/listtools/forward_and_backward_overlapping
+   tools/listtools/generate_all_k_ary_sequences_of_length
    tools/listtools/generate_all_restricted_growth_functions_of_length
    tools/listtools/get_cyclic
    tools/listtools/get_element_at_cyclic_index
@@ -580,6 +581,7 @@ mathtools
    tools/mathtools/greatest_power_of_two_less_equal
    tools/mathtools/integer_compositions
    tools/mathtools/integer_partitions
+   tools/mathtools/integer_to_base_k_tuple
    tools/mathtools/integer_to_binary_string
    tools/mathtools/interpolate_cosine
    tools/mathtools/interpolate_divide
