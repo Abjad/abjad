@@ -4,7 +4,7 @@ import math
 def binomial_coefficient(n, k):
    r'''.. versionadded:: 1.1.2
 
-   Return the binomial coefficient of `n` choose `k`:
+   Return the binomial coefficient of `n` choose `k`::
 
       abjad> for x in range(8):
       ...     print x, '\t', mathtools.binomial_coefficient(8, x)
