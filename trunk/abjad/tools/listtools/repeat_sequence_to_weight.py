@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 from abjad.tools.listtools.weight import weight
 
 
-def repeat_iterable_to_weight(l, total_weight, remainder = 'chop'):
+def repeat_sequence_to_weight(l, total_weight, remainder = 'chop'):
    '''Repeat `l` until ``listtools.weight(result)`` compares
    correctly to `total_weight` as specified by `remainder`.
 
@@ -11,21 +11,21 @@ def repeat_iterable_to_weight(l, total_weight, remainder = 'chop'):
    to ensure that ``listtools.weight(result)`` equals `weight` exactly. ::
 
       abjad> l = [5, 5, 5]
-      abjad> listtools.repeat_iterable_to_weight(l, 23)
+      abjad> listtools.repeat_sequence_to_weight(l, 23)
       [5, 5, 5, 5, 3]
 
    When ``remainder = 'less'`` allow ``listtools.weight(result)``
    to be less than or equal to `weight`. ::
 
       abjad> l = [5, 5, 5]
-      abjad> repeat_iterable_to_weight(l, 23, remainder = 'less')
+      abjad> repeat_sequence_to_weight(l, 23, remainder = 'less')
       [5, 5, 5, 5]
 
    When ``remainder = 'more'`` allow ``listtools.weight(result)``
    to be greater than or equal to `total_weight`. ::
 
       abjad> l = [5, 5, 5]
-      abjad> listtools.repeat_iterable_to_weight(l, 23, remainder = 'more')
+      abjad> listtools.repeat_sequence_to_weight(l, 23, remainder = 'more')
       [5, 5, 5, 5, 5]
 
    Because ``listtools.weight(l)`` equals the sum of the absolute 
@@ -33,12 +33,16 @@ def repeat_iterable_to_weight(l, total_weight, remainder = 'chop'):
    cyclically repeat in the output of this function. ::
 
       abjad> l = [-5, -5, 5]
-      abjad> listtools.repeat_iterable_to_weight(l, 23)
+      abjad> listtools.repeat_sequence_to_weight(l, 23)
       [-5, -5, 5, -5, -3]
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.repeat_list_to_weight( )`` to
-      ``listtools.repeat_iterable_to_weight( )``.
+      ``listtools.repeat_sequence_to_weight( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.repeat_iterable_to_weight( )`` to
+      ``listtools.repeat_sequence_to_weight( )``.
    '''
 
    assert isinstance(total_weight, (int, float, long, Fraction))

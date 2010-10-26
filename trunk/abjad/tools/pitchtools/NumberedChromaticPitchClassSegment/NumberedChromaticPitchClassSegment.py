@@ -65,7 +65,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
 
    def rotate(self, n):
       from abjad.tools import listtools
-      pitch_classes = listtools.rotate_iterable(self.pitch_classes, n)
+      pitch_classes = listtools.rotate_sequence(self.pitch_classes, n)
       return NumberedChromaticPitchClassSegment(pitch_classes)
       
    def transpose(self, n):

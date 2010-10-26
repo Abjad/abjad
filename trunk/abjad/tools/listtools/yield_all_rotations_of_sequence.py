@@ -1,4 +1,4 @@
-from abjad.tools.listtools.rotate_iterable import rotate_iterable
+from abjad.tools.listtools.rotate_sequence import rotate_sequence
 
 
 def yield_all_rotations_of_sequence(sequence):
@@ -22,4 +22,4 @@ def yield_all_rotations_of_sequence(sequence):
    '''
 
    for i in range(len(sequence)):
-      yield rotate_iterable(sequence, -i)
+      yield rotate_sequence(sequence, -i)

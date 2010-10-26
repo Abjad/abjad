@@ -6,50 +6,54 @@ import math
 
 ## TODO: merge with listtools.phasor( ) ##
 
-def repeat_iterable_to_length(l, length, start = 0):
+def repeat_sequence_to_length(l, length, start = 0):
    '''Repeat list `l` to nonnegative integer `length` from `start`
    defaulting to ``0``. ::
    
       abjad> l = range(5)
-      abjad> listtools.repeat_iterable_to_length(l, 11)
+      abjad> listtools.repeat_sequence_to_length(l, 11)
       [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
    When ``length < len(l)`` return ``l[:length]``. ::
 
       abjad> l = range(5)
-      abjad> listtools.repeat_iterable_to_length(l, 3)
+      abjad> listtools.repeat_sequence_to_length(l, 3)
       [0, 1, 2]
 
    When ``length = 0`` return an empty list. ::
 
       abjad> l = range(5)
-      abjad> listtools.repeat_iterable_to_length(l, 0)
+      abjad> listtools.repeat_sequence_to_length(l, 0)
       [ ]
 
    Read optional integer `start` modulo the ``len(l)``. ::
 
       abjad> l = range(5)
-      abjad> listtools.repeat_iterable_to_length(l, 10, 2)
+      abjad> listtools.repeat_sequence_to_length(l, 10, 2)
       [2, 3, 4, 0, 1, 2, 3, 4, 0, 1]
 
    ::
 
-      abjad> listtools.repeat_iterable_to_length(range(5), 10, -99)
+      abjad> listtools.repeat_sequence_to_length(range(5), 10, -99)
       [1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
    ::
 
-      abjad> listtools.repeat_iterable_to_length(range(5), 10, 99)
+      abjad> listtools.repeat_sequence_to_length(range(5), 10, 99)
       [4, 0, 1, 2, 3, 4, 0, 1, 2, 3]
 
    Raise :exc:`TypeError` when `l` is not a list::
 
-      abjad> listtools.repeat_iterable_to_length('foo', 10)
+      abjad> listtools.repeat_sequence_to_length('foo', 10)
       TypeError
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.repeat_list_to_length( )`` to
-      ``listtools.repeat_iterable_to_length( )``.
+      ``listtools.repeat_sequence_to_length( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.repeat_iterable_to_length( )`` to
+      ``listtools.repeat_sequence_to_length( )``.
    '''
 
    if not isinstance(l, list):

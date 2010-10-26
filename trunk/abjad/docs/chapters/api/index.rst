@@ -491,22 +491,22 @@ listtools
    tools/listtools/partition_list_once_by_counts_without_overhang
    tools/listtools/permute_sequence
    tools/listtools/phasor
-   tools/listtools/remove_consecutive_duplicates_from_iterable
-   tools/listtools/remove_duplicates_from_iterable
+   tools/listtools/remove_consecutive_duplicates_from_sequence
+   tools/listtools/remove_duplicates_from_sequence
    tools/listtools/remove_elements_at_indices
    tools/listtools/remove_elements_at_indices_cyclic
    tools/listtools/remove_weighted_subrun_at
    tools/listtools/repeat_elements_at_indices
    tools/listtools/repeat_elements_at_indices_cyclic
    tools/listtools/repeat_elements_to_count
-   tools/listtools/repeat_iterable_n_times
-   tools/listtools/repeat_iterable_to_length
-   tools/listtools/repeat_iterable_to_weight
+   tools/listtools/repeat_sequence_n_times
+   tools/listtools/repeat_sequence_to_length
+   tools/listtools/repeat_sequence_to_weight
    tools/listtools/repeat_subruns_to_count
    tools/listtools/replace_elements_cyclic
    tools/listtools/retain_elements_at_indices
    tools/listtools/retain_elements_at_indices_cyclic
-   tools/listtools/rotate_iterable
+   tools/listtools/rotate_sequence
    tools/listtools/sequence_to_degree_of_rotational_symmetry
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
