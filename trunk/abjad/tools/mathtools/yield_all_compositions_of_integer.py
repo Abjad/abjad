@@ -2,13 +2,12 @@ from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_str
 import itertools
 
 
-def integer_compositions(n):
+def yield_all_compositions_of_integer(n):
    r'''.. versionadded:: 1.1.2
 
-   Yield all compositions (that is, **ordered** partitions) of 
-   positive integer `n` in descending lex order. ::
+   Yield all compositions of positive integer `n` in descending lex order::
 
-      abjad> for integer_composition in mathtools.integer_compositions(5):
+      abjad> for integer_composition in mathtools.yield_all_compositions_of_integer(5):
       ...     integer_composition
       ... 
       (5,)
@@ -27,9 +26,18 @@ def integer_compositions(n):
       (1, 1, 2, 1)
       (1, 1, 1, 2)
       (1, 1, 1, 1, 1)
+
+   Integer compositions are ordered integer partitions.
+   
+   Return generator of positive integer tuples of length at least ``1``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``mathtools.integer_compositions( )`` to
+      ``mathtools.yield_all_compositions_of_integer( )``.
    '''
 
-   from abjad.tools.listtools.yield_all_permutations_of_sequence import yield_all_permutations_of_sequence
+   from abjad.tools.listtools.yield_all_permutations_of_sequence import \
+      yield_all_permutations_of_sequence
 
    ## Finds small values of n easily.
    ## Takes ca. 4 seconds for n = 17.

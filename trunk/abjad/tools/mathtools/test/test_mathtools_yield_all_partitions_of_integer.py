@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_mathtools_integer_partitions_01( ):
+def test_mathtools_yield_all_partitions_of_integer_01( ):
    '''Yield all integer partitions of positive integer n
    in descending lex order.'''
 
-   partitions = mathtools.integer_partitions(7)
+   partitions = mathtools.yield_all_partitions_of_integer(7)
    partitions = list(partitions)
 
    assert partitions[0] == (7,)

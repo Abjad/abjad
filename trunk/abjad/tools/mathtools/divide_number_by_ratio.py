@@ -19,11 +19,11 @@ def divide_number_by_ratio(number, ratio):
       abjad> mathtools.divide_number_by_ratio(1.0, [1, 1, 3])
       [0.20000000000000001, 0.20000000000000001, 0.60000000000000009]
 
+   Return list of fractions or list of floats.
+
    Raise type error on nonnumeric `number`.
 
    Raise type error on noninteger in `ratio`.
-
-   Return list of fractions or list of floats.
 
    .. versionchanged:: 1.1.2
       renamed ``mathtools.divide_number_by_ratio( )`` to

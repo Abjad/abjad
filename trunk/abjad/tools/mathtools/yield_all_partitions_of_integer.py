@@ -1,14 +1,12 @@
-from abjad.tools.mathtools.next_integer_partition import \
-   next_integer_partition as mathtools_next_integer_partition
+from abjad.tools.mathtools.next_integer_partition import next_integer_partition
 
 
-def integer_partitions(n):
+def yield_all_partitions_of_integer(n):
    r'''.. versionadded:: 1.1.2
 
-   Yield all integer partitions of positive integer `n` in
-   descending lex order. ::
+   Yield all partitions of positive integer `n` in descending lex order::
 
-      abjad> for partition in mathtools.integer_partitions(7):
+      abjad> for partition in mathtools.yield_all_partitions_of_integer(7):
       ...     partition
       ... 
       (7,)
@@ -26,6 +24,12 @@ def integer_partitions(n):
       (2, 2, 1, 1, 1)
       (2, 1, 1, 1, 1, 1)
       (1, 1, 1, 1, 1, 1, 1)
+
+   Return generator of positive integer tuples of length at least ``1``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``mathtools.integer_partitions( )`` to
+      ``mathtools.yield_all_partitions_of_integer( )``.
    '''
 
    if not isinstance(n, int):

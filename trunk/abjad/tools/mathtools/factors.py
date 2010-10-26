@@ -1,5 +1,5 @@
 def factors(n):
-   '''List integer factors of positive integer `n` in increasing order::
+   '''Integer factors of positive integer `n` in increasing order::
 
       abjad> mathtools.factors(84)
       [1, 2, 2, 3, 7]
@@ -20,11 +20,11 @@ def factors(n):
       18 [1, 2, 3, 3]
       19 [1, 19]
 
+   Return list of one or more positive integers.
+
    Raise type error on noninteger `n`.
 
    Raise value error on nonpositive `n`.
-
-   Return list of one or more positive integers.
    '''
 
    if not isinstance(n, (int, long)):

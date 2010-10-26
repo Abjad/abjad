@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_mathtools_integer_compositions_01( ):
+def test_mathtools_yield_all_compositions_of_integer_01( ):
    '''Yield all compositions (that is, ordered partitions)
    of positive integer n, in descending lex order.'''
 
 
-   compositions = mathtools.integer_compositions(5)
+   compositions = mathtools.yield_all_compositions_of_integer(5)
    compositions = list(compositions)
 
    assert compositions[0] == (5,)

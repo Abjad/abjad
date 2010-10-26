@@ -578,8 +578,6 @@ mathtools
    tools/mathtools/greatest_common_divisor
    tools/mathtools/greatest_multiple_less_equal
    tools/mathtools/greatest_power_of_two_less_equal
-   tools/mathtools/integer_compositions
-   tools/mathtools/integer_partitions
    tools/mathtools/integer_to_base_k_tuple
    tools/mathtools/integer_to_binary_string
    tools/mathtools/interpolate_cosine
@@ -603,6 +601,8 @@ mathtools
    tools/mathtools/remove_powers_of_two
    tools/mathtools/sign
    tools/mathtools/trivial_float_to_int
+   tools/mathtools/yield_all_compositions_of_integer
+   tools/mathtools/yield_all_partitions_of_integer
 
 
 measuretools

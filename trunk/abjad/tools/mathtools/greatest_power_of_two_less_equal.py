@@ -1,12 +1,9 @@
-from fractions import Fraction
+from numbers import Number
 import math
 
 
 def greatest_power_of_two_less_equal(n, i = 0):
-   r'''Return greatest integer power of two 
-   less than or equal to positive *n*.
-
-   ::
+   r'''Greatest integer power of two less than or equal to positive `n`::
 
       abjad> for n in range(10, 20):
       ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n))
@@ -22,10 +19,7 @@ def greatest_power_of_two_less_equal(n, i = 0):
          18 16
          19 16
 
-   When ``i = 1``, return the next-to-greatest integer power of ``2``
-   less than or equal to *n*.
-
-   ::
+   Greatest-but-``i`` integer power of ``2`` less than or equal to positive `n`::
 
       abjad> for n in range(10, 20):
       ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n, i = 1))
@@ -41,24 +35,17 @@ def greatest_power_of_two_less_equal(n, i = 0):
          18 8
          19 8
 
-   When ``i = 2``, return the next-to-next-to-greatest integer power of ``2``
-   less than or equal to *n*, and so on.
+   Return positive integer.
 
-   Raise :exc:`TypeError` on nonnumeric *n*::
+   Raise type error on nonnumeric `n`.
 
-      abjad> mathtools.greatest_power_of_two_less_equal('foo')
-      TypeError
-
-   Raise :exc:`ValueError` on nonpositive *n*::
-
-      abjad> mathtools.greatest_power_of_two_less_equal(-1)
-      ValueError
+   Raise value error on nonpositive `n`.
    '''
 
-   if not isinstance(n, (int, long, float, Fraction)):
-      raise TypeError
+   if not isinstance(n, Number):
+      raise TypeError('"%s" must be number.' % str(n))
 
    if n <= 0:
-      raise ValueError
+      raise ValueError('"%s" must be positive.' % str(n))
 
    return 2 ** (int(math.log(n, 2)) - i)

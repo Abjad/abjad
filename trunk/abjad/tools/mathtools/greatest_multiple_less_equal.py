@@ -1,9 +1,9 @@
+from numbers import Number
 import math
 
 
 def greatest_multiple_less_equal(m, n):
-   '''Return the greatest integer multiple of `m` 
-   less than or equal to `n`::
+   '''Greatest integer multiple of `m` less than or equal to `n`::
 
       abjad> mathtools.greatest_multiple_less_equal(10, 47)
       40
@@ -37,6 +37,18 @@ def greatest_multiple_less_equal(m, n):
       70 70
       77 80
       84 90
+
+   Return nonnegative integer.
+
+   Raise type error on nonnumeric `m`.
+
+   Raise type error on nonnumeric `n`.
    '''
+   
+   if not isinstance(m, Number):
+      raise TypeError('"%s" must be number.' % str(m))
+
+   if not isinstance(n, Number):
+      raise TypeError('"%s" must be number.' % str(n))
 
    return m * int(math.floor(n / float(m)))

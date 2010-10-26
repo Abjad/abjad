@@ -4,10 +4,10 @@ import math
 def binomial_coefficient(n, k):
    r'''.. versionadded:: 1.1.2
 
-   Return the binomial coefficient of `n` choose `k`::
+   Binomial coefficient of `n` choose `k`::
 
-      abjad> for x in range(8):
-      ...     print x, '\t', mathtools.binomial_coefficient(8, x)
+      abjad> for k in range(8):
+      ...     print k, '\t', mathtools.binomial_coefficient(8, k)
       ... 
       0  1
       1  8
@@ -17,6 +17,8 @@ def binomial_coefficient(n, k):
       5  56
       6  28
       7  8
+
+   Return positive integer.
    '''
 
    return math.factorial(n) / (math.factorial(n - k) * math.factorial(k))

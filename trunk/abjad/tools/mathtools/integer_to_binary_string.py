@@ -1,6 +1,5 @@
 def integer_to_binary_string(n):
-   r'''Return the base-2 representation of positive integer `n` 
-   as a string. ::
+   r'''Positive integer `n` to binary string::
 
       abjad> mathtools.integer_to_binary_string(5)
       '101'
@@ -27,20 +26,11 @@ def integer_to_binary_string(n):
          15 1111
          16 10000
 
-   .. note:: ``mathtools.integer_to_binary_string(n)`` will deprecate when \
-      Abjad migrates to Python 2.6.
-
    .. versionchanged:: 1.1.2
       renamed ``mathtools.binary_string( )`` to
       ``mathtools.integer_to_binary_string( )``.
+
+   Return string.
    '''
 
-   if not isinstance(n, (int, long)):
-      raise TypeError
-
-   result = ''
-   while 0 < n:
-      result = str(n % 2) + result
-      n = n >> 1
-
-   return result
+   return bin(n).lstrip('0b')
