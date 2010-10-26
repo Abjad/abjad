@@ -4,28 +4,32 @@ from abjad.tools.listtools.partition_list_cyclically_by_counts_without_overhang 
    partition_list_cyclically_by_counts_without_overhang
 
 
-def get_period(iterable):
+def sequence_to_degree_of_rotational_symmetry(iterable):
    '''.. versionadded:: 1.1.2
 
    Return positive integer period of `iterable`. ::
    
-      abjad> listtools.get_period([1, 1, 1, 1, 1, 1])
+      abjad> listtools.sequence_to_degree_of_rotational_symmetry([1, 1, 1, 1, 1, 1])
       1
 
    ::
 
-      abjad> listtools.get_period([1, 1, 2, 1, 1, 1])
+      abjad> listtools.sequence_to_degree_of_rotational_symmetry([1, 1, 2, 1, 1, 1])
       6
 
    ::
 
-      abjad> listtools.get_period([1, 1, 2, 1, 1, 2])
+      abjad> listtools.sequence_to_degree_of_rotational_symmetry([1, 1, 2, 1, 1, 2])
       3
 
    None when `iterable` is empty. ::
 
-      abjad> listtools.get_period([ ]) is None
+      abjad> listtools.sequence_to_degree_of_rotational_symmetry([ ]) is None
       True
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.get_period( )`` to
+      ``listtools.sequence_to_degree_of_rotational_symmetry( )``.
    '''
    
    iterable = list(iterable)

@@ -1,11 +1,15 @@
-def forward_and_backward_overlapping(iterable):
+def iterate_sequence_forward_and_backward_overlapping(iterable):
    '''.. versionadded:: 1.1.2
 
    Yield elements in `iterable` first forward and then backward,
    with first and last elements appearing only once. ::
 
-      abjad> list(listtools.forward_and_backward_overlapping([1, 2, 3, 4, 5]))
+      abjad> list(listtools.iterate_sequence_forward_and_backward_overlapping([1, 2, 3, 4, 5]))
       [1, 2, 3, 4, 5, 4, 3, 2]
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.forward_and_backward_overlapping( )`` to
+      ``listtools.iterate_sequence_forward_and_backward_overlapping( )``.
    '''
 
    iterable_copy = [ ]

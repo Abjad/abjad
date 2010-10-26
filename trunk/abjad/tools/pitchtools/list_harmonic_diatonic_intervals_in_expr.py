@@ -25,7 +25,7 @@ def list_harmonic_diatonic_intervals_in_expr(expr):
    
    diatonic_intervals = [ ]
    pitches = list_named_chromatic_pitches_in_expr(expr)
-   unordered_pitch_pairs = listtools.get_unordered_pairs(pitches)
+   unordered_pitch_pairs = listtools.yield_all_unordered_pairs_in_sequence(pitches)
    for first_pitch, second_pitch in unordered_pitch_pairs:
       diatonic_interval = first_pitch - second_pitch
       diatonic_interval = abs(diatonic_interval)

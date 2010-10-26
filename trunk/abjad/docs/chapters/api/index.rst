@@ -446,31 +446,28 @@ listtools
    tools/listtools/all_are_numbers
    tools/listtools/all_are_unequal
    tools/listtools/count_runs_of_length_two_in_sequence
-   tools/listtools/flatten_iterable
-   tools/listtools/flatten_iterable_at_indices
-   tools/listtools/forward_and_backward_nonoverlapping
-   tools/listtools/forward_and_backward_overlapping
+   tools/listtools/flatten_sequence
+   tools/listtools/flatten_sequence_at_indices
    tools/listtools/generate_all_k_ary_sequences_of_length
    tools/listtools/generate_all_restricted_growth_functions_of_length
    tools/listtools/get_cyclic
    tools/listtools/get_element_at_cyclic_index
    tools/listtools/get_elements_at_indices
-   tools/listtools/get_period
-   tools/listtools/get_shared_numeric_sign
-   tools/listtools/get_unordered_pairs
    tools/listtools/group_by_equality
    tools/listtools/group_by_sign
    tools/listtools/group_by_weights
    tools/listtools/increase_at_indices
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
-   tools/listtools/interlace_iterables
+   tools/listtools/interlace_sequences
    tools/listtools/is_decreasing_monotonically
    tools/listtools/is_decreasing_strictly
    tools/listtools/is_increasing_monotonically
    tools/listtools/is_increasing_strictly
    tools/listtools/is_repetition_free
    tools/listtools/is_restricted_growth_function
+   tools/listtools/iterate_sequence_forward_and_backward_nonoverlapping
+   tools/listtools/iterate_sequence_forward_and_backward_overlapping
    tools/listtools/join_sublists_by_sign
    tools/listtools/lengths_to_counts
    tools/listtools/negate_elements_at_indices
@@ -492,7 +489,7 @@ listtools
    tools/listtools/partition_list_cyclically_by_counts_without_overhang
    tools/listtools/partition_list_once_by_counts_with_overhang
    tools/listtools/partition_list_once_by_counts_without_overhang
-   tools/listtools/permute_iterable
+   tools/listtools/permute_sequence
    tools/listtools/phasor
    tools/listtools/remove_consecutive_duplicates_from_iterable
    tools/listtools/remove_duplicates_from_iterable
@@ -510,6 +507,7 @@ listtools
    tools/listtools/retain_elements_at_indices
    tools/listtools/retain_elements_at_indices_cyclic
    tools/listtools/rotate_iterable
+   tools/listtools/sequence_to_degree_of_rotational_symmetry
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
    tools/listtools/true_indices
@@ -523,6 +521,7 @@ listtools
    tools/listtools/yield_all_rotations_of_sequence
    tools/listtools/yield_all_set_partitions_of_sequence
    tools/listtools/yield_all_subsequences_of_sequence
+   tools/listtools/yield_all_unordered_pairs_in_sequence
    tools/listtools/zip_cyclic
    tools/listtools/zip_nontruncating
 
@@ -575,6 +574,7 @@ mathtools
    tools/mathtools/divide_number_by_ratio
    tools/mathtools/divisors
    tools/mathtools/factors
+   tools/mathtools/get_shared_numeric_sign
    tools/mathtools/greatest_common_divisor
    tools/mathtools/greatest_multiple_less_equal
    tools/mathtools/greatest_power_of_two_less_equal

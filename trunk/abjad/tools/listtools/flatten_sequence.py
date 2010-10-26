@@ -1,31 +1,35 @@
-def flatten_iterable(l, ltypes = (list, tuple), depth = -1):
+def flatten_sequence(l, ltypes = (list, tuple), depth = -1):
    '''Flatten nested lists `l`. Return a 0-depth list or tuple.
    Set optional `depth` keyword set to positive integer.
    Keyword controls depth to which the function operates.
    Based on Mike C. Fletcher's flatten. ::
 
       abjad> t = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-      abjad> listtools.flatten_iterable(t)
+      abjad> listtools.flatten_sequence(t)
       [1, 2, 3, 4, 5, 6, 7, 8]
 
    ::
 
-      abjad> listtools.flatten_iterable(t, depth = 0)
+      abjad> listtools.flatten_sequence(t, depth = 0)
       [1, [2, 3, [4]], 5, [6, 7, [8]]]
 
    ::
 
-      abjad> listtools.flatten_iterable(t, depth = 1)
+      abjad> listtools.flatten_sequence(t, depth = 1)
       [1, 2, 3, [4], 5, 6, 7, [8]]
 
    ::
 
-      abjad> listtools.flatten_iterable(t, depth = 2)
+      abjad> listtools.flatten_sequence(t, depth = 2)
       [1, 2, 3, 4, 5, 6, 7, 8]
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.flatten( )`` to
-      ``listtools.flatten_iterable( )``.
+      ``listtools.flatten_sequence( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.flatten_iterable( )`` to
+      ``listtools.flatten_sequence( )``.
    '''
 
    assert isinstance(l, ltypes)

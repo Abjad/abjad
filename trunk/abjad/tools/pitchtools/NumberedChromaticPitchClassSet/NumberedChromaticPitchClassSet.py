@@ -76,7 +76,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
    def interval_class_set(self):
       #interval_class_set = InversionEquivalentChromaticIntervalClassSet([ ])
       interval_class_set = set([ ])
-      for first_pc, second_pc in listtools.get_unordered_pairs(self):
+      for first_pc, second_pc in listtools.yield_all_unordered_pairs_in_sequence(self):
          interval_class = first_pc - second_pc
          interval_class_set.add(interval_class)
       interval_class_set = InversionEquivalentChromaticIntervalClassSet(interval_class_set)
@@ -85,7 +85,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
    @property
    def interval_class_vector(self):
       interval_classes = [ ]
-      for first_pc, second_pc in listtools.get_unordered_pairs(self):
+      for first_pc, second_pc in listtools.yield_all_unordered_pairs_in_sequence(self):
          interval_class = first_pc - second_pc
          interval_classes.append(interval_class)
       return InversionEquivalentChromaticIntervalClassVector(interval_classes)

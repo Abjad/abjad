@@ -2,34 +2,34 @@ from abjad import *
 
 
 
-def test_listtools_flatten_iterable_at_indices_01( ):
+def test_listtools_flatten_sequence_at_indices_01( ):
    '''Works with positive indices.'''
 
    l = [0, 1, [2, 3, 4], [5, 6, 7]]
-   t = listtools.flatten_iterable_at_indices(l, [2])
+   t = listtools.flatten_sequence_at_indices(l, [2])
 
    assert t == [0, 1, 2, 3, 4, [5, 6, 7]]
 
 
-def test_listtools_flatten_iterable_at_indices_02( ):
+def test_listtools_flatten_sequence_at_indices_02( ):
    '''Works with negative indices.'''
 
    l = [0, 1, [2, 3, 4], [5, 6, 7]]
-   t = listtools.flatten_iterable_at_indices(l, [-1])
+   t = listtools.flatten_sequence_at_indices(l, [-1])
 
    assert t == [0, 1, [2, 3, 4], 5, 6, 7]
 
 
-def test_listtools_flatten_iterable_at_indices_03( ):
+def test_listtools_flatten_sequence_at_indices_03( ):
    '''Boundary cases.'''
 
    l = [0, 1, [2, 3, 4], [5, 6, 7]]
 
-   t = listtools.flatten_iterable_at_indices(l, [ ])
+   t = listtools.flatten_sequence_at_indices(l, [ ])
    assert t == [0, 1, [2, 3, 4], [5, 6, 7]]
 
-   t = listtools.flatten_iterable_at_indices(l, [99])
+   t = listtools.flatten_sequence_at_indices(l, [99])
    assert t == [0, 1, [2, 3, 4], [5, 6, 7]]
 
-   t = listtools.flatten_iterable_at_indices(l, [-99])
+   t = listtools.flatten_sequence_at_indices(l, [-99])
    assert t == [0, 1, [2, 3, 4], [5, 6, 7]]

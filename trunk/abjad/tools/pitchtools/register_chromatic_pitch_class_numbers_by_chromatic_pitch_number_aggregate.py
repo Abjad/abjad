@@ -22,7 +22,7 @@ def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(p
 
    if isinstance(pcs, list):
       r = [[p for p in pitches if p % 12 == pc] for pc in [x % 12 for x in pcs]]
-      r = listtools.flatten_iterable(r)
+      r = listtools.flatten_sequence(r)
    elif isinstance(pcs, int):
       r = [p for p in pitches if p % 12 == pcs][0]
    else:

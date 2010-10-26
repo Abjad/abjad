@@ -62,7 +62,7 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
          raise ValueError
       numbers.append(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
 
-   pairs = listtools.get_unordered_pairs(numbers)
+   pairs = listtools.yield_all_unordered_pairs_in_sequence(numbers)
 
    intervals = [ ]
 

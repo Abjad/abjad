@@ -1,14 +1,18 @@
-def permute_iterable(iterable, ordering):
+def permute_sequence(iterable, ordering):
    '''.. versionadded:: 1.1.2
 
    Return `iterable` permuted by `ordering`. ::
 
-      abjad> listtools.permute_iterable([10, 11, 12, 13, 14, 15], [5, 4, 0, 1, 2, 3])
+      abjad> listtools.permute_sequence([10, 11, 12, 13, 14, 15], [5, 4, 0, 1, 2, 3])
       (15, 14, 10, 11, 12, 13)
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.permute( )`` to
-      ``listtools.permute_iterable( )``.
+      ``listtools.permute_sequence( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.permute_iterable( )`` to
+      ``listtools.permute_sequence( )``.
    '''
 
    list_iterable = list(iterable)

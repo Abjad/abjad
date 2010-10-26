@@ -1,4 +1,4 @@
-from abjad.tools.listtools.get_shared_numeric_sign import \
+from abjad.tools.mathtools.get_shared_numeric_sign import \
    get_shared_numeric_sign
 
 
