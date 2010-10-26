@@ -575,7 +575,6 @@ mathtools
    tools/mathtools/divide_number_by_ratio
    tools/mathtools/divisors
    tools/mathtools/factors
-   tools/mathtools/fragment
    tools/mathtools/greatest_common_divisor
    tools/mathtools/greatest_multiple_less_equal
    tools/mathtools/greatest_power_of_two_less_equal
