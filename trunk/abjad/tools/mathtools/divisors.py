@@ -2,7 +2,7 @@ import math
 
 
 def divisors(n):
-   '''Return a list of the integer divisors of `n` in increasing order::
+   '''List the integer divisors of positive integer `n` in increasing order::
 
       abjad> mathtools.divisors(84)
       [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84
@@ -23,22 +23,18 @@ def divisors(n):
       18 [1, 2, 3, 6, 9, 18]
       19 [1, 19]
 
-   Raise :exc:`TypeError` on noninteger `n`::
+   Raise type error on noninteger `n`.
 
-      abjad> mathtools.divisors(7.5)
-      TypeError
+   Raise value error on nonpositive `n`.
 
-   Raise :exc:`ValueError` on nonpositive integer `n`::
-
-      abjad> mathtools.divisors(-1)
-      ValueError
+   Return list of one or more positive integers.
    '''
 
    if not isinstance(n, (int, long)):
-      raise TypeError
+      raise TypeError('"%s" must be integer.' % str(n))
 
    if n <= 0:
-      raise ValueError
+      raise ValueError('"%s" must be positive.' % str(n))
    
    ## Find all divisors from 1 to sqrt(n)
    divisors = [1]

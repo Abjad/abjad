@@ -1,5 +1,5 @@
 def factors(n):
-   '''Return a list of all integer factors of posittive *n*::
+   '''List integer factors of positive integer `n` in increasing order::
 
       abjad> mathtools.factors(84)
       [1, 2, 2, 3, 7]
@@ -20,22 +20,18 @@ def factors(n):
       18 [1, 2, 3, 3]
       19 [1, 19]
 
-   Raise :exc:`TypeError` on noninteger *n*::
+   Raise type error on noninteger `n`.
 
-      abjad> mathtools.factors(7.5)
-      TypeError
+   Raise value error on nonpositive `n`.
 
-   Raise :exc:`ValueError` on nonpositive integer *n*::
-
-      abjad> mathtools.factors(-1)
-      ValueError
+   Return list of one or more positive integers.
    '''
 
    if not isinstance(n, (int, long)):
-      raise TypeError
+      raise TypeError('"%s" must be integer.' % str(n))
 
    if n <= 0:
-      raise ValueError
+      raise ValueError('"%s" must be positive.' % str(n))
 
    d = 2
    factors = [1]
