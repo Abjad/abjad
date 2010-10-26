@@ -445,13 +445,7 @@ listtools
    tools/listtools/all_are_nonnegative_integer_powers_of_two
    tools/listtools/all_are_numbers
    tools/listtools/all_are_unequal
-   tools/listtools/arithmetic_mean
-   tools/listtools/count_repetitions
-   tools/listtools/cumulative_products
-   tools/listtools/cumulative_sums
-   tools/listtools/cumulative_sums_zero
-   tools/listtools/cumulative_weights_signed
-   tools/listtools/difference_series
+   tools/listtools/count_runs_of_length_two_in_sequence
    tools/listtools/flatten_iterable
    tools/listtools/flatten_iterable_at_indices
    tools/listtools/forward_and_backward_nonoverlapping
@@ -571,7 +565,13 @@ mathtools
 .. toctree::
    :maxdepth: 1
 
+   tools/mathtools/arithmetic_mean
    tools/mathtools/binomial_coefficient
+   tools/mathtools/cumulative_products
+   tools/mathtools/cumulative_signed_weights
+   tools/mathtools/cumulative_sums
+   tools/mathtools/cumulative_sums_zero
+   tools/mathtools/difference_series
    tools/mathtools/divide_number_by_ratio
    tools/mathtools/divisors
    tools/mathtools/factors

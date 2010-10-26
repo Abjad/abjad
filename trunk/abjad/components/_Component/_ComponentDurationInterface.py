@@ -1,5 +1,5 @@
 from abjad.interfaces._Interface import _Interface
-from abjad.tools import listtools
+from abjad.tools import mathtools
 from fractions import Fraction
 
 
@@ -33,6 +33,5 @@ class _ComponentDurationInterface(_Interface):
 
    @property
    def prolation(self):
-      products = listtools.cumulative_products(
-         [Fraction(1)] + self._prolations)
+      products = mathtools.cumulative_products([Fraction(1)] + self._prolations)
       return products[-1]

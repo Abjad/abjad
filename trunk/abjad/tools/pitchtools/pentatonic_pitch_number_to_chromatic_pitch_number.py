@@ -1,4 +1,4 @@
-from abjad.tools import listtools
+from abjad.tools import mathtools
 
 
 def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, transpose=1, phase=0):
@@ -50,7 +50,7 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, t
 
    penta_intervals = [2,3,2,2,3] * 2
    penta = dict(zip([0,1,2,3,4],
-      listtools.cumulative_sums_zero(penta_intervals[phase:phase+5])))
+      mathtools.cumulative_sums_zero(penta_intervals[phase:phase+5])))
    pclass = pentatonic_scale_degree % 5
    octave = pentatonic_scale_degree // 5
    return 12 * octave + penta[pclass] + transpose

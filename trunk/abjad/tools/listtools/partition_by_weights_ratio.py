@@ -1,6 +1,6 @@
 from fractions import Fraction
 from abjad.tools import mathtools
-from abjad.tools.listtools.cumulative_sums import cumulative_sums
+from abjad.tools.mathtools.cumulative_sums import cumulative_sums
 from abjad.tools.listtools.flatten_iterable import flatten_iterable
 from abjad.tools.listtools.weight import weight
 

@@ -1,4 +1,4 @@
-from abjad.tools import listtools
+from abjad.tools import mathtools
 from abjad.tools.leaftools.get_composite_offset_series_from_leaves_in_expr import \
    get_composite_offset_series_from_leaves_in_expr
 
@@ -37,4 +37,4 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
       ``leaftools.get_composite_offset_difference_series_from_leaves_in_expr( )``.
    '''
 
-   return list(listtools.difference_series(get_composite_offset_series_from_leaves_in_expr(expr)))
+   return list(mathtools.difference_series(get_composite_offset_series_from_leaves_in_expr(expr)))

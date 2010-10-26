@@ -1,27 +1,31 @@
 def cumulative_sums(l):
    '''Return a list of the cumulative sums of the elements in *l*.
 
-   .. note:: ``len(listtools.cumulative_sums(l)) == len(l)``.
+   .. note:: ``len(mathtools.cumulative_sums(l)) == len(l)``.
 
    ::
 
-      abjad> listtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8])
+      abjad> mathtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8])
       [1, 3, 6, 10, 15, 21, 28, 36]
 
    ::
    
-      abjad> listtools.cumulative_sums([1, -2, 3, -4, 5, -6, 7, -8])
+      abjad> mathtools.cumulative_sums([1, -2, 3, -4, 5, -6, 7, -8])
       [1, -1, 2, -2, 3, -3, 4, -4]
 
    Raise :exc:`TypeError` when *l* is neither list nor tuple::
 
-      abjad> listtools.cumulative_sums('foo')
+      abjad> mathtools.cumulative_sums('foo')
       TypeError
 
    Raise :exc:`ValueError` when *l* is empty::
 
-      abjad> listtools.cumulative_sums([ ])
+      abjad> mathtools.cumulative_sums([ ])
       ValueError
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.cumulative_sums( )`` to
+      ``mathtools.cumulative_sums( )``.
    '''
 
 

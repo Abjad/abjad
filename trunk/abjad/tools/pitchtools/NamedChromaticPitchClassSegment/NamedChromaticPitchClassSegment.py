@@ -44,9 +44,9 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
 
    @property
    def diatonic_interval_class_segment(self):
-      from abjad.tools import listtools
+      from abjad.tools import mathtools
       from abjad.tools import pitchtools
-      dics = listtools.difference_series(self)
+      dics = mathtools.difference_series(self)
       return pitchtools.InversionEquivalentDiatonicIntervalClassSegment(dics)
 
    @property
@@ -87,7 +87,8 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
 
    def rotate(self, n):
       from abjad.tools import listtools
-      named_chromatic_pitch_classes = listtools.rotate_iterable(self.named_chromatic_pitch_classes, n)
+      named_chromatic_pitch_classes = listtools.rotate_iterable(
+         self.named_chromatic_pitch_classes, n)
       return NamedChromaticPitchClassSegment(named_chromatic_pitch_classes)
       
    def transpose(self, melodic_diatonic_interval):

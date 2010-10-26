@@ -1,4 +1,5 @@
 from abjad.tools import listtools
+from abjad.tools import mathtools
 from abjad.tools.pitchtools._PitchSegment import _PitchSegment
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
@@ -56,7 +57,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def harmonic_chromatic_interval_segment(self):
-      result = list(listtools.difference_series(self.numbers))
+      result = list(mathtools.difference_series(self.numbers))
       result = [-x for x in result]
       return HarmonicChromaticIntervalSegment(result)
 
@@ -66,7 +67,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def harmonic_diatonic_interval_segment(self):
-      result = list(listtools.difference_series(self.pitches))
+      result = list(mathtools.difference_series(self.pitches))
       result = [-x for x in result]
       return HarmonicDiatonicIntervalSegment(result)
 
@@ -77,19 +78,19 @@ class NamedChromaticPitchSegment(_PitchSegment):
    @property
    def interval_class_segment(self):
       pitch_classes = self.pitch_class_segment
-      interval_classes = listtools.difference_series(pitch_classes)
+      interval_classes = mathtools.difference_series(pitch_classes)
       return InversionEquivalentChromaticIntervalClassSegment(interval_classes)
 
    @property
    def interval_class_set(self):
       pitch_classes = self.pitch_class_segment
-      interval_classes = listtools.difference_series(pitch_classes)
+      interval_classes = mathtools.difference_series(pitch_classes)
       return InversionEquivalentChromaticIntervalClassSet(interval_classes)
       
    @property
    def interval_class_vector(self):
       pitch_classes = self.pitch_class_segment
-      interval_classes = listtools.difference_series(pitch_classes)
+      interval_classes = mathtools.difference_series(pitch_classes)
       return InversionEquivalentChromaticIntervalClassVector(interval_classes)
       
    @property
@@ -118,7 +119,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def melodic_chromatic_interval_segment(self):
-      result = list(listtools.difference_series(self.numbers))
+      result = list(mathtools.difference_series(self.numbers))
       return MelodicChromaticIntervalSegment(result)
 
    @property
@@ -127,7 +128,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def melodic_diatonic_interval_segment(self):
-      result = list(listtools.difference_series(self.pitches))
+      result = list(mathtools.difference_series(self.pitches))
       result = [-x for x in result]
       return MelodicDiatonicIntervalSegment(result)
 

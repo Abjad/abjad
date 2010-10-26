@@ -1,3 +1,6 @@
+from abjad.tools.mathtools.cumulative_sums import cumulative_sums
+
+
 def partition_integer_by_ratio(n, ratio):
    '''Partition integer `n` into parts such that the sum
    of all parts equals `n` and such that the proportions
@@ -54,8 +57,6 @@ def partition_integer_by_ratio(n, ratio):
       ValueError
    '''
 
-   from abjad.tools import listtools
-
    if not isinstance(n, (int, long)):
       raise TypeError
 
@@ -67,7 +68,7 @@ def partition_integer_by_ratio(n, ratio):
    result = [0]
 
    divisions = [float(n) * part / sum(ratio) for part in ratio]
-   cumulative_divisions = listtools.cumulative_sums(divisions)
+   cumulative_divisions = cumulative_sums(divisions)
 
    for division in cumulative_divisions:
       rounded_division = int(round(division)) - sum(result)

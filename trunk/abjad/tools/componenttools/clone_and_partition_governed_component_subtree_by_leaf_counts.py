@@ -1,5 +1,6 @@
 from abjad.components.Container import Container
 from abjad.tools import listtools
+from abjad.tools import mathtools
 
 
 ## TODO: Implement in-place containertools.partition_components_by_counts( ) ##
@@ -75,7 +76,7 @@ def clone_and_partition_governed_component_subtree_by_leaf_counts(container, lea
    assert all([isinstance(x, int) for x in leaf_counts])
 
    result = [ ]
-   sums = listtools.cumulative_sums_zero(leaf_counts)
+   sums = mathtools.cumulative_sums_zero(leaf_counts)
    for start, stop in listtools.pairwise(sums):
       result.append(clone_governed_component_subtree_by_leaf_range(container, start, stop))
    return result

@@ -9,20 +9,24 @@ def arithmetic_mean(l):
    Where possible return an exact integer. ::
 
       abjad> l = [1, 2, 2, 20, 30]
-      abjad> listtools.arithmetic_mean(l)
+      abjad> mathtools.arithmetic_mean(l)
       11
 
    Or return a rational. ::
 
       abjad> l = [1, 2, 20]
-      abjad> listtools.arithmetic_mean(l)
+      abjad> mathtools.arithmetic_mean(l)
       Fraction(23, 3)
 
    Or return a float. ::
 
       abjad> l = [2, 2, 20.0]
-      abjad> listtools.arithmetic_mean(l)
+      abjad> mathtools.arithmetic_mean(l)
       8.0
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.arithmetic_mean( )`` to
+      ``mathtools.arithmetic_mean( )``.
    '''
 
    sum_l = sum(l)

@@ -16,12 +16,11 @@ def test_mathtools_integer_to_binary_string_01( ):
 
 
 def test_mathtools_integer_to_binary_string_02( ):
-   '''Return empty string for nonpositive integers.'''
 
-   assert mathtools.integer_to_binary_string(0) == ''
-   assert mathtools.integer_to_binary_string(-1) == ''
-   assert mathtools.integer_to_binary_string(-2) == ''
-   assert mathtools.integer_to_binary_string(-3) == ''
+   assert mathtools.integer_to_binary_string(0) == '0'
+   assert mathtools.integer_to_binary_string(-1) == '-1'
+   assert mathtools.integer_to_binary_string(-2) == '-10'
+   assert mathtools.integer_to_binary_string(-3) == '-11'
 
 
 def test_mathtools_integer_to_binary_string_03( ):

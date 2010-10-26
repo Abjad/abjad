@@ -41,7 +41,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
 
    @property
    def interval_class_segment(self):
-      interval_classes = list(listtools.difference_series(self.pitch_classes))
+      interval_classes = list(mathtools.difference_series(self.pitch_classes))
       return InversionEquivalentChromaticIntervalClassSegment(interval_classes)
 
    @property

@@ -3,12 +3,12 @@ def cumulative_products(l):
 
    ::
 
-      abjad> listtools.cumulative_products([1, 2, 3, 4, 5, 6, 7, 8])
+      abjad> mathtools.cumulative_products([1, 2, 3, 4, 5, 6, 7, 8])
       [1, 2, 6, 24, 120, 720, 5040, 40320]
 
    ::
    
-      abjad> listtools.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
+      abjad> mathtools.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
       [1, -2, -6, 24, 120, -720, -5040, 40320]
 
    Raise :exc:`TypeError` when *l* is neither list nor tuple::
@@ -18,8 +18,12 @@ def cumulative_products(l):
 
    Raise :exc:`ValueError` when *l* is empty::
 
-      abjad> listtools.cumulative_products([ ])
+      abjad> mathtools.cumulative_products([ ])
       ValueError
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.cumulative_products( )`` to
+      ``mathtools.cumulative_products( )``.
    '''
 
    if not isinstance(l, (list, tuple)):

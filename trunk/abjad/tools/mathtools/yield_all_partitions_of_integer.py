@@ -40,6 +40,6 @@ def yield_all_partitions_of_integer(n):
    partition = (n, )
    while partition is not None:
       yield partition
-      partition = mathtools_next_integer_partition(partition)
+      partition = next_integer_partition(partition)
 
    #raise StopIteration

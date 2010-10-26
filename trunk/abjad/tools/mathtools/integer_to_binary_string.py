@@ -33,4 +33,12 @@ def integer_to_binary_string(n):
    Return string.
    '''
 
-   return bin(n).lstrip('0b')
+   if n == 0:
+      return '0'
+
+   result = bin(abs(n)).lstrip('-0b')
+
+   if n < 0:
+      result = '-' + result
+
+   return result
