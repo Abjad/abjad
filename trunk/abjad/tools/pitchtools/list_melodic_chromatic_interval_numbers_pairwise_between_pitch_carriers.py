@@ -91,7 +91,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
          raise TypeError('must be Abjad Pitch, Note, NoteHead or Chord.')
 
    if wrap:
-      pairs = listtools.iterate_sequence_pairwise(pitch_carriers, mode = 'wrap')
+      pairs = listtools.iterate_sequence_pairwise_wrapped(pitch_carriers)
    else:
       pairs = listtools.iterate_sequence_pairwise(pitch_carriers)
 

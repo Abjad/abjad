@@ -472,6 +472,9 @@ listtools
    tools/listtools/iterate_sequence_nwise_strict
    tools/listtools/iterate_sequence_nwise_wrapped
    tools/listtools/iterate_sequence_pairwise
+   tools/listtools/iterate_sequence_pairwise_cyclic
+   tools/listtools/iterate_sequence_pairwise_strict
+   tools/listtools/iterate_sequence_pairwise_wrapped
    tools/listtools/join_subsequences_by_sign
    tools/listtools/lengths_to_counts
    tools/listtools/negate_elements_at_indices
