@@ -36,7 +36,7 @@ def yield_all_compositions_of_integer(n):
       ``mathtools.yield_all_compositions_of_integer( )``.
    '''
 
-   from abjad.tools.listtools.yield_all_permutations_of_sequence import \
+   from abjad.tools.seqtools.yield_all_permutations_of_sequence import \
       yield_all_permutations_of_sequence
 
    ## Finds small values of n easily.

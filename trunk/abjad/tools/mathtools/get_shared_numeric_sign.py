@@ -20,11 +20,11 @@ def get_shared_numeric_sign(l):
       True
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.sign( )`` to 
+      renamed ``seqtools.sign( )`` to 
       ``mathtools.get_shared_numeric_sign( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.get_shared_numeric_sign( )`` to
+      renamed ``seqtools.get_shared_numeric_sign( )`` to
       ``mathtools.get_shared_numeric_sign( )``.
    '''
 

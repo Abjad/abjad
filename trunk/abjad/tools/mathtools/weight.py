@@ -8,7 +8,7 @@ def weight(l):
       15
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.weight( )`` to
+      renamed ``seqtools.weight( )`` to
       ``mathtools.weight( )``.
    '''
 

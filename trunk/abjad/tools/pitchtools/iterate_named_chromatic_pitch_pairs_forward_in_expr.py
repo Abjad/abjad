@@ -1,4 +1,4 @@
-from abjad.tools import listtools
+from abjad.tools import seqtools
 
 
 def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):

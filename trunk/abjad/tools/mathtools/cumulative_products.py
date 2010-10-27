@@ -22,7 +22,7 @@ def cumulative_products(l):
       ValueError
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.cumulative_products( )`` to
+      renamed ``seqtools.cumulative_products( )`` to
       ``mathtools.cumulative_products( )``.
    '''
 

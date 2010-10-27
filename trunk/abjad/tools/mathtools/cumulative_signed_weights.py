@@ -45,7 +45,7 @@ def cumulative_signed_weights(l):
       TypeError
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.cumulative_weights_signed( )`` to
+      renamed ``seqtools.cumulative_weights_signed( )`` to
       ``mathtools.cumulative_signed_weights( )``.
    '''
 

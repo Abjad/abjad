@@ -2,7 +2,7 @@ from __future__ import division
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from fractions import Fraction
 from abjad.tools import durtools
-from abjad.tools import listtools
+from abjad.tools import seqtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
@@ -116,10 +116,10 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
 
    ## set lists of pitches and durations to the same length
    size = max(len(durations), len(pitches))
-   #durations = listtools.resize(durations, size)
-   #pitches = listtools.resize(pitches, size)
-   durations = listtools.repeat_sequence_to_length(durations, size)
-   pitches = listtools.repeat_sequence_to_length(pitches, size)
+   #durations = seqtools.resize(durations, size)
+   #pitches = seqtools.resize(pitches, size)
+   durations = seqtools.repeat_sequence_to_length(durations, size)
+   pitches = seqtools.repeat_sequence_to_length(pitches, size)
 
    durations = durtools.group_duration_tokens_by_implied_prolation(durations)
 

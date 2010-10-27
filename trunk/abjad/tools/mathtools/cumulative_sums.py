@@ -24,7 +24,7 @@ def cumulative_sums(l):
       ValueError
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.cumulative_sums( )`` to
+      renamed ``seqtools.cumulative_sums( )`` to
       ``mathtools.cumulative_sums( )``.
    '''
 

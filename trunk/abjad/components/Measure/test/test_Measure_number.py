@@ -31,7 +31,7 @@ def test_Measure_number_03( ):
    assert t[2].number == 3
 
    contents = t[:]
-   contents = listtools.rotate_sequence(contents, -1)
+   contents = seqtools.rotate_sequence(contents, -1)
    t[:] = contents
 
    r'''

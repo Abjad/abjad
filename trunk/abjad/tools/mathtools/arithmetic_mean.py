@@ -25,7 +25,7 @@ def arithmetic_mean(l):
       8.0
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.arithmetic_mean( )`` to
+      renamed ``seqtools.arithmetic_mean( )`` to
       ``mathtools.arithmetic_mean( )``.
    '''
 

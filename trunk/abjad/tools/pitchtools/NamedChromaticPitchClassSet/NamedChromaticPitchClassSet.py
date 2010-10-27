@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools import listtools
+from abjad.tools import seqtools
 from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector import InversionEquivalentDiatonicIntervalClassVector
 from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
@@ -114,7 +114,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
       from abjad.tools.pitchtools.NamedChromaticPitchClassSegment import NamedChromaticPitchClassSegment
       if not len(self) == len(npc_seg):
          raise ValueError('set and segment must be of equal length.')
-      for npcs in listtools.yield_all_permutations_of_sequence(self.named_chromatic_pitch_classes):
+      for npcs in seqtools.yield_all_permutations_of_sequence(self.named_chromatic_pitch_classes):
          candidate_npc_seg = NamedChromaticPitchClassSegment(npcs)
          if candidate_npc_seg.is_equivalent_under_transposition(npc_seg):
             return candidate_npc_seg

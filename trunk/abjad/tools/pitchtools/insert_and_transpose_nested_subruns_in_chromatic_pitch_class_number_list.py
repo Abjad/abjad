@@ -1,6 +1,6 @@
 from abjad.components.Note import Note
 from abjad.tools import componenttools
-from abjad.tools import listtools
+from abjad.tools import seqtools
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
    get_named_chromatic_pitch_from_pitch_carrier
 
@@ -42,11 +42,11 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
       to allow inspection of the structural changes to *notes*
       immediately after the function returns.
       For this reason most calls to this function will be followed
-      by ``notes = listtools.flatten_sequence(notes)``.
+      by ``notes = seqtools.flatten_sequence(notes)``.
 
    ::
 
-      abjad> notes = listtools.flatten_sequence(notes)
+      abjad> notes = seqtools.flatten_sequence(notes)
       abjad> notes
       [0, 5, 7, 2, 4, 0, 6, 11, 7, 9, 5, 10, 6, 8, 11, 7, 4]
 
@@ -82,7 +82,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
          anchor_written_duration = anchor_note.duration.written
          source_start_index = anchor_index + 1
          source_stop_index = source_start_index + subrun_length + 1
-         subrun_source = listtools.get_cyclic(
+         subrun_source = seqtools.get_cyclic(
             notes, source_start_index, source_stop_index)
          subrun_intervals = _get_intervals_in_subrun(subrun_source)
          new_notes = _make_new_notes(
@@ -97,7 +97,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
 def _get_intervals_in_subrun(subrun_source):
    subrun_source = list(subrun_source)
    result = [0]
-   for first, second in listtools.iterate_sequence_pairwise_strict(subrun_source):
+   for first, second in seqtools.iterate_sequence_pairwise_strict(subrun_source):
       first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first)
       second_pitch = get_named_chromatic_pitch_from_pitch_carrier(second)
       interval = abs(second_pitch.numbered_chromatic_pitch) - \

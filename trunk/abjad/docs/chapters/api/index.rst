@@ -435,98 +435,6 @@ lilyfiletools
    tools/lilyfiletools/make_basic_lily_file
 
 
-listtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/listtools/all_are_assignable_integers
-   tools/listtools/all_are_equal
-   tools/listtools/all_are_nonnegative_integer_powers_of_two
-   tools/listtools/all_are_numbers
-   tools/listtools/all_are_unequal
-   tools/listtools/count_runs_of_length_two_in_sequence
-   tools/listtools/flatten_sequence
-   tools/listtools/flatten_sequence_at_indices
-   tools/listtools/generate_all_k_ary_sequences_of_length
-   tools/listtools/generate_all_restricted_growth_functions_of_length
-   tools/listtools/get_cyclic
-   tools/listtools/get_element_at_cyclic_index
-   tools/listtools/get_elements_at_indices
-   tools/listtools/group_by_equality
-   tools/listtools/group_by_sign
-   tools/listtools/group_by_weights
-   tools/listtools/increase_at_indices
-   tools/listtools/increase_cyclic
-   tools/listtools/insert_slice_cyclic
-   tools/listtools/interlace_sequences
-   tools/listtools/is_monotonically_decreasing_sequence
-   tools/listtools/is_monotonically_increasing_sequence
-   tools/listtools/is_repetition_free_sequence
-   tools/listtools/is_restricted_growth_function
-   tools/listtools/is_strictly_decreasing_sequence
-   tools/listtools/is_strictly_increasing_sequence
-   tools/listtools/iterate_sequence_forward_and_backward_nonoverlapping
-   tools/listtools/iterate_sequence_forward_and_backward_overlapping
-   tools/listtools/iterate_sequence_nwise_cyclic
-   tools/listtools/iterate_sequence_nwise_strict
-   tools/listtools/iterate_sequence_nwise_wrapped
-   tools/listtools/iterate_sequence_pairwise_cyclic
-   tools/listtools/iterate_sequence_pairwise_strict
-   tools/listtools/iterate_sequence_pairwise_wrapped
-   tools/listtools/join_subsequences_by_sign
-   tools/listtools/lengths_to_counts
-   tools/listtools/negate_elements_at_indices
-   tools/listtools/negate_elements_at_indices_absolutely
-   tools/listtools/outer_product
-   tools/listtools/overwrite_slices_at
-   tools/listtools/pairs_from_to
-   tools/listtools/pairwise_cumulative_sums_zero
-   tools/listtools/partition_elements_into_canonic_parts
-   tools/listtools/partition_sequence_by_restricted_growth_function
-   tools/listtools/partition_sequence_by_weights
-   tools/listtools/partition_sequence_by_weights_not_less_than
-   tools/listtools/partition_sequence_by_weights_ratio
-   tools/listtools/partition_sequence_cyclically_by_counts_with_overhang
-   tools/listtools/partition_sequence_cyclically_by_counts_without_overhang
-   tools/listtools/partition_sequence_once_by_counts_with_overhang
-   tools/listtools/partition_sequence_once_by_counts_without_overhang
-   tools/listtools/permute_sequence
-   tools/listtools/phasor
-   tools/listtools/remove_consecutive_duplicates_from_sequence
-   tools/listtools/remove_duplicates_from_sequence
-   tools/listtools/remove_elements_at_indices
-   tools/listtools/remove_elements_at_indices_cyclic
-   tools/listtools/remove_weighted_subrun_at
-   tools/listtools/repeat_elements_at_indices
-   tools/listtools/repeat_elements_at_indices_cyclic
-   tools/listtools/repeat_elements_to_count
-   tools/listtools/repeat_sequence_n_times
-   tools/listtools/repeat_sequence_to_length
-   tools/listtools/repeat_sequence_to_weight
-   tools/listtools/repeat_subruns_to_count
-   tools/listtools/replace_elements_cyclic
-   tools/listtools/retain_elements_at_indices
-   tools/listtools/retain_elements_at_indices_cyclic
-   tools/listtools/rotate_sequence
-   tools/listtools/sequence_to_degree_of_rotational_symmetry
-   tools/listtools/sum_by_sign
-   tools/listtools/sum_slices_at
-   tools/listtools/true_indices
-   tools/listtools/truncate_sequence_to_sum
-   tools/listtools/truncate_sequence_to_weight
-   tools/listtools/truncate_subruns
-   tools/listtools/yield_all_combinations_of_sequence
-   tools/listtools/yield_all_partitions_of_sequence
-   tools/listtools/yield_all_permutations_of_sequence
-   tools/listtools/yield_all_rotations_of_sequence
-   tools/listtools/yield_all_set_partitions_of_sequence
-   tools/listtools/yield_all_subsequences_of_sequence
-   tools/listtools/yield_all_unordered_pairs_in_sequence
-   tools/listtools/zip_sequences_cyclic
-   tools/listtools/zip_sequences_nontruncating
-
-
 marktools
 
 .. toctree::
@@ -887,6 +795,98 @@ scoretools
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves
    tools/scoretools/make_pitch_array_score_from_pitch_arrays
+
+
+seqtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/seqtools/all_are_assignable_integers
+   tools/seqtools/all_are_equal
+   tools/seqtools/all_are_nonnegative_integer_powers_of_two
+   tools/seqtools/all_are_numbers
+   tools/seqtools/all_are_unequal
+   tools/seqtools/count_runs_of_length_two_in_sequence
+   tools/seqtools/flatten_sequence
+   tools/seqtools/flatten_sequence_at_indices
+   tools/seqtools/generate_all_k_ary_sequences_of_length
+   tools/seqtools/generate_all_restricted_growth_functions_of_length
+   tools/seqtools/get_cyclic
+   tools/seqtools/get_element_at_cyclic_index
+   tools/seqtools/get_elements_at_indices
+   tools/seqtools/group_by_equality
+   tools/seqtools/group_by_sign
+   tools/seqtools/group_by_weights
+   tools/seqtools/increase_at_indices
+   tools/seqtools/increase_cyclic
+   tools/seqtools/insert_slice_cyclic
+   tools/seqtools/interlace_sequences
+   tools/seqtools/is_monotonically_decreasing_sequence
+   tools/seqtools/is_monotonically_increasing_sequence
+   tools/seqtools/is_repetition_free_sequence
+   tools/seqtools/is_restricted_growth_function
+   tools/seqtools/is_strictly_decreasing_sequence
+   tools/seqtools/is_strictly_increasing_sequence
+   tools/seqtools/iterate_sequence_forward_and_backward_nonoverlapping
+   tools/seqtools/iterate_sequence_forward_and_backward_overlapping
+   tools/seqtools/iterate_sequence_nwise_cyclic
+   tools/seqtools/iterate_sequence_nwise_strict
+   tools/seqtools/iterate_sequence_nwise_wrapped
+   tools/seqtools/iterate_sequence_pairwise_cyclic
+   tools/seqtools/iterate_sequence_pairwise_strict
+   tools/seqtools/iterate_sequence_pairwise_wrapped
+   tools/seqtools/join_subsequences_by_sign
+   tools/seqtools/lengths_to_counts
+   tools/seqtools/negate_elements_at_indices
+   tools/seqtools/negate_elements_at_indices_absolutely
+   tools/seqtools/outer_product
+   tools/seqtools/overwrite_slices_at
+   tools/seqtools/pairs_from_to
+   tools/seqtools/pairwise_cumulative_sums_zero
+   tools/seqtools/partition_elements_into_canonic_parts
+   tools/seqtools/partition_sequence_by_restricted_growth_function
+   tools/seqtools/partition_sequence_by_weights
+   tools/seqtools/partition_sequence_by_weights_not_less_than
+   tools/seqtools/partition_sequence_by_weights_ratio
+   tools/seqtools/partition_sequence_cyclically_by_counts_with_overhang
+   tools/seqtools/partition_sequence_cyclically_by_counts_without_overhang
+   tools/seqtools/partition_sequence_once_by_counts_with_overhang
+   tools/seqtools/partition_sequence_once_by_counts_without_overhang
+   tools/seqtools/permute_sequence
+   tools/seqtools/phasor
+   tools/seqtools/remove_consecutive_duplicates_from_sequence
+   tools/seqtools/remove_duplicates_from_sequence
+   tools/seqtools/remove_elements_at_indices
+   tools/seqtools/remove_elements_at_indices_cyclic
+   tools/seqtools/remove_weighted_subrun_at
+   tools/seqtools/repeat_elements_at_indices
+   tools/seqtools/repeat_elements_at_indices_cyclic
+   tools/seqtools/repeat_elements_to_count
+   tools/seqtools/repeat_sequence_n_times
+   tools/seqtools/repeat_sequence_to_length
+   tools/seqtools/repeat_sequence_to_weight
+   tools/seqtools/repeat_subruns_to_count
+   tools/seqtools/replace_elements_cyclic
+   tools/seqtools/retain_elements_at_indices
+   tools/seqtools/retain_elements_at_indices_cyclic
+   tools/seqtools/rotate_sequence
+   tools/seqtools/sequence_to_degree_of_rotational_symmetry
+   tools/seqtools/sum_by_sign
+   tools/seqtools/sum_slices_at
+   tools/seqtools/true_indices
+   tools/seqtools/truncate_sequence_to_sum
+   tools/seqtools/truncate_sequence_to_weight
+   tools/seqtools/truncate_subruns
+   tools/seqtools/yield_all_combinations_of_sequence
+   tools/seqtools/yield_all_partitions_of_sequence
+   tools/seqtools/yield_all_permutations_of_sequence
+   tools/seqtools/yield_all_rotations_of_sequence
+   tools/seqtools/yield_all_set_partitions_of_sequence
+   tools/seqtools/yield_all_subsequences_of_sequence
+   tools/seqtools/yield_all_unordered_pairs_in_sequence
+   tools/seqtools/zip_sequences_cyclic
+   tools/seqtools/zip_sequences_nontruncating
 
 
 skiptools

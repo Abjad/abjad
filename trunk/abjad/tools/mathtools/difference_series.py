@@ -8,7 +8,7 @@ def difference_series(l):
       [0, 1, 1, 2, 0, 1]
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.difference_series( )`` to
+      renamed ``seqtools.difference_series( )`` to
       ``mathtools.difference_series( )``.
    '''
 

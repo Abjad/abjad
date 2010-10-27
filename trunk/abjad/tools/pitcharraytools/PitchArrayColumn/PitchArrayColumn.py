@@ -1,5 +1,5 @@
 from abjad.core import _StrictComparator
-from abjad.tools import listtools
+from abjad.tools import seqtools
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 
 
@@ -168,7 +168,7 @@ class PitchArrayColumn(_StrictComparator):
 
    @property
    def has_voice_crossing(self):
-      for upper, lower in listtools.iterate_sequence_pairwise_strict(self.cells):
+      for upper, lower in seqtools.iterate_sequence_pairwise_strict(self.cells):
          for lower_pitch in lower.pitches:
             for upper_pitch in upper.pitches:
                if upper_pitch.numbered_chromatic_pitch < lower_pitch.numbered_chromatic_pitch:

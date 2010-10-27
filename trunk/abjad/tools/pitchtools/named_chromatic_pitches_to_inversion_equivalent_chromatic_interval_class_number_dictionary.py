@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools import listtools
+from abjad.tools import seqtools
 
 
 def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
@@ -58,7 +58,7 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
          raise ValueError
       numbers.append(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
 
-   pairs = listtools.yield_all_unordered_pairs_in_sequence(numbers)
+   pairs = seqtools.yield_all_unordered_pairs_in_sequence(numbers)
 
    intervals = [ ]
 

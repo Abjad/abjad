@@ -86,8 +86,8 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
       return NamedChromaticPitchClassSegment(reversed(self))
 
    def rotate(self, n):
-      from abjad.tools import listtools
-      named_chromatic_pitch_classes = listtools.rotate_sequence(
+      from abjad.tools import seqtools
+      named_chromatic_pitch_classes = seqtools.rotate_sequence(
          self.named_chromatic_pitch_classes, n)
       return NamedChromaticPitchClassSegment(named_chromatic_pitch_classes)
       

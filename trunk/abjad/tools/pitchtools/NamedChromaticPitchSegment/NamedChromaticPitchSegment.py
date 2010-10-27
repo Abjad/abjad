@@ -1,4 +1,4 @@
-from abjad.tools import listtools
+from abjad.tools import seqtools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._PitchSegment import _PitchSegment
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
