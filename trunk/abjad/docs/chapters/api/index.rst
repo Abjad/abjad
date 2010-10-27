@@ -471,7 +471,6 @@ listtools
    tools/listtools/iterate_sequence_nwise_cyclic
    tools/listtools/iterate_sequence_nwise_strict
    tools/listtools/iterate_sequence_nwise_wrapped
-   tools/listtools/iterate_sequence_pairwise
    tools/listtools/iterate_sequence_pairwise_cyclic
    tools/listtools/iterate_sequence_pairwise_strict
    tools/listtools/iterate_sequence_pairwise_wrapped
