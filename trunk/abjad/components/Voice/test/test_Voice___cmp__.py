@@ -28,8 +28,8 @@ def test_Voice___cmp___02( ):
    voice_1 = Voice([ ])
    voice_2 = Voice([ ])
 
-   assert not voice_1 == voice_2
-   assert     voice_1 != voice_2
+   assert     voice_1 == voice_2
+   assert not voice_1 != voice_2
 
    comparison_string = 'voice_1 <  voice_2'
    assert py.test.raises(NotImplementedError, comparison_string)

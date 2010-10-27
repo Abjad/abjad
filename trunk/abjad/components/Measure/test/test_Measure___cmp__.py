@@ -28,8 +28,8 @@ def test_Measure___cmp___02( ):
    measure_1 = Measure((3, 8), macros.scale(3))
    measure_2 = Measure((3, 8), macros.scale(3))
 
-   assert not measure_1 == measure_2
-   assert     measure_1 != measure_2
+   assert     measure_1 == measure_2
+   assert not measure_1 != measure_2
 
    comparison_string = 'measure_1 <  measure_2'
    assert py.test.raises(NotImplementedError, comparison_string)

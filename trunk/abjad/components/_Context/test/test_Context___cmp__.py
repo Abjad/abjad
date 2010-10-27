@@ -29,8 +29,8 @@ def test_Context___cmp___02( ):
    context_1 = _Context([ ])
    context_2 = _Context([ ])
 
-   assert not context_1 == context_2
-   assert     context_1 != context_2
+   assert     context_1 == context_2
+   assert not context_1 != context_2
 
    comparison_string = 'context_1 <  context_2'
    assert py.test.raises(NotImplementedError, comparison_string)

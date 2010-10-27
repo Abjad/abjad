@@ -28,8 +28,8 @@ def test_Tuplet___cmp___02( ):
    tuplet_1 = Tuplet((2, 3), macros.scale(3))
    tuplet_2 = Tuplet((2, 3), macros.scale(3))
 
-   assert not tuplet_1 == tuplet_2
-   assert     tuplet_1 != tuplet_2
+   assert     tuplet_1 == tuplet_2
+   assert not tuplet_1 != tuplet_2
 
    comparison_string = 'tuplet_1 <  tuplet_2'
    assert py.test.raises(NotImplementedError, comparison_string)

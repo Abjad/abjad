@@ -22,5 +22,28 @@ def test_listtools_yield_all_rotations_of_sequence_03( ):
    '''
 
    container = Container("c'8 d'8 e'8")
-   #rotations = list(listtools.yield_all_rotations_of_sequence(container, -1))
-   pass
+   rotations = list(listtools.yield_all_rotations_of_sequence(container, -1))
+   staff = Staff(rotations)
+
+   r'''
+   \new Staff {
+      {
+         c'8
+         d'8
+         e'8
+      }
+      {
+         d'8
+         e'8
+         c'8
+      }
+      {
+         e'8
+         c'8
+         d'8
+      }
+   }
+   '''
+
+   assert componenttools.is_well_formed_component(staff)
+   assert staff.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\td'8\n\t\te'8\n\t\tc'8\n\t}\n\t{\n\t\te'8\n\t\tc'8\n\t\td'8\n\t}\n}"
