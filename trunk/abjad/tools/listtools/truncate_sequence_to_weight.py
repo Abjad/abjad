@@ -2,13 +2,13 @@ from abjad.tools import mathtools
 from abjad.tools.mathtools.weight import weight
 
 
-def truncate_to_weight(l, total):
+def truncate_sequence_to_weight(l, total):
    '''Truncate list *l* such that ``mathtools.weight(l) == total``.
 
    ::
 
       abjad> for x in range(10):
-      ...     print x, listtools.truncate_to_weight([-2, 2, -2], x)
+      ...     print x, listtools.truncate_sequence_to_weight([-2, 2, -2], x)
       ... 
       0 [ ]
       1 [-1]
@@ -25,7 +25,7 @@ def truncate_to_weight(l, total):
 
       abjad> l = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
       abjad> for x in range(10):
-      ...     print x, listtools.truncate_to_weight(l, x)
+      ...     print x, listtools.truncate_sequence_to_weight(l, x)
       ... 
       0 [ ]
       1 [-1]
@@ -40,18 +40,22 @@ def truncate_to_weight(l, total):
 
    Return empty list when ``total == 0``::
 
-      abjad> listtools.truncate_to_weight([1, 2, 3, 4, 5], 0)
+      abjad> listtools.truncate_sequence_to_weight([1, 2, 3, 4, 5], 0)
       [ ]
 
    Raise :exc:`TypeError` when *l* is not a list::
 
-      abjad> listtools.truncate_to_weight('foo', 4)
+      abjad> listtools.truncate_sequence_to_weight('foo', 4)
       TypeError
 
    Raise :exc:`ValueError` on negative *total*::
 
-      abjad> listtools.truncate_to_weight([2, 2, 2], -4)
+      abjad> listtools.truncate_sequence_to_weight([2, 2, 2], -4)
       ValueError
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.truncate_to_weight( )`` to
+      ``listtools.truncate_sequence_to_weight( )``.
    '''
 
    if not isinstance(l, list):

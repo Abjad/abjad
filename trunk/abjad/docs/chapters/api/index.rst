@@ -513,9 +513,9 @@ listtools
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
    tools/listtools/true_indices
+   tools/listtools/truncate_sequence_to_sum
+   tools/listtools/truncate_sequence_to_weight
    tools/listtools/truncate_subruns
-   tools/listtools/truncate_to_sum
-   tools/listtools/truncate_to_weight
    tools/listtools/yield_all_combinations_of_sequence
    tools/listtools/yield_all_partitions_of_sequence
    tools/listtools/yield_all_permutations_of_sequence
@@ -523,8 +523,8 @@ listtools
    tools/listtools/yield_all_set_partitions_of_sequence
    tools/listtools/yield_all_subsequences_of_sequence
    tools/listtools/yield_all_unordered_pairs_in_sequence
-   tools/listtools/zip_cyclic
-   tools/listtools/zip_nontruncating
+   tools/listtools/zip_sequences_cyclic
+   tools/listtools/zip_sequences_nontruncating
 
 
 marktools

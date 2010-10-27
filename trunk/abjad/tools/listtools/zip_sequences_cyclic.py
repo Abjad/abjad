@@ -2,12 +2,12 @@ from __future__ import division
 import math
 
 
-def zip_cyclic(*iterables):
+def zip_sequences_cyclic(*iterables):
    '''Like Python :func:`zip`, but return a list of length equal
    to the iterable of greatest length in `iterables` and cycle
    over the elements of the iterables of shorter length. ::
 
-      abjad> listtools.zip_cyclic([1, 2, 3], ['a', 'b'])
+      abjad> listtools.zip_sequences_cyclic([1, 2, 3], ['a', 'b'])
       [(1, 'a'), (2, 'b'), (3, 'a')]
 
    .. versionadded:: 1.1.1
@@ -18,8 +18,12 @@ def zip_cyclic(*iterables):
       abjad> a = [10, 11, 12]
       abjad> b = [20, 21]
       abjad> c = [30, 31, 32, 33]
-      abjad> listtools.zip_cyclic(a, b, c)
+      abjad> listtools.zip_sequences_cyclic(a, b, c)
       [(10, 20, 30), (11, 21, 31), (12, 20, 32), (10, 21, 33)]
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.zip_cyclic( )`` to
+      ``listtools.zip_sequences_cyclic( )``.
    '''
 
    ## make sure iterables are, in fact, all iterables

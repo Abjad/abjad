@@ -1,10 +1,10 @@
-def truncate_to_sum(l, total):
+def truncate_sequence_to_sum(l, total):
    '''Truncate list *l* such that ``sum(l) == total``.
 
    ::
 
       abjad> for n in range(10):
-      ...     print n, listtools.truncate_to_sum([2, 2, 2], n)
+      ...     print n, listtools.truncate_sequence_to_sum([2, 2, 2], n)
       ... 
       0 [ ]
       1 [1]
@@ -21,7 +21,7 @@ def truncate_to_sum(l, total):
 
       abjad> l = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
       abjad> for n in range(10):
-      ...     print n, listtools.truncate_to_sum(l, n)
+      ...     print n, listtools.truncate_sequence_to_sum(l, n)
       ... 
       0 [ ]
       1 [-1, 2]
@@ -36,18 +36,22 @@ def truncate_to_sum(l, total):
 
    Return empty list when ``total == 0``::
 
-      abjad> listtools.truncate_to_sum([1, 2, 3, 4, 5], 0)
+      abjad> listtools.truncate_sequence_to_sum([1, 2, 3, 4, 5], 0)
       [ ]
 
    Raise :exc:`TypeError` when *l* is not a list::
 
-      abjad> listtools.truncate_to_sum('foo', 4)
+      abjad> listtools.truncate_sequence_to_sum('foo', 4)
       TypeError
 
    Raise :exc:`ValueError` on negative *total*::
 
-      abjad> listtools.truncate_to_sum([2, 2, 2], -4)
+      abjad> listtools.truncate_sequence_to_sum([2, 2, 2], -4)
       ValueError
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.truncate_to_sum( )`` to
+      ``listtools.truncate_sequence_to_sum( )``.
    '''
 
    if not isinstance(l, list):

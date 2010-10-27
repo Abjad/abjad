@@ -1,5 +1,5 @@
 from abjad.tools.listtools.flatten_sequence import flatten_sequence
-from abjad.tools.listtools.zip_nontruncating import zip_nontruncating
+from abjad.tools.listtools.zip_sequences_nontruncating import zip_sequences_nontruncating
 
 
 def interlace_sequences(*iterables):
@@ -23,7 +23,7 @@ def interlace_sequences(*iterables):
       ``listtools.interlace_sequences( )``.
    '''
 
-   zipped_iterables = zip_nontruncating(*iterables)
+   zipped_iterables = zip_sequences_nontruncating(*iterables)
    flattened_iterables = flatten_sequence(zipped_iterables, depth = 1)
 
    return flattened_iterables
