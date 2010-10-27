@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_listtools_nwise_cyclic_01( ):
+def test_listtools_iterate_sequence_nwise_cyclic_01( ):
 
-   g = listtools.nwise_cyclic(range(6), 3)
+   g = listtools.iterate_sequence_nwise_cyclic(range(6), 3)
    
    assert g.next( ) == (0, 1, 2)
    assert g.next( ) == (1, 2, 3)

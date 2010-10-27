@@ -1,9 +1,9 @@
-def nwise_cyclic(iterable, n):
+def iterate_sequence_nwise_cyclic(iterable, n):
    '''.. versionadded:: 1.1.2
 
    Yield elements in `iterable` cyclically `n` at a time. ::
 
-      abjad> g = listtools.nwise_cyclic(range(6), 3)
+      abjad> g = listtools.iterate_sequence_nwise_cyclic(range(6), 3)
       abjad> for n in range(10):
       ...   print g.next( )
       (0, 1, 2)
@@ -16,6 +16,10 @@ def nwise_cyclic(iterable, n):
       (1, 2, 3)
       (2, 3, 4)
       (3, 4, 5)
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.nwise_cyclic( )`` to
+      ``listtools.iterate_sequence_nwise_cyclic( )``.
    '''
 
    buffer = [ ]

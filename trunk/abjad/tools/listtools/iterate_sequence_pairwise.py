@@ -1,4 +1,4 @@
-def pairwise(iter, mode = None):
+def iterate_sequence_pairwise(iter, mode = None):
    '''Yield adjacent element pairs in `iter`.
 
    Options for `mode`:
@@ -10,18 +10,22 @@ def pairwise(iter, mode = None):
 
    ::
 
-      abjad> list(listtools.pairwise(range(6)))
+      abjad> list(listtools.iterate_sequence_pairwise(range(6)))
       [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
 
    ::
 
-      abjad> list(listtools.pairwise(range(6), 'wrap'))
+      abjad> list(listtools.iterate_sequence_pairwise(range(6), 'wrap'))
       [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]
 
    ::
 
-      abjad> list(listtools.pairwise(range(6), 9))
+      abjad> list(listtools.iterate_sequence_pairwise(range(6), 9))
       [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0), (0, 1), (1, 2), (2, 3)]
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.pairwise( )`` to
+      ``listtools.iterate_sequence_pairwise( )``.
    '''
 
    if mode is None:

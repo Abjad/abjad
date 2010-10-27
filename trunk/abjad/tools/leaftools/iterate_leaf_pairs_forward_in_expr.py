@@ -63,7 +63,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
    '''
 
    vertical_moments = iterate_vertical_moments_forward_in_expr(expr)
-   for moment_1, moment_2 in listtools.pairwise(vertical_moments):
+   for moment_1, moment_2 in listtools.iterate_sequence_pairwise(vertical_moments):
       for pair in listtools.yield_all_unordered_pairs_in_sequence(moment_1.start_leaves):
          yield pair
       pairs = listtools.pairs_from_to(moment_1.leaves, moment_2.start_leaves)

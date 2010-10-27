@@ -460,25 +460,25 @@ listtools
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
    tools/listtools/interlace_sequences
-   tools/listtools/is_decreasing_monotonically
-   tools/listtools/is_decreasing_strictly
-   tools/listtools/is_increasing_monotonically
-   tools/listtools/is_increasing_strictly
-   tools/listtools/is_repetition_free
+   tools/listtools/is_monotonically_decreasing_sequence
+   tools/listtools/is_monotonically_increasing_sequence
+   tools/listtools/is_repetition_free_sequence
    tools/listtools/is_restricted_growth_function
+   tools/listtools/is_strictly_decreasing_sequence
+   tools/listtools/is_strictly_increasing_sequence
    tools/listtools/iterate_sequence_forward_and_backward_nonoverlapping
    tools/listtools/iterate_sequence_forward_and_backward_overlapping
-   tools/listtools/join_sublists_by_sign
+   tools/listtools/iterate_sequence_nwise_cyclic
+   tools/listtools/iterate_sequence_nwise_strict
+   tools/listtools/iterate_sequence_nwise_wrapped
+   tools/listtools/iterate_sequence_pairwise
+   tools/listtools/join_subsequences_by_sign
    tools/listtools/lengths_to_counts
    tools/listtools/negate_elements_at_indices
    tools/listtools/negate_elements_at_indices_absolutely
-   tools/listtools/nwise_cyclic
-   tools/listtools/nwise_strict
-   tools/listtools/nwise_wrapped
    tools/listtools/outer_product
    tools/listtools/overwrite_slices_at
    tools/listtools/pairs_from_to
-   tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums_zero
    tools/listtools/partition_by_restricted_growth_function
    tools/listtools/partition_by_weights

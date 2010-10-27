@@ -2,18 +2,22 @@ from abjad.tools.mathtools.get_shared_numeric_sign import \
    get_shared_numeric_sign
 
 
-def join_sublists_by_sign(l):
+def join_subsequences_by_sign(l):
    '''Join sublists in list `l` by sign::
 
       abjad> l = [[1, 2], [3, 4], [-5, -6, -7], [-8, -9, -10], [11, 12]]
-      abjad> t = listtools.join_sublists_by_sign(l)
+      abjad> t = listtools.join_subsequences_by_sign(l)
       [[1, 2, 3, 4], [-5, -6, -7, -8, -9, -10], [11, 12]]
 
    ::
 
       abjad> l = [[1, 2], [ ], [ ], [3, 4, 5], [6, 7]]
-      abjad> t = listtools.join_sublists_by_sign(l)
+      abjad> t = listtools.join_subsequences_by_sign(l)
       [[1, 2], [ ], [3, 4, 5, 6, 7]]
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.join_sublists_by_sign( )`` to
+      ``listtools.join_subsequences_by_sign( )``.
    '''
 
    if not isinstance(l, list):

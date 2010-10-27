@@ -54,7 +54,7 @@ def list_nonspanning_subarrays_of_pitch_array(pitch_array):
 
    array_depth = pitch_array.depth
    subarrays = [ ]
-   for start_column, stop_column in listtools.pairwise(unspanned_indices):
+   for start_column, stop_column in listtools.iterate_sequence_pairwise(unspanned_indices):
       upper_left_pair = (0, start_column)
       lower_right_pair = (array_depth, stop_column)
       subarray = pitch_array.copy_subarray(upper_left_pair, lower_right_pair)

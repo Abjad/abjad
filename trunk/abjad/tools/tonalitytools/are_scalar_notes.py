@@ -24,7 +24,7 @@ def are_scalar_notes(*expr):
    '''
 
    direction_string = None
-   for left, right in listtools.pairwise(componenttools.iterate_components_forward_in_expr(expr, Note)):
+   for left, right in listtools.iterate_sequence_pairwise(componenttools.iterate_components_forward_in_expr(expr, Note)):
       try:
          assert not (left.pitch == right.pitch)
          mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(left, right)
