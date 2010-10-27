@@ -2,20 +2,6 @@ from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._PitchSegment import _PitchSegment
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
-from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
-from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment import \
-   InversionEquivalentChromaticIntervalClassSegment
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet import \
-   InversionEquivalentChromaticIntervalClassSet
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector import \
-   InversionEquivalentChromaticIntervalClassVector
-from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
-from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
-from abjad.tools.pitchtools.NumberedChromaticPitchClassVector import NumberedChromaticPitchClassVector
-from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
-from abjad.tools.pitchtools.NamedChromaticPitchVector import NamedChromaticPitchVector
 
 
 class NamedChromaticPitchSegment(_PitchSegment):
@@ -29,14 +15,18 @@ class NamedChromaticPitchSegment(_PitchSegment):
    Named chromtic pitch segments are immutable.
    '''
 
-   def __new__(self, pitch_tokens):
-      pitches = [NamedChromaticPitch(x) for x in pitch_tokens]
+   #def __new__(self, pitch_tokens):
+   def __new__(self, *args):
+      if len(args) == 1 and isinstance(args[0], str):
+            pitches = [NamedChromaticPitch(x) for x in args[0].split( )]
+      else:
+         pitches = [NamedChromaticPitch(x) for x in args[0]]
       return tuple.__new__(self, pitches)
 
    ## OVERLOADS ##
 
    def __repr__(self):
-      return '%s([%s])' % (self.__class__.__name__, self._repr_string)
+      return '%s("%s")' % (self.__class__.__name__, self._repr_string)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -46,7 +36,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def _repr_string(self):
-      return ', '.join([repr(str(x)) for x in self])
+      return ' '.join([str(x) for x in self])
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -57,9 +47,10 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def harmonic_chromatic_interval_segment(self):
+      from abjad.tools import pitchtools
       result = list(mathtools.difference_series(self.numbers))
       result = [-x for x in result]
-      return HarmonicChromaticIntervalSegment(result)
+      return pitchtools.HarmonicChromaticIntervalSegment(result)
 
    @property
    def harmonic_diatonic_interval_class_segment(self):
@@ -67,6 +58,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def harmonic_diatonic_interval_segment(self):
+      from abjad.tools import pitchtools
       result = list(mathtools.difference_series(self.pitches))
       result = [-x for x in result]
       return HarmonicDiatonicIntervalSegment(result)
@@ -77,21 +69,24 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def interval_class_segment(self):
+      from abjad.tools import pitchtools
       pitch_classes = self.pitch_class_segment
       interval_classes = mathtools.difference_series(pitch_classes)
-      return InversionEquivalentChromaticIntervalClassSegment(interval_classes)
+      return pitchtools.InversionEquivalentChromaticIntervalClassSegment(interval_classes)
 
    @property
    def interval_class_set(self):
+      from abjad.tools import pitchtools
       pitch_classes = self.pitch_class_segment
       interval_classes = mathtools.difference_series(pitch_classes)
-      return InversionEquivalentChromaticIntervalClassSet(interval_classes)
+      return pitchtools.InversionEquivalentChromaticIntervalClassSet(interval_classes)
       
    @property
    def interval_class_vector(self):
+      from abjad.tools import pitchtools
       pitch_classes = self.pitch_class_segment
       interval_classes = mathtools.difference_series(pitch_classes)
-      return InversionEquivalentChromaticIntervalClassVector(interval_classes)
+      return pitchtools.InversionEquivalentChromaticIntervalClassVector(interval_classes)
       
    @property
    def local_minima(self):
@@ -119,8 +114,9 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def melodic_chromatic_interval_segment(self):
+      from abjad.tools import pitchtools
       result = list(mathtools.difference_series(self.numbers))
-      return MelodicChromaticIntervalSegment(result)
+      return pitchtools.MelodicChromaticIntervalSegment(result)
 
    @property
    def melodic_diatonic_interval_class_segment(self):
@@ -128,9 +124,10 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def melodic_diatonic_interval_segment(self):
+      from abjad.tools import pitchtools
       result = list(mathtools.difference_series(self.pitches))
       result = [-x for x in result]
-      return MelodicDiatonicIntervalSegment(result)
+      return pitchtools.MelodicDiatonicIntervalSegment(result)
 
    @property
    def numbers(self):
@@ -138,24 +135,28 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def pitch_class_segment(self):
-      from abjad.tools.pitchtools.NumberedChromaticPitchClassSegment import NumberedChromaticPitchClassSegment
-      return NumberedChromaticPitchClassSegment([pitch.pitch_class for pitch in self])
+      from abjad.tools import pitchtools
+      return pitchtools.NumberedChromaticPitchClassSegment([pitch.pitch_class for pitch in self])
 
    @property
    def pitch_class_set(self):
-      return NumberedChromaticPitchClassSet([pitch.pitch_class for pitch in self])
+      from abjad.tools import pitchtools
+      return pitchtools.NumberedChromaticPitchClassSet([pitch.pitch_class for pitch in self])
 
    @property
    def pitch_class_vector(self):
-      return PitchClassVector([pitch.pitch_class for pitch in self])
+      from abjad.tools import pitchtools
+      return pitchtools.PitchClassVector([pitch.pitch_class for pitch in self])
 
    @property
    def pitch_set(self):
-      return NamedChromaticPitchSet(self[:])
+      from abjad.tools import pitchtools
+      return pitchtools.NamedChromaticPitchSet(self[:])
 
    @property
    def pitch_vector(self):
-      return PitchVector(self.pitches)
+      from abjad.tools import pitchtools
+      return pitchtools.PitchVector(self.pitches)
 
    @property
    def pitches(self):
@@ -167,4 +168,4 @@ class NamedChromaticPitchSegment(_PitchSegment):
       '''Transpose pitches in pitch segment by melodic interval
       and emit new pitch segment.'''
       pitches = [pitch + melodic_interval for pitch in self]
-      return NamedChromaticPitchSegment(pitches)
+      return type(self)(pitches)

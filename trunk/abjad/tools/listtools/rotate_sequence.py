@@ -1,26 +1,32 @@
-def rotate_sequence(l, n):
-   '''When `n` is positive, rotate the elements in `l` `n` places
-   to the right. When `n` is negative, rotate the elements in `l`
-   `n` places to the left.
-   
-   ::
+import copy
 
-      abjad> l = range(10)
-      abjad> listtools.rotate_sequence(l, -3)
+
+def rotate_sequence(sequence, n):
+   '''Rotate `sequence` to the right::
+
+      abjad> listtools.rotate_sequence(range(10), 4)
+      [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
+
+   Rotate `sequence` to the left::
+
+      abjad> listtools.rotate_sequence(range(10)), -3)
       [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]
 
-   ::
+   Rotate `sequence` neither to the right nor the left::
 
-      abjad> listtools.rotate_sequence(l, 4)
-      [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
+      abjad> listtools.rotate_sequence(range(10), 0)
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+   Return newly created `sequence` type.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.rotate( )`` to
       ``listtools.rotate_sequence( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``listtools.rotate_iterable( )`` to
-      ``listtools.rotate_sequence( )``.
    '''
 
-   return l[-n:] + l[:-n]
+   result = [ ]
+
+   for element in sequence[-n:] + sequence[:-n]:
+      result.append(copy.copy(element))
+
+   return type(sequence)(result)

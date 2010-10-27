@@ -10,7 +10,7 @@ def test_NamedChromticPitchSegment___repr___01( ):
    named_chromatic_pitch_segment_1 = pitchtools.NamedChromaticPitchSegment(ncps)
    named_chromatic_pitch_segment_2 = eval(repr(named_chromatic_pitch_segment_1))
 
-   '''NamedChromaticPitchSegment(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])'''
+   '''NamedChromaticPitchSegment("bf bqf fs' g' bqf g'")'''
 
    assert isinstance(named_chromatic_pitch_segment_1, pitchtools.NamedChromaticPitchSegment)
    assert isinstance(named_chromatic_pitch_segment_2, pitchtools.NamedChromaticPitchSegment)

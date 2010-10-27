@@ -1,25 +1,28 @@
 from abjad.tools.listtools.rotate_sequence import rotate_sequence
 
 
-def yield_all_rotations_of_sequence(sequence):
+def yield_all_rotations_of_sequence(sequence, n = 1):
    '''.. versionadded:: 1.1.2
 
-   Yield all rotations of `sequence`::
+   Yield all `n`-rotations of `sequence` up to identity::
 
-      abjad> for rotation in listtools.yield_all_rotations_of_sequence(range(5)):
-      ...   rotation
-      [0, 1, 2, 3, 4] 
-      [1, 2, 3, 4, 0] 
-      [2, 3, 4, 0, 1] 
-      [3, 4, 0, 1, 2] 
-      [4, 0, 1, 2, 3]
+      abjad> list(listtools.yield_all_rotations_of_sequence([1, 2, 3, 4], -1))
+      [[1, 2, 3, 4], [2, 3, 4, 1], [3, 4, 1, 2], [4, 1, 2, 3]]
 
-   Return generator of newly created `sequence` slices.
+   Return generator of `sequence` types.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.all_rotations( )`` to
       ``listtools.yield_all_rotations_of_sequence( )``.
    '''
 
-   for i in range(len(sequence)):
-      yield rotate_sequence(sequence, -i)
+   yield rotate_sequence(sequence, 0)
+
+   index = n
+   while True:
+      rotation = rotate_sequence(sequence, index)
+      if rotation == sequence:
+         break
+      else:
+         yield rotation
+      index += n
