@@ -1,4 +1,4 @@
-from abjad.tools.listtools.iterate_sequence_pairwise import iterate_sequence_pairwise
+from abjad.tools.listtools.iterate_sequence_pairwise_strict import iterate_sequence_pairwise_strict
 
 
 def count_runs_of_length_two_in_sequence(iterable):
@@ -16,7 +16,7 @@ def count_runs_of_length_two_in_sequence(iterable):
    '''
 
    total_repetitions = 0
-   for left, right in iterate_sequence_pairwise(iterable):
+   for left, right in iterate_sequence_pairwise_strict(iterable):
       if left == right:
          total_repetitions += 1
 

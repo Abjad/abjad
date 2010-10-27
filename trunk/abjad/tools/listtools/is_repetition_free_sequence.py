@@ -1,4 +1,4 @@
-from abjad.tools.listtools.iterate_sequence_pairwise import iterate_sequence_pairwise
+from abjad.tools.listtools.iterate_sequence_pairwise_strict import iterate_sequence_pairwise_strict
 
 
 def is_repetition_free_sequence(iterable):
@@ -20,7 +20,7 @@ def is_repetition_free_sequence(iterable):
       ``listtools.is_repetition_free_sequence( )``.
    '''
 
-   for left, right in iterate_sequence_pairwise(iterable):
+   for left, right in iterate_sequence_pairwise_strict(iterable):
       if left == right:
          return False
    return True

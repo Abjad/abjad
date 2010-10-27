@@ -93,7 +93,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
    if wrap:
       pairs = listtools.iterate_sequence_pairwise_wrapped(pitch_carriers)
    else:
-      pairs = listtools.iterate_sequence_pairwise(pitch_carriers)
+      pairs = listtools.iterate_sequence_pairwise_strict(pitch_carriers)
 
    for first_carrier, second_carrier in pairs:
       first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first_carrier)

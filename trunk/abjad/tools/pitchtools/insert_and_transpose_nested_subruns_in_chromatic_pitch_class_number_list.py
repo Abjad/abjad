@@ -97,7 +97,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
 def _get_intervals_in_subrun(subrun_source):
    subrun_source = list(subrun_source)
    result = [0]
-   for first, second in listtools.iterate_sequence_pairwise(subrun_source):
+   for first, second in listtools.iterate_sequence_pairwise_strict(subrun_source):
       first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first)
       second_pitch = get_named_chromatic_pitch_from_pitch_carrier(second)
       interval = abs(second_pitch.numbered_chromatic_pitch) - \

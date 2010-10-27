@@ -77,6 +77,6 @@ def clone_and_partition_governed_component_subtree_by_leaf_counts(container, lea
 
    result = [ ]
    sums = mathtools.cumulative_sums_zero(leaf_counts)
-   for start, stop in listtools.iterate_sequence_pairwise(sums):
+   for start, stop in listtools.iterate_sequence_pairwise_strict(sums):
       result.append(clone_governed_component_subtree_by_leaf_range(container, start, stop))
    return result

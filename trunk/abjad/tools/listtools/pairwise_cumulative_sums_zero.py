@@ -1,7 +1,7 @@
 from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools.mathtools.cumulative_sums_zero import cumulative_sums_zero
-from abjad.tools.listtools.iterate_sequence_pairwise import iterate_sequence_pairwise
+from abjad.tools.listtools.iterate_sequence_pairwise_strict import iterate_sequence_pairwise_strict
 
 
 def pairwise_cumulative_sums_zero(l):
@@ -15,4 +15,4 @@ def pairwise_cumulative_sums_zero(l):
    Note that this function returns a generator.
    '''
 
-   return iterate_sequence_pairwise(cumulative_sums_zero(l))
+   return iterate_sequence_pairwise_strict(cumulative_sums_zero(l))

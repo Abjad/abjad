@@ -17,28 +17,13 @@ def test_listtools_iterate_sequence_pairwise_02( ):
 
 
 def test_listtools_iterate_sequence_pairwise_03( ):
-   '''Wrapped pairwise.'''
-   t = range(6)
-   pairs = listtools.iterate_sequence_pairwise(t, 'wrap')
-   assert list(pairs) == [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]
-
-
-def test_listtools_iterate_sequence_pairwise_04( ):
    '''Counted pairwise.'''
    t = range(6)
    pairs = listtools.iterate_sequence_pairwise(t, 10)
    assert list(pairs) == [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0), (0, 1), (1, 2), (2, 3), (3, 4)]
 
 
-def test_listtools_iterate_sequence_pairwise_05( ):
-   '''Cyclic pairwise.'''
-   t = range(6)
-   pairs = listtools.iterate_sequence_pairwise(t, 'cycle')
-   for x in range(100):
-      assert pairs.next( )
-
-
-def test_listtools_iterate_sequence_pairwise_06( ):
+def test_listtools_iterate_sequence_pairwise_04( ):
    '''Works on generators.'''
    t = xrange(6)
    pairs = listtools.iterate_sequence_pairwise(t)
