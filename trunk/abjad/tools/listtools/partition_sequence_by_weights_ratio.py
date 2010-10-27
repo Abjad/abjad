@@ -2,7 +2,7 @@ from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools.mathtools.cumulative_sums import cumulative_sums
 from abjad.tools.listtools.flatten_sequence import flatten_sequence
-from abjad.tools.listtools.weight import weight
+from abjad.tools.mathtools.weight import weight
 
 
 def partition_sequence_by_weights_ratio(l, ratio):

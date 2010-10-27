@@ -1,6 +1,6 @@
 from abjad.tools.listtools.pairwise_cumulative_sums_zero import pairwise_cumulative_sums_zero
 from abjad.tools.listtools.repeat_sequence_to_weight import repeat_sequence_to_weight
-from abjad.tools.listtools.weight import weight
+from abjad.tools.mathtools.weight import weight
 from abjad.tools import mathtools
 
 

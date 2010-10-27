@@ -1,9 +1,9 @@
 from abjad.tools import mathtools
-from abjad.tools.listtools.weight import weight
+from abjad.tools.mathtools.weight import weight
 
 
 def truncate_to_weight(l, total):
-   '''Truncate list *l* such that ``listtools.weight(l) == total``.
+   '''Truncate list *l* such that ``mathtools.weight(l) == total``.
 
    ::
 

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_listtools_truncate_to_weight_01( ):
-   '''Truncate list l such that listtools.weight(l) == total.'''
+   '''Truncate list l such that mathtools.weight(l) == total.'''
 
    l = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
 

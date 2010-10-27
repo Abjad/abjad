@@ -4,8 +4,12 @@ def weight(l):
    ::
 
       abjad> l = [-1, -2, 3, 4, 5]
-      abjad> listtools.weight(l)
+      abjad> mathtools.weight(l)
       15
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.weight( )`` to
+      ``mathtools.weight( )``.
    '''
 
    return sum([abs(element) for element in l])

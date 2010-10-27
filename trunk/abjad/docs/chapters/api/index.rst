@@ -516,7 +516,6 @@ listtools
    tools/listtools/truncate_subruns
    tools/listtools/truncate_to_sum
    tools/listtools/truncate_to_weight
-   tools/listtools/weight
    tools/listtools/yield_all_combinations_of_sequence
    tools/listtools/yield_all_partitions_of_sequence
    tools/listtools/yield_all_permutations_of_sequence
@@ -603,6 +602,7 @@ mathtools
    tools/mathtools/remove_powers_of_two
    tools/mathtools/sign
    tools/mathtools/trivial_float_to_int
+   tools/mathtools/weight
    tools/mathtools/yield_all_compositions_of_integer
    tools/mathtools/yield_all_partitions_of_integer
 

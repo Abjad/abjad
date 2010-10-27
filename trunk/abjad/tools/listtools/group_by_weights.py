@@ -2,7 +2,7 @@ from abjad.exceptions import PartitionError
 from fractions import Fraction
 from abjad.tools.listtools.flatten_sequence import flatten_sequence
 from abjad.tools.listtools.partition_sequence_by_weights import partition_sequence_by_weights
-from abjad.tools.listtools.weight import weight
+from abjad.tools.mathtools.weight import weight
 
 
 def group_by_weights(l, weights, 
@@ -12,11 +12,11 @@ def group_by_weights(l, weights,
 
    Behavior of *fill*:
 
-   *  When ``fill = 'exact'``, ``listtools.weight(result[i])`` must equal \
+   *  When ``fill = 'exact'``, ``mathtools.weight(result[i])`` must equal \
       ``weights[i]`` exactly. 
-   *  When ``fill = 'less'``, allow ``listtools.weight(result[i])`` to be \
+   *  When ``fill = 'less'``, allow ``mathtools.weight(result[i])`` to be \
       just less than, or equal to, ``weights[i]``.
-   *  When ``fill = 'greater'``, allow ``listtools.weight(result[i])`` to be \
+   *  When ``fill = 'greater'``, allow ``mathtools.weight(result[i])`` to be \
       just greater than, or equal to, ``weights[i]``.
    *  Defaults to ``'exact'``.
 
@@ -36,9 +36,9 @@ def group_by_weights(l, weights,
 
    Raise :exc:`~abjad.exceptions.PartitionError` when
 
-   *  When ``fill = 'exact'`` and ``listtools.weight(result[i])`` \
+   *  When ``fill = 'exact'`` and ``mathtools.weight(result[i])`` \
       can not equal ``weights[i]`` exactly.
-   *  When ``fill = 'less'`` and ``listtools.weight(result[i])`` 
+   *  When ``fill = 'less'`` and ``mathtools.weight(result[i])`` 
       exceeds ``weights[i]``.
 
    Examples:

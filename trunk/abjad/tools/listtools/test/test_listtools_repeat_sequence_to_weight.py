@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_listtools_repeat_sequence_to_weight_01( ):
-   '''Repeat l until listtools.weight(l) equals weight.'''
+   '''Repeat l until mathtools.weight(l) equals weight.'''
 
    l = [5, 5, 5]
    t = listtools.repeat_sequence_to_weight(l, 23)
@@ -11,7 +11,7 @@ def test_listtools_repeat_sequence_to_weight_01( ):
 
 
 def test_listtools_repeat_sequence_to_weight_02( ):
-   '''When remainder = less allow listtools.weight(result)
+   '''When remainder = less allow mathtools.weight(result)
       to be less than or equal to weight.'''
 
    l = [5, 5, 5]
@@ -21,7 +21,7 @@ def test_listtools_repeat_sequence_to_weight_02( ):
 
 
 def test_listtools_repeat_sequence_to_weight_03( ):
-   '''When remainder = more allow listtools.weight(result)
+   '''When remainder = more allow mathtools.weight(result)
       to be greater than or equal to weight.'''
 
    l = [5, 5, 5]

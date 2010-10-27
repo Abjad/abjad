@@ -1,34 +1,34 @@
 from fractions import Fraction
 from abjad.tools import mathtools
-from abjad.tools.listtools.weight import weight
+from abjad.tools.mathtools.weight import weight
 
 
 def repeat_sequence_to_weight(l, total_weight, remainder = 'chop'):
-   '''Repeat `l` until ``listtools.weight(result)`` compares
+   '''Repeat `l` until ``mathtools.weight(result)`` compares
    correctly to `total_weight` as specified by `remainder`.
 
    When ``remainder = 'chop'`` chop last number in output list
-   to ensure that ``listtools.weight(result)`` equals `weight` exactly. ::
+   to ensure that ``mathtools.weight(result)`` equals `weight` exactly. ::
 
       abjad> l = [5, 5, 5]
       abjad> listtools.repeat_sequence_to_weight(l, 23)
       [5, 5, 5, 5, 3]
 
-   When ``remainder = 'less'`` allow ``listtools.weight(result)``
+   When ``remainder = 'less'`` allow ``mathtools.weight(result)``
    to be less than or equal to `weight`. ::
 
       abjad> l = [5, 5, 5]
       abjad> repeat_sequence_to_weight(l, 23, remainder = 'less')
       [5, 5, 5, 5]
 
-   When ``remainder = 'more'`` allow ``listtools.weight(result)``
+   When ``remainder = 'more'`` allow ``mathtools.weight(result)``
    to be greater than or equal to `total_weight`. ::
 
       abjad> l = [5, 5, 5]
       abjad> listtools.repeat_sequence_to_weight(l, 23, remainder = 'more')
       [5, 5, 5, 5, 5]
 
-   Because ``listtools.weight(l)`` equals the sum of the absolute 
+   Because ``mathtools.weight(l)`` equals the sum of the absolute 
    value of the elements in `l`, negative numbers in `l` 
    cyclically repeat in the output of this function. ::
 

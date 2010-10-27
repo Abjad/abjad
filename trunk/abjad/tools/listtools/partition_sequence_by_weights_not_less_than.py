@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.listtools.weight import weight
+from abjad.tools.mathtools.weight import weight
 
 
 def partition_sequence_by_weights_not_less_than(
@@ -7,7 +7,7 @@ def partition_sequence_by_weights_not_less_than(
    r'''.. versionadded:: 1.1.2
 
    Partition `l` into sublists ``result[0], ..., result[n]`` such that
-   ``weights[i] <= listtools.weight(result[i])``. ::
+   ``weights[i] <= mathtools.weight(result[i])``. ::
 
       abjad> l = range(10)
       abjad> listtools.partition_sequence_by_weights_not_less_than(l, [3])
@@ -24,7 +24,7 @@ def partition_sequence_by_weights_not_less_than(
       [[0, 1, 2], [3, 4, 5]]
 
    When `cyclic` is true, partition `l` such that
-   ``weights[i%len(weights)] <= listtools.weight(result[i])``. ::
+   ``weights[i%len(weights)] <= mathtools.weight(result[i])``. ::
 
       abjad> listtools.partition_sequence_by_weights_not_less_than(l, [3], cyclic = True)
       [[0, 1, 2], [3], [4], [5], [6], [7], [8], [9]]
@@ -56,7 +56,7 @@ def partition_sequence_by_weights_not_less_than(
 
    When both `cyclic` and `overhang` are true, 
    partition `l` such that 
-   ``weights[i%len(weights)] <= listtools.weight(result[i])``
+   ``weights[i%len(weights)] <= mathtools.weight(result[i])``
    and allow ``result[-1]`` to have any weight. ::
 
       abjad> listtools.partition_sequence_by_weights_not_less_than(l, [3], cyclic = True, overhang = True)

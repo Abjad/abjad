@@ -1,11 +1,11 @@
 from fractions import Fraction
 from abjad.tools import mathtools
-from abjad.tools.listtools.weight import weight
+from abjad.tools.mathtools.weight import weight
 
 
 def partition_sequence_by_weights(l, weights, cyclic = False, overhang = False):
    '''Partition list ``l`` into ``result`` comprising sublists
-   such that ``listtools.weight(r_i)`` for ``r_i`` in ``result`` equals
+   such that ``mathtools.weight(r_i)`` for ``r_i`` in ``result`` equals
    ``s_i`` for ``s_i`` in list of weights ``s``.
 
    Input:
@@ -65,7 +65,7 @@ def partition_sequence_by_weights(l, weights, cyclic = False, overhang = False):
       abjad> listtools.partition_sequence_by_weights(l, [7, 15], cyclic = True, overhang = True)
       [[7], [13, 2], [7], [11, 4], [7], [9, 6], [7], [7]]
 
-   Because ``listtools.weight(l)`` equals the sum of the absolute
+   Because ``mathtools.weight(l)`` equals the sum of the absolute
    values of the elements in list ``l``, negative numbers in ``l``
    give negative numbers in the output of 
    ``listtools.partition_sequence_by_weights( )``. ::
