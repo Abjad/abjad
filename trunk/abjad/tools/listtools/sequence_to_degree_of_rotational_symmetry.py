@@ -1,7 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools.listtools.all_are_equal import all_are_equal
-from abjad.tools.listtools.partition_list_cyclically_by_counts_without_overhang import \
-   partition_list_cyclically_by_counts_without_overhang
+from abjad.tools.listtools.partition_sequence_cyclically_by_counts_without_overhang import \
+   partition_sequence_cyclically_by_counts_without_overhang
 
 
 def sequence_to_degree_of_rotational_symmetry(iterable):
@@ -37,7 +37,7 @@ def sequence_to_degree_of_rotational_symmetry(iterable):
       return None
    for factor in sorted(mathtools.divisors(len(iterable))):
       #print 'factor is %s ...' % factor
-      parts = partition_list_cyclically_by_counts_without_overhang(iterable, [factor])
+      parts = partition_sequence_cyclically_by_counts_without_overhang(iterable, [factor])
       if all_are_equal(parts):
          return factor
    return factor

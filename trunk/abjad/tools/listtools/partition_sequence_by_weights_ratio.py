@@ -5,7 +5,7 @@ from abjad.tools.listtools.flatten_sequence import flatten_sequence
 from abjad.tools.listtools.weight import weight
 
 
-def partition_by_weights_ratio(l, ratio):
+def partition_sequence_by_weights_ratio(l, ratio):
    '''.. versionadded:: 1.1.2
 
    Partition list `l` into disjunct parts such that propotions of 
@@ -13,23 +13,27 @@ def partition_by_weights_ratio(l, ratio):
    with some rounding magic. ::
 
       abjad> l = [1] * 10
-      abjad> listtools.partition_by_weights_ratio(l, [1, 1, 1])
+      abjad> listtools.partition_sequence_by_weights_ratio(l, [1, 1, 1])
       [[1, 1, 1], [1, 1, 1, 1], [1, 1, 1]]
 
    ::
 
-      abjad> listtools.partition_by_weights_ratio(l, [1, 1, 1, 1])
+      abjad> listtools.partition_sequence_by_weights_ratio(l, [1, 1, 1, 1])
       [[1, 1, 1], [1, 1], [1, 1, 1], [1, 1]]
 
    ::
 
-      abjad> listtools.partition_by_weights_ratio(l, [2, 2, 3])
+      abjad> listtools.partition_sequence_by_weights_ratio(l, [2, 2, 3])
       [[1, 1, 1], [1, 1, 1], [1, 1, 1, 1]]
 
    ::
 
-      abjad> listtools.partition_by_weights_ratio(l, [3, 2, 2])
+      abjad> listtools.partition_sequence_by_weights_ratio(l, [3, 2, 2])
       [[1, 1, 1, 1], [1, 1, 1], [1, 1, 1]]
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.partition_sequence_by_weights_ratio( )`` to
+      ``listtools.partition_sequence_by_weights_ratio( )``.
    '''
 
    list_weight = weight(l)

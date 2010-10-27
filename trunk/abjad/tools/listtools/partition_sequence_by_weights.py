@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 from abjad.tools.listtools.weight import weight
 
 
-def partition_by_weights(l, weights, cyclic = False, overhang = False):
+def partition_sequence_by_weights(l, weights, cyclic = False, overhang = False):
    '''Partition list ``l`` into ``result`` comprising sublists
    such that ``listtools.weight(r_i)`` for ``r_i`` in ``result`` equals
    ``s_i`` for ``s_i`` in list of weights ``s``.
@@ -20,59 +20,63 @@ def partition_by_weights(l, weights, cyclic = False, overhang = False):
    With one-element ``weights`` list. ::
 
       abjad> l = [20, 20, 20, 20] 
-      abjad> listtools.partition_by_weights(l, [15])
+      abjad> listtools.partition_sequence_by_weights(l, [15])
       [[15]]
 
    ::
 
       abjad> l = [20, 20, 20, 20] 
-      abjad> listtools.partition_by_weights(l, [15], cyclic = True)
+      abjad> listtools.partition_sequence_by_weights(l, [15], cyclic = True)
       [[15], [5, 10], [10, 5], [15], [15]]
 
    ::
 
       abjad> l = [20, 20, 20, 20] 
-      abjad> listtools.partition_by_weights(l, [15], overhang = True)
+      abjad> listtools.partition_sequence_by_weights(l, [15], overhang = True)
       [[15], [5, 20, 20, 20]]
 
    ::
 
       abjad> l = [20, 20, 20, 20]
-      abjad> listtools.partition_by_weights(l, [15], cyclic = True, overhang = True)
+      abjad> listtools.partition_sequence_by_weights(l, [15], cyclic = True, overhang = True)
       [[15], [5, 10], [10, 5], [15], [15], [5]]
 
    With multi-element ``weights`` list. ::
 
       abjad> l = [20, 20, 20, 20]
-      abjad> listtools.partition_by_weights(l, [7, 15])
+      abjad> listtools.partition_sequence_by_weights(l, [7, 15])
       [[7], [13, 2]]
 
    ::
 
       abjad> l = [20, 20, 20, 20]
-      abjad> listtools.partition_by_weights(l, [7, 15], cyclic = True)
+      abjad> listtools.partition_sequence_by_weights(l, [7, 15], cyclic = True)
       [[7], [13, 2], [7], [11, 4], [9, 6], [7]]
 
    ::
 
       abjad> l = [20, 20, 20, 20]
-      abjad> listtools.partition_by_weights(l, [7, 15], overhang = True)
+      abjad> listtools.partition_sequence_by_weights(l, [7, 15], overhang = True)
       [[7], [13, 2], [18, 20, 20]]
 
    ::
 
       abjad> l = [20, 20, 20, 20]
-      abjad> listtools.partition_by_weights(l, [7, 15], cyclic = True, overhang = True)
+      abjad> listtools.partition_sequence_by_weights(l, [7, 15], cyclic = True, overhang = True)
       [[7], [13, 2], [7], [11, 4], [7], [9, 6], [7], [7]]
 
    Because ``listtools.weight(l)`` equals the sum of the absolute
    values of the elements in list ``l``, negative numbers in ``l``
    give negative numbers in the output of 
-   ``listtools.partition_by_weights( )``. ::
+   ``listtools.partition_sequence_by_weights( )``. ::
 
       abjad> l = [20, -20, 20, -20]
-      abjad> listtools.partition_by_weights(l, [7, 15], cyclic = True)
+      abjad> listtools.partition_sequence_by_weights(l, [7, 15], cyclic = True)
       [[7], [13, -2], [-7], [-11, 4], [7], [9, -6], [-7]]
+
+   .. versionchanged:: 1.1.2
+      renamed ``listtools.partition_by_weights( )`` to
+      ``listtools.partition_sequence_by_weights( )``.
    '''
 
    assert all([isinstance(x, (int, float, long, Fraction)) for x in l])

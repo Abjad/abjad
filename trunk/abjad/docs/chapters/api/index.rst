@@ -482,15 +482,15 @@ listtools
    tools/listtools/overwrite_slices_at
    tools/listtools/pairs_from_to
    tools/listtools/pairwise_cumulative_sums_zero
-   tools/listtools/partition_by_restricted_growth_function
-   tools/listtools/partition_by_weights
-   tools/listtools/partition_by_weights_not_less_than
-   tools/listtools/partition_by_weights_ratio
    tools/listtools/partition_elements_into_canonic_parts
-   tools/listtools/partition_list_cyclically_by_counts_with_overhang
-   tools/listtools/partition_list_cyclically_by_counts_without_overhang
-   tools/listtools/partition_list_once_by_counts_with_overhang
-   tools/listtools/partition_list_once_by_counts_without_overhang
+   tools/listtools/partition_sequence_by_restricted_growth_function
+   tools/listtools/partition_sequence_by_weights
+   tools/listtools/partition_sequence_by_weights_not_less_than
+   tools/listtools/partition_sequence_by_weights_ratio
+   tools/listtools/partition_sequence_cyclically_by_counts_with_overhang
+   tools/listtools/partition_sequence_cyclically_by_counts_without_overhang
+   tools/listtools/partition_sequence_once_by_counts_with_overhang
+   tools/listtools/partition_sequence_once_by_counts_without_overhang
    tools/listtools/permute_sequence
    tools/listtools/phasor
    tools/listtools/remove_consecutive_duplicates_from_sequence

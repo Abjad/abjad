@@ -1,7 +1,7 @@
 from abjad.tools.listtools.generate_all_restricted_growth_functions_of_length import \
    generate_all_restricted_growth_functions_of_length
-from abjad.tools.listtools.partition_by_restricted_growth_function import \
-   partition_by_restricted_growth_function
+from abjad.tools.listtools.partition_sequence_by_restricted_growth_function import \
+   partition_sequence_by_restricted_growth_function
 
 
 def yield_all_set_partitions_of_sequence(sequence):
@@ -36,5 +36,5 @@ def yield_all_set_partitions_of_sequence(sequence):
    '''
 
    for rgf in generate_all_restricted_growth_functions_of_length(len(sequence)):
-      partition = partition_by_restricted_growth_function(sequence, rgf)
+      partition = partition_sequence_by_restricted_growth_function(sequence, rgf)
       yield partition
