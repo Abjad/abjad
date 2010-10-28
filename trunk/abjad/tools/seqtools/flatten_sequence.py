@@ -1,54 +1,49 @@
-def flatten_sequence(l, ltypes = (list, tuple), depth = -1):
-   '''Flatten nested lists `l`. Return a 0-depth list or tuple.
-   Set optional `depth` keyword set to positive integer.
-   Keyword controls depth to which the function operates.
-   Based on Mike C. Fletcher's flatten. ::
+def flatten_sequence(sequence, klasses = None, depth = -1):
+   '''Flatten `sequence`::
 
-      abjad> t = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-      abjad> seqtools.flatten_sequence(t)
+      abjad> seqtools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
       [1, 2, 3, 4, 5, 6, 7, 8]
 
-   ::
+   Flatten `sequence` to depth ``1``::
 
-      abjad> seqtools.flatten_sequence(t, depth = 0)
+      abjad> seqtools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 1)
       [1, [2, 3, [4]], 5, [6, 7, [8]]]
 
-   ::
+   Flatten `sequence` to depth ``2``::
 
-      abjad> seqtools.flatten_sequence(t, depth = 1)
-      [1, 2, 3, [4], 5, 6, 7, [8]]
-
-   ::
-
-      abjad> seqtools.flatten_sequence(t, depth = 2)
+      abjad> seqtools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 2)
       [1, 2, 3, 4, 5, 6, 7, 8]
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.flatten( )`` to
-      ``seqtools.flatten_sequence( )``.
+   Return newly constructed `sequence` type.
+
+   Leave `sequence` unchanged.
 
    .. versionchanged:: 1.1.2
-      renamed ``seqtools.flatten_iterable( )`` to
+      renamed ``listtools.flatten( )`` to
       ``seqtools.flatten_sequence( )``.
    '''
 
-   assert isinstance(l, ltypes)
-   ltype = type(l)
-   return ltype(_flatten_helper(l, ltypes, depth))
+   ## based on procedure by Mike C. Fletcher
+   if klasses is None:
+      klasses = (list, tuple)
+
+   assert isinstance(sequence, klasses)
+   ltype = type(sequence)
+   return ltype(_flatten_helper(sequence, klasses, depth))
 
 
 # Creates an iterator that can generate a flattened list, 
 # descending down into child elements to a depth given in the
 # argments.
 # Note: depth < 0 is effectively equivalent to "infinity"
-def _flatten_helper(lst, ltypes, depth):
-   if not isinstance(lst, ltypes):
-      yield lst
-   elif depth==0:
-      for i in lst:
+def _flatten_helper(sequence, klasses, depth):
+   if not isinstance(sequence, klasses):
+      yield sequence
+   elif depth == 0:
+      for i in sequence:
          yield i
    else:
-      for i in lst:
+      for i in sequence:
          # Flatten an iterable by one level
-         for j in _flatten_helper(i, ltypes, depth-1):
+         for j in _flatten_helper(i, klasses, depth - 1):
             yield j

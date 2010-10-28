@@ -1,42 +1,43 @@
 from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 
 
-def flatten_sequence_at_indices(l, indices, ltypes = (list, tuple), depth = -1):
+def flatten_sequence_at_indices(sequence, indices, klasses = None, depth = -1):
    '''.. versionadded:: 1.1.2
 
-   Flatten nested lists at `indices` in `l`.  ::
+   Flatten `sequence` at `indices`::
 
-      abjad> l = [0, 1, [2, 3, 4], [5, 6, 7]]
-      abjad> seqtools.flatten_sequence_at_indices(l, [3])
+      abjad> seqtools.flatten_sequence_at_indices([0, 1, [2, 3, 4], [5, 6, 7]], [3])
       [0, 1, [2, 3, 4], 5, 6, 7]
 
-   Negative indices are supported. ::
+   Flatten `sequence` at negative `indices`::
 
-      abjad> l = [0, 1, [2, 3, 4], [5, 6, 7]]
-      abjad> seqtools.flatten_sequence_at_indices(l, [-1])
+      abjad> seqtools.flatten_sequence_at_indices([0, 1, [2, 3, 4], [5, 6, 7]], [-1])
       [0, 1, [2, 3, 4], 5, 6, 7]
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.flatten_at_indices( )`` to
-      ``seqtools.flatten_sequence_at_indices( )``.
+   Return newly constructed `sequence` type.
+
+   Leave `sequence` unchanged.
 
    .. versionchanged:: 1.1.2
-      renamed ``seqtools.flatten_sequence_at_indices( )`` to
+      renamed ``listtools.flatten_at_indices( )`` to
       ``seqtools.flatten_sequence_at_indices( )``.
    '''
 
-   if not isinstance(l, ltypes):
-      raise TypeError( )
-   ltype = type(l)
+   if klasses is None:
+      klasses = (list, tuple)
 
-   len_l = len(l)
+   if not isinstance(sequence, klasses):
+      raise TypeError( )
+   ltype = type(sequence)
+
+   len_l = len(sequence)
    indices = [x if 0 <= x else len_l + x for x in indices]
 
    result = [ ]
-   for i, element in enumerate(l):
+   for i, element in enumerate(sequence):
       if i in indices:
          try:
-            flattened = flatten_sequence(element, ltypes = ltypes, depth = depth)
+            flattened = flatten_sequence(element, klasses = klasses, depth = depth)
             result.extend(flattened)
          except:
             result.append(element)
