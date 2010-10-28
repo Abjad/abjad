@@ -1,45 +1,36 @@
 from abjad.tools import mathtools
-from abjad.tools.seqtools.all_are_equal import all_are_equal
-from abjad.tools.seqtools.partition_sequence_cyclically_by_counts_without_overhang import \
-   partition_sequence_cyclically_by_counts_without_overhang
+from abjad.tools.seqtools.sequence_to_degree_of_rotational_symmetry import \
+   sequence_to_degree_of_rotational_symmetry
 
 
 def sequence_to_period_of_rotation(sequence, n):
    '''.. versionadded:: 1.1.2
 
-   Change `sequence` to period of rotation:
+   Change `sequence` to period of rotation::
    
-      abjad> seqtools.sequence_to_period_of_rotation([1, 1, 1, 1, 1, 1])
-      1
-
-   ::
-
-      abjad> seqtools.sequence_to_period_of_rotation([1, 1, 2, 1, 1, 1])
-      6
-
-   ::
-
-      abjad> seqtools.sequence_to_period_of_rotation([1, 1, 2, 1, 1, 2])
+      abjad> seqtools.sequence_to_period_of_rotation([1, 2, 3, 1, 2, 3], 1)
       3
 
-   None when `sequence` is empty. ::
+   ::
 
-      abjad> seqtools.sequence_to_period_of_rotation([ ]) is None
-      True
+      abjad> seqtools.sequence_to_period_of_rotation([1, 2, 3, 1, 2, 3], 2)
+      3
 
-   Return nonegative integer.
+   ::
+
+      abjad> seqtools.sequence_to_period_of_rotation([1, 2, 3, 1, 2, 3], 3)
+      1
+
+   Return positive integer.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.get_period( )`` to
       ``seqtools.sequence_to_period_of_rotation( )``.
    '''
    
-   sequence = list(sequence)
-   if not sequence:
-      return None
-   for factor in sorted(mathtools.divisors(len(sequence))):
-      #print 'factor is %s ...' % factor
-      parts = partition_sequence_cyclically_by_counts_without_overhang(sequence, [factor])
-      if all_are_equal(parts):
-         return factor
-   return factor
+   degree = sequence_to_degree_of_rotational_symmetry(sequence)
+   period = len(sequence) / degree
+   divisors_of_n = set(mathtools.divisors(n))
+   divisors_of_period = set(mathtools.divisors(period))
+   max_shared_divisor = max(divisors_of_n & divisors_of_period)
+   return period / max_shared_divisor
