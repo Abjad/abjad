@@ -872,6 +872,7 @@ seqtools
    tools/seqtools/retain_elements_at_indices_cyclic
    tools/seqtools/rotate_sequence
    tools/seqtools/sequence_to_degree_of_rotational_symmetry
+   tools/seqtools/sequence_to_period_of_rotation
    tools/seqtools/sum_by_sign
    tools/seqtools/sum_slices_at
    tools/seqtools/true_indices
