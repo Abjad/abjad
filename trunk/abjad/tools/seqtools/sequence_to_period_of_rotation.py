@@ -4,7 +4,7 @@ from abjad.tools.seqtools.partition_sequence_cyclically_by_counts_without_overha
    partition_sequence_cyclically_by_counts_without_overhang
 
 
-def sequence_to_period_of_rotation(sequence):
+def sequence_to_period_of_rotation(sequence, n):
    '''.. versionadded:: 1.1.2
 
    Change `sequence` to period of rotation:
