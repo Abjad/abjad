@@ -1,12 +1,11 @@
-from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_string \
-   as mathtools_integer_to_binary_string
+from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_string
 
 
-def is_assignable_integer(n):
+def is_assignable_integer(expr):
    r'''.. versionadded:: 1.1.2
 
-   True when integer `n` can be written without
-   recourse to ties. Otherwise false. ::
+   True when `expr` is equivalent to an integer and 
+   can be written without recourse to ties::
 
       abjad> for n in range(0, 16 + 1):
       ...     print '%s\t%s' % (n, mathtools.is_assignable_integer(n))
@@ -29,13 +28,17 @@ def is_assignable_integer(n):
       15 True
       16 True
 
+   Otherwise false.
+
+   Return boolean.
+
    .. versionchanged:: 1.1.2
       renamed ``mathtools.is_assignable( )`` to
       ``mathtools.is_assignable_integer( )``.
    '''
 
-   if isinstance(n, int):
-      if 0 < n:
-         if not '01' in mathtools_integer_to_binary_string(n):
+   if isinstance(expr, int):
+      if 0 < expr:
+         if not '01' in integer_to_binary_string(expr):
             return True
    return False

@@ -2,10 +2,7 @@ from fractions import Fraction
 
 
 def is_nonnegative_integer_power_of_two(expr):
-   '''``True`` when expr is an integer or rational power of ``2``,
-   otherwise ``False``.
-   
-   ::
+   '''True when `expr` is a nonnegative integer power of ``2``::
 
       abjad> for n in range(10):
       ...     print n, mathtools.is_nonnegative_integer_power_of_two(n)
@@ -21,22 +18,14 @@ def is_nonnegative_integer_power_of_two(expr):
       8 True
       9 False
 
-   ::
+   Otherwise false.
 
-      abjad> mathtools.is_nonnegative_integer_power_of_two(-4)
-      False
-
-   ::
-
-      abjad> mathtools.is_nonnegative_integer_power_of_two('foo')
-      False
+   Return boolean.
 
    .. versionchanged:: 1.1.2
       renamed ``mathtools.is_power_of_two( )`` to
       ``mathtools.is_nonnegative_integer_power_of_two( )``.
    '''
-
-      
 
    if isinstance(expr, (int, long)):
       return not bool(expr & (expr - 1))

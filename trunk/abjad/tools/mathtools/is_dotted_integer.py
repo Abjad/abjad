@@ -2,14 +2,14 @@ from abjad.tools.mathtools.factors import factors
 import math
 
 
-def is_dotted_integer(n):
+def is_dotted_integer(expr):
    '''.. versionadded:: 1.1.2
 
-   True when the absolute value of `n` is of the form 
-   ``2**j * (2**k - 1)`` for integers ``0 <= j``, ``2 < k``. ::
+   True when `expr` is equivalent to a positive integer and 
+   can be written with zero or more dots::
        
-      abjad> for n in range(16):
-      ...     print '%s\t%s' % (n, mathtools.is_dotted_integer(n))
+      abjad> for expr in range(16):
+      ...     print '%s\t%s' % (expr, mathtools.is_dotted_integer(expr))
       ... 
       0       False
       1       False
@@ -27,13 +27,20 @@ def is_dotted_integer(n):
       13      False
       14      True
       15      True
+
+   Otherwise false.
+
+   Return boolean.
+
+   Integer `n` qualifies as dotted when ``abs(n)`` is of the form 
+   ``2**j * (2**k - 1)`` with integers ``0 <= j``, ``2 < k``.
    '''
 
-   if n == 0:
+   if expr == 0:
       return False
 
    non_two_product = 1
-   non_two_factors = [d for d in factors(n) if not d == 2]
+   non_two_factors = [d for d in factors(expr) if not d == 2]
    for non_two_factor in non_two_factors:
       non_two_product *= non_two_factor
 
