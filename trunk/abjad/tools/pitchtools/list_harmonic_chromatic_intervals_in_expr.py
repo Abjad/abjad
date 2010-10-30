@@ -27,7 +27,7 @@ def list_harmonic_chromatic_intervals_in_expr(expr):
    
    chromatic_intervals = [ ]
    pitches = list_named_chromatic_pitches_in_expr(expr)
-   unordered_pitch_pairs = seqtools.yield_all_unordered_pairs_in_sequence(pitches)
+   unordered_pitch_pairs = seqtools.yield_all_unordered_pairs_of_sequence(pitches)
    for first_pitch, second_pitch in unordered_pitch_pairs:
       chromatic_interval_number = abs(first_pitch.numbered_chromatic_pitch) - \
          abs(second_pitch.numbered_chromatic_pitch)

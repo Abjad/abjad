@@ -1,30 +1,31 @@
-def permute_sequence(iterable, ordering):
+from abjad.tools.seqtools.is_permutation import is_permutation
+import copy
+
+
+def permute_sequence(sequence, permutation):
    '''.. versionadded:: 1.1.2
 
-   Return `iterable` permuted by `ordering`. ::
+   Permute `sequence` by `permutation`::
 
       abjad> seqtools.permute_sequence([10, 11, 12, 13, 14, 15], [5, 4, 0, 1, 2, 3])
-      (15, 14, 10, 11, 12, 13)
+      [15, 14, 10, 11, 12, 13]
+
+   Return newly constructed `sequence` type.
 
    .. versionchanged:: 1.1.2
-      renamed ``seqtools.permute( )`` to
-      ``seqtools.permute_sequence( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.permute_iterable( )`` to
+      renamed ``listtools.permute( )`` to
       ``seqtools.permute_sequence( )``.
    '''
 
-   list_iterable = list(iterable)
-   if not len(list_iterable) == len(ordering):
-      raise ValueError('ordering must be %s elements in length.' %
-         len(list_iterable))
-   if not list(sorted(ordering)) == range(len(ordering)):
-      raise ValueError('ordering must contain elements 0, ..., %s exactly.' %
-         len(list_iterable))
-   
+   if not is_permutation(permutation, length = len(sequence)):
+      args = (str(permutation), len(sequence))
+      raise TypeError('"%s" must be permutation of length %s.' % args)
 
-   permutation = [ ]
-   for index in ordering:
-      permutation.append(list_iterable[index])
-   return tuple(permutation)
+   result = [ ]
+   for index in permutation:
+      new_element = copy.copy(sequence[index])
+      result.append(new_element)
+   if isinstance(sequence, str):
+      return ''.join(result)
+   else:
+      return type(sequence)(result)

@@ -827,6 +827,7 @@ seqtools
    tools/seqtools/interlace_sequences
    tools/seqtools/is_monotonically_decreasing_sequence
    tools/seqtools/is_monotonically_increasing_sequence
+   tools/seqtools/is_permutation
    tools/seqtools/is_repetition_free_sequence
    tools/seqtools/is_restricted_growth_function
    tools/seqtools/is_strictly_decreasing_sequence
@@ -885,10 +886,11 @@ seqtools
    tools/seqtools/yield_all_combinations_of_sequence
    tools/seqtools/yield_all_partitions_of_sequence
    tools/seqtools/yield_all_permutations_of_sequence
+   tools/seqtools/yield_all_permutations_of_sequence_in_orbit
    tools/seqtools/yield_all_rotations_of_sequence
    tools/seqtools/yield_all_set_partitions_of_sequence
    tools/seqtools/yield_all_subsequences_of_sequence
-   tools/seqtools/yield_all_unordered_pairs_in_sequence
+   tools/seqtools/yield_all_unordered_pairs_of_sequence
    tools/seqtools/zip_sequences_cyclic
    tools/seqtools/zip_sequences_nontruncating
 

@@ -26,5 +26,5 @@ def list_unordered_named_chromatic_pitch_pairs_in_expr(expr):
       ``pitchtools.list_unordered_named_chromatic_pitch_pairs_in_expr( )``.
    '''
 
-   for pair in seqtools.yield_all_unordered_pairs_in_sequence(sorted(list_named_chromatic_pitches_in_expr(expr))):
+   for pair in seqtools.yield_all_unordered_pairs_of_sequence(sorted(list_named_chromatic_pitches_in_expr(expr))):
       yield pair
