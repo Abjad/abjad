@@ -881,6 +881,7 @@ seqtools
    tools/seqtools/rotate_sequence
    tools/seqtools/sequence_to_degree_of_rotational_symmetry
    tools/seqtools/sequence_to_period_of_rotation
+   tools/seqtools/split_sequence_once_by_weights_without_overhang
    tools/seqtools/sum_by_sign
    tools/seqtools/sum_slices_at
    tools/seqtools/truncate_sequence_to_sum
