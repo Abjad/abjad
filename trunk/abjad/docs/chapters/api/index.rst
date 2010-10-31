@@ -825,8 +825,12 @@ seqtools
    tools/seqtools/group_sequence_elements_by_equality
    tools/seqtools/group_sequence_elements_by_sign
    tools/seqtools/group_sequence_elements_by_weights
+   tools/seqtools/group_sequence_elements_cyclically_by_weights_at_most_with_overhang
+   tools/seqtools/group_sequence_elements_cyclically_by_weights_at_most_without_overhang
    tools/seqtools/group_sequence_elements_cyclically_by_weights_exactly_with_overhang
    tools/seqtools/group_sequence_elements_cyclically_by_weights_exactly_without_overhang
+   tools/seqtools/group_sequence_elements_once_by_weights_at_most_with_overhang
+   tools/seqtools/group_sequence_elements_once_by_weights_at_most_without_overhang
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_with_overhang
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_without_overhang
    tools/seqtools/increase_at_indices
