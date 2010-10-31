@@ -40,18 +40,18 @@ def test_seqtools_phasor_04( ):
 def test_seqtools_phasor_05( ):
    '''Works on generator input.'''
 
-   g = seqtools._generator(1, 8)
+   g = seqtools.generate_range(1, 8)
    t = list(seqtools.phasor(g, length = 20))
    assert t == [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6]
 
-   g = seqtools._generator(1, 8)
+   g = seqtools.generate_range(1, 8)
    t = list(seqtools.phasor(g, 2, length = 20))
    assert t == [1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4]
 
-   g = seqtools._generator(1, 8)
+   g = seqtools.generate_range(1, 8)
    t = list(seqtools.phasor(g, 2, 3, length = 20))
    assert t == [4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7]
 
-   g = seqtools._generator(1, 8)
+   g = seqtools.generate_range(1, 8)
    t = list(seqtools.phasor(g, -2, 5, length = 20))
    assert t == [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]

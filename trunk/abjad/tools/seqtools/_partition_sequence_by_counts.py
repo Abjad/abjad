@@ -5,7 +5,7 @@ from abjad.tools import mathtools
 
 
 ## TODO: renamed 'lengths' to 'counts' ##
-def _partition_list_by_counts(l, lengths, cyclic = False, overhang = False):
+def _partition_sequence_by_counts(l, lengths, cyclic = False, overhang = False):
    '''Partition list `l` by `lengths`. Return list of lists::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

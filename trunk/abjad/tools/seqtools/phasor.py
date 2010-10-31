@@ -37,7 +37,7 @@ def phasor(iterable, step=1, start=0, length='inf'):
 
    ::
 
-      abjad> generator = seqtools._generator(1, 8)
+      abjad> generator = seqtools.generate_range(1, 8)
       abjad> list(seqtools.phasor(generator, -2, 5, length = 20))
       [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
    '''

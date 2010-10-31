@@ -1,4 +1,4 @@
-from abjad.tools.seqtools._partition_list_by_counts import _partition_list_by_counts
+from abjad.tools.seqtools._partition_sequence_by_counts import _partition_sequence_by_counts
 
 
 def partition_sequence_once_by_counts_with_overhang(sequence, counts):
@@ -10,8 +10,8 @@ def partition_sequence_once_by_counts_with_overhang(sequence, counts):
    Return list of lists.
 
    .. versionchanged:: 1.1.2
-      renamed ``listtools.partition_list_once_by_counts_with_overhang( )`` to
+      renamed ``listtools.partition_sequence_once_by_counts_with_overhang( )`` to
       ``seqtools.partition_sequence_once_by_counts_with_overhang( )``.
    '''
 
-   return _partition_list_by_counts(sequence, counts, cyclic = False, overhang = True)
+   return _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = True)
