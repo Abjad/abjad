@@ -4,12 +4,7 @@ def get_indices_of_sequence_elements_equal_to_true(sequence):
       abjad> seqtools.get_indices_of_sequence_elements_equal_to_true([0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1])
       (3, 4, 5, 9, 10, 11)
 
-   Get indices `sequence` elements equal to true::
-
-      abjad> seqtools.get_indices_of_sequence_elements_equal_to_true([0, 0, 0, 0, 0, 0])
-      ( )
-
-   Return newly constructed tuple.
+   Return newly constructed tuple of zero or more nonnegative integers.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.true_indices( )`` to

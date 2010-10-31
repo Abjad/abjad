@@ -1,10 +1,14 @@
-def get_cyclic(sequence, start, stop):
+def iterate_sequence_cyclically_from_start_to_stop(sequence, start, stop):
    '''Iterate `sequence` cyclically from `start` to `stop`::
 
-      abjad> list(seqtools.get_cyclic(range(20), 18, 10))
+      abjad> list(seqtools.iterate_sequence_cyclically_from_start_to_stop(range(20), 18, 10))
       [18, 19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
    
    Return generator of references to `sequence` elements.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.get_cyclic( )`` to
+      ``seqtools.iterate_sequence_cyclically_from_start_to_stop( )``.
    '''
 
    len_sequence = len(sequence)

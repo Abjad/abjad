@@ -1,13 +1,13 @@
 from abjad.exceptions import PartitionError
-from fractions import Fraction
+from abjad.tools.mathtools.weight import weight
 from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from abjad.tools.seqtools.partition_sequence_by_weights import partition_sequence_by_weights
-from abjad.tools.mathtools.weight import weight
+from fractions import Fraction
 
 
-def group_sequence_elements_by_weights(l, weights, 
+def group_sequence_elements_by_weights(sequence, weights, 
    fill = 'exact', cyclic = False, overhang = False):
-   '''Partition ``l`` into list ``result`` of sublists 
+   '''Partition ``sequence`` into list ``result`` of sublists 
    according to ``weights``.
 
    Behavior of *fill*:
@@ -41,79 +41,77 @@ def group_sequence_elements_by_weights(l, weights,
    *  When ``fill = 'less'`` and ``mathtools.weight(result[i])`` 
       exceeds ``weights[i]``.
 
-   Examples:
+   Examples::
+
+      abjad> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
 
    ::
 
-      abjad> l = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
-
-   ::
-
-      abjad> t = seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'exact', cyclic = False, overhang = False)
+      abjad> t = seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'exact', cyclic = False, overhang = False)
       [[3], [3, 3, 3]]
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'exact', cyclic = False, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'exact', cyclic = False, overhang = True)
       [[3], [3, 3, 3], [4, 4, 4, 4, 5, 5]]
 
    ::
 
-      abjad> t = seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'exact', cyclic = True, overhang = False)
+      abjad> t = seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'exact', cyclic = True, overhang = False)
       PartitionError
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'exact', cyclic = True, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'exact', cyclic = True, overhang = True)
       PartitionError
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'less', cyclic = False, overhang = False)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'less', cyclic = False, overhang = False)
       t == [[3], [3, 3, 3]]
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'less', cyclic = False, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'less', cyclic = False, overhang = True)
       [[3], [3, 3, 3], [4, 4, 4, 4, 5, 5]]
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'less', cyclic = True, overhang = False)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'less', cyclic = True, overhang = False)
       PartitionError
 
    ::
 
-      abjad> t = seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'less', cyclic = True, overhang = True)
+      abjad> t = seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'less', cyclic = True, overhang = True)
       PartitionError
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'greater', cyclic = False, overhang = False)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'greater', cyclic = False, overhang = False)
       [[3], [3, 3, 3]]
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'greater', cyclic = False, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'greater', cyclic = False, overhang = True)
       [[3], [3, 3, 3], [4, 4, 4, 4, 5, 5]]
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'greater', cyclic = True, overhang = False)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'greater', cyclic = True, overhang = False)
       [[3], [3, 3, 3], [4], [4, 4, 4], [5]]
 
    ::
 
-      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'greater', cyclic = True, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(sequence, [3, 9], fill = 'greater', cyclic = True, overhang = True)
       [[3], [3, 3, 3], [4], [4, 4, 4], [5], [5]]
 
    .. versionchanged:: 1.1.2
-      renamed ``seqtools.group_by_weights( )`` to
+      renamed ``listtools.group_by_weights( )`` to
       ``seqtools.group_sequence_elements_by_weights( )``.
    '''
 
-   assert isinstance(l, list)
-   assert all([isinstance(x, (int, long, float, Fraction)) for x in l])
+   assert isinstance(sequence, list)
+   assert all([isinstance(x, (int, long, float, Fraction)) for x in sequence])
    assert isinstance(weights, list)
    assert all([isinstance(x, (int, long, float, Fraction)) for x in weights])
    assert all([0 < x for x in weights])
@@ -122,41 +120,41 @@ def group_sequence_elements_by_weights(l, weights,
    assert isinstance(overhang, bool)
 
    if fill == 'exact':
-      return _group_by_weights_exact(l, weights, cyclic, overhang)
+      return _group_by_weights_exact(sequence, weights, cyclic, overhang)
    elif fill == 'less':
-      return _group_by_weights_less(l, weights, cyclic, overhang)
+      return _group_by_weights_less(sequence, weights, cyclic, overhang)
    elif fill == 'greater':
-      return _group_by_weights_greater(l, weights, cyclic, overhang)
+      return _group_by_weights_greater(sequence, weights, cyclic, overhang)
    else:
       raise ValueError("fill must be 'exact', 'less' or 'greater'.")
 
 
-def _group_by_weights_exact(l, weights, cyclic, overhang):
-   candidate = partition_sequence_by_weights(l, weights, cyclic, overhang) 
+def _group_by_weights_exact(sequence, weights, cyclic, overhang):
+   candidate = partition_sequence_by_weights(sequence, weights, cyclic, overhang) 
    flattened_candidate = flatten_sequence(candidate)
-   if flattened_candidate == l[:len(flattened_candidate)]:
+   if flattened_candidate == sequence[:len(flattened_candidate)]:
       return candidate
    else:
-      raise PartitionError('can not partition exactly.') 
+      raise PartitionError('can not group exactly.') 
 
 
-def _group_by_weights_less(l, weights, cyclic, overhang):
+def _group_by_weights_less(sequence, weights, cyclic, overhang):
    if not cyclic:
-      return _group_by_weights_less_noncyclic(l, weights, overhang)
+      return _group_by_weights_less_noncyclic(sequence, weights, overhang)
    else:
-      return _group_by_weights_less_cyclic(l, weights, overhang)
+      return _group_by_weights_less_cyclic(sequence, weights, overhang)
 
 
-def _group_by_weights_greater(l, weights, cyclic, overhang):
+def _group_by_weights_greater(sequence, weights, cyclic, overhang):
    if not cyclic:
-      return _group_by_weights_greater_noncyclic(l, weights, overhang)
+      return _group_by_weights_greater_noncyclic(sequence, weights, overhang)
    else:
-      return _group_by_weights_greater_cyclic(l, weights, overhang)
+      return _group_by_weights_greater_cyclic(sequence, weights, overhang)
    
 
-def _group_by_weights_less_noncyclic(l, weights, overhang):
+def _group_by_weights_less_noncyclic(sequence, weights, overhang):
 
-   l_copy = l[:]
+   l_copy = sequence[:]
    result = [ ]
    cur_part = [ ]
 
@@ -165,7 +163,7 @@ def _group_by_weights_less_noncyclic(l, weights, overhang):
          try:
             x = l_copy.pop(0)
          except IndexError:
-            raise PartitionError('too few elements in l.')
+            raise PartitionError('too few elements in sequence.')
          cur_weight = weight(cur_part)
          candidate_weight = cur_weight + weight([x])
          if candidate_weight < target_weight:
@@ -182,7 +180,7 @@ def _group_by_weights_less_noncyclic(l, weights, overhang):
                l_copy.insert(0, x)
                break
             else:
-               raise PartitionError('Elements in l too big.')
+               raise PartitionError('Elements in sequence too big.')
          else:
             raise ValueError('candidate and target weights must compare.')
 
@@ -194,13 +192,13 @@ def _group_by_weights_less_noncyclic(l, weights, overhang):
    return result
 
 
-def _group_by_weights_less_cyclic(l, weights, overhang):
+def _group_by_weights_less_cyclic(sequence, weights, overhang):
 
    result = [ ]
    cur_part = [ ]
    cur_target_weight_index = 0
    cur_target_weight = weights[cur_target_weight_index]
-   l_copy = l[:]
+   l_copy = sequence[:]
 
    while l_copy:
       cur_target_weight = weights[cur_target_weight_index % len(weights)]
@@ -221,7 +219,7 @@ def _group_by_weights_less_cyclic(l, weights, overhang):
             cur_part = [ ]
             cur_target_weight_index += 1
          else:
-            raise PartitionError('Elements in l too big.')
+            raise PartitionError('Elements in sequence too big.')
       else:
          raise ValueError('candidate and target rates must compare.')
 
@@ -232,11 +230,11 @@ def _group_by_weights_less_cyclic(l, weights, overhang):
    return result
    
 
-def _group_by_weights_greater_noncyclic(l, weights, overhang):
+def _group_by_weights_greater_noncyclic(sequence, weights, overhang):
    
    result = [ ]
    cur_part = [ ]
-   l_copy = l[:]
+   l_copy = sequence[:]
 
    for num_weight, target_weight in enumerate(weights):
       while True:
@@ -247,7 +245,7 @@ def _group_by_weights_greater_noncyclic(l, weights, overhang):
                if cur_part:
                   result.append(cur_part)
                   break
-            raise PartitionError('too few elements in l.')
+            raise PartitionError('too few elements in sequence.')
          cur_part.append(x)
          if target_weight <= weight(cur_part):
             result.append(cur_part)
@@ -259,9 +257,9 @@ def _group_by_weights_greater_noncyclic(l, weights, overhang):
    return result 
 
 
-def _group_by_weights_greater_cyclic(l, weights, overhang):
+def _group_by_weights_greater_cyclic(sequence, weights, overhang):
 
-   l_copy = l[:]
+   l_copy = sequence[:]
    result = [ ]
    cur_part = [ ]
    target_weight_index = 0

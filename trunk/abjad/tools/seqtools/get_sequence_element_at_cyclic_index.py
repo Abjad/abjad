@@ -1,13 +1,13 @@
 from abjad.tools import mathtools
 
 
-def get_element_at_cyclic_index(sequence, index):
+def get_sequence_element_at_cyclic_index(sequence, index):
    r'''.. versionadded:: 1.1.2
 
    Get `sequence` element at nonnegative cyclic `index`::
 
       abjad> for index in range(10):
-      ...     print '%s\t%s' % (index, seqtools.get_element_at_cyclic_index('string', index))
+      ...     print '%s\t%s' % (index, seqtools.get_sequence_element_at_cyclic_index('string', index))
       ... 
       0  s
       1  t
@@ -23,7 +23,7 @@ def get_element_at_cyclic_index(sequence, index):
    Get `sequence` element at negative cyclic `index`::
 
       abjad> for index in range(1, 11):
-      ...     print '%s\t%s' % (-index, seqtools.get_element_at_cyclic_index('string', -index))
+      ...     print '%s\t%s' % (-index, seqtools.get_sequence_element_at_cyclic_index('string', -index))
       ... 
       -1    g
       -2    n
@@ -37,6 +37,10 @@ def get_element_at_cyclic_index(sequence, index):
       -10   r
 
    Return reference to `sequence` element.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.get_element_at_cyclic_index( )`` to
+      ``seqtools.get_sequence_element_at_cyclic_index( )``.
    '''
 
    return sequence[mathtools.sign(index) * (abs(index) % len(sequence))]
