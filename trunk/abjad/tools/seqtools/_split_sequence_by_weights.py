@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.seqtools.repeat_sequence_to_weight import repeat_sequence_to_weight
+from abjad.tools.seqtools.repeat_sequence_to_weight_at_most import repeat_sequence_to_weight_at_most
 
 
 def _split_sequence_by_weights(sequence, weights, cyclic = False, overhang = False):
@@ -14,8 +14,7 @@ def _split_sequence_by_weights(sequence, weights, cyclic = False, overhang = Fal
    cur_index = 0
    cur_part = [ ]
    if cyclic:
-      weights = repeat_sequence_to_weight(
-         weights, mathtools.weight(sequence), remainder = 'less')
+      weights = repeat_sequence_to_weight_at_most(weights, mathtools.weight(sequence))
    for weight in weights:
       cur_part_weight = mathtools.weight(cur_part)
       while cur_part_weight < weight:
