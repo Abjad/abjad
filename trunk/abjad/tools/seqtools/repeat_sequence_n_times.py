@@ -1,33 +1,32 @@
-import itertools
+from abjad.tools import mathtools
+import copy
 
 
-def repeat_sequence_n_times(iterable, n):
+def repeat_sequence_n_times(sequence, n):
    '''.. versionadded:: 1.1.2
 
-   Repeat elements in `iterable` `n` times. ::
+   Repeat `sequence` `n` times::
 
-      abjad> list(seqtools.repeat_sequence_n_times([1, 2, 3, 4, 5], 3))
-      [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+      abjad> seqtools.repeat_sequence_n_times((1, 2, 3, 4, 5), 3)
+      (1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5)
 
-   Yield nothing when `n` is zero. ::
+   Repeat `sequence` ``0`` times::
 
-      abjad> list(seqtools.repeat_sequence_n_times([1, 2, 3, 4, 5], 0))
-      [ ]
+      abjad> seqtools.repeat_sequence_n_times((1, 2, 3, 4, 5), 0)
+      ( )
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.repeat_n_cycles( )`` to
-      ``seqtools.repeat_sequence_n_times( )``.
+   Return newly constructed `sequence` type of copied `sequence` elements.
 
    .. versionchanged:: 1.1.2
-      renamed ``seqtools.repeat_iterable_n_times( )`` to
+      renamed ``listtools.repeat_n_cycles( )`` to
       ``seqtools.repeat_sequence_n_times( )``.
    '''
 
-   ## TODO: optimize with itertools.from_iterable( ) in Python 2.6 ##
+   if not mathtools.is_nonnegative_integer(n):
+      raise ValueError('must be nonnegative integer.')
 
-   if n < 0:
-      raise ValueError('must be nonnegative.')
-
-   manifest_iterable = list(iterable)
-   for x in itertools.chain(*itertools.repeat(manifest_iterable, n)):
-      yield x
+   result = [ ]
+   for x in range(n):
+      for element in sequence:
+         result.append(copy.copy(element))
+   return type(sequence)(result)

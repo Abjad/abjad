@@ -867,10 +867,10 @@ seqtools
    tools/seqtools/remove_duplicates_from_sequence
    tools/seqtools/remove_elements_at_indices
    tools/seqtools/remove_elements_at_indices_cyclic
-   tools/seqtools/remove_weighted_subrun_at
+   tools/seqtools/remove_subsequence_of_weight_at_index
    tools/seqtools/repeat_elements_at_indices
    tools/seqtools/repeat_elements_at_indices_cyclic
-   tools/seqtools/repeat_elements_to_count
+   tools/seqtools/repeat_sequence_elements_n_times_each
    tools/seqtools/repeat_sequence_n_times
    tools/seqtools/repeat_sequence_to_length
    tools/seqtools/repeat_sequence_to_weight_at_least
