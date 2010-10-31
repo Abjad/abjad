@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_seqtools_pairs_from_to_01( ):
+def test_seqtools_yield_all_pairs_between_sequences_01( ):
 
-   pairs = seqtools.pairs_from_to([1, 2, 3], [4, 5])
+   pairs = seqtools.yield_all_pairs_between_sequences([1, 2, 3], [4, 5])
    pairs = list(pairs)
 
    assert pairs[0] == (1, 4)

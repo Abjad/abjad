@@ -821,6 +821,7 @@ seqtools
    tools/seqtools/get_cyclic
    tools/seqtools/get_element_at_cyclic_index
    tools/seqtools/get_elements_at_indices
+   tools/seqtools/get_indices_of_sequence_elements_equal_to_true
    tools/seqtools/group_sequence_elements_by_counts
    tools/seqtools/group_sequence_elements_by_equality
    tools/seqtools/group_sequence_elements_by_sign
@@ -851,7 +852,6 @@ seqtools
    tools/seqtools/negate_elements_at_indices_absolutely
    tools/seqtools/outer_product
    tools/seqtools/overwrite_slices_at
-   tools/seqtools/pairs_from_to
    tools/seqtools/pairwise_cumulative_sums_zero
    tools/seqtools/partition_elements_into_canonic_parts
    tools/seqtools/partition_sequence_by_restricted_growth_function
@@ -883,11 +883,11 @@ seqtools
    tools/seqtools/sequence_to_period_of_rotation
    tools/seqtools/sum_by_sign
    tools/seqtools/sum_slices_at
-   tools/seqtools/true_indices
    tools/seqtools/truncate_sequence_to_sum
    tools/seqtools/truncate_sequence_to_weight
    tools/seqtools/truncate_subruns
    tools/seqtools/yield_all_combinations_of_sequence
+   tools/seqtools/yield_all_pairs_between_sequences
    tools/seqtools/yield_all_partitions_of_sequence
    tools/seqtools/yield_all_permutations_of_sequence
    tools/seqtools/yield_all_permutations_of_sequence_in_orbit
