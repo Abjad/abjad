@@ -1,31 +1,24 @@
 from abjad.tools.mathtools.factors import factors
 
 
-def least_common_multiple(*positive_integers):
-   '''Return the least common multiple of `positive_integers`.
-
-   ::
-
-      abjad> mathtools.least_common_multiple(4, 5)
-      20
-
-   Works with more than two positive integers. ::
+def least_common_multiple(*integers):
+   '''Least common multiple of positive `integers`::
 
       abjad> mathtools.least_common_multiple(2, 4, 5, 10, 20)
       20
 
-   .. todo:: Optimize.
+   Return positive integer.
    '''
 
-   if len(positive_integers) == 1:
-      if not isinstance(positive_integers[0], int):
+   if len(integers) == 1:
+      if not isinstance(integers[0], int):
          raise TypeError('must be integer.')
-      if not 0 < positive_integers[0]:
+      if not 0 < integers[0]:
          raise ValueError('must be positive.')
-      return positive_integers[0]
+      return integers[0]
 
-   cur_lcm = _least_common_multiple_helper(*positive_integers[:2])
-   for remaining_positive_integer in positive_integers[2:]:
+   cur_lcm = _least_common_multiple_helper(*integers[:2])
+   for remaining_positive_integer in integers[2:]: 
       cur_lcm = _least_common_multiple_helper(cur_lcm, remaining_positive_integer)
    return cur_lcm
 

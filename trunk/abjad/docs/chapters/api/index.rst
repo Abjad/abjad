@@ -808,7 +808,9 @@ seqtools
    tools/seqtools/all_are_assignable_integers
    tools/seqtools/all_are_equal
    tools/seqtools/all_are_nonnegative_integer_powers_of_two
+   tools/seqtools/all_are_nonnegative_integers
    tools/seqtools/all_are_numbers
+   tools/seqtools/all_are_positive_integers
    tools/seqtools/all_are_unequal
    tools/seqtools/count_runs_of_length_two_in_sequence
    tools/seqtools/flatten_sequence
