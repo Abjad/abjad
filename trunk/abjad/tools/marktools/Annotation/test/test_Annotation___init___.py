@@ -2,8 +2,12 @@ from abjad import *
 
 
 def test_Annotation___init____01( ):
-   '''Initialize annotation with string.
+   '''Initialize annotation with dictionary.
    '''
 
-   annotation = marktools.Annotation('foo')
-   assert annotation.contents == 'foo'
+   dictionary = { }
+   annotation = marktools.Annotation(dictionary)
+   assert annotation.contents == dictionary
+   assert annotation.contents is not dictionary
+   
+

@@ -1,5 +1,6 @@
 from abjad.components._Component import _Component
 from abjad.tools.marktools.Mark import Mark
+import copy
 
 
 class Annotation(Mark):
@@ -21,7 +22,8 @@ class Annotation(Mark):
 
    def __init__(self, contents):
       Mark.__init__(self)
-      self._contents = contents
+      #self._contents = contents
+      self._contents = copy.copy(contents)
       
    ## OVERLOADS ##
    
