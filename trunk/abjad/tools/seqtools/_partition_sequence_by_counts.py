@@ -51,7 +51,6 @@ def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = F
    Return list of sequence types.
    '''
 
-   ## TODO: Document zero-length boundary case with examples and tests ##
    assert all_are_nonnegative_integers(counts)
 
    result = [ ]
@@ -65,6 +64,7 @@ def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = F
       weight_counts = mathtools.weight(counts)
       len_sequence = len(sequence)
       if weight_counts < len_sequence:
+         counts = list(counts)
          counts.append(len(sequence) - weight_counts)
 
    for start, stop in pairwise_cumulative_sums_zero(counts):

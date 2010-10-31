@@ -2,21 +2,24 @@ from abjad import *
 
 
 def test_seqtools_partition_sequence_once_by_counts_without_overhang_01( ):
-   '''Partition list.
+   '''Partition list by positive counts.
    '''
 
-   l = range(16)
-   parts = seqtools.partition_sequence_once_by_counts_without_overhang(l, [4, 6]) 
-
-   "[[0, 1, 2, 3], [4, 5, 6, 7, 8, 9], [10, 11, 12, 13, 14, 15]]"
-
-   assert len(parts) == 2
-   assert parts[0] == [0, 1, 2, 3]
-   assert parts[1] == [4, 5, 6, 7, 8, 9]
+   parts = seqtools.partition_sequence_once_by_counts_without_overhang(range(16), [4, 6]) 
+   assert parts == [[0, 1, 2, 3], [4, 5, 6, 7, 8, 9]]
 
 
 def test_seqtools_partition_sequence_once_by_counts_without_overhang_02( ):
-   '''Partition Abjad container..
+   '''Partition list by nonnegative counts.
+   '''
+
+   counts = (0, 2, 0, 0, 4)
+   parts = seqtools.partition_sequence_once_by_counts_without_overhang(range(10), counts)
+   assert parts == [[], [0, 1], [], [], [2, 3, 4, 5]]
+
+
+def test_seqtools_partition_sequence_once_by_counts_without_overhang_03( ):
+   '''Partition Abjad container.
    '''
 
    container = Container(macros.scale(6))
