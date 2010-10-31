@@ -64,4 +64,5 @@ def repeat_sequence_to_weight(l, total_weight, remainder = 'chop'):
       elif remainder == 'more':
          pass
 
-   return result
+   #return result
+   return type(l)(result)

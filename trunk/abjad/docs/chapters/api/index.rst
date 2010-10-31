@@ -874,6 +874,9 @@ seqtools
    tools/seqtools/repeat_sequence_n_times
    tools/seqtools/repeat_sequence_to_length
    tools/seqtools/repeat_sequence_to_weight
+   tools/seqtools/repeat_sequence_to_weight_at_least
+   tools/seqtools/repeat_sequence_to_weight_at_most
+   tools/seqtools/repeat_sequence_to_weight_exactly
    tools/seqtools/repeat_subruns_to_count
    tools/seqtools/replace_elements_cyclic
    tools/seqtools/retain_elements_at_indices
