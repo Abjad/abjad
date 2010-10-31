@@ -1,5 +1,6 @@
 from abjad import *
 import py.test
+py.test.skip('remove or replace with more specific function calls.')
 
 
 '''Twelve keyword combinations:

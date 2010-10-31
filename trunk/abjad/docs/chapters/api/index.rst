@@ -824,7 +824,6 @@ seqtools
    tools/seqtools/group_sequence_elements_by_counts
    tools/seqtools/group_sequence_elements_by_equality
    tools/seqtools/group_sequence_elements_by_sign
-   tools/seqtools/group_sequence_elements_by_weights
    tools/seqtools/group_sequence_elements_cyclically_by_weights_at_least_with_overhang
    tools/seqtools/group_sequence_elements_cyclically_by_weights_at_least_without_overhang
    tools/seqtools/group_sequence_elements_cyclically_by_weights_at_most_with_overhang
