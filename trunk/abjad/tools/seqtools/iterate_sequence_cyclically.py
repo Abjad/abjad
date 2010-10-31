@@ -3,7 +3,7 @@ import itertools
 
 ## TODO: merge with seqtools.repeat_to_length( ) ##
 
-def phasor(iterable, step=1, start=0, length='inf'):
+def iterate_sequence_cyclically(iterable, step=1, start=0, length='inf'):
    '''Yield elements in `iterable` cyclically according to `step`,
    `start` and `length`.
 
@@ -14,22 +14,22 @@ def phasor(iterable, step=1, start=0, length='inf'):
      
    Examples. ::
 
-      abjad> list(seqtools.phasor(l, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(l, length = 20))
       [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6]
 
    ::
 
-      abjad> list(seqtools.phasor(l, 2, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(l, 2, length = 20))
       [1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4]
  
    ::
 
-      abjad> list(seqtools.phasor(l, 2, 3, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(l, 2, 3, length = 20))
       [4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7]
 
    ::
 
-      abjad> list(seqtools.phasor(l, -2, 5, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(l, -2, 5, length = 20))
       [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
 
    .. versionchanged:: 1.1.2
@@ -38,8 +38,12 @@ def phasor(iterable, step=1, start=0, length='inf'):
    ::
 
       abjad> generator = seqtools.generate_range(1, 8)
-      abjad> list(seqtools.phasor(generator, -2, 5, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(generator, -2, 5, length = 20))
       [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.phasor( )`` to
+      ``seqtools.iterate_sequence_cyclically( )``.
    '''
 
    #assert isinstance(iterable, list)

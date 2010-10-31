@@ -824,6 +824,7 @@ seqtools
    tools/seqtools/group_by_equality
    tools/seqtools/group_by_sign
    tools/seqtools/group_by_weights
+   tools/seqtools/group_sequence_elements_by_counts
    tools/seqtools/increase_at_indices
    tools/seqtools/increase_cyclic
    tools/seqtools/insert_slice_cyclic
@@ -835,6 +836,7 @@ seqtools
    tools/seqtools/is_restricted_growth_function
    tools/seqtools/is_strictly_decreasing_sequence
    tools/seqtools/is_strictly_increasing_sequence
+   tools/seqtools/iterate_sequence_cyclically
    tools/seqtools/iterate_sequence_forward_and_backward_nonoverlapping
    tools/seqtools/iterate_sequence_forward_and_backward_overlapping
    tools/seqtools/iterate_sequence_nwise_cyclic
@@ -861,7 +863,6 @@ seqtools
    tools/seqtools/partition_sequence_once_by_counts_with_overhang
    tools/seqtools/partition_sequence_once_by_counts_without_overhang
    tools/seqtools/permute_sequence
-   tools/seqtools/phasor
    tools/seqtools/remove_consecutive_duplicates_from_sequence
    tools/seqtools/remove_duplicates_from_sequence
    tools/seqtools/remove_elements_at_indices

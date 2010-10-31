@@ -4,7 +4,7 @@ import math
 
 ## TODO: reimplement as generator ##
 
-## TODO: merge with seqtools.phasor( ) ##
+## TODO: merge with seqtools.iterate_sequence_cyclically( ) ##
 
 def repeat_sequence_to_length(l, length, start = 0):
    '''Repeat list `l` to nonnegative integer `length` from `start`
