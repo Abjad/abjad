@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 import itertools
 
 
-def group_by_sign(l, sign = [-1, 0, 1]):
+def group_sequence_elements_by_sign(l, sign = [-1, 0, 1]):
    '''Group elements in *l* by sign.
 
    .. |element| unicode:: U+2208 .. set membership
@@ -20,7 +20,7 @@ def group_by_sign(l, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> generator = seqtools.group_by_sign(l)
+      abjad> generator = seqtools.group_sequence_elements_by_sign(l)
       abjad> generator
       <generator object at 0x118bf30>
       abjad> list(generator)
@@ -28,7 +28,7 @@ def group_by_sign(l, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> generator = seqtools.group_by_sign(l, sign = [-1])
+      abjad> generator = seqtools.group_sequence_elements_by_sign(l, sign = [-1])
       abjad> generator
       <generator object at 0x118f1e8>
       abjad> list(generator)
@@ -36,7 +36,7 @@ def group_by_sign(l, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> generator = seqtools.group_by_sign(l, sign = [0])
+      abjad> generator = seqtools.group_sequence_elements_by_sign(l, sign = [0])
       abjad> generator
       <generator object at 0x118f288>
       abjad> list(generator)
@@ -44,7 +44,7 @@ def group_by_sign(l, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> generator = seqtools.group_by_sign(l, sign = [1])
+      abjad> generator = seqtools.group_sequence_elements_by_sign(l, sign = [1])
       abjad> generator
       <generator object at 0x118f2d8>
       abjad> list(generator)
@@ -52,7 +52,7 @@ def group_by_sign(l, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> generator = seqtools.group_by_sign(l, sign = [-1, 0])
+      abjad> generator = seqtools.group_sequence_elements_by_sign(l, sign = [-1, 0])
       abjad> generator
       <generator object at 0x118f350>
       abjad> list(generator)
@@ -60,7 +60,7 @@ def group_by_sign(l, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> generator = seqtools.group_by_sign(l, sign = [-1, 1])
+      abjad> generator = seqtools.group_sequence_elements_by_sign(l, sign = [-1, 1])
       abjad> generator
       <generator object at 0x118f418>
       abjad> list(generator)
@@ -68,7 +68,7 @@ def group_by_sign(l, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> generator = seqtools.group_by_sign(l, sign = [0, 1])
+      abjad> generator = seqtools.group_sequence_elements_by_sign(l, sign = [0, 1])
       abjad> generator
       <generator object at 0x118f508>
       abjad> list(generator)
@@ -76,11 +76,15 @@ def group_by_sign(l, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> generator = seqtools.group_by_sign(l, sign = [-1, 0, 1])
+      abjad> generator = seqtools.group_sequence_elements_by_sign(l, sign = [-1, 0, 1])
       abjad> generator
       <generator object at 0x118bf30>
       abjad> list(generator)
       [[0, 0], [-1, -1], [2, 3], [-5], [1, 2, 5], [-5, -6]]
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.group_by_sign( )`` to
+      ``seqtools.group_sequence_elements_by_sign( )``.
    '''
 
    g = itertools.groupby(l, mathtools.sign)

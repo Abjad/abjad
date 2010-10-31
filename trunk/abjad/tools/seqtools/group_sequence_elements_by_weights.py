@@ -5,7 +5,7 @@ from abjad.tools.seqtools.partition_sequence_by_weights import partition_sequenc
 from abjad.tools.mathtools.weight import weight
 
 
-def group_by_weights(l, weights, 
+def group_sequence_elements_by_weights(l, weights, 
    fill = 'exact', cyclic = False, overhang = False):
    '''Partition ``l`` into list ``result`` of sublists 
    according to ``weights``.
@@ -49,63 +49,67 @@ def group_by_weights(l, weights,
 
    ::
 
-      abjad> t = seqtools.group_by_weights(l, [3, 9], fill = 'exact', cyclic = False, overhang = False)
+      abjad> t = seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'exact', cyclic = False, overhang = False)
       [[3], [3, 3, 3]]
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'exact', cyclic = False, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'exact', cyclic = False, overhang = True)
       [[3], [3, 3, 3], [4, 4, 4, 4, 5, 5]]
 
    ::
 
-      abjad> t = seqtools.group_by_weights(l, [3, 9], fill = 'exact', cyclic = True, overhang = False)
+      abjad> t = seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'exact', cyclic = True, overhang = False)
       PartitionError
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'exact', cyclic = True, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'exact', cyclic = True, overhang = True)
       PartitionError
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'less', cyclic = False, overhang = False)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'less', cyclic = False, overhang = False)
       t == [[3], [3, 3, 3]]
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'less', cyclic = False, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'less', cyclic = False, overhang = True)
       [[3], [3, 3, 3], [4, 4, 4, 4, 5, 5]]
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'less', cyclic = True, overhang = False)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'less', cyclic = True, overhang = False)
       PartitionError
 
    ::
 
-      abjad> t = seqtools.group_by_weights(l, [3, 9], fill = 'less', cyclic = True, overhang = True)
+      abjad> t = seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'less', cyclic = True, overhang = True)
       PartitionError
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'greater', cyclic = False, overhang = False)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'greater', cyclic = False, overhang = False)
       [[3], [3, 3, 3]]
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'greater', cyclic = False, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'greater', cyclic = False, overhang = True)
       [[3], [3, 3, 3], [4, 4, 4, 4, 5, 5]]
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'greater', cyclic = True, overhang = False)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'greater', cyclic = True, overhang = False)
       [[3], [3, 3, 3], [4], [4, 4, 4], [5]]
 
    ::
 
-      abjad> seqtools.group_by_weights(l, [3, 9], fill = 'greater', cyclic = True, overhang = True)
+      abjad> seqtools.group_sequence_elements_by_weights(l, [3, 9], fill = 'greater', cyclic = True, overhang = True)
       [[3], [3, 3, 3], [4], [4, 4, 4], [5], [5]]
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.group_by_weights( )`` to
+      ``seqtools.group_sequence_elements_by_weights( )``.
    '''
 
    assert isinstance(l, list)

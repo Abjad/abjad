@@ -821,10 +821,10 @@ seqtools
    tools/seqtools/get_cyclic
    tools/seqtools/get_element_at_cyclic_index
    tools/seqtools/get_elements_at_indices
-   tools/seqtools/group_by_equality
-   tools/seqtools/group_by_sign
-   tools/seqtools/group_by_weights
    tools/seqtools/group_sequence_elements_by_counts
+   tools/seqtools/group_sequence_elements_by_equality
+   tools/seqtools/group_sequence_elements_by_sign
+   tools/seqtools/group_sequence_elements_by_weights
    tools/seqtools/increase_at_indices
    tools/seqtools/increase_cyclic
    tools/seqtools/insert_slice_cyclic
