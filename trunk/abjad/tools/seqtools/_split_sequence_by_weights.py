@@ -12,34 +12,35 @@ def _split_sequence_by_weights(sequence, weights, cyclic = False, overhang = Fal
 
    result = [ ]
    cur_index = 0
-   cur_part = [ ]
+   cur_piece = [ ]
    if cyclic:
       weights = repeat_sequence_to_weight_at_most(weights, mathtools.weight(sequence))
    for weight in weights:
-      cur_part_weight = mathtools.weight(cur_part)
-      while cur_part_weight < weight:
-         cur_part.append(sequence[cur_index])
+      cur_piece_weight = mathtools.weight(cur_piece)
+      while cur_piece_weight < weight:
+         cur_piece.append(sequence[cur_index])
          cur_index += 1
-         cur_part_weight = mathtools.weight(cur_part)
-      if cur_part_weight == weight:
-         cur_part = type(sequence)(cur_part)
-         result.append(cur_part)
-         cur_part = [ ]
-      elif weight < cur_part_weight:
-         overage = cur_part_weight - weight
-         cur_last_element = cur_part.pop(-1)
+         cur_piece_weight = mathtools.weight(cur_piece)
+      if cur_piece_weight == weight:
+         cur_piece = type(sequence)(cur_piece)
+         result.append(cur_piece)
+         cur_piece = [ ]
+      elif weight < cur_piece_weight:
+         overage = cur_piece_weight - weight
+         cur_last_element = cur_piece.pop(-1)
          needed = abs(cur_last_element) - overage
          needed *= mathtools.sign(cur_last_element)
-         cur_part.append(needed)
-         cur_part = type(sequence)(cur_part)
-         result.append(cur_part)
+         cur_piece.append(needed)
+         cur_piece = type(sequence)(cur_piece)
+         result.append(cur_piece)
          overage *= mathtools.sign(cur_last_element)
-         cur_part = [overage]
+         cur_piece = [overage]
    
    if overhang:
-      last_part = cur_part
-      last_part.extend(sequence[cur_index:])
-      last_part = type(sequence)(last_part)
-      result.append(last_part)
+      last_piece = cur_piece
+      last_piece.extend(sequence[cur_index:])
+      if last_piece:
+         last_piece = type(sequence)(last_piece)
+         result.append(last_piece)
 
    return result
