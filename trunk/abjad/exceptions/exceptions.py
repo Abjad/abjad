@@ -1,3 +1,7 @@
+class InputError(Exception):
+   '''Either type or value of input is incorrect.'''
+   pass
+
 class DurationError(Exception):
    '''Any type of duration error.'''
    pass

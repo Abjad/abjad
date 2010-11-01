@@ -487,6 +487,7 @@ mathtools
    tools/mathtools/greatest_common_divisor
    tools/mathtools/greatest_multiple_less_equal
    tools/mathtools/greatest_power_of_two_less_equal
+   tools/mathtools/integer_equivalent_number_to_integer
    tools/mathtools/integer_to_base_k_tuple
    tools/mathtools/integer_to_binary_string
    tools/mathtools/interpolate_cosine

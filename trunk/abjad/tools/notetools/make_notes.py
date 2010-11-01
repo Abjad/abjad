@@ -1,12 +1,11 @@
-from fractions import Fraction
 from abjad.tools import durtools
-from abjad.tools import seqtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-#from abjad.components.Tuplet import Tuplet
+from abjad.tools import seqtools
 from abjad.components.Tuplet import Tuplet
-import operator
+from fractions import Fraction
 import math
+import operator
       
 
 def make_notes(pitches, durations, direction='big-endian'):
@@ -36,10 +35,6 @@ def make_notes(pitches, durations, direction='big-endian'):
 
    .. versionchanged:: 1.1.2
       renamed ``construct.notes( )`` to
-      ``notetools.make_notes( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.make_notes( )`` to
       ``notetools.make_notes( )``.
    '''
    from abjad.tools.leaftools._construct_unprolated_notes import _construct_unprolated_notes

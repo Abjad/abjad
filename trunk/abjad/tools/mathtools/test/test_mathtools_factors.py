@@ -3,8 +3,8 @@ import py.test
 
 
 def test_mathtools_factors_01( ):
-   assert py.test.raises(TypeError, 'mathtools.factors(7.5)')
-   assert py.test.raises(ValueError, 'mathtools.factors(0)')
+   assert py.test.raises(InputError, 'mathtools.factors(7.5)')
+   assert py.test.raises(InputError, 'mathtools.factors(0)')
    
 
 def test_mathtools_factors_02( ):

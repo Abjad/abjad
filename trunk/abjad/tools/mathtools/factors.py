@@ -1,3 +1,7 @@
+from abjad.exceptions import InputError
+from abjad.tools.mathtools.is_positive_integer import is_positive_integer
+
+
 def factors(n):
    '''Integer factors of positive integer `n` in increasing order::
 
@@ -27,11 +31,8 @@ def factors(n):
    Raise value error on nonpositive `n`.
    '''
 
-   if not isinstance(n, (int, long)):
-      raise TypeError('"%s" must be integer.' % str(n))
-
-   if n <= 0:
-      raise ValueError('"%s" must be positive.' % str(n))
+   if not is_positive_integer(n):
+      raise InputError('"%s" must be positive integer.' % str(n))
 
    d = 2
    factors = [1]
