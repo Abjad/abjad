@@ -76,7 +76,7 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
       body_string = ' '
       skeleton_strings = self._get_skeleton_strings( )
       if skeleton_strings:
-         skeleton_strings = [x.strip('override__') for x in skeleton_strings]
+         skeleton_strings = [x.lstrip('override__') for x in skeleton_strings]
          body_string = ', '.join(skeleton_strings)
       return '%s(%s)' % (self.__class__.__name__, body_string)
 
