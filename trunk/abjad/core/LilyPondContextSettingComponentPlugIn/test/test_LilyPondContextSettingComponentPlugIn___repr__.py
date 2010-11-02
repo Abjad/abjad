@@ -3,7 +3,7 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 
 
 def test_LilyPondContextSettingComponentPlugIn___repr___01( ):
-   '''LilyPond grob proxy repr is evaluable.
+   '''LilyPond context setting component plug-in repr is evaluable.
    '''
 
    note = Note(0, (1, 4))
@@ -14,3 +14,14 @@ def test_LilyPondContextSettingComponentPlugIn___repr___01( ):
 
    assert isinstance(context_setting_component_plug_in_1, LilyPondContextSettingComponentPlugIn)
    assert isinstance(context_setting_component_plug_in_2, LilyPondContextSettingComponentPlugIn)
+
+
+def test_LilyPondContextSettingComponentPlugIn___repr___02( ):
+   '''LilyPond context setting component plug-in looks like this.
+   '''
+
+   note = Note(0, (1, 4))
+   note.set.staff.tuplet_full_length = True
+
+   assert repr(note.set) == \
+      'LilyPondContextSettingComponentPlugIn(staff__tuplet_full_length = True)'
