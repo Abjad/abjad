@@ -1315,7 +1315,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___60( ):
    assert t.format == "\\new Staff \\with {\n\t\\override VerticalAxisGroup #'Y-extent = #'(-1.5 . 1.5)\n\t\\override VerticalAxisGroup #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_foo_61( ):
+def test_LilyPondGrobOverrideComponentPlugIn___setattr___61( ):
    '''Setting attribute on erroneous grob name raises exception.
    '''
 

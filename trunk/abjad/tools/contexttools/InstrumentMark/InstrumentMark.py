@@ -2,9 +2,28 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class InstrumentMark(ContextMark):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   The Abjad model of an instrument change.
+   The Abjad model of an instrument change::
+
+      abjad> staff = Staff(macros.scale(4))
+   
+   ::
+
+      abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
+      InstrumentMark('Flute', 'Fl.')(Staff{4})
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \set Staff.instrumentName = \markup { Flute }
+         \set Staff.shortInstrumentName = \markup { Fl. }
+         c'8
+         d'8
+         e'8
+         f'8
+      }
    '''
 
    _format_slot = 'opening'
@@ -17,6 +36,11 @@ class InstrumentMark(ContextMark):
          self._target_context = Staff
       self._instrument_name = Markup(instrument_name)
       self._short_instrument_name = Markup(short_instrument_name)
+
+   def __repr__(self):
+      markups = (self.instrument_name, self.short_instrument_name)
+      contents_string = ', '.join([repr(markup.contents_string) for markup in markups])
+      return '%s(%s)' % (self.__class__.__name__, contents_string)
 
    ## OVERLOADS ##
 
@@ -42,6 +66,8 @@ class InstrumentMark(ContextMark):
 
    @property
    def format(self):
+      '''LilyPond input format of instrument mark.
+      '''
       result = [ ]
       result.append(r'\set %s.instrumentName = %s' % (
          self._target_context_name, self.instrument_name))
@@ -51,8 +77,12 @@ class InstrumentMark(ContextMark):
 
    @property
    def instrument_name(self):
+      '''Full name of instrument.
+      '''
       return self._instrument_name
 
    @property
    def short_instrument_name(self):
+      '''Short name of instrument.
+      '''
       return self._short_instrument_name
