@@ -952,6 +952,7 @@ spannertools
    tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
    tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    tools/spannertools/MetricGridSpanner/MetricGridSpanner
+   tools/spannertools/MultipartBeamSpanner/MultipartBeamSpanner
    tools/spannertools/OctavationSpanner/OctavationSpanner
    tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
    tools/spannertools/PianoPedalSpanner/PianoPedalSpanner

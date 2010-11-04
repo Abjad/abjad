@@ -9,9 +9,12 @@ def is_beamable_component(expr):
    Return boolean.
    '''
    from abjad.components._Leaf import _Leaf
+   from abjad.components import Chord
+   from abjad.components import Note
    from abjad.tools import durtools
 
-   if isinstance(expr, _Leaf):
+   #if isinstance(expr, _Leaf):
+   if isinstance(expr, (Note, Chord)):
       if 0 < durtools.rational_to_flag_count(expr.duration.written):
          return True
    return False

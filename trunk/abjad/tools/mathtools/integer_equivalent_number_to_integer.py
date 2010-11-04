@@ -3,9 +3,9 @@ from abjad.tools.mathtools.is_integer_equivalent_number import is_integer_equiva
 
 
 def integer_equivalent_number_to_integer(number):
-   '''.. versionadded::
+   '''.. versionadded:: 1.1.2
    
-   Change integer-equivalent `number` to integer::
+   Change integer-equivalent `number` to integer.
 
    Docs.
    '''

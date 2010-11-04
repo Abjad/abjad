@@ -13,6 +13,7 @@ from GlissandoSpanner import GlissandoSpanner
 from HairpinSpanner import HairpinSpanner
 from HiddenStaffSpanner import HiddenStaffSpanner
 from MeasuredComplexBeamSpanner import MeasuredComplexBeamSpanner
+from MultipartBeamSpanner import MultipartBeamSpanner
 from MetricGridSpanner import MetricGridSpanner
 from OctavationSpanner import OctavationSpanner
 from PhrasingSlurSpanner import PhrasingSlurSpanner
