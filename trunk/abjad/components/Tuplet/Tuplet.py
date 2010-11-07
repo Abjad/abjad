@@ -69,8 +69,9 @@ class Tuplet(Container):
 
    @apply
    def force_fraction( ):
-      '''Read / write boolean to force n:m fraction.'''
       def fget(self):
+         '''Read / write boolean to force ``n:m`` fraction.
+         '''
          return self._force_fraction
       def fset(self, arg):
          if isinstance(arg, (bool, type(None))):
