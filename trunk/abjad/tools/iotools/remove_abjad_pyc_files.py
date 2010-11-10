@@ -3,7 +3,11 @@ import os
 
 
 def remove_abjad_pyc_files( ):
-   '''Remove .pyc files from top-level abjad directory.
+   '''Remove ``.pyc`` files from Abjad source tree::
+
+      abjad> iotools.remove_abjad_pyc_files( )
+
+   Return none.
    '''
 
    project_root = ABJADPATH.rstrip('abjad')

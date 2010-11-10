@@ -4,12 +4,12 @@ import re
 
 
 def get_last_output_file_name( ):
-   '''Get last output file name:
-
-   ::
+   '''Get last output file name::
 
       abjad> iotools.get_last_output_file_name( )
       '6222.ly'
+
+   Return string.
    '''
 
    pattern = re.compile('\d{4,4}.ly')

@@ -6,13 +6,17 @@ from abjad.tools.iotools.show import show
 
 
 def write_expr_to_ly_and_to_pdf_and_show(expr, name, template = None, write = True):
-   '''When ``write = True`` (default) call ``write_ly(expr)`` and 
-   ``write_pdf(expr)`` and then open the resulting PDF.
+   '''Write `expr` to named ``.ly`` and to PDF and then open the resulting PDF::
 
-   When ``write = False`` call ``show(expr)`` only.
+      abjad> iotools.write_expr_to_ly_and_to_pdf_and_show(Note("c'8"), 'file_name_stem')
 
-   The purpose of this function is to conditionally save named PDF
-   and named ``.ly`` output corresponding to `expr`.
+   Write `expr` to temporary ``.ly`` and to PDF and then open the resulting PDF::
+
+      abjad> iotools.write_expr_to_ly_and_to_pdf_and_show(Note("c'8"), 'file_name_stem', write = False)
+
+   Return none.
+
+   The purpose of this function is to save named ``.ly`` and PDF output.
 
    .. versionchanged:: 1.1.2
       renamed ``io.write_and_show( )`` to

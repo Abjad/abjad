@@ -14,6 +14,8 @@ def write_expr_to_pdf(expr, file_name, template = None):
 
       abjad> note = Note(0, (1, 4))
       abjad> write_expr_to_pdf(note, 'one_note.pdf', 'paris')
+
+   Return none.
    '''
 
    ## massage file_name

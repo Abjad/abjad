@@ -12,7 +12,15 @@ import time
 ## TODO: Encapsulate stuff below.
 
 def redo(target = -1, lily_time = 10):
-   r'''Re-render and re-show the last .ly file created in Abjad.
+   r'''Rerender the last ``.ly`` file created in Abjad and then show the resulting PDF::
+
+      abjad> iotools.redo( )
+
+   Rerender the next-to-last ``.ly`` file created in Abjad and then show the resulting PDF::
+
+      abjad> iotools.redo(-2)
+   
+   Return none.
    '''
 
    current_directory = os.path.abspath('.')

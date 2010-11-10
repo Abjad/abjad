@@ -1,11 +1,13 @@
-from abjad.components.Container import Container
-from abjad.components.Voice import Voice
+from abjad.components import Container
+from abjad.components import Voice
 from abjad.exceptions import MissingSpannerError
 from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
 from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
-from abjad.tools import marktools
-from abjad.tools.spannertools import BeamSpanner, SlurSpanner, TieSpanner
+from abjad.tools.spannertools import BeamSpanner
+from abjad.tools.spannertools import SlurSpanner
+from abjad.tools.spannertools import TieSpanner
 import re
 
 
@@ -18,18 +20,11 @@ def parse_lilypond_input_string(note_entry_string):
       abjad> iotools.parse_lilypond_input_string(note_entry_string)
       {g'4, a'4, a'2, fs'8, e'4, d'4}
 
-   Return Abjad container of note, rest and chord instances.
-   Handles simple beaming, slurs and articulations.
+   Return container of note, rest and chord instances.
+
+   Handle simple beaming, slurs and articulations.
 
    Do not parse tuplets, measures or other complex LilyPond input.
-
-   .. versionchanged:: 1.1.2
-      renamed ``lilyfiletools.parse_note_entry_string( )`` to
-      ``iotools.parse_lilypond_input_string( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iotools.parse_note_entry_string( )`` to
-      ``iotools.parse_lilypond_input_string( )``.
    '''
    from abjad.tools import componenttools
    from abjad.tools import leaftools

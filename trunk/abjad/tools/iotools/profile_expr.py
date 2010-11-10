@@ -2,15 +2,7 @@ import os
 
 
 def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
-   '''Profile `expr` with the built-in Python ``cProfile`` module.
-
-   Set `expr` to any string of Abjad input.
-
-   Set `sort_by` to `'cum'`, `'time'` or `'calls'`.
-
-   Set `num_lines` to any positive integer.
-
-   Set `strip_dirs` to ``True`` to strip directory names from output lines. ::
+   '''Profile `expr`::
 
       abjad> iotools.profile_expr('Staff(notetools.make_repeated_notes(8))')
       Sat Aug 15 15:29:14 2009    _tmp_abj_profile
@@ -33,6 +25,16 @@ def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
            2040    0.024    0.000    0.024    0.000 {method '__reduce_ex__' of 'object' objects}
            8728    0.015    0.000    0.019    0.000 copy.py:260(_keep_alive)
           30448    0.010    0.000    0.010    0.000 {method 'get' of 'dict' objects}
+
+   Function wraps the built-in Python ``cProfile`` module.
+
+   Set `expr` to any string of Abjad input.
+
+   Set `sort_by` to `'cum'`, `'time'` or `'calls'`.
+
+   Set `num_lines` to any positive integer.
+
+   Set `strip_dirs` to ``True`` to strip directory names from output lines.
 
    .. note:: This function fails on some Linux distros. Some Linux
       distributions do not include the Python ``pstats`` module.

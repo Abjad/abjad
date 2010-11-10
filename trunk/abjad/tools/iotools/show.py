@@ -21,17 +21,17 @@ def show(expr, template = None, return_timing = False, suppress_pdf = False):
       abjad> show(note, return_timing = True)
       (0, 3)
 
-   .. note:: 
-      By default, Abjad writes LilyPond input files
-      to the ``~/.abjad/output`` directory. You may change this by
-      setting the ``abjad_output`` variable in the ``config.py`` file.
+   Return none or timing tuple.
+
+   Abjad writes LilyPond input files to the ``~/.abjad/output`` directory by default.
+
+   You may change this by setting the ``abjad_output`` variable in the ``config.py`` file.
    '''
 
    lily_time = 10
    format_time = 10
 
-   name, actual_format_time, actual_lily_time = _log_render_lilypond_input(
-      expr, template = template)
+   name, actual_format_time, actual_lily_time = _log_render_lilypond_input(expr, template = template)
 
    ## do not open PDF if we're running py.test regression battery
    if not suppress_pdf:

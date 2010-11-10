@@ -2,9 +2,27 @@ from abjad.exceptions import SpannerPopulationError
 
 
 def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
-   '''Return index of component in 'spanner'
-      that begins at exactly 'score_offset'.
-      Otherwise raise SpannerPopulationError.
+   r'''Return index of component in 'spanner' that begins at exactly 'score_offset'::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+      abjad> beam = spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
+      }
+      
+   ::
+      
+      abjad> spannertools.find_index_of_spanner_component_at_score_offset(beam, Fraction(3, 8)) 
+      3
+
+   Raise spanner population error when no component in `spanner` begins at exactly `score_offset`.
 
    .. versionchanged:: 1.1.2
       renamed ``spannertools.find_index_at_score_offset( )`` to
@@ -15,5 +33,4 @@ def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
       if component._offset.start == score_offset:
          return spanner.index(component)
 
-   raise SpannerPopulationError(
-      'no component in spanner at this score offset.')
+   raise SpannerPopulationError('no component in spanner at this score offset.')

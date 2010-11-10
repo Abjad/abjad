@@ -14,6 +14,8 @@ def write_expr_to_ly(expr, file_name, template = None):
       abjad> note = Note(0, (1, 4))
       abjad> write_expr_to_ly(note, '/home/user/foo.ly', 'paris')
 
+   Retur none.
+
    .. versionchanged:: 1.1.2
       renamed ``io.write_ly( )`` to
       ``io.write_expr_to_ly( )``.

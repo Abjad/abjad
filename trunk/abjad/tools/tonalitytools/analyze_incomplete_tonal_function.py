@@ -1,5 +1,4 @@
-from abjad.tools.tonalitytools.analyze_incomplete_chord import \
-   analyze_incomplete_chord
+from abjad.tools.tonalitytools.analyze_incomplete_chord import analyze_incomplete_chord
 from abjad.tools.tonalitytools.ChordClass import ChordClass
 from abjad.tools.tonalitytools.Scale import Scale
 from abjad.tools.tonalitytools.TonalFunction import TonalFunction
@@ -9,7 +8,14 @@ from abjad.tools.tonalitytools.TonalFunction import TonalFunction
 def analyze_incomplete_tonal_function(expr, key_signature):
    '''.. versionadded:: 1.1.2
 
-   Analyze `expr` and return tonal function according to `key_signature`.
+   Analyze tonal function of `expr` according to `key_signature`::
+
+      abjad> chord = Chord("<c' e'>4")
+      abjad> key_signature = contexttools.KeySignatureMark('g', 'major')
+      abjad> tonalitytools.analyze_incomplete_tonal_function(chord, key_signature)
+      IVMajorTriadInRootPosition
+
+   Return tonal function.
    '''
 
    if isinstance(expr, ChordClass):

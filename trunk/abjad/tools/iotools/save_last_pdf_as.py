@@ -8,18 +8,9 @@ def save_last_pdf_as(file_name):
 
    Save last PDF as `file_name`::
 
-      abjad> show(score)
       abjad> iotools.save_last_pdf_as('/project/output/example-1.pdf')
 
    Return none.
-
-   .. versionchanged:: 1.1.2
-      renamed ``lilyfiletools.save_pdf_as( )`` to
-      ``iotools.save_last_pdf_as( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``lilyfiletools.save_last_pdf_as( )`` to
-      ``iotools.save_last_pdf_as( )``.
    '''
 
    ABJADOUTPUT = _read_config_file( )['abjad_output'] 
