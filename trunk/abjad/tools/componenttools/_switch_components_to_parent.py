@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_thread_contiguous_components import \
-   all_are_thread_contiguous_components
+from abjad.tools.componenttools.all_are_thread_contiguous_components import all_are_thread_contiguous_components
 
 
 def _switch_components_to_parent(components, parent):

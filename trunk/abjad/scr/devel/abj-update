@@ -2,7 +2,7 @@
 
 import os
 from abjad.cfg.cfg import ABJADPATH
-from abjad.tools.iotools._write_abjad_versionfile import _write_abjad_versionfile
+from abjad.tools.iotools._write_abjad_version_file import _write_abjad_version_file
 from abjad.tools.iotools.remove_abjad_pyc_files import remove_abjad_pyc_files
 
 
@@ -17,7 +17,7 @@ os.system('svn update')
 os.chdir(start_directory)
 
 ## write version file
-_write_abjad_versionfile( )
+_write_abjad_version_file( )
 
 ## remove Abjad *.pyc files
 remove_abjad_pyc_files( )

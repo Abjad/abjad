@@ -2,7 +2,7 @@ from abjad.tools.importtools._get_functions_in_module import _get_functions_in_m
 import os
 
 
-def _package_import(path, namespace):
+def _import_public_names_from_path_into_namespace(path, namespace):
    r'''Nonrecursive import helper. 
    All packages (nonleaf submodules) in `path` are imported to the 
    given `namespace`.
@@ -31,4 +31,4 @@ def _package_import(path, namespace):
       else:
          print 'Not a dir, not a file, what is %s?' % element
 
-   del(namespace['_package_import'])
+   del(namespace['_import_public_names_from_path_into_namespace'])
