@@ -59,11 +59,11 @@ class Container(_Component):
       #from abjad.tools.componenttools._switch import _switch
       from abjad.tools.componenttools._switch_components_to_parent import \
          _switch_components_to_parent
-      from abjad.tools.spannertools._withdraw_from_crossing import _withdraw_from_crossing
+      from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
       components = self[i]
       if not isinstance(components, list):
          components = [components]
-      _withdraw_from_crossing(components)
+      _withdraw_components_in_expr_from_crossing_spanners(components)
       _switch_components_to_parent(components, None)
 
    def __eq__(self, arg):
@@ -117,7 +117,7 @@ class Container(_Component):
       '''
       from abjad.tools import componenttools
       from abjad.tools import spannertools
-      from abjad.tools.spannertools._withdraw_from_crossing import _withdraw_from_crossing
+      from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
       # item assignment
       if isinstance(i, int):
          assert componenttools.all_are_components([expr])
@@ -125,7 +125,7 @@ class Container(_Component):
          spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
          ## must withdraw from spanners before parentage!
          ## otherwise begin / end assessments don't work!
-         _withdraw_from_crossing([expr])
+         _withdraw_components_in_expr_from_crossing_spanners([expr])
          expr._parentage._switch(self)
          self._music.insert(i, expr)
          componenttools.remove_component_subtree_from_score_and_spanners([old])
@@ -146,7 +146,7 @@ class Container(_Component):
          componenttools.remove_component_subtree_from_score_and_spanners(old)
          ## must withdraw before setting in self!
          ## otherwise circular withdraw ensues!
-         _withdraw_from_crossing(expr)
+         _withdraw_components_in_expr_from_crossing_spanners(expr)
          self._music[start:start] = expr
          for component in expr:
             component._parentage._switch(self)

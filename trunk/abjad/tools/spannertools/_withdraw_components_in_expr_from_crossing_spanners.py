@@ -2,7 +2,7 @@ from abjad.components._Component import _Component
 from abjad.tools.spannertools.get_spanners_that_cross_components import get_spanners_that_cross_components
 
 
-def _withdraw_from_crossing(components):
+def _withdraw_components_in_expr_from_crossing_spanners(components):
    '''This operation can leave score trees in a weird state.
    Operation should only be used in the middle of some other operation.
    Intended purpose is to strip components of crosssing spanners.

@@ -1,6 +1,6 @@
 from abjad.components._Component import _Component
 from fractions import Fraction
-from abjad.tools.verticalitytools._new_vertical_moments_forward_in import _new_vertical_moments_forward_in
+from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import _yield_vertical_moments_forward_in_expr
 
 
 def iterate_vertical_moments_forward_in_expr(governor):
@@ -69,5 +69,5 @@ def iterate_vertical_moments_forward_in_expr(governor):
    from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
    ## OPTIMIZED DROP-IN REPLACEMENT ##
-   for x in _new_vertical_moments_forward_in(governor):
+   for x in _yield_vertical_moments_forward_in_expr(governor):
       yield x

@@ -3,7 +3,7 @@ from abjad.components.Container import Container
 from fractions import Fraction
 
 
-def _new_vertical_moments_forward_in(expr):
+def _yield_vertical_moments_forward_in_expr(expr):
    '''.. versionadded: 1.1.2
 
    Optimized to avoid full-score traversal.

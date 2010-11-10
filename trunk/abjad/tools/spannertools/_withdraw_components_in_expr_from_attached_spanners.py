@@ -3,7 +3,7 @@ from abjad.tools.spannertools._withdraw_component_from_attached_spanners import 
    _withdraw_component_from_attached_spanners
 
 
-def _withdraw_from_contained(components):
+def _withdraw_components_in_expr_from_attached_spanners(components):
    '''Find every spanner contained in 'components'.
    Withdraw all components in 'components' from spanners.
    Return 'components'.

@@ -1,8 +1,8 @@
 from abjad import *
-from abjad.tools.spannertools._withdraw_from_contained import _withdraw_from_contained
+from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners import _withdraw_components_in_expr_from_attached_spanners
 
 
-def test_spannertools_withdraw_from_contained_01( ):
+def test_spannertools__withdraw_components_in_expr_from_attached_spanners_01( ):
    '''Unspan every component in components.
       Navigate down into components and traverse deeply.'''
 
@@ -10,7 +10,7 @@ def test_spannertools_withdraw_from_contained_01( ):
    spannertools.BeamSpanner(t)
    spannertools.CrescendoSpanner(t[:])
 
-   _withdraw_from_contained([t])
+   _withdraw_components_in_expr_from_attached_spanners([t])
 
    r'''
    \new Staff {
@@ -25,7 +25,7 @@ def test_spannertools_withdraw_from_contained_01( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_spannertools_withdraw_from_contained_02( ):
+def test_spannertools__withdraw_components_in_expr_from_attached_spanners_02( ):
    '''Docs.'''
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
@@ -50,7 +50,7 @@ def test_spannertools_withdraw_from_contained_02( ):
    }
    '''
 
-   _withdraw_from_contained([t[1]])
+   _withdraw_components_in_expr_from_attached_spanners([t[1]])
 
    r'''
    \new Staff {
