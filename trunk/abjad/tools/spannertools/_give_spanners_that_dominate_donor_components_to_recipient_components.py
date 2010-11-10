@@ -1,7 +1,7 @@
 from abjad.tools.spannertools.get_spanners_that_dominate_components import get_spanners_that_dominate_components
 
 
-def _give_dominant_to(donor_components, recipient_components):
+def _give_spanners_that_dominate_donor_components_to_recipient_components(donor_components, recipient_components):
    '''Find all spanners dominating 'donor_components'.
       Insert each component in 'recipient_components' into
       each spanner dominating 'donor_components'.

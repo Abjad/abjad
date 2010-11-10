@@ -12,7 +12,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import \
 from abjad.tools.measuretools._get_contemporaneous_measure import _get_contemporaneous_measure
 
 
-def _measure_get(component, direction):
+def _get_measure_from_component(component, direction):
    '''.. versionadded:: 1.1.1
 
    When `component` is voice, staff or other sequential context,

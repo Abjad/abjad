@@ -6,7 +6,7 @@ from abjad.tools import componenttools
 #from abjad.tools.componenttools._switch import _switch
 from abjad.tools.componenttools._switch_components_to_parent import \
    _switch_components_to_parent
-from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
+from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
 from fractions import Fraction
 
 
@@ -113,7 +113,7 @@ def fuse_measures(measures):
    new_measure = Measure(new_meter, music)
 
    if parent is not None:
-      _give_dominant_to(measures, [new_measure])
+      _give_spanners_that_dominate_donor_components_to_recipient_components(measures, [new_measure])
 
    _switch_components_to_parent(measures, None)
    if parent is not None:

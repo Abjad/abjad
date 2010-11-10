@@ -1,8 +1,8 @@
 from abjad import *
-from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
+from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
 
 
-def test_spannertools_give_dominant_to_01( ):
+def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient_components_01( ):
    '''Find spanners that dominate donor_components.
    Apply dominant spanners to recipient_components.
    Withdraw donor_components from spanners.
@@ -34,7 +34,7 @@ def test_spannertools_give_dominant_to_01( ):
    }
    '''
 
-   _give_dominant_to(t[1:3], recipient[:])
+   _give_spanners_that_dominate_donor_components_to_recipient_components(t[1:3], recipient[:])
 
    "Voice t is now ..."
 
@@ -68,7 +68,7 @@ def test_spannertools_give_dominant_to_01( ):
    assert recipient.format == "\\new Voice {\n\tc'16 [ (\n\tc'16\n\tc'16 ] )\n}"
 
 
-def test_spannertools_give_dominant_to_02( ):
+def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient_components_02( ):
    '''Not composer-safe.
    '''
 
@@ -91,7 +91,7 @@ def test_spannertools_give_dominant_to_02( ):
 
    donor = t[0]
    recipient = Voice(macros.scale(4))
-   _give_dominant_to([donor], [recipient])
+   _give_spanners_that_dominate_donor_components_to_recipient_components([donor], [recipient])
    
    "Container t is now ..."
 

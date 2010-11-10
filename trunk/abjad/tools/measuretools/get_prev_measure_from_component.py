@@ -1,4 +1,4 @@
-from abjad.tools.measuretools._measure_get import _measure_get
+from abjad.tools.measuretools._get_measure_from_component import _get_measure_from_component
 
 
 def get_prev_measure_from_component(component):
@@ -65,4 +65,4 @@ def get_prev_measure_from_component(component):
       ``measuretools.get_prev_measure_from_component( )``.
    '''
 
-   return _measure_get(component, '_prev')
+   return _get_measure_from_component(component, '_prev')

@@ -1,4 +1,4 @@
-from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
+from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
 from abjad.tools.spannertools._withdraw_from_crossing import _withdraw_from_crossing
 
 
@@ -30,7 +30,7 @@ def move_parentage_and_spanners_from_components_to_components(donors, recipients
       parent[start:stop+1] = recipients
       return donors
    else:
-      _give_dominant_to(donors, recipients)
+      _give_spanners_that_dominate_donor_components_to_recipient_components(donors, recipients)
       _withdraw_from_crossing(donors)
 
    return donors

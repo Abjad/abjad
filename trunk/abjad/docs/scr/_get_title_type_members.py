@@ -42,7 +42,7 @@ def _get_title_type_members(source_full_path):
          functions = _get_module_members(source_full_path, 'class')
       public_functions = [x for x in functions if not x.startswith('_')]
       members = public_functions
-      ## check if file defines only private _measure_get( ), for example
+      ## check if file defines only private _get_measure_from_component( ), for example
       if not members:
          #print 'NOT rendering %s ...' % page_title
          page_title = None
