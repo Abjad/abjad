@@ -1,9 +1,26 @@
 def is_component_with_beam_spanner_attached(expr):
    '''.. versionadded:: 1.1.2
 
-   True when `expr` is component with beam spanner attached.
+   True when `expr` is component with beam spanner attached::
 
-   False otherwise.
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+      abjad> beam = spannertools.BeamSpanner(staff.leaves)
+   
+   ::
+
+      abjad> beamtools.is_component_with_beam_spanner_attached(staff[0])
+      True
+
+   Otherwise false::
+
+      abjad> note = Note("c'8")
+
+   ::
+
+      abjad> beamtools.is_component_with_beam_spanner_attached(note)
+      False
+
+   Return boolean.
    '''
    from abjad.components._Component import _Component
    from abjad.tools import spannertools

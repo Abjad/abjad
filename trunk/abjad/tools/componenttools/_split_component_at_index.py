@@ -1,6 +1,7 @@
 from abjad.components._Leaf import _Leaf
-from abjad.components.Measure import Measure
-from abjad.components.Tuplet import Tuplet
+from abjad.components import Container
+from abjad.components import Measure
+from abjad.components import Tuplet
 from abjad.tools import durtools
 from abjad.tools import contexttools
 from abjad.tools import metertools
@@ -8,7 +9,6 @@ from abjad.tools import spannertools
 from abjad.tools.metertools import Meter
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components \
    import get_parent_and_start_stop_indices_of_components
-
 
 
 def _split_component_at_index(component, i, spanners = 'unfractured'):
@@ -24,14 +24,13 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
 
    ## convenience leaf index split definition
    if isinstance(component, _Leaf):
+      #raise Exception ## debug
       if i <= 0:
          if spanners == 'fractured':
-            #component.spanners.fracture(direction = 'left')
             spannertools.fracture_all_spanners_attached_to_component(component, direction = 'left')
          return None, component
       else:
          if spanners == 'fractured':
-            #component.spanners.fracture(direction = 'right')
             spannertools.fracture_all_spanners_attached_to_component(component, direction = 'right')
          return component, None
 

@@ -1,7 +1,7 @@
 from abjad.components._Component import _Component
 from abjad.tools import spannertools
-from abjad.tools.componenttools._ignore import _ignore
-from abjad.tools.componenttools._restore import _restore
+from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
+from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import _restore_parentage_to_components_by_receipt
 from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
    _reattach_blinded_marks_to_components_in_expr
 import copy
@@ -106,7 +106,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
          if component not in selection_components:
             spanner._remove_component(component)
 
-   receipt = _ignore(components)
+   receipt = _ignore_parentage_of_components(components)
    
    result = copy.deepcopy(components)
 
@@ -114,7 +114,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
       #component._update._mark_all_improper_parents_for_update( )
       component._mark_entire_score_tree_for_later_update('prolated')
 
-   _restore(receipt)
+   _restore_parentage_to_components_by_receipt(receipt)
 
    for spanner, contents in spanner_map:
       spanner.clear( )

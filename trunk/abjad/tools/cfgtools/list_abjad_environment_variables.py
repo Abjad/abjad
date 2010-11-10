@@ -16,7 +16,7 @@ def list_abjad_environment_variables( ):
 
    Return tuple of zero or more environment variable / setting pairs.
 
-   .. note:: Abjad environment variables are defined in ``abjad/cfg/cfg.py``.
+   Abjad environment variables are defined in ``abjad/cfg/cfg.py``.
 
    .. versionchanged:: 1.1.2
       renamed ``cfgtools.list_settings( )`` to

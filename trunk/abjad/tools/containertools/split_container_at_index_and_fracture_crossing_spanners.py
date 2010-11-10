@@ -1,3 +1,4 @@
+from abjad.components import Container
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 
 
@@ -50,5 +51,8 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
       renamed ``split.fractured_at_index( )`` to
       ``containertools.split_container_at_index_and_fracture_crossing_spanners( )``.
    '''
+
+   #if not isinstance(container, Container):
+   #   raise TypeError
 
    return _split_component_at_index(container, index, spanners = 'fractured')

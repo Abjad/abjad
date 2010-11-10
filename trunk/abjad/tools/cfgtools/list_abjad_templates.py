@@ -12,7 +12,7 @@ def list_abjad_templates( ):
 
    Return tuple of zero or more strings.
 
-   .. note:: Abjad templates are housed in ``abjad/templates``.
+   Abjad templates are housed in ``abjad/templates``.
    '''
 
    file_names = [ ]

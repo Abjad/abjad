@@ -219,7 +219,7 @@ def test_leaftools__split_leaf_at_duration_10( ):
    assert len(t) == 5
    for l in t.leaves:
       assert l.spanners == set([b])
-      assert beamtools.get_beam_spanner(l) is b
+      assert beamtools.get_beam_spanner_attached_to_component(l) is b
    assert componenttools.is_well_formed_component(t)
 
 

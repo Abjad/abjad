@@ -27,7 +27,7 @@ class Chord(_Leaf):
             pitches = [ ]
          self._copy_override_and_set_from_leaf(leaf)
       elif len(args) == 1 and isinstance(args[0], str):
-         pattern = '^<(.+)>\s*(.+)'
+         pattern = '^<(.*)>\s*(.+)'
          match = re.match(pattern, args[0])
          pitches, written_duration = match.groups( )
          lilypond_multiplier = None

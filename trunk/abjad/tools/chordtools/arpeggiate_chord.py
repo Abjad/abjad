@@ -1,34 +1,23 @@
-from abjad.components.Chord import Chord
-from abjad.components.Note import Note
+from abjad.components import Chord
+from abjad.components import Note
 
 
 def arpeggiate_chord(chord):
-   '''Return a list of newly-instantiated notes
-   derived from the pitches in `chord`. 
+   '''Arpeggiate `chord`::
 
-   Arpeggiated notes carry the same written duration as the chord
-   from which they derive. ::
-
-      abjad> chord = Chord([0, 14, 15], (3, 16))
-      abjad> chordtools.arpeggiate_chord(chord)
-      [Note(c', 8.), Note(d'', 8.), Note(ef'', 8.)]
-
-   Arpeggiated notes inherit neither articulations,
-   overrides nor any of the other attributes of the chord from
-   which they derive. ::
-
-      abjad> chord = Chord([0, 14, 15], (3, 16))
-      abjad> chord.articulations.append('staccato')
-      abjad> f(chord)
-      <c' d'' ef''>8. -\staccato
+      abjad> chord = Chord("<c' d'' ef''>8")
 
    ::
 
-      abjad> notes = chordtools.arpeggiate_chord(chord)
-      abjad> notes
-      [Note(c', 8.), Note(d'', 8.), Note(ef'', 8.)]
-      abjad> f(notes[0])
-      c'8.
+      abjad> chordtools.arpeggiate_chord(chord)
+      [Note("c'8"), Note("d''8"), Note("ef''8")]
+
+
+   Arpeggiated notes inherit `chord` written duration.
+
+   Arpeggiated notes do not inherit other `chord` attributes.
+
+   Return list of newly constructed notes.
 
    .. versionchanged:: 1.1.2
       renamed ``chordtools.arpeggiate( )`` to

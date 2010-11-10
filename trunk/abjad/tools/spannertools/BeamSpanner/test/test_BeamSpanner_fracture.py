@@ -64,11 +64,11 @@ def test_BeamSpanner_fracture_05( ):
    #assert len(t[3].beam.spanner) == 2
    #assert t[0].beam.spanner != t[2].beam.spanner != t[3].beam.spanner
 
-   assert len(beamtools.get_beam_spanner(t[0])) == 2
-   assert len(beamtools.get_beam_spanner(t[2])) == 1
-   assert len(beamtools.get_beam_spanner(t[3])) == 2
-   assert beamtools.get_beam_spanner(t[0]) != beamtools.get_beam_spanner(t[2])
-   assert beamtools.get_beam_spanner(t[2]) != beamtools.get_beam_spanner(t[3])
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[0])) == 2
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[2])) == 1
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[3])) == 2
+   assert beamtools.get_beam_spanner_attached_to_component(t[0]) != beamtools.get_beam_spanner_attached_to_component(t[2])
+   assert beamtools.get_beam_spanner_attached_to_component(t[2]) != beamtools.get_beam_spanner_attached_to_component(t[3])
 
    componenttools.is_well_formed_component(t) ## check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8 ]\n\td'8 [ ]\n\tef'8 [\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -99,9 +99,9 @@ def test_BeamSpanner_fracture_06( ):
    #assert len(t[0].beam.spanner) == 1
    #assert len(t[1].beam.spanner) == 4
    #assert t[0].beam.spanner != t[1].beam.spanner
-   assert len(beamtools.get_beam_spanner(t[0])) == 1
-   assert len(beamtools.get_beam_spanner(t[1])) == 4
-   assert beamtools.get_beam_spanner(t[0]) != beamtools.get_beam_spanner(t[1])
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[0])) == 1
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[1])) == 4
+   assert beamtools.get_beam_spanner_attached_to_component(t[0]) != beamtools.get_beam_spanner_attached_to_component(t[1])
    componenttools.is_well_formed_component(t) ## check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tcs'8 [\n\td'8\n\tef'8\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
    r'''
@@ -128,9 +128,9 @@ def test_BeamSpanner_fracture_07( ):
    #assert len(t[0].beam.spanner) == 4
    #assert len(t[4].beam.spanner) == 1
    #assert t[0].beam.spanner != t[4].beam.spanner
-   assert len(beamtools.get_beam_spanner(t[0])) == 4
-   assert len(beamtools.get_beam_spanner(t[4])) == 1
-   assert beamtools.get_beam_spanner(t[0]) != beamtools.get_beam_spanner(t[4])
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[0])) == 4
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[4])) == 1
+   assert beamtools.get_beam_spanner_attached_to_component(t[0]) != beamtools.get_beam_spanner_attached_to_component(t[4])
    componenttools.is_well_formed_component(t) ## check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
@@ -161,9 +161,9 @@ def test_BeamSpanner_fracture_08( ):
    #assert len(t[0].beam.spanner) == 4
    #assert len(t[4].beam.spanner) == 1
    #assert t[0].beam.spanner != t[4].beam.spanner
-   assert len(beamtools.get_beam_spanner(t[0])) == 4
-   assert len(beamtools.get_beam_spanner(t[4])) == 1
-   assert beamtools.get_beam_spanner(t[0]) != beamtools.get_beam_spanner(t[4])
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[0])) == 4
+   assert len(beamtools.get_beam_spanner_attached_to_component(t[4])) == 1
+   assert beamtools.get_beam_spanner_attached_to_component(t[0]) != beamtools.get_beam_spanner_attached_to_component(t[4])
    componenttools.is_well_formed_component(t) ## check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 

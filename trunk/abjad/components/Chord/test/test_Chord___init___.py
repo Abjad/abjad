@@ -2,49 +2,65 @@ from abjad import *
 
 
 def test_Chord___init____01( ):
-   '''Chord initializes empty.'''
+   '''Init empty chord.
+   '''
+
    t = Chord([ ], (1, 4))
    assert t.format == "<>4"
 
 
 def test_Chord___init____02( ):
-   '''Chord initializes with numeric pitch token input.'''
+   '''Init chord with numbers.
+   '''
+
    t = Chord([2, 4, 5], (1, 4))
    assert t.format == "<d' e' f'>4"
 
 
 def test_Chord___init____03( ):
-   '''Chord initializes with pair pitch token input.'''
+   '''Init chord with pitch tokens.
+   '''
+
    t = Chord([('ds', 4), ('ef', 4)], (1, 4))
    assert t.format == "<ds' ef'>4"
 
 
 def test_Chord___init____04( ):
-   '''Chord initializes with pitch instance pitch token input.'''
+   '''Init chord with pitches.
+   '''
+
    t = Chord([pitchtools.NamedChromaticPitch('ds', 4), pitchtools.NamedChromaticPitch('ef', 4)], (1, 4))
    assert t.format == "<ds' ef'>4"
 
 
 def test_Chord___init____05( ):
-   '''Chord initializes with mixed pitch token input.'''
+   '''Init chord with pitch token and pitch together.
+   '''
+
    t = Chord([2, ('ef', 4), pitchtools.NamedChromaticPitch(4)], (1, 4))
    assert t.format == "<d' ef' e'>4"
 
 
 def test_Chord___init____06( ):
-   '''Init chord with LilyPond-style pitch name strings.'''
+   '''Init chord with list of pitch names.
+   '''
+
    t = Chord(["d'", "ef'", "e'"], (1, 4))
    assert t.format == "<d' ef' e'>4"
 
 
 def test_Chord___init____07( ):
-   '''Init chord with complete LilyPond-style chord string.'''
+   '''Init chord with LilyPond input string.
+   '''
+
    t = Chord("<d' ef' e'>4")
    assert t.format == "<d' ef' e'>4"
 
 
 def test_Chord___init____08( ):
-   '''Cast skip as chord.'''
+   '''Init chord from skip.
+   '''
+
    s = skiptools.Skip((1, 8))
    d = s.duration.written
    c = Chord(s)
@@ -103,7 +119,6 @@ def test_Chord___init____12( ):
    d = r.duration.written
    c = Chord(r)
    assert isinstance(c, Chord)
-   # check that attributes have not been removed or added.
    assert dir(r) == dir(Rest((1, 4)))
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert c._parentage.parent is None
@@ -145,7 +160,6 @@ def test_Chord___init____15( ):
    h, p, d = n.note_head, n.pitch, n.duration.written
    c = Chord(n)
    assert isinstance(c, Chord)
-   # check that attributes have not been removed or added.
    assert dir(n) == dir(Note(0, (1, 4)))
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert c.format == "<d'>8"
@@ -181,3 +195,12 @@ def test_Chord___init____17( ):
    assert isinstance(t[0], Note)
    assert isinstance(chord, Chord)
    assert t[0]._parentage.parent is t
+
+
+def test_Chord___init____18( ):
+   '''Init empty chord from LilyPond input string.
+   '''
+
+   chord = Chord('<>8.')
+   assert isinstance(chord, Chord)
+   assert len(chord) == 0

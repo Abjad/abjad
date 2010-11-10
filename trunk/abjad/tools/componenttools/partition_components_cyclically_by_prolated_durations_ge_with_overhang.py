@@ -1,9 +1,7 @@
-from abjad.tools.componenttools._group_components_by_durations import \
-   _group_components_by_durations
+from abjad.tools.componenttools._partition_components_by_durations import _partition_components_by_durations
 
 
-def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
-   components, prolated_durations):
+def partition_components_cyclically_by_prolated_durations_ge_with_overhang(components, prolated_durations):
    r'''Partition `components` cyclically by `prolated_durations` greater than
    or equal. Allow for terminal overhang part::
 
@@ -54,7 +52,7 @@ def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
    .. note:: function works not just on components but on any durated objects including spanners.
    '''
    
-   parts = _group_components_by_durations('prolated', components, prolated_durations, 
+   parts = _partition_components_by_durations('prolated', components, prolated_durations, 
       fill = 'greater', cyclic = True, overhang = True)
 
    return parts

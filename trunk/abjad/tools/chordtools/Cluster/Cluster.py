@@ -3,6 +3,24 @@ from abjad.tools.chordtools.Cluster._ClusterFormatter import _ClusterFormatter
 
 
 class Cluster(Container):
+   '''The Abjad model of a tone cluster container::
+
+      abjad> cluster = chordtools.Cluster("c'8 d'8 b'8")
+
+   ::
+
+      abjad> cluster
+      Cluster(c'8, d'8, b'8)
+
+   ::
+
+      abjad> f(cluster)
+      \makeClusters {
+         c'8
+         d'8
+         b'8
+      }
+   '''
 
    def __init__(self, music = None, **kwargs):
       Container.__init__(self, music)

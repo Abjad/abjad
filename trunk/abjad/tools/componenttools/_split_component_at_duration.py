@@ -1,16 +1,15 @@
-from abjad.components.Container import Container
-from abjad.exceptions import ContainmentError
 from abjad.components._Leaf import _Leaf
-from abjad.components.Measure import Measure
-from fractions import Fraction
-from abjad.tools.spannertools import TieSpanner
+from abjad.components import Container
+from abjad.components import Measure
+from abjad.exceptions import ContainmentError
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
+from abjad.tools.spannertools import TieSpanner
+from fractions import Fraction
 
 
-def _split_component_at_duration(
-   component, duration, spanners = 'unfractured', tie_after = False):
+def _split_component_at_duration(component, duration, spanners = 'unfractured', tie_after = False):
    '''General component duration split algorithm.
    Duration is interpreted as prolated duration.
    Works on leaves, tuplets, measures, context and unqualified containers.

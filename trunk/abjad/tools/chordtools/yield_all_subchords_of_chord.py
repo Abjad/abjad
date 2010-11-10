@@ -6,16 +6,12 @@ from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change
 def yield_all_subchords_of_chord(chord):
    '''.. versionadded:: 1.1.2
 
-   Yield all subchords of `chord`. 
+   Yield all subchords of `chord` in binary string order::
 
-   * Yield newly constructed Abjad chord instances. 
-   * Include "empty chord" as a rest.
-   * Include `chord` itself.
-   * Yield subchords in binary string order.
+      abjad> chord = Chord("<c' d' af' a'>4")
 
    ::
 
-      abjad> chord = Chord([0, 2, 8, 9], (1, 4))
       abjad> for subchord in chordtools.yield_all_subchords_of_chord(chord):
       ...     subchord
       ... 
@@ -35,6 +31,10 @@ def yield_all_subchords_of_chord(chord):
       Chord(c' af' a', 4)
       Chord(d' af' a', 4)
       Chord(c' d' af' a', 4)
+
+   Include empty chord as rest.
+
+   Return generator of newly constructed leaves.
 
    .. versionchanged:: 1.1.2
       renamed ``chordtools.subchords( )`` to

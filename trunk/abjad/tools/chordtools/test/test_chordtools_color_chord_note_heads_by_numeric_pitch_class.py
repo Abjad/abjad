@@ -9,7 +9,7 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_01( ):
    color_map = pitchtools.NumberedChromaticPitchClassColorMap(pitches, colors)
 
    chord = Chord([12, 14, 18, 21, 23], (1, 4))
-   chordtools.color_chord_note_heads_by_numbered_chromatic_pitch_class(chord, color_map)
+   chordtools.color_chord_note_heads_by_pitch_class_color_map(chord, color_map)
 
    r'''
    <
@@ -38,7 +38,7 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_02( ):
    color_map = pitchtools.NumberedChromaticPitchClassColorMap(pitches, colors)
 
    note = Note(0, (1, 4))
-   chordtools.color_chord_note_heads_by_numbered_chromatic_pitch_class(note, color_map)
+   chordtools.color_chord_note_heads_by_pitch_class_color_map(note, color_map)
 
    r'''
    \once \override NoteHead #'color = #red

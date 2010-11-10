@@ -10,7 +10,7 @@ def test_BeamSpanner___copy___01( ):
 
    #assert u.beam.spanned and u.beam.only
 
-   assert beamtools.get_beam_spanner(u)._is_my_only_leaf(u)
+   assert beamtools.get_beam_spanner_attached_to_component(u)._is_my_only_leaf(u)
 
 
 def test_BeamSpanner___copy___02( ):
@@ -20,7 +20,7 @@ def test_BeamSpanner___copy___02( ):
 
    #assert u[0].beam.spanned and u[0].beam.only
 
-   assert beamtools.get_beam_spanner(u[0])._is_my_only_leaf(u[0])
+   assert beamtools.get_beam_spanner_attached_to_component(u[0])._is_my_only_leaf(u[0])
 
 
 def test_BeamSpanner___copy___03( ):
@@ -31,8 +31,8 @@ def test_BeamSpanner___copy___03( ):
    #assert u[0].beam.spanned and u[0].beam.first
    #assert u[1].beam.spanned and u[1].beam.last
 
-   assert beamtools.get_beam_spanner(u[0])._is_my_first_leaf(u[0])
-   assert beamtools.get_beam_spanner(u[1])._is_my_last_leaf(u[1])
+   assert beamtools.get_beam_spanner_attached_to_component(u[0])._is_my_first_leaf(u[0])
+   assert beamtools.get_beam_spanner_attached_to_component(u[1])._is_my_last_leaf(u[1])
    
 
 def test_BeamSpanner___copy___04( ):
@@ -45,7 +45,7 @@ def test_BeamSpanner___copy___04( ):
    #assert u[2].beam.spanned
    #assert u[3].beam.spanned and u[3].beam.last
 
-   assert beamtools.get_beam_spanner(u[0])._is_my_first_leaf(u[0])
+   assert beamtools.get_beam_spanner_attached_to_component(u[0])._is_my_first_leaf(u[0])
    assert beamtools.is_component_with_beam_spanner_attached(u[1])
    assert beamtools.is_component_with_beam_spanner_attached(u[2])
-   assert beamtools.get_beam_spanner(u[3])._is_my_last_leaf(u[3])
+   assert beamtools.get_beam_spanner_attached_to_component(u[3])._is_my_last_leaf(u[3])

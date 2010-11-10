@@ -3,23 +3,30 @@ import types
 
 
 def all_are_components(expr, klasses = None):
-   '''True when elements in `expr` are all components. Otherwise false::
+   '''True when elements in `expr` are all components::
 
-      abjad> notes = notetools.make_notes([12, 14, 16], [(1, 8)])
-      abjad> componenttools.all_are_components(notes) 
+      abjad> componenttools.all_are_components(3 * Note("c'4"))
       True
 
-   True when elements in `expr` are all `klasses`. Otherwise false::
+   Otherwise false::
 
-      abjad> notes = notetools.make_notes([12, 14, 16], [(1, 8)])
-      abjad> componenttools.all_are_components(notes, klasses = (Note, )) 
+      abjad> componenttools.all_are_components(['foo', 'bar'])
+      False
+
+   True when elements in `expr` are all `klasses`::
+
+      abjad> componenttools.all_are_components(3 * Note("c'4"), klasses = Note)
       True
+
+   Otherwise false::
+
+      abjad> componenttools.all_are_components(['foo', 'bar'], klases = Note)
+      False
 
    Return boolean.
    '''
 
    if not isinstance(expr, (list, tuple, types.GeneratorType)):
-      #raise TypeError('must be a list of Abjad components: "%s".' % str(expr))
       return False
 
    if klasses is None:

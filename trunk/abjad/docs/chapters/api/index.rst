@@ -33,7 +33,7 @@ beamtools
 .. toctree::
    :maxdepth: 1
 
-   tools/beamtools/get_beam_spanner
+   tools/beamtools/get_beam_spanner_attached_to_component
    tools/beamtools/is_component_with_beam_spanner_attached
 
 
@@ -59,9 +59,9 @@ chordtools
    tools/chordtools/Cluster/Cluster
    tools/chordtools/arpeggiate_chord
    tools/chordtools/change_defective_chord_to_note_or_rest
-   tools/chordtools/color_chord_note_heads_by_numbered_chromatic_pitch_class
+   tools/chordtools/color_chord_note_heads_by_pitch_class_color_map
+   tools/chordtools/divide_chord_by_chromatic_pitch_number
    tools/chordtools/divide_chord_by_diatonic_pitch_number
-   tools/chordtools/divide_chord_by_pitch_number
    tools/chordtools/get_arithmetic_mean_of_chord
    tools/chordtools/get_note_head_from_chord_by_pitch
    tools/chordtools/yield_all_subchords_of_chord
@@ -134,8 +134,6 @@ componenttools
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
    tools/componenttools/number_is_between_prolated_start_and_stop_offsets_of_component
    tools/componenttools/number_is_between_start_and_stop_offsets_of_component_in_seconds
-   tools/componenttools/partition_components_cyclically_by_counts_and_do_not_fracture_crossing_spanners
-   tools/componenttools/partition_components_cyclically_by_counts_and_fracture_crossing_spanners
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_exactly_with_overhang
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_exactly_without_overhang
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_ge_with_overhang
@@ -148,8 +146,6 @@ componenttools
    tools/componenttools/partition_components_cyclically_by_prolated_durations_ge_without_overhang
    tools/componenttools/partition_components_cyclically_by_prolated_durations_le_with_overhang
    tools/componenttools/partition_components_cyclically_by_prolated_durations_le_without_overhang
-   tools/componenttools/partition_components_once_by_counts_and_do_not_fracture_crossing_spanners
-   tools/componenttools/partition_components_once_by_counts_and_fracture_crossing_spanners
    tools/componenttools/partition_components_once_by_durations_in_seconds_exactly_with_overhang
    tools/componenttools/partition_components_once_by_durations_in_seconds_exactly_without_overhang
    tools/componenttools/partition_components_once_by_durations_in_seconds_ge_with_overhang
@@ -224,6 +220,10 @@ containertools
    tools/containertools/set_container_multiplier
    tools/containertools/split_container_at_index_and_do_not_fracture_crossing_spanners
    tools/containertools/split_container_at_index_and_fracture_crossing_spanners
+   tools/containertools/split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners
+   tools/containertools/split_container_cyclically_by_counts_and_fracture_crossing_spanners
+   tools/containertools/split_container_once_by_counts_and_do_not_fracture_crossing_spanners
+   tools/containertools/split_container_once_by_counts_and_fracture_crossing_spanners
 
 
 contexttools

@@ -1,7 +1,8 @@
-from abjad.tools.componenttools._partition_by_durations import _partition_by_durations
+from abjad.tools.componenttools._split_components_by_prolated_durations import _split_components_by_prolated_durations
 
 
-def split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(components, durations, tie_after = False):
+def split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(
+   components, durations, tie_after = False):
    r'''Partition `components` cyclically by `durations`
    and fracture spanners in the process::
 
@@ -58,5 +59,5 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
       ``componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners( )``.
    '''
 
-   return _partition_by_durations(components, durations, 
+   return _split_components_by_prolated_durations(components, durations, 
       spanners = 'fractured', cyclic = True, tie_after = tie_after)
