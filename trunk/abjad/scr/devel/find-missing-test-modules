@@ -1,0 +1,44 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+
+
+def _find_missing_test_modules( ):
+   tools_path = os.path.join(ABJADPATH, 'tools')
+   public_tools_modules = set([ ])
+   test_modules = set([ ])
+   for path, subdirectories, files in os.walk(tools_path):
+      for f in files:
+         if f.endswith('.py'):
+            if f.startswith('test_') and 'tools' in f:
+               test_modules.add(f)
+            elif not f.startswith(('_', 'test_')) and f[0].islower( ):
+               public_tools_modules.add(f)
+   print ''
+
+   test_stems = set([ ])
+   for x in test_modules:
+      x = x[:-3]
+      x = x.split('_')[2:]
+      x = '_'.join(x)
+      test_stems.add(x)
+
+   missing_test_modules = [ ]
+   for x in public_tools_modules:
+      module_stem = x[:-3]
+      if module_stem not in test_stems:
+         missing_test_modules.append(x)
+   missing_test_modules.sort( )
+
+   for x in missing_test_modules:
+      print x
+   print ''
+   print 'Total missing test modules: %s' % len(missing_test_modules)
+   print ''
+      
+
+if __name__ == '__main__':
+   os.system('clear')
+   print 'Finding missing test modules ...'
+   _find_missing_test_modules( )
