@@ -1,5 +1,6 @@
 from abjad.tools import durtools
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
+from numbers import Number
 
 
 def make_rests(durations, direction='big-endian', tied=False):
@@ -46,7 +47,8 @@ def make_rests(durations, direction='big-endian', tied=False):
       ``resttools.make_rests( )``.
    '''
 
-   if durtools.is_duration_token(durations):
+   #if durtools.is_duration_token(durations):
+   if isinstance(durations, (Number, tuple)):
       durations = [durations]
 
    result = [ ]

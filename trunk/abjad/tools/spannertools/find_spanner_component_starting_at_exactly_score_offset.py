@@ -1,7 +1,27 @@
 def find_spanner_component_starting_at_exactly_score_offset(spanner, score_offset):
-   '''Return the component in 'spanner' that begins at
-      exactly 'score_offset'.
-      Otherwise return None.
+   r'''Find `spanner` component starting at exactly `score_offset`::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+      abjad> beam = spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
+      }
+      
+   ::
+      
+      abjad> spannertools.find_spanner_component_starting_at_exactly_score_offset(beam, Fraction(3, 8)) 
+      Note("f'8")
+
+   When no `spanner` component starts at exactly `score_offset` return none.
+
+   Return `spanner` component or none.
 
    .. versionchanged:: 1.1.2
       renamed ``spannertools.find_component_at_score_offset( )`` to

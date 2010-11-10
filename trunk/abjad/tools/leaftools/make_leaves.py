@@ -9,6 +9,7 @@ from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from fractions import Fraction
+from numbers import Number
 
 
 ## TODO: Change leaftools.make_leaves( ) signature to allow ('c', 4) named pairs 
@@ -107,7 +108,8 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    if pitchtools.is_named_chromatic_pitch_token(pitches):
       pitches = [pitches]
    
-   if durtools.is_duration_token(durations):
+   #if durtools.is_duration_token(durations):
+   if isinstance(durations, (Number, tuple)):
       durations = [durations]
 
    ## convert Fractions to duration tokens.

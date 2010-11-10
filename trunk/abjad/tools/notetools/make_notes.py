@@ -4,6 +4,7 @@ from abjad.tools import pitchtools
 from abjad.tools import seqtools
 from abjad.components.Tuplet import Tuplet
 from fractions import Fraction
+from numbers import Number
 import math
 import operator
       
@@ -42,7 +43,8 @@ def make_notes(pitches, durations, direction='big-endian'):
    if pitchtools.is_named_chromatic_pitch_token(pitches):
       pitches = [pitches]
    
-   if durtools.is_duration_token(durations):
+   #if durtools.is_duration_token(durations):
+   if isinstance(durations, (Number, tuple)):
       durations = [durations]
 
    # this block is a hack to allow the function to accept a Fraction
