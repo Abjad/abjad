@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_report_as_string_format_contributons_of_spanners_attached_to_improper_parentage_of_component_01( ):
+def test_spannertools_report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component_01( ):
 
    staff = Staff(macros.scale(4))
    beam = spannertools.BeamSpanner(staff.leaves)
