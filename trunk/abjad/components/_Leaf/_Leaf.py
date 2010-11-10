@@ -70,21 +70,20 @@ class _Leaf(_Component):
 
    def _operate(self, arg, operator):
       assert isinstance(arg, _Leaf)
-      from abjad.tools.leaftools._engender import _engender
       from abjad.tools import leaftools
       from abjad.tools import pitchtools
-      self_pairs = set([(str(x.named_chromatic_pitch_class), x.octave_number) 
-         for x in pitchtools.list_named_chromatic_pitches_in_expr(self) if x is not None])
-      arg_pairs = set([(str(x.named_chromatic_pitch_class), x.octave_number) 
-         for x in pitchtools.list_named_chromatic_pitches_in_expr(arg) if x is not None])
-      #self_pairs = set(pitchtools.list_named_chromatic_pitches_in_expr(self))
-      #arg_pairs = set(pitchtools.list_named_chromatic_pitches_in_expr(arg))
+      self_pairs = set(pitchtools.list_named_chromatic_pitches_in_expr(self))
+      arg_pairs = set(pitchtools.list_named_chromatic_pitches_in_expr(arg))
       pairs = operator(self_pairs, arg_pairs)
-      return _engender(pairs, self.duration.written)
-      #pairs = [tuple(pairs)]
-      #leaves = leaftools.make_leaves(pairs, self.duration.written)
-      #leaf = leaves[0]
-      #return leaf
+      if len(pairs) == 0:
+         pairs = [None]
+      elif len(pairs) == 1:
+         pairs = list(pairs)
+      else:
+         pairs = [tuple(pairs)]
+      leaves = leaftools.make_leaves(pairs, self.duration.written)
+      leaf = leaves[0]
+      return leaf
 
    ## PRIVATE ATTRIBUTES ##
 
