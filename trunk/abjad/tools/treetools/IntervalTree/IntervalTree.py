@@ -215,7 +215,7 @@ class IntervalTree(object):
             return
 
         while x != self._root and not x._red:
-            w = x.sibling
+            w = x._sibling
             if x._is_left_child:
                 if w._red:
                     w._red = False
@@ -523,13 +523,17 @@ class IntervalTree(object):
         else:
             raise ValueError
         for interval in intervals:
+            #interval_copy = interval.__class__(interval)
             node = self._find_node_by_key(interval.low)
             if node is not None:
                 node._intervals.append(interval)
+                #node._intervals.append(interval_copy)
             else:
                 node = _IntervalTreeNode(interval.low, interval)
+                #node = _IntervalTreeNode(interval.low, interval_copy)
                 self._insert_node(node)
             self._intervals.append(interval)
+            #self._intervals.append(interval_copy)
         self._update_high_extrema( )
 
     def remove(self, args):
