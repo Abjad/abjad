@@ -548,3 +548,18 @@ class IntervalTree(object):
                 self._delete_node(node)
             self._intervals.pop(self._intervals.index(interval))
         self._update_high_extrema( )
+
+    def scale_member_interval_by_value(self, interval, value):
+        pass
+
+    def scale_member_interval_to_value(self, interval, value):
+        pass
+
+    def shift_member_interval_by_value(self, interval, value):
+        pass
+
+    def shift_member_interval_to_value(self, interval, value):
+        pass
+
+    def split_member_interval_at_value(self, interval, value):
+        pass

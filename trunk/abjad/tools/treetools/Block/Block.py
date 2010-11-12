@@ -6,8 +6,20 @@ class Block(_Interval):
     
     __slots__ = ('data', 'high', 'low', )
 
-    def __init__(self, start_offset, duration, data = None):
-        _Interval.__init__(self, start_offset, start_offset + duration, data = data)
+    def __init__(self, *args, **kwargs):
+        if len(args) == 1 and isinstance(args[0], _Interval):
+            start_offset = args[0].low
+            duration = args[0].high - args[0].low
+            data = args[0].data
+        elif len(args) == 2:
+            start_offset, duration, data = args[0], args[1], None
+            if 'data' in kwargs:
+                data = kwargs['data']
+        elif len(args) == 3:
+            start_offset, duration, data = args
+        else:
+            raise ValueError('unknown argument combinations.')
+        _Interval.__init__(self, start_offset, start_offset + duration, data)
 
     ## OVERLOADS ##
     
@@ -31,14 +43,3 @@ class Block(_Interval):
     @property
     def duration(self):
         return self.high - self.low
-
-    ## PUBLIC METHODS ##
-
-    def scale_to_duration(self, duration):
-        pass
-
-    def shift_to_offset(self, offset):
-        pass
-
-    def split_at_offset(self, offset):
-        pass
