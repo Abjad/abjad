@@ -40,22 +40,51 @@ class _Interval(_Immutable):
     ## PUBLIC ATTRIBUTES ##
 
     @property
+    def magnitude(self):
+        return self.high - self.low
+
+    @property
     def signature(self):
         return (self.low, self.high)
 
     ## PUBLIC METHODS ##
 
     def scale_by_value(self, value):
-        pass
+        assert isinstance(value, (int, Fraction))
+        assert 0 <= value
+        if value != 1:
+            new_magnitude = (self.high - self.low) * value
+            return self.__class__(_Interval(self.low, self.low + new_magnitude, self.data))
+        else:
+            return self
 
     def scale_to_value(self, value):
-        pass
+        assert isinstance(value, (int, Fraction))
+        assert 0 <= value
+        if value != self.magnitude:
+            return self.__class__(_Interval(self.low, self.low + value, self.data))
+        else:
+            return self
 
     def shift_by_value(self, value):
-        pass
+        assert isinstance(value, (int, Fraction))
+        if value != 0:
+            return self.__class__(_Interval(self.low + value, self.high + value, self.data))
+        else:
+            return self
 
     def shift_to_value(self, value):
-        pass
+        assert isinstance(value, (int, Fraction))
+        if value != self.low:
+            magnitude = self.high - self.low
+            return self.__class__(_Interval(value, value + magnitude, self.data))
+        else:
+            return self
 
     def split_at_value(self, value):
-        pass
+        assert isinstance(value, (int, Fraction))
+        if self.low < value < self.high:
+            return (self.__class__(_Interval(self.low, value, self.data)),
+                    self.__class__(_Interval(value, self.high, self.data)))
+        else:
+            return self            

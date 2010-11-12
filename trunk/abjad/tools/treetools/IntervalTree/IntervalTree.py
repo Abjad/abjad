@@ -550,16 +550,51 @@ class IntervalTree(object):
         self._update_high_extrema( )
 
     def scale_member_interval_by_value(self, interval, value):
-        pass
+        assert interval in self._intervals
+        new_interval = interval.scale_by_value(value)
+        if new_interval != interval:
+            self.remove(interval)
+            self.insert(new_interval)
+            return new_interval
+        else:
+            return interval
 
     def scale_member_interval_to_value(self, interval, value):
-        pass
+        assert interval in self._intervals
+        new_interval = interval.scale_to_value(value)
+        if new_interval != interval:
+            self.remove(interval)
+            self.insert(new_interval)
+            return new_interval
+        else:
+            return interval
 
     def shift_member_interval_by_value(self, interval, value):
-        pass
+        assert interval in self._intervals
+        new_interval = interval.shift_by_value(value)
+        if new_interval != interval:
+            self.remove(interval)
+            self.insert(new_interval)
+            return new_interval
+        else:
+            return interval        
 
     def shift_member_interval_to_value(self, interval, value):
-        pass
+        assert interval in self._intervals
+        new_interval = interval.shift_to_value(value)
+        if new_interval != interval:
+            self.remove(interval)
+            self.insert(new_interval)
+            return new_interval
+        else:
+            return interval
 
     def split_member_interval_at_value(self, interval, value):
-        pass
+        assert interval in self._intervals
+        splits = interval.split_at_value(value)
+        if splits != interval:
+            self.remove(interval)
+            self.insert(splits)
+            return splits
+        else:
+            return interval
