@@ -1178,3 +1178,12 @@ tonalitytools
    tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
    tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
    tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
+
+
+treetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/treetools/Block/Block
+   tools/treetools/IntervalTree/IntervalTree
