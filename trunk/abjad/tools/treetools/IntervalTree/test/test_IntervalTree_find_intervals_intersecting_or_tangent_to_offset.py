@@ -1,5 +1,5 @@
 from abjad.tools.treetools import *
-from _make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_01( ):

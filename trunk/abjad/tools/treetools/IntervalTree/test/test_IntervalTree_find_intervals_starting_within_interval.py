@@ -1,6 +1,6 @@
 from abjad.tools.treetools import *
 from abjad.tools.treetools._Interval import _Interval
-from _make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
 def test_IntervalTree_find_intervals_starting_within_interval_01( ):

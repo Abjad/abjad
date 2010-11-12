@@ -532,7 +532,7 @@ class IntervalTree(object):
             self._intervals.append(interval)
         self._update_high_extrema( )
 
-    def remove(self, interval):
+    def remove(self, args):
         if isinstance(args, _Interval):
             intervals = [args]
         elif isinstance(args, (list, tuple)):
