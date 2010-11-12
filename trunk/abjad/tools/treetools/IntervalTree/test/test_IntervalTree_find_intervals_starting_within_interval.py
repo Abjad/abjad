@@ -1,0 +1,137 @@
+from abjad.tools.treetools import *
+from abjad.tools.treetools._Interval import _Interval
+from _make_test_blocks import _make_test_blocks
+
+
+def test_IntervalTree_find_intervals_starting_within_interval_01( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(-10, 0)
+    expected_payloads = ('a',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_02( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(0, 9)
+    expected_payloads = ('a', 'b', 'c', 'd',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_03( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(4, 19)
+    expected_payloads = ('b', 'c', 'd', 'e', 'f', 'g', 'h',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_04( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(6, 10)
+    expected_payloads = ('c', 'd',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_05( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(13, 15)
+    expected_payloads = ('e',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_06( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(14, 25)
+    expected_payloads = ('e', 'f', 'g', 'h', 'i',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_07( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(19, 26)
+    expected_payloads = ('h', 'i', 'j', 'k',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_08( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(24, 31)
+    expected_payloads = ('i', 'j', 'k',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_09( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(26, 26)
+    expected_payloads = ('j', 'k',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_10( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(26, 29)
+    expected_payloads = ('j', 'k',)
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
+def test_IntervalTree_find_intervals_starting_within_interval_11( ):
+    blocks = _make_test_blocks( )
+    target_interval = _Interval(30, 40)
+    expected_payloads = ( )
+    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+        key = lambda x: x.signature))
+    for i in range(len(blocks)):
+        blocks.append(blocks.pop(0)) # rotate to permute tree construction
+        tree = IntervalTree(blocks)
+        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
+        assert expected_blocks == actual_blocks
+
