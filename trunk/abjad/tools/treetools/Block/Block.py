@@ -1,13 +1,13 @@
-from abjad.tools.treetools._Interval import _Interval
+from abjad.tools.treetools._BoundedInterval import _BoundedInterval
 
 
-class Block(_Interval):
+class Block(_BoundedInterval):
     '''An abstract block of musical material occupying some amount of time.'''
     
     __slots__ = ('data', 'high', 'low', )
 
     def __init__(self, *args, **kwargs):
-        if len(args) == 1 and isinstance(args[0], _Interval):
+        if len(args) == 1 and isinstance(args[0], _BoundedInterval):
             start_offset = args[0].low
             duration = args[0].high - args[0].low
             data = args[0].data
@@ -19,7 +19,7 @@ class Block(_Interval):
             start_offset, duration, data = args
         else:
             raise ValueError('unknown argument combinations.')
-        _Interval.__init__(self, start_offset, start_offset + duration, data)
+        _BoundedInterval.__init__(self, start_offset, start_offset + duration, data)
 
     ## OVERLOADS ##
     

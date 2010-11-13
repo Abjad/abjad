@@ -3,13 +3,13 @@ from abjad.core import _Immutable
 from fractions import Fraction
 
 
-class _Interval(_Immutable):
+class _BoundedInterval(_Immutable):
     '''A low / high pair, carrying some metadata.'''
 
     __slots__ = ('data', 'high', 'low', )
 
     def __init__(self, *args, **kwargs):
-        if len(args) == 1 and isinstance(args[0], _Interval):
+        if len(args) == 1 and isinstance(args[0], _BoundedInterval):
             low, high, data = args[0].low, args[0].high, args[0].data
         elif len(args) == 2:
             low, high, data = args[0], args[1], None
@@ -54,7 +54,7 @@ class _Interval(_Immutable):
         assert 0 <= value
         if value != 1:
             new_magnitude = (self.high - self.low) * value
-            return self.__class__(_Interval(self.low, self.low + new_magnitude, self.data))
+            return self.__class__(_BoundedInterval(self.low, self.low + new_magnitude, self.data))
         else:
             return self
 
@@ -62,14 +62,14 @@ class _Interval(_Immutable):
         assert isinstance(value, (int, Fraction))
         assert 0 <= value
         if value != self.magnitude:
-            return self.__class__(_Interval(self.low, self.low + value, self.data))
+            return self.__class__(_BoundedInterval(self.low, self.low + value, self.data))
         else:
             return self
 
     def shift_by_value(self, value):
         assert isinstance(value, (int, Fraction))
         if value != 0:
-            return self.__class__(_Interval(self.low + value, self.high + value, self.data))
+            return self.__class__(_BoundedInterval(self.low + value, self.high + value, self.data))
         else:
             return self
 
@@ -77,14 +77,14 @@ class _Interval(_Immutable):
         assert isinstance(value, (int, Fraction))
         if value != self.low:
             magnitude = self.high - self.low
-            return self.__class__(_Interval(value, value + magnitude, self.data))
+            return self.__class__(_BoundedInterval(value, value + magnitude, self.data))
         else:
             return self
 
     def split_at_value(self, value):
         assert isinstance(value, (int, Fraction))
         if self.low < value < self.high:
-            return (self.__class__(_Interval(self.low, value, self.data)),
-                    self.__class__(_Interval(value, self.high, self.data)))
+            return (self.__class__(_BoundedInterval(self.low, value, self.data)),
+                    self.__class__(_BoundedInterval(value, self.high, self.data)))
         else:
             return self            

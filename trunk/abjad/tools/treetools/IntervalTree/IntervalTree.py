@@ -1,5 +1,5 @@
 from fractions import Fraction
-from abjad.tools.treetools._Interval import _Interval
+from abjad.tools.treetools._BoundedInterval import _BoundedInterval
 from abjad.tools.treetools._IntervalTreeNode import _IntervalTreeNode
 
 
@@ -328,7 +328,7 @@ class IntervalTree(object):
                 intervals.extend(recurse(node._right, low, high))
             return intervals
         if len(args) == 1:
-            assert isinstance(args[0], _Interval)
+            assert isinstance(args[0], _BoundedInterval)
             low, high = args[0].low, args[0].high
         elif len(args) == 2:
             low, high = args[0], args[1]
@@ -385,7 +385,7 @@ class IntervalTree(object):
                 intervals.extend(recurse(node._right, low, high))
             return intervals
         if len(args) == 1:
-            assert isinstance(args[0], _Interval)
+            assert isinstance(args[0], _BoundedInterval)
             low, high = args[0].low, args[0].high
         elif len(args) == 2:
             low, high = args[0], args[1]
@@ -447,7 +447,7 @@ class IntervalTree(object):
                 intervals.extend(recurse(node._right, low, high))
             return intervals
         if len(args) == 1:
-            assert isinstance(args[0], _Interval)
+            assert isinstance(args[0], _BoundedInterval)
             low, high = args[0].low, args[0].high
         elif len(args) == 2:
             low, high = args[0], args[1]
@@ -519,7 +519,7 @@ class IntervalTree(object):
                 intervals.extend(recurse(node._right, low, high))
             return intervals
         if len(args) == 1:
-            assert isinstance(args[0], _Interval)
+            assert isinstance(args[0], _BoundedInterval)
             low, high = args[0].low, args[0].high
         elif len(args) == 2:
             low, high = args[0], args[1]
@@ -530,10 +530,10 @@ class IntervalTree(object):
         return tuple(sorted(recurse(self._root, low, high), key=lambda x: x.signature))
 
     def insert(self, args):
-        if isinstance(args, _Interval):
+        if isinstance(args, _BoundedInterval):
             intervals = [args]
         elif isinstance(args, (list, tuple)):
-            assert all([isinstance(i, _Interval) for i in args])
+            assert all([isinstance(i, _BoundedInterval) for i in args])
             intervals = args
         else:
             raise ValueError
@@ -552,10 +552,10 @@ class IntervalTree(object):
         self._update_high_extrema( )
 
     def remove(self, args):
-        if isinstance(args, _Interval):
+        if isinstance(args, _BoundedInterval):
             intervals = [args]
         elif isinstance(args, (list, tuple)):
-            assert all([isinstance(i, _Interval) for i in args])
+            assert all([isinstance(i, _BoundedInterval) for i in args])
             intervals = args
         else:
             raise ValueError

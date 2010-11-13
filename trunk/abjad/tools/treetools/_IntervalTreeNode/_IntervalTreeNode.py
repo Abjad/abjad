@@ -1,10 +1,10 @@
 from fractions import Fraction
-from abjad.tools.treetools._Interval import _Interval
+from abjad.tools.treetools._BoundedInterval import _BoundedInterval
 
 
 class _IntervalTreeNode(object):
     '''A red-black node in an IntervalTree.
-       Duplicate payloads are supported by maintaining a list of _Intervals
+       Duplicate payloads are supported by maintaining a list of _BoundedIntervals
     '''
     
     __slots__ = ('_high_max', '_high_min', '_intervals', '_key', 
@@ -14,16 +14,16 @@ class _IntervalTreeNode(object):
         assert isinstance(key, (int, Fraction))
         self._key = key
 
-        # init intervals: a list of _Interval objects
-        if isinstance(intervals, _Interval):
+        # init intervals: a list of _BoundedInterval objects
+        if isinstance(intervals, _BoundedInterval):
             self._intervals = [intervals]
         elif isinstance(intervals, (list, set, tuple)):
-            assert all([isinstance(x, _Interval) for x in intervals])
+            assert all([isinstance(x, _BoundedInterval) for x in intervals])
             self._intervals = intervals
         else:
             self._intervals = None
         #else:
-        #    raise TypeError('Node data must be an _Interval or list of _Intervals.')
+        #    raise TypeError('Node data must be a _BoundedInterval or list of _BoundedIntervals.')
         if self._intervals is not None:
             for interval in self._intervals:
                 assert interval.low == self._key
