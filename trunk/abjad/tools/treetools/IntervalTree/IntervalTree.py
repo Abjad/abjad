@@ -8,11 +8,14 @@ class IntervalTree(object):
        (generally of time, rather than pitch).
     '''
 
-    __slots__ = ('_intervals', '_root', )
+    __slots__ = ('_intervals', '_root', '_sentinel')
 
     def __init__(self, intervals = [ ]):
         self._intervals = [ ]
         self._root = None
+        sentinel = self._sentinel = _IntervalTreeNode(0, None)
+        sentinel._red = False
+        sentinel._left = sentinel._right = sentinel._parent = sentinel
         self.insert(intervals)
 
     ## OVERLOADS ##
@@ -217,44 +220,56 @@ class IntervalTree(object):
         while x != self._root and not x._red:
             w = x._sibling
             if x._is_left_child:
-                if w._red:
+                if w is not None and w._red:
                     w._red = False
                     x._parent._red = True
                     self._rotate_left(x._parent)
                     w = x._parent._right
-                if not w._left._red and not w._right._red:
+                if w is not None and \
+                w._left is not None and not w._left._red and \
+                w._right is not None and not w._right._red:
                     w._red = True
                     x = x._parent
                 else:
-                    if not w._right._red:
-                        w._left._red = False
+                    if w is not None and \
+                    w._right is not None and not w._right._red:
+                        if w._left is not None:
+                            w._left._red = False
                         w._red = True
                         self._rotate_right(w)
                         w = x._parent._right
-                    w._red = x._parent._red
+                    if w is not None:
+                        w._red = x._parent._red
                     x._parent._red = False
-                    w._right._red = False
+                    if w._right is not None:
+                        w._right._red = False
                     self._rotate_left(x._parent)
                     x = self._root
 
             else:
-                if w._red:
+                if w is not None and w._red:
                     w._red = False
                     x._parent._red = True
                     self._rotate_right(x._parent)
                     w = x._parent._left
-                if not w._right._red and not w._left._red:
+                if w is not None and \
+                w._right is not None and not w._right._red and \
+                w._left is not None and not w._left._red:
                     w._red = True
                     x = x._parent
                 else:
-                    if not w._left._red:
-                        w._right._red = False
+                    if w is not None and \
+                    w._left is not None and not w._left._red:
+                        if w._right is not None:
+                            w._right._red = False
                         w._red = True
                         self._rotate_left(w)
                         w = x._parent._left
-                    w._red = x._parent._red
+                    if w is not None:
+                        w._red = x._parent._red
                     x._parent._red = False
-                    w._left._red = False
+                    if w._left is not None:
+                        w._left._red = False
                     self._rotate_right(x._parent)
                     x = self._root                
 

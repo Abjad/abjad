@@ -1,0 +1,35 @@
+from abjad.tools.treetools import *
+from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools.build_tree_of_depth_of_tree \
+    import build_tree_of_depth_of_tree
+
+
+def test_treetools_build_tree_of_depth_of_tree_01( ):
+    tree = IntervalTree(_make_test_blocks( ))
+    depths = build_tree_of_depth_of_tree(tree)
+    target = [
+        ((0, 3), 1),
+        ((3, 5), 0),
+        ((5, 6), 1),
+        ((6, 8), 2),
+        ((8, 9), 3),
+        ((9, 10), 2),
+        ((10, 13), 1),
+        ((13, 15), 0),
+        ((15, 16), 1),
+        ((16, 17), 2),
+        ((17, 19), 3),
+        ((19, 20), 3),
+        ((20, 21), 2),
+        ((21, 23), 1),
+        ((23, 25), 0),
+        ((25, 26), 1),
+        ((26, 26), 3),
+        ((26, 29), 2),
+        ((29, 30), 1),
+        ((30, 32), 0),
+        ((32, 34), 1),
+        ((34, 37), 1),
+    ]
+    actual = [(i.signature, i.data['depth']) for i in depths]
+    assert actual == target 

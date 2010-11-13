@@ -21,9 +21,12 @@ class _IntervalTreeNode(object):
             assert all([isinstance(x, _Interval) for x in intervals])
             self._intervals = intervals
         else:
-            raise TypeError('Node data must be an _Interval or list of _Intervals.')
-        for interval in self._intervals:
-            assert interval.low == self._key
+            self._intervals = None
+        #else:
+        #    raise TypeError('Node data must be an _Interval or list of _Intervals.')
+        if self._intervals is not None:
+            for interval in self._intervals:
+                assert interval.low == self._key
 
         # init other tree-related properties
         self._high_max = None

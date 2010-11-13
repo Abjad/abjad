@@ -126,7 +126,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_10( ):
 def test_IntervalTree_find_intervals_stopping_within_interval_11( ):
     blocks = _make_test_blocks( )
     target_interval = _Interval(30, 40)
-    expected_payloads = ('i',)
+    expected_payloads = ('i', 'l', 'm',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):

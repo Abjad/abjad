@@ -8,7 +8,7 @@ def test_IntervalTree_high_max_01( ):
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0))
         tree = IntervalTree(blocks)
-        assert tree.high_max == 30
+        assert tree.high_max == 37
 
 def test_IntervalTree_high_max_02( ):
     '''high_max returns None if no intervals in tree.''' 

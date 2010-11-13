@@ -14,5 +14,7 @@ def _make_test_blocks( ):
         Block(25, 5, 'i'),
         Block(26, 0, 'j'),
         Block(26, 3, 'k'),
+        Block(32, 2, 'l'),
+        Block(34, 3, 'm'),
     ]
 
