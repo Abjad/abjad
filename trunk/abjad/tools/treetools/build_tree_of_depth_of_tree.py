@@ -1,5 +1,5 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._BoundedInterval import _BoundedInterval
+from abjad.tools.treetools import BoundedInterval
 from abjad.tools.treetools.get_all_unique_high_and_low_values_in_tree \
     import get_all_unique_high_and_low_values_in_tree
 
@@ -16,6 +16,6 @@ def build_tree_of_depth_of_tree(tree):
         found = tuple(found.difference(found_c))
         zeros = filter(lambda x: x.low == x.high, found_c)
         if zeros:
-            intervals.append(_BoundedInterval(values[i], values[i], {'depth': len(found) + len(zeros)}))
-        intervals.append(_BoundedInterval(values[i], values[i + 1], {'depth': len(found)}))
+            intervals.append(BoundedInterval(values[i], values[i], {'depth': len(found) + len(zeros)}))
+        intervals.append(BoundedInterval(values[i], values[i + 1], {'depth': len(found)}))
     return IntervalTree(intervals)

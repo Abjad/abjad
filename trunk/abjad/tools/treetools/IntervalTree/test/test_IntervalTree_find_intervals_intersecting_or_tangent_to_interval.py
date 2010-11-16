@@ -1,11 +1,11 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._BoundedInterval import _BoundedInterval
+from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_01( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(-10, 0)
+    target_interval = BoundedInterval(-10, 0)
     expected_payloads = ('a',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -17,7 +17,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_01( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_02( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(0, 9)
+    target_interval = BoundedInterval(0, 9)
     expected_payloads = ('a', 'b', 'c', 'd',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -29,7 +29,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_02( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_03( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(4, 19)
+    target_interval = BoundedInterval(4, 19)
     expected_payloads = ('b', 'c', 'd', 'e', 'f', 'g', 'h',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -41,7 +41,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_03( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_04( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(6, 10)
+    target_interval = BoundedInterval(6, 10)
     expected_payloads = ('b', 'c', 'd',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -53,7 +53,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_04( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_05( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(13, 15)
+    target_interval = BoundedInterval(13, 15)
     expected_payloads = ('b', 'e',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -65,7 +65,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_05( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_06( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(14, 25)
+    target_interval = BoundedInterval(14, 25)
     expected_payloads = ('e', 'f', 'g', 'h', 'i',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -77,7 +77,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_06( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_07( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(19, 26)
+    target_interval = BoundedInterval(19, 26)
     expected_payloads = ('e', 'f', 'g', 'h', 'i', 'j', 'k',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -89,7 +89,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_07( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_08( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(24, 31)
+    target_interval = BoundedInterval(24, 31)
     expected_payloads = ('i', 'j', 'k',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -101,7 +101,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_08( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_09( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(26, 26)
+    target_interval = BoundedInterval(26, 26)
     expected_payloads = ('i', 'j', 'k',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -113,7 +113,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_09( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_10( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(26, 29)
+    target_interval = BoundedInterval(26, 29)
     expected_payloads = ('i', 'j', 'k',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -125,7 +125,7 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_10( ):
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_interval_11( ):
     blocks = _make_test_blocks( )
-    target_interval = _BoundedInterval(30, 40)
+    target_interval = BoundedInterval(30, 40)
     expected_payloads = ('i', 'l', 'm',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
