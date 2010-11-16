@@ -551,69 +551,69 @@ class IntervalTree(object):
             #self._intervals.append(interval_copy)
         self._update_high_extrema( )
 
-    def remove(self, args):
-        if isinstance(args, _BoundedInterval):
-            intervals = [args]
-        elif isinstance(args, (list, tuple)):
-            assert all([isinstance(i, _BoundedInterval) for i in args])
-            intervals = args
-        else:
-            raise ValueError
-        assert all([interval in self for interval in intervals])
-        for interval in intervals:
-            node = self._find_node_by_key(interval.low)
-            node._intervals.pop(node._intervals.index(interval))
-            if not node._intervals:
-                self._delete_node(node)
-            self._intervals.pop(self._intervals.index(interval))
-        self._update_high_extrema( )
+#    def remove(self, args):
+#        if isinstance(args, _BoundedInterval):
+#            intervals = [args]
+#        elif isinstance(args, (list, tuple)):
+#            assert all([isinstance(i, _BoundedInterval) for i in args])
+#            intervals = args
+#        else:
+#            raise ValueError
+#        assert all([interval in self for interval in intervals])
+#        for interval in intervals:
+#            node = self._find_node_by_key(interval.low)
+#            node._intervals.pop(node._intervals.index(interval))
+#            if not node._intervals:
+#                self._delete_node(node)
+#            self._intervals.pop(self._intervals.index(interval))
+#        self._update_high_extrema( )
 
-    def scale_member_interval_by_value(self, interval, value):
-        assert interval in self._intervals
-        new_interval = interval.scale_by_value(value)
-        if new_interval != interval:
-            self.remove(interval)
-            self.insert(new_interval)
-            return new_interval
-        else:
-            return interval
+#    def scale_member_interval_by_value(self, interval, value):
+#        assert interval in self._intervals
+#        new_interval = interval.scale_by_value(value)
+#        if new_interval != interval:
+#            self.remove(interval)
+#            self.insert(new_interval)
+#            return new_interval
+#        else:
+#            return interval
 
-    def scale_member_interval_to_value(self, interval, value):
-        assert interval in self._intervals
-        new_interval = interval.scale_to_value(value)
-        if new_interval != interval:
-            self.remove(interval)
-            self.insert(new_interval)
-            return new_interval
-        else:
-            return interval
+#    def scale_member_interval_to_value(self, interval, value):
+#        assert interval in self._intervals
+#        new_interval = interval.scale_to_value(value)
+#        if new_interval != interval:
+#            self.remove(interval)
+#            self.insert(new_interval)
+#            return new_interval
+#        else:
+#            return interval
 
-    def shift_member_interval_by_value(self, interval, value):
-        assert interval in self._intervals
-        new_interval = interval.shift_by_value(value)
-        if new_interval != interval:
-            self.remove(interval)
-            self.insert(new_interval)
-            return new_interval
-        else:
-            return interval        
+#    def shift_member_interval_by_value(self, interval, value):
+#        assert interval in self._intervals
+#        new_interval = interval.shift_by_value(value)
+#        if new_interval != interval:
+#            self.remove(interval)
+#            self.insert(new_interval)
+#            return new_interval
+#        else:
+#            return interval        
 
-    def shift_member_interval_to_value(self, interval, value):
-        assert interval in self._intervals
-        new_interval = interval.shift_to_value(value)
-        if new_interval != interval:
-            self.remove(interval)
-            self.insert(new_interval)
-            return new_interval
-        else:
-            return interval
+#    def shift_member_interval_to_value(self, interval, value):
+#        assert interval in self._intervals
+#        new_interval = interval.shift_to_value(value)
+#        if new_interval != interval:
+#            self.remove(interval)
+#            self.insert(new_interval)
+#            return new_interval
+#        else:
+#            return interval
 
-    def split_member_interval_at_value(self, interval, value):
-        assert interval in self._intervals
-        splits = interval.split_at_value(value)
-        if splits != interval:
-            self.remove(interval)
-            self.insert(splits)
-            return splits
-        else:
-            return interval
+#    def split_member_interval_at_value(self, interval, value):
+#        assert interval in self._intervals
+#        splits = interval.split_at_value(value)
+#        if splits != interval:
+#            self.remove(interval)
+#            self.insert(splits)
+#            return splits
+#        else:
+#            return interval

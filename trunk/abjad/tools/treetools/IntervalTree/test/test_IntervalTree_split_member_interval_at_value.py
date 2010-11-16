@@ -4,6 +4,8 @@ from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
+py.test.skip('Awaiting rewrite of IntervalTree backend.')
+
 def test_IntervalTree_split_member_interval_at_value_01( ):
     '''Altered intervals are replaced in the tree.'''
     tree = IntervalTree(_make_test_blocks( ))
