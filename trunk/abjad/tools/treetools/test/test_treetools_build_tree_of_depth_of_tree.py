@@ -1,7 +1,6 @@
-from abjad.tools.treetools import *
+from abjad.tools.treetools.IntervalTree import IntervalTree
+from abjad.tools.treetools import build_tree_of_depth_of_tree
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
-from abjad.tools.treetools.build_tree_of_depth_of_tree \
-    import build_tree_of_depth_of_tree
 
 
 def test_treetools_build_tree_of_depth_of_tree_01( ):

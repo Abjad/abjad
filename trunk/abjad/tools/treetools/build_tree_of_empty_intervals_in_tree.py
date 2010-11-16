@@ -1,4 +1,4 @@
-from abjad.tools.treetools import *
+from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.build_tree_of_depth_of_tree \
     import build_tree_of_depth_of_tree
 

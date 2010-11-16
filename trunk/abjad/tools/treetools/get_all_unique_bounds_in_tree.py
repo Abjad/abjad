@@ -1,7 +1,7 @@
-from abjad.tools.treetools import IntervalTree
+from abjad.tools.treetools.IntervalTree import IntervalTree
 
 
-def get_all_unique_high_and_low_values_in_tree(tree):
+def get_all_unique_bounds_in_tree(tree):
     assert isinstance(tree, IntervalTree)
     values = [ ]
     for interval in tree.intervals:

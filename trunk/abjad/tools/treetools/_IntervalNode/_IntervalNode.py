@@ -1,5 +1,5 @@
 from fractions import Fraction
-from abjad.tools.treetools import BoundedInterval
+from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools._RedBlackNode import _RedBlackNode
 
 

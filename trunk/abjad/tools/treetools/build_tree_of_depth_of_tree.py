@@ -1,12 +1,12 @@
-from abjad.tools.treetools import *
-from abjad.tools.treetools import BoundedInterval
-from abjad.tools.treetools.get_all_unique_high_and_low_values_in_tree \
-    import get_all_unique_high_and_low_values_in_tree
+from abjad.tools.treetools.IntervalTree import IntervalTree
+from abjad.tools.treetools.BoundedInterval import BoundedInterval
+from abjad.tools.treetools.get_all_unique_bounds_in_tree \
+    import get_all_unique_bounds_in_tree
 
 
 def build_tree_of_depth_of_tree(tree):
     assert isinstance(tree, IntervalTree)
-    values = get_all_unique_high_and_low_values_in_tree(tree)
+    values = get_all_unique_bounds_in_tree(tree)
     intervals = [ ]
     for i in range(len(values[1:])):
         found_a = set(tree.find_intervals_intersecting_or_tangent_to_interval(values[i], values[i + 1]))
