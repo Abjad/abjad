@@ -4,7 +4,7 @@ from abjad.tools.treetools.get_all_unique_bounds_in_tree \
     import get_all_unique_bounds_in_tree
 
 
-def build_tree_of_depth_of_tree(tree):
+def compute_depth_of_tree(tree):
     assert isinstance(tree, IntervalTree)
     values = get_all_unique_bounds_in_tree(tree)
     intervals = [ ]

@@ -348,7 +348,7 @@ class IntervalTree(_RedBlackTree):
     def insert(self, args):
         if isinstance(args, BoundedInterval):
             intervals = [args]
-        elif isinstance(args, (list, tuple)):
+        elif isinstance(args, (IntervalTree, list, set, tuple)):
             assert all([isinstance(i, BoundedInterval) for i in args])
             intervals = args
         else:
@@ -373,7 +373,7 @@ class IntervalTree(_RedBlackTree):
     def remove(self, args):
         if isinstance(args, BoundedInterval):
             intervals = [args]
-        elif isinstance(args, (list, tuple)):
+        elif isinstance(args, (IntervalTree, list, set, tuple)):
             assert all([isinstance(i, BoundedInterval) for i in args])
             intervals = args
         else:

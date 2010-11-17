@@ -1,11 +1,11 @@
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools import build_tree_of_depth_of_tree
+from abjad.tools.treetools import compute_depth_of_tree
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
-def test_treetools_build_tree_of_depth_of_tree_01( ):
+def test_treetools_compute_depth_of_tree_01( ):
     tree = IntervalTree(_make_test_blocks( ))
-    depths = build_tree_of_depth_of_tree(tree)
+    depths = compute_depth_of_tree(tree)
     target = [
         ((0, 3), 1),
         ((3, 5), 0),
