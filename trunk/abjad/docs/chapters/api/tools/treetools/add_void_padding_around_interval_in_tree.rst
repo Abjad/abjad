@@ -1,0 +1,4 @@
+treetools.add_void_padding_around_interval_in_tree
+==================================================
+
+.. autofunction:: abjad.tools.treetools.add_void_padding_around_interval_in_tree
