@@ -45,6 +45,7 @@ Core classes
    chapters/user_documentation/voices/index
    chapters/user_documentation/staves/index
    chapters/user_documentation/scores/index
+   chapters/user_documentation/lily_files/index
 
 User documentation --- containers
 
@@ -70,7 +71,14 @@ User documentation --- measures
    chapters/user_documentation/dynamic_measures/index
    chapters/user_documentation/anonymous_measures/index
 
-User documentation -- pitch
+User documentation --- LilyPond equivalencies
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/lilypond_equivalencies/index
+
+User documentation --- pitch
 
 .. toctree::
    :numbered:

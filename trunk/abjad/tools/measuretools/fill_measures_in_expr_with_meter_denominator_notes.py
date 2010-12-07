@@ -1,11 +1,44 @@
-from abjad.components.Note import Note
+from abjad.components import Note
 from abjad.tools import contexttools
 from abjad.tools import mathtools
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools.measuretools.iterate_measures_forward_in_expr import \
+   iterate_measures_forward_in_expr
 
 
 def fill_measures_in_expr_with_meter_denominator_notes(expr, iterctrl = None):
-   '''Fill measures in `expr` with meter denominator notes.'''
+   r'''Fill measures in `expr` with meter denominator notes::
+
+      abjad> staff = Staff([Measure((3, 4), [ ]), Measure((3, 16), [ ]), Measure((3, 8), [ ])])
+      abjad> measuretools.fill_measures_in_expr_with_meter_denominator_notes(staff)
+
+   ::
+      
+      \new Staff {
+         {
+            \time 3/4
+            c'4
+            c'4
+            c'4
+         }
+         {
+            \time 3/16
+            c'16
+            c'16
+            c'16
+         }
+         {
+            \time 3/8
+            c'8
+            c'8
+            c'8
+         }
+      }
+
+   Delete existing contents of measures in `expr`.
+
+   Return none.
+   '''
+
    if iterctrl is None:
       iterctrl = lambda measure, i: True
    for i, measure in enumerate(iterate_measures_forward_in_expr(expr)):

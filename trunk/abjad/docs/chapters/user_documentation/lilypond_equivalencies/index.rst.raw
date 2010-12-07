@@ -1,0 +1,20 @@
+LilyPond equivalencies in Abjad
+===============================
+
+Turning on proportional notation
+--------------------------------
+
+Turn on proportional notation like this:
+
+<abjad>
+score = Score([ ])
+score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 24)
+score.override.spacing_spanner.uniform_stretching = True
+score.override.spacing_spanner.strict_note_spacing = True
+</abjad>
+
+To produce LilyPond input that looks like this:
+
+<abjad>
+f(score)
+</abjad>

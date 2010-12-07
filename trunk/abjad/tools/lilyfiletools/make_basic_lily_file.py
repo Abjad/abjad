@@ -12,10 +12,13 @@ def make_basic_lily_file(music = None):
 
       abjad> score = Score([Staff(macros.scale(4))])
       abjad> lily_file = lilyfiletools.make_basic_lily_file(score)
-      abjad> lily_file.header.composer = markuptools.Markup('Josquin')
-      abjad> lily_file.layout.indent = 0
-      abjad> lily_file.paper.top_margin = 15
-      abjad> lily_file.paper.left_margin = 15
+      abjad> lily_file.header_block.composer = markuptools.Markup('Josquin')
+      abjad> lily_file.layout_block.indent = 0
+      abjad> lily_file.paper_block.top_margin = 15
+      abjad> lily_file.paper_block.left_margin = 15
+
+   ::
+
       abjad> f(lily_file)
       \header {
               composer = \markup { Josquin }
