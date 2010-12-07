@@ -25,7 +25,8 @@ class Container(_Component):
       self._initialize_music(music)
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
-      self._parallel = None
+      #self._parallel = None
+      self._parallel = False
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
@@ -227,7 +228,8 @@ class Container(_Component):
       def fset(self, expr):
          from abjad.components._Context import _Context
          from abjad.tools import componenttools
-         assert isinstance(expr, (bool, type(None)))
+         #assert isinstance(expr, (bool, type(None)))
+         assert isinstance(expr, type(True))
          if expr == True:
             assert componenttools.all_are_components(self._music, klasses = (_Context, ))
          self._parallel = expr

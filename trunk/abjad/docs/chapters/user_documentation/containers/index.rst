@@ -227,6 +227,127 @@ But container names do not appear in notational output:
 
 .. image:: images/example-8.png
 
-.. note::
+Understanding ``{ }`` and ``<< >>`` in LilyPond
+-----------------------------------------------
 
-   ``is_parallel`` remains to be documented.
+LilyPond uses curly ``{ }`` braces to wrap a stream of musical events
+that are to be engraved one after the other::
+
+   \new Voice {
+      e''4
+      f''4
+      g''4
+      g''4
+      f''4
+      e''4
+      d''4
+      d''4 \fermata
+   }
+
+.. image:: images/example-9.png
+
+LilyPond uses skeleton ``<< >>`` braces to wrap two or more musical
+expressions that are to be played at the same time::
+
+   \new Staff <<
+      \new Voice {
+         \voiceOne
+         e''4
+         f''4
+         g''4
+         g''4
+         f''4
+         e''4
+         d''4
+         d''4 \fermata
+      }
+      \new Voice {
+         \voiceTwo
+         c''4
+         c''4
+         b'4
+         c''4
+         c''8
+         b'8
+         c''4
+         b'4
+         b'4 \fermata
+      }
+   >>
+
+.. image:: images/example-10.png
+
+The examples above are both LilyPond input.
+
+The most common use of LilyPond ``{ }`` is to group a potentially long stream of notes
+and rests into a single expression.
+
+The most common use of LilyPond ``<< >>`` is to group a relatively smaller
+number of note lists together polyphonically.
+
+Understanding sequential and parallel containers
+------------------------------------------------
+
+Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container ``is_parallel`` attribute.
+
+Some containers set ``is_parallel`` to false at initialization::
+
+   staff = Staff([ ])
+   staff.is_parallel
+   False
+
+Other containers set ``is_parallel`` to true::
+
+   score = Score([ ])
+   score.is_parallel
+   True
+
+Changing sequential and parallel containers
+-------------------------------------------
+
+Set ``is_parallel`` by hand as necessary:
+
+::
+
+	voice_1 = Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 ermata")
+	voice_2 = Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 ermata")
+	abjad> staff = Staff([voice_1, voice_2])
+	abjad> staff.is_parallel = True
+	abjad> marktools.LilyPondCommandMark('voiceOne')(voice_1)
+	abjad> marktools.LilyPondCommandMark('voiceTwo')(voice_2)
+	abjad> show(staff)
+
+.. image:: images/example-11.png
+
+The staff in the example above is set to parallel after initialization to create
+a type of polyphonic staff:
+
+::
+
+	abjad> f(staff)
+	\new Staff <<
+		\new Voice {
+			\voiceOne
+			e''4
+			f''4
+			g''4
+			g''4
+			f''4
+			e''4
+			d''4
+			d''4 -\fermata
+		}
+		\new Voice {
+			\voiceTwo
+			c''4
+			c''4
+			b'4
+			c''4
+			c''8
+			b'8
+			c''4
+			b'4
+			b'4 -\fermata
+		}
+	>>
+

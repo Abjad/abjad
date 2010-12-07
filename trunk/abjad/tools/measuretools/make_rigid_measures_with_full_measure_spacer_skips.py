@@ -1,17 +1,20 @@
-from abjad.components.Measure import Measure
-from abjad.tools.skiptools.Skip import Skip
+from abjad.components import Measure
 from abjad.tools import metertools
+from abjad.tools.skiptools.Skip import Skip
 from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_skips import \
    fill_measures_in_expr_with_full_measure_spacer_skips
 
 
 def make_rigid_measures_with_full_measure_spacer_skips(meters):
-   r'''Make list of rigid measures with full-measure spacer skips.
+   r'''Make rigid measures with full-measure spacer skips from `meters`::
 
-   `meters` must be an iterable of Abjad meter tokens. ::
+      abjad> measures = measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)]))
+      [Measure(1/8, [s1 * 1/8]), Measure(5/16, [s1 * 5/16]), Measure(5/16, [s1 * 5/16])]
 
-      abjad> staff = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)]))
-      abjad> print staff.format
+   ::
+
+      abjad> staff = Staff(measures)
+      abjad> f(staff)
       \new Staff {
               {
                       \time 1/8
@@ -26,6 +29,8 @@ def make_rigid_measures_with_full_measure_spacer_skips(meters):
                       s1 * 5/16
               }
       }
+
+   Return list of rigid measures.
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.make( )`` to
