@@ -2,6 +2,8 @@ from abjad.tools.treetools.IntervalTree import IntervalTree
 
 
 def get_all_unique_bounds_in_tree(tree):
+    '''Return all unique starting and ending boundaries in tree.'''
+
     assert isinstance(tree, IntervalTree)
     values = [ ]
     for interval in tree.intervals:

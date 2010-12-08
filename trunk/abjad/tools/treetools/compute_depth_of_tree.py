@@ -5,6 +5,24 @@ from abjad.tools.treetools.get_all_unique_bounds_in_tree \
 
 
 def compute_depth_of_tree(tree):
+    '''Compute a tree whose intervals represent the depth (level of overlap) 
+    in each boundary pair of `tree`::
+
+        abjad> from abjad.tools.treetools import *
+        abjad> tree = IntervalTree( )
+        abjad> tree.insert(BoundedInterval(0, 3))
+        abjad> tree.insert(BoundedInterval(6, 12))
+        abjad> tree.insert(BoundedInterval(9, 15))
+        abjad> compute_depth_of_tree(tree)
+        IntervalTree([
+            BoundedInterval(0, 3, data = {'depth': 1}),
+            BoundedInterval(3, 6, data = {'depth': 0}),
+            BoundedInterval(6, 9, data = {'depth': 1}),
+            BoundedInterval(9, 12, data = {'depth': 2}),
+            BoundedInterval(12, 15, data = {'depth': 1})
+        ])
+    '''
+
     assert isinstance(tree, IntervalTree)
     values = get_all_unique_bounds_in_tree(tree)
     intervals = [ ]

@@ -2,6 +2,8 @@ from abjad.tools.treetools.IntervalTree import IntervalTree
 
 
 def all_intervals_in_tree_are_nonoverlapping(tree):
+    '''True when all intervals in tree are non-overlapping.'''
+
     assert isinstance(tree, IntervalTree)
 
     for i in range(1, len(tree.intervals)):

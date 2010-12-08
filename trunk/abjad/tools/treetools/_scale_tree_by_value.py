@@ -2,8 +2,7 @@ from fractions import Fraction
 from abjad.tools.treetools import *
 
 
-def split_intervals_in_tree_at_values(tree, values):
+def _scale_tree_by_value(tree, value):
     assert isinstance(tree, IntervalTree)
-    assert len(values)
-    assert all([isinstance(x, (int, Fraction)) for x in values])
+    assert isinstance(value, (int, Fraction))
     print 'not yet implemented.'
