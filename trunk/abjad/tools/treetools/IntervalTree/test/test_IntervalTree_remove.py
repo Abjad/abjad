@@ -34,15 +34,17 @@ def test_IntervalTree_remove_03( ):
 
 def test_IntervalTree_remove_04( ):
     '''Intervals can be removed regardless of the tree's internal structure.'''
+    blocks = _make_test_blocks( )
     for i in range(100):
-        blocks = _make_test_blocks( )
         shuffle(blocks)
         tree = IntervalTree(blocks)
         assert len(tree) == len(blocks)
         shuffle(blocks)
         count = len(tree)
-        for j in range(len(tree)):
+        starting_length = count
+        for j in range(starting_length):
             tree.remove(blocks[j])
             count -= 1
             assert len(tree) == count
+            assert blocks[j] not in tree
             

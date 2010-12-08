@@ -3,25 +3,27 @@ from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.compute_depth_of_tree import compute_depth_of_tree
 
 
-def compute_logical_or_of_tree_or_trees(trees):
-    '''Compute the logical OR of the intervals in a tree or group of trees.'''
+def compute_logical_not_of_intervals(arg):
+    '''Compute the logical NOT of some collection of intervals.'''
 
-    if isinstance(trees, IntervalTree):
-        merge_tree = trees   
-    elif isinstance(trees, (list, set, tuple)):
-        assert len(trees)
-        assert all([isinstance(tree, IntervalTree) for tree in trees])
+    if isinstance(arg, IntervalTree):
+        merge_tree = arg
+    elif isinstance(arg, (list, set, tuple)) and \
+    all([isinstance(x, IntervalTree) for x in arg]):
         merge_tree = IntervalTree( )
-        for tree in trees:
+        for x in arg:
             merge_tree.insert(tree)
+    elif isinstance(arg, (list, set, tuple)) and \
+    all([isinstance(x, BoundedInterval) for x in arg]):
+        merge_tree = IntervalTree(arg)
     else:
         raise ValueError
-    
+
     if not merge_tree:
         return IntervalTree( )
 
     depth_tree = compute_depth_of_tree(merge_tree)
-    logic_tree = IntervalTree(filter(lambda x: 1 <= x.data['depth'], depth_tree))
+    logic_tree = IntervalTree(filter(lambda x: 0 == x.data['depth'], depth_tree))
 
     groups = [ ]
     group = [logic_tree.inorder[0]]
