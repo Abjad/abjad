@@ -1188,27 +1188,13 @@ treetools
    tools/treetools/Block/Block
    tools/treetools/BoundedInterval/BoundedInterval
    tools/treetools/IntervalTree/IntervalTree
-   tools/treetools/_RedBlackTree/demo
-   tools/treetools/_RedBlackTree/demo
-   tools/treetools/_RedBlackTree/demo
-   tools/treetools/add_void_padding_around_interval_in_tree
    tools/treetools/all_intervals_in_tree_are_contiguous
    tools/treetools/all_intervals_in_tree_are_nonoverlapping
    tools/treetools/compute_depth_of_tree
-   tools/treetools/compute_logical_and_of_tree_or_trees
-   tools/treetools/compute_logical_not_of_tree_or_trees
-   tools/treetools/compute_logical_or_of_tree_or_trees
-   tools/treetools/compute_logical_xor_of_tree_or_trees
-   tools/treetools/concatenate_trees
-   tools/treetools/fuse_contiguous_intervals_in_tree_and_discard_payloads
-   tools/treetools/fuse_contiguous_intervals_in_tree_and_merge_payloads
-   tools/treetools/fuse_overlapping_intervals_in_tree_and_discard_payloads
-   tools/treetools/fuse_overlapping_intervals_in_tree_and_merge_payloads
+   tools/treetools/compute_logical_and_of_intervals
+   tools/treetools/compute_logical_not_of_intervals
+   tools/treetools/compute_logical_or_of_intervals
+   tools/treetools/compute_logical_xor_of_intervals
    tools/treetools/get_all_unique_bounds_in_tree
-   tools/treetools/group_all_contiguous_and_overlapping_intervals_in_tree_and_yield_groups
+   tools/treetools/group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups
    tools/treetools/group_all_overlapping_intervals_in_tree_and_yield_groups
-   tools/treetools/offset_tree_by_value
-   tools/treetools/offset_tree_to_value
-   tools/treetools/scale_tree_by_value
-   tools/treetools/scale_tree_to_value
-   tools/treetools/split_intervals_in_tree_at_values
