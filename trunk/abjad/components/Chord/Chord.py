@@ -112,7 +112,8 @@ class Chord(_Leaf):
             abjad> chord
             Chord(c' d' fs', 4)
          '''
-         return tuple(self)
+         #return tuple(self)
+         return tuple(self._note_heads)
       def fset(self, note_head_tokens):
          self._note_heads = [ ]
          if isinstance(note_head_tokens, str):
