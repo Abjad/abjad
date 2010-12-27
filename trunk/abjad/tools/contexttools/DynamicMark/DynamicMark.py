@@ -46,7 +46,7 @@ class DynamicMark(ContextMark):
 
    @property
    def _contents_repr_string(self):
-      return repr(self.dynamic_name_string)
+      return repr(self._dynamic_name_string)
 
    ## PUBLIC ATTRIBUTES ##
 

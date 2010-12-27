@@ -8,6 +8,16 @@ class TimeSignatureMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a time signature.
+
+   Initialize time signature mark to apply to first enclosing staff context::
+
+      abjad> contexttools.TimeSignatureMark((5, 32))
+      TimeSignatureMark(5, 32)
+
+   Initialize time signature mark to apply to score context::
+
+      abjad> contexttools.TimeSignatureMark((5, 32), target_context = Score)
+      TimeSignatureMark(5, 32, target_context = Score)
    '''
 
    _format_slot = 'opening'
@@ -21,6 +31,10 @@ class TimeSignatureMark(ContextMark):
       ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
+      if self._target_context == Staff:
+         self._has_default_target_context = True
+      else:
+         self._has_default_target_context = False
       ## initialize numerator and denominator from *args
       if len(args) == 1 and isinstance(args[0], type(self)):
          meter = args[0]
@@ -83,7 +97,7 @@ class TimeSignatureMark(ContextMark):
       return type(self)(self.numerator, self.denominator, 
          partial = self.partial, target_context = self.target_context)
 
-   ## TODO: can this be removed bc defined on ContextMark superclass?
+   ## note that this can not be defined on superclass
    __deepcopy__ = __copy__
 
    def __eq__(self, arg):
@@ -125,8 +139,12 @@ class TimeSignatureMark(ContextMark):
       return True
    
    def __repr__(self):
-      return '%s(%s, %s%s)%s' % (self.__class__.__name__, self.numerator, 
-         self.denominator, self._partial_repr_string, self._attachment_repr_string)
+      if self._has_default_target_context:
+         return '%s(%s, %s%s)%s' % (self.__class__.__name__, self.numerator, 
+            self.denominator, self._partial_repr_string, self._attachment_repr_string)
+      else:
+         return '%s(%s, %s%s, target_context = %s)%s' % (self.__class__.__name__, self.numerator, 
+            self.denominator, self._partial_repr_string, self._target_context_name, self._attachment_repr_string)
 
    def __str__(self):
       return '%s/%s' % (self.numerator, self.denominator)

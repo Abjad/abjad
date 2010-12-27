@@ -7,7 +7,10 @@ class ContextMark(Mark):
 
    Mark models time signatures, key signatures, clef, dynamics
    and other score symbols that establish a score setting to remain
-   in effect until the next occurrence of such a score symbol.
+   in effect until the next occurrence of such a score symbol::
+
+      abjad> contexttools.ContextMark( )
+      ContextMark( )
    '''
 
    __slots__ = ('_effective_context', '_target_context', )
@@ -49,6 +52,15 @@ class ContextMark(Mark):
          except ValueError:
             pass
       self._effective_context = None
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _target_context_name(self):
+      if isinstance(self._target_context, type):            
+         return self._target_context.__name__
+      else:
+         return type(self._target_context).__name__
 
    ## PRIVATE METHODS ##
    

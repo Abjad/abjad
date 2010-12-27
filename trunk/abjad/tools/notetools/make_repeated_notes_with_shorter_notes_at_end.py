@@ -51,10 +51,6 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
    .. versionchanged:: 1.1.2
       renamed ``construct.note_train( )`` to
       ``notetools.make_repeated_notes_with_shorter_notes_at_end( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.make_repeated_notes_with_shorter_notes_at_end( )`` to
-      ``notetools.make_repeated_notes_with_shorter_notes_at_end( )``.
    '''
 
    prolated_duration = prolation * written_duration 

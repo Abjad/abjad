@@ -2,7 +2,7 @@ from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
-def test_IntervalTreehigh_max_01( ):
+def test_IntervalTree_high_max_01( ):
     '''high_max returns maximum high value of all intervals in tree.'''
     blocks = _make_test_blocks( )
     for i in range(len(blocks)):
@@ -10,7 +10,7 @@ def test_IntervalTreehigh_max_01( ):
         tree = IntervalTree(blocks)
         assert tree.high_max == 37
 
-def test_IntervalTreehigh_max_02( ):
+def test_IntervalTree_high_max_02( ):
     '''high_max returns None if no intervals in tree.''' 
     tree = IntervalTree( )
     assert tree.high_max is None

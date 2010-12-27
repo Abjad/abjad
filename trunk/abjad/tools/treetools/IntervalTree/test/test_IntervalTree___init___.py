@@ -6,7 +6,7 @@ def test_IntervalTree___init____01( ):
     tree = IntervalTree( )
 
 
-def test_IntervalTree___init___02( ):
+def test_IntervalTree___init____02( ):
     '''IntervalTree can be initialized from a list of Blocks.'''
     block_a = Block(0, 10, 'a')
     block_b = Block(5, 15, 'b')

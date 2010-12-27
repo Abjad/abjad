@@ -6,7 +6,10 @@ from fractions import Fraction
 class TempoMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a tempo indication.
+   The Abjad model of a tempo indication::
+
+      abjad> contexttools.TempoMark((1, 8), 52)
+      TempoMark(8, 52)
    '''
 
    _format_slot = 'opening'
@@ -22,9 +25,13 @@ class TempoMark(ContextMark):
          units_per_minute = tempo_indication.units_per_minute
       elif len(args) == 2:
          duration, units_per_minute = args
-         assert isinstance(duration, Fraction)
+         #assert isinstance(duration, Fraction)
+         try:
+            duration = Fraction(duration)
+         except TypeError:
+            duration = Fraction(*duration)
          assert isinstance(units_per_minute, (int, long, float, Fraction))
-         duration = duration
+         #duration = duration
          units_per_minute = units_per_minute
       else:
          raise ValueError('can not initialize tempo indication.')

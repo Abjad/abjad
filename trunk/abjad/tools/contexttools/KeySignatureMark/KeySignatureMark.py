@@ -4,7 +4,10 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class KeySignatureMark(ContextMark):
    '''.. versionadded:: 1.1.2
    
-   The Abjad model of a key signature setting or key signature change.
+   The Abjad model of a key signature setting or key signature change::
+
+      abjad> contexttools.KeySignatureMark('e', 'minor')
+      KeySignatureMark(NamedChromaticPitchClass('e'), Mode(minor))
    '''
 
    #__slots__ = ('_tonic', '_mode')
@@ -40,8 +43,9 @@ class KeySignatureMark(ContextMark):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _contents_name_string(self):
-      return "%s, %s" % (repr(tonic), repr(mode))
+   #def _contents_name_string(self):
+   def _contents_repr_string(self):
+      return "%s, %s" % (repr(self.tonic), repr(self.mode))
 
    ## PUBLIC ATTRIBUTES ##
 

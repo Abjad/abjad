@@ -22,10 +22,6 @@ def make_repeated_notes(count, written_duration = Fraction(1, 8)):
    .. versionchanged:: 1.1.2
       renamed ``construct.run( )`` to
       ``notetools.make_repeated_notes( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.make_repeated_notes( )`` to
-      ``notetools.make_repeated_notes( )``.
    '''
 
    return make_notes([0] * count, [written_duration])

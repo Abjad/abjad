@@ -598,6 +598,8 @@ notetools
    tools/notetools/make_percussion_note
    tools/notetools/make_quarter_notes_with_lilypond_multipliers
    tools/notetools/make_repeated_notes
+   tools/notetools/make_repeated_notes_from_time_signature
+   tools/notetools/make_repeated_notes_from_time_signatures
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
 
 
@@ -767,6 +769,8 @@ resttools
 
    tools/resttools/MultiMeasureRest/MultiMeasureRest
    tools/resttools/is_lilypond_rest_string
+   tools/resttools/make_repeated_rests_from_time_signature
+   tools/resttools/make_repeated_rests_from_time_signatures
    tools/resttools/make_rests
    tools/resttools/set_vertical_positioning_pitch_on_rest
 
@@ -922,6 +926,8 @@ skiptools
    :maxdepth: 1
 
    tools/skiptools/Skip/Skip
+   tools/skiptools/make_repeated_skips_from_time_signature
+   tools/skiptools/make_repeated_skips_from_time_signatures
    tools/skiptools/make_skips_with_multiplied_durations
    tools/skiptools/replace_leaves_in_expr_with_skips
 

@@ -4,7 +4,10 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class ClefMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a clef.
+   The Abjad model of a clef::
+
+      abjad> contexttools.ClefMark('treble')
+      ClefMark('treble')
    '''
 
    _format_slot = 'opening'
@@ -35,7 +38,7 @@ class ClefMark(ContextMark):
 
    @property
    def _contents_repr_string(self):
-      return repr(self.clef_name_string)
+      return repr(self._clef_name_string)
 
    ## PUBLIC ATTRIBUTES ##
 

@@ -6,7 +6,7 @@ def yield_all_partitions_of_sequence(sequence):
 
    Yield all partitions of `sequence`::
 
-      abjad> for partition in seqtools.yield_all_partitions_of_sequence(sequence):
+      abjad> for partition in seqtools.yield_all_partitions_of_sequence([0, 1, 2, 3]):
       ...     partition
       ... 
       [[0, 1, 2, 3]]

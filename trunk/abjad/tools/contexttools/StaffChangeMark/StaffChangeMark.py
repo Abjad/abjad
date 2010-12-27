@@ -4,7 +4,15 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class StaffChangeMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a staff change.
+   The Abjad model of a staff change::
+
+      abjad> staff = Staff([ ])
+      abjad> staff.name = 'RH Staff'
+
+   ::
+
+      abjad> contexttools.StaffChangeMark(staff)
+      StaffChangeMark(Staff-"RH Staff"{ })
    '''
 
    _format_slot = 'opening'
@@ -14,6 +22,8 @@ class StaffChangeMark(ContextMark):
       ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
+      if not isinstance(staff, Staff):
+         raise TypeError('staff change mark input value "%s" must be staff instance.' % str(staff))
       self._staff = staff
 
    ## OVERLOADS ##
