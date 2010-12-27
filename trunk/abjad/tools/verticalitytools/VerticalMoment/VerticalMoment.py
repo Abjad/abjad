@@ -1,16 +1,52 @@
-from abjad.components.Chord import Chord
+from abjad.components import Chord
+from abjad.components import Measure
+from abjad.components import Note
 from abjad.components._Leaf import _Leaf
-from abjad.components.Measure import Measure
-from abjad.components.Note import Note
-from fractions import Fraction
 from abjad.core import _Immutable
 from abjad.tools import componenttools
+from fractions import Fraction
 
 
 class VerticalMoment(_Immutable):
    r'''.. versionadded: 1.1.2
 
-   Everything happening at a single moment in musical time.
+   Everything happening at a single moment in musical time::
+
+      score = Score([scoretools.PianoStaff([Staff("c'4 e'4 d'4 f'4"), Staff('g2 f2')])])
+      contexttools.ClefMark('bass')(score[0][1])
+
+   ::
+
+      f(score)
+      \new Score <<
+         \new PianoStaff <<
+            \new Staff {
+               c'4
+               e'4
+               d'4
+               f'4
+            }
+            \new Staff {
+               \clef "bass"
+               g2
+               f2
+            }
+         >>
+      >>
+
+   ::
+
+      abjad> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
+      ...     vertical_moment
+      ... 
+      VerticalMoment(0, <<2>>)
+      VerticalMoment(1/4, <<2>>)
+      VerticalMoment(1/2, <<2>>)
+      VerticalMoment(3/4, <<2>>)
+
+   Create vertical moments with the getters and iterators implemented in the verticalitytools module.
+
+   Vertical moments are immutable.
    '''
 
    def __init__(self, prolated_offset, governors, components):
