@@ -2,24 +2,14 @@ from fractions import Fraction
 
 
 def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
-   '''Multiply `pair` by rational `multiplier`.
-   Hold `pair` numerator constant, if possible.
-   Return new pair. ::
+   '''Multiply duration `pair` by rational `multiplier` and try to preserve numerator::
 
       abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(2, 3))
       (9, 24)
 
-   ::
-
-      abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(1, 2))
-      (9, 32)
-
-   ::
-
-      abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(5, 6))
-      (45, 96)
-
    Intended for certain types of meter multiplication.
+
+   Return integer pair.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.pair_multiply_constant_numerator( )`` to

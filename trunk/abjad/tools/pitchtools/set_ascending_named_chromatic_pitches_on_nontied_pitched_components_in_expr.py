@@ -1,5 +1,5 @@
-from abjad.components.Chord import Chord
-from abjad.components.Note import Note
+from abjad.components import Chord
+from abjad.components import Note
 
 
 def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):

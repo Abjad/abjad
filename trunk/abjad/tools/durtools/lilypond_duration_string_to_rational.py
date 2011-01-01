@@ -6,24 +6,12 @@ import re
 def lilypond_duration_string_to_rational(duration_string):
    '''.. versionadded:: 1.1.2
 
-   Convert LilyPond-style `duration_string` to rational. ::
-
-      abjad> durtools.lilypond_duration_string_to_rational('8')
-      Fraction(1, 8)
-
-   ::
+   Convert LilyPond `duration_string` to rational::
 
       abjad> durtools.lilypond_duration_string_to_rational('8.')
       Fraction(3, 16)
 
-   ::
-
-      abjad> durtools.lilypond_duration_string_to_rational('8..')
-      Fraction(7, 32)
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.duration_string_to_rational( )`` to
-      ``durtools.lilypond_duration_string_to_rational( )``.
+   Return fraction.
    '''
 
    if not isinstance(duration_string, str):

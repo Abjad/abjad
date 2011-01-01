@@ -9,6 +9,8 @@ class NoteHead(_UnaryComparator):
 
       abjad> notetools.NoteHead(13)
       NoteHead("cs''")
+
+   Note heads are immutable.
    '''
 
    __slots__ = ('_client', '_pitch', '_tweak')
@@ -61,8 +63,8 @@ class NoteHead(_UnaryComparator):
 
       ::
       
-         abjad> note = Note(1, (1, 4))
-         abjad> note.note_head.format
+         abjad> note_head = notetools.NoteHead("cs''")
+         abjad> note_head.format
          "cs'"
       '''
       from abjad.tools.notetools._format_note_head import _format_note_head
@@ -70,6 +72,14 @@ class NoteHead(_UnaryComparator):
 
    @property
    def named_chromatic_pitch(self):
+      '''Read-only named chromatic pitch equal to note head:
+
+      ::
+
+         abjad> note_head = notetools.NoteHead("cs''")
+         abjad> note_head.named_chromatic_pitch
+         NamedChromaticPitch("cs''")
+      '''
       return self.pitch
 
    ## TODO: rename pitch as named pitch ##
@@ -78,14 +88,14 @@ class NoteHead(_UnaryComparator):
       def fget(self):
          '''Get named pitch of note head::
 
-            abjad> note_head = notetools.NoteHead(13)
+            abjad> note_head = notetools.NoteHead("cs''")
             abjad> note_head.pitch
             NamedChromaticPitch("cs''")
 
          Set named pitch of note head::
 
-            abjad> note_head = notetools.NoteHead(13)
-            abjad> note_head.pitch = 14
+            abjad> note_head = notetools.NoteHead("cs''")
+            abjad> note_head.pitch = "d''"
             abjad> note_head.pitch
             NamedChromaticPitch("d''")
          '''
@@ -98,7 +108,13 @@ class NoteHead(_UnaryComparator):
 
    @property
    def tweak(self):
-      '''Read-only reference to LilyPond tweak reservoir.
+      '''Read-only LilyPond tweak reservoir:
+
+      ::
+
+         abjad> note_head = notetools.NoteHead("cs''")
+         abjad> note_head.tweak
+         LilyPondTweakReservoir( )
       '''
       if not hasattr(self, '_tweak'):
          self._tweak = LilyPondTweakReservoir( )

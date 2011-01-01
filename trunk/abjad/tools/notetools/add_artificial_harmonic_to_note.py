@@ -1,4 +1,4 @@
-from abjad.components.Chord import Chord
+from abjad.components import Chord
 from abjad.tools import pitchtools
 
 
@@ -7,21 +7,49 @@ perfect_fourth = pitchtools.MelodicDiatonicInterval('perfect', 4)
 def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fourth):
    r'''Add artifical harmonic to `note` at `melodic_diatonic_interval`::
 
-      abjad> t = Note(0, (1, 4))
-      abjad> notetools.add_artificial_harmonic_to_note(t)
-      abjad> f(t)
-      <
-              c'
-              \\tweak #'style #'harmonic
-              f'
-      >4
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+      abjad> spannertools.BeamSpanner(staff[:])
+      BeamSpanner(c'8, d'8, e'8, f'8)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
+      }
+
+
+   ::
+
+      abjad> notetools.add_artificial_harmonic_to_note(staff[0])
+      Chord("<c' f'>8")
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         <
+            c'
+            \tweak #'style #'harmonic
+            f'
+         >8 [
+         d'8
+         e'8
+         f'8 ]
+      }
+
+
+   Create new artificial harmonic chord from `note`.
+
+   Move parentage and spanners from `note` to artificial harmonic chord.
+
+   Return artificial harmonic chord.
 
    .. versionchanged:: 1.1.2
       renamed ``harmonictools.add_artificial( )`` to
-      ``notetools.add_artificial_harmonic_to_note( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.add_artificial_harmonic_to_note( )`` to
       ``notetools.add_artificial_harmonic_to_note( )``.
    '''
    from abjad.tools import componenttools

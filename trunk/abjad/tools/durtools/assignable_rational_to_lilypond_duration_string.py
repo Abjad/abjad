@@ -1,27 +1,25 @@
 from abjad.exceptions import AssignabilityError
-from fractions import Fraction
 from abjad.tools.durtools.assignable_rational_to_dot_count import assignable_rational_to_dot_count
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 from abjad.tools.durtools.rational_to_equal_or_lesser_binary_rational \
    import rational_to_equal_or_lesser_binary_rational
+from fractions import Fraction
 
 
 def assignable_rational_to_lilypond_duration_string(rational):
    '''.. versionadded:: 1.1.2
 
-   Convert `rational` to LilyPond-style duration string. ::
+   Convert assignable `rational` to LilyPond duration string::
 
       abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
       '8.'
 
-   Raise assignability error when `rational` is not notehead-assignable. ::
+   Raise assignability error when `rational` not assignable::
 
       abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(5, 16))
       AssignabilityError
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.rational_to_duration_string( )`` to
-      ``durtools.assignable_rational_to_lilypond_duration_string( )``.
+   Return string.
    '''
 
    if not is_assignable_rational(rational):

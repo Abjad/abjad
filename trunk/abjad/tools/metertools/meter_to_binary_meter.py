@@ -1,17 +1,22 @@
-from abjad.tools.metertools.Meter import Meter
-from fractions import Fraction
 from abjad.tools import durtools
 from abjad.tools import contexttools
 from abjad.tools import mathtools
+from abjad.tools.metertools.Meter import Meter
+from fractions import Fraction
 
 
 def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Fraction(1)):
-   '''Change nonbinary `meter` to binary::
+   '''Change nonbinary `meter` to binary meter::
 
       abjad> metertools.meter_to_binary_meter(Meter(3, 12))
       Meter(2, 8)
 
-   Return `meter`.
+   Preserve binary `meter`::
+
+      abjad> metertools.meter_to_binary_meter(metertools.Meter(2, 8))
+      Meter(2, 8)
+
+   Return newly constructed meter.
 
    .. versionchanged:: 1.1.2
       renamed ``metertools.make_binary( )`` to
@@ -27,11 +32,9 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Fraction(1)):
 
    ## find binary denominator
    if contents_multiplier == Fraction(1):
-      binary_denominator = mathtools.greatest_power_of_two_less_equal(
-         nonbinary_denominator)
+      binary_denominator = mathtools.greatest_power_of_two_less_equal(nonbinary_denominator)
    else:
-      binary_denominator = mathtools.greatest_power_of_two_less_equal(
-         nonbinary_denominator, 1)
+      binary_denominator = mathtools.greatest_power_of_two_less_equal(nonbinary_denominator, 1)
 
    ## find binary pair
    nonbinary_pair = (nonbinary_meter.numerator, nonbinary_meter.denominator)

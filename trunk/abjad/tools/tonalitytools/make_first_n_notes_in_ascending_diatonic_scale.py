@@ -1,4 +1,4 @@
-from abjad.components.Note import Note
+from abjad.components import Note
 from fractions import Fraction
 from abjad.tools import pitchtools
 from abjad.tools.notetools.make_notes import make_notes

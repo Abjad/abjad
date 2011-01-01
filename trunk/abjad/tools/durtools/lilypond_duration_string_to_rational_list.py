@@ -1,19 +1,15 @@
-from abjad.tools.durtools.lilypond_duration_string_to_rational import \
-   lilypond_duration_string_to_rational
+from abjad.tools.durtools.lilypond_duration_string_to_rational import lilypond_duration_string_to_rational
 
 
 def lilypond_duration_string_to_rational_list(duration_string):
    '''.. versionadded:: 1.1.2
 
-   Convert LilyPond-style `duration_string` to list of 
-   zero or more rationals. ::
+   Convert LilyPond `duration_string` to rational list::
 
       abjad> durtools.lilypond_duration_string_to_rationals('8.. 32 8.. 32')            
       [Fraction(7, 32), Fraction(1, 32), Fraction(7, 32), Fraction(1, 32)]
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.duration_string_to_rationals( )`` to
-      ``durtools.lilypond_duration_string_to_rational_list( )``.
+   Return list of fractions.
    '''
 
    if not isinstance(duration_string, str):

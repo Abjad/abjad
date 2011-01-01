@@ -4,46 +4,39 @@ from numbers import Number
 
 
 def make_rests(durations, direction='big-endian', tied=False):
-   '''Return a list of rests.
+   r'''Make note head-assignable rests::
 
-   * `durations` can be a sinlge duration token or a list of durations.
-   * `direction`, a string that may be ``'big-endian'`` or \
-      ``'little-endian'``.  When `durations` are not \
-      assignable, ``'big-endian'`` returns a list of rests \
-         in decreasing duration, while ``'little-endian'`` returns a \
-         list of rests in increasing duration.
-   * `tied`, set to ``True`` to return tied rests, otherwise set to \
-      ``False``. Default is ``False``.
+      abjad> resttools.make_rests([(1, 16), (2, 16), (3, 16)])
+      [Rest('r16'), Rest('r8'), Rest('r8.')]
 
-   ::
+   Make big-endian rests::
 
-      abjad> resttools.make_rests([(1, 16), (5, 16), (1, 4)])
-      [Rest(16), Rest(4), Rest(16), Rest(4)]
+      abjad> resttools.make_rests([(5, 16), (9, 16)], direction = 'big-endian')
+      [Rest('r4'), Rest('r16'), Rest('r2'), Rest('r16')]
 
-   ::
+   Make little-endian rests::
 
-      abjad> resttools.make_rests([(1, 16), (5, 16), (1, 4)], 'little-endian')
-      [Rest(16), Rest(16), Rest(4), Rest(4)]
+      abjad> resttools.make_rests([(5, 16), (9, 16)], direction = 'little-endian')
+      [Rest('r16'), Rest('r4'), Rest('r16'), Rest('r2')]
+
+   Make tied rests::
+   
+      abjad> voice = Voice(resttools.make_rests([(5, 16), (9, 16)], tied = True))
 
    ::
 
-      abjad> durs = [(1, 16), (5, 16), (1, 4)]
-      abjad> resttools.make_rests(durs, 'little-endian', tied = True)
-      [Rest(16), Rest(16), Rest(4), Rest(4)]
-      abjad> for r in _:
-      ...     print r.tie.spanners
-      ... 
-      set([ ])
-      set([spannertools.TieSpanner(r16, r4)])
-      set([spannertools.TieSpanner(r16, r4)])
-      set([ ])
+      abjad> f(voice)
+      \new Voice {
+         r4 ~
+         r16
+         r2 ~
+         r16
+      }
+
+   Return list of zero or more newly constructed rests.
 
    .. versionchanged:: 1.1.2
       renamed ``construct.rests( )`` to
-      ``resttools.make_rests( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.make_rests( )`` to
       ``resttools.make_rests( )``.
    '''
 

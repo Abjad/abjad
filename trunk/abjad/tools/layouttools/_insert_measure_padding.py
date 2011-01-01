@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.components.Rest import Rest
+from abjad.components import Rest
 from abjad.tools.skiptools.Skip import Skip
 from fractions import Fraction
 

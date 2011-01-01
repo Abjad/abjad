@@ -32,13 +32,20 @@ lilypond_duration_string_regex = re.compile('^%s$' %
    lilypond_duration_string_regex_body, re.VERBOSE)
 
 def is_lilypond_duration_string(expr):
-   '''True when `expr` is a LilyPond duration string. Otherwise false::
+   '''True when `expr` is a LilyPond duration string::
 
       abjad> durtools.is_lilypond_duration_string('4.. * 1/2')
       True
 
+   Otherwise false::
+
+      abjad> durtools.is_lilypond_duration_string('foo')
+      False
+   
    The regex ``^(1|2|4|8|16|32|64|128|\\breve|\\longa|\\maxima)\s*(\.*)\s*(\*\s*(\d+(/\d+)?))?$``
    underlies this predicate.
+
+   Return boolean.
    '''
 
    if not isinstance(expr, str):

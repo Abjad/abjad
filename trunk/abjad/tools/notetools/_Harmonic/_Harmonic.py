@@ -2,6 +2,8 @@ class _Harmonic(object):
    '''Abjad model of both natural and artificial harmonics.
       Abstract base class.'''
 
+   __slots__ = ( )
+
    ## PUBLIC ATTRIBUTES ##
 
    @property

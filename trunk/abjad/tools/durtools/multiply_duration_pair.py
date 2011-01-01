@@ -2,18 +2,14 @@ from fractions import Fraction
 
 
 def multiply_duration_pair(pair, multiplier):
-   '''Multiply `pair` by rational `multiplier`.
-   Naive multiplication with no simplification of anything. ::
+   '''Multiply duration `pair` by rational `multiplier`::
 
       abjad> durtools.multiply_duration_pair((4, 8), Fraction(4, 5))
       (16, 40)
 
-   ::
+   Naive multiplication with no simplification of anything intended for certain types of meter multiplication.
 
-      abjad> durtools.multiply_duration_pair(*4, 8), Fraction(3, 4))
-      (12, 32)
-
-   Intended for certain types of meter multiplication.
+   Return integer pair.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.pair_multiply_naive( )`` to

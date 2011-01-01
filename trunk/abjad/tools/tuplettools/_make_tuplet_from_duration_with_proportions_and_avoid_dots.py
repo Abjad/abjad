@@ -1,5 +1,5 @@
 from abjad.exceptions import AssignabilityError
-from abjad.components.Note import Note
+from abjad.components import Note
 from fractions import Fraction
 from abjad.tools import durtools
 from abjad.tools import leaftools

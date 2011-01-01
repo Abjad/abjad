@@ -1,11 +1,11 @@
-from abjad.components.Note import Note
+from abjad.components import Note
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 
 
 def iterate_notes_backward_in_expr(expr, start = 0, stop = None):
    r'''.. versionadded:: 1.1.2
 
-   Yield right-to-left notes in `expr`. ::
+   Yield right-to-left notes in `expr`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(staff)
@@ -40,8 +40,8 @@ def iterate_notes_backward_in_expr(expr, start = 0, stop = None):
       Note(d', 8)
       Note(c', 8)
 
-   Use the optional `start` and `stop` keyword parameters to control
-   the indices of iteration. ::
+   Use optional `start` and `stop` keyword parameters to control
+   indices of iteration::
 
       abjad> for leaf in notetools.iterate_notes_backward_in_expr(staff, start = 3):
       ...     leaf
@@ -67,14 +67,10 @@ def iterate_notes_backward_in_expr(expr, start = 0, stop = None):
       Note(f', 8)
       Note(e', 8)
 
-   .. note:: naive iteration ignores threads.
+   Return note generator.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.notes_backward_in( )`` to
-      ``notetools.iterate_notes_backward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.notes_backward_in_expr( )`` to
       ``notetools.iterate_notes_backward_in_expr( )``.
    '''
 

@@ -6,8 +6,7 @@ from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 def assignable_rational_to_dot_count(rational):
    r'''.. versionadded:: 1.1.2
 
-   Convert `rational` to nonnegative integer number of dots 
-   required to represent as LilyPond-style duration string. ::
+   Convert assignable `rational` to dot count::
 
       abjad> for n in range(1, 9):
       ...     try:
@@ -26,14 +25,12 @@ def assignable_rational_to_dot_count(rational):
       7/16    2
       1/2     0
 
-   Raise assignability error when `rational` is not note-head-assignable. ::
+   Raise assignability error when `rational` not assignable::
 
       abjad> durtools.assignable_rational_to_dot_count(Fraction(5, 16))
       AssignabilityError
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.rational_to_dot_count( )`` to
-      ``durtools.assignable_rational_to_dot_count( )``.
+   Return nonnegative integer.
    '''
 
    if not is_assignable_rational(rational):

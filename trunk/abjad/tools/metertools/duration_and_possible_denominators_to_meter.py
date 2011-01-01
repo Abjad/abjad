@@ -4,28 +4,22 @@ from abjad.tools import durtools
 
 
 def duration_and_possible_denominators_to_meter(duration, denominators = None, factor = None):
-   '''Return new Abjad Meter equal in duration to 'duration'.
-   Determine meter denominator based on 'denominators' or 'factor'.
-   Take denominator from smallest workable value in 'denominators'.
-   Or take denominator from smallest workable multiple of 'factor'::
-
-      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), [5, 6, 7, 8])
-      metertools.Meter(9, 6)
-
-   ::
-
-      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), [4, 8, 16, 32])
-      metertools.Meter(6, 4)
-
-   ::
-
-      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), factor = 5)
-      metertools.Meter(15, 10)
-
-   ::
+   '''Make new meter equal to `duration`::
 
       abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2))
-      metertools.Meter(3, 2)
+      Meter(3, 2)
+
+   Make new meter equal to `duration` with denominator equal to the first possible element in `denominators`::
+
+      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), denominators = [5, 6, 7, 8])
+      Meter(9, 6)
+
+   Make new meter equal to `duration` with denominator divisible by `factor`::
+
+      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), factor = 5)
+      Meter(15, 10)
+
+   Return new meter.
 
    .. versionchanged:: 1.1.2
       renamed ``metertools.make_best( )`` to
@@ -37,7 +31,8 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
          denominators = [d for d in denominators if factor in 
             mathtools.factors(d)]
       for desired_denominator in sorted(denominators):
-         candidate_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(duration, desired_denominator)
+         candidate_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+            duration, desired_denominator)
          if candidate_pair[-1] == desired_denominator:
             return Meter(candidate_pair)
 

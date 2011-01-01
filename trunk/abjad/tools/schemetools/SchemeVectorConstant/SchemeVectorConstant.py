@@ -10,6 +10,8 @@ class SchemeVectorConstant(tuple, _Immutable):
       SchemeVectorConstant(True, True, False)
 
    Scheme vectors and Scheme vector constants differ in only their LilyPond input format.
+
+   Scheme vector constants are immutable.
    '''
 
    def __new__(klass, *args):

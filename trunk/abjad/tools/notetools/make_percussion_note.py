@@ -1,30 +1,14 @@
-from abjad.components.Note import Note
-from fractions import Fraction
-from abjad.components.Rest import Rest
+from abjad.components import Note
+from abjad.components import Rest
 from abjad.tools import durtools
+from abjad.tools.leaftools._construct_tied_leaf import _construct_tied_leaf
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
-from abjad.tools.leaftools._construct_tied_rest import  _construct_tied_rest
-from abjad.tools.leaftools._construct_tied_leaf import  _construct_tied_leaf
+from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
+from fractions import Fraction
 
 
-def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
-   '''Returns a list containing a single Note and possibly a succession
-   of Rests, depending on the values given to the duration arguments.
-   The duration of the note returned is always smaller or equal to 
-   *max_note_duration*. The total duration of the rests returned is 
-   the difference between *total_duration* and the duration of the 
-   note returned. Rests are used to pad the duration of the note to fit
-   the *total_duration* if the *total_duration* will result in tied Notes. 
-   Useful for percussion music where the duration of the attack is 
-   negligible and you don't want tied notes.
-
-   * `pitch` can be any *pitch token*.
-   * `total_duration` is the duration resulting from the sum of the \
-      durations of the objects returned.
-   * `max_note_duration` is the maximum duration that the note returned \
-      will have.
-
-   ::
+def make_percussion_note(pitch, total_duration, max_note_duration = (1, 8)):
+   '''Make percussion note::
 
       abjad> make_percussion_note(2, (1, 4), (1, 8))
       [Note(d', 8), Rest(8)]
@@ -44,12 +28,18 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
       abjad> make_percussion_note(2, (5, 4), (1, 8))
       [Note(d', 8), Rest(1), Rest(8)]
 
-   .. versionchanged:: 1.1.2
-      renamed ``construct.percussion_note( )`` to
-      ``notetools.make_percussion_note( )``.
+   Return list of newly constructed note followed by zero or more newly constructed rests.
+
+   Durations of note and rests returned will sum to `total_duration`.
+
+   Duration of note returned will be no greater than `max_note_duration`.
+
+   Duration of rests returned will sum to note duration taken from `total_duration`.
+
+   Useful for percussion music where attack duration is negligible and tied notes undesirable.
 
    .. versionchanged:: 1.1.2
-      renamed ``leaftools.make_percussion_note( )`` to
+      renamed ``construct.percussion_note( )`` to
       ``notetools.make_percussion_note( )``.
    '''
 

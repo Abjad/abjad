@@ -1,19 +1,33 @@
+from abjad.tools import mathtools
 from abjad.tools.metertools.Meter import Meter
 from fractions import Fraction
-from abjad.tools import mathtools
 
 
-def is_meter_with_equivalent_binary_representation(meter):
-   '''True when meter is binary or when meter is nonbinary
-      but mathematically equivalent to some binary meter,
-      otherwise False.
+def is_meter_with_equivalent_binary_representation(expr):
+   '''True when `expr` is a meter with binary-valued duration::
+
+      abjad> metertools.is_meter_with_equivalent_binary_representation(metertools.Meter(3, 12))
+      True
+
+   Otherwise false::
+
+      abjad> metertools.is_meter_with_equivalent_binary_representation(metertools.Meter(4, 12))
+      False
+
+   ::
+
+      abjad> metertools.is_meter_with_equivalent_binary_representation('text')
+      False
+
+   Return boolean.
    '''
    
    # check input
-   assert isinstance(meter, Meter)
+   if not isinstance(expr, Meter):
+      return False
 
    # express meter as rational and reduce to relatively prime terms
-   meter_as_rational = Fraction(meter.numerator, meter.denominator)
+   meter_as_rational = Fraction(expr.numerator, expr.denominator)
 
    # return True if reduced meter denominator is power of two
    return mathtools.is_nonnegative_integer_power_of_two(meter_as_rational.denominator)

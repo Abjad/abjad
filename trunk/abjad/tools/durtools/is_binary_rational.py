@@ -3,9 +3,7 @@ import math
 
 
 def is_binary_rational(rational):
-   '''True when `rational` is of the form ``1/2**n``.
-
-   Otherwise false. ::
+   '''True when `rational` is of the form ``1/2**n``. Otherwise false::
 
       abjad> for n in range(1, 17):
       ...     rational = Fraction(1, n)
@@ -27,8 +25,12 @@ def is_binary_rational(rational):
       1/14    False
       1/15    False
       1/16    True
+
+   Return boolean.
    '''
 
-   assert isinstance(rational, Fraction)
+   if not isinstance(rational, (int, Fraction)):
+      return False
+
    exponent = math.log(rational.denominator, 2)
    return int(exponent) == exponent

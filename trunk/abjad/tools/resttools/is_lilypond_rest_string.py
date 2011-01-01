@@ -1,5 +1,4 @@
-from abjad.tools.durtools.is_lilypond_duration_string import \
-   lilypond_duration_string_regex_body
+from abjad.tools.durtools.is_lilypond_duration_string import lilypond_duration_string_regex_body
 import re
 
 
@@ -18,14 +17,21 @@ lilypond_rest_string_regex = re.compile('^%s$' %
 def is_lilypond_rest_string(expr):
    '''.. versionadded:: 1.1.2
 
-   True when `expr` is a LilyPond rest string. Otherwise false::
+   True when `expr` is a LilyPond rest string::
 
       abjad> resttools.is_lilypond_rest_string('r4.. * 1/2')
       True
 
+   Otherwise false::
+
+      abjad> resttools.is_lilypond_rest_string('text')
+      False
+
    The regex 
    ``^(r|R)\s*(1|2|4|8|16|32|64|128|\\breve|\\longa|\\maxima)\s*(\.*)\s*(\*\s*(\d+(/\d+)?))?$``
    underlies this predicate.
+
+   Return boolean.
    '''
 
    if not isinstance(expr, str):

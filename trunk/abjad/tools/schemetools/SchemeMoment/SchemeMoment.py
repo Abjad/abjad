@@ -4,14 +4,14 @@ from fractions import Fraction
 
 
 class SchemeMoment(_StrictComparator, _Immutable):
-   '''Abjad model of LilyPond moment:
+   '''Abjad model of LilyPond moment::
    
-   ::
-
       abjad> schemetools.SchemeMoment(1, 68)
-      SchemeMoment(1/68)
+      SchemeMoment(1, 68)
 
    Initialize scheme moments with a single fraction, two integers or another scheme moment.
+
+   Scheme moments are immutable.
    '''
 
    __slots__ = ('_duration')
@@ -31,7 +31,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
       return self
 
    def __getnewargs__(self):
-      return (self.duration,)
+      return (self.duration, )
 
    ## OVERLOADS ##
 
@@ -69,7 +69,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.duration)
+      return '%s(%s, %s)' % (self.__class__.__name__, self.duration.numerator, self.duration.denominator)
 
    ## PUBLIC ATTRIBUTES ##
 

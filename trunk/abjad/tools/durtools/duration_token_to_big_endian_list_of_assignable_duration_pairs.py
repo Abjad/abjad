@@ -1,10 +1,9 @@
-from abjad.tools.durtools.duration_token_to_reduced_duration_pair import duration_token_to_reduced_duration_pair
 from abjad.tools import mathtools
+from abjad.tools.durtools.duration_token_to_reduced_duration_pair import duration_token_to_reduced_duration_pair
 
 
 def duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_token):
-   '''Return big-endian list of note-head-assignable duration tokens
-   equal to `duration_token`. ::
+   '''Convert `duration_token` to big-endian tuple of assignable duration pairs::
 
       abjad> duration_tokens = [(n, 16) for n in range(10, 20)]
       abjad> for duration_token in duration_tokens:
@@ -20,6 +19,8 @@ def duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_toke
       (17, 16) ((16, 16), (1, 16))
       (18, 16) ((16, 16), (2, 16))
       (19, 16) ((16, 16), (3, 16))
+
+   Return tuple of integer pairs.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.token_decompose( )`` to

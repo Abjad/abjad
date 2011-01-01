@@ -10,7 +10,7 @@ class MispitchedTieCheck(_Check):
       '''
       from abjad.tools import componenttools
       from abjad.tools import spannertools
-      from abjad.components.Note import Note
+      from abjad.components import Note
       violators = [ ]
       total = 0
       for leaf in componenttools.iterate_components_forward_in_expr(expr, Note):

@@ -1,31 +1,45 @@
 def list_meters_of_measures_in_expr(components):
-   '''Extract ordered list of meter pairs from ``components``.
+   r'''List meters of measures in `expr`::
 
-   Example::
+      abjad> staff = Staff([Measure((2, 8), "c8 d8"), Measure((3, 8), "c8 d8 e8"), Measure((4, 8), "c8 d8 e8 f8")])
 
-      abjad> t = Staff([Measure((2, 8), macros.scale(2)),
-         Measure((3, 8), macros.scale(3)),
-         Measure((4, 8), macros.scale(4))])
+   ::
 
-      abjad> metertools.list_meters_of_measures_in_expr(t[:])
-      [(2, 8), (3, 8), (4, 8)]
+      abjad> f(staff)
+      \new Staff {
+         {
+            \time 2/8
+            c8
+            d8
+         }
+         {
+            \time 3/8
+            c8
+            d8
+            e8
+         }
+      }
 
-   Useful as input to some rhythmic transforms.
+   ::
+
+      abjad> metertools.list_meters_of_measures_in_expr(staff)
+      [TimeSignatureMark(2, 8)(|2/8, c8, d8|), TimeSignatureMark(3, 8)(|3/8, c8, d8, e8|)]
+
+   Return list of zero or more time signatures.
 
    .. versionchanged:: 1.1.2
       renamed ``metertools.extract_meter_list( )`` to
       ``metertools.list_meters_of_measures_in_expr( )``.
 
    .. versionchanged:: 1.1.2
-      renamed ``metertools.extract_meters_from_measures_in_expr( )`` to
-      ``metertools.list_meters_of_measures_in_expr( )``.
+      now returns list of meters instead of list of integer pairs.
    '''
    from abjad.tools import componenttools
    from abjad.tools import contexttools
    from abjad.tools import measuretools
 
    ## make sure components is a Python list of Abjad components
-   assert componenttools.all_are_components(components)
+   #assert componenttools.all_are_components(components)
 
    ## create empty list to hold result
    result = [ ]
@@ -33,8 +47,9 @@ def list_meters_of_measures_in_expr(components):
    ## iterate measures and store meter pairs
    for measure in measuretools.iterate_measures_forward_in_expr(components):
       meter = contexttools.get_effective_time_signature(measure)
-      pair = (meter.numerator, meter.denominator)
-      result.append(pair)
+      #pair = (meter.numerator, meter.denominator)
+      #result.append(pair)
+      result.append(meter)
 
    ## return result
    return result

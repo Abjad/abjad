@@ -1,4 +1,4 @@
-from abjad.components.Chord import Chord
+from abjad.components import Chord
 from abjad.tools.leaftools._construct_tied_leaf import _construct_tied_leaf
 
 

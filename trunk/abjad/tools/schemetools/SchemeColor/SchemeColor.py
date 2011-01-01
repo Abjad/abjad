@@ -3,12 +3,12 @@ from abjad.core import _StrictComparator
 
 
 class SchemeColor(_StrictComparator, _Immutable):
-   '''Abjad model of Scheme color:
-
-   ::
+   '''Abjad model of Scheme color::
 
       abjad> schemetools.SchemeColor('ForestGreen')
-      SchemeColor(ForestGreen)
+      SchemeColor('ForestGreen')
+
+   Scheme colors are immutable.
    '''
 
    def __new__(klass, color_name):
@@ -22,7 +22,7 @@ class SchemeColor(_StrictComparator, _Immutable):
    ## OVERLOADS ##
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.color_name)
+      return '%s(%s)' % (self.__class__.__name__, repr(self.color_name))
 
    ## PUBLIC ATTRIBUTES ##
    

@@ -1,4 +1,4 @@
-from abjad.components.Rest import Rest
+from abjad.components import Rest
 
 
 def fuse_leaves_in_container_once_by_counts_into_little_endian_rests(container, counts):

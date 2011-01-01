@@ -3,12 +3,12 @@ from abjad.core import _StrictComparator
 
 
 class SchemeFunction(_StrictComparator, _Immutable):
-   '''Abjad model of Scheme function:
-
-   ::
+   '''Abjad model of Scheme function::
 
       abjad> schemetools.SchemeFunction('magstep', -3)
       SchemeFunction('magstep', -3)
+
+   Scheme functions are immutable.
    '''
 
    def __new__(klass, *args):
@@ -35,7 +35,7 @@ class SchemeFunction(_StrictComparator, _Immutable):
    @property
    def _repr_contents_string(self):
       result = [ ]
-      result.append("'%s'" % self.name)
+      result.append("%s" % repr(self.name))
       result.extend(self.args)
       result = ', '.join(str(x) for x in result)
       return result

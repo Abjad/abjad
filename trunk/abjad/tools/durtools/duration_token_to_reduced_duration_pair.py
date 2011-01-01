@@ -1,41 +1,47 @@
+from abjad.tools.durtools.lilypond_duration_string_to_rational import lilypond_duration_string_to_rational
 from fractions import Fraction
-from abjad.tools.durtools.lilypond_duration_string_to_rational import \
-   lilypond_duration_string_to_rational
 
 
 def duration_token_to_reduced_duration_pair(duration_token):
-   '''Return reduced numerator, denominator pair equal to `duration_token`.
-
-   Fractions are allowed. ::
+   '''Convert fraction to reduced duration pair::
 
       abjad> durtools.duration_token_to_reduced_duration_pair(Fraction(1, 4))
       (1, 4)
 
-   Two-element integer tuples and lists are allowed. ::
+   Convert integer pair to reduced duration pair::
 
       abjad> durtools.duration_token_to_reduced_duration_pair((1, 4))
       (1, 4)
-      abjad> durtools.duration_token_to_reduced_duration_pair([1, 4])
 
-   One-element integer tuples and lists are allowed. ::
+   Convert ``2``-element list to reduced duration pair::
+
+      abjad> durtools.duration_token_to_reduced_duration_pair([1, 4])
+      (1, 4)
+
+   Convert ``1``-element integer tuple to reduced duration pair::
 
       abjad> durtools.duration_token_to_reduced_duration_pair((2, ))
       (2, 1)
+
+   Convert ``1``-element list to reduced duration pair::
+
       abjad> durtools.duration_token_to_reduced_duration_pair([2])
       (2, 1)
 
-   Integers are allowed. ::
+   Convert integer to reduced duration pair::
 
       abjad> durtools.duration_token_to_reduced_duration_pair(2)
       (2, 1)
 
    .. versionadded:: 1.1.2
-      LilyPond-style duration strings are allowed.
+      Convert LilyPond duration string to duration pair:
 
    ::
 
       abjad> durtools.duration_token_to_reduced_duration_pair('8.')
       (3, 16)
+
+   Return integer pair.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.token_unpack( )`` to

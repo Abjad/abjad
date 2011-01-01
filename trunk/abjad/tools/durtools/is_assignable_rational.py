@@ -1,19 +1,9 @@
-from fractions import Fraction
 from abjad.tools import mathtools
+from fractions import Fraction
 
 
-def is_assignable_rational(duration):
-   r'''True when `duration` is of a form acceptable 
-   for note-head assignment.
-
-   That is, true when `duration` is a rational of the form ``p/q``,
-   such that:
-
-   * ``p`` is a notehead-assignable integer
-   * ``q = 2**n`` with integer ``n``
-   * ``0 < p/q 16``
-
-   Otherwise false. ::
+def is_assignable_rational(expr):
+   r'''True when `expr` is assignable rational. Otherwise false::
 
       abjad> for numerator in range(0, 16 + 1):
       ...     duration = Fraction(numerator, 16)
@@ -37,16 +27,21 @@ def is_assignable_rational(duration):
       15/16 True
       1     True
 
+   Return boolean.
+
    .. versionchanged:: 1.1.2
       renamed ``durtools.is_assignable( )`` to
       ``durtools.is_assignable_rational( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.is_assignable_duration( )`` to
-      ``durtools.is_assignable_rational( )``.
    '''
 
-   duration = Fraction(duration)
-   return mathtools.is_nonnegative_integer_power_of_two(duration.denominator) and \
-      (0 < duration < 16) and \
-      mathtools.is_assignable_integer(duration.numerator)
+   try:
+      duration = Fraction(expr)
+   except (TypeError, ValueError):
+      return False
+
+   if 0 < duration < 16:
+      if mathtools.is_nonnegative_integer_power_of_two(duration.denominator):
+         if mathtools.is_assignable_integer(duration.numerator):
+            return True
+
+   return False

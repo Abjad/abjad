@@ -1,13 +1,13 @@
-from abjad.components.Note import Note
-from fractions import Fraction
+from abjad.components import Note
 from abjad.tools import durtools
 from abjad.tools import seqtools
+from fractions import Fraction
 
 
 def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
    r'''.. versionadded:: 1.1.2
 
-   Construct quarter notes with `pitches` and `multiplied_durations`::
+   Make quarter notes with `pitches` and `multiplied_durations`::
 
       abjad> notetools.make_quarter_notes_with_lilypond_multipliers([0, 2, 4, 5], [(1, 4), (1, 5), (1, 6), (1, 7)])
       [Note(c', 4 * 1), Note(d', 4 * 4/5), Note(e', 4 * 2/3), Note(f', 4 * 4/7)]
@@ -24,12 +24,10 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
       abjad> notetools.make_quarter_notes_with_lilypond_multipliers([0, 2, 4, 5], [(1, 5)])
       [Note(c', 4 * 4/5), Note(d', 4 * 4/5), Note(e', 4 * 4/5), Note(f', 4 * 4/5)]
 
-   .. versionchanged:: 1.1.2
-      renamed ``construct.quarter_notes_with_multipliers( )`` to
-      ``notetools.make_quarter_notes_with_lilypond_multipliers( )``.
+   Return list of zero or more newly constructed notes.
 
    .. versionchanged:: 1.1.2
-      renamed ``leaftools.make_quarter_notes_with_lilypond_multipliers( )`` to
+      renamed ``construct.quarter_notes_with_multipliers( )`` to
       ``notetools.make_quarter_notes_with_lilypond_multipliers( )``.
    '''
 

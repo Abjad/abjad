@@ -9,12 +9,19 @@ lilypond_duration_name_regex = re.compile('^%s$' %
    lilypond_duration_name_regex_body, re.VERBOSE)
 
 def is_lilypond_duration_name(expr):
-   r'''True when `expr` is a LilyPond duartion name. Otherwise false::
+   r'''True when `expr` is a LilyPond duartion name::
 
       abjad> durtools.is_lilypond_duration_name('breve')
       True
 
+   Otherwise false::
+      
+      abjad> durtools.is_lilypond_duration_name('foo')
+      False
+
    The regex ``^(\\breve|\\longa|\\maxima)$`` underlies this predicate.
+
+   Return boolean.
    '''
 
    if not isinstance(expr, str):

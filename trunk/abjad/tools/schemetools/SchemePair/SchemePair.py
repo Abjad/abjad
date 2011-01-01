@@ -2,14 +2,14 @@ from abjad.core import _Immutable
 
 
 class SchemePair(tuple, _Immutable):
-   '''Abjad model of Scheme pair:
-
-   ::
+   '''Abjad model of Scheme pair::
 
       abjad> schemetools.SchemePair('spacing', 4)
       SchemePair('spacing', 4)
 
    Initialize Scheme pairs with a tuple, two separate values or another Scheme pair.
+
+   Scheme pairs are immutable.
    '''
 
    def __new__(klass, *args):
@@ -42,7 +42,7 @@ class SchemePair(tuple, _Immutable):
       result = [ ]
       for x in self:
          if isinstance(x, str):
-            result.append("'%s'" % x)
+            result.append("%s" % repr(x))
          else:
             result.append(str(x))
       result = ', '.join(result)

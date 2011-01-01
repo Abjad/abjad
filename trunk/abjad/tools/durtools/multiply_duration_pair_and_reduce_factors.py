@@ -1,20 +1,16 @@
-from fractions import Fraction
 from abjad.tools import mathtools
+from fractions import Fraction
 
 
 def multiply_duration_pair_and_reduce_factors(pair, multiplier):
-   '''Multiply `pair` by rational `multiplier`.
-   Reduce common cross factors. ::
+   '''Multiply `pair` by rational `multiplier` and reduce factors::
 
       abjad> durtools.multiply_duration_pair_and_reduce_factors((4, 8), Fraction(2, 3))
       (4, 12)
 
-   ::
-
-      durtools.multiply_duration_pair_and_reduce_factors((4, 8), Fraction(6, 5))
-      (12, 20)
-
    Intended for certain types of meter multiplication.
+
+   Return integer pair.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.pair_multiply_reduce_factors( )`` to

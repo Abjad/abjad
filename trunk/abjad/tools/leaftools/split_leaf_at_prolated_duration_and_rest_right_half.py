@@ -1,4 +1,4 @@
-from abjad.components.Rest import Rest
+from abjad.components import Rest
 
 
 def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration):

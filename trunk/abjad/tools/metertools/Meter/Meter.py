@@ -1,14 +1,23 @@
-from abjad.core import _StrictComparator
 from abjad.core import _Immutable
-from fractions import Fraction
+from abjad.core import _StrictComparator
 from abjad.tools import durtools
 from abjad.tools import mathtools
+from fractions import Fraction
 
 
 class Meter(_StrictComparator, _Immutable):
+   '''DEPRECATED.
 
-   __slots__ = ('_denominator', '_duration', '_format', '_multiplier',
-      '_is_nonbinary', '_numerator', '_partial', )
+   Use ``TimeSignatureMark`` instead.
+
+   Abjad model of time signature::
+
+      abjad> metertools.Meter((5, 32))
+      Meter(5, 32)
+   '''
+
+   __slots__ = ('_denominator', '_duration', '_format', '_is_nonbinary',
+      '_multiplier', '_numerator', '_partial', )
 
    def __init__(self, *args, **kwargs):
 

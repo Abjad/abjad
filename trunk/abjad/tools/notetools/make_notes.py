@@ -10,29 +10,38 @@ import operator
       
 
 def make_notes(pitches, durations, direction='big-endian'):
-   '''Constructs a list of prolated notes with length 
-   equal to length of `durations.`
+   '''Make notes according to `pitches` and `durations`.
 
-   Parameters:
+   Cycle through `pitches` when the length of `pitches` is less than the length of `durations`::
 
-   `pitches`
-      a single pitch or a list/tuple of pitches. If the list is
-      smaller than that of the durations, the pitches are cycled through.
+      abjad> notetools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
+      [Note("c'16"), Note("c'8"), Note("c'8")]
 
-   `durations`
-      a sinlge duration or a list of durations. 
-      The durations need not be of the form ``m / 2**n``
-      and may be any rational value.
+   Cycle through `durations` when the length of `durations` is less than the length of `pitches`::
 
-   `direction`
-      may be 'big-endian' or 'little-endian'.
-      'big-endian' returns list of notes of decreasing duration.
-      'little-endian' returns list of notes of increasing duration.
+      abjad> notetools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
+      [Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8")]
 
-   ::
+   Create ad hoc tuplets for nonassignable durations::
 
-      abjad> notetools.make_notes(0, [(1, 16), (1, 8), (1, 8)])
-      [Note(c', 16), Note(c', 8), Note(c', 8)]
+      abjad> notetools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
+      [Note("c'16"), Tuplet(2/3, [c'8]), Note("c'8")]
+
+   Set `direction` to ``'big-endian'`` to express tied values in decreasing duration::
+
+      abjad> notetools.make_notes([0], [(13, 16)], direction = 'big-endian')
+      [Note("c'2."), Note("c'16")]
+
+   Set `direction` to ``'little-endian'`` to express tied values in increasing duration::
+
+      abjad> notetools.make_notes([0], [(13, 16)], direction = 'little-endian')
+      [Note("c'16"), Note("c'2.")]
+
+   Set `pitches` to a single pitch or a sequence of pitches. 
+
+   Set `durations` to a single duration or a list of durations. 
+
+   Return list of newly constructed notes.
 
    .. versionchanged:: 1.1.2
       renamed ``construct.notes( )`` to

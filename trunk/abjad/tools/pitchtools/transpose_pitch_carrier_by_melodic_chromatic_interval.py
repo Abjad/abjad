@@ -1,5 +1,5 @@
-from abjad.components.Chord import Chord
-from abjad.components.Note import Note
+from abjad.components import Chord
+from abjad.components import Note
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import componenttools
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval

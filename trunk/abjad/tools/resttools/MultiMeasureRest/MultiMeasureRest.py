@@ -1,9 +1,16 @@
-from abjad.components._Leaf import _Leaf
 from abjad.components import Rest
+from abjad.components._Leaf import _Leaf
 
 
 class MultiMeasureRest(Rest):
-   '''The Abjad model of a multi-measure rest.
+   '''.. versionadded:: 1.1.2
+
+   The Abjad model of a multi-measure rest::
+
+      abjad> resttools.MultiMeasureRest((1, 4))
+      MultiMeasureRest('R4')
+
+   Multi-measure rests are immutable.
    '''
    
    __slots__ = ( )

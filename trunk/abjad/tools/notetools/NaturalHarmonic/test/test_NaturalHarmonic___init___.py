@@ -7,8 +7,7 @@ def test_NaturalHarmonic___init____01( ):
 
    t = Staff(macros.scale(4))
    natural_harmonic = notetools.NaturalHarmonic(t[1])
-   componenttools.move_parentage_and_spanners_from_components_to_components(
-      t[1:2], [natural_harmonic])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [natural_harmonic])
    
    r'''
    \new Staff {

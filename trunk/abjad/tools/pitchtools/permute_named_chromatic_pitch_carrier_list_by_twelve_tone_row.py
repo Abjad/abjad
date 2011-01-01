@@ -1,4 +1,4 @@
-from abjad.components.Note import Note
+from abjad.components import Note
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.TwelveToneRow import TwelveToneRow
 

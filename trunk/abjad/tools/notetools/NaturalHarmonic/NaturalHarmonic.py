@@ -1,10 +1,28 @@
-from abjad.components.Note import Note
+from abjad.components import Note
 from abjad.tools.notetools._Harmonic._Harmonic import _Harmonic
 
 
 class NaturalHarmonic(Note, _Harmonic):
-   '''Natural harmonic.
+   '''Abjad model of natural harmonic.
+
+   Initialize natural harmonic by hand::
+
+      abjad> notetools.NaturalHarmonic("cs'8.")
+      NaturalHarmonic(cs', 8.)
+
+   Initialize natural harmonic from note::
+
+      abjad> note = Note("cs'8.")
+
+   ::
+
+      abjad> notetools.NaturalHarmonic(note)
+      NaturalHarmonic(cs', 8.)
+
+   Natural harmonics are immutable.
    '''
+
+   __slots__ = ( )
 
    def __init__(self, *args):
       Note.__init__(self, *args)
