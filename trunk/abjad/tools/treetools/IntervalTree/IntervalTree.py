@@ -60,6 +60,10 @@ class IntervalTree(_RedBlackTree):
     ## PUBLIC ATTRIBUTES ##
 
     @property
+    def high(self):
+        return self.high_max
+
+    @property
     def high_max(self):
         if self:
             return self._root.high_max
@@ -89,6 +93,10 @@ class IntervalTree(_RedBlackTree):
         return tuple(self._intervals)
 
     @property
+    def low(self):
+        return self.low_min
+
+    @property
     def low_max(self):
         if self:
             return self._find_maximum(self._root).key
@@ -103,6 +111,13 @@ class IntervalTree(_RedBlackTree):
             #return self._root._minimum.key
         else:
             return None
+
+    @property
+    def magnitude(self):
+        if self:
+            return self.high_max - self.low_min
+        else:
+            return 0
 
     ## PRIVATE METHODS ##
 
@@ -356,8 +371,13 @@ class IntervalTree(_RedBlackTree):
         if isinstance(args, BoundedInterval):
             intervals = [args]
         elif isinstance(args, (IntervalTree, list, set, tuple)):
-            assert all([isinstance(i, BoundedInterval) for i in args])
-            intervals = args
+            assert all([isinstance(i, (BoundedInterval, IntervalTree)) for i in args])
+            intervals = [ ]
+            for x in args:
+                if isinstance(x, BoundedInterval):
+                    intervals.append(x)
+                elif isinstance(x, (IntervalTree, list, set, tuple)):
+                    intervals.extend(x)
         else:
             raise ValueError
         for interval in intervals:

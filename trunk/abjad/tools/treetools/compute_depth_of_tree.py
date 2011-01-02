@@ -9,7 +9,7 @@ def compute_depth_of_tree(tree):
     in each boundary pair of `tree`::
 
         abjad> from abjad.tools.treetools import *
-        abjad> tree = IntervalTree( )
+        abjad> tree = IntervalTree([ ])
         abjad> tree.insert(BoundedInterval(0, 3))
         abjad> tree.insert(BoundedInterval(6, 12))
         abjad> tree.insert(BoundedInterval(9, 15))

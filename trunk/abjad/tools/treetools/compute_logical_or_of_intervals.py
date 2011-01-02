@@ -10,7 +10,7 @@ def compute_logical_or_of_intervals(arg):
         merge_tree = arg
     elif isinstance(arg, (list, set, tuple)) and \
     all([isinstance(x, IntervalTree) for x in arg]):
-        merge_tree = IntervalTree( )
+        merge_tree = IntervalTree([ ])
         for x in arg:
             merge_tree.insert(tree)
     elif isinstance(arg, (list, set, tuple)) and \
@@ -20,10 +20,13 @@ def compute_logical_or_of_intervals(arg):
         raise ValueError
     
     if not merge_tree:
-        return IntervalTree( )
+        return IntervalTree([ ])
 
     depth_tree = compute_depth_of_tree(merge_tree)
     logic_tree = IntervalTree(filter(lambda x: 1 <= x.data['depth'], depth_tree))
+
+    if not len(logic_tree):
+        return IntervalTree([ ])
 
     groups = [ ]
     group = [logic_tree.inorder[0]]
@@ -37,7 +40,7 @@ def compute_logical_or_of_intervals(arg):
     if group not in groups:
         groups.append(group)
 
-    output_tree = IntervalTree( )
+    output_tree = IntervalTree([ ])
     for group in groups:
         low = group[0].low
         high = group[-1].high

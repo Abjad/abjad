@@ -3,7 +3,7 @@ from abjad.tools.treetools import *
 
 def test_IntervalTree___init____01( ):
     '''IntervalTree can be initialized without arguments.'''
-    tree = IntervalTree( )
+    tree = IntervalTree([ ])
 
 
 def test_IntervalTree___init____02( ):

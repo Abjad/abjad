@@ -6,7 +6,7 @@ def group_all_overlapping_intervals_in_tree_and_yield_groups(tree):
     assert isinstance(tree, IntervalTree)
 
     if not tree:
-        yield IntervalTree( )
+        yield IntervalTree([ ])
         return
 
     groups = [ ]

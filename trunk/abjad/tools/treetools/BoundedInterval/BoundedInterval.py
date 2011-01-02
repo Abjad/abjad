@@ -49,6 +49,35 @@ class BoundedInterval(_Immutable):
 
     ## PUBLIC METHODS ##
 
+    def is_container_of_interval(self, interval):
+        assert isinstance(interval, BoundedInterval)
+        if self.low <= interval.low and interval.high <= self.high:
+            return True
+        else:
+            return False
+
+    def is_contained_by_interval(self, interval):
+        assert isinstance(interval, BoundedInterval)
+        if interval.low <= self.low and self.high <= interval.high:
+            return True
+        else:
+            return False
+
+    def is_overlapped_by_interval(self, interval):
+        assert isinstance(interval, BoundedInterval)
+        if (self.low < interval.low and interval.low < self.high) or \
+            (self.low < interval.high and interval.high < self.high):
+            return True
+        else:
+            return False
+
+    def is_tangent_to_interval(self, interval):
+        assert isinstance(interval, BoundedInterval)
+        if self.high == interval.low or interval.high == self.low:
+            return True
+        else:
+            return False
+
     def scale_by_value(self, value):
         assert isinstance(value, (int, Fraction))
         assert 0 <= value
@@ -87,4 +116,4 @@ class BoundedInterval(_Immutable):
             return (self.__class__(BoundedInterval(self.low, value, self.data)),
                     self.__class__(BoundedInterval(value, self.high, self.data)))
         else:
-            return self            
+            return (self,)
