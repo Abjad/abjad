@@ -1196,6 +1196,7 @@ treetools
    tools/treetools/Block/Block
    tools/treetools/BoundedInterval/BoundedInterval
    tools/treetools/IntervalTree/IntervalTree
+   tools/treetools/all_interval_payloads_contain_key_of_klass
    tools/treetools/all_intervals_in_tree_are_contiguous
    tools/treetools/all_intervals_in_tree_are_nonoverlapping
    tools/treetools/compute_depth_of_tree
@@ -1203,6 +1204,19 @@ treetools
    tools/treetools/compute_logical_not_of_intervals
    tools/treetools/compute_logical_or_of_intervals
    tools/treetools/compute_logical_xor_of_intervals
+   tools/treetools/concatenate_trees
+   tools/treetools/explode_overlapping_tree_into_nonoverlapping_trees_compactly
+   tools/treetools/explode_overlapping_tree_into_nonoverlapping_trees_uncompactly
+   tools/treetools/fuse_overlapping_intervals
+   tools/treetools/fuse_tangent_or_overlapping_intervals
    tools/treetools/get_all_unique_bounds_in_tree
    tools/treetools/group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups
    tools/treetools/group_all_overlapping_intervals_in_tree_and_yield_groups
+   tools/treetools/make_percussion_score_of_depth_of_tree
+   tools/treetools/make_percussion_score_of_tree
+   tools/treetools/mask_intervals_with_intervals_while_preserving_payloads
+   tools/treetools/scale_tree_by_value
+   tools/treetools/scale_tree_to_value
+   tools/treetools/shift_tree_by_value
+   tools/treetools/shift_tree_to_value
+   tools/treetools/split_intervals_in_tree_at_values
