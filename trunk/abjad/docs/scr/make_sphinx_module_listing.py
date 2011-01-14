@@ -23,7 +23,8 @@ def make_sphinx_module_listing(package_path, file):
    Returns result as a string.
    '''
    
-   abjad_path = ABJADPATH.rstrip('/abjad')
+   #abjad_path = ABJADPATH.rstrip('/abjad')
+   abjad_path = os.path.split(ABJADPATH)[0]
    source_full_path = os.path.join(abjad_path, package_path, file)
    file = file.split('.')[0]
 
