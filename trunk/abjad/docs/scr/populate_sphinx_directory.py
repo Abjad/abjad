@@ -12,7 +12,9 @@ def populate_sphinx_directory(root_dir, abjad_subdir, files, interactive):
    for file in files:
       #print file
 
-      listing = make_sphinx_module_listing('abjad/' + abjad_subdir, file)
+      #listing = make_sphinx_module_listing('abjad/' + abjad_subdir, file)
+      components_path = os.path.join('abjad', abjad_subdir) 
+      listing = make_sphinx_module_listing(components_path, file)
       #print listing
 
       ## write no API entry when there is no listing
