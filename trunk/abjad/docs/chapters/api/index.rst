@@ -842,8 +842,8 @@ seqtools
    tools/seqtools/group_sequence_elements_once_by_weights_at_most_without_overhang
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_with_overhang
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_without_overhang
-   tools/seqtools/increase_at_indices
-   tools/seqtools/increase_cyclic
+   tools/seqtools/increase_sequence_by_addenda_at_indices
+   tools/seqtools/increase_sequence_cyclically_by_addenda
    tools/seqtools/insert_slice_cyclic
    tools/seqtools/interlace_sequences
    tools/seqtools/is_monotonically_decreasing_sequence
