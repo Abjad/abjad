@@ -53,5 +53,5 @@ def test_seqtools_iterate_sequence_cyclically_05( ):
    assert t == [4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7]
 
    g = seqtools.generate_range(1, 8)
-   t = list(seqtools.iterate_sequence_cyclically(g, -2, 5, length = 20))
+   t = list(seqtools.iterate_sequence_cyclically(g, step = -2, start = 5, length = 20))
    assert t == [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]

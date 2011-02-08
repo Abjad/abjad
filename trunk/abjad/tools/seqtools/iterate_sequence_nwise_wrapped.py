@@ -1,10 +1,12 @@
-def iterate_sequence_nwise_wrapped(iterable, n):
+def iterate_sequence_nwise_wrapped(sequence, n):
    '''.. versionadded:: 1.1.2
 
-   Yield elements in `iterable` `n` at a time wrapped to beginning. ::
+   Iterate elements in `sequence` `n` at a time wrapped to beginning::
 
       abjad> list(seqtools.iterate_sequence_nwise_wrapped(range(6), 3))
       [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 0), (5, 0, 1)]
+
+   Return generator.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.nwise_wrapped( )`` to
@@ -13,7 +15,7 @@ def iterate_sequence_nwise_wrapped(iterable, n):
 
    first_n_minus_1 = [ ]
    buffer = [ ]
-   for element in iterable:
+   for element in sequence:
       buffer.append(element)
       if len(buffer) == n:
          yield tuple(buffer)

@@ -1,20 +1,14 @@
-def remove_duplicates_from_sequence(l):
-   '''Return a newly constructed list of the unique 
-   elements in iterable `l`. ::
+def remove_duplicates_from_sequence(sequence):
+   '''Remove duplicates from `sequence`::
 
-      abjad> l = [1, 1, 1, 2, 3, 3, 4, 5]
-      abjad> seqtools.remove_duplicates_from_sequence(l)
+      abjad> seqtools.remove_duplicates_from_sequence([1, 1, 1, 2, 3, 3, 4, 5])
       [1, 2, 3, 4, 5]
 
-   Defined equal to ``list(set(l))``.
+   Defined equal to ``list(set(sequence))``.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.unique( )`` to
       ``seqtools.remove_duplicates_from_sequence( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.remove_duplicates_from_iterable( )`` to
-      ``seqtools.remove_duplicates_from_sequence( )``.
    '''
 
-   return list(set(l))
+   return list(set(sequence))

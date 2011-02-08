@@ -12,6 +12,12 @@ def test_seqtools_is_repetition_free_sequence_02( ):
 
 
 def test_seqtools_is_repetition_free_sequence_03( ):
-   '''Empty iterable boundary case.'''
+   '''True when expr is an empty sequence.'''
 
    assert seqtools.is_repetition_free_sequence([ ])
+
+
+def test_seqtools_is_repetition_free_sequence_04( ):
+   '''False when expr is not a sequence.'''
+
+   assert not seqtools.is_repetition_free_sequence(17)

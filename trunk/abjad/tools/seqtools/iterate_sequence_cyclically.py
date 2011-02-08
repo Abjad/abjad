@@ -3,16 +3,12 @@ import itertools
 
 ## TODO: merge with seqtools.repeat_to_length( ) ##
 
-def iterate_sequence_cyclically(iterable, step=1, start=0, length='inf'):
-   '''Yield elements in `iterable` cyclically according to `step`,
-   `start` and `length`.
+def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
+   '''Iterate `sequence` cyclically according to `step`, `start` and `length`::
 
-   - `iterable`: any iterable.
-   - `step`: jump size and direction across list.
-   - `start`: the index of `iterable` where the function begins iterating.
-   - `length`: number of elements to return. If ``'inf'``, returns infinitely.
-     
-   Examples. ::
+      l = [1, 2, 3, 4, 5, 6, 7]
+
+   ::
 
       abjad> list(seqtools.iterate_sequence_cyclically(l, length = 20))
       [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6]
@@ -40,6 +36,12 @@ def iterate_sequence_cyclically(iterable, step=1, start=0, length='inf'):
       abjad> generator = seqtools.generate_range(1, 8)
       abjad> list(seqtools.iterate_sequence_cyclically(generator, -2, 5, length = 20))
       [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
+
+   Set `step` to jump size and direction across sequence.
+
+   Set `start` to the index of `sequence` where the function begins iterating.
+
+   Set `length` to number of elements to return. Set to ``'inf'`` to return infinitely.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.phasor( )`` to
@@ -70,13 +72,13 @@ def iterate_sequence_cyclically(iterable, step=1, start=0, length='inf'):
    ## then we recombined the halves and pass positive step.
    if step < 0:
       step = abs(step)
-      list_iterable = list(iterable)
+      list_iterable = list(sequence)
       left, right = reversed(list_iterable[:start-1]), reversed(list_iterable[start-1:])
-      iterable = itertools.chain(left, right)
+      sequence = itertools.chain(left, right)
 
    ## iterate and yield
    total = 0
-   for x in itertools.islice(itertools.cycle(iterable), start, None, step):
+   for x in itertools.islice(itertools.cycle(sequence), start, None, step):
       yield x
       total += 1
       if not length == 'inf':

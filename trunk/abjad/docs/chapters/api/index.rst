@@ -844,7 +844,6 @@ seqtools
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_without_overhang
    tools/seqtools/increase_sequence_by_addenda_at_indices
    tools/seqtools/increase_sequence_cyclically_by_addenda
-   tools/seqtools/insert_slice_cyclic
    tools/seqtools/interlace_sequences
    tools/seqtools/is_monotonically_decreasing_sequence
    tools/seqtools/is_monotonically_increasing_sequence
@@ -900,6 +899,7 @@ seqtools
    tools/seqtools/rotate_sequence
    tools/seqtools/sequence_to_degree_of_rotational_symmetry
    tools/seqtools/sequence_to_period_of_rotation
+   tools/seqtools/splice_new_elements_between_sequence_elements
    tools/seqtools/split_sequence_cyclically_by_weights_with_overhang
    tools/seqtools/split_sequence_cyclically_by_weights_without_overhang
    tools/seqtools/split_sequence_once_by_weights_with_overhang

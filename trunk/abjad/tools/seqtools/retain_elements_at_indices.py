@@ -1,14 +1,16 @@
-def retain_elements_at_indices(iterable, indices):
+def retain_elements_at_indices(sequence, indices):
    '''.. versionadded:: 1.1.2
 
-   Yield elements in `iterable` at `indices`. ::
+   Retain `sequence` elements at `indices`::
 
       abjad> list(seqtools.retain_elements_at_indices(range(20), [1, 16, 17, 18]))
       [1, 16, 17, 18]
 
-   Negative indices are ignored.
+   Ignore negative indices.
+
+   Return generator.
    '''
 
-   for i, element in enumerate(iterable):
+   for i, element in enumerate(sequence):
       if i in indices:
          yield element

@@ -5,30 +5,29 @@ from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from abjad.tools.mathtools.weight import weight
 
 
-def partition_sequence_by_weights_ratio(l, ratio):
+def partition_sequence_by_weights_ratio(sequence, ratio):
    '''.. versionadded:: 1.1.2
 
-   Partition list `l` into disjunct parts such that propotions of 
+   Partition `sequence` into disjunct parts such that propotions of 
    the weights of the parts equal the proportions in `ratio`
-   with some rounding magic. ::
+   with some rounding magic::
 
-      abjad> l = [1] * 10
-      abjad> seqtools.partition_sequence_by_weights_ratio(l, [1, 1, 1])
+      abjad> seqtools.partition_sequence_by_weights_ratio([1] * 10, [1, 1, 1])
       [[1, 1, 1], [1, 1, 1, 1], [1, 1, 1]]
 
    ::
 
-      abjad> seqtools.partition_sequence_by_weights_ratio(l, [1, 1, 1, 1])
+      abjad> seqtools.partition_sequence_by_weights_ratio([1] * 10, [1, 1, 1, 1])
       [[1, 1, 1], [1, 1], [1, 1, 1], [1, 1]]
 
    ::
 
-      abjad> seqtools.partition_sequence_by_weights_ratio(l, [2, 2, 3])
+      abjad> seqtools.partition_sequence_by_weights_ratio([1] * 10, [2, 2, 3])
       [[1, 1, 1], [1, 1, 1], [1, 1, 1, 1]]
 
    ::
 
-      abjad> seqtools.partition_sequence_by_weights_ratio(l, [3, 2, 2])
+      abjad> seqtools.partition_sequence_by_weights_ratio([1] * 10, [3, 2, 2])
       [[1, 1, 1, 1], [1, 1, 1], [1, 1, 1]]
 
    .. versionchanged:: 1.1.2
@@ -36,7 +35,7 @@ def partition_sequence_by_weights_ratio(l, ratio):
       ``seqtools.partition_sequence_by_weights_ratio( )``.
    '''
 
-   list_weight = weight(l)
+   list_weight = weight(sequence)
    weights = mathtools.partition_integer_by_ratio(list_weight, ratio)
    cumulative_weights = cumulative_sums(weights)
 
@@ -44,7 +43,7 @@ def partition_sequence_by_weights_ratio(l, ratio):
    sublist = [ ]
    result.append(sublist)
    cur_cumulative_weight = cumulative_weights.pop(0)
-   for n in l:
+   for n in sequence:
       if not isinstance(n, (int, long, float, Fraction)):
          raise TypeError('must be number.')
       sublist.append(n)

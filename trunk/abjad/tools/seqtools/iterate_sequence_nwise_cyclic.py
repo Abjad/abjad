@@ -1,7 +1,7 @@
-def iterate_sequence_nwise_cyclic(iterable, n):
+def iterate_sequence_nwise_cyclic(sequence, n):
    '''.. versionadded:: 1.1.2
 
-   Yield elements in `iterable` cyclically `n` at a time. ::
+   Iterate elements in `sequence` cyclically `n` at a time::
 
       abjad> g = seqtools.iterate_sequence_nwise_cyclic(range(6), 3)
       abjad> for n in range(10):
@@ -17,6 +17,8 @@ def iterate_sequence_nwise_cyclic(iterable, n):
       (2, 3, 4)
       (3, 4, 5)
 
+   Return generator.
+
    .. versionchanged:: 1.1.2
       renamed ``seqtools.nwise_cyclic( )`` to
       ``seqtools.iterate_sequence_nwise_cyclic( )``.
@@ -24,7 +26,7 @@ def iterate_sequence_nwise_cyclic(iterable, n):
 
    buffer = [ ]
    long_enough = False
-   for element in iterable:
+   for element in sequence:
       buffer.append(element)
       if not long_enough:
          if n <= len(buffer):
@@ -32,13 +34,13 @@ def iterate_sequence_nwise_cyclic(iterable, n):
       if long_enough:
          yield tuple(buffer[-n:])
    
-   len_iterable = len(buffer)
-   cur = len_iterable - n + 1
+   len_sequence = len(buffer)
+   cur = len_sequence - n + 1
    while True:
       output = [ ]
       for local_offset in range(n):
-         index = (cur + local_offset) % len_iterable
+         index = (cur + local_offset) % len_sequence
          output.append(buffer[index])
       yield tuple(output)
       cur += 1
-      cur %= len_iterable
+      cur %= len_sequence

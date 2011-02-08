@@ -1,42 +1,39 @@
 from abjad.tools import mathtools
 
 
-def partition_elements_into_canonic_parts(l, direction = 'big-endian'):
-   '''Partition elements in `l` into canonic parts according to `direction`.
+def partition_elements_into_canonic_parts(sequence, direction = 'big-endian'):
+   '''Partition `sequence` elements into canonic big-endian parts::
 
-   ::
-
-      abjad> l = range(10)
-      abjad> seqtools.partition_elements_into_canonic_parts(l)
+      abjad> seqtools.partition_elements_into_canonic_parts(range(10))
       [(0,), (1,), (2,), (3,), (4,), (4, 1), (6,), (7,), (8,), (8, 1)]
 
-   ::
+   Partition `sequence` elements into canonic little-endian parts::
 
-      abjad> l = range(10)
-      abjad> seqtools.partition_elements_into_canonic_parts(l, direction = 'little-endian')
+      abjad> seqtools.partition_elements_into_canonic_parts(range(10), direction = 'little-endian')
       [(0,), (1,), (2,), (3,), (4,), (1, 4), (6,), (7,), (8,), (1, 8)]
 
-   Raise :exc:`TypeError` when `l` is not a list. ::
+   Raise type error when `sequence` is not a list::
 
       abjad> seqtools.partition_elements_into_canonic_parts('foo')
       TypeError
 
-   Raise :exc:`ValueError` on noninteger elements in `l`. ::
+   Raise value error on noninteger elements in `sequence`::
 
       abjad> seqtools.partition_elements_into_canonic_parts([Fraction(1, 2), Fraction(1, 2)])
       ValueError
+
+   Return list of tuples.
    '''
 
-   if not isinstance(l, list):
+   if not isinstance(sequence, list):
       raise TypeError
 
-   if not all([isinstance(x, (int, long)) for x in l]):
+   if not all([isinstance(x, (int, long)) for x in sequence]):
       raise ValueError
 
    result = [ ]
 
-   for x in l: 
-      result.append(mathtools.partition_integer_into_canonic_parts(
-         x, direction = direction))
+   for x in sequence: 
+      result.append(mathtools.partition_integer_into_canonic_parts(x, direction = direction))
    
    return result

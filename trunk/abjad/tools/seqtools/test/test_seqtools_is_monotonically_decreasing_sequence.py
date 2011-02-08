@@ -2,27 +2,33 @@ from abjad import *
 
 
 def test_seqtools_is_monotonically_decreasing_sequence_01( ):
-   '''True when the elements in l decrease monotonically.'''
+   '''True when the elements in expr decrease monotonically.'''
 
-   l = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-   assert seqtools.is_monotonically_decreasing_sequence(l)
+   expr = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+   assert seqtools.is_monotonically_decreasing_sequence(expr)
 
-   l = [3, 3, 3, 3, 3, 3, 3, 2, 1, 0]
-   assert seqtools.is_monotonically_decreasing_sequence(l)
+   expr = [3, 3, 3, 3, 3, 3, 3, 2, 1, 0]
+   assert seqtools.is_monotonically_decreasing_sequence(expr)
 
 
 def test_seqtools_is_monotonically_decreasing_sequence_02( ):
    '''False when the elements in l do not decrease monotonically.'''
 
-   l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-   assert not seqtools.is_monotonically_decreasing_sequence(l)
+   expr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+   assert not seqtools.is_monotonically_decreasing_sequence(expr)
 
-   l = [0, 1, 2, 3, 3, 3, 3, 3, 3, 3]
-   assert not seqtools.is_monotonically_decreasing_sequence(l)
+   expr = [0, 1, 2, 3, 3, 3, 3, 3, 3, 3]
+   assert not seqtools.is_monotonically_decreasing_sequence(expr)
 
 
 def test_seqtools_is_monotonically_decreasing_sequence_03( ):
-   '''True when l is empty.'''
+   '''True when expr is empty.'''
 
-   l = [ ]
-   assert seqtools.is_monotonically_decreasing_sequence(l)
+   expr = [ ]
+   assert seqtools.is_monotonically_decreasing_sequence(expr)
+
+
+def test_seqtools_is_monotonically_decreasing_sequence_04( ):
+   '''False when expr is not a sequence.'''
+
+   assert not seqtools.is_monotonically_decreasing_sequence(17)

@@ -2,10 +2,10 @@ from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from abjad.tools.seqtools.zip_sequences_nontruncating import zip_sequences_nontruncating
 
 
-def interlace_sequences(*iterables):
+def interlace_sequences(*sequences):
    '''.. versionadded:: 1.1.1
 
-   Interlace elements of arbirarily many `iterables`. ::
+   Interlace arbitrarily many `sequences`::
 
       k = range(100, 103)
       l = range(200, 201)
@@ -17,13 +17,9 @@ def interlace_sequences(*iterables):
    .. versionchanged:: 1.1.2
       renamed ``seqtools.interlace( )`` to
       ``seqtools.interlace_sequences( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.interlace_iterables( )`` to
-      ``seqtools.interlace_sequences( )``.
    '''
 
-   zipped_iterables = zip_sequences_nontruncating(*iterables)
-   flattened_iterables = flatten_sequence(zipped_iterables, depth = 1)
+   zipped_sequences = zip_sequences_nontruncating(*sequences)
+   flattened_sequences = flatten_sequence(zipped_sequences, depth = 1)
 
-   return flattened_iterables
+   return flattened_sequences

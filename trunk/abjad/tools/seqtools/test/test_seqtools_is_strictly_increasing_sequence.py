@@ -26,3 +26,9 @@ def test_seqtools_is_strictly_increasing_sequence_03( ):
 
    l = [ ]
    assert seqtools.is_strictly_increasing_sequence(l)
+
+
+def test_seqtools_is_strictly_increasing_sequence_04( ):
+   '''False when expr is not a sequence.'''
+
+   assert not seqtools.is_strictly_increasing_sequence(17)

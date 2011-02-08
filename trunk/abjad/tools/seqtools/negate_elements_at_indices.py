@@ -1,32 +1,26 @@
-def negate_elements_at_indices(l, indices, period = None):
-   '''Negate elements in ``l`` at ``indices``.
-   When ``period`` is a positive integer, read ``indices`` 
-   cyclically according to ``period``.
-
-   ::
+def negate_elements_at_indices(sequence, indices, period = None):
+   '''Negate `sequence` elements at `indices`::
 
       abjad> l = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
-      abjad> seqtools.negate_elements_at_indices(l, [0, 1, 2], period = None)
+      abjad> seqtools.negate_elements_at_indices(l, [0, 1, 2])
       [-1, -2, -3, 4, 5, -6, -7, -8, -9, -10]
 
    ::
+   Negate `sequence` elements at `indices` cyclically according to `period`::
 
       abjad> l = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
       abjad> seqtools.negate_elements_at_indices(l, [0, 1, 2], period = 5)
       [-1, -2, -3, 4, 5, 6, 7, -8, -9, -10]
 
-   Raise :exc:`TypeError` when *l* is not a list::
-
-      abjad> seqtools.negate_elements_at_indices('foo', [0, 1, 2])
-      TypeError
+   Return newly constructed list.
    '''
    
-   if not isinstance(l, list):
+   if not isinstance(sequence, list):
       raise TypeError
 
    result = [ ]
 
-   for i, element in enumerate(l):
+   for i, element in enumerate(sequence):
       if (i in indices) or (period and i % period in indices):
          result.append(-element)
       else:

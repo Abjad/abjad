@@ -1,18 +1,27 @@
 from abjad.tools.seqtools.iterate_sequence_pairwise_strict import iterate_sequence_pairwise_strict
 
 
-def is_repetition_free_sequence(iterable):
+def is_repetition_free_sequence(expr):
    '''.. versionadded:: 1.1.2
 
-   True when ``iterable[i]`` does not equal ``iterable[i+1]`` for
-   all ``iterable[i]`` in `iterable`. ::
+   True when `expr` is a sequence and `expr` is repetition free::
 
       abjad> seqtools.is_repetition_free_sequence([0, 1, 2, 6, 7, 8])
       True
    
-   Otherwise false. ::
+   False when `expr` is a sequence and `expr` is not repetition free::
 
       abjad> seqtools.is_repetition_free_sequence([0, 1, 2, 2, 7, 8])
+      False
+
+   True when `expr` is an empty sequence::
+
+      abjad> seqtools.is_repetition_free_sequence([ ])
+      True
+
+   False `expr` is not a sequence::
+
+      abjad> seqtools.is_repetition_free_sequence(17)
       False
 
    .. versionchanged:: 1.1.2
@@ -20,7 +29,11 @@ def is_repetition_free_sequence(iterable):
       ``seqtools.is_repetition_free_sequence( )``.
    '''
 
-   for left, right in iterate_sequence_pairwise_strict(iterable):
-      if left == right:
-         return False
-   return True
+   try:
+      for left, right in iterate_sequence_pairwise_strict(expr):
+         if left == right:
+            return False
+      return True
+
+   except TypeError:
+      return False

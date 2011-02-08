@@ -1,41 +1,41 @@
-from abjad.tools.mathtools.get_shared_numeric_sign import \
-   get_shared_numeric_sign
+from abjad.tools.mathtools.get_shared_numeric_sign import get_shared_numeric_sign
 
 
-def join_subsequences_by_sign(l):
-   '''Join sublists in list `l` by sign::
+def join_subsequences_by_sign(sequence):
+   '''Join subsequences in `sequence` by sign::
 
-      abjad> l = [[1, 2], [3, 4], [-5, -6, -7], [-8, -9, -10], [11, 12]]
-      abjad> t = seqtools.join_subsequences_by_sign(l)
+      abjad> sequence = [[1, 2], [3, 4], [-5, -6, -7], [-8, -9, -10], [11, 12]]
+      abjad> seqtools.join_subsequences_by_sign(sequence)
       [[1, 2, 3, 4], [-5, -6, -7, -8, -9, -10], [11, 12]]
 
    ::
 
-      abjad> l = [[1, 2], [ ], [ ], [3, 4, 5], [6, 7]]
-      abjad> t = seqtools.join_subsequences_by_sign(l)
+      abjad> sequence = [[1, 2], [ ], [ ], [3, 4, 5], [6, 7]]
+      abjad> seqtools.join_subsequences_by_sign(sequence)
       [[1, 2], [ ], [3, 4, 5, 6, 7]]
+
+   Return newly constructed list.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.join_sublists_by_sign( )`` to
       ``seqtools.join_subsequences_by_sign( )``.
    '''
 
-   if not isinstance(l, list):
+   if not isinstance(sequence, list):
       raise TypeError
 
-   if not all([isinstance(x, list) for x in l]):
+   if not all([isinstance(x, list) for x in sequence]):
       raise TypeError
 
-   if any([get_shared_numeric_sign(x) is None for x in l]):
+   if any([get_shared_numeric_sign(x) is None for x in sequence]):
       raise ValueError
 
    result = [ ]
 
-   for sublist in l:
+   for sublist in sequence:
       try:
          prev_sublist = result[-1]
-         if get_shared_numeric_sign(prev_sublist) == \
-            get_shared_numeric_sign(sublist):
+         if get_shared_numeric_sign(prev_sublist) == get_shared_numeric_sign(sublist):
             prev_sublist.extend(sublist)
          else:
             result.append(sublist[:])

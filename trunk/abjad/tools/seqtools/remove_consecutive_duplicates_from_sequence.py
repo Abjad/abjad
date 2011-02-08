@@ -1,23 +1,20 @@
-def remove_consecutive_duplicates_from_sequence(iterable):
+def remove_consecutive_duplicates_from_sequence(sequence):
    '''.. versionadded:: 1.1.2
 
-   Yield elements in `iterable` with consecutive
-   like elements removed. ::
+   Remove consecutive duplciates from `sequence`::
 
       abjad> list(seqtools.remove_consecutive_duplicates_from_sequence([0, 0, 1, 2, 3, 3, 3, 4, 5]))
       [0, 1, 2, 3, 4, 5]
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.remove_repetitions( )`` to
-      ``seqtools.remove_consecutive_duplicates_from_sequence( )``.
+   Return generator.
 
    .. versionchanged:: 1.1.2
-      renamed ``seqtools.remove_consecutive_duplicates_from_iterable( )`` to
+      renamed ``seqtools.remove_repetitions( )`` to
       ``seqtools.remove_consecutive_duplicates_from_sequence( )``.
    '''
 
    first_element = False
-   for element in iterable:
+   for element in sequence:
       if not first_element:
          first_element = True
          yield element
