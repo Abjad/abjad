@@ -20,7 +20,7 @@ def test_treetools_all_interval_payloads_contain_key_of_klass_02( ):
     tree.insert([a, b, c])
     assert not not all_interval_payloads_contain_key_of_klass(tree, 'fish', int)
 
-def test_treetools_all_interval_payloads_contain_key_of_klass_02( ):
+def test_treetools_all_interval_payloads_contain_key_of_klass_03( ):
     tree = IntervalTree([ ])
     a = BoundedInterval(0, 10, data = {'fish': 1})
     b = BoundedInterval(5, 15, data = {'fish': Fraction(2, 3)})
@@ -28,7 +28,7 @@ def test_treetools_all_interval_payloads_contain_key_of_klass_02( ):
     tree.insert([a, b, c])
     assert not not all_interval_payloads_contain_key_of_klass(tree, 'fish', int)
 
-def test_treetools_all_interval_payloads_contain_key_of_klass_02( ):
+def test_treetools_all_interval_payloads_contain_key_of_klass_04( ):
     tree = IntervalTree([ ])
     a = BoundedInterval(0, 10, data = {'fish': 1})
     b = BoundedInterval(5, 15, data = {'fish': 2})
