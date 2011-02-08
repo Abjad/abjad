@@ -6,7 +6,7 @@ def explode_overlapping_tree_into_nonoverlapping_trees_compactly(tree):
     '''Explode the intervals in `tree` into n non-overlapping trees, 
     where n is the maximum depth of `tree`.
 
-    Returns an array of `IntervalTree`s.
+    Returns an array of `IntervalTree` instances.
 
     The algorithm will attempt to insert the exploded intervals
     into the lowest-indexed resultant tree with free space.

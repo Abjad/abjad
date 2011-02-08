@@ -1212,7 +1212,7 @@ treetools
    tools/treetools/get_all_unique_bounds_in_tree
    tools/treetools/group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups
    tools/treetools/group_all_overlapping_intervals_in_tree_and_yield_groups
-   tools/treetools/make_percussion_score_of_depth_of_tree
+   tools/treetools/make_percussion_score_of_depth_tree
    tools/treetools/make_percussion_score_of_tree
    tools/treetools/mask_intervals_with_intervals_while_preserving_payloads
    tools/treetools/scale_tree_by_value
