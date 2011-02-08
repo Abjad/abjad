@@ -58,6 +58,9 @@ class NamedChromaticPitch(_Pitch):
 
    ## OVERLOADS ##
 
+   def __abs__(self):
+      return abs(self.numbered_chromatic_pitch)
+
    def __add__(self, melodic_interval):
       '''.. versionadded:: 1.1.2'''
       from abjad.tools import pitchtools
@@ -101,6 +104,12 @@ class NamedChromaticPitch(_Pitch):
 
    def __hash__(self):
       return hash(repr(self))
+
+   def __int__(self):
+      return int(self.numbered_chromatic_pitch)
+
+   def __float__(self):
+      return float(self.numbered_chromatic_pitch)
 
    def __le__(self, arg):
       if not isinstance(arg, type(self)):

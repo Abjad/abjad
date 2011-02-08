@@ -42,9 +42,15 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
       arg = NumberedChromaticPitch(arg)
       semitones = abs(self) + abs(arg)
       return NumberedChromaticPitch(semitones)
+
+   def __float__(self):
+      return float(self._chromatic_pitch_number)
       
    def __hash__(self):
       return hash(repr(self))
+
+   def __int__(self):
+      return self._chromatic_pitch_number
 
    def __neg__(self):
       return NumberedChromaticPitch(-abs(self))

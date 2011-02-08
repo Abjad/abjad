@@ -12,11 +12,20 @@ class _Pitch(_Immutable, _UnaryComparator):
 
    ## OVERLOADS ##
 
+   def __abs__(self):
+      raise NotImplementedError('TODO: all pitch-related classes must implement abs.')
+      
+   def __float__(self):
+      raise NotImplementedError('TODO: all pitch-related classes must implement float.')
+
    def __hash__(self):
       return hash(repr(self))
 
+   def __int__(self):
+      raise NotImplementedError('TODO: all pitch-related classes must implement int.')
+
    def __ne__(self, arg):
       return not self == arg
-   
+
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
