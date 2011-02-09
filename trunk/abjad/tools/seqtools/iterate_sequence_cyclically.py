@@ -6,26 +6,26 @@ import itertools
 def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
    '''Iterate `sequence` cyclically according to `step`, `start` and `length`::
 
-      l = [1, 2, 3, 4, 5, 6, 7]
+      sequence = [1, 2, 3, 4, 5, 6, 7]
 
    ::
 
-      abjad> list(seqtools.iterate_sequence_cyclically(l, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(sequence, length = 20))
       [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6]
 
    ::
 
-      abjad> list(seqtools.iterate_sequence_cyclically(l, 2, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(sequence, 2, length = 20))
       [1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4]
  
    ::
 
-      abjad> list(seqtools.iterate_sequence_cyclically(l, 2, 3, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(sequence, 2, 3, length = 20))
       [4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7]
 
    ::
 
-      abjad> list(seqtools.iterate_sequence_cyclically(l, -2, 5, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(sequence, -2, 5, length = 20))
       [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
 
    .. versionchanged:: 1.1.2
@@ -33,8 +33,7 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
 
    ::
 
-      abjad> generator = seqtools.generate_range(1, 8)
-      abjad> list(seqtools.iterate_sequence_cyclically(generator, -2, 5, length = 20))
+      abjad> list(seqtools.iterate_sequence_cyclically(xrange(1, 8), -2, 5, length = 20))
       [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
 
    Set `step` to jump size and direction across sequence.
@@ -57,16 +56,6 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
       assert length == 'inf'
    else:
       assert isinstance(length, int)
-
-#   phase = start
-#   if length == 'inf':
-#      while True:
-#         yield iterable[phase]
-#         phase = (phase + step) % len(iterable)
-#   else:
-#      for i in range(length):
-#         yield iterable[phase]
-#         phase = (phase + step) % len(iterable)
 
    ## itertools.islice( ) does not handle negative step.
    ## so we divided iterable into two halves from start index.

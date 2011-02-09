@@ -823,7 +823,6 @@ seqtools
    tools/seqtools/flatten_sequence_at_indices
    tools/seqtools/generate_all_k_ary_sequences_of_length
    tools/seqtools/generate_all_restricted_growth_functions_of_length
-   tools/seqtools/generate_range
    tools/seqtools/get_indices_of_sequence_elements_equal_to_true
    tools/seqtools/get_sequence_element_at_cyclic_index
    tools/seqtools/get_sequence_elements_at_indices
