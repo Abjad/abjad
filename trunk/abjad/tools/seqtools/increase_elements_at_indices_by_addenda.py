@@ -8,6 +8,8 @@ def increase_elements_at_indices_by_addenda(sequence, addenda, indices):
       abjad> seqtools.increase_elements_at_indices_by_addenda(sequence, [0.5, 0.5], [0, 4, 8])
       [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]
 
+   Return list.
+
    .. versionchanged:: 1.1.2
       renamed ``seqtools.increase_at_indices( )`` to
       ``seqtools.increase_elements_at_indices_by_addenda( )``.

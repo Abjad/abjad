@@ -9,6 +9,8 @@ def increase_elements_cyclically_by_addenda(sequence, addenda, shield = True, tr
       abjad> seqtools.increase_elements_cyclically_by_addenda(range(10), [10, -10], shield = True)
       [10, 1, 12, 1, 14, 1, 16, 1, 18, 1]
 
+   Return list.
+
    .. versionchanged:: 1.1.2
       renamed ``seqtools.increase_cyclic( )`` to
       ``seqtools.increase_elements_cyclically_by_addenda( )``.

@@ -864,11 +864,11 @@ seqtools
    tools/seqtools/iterate_sequence_pairwise_wrapped
    tools/seqtools/join_subsequences_by_sign
    tools/seqtools/lengths_to_counts
+   tools/seqtools/list_pairwise_cumulative_sums_from_zero
    tools/seqtools/negate_elements_at_indices
    tools/seqtools/negate_elements_at_indices_absolutely
    tools/seqtools/outer_product
    tools/seqtools/overwrite_elements_at_indices
-   tools/seqtools/pairwise_cumulative_sums_zero
    tools/seqtools/partition_elements_into_canonic_parts
    tools/seqtools/partition_sequence_by_restricted_growth_function
    tools/seqtools/partition_sequence_by_weights
