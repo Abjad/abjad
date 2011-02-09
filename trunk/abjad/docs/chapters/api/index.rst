@@ -879,8 +879,6 @@ seqtools
    tools/seqtools/partition_sequence_once_by_counts_with_overhang
    tools/seqtools/partition_sequence_once_by_counts_without_overhang
    tools/seqtools/permute_sequence
-   tools/seqtools/remove_consecutive_duplicates_from_sequence
-   tools/seqtools/remove_duplicates_from_sequence
    tools/seqtools/remove_elements_at_indices
    tools/seqtools/remove_elements_at_indices_cyclically
    tools/seqtools/remove_subsequence_of_weight_at_index
