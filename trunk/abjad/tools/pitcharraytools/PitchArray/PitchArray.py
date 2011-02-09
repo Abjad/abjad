@@ -151,7 +151,7 @@ class PitchArray(_StrictComparator):
    def columns(self):
       columns = [ ]
       rows = self.rows
-      for i, cells in enumerate(seqtools.zip_sequences_nontruncating(*self.rows)):
+      for i, cells in enumerate(seqtools.zip_sequences_without_truncation(*self.rows)):
          column = PitchArrayColumn(cells)
          column._parent_array = self
          column._column_index = i

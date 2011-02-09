@@ -823,7 +823,9 @@ seqtools
    tools/seqtools/flatten_sequence_at_indices
    tools/seqtools/generate_all_k_ary_sequences_of_length
    tools/seqtools/generate_all_restricted_growth_functions_of_length
+   tools/seqtools/get_degree_of_rotational_symmetry_of_sequence
    tools/seqtools/get_indices_of_sequence_elements_equal_to_true
+   tools/seqtools/get_period_of_rotation_of_sequence
    tools/seqtools/get_sequence_element_at_cyclic_index
    tools/seqtools/get_sequence_elements_at_indices
    tools/seqtools/group_sequence_elements_by_counts
@@ -862,11 +864,10 @@ seqtools
    tools/seqtools/iterate_sequence_pairwise_strict
    tools/seqtools/iterate_sequence_pairwise_wrapped
    tools/seqtools/join_subsequences_by_sign
-   tools/seqtools/lengths_to_counts
    tools/seqtools/list_pairwise_cumulative_sums_from_zero
+   tools/seqtools/map_elements_to_numbered_sublists
    tools/seqtools/negate_elements_at_indices
    tools/seqtools/negate_elements_at_indices_absolutely
-   tools/seqtools/outer_product
    tools/seqtools/overwrite_elements_at_indices
    tools/seqtools/partition_elements_into_canonic_parts
    tools/seqtools/partition_sequence_by_restricted_growth_function
@@ -881,10 +882,10 @@ seqtools
    tools/seqtools/remove_consecutive_duplicates_from_sequence
    tools/seqtools/remove_duplicates_from_sequence
    tools/seqtools/remove_elements_at_indices
-   tools/seqtools/remove_elements_at_indices_cyclic
+   tools/seqtools/remove_elements_at_indices_cyclically
    tools/seqtools/remove_subsequence_of_weight_at_index
    tools/seqtools/repeat_elements_at_indices
-   tools/seqtools/repeat_elements_at_indices_cyclic
+   tools/seqtools/repeat_elements_at_indices_cyclically
    tools/seqtools/repeat_sequence_elements_n_times_each
    tools/seqtools/repeat_sequence_n_times
    tools/seqtools/repeat_sequence_to_length
@@ -894,10 +895,8 @@ seqtools
    tools/seqtools/repeat_subruns_to_count
    tools/seqtools/replace_elements_cyclically_with_new_material
    tools/seqtools/retain_elements_at_indices
-   tools/seqtools/retain_elements_at_indices_cyclic
+   tools/seqtools/retain_elements_at_indices_cyclically
    tools/seqtools/rotate_sequence
-   tools/seqtools/sequence_to_degree_of_rotational_symmetry
-   tools/seqtools/sequence_to_period_of_rotation
    tools/seqtools/splice_new_elements_between_sequence_elements
    tools/seqtools/split_sequence_cyclically_by_weights_with_overhang
    tools/seqtools/split_sequence_cyclically_by_weights_without_overhang
@@ -917,8 +916,9 @@ seqtools
    tools/seqtools/yield_all_set_partitions_of_sequence
    tools/seqtools/yield_all_subsequences_of_sequence
    tools/seqtools/yield_all_unordered_pairs_of_sequence
-   tools/seqtools/zip_sequences_cyclic
-   tools/seqtools/zip_sequences_nontruncating
+   tools/seqtools/yield_outer_product_of_sequences
+   tools/seqtools/zip_sequences_cyclically
+   tools/seqtools/zip_sequences_without_truncation
 
 
 skiptools

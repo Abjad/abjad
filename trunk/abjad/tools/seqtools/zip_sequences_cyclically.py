@@ -2,11 +2,11 @@ from __future__ import division
 import math
 
 
-def zip_sequences_cyclic(*sequences):
+def zip_sequences_cyclically(*sequences):
    '''Zip `sequences` cyclically::
 
 
-      abjad> seqtools.zip_sequences_cyclic([1, 2, 3], ['a', 'b'])
+      abjad> seqtools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
       [(1, 'a'), (2, 'b'), (3, 'a')]
 
    .. versionadded:: 1.1.1
@@ -14,7 +14,7 @@ def zip_sequences_cyclic(*sequences):
 
    ::
 
-      abjad> seqtools.zip_sequences_cyclic([10, 11, 12], [20, 21], [30, 31, 32, 33])
+      abjad> seqtools.zip_sequences_cyclically([10, 11, 12], [20, 21], [30, 31, 32, 33])
       [(10, 20, 30), (11, 21, 31), (12, 20, 32), (10, 21, 33)]
 
    Cycle over the elements of the sequences of shorter length.
@@ -23,7 +23,11 @@ def zip_sequences_cyclic(*sequences):
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.zip_cyclic( )`` to
-      ``seqtools.zip_sequences_cyclic( )``.
+      ``seqtools.zip_sequences_cyclically( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.zip_sequences_cyclic( )`` to
+      ``seqtools.zip_sequences_cyclically( )``.
    '''
 
    ## make sure sequences are, in fact, all sequences

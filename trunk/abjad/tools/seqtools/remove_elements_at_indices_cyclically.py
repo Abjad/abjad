@@ -1,4 +1,4 @@
-def remove_elements_at_indices_cyclic(sequence, indices, period, offset = 0):
+def remove_elements_at_indices_cyclically(sequence, indices, period, offset = 0):
    '''.. versionadded:: 1.1.2
 
    Remove `sequence` elements at `indices` mod `period` plus `offset`::
@@ -9,6 +9,10 @@ def remove_elements_at_indices_cyclic(sequence, indices, period, offset = 0):
    Ignore negative indices.
 
    Return list.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.remove_elements_at_indices_cyclic( )`` to
+      ``seqtools.remove_elements_at_indices_cyclically( )``.
    '''
 
    result = [ ]

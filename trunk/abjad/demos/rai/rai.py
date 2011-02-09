@@ -17,7 +17,7 @@ statements.append(s)
 
 text = "Let's set our duration 'quatum' to one sixteenth and create \
 duration tokens."
-code = ['durations = seqtools.zip_sequences_cyclic(durations, 16)', 'durations']
+code = ['durations = seqtools.zip_sequences_cyclically(durations, 16)', 'durations']
 s = Statement(text, code)
 statements.append(s)
 
