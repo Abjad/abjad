@@ -1,34 +1,35 @@
 from fractions import Fraction
 
 
-def truncate_subruns(l):
-   '''Truncate subruns of like elements in *l* to length ``1``::
+def truncate_subruns(sequence):
+   '''Truncate subruns of like elements in `sequence` to length ``1``::
 
-      abjad> l = [1, 1, 2, 3, 3, 3, 9, 4, 4, 4]
-      abjad> seqtools.truncate_subruns(l)
+      abjad> seqtools.truncate_subruns([1, 1, 2, 3, 3, 3, 9, 4, 4, 4])
       [1, 2, 3, 9, 4]
 
-   Return empty list when *l* is empty::
+   Return empty list when `sequence` is empty::
 
       abjad> seqtools.truncate_subruns([ ])
       [ ]
 
-   Raise :exc:`TypeError` when *l* is not a list::
+   Raise type error when `sequence` is not a list::
 
       abjad> seqtools.truncate_subruns(1)
       TypeError
+
+   Return new list.
    '''
 
-   if not isinstance(l, list):
+   if not isinstance(sequence, list):
       raise TypeError
 
-   assert all([isinstance(x, (int, float, Fraction)) for x in l])
+   assert all([isinstance(x, (int, float, Fraction)) for x in sequence])
 
    result = [ ]
 
-   if l:
-      result.append(l[0])
-      for element in l[1:]:
+   if sequence:
+      result.append(sequence[0])
+      for element in sequence[1:]:
          if not element == result[-1]:
             result.append(element)
 

@@ -24,6 +24,8 @@ def is_repetition_free_sequence(expr):
       abjad> seqtools.is_repetition_free_sequence(17)
       False
 
+   Return boolean.
+
    .. versionchanged:: 1.1.2
       renamed ``seqtools.is_repetition_free( )`` to
       ``seqtools.is_repetition_free_sequence( )``.

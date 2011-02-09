@@ -20,3 +20,9 @@ def test_seqtools_all_are_assignable_integers_03( ):
    '''
 
    assert not seqtools.all_are_assignable_integers([0, 1, 2, 4, 5])
+
+
+def test_seqtools_all_are_assignable_integers_04( ):
+   '''False when expr is not a sequence.'''
+
+   assert not seqtools.all_are_assignable_integers(16)

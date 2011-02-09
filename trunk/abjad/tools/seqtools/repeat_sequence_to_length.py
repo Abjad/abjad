@@ -15,7 +15,7 @@ def repeat_sequence_to_length(sequence, length, start = 0):
       abjad> seqtools.repeat_sequence_to_length(range(5), 11, start = 2)
       [2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]
 
-   Return newly constructed `sequence` type.
+   Return newly constructed `sequence` object.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.repeat_list_to_length( )`` to

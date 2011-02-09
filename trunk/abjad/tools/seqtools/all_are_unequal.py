@@ -1,19 +1,19 @@
-def all_are_unequal(sequence):
+def all_are_unequal(expr):
    '''.. versionadded:: 1.1.1
 
-   True when all elements in `sequence` are unequal::
+   True when `expr` is a sequence all elements in `expr` are unequal::
 
       abjad> seqtools.all_are_unequal([1, 2, 3, 4, 9])
       True
 
-   True on empty `sequence`::
+   True when `expr` is an empty sequence::
 
       abjad> seqtools.all_are_unequal([ ])
       True
 
    False otherwise::
 
-      abjad> seqtools.all_are_unequal([1, 2, 3, 4, 4])
+      abjad> seqtools.all_are_unequal(17)
       False
 
    Return boolean.
@@ -23,4 +23,7 @@ def all_are_unequal(sequence):
       ``seqtools.all_are_unequal( )``.
    '''
 
-   return sequence == type(sequence)(set(sequence))
+   try:
+      return expr == type(expr)(set(expr))
+   except TypeError:
+      return False

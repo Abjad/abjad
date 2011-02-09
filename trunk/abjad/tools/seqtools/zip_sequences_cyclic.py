@@ -2,45 +2,45 @@ from __future__ import division
 import math
 
 
-def zip_sequences_cyclic(*iterables):
-   '''Like Python :func:`zip`, but return a list of length equal
-   to the iterable of greatest length in `iterables` and cycle
-   over the elements of the iterables of shorter length. ::
+def zip_sequences_cyclic(*sequences):
+   '''Zip `sequences` cyclically::
+
 
       abjad> seqtools.zip_sequences_cyclic([1, 2, 3], ['a', 'b'])
       [(1, 'a'), (2, 'b'), (3, 'a')]
 
    .. versionadded:: 1.1.1
-      Arbitrary number of input iterables now allowed.
+      Arbitrary number of input sequences now allowed.
 
    ::
 
-      abjad> a = [10, 11, 12]
-      abjad> b = [20, 21]
-      abjad> c = [30, 31, 32, 33]
-      abjad> seqtools.zip_sequences_cyclic(a, b, c)
+      abjad> seqtools.zip_sequences_cyclic([10, 11, 12], [20, 21], [30, 31, 32, 33])
       [(10, 20, 30), (11, 21, 31), (12, 20, 32), (10, 21, 33)]
+
+   Cycle over the elements of the sequences of shorter length.
+
+   Return list of length equal to sequence of greatest length in `sequences`.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.zip_cyclic( )`` to
       ``seqtools.zip_sequences_cyclic( )``.
    '''
 
-   ## make sure iterables are, in fact, all iterables
-   new_iterables = [ ]
-   for iterable in iterables:
-      if not isinstance(iterable, (list, tuple)):
-         new_iterables.append([iterable])
+   ## make sure sequences are, in fact, all sequences
+   new_sequences = [ ]
+   for sequence in sequences:
+      if not isinstance(sequence, (list, tuple)):
+         new_sequences.append([sequence])
       else:
-         new_iterables.append(iterable)
+         new_sequences.append(sequence)
 
-   ## find length of longest iterable
-   max_length = max([len(x) for x in new_iterables])
+   ## find length of longest sequence
+   max_length = max([len(x) for x in new_sequences])
 
    ## produce list of tuples
    result = [ ] 
    for i in range(max_length):
-      part = [x[i % len(x)] for x in new_iterables]
+      part = [x[i % len(x)] for x in new_sequences]
       result.append(tuple(part))
 
    ## return result

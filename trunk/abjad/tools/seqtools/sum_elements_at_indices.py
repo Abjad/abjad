@@ -1,40 +1,43 @@
-from abjad.exceptions import InputSpecificationError
 from fractions import Fraction
 import types
 
 
-def sum_slices_at(l, pairs, period = None, overhang = True):
-   '''Sum elements in ``l`` according to ``pairs``.
-      For each ``(i, count)`` in ``pairs``, 
-      replace ``l[i:i+count]`` with ``sum(l[i:i+count])``.
+def sum_elements_at_indices(sequence, pairs, period = None, overhang = True):
+   '''Sum `sequence` elements at indices according to `pairs`::
 
-         * When ``period`` is a positive integer, read ``pairs`` cyclically.
-         * When ``overhang = False`` do not append incomplete final sum.
+      abjad> seqtools.sum_elements_at_indices(range(10), [(0, 3)])
+      [3, 3, 4, 5, 6, 7, 8, 9]
 
-      Examples::
+   Sum `sequence` elements cyclically at indices according to `pairs` and `period`::
 
-         abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-         abjad> seqtools.sum_slices_at(l, [(0, 2)], period = 4)
-         [1, 2, 3, 9, 6, 7, 17, 10]
+      abjad> seqtools.sum_elements_at_indices(range(10), [(0, 3)], period = 4)
+      [3, 3, 15, 7, 17]
 
-         abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-         abjad> seqtools.sum_slices_at(l, [(0, 3)], period = 4)
-         [6, 3, 15, 7, 27]
+   Sum `sequence` elements cyclically at indices according to `pairs` and `period`
+   and do not return incomplete final sum::
 
-         abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-         abjad> seqtools.sum_slices_at(l, [(0, 4)], period = 4)
-         [6, 22, 27]
+      abjad> seqtools.sum_elements_at_indices(range(10), [(0, 3)], period = 4, overhang = False)
+      [3, 3, 15, 7]
 
-      When ``period`` is not ``None``, indices in ``pairs`` must be less than ``period``.
+   Replace ``sequence[i:i+count]`` with ``sum(sequence[i:i+count])``
+   for each ``(i, count)`` in `pairs`.
+
+   Indices in `pairs` must be less than `period` when `period` is not none.
+
+   Return new list.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.sum_slices_at( )`` to
+      ``seqtools.sum_elements_at_indices( )``.
    '''
 
-   assert isinstance(l, list)
-   assert all([isinstance(x, (int, float, Fraction)) for x in l])
+   assert isinstance(sequence, list)
+   assert all([isinstance(x, (int, float, Fraction)) for x in sequence])
    assert isinstance(period, (int, type(None)))
    assert isinstance(overhang, bool)
 
    if not _check_sum_slices_at_specification(pairs):
-      raise InputSpecificationError('must be list of nonoverlapping pairs.')
+      raise ValueError('must be list of nonoverlapping pairs.')
 
    start_indices = set([pair[0] for pair in pairs])
    indices_affected = [ ]
@@ -43,15 +46,14 @@ def sum_slices_at(l, pairs, period = None, overhang = True):
 
    if period is not None:
       if not max(indices_affected) < period:
-         raise InputSpecificationError(
-            'affected indices must be less than period of repetition.')
+         raise ValueError('affected indices must be less than period of repetition.')
    else:
-      period = len(l)
+      period = len(sequence)
 
    result = [ ]
    slice_remaining = 0
    slice_total = None
-   for i, x in enumerate(l):
+   for i, x in enumerate(sequence):
       if i % period in start_indices:
          index, length = [pair for pair in pairs if pair[0] == i % period][0]
          slice_remaining = length
@@ -79,8 +81,7 @@ def sum_slices_at(l, pairs, period = None, overhang = True):
 def _check_sum_slices_at_specification(pairs):
    try:
       assert isinstance(pairs, list)
-      assert all([
-         isinstance(x, tuple) and len(x) == 2 and 0 < x[-1]
+      assert all([isinstance(x, tuple) and len(x) == 2 and 0 < x[-1]
          for x in pairs])
       indices_affected = [ ]
       for pair in pairs:

@@ -9,7 +9,7 @@ def split_sequence_once_by_weights_without_overhang(sequence, weights):
       abjad> seqtools.split_sequence_once_by_weights_without_overhang((10, -10, 10, -10), [3, 15, 3])
       [(3,), (7, -8), (-2, 1)]
 
-   Return list of `sequence` types.
+   Return list of `sequence` objects.
    '''
 
    return _split_sequence_by_weights(sequence, weights, cyclic = False, overhang = False)

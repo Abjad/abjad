@@ -5,12 +5,11 @@ from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from abjad.tools.mathtools.weight import weight
 
 
-def partition_sequence_by_weights_ratio(sequence, ratio):
+def partition_sequence_by_weights_ratio(sequence, weights_ratio):
    '''.. versionadded:: 1.1.2
 
-   Partition `sequence` into disjunct parts such that propotions of 
-   the weights of the parts equal the proportions in `ratio`
-   with some rounding magic::
+   Partition `sequence` by `weights_ratio`::
+
 
       abjad> seqtools.partition_sequence_by_weights_ratio([1] * 10, [1, 1, 1])
       [[1, 1, 1], [1, 1, 1, 1], [1, 1, 1]]
@@ -30,13 +29,18 @@ def partition_sequence_by_weights_ratio(sequence, ratio):
       abjad> seqtools.partition_sequence_by_weights_ratio([1] * 10, [3, 2, 2])
       [[1, 1, 1, 1], [1, 1, 1], [1, 1, 1]]
 
+   Weights of parts of returned list equal `weights_ratio` proportions
+   with some rounding magic.
+
+   Return list of lists.
+
    .. versionchanged:: 1.1.2
       renamed ``seqtools.partition_sequence_by_weights_ratio( )`` to
       ``seqtools.partition_sequence_by_weights_ratio( )``.
    '''
 
    list_weight = weight(sequence)
-   weights = mathtools.partition_integer_by_ratio(list_weight, ratio)
+   weights = mathtools.partition_integer_by_ratio(list_weight, weights_ratio)
    cumulative_weights = cumulative_sums(weights)
 
    result = [ ]

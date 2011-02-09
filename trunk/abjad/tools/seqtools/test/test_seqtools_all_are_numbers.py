@@ -20,3 +20,10 @@ def test_seqtools_all_are_numbers_03( ):
    '''
 
    assert not seqtools.all_are_numbers([1, 2, pitchtools.NamedChromaticPitch(3)])
+
+
+def test_seqtools_all_are_numbers_04( ):
+   '''False when expr is not a sequence.
+   '''
+
+   assert not seqtools.all_are_numbers(17)

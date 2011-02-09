@@ -1,22 +1,22 @@
 import numbers
 
 
-def all_are_numbers(sequence):
+def all_are_numbers(expr):
    '''.. versionadded:: 1.1.1
 
-   True when all elements in `sequence` are numbers::
+   True when `expr` is a sequence and all elements in `expr` are numbers::
 
       abjad> seqtools.all_are_numbers([1, 2, 3.0, Fraction(13, 8)])
       True
 
-   True when on empty `sequence`::
+   True when `expr` is an empty sequence::
 
       abjad> seqtools.all_are_numbers([ ])
       True
 
    False otherwise::
 
-      abjad> seqtools.all_are_numbers([1, 2, 3, 'string'])
+      abjad> seqtools.all_are_numbers(17)
       False
 
    Return boolean.
@@ -26,5 +26,7 @@ def all_are_numbers(sequence):
       ``seqtools.all_are_numbers( )``.
    '''
 
-   #return all([isinstance(x, (int, long, float, Fraction)) for x in l])
-   return all([isinstance(x, numbers.Number) for x in sequence])
+   try:
+      return all([isinstance(x, numbers.Number) for x in expr])
+   except TypeError:
+      return False

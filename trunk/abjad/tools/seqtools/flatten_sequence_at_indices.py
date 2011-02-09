@@ -14,9 +14,9 @@ def flatten_sequence_at_indices(sequence, indices, klasses = None, depth = -1):
       abjad> seqtools.flatten_sequence_at_indices([0, 1, [2, 3, 4], [5, 6, 7]], [-1])
       [0, 1, [2, 3, 4], 5, 6, 7]
 
-   Return newly constructed `sequence` type.
-
    Leave `sequence` unchanged.
+
+   Return newly constructed `sequence` object.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.flatten_at_indices( )`` to

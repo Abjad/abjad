@@ -1,4 +1,4 @@
-def is_restricted_growth_function(l):
+def is_restricted_growth_function(expr):
    '''.. versionadded:: 1.2.2
 
    True when `expr` is a sequence and `expr` meets the criteria for a restricted
@@ -35,15 +35,17 @@ def is_restricted_growth_function(l):
 
    A restricted growth function is a sequence ``l`` such that ``l[0] == 1``
    and such that ``l[i] <= max(l[:i]) + 1`` for ``1 <= i <= len(l)``.
+
+   Return boolean.
    '''
 
    try:
-      for i, n in enumerate(l):
+      for i, n in enumerate(expr):
          if i == 0:
             if not n == 1:
                return False
          else:
-            if not n <= max(l[:i]) + 1:
+            if not n <= max(expr[:i]) + 1:
                return False
       return True
    except TypeError:

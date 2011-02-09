@@ -14,9 +14,9 @@ def flatten_sequence(sequence, klasses = None, depth = -1):
       abjad> seqtools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 2)
       [1, 2, 3, 4, 5, 6, 7, 8]
 
-   Return newly constructed `sequence` type.
-
    Leave `sequence` unchanged.
+
+   Return newly constructed `sequence` object.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.flatten( )`` to

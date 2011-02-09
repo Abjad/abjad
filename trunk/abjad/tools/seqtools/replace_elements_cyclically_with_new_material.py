@@ -5,8 +5,6 @@ import types
 def replace_elements_cyclically_with_new_material(sequence, indices, new_material):
    '''Replace `sequence` elements cyclically at `indices` with `new_elements`::
 
-   ::
-
       abjad> sequence = range(20)
       abjad> seqtools.replace_elements_cyclically_with_new_material(sequence, ([0], 2), (['A', 'B'], 3))
       ['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15, 16, 17, 'A', 19]
@@ -33,6 +31,8 @@ def replace_elements_cyclically_with_new_material(sequence, indices, new_materia
 
       abjad> seqtools.replace_elements_cyclically_with_new_material('foo', ([0], 2), (['*'], 1))
       TypeError
+
+   Return newly constructed list.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.replace_elements_cyclic( )`` to

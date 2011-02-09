@@ -5,7 +5,6 @@ def negate_elements_at_indices(sequence, indices, period = None):
       abjad> seqtools.negate_elements_at_indices(l, [0, 1, 2])
       [-1, -2, -3, 4, 5, -6, -7, -8, -9, -10]
 
-   ::
    Negate `sequence` elements at `indices` cyclically according to `period`::
 
       abjad> l = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]

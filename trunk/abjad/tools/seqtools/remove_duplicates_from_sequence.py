@@ -6,6 +6,8 @@ def remove_duplicates_from_sequence(sequence):
 
    Defined equal to ``list(set(sequence))``.
 
+   Return list.
+
    .. versionchanged:: 1.1.2
       renamed ``seqtools.unique( )`` to
       ``seqtools.remove_duplicates_from_sequence( )``.

@@ -26,3 +26,10 @@ def test_seqtools_all_are_equal_03( ):
    assert not seqtools.all_are_equal([0, 0, 0, 0, 99])
    assert not seqtools.all_are_equal([1, 1, 1, 1, 99])
    assert not seqtools.all_are_equal([2, 2, 2, 2, 99])
+
+
+def test_seqtools_all_are_equal_04( ):
+   '''False when expr is not a sequence.  
+   '''
+
+   assert not seqtools.all_are_equal(17)

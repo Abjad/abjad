@@ -818,7 +818,7 @@ seqtools
    tools/seqtools/all_are_numbers
    tools/seqtools/all_are_positive_integers
    tools/seqtools/all_are_unequal
-   tools/seqtools/count_runs_of_length_two_in_sequence
+   tools/seqtools/count_length_two_runs
    tools/seqtools/flatten_sequence
    tools/seqtools/flatten_sequence_at_indices
    tools/seqtools/generate_all_k_ary_sequences_of_length
@@ -842,8 +842,8 @@ seqtools
    tools/seqtools/group_sequence_elements_once_by_weights_at_most_without_overhang
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_with_overhang
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_without_overhang
-   tools/seqtools/increase_sequence_by_addenda_at_indices
-   tools/seqtools/increase_sequence_cyclically_by_addenda
+   tools/seqtools/increase_elements_at_indices_by_addenda
+   tools/seqtools/increase_elements_cyclically_by_addenda
    tools/seqtools/interlace_sequences
    tools/seqtools/is_monotonically_decreasing_sequence
    tools/seqtools/is_monotonically_increasing_sequence
@@ -867,7 +867,7 @@ seqtools
    tools/seqtools/negate_elements_at_indices
    tools/seqtools/negate_elements_at_indices_absolutely
    tools/seqtools/outer_product
-   tools/seqtools/overwrite_slices_at
+   tools/seqtools/overwrite_elements_at_indices
    tools/seqtools/pairwise_cumulative_sums_zero
    tools/seqtools/partition_elements_into_canonic_parts
    tools/seqtools/partition_sequence_by_restricted_growth_function
@@ -893,7 +893,7 @@ seqtools
    tools/seqtools/repeat_sequence_to_weight_at_most
    tools/seqtools/repeat_sequence_to_weight_exactly
    tools/seqtools/repeat_subruns_to_count
-   tools/seqtools/replace_elements_cyclic
+   tools/seqtools/replace_elements_cyclically_with_new_material
    tools/seqtools/retain_elements_at_indices
    tools/seqtools/retain_elements_at_indices_cyclic
    tools/seqtools/rotate_sequence
@@ -904,8 +904,8 @@ seqtools
    tools/seqtools/split_sequence_cyclically_by_weights_without_overhang
    tools/seqtools/split_sequence_once_by_weights_with_overhang
    tools/seqtools/split_sequence_once_by_weights_without_overhang
-   tools/seqtools/sum_by_sign
-   tools/seqtools/sum_slices_at
+   tools/seqtools/sum_consecutive_elements_by_sign
+   tools/seqtools/sum_elements_at_indices
    tools/seqtools/truncate_sequence_to_sum
    tools/seqtools/truncate_sequence_to_weight
    tools/seqtools/truncate_subruns

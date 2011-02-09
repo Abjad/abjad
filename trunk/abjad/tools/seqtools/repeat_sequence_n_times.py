@@ -15,7 +15,7 @@ def repeat_sequence_n_times(sequence, n):
       abjad> seqtools.repeat_sequence_n_times((1, 2, 3, 4, 5), 0)
       ( )
 
-   Return newly constructed `sequence` type of copied `sequence` elements.
+   Return newly constructed `sequence` object of copied `sequence` elements.
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.repeat_n_cycles( )`` to

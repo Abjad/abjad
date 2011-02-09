@@ -43,6 +43,8 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
 
    Set `length` to number of elements to return. Set to ``'inf'`` to return infinitely.
 
+   Return generator.
+
    .. versionchanged:: 1.1.2
       renamed ``seqtools.phasor( )`` to
       ``seqtools.iterate_sequence_cyclically( )``.

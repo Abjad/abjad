@@ -5,7 +5,7 @@ from abjad.tools.seqtools.zip_sequences_nontruncating import zip_sequences_nontr
 def interlace_sequences(*sequences):
    '''.. versionadded:: 1.1.1
 
-   Interlace arbitrarily many `sequences`::
+   Interlace `sequences`::
 
       k = range(100, 103)
       l = range(200, 201)
@@ -13,6 +13,8 @@ def interlace_sequences(*sequences):
       n = range(400, 408)
       t = seqtools.interlace_sequences(k, l, m, n)
       [100, 200, 300, 400, 101, 301, 401, 102, 302, 402, 403, 404, 405, 406, 407]
+
+   Return list.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.interlace( )`` to

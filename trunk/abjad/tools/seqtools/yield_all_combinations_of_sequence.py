@@ -34,10 +34,6 @@ def yield_all_combinations_of_sequence(sequence, min_length = None, max_length =
    .. versionchanged:: 1.1.2
       renamed ``seqtools.sublists( )`` to
       ``seqtools.yield_all_combinations_of_sequence( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.yield_all_combinations_of_iterable( )`` to
-      ``seqtools.yield_all_combinations_of_sequence( )``.
    '''
 
    len_l = len(sequence)

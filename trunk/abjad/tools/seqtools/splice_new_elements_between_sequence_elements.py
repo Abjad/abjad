@@ -27,12 +27,10 @@ def splice_new_elements_between_sequence_elements(sequence, new_elements, overha
       abjad> seqtools.splice_new_elements_between_sequence_elements(l, s, overhang = (1, 1))
       ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.insert_slice_cyclic( )`` to
-      ``seqtools.splice_new_elements_between_sequence_elements( )``.
+   Return newly constructed list.
 
    .. versionchanged:: 1.1.2
-      renamed ``seqtools.splice_subsequence_between_sequence_elements( )`` to
+      renamed ``seqtools.insert_slice_cyclic( )`` to
       ``seqtools.splice_new_elements_between_sequence_elements( )``.
    '''
 

@@ -9,7 +9,7 @@ def yield_all_rotations_of_sequence(sequence, n = 1):
       abjad> list(seqtools.yield_all_rotations_of_sequence([1, 2, 3, 4], -1))
       [[1, 2, 3, 4], [2, 3, 4, 1], [3, 4, 1, 2], [4, 1, 2, 3]]
 
-   Return generator of `sequence` types.
+   Return generator of `sequence` objects.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.all_rotations( )`` to

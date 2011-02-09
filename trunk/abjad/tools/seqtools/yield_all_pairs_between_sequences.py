@@ -1,7 +1,7 @@
 def yield_all_pairs_between_sequences(l, m):
    '''.. versionadded:: 1.1.2
 
-   Yield pairs from `l` to `m`. ::
+   Yield all pairs between sequences `l` and `m`::
 
       abjad> for pair in seqtools.yield_all_pairs_between_sequences([1, 2, 3], [4, 5]):
       ...     pair 
@@ -12,6 +12,8 @@ def yield_all_pairs_between_sequences(l, m):
       (2, 5)
       (3, 4)
       (3, 5)
+
+   Return pair generator.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.pairs_from_to( )`` to
