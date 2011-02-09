@@ -843,8 +843,8 @@ seqtools
    tools/seqtools/group_sequence_elements_once_by_weights_at_most_without_overhang
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_with_overhang
    tools/seqtools/group_sequence_elements_once_by_weights_exactly_without_overhang
-   tools/seqtools/increase_elements_at_indices_by_addenda
-   tools/seqtools/increase_elements_cyclically_by_addenda
+   tools/seqtools/increase_sequence_elements_at_indices_by_addenda
+   tools/seqtools/increase_sequence_elements_cyclically_by_addenda
    tools/seqtools/interlace_sequences
    tools/seqtools/is_monotonically_decreasing_sequence
    tools/seqtools/is_monotonically_increasing_sequence
@@ -865,25 +865,25 @@ seqtools
    tools/seqtools/iterate_sequence_pairwise_wrapped
    tools/seqtools/join_subsequences_by_sign
    tools/seqtools/list_pairwise_cumulative_sums_from_zero
-   tools/seqtools/map_elements_to_numbered_sublists
-   tools/seqtools/negate_elements_at_indices
-   tools/seqtools/negate_elements_at_indices_absolutely
-   tools/seqtools/overwrite_elements_at_indices
-   tools/seqtools/partition_elements_into_canonic_parts
+   tools/seqtools/map_sequence_elements_to_numbered_sublists
+   tools/seqtools/negate_sequence_elements_at_indices
+   tools/seqtools/negate_sequence_elements_at_indices_absolutely
+   tools/seqtools/overwrite_sequence_elements_at_indices
    tools/seqtools/partition_sequence_by_restricted_growth_function
    tools/seqtools/partition_sequence_by_weights
    tools/seqtools/partition_sequence_by_weights_not_less_than
    tools/seqtools/partition_sequence_by_weights_ratio
    tools/seqtools/partition_sequence_cyclically_by_counts_with_overhang
    tools/seqtools/partition_sequence_cyclically_by_counts_without_overhang
+   tools/seqtools/partition_sequence_elements_into_canonic_parts
    tools/seqtools/partition_sequence_once_by_counts_with_overhang
    tools/seqtools/partition_sequence_once_by_counts_without_overhang
    tools/seqtools/permute_sequence
-   tools/seqtools/remove_elements_at_indices
-   tools/seqtools/remove_elements_at_indices_cyclically
+   tools/seqtools/remove_sequence_elements_at_indices
+   tools/seqtools/remove_sequence_elements_at_indices_cyclically
    tools/seqtools/remove_subsequence_of_weight_at_index
-   tools/seqtools/repeat_elements_at_indices
-   tools/seqtools/repeat_elements_at_indices_cyclically
+   tools/seqtools/repeat_sequence_elements_at_indices
+   tools/seqtools/repeat_sequence_elements_at_indices_cyclically
    tools/seqtools/repeat_sequence_elements_n_times_each
    tools/seqtools/repeat_sequence_n_times
    tools/seqtools/repeat_sequence_to_length
@@ -891,21 +891,21 @@ seqtools
    tools/seqtools/repeat_sequence_to_weight_at_most
    tools/seqtools/repeat_sequence_to_weight_exactly
    tools/seqtools/repeat_subruns_to_count
-   tools/seqtools/replace_elements_cyclically_with_new_material
-   tools/seqtools/retain_elements_at_indices
-   tools/seqtools/retain_elements_at_indices_cyclically
+   tools/seqtools/replace_sequence_elements_cyclically_with_new_material
+   tools/seqtools/retain_sequence_elements_at_indices
+   tools/seqtools/retain_sequence_elements_at_indices_cyclically
    tools/seqtools/rotate_sequence
    tools/seqtools/splice_new_elements_between_sequence_elements
    tools/seqtools/split_sequence_cyclically_by_weights_with_overhang
    tools/seqtools/split_sequence_cyclically_by_weights_without_overhang
    tools/seqtools/split_sequence_once_by_weights_with_overhang
    tools/seqtools/split_sequence_once_by_weights_without_overhang
-   tools/seqtools/sum_consecutive_elements_by_sign
-   tools/seqtools/sum_elements_at_indices
+   tools/seqtools/sum_consecutive_sequence_elements_by_sign
+   tools/seqtools/sum_sequence_elements_at_indices
    tools/seqtools/truncate_sequence_to_sum
    tools/seqtools/truncate_sequence_to_weight
    tools/seqtools/truncate_subruns
-   tools/seqtools/yield_all_combinations_of_sequence
+   tools/seqtools/yield_all_combinations_of_elements
    tools/seqtools/yield_all_pairs_between_sequences
    tools/seqtools/yield_all_partitions_of_sequence
    tools/seqtools/yield_all_permutations_of_sequence
