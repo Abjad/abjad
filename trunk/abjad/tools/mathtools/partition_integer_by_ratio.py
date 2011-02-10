@@ -2,10 +2,8 @@ from abjad.tools.mathtools.cumulative_sums import cumulative_sums
 
 
 def partition_integer_by_ratio(n, ratio):
-   '''Partition integer `n` into parts such that the sum
-   of all parts equals `n` and such that the proportions
-   between the parts equal the proportions in `ratio`
-   with some rounding magic. ::
+   '''Partition integer `n` by `ratio`::
+
 
       abjad> mathtools.partition_integer_by_ratio(10, [1])
       [10]
@@ -45,16 +43,20 @@ def partition_integer_by_ratio(n, ratio):
       abjad> ratio(10, [3, 2])
       [6, 4]
 
+   Parts of sum to `n` with proportions equal to `ratio`
+   with some rounding magic.
 
-   Raise :exc:`TypeError` on noninteger *n*::
+   Raise type error on noninteger `n`::
 
       abjad> mathtools.partition_integer_by_ratio('foo', [1, 1, 3])
       TypeError
 
-   Raise :exc:`ValueError` on nonpositive *n*::
+   Raise value error on nonpositive `n`::
 
       abjad> mathtools.partition_integer_by_ratio(-1, [1, 1, 3])
       ValueError
+
+   Return list of positive integers.
    '''
 
    if not isinstance(n, (int, long)):

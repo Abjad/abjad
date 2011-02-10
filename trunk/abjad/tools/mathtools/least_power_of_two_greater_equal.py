@@ -3,10 +3,7 @@ import math
 
 
 def least_power_of_two_greater_equal(n, i = 0):
-   r'''Return least integer power of two 
-   greater than or equal to positive *n*.
-
-   ::
+   r'''Return least integer power of two greater than or equal to positive `n`::
 
       abjad> for n in range(10, 20):
       ...     print '\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n))
@@ -46,15 +43,17 @@ def least_power_of_two_greater_equal(n, i = 0):
    in general, return the ``i`` th integer power of ``2`` greater than
    the least integer power of ``2`` greater than or equal to *n*.
 
-   Raise :exc:`TypeError` on nonnumeric *n*::
+   Raise type error on nonnumeric `n`::
 
       abjad> mathtools.least_power_of_two_greater_equal('foo')
       TypeError
 
-   Raise :exc:`ValueError` on nonpositive *n*::
+   Raise value error on nonpositive `n`::
 
       abjad> mathtools.least_power_of_two_greater_equal(-1)
       ValueError
+
+   Return integer.
    '''
 
    if not isinstance(n, (int, long, float, Fraction)):

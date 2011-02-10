@@ -3,15 +3,9 @@ from abjad.tools.mathtools.sign import sign
 
 
 def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
-   '''Return big-endian tuple ``t = (t_0, ..., t_j)`` such that
-   
-   *  ``sum(t) == n``
-   *  ``t_i`` can be written without recourse to ties, and
-   *  ``t_(i + 1) < t_i`` for every ``t_i`` in ``t``.
+   '''Partition integer `n` into big-endian or small-endian parts.
 
-   When *n* is positive, return all parts positive.
-
-   ::
+   Return all parts positive on positive `n`::
 
       abjad> for n in range(1, 11):
       ...     print n, mathtools.partition_integer_into_canonic_parts(n)
@@ -27,9 +21,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
       9 (8, 1)
       10 (8, 2)
 
-   When *n* is negative, return all parts negative.
-
-   ::
+   Return all parts negative on negative `n`::
 
       abjad> for n in reversed(range(-20, -10)):
       ...     print n, mathtools.partition_integer_into_canonic_parts(n)
@@ -45,9 +37,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
       -19 (-16, -3)
       -20 (-16, -4)
 
-   When ``direction = 'little-endian'``, return little-endian tuple.
-
-   ::
+   Return little-endian tuple When ``direction = 'little-endian'``::
 
       abjad> for n in range(11, 21):
       ...     print n, mathtools.partition_integer_into_canonic_parts(n, direction = 'little-endian')
@@ -63,10 +53,18 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
       19 (3, 16)
       20 (4, 16)
 
-   Raise :exc:`TypeError` on noninteger *n*::
+   Return big-endian tuple ``t = (t_0, ..., t_j)`` such that
+   
+      *  ``sum(t) == n``
+      *  ``t_i`` can be written without recourse to ties, and
+      *  ``t_(i + 1) < t_i`` for every ``t_i`` in ``t``.
+
+   Raise type error on noninteger `n`::
 
       abjad> mathtools.partition_integer_into_canonic_parts(7.5)
       TypeError
+
+   Return tuple of one or more integers.
    '''
 
    if not isinstance(n, (int, long)):

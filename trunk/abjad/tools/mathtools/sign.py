@@ -1,23 +1,20 @@
 def sign(n):
-   '''Return ``-1``, ``0``, ``1`` for 
-   negative, zero, positive numbers, respectively.
-
-   ::
+   '''Return ``-1`` on negative `n`::
    
       abjad> mathtools.sign(-96.2)
       -1
 
-   ::
+   Return ``0`` when `n` is ``0``::
 
       abjad> mathtools.sign(0)
       0
 
-   ::
+   Return ``1`` on positive `n`::
 
       abjad> mathtools.sign(Fraction(9, 8))
       1
-  
-   .. note:: ``mathtools.sign(n)`` aliases built-in ``cmp(n, 0)``.
+
+   Return ``-1``, ``0`` or ``1``.
    '''
 
    return cmp(n, 0)

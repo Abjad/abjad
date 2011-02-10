@@ -1,7 +1,5 @@
 def remove_powers_of_two(n):
-   r'''Remove powers of ``2`` from the factors of positive integer *n*.
-
-   ::
+   r'''Remove powers of ``2`` from the factors of positive integer `n`::
 
       abjad> for n in range(10, 100, 10):
       ...     print '\t%s\t%s' % (n, mathtools.remove_powers_of_two(n))
@@ -16,15 +14,17 @@ def remove_powers_of_two(n):
          80 5
          90 45
 
-   Raise :exc:`TypeError` on noninteger *n*::
+   Raise type error on noninteger `n`::
 
       abjad> mathtools.remove_powers_of_two(7.5)
       TypeError
 
-   Raise :exc:`ValueError` on nonpositive *n*::
+   Raise value error on nonpositive `n`::
 
       abjad> mathtools.remove_powers_of_two(-1)
       ValueError
+
+   Return positive integer.
    '''
 
    if not isinstance(n, (int, long)):

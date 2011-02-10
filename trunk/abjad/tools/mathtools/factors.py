@@ -23,11 +23,11 @@ def factors(n):
       18 [1, 2, 3, 3]
       19 [1, 19]
 
-   Return list of one or more positive integers.
-
    Raise type error on noninteger `n`.
 
    Raise value error on nonpositive `n`.
+
+   Return list of one or more positive integers.
    '''
 
    if not is_positive_integer(n):

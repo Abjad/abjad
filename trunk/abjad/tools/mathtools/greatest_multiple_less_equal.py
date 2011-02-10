@@ -38,11 +38,11 @@ def greatest_multiple_less_equal(m, n):
       77 80
       84 90
 
-   Return nonnegative integer.
-
    Raise type error on nonnumeric `m`.
 
    Raise type error on nonnumeric `n`.
+
+   Return nonnegative integer.
    '''
    
    if not isinstance(m, Number):

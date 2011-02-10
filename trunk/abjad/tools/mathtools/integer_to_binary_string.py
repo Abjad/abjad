@@ -26,11 +26,11 @@ def integer_to_binary_string(n):
          15 1111
          16 10000
 
+   Return string.
+
    .. versionchanged:: 1.1.2
       renamed ``mathtools.binary_string( )`` to
       ``mathtools.integer_to_binary_string( )``.
-
-   Return string.
    '''
 
    if n == 0:

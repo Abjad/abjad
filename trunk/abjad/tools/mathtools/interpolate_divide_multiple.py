@@ -1,6 +1,7 @@
 from abjad.tools.mathtools.interpolate_divide import interpolate_divide
 
 
+## TODO: fix hyphen chains in API entry so Sphinx doesn't complain.
 def interpolate_divide_multiple(totals, key_values, exp='cosine'):
    '''.. versionadded:: 1.1.2
 
@@ -25,8 +26,6 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
    Set `exp` to a number for exponential interpolation.
    
    Returns a list of floats.
-
-   .. todo:: fix hyphen chains in API entry so Sphinx doesn't complain.
 
    .. versionchanged:: 1.1.2
       renamed ``interpolate.divide_multiple( )`` to

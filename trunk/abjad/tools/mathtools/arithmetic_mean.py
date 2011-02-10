@@ -1,41 +1,38 @@
 from fractions import Fraction
 
 
-def arithmetic_mean(l):
+def arithmetic_mean(sequence):
    '''.. versionadded:: 1.1.1
 
-   Return the arithmetic mean of the elements in iterable `l`.
+   Arithmetic means of `sequence` as an exact integer::
 
-   Where possible return an exact integer. ::
-
-      abjad> l = [1, 2, 2, 20, 30]
-      abjad> mathtools.arithmetic_mean(l)
+      abjad> mathtools.arithmetic_mean([1, 2, 2, 20, 30])
       11
 
-   Or return a rational. ::
+   As a rational::
 
-      abjad> l = [1, 2, 20]
-      abjad> mathtools.arithmetic_mean(l)
+      abjad> mathtools.arithmetic_mean([1, 2, 20])
       Fraction(23, 3)
 
-   Or return a float. ::
+   As a float::
 
-      abjad> l = [2, 2, 20.0]
-      abjad> mathtools.arithmetic_mean(l)
+      abjad> mathtools.arithmetic_mean([2, 2, 20.0])
       8.0
+
+   Return number.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.arithmetic_mean( )`` to
       ``mathtools.arithmetic_mean( )``.
    '''
 
-   sum_l = sum(l)
-   len_l = len(l)
+   sum_l = sum(sequence)
+   len_l = len(sequence)
 
    if isinstance(sum_l, float):
       return sum_l / len_l
 
-   result = Fraction(sum(l), len(l))
+   result = Fraction(sum(sequence), len(sequence))
 
    int_result = int(result)
    if int_result == result:

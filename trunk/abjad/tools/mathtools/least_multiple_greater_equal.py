@@ -39,6 +39,8 @@ def least_multiple_greater_equal(m, n):
       70 70
       84 80
       91 90
-'''
+   
+   Return integer.
+   '''
 
    return m * int(math.ceil(n / float(m)))

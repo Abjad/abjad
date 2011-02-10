@@ -6,6 +6,8 @@ def interpolate_exponential(y1, y2, mu, exp = 1):
 
    Set `exp` equal to the exponent of interpolation.
 
+   Return float.
+
    .. versionchanged:: 1.1.2
       renamed ``interpolate.exponential( )`` to
       ``mathtools.interpolate_exponential( )``.

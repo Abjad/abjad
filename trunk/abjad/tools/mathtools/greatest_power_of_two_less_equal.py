@@ -35,11 +35,11 @@ def greatest_power_of_two_less_equal(n, i = 0):
          18 8
          19 8
 
-   Return positive integer.
-
    Raise type error on nonnumeric `n`.
 
    Raise value error on nonpositive `n`.
+
+   Return positive integer.
    '''
 
    if not isinstance(n, Number):

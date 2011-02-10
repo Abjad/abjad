@@ -9,11 +9,11 @@ def greatest_common_divisor(*integers):
       abjad> mathtools.greatest_common_divisor(84, 94, 144)
       2
 
-   Return positive integer.
-
    Raise type error on noninteger `integers`.
 
    Raise value error on nonpositive `integers`.
+
+   Return positive integer.
    '''
       
    common_divisors = None

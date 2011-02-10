@@ -1,10 +1,8 @@
-def next_integer_partition(p):
+def next_integer_partition(integer_partition):
    r'''.. versionadded:: 1.1.2
 
-   Return next integer partition following integer partition `p`
-   in descending lex order.
+   Next integer partition following `integer_partition` in descending lex order::
 
-   Integer partition `p` must be an iterable of positive integers. ::
 
       abjad> mathtools.next_integer_partition((8, 3))
       (8, 2, 1)
@@ -18,11 +16,15 @@ def next_integer_partition(p):
 
       abjad> mathtools.next_integer_partition((8, 1, 1, 1))
       (7, 4)
+
+   Input `integer_partition` must be sequence of positive integers.
+
+   Return integer partition as tuple of positive integers.
    '''
 
-   _validate_input(p)
+   _validate_input(integer_partition)
 
-   left_half, right_half = _split_into_left_and_right_halves(p)
+   left_half, right_half = _split_into_left_and_right_halves(integer_partition)
 
    ## if input was all 1s like (1, 1, 1, 1) then we're done
    if not left_half:
@@ -38,7 +40,7 @@ def next_integer_partition(p):
    return result
     
       
-def _split_into_left_and_right_halves(p):
+def _split_into_left_and_right_halves(integer_partition):
    '''split not-1s (left half) from 1s (right half):
 
    _split_into_left_and_right_halves((8, 3))
@@ -53,7 +55,7 @@ def _split_into_left_and_right_halves(p):
 
    left_half = [ ]
    right_half = [ ]
-   for part in p:
+   for part in integer_partition:
       if not part == 1:
          left_half.append(part)
       else:
@@ -61,7 +63,7 @@ def _split_into_left_and_right_halves(p):
    return left_half, right_half
 
 
-def _validate_input(p):
+def _validate_input(integer_partition):
    '''Must be monotonically decreasing iterable of positive integers.
 
    (8, 2, 2, 1) is OK.
@@ -69,7 +71,7 @@ def _validate_input(p):
    '''
 
    prev = None
-   for cur in p:
+   for cur in integer_partition:
       if not isinstance(cur, int):
          raise TypeError('must be integer.')
       if not 0 < cur:

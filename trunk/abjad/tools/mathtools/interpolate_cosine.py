@@ -7,6 +7,8 @@ def interpolate_cosine(y1, y2, mu):
       abjad> mathtools.interpolate_cosine(0, 1, 0.5) 
       0.49999999999999994
 
+   Return float.
+
    .. versionchanged:: 1.1.2
       renamed ``interpolate.cosine( )`` to
       ``mathtools.interpolate_cosine( )``.
