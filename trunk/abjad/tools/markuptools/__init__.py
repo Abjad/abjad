@@ -3,3 +3,4 @@ from abjad.tools.importtools._import_public_names_from_path_into_namespace impor
 _import_public_names_from_path_into_namespace(__path__[0], globals( ))
 
 from Markup import Markup
+from MarkupCommand import MarkupCommand

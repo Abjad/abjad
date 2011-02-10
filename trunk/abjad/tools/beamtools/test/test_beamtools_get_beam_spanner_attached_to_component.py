@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_beamtools_get_beam_spanner_attached_to_componnet_01( ):
+def test_beamtools_get_beam_spanner_attached_to_component_01( ):
    '''Get the only beam spanner attached to component.
    '''
 
@@ -13,7 +13,7 @@ def test_beamtools_get_beam_spanner_attached_to_componnet_01( ):
    assert beamtools.get_beam_spanner_attached_to_component(staff[1]) is beam 
 
 
-def test_beamtools_get_beam_spanner_attached_to_componnet_02( ):
+def test_beamtools_get_beam_spanner_attached_to_component_02( ):
    '''Raise missing spanner error when no beam spanner attaches to component. 
    '''
 
@@ -22,7 +22,7 @@ def test_beamtools_get_beam_spanner_attached_to_componnet_02( ):
    assert py.test.raises(MissingSpannerError, 'beamtools.get_beam_spanner_attached_to_component(staff[0])')
    
    
-def test_beamtools_get_beam_spanner_attached_to_componnet_03( ):
+def test_beamtools_get_beam_spanner_attached_to_component_03( ):
    '''Raise missing spanner error when no beam spanner attaches to component. 
    '''
 

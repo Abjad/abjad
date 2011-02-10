@@ -464,6 +464,7 @@ markuptools
    :maxdepth: 1
 
    tools/markuptools/Markup/Markup
+   tools/markuptools/MarkupCommand/MarkupCommand
    tools/markuptools/get_markup_attached_to_component
    tools/markuptools/make_big_centered_page_number_markup
    tools/markuptools/remove_markup_attached_to_component
@@ -783,11 +784,14 @@ schemetools
    :maxdepth: 1
 
    tools/schemetools/SchemeAssociativeList/SchemeAssociativeList
+   tools/schemetools/SchemeBoolean/SchemeBoolean
    tools/schemetools/SchemeColor/SchemeColor
    tools/schemetools/SchemeFunction/SchemeFunction
    tools/schemetools/SchemeMoment/SchemeMoment
+   tools/schemetools/SchemeNumber/SchemeNumber
    tools/schemetools/SchemePair/SchemePair
    tools/schemetools/SchemeString/SchemeString
+   tools/schemetools/SchemeVariable/SchemeVariable
    tools/schemetools/SchemeVector/SchemeVector
    tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
 
