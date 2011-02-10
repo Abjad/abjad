@@ -35,7 +35,7 @@ def calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(pit
    number = abs(pitch_2.numbered_chromatic_pitch) - abs(pitch_1.numbered_chromatic_pitch)
 
    ## change 1.0, 2.0, ... into 1, 2, ...
-   number = mathtools.trivial_float_to_int(number)   
+   number = mathtools.integer_equivalent_number_to_integer(number)   
 
    ## make melodic chromatic interval
    mci = MelodicChromaticInterval(number)

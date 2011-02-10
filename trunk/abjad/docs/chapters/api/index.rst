@@ -515,7 +515,6 @@ mathtools
    tools/mathtools/partition_integer_into_units
    tools/mathtools/remove_powers_of_two
    tools/mathtools/sign
-   tools/mathtools/trivial_float_to_int
    tools/mathtools/weight
    tools/mathtools/yield_all_compositions_of_integer
    tools/mathtools/yield_all_partitions_of_integer

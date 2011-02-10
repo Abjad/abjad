@@ -1,4 +1,3 @@
-from abjad.exceptions import InputError
 from abjad.tools.mathtools.is_positive_integer import is_positive_integer
 
 
@@ -32,7 +31,7 @@ def factors(n):
    '''
 
    if not is_positive_integer(n):
-      raise InputError('"%s" must be positive integer.' % str(n))
+      raise TypeError('"%s" must be positive integer.' % str(n))
 
    d = 2
    factors = [1]

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SchemeBoolean___init___01( ):
+def test_SchemeBoolean___init____01( ):
 
    t = Note(0, (1, 16))
    t.override.stem.transparent = schemetools.SchemeBoolean(True)
