@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_seqtools_generate_all_k_ary_sequences_of_length_01( ):
+def test_seqtools_yield_all_k_ary_sequences_of_length_01( ):
 
-   generator = seqtools.generate_all_k_ary_sequences_of_length(2, 3)
+   generator = seqtools.yield_all_k_ary_sequences_of_length(2, 3)
 
    assert generator.next( ) == (0, 0, 0)
    assert generator.next( ) == (0, 0, 1)

@@ -1,12 +1,12 @@
 from abjad.tools import mathtools
 
 
-def generate_all_restricted_growth_functions_of_length(length):
+def yield_all_restricted_growth_functions_of_length(length):
    '''.. versionadded:: 1.1.2
 
    Generate all restricted growth functions of `length` in lex order::
 
-      abjad> for rgf in seqtools.generate_all_restricted_growth_functions_of_length(4):
+      abjad> for rgf in seqtools.yield_all_restricted_growth_functions_of_length(4):
       ...     rgf
       ... 
       (1, 1, 1, 1)
@@ -29,7 +29,11 @@ def generate_all_restricted_growth_functions_of_length(length):
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.all_restricted_growth_functions_of_length( )`` to
-      ``seqtools.generate_all_restricted_growth_functions_of_length( )``.
+      ``seqtools.yield_all_restricted_growth_functions_of_length( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.generate_all_restricted_growth_functions_of_length( )`` to
+      ``seqtools.yield_all_restricted_growth_functions_of_length( )``.
    '''
 
    if not mathtools.is_positive_integer(length):

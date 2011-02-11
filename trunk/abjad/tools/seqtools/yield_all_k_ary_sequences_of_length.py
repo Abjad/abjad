@@ -1,12 +1,12 @@
 from abjad.tools import mathtools
 
 
-def generate_all_k_ary_sequences_of_length(k, length):
+def yield_all_k_ary_sequences_of_length(k, length):
    '''.. versionadded:: 1.1.2
 
    Generate all `k`-ary sequences of `length`::
 
-      abjad> for sequence in seqtools.generate_all_k_ary_sequences_of_length(2, 3):
+      abjad> for sequence in seqtools.yield_all_k_ary_sequences_of_length(2, 3):
       ...     sequence
       ... 
       (0, 0, 0)
@@ -19,6 +19,10 @@ def generate_all_k_ary_sequences_of_length(k, length):
       (1, 1, 1)
 
    Return generator of tuples.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.generate_all_k_ary_sequences_of_length( )`` to
+      ``seqtools.yield_all_k_ary_sequences_of_length( )``.
    '''
 
    assert isinstance(k, int) and 1 <= k

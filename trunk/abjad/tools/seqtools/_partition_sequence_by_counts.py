@@ -1,5 +1,5 @@
 from abjad.tools.seqtools.all_are_nonnegative_integers import all_are_nonnegative_integers
-from abjad.tools.seqtools.list_pairwise_cumulative_sums_from_zero import list_pairwise_cumulative_sums_from_zero
+from abjad.tools.mathtools.cumulative_sums_zero_pairwise import cumulative_sums_zero_pairwise
 from abjad.tools.seqtools.repeat_sequence_to_weight_at_most import repeat_sequence_to_weight_at_most
 from abjad.tools.seqtools.repeat_sequence_to_weight_exactly import repeat_sequence_to_weight_exactly
 from abjad.tools import mathtools
@@ -68,7 +68,7 @@ def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = F
          counts = list(counts)
          counts.append(len(sequence) - weight_counts)
 
-   for start, stop in list_pairwise_cumulative_sums_from_zero(counts):
+   for start, stop in cumulative_sums_zero_pairwise(counts):
       if copy_elements:
          part = [ ]
          for element in sequence[start:stop]:

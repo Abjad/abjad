@@ -481,6 +481,7 @@ mathtools
    tools/mathtools/cumulative_signed_weights
    tools/mathtools/cumulative_sums
    tools/mathtools/cumulative_sums_zero
+   tools/mathtools/cumulative_sums_zero_pairwise
    tools/mathtools/difference_series
    tools/mathtools/divide_number_by_ratio
    tools/mathtools/divisors
@@ -825,13 +826,11 @@ seqtools
    tools/seqtools/flatten_sequence
    tools/seqtools/flatten_sequence_at_indices
    tools/seqtools/flip_sign_of_sequence_elements_at_indices
-   tools/seqtools/generate_all_k_ary_sequences_of_length
-   tools/seqtools/generate_all_restricted_growth_functions_of_length
-   tools/seqtools/get_degree_of_rotational_symmetry_of_sequence
    tools/seqtools/get_indices_of_sequence_elements_equal_to_true
-   tools/seqtools/get_period_of_rotation_of_sequence
+   tools/seqtools/get_sequence_degree_of_rotational_symmetry
    tools/seqtools/get_sequence_element_at_cyclic_index
    tools/seqtools/get_sequence_elements_at_indices
+   tools/seqtools/get_sequence_period_of_rotation
    tools/seqtools/increase_sequence_elements_at_indices_by_addenda
    tools/seqtools/increase_sequence_elements_cyclically_by_addenda
    tools/seqtools/interlace_sequences
@@ -853,7 +852,6 @@ seqtools
    tools/seqtools/iterate_sequence_pairwise_strict
    tools/seqtools/iterate_sequence_pairwise_wrapped
    tools/seqtools/join_subsequences_by_sign_of_subsequence_elements
-   tools/seqtools/list_pairwise_cumulative_sums_from_zero
    tools/seqtools/map_sequence_elements_to_canonic_tuples
    tools/seqtools/map_sequence_elements_to_numbered_sublists
    tools/seqtools/negate_absolute_value_of_sequence_elements_at_indices
@@ -906,10 +904,12 @@ seqtools
    tools/seqtools/truncate_sequence_to_sum
    tools/seqtools/truncate_sequence_to_weight
    tools/seqtools/yield_all_combinations_of_sequence_elements
+   tools/seqtools/yield_all_k_ary_sequences_of_length
    tools/seqtools/yield_all_pairs_between_sequences
    tools/seqtools/yield_all_partitions_of_sequence
    tools/seqtools/yield_all_permutations_of_sequence
    tools/seqtools/yield_all_permutations_of_sequence_in_orbit
+   tools/seqtools/yield_all_restricted_growth_functions_of_length
    tools/seqtools/yield_all_rotations_of_sequence
    tools/seqtools/yield_all_set_partitions_of_sequence
    tools/seqtools/yield_all_subsequences_of_sequence

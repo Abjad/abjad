@@ -1,10 +1,8 @@
 from fractions import Fraction
-from abjad.tools import mathtools
 from abjad.tools.mathtools.cumulative_sums_zero import cumulative_sums_zero
-from abjad.tools.seqtools.iterate_sequence_pairwise_strict import iterate_sequence_pairwise_strict
 
 
-def list_pairwise_cumulative_sums_from_zero(sequence):
+def cumulative_sums_zero_pairwise(sequence):
    '''List pairwise cumulative sums of `sequence` from ``0``::
 
       abjad> seqtools.iterate_sequence_pairwise_cumulative_sums_zero([1, 2, 3, 4, 5, 6])
@@ -14,7 +12,12 @@ def list_pairwise_cumulative_sums_from_zero(sequence):
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.pairwise_cumulative_sums_zero( )`` to
-      ``seqtools.list_pairwise_cumulative_sums_from_zero( )``.
-   '''
+      ``mathtools.cumulative_sums_zero_pairwise( )``.
 
-   return list(iterate_sequence_pairwise_strict(cumulative_sums_zero(sequence)))
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.list_pairwise_cumulative_sums_from_zero( )`` to
+      ``mathtools.cumulative_sums_zero_pairwise( )``.
+   '''
+   from abjad.tools import seqtools
+
+   return list(seqtools.iterate_sequence_pairwise_strict(cumulative_sums_zero(sequence)))
