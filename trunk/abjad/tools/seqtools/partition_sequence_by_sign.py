@@ -2,49 +2,49 @@ from abjad.tools import mathtools
 import itertools
 
 
-def group_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
+def partition_sequence_by_sign(sequence, sign = [-1, 0, 1]):
    '''Group `sequence` elements by sign::
 
       abjad> sequence = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 
    ::
    
-      abjad> list(seqtools.group_sequence_elements_by_sign(sequence))
+      abjad> list(seqtools.partition_sequence_by_sign(sequence))
       [[0, 0], [-1, -1], [2, 3], [-5], [1, 2, 5], [-5, -6]]
 
    ::
    
-      abjad> list(seqtools.group_sequence_elements_by_sign(sequence, sign = [-1]))
+      abjad> list(seqtools.partition_sequence_by_sign(sequence, sign = [-1]))
       [0, 0, [-1, -1], 2, 3, [-5], 1, 2, 5, [-5, -6]]
 
    ::
    
-      abjad> list(seqtools.group_sequence_elements_by_sign(sequence, sign = [0]))
+      abjad> list(seqtools.partition_sequence_by_sign(sequence, sign = [0]))
       [[0, 0], -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 
    ::
    
-      abjad> list(seqtools.group_sequence_elements_by_sign(sequence, sign = [1]))
+      abjad> list(seqtools.partition_sequence_by_sign(sequence, sign = [1]))
       [0, 0, -1, -1, [2, 3], -5, [1, 2, 5], -5, -6]
 
    ::
    
-      abjad> list(seqtools.group_sequence_elements_by_sign(sequence, sign = [-1, 0]))
+      abjad> list(seqtools.partition_sequence_by_sign(sequence, sign = [-1, 0]))
       [[0, 0], [-1, -1], 2, 3, [-5], 1, 2, 5, [-5, -6]]
 
    ::
    
-      abjad> list(seqtools.group_sequence_elements_by_sign(sequence, sign = [-1, 1]))
+      abjad> list(seqtools.partition_sequence_by_sign(sequence, sign = [-1, 1]))
       [0, 0, [-1, -1], [2, 3], [-5], [1, 2, 5], [-5, -6]]
 
    ::
    
-      abjad> list(seqtools.group_sequence_elements_by_sign(sequence, sign = [0, 1]))
+      abjad> list(seqtools.partition_sequence_by_sign(sequence, sign = [0, 1]))
       [[0, 0], -1, -1, [2, 3], -5, [1, 2, 5], -5, -6]
 
    ::
    
-      abjad> list(seqtools.group_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]))
+      abjad> list(seqtools.partition_sequence_by_sign(sequence, sign = [-1, 0, 1]))
       [[0, 0], [-1, -1], [2, 3], [-5], [1, 2, 5], [-5, -6]]
 
    When ``-1`` in ``sign``, group negative elements.
@@ -57,7 +57,11 @@ def group_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.group_by_sign( )`` to
-      ``seqtools.group_sequence_elements_by_sign( )``.
+      ``seqtools.partition_sequence_by_sign( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.group_sequence_elements_by_sign( )`` to
+      ``seqtools.partition_sequence_by_sign( )``.
    '''
 
    result = [ ]

@@ -831,8 +831,6 @@ seqtools
    tools/seqtools/get_period_of_rotation_of_sequence
    tools/seqtools/get_sequence_element_at_cyclic_index
    tools/seqtools/get_sequence_elements_at_indices
-   tools/seqtools/group_sequence_elements_by_equality
-   tools/seqtools/group_sequence_elements_by_sign
    tools/seqtools/group_sequence_elements_cyclically_by_weights_at_least_with_overhang
    tools/seqtools/group_sequence_elements_cyclically_by_weights_at_least_without_overhang
    tools/seqtools/group_sequence_elements_cyclically_by_weights_at_most_with_overhang
@@ -871,7 +869,9 @@ seqtools
    tools/seqtools/negate_sequence_elements_at_indices
    tools/seqtools/negate_sequence_elements_at_indices_absolutely
    tools/seqtools/overwrite_sequence_elements_at_indices
+   tools/seqtools/partition_sequence_by_equality
    tools/seqtools/partition_sequence_by_restricted_growth_function
+   tools/seqtools/partition_sequence_by_sign
    tools/seqtools/partition_sequence_by_weights_ratio
    tools/seqtools/partition_sequence_cyclically_by_counts_with_overhang
    tools/seqtools/partition_sequence_cyclically_by_counts_without_overhang
