@@ -1,5 +1,6 @@
-from abjad.tools import mathtools
-from abjad.tools.mathtools.weight import weight
+#from abjad.tools import mathtools
+#from abjad.tools.mathtools.weight import weight
+from abjad.tools.seqtools._group_sequence_elements_by_weights_at_least import _group_sequence_elements_by_weights_at_least
 
 
 def partition_sequence_by_weights_not_less_than(sequence, weights, 
@@ -75,31 +76,33 @@ def partition_sequence_by_weights_not_less_than(sequence, weights,
       ``seqtools.partition_sequence_by_weights_not_less_than( )``.
    '''
 
-   result = [ ]
-   sequence_copy = sequence[:]
-   sublist = [ ]
-   cur_weight_index = 0
-   i = 0
-   while sequence_copy:
-      if cyclic:
-         cur_weight = weights[cur_weight_index % len(weights)]
-      elif cur_weight_index < len(weights):
-         cur_weight = weights[cur_weight_index]
-      else:
-         break
-      n = sequence_copy.pop(0)
-      if not isinstance(n, int):
-         raise TypeError('must be integer.')
-      sublist.append(n)
-      if cur_weight <= weight(sublist):
-         result.append(sublist)
-         sublist = [ ]
-         cur_weight_index += 1
-      i += 1
+   return _group_sequence_elements_by_weights_at_least(sequence, weights, cyclic = cyclic, overhang = overhang)
 
-   if overhang:
-      sequence_copy[0:0] = sublist
-      if sequence_copy:
-         result.append(sequence_copy)
-
-   return result
+#   result = [ ]
+#   sequence_copy = sequence[:]
+#   sublist = [ ]
+#   cur_weight_index = 0
+#   i = 0
+#   while sequence_copy:
+#      if cyclic:
+#         cur_weight = weights[cur_weight_index % len(weights)]
+#      elif cur_weight_index < len(weights):
+#         cur_weight = weights[cur_weight_index]
+#      else:
+#         break
+#      n = sequence_copy.pop(0)
+#      if not isinstance(n, int):
+#         raise TypeError('must be integer.')
+#      sublist.append(n)
+#      if cur_weight <= weight(sublist):
+#         result.append(sublist)
+#         sublist = [ ]
+#         cur_weight_index += 1
+#      i += 1
+#
+#   if overhang:
+#      sequence_copy[0:0] = sublist
+#      if sequence_copy:
+#         result.append(sequence_copy)
+#
+#   return result
