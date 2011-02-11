@@ -831,7 +831,6 @@ seqtools
    tools/seqtools/get_period_of_rotation_of_sequence
    tools/seqtools/get_sequence_element_at_cyclic_index
    tools/seqtools/get_sequence_elements_at_indices
-   tools/seqtools/group_sequence_elements_by_counts
    tools/seqtools/group_sequence_elements_by_equality
    tools/seqtools/group_sequence_elements_by_sign
    tools/seqtools/group_sequence_elements_cyclically_by_weights_at_least_with_overhang
