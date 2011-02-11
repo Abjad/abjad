@@ -874,7 +874,6 @@ seqtools
    tools/seqtools/overwrite_sequence_elements_at_indices
    tools/seqtools/partition_sequence_by_restricted_growth_function
    tools/seqtools/partition_sequence_by_weights
-   tools/seqtools/partition_sequence_by_weights_not_less_than
    tools/seqtools/partition_sequence_by_weights_ratio
    tools/seqtools/partition_sequence_cyclically_by_counts_with_overhang
    tools/seqtools/partition_sequence_cyclically_by_counts_without_overhang
