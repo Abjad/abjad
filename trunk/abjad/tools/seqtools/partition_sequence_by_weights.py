@@ -1,12 +1,12 @@
-from abjad.tools import mathtools
-from abjad.tools.mathtools.weight import weight
-from fractions import Fraction
+from abjad.tools.seqtools._split_sequence_by_weights import _split_sequence_by_weights
 
 
+## NOTE THAT THIS FUNCTION IS REALLY A SPLIT FUNCTION RATHER THAN PARTITION;
+## function temporarily reimplemented in terms fo split function;
+## function marked for deprecation.
 def partition_sequence_by_weights(sequence, weights, cyclic = False, overhang = False):
    '''Partition `sequence` by `weights`.
    
-
    With one-element ``weights``::
 
       abjad> seqtools.partition_sequence_by_weights([20, 20, 20, 20], [15])
@@ -68,57 +68,4 @@ def partition_sequence_by_weights(sequence, weights, cyclic = False, overhang = 
       ``seqtools.partition_sequence_by_weights( )``.
    '''
 
-   assert all([isinstance(x, (int, float, long, Fraction)) for x in sequence])
-   assert all([isinstance(x, (int, float, long, Fraction)) for x in weights])
-   assert all([0 < x for x in weights])
-
-   copy_of_sequence = sequence[:]
-   result = [[ ]]
-   cur_target_weight_index = 0
-   cur_target_weight = weights[cur_target_weight_index] 
-
-   while copy_of_sequence:
-      cur_part = result[-1]
-      cur_weight = weight(cur_part)
-      if cur_weight == cur_target_weight:
-         cur_target_weight_index += 1
-         if cyclic:
-            cyclic_weight_index = cur_target_weight_index % len(weights)
-            cur_target_weight = weights[cyclic_weight_index]
-            result.append([ ])
-         else:
-            if len(result) < len(weights):
-               cur_target_weight = weights[cur_target_weight_index]
-               result.append([ ])
-            else:
-               if cur_part == [ ]:
-                  result.pop( )
-               if overhang:
-                  result.append(copy_of_sequence)
-               return result
-      elif cur_weight < cur_target_weight:
-         if copy_of_sequence:
-            x = copy_of_sequence.pop(0)
-            candidate_weight = cur_weight + abs(x)
-            if candidate_weight <= cur_target_weight:
-               cur_part.append(x)
-            else:
-               sign_of_x = mathtools.sign(x)
-               left_addend = cur_target_weight - cur_weight
-               right_addend = abs(x) - left_addend
-               left_addend *= sign_of_x
-               right_addend *= sign_of_x
-               cur_part.append(left_addend)
-               copy_of_sequence.insert(0, right_addend)
-         else:
-            if cur_part == [ ]:
-               result.pop( )
-            return result
-      else:
-         raise ValueError('cur_weight should be <= cur_target_weight.')
-
-   if cur_weight < cur_target_weight:
-      if not overhang:
-         result.pop( )
-
-   return result
+   return _split_sequence_by_weights(sequence, weights, cyclic = cyclic, overhang = overhang)

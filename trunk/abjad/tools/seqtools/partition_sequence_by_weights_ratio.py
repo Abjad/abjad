@@ -29,6 +29,17 @@ def partition_sequence_by_weights_ratio(sequence, weights_ratio):
       abjad> seqtools.partition_sequence_by_weights_ratio([1] * 10, [3, 2, 2])
       [[1, 1, 1, 1], [1, 1, 1], [1, 1, 1]]
 
+   ::
+
+      abjad> seqtools.partition_sequence_by_weights_ratio([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1])
+      [[1, 1, 1, 1, 1, 1, 2, 2], [2, 2, 2, 2]]
+
+   ::
+
+      abjad> seqtools.partition_sequence_by_weights_ratio([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1, 1]) 
+      [[1, 1, 1, 1, 1, 1], [2, 2, 2], [2, 2, 2]]
+
+
    Weights of parts of returned list equal `weights_ratio` proportions
    with some rounding magic.
 
