@@ -831,18 +831,6 @@ seqtools
    tools/seqtools/get_period_of_rotation_of_sequence
    tools/seqtools/get_sequence_element_at_cyclic_index
    tools/seqtools/get_sequence_elements_at_indices
-   tools/seqtools/group_sequence_elements_cyclically_by_weights_at_least_with_overhang
-   tools/seqtools/group_sequence_elements_cyclically_by_weights_at_least_without_overhang
-   tools/seqtools/group_sequence_elements_cyclically_by_weights_at_most_with_overhang
-   tools/seqtools/group_sequence_elements_cyclically_by_weights_at_most_without_overhang
-   tools/seqtools/group_sequence_elements_cyclically_by_weights_exactly_with_overhang
-   tools/seqtools/group_sequence_elements_cyclically_by_weights_exactly_without_overhang
-   tools/seqtools/group_sequence_elements_once_by_weights_at_least_with_overhang
-   tools/seqtools/group_sequence_elements_once_by_weights_at_least_without_overhang
-   tools/seqtools/group_sequence_elements_once_by_weights_at_most_with_overhang
-   tools/seqtools/group_sequence_elements_once_by_weights_at_most_without_overhang
-   tools/seqtools/group_sequence_elements_once_by_weights_exactly_with_overhang
-   tools/seqtools/group_sequence_elements_once_by_weights_exactly_without_overhang
    tools/seqtools/increase_sequence_elements_at_indices_by_addenda
    tools/seqtools/increase_sequence_elements_cyclically_by_addenda
    tools/seqtools/interlace_sequences
@@ -875,9 +863,21 @@ seqtools
    tools/seqtools/partition_sequence_by_weights_ratio
    tools/seqtools/partition_sequence_cyclically_by_counts_with_overhang
    tools/seqtools/partition_sequence_cyclically_by_counts_without_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_at_least_with_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_at_least_without_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_at_most_with_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_at_most_without_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_exactly_with_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_exactly_without_overhang
    tools/seqtools/partition_sequence_elements_into_canonic_parts
    tools/seqtools/partition_sequence_once_by_counts_with_overhang
    tools/seqtools/partition_sequence_once_by_counts_without_overhang
+   tools/seqtools/partition_sequence_once_by_weights_at_least_with_overhang
+   tools/seqtools/partition_sequence_once_by_weights_at_least_without_overhang
+   tools/seqtools/partition_sequence_once_by_weights_at_most_with_overhang
+   tools/seqtools/partition_sequence_once_by_weights_at_most_without_overhang
+   tools/seqtools/partition_sequence_once_by_weights_exactly_with_overhang
+   tools/seqtools/partition_sequence_once_by_weights_exactly_without_overhang
    tools/seqtools/permute_sequence
    tools/seqtools/remove_sequence_elements_at_indices
    tools/seqtools/remove_sequence_elements_at_indices_cyclically
