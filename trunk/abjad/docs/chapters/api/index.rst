@@ -823,6 +823,7 @@ seqtools
    tools/seqtools/all_are_positive_integers
    tools/seqtools/all_are_unequal
    tools/seqtools/count_length_two_runs_in_sequence
+   tools/seqtools/divide_sequence_elements_by_greatest_common_divisor
    tools/seqtools/flatten_sequence
    tools/seqtools/flatten_sequence_at_indices
    tools/seqtools/flip_sign_of_sequence_elements_at_indices
