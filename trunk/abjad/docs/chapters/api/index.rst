@@ -892,6 +892,8 @@ seqtools
    tools/seqtools/replace_sequence_elements_cyclically_with_new_material
    tools/seqtools/retain_sequence_elements_at_indices
    tools/seqtools/retain_sequence_elements_at_indices_cyclically
+   tools/seqtools/reverse_sequence
+   tools/seqtools/reverse_sequence_elements
    tools/seqtools/rotate_sequence
    tools/seqtools/splice_new_elements_between_sequence_elements
    tools/seqtools/split_sequence_cyclically_by_weights_with_overhang
