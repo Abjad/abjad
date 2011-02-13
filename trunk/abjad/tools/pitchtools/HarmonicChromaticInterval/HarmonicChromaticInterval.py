@@ -6,15 +6,16 @@ from abjad.tools.pitchtools.HarmonicChromaticIntervalClass import HarmonicChroma
 class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
    '''.. versionadded:: 1.1.2
 
-   Harmonic chromatic interval. ::
+   Abjad model of harmonic chromatic interval::
 
-      abjad> pitchtools.HarmonicChromaticInterval(-2)
-      HarmonicChromaticInterval(2)
+      abjad> pitchtools.HarmonicChromaticInterval(-14)
+      HarmonicChromaticInterval(14)
+
+   Harmonic chromatic intervals are immutable.
    '''
 
    def __init__(self, number):
       _ChromaticInterval.__init__(self, number)
-      #self._number = abs(self.number)
       _number = abs(self.number)
       object.__setattr__(self, '_number', _number)
 
@@ -43,6 +44,13 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def interval_class(self):
-      #return self.number % 12
+   def harmonic_chromatic_interval_class(self):
+      '''New harmonic chromatic interval-class from harmonic chromatic interval:
+
+      ::
+
+         abjad> harmonic_chromatic_interval = pitchtools.HarmonicChromaticInterval(14)
+         abjad> harmonic_chromatic_interval.harmonic_chromatic_interval_class
+         HarmonicChromaticIntervalClass(2)
+      '''
       return HarmonicChromaticIntervalClass(self)

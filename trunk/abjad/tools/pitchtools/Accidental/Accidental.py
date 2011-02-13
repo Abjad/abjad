@@ -9,6 +9,8 @@ class Accidental(_StrictComparator, _Immutable):
 
       abjad> pitchtools.Accidental('s')
       Accidental(sharp)
+
+   Accidentals are immutable.
    '''
 
    __slots__ = ('_alphabetic_string', '_is_adjusted', '_name_string', 
