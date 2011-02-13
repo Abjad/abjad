@@ -7,7 +7,12 @@ from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Harmonic counterpoint interval class.
+   Abjad model of harmonic counterpoint interval class::
+
+      abjad> pitchtools.HarmonicCounterpointIntervalClass(-9)
+      HarmonicCounterpointIntervalClass(2)
+
+   Harmonic counterpoint interval classes are immutable.
    '''
 
    def __init__(self, token):
@@ -18,7 +23,6 @@ class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicInt
       if _number == 0:
          raise ValueError('must be nonzero.')
       if abs(_number) == 1:
-         #self._number = 1
          _number = 1
       else:
          _number = abs(_number) % 7
@@ -26,7 +30,6 @@ class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicInt
             _number = 7
          elif _number == 1:
             _number = 8
-         #self._number = number
       object.__setattr__(self, '_number', _number)
 
    ## OVERLOADS ##

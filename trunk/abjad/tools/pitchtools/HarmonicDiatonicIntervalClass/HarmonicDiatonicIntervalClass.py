@@ -6,25 +6,12 @@ from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Harmonic diatonic interval class::
-
-      abjad> pitchtools.HarmonicDiatonicIntervalClass('major', 2) 
-      HarmonicDiatonicIntervalClass(major second)
-
-   ::
-
-      abjad> pitchtools.HarmonicDiatonicIntervalClass('major', -2) 
-      HarmonicDiatonicIntervalClass(major second)
-
-   ::
-
-      abjad> pitchtools.HarmonicDiatonicIntervalClass('major', 9) 
-      HarmonicDiatonicIntervalClass(major second)
-
-   ::
+   Abjad model harmonic diatonic interval class::
 
       abjad> pitchtools.HarmonicDiatonicIntervalClass('major', -9) 
       HarmonicDiatonicIntervalClass(major second)
+
+   Harmonic diatonic interval classes are immutable.
    '''
 
    def __init__(self, *args):
@@ -41,7 +28,6 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
          quality_string, number = args   
       if quality_string not in self._acceptable_quality_strings:
          raise ValueError('not acceptable quality string.')
-      #self._quality_string = quality_string
       object.__setattr__(self, '_quality_string', quality_string)
       if not isinstance(number, int):
          raise TypeError('must be integer.')
@@ -54,7 +40,6 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
          number = abs_number % 7
          if number == 0:
             number = 7
-      #self._number = number
       object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##

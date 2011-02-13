@@ -46,16 +46,17 @@ class _DiatonicInterval(_Interval):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s %s)' % (self.__class__.__name__,
-         self.quality_string, self.interval_string)
+      return '%s(%s %s)' % (self.__class__.__name__, self.quality_string, self.interval_string)
 
    def __str__(self):
       return self._format_string
       
    ## PRIVATE ATTRIBUTES ##
 
-   _acceptable_quality_strings = ('perfect', 'major', 'minor',
-      'diminished', 'augmented')
+   _acceptable_quality_strings = ('perfect', 'major', 'minor', 'diminished', 'augmented')
+
+   _quality_abbreviation_to_quality_string = {
+      'M': 'major', 'm': 'minor', 'P': 'perfect', 'aug': 'augmented', 'dim': 'diminished'}
 
    @property
    def _format_string(self):

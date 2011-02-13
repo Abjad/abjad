@@ -5,7 +5,9 @@ from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass import HarmonicDiatoni
 class HarmonicDiatonicIntervalClassSet(_IntervalClassSet):
    '''.. versionadded:: 1.1.2
 
-   Unordered collection of harmonic diatonic interval class instances.
+   Abjad model of harmonic diatonic interval-class set.
+
+   Harmonic diatonic interval-class sets are immutable.
    '''
 
    #def __init__(self, interval_tokens):
@@ -36,13 +38,3 @@ class HarmonicDiatonicIntervalClassSet(_IntervalClassSet):
    @property
    def interval_classes(self):
       return set(self)
-      
-#   ## PUBLIC METHODS ##
-#
-#   def add(self, arg):
-#      interval_class = HarmonicDiatonicIntervalClass(arg)
-#      set.add(self, interval_class)
-#
-#   def update(self, expr):
-#      for x in expr:
-#         self.add(x)

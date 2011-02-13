@@ -6,20 +6,19 @@ from abjad.tools.pitchtools.HarmonicCounterpointIntervalClass import HarmonicCou
 class HarmonicCounterpointInterval(_CounterpointInterval, _HarmonicInterval):
    '''.. versionadded:: 1.1.2
 
-   Harmonic counterpoint interval.
-   Like a type of reduced diatonic interval, without major,
-   minor, perfect or other quality.
+   Abjad model of harmonic counterpoint interval::
+
+      abjad> pitchtools.HarmonicCounterpointInterval(-9)
+      HarmonicCounterpointInterval(9)
+
+   Harmonic counterpoint intervals are immutable.
    '''
 
    def __init__(self, token):
       from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
       if isinstance(token, int):
-         if not 0 < token:
-            raise ValueError('must be positive integer.')
-         #self._number = token
-         _number = token
+         _number = abs(token)
       elif isinstance(token, _DiatonicInterval):
-         #self._number = abs(token.number)
          _number = abs(token.number)
       else:
          raise TypeError('must be number or diatonic interval.')

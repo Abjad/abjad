@@ -727,6 +727,9 @@ pitchtools
    tools/pitchtools/is_diatonic_pitch_class_number
    tools/pitchtools/is_diatonic_pitch_name
    tools/pitchtools/is_diatonic_pitch_number
+   tools/pitchtools/is_diatonic_quality_abbreviation
+   tools/pitchtools/is_harmonic_diatonic_interval_abbreviation
+   tools/pitchtools/is_melodic_diatonic_interval_abbreviation
    tools/pitchtools/is_named_chromatic_pitch_token
    tools/pitchtools/is_octave_tick_string
    tools/pitchtools/is_pitch_carrier

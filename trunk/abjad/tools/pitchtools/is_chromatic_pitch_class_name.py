@@ -15,7 +15,7 @@ chromatic_pitch_class_name_regex = re.compile(
    '^%s$' % chromatic_pitch_class_name_regex_body, re.VERBOSE)
 
 def is_chromatic_pitch_class_name(expr):
-   '''True `expr` is a chromatic pitch-class name. Otherwise false::
+   '''True when `expr` is a chromatic pitch-class name. Otherwise false::
 
       abjad> pitchtools.is_chromatic_pitch_class_name('fs')
       True
@@ -24,6 +24,6 @@ def is_chromatic_pitch_class_name(expr):
    '''
 
    if not isinstance(expr, str):
-      return False
+     return False
 
    return bool(chromatic_pitch_class_name_regex.match(expr))

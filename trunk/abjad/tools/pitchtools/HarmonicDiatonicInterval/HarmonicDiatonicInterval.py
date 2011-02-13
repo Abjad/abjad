@@ -8,17 +8,20 @@ from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass import HarmonicDiatoni
 class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
    '''.. versionadded:: 1.1.2
 
-   Harmonic diatonic interval. ::
+   Abjad model harmonic diatonic interval::
 
-      abjad> interval = pitchtools.HarmonicDiatonicInterval('minor', -3)
-      abjad> interval
+      abjad> pitchtools.HarmonicDiatonicInterval('minor', -3)
       HarmonicDiatonicInterval(minor third)
+
+   Harmonic diatonic intervals are immutable.
    '''
 
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], _DiatonicInterval):
          _quality_string = args[0].quality_string
          _number = abs(args[0].number)
+      elif len(args) == 1 and isinstance(args[0], str):
+         pass
       elif len(args) == 2:
          _quality_string = args[0]
          _number = abs(args[1])
@@ -27,8 +30,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
    ## OVERLOADS ##
 
    def __copy__(self):
-      return HarmonicDiatonicInterval(
-         self.quality_string, self.number)
+      return HarmonicDiatonicInterval(self.quality_string, self.number)
 
    def __ge__(self, arg):
       if not isinstance(arg, type(self)):
@@ -63,6 +65,11 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
 
    def __str__(self):
       return '%s%s' % (self._quality_abbreviation, self.number)
+
+   ## PRIVATE METHODS ##
+
+   def _parse_repr_string(self, repr_string):
+      pass
       
    ## PUBLIC ATTRIBUTES ##
 
