@@ -7,8 +7,14 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
 
    Abjad model of twelve-tone row::
 
-      abjad> pitchtools.TwelveToneRow([3, 2, 11, 10, 9, 1, 0, 4, 6, 5, 8, 7])
-      TwelveToneRow(3, 2, 11, 10, 9, 1, 0, 4, 6, 5, 8, 7)
+      abjad> pitchtools.TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
+      TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
+
+   Twelve-tone rows validate pitch-classes at initialization.
+
+   Twelve-tone rows inherit canonical operators from numbered chromatic pitch-class segment.
+
+   Twelve-tone rows return numbered chromatic pitch-class segments on calls to getslice.
 
    Twelve-tone rows are immutable.
    '''
@@ -24,6 +30,9 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
 
    def __copy__(self):
       return TwelveToneRow(self)
+
+   def __getslice__(self, start, stop):
+      return NumberedChromaticPitchClassSegment(tuple.__getslice__(self, start, stop))
 
    def __eq__(self, arg):
       if isinstance(arg, TwelveToneRow):
@@ -41,27 +50,3 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
    @property
    def _contents_string(self):
       return ', '.join([str(abs(pc)) for pc in self])
-
-   ## PUBLIC METHODS ##
-
-   def alpha(self):
-      numbers = [ ]
-      for pc in self:
-         if abs(pc) % 2 == 0:
-            numbers.append((abs(pc) + 1) % 12)
-         else:
-            numbers.append(abs(pc) - 1)
-      return TwelveToneRow(numbers)
-
-   def invert(self):
-      numbers = [12 - abs(pc) for pc in self]
-      return TwelveToneRow(numbers)
-
-   def reverse(self):
-      return TwelveToneRow(reversed(self))
-
-   def transpose(self, n):
-      if not isinstance(n, int):
-         raise TypeError
-      numbers = [(abs(pc) + n) % 12 for pc in self]
-      return TwelveToneRow(numbers)

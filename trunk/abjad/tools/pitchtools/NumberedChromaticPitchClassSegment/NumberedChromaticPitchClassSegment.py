@@ -103,7 +103,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
          numbered_chromatic_pitch_class_segment.invert( )
          NumberedChromaticPitchClassSegment([2, 1.5, 6, 5, 1.5, 5])
       '''
-      return NumberedChromaticPitchClassSegment([pc.invert( ) for pc in self])
+      return type(self)([pc.invert( ) for pc in self])
       
    def multiply(self, n):
       '''Multiply numbered chromatic pitch-class segment:
@@ -114,7 +114,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
          numbered_chromatic_pitch_class_segment.multiply(5)
          NumberedChromaticPitchClassSegment([2, 4.5, 6, 11, 4.5, 11])
       '''
-      return NumberedChromaticPitchClassSegment([pc.multiply(n) for pc in self])
+      return type(self)([pc.multiply(n) for pc in self])
 
    def retrograde(self):
       '''Retrograde of numbered chromatic pitch-class segment:
@@ -125,7 +125,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
          numbered_chromatic_pitch_class_segment.retrograde( )
          NumberedChromaticPitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
       '''
-      return NumberedChromaticPitchClassSegment(reversed(self))
+      return type(self)(reversed(self))
 
    def rotate(self, n):
       '''Rotate numbered chromatic pitch-class segment:
@@ -138,7 +138,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
       '''
       from abjad.tools import seqtools
       pitch_classes = seqtools.rotate_sequence(tuple(self), n)
-      return NumberedChromaticPitchClassSegment(pitch_classes)
+      return type(self)(pitch_classes)
       
    def transpose(self, n):
       '''Transpose numbered chromatic pitch-class segment:
@@ -149,4 +149,4 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
          numbered_chromatic_pitch_class_segment.transpose(10)
          NumberedChromaticPitchClassSegment([8, 8.5, 4, 5, 8.5, 5])
       '''
-      return NumberedChromaticPitchClassSegment([pc.transpose(n) for pc in self])
+      return type(self)([pc.transpose(n) for pc in self])
