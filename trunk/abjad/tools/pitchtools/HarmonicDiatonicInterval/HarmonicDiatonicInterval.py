@@ -10,18 +10,25 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
 
    Abjad model harmonic diatonic interval::
 
-      abjad> pitchtools.HarmonicDiatonicInterval('minor', -3)
-      HarmonicDiatonicInterval(minor third)
+      abjad> pitchtools.HarmonicDiatonicInterval('M9')
+      HarmonicDiatonicInterval('M9')
 
    Harmonic diatonic intervals are immutable.
    '''
 
    def __init__(self, *args):
+      from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import \
+         harmonic_diatonic_interval_abbreviation_regex
       if len(args) == 1 and isinstance(args[0], _DiatonicInterval):
          _quality_string = args[0].quality_string
          _number = abs(args[0].number)
       elif len(args) == 1 and isinstance(args[0], str):
-         pass
+         match = harmonic_diatonic_interval_abbreviation_regex.match(args[0])
+         if match is None:
+            raise ValueError('"%s" does not have the form of an hdi abbreviation.' % args[0])
+         quality_abbreviation, number_string = match.groups( )
+         _quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
+         _number = int(number_string)
       elif len(args) == 2:
          _quality_string = args[0]
          _number = abs(args[1])
@@ -61,16 +68,11 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
       return self.number < arg.number
 
    def __repr__(self):
-      return _DiatonicInterval.__repr__(self)
+      return "%s('%s')" % (self.__class__.__name__, str(self))
 
    def __str__(self):
       return '%s%s' % (self._quality_abbreviation, self.number)
 
-   ## PRIVATE METHODS ##
-
-   def _parse_repr_string(self, repr_string):
-      pass
-      
    ## PUBLIC ATTRIBUTES ##
 
    @property

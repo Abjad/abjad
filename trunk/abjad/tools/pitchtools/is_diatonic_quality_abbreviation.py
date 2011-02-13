@@ -18,7 +18,7 @@ def is_diatonic_quality_abbreviation(expr):
       abjad> pitchtools.is_diatonic_quality_abbreviation('aug')
       True
 
-   The regex ``M|m|P|aug|dim$`` underlies this predicate.
+   The regex ``^M|m|P|aug|dim$`` underlies this predicate.
    '''
 
    if not isinstance(expr, str):
