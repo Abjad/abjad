@@ -7,4 +7,7 @@ class _Segment(tuple, _Immutable):
    Mix-in base class for ordered collections of pitch objects.
    '''
 
-   pass
+   ## OVERLOADS ##
+
+   def __getslice__(self, start, stop):
+      return type(self)(tuple.__getslice__(self, start, stop))   
