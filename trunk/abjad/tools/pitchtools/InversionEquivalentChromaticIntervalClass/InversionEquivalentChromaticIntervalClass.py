@@ -5,12 +5,16 @@ from fractions import Fraction
 class InversionEquivalentChromaticIntervalClass(_Immutable):
    '''.. versionadded:: 1.1.2
 
-   Inversion-equivalent interval class.
+   Abjad model of inversion-equivalent chromatic interval-class::
+
+      abjad> pitchtools.InversionEquivalentChromaticIntervalClass(1)
+      InversionEquivalentChromaticIntervalClass(1)
+   
+   Inversion-equivalent chromatic interval-classes are immutable.
    '''
 
    def __init__(self, interval_class_token):
       if isinstance(interval_class_token, InversionEquivalentChromaticIntervalClass):
-         #self._number = interval_class_token.number
          _number = interval_class_token.number
 
       elif isinstance(interval_class_token, (int, float, long, Fraction)):

@@ -17,31 +17,13 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
 
    ## OVERLOADS ##
 
-   def __contains__(self, arg):
-      return arg in self.pitch_classes
-
    def __copy__(self):
       return TwelveToneRow(self)
 
    def __eq__(self, arg):
       if isinstance(arg, TwelveToneRow):
-         return self.pitch_classes == arg.pitch_classes
+         return tuple(self) == tuple(arg)
       return False
-
-   def __getitem__(self, arg):
-      if isinstance(arg, int):
-         return self.pitch_classes[arg]
-      elif isinstance(arg, slice):
-         start, stop, step = arg.indices(len(self))
-         result = [ ]
-         for i in range(start, stop, step):
-            result.append(self[i])
-         return tuple(result)
-      else:
-         raise ValueError('must be integer or slice.')
-
-   def __len__(self):
-      return len(self.pitch_classes)
 
    def __ne__(self, arg):
       return not self == arg
@@ -53,13 +35,13 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
 
    @property
    def _contents_string(self):
-      return ', '.join([str(abs(pc)) for pc in self.pitch_classes])
+      return ', '.join([str(abs(pc)) for pc in self])
 
    ## PUBLIC METHODS ##
 
    def alpha(self):
       numbers = [ ]
-      for pc in self.pitch_classes:
+      for pc in self:
          if abs(pc) % 2 == 0:
             numbers.append((abs(pc) + 1) % 12)
          else:
@@ -67,14 +49,14 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
       return TwelveToneRow(numbers)
 
    def invert(self):
-      numbers = [12 - abs(pc) for pc in self.pitch_classes]
+      numbers = [12 - abs(pc) for pc in self]
       return TwelveToneRow(numbers)
 
    def reverse(self):
-      return TwelveToneRow(reversed(self.pitch_classes))
+      return TwelveToneRow(reversed(self))
 
    def transpose(self, n):
       if not isinstance(n, int):
          raise TypeError
-      numbers = [(abs(pc) + n) % 12 for pc in self.pitch_classes]
+      numbers = [(abs(pc) + n) % 12 for pc in self]
       return TwelveToneRow(numbers)

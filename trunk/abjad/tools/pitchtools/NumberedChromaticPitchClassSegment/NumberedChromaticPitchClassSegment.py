@@ -40,33 +40,113 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def interval_class_segment(self):
-      interval_classes = list(mathtools.difference_series(self.pitch_classes))
+   def inversion_equivalent_chromatic_interval_class_segment(self):
+      '''New inversion-equivalent chromatic interval-class segment
+      from numbered chromatic pitch-class segment::
+
+         numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+         numbered_chromatic_pitch_class_segment.inversion_equivalent_chromatic_interval_class_segment
+         InversionEquivalentChromaticIntervalClassSegment(0.5, 4.5, 1, 3.5, 3.5)
+      '''
+      from abjad.tools import mathtools
+      from abjad.tools.pitchtools import InversionEquivalentChromaticIntervalClassSegment
+      interval_classes = list(mathtools.difference_series(self))
       return InversionEquivalentChromaticIntervalClassSegment(interval_classes)
 
    @property
-   def pitch_class_set(self):
-      return NumberedChromaticPitchClassSet(self)
+   def numbered_chromatic_pitch_class_set(self):
+      '''New numbered chromatic pitch-class set from numbered chromatic pitch-class segment:
 
-   @property
-   def pitch_classes(self):
-      return tuple(self[:])
+      ::
+
+         numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+         numbered_chromatic_pitch_class_segment.numbered_chromatic_pitch_class_set
+         NumberedChromaticPitchClassSet([6, 7, 10, 10.5])
+      '''
+      return NumberedChromaticPitchClassSet(self)
 
    ## PUBLIC METHODS ##
 
+   def alpha(self):
+      '''Morris alpha transform of numbered chromatic pitch-class segment:
+
+      ::
+
+         numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+         numbered_chromatic_pitch_class_segment.alpha( )
+         NumberedChromaticPitchClassSegment([11, 11.5, 7, 6, 11.5, 6])
+      '''
+      from abjad.tools import mathtools
+      numbers = [ ]
+      for pc in self:
+         pc = abs(pc)
+         is_integer = True
+         if not mathtools.is_integer_equivalent_number(pc):
+            is_integer = False
+            fraction_part = pc - int(pc)
+            pc = int(pc)
+         if abs(pc) % 2 == 0:
+            number = (abs(pc) + 1) % 12
+         else:
+            number = abs(pc) - 1
+         if not is_integer:
+            number += fraction_part
+         numbers.append(number)
+      return type(self)(numbers)
+
    def invert(self):
+      '''Invert numbered chromatic pitch-class segment:
+
+      ::
+
+         numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+         numbered_chromatic_pitch_class_segment.invert( )
+         NumberedChromaticPitchClassSegment([2, 1.5, 6, 5, 1.5, 5])
+      '''
       return NumberedChromaticPitchClassSegment([pc.invert( ) for pc in self])
       
    def multiply(self, n):
+      '''Multiply numbered chromatic pitch-class segment:
+
+      ::
+
+         numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+         numbered_chromatic_pitch_class_segment.multiply(5)
+         NumberedChromaticPitchClassSegment([2, 4.5, 6, 11, 4.5, 11])
+      '''
       return NumberedChromaticPitchClassSegment([pc.multiply(n) for pc in self])
 
    def retrograde(self):
+      '''Retrograde of numbered chromatic pitch-class segment:
+
+      ::
+
+         numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+         numbered_chromatic_pitch_class_segment.retrograde( )
+         NumberedChromaticPitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
+      '''
       return NumberedChromaticPitchClassSegment(reversed(self))
 
    def rotate(self, n):
+      '''Rotate numbered chromatic pitch-class segment:
+
+      ::
+
+         numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+         numbered_chromatic_pitch_class_segment.rotate(1)
+         NumberedChromaticPitchClassSegment([7, 10, 10.5, 6, 7, 10.5])
+      '''
       from abjad.tools import seqtools
-      pitch_classes = seqtools.rotate_sequence(self.pitch_classes, n)
+      pitch_classes = seqtools.rotate_sequence(tuple(self), n)
       return NumberedChromaticPitchClassSegment(pitch_classes)
       
    def transpose(self, n):
+      '''Transpose numbered chromatic pitch-class segment:
+
+      ::
+
+         numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+         numbered_chromatic_pitch_class_segment.transpose(10)
+         NumberedChromaticPitchClassSegment([8, 8.5, 4, 5, 8.5, 5])
+      '''
       return NumberedChromaticPitchClassSegment([pc.transpose(n) for pc in self])
