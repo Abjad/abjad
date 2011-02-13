@@ -39,11 +39,14 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
          return tuple(self) == tuple(arg)
       return False
 
+   def __mul__(self, n):
+      return NumberedChromaticPitchClassSegment(tuple.__mul__(self, n))
+
    def __ne__(self, arg):
       return not self == arg
 
-   def __repr__(self):
-      return '%s([%s])' % (self.__class__.__name__, self._contents_string)
+   def __rmul__(self, n):
+      return NumberedChromaticPitchClassSegment(tuple.__rmul__(self, n))
 
    ## PRIVATE ATTRIBUTES ##
 

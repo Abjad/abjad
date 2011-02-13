@@ -11,3 +11,11 @@ class _Segment(tuple, _Immutable):
 
    def __getslice__(self, start, stop):
       return type(self)(tuple.__getslice__(self, start, stop))   
+
+   def __mul__(self, n):
+      tmp = list(self)
+      tmp *= n
+      return type(self)(tmp)
+
+   def __rmul__(self, n):
+      return self * n
