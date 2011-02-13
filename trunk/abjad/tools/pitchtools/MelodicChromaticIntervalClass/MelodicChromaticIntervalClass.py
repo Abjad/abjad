@@ -9,7 +9,12 @@ from abjad.tools.pitchtools._MelodicIntervalClass import _MelodicIntervalClass
 class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Melodic chromatic interval class.
+   Abjad model of melodic chromatic interval class::
+
+      abjad> pitchtools.MelodicChromaticIntervalClass(-14)
+      MelodicChromaticIntervalClass(-2)
+
+   Melodic chromatic interval classes are immutable.
    '''
 
    def __init__(self, token):
@@ -17,36 +22,27 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
          sign = mathtools.sign(token)
          abs_token = abs(token)
          if abs_token % 12 == 0 and 12 <= abs_token:
-            #self._number = 12
             number = 12
          else:
-            #self._number = abs_token % 12
             number = abs_token % 12
-         #self._number *= sign
          number *= sign
       elif isinstance(token, _Interval):
          number = token.semitones
          sign = mathtools.sign(number)
          abs_number = abs(number)
          if abs_number % 12 == 0 and 12 <= abs_number:
-            #self._number = 12
             number = 12
          else:
-            #self._number = abs_number % 12
             number = abs_number % 12
-         #self._number *= sign
          number *= sign
       elif isinstance(token, _IntervalClass):
          number = token.number
          sign = mathtools.sign(number)
          abs_number = abs(number)
          if abs_number % 12 == 0 and 12 <= abs_number:
-            #self._number = 12
             number = 12
          else:
-            #self._number = abs_number % 12
             number = abs_number % 12
-         #self._number *= sign
          number *= sign
       else:
          raise ValueError('must be number, interval or interval class.')

@@ -5,16 +5,18 @@ from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import Inv
 class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
    '''.. versionadded:: 1.1.2
 
-   Unordered collection of interval class instances.
+   Abjad model of inversion-equivalent chromatic interval-class set::
+
+      abjad> pitchtools.InversionEquivalentChromaticIntervalClassSet([1, 1, 6, 2, 2])
+      InversionEquivalentChromaticIntervalClassSet(1, 2, 6)
+
+   Inversion-equivalent chromatic interval-class sets are immutable.
    '''
 
-   #def __init__(self, interval_class_tokens):
    def __new__(self, interval_class_tokens):
-      #self._interval_classes = [ ] ## can this line be deleted?
       iecics = [ ]
       for token in interval_class_tokens:
          iecic = InversionEquivalentChromaticIntervalClass(token)
-         #self.add(interval_class)
          iecics.append(iecic)
       return frozenset.__new__(self, iecics)
 

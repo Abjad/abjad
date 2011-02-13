@@ -5,45 +5,12 @@ from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 class InversionEquivalentDiatonicIntervalClass(_DiatonicInterval):
    '''.. versionadded:: 1.1.2
 
-   Inversion-equivalent diatonic interval class::
-
-      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('major', 2)
-      InversionEquivalentDiatonicIntervalClass(major second)
-
-   ::
-
-      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('major', -2)
-      InversionEquivalentDiatonicIntervalClass(major second)
-
-   ::
-
-      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 7)
-      InversionEquivalentDiatonicIntervalClass(major second)
-
-   ::
-
-      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('minor', -7)
-      InversionEquivalentDiatonicIntervalClass(major second)
-
-   ::
-
-      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('major', 9)
-      InversionEquivalentDiatonicIntervalClass(major second)
-
-   ::
-
-      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('major', -9)
-      InversionEquivalentDiatonicIntervalClass(major second)
-
-   ::
-
-      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 14)
-      InversionEquivalentDiatonicIntervalClass(major second)
-
-   ::
+   Abjad model of inversion-equivalent diatonic interval class::
 
       abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('minor', -14)
       InversionEquivalentDiatonicIntervalClass(major second)
+
+   Inversion-equivalent diatonic interval-classes are immutable.
    '''
 
    def __init__(self, *args):

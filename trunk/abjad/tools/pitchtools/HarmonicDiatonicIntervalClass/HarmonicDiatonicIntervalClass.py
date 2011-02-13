@@ -8,18 +8,27 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
 
    Abjad model harmonic diatonic interval class::
 
-      abjad> pitchtools.HarmonicDiatonicIntervalClass('major', -9) 
-      HarmonicDiatonicIntervalClass(major second)
+      abjad> pitchtools.HarmonicDiatonicIntervalClass('M9')
+      HarmonicDiatonicIntervalClass('M2')
 
    Harmonic diatonic interval classes are immutable.
    '''
 
    def __init__(self, *args):
       from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
+      from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import \
+         harmonic_diatonic_interval_abbreviation_regex
       if len(args) == 1:
          if isinstance(args[0], HarmonicDiatonicInterval):
             quality_string = args[0]._quality_string
             number = args[0].number
+         elif isinstance(args[0], str):
+            match = harmonic_diatonic_interval_abbreviation_regex.match(args[0])
+            if match is None:
+               raise ValueError('"%s" does not have the form of an hdic abbreviation.' % args[0])
+            quality_abbreviation, number_string = match.groups( )
+            quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
+            number = int(number_string)
          elif isinstance(args[0], tuple) and len(args[0]) == 2:
             quality_string, number = args[0]
          else:

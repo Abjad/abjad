@@ -6,23 +6,35 @@ from abjad.tools.pitchtools._MelodicIntervalClass import _MelodicIntervalClass
 class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Melodic diatonic interval class.
+   Abjad model of melodic diatonic interval-class::
+
+      abjad> pitchtools.MelodicDiatonicIntervalClass('-M9')
+      MelodicDiatonicIntervalClass('-M2')
+
+   Melodic diatonic interval-classes are immutable.
    '''
 
    def __init__(self, *args):
       from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
+      from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
+         melodic_diatonic_interval_abbreviation_regex
       if len(args) == 1:
          if isinstance(args[0], MelodicDiatonicInterval):
             quality_string = args[0]._quality_string
             number = args[0].number
+         elif isinstance(args[0], str):
+            match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
+            if match is None:
+               raise ValueError('"%s" does not have the form of an abbreviation.' % args[0])
+            direction_string, quality_abbreviation, number_string = match.groups( )
+            quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
+            number = int(direction_string + number_string)
          else:
             raise TypeError('what type of instance is this?')
       else:
          quality_string, number = args
       if quality_string not in self._acceptable_quality_strings:
          raise ValueError('not acceptable quality string.')
-      #self._quality_string = quality_string
-      object.__setattr__(self, '_quality_string', quality_string)
       if not isinstance(number, int):
          raise TypeError('must be integer.')
       if number == 0:
@@ -37,8 +49,8 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
             number = 7
       if not number == 1:
          number *= sign
-      #self._number = number
       object.__setattr__(self, '_number', number)
+      object.__setattr__(self, '_quality_string', quality_string)
 
    ## OVERLOADS ##
 

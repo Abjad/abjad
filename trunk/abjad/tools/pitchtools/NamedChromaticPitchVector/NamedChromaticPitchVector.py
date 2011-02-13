@@ -5,18 +5,21 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 class NamedChromaticPitchVector(_Vector):
    '''.. versionadded:: 1.1.2
 
-   Tallies by pitch.
+   Abjad model of named chromatic pitch vector::
+
+      abjad> pitchtools.NamedChromaticPitchVector(["c''", "c''", "cs''", "cs''", "cs''"])
+      NamedChromaticPitchVector(c'': 2, cs'': 3)
+
+   Named chromatic pitch vectors are immutable.
    '''
 
    def __init__(self, pitch_tokens): 
       for token in pitch_tokens:
          pitch = NamedChromaticPitch(token)
          try:
-            #self[pitch.pair] += 1
-            dict.__setitem__(self, pitch.pair, self[pitch.pair] + 1)
+            dict.__setitem__(self, str(pitch), self[str(pitch)] + 1)
          except KeyError:
-            #self[pitch.pair] = 1
-            dict.__setitem__(self, pitch.pair, 1)
+            dict.__setitem__(self, str(pitch), 1)
 
    ## OVERLOADS ##
 
@@ -32,7 +35,7 @@ class NamedChromaticPitchVector(_Vector):
          return ' '
       substrings = [ ]
       for pitch in pitches:
-         count = self[pitch.pair]
+         count = self[str(pitch)]
          substring = '%s: %s' % (pitch, count)
          substrings.append(substring)
       return ', '.join(substrings)

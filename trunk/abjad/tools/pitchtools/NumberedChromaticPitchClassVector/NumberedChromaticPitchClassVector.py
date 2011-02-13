@@ -5,7 +5,13 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromatic
 class NumberedChromaticPitchClassVector(_Vector):
    '''.. versionadded:: 1.1.2
 
-   Tallies by pitch class.
+   Abjad model of numbered chromatic pitch-class vector::
+
+      abjad> print pitchtools.NumberedChromaticPitchClassVector([13, 13, 14.5, 14.5, 14.5, 6, 6, 6])
+      0 2 0 0 0 0 | 3 0 0 0 0 0
+      0 0 3 0 0 0 | 0 0 0 0 0 0
+
+   Numbered chromatic pitch-class vectors are immutable.
    '''
 
    def __init__(self, pitch_class_tokens):

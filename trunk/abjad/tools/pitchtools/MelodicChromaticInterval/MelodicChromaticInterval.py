@@ -9,18 +9,18 @@ from abjad.tools.pitchtools.MelodicChromaticIntervalClass import MelodicChromati
 class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
    '''.. versionadded:: 1.1.2
 
-   Melodic chromatic interval in semitones. ::
+   Abjad model of melodic chromatic interval::
 
-      abjad> pitchtools.MelodicChromaticInterval(-2)
-      MelodicChromaticInterval(-2)
+      abjad> pitchtools.MelodicChromaticInterval(-14)
+      MelodicChromaticInterval(-14)
+
+   Melodic chromatic intervals are immutable.
    '''
 
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
-         #self._number = arg
          number = arg
       elif isinstance(arg, _Interval):
-         #self._number = arg.semitones
          number = arg.semitones
       else:
          raise TypeError('%s must be number or interval.' % arg)
@@ -99,5 +99,4 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
 
    @property
    def interval_class(self):
-      #return self.direction_number * (abs(self.number) % 12)
       return MelodicChromaticIntervalClass(self)

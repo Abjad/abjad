@@ -6,9 +6,12 @@ from abjad.tools.pitchtools.MelodicCounterpointIntervalClass import MelodicCount
 class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
    '''.. versionadded:: 1.1.2
 
-   Melodic counterpoint interval.
-   Like a reduced diatonic interval stripped of major, minor
-   or other quality. Similar to the numbers of figured bass.
+   Abjad model of melodic counterpoint interval::
+
+      abjad> pitchtools.MelodicCounterpointInterval(-9)
+      MelodicCounterpointInterval(-9)
+
+   Melodic counterpoint intervals are immutable.
    '''
 
    def __init__(self, number):
@@ -18,7 +21,6 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
          raise ValueError('must be nonzero integer.')
       if abs(number) == 1:
          number = 1
-      #self._number = number
       object.__setattr__(self, '_number', number)
 
    ## OVERLOADS ##

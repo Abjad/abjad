@@ -6,12 +6,15 @@ from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInte
 class MelodicChromaticIntervalSet(_IntervalSet):
    '''.. versionadded:: 1.1.2
 
-   Unordered collection of melodic chromatic interval instances.
+   Abjad model of melodic chromatic interval set::
+
+      abjad> pitchtools.MelodicChromaticIntervalSet([11, 11, 13.5, 13.5])
+      MelodicChromaticIntervalSet(+11, +13.5)
+
+   Melodic chromatic interval sets are immutable.
    '''
 
-   #def __init__(self, interval_tokens):
    def __new__(self, interval_tokens):
-      #self.update(interval_tokens)
       mcis = [MelodicChromaticInterval(x) for x in interval_tokens]
       return frozenset.__new__(self, mcis)
 
@@ -47,13 +50,3 @@ class MelodicChromaticIntervalSet(_IntervalSet):
    @property
    def numbers(self):
       return set([interval.number for interval in self])
-
-#   ## PUBLIC METHODS ##
-#
-#   def add(self, arg):
-#      interval = MelodicChromaticInterval(arg)
-#      set.add(self, interval)
-#
-#   def update(self, expr):
-#      for x in expr:
-#         self.add(x)

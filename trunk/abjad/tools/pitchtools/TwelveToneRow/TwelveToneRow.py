@@ -5,7 +5,12 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClassSegment import NumberedCh
 class TwelveToneRow(NumberedChromaticPitchClassSegment):
    '''.. versionadded:: 1.1.2
 
-   Twelve tone row.
+   Abjad model of twelve-tone row::
+
+      abjad> pitchtools.TwelveToneRow([3, 2, 11, 10, 9, 1, 0, 4, 6, 5, 8, 7])
+      TwelveToneRow(3, 2, 11, 10, 9, 1, 0, 4, 6, 5, 8, 7)
+
+   Twelve-tone rows are immutable.
    '''
 
    def __new__(self, pitch_classes):
@@ -29,7 +34,7 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._contents_string)
+      return '%s([%s])' % (self.__class__.__name__, self._contents_string)
 
    ## PRIVATE ATTRIBUTES ##
 

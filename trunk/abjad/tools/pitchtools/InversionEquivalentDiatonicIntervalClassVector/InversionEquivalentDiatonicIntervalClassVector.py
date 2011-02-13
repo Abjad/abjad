@@ -6,13 +6,15 @@ from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_cla
 class InversionEquivalentDiatonicIntervalClassVector(_Vector):
    '''.. versionadded:: 1.1.2
 
-   Diatonic interval class vector::
+   Abjad model of inversion-equivalent diatonic interval class vector::
 
       abjad> staff = Staff(macros.scale(5))
       abjad> pitchtools.InversionEquivalentDiatonicIntervalClassVector(staff) 
       InversionEquivalentDiatonicIntervalClassVector(P1: 0, aug1: 0, m2: 1, M2: 3, aug2: 0, dim3: 0, m3: 2, M3: 1, dim4: 0, P4: 3, aug4: 0)
 
-   Vector is not quatertone-aware.
+   Inversion-equivalent diatonic interval-class vector are not quatertone-aware.
+
+   Inversion-equivalent diatonic interval-class vectors are immutable.
    '''
 
    def __init__(self, expr): 

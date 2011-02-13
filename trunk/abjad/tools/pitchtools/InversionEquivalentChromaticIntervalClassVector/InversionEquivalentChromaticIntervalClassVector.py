@@ -5,21 +5,23 @@ from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import Inv
 class InversionEquivalentChromaticIntervalClassVector(_Vector):
    '''.. versionadded:: 1.1.2
 
-   Tallies by interval class.
+   Abjad model of inversion-equivalent chromatic interval-class vector::
+
+      abjad> pitchtools.InversionEquivalentChromaticIntervalClassVector([1, 1, 6, 2, 2, 2])
+      InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
+
+   Inversion-equivalent chromatic interval-class vectors are immutable.
    '''
 
    def __init__(self, interval_class_tokens):
       for icn in range(7):
-         #self[icn] = 0
-         #self[icn + 0.5] = 0
          dict.__setitem__(self, icn, 0)
          dict.__setitem__(self, icn + 0.5, 0)
-      #del(self[6.5])
-      dict.__delitem__(self, self[6.5])
+      dict.__delitem__(self, 6.5)
       for token in interval_class_tokens:
-         interval_class = InversionEquivalentChromaticIntervalClass(token)
-         #self[interval_class.number] += 1
-         dict.__setitem__(self, self[interval_class.number], self[interval_class.number] + 1)
+         interval_class_number = InversionEquivalentChromaticIntervalClass(token).number
+         current_tally = self[interval_class_number]
+         dict.__setitem__(self, interval_class_number, current_tally + 1)
 
    ## OVERLOADS ##
 

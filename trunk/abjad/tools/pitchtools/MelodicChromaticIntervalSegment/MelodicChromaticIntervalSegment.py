@@ -7,14 +7,18 @@ from abjad.tools.pitchtools.MelodicChromaticIntervalClassVector import MelodicCh
 class MelodicChromaticIntervalSegment(_IntervalSegment):
    '''.. versionadded:: 1.1.2
 
+   Abjad model of melodic chromatic interval segment::
+
+      abjad> pitchtools.MelodicChromaticIntervalSegment([11, 13, 13.5, -2, 2.5])
+      MelodicChromaticIntervalSegment(+11, +13, +13.5, -2, +2.5)
+
+   Melodic chromatic interval segments are immutable.
    '''
 
-   #def __init__(self, mci_tokens):
    def __new__(self, mci_tokens):
       mcis = [ ]
       for token in mci_tokens:
          mci = MelodicChromaticInterval(token)
-         #self.append(mci)
          mcis.append(mci)
       return tuple.__new__(self, mcis)
 

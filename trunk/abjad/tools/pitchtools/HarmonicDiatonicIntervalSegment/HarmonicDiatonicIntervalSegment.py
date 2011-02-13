@@ -5,15 +5,22 @@ from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInte
 class HarmonicDiatonicIntervalSegment(_IntervalSegment):
    '''.. versionadded:: 1.1.2
 
-   Ordered collection of harmonic diatonic intervals.
+   Abjad model of harmonic diatonic interval segment::
+
+      abjad> pitchtools.HarmonicDiatonicIntervalSegment('m2 M9 m3 M3')
+      HarmonicDiatonicIntervalSegment('m2 M9 m3 M3')
+
+   Harmonic diatonic interval segments are immutable.
    '''
 
-   #def __init__(self, harmonic_diatonic_interval_tokens):
-   def __new__(self, harmonic_diatonic_interval_tokens):
+   def __new__(self, arg):
+      if isinstance(arg, str):
+         harmonic_diatonic_interval_tokens = arg.split( )
+      else:
+         harmonic_diatonic_interval_tokens = arg
       hdis = [ ]
       for token in harmonic_diatonic_interval_tokens:
          hdi = HarmonicDiatonicInterval(token)
-         #self.append(hdi)
          hdis.append(hdi)
       return tuple.__new__(self, hdis)
 
@@ -21,6 +28,9 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
 
    def __copy__(self):
       return HarmonicDiatonicIntervalSegment(self.intervals)
+
+   def __repr__(self):
+      return "%s('%s')" % (self.__class__.__name__, ' '.join([str(x) for x in self]))
 
    ## PUBLIC ATTRIBUTES ##
 

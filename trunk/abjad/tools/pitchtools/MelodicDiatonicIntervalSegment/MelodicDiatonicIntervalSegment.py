@@ -5,15 +5,22 @@ from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterv
 class MelodicDiatonicIntervalSegment(_IntervalSegment):
    '''.. versionadded:: 1.1.2
 
-   Ordered collection of melodic diatonic intervals.
+   Abjad model of melodic diatonic interval segment::
+
+      abjad> pitchtools.MelodicDiatonicIntervalSegment('M2 M9 -m3 -P4')
+      MelodicDiatonicIntervalSegment('+M2 +M9 -m3 -P4')
+
+   Melodic diatonic interval segments are immutable.
    '''
 
-   #def __init__(self, melodic_diatonic_interval_tokens):
-   def __new__(self, melodic_diatonic_interval_tokens):
+   def __new__(self, arg):
+      if isinstance(arg, str):
+         melodic_diatonic_interval_tokens = arg.split( )
+      else:
+         melodic_diatonic_interval_tokens = arg
       mdis = [ ]
       for token in melodic_diatonic_interval_tokens:
          mdi = MelodicDiatonicInterval(token)
-         #self.append(mdi)
          mdis.append(mdi)
       return tuple.__new__(self, mdis)
 
@@ -21,6 +28,9 @@ class MelodicDiatonicIntervalSegment(_IntervalSegment):
 
    def __copy__(self):
       return MelodicDiatonicIntervalSegment(self.intervals)
+
+   def __repr__(self):
+      return "%s('%s')" % (self.__class__.__name__, ' '.join([str(x) for x in self]))
 
    ## PUBLIC ATTRIBUTES ##
 

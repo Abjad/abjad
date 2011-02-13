@@ -4,18 +4,17 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 
 
 class PitchRange(_Immutable):
-   '''.. versionadded:: 1.1.2
+   r""".. versionadded:: 1.1.2
 
-   Model a range of pitches.
+   Abjad model of pitch range::
 
-   All the magic is in the implementation of __contains__.
+      abjad> pitchtools.PitchRange(-12, 36)
+      PitchRange((NamedChromaticPitch('c'), 'inclusive'), (NamedChromaticPitch("c''''"), 'inclusive'))
 
-   Tests are all made by pitch number.
-   '''
+   Pitch ranges are immutable.
+   """
 
    def __init__(self, start = None, stop = None):
-      #self.start = start
-      #self.stop = stop
       if start is None:
          start = start
       elif isinstance(start, (int, long, float)):
@@ -123,42 +122,6 @@ class PitchRange(_Immutable):
 
    ## PUBLIC ATTRIBUTES ##
    
-#   @apply
-#   def start( ):
-#      def fget(self):
-#         return self._start
-#      def fset(self, arg):
-#         if arg is None:
-#            self._start = arg
-#         elif isinstance(arg, (int, long, float)):
-#            pitch = NamedChromaticPitch(arg)
-#            self._start = (pitch, 'inclusive')
-#         else:
-#            assert len(arg) == 2
-#            pitch, containment = arg
-#            assert containment in ('inclusive', 'exclusive')
-#            pitch = NamedChromaticPitch(pitch)
-#            self._start = (pitch, containment)
-#      return property(**locals( ))
-#
-#   @apply
-#   def stop( ):
-#      def fget(self):
-#         return self._stop
-#      def fset(self, arg):
-#         if arg is None:
-#            self._stop = arg
-#         elif isinstance(arg, (int, long, float)):
-#            pitch = NamedChromaticPitch(arg)
-#            self._stop = (pitch, 'inclusive')
-#         else:
-#            assert len(arg) == 2
-#            pitch, containment = arg
-#            assert containment in ('inclusive', 'exclusive')
-#            pitch = NamedChromaticPitch(pitch)
-#            self._stop = (pitch, containment)
-#      return property(**locals( ))
-
    @property
    def start(self):
       return self._start

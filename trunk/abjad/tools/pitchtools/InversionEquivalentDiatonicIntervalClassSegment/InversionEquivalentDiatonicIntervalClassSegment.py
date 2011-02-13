@@ -5,18 +5,18 @@ from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import Inve
 class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):
    '''.. versionadded:: 1.1.2
 
-   Ordered collection of diatonic interval classes::
+   Abjad model of inversion-equivalent diatonic interval-class segment::
 
       abjad> pitchtools.InversionEquivalentDiatonicIntervalClassSegment([('major', 2), ('major', 9), ('minor', -2), ('minor', -9)]) 
       InversionEquivalentDiatonicIntervalClassSegment(M2, M2, m2, m2)
+
+   Inversion-equivalent diatonic interval-class segments are immutable.
    '''
 
-   #def __init__(self, diatonic_interval_class_tokens):
    def __new__(self, diatonic_interval_class_tokens):
       dics = [ ]
       for token in diatonic_interval_class_tokens:
          dic = InversionEquivalentDiatonicIntervalClass(token)
-         #self.append(dic)
          dics.append(dic)
       return tuple.__new__(self, dics)
 

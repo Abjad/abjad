@@ -3,6 +3,7 @@ from abjad.tools import mathtools
 from abjad.tools.pitchtools._Interval import _Interval
 
 
+## TODO: implement _Diatonic
 class _DiatonicInterval(_Interval):
    '''.. versionadded:: 1.1.2
 
@@ -14,7 +15,6 @@ class _DiatonicInterval(_Interval):
          if abs(number) == 1:
             raise IntervalError('diminished unison makes no sense.')
       if quality_string in self._acceptable_quality_strings:
-         #self._quality_string = quality_string
          quality_string = quality_string
       else:
          raise ValueError("quality string '%s' must be in %s." % (
@@ -23,7 +23,6 @@ class _DiatonicInterval(_Interval):
       if isinstance(number, int):
          if int == 0:
             raise ValueError
-         #self._number = number
          number = number
       else:
          raise ValueError('interval must be integer.')
