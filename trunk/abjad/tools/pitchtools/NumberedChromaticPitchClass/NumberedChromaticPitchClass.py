@@ -52,6 +52,12 @@ class NumberedChromaticPitchClass(_PitchClass):
       if not isinstance(arg, MelodicChromaticInterval):
          raise TypeError('must be melodic chromatic interval.')
       return NumberedChromaticPitchClass(abs(self) + arg.number % 12)
+
+   def __float__(self):
+      return float(self._chromatic_pitch_class_number)
+
+   def __int__(self):
+      return self._chromatic_pitch_class_number
       
    def __neg__(self):
       return NumberedChromaticPitchClass(-abs(self))

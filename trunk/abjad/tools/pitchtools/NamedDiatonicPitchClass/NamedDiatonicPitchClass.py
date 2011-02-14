@@ -36,6 +36,17 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
       object.__setattr__(self, '_format_string', repr(diatonic_pitch_class_name))
       return self
 
+   ## OVERLOADS ##
+
+   def __abs__(self):
+      return abs(self.numbered_diatonic_pitch_class)
+
+   def __float__(self):
+      return float(self.numbered_diatonic_pitch_class)
+
+   def __int__(self):
+      return int(self.numbered_diatonic_pitch_class)
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -50,4 +61,4 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
       '''
       from abjad.tools import pitchtools
       tmp = pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number
-      return pitchtools.NumberedDiatonicPitchClass(tmp(self.diatonic_pitch_class_name))
+      return pitchtools.NumberedDiatonicPitchClass(tmp(self._diatonic_pitch_class_name))

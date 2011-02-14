@@ -8,6 +8,17 @@ class _DiatonicPitchClass(_Immutable, _StrictComparator):
    Base class for named diatonic pitch class and numeric diatonic pitch class.
    '''
 
+   ## OVERLOADS ##
+
+   def __abs__(self):
+      return self._number
+
+   def __float__(self):
+      return float(self._number)
+
+   def __int__(self):
+      return self._number
+
    ## PRIVATE ATTRIBUTES ##
 
    _diatonic_pitch_class_number_to_diatonic_pitch_class_name_string = {

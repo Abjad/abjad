@@ -1,8 +1,10 @@
 from abjad.core import _Immutable
+from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 from fractions import Fraction
 
 
-class InversionEquivalentChromaticIntervalClass(_Immutable):
+#class InversionEquivalentChromaticIntervalClass(_Immutable):
+class InversionEquivalentChromaticIntervalClass(_IntervalClass):
    '''.. versionadded:: 1.1.2
 
    Abjad model of inversion-equivalent chromatic interval-class::
@@ -20,7 +22,6 @@ class InversionEquivalentChromaticIntervalClass(_Immutable):
       elif isinstance(interval_class_token, (int, float, long, Fraction)):
          if not 0 <= interval_class_token <= 6:
             raise ValueError('must be between 0 and 6, inclusive.')
-         #self._number = interval_class_token
          _number = interval_class_token
       else:
          raise TypeError('must be interval class instance or number.')

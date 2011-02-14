@@ -10,6 +10,16 @@ class _DiatonicIntervalClass(_IntervalClass):
 
    ## OVERLOADS ##
 
+   def __abs__(self):
+      from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass import HarmonicDiatonicIntervalClass
+      return HarmonicDiatonicIntervalClass(str(self))
+
+   def __float__(self):
+      return float(self._number)
+
+   def __int__(self):
+      return self._number
+
    def __repr__(self):
       return "%s('%s')" % (self.__class__.__name__, str(self))
 

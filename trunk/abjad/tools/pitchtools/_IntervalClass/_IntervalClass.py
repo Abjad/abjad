@@ -6,8 +6,17 @@ class _IntervalClass(object):
 
    ## OVERLOADS ##
 
+   def __abs__(self):
+      return type(self)(abs(self._number))
+
+   def __float__(self):
+      return float(self._number)
+
    def __hash__(self):
       return hash(repr(self))
+
+   def __int__(self):
+      return self._number
    
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)

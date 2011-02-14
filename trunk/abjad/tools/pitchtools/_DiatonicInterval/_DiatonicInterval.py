@@ -41,11 +41,17 @@ class _DiatonicInterval(_Interval):
                return True
       return False
 
+   def __float__(self):
+      return float(self._number)
+
+   def __int__(self):
+      return self._number
+
    def __ne__(self, arg):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s %s)' % (self.__class__.__name__, self.quality_string, self.interval_string)
+      return "%s('%s')" % (self.__class__.__name__, self._format_string)
 
    def __str__(self):
       return self._format_string

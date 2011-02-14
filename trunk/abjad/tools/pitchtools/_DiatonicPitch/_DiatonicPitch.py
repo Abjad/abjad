@@ -7,4 +7,13 @@ class _DiatonicPitch(_Pitch):
    Base class for diatonic pitch classes.
    '''
 
-   pass
+   ## OVERLOADS ##
+
+   def __abs__(self):
+      return self._number
+
+   def __float__(self):
+      return float(self._number)
+
+   def __int__(self):
+      return self._number

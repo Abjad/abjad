@@ -1,6 +1,7 @@
 from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 
 
+## TODO: implement _CounterpointObject
 class _CounterpointIntervalClass(_IntervalClass):
    '''.. versionadded:: 1.1.2
 
@@ -8,4 +9,13 @@ class _CounterpointIntervalClass(_IntervalClass):
    counterpoint interval classes can inherit.
    '''
 
-   pass
+   ## OVERLOADS ##
+
+   def __abs__(self):
+      return type(self)(abs(self._number))
+
+   def __float__(self):
+      return float(self._number)
+
+   def __int__(self):
+      return self._number

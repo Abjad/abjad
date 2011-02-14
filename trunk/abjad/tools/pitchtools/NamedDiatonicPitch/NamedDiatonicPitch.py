@@ -1,7 +1,9 @@
-from abjad.core import _UnaryComparator
+#from abjad.core import _UnaryComparator
+from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
 
 
-class NamedDiatonicPitch(_UnaryComparator):
+#class NamedDiatonicPitch(_UnaryComparator):
+class NamedDiatonicPitch(_DiatonicPitch):
    '''.. versionadded:: 1.1.2
 
    The Abjad model of a named diatonic pitch::
@@ -36,6 +38,15 @@ class NamedDiatonicPitch(_UnaryComparator):
       return self
 
    ## OVERLOADS ##
+
+   def __abs__(self):
+      return abs(self.numbered_diatonic_pitch)
+
+   def __float__(self):
+      return float(self.numbered_diatonic_pitch)
+
+   def __int__(self):
+      return int(self.numbered_diatonic_pitch)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, repr(self._diatonic_pitch_name))

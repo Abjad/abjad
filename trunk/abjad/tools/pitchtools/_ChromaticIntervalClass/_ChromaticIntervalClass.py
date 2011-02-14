@@ -7,4 +7,13 @@ class _ChromaticIntervalClass(_IntervalClass):
    Chromatic interval class.
    '''
 
-   pass
+   ## OVERLOADS ##
+
+   def __abs__(self):
+      return type(self)(abs(self._number))
+
+   def __float__(self):
+      return float(self._number)
+
+   def __int__(self):
+      return self._number

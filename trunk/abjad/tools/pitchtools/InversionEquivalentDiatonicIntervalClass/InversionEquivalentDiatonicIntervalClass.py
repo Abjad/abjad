@@ -7,15 +7,25 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicInterval):
 
    Abjad model of inversion-equivalent diatonic interval class::
 
-      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('minor', -14)
-      InversionEquivalentDiatonicIntervalClass(major second)
+      abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('-m14')
+      InversionEquivalentDiatonicIntervalClass('M2')
 
    Inversion-equivalent diatonic interval-classes are immutable.
    '''
 
    def __init__(self, *args):
+      from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
+         melodic_diatonic_interval_abbreviation_regex
       if len(args) == 1 and isinstance(args[0], type(self)):
          self._init_by_self_reference(args[0])
+      elif len(args) == 1 and isinstance(args[0], str):
+         match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
+         if match is None:
+            raise ValueError('"%s" does not have the form of a hdi abbreviation.' % args[0])
+         direction_string, quality_abbreviation, number_string = match.groups( )
+         quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
+         number = int(number_string) 
+         self._init_by_quality_string_and_number(quality_string, number)
       elif len(args) == 1 and isinstance(args[0], tuple):
          self.__init__(*args[0])
       elif len(args) == 2:
@@ -42,8 +52,6 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicInterval):
       else:
          quality_string = self._invert_quality_string(quality_string)
          number = 9 - number
-         #self._quality_string = quality_string
-         #self._number = number
       object.__setattr__(self, '_quality_string', quality_string)
       object.__setattr__(self, '_number', number)
 
@@ -62,10 +70,3 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicInterval):
          if 1 <= arg <= 4 or arg == 8:
             return True
       return False 
-
-   ## PUBLIC ATTRIBUTES ##
-
-   ## TODO: implement inversion-equivalent ChromaticIntervalClass
-   #@property
-   #def chromatic_interval_class(self):
-   #   pass

@@ -47,6 +47,9 @@ class NamedChromaticPitchClass(_PitchClass):
 
    ## OVERLOADS ##
 
+   def __abs__(self):
+      return abs(self.numbered_chromatic_pitch_class)
+
    def __add__(self, melodic_diatonic_interval):
       from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
       from abjad.tools import pitchtools
@@ -57,6 +60,12 @@ class NamedChromaticPitchClass(_PitchClass):
 
    def __copy__(self):
       return NamedChromaticPitchClass(self)
+
+   def __float__(self):
+      return float(self.numbered_chromatic_pitch_class)
+
+   def __int__(self):
+      return int(self.numbered_chromatic_pitch_class)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._repr_string)
