@@ -9,6 +9,9 @@ class _Segment(tuple, _Immutable):
 
    ## OVERLOADS ##
 
+   def __add__(self, arg):
+      return type(self)(tuple(self) + tuple(arg))
+
    def __getslice__(self, start, stop):
       return type(self)(tuple.__getslice__(self, start, stop))   
 
