@@ -1,10 +1,9 @@
 from abjad.tools import seqtools
 
 
-def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(pcs, pitches):
-   '''Turn numeric `pcs` into numeric `pitches`.
-   
-   ::
+def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(
+   pitch_class_numbers, aggregate):
+   '''Register chromatic `pitch_class_numbers` by chromatic pitch-number `aggregate`::
 
       abjad> pitchtools.register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(
       ...     [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11],
@@ -14,18 +13,15 @@ def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(p
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.registrate( )`` to
       ``pitchtools.register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.register_pitch_class_numbers_by_pitch_number_aggregate( )`` to
-      ``pitchtools.register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate( )``.
    '''
 
-   if isinstance(pcs, list):
-      r = [[p for p in pitches if p % 12 == pc] for pc in [x % 12 for x in pcs]]
-      r = seqtools.flatten_sequence(r)
-   elif isinstance(pcs, int):
-      r = [p for p in pitches if p % 12 == pcs][0]
+   if isinstance(pitch_class_numbers, list):
+      result = [
+         [p for p in aggregate if p % 12 == pc] for pc in [x % 12 for x in pitch_class_numbers]]
+      result = seqtools.flatten_sequence(result)
+   elif isinstance(pitch_class_numbers, int):
+      result = [p for p in aggregate if p % 12 == pitch_class_numbers][0]
    else:
-      raise TypeError
-
-   return r
+      raise TypeError('"%s" must be pitch-class number or list of pitch-class numbers.' %
+         pitch_class_numbers)
+   return result
