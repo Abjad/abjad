@@ -834,6 +834,7 @@ seqtools
    tools/seqtools/get_sequence_degree_of_rotational_symmetry
    tools/seqtools/get_sequence_element_at_cyclic_index
    tools/seqtools/get_sequence_elements_at_indices
+   tools/seqtools/get_sequence_elements_frequency_distribution
    tools/seqtools/get_sequence_period_of_rotation
    tools/seqtools/increase_sequence_elements_at_indices_by_addenda
    tools/seqtools/increase_sequence_elements_cyclically_by_addenda
