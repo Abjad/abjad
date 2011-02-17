@@ -3,8 +3,7 @@ import math
 
 
 def rational_to_equal_or_greater_binary_rational(prolated_duration):
-   '''Return the least rational of the form ``1/2**n`` 
-   greater than or equal to `prolated_duration`. ::
+   '''Rational `prolated_duration` to equal to greater binary rational::
 
       abjad> for n in range(1, 17):
       ...     prolated_duration = Fraction(n, 16)
@@ -33,7 +32,14 @@ def rational_to_equal_or_greater_binary_rational(prolated_duration):
       abjad> durtools.rational_to_equal_or_greater_binary_rational(Fraction(1, 80))
       Fraction(1, 64)
 
-   Function intended to find written duration of notes inside tuplet.
+   ::
+
+      abjad> durtools.rational_to_equal_or_greater_binary_rational(Fraction(17, 16))
+      Fraction(2, 1)
+
+   Use to find written duration of tupletted leaves.
+
+   Return fraction.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.naive_prolated_to_written_not_less_than( )`` to
@@ -44,9 +50,10 @@ def rational_to_equal_or_greater_binary_rational(prolated_duration):
    exponent = -int(math.ceil(math.log(prolated_duration, 2)))
 
    # find numerator, denominator and written duration
-   numerator = 1
-   denominator = 2 ** exponent
-   written_duration = Fraction(numerator, denominator)
+   #numerator = 1
+   #denominator = 2 ** exponent
+   #written_duration = Fraction(numerator, denominator)
+   written_duration = Fraction(1, 2) ** exponent
 
    # return written duration
    return written_duration

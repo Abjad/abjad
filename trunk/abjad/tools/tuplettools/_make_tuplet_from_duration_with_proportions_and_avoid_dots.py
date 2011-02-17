@@ -24,7 +24,8 @@ def _make_tuplet_from_duration_with_proportions_and_avoid_dots(duration, divisio
    #basic_prolated_duration = duration / sum(divisions)
    basic_prolated_duration = duration / mathtools.weight(divisions)
 
-   ## TODO: only this call differs from _duration_into_arbitrary_fixed_duration_tuplet_undotted; so combined the two functions. ##
+   ## TODO: only this call differs from _duration_into_arbitrary_fixed_duration_tuplet_undotted; 
+   ##       so combined the two functions.
    ## find basic written duration of note in tuplet
    basic_written_duration = durtools.rational_to_equal_or_greater_binary_rational(
       basic_prolated_duration)
