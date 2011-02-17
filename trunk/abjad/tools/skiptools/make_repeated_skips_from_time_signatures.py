@@ -9,9 +9,7 @@ def make_repeated_skips_from_time_signatures(time_signatures):
       skiptools.make_repeated_skips_from_time_signatures([(2, 8), (3, 32)])
       [[Skip('s8'), Skip('s8')], [Skip('s32'), Skip('s32'), Skip('s32')]]
 
-   Return two-dimensional list of skip lists.
-
-   Use ``seqtools.flatten_sequence( )`` to flatten output if required.
+   Return list of skip lists.
    '''
 
    ## init result
