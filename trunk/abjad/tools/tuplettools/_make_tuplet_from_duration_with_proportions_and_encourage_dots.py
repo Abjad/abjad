@@ -39,11 +39,11 @@ def _make_tuplet_from_duration_with_proportions_and_encourage_dots(duration, div
    ## make tuplet leaves
    try:
       notes = [Note(0, x) if 0 < x else Rest(abs(x)) for x in written_durations]
-   ## extend this suite to accommodate negative divisions
    except AssignabilityError:
       denominator = duration._denominator
       note_durations = [Fraction(x, denominator) for x in divisions]
-      notes = notetools.make_notes(0, note_durations)
+      #notes = notetools.make_notes(0, note_durations)
+      notes = [Note(0, x) if 0 < x else Rest(abs(x)) for x in note_durations]
 
    ## make tuplet
    tuplet = FixedDurationTuplet(duration, notes)
