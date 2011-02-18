@@ -40,6 +40,12 @@ class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
    def __abs__(self):
       return self._diatonic_pitch_number
 
+   def __repr__(self):
+      return '%s(%s)' % (self.__class__.__name__, str(self))
+   
+   def __str__(self):
+      return str(self._diatonic_pitch_number)
+
    ## PUBLIC ATTRIBUTES ##
 
    @property

@@ -34,6 +34,14 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
       object.__setattr__(self, '_format_string', diatonic_pitch_class_number)
       return self
 
+   ## OVERLOADS ##
+
+   def __repr__(self):
+      return '%s(%s)' % (self.__class__.__name__, str(self))
+
+   def __str__(self):
+      return str(self._diatonic_pitch_class_number)
+
    @property
    def named_diatonic_pitch_class(self):
       '''Named diatonic pitch class from numeric diatonic pitch class:

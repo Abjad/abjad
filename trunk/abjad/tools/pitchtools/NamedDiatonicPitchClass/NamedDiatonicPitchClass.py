@@ -47,6 +47,12 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
    def __int__(self):
       return int(self.numbered_diatonic_pitch_class)
 
+   def __repr__(self):
+      return '%s(%s)' % (self.__class__.__name__, repr(str(self)))
+
+   def __str__(self):
+      return self._diatonic_pitch_class_name
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
