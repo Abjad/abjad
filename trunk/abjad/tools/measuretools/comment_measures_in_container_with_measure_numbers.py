@@ -5,6 +5,8 @@ from abjad.components.Measure import Measure
 def comment_measures_in_container_with_measure_numbers(container, style = 'comment'):
    r'''Label measure numbers in `container` according to `style`.
 
+   .. note:: functionality current not implemented.
+
    Turn measure number labels on with ``style = 'comment'``. ::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
