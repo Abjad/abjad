@@ -22,16 +22,17 @@ class _MultipartBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
       result = [ ]
       spanner = self.spanner
       if componenttools.is_beamable_component(leaf):
-         if spanner._is_my_first_leaf(leaf):
-            result.append('[')
-         else:
-            prev = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
-            if prev is not None and not componenttools.is_beamable_component(prev):
+         if 1 < len(spanner.leaves):   
+            if spanner._is_my_first_leaf(leaf):
                result.append('[')
-         if spanner._is_my_last_leaf(leaf):
-            result.append(']')   
-         else:
-            next = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
-            if next is not None and not componenttools.is_beamable_component(next):
-               result.append(']')
+            else:
+               prev = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
+               if prev is not None and not componenttools.is_beamable_component(prev):
+                  result.append('[')
+            if spanner._is_my_last_leaf(leaf):
+               result.append(']')   
+            else:
+               next = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
+               if next is not None and not componenttools.is_beamable_component(next):
+                  result.append(']')
       return result

@@ -715,6 +715,7 @@ pitchtools
    tools/pitchtools/get_named_chromatic_pitch_from_pitch_carrier
    tools/pitchtools/get_numeric_chromatic_pitch_class_from_pitch_carrier
    tools/pitchtools/insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list
+   tools/pitchtools/instantiate_pitch_and_interval_test_collection
    tools/pitchtools/inventory_aggregate_subsets
    tools/pitchtools/inventory_inversion_equivalent_diatonic_interval_classes
    tools/pitchtools/is_alphabetic_accidental_abbreviation
