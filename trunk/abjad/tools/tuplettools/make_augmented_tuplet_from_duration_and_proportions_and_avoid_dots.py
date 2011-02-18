@@ -9,20 +9,17 @@ def make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(duration,
 
    Return tupletted leaves strictly without dots when all `proportions` equal ``1``::
    
-      abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(Fraction(3, 16), [1, 1, 1, 1, 1])
-      {@ 5:6 c'32, c'32, c'32, c'32, c'32 @}
+      abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(Fraction(3, 16), [1, 1, 1, -1, -1])
+      {@ 5:6 c'32, c'32, c'32, r32, r32 @}
 
    Allow tupletted leaves to return with dots when some `proportions` do not equal ``1``::
-
-      abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(Fraction(3, 16), [1, 2, 2, 3, 3])
-      {@ 11:12 c'64, c'32, c'32, c'32., c'32. @}
-
-   Interpret negative `proportions` as rests::
 
       abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(Fraction(3, 16), [1, -2, -2, 3, 3])
       {@ 11:12 c'64, r32, r32, c'32., c'32. @}
 
    Reduce `proportions` relative to each other.
+
+   Interpret negative `proportions` as rests.
 
    Return fixed-duration tuplet.
 
