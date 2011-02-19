@@ -60,3 +60,20 @@ def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avo
    t = tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
       duration, [1, -2, -2, 3, 3])
    assert t.format == "\\fraction \\times 12/11 {\n\tc'64\n\tr32\n\tr32\n\tc'32.\n\tc'32.\n}"
+
+
+def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_04( ):
+   '''Reduce proportions relative to each other.
+   '''
+
+   duration = Fraction(3, 16)
+
+   t1 = tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
+      duration, [1, -2, -2, 3, 3])
+   t2 = tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
+      duration, [2, -4, -4, 6, 6])
+   assert t1 == t2
+
+   t = tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
+      Fraction(1, 8), [27])
+   assert t.format == "{\n\tc'8\n}"

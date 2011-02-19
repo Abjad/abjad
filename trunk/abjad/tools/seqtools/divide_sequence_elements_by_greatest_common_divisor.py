@@ -6,8 +6,14 @@ def divide_sequence_elements_by_greatest_common_divisor(sequence):
 
    Divide `sequence` elements by greatest common divisor::
 
-      abjad> seqtools.divide_sequence_elements_by_greatest_common_divisor([2, 2, 8, 16])
-      [1, 1, 4, 8]
+      abjad> seqtools.divide_sequence_elements_by_greatest_common_divisor([2, 2, -8, -16])
+      [1, 1, -4, -8]
+
+   Allow negative `sequence` elements.
+
+   Raise type error on noninteger `sequence` elements.
+
+   Raise not implemented error when ``0`` in `sequence`.
 
    Return new `sequence` object.
    '''

@@ -2,7 +2,7 @@ import math
 
 
 def divisors(n):
-   '''Integer divisors of positive integer `n` in increasing order::
+   '''Positive divisors of integer `n` in increasing order::
 
       abjad> mathtools.divisors(84)
       [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84
@@ -23,31 +23,43 @@ def divisors(n):
       18 [1, 2, 3, 6, 9, 18]
       19 [1, 19]
 
+   Allow nonpositive `n`::
+
+      abjad> mathtools.divisors(-27)
+      [1, 3, 9, 27]
+
    Raise type error on noninteger `n`.
 
-   Raise value error on nonpositive `n`.
+   Raise not implemented error on ``0``.
 
-   Return list of one or more positive integers.
+   Return list of positive integers.
    '''
 
    if not isinstance(n, (int, long)):
       raise TypeError('"%s" must be integer.' % str(n))
 
-   if n <= 0:
-      raise ValueError('"%s" must be positive.' % str(n))
-   
-   ## Find all divisors from 1 to sqrt(n)
+   if n == 0:
+      raise NotImplementedError('all numbers divide zero evenly.')
+
+   ## ensure positive n
+   n = abs(n)
+
+   ## find all divisors from 1 to sqrt(n)
    divisors = [1]
    for i in range(2, int(math.sqrt(n)) + 1):
       if n % i == 0:
          divisors.append(i)
    
+   ## find codivisors
    codivisors = [n / i for i in reversed(divisors)]
-   ## If the number is a perfect square
-   ## we dont want the sqrt in the list twice
+
+   ## remove duplciate divisor if n is perfect square
    if divisors[-1] == codivisors[0]:
       divisors.pop( )
       
+   ## extend and sort divisors
    divisors.extend(codivisors)
- 
+   divisors.sort( )
+
+   ## return divisors
    return divisors

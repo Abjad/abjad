@@ -4,6 +4,7 @@ from abjad.exceptions import AssignabilityError
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import notetools
+from abjad.tools import seqtools
 from abjad.tools import scoretools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools.tuplettools.change_augmented_tuplets_in_expr_to_diminished import \
@@ -16,12 +17,9 @@ from fractions import Fraction
 
 
 def _make_tuplet_from_duration_with_proportions_and_encourage_dots(duration, divisions, prolation):
-   '''.. versionadded:: 1.1.2
 
-   Divide `duration` according to `divisions` and `prolation`.
-
-   Do not allow series of dotted values.
-   '''
+   ## reduce divisions relative to each other
+   divisions = seqtools.divide_sequence_elements_by_greatest_common_divisor(divisions)
 
    ## find basic prolated duration of note in tuplet
    #basic_prolated_duration = duration / sum(divisions)
@@ -61,7 +59,8 @@ def _make_tuplet_from_duration_with_proportions_and_encourage_dots(duration, div
             change_diminished_tuplets_in_expr_to_augmented(tuplet)
 
 #   ## give leaf position in score structure to tuplet
-#   containertools.move_parentage_children_and_spanners_from_components_to_empty_container([l], tuplet)
+#   containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
+#     [l], tuplet)
 
    ## return tuplet
    return tuplet
