@@ -2,10 +2,9 @@ from abjad.components import Note
 from abjad.components import Rest
 from abjad.exceptions import AssignabilityError
 from abjad.tools import durtools
+from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools import notetools
 from abjad.tools import seqtools
-from abjad.tools import scoretools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools.tuplettools.change_augmented_tuplets_in_expr_to_diminished import \
    change_augmented_tuplets_in_expr_to_diminished
@@ -16,7 +15,8 @@ from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import \
 from fractions import Fraction
 
 
-def _make_tuplet_from_duration_with_proportions_and_encourage_dots(duration, divisions, prolation):
+def _make_tuplet_from_duration_with_proportions_and_encourage_dots(
+   duration, divisions, prolation, direction = 'big-endian'):
 
    ## reduce divisions relative to each other
    divisions = seqtools.divide_sequence_elements_by_greatest_common_divisor(divisions)
@@ -40,8 +40,9 @@ def _make_tuplet_from_duration_with_proportions_and_encourage_dots(duration, div
    except AssignabilityError:
       denominator = duration._denominator
       note_durations = [Fraction(x, denominator) for x in divisions]
-      #notes = notetools.make_notes(0, note_durations)
-      notes = [Note(0, x) if 0 < x else Rest(abs(x)) for x in note_durations]
+      pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
+      leaf_durations = [abs(note_duration) for note_duration in note_durations]
+      notes = leaftools.make_leaves(pitches, leaf_durations, direction = direction)
 
    ## make tuplet
    tuplet = FixedDurationTuplet(duration, notes)
