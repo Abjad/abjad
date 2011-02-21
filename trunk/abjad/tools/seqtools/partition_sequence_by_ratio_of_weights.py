@@ -5,10 +5,10 @@ from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from abjad.tools.mathtools.weight import weight
 
 
-def partition_sequence_by_ratio_of_weights(sequence, weights_ratio):
+def partition_sequence_by_ratio_of_weights(sequence, weights):
    '''.. versionadded:: 1.1.2
 
-   Partition `sequence` by `weights_ratio`::
+   Partition `sequence` by ratio of `weights`::
 
 
       abjad> seqtools.partition_sequence_by_ratio_of_weights([1] * 10, [1, 1, 1])
@@ -46,17 +46,13 @@ def partition_sequence_by_ratio_of_weights(sequence, weights_ratio):
    Return list of lists.
 
    .. versionchanged:: 1.1.2
-      renamed ``seqtools.partition_sequence_by_ratio_of_weights( )`` to
-      ``seqtools.partition_sequence_by_ratio_of_weights( )``.
-
-   .. versionchanged:: 1.1.2
       renamed ``seqtools.partition_sequence_by_weights_ratio( )`` to
       ``seqtools.partition_sequence_by_ratio_of_weights( )``.
    '''
 
    list_weight = weight(sequence)
-   weights = mathtools.partition_integer_by_ratio(list_weight, weights_ratio)
-   cumulative_weights = cumulative_sums(weights)
+   weights_parts = mathtools.partition_integer_by_ratio(list_weight, weights)
+   cumulative_weights = cumulative_sums(weights_parts)
 
    result = [ ]
    sublist = [ ]

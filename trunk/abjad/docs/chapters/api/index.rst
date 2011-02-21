@@ -862,6 +862,7 @@ seqtools
    tools/seqtools/map_sequence_elements_to_numbered_sublists
    tools/seqtools/negate_absolute_value_of_sequence_elements_at_indices
    tools/seqtools/overwrite_sequence_elements_at_indices
+   tools/seqtools/partition_sequence_by_ratio_of_lengths
    tools/seqtools/partition_sequence_by_ratio_of_weights
    tools/seqtools/partition_sequence_by_restricted_growth_function
    tools/seqtools/partition_sequence_by_sign_of_elements
