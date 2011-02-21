@@ -17,19 +17,19 @@ def explode_overlapping_tree_into_nonoverlapping_trees_uncompactly(tree):
 
     depth_tree = compute_depth_of_tree(tree)
     max_depth = max([x.data['depth'] for x in depth_tree])
-    xtrees = [IntervalTree([ ]) for i in range(max_depth)]
+    layers = [[ ] for i in range(max_depth)]
 
     offset = 0
     for interval in tree.inorder:
         for i in range(max_depth):
-            xtree = xtrees[(i + offset) % max_depth]
-            if not len(xtree):
-                xtree.insert(interval)
+            layer = layers[(i + offset) % max_depth]
+            if not len(layer):
+                layer.append(interval)
                 offset = i + 1
                 break
-            elif not xtree.inorder[-1].is_overlapped_by_interval(interval):
-                xtree.insert(interval)
+            elif not layer[-1].is_overlapped_by_interval(interval):
+                layer.append(interval)
                 offset = i + 1
                 break
 
-    return xtrees
+    return [IntervalTree(layer) for layer in layers]

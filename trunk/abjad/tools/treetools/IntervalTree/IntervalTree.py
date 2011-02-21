@@ -19,7 +19,7 @@ class IntervalTree(_RedBlackTree):
         self._sentinel.parent = self._sentinel
         self._root = self._sentinel
         self._intervals = [ ]
-        self.insert(intervals)
+        self._insert(intervals)
 
     ## OVERLOADS ##
 
@@ -55,7 +55,37 @@ class IntervalTree(_RedBlackTree):
         else:
             return '%s([ ])' % self.__class__.__name__
 
-    ## PRIVATE ATTRIBUTES ##
+    ## PRIVATE METHODS ##
+
+    def _insert(self, args):
+        if isinstance(args, BoundedInterval):
+            intervals = [args]
+        elif isinstance(args, (IntervalTree, list, set, tuple)):
+            assert all([isinstance(i, (BoundedInterval, IntervalTree)) for i in args])
+            intervals = [ ]
+            for x in args:
+                if isinstance(x, BoundedInterval):
+                    intervals.append(x)
+                elif isinstance(x, (IntervalTree, list, set, tuple)):
+                    intervals.extend(x)
+        else:
+            raise ValueError
+        for interval in intervals:
+            #interval_copy = interval.__class__(interval)
+            node = self._find_by_key(interval.low)
+            if node is not None:
+                node.payload.append(interval)
+                #node.payload.append(interval_copy)
+            else:
+                node = _IntervalNode(interval.low, interval)
+                node.left = self._sentinel
+                node.right = self._sentinel
+                node.parent = self._sentinel
+                #node = _IntervalNode(interval.low, interval_copy)
+                self._insert_node(node)
+            self._intervals.append(interval)
+            #self._intervals.append(interval_copy)
+        self._update_high_extrema( )
 
     ## PUBLIC ATTRIBUTES ##
 
@@ -367,99 +397,99 @@ class IntervalTree(_RedBlackTree):
             raise ValueError
         return tuple(sorted(recurse(self._root, low, high), key=lambda x: x.signature))
 
-    def insert(self, args):
-        if isinstance(args, BoundedInterval):
-            intervals = [args]
-        elif isinstance(args, (IntervalTree, list, set, tuple)):
-            assert all([isinstance(i, (BoundedInterval, IntervalTree)) for i in args])
-            intervals = [ ]
-            for x in args:
-                if isinstance(x, BoundedInterval):
-                    intervals.append(x)
-                elif isinstance(x, (IntervalTree, list, set, tuple)):
-                    intervals.extend(x)
-        else:
-            raise ValueError
-        for interval in intervals:
-            #interval_copy = interval.__class__(interval)
-            node = self._find_by_key(interval.low)
-            if node is not None:
-                node.payload.append(interval)
-                #node.payload.append(interval_copy)
-            else:
-                node = _IntervalNode(interval.low, interval)
-                node.left = self._sentinel
-                node.right = self._sentinel
-                node.parent = self._sentinel
-                #node = _IntervalNode(interval.low, interval_copy)
-                self._insert_node(node)
-            self._intervals.append(interval)
-            #self._intervals.append(interval_copy)
-        self._update_high_extrema( )
+#    def insert(self, args):
+#        if isinstance(args, BoundedInterval):
+#            intervals = [args]
+#        elif isinstance(args, (IntervalTree, list, set, tuple)):
+#            assert all([isinstance(i, (BoundedInterval, IntervalTree)) for i in args])
+#            intervals = [ ]
+#            for x in args:
+#                if isinstance(x, BoundedInterval):
+#                    intervals.append(x)
+#                elif isinstance(x, (IntervalTree, list, set, tuple)):
+#                    intervals.extend(x)
+#        else:
+#            raise ValueError
+#        for interval in intervals:
+#            #interval_copy = interval.__class__(interval)
+#            node = self._find_by_key(interval.low)
+#            if node is not None:
+#                node.payload.append(interval)
+#                #node.payload.append(interval_copy)
+#            else:
+#                node = _IntervalNode(interval.low, interval)
+#                node.left = self._sentinel
+#                node.right = self._sentinel
+#                node.parent = self._sentinel
+#                #node = _IntervalNode(interval.low, interval_copy)
+#                self._insert_node(node)
+#            self._intervals.append(interval)
+#            #self._intervals.append(interval_copy)
+#        self._update_high_extrema( )
 
-    def remove(self, args):
-        if isinstance(args, BoundedInterval):
-            intervals = [args]
-        elif isinstance(args, (IntervalTree, list, set, tuple)):
-            assert all([isinstance(i, BoundedInterval) for i in args])
-            intervals = args
-        else:
-            raise ValueError
-        assert all([interval in self for interval in intervals])
-        for interval in intervals:
-            node = self._find_by_key(interval.low)
-            node.payload.pop(node.payload.index(interval))
-            if not node.payload:
-                self._delete_node(node)
-            self._intervals.pop(self._intervals.index(interval))
-        self._update_high_extrema( )
+#    def remove(self, args):
+#        if isinstance(args, BoundedInterval):
+#            intervals = [args]
+#        elif isinstance(args, (IntervalTree, list, set, tuple)):
+#            assert all([isinstance(i, BoundedInterval) for i in args])
+#            intervals = args
+#        else:
+#            raise ValueError
+#        assert all([interval in self for interval in intervals])
+#        for interval in intervals:
+#            node = self._find_by_key(interval.low)
+#            node.payload.pop(node.payload.index(interval))
+#            if not node.payload:
+#                self._delete_node(node)
+#            self._intervals.pop(self._intervals.index(interval))
+#        self._update_high_extrema( )
 
-    def scale_member_interval_by_value(self, interval, value):
-        assert interval in self._intervals
-        new_interval = interval.scale_by_value(value)
-        if new_interval != interval:
-            self.remove(interval)
-            self.insert(new_interval)
-            return new_interval
-        else:
-            return interval
+#    def scale_member_interval_by_value(self, interval, value):
+#        assert interval in self._intervals
+#        new_interval = interval.scale_by_value(value)
+#        if new_interval != interval:
+#            self.remove(interval)
+#            self.insert(new_interval)
+#            return new_interval
+#        else:
+#            return interval
 
-    def scale_member_interval_to_value(self, interval, value):
-        assert interval in self._intervals
-        new_interval = interval.scale_to_value(value)
-        if new_interval != interval:
-            self.remove(interval)
-            self.insert(new_interval)
-            return new_interval
-        else:
-            return interval
+#    def scale_member_interval_to_value(self, interval, value):
+#        assert interval in self._intervals
+#        new_interval = interval.scale_to_value(value)
+#        if new_interval != interval:
+#            self.remove(interval)
+#            self.insert(new_interval)
+#            return new_interval
+#        else:
+#            return interval
 
-    def shift_member_interval_by_value(self, interval, value):
-        assert interval in self._intervals
-        new_interval = interval.shift_by_value(value)
-        if new_interval != interval:
-            self.remove(interval)
-            self.insert(new_interval)
-            return new_interval
-        else:
-            return interval        
+#    def shift_member_interval_by_value(self, interval, value):
+#        assert interval in self._intervals
+#        new_interval = interval.shift_by_value(value)
+#        if new_interval != interval:
+#            self.remove(interval)
+#            self.insert(new_interval)
+#            return new_interval
+#        else:
+#            return interval
 
-    def shift_member_interval_to_value(self, interval, value):
-        assert interval in self._intervals
-        new_interval = interval.shift_to_value(value)
-        if new_interval != interval:
-            self.remove(interval)
-            self.insert(new_interval)
-            return new_interval
-        else:
-            return interval
+#    def shift_member_interval_to_value(self, interval, value):
+#        assert interval in self._intervals
+#        new_interval = interval.shift_to_value(value)
+#        if new_interval != interval:
+#            self.remove(interval)
+#            self.insert(new_interval)
+#            return new_interval
+#        else:
+#            return interval
 
-    def split_member_interval_at_value(self, interval, value):
-        assert interval in self._intervals
-        splits = interval.split_at_value(value)
-        if splits != interval:
-            self.remove(interval)
-            self.insert(splits)
-            return splits
-        else:
-            return interval
+#    def split_member_interval_at_value(self, interval, value):
+#        assert interval in self._intervals
+#        splits = interval.split_at_value(value)
+#        if splits != interval:
+#            self.remove(interval)
+#            self.insert(splits)
+#            return splits
+#        else:
+#            return interval

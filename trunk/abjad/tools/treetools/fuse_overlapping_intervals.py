@@ -18,6 +18,7 @@ def fuse_overlapping_intervals(intervals):
         ])
     '''
 
+    assert len(intervals)
     assert all([isinstance(interval, BoundedInterval) \
         for interval in intervals])
 

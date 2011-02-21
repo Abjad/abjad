@@ -16,15 +16,15 @@ def explode_overlapping_tree_into_nonoverlapping_trees_compactly(tree):
 
     depth_tree = compute_depth_of_tree(tree)
     max_depth = max([x.data['depth'] for x in depth_tree])
-    xtrees = [IntervalTree([ ]) for i in range(max_depth)]
+    layers = [[ ] for i in range(max_depth)]
 
     for interval in tree.inorder:
-        for xtree in xtrees:
-            if not len(xtree):
-                xtree.insert(interval)
+        for layer in layers:
+            if not len(layer):
+                layer.append(interval)
                 break
-            elif not xtree.inorder[-1].is_overlapped_by_interval(interval):
-                xtree.insert(interval)
+            elif not layer[-1].is_overlapped_by_interval(interval):
+                layer.append(interval)
                 break
                 
-    return xtrees
+    return [IntervalTree(layer) for layer in layers]

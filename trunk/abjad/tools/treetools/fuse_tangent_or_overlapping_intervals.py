@@ -16,7 +16,8 @@ def fuse_tangent_or_overlapping_intervals(intervals):
             BoundedInterval(0, 25, data = {}),
         ])
     '''
-    
+
+    assert len(intervals)    
     assert all([isinstance(interval, BoundedInterval) \
         for interval in intervals])
 

@@ -38,7 +38,8 @@ def split_intervals_in_tree_at_values(tree, values):
             if len(splits) == 2:
                 intervals_to_remove.append(interval)
                 intervals_to_insert.extend(splits)
-        output_tree.remove(intervals_to_remove)
-        output_tree.insert(intervals_to_insert)
+        output_intervals = set(output_tree).union(set(intervals_to_insert))
+        output_intervals = set(output_intervals).difference(set(intervals_to_remove))
+        output_tree = IntervalTree(output_intervals)
 
     return output_tree
