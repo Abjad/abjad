@@ -598,6 +598,7 @@ notetools
    tools/notetools/iterate_notes_forward_in_expr
    tools/notetools/make_accelerating_notes_with_lilypond_multipliers
    tools/notetools/make_notes
+   tools/notetools/make_notes_with_multiplied_durations
    tools/notetools/make_percussion_note
    tools/notetools/make_quarter_notes_with_lilypond_multipliers
    tools/notetools/make_repeated_notes
