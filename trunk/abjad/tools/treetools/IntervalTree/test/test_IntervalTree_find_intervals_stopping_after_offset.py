@@ -5,7 +5,7 @@ from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 def test_IntervalTree_find_intervals_stopping_after_offset_01( ):
     blocks = _make_test_blocks( )
     target_offset = 0
-    expected_payloads = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',)
+    expected_payloads = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
@@ -17,7 +17,7 @@ def test_IntervalTree_find_intervals_stopping_after_offset_01( ):
 def test_IntervalTree_find_intervals_stopping_after_offset_02( ):
     blocks = _make_test_blocks( )
     target_offset = 9
-    expected_payloads = ('b', 'c', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',)
+    expected_payloads = ('b', 'c', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
@@ -29,7 +29,7 @@ def test_IntervalTree_find_intervals_stopping_after_offset_02( ):
 def test_IntervalTree_find_intervals_stopping_after_offset_03( ):
     blocks = _make_test_blocks( )
     target_offset = 14
-    expected_payloads = ('e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',)
+    expected_payloads = ('e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
@@ -41,7 +41,7 @@ def test_IntervalTree_find_intervals_stopping_after_offset_03( ):
 def test_IntervalTree_find_intervals_stopping_after_offset_04( ):
     blocks = _make_test_blocks( )
     target_offset = 19
-    expected_payloads = ('e', 'f', 'h', 'i', 'j', 'k', 'l', 'm',)
+    expected_payloads = ('e', 'f', 'h', 'i', 'j', 'k', 'l',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
@@ -53,7 +53,7 @@ def test_IntervalTree_find_intervals_stopping_after_offset_04( ):
 def test_IntervalTree_find_intervals_stopping_after_offset_05( ):
     blocks = _make_test_blocks( )
     target_offset = 26
-    expected_payloads = ('i', 'k', 'l', 'm',)
+    expected_payloads = ('i', 'j', 'k', 'l',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
@@ -65,7 +65,7 @@ def test_IntervalTree_find_intervals_stopping_after_offset_05( ):
 def test_IntervalTree_find_intervals_stopping_after_offset_06( ):
     blocks = _make_test_blocks( )
     target_offset = 30
-    expected_payloads = ('l', 'm',)
+    expected_payloads = ('k', 'l')
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):

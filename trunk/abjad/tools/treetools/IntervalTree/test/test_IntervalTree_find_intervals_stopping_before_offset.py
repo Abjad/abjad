@@ -65,7 +65,7 @@ def test_IntervalTree_find_intervals_stopping_before_offset_05( ):
 def test_IntervalTree_find_intervals_stopping_before_offset_06( ):
     blocks = _make_test_blocks( )
     target_offset = 30
-    expected_payloads = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k',)
+    expected_payloads = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):

@@ -19,7 +19,8 @@ class BoundedInterval(_Immutable):
             low, high, data = args[0], args[1], args[2]
         assert isinstance(low, (int, Fraction))
         assert isinstance(high, (int, Fraction))
-        assert low <= high
+#        assert low <= high 
+        assert low < high
         if data is not None:
             data = copy.copy(data)
         else:

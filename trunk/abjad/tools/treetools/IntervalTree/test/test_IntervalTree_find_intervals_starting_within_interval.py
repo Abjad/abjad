@@ -78,7 +78,7 @@ def test_IntervalTree_find_intervals_starting_within_interval_06( ):
 def test_IntervalTree_find_intervals_starting_within_interval_07( ):
     blocks = _make_test_blocks( )
     target_interval = BoundedInterval(19, 26)
-    expected_payloads = ('h', 'i', 'j', 'k',)
+    expected_payloads = ('h', 'i', 'j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
@@ -90,19 +90,7 @@ def test_IntervalTree_find_intervals_starting_within_interval_07( ):
 def test_IntervalTree_find_intervals_starting_within_interval_08( ):
     blocks = _make_test_blocks( )
     target_interval = BoundedInterval(24, 31)
-    expected_payloads = ('i', 'j', 'k',)
-    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
-        key = lambda x: x.signature))
-    for i in range(len(blocks)):
-        blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_starting_within_interval(target_interval)
-        assert expected_blocks == actual_blocks
-
-def test_IntervalTree_find_intervals_starting_within_interval_09( ):
-    blocks = _make_test_blocks( )
-    target_interval = BoundedInterval(26, 26)
-    expected_payloads = ('j', 'k',)
+    expected_payloads = ('i', 'j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
@@ -114,7 +102,7 @@ def test_IntervalTree_find_intervals_starting_within_interval_09( ):
 def test_IntervalTree_find_intervals_starting_within_interval_10( ):
     blocks = _make_test_blocks( )
     target_interval = BoundedInterval(26, 29)
-    expected_payloads = ('j', 'k',)
+    expected_payloads = ('j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
@@ -126,7 +114,7 @@ def test_IntervalTree_find_intervals_starting_within_interval_10( ):
 def test_IntervalTree_find_intervals_starting_within_interval_11( ):
     blocks = _make_test_blocks( )
     target_interval = BoundedInterval(30, 40)
-    expected_payloads = ('l', 'm',)
+    expected_payloads = ('k', 'l',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):

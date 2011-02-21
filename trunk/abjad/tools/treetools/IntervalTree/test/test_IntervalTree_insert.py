@@ -1,6 +1,9 @@
+import py.test
 from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
+
+py.test.skip('IntervalTree.insert( ) is being phased out.')
 
 def test_IntervalTree_insert_01( ):
     '''A single interval can be inserted into a tree.'''

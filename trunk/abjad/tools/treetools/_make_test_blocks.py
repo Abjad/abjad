@@ -1,10 +1,9 @@
 from abjad.tools.treetools import BoundedInterval
 
 
-def _make_test_blocks(group = 0):
+def _make_test_blocks( ):
 
-    groups = {
-        0: [
+    return [
             BoundedInterval(0, 3, 'a'),
             BoundedInterval(5, 13, 'b'),
             BoundedInterval(6, 10, 'c'), 
@@ -14,15 +13,11 @@ def _make_test_blocks(group = 0):
             BoundedInterval(17, 19, 'g'),
             BoundedInterval(19, 20, 'h'),
             BoundedInterval(25, 30, 'i'),
-            BoundedInterval(26, 26, 'j'),
-            BoundedInterval(26, 29, 'k'),
-            BoundedInterval(32, 34, 'l'),
-            BoundedInterval(34, 37, 'm'),
-        ],
-        1: [ ]
-    }
-
-    if group in groups:
-        return groups[group]
-    else:
-        raise ValueError('Test block group not found.')
+#            BoundedInterval(26, 26, 'j'), # zero-length no longer allowed
+#            BoundedInterval(26, 29, 'k'),
+#            BoundedInterval(32, 34, 'l'),
+#            BoundedInterval(34, 37, 'm'),
+            BoundedInterval(26, 29, 'j'),
+            BoundedInterval(32, 34, 'k'),
+            BoundedInterval(34, 37, 'l'),
+    ]

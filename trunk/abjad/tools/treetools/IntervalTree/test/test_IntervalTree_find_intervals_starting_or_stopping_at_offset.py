@@ -53,7 +53,7 @@ def test_IntervalTree_find_intervals_starting_or_stopping_at_offset_04( ):
 def test_IntervalTree_find_intervals_starting_or_stopping_at_offset_05( ):
     blocks = _make_test_blocks( )
     target_offset = 26
-    expected_payloads = ('j', 'k',)
+    expected_payloads = ('j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):

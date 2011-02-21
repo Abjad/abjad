@@ -26,10 +26,10 @@ def test_BoundedInterval_scale_to_value_03( ):
     assert i2.magnitude == Fraction(2, 5)
 
 def test_BoundedInterval_scale_to_value_04( ):
-    '''BoundedInterval magnitudes can be scaled to zero.'''
+    '''BoundedInterval magnitudes cannot be scaled to zero.'''
     i1 = BoundedInterval(3, 23)
-    i2 = i1.scale_to_value(0)
-    assert i2.low == i2.high
+    py.test.raises(AssertionError,
+        'i1.scale_to_value(0)')
 
 def test_BoundedInterval_scale_to_value_05( ):
     '''BoundedInterval magnitudes cannot be scaled to negative values.'''

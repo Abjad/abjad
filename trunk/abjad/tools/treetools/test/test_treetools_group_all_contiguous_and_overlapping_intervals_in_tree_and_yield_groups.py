@@ -10,7 +10,7 @@ def test_treetools_group_all_contiguous_and_overlapping_intervals_in_tree_and_yi
         [(0, 3)],
         [(5, 13), (6, 10), (8, 9)],
         [(15, 23), (16, 21), (17, 19), (19, 20)],
-        [(25, 30), (26, 26), (26, 29)],
+        [(25, 30), (26, 29)],
         [(32, 34), (34, 37)]
     ]
 

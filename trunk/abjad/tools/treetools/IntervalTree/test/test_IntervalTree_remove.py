@@ -3,7 +3,7 @@ from random import shuffle
 from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
-#py.test.skip('Awaiting rewrite of IntervalTree backend.')
+py.test.skip('IntervalTree.remove( ) is being phased out.')
 
 def test_IntervalTree_remove_01( ):
     '''A single interval can be removed from a tree.'''
@@ -36,7 +36,7 @@ def test_IntervalTree_remove_04( ):
     '''Intervals can be removed regardless of the tree's internal structure.'''
     py.test.skip('test intermittently fails and should be fixed.')
     blocks = _make_test_blocks( )
-    for i in range(100):
+    for i in range(10000):
         shuffle(blocks)
         tree = IntervalTree(blocks)
         assert len(tree) == len(blocks)
