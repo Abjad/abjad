@@ -1,75 +1,46 @@
 from abjad.tools.mathtools.cumulative_sums import cumulative_sums
+from abjad.tools.mathtools.is_integer_equivalent_number import is_integer_equivalent_number
+from abjad.tools.mathtools.sign import sign
+from abjad.tools.mathtools.weight import weight
 
 
 def partition_integer_by_ratio(n, ratio):
-   '''Partition integer `n` by `ratio`::
+   '''Partition positive integer-equivalent `n` by `ratio`::
 
-
-      abjad> mathtools.partition_integer_by_ratio(10, [1])
-      [10]
-
-   ::
-
-      abjad> mathtools.partition_integer_by_ratio(10, [1, 1])
-      [5, 5]
-
-   ::
-
-      abjad> mathtools.partition_integer_by_ratio(10, [1, 1, 1])
-      [3, 4, 3]
-
-   ::
-
-      abjad> mathtools.partition_integer_by_ratio(10, [1, 1, 1, 1])
-      [3, 2, 3, 2]
-
-   ::
-
-      abjad> mathtools.partition_integer_by_ratio(10, [1, 1, 1, 1, 1])
-      [2, 2, 2, 2, 2]
-      
-   ::
-
-      abjad> ratio(10, [1, 2])
+      abjad> partition_integer_by_ratio(10, [1, 2])
       [3, 7]
 
-   ::
+   Partition positive integer-equivalent `n` by `ratio` with negative parts::
 
-      abjad> ratio(10, [3, 1])
-      [8, 2]
+      abjad> ratio(10, [1, -2])
+      [3, -7]
 
-   ::
+   Partition negative integer-equivalent `n` by `ratio`::
 
-      abjad> ratio(10, [3, 2])
-      [6, 4]
+      abjad> ratio(-10, [1, 2])
+      [-3, -7]
 
-   Parts of sum to `n` with proportions equal to `ratio`
-   with some rounding magic.
+   Partition negative integer-equivalent `n` by `ratio` with negative parts::
 
-   Raise type error on noninteger `n`::
+      abjad> ratio(-10, [1, -2])
+      [-3, 7]
 
-      abjad> mathtools.partition_integer_by_ratio('foo', [1, 1, 3])
-      TypeError
+   Return result with weight equal to absolute value of `n`.
 
-   Raise value error on nonpositive `n`::
+   Raise type error on noninteger `n`.
 
-      abjad> mathtools.partition_integer_by_ratio(-1, [1, 1, 3])
-      ValueError
-
-   Return list of positive integers.
+   Return list of integers.
    '''
 
-   if not isinstance(n, (int, long)):
-      raise TypeError
+   if not is_integer_equivalent_number(n):
+      raise TypeError('input "%s" is not integer-equivalent number.' % n)
 
-   if n <= 0:
-      raise ValueError
-
-   assert all([isinstance(part, (int, long)) for part in ratio])
+   if not all([is_integer_equivalent_number(part) for part in ratio]):
+      raise TypeError('some parts in "%s" not integer-equivalent numbers.' % ratio)
 
    result = [0]
 
-   divisions = [float(n) * part / sum(ratio) for part in ratio]
+   divisions = [float(abs(n)) * abs(part) / weight(ratio) for part in ratio]
    cumulative_divisions = cumulative_sums(divisions)
 
    for division in cumulative_divisions:
@@ -78,4 +49,11 @@ def partition_integer_by_ratio(n, ratio):
 
    result = result[1:]
 
+   ## adjust signs of output elements
+   if sign(n) == -1:
+      result = [-x for x in result]
+   ratio_signs = [sign(x) for x in ratio] 
+   result = [pair[0] * pair[1] for pair in zip(ratio_signs, result)]
+
+   ## return result
    return result
