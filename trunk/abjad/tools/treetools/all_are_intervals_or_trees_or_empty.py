@@ -5,9 +5,8 @@ from abjad.tools.treetools.IntervalTree import IntervalTree
 
 def all_are_intervals_or_trees_or_empty(input):
    '''Recursively test if all elements of `input` are
-      `BoundedInterval`s or `IntervalTree`s.
-
-      An empty result also return as True.
+   BoundedIntervals or IntervalTrees.
+   An empty result also return as True.
    '''
 
    def recurse(x):

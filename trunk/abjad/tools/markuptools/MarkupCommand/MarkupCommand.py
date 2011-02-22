@@ -17,7 +17,7 @@ class MarkupCommand(_Immutable):
       \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f
    '''
 
-   ## TODO: Implement a multi-line, indented version for human readability.'''
+   ## TODO: Implement a multi-line, indented version for human readability. ##
 
    __slots__ = ('args', 'braced', 'command', 'markup')
 

@@ -1203,23 +1203,24 @@ treetools
    tools/treetools/Block/Block
    tools/treetools/BoundedInterval/BoundedInterval
    tools/treetools/IntervalTree/IntervalTree
+   tools/treetools/all_are_intervals_or_trees_or_empty
    tools/treetools/all_interval_payloads_contain_key_of_klass
-   tools/treetools/all_intervals_in_tree_are_contiguous
-   tools/treetools/all_intervals_in_tree_are_nonoverlapping
-   tools/treetools/compute_depth_of_tree
+   tools/treetools/all_intervals_are_contiguous
+   tools/treetools/all_intervals_are_nonoverlapping
+   tools/treetools/compute_depth_of_intervals
    tools/treetools/compute_logical_and_of_intervals
    tools/treetools/compute_logical_not_of_intervals
    tools/treetools/compute_logical_or_of_intervals
    tools/treetools/compute_logical_xor_of_intervals
    tools/treetools/concatenate_trees
-   tools/treetools/explode_overlapping_tree_into_nonoverlapping_trees_compactly
-   tools/treetools/explode_overlapping_tree_into_nonoverlapping_trees_uncompactly
+   tools/treetools/explode_tree_compactly
+   tools/treetools/explode_tree_uncompactly
    tools/treetools/fuse_overlapping_intervals
    tools/treetools/fuse_tangent_or_overlapping_intervals
-   tools/treetools/get_all_unique_bounds_in_tree
-   tools/treetools/group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups
-   tools/treetools/group_all_overlapping_intervals_in_tree_and_yield_groups
+   tools/treetools/get_all_unique_bounds_in_intervals
+   tools/treetools/group_overlapping_intervals_and_yield_groups
+   tools/treetools/group_tangent_or_overlapping_intervals_and_yield_groups
    tools/treetools/mask_intervals_with_intervals
-   tools/treetools/shift_tree_by_value
-   tools/treetools/shift_tree_to_value
-   tools/treetools/split_intervals_in_tree_at_values
+   tools/treetools/shift_tree_by_offset
+   tools/treetools/shift_tree_to_offset
+   tools/treetools/split_intervals_at_offsets

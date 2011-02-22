@@ -9,6 +9,7 @@ from abjad.tools.treetools.get_all_unique_bounds_in_intervals \
 def compute_depth_of_intervals(intervals):
    '''Compute a tree whose intervals represent the depth (level of overlap) 
    in each boundary pair of `intervals`::
+
       abjad> from abjad.tools.treetools import *
       abjad> a = BoundedInterval(0, 3)
       abjad> b = BoundedInterval(6, 12)
