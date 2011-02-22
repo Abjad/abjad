@@ -1,4 +1,5 @@
 from fractions import Fraction
+from collections import Iterable
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools._IntervalNode import _IntervalNode
 from abjad.tools.treetools._RedBlackTree import _RedBlackTree
@@ -58,18 +59,29 @@ class IntervalTree(_RedBlackTree):
     ## PRIVATE METHODS ##
 
     def _insert(self, args):
-        if isinstance(args, BoundedInterval):
-            intervals = [args]
-        elif isinstance(args, (IntervalTree, list, set, tuple)):
-            assert all([isinstance(i, (BoundedInterval, IntervalTree)) for i in args])
-            intervals = [ ]
-            for x in args:
-                if isinstance(x, BoundedInterval):
-                    intervals.append(x)
-                elif isinstance(x, (IntervalTree, list, set, tuple)):
-                    intervals.extend(x)
-        else:
-            raise ValueError
+        def recurse(x):
+            if isinstance(x, Iterable) and \
+            not isinstance(x, (basestring)):
+                return [a for i in x for a in recurse(i)]
+            else:
+                return [x]
+        
+        intervals = recurse(args)
+        assert all([isinstance(x, BoundedInterval) for x in intervals])
+
+#        if isinstance(args, BoundedInterval):
+#            intervals = [args]
+#        elif isinstance(args, (IntervalTree, list, set, tuple)):
+#            assert all([isinstance(i, (BoundedInterval, IntervalTree)) for i in args])
+#            intervals = [ ]
+#            for x in args:
+#                if isinstance(x, BoundedInterval):
+#                    intervals.append(x)
+#                elif isinstance(x, (IntervalTree, list, set, tuple)):
+#                    intervals.extend(x)
+#        else:
+#            raise ValueError
+
         for interval in intervals:
             #interval_copy = interval.__class__(interval)
             node = self._find_by_key(interval.low)
