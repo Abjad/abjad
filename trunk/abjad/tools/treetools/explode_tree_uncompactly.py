@@ -1,8 +1,8 @@
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools import compute_depth_of_tree
+from abjad.tools.treetools import compute_depth_of_intervals
 
 
-def explode_overlapping_tree_into_nonoverlapping_trees_uncompactly(tree):
+def explode_tree_uncompactly(tree):
     '''Explode the intervals in `tree` into n non-overlapping trees, 
     where n is the maximum depth of `tree`.
 
@@ -15,7 +15,7 @@ def explode_overlapping_tree_into_nonoverlapping_trees_uncompactly(tree):
 
     assert isinstance(tree, IntervalTree)
 
-    depth_tree = compute_depth_of_tree(tree)
+    depth_tree = compute_depth_of_intervals(tree)
     max_depth = max([x.data['depth'] for x in depth_tree])
     layers = [[ ] for i in range(max_depth)]
 

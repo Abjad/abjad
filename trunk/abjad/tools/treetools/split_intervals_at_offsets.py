@@ -2,14 +2,14 @@ from fractions import Fraction
 from abjad.tools.treetools.IntervalTree import IntervalTree
 
 
-def split_intervals_in_tree_at_values(tree, values):
+def split_intervals_at_offsets(tree, values):
     '''Return a new `IntervalTree` where all intervals in `tree` have
     been split at each value in `values` ::
 
         abjad> tree = IntervalTree([ ])
         abjad> tree.insert(BoundedInterval(0, 10, 'a'))
         abjad> tree.insert(BoundedInterval(5, 15, 'b'))
-        abjad> split_intervals_in_tree_at_values(tree, [-1, 3, 7, 16])
+        abjad> split_intervals_at_offsets(tree, [-1, 3, 7, 16])
         IntervalTree([
             BoundedInterval(0, 3, data = 'a'),
             BoundedInterval(3, 7, data = 'a'),

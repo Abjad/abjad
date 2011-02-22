@@ -1,10 +1,13 @@
 from abjad.tools.treetools.IntervalTree import IntervalTree
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
+   import all_are_intervals_or_trees_or_empty
 
 
-def all_intervals_in_tree_are_contiguous(tree):
+def all_intervals_are_contiguous(intervals):
     '''True when all intervals in tree are contiguous and non-overlapping.'''
 
-    assert isinstance(tree, IntervalTree)
+    assert all_are_intervals_or_trees_or_empty(intervals)
+    tree = IntervalTree(intervals)
     
     for i in range(1, len(tree.intervals)):
         if tree.inorder[i].low != tree.inorder[i-1].high:

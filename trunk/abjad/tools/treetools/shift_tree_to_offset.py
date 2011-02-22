@@ -2,7 +2,7 @@ from fractions import Fraction
 from abjad.tools.treetools.IntervalTree import IntervalTree
 
 
-def shift_tree_to_value(tree, value):
+def shift_tree_to_offset(tree, value):
     '''Shift the start offset of all intervals in `tree` such that
     `tree.low` is equal to `value`.'''
 

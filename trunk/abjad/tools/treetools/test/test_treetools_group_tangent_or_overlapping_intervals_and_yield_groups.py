@@ -15,7 +15,7 @@ def test_treetools_group_all_contiguous_and_overlapping_intervals_in_tree_and_yi
     ]
 
     actual_signatures = [ ]
-    for group in group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups(tree):
+    for group in group_tangent_or_overlapping_intervals_and_yield_groups(tree):
         signature_group = [ ]
         for interval in group:
             signature_group.append(interval.signature)

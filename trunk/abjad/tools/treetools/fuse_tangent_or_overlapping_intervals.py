@@ -1,7 +1,9 @@
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools.group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups import \
-    group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups 
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
+    import all_are_intervals_or_trees_or_empty
+from abjad.tools.treetools.group_tangent_or_overlapping_intervals_and_yield_groups import \
+    group_tangent_or_overlapping_intervals_and_yield_groups 
 
 def fuse_tangent_or_overlapping_intervals(intervals):
     '''Fuse all tangent or overlapping intervals and return an `IntervalTree`
@@ -17,12 +19,13 @@ def fuse_tangent_or_overlapping_intervals(intervals):
         ])
     '''
 
-    assert len(intervals)    
-    assert all([isinstance(interval, BoundedInterval) \
-        for interval in intervals])
+    assert all_are_intervals_or_trees_or_empty(intervals)
+    tree = IntervalTree(intervals)
+    if not tree:
+        return tree
 
     trees = [IntervalTree(group) for group in \
-        group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups(intervals)]
+        group_tangent_or_overlapping_intervals_and_yield_groups(tree)]
 
     return IntervalTree([
         BoundedInterval(tree.low_min, tree.high_max) for tree in trees

@@ -5,9 +5,9 @@ from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 py.test.skip('not yet implemented.')
 
-def test_treetools_shift_tree_to_value_01( ):
+def test_treetools_shift_tree_to_offset_01( ):
     pass
 
-def test_treetools_shift_tree_to_value_02( ):
+def test_treetools_shift_tree_to_offset_02( ):
     pass
 

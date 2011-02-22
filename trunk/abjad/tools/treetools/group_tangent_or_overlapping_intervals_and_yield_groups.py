@@ -1,10 +1,12 @@
 from abjad.tools.treetools.IntervalTree import IntervalTree
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
+   import all_are_intervals_or_trees_or_empty
 
 
-def group_all_contiguous_or_overlapping_intervals_in_tree_and_yield_groups(tree):
+def group_tangent_or_overlapping_intervals_and_yield_groups(intervals):
 
-    assert isinstance(tree, IntervalTree)
-
+    assert all_are_intervals_or_trees_or_empty(intervals)
+    tree = IntervalTree(intervals)
     if not tree:
         yield IntervalTree([ ])
         return
