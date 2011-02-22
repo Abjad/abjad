@@ -3,7 +3,7 @@ from abjad.tools.treetools.BoundedInterval import BoundedInterval
 
 
 def test_BoundedInterval___init___01( ):
-    '''High value must be greater than or equal to low value.'''
+    '''High offset must be greater than or equal to low offset.'''
     py.test.raises(AssertionError,
         "i = BoundedInterval(0, -10, 'this should fail.')")
 
@@ -20,7 +20,7 @@ def test_BoundedInterval___init___03( ):
     assert i1 != i2
 
 def test_BoundedInterval___init___04( ):
-    '''BoundedIntervals can be instantiated with just a low and high value.'''
+    '''BoundedIntervals can be instantiated with just a low and high offset.'''
     i = BoundedInterval(0, 10)
 
 def test_BoundedInterval___init___05( ):

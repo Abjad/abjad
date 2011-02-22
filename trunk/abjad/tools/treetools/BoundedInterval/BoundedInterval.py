@@ -79,42 +79,42 @@ class BoundedInterval(_Immutable):
         else:
             return False
 
-    def scale_by_value(self, value):
-        assert isinstance(value, (int, Fraction))
-        assert 0 <= value
-        if value != 1:
-            new_magnitude = (self.high - self.low) * value
+    def scale_by_offset(self, offset):
+        assert isinstance(offset, (int, Fraction))
+        assert 0 <= offset
+        if offset != 1:
+            new_magnitude = (self.high - self.low) * offset
             return self.__class__(BoundedInterval(self.low, self.low + new_magnitude, self.data))
         else:
             return self
 
-    def scale_to_value(self, value):
-        assert isinstance(value, (int, Fraction))
-        assert 0 <= value
-        if value != self.magnitude:
-            return self.__class__(BoundedInterval(self.low, self.low + value, self.data))
+    def scale_to_offset(self, offset):
+        assert isinstance(offset, (int, Fraction))
+        assert 0 <= offset
+        if offset != self.magnitude:
+            return self.__class__(BoundedInterval(self.low, self.low + offset, self.data))
         else:
             return self
 
-    def shift_by_value(self, value):
-        assert isinstance(value, (int, Fraction))
-        if value != 0:
-            return self.__class__(BoundedInterval(self.low + value, self.high + value, self.data))
+    def shift_by_offset(self, offset):
+        assert isinstance(offset, (int, Fraction))
+        if offset != 0:
+            return self.__class__(BoundedInterval(self.low + offset, self.high + offset, self.data))
         else:
             return self
 
-    def shift_to_value(self, value):
-        assert isinstance(value, (int, Fraction))
-        if value != self.low:
+    def shift_to_offset(self, offset):
+        assert isinstance(offset, (int, Fraction))
+        if offset != self.low:
             magnitude = self.high - self.low
-            return self.__class__(BoundedInterval(value, value + magnitude, self.data))
+            return self.__class__(BoundedInterval(offset, offset + magnitude, self.data))
         else:
             return self
 
-    def split_at_value(self, value):
-        assert isinstance(value, (int, Fraction))
-        if self.low < value < self.high:
-            return (self.__class__(BoundedInterval(self.low, value, self.data)),
-                    self.__class__(BoundedInterval(value, self.high, self.data)))
+    def split_at_offset(self, offset):
+        assert isinstance(offset, (int, Fraction))
+        if self.low < offset < self.high:
+            return (self.__class__(BoundedInterval(self.low, offset, self.data)),
+                    self.__class__(BoundedInterval(offset, self.high, self.data)))
         else:
             return (self,)

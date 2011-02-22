@@ -8,12 +8,12 @@ from abjad.tools.treetools.get_all_unique_bounds_in_intervals \
 
 def compute_depth_of_intervals(intervals):
    '''Compute a tree whose intervals represent the depth (level of overlap) 
-   in each boundary pair of `tree`::
+   in each boundary pair of `intervals`::
       abjad> from abjad.tools.treetools import *
-      abjad> tree = IntervalTree([ ])
-      abjad> tree.insert(BoundedInterval(0, 3))
-      abjad> tree.insert(BoundedInterval(6, 12))
-      abjad> tree.insert(BoundedInterval(9, 15))
+      abjad> a = BoundedInterval(0, 3)
+      abjad> b = BoundedInterval(6, 12)
+      abjad> c = BoundedInterval(9, 15)
+      abjad> tree = IntervalTree([a, b, c])
       abjad> compute_depth_of_intervals(tree)
       IntervalTree([
          BoundedInterval(0, 3, data = {'depth': 1}),

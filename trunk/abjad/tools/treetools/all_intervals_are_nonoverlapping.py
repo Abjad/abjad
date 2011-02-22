@@ -4,7 +4,7 @@ from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
 
 
 def all_intervals_are_nonoverlapping(intervals):
-   '''True when all intervals in tree are non-overlapping.'''
+   '''True when all intervals in `intervals` in tree are non-overlapping.'''
 
    assert all_are_intervals_or_trees_or_empty(intervals)
    tree = IntervalTree(intervals)
