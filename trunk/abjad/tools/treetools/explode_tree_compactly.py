@@ -18,7 +18,7 @@ def explode_tree_compactly(tree):
    max_depth = max([x.data['depth'] for x in depth_tree])
    layers = [[ ] for i in range(max_depth)]
 
-   for interval in tree.inorder:
+   for interval in tree:
       for layer in layers:
          if not len(layer):
             layer.append(interval)

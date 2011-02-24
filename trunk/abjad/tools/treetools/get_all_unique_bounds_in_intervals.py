@@ -10,7 +10,7 @@ def get_all_unique_bounds_in_intervals(intervals):
    tree = IntervalTree(intervals)
 
    values = [ ]
-   for interval in tree.intervals:
+   for interval in tree:
       if interval.low not in values:
          values.append(interval.low)
       if interval.high not in values:

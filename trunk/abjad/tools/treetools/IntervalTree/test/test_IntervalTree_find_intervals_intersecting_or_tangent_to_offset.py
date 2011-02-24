@@ -2,7 +2,7 @@ from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
-def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_01( ):
+def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_01( ):
     blocks = _make_test_blocks( )
     target_offset = 0
     expected_payloads = ('a',)
@@ -11,10 +11,10 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_01( ):
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
         tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_offset(target_offset)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
         assert expected_blocks == actual_blocks
         
-def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_02( ):
+def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_02( ):
     blocks = _make_test_blocks( )
     target_offset = 9
     expected_payloads = ('b', 'c', 'd',)
@@ -23,10 +23,10 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_02( ):
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
         tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_offset(target_offset)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_03( ):
+def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_03( ):
     blocks = _make_test_blocks( )
     target_offset = 14
     expected_payloads = ( )
@@ -35,10 +35,10 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_03( ):
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
         tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_offset(target_offset)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_04( ):
+def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_04( ):
     blocks = _make_test_blocks( )
     target_offset = 19
     expected_payloads = ('e', 'f', 'g', 'h',)
@@ -47,10 +47,10 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_04( ):
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
         tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_offset(target_offset)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_05( ):
+def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_05( ):
     blocks = _make_test_blocks( )
     target_offset = 26
     expected_payloads = ('i', 'j',)
@@ -59,10 +59,10 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_05( ):
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
         tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_offset(target_offset)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_06( ):
+def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_06( ):
     blocks = _make_test_blocks( )
     target_offset = 30
     expected_payloads = ('i',)
@@ -71,5 +71,5 @@ def test_IntervalTree_find_intervals_intersecting_or_tangent_to_offset_06( ):
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
         tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_offset(target_offset)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
         assert expected_blocks == actual_blocks

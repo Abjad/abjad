@@ -14,6 +14,6 @@ def test_treetools_compute_logical_xor_of_intervals_02( ):
     tree = IntervalTree(BoundedInterval(5, 10))
     logical_xor = compute_logical_xor_of_intervals(tree)
     assert len(logical_xor) == len(tree)
-    assert logical_xor.inorder[0].signature == tree.inorder[0].signature
+    assert logical_xor[0].signature == tree[0].signature
 
 

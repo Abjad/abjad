@@ -3,7 +3,7 @@ from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
    import all_are_intervals_or_trees_or_empty
 from abjad.tools.treetools.compute_logical_not_of_intervals import compute_logical_not_of_intervals
-from abjad.tools.treetools.split_intervals_at_offsets import split_intervals_at_offsets
+from abjad.tools.treetools.split_intervals_at_rationals import split_intervals_at_rationals
 from abjad.tools.treetools.get_all_unique_bounds_in_intervals import get_all_unique_bounds_in_intervals
 
 
@@ -34,7 +34,7 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
    if mask_tree.high < masked_tree.high:
       not_mask_tree = IntervalTree([not_mask_tree, 
          BoundedInterval(mask_tree.high, masked_tree.high)])
-   split_masked_tree = split_intervals_at_offsets(masked_tree, \
+   split_masked_tree = split_intervals_at_rationals(masked_tree, \
       get_all_unique_bounds_in_intervals(not_mask_tree))
 
    for interval in not_mask_tree:

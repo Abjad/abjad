@@ -20,7 +20,7 @@ def explode_tree_uncompactly(tree):
    layers = [[ ] for i in range(max_depth)]
 
    offset = 0
-   for interval in tree.inorder:
+   for interval in tree:
       for i in range(max_depth):
          layer = layers[(i + offset) % max_depth]
          if not len(layer):

@@ -15,19 +15,19 @@ def group_tangent_or_overlapping_intervals_and_yield_groups(intervals):
       return
     
    groups = [ ]
-   group = [tree.inorder[0]]
+   group = [tree[0]]
 
    low = group[0].low
    high = group[0].high
 
-   for i in range(1, len(tree.inorder)):
-      if tree.inorder[i].low <= high:
-         group.append(tree.inorder[i])
-         if high < tree.inorder[i].high:
-            high = tree.inorder[i].high
+   for i in range(1, len(tree)):
+      if tree[i].low <= high:
+         group.append(tree[i])
+         if high < tree[i].high:
+            high = tree[i].high
       else:
          groups.append(group)
-         group = [tree.inorder[i]]
+         group = [tree[i]]
          low = group[0].low
          high = group[0].high
 

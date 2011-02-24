@@ -22,5 +22,5 @@ def test_treetools_explode_tree_uncompactly_03( ):
     tree = IntervalTree(_make_test_blocks( ))
     xtrees = explode_tree_uncompactly(tree)
     collapsed_tree = IntervalTree(xtrees)
-    assert tree.inorder == collapsed_tree.inorder
+    assert tree[:] == collapsed_tree[:]
 

@@ -1,6 +1,6 @@
 from fractions import Fraction
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools.shift_tree_to_offset import shift_tree_to_offset
+from abjad.tools.treetools.shift_aggregate_offset_to_rational import shift_aggregate_offset_to_rational
 
 
 def concatenate_trees(trees, padding = 0):
@@ -11,11 +11,11 @@ def concatenate_trees(trees, padding = 0):
    assert isinstance(padding, (int, Fraction))
    assert 0 <= padding
 
-   output_tree = IntervalTree(shift_tree_to_offset(trees[0], 0))
+   output_tree = IntervalTree(shift_aggregate_offset_to_rational(trees[0], 0))
    for tree in trees[1:]:
       output_tree = IntervalTree([
          output_tree,
-         shift_tree_to_offset(tree, output_tree.high_max + padding)
+         shift_aggregate_offset_to_rational(tree, output_tree.high_max + padding)
       ])    
 
    return output_tree

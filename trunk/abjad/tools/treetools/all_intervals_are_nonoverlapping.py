@@ -9,8 +9,8 @@ def all_intervals_are_nonoverlapping(intervals):
    assert all_are_intervals_or_trees_or_empty(intervals)
    tree = IntervalTree(intervals)
 
-   for i in range(1, len(tree.intervals)):
-      if tree.inorder[i].low < tree.inorder[i -1].high:
+   for i in range(1, len(tree)):
+      if tree[i].low < tree[i -1].high:
          return False
 
    return True
