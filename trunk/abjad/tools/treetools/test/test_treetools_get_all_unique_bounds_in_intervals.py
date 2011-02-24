@@ -4,7 +4,7 @@ from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
 def test_treetools_get_all_unique_bounds_in_intervals_01( ):
-    tree = IntervalTree(_make_test_blocks( ))
-    target_bounds = (0, 3, 5, 6, 8, 9, 10, 13, 15, 16, 17, 19, 20, 21, 23, 25, 26, 29, 30, 32, 34, 37)
-    actual_bounds = get_all_unique_bounds_in_intervals(tree)
-    assert actual_bounds == target_bounds
+   tree = IntervalTree(_make_test_blocks( ))
+   target_bounds = (0, 3, 5, 6, 8, 9, 10, 13, 15, 16, 17, 19, 20, 21, 23, 25, 26, 29, 30, 32, 34, 37)
+   actual_bounds = get_all_unique_bounds_in_intervals(tree)
+   assert actual_bounds == target_bounds

@@ -13,7 +13,7 @@ def group_tangent_or_overlapping_intervals_and_yield_groups(intervals):
    if not tree:
       yield IntervalTree([ ])
       return
-    
+
    groups = [ ]
    group = [tree[0]]
 

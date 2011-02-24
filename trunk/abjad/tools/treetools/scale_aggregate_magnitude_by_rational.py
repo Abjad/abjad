@@ -25,7 +25,7 @@ def scale_aggregate_magnitude_by_rational(intervals, rational):
    tree = IntervalTree(intervals)
    if not tree or rational == 1:
       return tree
-   
+
    return IntervalTree([
       x.shift_to_rational(
          ((x.low - tree.low) * rational) + tree.low).scale_by_rational(rational)\

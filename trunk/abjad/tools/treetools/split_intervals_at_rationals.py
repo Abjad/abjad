@@ -31,6 +31,6 @@ def split_intervals_at_rationals(intervals, rationals):
       return tree
 
    for rational in rationals:
-       tree = IntervalTree([x.split_at_rational(rational) for x in tree])
+      tree = IntervalTree([x.split_at_rational(rational) for x in tree])
 
    return tree

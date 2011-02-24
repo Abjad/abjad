@@ -1,11 +1,9 @@
 import py.test
 from fractions import Fraction
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
 py.test.skip('Tests not yet implemented.')
 
-def test_treetools_scale_interval_magnitudes_by_rational_01( ):
+def test_treetools_clip_interval_magnitudes_to_range_01( ):
    pass
-

@@ -1207,6 +1207,7 @@ treetools
    tools/treetools/all_interval_payloads_contain_key_of_klass
    tools/treetools/all_intervals_are_contiguous
    tools/treetools/all_intervals_are_nonoverlapping
+   tools/treetools/clip_interval_magnitudes_to_range
    tools/treetools/compute_depth_of_intervals
    tools/treetools/compute_depth_of_intervals_in_interval
    tools/treetools/compute_logical_and_of_intervals
@@ -1226,6 +1227,7 @@ treetools
    tools/treetools/group_overlapping_intervals_and_yield_groups
    tools/treetools/group_tangent_or_overlapping_intervals_and_yield_groups
    tools/treetools/mask_intervals_with_intervals
+   tools/treetools/round_interval_bounds_to_nearest_multiple_of_rational
    tools/treetools/scale_aggregate_magnitude_by_rational
    tools/treetools/scale_aggregate_magnitude_to_rational
    tools/treetools/scale_interval_magnitudes_by_rational

@@ -16,7 +16,7 @@ def group_overlapping_intervals_and_yield_groups(intervals):
 
    groups = [ ]
    group = [tree[0]]
-    
+
    low = group[0].low
    high = group[0].high
 

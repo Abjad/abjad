@@ -11,7 +11,7 @@ def test_treetools_compute_logical_xor_of_intervals_in_interval_01( ):
    d = BoundedInterval(1, 14)
    logic = compute_logical_xor_of_intervals_in_interval(tree, d)
    assert [x.signature for x in logic] == [(1, 3), (6, 9), (12, 14)]
-   
+
 def test_treetools_compute_logical_xor_of_intervals_in_interval_02( ):
    a = BoundedInterval(0, 3)
    b = BoundedInterval(6, 12)

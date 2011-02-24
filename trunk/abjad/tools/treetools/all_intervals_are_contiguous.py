@@ -8,7 +8,7 @@ def all_intervals_are_contiguous(intervals):
 
    assert all_are_intervals_or_trees_or_empty(intervals)
    tree = IntervalTree(intervals)
-    
+
    for i in range(1, len(tree)):
       if tree[i].low != tree[i-1].high:
          return False

@@ -3,73 +3,73 @@ from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_01( ):
-    blocks = _make_test_blocks( )
-    target_offset = 0
-    expected_payloads = ('a',)
-    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
-        key = lambda x: x.signature))
-    for i in range(len(blocks)):
-        blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
-        assert expected_blocks == actual_blocks
-        
+   blocks = _make_test_blocks( )
+   target_offset = 0
+   expected_payloads = ('a',)
+   expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+      key = lambda x: x.signature))
+   for i in range(len(blocks)):
+      blocks.append(blocks.pop(0)) # rotate to permute tree construction
+      tree = IntervalTree(blocks)
+      actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
+      assert expected_blocks == actual_blocks
+
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_02( ):
-    blocks = _make_test_blocks( )
-    target_offset = 9
-    expected_payloads = ('b', 'c', 'd',)
-    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
-        key = lambda x: x.signature))
-    for i in range(len(blocks)):
-        blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
-        assert expected_blocks == actual_blocks
+   blocks = _make_test_blocks( )
+   target_offset = 9
+   expected_payloads = ('b', 'c', 'd',)
+   expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+      key = lambda x: x.signature))
+   for i in range(len(blocks)):
+      blocks.append(blocks.pop(0)) # rotate to permute tree construction
+      tree = IntervalTree(blocks)
+      actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
+      assert expected_blocks == actual_blocks
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_03( ):
-    blocks = _make_test_blocks( )
-    target_offset = 14
-    expected_payloads = ( )
-    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
-        key = lambda x: x.signature))
-    for i in range(len(blocks)):
-        blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
-        assert expected_blocks == actual_blocks
+   blocks = _make_test_blocks( )
+   target_offset = 14
+   expected_payloads = ( )
+   expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+      key = lambda x: x.signature))
+   for i in range(len(blocks)):
+      blocks.append(blocks.pop(0)) # rotate to permute tree construction
+      tree = IntervalTree(blocks)
+      actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
+      assert expected_blocks == actual_blocks
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_04( ):
-    blocks = _make_test_blocks( )
-    target_offset = 19
-    expected_payloads = ('e', 'f', 'g', 'h',)
-    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
-        key = lambda x: x.signature))
-    for i in range(len(blocks)):
-        blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
-        assert expected_blocks == actual_blocks
+   blocks = _make_test_blocks( )
+   target_offset = 19
+   expected_payloads = ('e', 'f', 'g', 'h',)
+   expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+      key = lambda x: x.signature))
+   for i in range(len(blocks)):
+      blocks.append(blocks.pop(0)) # rotate to permute tree construction
+      tree = IntervalTree(blocks)
+      actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
+      assert expected_blocks == actual_blocks
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_05( ):
-    blocks = _make_test_blocks( )
-    target_offset = 26
-    expected_payloads = ('i', 'j',)
-    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
-        key = lambda x: x.signature))
-    for i in range(len(blocks)):
-        blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
-        assert expected_blocks == actual_blocks
+   blocks = _make_test_blocks( )
+   target_offset = 26
+   expected_payloads = ('i', 'j',)
+   expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+      key = lambda x: x.signature))
+   for i in range(len(blocks)):
+      blocks.append(blocks.pop(0)) # rotate to permute tree construction
+      tree = IntervalTree(blocks)
+      actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
+      assert expected_blocks == actual_blocks
 
 def test_IntervalTree_find_intervals_intersecting_or_tangent_to_rational_06( ):
-    blocks = _make_test_blocks( )
-    target_offset = 30
-    expected_payloads = ('i',)
-    expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
-        key = lambda x: x.signature))
-    for i in range(len(blocks)):
-        blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
-        assert expected_blocks == actual_blocks
+   blocks = _make_test_blocks( )
+   target_offset = 30
+   expected_payloads = ('i',)
+   expected_blocks = tuple(sorted(filter(lambda x: x.data in expected_payloads, blocks),
+      key = lambda x: x.signature))
+   for i in range(len(blocks)):
+      blocks.append(blocks.pop(0)) # rotate to permute tree construction
+      tree = IntervalTree(blocks)
+      actual_blocks = tree.find_intervals_intersecting_or_tangent_to_rational(target_offset)
+      assert expected_blocks == actual_blocks

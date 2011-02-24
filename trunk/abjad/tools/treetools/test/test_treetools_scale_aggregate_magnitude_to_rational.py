@@ -4,8 +4,28 @@ from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
-py.test.skip('Tests not yet implemented.')
-
 def test_treetools_scale_aggregate_magnitude_to_rational_01( ):
-    pass
+   a = BoundedInterval(Fraction(-1, 2), 1)
+   b = BoundedInterval(2, Fraction(7, 3))
+   tree = IntervalTree([a, b])
+   rational = 3
+   result = scale_aggregate_magnitude_to_rational(tree, rational)
+   assert result.magnitude == 3
+   assert [x.signature for x in result] == \
+      [(Fraction(-1, 2), Fraction(37, 34)), (Fraction(73, 34), Fraction(5, 2))]
 
+def test_treetools_scale_aggregate_magnitude_to_rational_02( ):
+   a = BoundedInterval(Fraction(-1, 2), 1)
+   b = BoundedInterval(2, Fraction(7, 3))
+   tree = IntervalTree([a, b])
+   rational = -1
+   py.test.raises(AssertionError,
+      "result = scale_aggregate_magnitude_to_rational(tree, rational)")
+
+def test_treetools_scale_aggregate_magnitude_to_rational_03( ):
+   a = BoundedInterval(Fraction(-1, 2), 1)
+   b = BoundedInterval(2, Fraction(7, 3))
+   tree = IntervalTree([a, b])
+   rational = 0
+   py.test.raises(AssertionError,
+      "result = scale_aggregate_magnitude_to_rational(tree, rational)")

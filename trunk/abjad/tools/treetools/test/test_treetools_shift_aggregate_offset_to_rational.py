@@ -37,7 +37,7 @@ def test_treetools_shift_aggregate_offset_to_rational_03( ):
 def test_treetools_shift_aggregate_offset_to_rational_04( ):
    rational = Fraction(-1, 2)
    tree = IntervalTree(_make_test_blocks( ))
-   
+
    shifted = shift_aggregate_offset_by_rational(tree, rational)
    shifted = shift_aggregate_offset_by_rational(shifted, -1 * rational)
 

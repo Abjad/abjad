@@ -11,7 +11,7 @@ def explode_tree_compactly(tree):
    The algorithm will attempt to insert the exploded intervals
    into the lowest-indexed resultant tree with free space.
    '''
-    
+
    assert isinstance(tree, IntervalTree)
 
    depth_tree = compute_depth_of_intervals(tree)
