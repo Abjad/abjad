@@ -42,15 +42,18 @@ class BoundedInterval(_Immutable):
 
     @property
     def magnitude(self):
+        '''High bound minus low bound.'''
         return self.high - self.low
 
     @property
     def signature(self):
+        '''Tuple of low bound and high bound.'''
         return (self.low, self.high)
 
     ## PUBLIC METHODS ##
 
     def is_container_of_interval(self, interval):
+        '''True if interval contains `interval`.'''
         assert isinstance(interval, BoundedInterval)
         if self.low <= interval.low and interval.high <= self.high:
             return True
@@ -58,6 +61,7 @@ class BoundedInterval(_Immutable):
             return False
 
     def is_contained_by_interval(self, interval):
+        '''True if interval is contained by `interval`.'''
         assert isinstance(interval, BoundedInterval)
         if interval.low <= self.low and self.high <= interval.high:
             return True
@@ -65,6 +69,7 @@ class BoundedInterval(_Immutable):
             return False
 
     def is_overlapped_by_interval(self, interval):
+        '''True if interval is overlapped by `interval`.'''
         assert isinstance(interval, BoundedInterval)
         if (self.low < interval.low and interval.low < self.high) or \
             (self.low < interval.high and interval.high < self.high):
@@ -73,6 +78,7 @@ class BoundedInterval(_Immutable):
             return False
 
     def is_tangent_to_interval(self, interval):
+        '''True if interval is tangent to `interval`.'''
         assert isinstance(interval, BoundedInterval)
         if self.high == interval.low or interval.high == self.low:
             return True

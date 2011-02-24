@@ -1208,10 +1208,15 @@ treetools
    tools/treetools/all_intervals_are_contiguous
    tools/treetools/all_intervals_are_nonoverlapping
    tools/treetools/compute_depth_of_intervals
+   tools/treetools/compute_depth_of_intervals_in_interval
    tools/treetools/compute_logical_and_of_intervals
+   tools/treetools/compute_logical_and_of_intervals_in_interval
    tools/treetools/compute_logical_not_of_intervals
+   tools/treetools/compute_logical_not_of_intervals_in_interval
    tools/treetools/compute_logical_or_of_intervals
+   tools/treetools/compute_logical_or_of_intervals_in_interval
    tools/treetools/compute_logical_xor_of_intervals
+   tools/treetools/compute_logical_xor_of_intervals_in_interval
    tools/treetools/concatenate_trees
    tools/treetools/explode_tree_compactly
    tools/treetools/explode_tree_uncompactly
@@ -1221,6 +1226,11 @@ treetools
    tools/treetools/group_overlapping_intervals_and_yield_groups
    tools/treetools/group_tangent_or_overlapping_intervals_and_yield_groups
    tools/treetools/mask_intervals_with_intervals
-   tools/treetools/shift_tree_by_offset
-   tools/treetools/shift_tree_to_offset
-   tools/treetools/split_intervals_at_offsets
+   tools/treetools/scale_aggregate_magnitude_by_rational
+   tools/treetools/scale_aggregate_magnitude_to_rational
+   tools/treetools/scale_interval_magnitudes_by_rational
+   tools/treetools/scale_interval_magnitudes_to_rational
+   tools/treetools/scale_interval_offsets_by_rational
+   tools/treetools/shift_aggregate_offset_by_rational
+   tools/treetools/shift_aggregate_offset_to_rational
+   tools/treetools/split_intervals_at_rationals
