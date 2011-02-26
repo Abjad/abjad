@@ -6,10 +6,13 @@ from abjad.tools.chordtools.divide_chord_by_chromatic_pitch_number import divide
 def make_piano_score_from_leaves(leaves):
    r""".. versionadded:: 1.1.2
 
-   Create a two-staff, treble / bass score of `leaves`. ::
+   Make piano score from `leaves`::
 
       abjad> notes = [Note(x, (1, 4)) for x in [-12, 37, -10, 2, 4, 17]]
       abjad> score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves(notes)
+
+   ::
+
       abjad> f(score)
       \new Score <<
               \new PianoStaff <<
@@ -33,6 +36,8 @@ def make_piano_score_from_leaves(leaves):
                       }
               >>
       >>
+
+   Return score, treble staff, bass staff.
    """
    from abjad.tools.measuretools import AnonymousMeasure
 

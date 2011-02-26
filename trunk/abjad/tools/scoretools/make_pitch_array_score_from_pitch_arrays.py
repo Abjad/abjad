@@ -6,11 +6,14 @@ from abjad.tools.scoretools.StaffGroup.StaffGroup import StaffGroup
 def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
    r'''.. versionadded:: 1.1.2
 
-   Change `pitch_arrays` to score with one staff per pitch array row. ::
+   Make pitch-array score from `pitch_arrays`::
 
       abjad> array_1 = pitcharraytools.PitchArray([
       ...   [1, (2, 1), ([-2, -1.5], 2)],
       ...   [(7, 2), (6, 1), 1]])
+
+   ::
+
       abjad> array_2 = pitcharraytools.PitchArray([
       ...   [1, 1, 1],
       ...   [1, 1, 1]])
@@ -18,6 +21,9 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
    ::
 
       abjad> score = scoretools.make_pitch_array_score_from_pitch_arrays(array_1, array_2)
+
+   ::
+
       abjad> f(score)
       \new Score <<
               \new StaffGroup <<
@@ -52,9 +58,9 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
               >>
       >>
 
-   .. versionchanged:: 1.1.2
-      renamed ``scoretools.pitch_arrays_to_score( )`` to
-      ``scoretools.make_pitch_array_score_from_pitch_arrays( )``.
+   Create one staff per pitch-array row.
+
+   Return score.
    '''
 
    from abjad.tools import measuretools

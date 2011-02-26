@@ -3,7 +3,7 @@ from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
-def test_treetools_group_all_contiguous_and_overlapping_intervals_in_tree_and_yield_groups_01( ):
+def test_treetools_group_tangent_or_overlapping_intervals_and_yield_groups_01( ):
    tree = IntervalTree(_make_test_blocks( ))
 
    target_signatures = [
