@@ -85,7 +85,7 @@ class TimeSignatureMark(ContextMark):
    ## OVERLOADS ##
 
    def __call__(self, *args):
-      from abjad.components.Measure import Measure
+      from abjad.components import Measure
       ContextMark.__call__(self, *args)
       if isinstance(self._start_component, Measure):
          if self._start_component._explicit_meter is not None:

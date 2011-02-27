@@ -1,4 +1,4 @@
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools.get_proper_parentage_of_component import \

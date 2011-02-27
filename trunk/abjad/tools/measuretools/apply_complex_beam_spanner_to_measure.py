@@ -1,4 +1,4 @@
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools.spannertools import DuratedComplexBeamSpanner
 
 

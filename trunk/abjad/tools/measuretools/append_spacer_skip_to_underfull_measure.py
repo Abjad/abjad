@@ -1,5 +1,5 @@
 from abjad.tools.skiptools.Skip import Skip
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools import contexttools
 
 

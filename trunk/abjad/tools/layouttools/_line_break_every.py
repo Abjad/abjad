@@ -1,4 +1,4 @@
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools import componenttools
 from abjad.tools import marktools
 from fractions import Fraction

@@ -8,7 +8,7 @@ class MisfilledMeasureCheck(_Check):
 
    def _run(self, expr):
       from abjad.tools import componenttools
-      from abjad.components.Measure import Measure
+      from abjad.components import Measure
       violators = [ ]
       total, bad = 0, 0
       for t in componenttools.iterate_components_forward_in_expr(expr, Measure):

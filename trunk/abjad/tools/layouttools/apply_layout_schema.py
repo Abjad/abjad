@@ -1,4 +1,4 @@
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools.layouttools.LayoutSchema import LayoutSchema
 from abjad.tools.layouttools.apply_fixed_staff_positioning import apply_fixed_staff_positioning
 from abjad.tools.layouttools.set_line_breaks_cyclically_by_line_duration_ge import \

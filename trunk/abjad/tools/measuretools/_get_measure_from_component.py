@@ -2,7 +2,7 @@ from abjad.components import Container
 from abjad.exceptions import MeasureContiguityError
 from abjad.exceptions import MissingMeasureError
 from abjad.components._Leaf import _Leaf
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools.componenttools.get_proper_parentage_of_component import \
    get_proper_parentage_of_component
 from abjad.tools.componenttools.iterate_components_backward_in_expr import \

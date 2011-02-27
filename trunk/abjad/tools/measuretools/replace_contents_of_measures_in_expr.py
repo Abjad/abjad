@@ -1,4 +1,4 @@
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools import contexttools
 from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in_expr import append_spacer_skips_to_underfull_measures_in_expr
 from abjad.tools.measuretools.get_next_measure_from_component import get_next_measure_from_component

@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.components.Measure import Measure
+from abjad.components import Measure
 from abjad.tools import tietools
 from abjad.tools import tuplettools
 from abjad.tools.tuplettools import FixedDurationTuplet
