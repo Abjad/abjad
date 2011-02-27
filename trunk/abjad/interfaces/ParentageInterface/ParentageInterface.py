@@ -82,7 +82,7 @@ class ParentageInterface(_Interface):
          in the codebase. The concept is used only 
          to clone components with a certain part of parentage.
       '''
-      from abjad.components.Container import Container
+      from abjad.components import Container
       from abjad.tools import componenttools
 
       #for component in self.improper_parentage:

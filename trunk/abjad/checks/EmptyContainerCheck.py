@@ -7,7 +7,7 @@ class EmptyContainerCheck(_Check):
 
    def _run(self, expr):
       from abjad.tools import componenttools
-      from abjad.components.Container import Container
+      from abjad.components import Container
       violators = [ ]
       bad, total = 0, 0
       for t in componenttools.iterate_components_forward_in_expr(expr, Container):

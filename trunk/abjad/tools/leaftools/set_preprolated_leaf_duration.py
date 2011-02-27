@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from abjad.components.Tuplet import Tuplet
+from abjad.components import Tuplet
 from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
 from abjad.tools import spannertools

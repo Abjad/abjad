@@ -1,6 +1,6 @@
-from abjad.components.Container import Container
+from abjad.components import Container
 from abjad.tools import componenttools
-from abjad.components.Tuplet import Tuplet
+from abjad.components import Tuplet
 
 
 def fuse_like_named_contiguous_containers_in_expr(expr):

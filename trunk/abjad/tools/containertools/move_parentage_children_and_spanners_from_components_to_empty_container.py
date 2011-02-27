@@ -1,4 +1,4 @@
-from abjad.components.Container import Container
+from abjad.components import Container
 from abjad.exceptions import MusicContentsError
 from abjad.tools.componenttools._give_music_from_donor_components_to_recipient_components import \
    _give_music_from_donor_components_to_recipient_components

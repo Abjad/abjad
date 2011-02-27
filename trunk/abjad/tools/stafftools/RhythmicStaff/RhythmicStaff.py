@@ -1,4 +1,4 @@
-from abjad.components.Staff import Staff
+from abjad.components import Staff
 
 
 class RhythmicStaff(Staff):

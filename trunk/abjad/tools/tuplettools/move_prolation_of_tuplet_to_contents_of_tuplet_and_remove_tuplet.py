@@ -1,5 +1,5 @@
 from abjad.tools import componenttools
-from abjad.components.Tuplet import Tuplet
+from abjad.components import Tuplet
 
 
 def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):

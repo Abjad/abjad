@@ -1,4 +1,4 @@
-from abjad.components.Container import Container
+from abjad.components import Container
 from abjad.exceptions import MissingMeasureError
 from abjad.components.Measure import Measure
 

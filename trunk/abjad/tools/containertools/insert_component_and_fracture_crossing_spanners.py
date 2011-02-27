@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.components.Container import Container
+from abjad.components import Container
 
 
 def insert_component_and_fracture_crossing_spanners(container, i, component):

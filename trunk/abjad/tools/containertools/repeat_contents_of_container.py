@@ -1,4 +1,4 @@
-from abjad.components.Container import Container
+from abjad.components import Container
 from abjad.tools.containertools.repeat_last_n_elements_of_container import repeat_last_n_elements_of_container
 
 

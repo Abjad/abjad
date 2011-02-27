@@ -1,4 +1,4 @@
-from abjad.components.Container import Container
+from abjad.components import Container
 from abjad.exceptions import MeasureContiguityError
 from abjad.exceptions import MissingMeasureError
 from abjad.components._Leaf import _Leaf

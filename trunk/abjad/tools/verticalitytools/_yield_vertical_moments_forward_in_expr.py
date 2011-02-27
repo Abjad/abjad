@@ -1,5 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.components.Container import Container
+from abjad.components import Container
 from fractions import Fraction
 
 

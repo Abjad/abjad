@@ -1,7 +1,7 @@
 #from abjad.tools.spannertools import BeamSpanner
 from abjad.tools.spannertools import MultipartBeamSpanner
 from abjad.tools import componenttools
-from abjad.components.Tuplet import Tuplet
+from abjad.components import Tuplet
 
 
 def beam_bottommost_tuplets_in_expr(expr):

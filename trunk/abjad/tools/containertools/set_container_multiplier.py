@@ -20,8 +20,8 @@ def set_container_multiplier(container, multiplier):
       ``containertools.set_container_multiplier( )``.
    '''
    from abjad.components.Measure import Measure
-   #from abjad.components.Tuplet import Tuplet
-   from abjad.components.Tuplet import Tuplet
+   #from abjad.components import Tuplet
+   from abjad.components import Tuplet
    from abjad.tools import tuplettools
 
    if isinstance(container, tuplettools.FixedDurationTuplet):

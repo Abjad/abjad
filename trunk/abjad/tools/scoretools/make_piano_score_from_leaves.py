@@ -1,4 +1,4 @@
-from abjad.components.Score import Score
+from abjad.components import Score
 from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
 from abjad.tools.chordtools.divide_chord_by_chromatic_pitch_number import divide_chord_by_chromatic_pitch_number
 
