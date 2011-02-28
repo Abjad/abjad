@@ -18,7 +18,7 @@ def tree_IntervalTree___init___03( ):
    tree = IntervalTree(t)
    assert a in tree
 
-def test_IntervalTree___init___04( ):
+def test_IntervalTree___init___02( ):
    '''IntervalTree can be initialized from a list of BoundedIntervals.'''
    a = BoundedInterval(0, 10, 'a')
    b = BoundedInterval(5, 15, 'b')
@@ -26,14 +26,14 @@ def test_IntervalTree___init___04( ):
    tree = IntervalTree([a, b, c])
    assert all([block in tree for block in [a, b, c]])
 
-def test_IntervalTree___init___05( ):
+def test_IntervalTree___init___03( ):
    '''IntervalTree can be initialized from a list of Blocks.'''
    a = Block(0, 10, 'a')
    b = Block(5, 15, 'b')
    c = Block(10, 5, 'c')
    tree = IntervalTree([a, b, c])
 
-def test_IntervalTree___init___06( ):
+def test_IntervalTree___init___04( ):
    '''IntervalTree recursively flattens its input argument,
    allowing instantiation from any nested collection of
    BoundedIntervals and / or trees.'''
