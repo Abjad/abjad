@@ -4,14 +4,18 @@ from abjad.tools.spannertools.TextSpanner import TextSpanner
 
 
 class BracketSpanner(TextSpanner):
-   r'''Structural bracket to group any Abjad components at 
-   composition-time. Defaults to red. ::
-   
-      abjad> t = Staff(macros.scale(4))
-      abjad> spannertools.BracketSpanner(t[:])
+   r'''Abjad bracket spanner::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> spannertools.BracketSpanner(staff[:])
       spannertools.BracketSpanner(c'8, d'8, e'8, f'8)
 
-      abjad> print t.format
+   ::
+
+      abjad> f(staff)
       \new Staff {
               \override TextSpanner #'dash-fraction = #1
               \override TextSpanner #'bound-details #'left #'text = #(markup #:draw-line '(0 . -1))
@@ -34,12 +38,12 @@ class BracketSpanner(TextSpanner):
               \revert TextSpanner #'bound-details #'right-broken #'text
               \revert TextSpanner #'bound-details #'left-broken #'text
       }
+   
+   Render 1.5-unit thick solid red spanner with nibs at beginning and end.
 
-   .. note:: The Abjad :class:`~abjad.bracket.spanner.Bracket` formats as
-      a LillyPond TextSpanner. The large number of \overrides and \reverts
-      shown above are necessary to draw a 1.5-unit thick solid red spanner
-      with nibs at the beginning and end but with no nibs at line breaks.
-      These values may all be overriden after creating the bracket.
+   Do not draw nibs at line breaks.
+
+   Return text spanner.
    '''
 
    def __init__(self, music = None):

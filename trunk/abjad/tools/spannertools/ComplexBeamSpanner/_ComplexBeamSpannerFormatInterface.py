@@ -1,5 +1,5 @@
-from abjad.tools.spannertools.BeamSpanner._BeamSpannerFormatInterface import _BeamSpannerFormatInterface
 from abjad.tools import durtools
+from abjad.tools.spannertools.BeamSpanner._BeamSpannerFormatInterface import _BeamSpannerFormatInterface
 
 
 class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
@@ -65,21 +65,22 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
    def _get_left_right_for_lone_leaf(self, leaf):
       '''Get left and right flag counts for only leaf in spanner.'''
       spanner = self.spanner
+      cur_flag_count = durtools.rational_to_flag_count(leaf.duration.written)
       left, right = None, None
-      if spanner.nibs == 'left':
+      if spanner.lone == 'left':
          left = cur_flag_count
          right = 0
-      elif spanner.nibs == 'right':
+      elif spanner.lone == 'right':
          left = 0
          right = cur_flag_count
-      elif spanner.nibs == 'both':
+      elif spanner.lone in ('both', True):
          left = cur_flag_count
          right = cur_flag_count
-      elif spanner.nibs == 'neither':
+      elif spanner.lone in ('neither', False):
          left = None
          right = None
       else:
-         raise ValueError('nibs must be left, right, both or neither.')
+         raise ValueError("'lone' must be left, right, both.")
       return left, right
 
    ## PUBLIC METHODS ##
@@ -90,9 +91,10 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
       result = [ ]
       result.extend(_BeamSpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
-      #if leaf.beam.beamable:
       if componenttools.is_beamable_component(leaf):
-         if spanner._is_exterior_leaf(leaf):
+         if spanner._is_my_only_leaf(leaf):
+            left, right = self._get_left_right_for_lone_leaf(leaf)
+         elif spanner._is_exterior_leaf(leaf):
             left, right = self._get_left_right_for_exterior_leaf(leaf)
          else:
             left, right = self._get_left_right_for_interior_leaf(leaf)

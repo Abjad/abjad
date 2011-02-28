@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_BracketSpanner_defaults_01( ):
+def test_BracketSpanner___init___01( ):
    '''Bracket defaults to solid red line with left and right nibs
    and with no nibs at left and right broken edges.
    '''

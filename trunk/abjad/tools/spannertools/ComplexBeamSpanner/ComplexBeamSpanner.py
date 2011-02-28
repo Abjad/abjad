@@ -1,7 +1,5 @@
-from abjad.tools.spannertools.ComplexBeamSpanner._ComplexBeamSpannerFormatInterface import _ComplexBeamSpannerFormatInterface
 from abjad.tools.spannertools.BeamSpanner.BeamSpanner import BeamSpanner
-from fractions import Fraction
-import types
+from abjad.tools.spannertools.ComplexBeamSpanner._ComplexBeamSpannerFormatInterface import _ComplexBeamSpannerFormatInterface
 
 
 class ComplexBeamSpanner(BeamSpanner):
@@ -54,17 +52,92 @@ class ComplexBeamSpanner(BeamSpanner):
    @apply
    def lone( ):
       def fget(self):
+         r'''Beam lone leaf and force beam nibs to left::
+
+            abjad> note = Note("c'16")
+
+         ::
+
+            abjad> beam = spannertools.ComplexBeamSpanner([note], lone = 'left')
+
+         ::
+
+            abjad> f(note)
+            \set stemLeftBeamCount = #2
+            \set stemRightBeamCount = #0
+            c'16 [ ]
+
+         Beam lone leaf and force beam nibs to right::
+
+            abjad> note = Note("c'16")
+
+         ::
+
+            abjad> beam = spannertools.ComplexBeamSpanner([note], lone = 'right')
+
+         ::
+
+            abjad> f(note)
+            \set stemLeftBeamCount = #0
+            \set stemRightBeamCount = #2
+            c'16 [ ]
+
+         Beam lone leaf and force beam nibs to both left and right::
+
+            abjad> note = Note("c'16")
+
+         ::
+
+            abjad> beam = spannertools.ComplexBeamSpanner([note], lone = 'both')
+
+         ::
+
+            abjad> f(note)
+            \set stemLeftBeamCount = #2
+            \set stemRightBeamCount = #2
+            c'16 [ ]
+
+         Beam lone leaf and accept LilyPond default nibs at both left and right::
+
+            abjad> note = Note("c'16")
+      
+         ::
+
+            abjad> beam = spannertools.ComplexBeamSpanner([note], lone = True)
+
+         ::
+
+            abjad> f(note)
+            c'16 [ ]
+      
+         Do not beam lone leaf::
+
+            abjad> note = Note("c'16")
+
+         ::
+
+            abjad> beam = spannertools.ComplexBeamSpanner([note], lone = False)
+
+         ::
+
+            abjad> f(note)
+            c'16
+
+         Set to ``'left'``, ``'right'``, ``'both'``, true or false as shown above.
+
+         Ignore this setting when spanner contains more than one leaf.
+         '''
          return self._lone
       def fset(self, arg):
          assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
          self._lone = arg 
       return property(**locals( ))
 
-   @apply
-   def nibs( ):
-      def fget(self):
-         return self._nibs
-      def fset(self, arg):
-         assert arg in ('left', 'rigth', 'both', 'neither')
-         self._nibs = arg 
-      return property(**locals( ))
+#   @apply
+#   def nibs( ):
+#      def fget(self):
+#         return self._nibs
+#      def fset(self, arg):
+#         assert arg in ('left', 'right', 'both', 'neither')
+#         self._nibs = arg 
+#      return property(**locals( ))

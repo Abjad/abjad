@@ -2,25 +2,27 @@ from abjad import *
 
 
 def test_DuratedComplexBeamSpanner_lone_01( ):
-   '''DuratedComplexBeam with lone = True applies beam 
-      to a lone note at format-time.'''
+   '''Span lone note when lone is set to true.
+   '''
 
-   t = Voice(macros.scale(1))
-   spannertools.DuratedComplexBeamSpanner(t, lone = True)
+   voice = Voice("c'8")
+   spannertools.DuratedComplexBeamSpanner(voice, lone = True)
 
    r'''
    \new Voice {
+      \set stemLeftBeamCount = #1
+      \set stemRightBeamCount = #1
       c'8 [ ]
    }
    '''
 
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Voice {\n\tc'8 [ ]\n}"
+   assert componenttools.is_well_formed_component(voice)
+   assert voice.format == "\\new Voice {\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #1\n\tc'8 [ ]\n}"
 
 
 def test_DuratedComplexBeamSpanner_lone_02( ):
-   '''DuratedComplexBeam with lone = False does not apply beam
-      to a lone note at format-time.'''
+   '''Do not span lone note when lone is set to false.
+   '''
 
    t = Voice(macros.scale(1))
    spannertools.DuratedComplexBeamSpanner(t, lone = False)
@@ -36,7 +38,8 @@ def test_DuratedComplexBeamSpanner_lone_02( ):
 
 
 def test_DuratedComplexBeamSpanner_lone_03( ):
-   '''DuratedComplexBeam with multiple leaves ignores 'lone' setting.'''
+   '''Ignore lone when spanner spans more than one leaf.
+   '''
 
    t = Voice(macros.scale(2))
    spannertools.DuratedComplexBeamSpanner(t, lone = False)
