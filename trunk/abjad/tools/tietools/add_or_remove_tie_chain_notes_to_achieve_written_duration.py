@@ -1,7 +1,6 @@
-from fractions import Fraction
+from abjad.components import Tuplet
 from abjad.tools import componenttools
 from abjad.tools import durtools
-from abjad.tools import notetools
 from abjad.tools import spannertools
 from abjad.tools.spannertools._withdraw_components_from_attached_spanners import \
    _withdraw_components_from_attached_spanners
@@ -12,8 +11,8 @@ from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import \
    remove_all_leaves_in_tie_chain_except_first
-from abjad.tools.spannertools import TieSpanner
-from abjad.components import Tuplet
+from abjad.tools.tietools.TieSpanner import TieSpanner
+from fractions import Fraction
 
 
 ## TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( ) carefully. ##
@@ -29,6 +28,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
       renamed ``tietools.duration_change( )`` to
       ``tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( )``.
    '''
+   from abjad.tools import notetools
 
    assert is_tie_chain(tie_chain)
    assert isinstance(new_written_duration, Fraction)
@@ -47,16 +47,14 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
             componenttools.remove_component_subtree_from_score_and_spanners([leaf])
       elif len(tie_chain) < len(duration_tokens):
          #tie_chain[0].tie.unspan( )
-         spannertools.destroy_all_spanners_attached_to_component(
-            tie_chain[0], spannertools.TieSpanner)
+         spannertools.destroy_all_spanners_attached_to_component(tie_chain[0], TieSpanner)
          difference = len(duration_tokens) - len(tie_chain)
          extra_leaves = tie_chain[0] * difference
          _withdraw_components_from_attached_spanners(extra_leaves)
          extra_tokens = duration_tokens[len(tie_chain):]
          for leaf, token in zip(extra_leaves, extra_tokens):
             leaf.duration.written = token.duration.written
-         if not spannertools.is_component_with_spanner_attached(
-            tie_chain[-1], spannertools.TieSpanner):
+         if not spannertools.is_component_with_spanner_attached(tie_chain[-1], TieSpanner):
             TieSpanner(list(tie_chain))
          componenttools.extend_in_parent_of_component_and_grow_spanners(tie_chain[-1], extra_leaves)
    else:

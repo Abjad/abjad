@@ -1,4 +1,4 @@
-from abjad.tools.spannertools import TieSpanner
+from abjad.tools.tietools import TieSpanner
 from abjad.tools import durtools
 
 

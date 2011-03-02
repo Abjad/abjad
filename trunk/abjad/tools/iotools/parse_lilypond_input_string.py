@@ -7,7 +7,7 @@ from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_
 from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
 from abjad.tools.spannertools import BeamSpanner
 from abjad.tools.spannertools import SlurSpanner
-from abjad.tools.spannertools import TieSpanner
+from abjad.tools.tietools import TieSpanner
 import re
 
 
@@ -111,7 +111,7 @@ def parse_lilypond_input_string(note_entry_string):
             try:
                #tie_spanner = last_leaf.tie.spanner
                tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
-                  last_leaf, spannertools.TieSpanner)
+                  last_leaf, TieSpanner)
             except MissingSpannerError:
                TieSpanner([last_leaf])
             tie_next_leaf = True

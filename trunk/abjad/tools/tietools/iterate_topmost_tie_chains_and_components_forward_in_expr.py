@@ -2,6 +2,7 @@ from abjad.components._Leaf import _Leaf
 from abjad.components import Container
 from abjad.exceptions import TieChainError
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 
 
@@ -60,7 +61,7 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
       for component in expr:
          if isinstance(component, _Leaf):
             tie_spanners = spannertools.get_all_spanners_attached_to_component(
-               component, spannertools.TieSpanner)
+               component, TieSpanner)
             #if not component.tie.spanned or component.tie.last:
             if not tie_spanners or tuple(tie_spanners)[0]._is_my_last_leaf(component):
                yield get_tie_chain(component)

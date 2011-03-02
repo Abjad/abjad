@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools import contexttools
-from abjad.tools.spannertools import TieSpanner
+from abjad.tools.tietools import TieSpanner
 from fractions import Fraction
 
 

@@ -6,7 +6,7 @@ def group_leaves_in_tie_chain_by_immediate_parents(tie_chain):
    r'''Group leaves in `tie_chain` by immediate parent::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-      abjad> spannertools.TieSpanner(staff.leaves)
+      abjad> tietools.TieSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          {

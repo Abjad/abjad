@@ -5,7 +5,6 @@ from abjad.exceptions import ContainmentError
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
-from abjad.tools.spannertools import TieSpanner
 from fractions import Fraction
 
 
@@ -137,13 +136,13 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
                #leaf_left_of_split.tie.spanner.fuse(leaf_right_of_split.tie.spanner)
                leaf_left_of_split_tie_spanner = \
                   spannertools.get_the_only_spanner_attached_to_component(
-                  leaf_left_of_split, spannertools.TieSpanner)
+                  leaf_left_of_split, tietools.TieSpanner)
                leaf_right_of_split_tie_spanner = \
                   spannertools.get_the_only_spanner_attached_to_component(
-                  leaf_right_of_split, spannertools.TieSpanner)
+                  leaf_right_of_split, tietools.TieSpanner)
                leaf_left_of_split_tie_spanner.fuse(leaf_right_of_split_tie_spanner)
             else:
-               spannertools.TieSpanner(leaves_at_split)
+               tietools.TieSpanner(leaves_at_split)
          
    ## return pair of left and right list-wrapped halves of container
    return ([left], [right])

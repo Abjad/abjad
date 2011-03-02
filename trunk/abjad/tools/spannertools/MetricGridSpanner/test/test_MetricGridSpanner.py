@@ -298,9 +298,9 @@ def test_MetricGridSpanner_10( ):
    assert v[-2].duration.prolated == Fraction(1, 4)
    #assert v[-2].tie.spanner == v[-1].tie.spanner
    assert spannertools.get_the_only_spanner_attached_to_component(
-      v[-2], spannertools.TieSpanner) == \
+      v[-2], tietools.TieSpanner) == \
       spannertools.get_the_only_spanner_attached_to_component(
-      v[-1], spannertools.TieSpanner)
+      v[-1], tietools.TieSpanner)
 
    r'''
    \new Voice {
@@ -331,7 +331,7 @@ def test_MetricGridSpanner_11( ):
    assert v[0].duration.written == v[1].duration.written == Fraction(1, 8)
    assert v[3].duration.written == v[3].duration.written == Fraction(1, 8)
    assert v[2].duration.written == Fraction(1, 4)
-   #ties = len([p for p in v.spanners.contained if isinstance(p, spannertools.TieSpanner)]) == 2
+   #ties = len([p for p in v.spanners.contained if isinstance(p, tietools.TieSpanner)]) == 2
    ties = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
-      v, spannertools.TieSpanner)
+      v, tietools.TieSpanner)
    assert len(ties) == 2

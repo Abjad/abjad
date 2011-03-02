@@ -69,13 +69,13 @@ def test_leaftools_make_leaves_04( ):
    for l in leaves:
       assert isinstance(l, Rest)
    assert spannertools.get_the_only_spanner_attached_to_component(
-      leaves[0], spannertools.TieSpanner) is \
+      leaves[0], tietools.TieSpanner) is \
       spannertools.get_the_only_spanner_attached_to_component(
-      leaves[1], spannertools.TieSpanner)
+      leaves[1], tietools.TieSpanner)
    assert spannertools.get_the_only_spanner_attached_to_component(
-      leaves[2], spannertools.TieSpanner) is \
+      leaves[2], tietools.TieSpanner) is \
       spannertools.get_the_only_spanner_attached_to_component(
-      leaves[3], spannertools.TieSpanner)
+      leaves[3], tietools.TieSpanner)
 
 
 def test_leaftools_make_leaves_05( ):

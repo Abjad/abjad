@@ -5,8 +5,8 @@ def test_tietools_iterate_tie_chains_backward_in_expr_01( ):
    '''Yield successive tie chains.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   spannertools.TieSpanner(t[:2])
-   spannertools.TieSpanner(t[2:])
+   tietools.TieSpanner(t[:2])
+   tietools.TieSpanner(t[2:])
 
    r'''
    \new Staff {

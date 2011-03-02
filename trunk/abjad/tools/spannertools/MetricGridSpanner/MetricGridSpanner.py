@@ -50,21 +50,21 @@ class MetricGridSpanner(Spanner):
             if tietools.is_component_with_tie_spanner_attached(leaves[0]):
                #sp = leaves[0].tie.spanner
                sp = spannertools.get_the_only_spanner_attached_to_component(
-                  leaves[0], spannertools.TieSpanner)
+                  leaves[0], tietools.TieSpanner)
             else:
                sp = None
          for l in leaves:
             #if l.tie.spanned and l.tie.spanner == sp:
             if tietools.is_component_with_tie_spanner_attached(l):
                if spannertools.get_the_only_spanner_attached_to_component(
-                  l, spannertools.TieSpanner) == sp:
+                  l, tietools.TieSpanner) == sp:
                   result[-1].append(l)
             else:
                #if l.tie.spanned:
                if tietools.is_component_with_tie_spanner_attached(l):
                   #sp = l.tie.spanner
                   sp = spannertools.get_the_only_spanner_attached_to_component(
-                     l, spannertools.TieSpanner)
+                     l, tietools.TieSpanner)
                else:
                   sp = None
                result.append([ ])

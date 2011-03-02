@@ -954,7 +954,6 @@ spannertools
    tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
    tools/spannertools/TextScriptSpanner/TextScriptSpanner
    tools/spannertools/TextSpanner/TextSpanner
-   tools/spannertools/TieSpanner/TieSpanner
    tools/spannertools/TrillSpanner/TrillSpanner
    tools/spannertools/destroy_all_spanners_attached_to_component
    tools/spannertools/find_index_of_spanner_component_at_score_offset
@@ -1028,6 +1027,7 @@ tietools
 .. toctree::
    :maxdepth: 1
 
+   tools/tietools/TieSpanner/TieSpanner
    tools/tietools/add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration
    tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
    tools/tietools/apply_tie_spanner_to_leaf_pair

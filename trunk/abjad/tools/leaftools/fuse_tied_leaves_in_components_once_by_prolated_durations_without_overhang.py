@@ -3,7 +3,7 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
    r'''Fuse `components` tied leaves by `prolated_durations`::
 
       abjad> staff = Staff(notetools.make_repeated_notes(8))
-      abjad> spannertools.TieSpanner(staff.leaves)
+      abjad> tietools.TieSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          c'8 ~

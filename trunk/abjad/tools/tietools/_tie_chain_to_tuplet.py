@@ -1,20 +1,23 @@
-from abjad.exceptions import AssignabilityError
 from abjad.components import Note
-from fractions import Fraction
+from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.get_preprolated_tie_chain_duration import \
    get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
-from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
+from fractions import Fraction
 
 
 def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
    '''.. versionadded:: 1.1.2
 
    Generalized tie-chain division function.
+
+   .. todo:: move to tuplettools.
    '''
+   from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    # find target duration of fixed-duration tuplet
    tie_chain = get_tie_chain(chain[0])
@@ -61,7 +64,7 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
 
    # untie tuplet
    #tuplet.tie.unspan( )
-   spannertools.destroy_all_spanners_attached_to_component(tuplet, spannertools.TieSpanner)
+   spannertools.destroy_all_spanners_attached_to_component(tuplet, TieSpanner)
 
    # return tuplet
    return tuplet

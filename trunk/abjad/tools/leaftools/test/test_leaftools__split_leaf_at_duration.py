@@ -188,9 +188,9 @@ def test_leaftools__split_leaf_at_duration_08( ):
    assert tietools.is_component_with_tie_spanner_attached(halves[0][0])
    assert tietools.is_component_with_tie_spanner_attached(halves[0][1])
    assert spannertools.get_the_only_spanner_attached_to_component(
-      halves[0][0], spannertools.TieSpanner) is \
+      halves[0][0], tietools.TieSpanner) is \
       spannertools.get_the_only_spanner_attached_to_component(
-      halves[0][1], spannertools.TieSpanner)
+      halves[0][1], tietools.TieSpanner)
    assert not tietools.is_component_with_tie_spanner_attached(halves[1][0])
 
 
@@ -198,14 +198,14 @@ def test_leaftools__split_leaf_at_duration_09( ):
    '''Lone spanned Leaf results in two spanned leaves.'''
 
    t = Staff([Note(0, (1, 4))])
-   s = spannertools.TieSpanner(t.leaves)
+   s = tietools.TieSpanner(t.leaves)
    halves = _split_leaf_at_duration(t[0], Fraction(1, 8))
 
    assert len(t) == 2
    for leaf in t.leaves:
       assert leaf.spanners == set([s])
       assert spannertools.get_the_only_spanner_attached_to_component(
-         leaf, spannertools.TieSpanner) is s
+         leaf, tietools.TieSpanner) is s
    assert componenttools.is_well_formed_component(t)
 
 
@@ -228,7 +228,7 @@ def test_leaftools__split_leaf_at_duration_11( ):
       Spanner is shared by all 3 leaves.'''
 
    t = Staff([Note(0, (1, 4))])
-   s = spannertools.TieSpanner(t.leaves)
+   s = tietools.TieSpanner(t.leaves)
    halves = _split_leaf_at_duration(t[0], Fraction(5, 32))
 
    assert len(halves) == 2
@@ -237,7 +237,7 @@ def test_leaftools__split_leaf_at_duration_11( ):
    for l in t.leaves:
       assert l.spanners == set([s])
       assert spannertools.get_the_only_spanner_attached_to_component(
-         l, spannertools.TieSpanner) is s
+         l, tietools.TieSpanner) is s
    assert componenttools.is_well_formed_component(t)
    
 
@@ -246,10 +246,10 @@ def test_leaftools__split_leaf_at_duration_12( ):
       containing it is already Tie-spanned.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   s = spannertools.TieSpanner(t)
+   s = tietools.TieSpanner(t)
    halves = _split_leaf_at_duration(t[0], Fraction(5, 64))
 
-   assert spannertools.get_the_only_spanner_attached_to_component(t, spannertools.TieSpanner) is s
+   assert spannertools.get_the_only_spanner_attached_to_component(t, tietools.TieSpanner) is s
    assert s.components == (t, )
    for l in t.leaves:
       assert not l.spanners 
@@ -261,7 +261,7 @@ def test_leaftools__split_leaf_at_duration_13( ):
       already Tie-spanned.'''
 
    t = Staff(Container(notetools.make_repeated_notes(4)) * 2)
-   s = spannertools.TieSpanner(t[:])
+   s = tietools.TieSpanner(t[:])
    halves = _split_leaf_at_duration(t[0][0], Fraction(5, 64))
 
    assert s.components == tuple(t[:])

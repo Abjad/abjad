@@ -7,7 +7,7 @@ def test_tietools_get_tie_chain_01( ):
    '''
 
    t = Staff(notetools.make_repeated_notes(4))
-   spannertools.TieSpanner(t[2:])
+   tietools.TieSpanner(t[2:])
 
    r'''
    \new Staff {

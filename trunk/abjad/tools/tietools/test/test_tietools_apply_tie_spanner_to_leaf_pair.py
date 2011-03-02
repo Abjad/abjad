@@ -5,7 +5,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_01( ):
    '''Span left leaf with spanner and right leaf without spanner.'''
    
    t = Voice(notetools.make_repeated_notes(4))
-   spannertools.TieSpanner(t[:2])
+   tietools.TieSpanner(t[:2])
 
    r'''
    \new Voice {
@@ -35,8 +35,8 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_02( ):
    '''Span left leaf with spanner and right leaf with spanner.'''
    
    t = Voice(notetools.make_repeated_notes(4))
-   spannertools.TieSpanner(t[:2])
-   spannertools.TieSpanner(t[2:])
+   tietools.TieSpanner(t[:2])
+   tietools.TieSpanner(t[2:])
 
    r'''
    \new Voice {

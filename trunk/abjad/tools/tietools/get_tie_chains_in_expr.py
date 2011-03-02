@@ -1,7 +1,7 @@
 from abjad.exceptions import MissingSpannerError
 from abjad.tools import componenttools
-from abjad.tools import leaftools
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
 def get_tie_chains_in_expr(components):
@@ -15,14 +15,14 @@ def get_tie_chains_in_expr(components):
       renamed ``tietools.get_tie_chains( )`` to
       ``tietools.get_tie_chains_in_expr( )``.
    '''
+   from abjad.tools import leaftools
 
    assert componenttools.all_are_components(components)
 
    ## collect tie spanners in components
    tie_spanners = [ ]
    for component in components:
-      spanners = spannertools.get_all_spanners_attached_to_component(
-         component, spannertools.TieSpanner)
+      spanners = spannertools.get_all_spanners_attached_to_component(component, TieSpanner)
       #if component.tie.spanned:
       if spanners:
          #spanner = component.tie.spanner

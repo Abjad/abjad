@@ -23,5 +23,4 @@ from Spanner import Spanner
 from StaffLinesSpanner import StaffLinesSpanner
 from TextScriptSpanner import TextScriptSpanner
 from TextSpanner import TextSpanner
-from TieSpanner import TieSpanner
 from TrillSpanner import TrillSpanner

@@ -29,5 +29,5 @@ def test_spannertools_get_all_spanners_attached_to_component_01( ):
    spanners = spannertools.get_all_spanners_attached_to_component(leaf, spanner_klasses)
    assert spanners == set([beam, first_slur])
 
-   spanners = spannertools.get_all_spanners_attached_to_component(leaf, spannertools.TieSpanner)
+   spanners = spannertools.get_all_spanners_attached_to_component(leaf, tietools.TieSpanner)
    assert spanners == set([ ])

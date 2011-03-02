@@ -2,7 +2,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
    r'''Fuse leaves in `tie_chain` by parent::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-      abjad> spannertools.TieSpanner(staff.leaves)
+      abjad> tietools.TieSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {
          {

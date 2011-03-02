@@ -1,5 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
 def is_tie_chain(expr):
@@ -14,9 +15,8 @@ def is_tie_chain(expr):
          if isinstance(expr[0], _Leaf):
             return True
       else:
-         #tie_spanners = set([element.tie.spanner for element in expr])
          tie_spanners = set([spannertools.get_the_only_spanner_attached_to_component(
-            element, spannertools.TieSpanner) for element in expr])
+            element, TieSpanner) for element in expr])
          return len(tie_spanners) == 1
 
    return False

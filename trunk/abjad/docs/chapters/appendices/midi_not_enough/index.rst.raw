@@ -88,9 +88,9 @@ notated durations:
 <abjad>
 m1 = measuretools.AnonymousMeasure([Note(0, (1, 4))])
 m2 = measuretools.AnonymousMeasure(Note(0, (1, 8)) * 2)
-spannertools.TieSpanner(m2)
+tietools.TieSpanner(m2)
 m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
-spannertools.TieSpanner(m3)
+tietools.TieSpanner(m3)
 r = stafftools.RhythmicStaff([m1, m2, m3])
 iotools.write_expr_to_ly(r, 'example1')
 </abjad>

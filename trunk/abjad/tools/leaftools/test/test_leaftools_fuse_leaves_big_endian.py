@@ -33,9 +33,9 @@ def test_leaftools_fuse_leaves_big_endian_04( ):
    assert fused[1].duration.written == Fraction(1, 16) 
    #assert fused[0].tie.spanner is fused[1].tie.spanner
    assert spannertools.get_the_only_spanner_attached_to_component(
-      fused[0], spannertools.TieSpanner) is \
+      fused[0], tietools.TieSpanner) is \
       spannertools.get_the_only_spanner_attached_to_component(
-      fused[1], spannertools.TieSpanner)
+      fused[1], tietools.TieSpanner)
    assert t[0] is fused[0]
    assert t[1] is fused[1]
    assert t[0].pitch.numbered_chromatic_pitch == t[1].pitch.numbered_chromatic_pitch

@@ -5,7 +5,7 @@ from abjad import *
 #def test_TieSpanner_01( ):
 #
 #   t = Voice(macros.scale(8))
-#   p = spannertools.TieSpanner(t[4:6])
+#   p = tietools.TieSpanner(t[4:6])
 #
 #   assert len(p) == 2
 #

@@ -8,8 +8,8 @@ def label_tie_chains_in_expr_with_tie_chain_durations(expr, markup_direction = '
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> tuplettools.FixedDurationTuplet((2, 8), staff[:3])
-      abjad> spannertools.TieSpanner(staff.leaves[:2])
-      abjad> spannertools.TieSpanner(staff.leaves[2:])
+      abjad> tietools.TieSpanner(staff.leaves[:2])
+      abjad> tietools.TieSpanner(staff.leaves[2:])
       abjad> tietools.label_tie_chains_in_expr_with_tie_chain_durations(staff)
       abjad> f(staff)
       \new Staff {

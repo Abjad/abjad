@@ -5,7 +5,7 @@ def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_01( ):
    '''Group leaves in tie chain by immediate parent.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   spannertools.TieSpanner(t.leaves)
+   tietools.TieSpanner(t.leaves)
 
    r'''
    \new Staff {
@@ -30,7 +30,7 @@ def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_02( ):
    '''Group leaves in tie chain by immediate parent.'''
 
    t = Staff(notetools.make_repeated_notes(4))
-   spannertools.TieSpanner(t.leaves)
+   tietools.TieSpanner(t.leaves)
 
    r'''
    \new Staff {

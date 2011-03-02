@@ -1,5 +1,6 @@
 from abjad.exceptions import ExtraSpannerError
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
 def get_tie_chain(component):
@@ -8,8 +9,7 @@ def get_tie_chain(component):
    Get tie chain from `component`.
    '''
 
-   tie_spanners = spannertools.get_all_spanners_attached_to_component(
-      component, spannertools.TieSpanner)
+   tie_spanners = spannertools.get_all_spanners_attached_to_component(component, TieSpanner)
    count = len(tie_spanners)
 
    if count == 0:

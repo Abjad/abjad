@@ -37,7 +37,7 @@ def test_leaftools_set_preprolated_leaf_duration_02( ):
       Duplicate ties are not created.'''
 
    t = Voice(notetools.make_repeated_notes(4))
-   spannertools.TieSpanner(t[:2])
+   tietools.TieSpanner(t[:2])
    spannertools.BeamSpanner(t[:2])
 
    r'''

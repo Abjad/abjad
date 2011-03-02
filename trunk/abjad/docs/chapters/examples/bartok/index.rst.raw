@@ -232,8 +232,8 @@ tx.bound_details__left__text = markuptools.Markup('ritard.')
 And two ties connecting the last notes in the upper and lower staves:
 
 <abjad>
-spannertools.TieSpanner(upper_staff[-2:])
-spannertools.TieSpanner([appendix_voice_m4[0], appendix_voice_m5[0]])
+tietools.TieSpanner(upper_staff[-2:])
+tietools.TieSpanner([appendix_voice_m4[0], appendix_voice_m5[0]])
 </abjad>
 
 The final result:

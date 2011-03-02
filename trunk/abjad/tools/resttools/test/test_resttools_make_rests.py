@@ -34,9 +34,9 @@ def test_resttools_make_rests_03( ):
    t = resttools.make_rests((5, 8), tied=True)
    #assert t[0].tie.spanner is t[1].tie.spanner
    assert spannertools.get_the_only_spanner_attached_to_component(
-      t[0], spannertools.TieSpanner) is \
+      t[0], tietools.TieSpanner) is \
       spannertools.get_the_only_spanner_attached_to_component(
-      t[1], spannertools.TieSpanner)
+      t[1], tietools.TieSpanner)
 
 
 def test_resttools_make_rests_04( ):
