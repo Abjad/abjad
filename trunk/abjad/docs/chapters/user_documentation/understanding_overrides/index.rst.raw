@@ -1,0 +1,72 @@
+Understanding Abjad overrides
+=============================
+
+Grob-override component plug-ins
+--------------------------------
+
+All Abjad containers have a grob-override plug-in:
+
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
+</abjad>
+
+<abjad>
+staff.override.staff_symbol.color = 'blue'
+</abjad>
+
+<abjad>
+staff.override
+print staff.override <hide
+</abjad>
+
+All Abjad leaves have a grob-override plug-in, too:
+
+<abjad>
+leaf = staff[-1]
+</abjad>
+
+<abjad>
+leaf.override.note_head.color = 'red'
+leaf.override.stem.color = 'red'
+</abjad>
+
+<abjad>
+leaf.override
+print leaf.override <hide
+</abjad>
+
+And so do Abjad spanners:
+
+<abjad>
+slur = spannertools.SlurSpanner(staff[:])
+</abjad>
+
+<abjad>
+slur.override.slur.color = 'red'
+</abjad>
+
+<abjad>
+slur.override
+print slur.override <hide
+</abjad>
+
+Grob proxies
+------------
+
+Grob-override plug-ins contain grob proxies:
+
+<abjad>
+leaf.override.note_head
+print leaf.override.note_head <hide
+</abjad>
+
+<abjad>
+leaf.override.stem
+print leaf.override.stem <hide
+</abjad>
+
+Dot-chained override syntax
+---------------------------
+
+The's dot-chained grob override syntax shown here results from the special way 
+that the Abjad grob-override plug-in and grob proxy set and get their attributes.

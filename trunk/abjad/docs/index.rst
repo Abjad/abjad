@@ -54,6 +54,17 @@ User documentation --- containers
 
    chapters/user_documentation/containers/index
 
+User documentation --- grobs
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/grobs/index
+   chapters/user_documentation/understanding_overrides/index
+   chapters/user_documentation/overriding_containers/index
+   chapters/user_documentation/overriding_leaves/index
+   chapters/user_documentation/overriding_spanners/index
+
 User documentation --- marks
 
 .. toctree::
@@ -70,13 +81,6 @@ User documentation --- measures
 
    chapters/user_documentation/dynamic_measures/index
    chapters/user_documentation/anonymous_measures/index
-
-User documentation --- LilyPond equivalencies
-
-.. toctree::
-   :numbered:
-
-   chapters/user_documentation/lilypond_equivalencies/index
 
 User documentation --- pitch
 
@@ -129,8 +133,8 @@ Appendices
    chapters/appendices/midi_not_enough/index
    chapters/appendices/configuration/index
    chapters/appendices/input_output/index
-   chapters/appendices/grobs/index
    chapters/appendices/lilypond_multipliers/index
+   chapters/appendices/lilypond_equivalencies/index
    chapters/appendices/coding_standards/index
    chapters/appendices/lists_of_numbers/index
    chapters/appendices/pitch_conventions/index

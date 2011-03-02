@@ -1,0 +1,70 @@
+Understanding LilyPond grobs
+============================
+
+LilyPond models music notation as a collection of graphic objects or grobs.
+
+Grobs control typography
+------------------------
+
+LilyPond grobs control the typographic details of the score::
+
+   \new Staff {
+           c'4 (
+           d'4 )
+           e'4 (
+           f'4 )
+           g'4 (
+           a'4 )
+           g'2
+   }
+
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2") <hide
+slur_1 = spannertools.SlurSpanner(staff[:2]) <hide
+slur_2 = spannertools.SlurSpanner(staff[2:4]) <hide
+slur_3 = spannertools.SlurSpanner(staff[4:6]) <hide
+</abjad>
+
+<abjad>
+show(staff) <hide
+iotools.write_expr_to_ly(staff, 'example-1') <hide
+</abjad>
+
+In the example above LilyPond creates a grob for every printed glyph.
+This includes the clef and time signature as well as the note heads, stems and
+slurs. If the example included beams, articulations or an explicit key signature
+then LilyPond would create grobs for those as well.
+
+Grobs can be overridden
+-----------------------
+
+You can change the appearance of LilyPond grobs with grob overrides::
+
+   \new Staff \with {
+           \override NoteHead #'color = #red
+           \override StaffSymbol #'color = #blue
+           \override Stem #'color = #red
+   } {
+           c'4 (
+           d'4 )
+           e'4 (
+           f'4 )
+           g'4 (
+           a'4 )
+           g'2
+   }
+
+<abjad>
+staff.override.staff_symbol.color = 'blue' <hide
+staff.override.note_head.color = 'red' <hide
+staff.override.stem.color = 'red' <hide
+iotools.write_expr_to_ly(staff, 'example-2') <hide
+</abjad>
+
+Check the LilyPond docs
+-----------------------
+
+New grobs are added to LilyPond from time to time.
+
+For a complete list of LilyPond grobs see the `LilyPond documentation
+<http://lilypond.org/doc/v2.13/Documentation/internals/all-layout-objects>`__.
