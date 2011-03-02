@@ -145,7 +145,7 @@ def test_HairpinSpanner_07( ):
    componenttools.move_parentage_and_spanners_from_components_to_components(t[0:1], [rest])
    rest = Rest(t[-1])
    componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
-   spannertools.HairpinSpanner(t.leaves, 'p < f', avoid_rests = True)
+   spannertools.HairpinSpanner(t.leaves, 'p < f', include_rests = False)
 
    spanner = spannertools.get_the_only_spanner_attached_to_component(
       t[0], spannertools.HairpinSpanner)

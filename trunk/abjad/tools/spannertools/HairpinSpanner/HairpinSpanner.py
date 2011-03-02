@@ -3,15 +3,83 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class HairpinSpanner(Spanner):
+   r'''Abjad hairpin spanner that includes rests::
 
-   def __init__(self, music, descriptor, avoid_rests = False):
+      abjad> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         r4
+         c'8
+         d'8
+         e'8
+         f'8
+         r4
+      }
+
+   ::
+
+      abjad> spannertools.HairpinSpanner(staff[:], 'p < f', include_rests = True)
+      HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         r4 \< \p
+         c'8
+         d'8
+         e'8
+         f'8
+         r4 \f
+      }
+
+   Abjad hairpin spanner that does not include rests::
+
+      abjad> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         r4
+         c'8
+         d'8
+         e'8
+         f'8
+         r4
+      }
+
+   ::
+
+      abjad> spannertools.HairpinSpanner(staff[:], 'p < f', include_rests = False)
+      HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         r4
+         c'8 \< \p
+         d'8
+         e'8
+         f'8 \f
+         r4
+      }
+
+   Return hairpin spanner.
+   '''
+
+   def __init__(self, music, descriptor, include_rests = True):
       Spanner.__init__(self, music)
       self._format = _HairpinSpannerFormatInterface(self)
-      self.avoid_rests = avoid_rests
-      start, shape, stop = self._parse_descriptor(descriptor)
-      self.shape = shape
-      self.start = start
-      self.stop = stop
+      self.include_rests = include_rests
+      start_dynamic_string, shape_string, stop_dynamic_string = self._parse_descriptor(descriptor)
+      self.shape_string = shape_string
+      self.start_dynamic_string = start_dynamic_string
+      self.stop_dynamic_string = stop_dynamic_string
    
    ## PRIVATE METHODS ##
 
@@ -47,16 +115,53 @@ class HairpinSpanner(Spanner):
    ## PUBLIC ATTRIBUTES ##
 
    @apply
-   def avoid_rests( ):
+   def include_rests( ):
       def fget(self):
-         return self._avoid_rests
+         r'''Get boolean hairpin rests setting:
+
+         ::
+         
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f', include_rests = True)
+            abjad> hairpin.include_rests
+            True
+
+         Set boolean hairpin rests setting:
+
+         ::
+         
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f', include_rests = True)
+            abjad> hairpin.include_rests = False
+            abjad> hairpin.include_rests
+            False
+         '''
+         return self._include_rests
       def fset(self, arg):
-         self._avoid_rests = arg
+         self._include_rests = arg
       return property(**locals( ))
 
    @apply
-   def shape( ):
+   def shape_string( ):
       def fget(self):
+         r'''Get hairpin shape string:
+
+         ::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
+            abjad> hairpin.shape_string
+            '<'
+         
+         Set hairpin shape string:
+
+         ::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
+            abjad> hairpin.shape_string = '>'
+            '>'
+         '''
          return self._shape
       def fset(self, arg):
          assert arg in ('<', '>')
@@ -64,16 +169,54 @@ class HairpinSpanner(Spanner):
       return property(**locals( ))
 
    @apply
-   def start( ):
+   def start_dynamic_string( ):
       def fget(self):
+         r'''Get hairpin start dynamic string:
+
+         ::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
+            abjad> hairpin.start_dynamic_string
+            'p'
+
+         Set hairpin start dynamic string:
+
+         ::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
+            abjad> hairpin.start_dynamic_string = 'mf'
+            abjad> hairpin.start_dynamic_string
+            'mf'
+         '''
          return self._start
       def fset(self, arg):
          self._start = arg
       return property(**locals( ))
 
    @apply
-   def stop( ):
+   def stop_dynamic_string( ):
       def fget(self):
+         r'''Get hairpin stop dynamic string:
+
+         ::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
+            abjad> hairpin.stop_dynamic_string
+            'f'
+
+         Set hairpin stop dynamic string:
+
+         ::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f')
+            abjad> hairpin.stop_dynamic_string = 'mf'
+            abjad> hairpin.stop_dynamic_string
+            'mf'
+         '''
          return self._stop
       def fset(self, arg):
          self._stop = arg

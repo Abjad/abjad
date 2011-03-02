@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_HairpinSpanner_avoid_rests_01( ):
+def test_HairpinSpanner_include_rests_01( ):
    '''Hairpin spanner avoids rests.
    '''
 
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-   spannertools.CrescendoSpanner(t[:], avoid_rests = True)
+   spannertools.CrescendoSpanner(t[:], include_rests = False)
 
    r'''
    \new Staff {
@@ -25,12 +25,12 @@ def test_HairpinSpanner_avoid_rests_01( ):
    assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
 
 
-def test_HairpinSpanner_avoid_rests_02( ):
+def test_HairpinSpanner_include_rests_02( ):
    '''Hairpin spanner avoids rests.
    '''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-   spannertools.CrescendoSpanner(t[:], avoid_rests = True)
+   spannertools.CrescendoSpanner(t[:], include_rests = False)
 
 
    r'''
