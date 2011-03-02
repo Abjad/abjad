@@ -138,52 +138,6 @@ def test_HairpinSpanner_06( ):
 
 
 def test_HairpinSpanner_07( ):
-   '''Trim hairpins format only notes and chords.'''
-
-   t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-   spannertools.CrescendoSpanner(t[:], trim = True)
-
-   r'''
-   \new Staff {
-           r8
-           r8
-           r8
-           r8
-           e'8 \<
-           f'8
-           fs'8
-           g'8 \!
-   }
-   '''
-
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
-
-
-def test_HairpinSpanner_08( ):
-   '''Trim hairpins format only notes and chords.'''
-
-   t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-   spannertools.CrescendoSpanner(t[:], trim = True)
-
-   assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"
-   assert componenttools.is_well_formed_component(t)
-
-   r'''
-   \new Staff {
-           c'8 \<
-           cs'8
-           d'8
-           ef'8 \!
-           r8
-           r8
-           r8
-           r8
-   }
-   '''
-
-
-def test_HairpinSpanner_09( ):
    '''Trim hairpins with dynamic marks behave as expected.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -191,7 +145,7 @@ def test_HairpinSpanner_09( ):
    componenttools.move_parentage_and_spanners_from_components_to_components(t[0:1], [rest])
    rest = Rest(t[-1])
    componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
-   spannertools.HairpinSpanner(t.leaves, 'p < f', trim = True)
+   spannertools.HairpinSpanner(t.leaves, 'p < f', avoid_rests = True)
 
    spanner = spannertools.get_the_only_spanner_attached_to_component(
       t[0], spannertools.HairpinSpanner)

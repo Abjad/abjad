@@ -16,7 +16,7 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
       result = [ ]
       spanner = self.spanner
       effective_dynamic = contexttools.get_effective_dynamic(leaf)
-      if not spanner.trim:
+      if not spanner.avoid_rests:
          if spanner._is_my_first_leaf(leaf):
             result.append('\\%s' % spanner._shape)
             if spanner.start:

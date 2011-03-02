@@ -4,14 +4,14 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 class HairpinSpanner(Spanner):
 
-   def __init__(self, music, descriptor, trim = False):
+   def __init__(self, music, descriptor, avoid_rests = False):
       Spanner.__init__(self, music)
       self._format = _HairpinSpannerFormatInterface(self)
+      self.avoid_rests = avoid_rests
       start, shape, stop = self._parse_descriptor(descriptor)
       self.shape = shape
       self.start = start
       self.stop = stop
-      self.trim = trim
    
    ## PRIVATE METHODS ##
 
@@ -47,6 +47,14 @@ class HairpinSpanner(Spanner):
    ## PUBLIC ATTRIBUTES ##
 
    @apply
+   def avoid_rests( ):
+      def fget(self):
+         return self._avoid_rests
+      def fset(self, arg):
+         self._avoid_rests = arg
+      return property(**locals( ))
+
+   @apply
    def shape( ):
       def fget(self):
          return self._shape
@@ -69,12 +77,4 @@ class HairpinSpanner(Spanner):
          return self._stop
       def fset(self, arg):
          self._stop = arg
-      return property(**locals( ))
-
-   @apply
-   def trim( ):
-      def fget(self):
-         return self._trim
-      def fset(self, arg):
-         self._trim = arg
       return property(**locals( ))
