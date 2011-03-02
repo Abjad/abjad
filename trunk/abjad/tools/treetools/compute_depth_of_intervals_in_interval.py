@@ -7,6 +7,7 @@ from abjad.tools.treetools.get_all_unique_bounds_in_intervals \
 from abjad.tools.treetools.split_intervals_at_rationals \
    import split_intervals_at_rationals
 
+
 def compute_depth_of_intervals_in_interval(intervals, interval):
    '''Compute a tree whose intervals represent the depth (level of overlap) 
    in each boundary pair of `intervals`, cropped within `interval`::

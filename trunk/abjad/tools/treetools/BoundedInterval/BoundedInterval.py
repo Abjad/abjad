@@ -41,6 +41,11 @@ class BoundedInterval(_Immutable):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def centroid(self):
+      '''Center point of low and high bounds.'''
+      return Fraction(self.high + self.low) / 2
+
+   @property
    def magnitude(self):
       '''High bound minus low bound.'''
       return self.high - self.low
@@ -51,6 +56,20 @@ class BoundedInterval(_Immutable):
       return (self.low, self.high)
 
    ## PUBLIC METHODS ##
+
+   def get_overlap_with_interval(self, interval):
+      '''Return amount of overlap with `interval`.'''
+      assert isinstance(interval, BoundedInterval)
+      if not self.is_overlapped_by_interval(interval):
+         return 0
+      elif self.is_container_of_interval(interval):
+         return interval.magnitude
+      elif self.is_contained_by_interval(interval):
+         return self.magnitude
+      elif self.low < interval.low:
+         return self.high - interval.low
+      else:
+         return interval.high - self.low
 
    def is_container_of_interval(self, interval):
       '''True if interval contains `interval`.'''
@@ -71,8 +90,17 @@ class BoundedInterval(_Immutable):
    def is_overlapped_by_interval(self, interval):
       '''True if interval is overlapped by `interval`.'''
       assert isinstance(interval, BoundedInterval)
-      if (self.low < interval.low and interval.low < self.high) or \
-         (self.low < interval.high and interval.high < self.high):
+      if self.is_container_of_interval(interval):
+         return True
+      elif self.is_contained_by_interval(interval):
+         return True
+      elif self.low < interval.low < self.high:
+         return True
+      elif self.low == interval.low:
+         return True
+      elif self.high == interval.high:
+         return True
+      elif self.low < interval.high < self.high:
          return True
       else:
          return False
