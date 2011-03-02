@@ -3,12 +3,7 @@ from abjad.tools.spannertools.TrillSpanner._TrillSpannerFormatInterface import _
 
 
 class TrillSpanner(Spanner):
-   r'''Trill with continuation line.
-
-   *  Interfaces to LilyPond ``startTrillSpan``, ``stopTrillSpan`` commands.
-   *  Handles LilyPond TrillSpanner grob.
-
-   ::
+   r'''Abjad trill spanner::
 
       abjad> t = Staff(macros.scale(4))
       abjad> spannertools.TrillSpanner(t[:])
@@ -20,6 +15,12 @@ class TrillSpanner(Spanner):
          e'8
          f'8 \stopTrillSpan
       }
+
+   Interface to LilyPond ``startTrillSpan``, ``stopTrillSpan`` commands.
+
+   Handles LilyPond TrillSpanner grob.
+
+   Return trill spanner.
    '''
 
    def __init__(self, music = None):
@@ -34,17 +35,15 @@ class TrillSpanner(Spanner):
       def fget(self):
          r'''Optional read / write pitch for pitched trills.
    
-            *  Default value: ``None``.
-            *  Acceptable values: \
-               :class:`Pitch <abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch>`, ``None``.
-
             ::
 
                abjad> t = Staff(macros.scale(4))
                abjad> trill = spannertools.TrillSpanner(t[:2])
                abjad> trill.pitch = pitchtools.NamedChromaticPitch('cs', 4)
 
-               abjad> print t.format
+            ::
+
+               abjad> f(t)
                \new Staff {
                   \pitchedTrill c'8 \startTrillSpan cs'
                   d'8 \stopTrillSpan
@@ -52,7 +51,6 @@ class TrillSpanner(Spanner):
                   f'8
                }
          '''
-
          return self._pitch
       def fset(self, expr):
          from abjad.tools import pitchtools

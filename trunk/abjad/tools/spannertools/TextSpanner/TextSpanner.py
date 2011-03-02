@@ -5,11 +5,7 @@ from abjad.tools.spannertools.TextSpanner._TextSpannerFormatInterface import _Te
 class TextSpanner(Spanner):
    r'''.. versionadded:: 1.1.2
 
-   Handle LilyPond TextSpanner grob.
-
-   Interface LilyPond ``\startTextSpan``, ``\stopTextSpan`` commands.
-
-   Interface LilyPond ``\textSpannerUp``, ``\textSpannerDown`` commands. ::
+   Abjad text spanner::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spanner = spannertools.TextSpanner(staff[:])
@@ -23,6 +19,14 @@ class TextSpanner(Spanner):
               f'8 \stopTextSpan
               \revert TextSpanner #'color
       }
+
+   Handle LilyPond TextSpanner grob.
+
+   Interface LilyPond ``\startTextSpan``, ``\stopTextSpan`` commands.
+
+   Interface LilyPond ``\textSpannerUp``, ``\textSpannerDown`` commands.
+
+   Return text spanner.
    '''
 
    def __init__(self, music = None):

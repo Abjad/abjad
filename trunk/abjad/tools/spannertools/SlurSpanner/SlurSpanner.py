@@ -4,6 +4,10 @@ from abjad.tools.spannertools.SlurSpanner._SlurSpannerFormatInterface import \
 
 
 class SlurSpanner(Spanner):
+   '''Abjad slur spanner.
+
+   Return slur spanner.
+   '''
 
    def __init__(self, music = None):
       Spanner.__init__(self, music)

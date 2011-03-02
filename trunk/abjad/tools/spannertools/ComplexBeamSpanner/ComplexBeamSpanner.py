@@ -39,6 +39,8 @@ class ComplexBeamSpanner(BeamSpanner):
          f'16 [ ]
          g'2
       }
+
+   Return complex beam spanner.
    '''
 
    def __init__(self, leaves, lone = False, nibs = 'neither'):

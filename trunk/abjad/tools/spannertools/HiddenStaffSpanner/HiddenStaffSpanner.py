@@ -4,6 +4,10 @@ from abjad.tools.spannertools.HiddenStaffSpanner._HiddenStaffSpannerFormatInterf
 
 
 class HiddenStaffSpanner(Spanner):
+   '''Abjad hidden staff spanner.
+
+   Return hidden staff spanner.
+   '''
 
    def __init__(self, music = None):
       Spanner.__init__(self, music)

@@ -6,7 +6,10 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class MetricGridSpanner(Spanner):
-   '''MetricGrid is a list of MetricStrips.'''
+   '''Abjad metric grid spanner.
+
+   Return metric grid spanner.
+   '''
 
    def __init__(self, music, meters):
       Spanner.__init__(self, music)

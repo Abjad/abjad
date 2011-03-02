@@ -5,6 +5,10 @@ import types
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
+   '''Abjad durated complex beam spanner.
+
+   Return durated complex beam spanner.
+   '''
 
    def __init__(self, leaves, 
       durations = None, span = 1, lone = False, nibs = 'neither'):

@@ -3,7 +3,7 @@ from abjad.tools.spannertools.OctavationSpanner._OctavationSpannerFormatInterfac
 
 
 class OctavationSpanner(Spanner):
-   r'''8va or 8vb spanner. Overrides the LilyPond OttavaBracket grob.
+   r'''Abjad octavation spanner:
 
    ::
 
@@ -19,6 +19,8 @@ class OctavationSpanner(Spanner):
          f'8
          \ottava #0
       }
+
+   Return octavation spanner.
    '''
 
    ## TODO: Remove start and stop from initializer and force set later. ##

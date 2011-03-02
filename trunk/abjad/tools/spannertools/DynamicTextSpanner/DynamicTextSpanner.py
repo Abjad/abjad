@@ -4,6 +4,10 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class DynamicTextSpanner(Spanner):
+   '''Abjad dynamic text spanner.
+
+   Return dynamic text spanner.
+   '''
 
    def __init__(self, music, mark):
       Spanner.__init__(self, music)

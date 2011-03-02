@@ -3,6 +3,10 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class PianoPedalSpanner(Spanner):
+   '''Abjad piano pedal spanner.
+
+   Return piano pedal spanner.
+   '''
 
    def __init__(self, music = None):
       Spanner.__init__(self, music)

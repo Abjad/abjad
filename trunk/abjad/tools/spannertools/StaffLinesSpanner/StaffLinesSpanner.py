@@ -1,13 +1,17 @@
 from abjad.tools.spannertools.Spanner import Spanner
-from _StaffLinesSpannerFormatInterface import \
-   _StaffLinesSpannerFormatInterface
+from _StaffLinesSpannerFormatInterface import _StaffLinesSpannerFormatInterface
 
 
 class StaffLinesSpanner(Spanner):
-   '''StaffLinesSpanner handles changing either the line-count
+   '''Abjad staff lines spanner.
+
+   Staff lines spanner handles changing either the line-count
    or the line-positions property of the StaffSymbol grob,
    as well as automatically stopping and restarting the staff
-   so that the change may take place.'''
+   so that the change may take place.
+
+   Return staff lines spanner.
+   '''
 
    def __init__(self, arg = 5, music = None):
       Spanner.__init__(self, music)

@@ -6,6 +6,8 @@ from abjad.tools.spannertools.TextScriptSpanner._TextScriptSpannerFormatInterfac
 class TextScriptSpanner(Spanner):
    r'''.. versionadded:: 1.1.2
 
+   Abjad text script spanner.
+
    Handle Lilypond TextScript grob.
 
    ::
@@ -23,6 +25,8 @@ class TextScriptSpanner(Spanner):
               f'8
               \revert TextScript #'color
       }      
+
+   Return text script spanner.
    '''
 
    def __init__(self, music = None):

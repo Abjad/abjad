@@ -3,9 +3,7 @@ from abjad.tools.spannertools.TieSpanner._TieSpannerFormatInterface import _TieS
 
 
 class TieSpanner(Spanner):
-   r'''Musical tie between two or more notes, rests or chords.
-
-   ::
+   r'''Abjad tie spanner::
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> spannertools.TieSpanner(staff[:])
@@ -17,6 +15,8 @@ class TieSpanner(Spanner):
          c'8 ~
          c'8
       }
+
+   Return tie spanner.
    '''
 
    def __init__(self, music = None):

@@ -39,11 +39,13 @@ class BracketSpanner(TextSpanner):
               \revert TextSpanner #'bound-details #'left-broken #'text
       }
    
-   Render 1.5-unit thick solid red spanner with nibs at beginning and end.
+   Render 1.5-unit thick solid red spanner.
+
+   Draw nibs at beginning and end of spanner.
 
    Do not draw nibs at line breaks.
 
-   Return text spanner.
+   Return bracket spanner.
    '''
 
    def __init__(self, music = None):

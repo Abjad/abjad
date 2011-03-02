@@ -33,6 +33,8 @@ class BeamSpanner(Spanner):
          f'8 ]
          g'2
       }
+
+   Return beam spanner.
    '''
 
    def __init__(self, music = None):

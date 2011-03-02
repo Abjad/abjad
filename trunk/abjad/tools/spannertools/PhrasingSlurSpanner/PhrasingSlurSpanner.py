@@ -3,6 +3,10 @@ from abjad.tools.spannertools.PhrasingSlurSpanner._PhrasingSlurSpannerFormatInte
 
 
 class PhrasingSlurSpanner(Spanner):
+   '''Abjad phrasing slur spanner.
+
+   Return phrasing slur spanner.
+   '''
 
    def __init__(self, music = None):
       Spanner.__init__(self, music)

@@ -4,6 +4,10 @@ from fractions import Fraction
 
 
 class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
+   '''Abjad measured complex beam spanner.
+
+   Return measured complex beam spanner.
+   '''
 
    def __init__(self, leaves, lone = False, nibs = 'neither', span = 1):
       ComplexBeamSpanner.__init__(self, leaves, lone = lone, nibs = nibs)
