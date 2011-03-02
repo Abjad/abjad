@@ -12,7 +12,7 @@ def format_input_lines_as_doc_string(input_lines, tab_width = 3):
 
       ... f(staff)
       ... '''
-      abjad> formattools.format_input_lines_as_doc_string(input_lines)
+      abjad> iotools.format_input_lines_as_doc_string(input_lines)
 
             abjad> staff = Staff(macros.scale(4))
             abjad> spannertools.BeamSpanner(staff.leaves)

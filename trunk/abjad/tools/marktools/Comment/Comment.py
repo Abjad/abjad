@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-from abjad.tools import stringtools
 from abjad.tools.marktools.Mark import Mark
 
 
@@ -49,6 +48,7 @@ class Comment(Mark):
          abjad> comment.format
          '% this is a comment.'
       '''
-      command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(
+      from abjad.tools import iotools
+      command = iotools.underscore_delimited_lowercase_to_lowercamelcase(
          self._comment_name_string)
       return r'%% %s' % command

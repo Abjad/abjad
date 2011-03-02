@@ -18,7 +18,7 @@ def get_beam_spanner_attached_to_component(component):
 
    ::
 
-      abjad> beamtools.get_beam_spanner_attached_to_component(staff[0])
+      abjad> spannertools.get_beam_spanner_attached_to_component(staff[0])
       BeamSpanner(c'8, d'8, e'8, f'8)
 
    ::
@@ -34,7 +34,11 @@ def get_beam_spanner_attached_to_component(component):
 
    .. versionchanged:: 1.1.2
       renamed ``beamtools.get_beam_spanner( )`` to
-      ``beamtools.get_beam_spanner_attached_to_component( )``.
+      ``spannertools.get_beam_spanner_attached_to_component( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``beamtools.get_beam_spanner_attached_to_component( )`` to
+      ``spannertools.get_beam_spanner_attached_to_component( )``.
    '''
    from abjad.tools import spannertools
 

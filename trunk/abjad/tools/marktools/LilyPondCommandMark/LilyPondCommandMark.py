@@ -1,4 +1,3 @@
-from abjad.tools import stringtools
 from abjad.tools.marktools.Mark import Mark
 
 
@@ -74,8 +73,9 @@ class LilyPondCommandMark(Mark):
          abjad> lilypond_command.format
          '\\slurDotted'
       '''
+      from abjad.tools import iotools
       command = self._command_name_string
       if command.startswith('#'):
          return command
       else:
-         return '\\' + stringtools.underscore_delimited_lowercase_to_lowercamelcase(command)
+         return '\\' + iotools.underscore_delimited_lowercase_to_lowercamelcase(command)

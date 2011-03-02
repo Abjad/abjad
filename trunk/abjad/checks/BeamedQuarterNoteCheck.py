@@ -5,7 +5,6 @@ from abjad.tools import durtools
 class BeamedQuarterNoteCheck(_Check):
 
    def _run(self, expr):
-      from abjad.tools import beamtools
       from abjad.tools import leaftools
       from abjad.tools.spannertools import DuratedComplexBeamSpanner
       violators = [ ]
@@ -14,9 +13,9 @@ class BeamedQuarterNoteCheck(_Check):
          total += 1
          if hasattr(leaf, 'beam'):
             #if leaf.beam.spanned:
-            if beamtools.is_component_with_beam_spanner_attached(leaf):
+            if spannertools.is_component_with_beam_spanner_attached(leaf):
                #beam = leaf.beam.spanner
-               beam = beamtools.get_beam_spanner_attached_to_component(leaf)
+               beam = spannertools.get_beam_spanner_attached_to_component(leaf)
                #if not beam.__class__.__name__ == 'DuratedComplexBeam':
                if not isinstance(beam, DuratedComplexBeamSpanner):
                   flag_count = durtools.rational_to_flag_count(leaf.duration.written)

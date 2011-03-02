@@ -6,7 +6,7 @@ def test_SpacingIndication_normalized_spacing_duration_01( ):
    for this spacing indication at quarter equals 60.'''
 
    tempo_indication = contexttools.TempoMark(Fraction(1, 4), 120)
-   spacing_indication = spacingtools.SpacingIndication(tempo_indication, Fraction(1, 16))
+   spacing_indication = layouttools.SpacingIndication(tempo_indication, Fraction(1, 16))
    assert spacing_indication.normalized_spacing_duration == Fraction(1, 32)
 
 
@@ -18,5 +18,5 @@ def test_SpacingIndication_normalized_spacing_duration_02( ):
    on this spacing indication is already quarter equals 60.'''
 
    tempo_indication = contexttools.TempoMark(Fraction(1, 4), 60)
-   spacing_indication = spacingtools.SpacingIndication(tempo_indication, Fraction(1, 68))
+   spacing_indication = layouttools.SpacingIndication(tempo_indication, Fraction(1, 68))
    assert spacing_indication.normalized_spacing_duration == Fraction(1, 68)

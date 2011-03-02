@@ -28,15 +28,6 @@ Abjad composition packages
 
 
 
-beamtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/beamtools/get_beam_spanner_attached_to_component
-   tools/beamtools/is_component_with_beam_spanner_attached
-
-
 cfgtools
 
 .. toctree::
@@ -298,15 +289,6 @@ durtools
    tools/durtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
 
 
-formattools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/formattools/format_input_lines_as_doc_string
-   tools/formattools/format_input_lines_as_regression_test
-
-
 gracetools
 
 .. toctree::
@@ -322,6 +304,8 @@ iotools
    :maxdepth: 1
 
    tools/iotools/f
+   tools/iotools/format_input_lines_as_doc_string
+   tools/iotools/format_input_lines_as_regression_test
    tools/iotools/get_last_output_file_name
    tools/iotools/get_next_output_file_name
    tools/iotools/log
@@ -335,6 +319,8 @@ iotools
    tools/iotools/save_last_ly_as
    tools/iotools/save_last_pdf_as
    tools/iotools/show
+   tools/iotools/underscore_delimited_lowercase_to_lowercamelcase
+   tools/iotools/underscore_delimited_lowercase_to_uppercamelcase
    tools/iotools/write_expr_to_ly
    tools/iotools/write_expr_to_ly_and_to_pdf_and_show
    tools/iotools/write_expr_to_pdf
@@ -347,6 +333,7 @@ layouttools
 
    tools/layouttools/FixedStaffPositioning/FixedStaffPositioning
    tools/layouttools/LayoutSchema/LayoutSchema
+   tools/layouttools/SpacingIndication/SpacingIndication
    tools/layouttools/StaffAlignmentDistances/StaffAlignmentDistances
    tools/layouttools/StaffAlignmentOffsets/StaffAlignmentOffsets
    tools/layouttools/SystemYOffsets/SystemYOffsets
@@ -941,14 +928,6 @@ skiptools
    tools/skiptools/replace_leaves_in_expr_with_skips
 
 
-spacingtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/spacingtools/SpacingIndication/SpacingIndication
-
-
 spannertools
 
 .. toctree::
@@ -987,6 +966,7 @@ spannertools
    tools/spannertools/get_all_spanners_attached_to_any_proper_child_of_component
    tools/spannertools/get_all_spanners_attached_to_any_proper_parent_of_component
    tools/spannertools/get_all_spanners_attached_to_component
+   tools/spannertools/get_beam_spanner_attached_to_component
    tools/spannertools/get_nth_leaf_in_spanner
    tools/spannertools/get_spanners_contained_by_components
    tools/spannertools/get_spanners_covered_by_components
@@ -997,6 +977,7 @@ spannertools
    tools/spannertools/get_spanners_that_dominate_container_components_from_to
    tools/spannertools/get_the_only_spanner_attached_to_any_improper_parent_of_component
    tools/spannertools/get_the_only_spanner_attached_to_component
+   tools/spannertools/is_component_with_beam_spanner_attached
    tools/spannertools/is_component_with_spanner_attached
    tools/spannertools/iterate_components_backward_in_spanner
    tools/spannertools/iterate_components_forward_in_spanner
@@ -1019,15 +1000,6 @@ stafftools
    tools/stafftools/RhythmicStaff/RhythmicStaff
    tools/stafftools/make_invisible_staff
    tools/stafftools/make_rhythmic_sketch_staff
-
-
-stringtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/stringtools/underscore_delimited_lowercase_to_lowercamelcase
-   tools/stringtools/underscore_delimited_lowercase_to_uppercamelcase
 
 
 tempotools
