@@ -1,5 +1,5 @@
-from abjad.tools.spannertools.MeasuredComplexBeamSpanner._MeasuredComplexBeamSpannerFormatInterface import _MeasuredComplexBeamSpannerFormatInterface
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
+from abjad.tools.spannertools.MeasuredComplexBeamSpanner._MeasuredComplexBeamSpannerFormatInterface import _MeasuredComplexBeamSpannerFormatInterface
 from fractions import Fraction
 
 
@@ -9,8 +9,8 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
    Return measured complex beam spanner.
    '''
 
-   def __init__(self, components, lone = False, nibs = 'neither', span = 1):
-      ComplexBeamSpanner.__init__(self, components, lone = lone, nibs = nibs)
+   def __init__(self, components = None, lone = False, nibs = 'neither', span = 1):
+      ComplexBeamSpanner.__init__(self, components = components, lone = lone, nibs = nibs)
       self._format = _MeasuredComplexBeamSpannerFormatInterface(self)
       self.span = span
 

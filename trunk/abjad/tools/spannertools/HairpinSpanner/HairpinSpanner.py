@@ -72,8 +72,8 @@ class HairpinSpanner(Spanner):
    Return hairpin spanner.
    '''
 
-   def __init__(self, components, descriptor, include_rests = True):
-      Spanner.__init__(self, components)
+   def __init__(self, components = None, descriptor = '<', include_rests = True):
+      Spanner.__init__(self, components = components)
       self._format = _HairpinSpannerFormatInterface(self)
       self.include_rests = include_rests
       start_dynamic_string, shape_string, stop_dynamic_string = self._parse_descriptor(descriptor)

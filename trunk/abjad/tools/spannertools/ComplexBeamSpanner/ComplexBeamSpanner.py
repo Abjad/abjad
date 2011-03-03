@@ -43,8 +43,8 @@ class ComplexBeamSpanner(BeamSpanner):
    Return complex beam spanner.
    '''
 
-   def __init__(self, music, lone = False, nibs = 'neither'):
-      BeamSpanner.__init__(self, music)
+   def __init__(self, components = None, lone = False, nibs = 'neither'):
+      BeamSpanner.__init__(self, components = components)
       self._format = _ComplexBeamSpannerFormatInterface(self)
       self.lone = lone
       self.nibs = nibs

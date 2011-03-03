@@ -2,6 +2,14 @@ from abjad import *
 
 
 def test_PhrasingSlurSpanner___init___01( ):
+   '''Init empty phrasing slur.
+   '''
+
+   phrasing_slur = spannertools.PhrasingSlurSpanner( )
+   assert isinstance(phrasing_slur, spannertools.PhrasingSlurSpanner)
+
+
+def test_PhrasingSlurSpanner___init___02( ):
 
    staff = Staff(macros.scale(4))
    spannertools.PhrasingSlurSpanner(staff.leaves)

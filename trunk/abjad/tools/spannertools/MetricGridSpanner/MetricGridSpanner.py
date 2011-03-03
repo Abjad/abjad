@@ -1,7 +1,7 @@
-from abjad.tools.spannertools.MetricGridSpanner._MetricGridSpannerFormatInterface import \
-   _MetricGridSpannerFormatInterface
 from abjad.tools import gracetools
 from abjad.tools import mathtools
+from abjad.tools.spannertools.MetricGridSpanner._MetricGridSpannerFormatInterface import \
+   _MetricGridSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -11,7 +11,8 @@ class MetricGridSpanner(Spanner):
    Return metric grid spanner.
    '''
 
-   def __init__(self, components, meters):
+   #def __init__(self, components, meters):
+   def __init__(self, components = None, meters = None):
       Spanner.__init__(self, components)
       self._format = _MetricGridSpannerFormatInterface(self)
       self._meters = meters

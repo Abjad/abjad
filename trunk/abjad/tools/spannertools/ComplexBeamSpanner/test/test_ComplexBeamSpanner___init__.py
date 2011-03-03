@@ -2,6 +2,14 @@ from abjad import *
 
 
 def test_ComplexBeamSpanner___init___01( ):
+   '''Init empty complex beam spanner.
+   '''
+
+   beam = spannertools.ComplexBeamSpanner( )
+   assert isinstance(beam, spannertools.ComplexBeamSpanner)
+
+
+def test_ComplexBeamSpanner___init___02( ):
 
    staff = Staff("c'16 e'16 r16 f'16 g'2")
    spannertools.ComplexBeamSpanner(staff[:4])

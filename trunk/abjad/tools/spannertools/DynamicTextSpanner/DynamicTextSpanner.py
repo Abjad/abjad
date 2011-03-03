@@ -9,7 +9,7 @@ class DynamicTextSpanner(Spanner):
    Return dynamic text spanner.
    '''
 
-   def __init__(self, components, mark):
+   def __init__(self, components = None, mark = ''):
       Spanner.__init__(self, components)
       self._format = _DynamicTextSpannerFormatInterface(self)
       self.mark = mark
