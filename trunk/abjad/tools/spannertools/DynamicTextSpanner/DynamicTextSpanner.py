@@ -4,7 +4,25 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class DynamicTextSpanner(Spanner):
-   '''Abjad dynamic text spanner.
+   r'''Abjad dynamic text spanner::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> spannertools.DynamicTextSpanner(staff[:], 'f')
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 \f
+         d'8
+         e'8
+         f'8
+      }
+
+   Format dynamic `mark` at first leaf in spanner.
 
    Return dynamic text spanner.
    '''
@@ -19,6 +37,21 @@ class DynamicTextSpanner(Spanner):
    @apply
    def mark( ):
       def fget(self):
+         '''Get dynamic string::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> dynamic_text_spanner = spannertools.DynamicTextSpanner(staff[:], 'f')
+            abjad> dynamic_text_spanner.mark
+            'f'
+
+         Set dynamic string::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> dynamic_text_spanner = spannertools.DynamicTextSpanner(staff[:], 'f')
+            abjad> dynamic_text_spanner.mark = 'p'
+            abjad> dynamic_text_spanner.mark
+            'p'
+         '''
          return self._mark
       def fset(self, arg):
          assert isinstance(arg, str)

@@ -4,7 +4,38 @@ from fractions import Fraction
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
-   '''Abjad durated complex beam spanner.
+   r'''Abjad durated complex beam spanner::
+
+      staff = Staff("c'16 d'16 e'16 f'16")
+
+   ::
+
+      durations = [Fraction(1, 8), Fraction(1, 8)]
+      beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+
+   ::
+
+      f(staff)
+      \new Staff {
+         \set stemLeftBeamCount = #0
+         \set stemRightBeamCount = #2
+         c'16 [
+         \set stemLeftBeamCount = #2
+         \set stemRightBeamCount = #1
+         d'16
+         \set stemLeftBeamCount = #1
+         \set stemRightBeamCount = #2
+         e'16
+         \set stemLeftBeamCount = #2
+         \set stemRightBeamCount = #0
+         f'16 ]
+      }
+
+   Beam all beamable leaves in spanner explicitly.
+
+   Group leaves in spanner according to `durations`.
+
+   Span leaves between duration groups according to `span`.
 
    Return durated complex beam spanner.
    '''
@@ -14,7 +45,6 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
       self._format = _DuratedComplexBeamSpannerFormatInterface(self)
       self.durations = durations
       self.lone = lone
-      #self.nibs = nibs
       self.span = span
 
    ## PRIVATE ATTRIBUTES ##
@@ -33,6 +63,23 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
    @apply
    def durations( ):
       def fget(self):
+         '''Get spanner leaf group durations::
+
+            abjad> staff = Staff("c'16 d'16 e'16 f'16")
+            abjad> durations = [Fraction(1, 8), Fraction(1, 8)]
+            abjad> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations)
+            abjad> beam.durations
+            [Fraction(1, 8), Fraction(1, 8)]
+
+         Set spanner leaf group durations::   
+
+            abjad> staff = Staff("c'16 d'16 e'16 f'16")
+            abjad> durations = [Fraction(1, 8), Fraction(1, 8)]
+            abjad> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations)
+            abjad> beam.durations = [Fraction(1, 4)]
+            abjad> beam.durations
+            [Fraction(1, 4)]
+         '''
          return self._durations
       def fset(self, arg):
          if arg is None:
@@ -51,6 +98,23 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
    @apply
    def span( ):
       def fget(self):
+         r'''Get top-level beam count::
+
+            abjad> staff = Staff("c'16 d'16 e'16 f'16")
+            abjad> durations = [Fraction(1, 8), Fraction(1, 8)]
+            abjad> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+            abjad> beam.span
+            1
+
+         Set top-level beam count::
+
+            abjad> staff = Staff("c'16 d'16 e'16 f'16")
+            abjad> durations = [Fraction(1, 8), Fraction(1, 8)]
+            abjad> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+            abjad> beam.span = 2
+            abjad> beam.span
+            2
+         '''
          return self._span
       def fset(self, arg):
          assert isinstance(arg, (int, type(None)))

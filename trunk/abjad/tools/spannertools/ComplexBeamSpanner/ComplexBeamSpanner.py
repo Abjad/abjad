@@ -43,11 +43,10 @@ class ComplexBeamSpanner(BeamSpanner):
    Return complex beam spanner.
    '''
 
-   def __init__(self, components = None, lone = False, nibs = 'neither'):
+   def __init__(self, components = None, lone = False):
       BeamSpanner.__init__(self, components = components)
       self._format = _ComplexBeamSpannerFormatInterface(self)
       self.lone = lone
-      self.nibs = nibs
    
    ## PUBLIC ATTRIBUTES ##
 
@@ -134,12 +133,3 @@ class ComplexBeamSpanner(BeamSpanner):
          assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
          self._lone = arg 
       return property(**locals( ))
-
-#   @apply
-#   def nibs( ):
-#      def fget(self):
-#         return self._nibs
-#      def fset(self, arg):
-#         assert arg in ('left', 'right', 'both', 'neither')
-#         self._nibs = arg 
-#      return property(**locals( ))
