@@ -13,8 +13,8 @@ class StaffLinesSpanner(Spanner):
    Return staff lines spanner.
    '''
 
-   def __init__(self, arg = 5, music = None):
-      Spanner.__init__(self, music)
+   def __init__(self, arg = 5, components = None):
+      Spanner.__init__(self, components)
       if isinstance(arg, int) and 0 < arg:
          self._lines = arg
       elif isinstance(arg, (tuple, list)) \

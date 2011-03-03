@@ -23,8 +23,8 @@ class TrillSpanner(Spanner):
    Return trill spanner.
    '''
 
-   def __init__(self, music = None):
-      Spanner.__init__(self, music)
+   def __init__(self, components = None):
+      Spanner.__init__(self, components)
       self._format = _TrillSpannerFormatInterface(self)
       self._pitch = None
 

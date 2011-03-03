@@ -29,6 +29,6 @@ class TextSpanner(Spanner):
    Return text spanner.
    '''
 
-   def __init__(self, music = None):
-      Spanner.__init__(self, music)
+   def __init__(self, components = None):
+      Spanner.__init__(self, components)
       self._format = _TextSpannerFormatInterface(self)

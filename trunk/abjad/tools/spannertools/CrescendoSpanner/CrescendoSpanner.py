@@ -71,5 +71,5 @@ class CrescendoSpanner(HairpinSpanner):
    Return crescendo spanner.
    '''
 
-   def __init__(self, music, include_rests = True):
-      HairpinSpanner.__init__(self, music, '<', include_rests)
+   def __init__(self, components, include_rests = True):
+      HairpinSpanner.__init__(self, components, '<', include_rests)

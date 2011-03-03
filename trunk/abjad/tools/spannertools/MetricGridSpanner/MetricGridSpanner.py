@@ -11,8 +11,8 @@ class MetricGridSpanner(Spanner):
    Return metric grid spanner.
    '''
 
-   def __init__(self, music, meters):
-      Spanner.__init__(self, music)
+   def __init__(self, components, meters):
+      Spanner.__init__(self, components)
       self._format = _MetricGridSpannerFormatInterface(self)
       self._meters = meters
       self.hide = False

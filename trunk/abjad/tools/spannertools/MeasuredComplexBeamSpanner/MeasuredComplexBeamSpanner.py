@@ -9,8 +9,8 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
    Return measured complex beam spanner.
    '''
 
-   def __init__(self, leaves, lone = False, nibs = 'neither', span = 1):
-      ComplexBeamSpanner.__init__(self, leaves, lone = lone, nibs = nibs)
+   def __init__(self, components, lone = False, nibs = 'neither', span = 1):
+      ComplexBeamSpanner.__init__(self, components, lone = lone, nibs = nibs)
       self._format = _MeasuredComplexBeamSpannerFormatInterface(self)
       self.span = span
 

@@ -4,8 +4,8 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
-from fractions import Fraction
 from copy import deepcopy as python_deepcopy
+from fractions import Fraction
 
 
 class Spanner(_StrictComparator):
@@ -24,19 +24,18 @@ class Spanner(_StrictComparator):
    rests, chords or measues as carrying a certain tempo or being
    played by a certain instrument.
 
-   The :class:`~abjad.spanner.spanner.Spanner` class described here
+   The spanner class described here
    abstracts the functionality that all such spanners, both graphic
    and nongraphics, share. 
    This shared functionality includes methods to add, remove, inspect
    and test components governed by the spanner, as well as basic
    formatting properties.
-   The other spanner classes, such as :class:`~abjad.beam.spanner.Beam`
-   and :class:`~abjad.glissando.spanner.Glissando`, all inherit from
+   The other spanner classes, such as beam and glissando, all inherit from
    this class and receive the functionality implemented here.
    '''
 
-   def __init__(self, music = None):
-      '''Apply spanner to music. Init dedicated duration interface.'''
+   def __init__(self, components = None):
+      '''Apply spanner to components. Init dedicated duration interface.'''
       self._components = [ ]
       self._contiguity_constraint = 'thread'
       self._duration = _SpannerDurationInterface(self)
@@ -44,7 +43,7 @@ class Spanner(_StrictComparator):
       self._offset = _SpannerOffsetInterface(self)
       #self._override = LilyPondGrobOverrideComponentPlugIn( )
       #self._set = LilyPondContextSettingComponentPlugIn( )
-      self._initialize_music(music)
+      self._initialize_components(components)
 
    ## OVERLOADS ##
 
@@ -134,19 +133,19 @@ class Spanner(_StrictComparator):
       spanner._block_all_components( )
       return [(self, spanner, result)]
   
-   def _initialize_music(self, music):
+   def _initialize_components(self, components):
       from abjad.components._Component import _Component
       from abjad.tools import componenttools
       from abjad.tools import leaftools
-      music = music or [ ]
-      if isinstance(music, _Component):
-         music = [music]
+      components = components or [ ]
+      if isinstance(components, _Component):
+         components = [components]
       ## TODO: Author staff-level contiguity check in tools/check. ##
       ##       Include optional staff-level contiguity check here. ##
       if self._contiguity_constraint == 'thread':
-         leaves = list(leaftools.iterate_leaves_forward_in_expr(music))
+         leaves = list(leaftools.iterate_leaves_forward_in_expr(components))
          assert componenttools.all_are_thread_contiguous_components(leaves)
-      self.extend(music)
+      self.extend(components)
 
    def _insert(self, i, component):
       '''Insert component in spanner at index i.

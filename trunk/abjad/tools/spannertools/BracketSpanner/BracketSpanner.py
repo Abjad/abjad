@@ -48,8 +48,8 @@ class BracketSpanner(TextSpanner):
    Return bracket spanner.
    '''
 
-   def __init__(self, music = None):
-      TextSpanner.__init__(self, music)
+   def __init__(self, components = None):
+      TextSpanner.__init__(self, components)
       self._format = _BracketSpannerFormatInterface(self)
       self.override.text_spanner.bound_details__left__text = Markup(
             "(markup #:draw-line '(0 . -1))", style_string = 'scheme')

@@ -8,6 +8,6 @@ class PhrasingSlurSpanner(Spanner):
    Return phrasing slur spanner.
    '''
 
-   def __init__(self, music = None):
-      Spanner.__init__(self, music)
+   def __init__(self, components = None):
+      Spanner.__init__(self, components)
       self._format = _PhrasingSlurSpannerFormatInterface(self)

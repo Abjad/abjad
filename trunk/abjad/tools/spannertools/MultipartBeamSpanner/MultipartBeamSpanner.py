@@ -13,6 +13,6 @@ class MultipartBeamSpanner(BeamSpanner):
    Return multipart beam spanner.
    '''
 
-   def __init__(self, music = None):
-      BeamSpanner.__init__(self, music)
+   def __init__(self, components = None):
+      BeamSpanner.__init__(self, components)
       self._format = _MultipartBeamSpannerFormatInterface(self)

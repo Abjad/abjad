@@ -27,8 +27,8 @@ class OctavationSpanner(Spanner):
 
    ## TODO: Set start to 1 (and stop to 0) by default. ##
 
-   def __init__(self, music = None, start = 0, stop = 0):
-      Spanner.__init__(self, music)
+   def __init__(self, components = None, start = 0, stop = 0):
+      Spanner.__init__(self, components)
       self._format = _OctavationSpannerFormatInterface(self)
       self.start = start
       self.stop = stop
