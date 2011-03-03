@@ -1179,6 +1179,15 @@ treetools
    tools/treetools/all_interval_payloads_contain_key_of_klass
    tools/treetools/all_intervals_are_contiguous
    tools/treetools/all_intervals_are_nonoverlapping
+   tools/treetools/calculate_density_of_attacks_in_interval
+   tools/treetools/calculate_density_of_releases_in_interval
+   tools/treetools/calculate_depth_centroid_of_intervals
+   tools/treetools/calculate_depth_centroid_of_intervals_in_interval
+   tools/treetools/calculate_depth_density_of_intervals
+   tools/treetools/calculate_depth_density_of_intervals_in_interval
+   tools/treetools/calculate_mean_attack_of_intervals
+   tools/treetools/calculate_mean_release_of_intervals
+   tools/treetools/calculate_sustain_centroid_of_intervals
    tools/treetools/clip_interval_magnitudes_to_range
    tools/treetools/compute_depth_of_intervals
    tools/treetools/compute_depth_of_intervals_in_interval
@@ -1191,8 +1200,9 @@ treetools
    tools/treetools/compute_logical_xor_of_intervals
    tools/treetools/compute_logical_xor_of_intervals_in_interval
    tools/treetools/concatenate_trees
-   tools/treetools/explode_tree_compactly
-   tools/treetools/explode_tree_uncompactly
+   tools/treetools/explode_intervals_compactly
+   tools/treetools/explode_intervals_into_n_trees_heuristically
+   tools/treetools/explode_intervals_uncompactly
    tools/treetools/fuse_overlapping_intervals
    tools/treetools/fuse_tangent_or_overlapping_intervals
    tools/treetools/get_all_unique_bounds_in_intervals

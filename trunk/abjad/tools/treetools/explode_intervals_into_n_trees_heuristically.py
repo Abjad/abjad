@@ -1,25 +1,22 @@
 from fractions import Fraction
-from abjad.tools.treetools import *
+from abjad.tools.treetools.BoundedInterval import BoundedInterval
+from abjad.tools.treetools.IntervalTree import IntervalTree
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
+   import all_are_intervals_or_trees_or_empty
+from abjad.tools.treetools.calculate_depth_density_of_intervals_in_interval \
+   import calculate_depth_density_of_intervals_in_interval
 
 
-def explode_intervals_into_n_trees_minimizing_overlap(intervals, n):
-# create n trees
-# add an interval to one tree
-# for each interval
-#   find those trees where there is no overlap
-#   add it to the tree with least density
-# if all trees have overlap
-#   find tree with least overlap
-# if overlaps are tied
-#   choose least dense overlapping tree
-# else
-#   just add it to first in tie
+def explode_intervals_into_n_trees_heuristically(intervals, n):
+   '''Explode `intervals` into `n` trees, avoiding overlap when possible,
+   and distributing intervals so as to equalize density across the trees.
+   '''
 
    assert all_are_intervals_or_trees_or_empty(intervals)
    assert isinstance(n, int) and 0 < n
    tree = IntervalTree(intervals)
 
-   trees = IntervalTree([ ]) * n
+   trees = [IntervalTree([ ])] * n
 
    if not tree:
       return trees
@@ -29,6 +26,7 @@ def explode_intervals_into_n_trees_minimizing_overlap(intervals, n):
       nonoverlapping_trees = [ ]
       overlapping_trees = [ ]
 
+      # sort trees into overlapping and non-overlapping groups
       for t in trees:
          if not len(t):
             nonoverlapping_trees.append(t)
@@ -37,25 +35,35 @@ def explode_intervals_into_n_trees_minimizing_overlap(intervals, n):
          else:
             overlapping_trees.append(t)
 
+      # if there are any non-overlapping trees, choose the least dense
       if len(nonoverlapping_trees):
          # sort by least dense
-         sort(nonoverlapping_trees, key = lambda x: \
-            compute_depth_density_of_intervals_in_interval(t, \
+         sorted(nonoverlapping_trees, key = lambda x: \
+            calculate_depth_density_of_intervals_in_interval(t, \
                BoundedInterval(tree.low, tree.high)))
          match_id = trees.index(nonoverlapping_trees[0])
          trees[match_id] = IntervalTree([trees[match_id], interval])
 
+      # else, find the least-overlapping overlapping tree
       else:
          # first, sort by least overlap with current interval
-         sort(overlapping_trees, key = lambda x: \
+         sorted(overlapping_trees, key = lambda x: \
             x[-1].get_overlap_with_interval(interval))
 
          # test for tie
+         ties = filter(lambda x: x[-1].get_overlap_with_interval(interval) == \
+            overlapping_trees[0][-1].get_overlap_with_interval(interval), \
+            overlapping_trees)
 
          # if no tie, add to least overlap
-
+         if len(ties) == 1:
+            trees[trees.index(ties[0])] = IntervalTree([trees[trees.index(ties[0])], interval])
 
          # else add to least dense of tie
-         sort(overlapping_trees, key = lambda x: \
-            compute_depth_density_of_intervals_in_interval(t, \
-               BoundedInterval(tree.low, tree.high)))
+         else:
+            sorted(ties, key = lambda x: \
+               calculate_depth_density_of_intervals_in_interval(t, \
+                  BoundedInterval(tree.low, tree.high)))
+            trees[trees.index(ties[0])] = IntervalTree([trees[trees.index(ties[0])], interval])
+
+   return trees

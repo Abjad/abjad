@@ -12,7 +12,7 @@ def calculate_depth_centroid_of_intervals_in_interval(intervals, interval):
    such that the centroids of each interval of the depth tree are the values,
    and the weights are the depths at each interval of the depth tree.
    '''
-       
+
    assert all_are_intervals_or_trees_or_empty(intervals)
    assert isinstance(interval, BoundedInterval)
    tree = IntervalTree(intervals)

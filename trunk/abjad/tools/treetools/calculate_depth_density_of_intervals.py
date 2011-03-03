@@ -25,7 +25,7 @@ def calculate_depth_density_of_intervals(intervals):
       abjad> calculate_depth_density_of_intervals([a, b, c])
       Fraction(5, 2)
    '''
-       
+
    assert all_are_intervals_or_trees_or_empty(intervals)
    tree = IntervalTree(intervals)
    depth = compute_depth_of_intervals(tree)

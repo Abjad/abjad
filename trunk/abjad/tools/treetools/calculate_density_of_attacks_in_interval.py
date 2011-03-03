@@ -8,7 +8,7 @@ from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
 def calculate_density_of_attacks_in_interval(intervals, interval):
    '''Return a Fraction of number of attacks in `interval`
    over the magnitude of `interval`.'''
-       
+
    assert all_are_intervals_or_trees_or_empty(intervals)
    assert isinstance(interval, BoundedInterval)
    tree = IntervalTree(intervals)

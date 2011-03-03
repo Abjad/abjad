@@ -6,7 +6,7 @@ from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
 
 def calculate_mean_release_of_intervals(intervals):
    '''Return a Fraction of the average release offset of `intervals`.'''
-       
+
    assert all_are_intervals_or_trees_or_empty(intervals)
    tree = IntervalTree(intervals)
    if not tree:
