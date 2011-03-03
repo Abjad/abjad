@@ -1,0 +1,106 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+import pprint
+import re
+
+
+def _capitalize_test_file_names( ):
+   uncapitalized_pattern = re.compile(r'test_[a-z]+.+py$')
+   total_test_files = 0
+   old, new = 'zzz', 'zzz'
+   for path, subdirectories, files in os.walk(ABJADPATH):
+      for f in files:
+         if uncapitalized_pattern.match(f) or f.endswith('_tmp.py'):
+            if not 'tools' in f and not 'debug' in f and not 'lily_voice' in f and not 'iterate' in f:
+               full_file_name = os.path.join(path, f)
+               old, new = _rename_test_file(f, full_file_name, old, new)
+               total_test_files += 1
+   print ''
+
+def _rename_test_file(short_file_name, full_file_name, old, new):
+   print full_file_name
+   if old in short_file_name:
+      use_previous = raw_input('Replace %s with %s? ' % (old, new))
+   if short_file_name.endswith('_tmp.py'):
+      old = '_tmp.py'
+      new = '.py'
+   elif old not in short_file_name or use_previous.lower( ) != 'y':
+      old = raw_input('Old text: ')
+      new =  raw_input('New text: ')
+   if old.lower( ) == new.lower( ):
+      new_short_file_name = short_file_name.replace(old, new)
+      new_short_file_name = new_short_file_name.replace('.py', '_tmp.py')
+      new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
+      first_command = 'svn mv %s %s' % (full_file_name, new_full_file_name)
+      #print first_command
+      os.system(first_command)
+      #revised_new_full_file_name = new_full_file_name.replace('_tmp.py', '.py')
+      #second_command = 'svn mv %s %s' % (new_full_file_name, revised_new_full_file_name)
+      ##print second_comand
+      #os.system(second_command)
+   else:
+      new_short_file_name = short_file_name.replace(old, new)
+      new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
+      command = 'svn mv %s %s' % (full_file_name, new_full_file_name)
+      #print command
+      os.system(command)
+   print ''
+   print ''
+   return old, new
+      
+   
+if __name__ == '__main__':
+   os.system('clear')
+   print 'Source test file path example:'
+   print ''
+   print '   tools/spannertools/BeamSpanner/test/test_BeamSpanner___eq__.py'
+   print ''
+   source_path = raw_input('Enter source test file path: ')
+   content = file(source_path, 'r').readlines( )
+   content = ''.join(content)
+   print ''
+   print 'Start directory example:'
+   print ''
+   print '   tools/spannertools'
+   print ''
+   start_directory = raw_input('Enter start directory: ')
+   print 'source path is %s' % source_path
+   print 'start directory is %s' % start_directory 
+   parts = os.path.split(source_path)
+   source_file_name = parts[-1]
+   assert source_file_name.startswith('test_')
+   source_class_name = source_file_name.split('_')
+   source_class_name = source_class_name[1]
+   start_directory = os.path.join(ABJADPATH, start_directory)
+   class_subdirectories =  [x for x in os.listdir(start_directory) if x[0].isupper( )]
+   try:
+      class_subdirectories.remove(source_class_name)
+   except ValueError:
+      pass
+   class_test_directories_to_populate = [ ]
+   for class_subdirectory in class_subdirectories:
+      class_subdirectory = os.path.join(start_directory, class_subdirectory)
+      for path, subdirectories, files in os.walk(class_subdirectory):
+         if path.endswith('test'):
+            class_test_directories_to_populate.append(path)
+   test_files_created = 0
+   for target_directory in class_test_directories_to_populate:
+      #print target_directory
+      target_class_name = target_directory.split(os.path.sep)
+      target_class_name = target_class_name[-2]
+      #print target_class_name
+      target_content = content.replace(source_class_name, target_class_name)
+      #print target_content
+      target_file_name = source_file_name.replace(source_class_name, target_class_name)
+      target_file_name = os.path.join(target_directory, target_file_name)
+      try:
+         os.stat(target_file_name)
+         raise Exception('test file "%s" already exists!' % target_file_name)
+      except OSError:
+         pass
+      file(target_file_name, 'w').write(target_content)
+      test_files_created += 1
+   print 'created %s test files.' % test_files_created
+   print ''
