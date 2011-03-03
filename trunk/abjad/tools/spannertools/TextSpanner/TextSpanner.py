@@ -8,8 +8,14 @@ class TextSpanner(Spanner):
    Abjad text spanner::
 
       abjad> staff = Staff(macros.scale(4))
+
+   ::
+
       abjad> spanner = spannertools.TextSpanner(staff[:])
       abjad> spanner.color = 'red'
+
+   ::
+
       abjad> f(staff)
       \new Staff {
               \override TextSpanner #'color = #red
@@ -20,11 +26,7 @@ class TextSpanner(Spanner):
               \revert TextSpanner #'color
       }
 
-   Handle LilyPond TextSpanner grob.
-
-   Interface LilyPond ``\startTextSpan``, ``\stopTextSpan`` commands.
-
-   Interface LilyPond ``\textSpannerUp``, ``\textSpannerDown`` commands.
+   Override LilyPond TextSpanner grob.
 
    Return text spanner.
    '''

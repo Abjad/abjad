@@ -6,12 +6,40 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class MetricGridSpanner(Spanner):
-   '''Abjad metric grid spanner.
+   r'''Abjad metric grid spanner::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
+
+   ::
+
+      abjad> spannertools.MetricGridSpanner(staff.leaves, meters = [(1, 8), (1, 4)])
+      MetricGridSpanner(c'8, d'8, e'8, f'8, g'8, a'8, b'8, c'8)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \time 1/8
+         c'8
+         \time 1/4
+         d'8
+         e'8
+         \time 1/8
+         f'8
+         \time 1/4
+         g'8
+         a'8
+         \time 1/8
+         b'8
+         \time 1/4
+         c'8
+      }
+
+   Format leaves in spanner cyclically with `meters`.
 
    Return metric grid spanner.
    '''
 
-   #def __init__(self, components, meters):
    def __init__(self, components = None, meters = None):
       Spanner.__init__(self, components)
       self._format = _MetricGridSpannerFormatInterface(self)
@@ -104,6 +132,26 @@ class MetricGridSpanner(Spanner):
    @apply
    def meters( ):
       def fget(self):
+         '''Get metric grid meters::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
+            abjad> metric_grid_spanner = spannertools.MetricGridSpanner(staff.leaves, meters = [(1, 8), (1, 4)]) 
+            abjad> metric_grid_spanner.meters
+            <generator object fget at 0x7bf350>
+            abjad> list(_)
+            [(Meter(1, 8), 0, False), (Meter(1, 4), Fraction(1, 8), False), (Meter(1, 8), Fraction(3, 8), False), 
+             (Meter(1, 4), Fraction(1, 2), False), (Meter(1, 8), Fraction(3, 4), False), (Meter(1, 4), Fraction(7, 8), False)]
+
+         Set metric grid meters::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
+            abjad> metric_grid_spanner = spannertools.MetricGridSpanner(staff.leaves, meters = [(1, 8), (1, 4)]) 
+            abjad> metric_grid_spanner.meters = [(1, 4)]
+            abjad> metric_grid_spanner.meters <generator object fget at 0x7b2b48>
+            abjad> list(_)
+            [(Meter(1, 4), 0, False), (Meter(1, 4), Fraction(1, 4), True), (Meter(1, 4), Fraction(1, 2), True), 
+             (Meter(1, 4), Fraction(3, 4), True)]
+         '''
          from abjad.tools.metertools import Meter
          i = 0
          moffset = 0
@@ -133,10 +181,15 @@ class MetricGridSpanner(Spanner):
    ## PUBLIC METHODS ##
          
    def splitting_condition(self, leaf):
-      '''User definable conditioning function.'''
+      '''User-definable boolean function to determine whether leaf should be split.
+
+      Function defaults to return true.
+      '''
       return True
 
    def split_on_bar(self):
+      '''Temporarily unavailable.
+      '''
       from abjad.tools import componenttools
       leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
       componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(

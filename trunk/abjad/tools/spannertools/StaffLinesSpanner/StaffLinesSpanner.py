@@ -3,7 +3,30 @@ from _StaffLinesSpannerFormatInterface import _StaffLinesSpannerFormatInterface
 
 
 class StaffLinesSpanner(Spanner):
-   '''Abjad staff lines spanner.
+   r'''Abjad staff lines spanner::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> spannertools.StaffLinesSpanner(1, staff[:2])
+      StaffLinesSpanner(c'8, d'8)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \stopStaff
+         \override Staff.StaffSymbol #'line-count = #1
+         \startStaff
+         c'8
+         d'8
+         \stopStaff
+         \revert Staff.StaffSymbol #'line-count
+         \startStaff
+         e'8
+         f'8
+      }
 
    Staff lines spanner handles changing either the line-count
    or the line-positions property of the StaffSymbol grob,
@@ -28,6 +51,21 @@ class StaffLinesSpanner(Spanner):
    @apply
    def lines( ):
       def fget(self):
+         r'''Get staff lines spanner line count::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> spanner = spannertools.StaffLinesSpanner(1, staff[:2])
+            abjad> spanner.lines
+            1
+
+         Set staff lines spanner line count::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> spanner = spannertools.StaffLinesSpanner(1, staff[:2])
+            abjad> spanner.lines = 2
+            abjad> spanner.lines
+            2
+         '''
          return self._lines
       def fset(self, arg):
          if isinstance(arg, int) and 0 < arg:

@@ -5,10 +5,16 @@ from abjad.tools.spannertools.TrillSpanner._TrillSpannerFormatInterface import _
 class TrillSpanner(Spanner):
    r'''Abjad trill spanner::
 
-      abjad> t = Staff(macros.scale(4))
-      abjad> spannertools.TrillSpanner(t[:])
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> spannertools.TrillSpanner(staff[:])
       spannertools.TrillSpanner(c'8, d'8, e'8, f'8)
-      abjad> print t.format
+
+   ::
+
+      abjad> f(staff)
       \new Staff {
          c'8 \startTrillSpan
          d'8
@@ -16,9 +22,7 @@ class TrillSpanner(Spanner):
          f'8 \stopTrillSpan
       }
 
-   Interface to LilyPond ``startTrillSpan``, ``stopTrillSpan`` commands.
-
-   Handles LilyPond TrillSpanner grob.
+   Override LilyPond TrillSpanner grob.
 
    Return trill spanner.
    '''

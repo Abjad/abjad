@@ -6,16 +6,18 @@ from abjad.tools.spannertools.TextScriptSpanner._TextScriptSpannerFormatInterfac
 class TextScriptSpanner(Spanner):
    r'''.. versionadded:: 1.1.2
 
-   Abjad text script spanner.
+   Abjad text script spanner::
 
-   Handle Lilypond TextScript grob.
+      abjad> staff = Staff(macros.scale(4))
 
    ::
 
-      abjad> staff = Staff(macros.scale(4))
       abjad> spanner = spannertools.TextScriptSpanner(staff[:])
       abjad> spanner.color = 'red'
       abjad> markuptools.Markup(r'\italic { espressivo }', 'up')(staff[1])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
               \override TextScript #'color = #red
@@ -25,6 +27,8 @@ class TextScriptSpanner(Spanner):
               f'8
               \revert TextScript #'color
       }      
+
+   Override LilyPond TextScript grob.
 
    Return text script spanner.
    '''

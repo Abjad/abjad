@@ -3,14 +3,17 @@ from abjad.tools.spannertools.OctavationSpanner._OctavationSpannerFormatInterfac
 
 
 class OctavationSpanner(Spanner):
-   r'''Abjad octavation spanner:
+   r'''Abjad octavation spanner::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
 
    ::
 
-      abjad> t = Staff(macros.scale(4))
-      abjad> spanner = spannertools.OctavationSpanner(t[:])
-      abjad> spanner.start = 1
-      abjad> print t.format
+      abjad> spanner = spannertools.OctavationSpanner(staff[:], start = 1)
+
+   ::
+
+      abjad> f(staff)
       \new Staff {
          \ottava #1
          c'8
@@ -38,8 +41,20 @@ class OctavationSpanner(Spanner):
    @apply
    def start( ):
       def fget(self):
-         r'''LilyPond \ottava number before first leaf in spanner. 
-         Defaults to ``0``.'''
+         r'''Get octavation start::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> octavation = spannertools.OctavationSpanner(staff[:], start = 1)
+            abjad> octavation.start
+            1
+
+         Set octavation start::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> octavation = spannertools.OctavationSpanner(staff[:], start = 1)
+            abjad> octavation.start
+            1
+         '''
          return self._start
       def fset(self, arg):
          assert isinstance(arg, (int, type(None)))
@@ -49,8 +64,21 @@ class OctavationSpanner(Spanner):
    @apply
    def stop( ):
       def fget(self):
-         r'''LilyPond \ottava number after last leaf.
-         Defaults to ``0``.'''
+         r'''Get octavation stop::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> octavation = spannertools.OctavationSpanner(staff[:], start = 2, stop = 1)
+            abjad> octavation.stop
+            1
+
+         Set octavation stop::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> octavation = spannertools.OctavationSpanner(staff[:], start = 2, stop = 1)
+            abjad> octavation.stop = 0
+            abjad> octavation.stop
+            0
+         '''
          return self._stop
       def fset(self, arg):
          assert isinstance(arg, (int, type(None)))

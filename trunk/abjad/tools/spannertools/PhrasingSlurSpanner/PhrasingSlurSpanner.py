@@ -3,7 +3,24 @@ from abjad.tools.spannertools.PhrasingSlurSpanner._PhrasingSlurSpannerFormatInte
 
 
 class PhrasingSlurSpanner(Spanner):
-   '''Abjad phrasing slur spanner.
+   r'''Abjad phrasing slur spanner::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> spannertools.PhrasingSlurSpanner(staff[:])
+      PhrasingSlurSpanner(c'8, d'8, e'8, f'8)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 \(
+         d'8
+         e'8
+         f'8 \)
+      }
 
    Return phrasing slur spanner.
    '''
