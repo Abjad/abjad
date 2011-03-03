@@ -1,7 +1,6 @@
-from abjad.tools.spannertools.DuratedComplexBeamSpanner._DuratedComplexBeamSpannerFormatInterface import _DuratedComplexBeamSpannerFormatInterface
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
+from abjad.tools.spannertools.DuratedComplexBeamSpanner._DuratedComplexBeamSpannerFormatInterface import _DuratedComplexBeamSpannerFormatInterface
 from fractions import Fraction
-import types
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
@@ -11,12 +10,13 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
    '''
 
    def __init__(self, leaves, 
-      durations = None, span = 1, lone = False, nibs = 'neither'):
+      #durations = None, span = 1, lone = False, nibs = 'neither'):
+      durations = None, span = 1, lone = False):
       ComplexBeamSpanner.__init__(self, leaves)
       self._format = _DuratedComplexBeamSpannerFormatInterface(self)
       self.durations = durations
       self.lone = lone
-      self.nibs = nibs
+      #self.nibs = nibs
       self.span = span
 
    ## PRIVATE ATTRIBUTES ##
