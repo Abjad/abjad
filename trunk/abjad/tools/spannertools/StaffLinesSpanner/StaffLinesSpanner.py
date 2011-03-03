@@ -9,7 +9,7 @@ class StaffLinesSpanner(Spanner):
 
    ::
 
-      abjad> spannertools.StaffLinesSpanner(1, staff[:2])
+      abjad> spannertools.StaffLinesSpanner(staff[:2], 1)
       StaffLinesSpanner(c'8, d'8)
 
    ::
@@ -36,15 +36,15 @@ class StaffLinesSpanner(Spanner):
    Return staff lines spanner.
    '''
 
-   def __init__(self, arg = 5, components = None):
+   def __init__(self, components = None, arg = 5):
       Spanner.__init__(self, components)
       if isinstance(arg, int) and 0 < arg:
          self._lines = arg
       elif isinstance(arg, (tuple, list)) \
-      and all([isinstance(x, (int, float)) for x in arg]):
+         and all([isinstance(x, (int, float)) for x in arg]):
          self._lines = arg
       else:
-         raise ValueError('StaffLinesSpanner requires either an int, ' + \
+         raise ValueError('StaffLinesSpanner requires either an int, '
             'or a list/tuple of ints and/or floats.')
       self._format = _StaffLinesSpannerFormatInterface(self)
 
@@ -54,14 +54,14 @@ class StaffLinesSpanner(Spanner):
          r'''Get staff lines spanner line count::
 
             abjad> staff = Staff("c'8 d'8 e'8 f'8")
-            abjad> spanner = spannertools.StaffLinesSpanner(1, staff[:2])
+            abjad> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
             abjad> spanner.lines
             1
 
          Set staff lines spanner line count::
 
             abjad> staff = Staff("c'8 d'8 e'8 f'8")
-            abjad> spanner = spannertools.StaffLinesSpanner(1, staff[:2])
+            abjad> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
             abjad> spanner.lines = 2
             abjad> spanner.lines
             2
@@ -71,9 +71,9 @@ class StaffLinesSpanner(Spanner):
          if isinstance(arg, int) and 0 < arg:
             self._lines = arg
          elif isinstance(arg, (tuple, list)) \
-         and all([isinstance(x, (int, float)) for x in arg]):
+            and all([isinstance(x, (int, float)) for x in arg]):
             self._lines = arg
          else:
-            raise ValueError('StaffLinesSpanner requires either an int, ' + \
+            raise ValueError('StaffLinesSpanner requires either an int, '
                'or a list/tuple of ints and/or floats.')
       return property(**locals( ))

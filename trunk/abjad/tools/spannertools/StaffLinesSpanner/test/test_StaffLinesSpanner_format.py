@@ -6,7 +6,7 @@ def test_StaffLinesSpanner_format_01( ):
    '''StaffLinesSpanner with int argument overrides StaffSymbol's line-count property.'''
 
    staff = Staff(macros.scale(8))
-   spanner = spannertools.StaffLinesSpanner(3, staff[2:7])
+   spanner = spannertools.StaffLinesSpanner(staff[2:7], 3)
 
    r'''
    \new Staff {
@@ -34,7 +34,7 @@ def test_StaffLinesSpanner_format_02( ):
    '''StaffLinesSpanner with list argument overrides StaffSymbol's line-positions property.'''
 
    staff = Staff(macros.scale(8))
-   spanner = spannertools.StaffLinesSpanner([-5, -4, -3, -2, -1, 0, 1.5, 3, 4.5], staff[2:7])
+   spanner = spannertools.StaffLinesSpanner(staff[2:7], [-5, -4, -3, -2, -1, 0, 1.5, 3, 4.5])
 
    r'''
    \new Staff {
@@ -62,7 +62,7 @@ def test_StaffLinesSpanner_format_03( ):
    '''StaffLinesSpanner's lines property can be changed.'''
 
    staff = Staff(macros.scale(8))
-   spanner = spannertools.StaffLinesSpanner(1, staff[1:3])
+   spanner = spannertools.StaffLinesSpanner(staff[1:3], 1)
 
    r'''
    \new Staff {
