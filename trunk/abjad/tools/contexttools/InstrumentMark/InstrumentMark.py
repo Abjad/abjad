@@ -39,7 +39,7 @@ class InstrumentMark(ContextMark):
 
    def __repr__(self):
       markups = (self.instrument_name, self.short_instrument_name)
-      contents_string = ', '.join([repr(markup.contents_string) for markup in markups])
+      contents_string = ', '.join([repr(markup._contents_string) for markup in markups])
       return '%s(%s)' % (self.__class__.__name__, contents_string)
 
    ## OVERLOADS ##

@@ -81,8 +81,8 @@ class Markup(ContextMark):
          contents_string = arg
          style_string = style_string
       elif isinstance(arg, Markup):
-         contents_string = arg.contents_string
-         style_string = arg.style_string
+         contents_string = arg._contents_string
+         style_string = arg._style_string
       else:
          contents_string = str(arg)
       self._contents_string = contents_string
@@ -100,7 +100,7 @@ class Markup(ContextMark):
 
    def __copy__(self, *args):
       return type(self)(self._contents_string, 
-         direction_string = self.direction_string, style_string = self.style_string)
+         direction_string = self._direction_string, style_string = self._style_string)
 
    __deepcopy__ = __copy__
 
@@ -114,44 +114,44 @@ class Markup(ContextMark):
       return not self == arg
 
    def __repr__(self):
-      if self.direction_string is not None:
+      if self._direction_string is not None:
          return '%s(%s, %s)' % (
-            self.__class__.__name__, repr(self.contents_string), repr(self.direction_string))
+            self.__class__.__name__, repr(self._contents_string), repr(self._direction_string))
       else:
-         return '%s(%s)' % (self.__class__.__name__, repr(self.contents_string))
+         return '%s(%s)' % (self.__class__.__name__, repr(self._contents_string))
 
    def __str__(self):
       return self.format
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def contents_string(self):
-      r'''Read-only contents string of markup:
-
-      ::
-
-         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-         abjad> markup.contents_string
-         '\\bold { "This is markup text." }'
-      '''
-      return self._contents_string
-
-   @property
-   def direction_string(self):
-      r'''Read-only direction string of markup:
-
-      ::
-
-         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }', direction_string = 'up')
-         abjad> markup.direction_string
-         'up'
-      '''
-      return self._direction_string
+#   @property
+#   def contents_string(self):
+#      r'''Read-only contents string of markup:
+#
+#      ::
+#
+#         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+#         abjad> markup.contents_string
+#         '\\bold { "This is markup text." }'
+#      '''
+#      return self._contents_string
+#
+#   @property
+#   def direction_string(self):
+#      r'''Read-only direction string of markup:
+#
+#      ::
+#
+#         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }', direction_string = 'up')
+#         abjad> markup.direction_string
+#         'up'
+#      '''
+#      return self._direction_string
    
    @property
    def format(self):
-      r'''Read-only LilyPond input format of markup:
+      r'''Read-only LilyPond format of markup:
 
       ::
 
@@ -160,26 +160,26 @@ class Markup(ContextMark):
          '\\markup { \\bold { "This is markup text." } }'
       '''
       result = ''
-      if self.style_string == 'backslash':
-         result = r'\markup { %s }' % self.contents_string
-      elif self.style_string == 'scheme':
-         result = '#%s' % self.contents_string
+      if self._style_string == 'backslash':
+         result = r'\markup { %s }' % self._contents_string
+      elif self._style_string == 'scheme':
+         result = '#%s' % self._contents_string
       else:
-         raise ValueError('unknown markup style string: "%s".' % self.style_string)
-      direction_string = self.direction_string
+         raise ValueError('unknown markup style string: "%s".' % self._style_string)
+      direction_string = self._direction_string
       if direction_string is not None:
          direction_symbol = self._direction_string_to_direction_symbol[direction_string]
          result = '%s %s' % (direction_symbol, result)
       return result
 
-   @property
-   def style_string(self):
-      r'''Read-only style string of markup:
-
-      ::
-
-         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-         abjad> markup.style_string
-         'backslash'
-      '''
-      return self._style_string
+#   @property
+#   def style_string(self):
+#      r'''Read-only style string of markup:
+#
+#      ::
+#
+#         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+#         abjad> markup.style_string
+#         'backslash'
+#      '''
+#      return self._style_string

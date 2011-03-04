@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_MetricGridSpanner_06( ):
+def test_MetricGridSpanner_split_on_bar_01( ):
    '''MetricGrid splits notes on bar lines.'''
    py.test.skip('something weird with grace notes in _fuse_tied_leaves_within_measures.')
 
@@ -31,7 +31,7 @@ def test_MetricGridSpanner_06( ):
    '''
 
 
-def test_MetricGridSpanner_07( ):
+def test_MetricGridSpanner_split_on_bar_02( ):
    '''MetricGrid splits notes on bar lines.'''
    py.test.skip('something weird with grace notes.')
    
@@ -62,7 +62,7 @@ def test_MetricGridSpanner_07( ):
    '''
 
 
-def test_MetricGridSpanner_08( ):
+def test_MetricGridSpanner_split_on_bar_03( ):
    '''MetricGrid split works with tuplets.'''
    py.test.skip('something weird with grace notes.')
 
@@ -90,7 +90,7 @@ def test_MetricGridSpanner_08( ):
    '''
 
 
-def test_MetricGridSpanner_09( ):
+def test_MetricGridSpanner_split_on_bar_04( ):
    '''MetricGrid split works with nested tuplets.'''
    py.test.skip('something weird with grace notes.')
 
@@ -137,7 +137,7 @@ def test_MetricGridSpanner_09( ):
    '''
 
 
-def test_MetricGridSpanner_10( ):
+def test_MetricGridSpanner_split_on_bar_05( ):
    '''MetricGrid split fuses correctly tied leaves in last measure.'''
    py.test.skip('something weird with grace notes.')
 
@@ -168,7 +168,7 @@ def test_MetricGridSpanner_10( ):
    '''
 
 
-def test_MetricGridSpanner_11( ):
+def test_MetricGridSpanner_split_on_bar_06( ):
    '''MetricGrid can split conditionally.'''
    py.test.skip('something weird with grace notes.')
 

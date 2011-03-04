@@ -6,8 +6,7 @@ def test_Markup___init___01( ):
    '''
 
    markup = markuptools.Markup('foo')
-
-   assert markup.contents_string == 'foo'
+   assert str(markup) == '\\markup { foo }'
 
 
 def test_Markup___init___02( ):
@@ -17,8 +16,8 @@ def test_Markup___init___02( ):
    markup_1 = markuptools.Markup('foo')
    markup_2 = markuptools.Markup(markup_1)
    
-   assert markup_1.contents_string == 'foo'
-   assert markup_2.contents_string == 'foo'
+   assert str(markup_1) == '\\markup { foo }'
+   assert str(markup_2) == '\\markup { foo }'
 
 
 def test_Markup___init___03( ):
@@ -26,5 +25,13 @@ def test_Markup___init___03( ):
    '''
 
    markup = markuptools.Markup(27)
+   assert str(markup) == '\\markup { 27 }'
 
-   assert markup.contents_string == '27'
+
+
+def test_Markup___init___04( ):
+   '''Init markup with scheme style string.
+   '''
+
+   markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string = 'scheme')
+   assert markup.format == "#(markup #:draw-line '(0 . -1))"
