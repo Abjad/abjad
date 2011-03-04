@@ -92,7 +92,7 @@ class Markup(ContextMark):
       
    ## PRIVATE ATTRIBUTES ##
 
-   _direction_string_to_direction_symbol = {'up': '^', 'down': '_', 'neutral': '-'}
+   _direction_string_to_direction_symbol = {'up': '^', 'down': '_', 'neutral': '-', None: '-'}
 
    _style_strings = ('backslash', 'scheme')
 

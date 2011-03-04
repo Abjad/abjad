@@ -6,15 +6,16 @@ def get_markup_attached_to_component(component):
 
    Get markup attached to `component`::
 
-      abjad> staff = Staff(macros.scale(4))
-      abjad> slur = spannertools.SlurSpanner(staff.leaves)
-      abjad> markuptools.Markup('comment 1')(staff[0])
-      abjad> markuptools.Markup('comment 2')(staff[0])
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+      abjad> slur = spannertools.SlurSpanner(staff[:])
+      abjad> markuptools.Markup('foo')(staff[0])
+      abjad> markuptools.Markup('bar')(staff[0])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
-         %% comment 1
-         %% comment 2
-         c'8 (
+         c'8 - \markup { \column { foo bar } } (
          d'8
          e'8
          f'8 )
@@ -23,7 +24,7 @@ def get_markup_attached_to_component(component):
    ::
       
       abjad> markuptools.get_markup_attached_to_component(staff[0]) 
-      (Markup('comment 1')(c'8), Markup('comment 2')(c'8))
+      (Markup('foo'), Markup('bar'))
 
    Return tuple of zero or more markup objects.
    '''
