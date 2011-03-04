@@ -6,7 +6,7 @@ def test_MarkupCommand___str___01( ):
    a = markuptools.MarkupCommand('draw-circle', ['#1', '#0.1', '##f'], None)
    b = markuptools.MarkupCommand('line', None, ['one', 'two', 'three'])
    c = markuptools.MarkupCommand('rounded-box', None, [b])
-   d = markuptools.MarkupCommand('combine', None, [a, c], braced = False)
+   d = markuptools.MarkupCommand('combine', None, [a, c], is_braced = False)
    e = markuptools.MarkupCommand('rotate', ['45'], [d])
    f = markuptools.MarkupCommand('triangle', [schemetools.SchemeBoolean(False)], None)
    g = markuptools.MarkupCommand('concat', None, [e, f])
