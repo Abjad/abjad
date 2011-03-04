@@ -1,21 +1,80 @@
 from abjad.components._Component import _Component
-#from abjad.core import _StrictComparator
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-#class Markup(_StrictComparator):
 class Markup(ContextMark):
-   r'''Abjad model of LilyPond markup:
+   r'''Abjad model of backslash-style LilyPond markup or Scheme-style LilyPond markup.
+
+   Initialize backslash-style markup from string::
+
+      abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
 
    ::
 
-      abjad> markuptools.Markup(r'\bold { "This is markup text." }')
-      Markup(\bold { "This is markup text." })
+      abjad> markup
+      Markup('\\bold { "This is markup text." }')
+
+   ::
+
+      abjad> f(markup)
+      \markup { \bold { "This is markup text." } }
+
+   Initialize Scheme-style markup from string::
+
+      abjad> markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string = 'scheme')
+
+   ::
+
+      abjad> markup
+      Markup("(markup #:draw-line '(0 . -1))")
+
+   ::
+
+      abjad> f(markup)
+      #(markup #:draw-line '(0 . -1))
+
+   Initialize any markup from existing markup::
+
+      abjad> markup_1 = markuptools.Markup('foo', direction_string = 'up')
+      abjad> markup_2 = markuptools.Markup(markup_1, direction_string = 'down')
+
+   ::
+
+      abjad> f(markup_1)
+      ^ \markup { foo }
+
+   ::
+
+      abjad> f(markup_2)
+      _ \markup { foo }
+
+   Attach markup to score components like this::
+
+      abjad> note = Note("c'4")
+
+   ::
+
+      abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+
+   ::
+
+      abjad> markup(note)
+      Markup('\\bold { "This is markup text." }')
+
+   ::
+
+      abjad> f(note)
+      c'4 \markup { \bold { "This is markup text." } }
+
+   Set `direction_string` to ``'up'``, ``'down'``, ``'neutral'`` or none.
+
+   Set `style_string` to ``'backslash'`` or ``'scheme'``.
+
+   Markup objects are immutable.
    '''
 
    __slots__ = ('_contents_string', '_direction_string', '_format_slot', '_style_string')
 
-   #def __init__(self, arg, style_string = 'backslash'):
    def __init__(self, arg, direction_string = None, style_string = 'backslash'):
       ContextMark.__init__(self, target_context = _Component)
       if isinstance(arg, str):
@@ -25,10 +84,7 @@ class Markup(ContextMark):
          contents_string = arg.contents_string
          style_string = arg.style_string
       else:
-         #raise TypeError('must be string or other markup instance.')
          contents_string = str(arg)
-      #object.__setattr__(self, 'contents_string', contents)
-      #object.__setattr__(self, 'style_string', style_string)
       self._contents_string = contents_string
       self._direction_string = direction_string
       self._style_string = style_string
@@ -49,7 +105,7 @@ class Markup(ContextMark):
    __deepcopy__ = __copy__
 
    def __eq__(self, arg):
-      if isinstance(arg, Markup):
+      if isinstance(arg, type(self)):
          if self.format == arg.format:
             return True
       return False
@@ -83,6 +139,14 @@ class Markup(ContextMark):
 
    @property
    def direction_string(self):
+      r'''Read-only direction string of markup:
+
+      ::
+
+         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }', direction_string = 'up')
+         abjad> markup.direction_string
+         'up'
+      '''
       return self._direction_string
    
    @property
