@@ -1,8 +1,6 @@
 from abjad.core import _Immutable
-#from abjad.core import _StrictComparator
 
 
-#class MarkupCommand(_StrictComparator, _Immutable):
 class MarkupCommand(_Immutable):
    r'''Abjad model of a LilyPond markup command::
 
@@ -39,7 +37,7 @@ class MarkupCommand(_Immutable):
 
    ## TODO: Implement a multi-line, indented version for human readability. ##
 
-   __slots__ = ('args', 'is_braced', 'command', 'markup')
+   __slots__ = ('_args', '_is_braced', '_command', '_markup')
 
    def __init__(self, command, args, markup, is_braced = True):
       assert isinstance(command, str) \
@@ -51,20 +49,20 @@ class MarkupCommand(_Immutable):
       if markup:
          assert all([isinstance(x, (MarkupCommand, str)) for x in markup])
       
-      object.__setattr__(self, 'is_braced', bool(is_braced))
-      object.__setattr__(self, 'command', command)
+      object.__setattr__(self, '_is_braced', bool(is_braced))
+      object.__setattr__(self, '_command', command)
 
       if args:
-         object.__setattr__(self, 'args', tuple(args))
+         object.__setattr__(self, '_args', tuple(args))
       else:
-         object.__setattr__(self, 'args', args)
+         object.__setattr__(self, '_args', args)
 
       if markup:
-         object.__setattr__(self, 'markup', tuple(markup))
+         object.__setattr__(self, '_markup', tuple(markup))
       else:
-         object.__setattr__(self, 'markup', markup)
+         object.__setattr__(self, '_markup', markup)
 
-   ### OVERRIDES ###
+   ## OVERRIDES ##
 
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
@@ -76,14 +74,66 @@ class MarkupCommand(_Immutable):
       return False
 
    def __repr__(self):
-      return '%s(%s, %s, %s)' % (self.__class__.__name__, self.command, self.args, self.markup)
+      return '%s(%s, %s, %s)' % (self.__class__.__name__, repr(self.command), self.args, self.markup)
 
    def __str__(self):
-#     markup_delimiter = '\n'
-      markup_delimiter = ' '
-      return markup_delimiter.join(self.format)
+      return self.format
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _format_pieces(self):
+      indent_delimiter = ''
+      parts = [r'\%s' % self.command]
+      if self.args is not None:
+         for arg in self.args:
+            if 'format' in dir(arg) and not isinstance(arg, str):
+               parts[0] += ' %s' % arg.format
+            else:
+               parts[0] += ' %s' % arg
+      if self.markup is not None:
+         for markup in self.markup:
+            if '_format_pieces' in dir(markup) and not isinstance(markup, str):
+               parts.extend([indent_delimiter + x for x in markup._format_pieces])
+            else:
+               parts.append(indent_delimiter + markup)
+      if self.is_braced and self.markup and 1 < len(self.markup):
+         parts[0] += ' {'
+         parts.append('}')
+      return parts
+
+   @property
+   def _report_pieces(self):
+      indent_delimiter = '\t'
+      parts = [r'\%s' % self.command]
+      if self.args is not None:
+         for arg in self.args:
+            if 'format' in dir(arg) and not isinstance(arg, str):
+               parts[0] += ' %s' % arg.format
+            else:
+               parts[0] += ' %s' % arg
+      if self.markup is not None:
+         for markup in self.markup:
+            if '_report_pieces' in dir(markup) and not isinstance(markup, str):
+               parts.extend([indent_delimiter + x for x in markup._report_pieces])
+            else:
+               parts.append(indent_delimiter + markup)
+      if self.is_braced and self.markup and 1 < len(self.markup):
+         parts[0] += ' {'
+         parts.append('}')
+      return parts
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def args(self):
+      r'''Read-only tuple of markup command arguments.'''
+      return self._args
+
+   @property
+   def command(self):
+      r'''Read-only string of markup command command-name.'''
+      return self._command
 
    @property
    def format(self):
@@ -95,27 +145,24 @@ class MarkupCommand(_Immutable):
 
       Return list of strings.
       '''
-#     indent_delimiter = '\t'
-      indent_delimiter = ''
 
-      parts = [r'\%s' % self.command]
+      return ' '.join(self._format_pieces)
 
-      if self.args is not None:
-         for arg in self.args:
-            if 'format' in dir(arg) and not isinstance(arg, str):
-               parts[0] += ' %s' % arg.format
-            else:
-               parts[0] += ' %s' % arg
+   @property
+   def is_braced(self):
+      r'''Read-only boolean of markup command bracing.'''
+      return self._is_braced
 
-      if self.markup is not None:
-         for markup in self.markup:
-            if 'format' in dir(markup) and not isinstance(markup, str):
-               parts.extend([indent_delimiter + x for x in markup.format])
-            else:
-               parts.append(indent_delimiter + markup)
+   @property
+   def markup(self):
+      r'''Read-only tuple of markup command's child markup.'''
+      return self._markup
 
-      if self.is_braced and self.markup and 1 < len(self.markup):
-         parts[0] += ' {'
-         parts.append('}')
+   ## PUBLIC METHODS ##
 
-      return parts
+   def report(self, output = 'screen'):
+      '''Report, in an indented human-readable format, the structure of a formatted MarkupCommand.'''
+      if output == 'screen':
+         print '\n'.join(self._report_pieces)
+      else:
+         return '\n'.join(self._report_pieces)         
