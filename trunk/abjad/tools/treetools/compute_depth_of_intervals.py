@@ -30,12 +30,15 @@ def compute_depth_of_intervals(intervals):
    assert all_are_intervals_or_trees_or_empty(intervals)
    tree = IntervalTree(intervals)
    bounds = list(get_all_unique_bounds_in_intervals(tree))
-   tree = split_intervals_at_rationals(tree, bounds)
-
    intervals = [ ]
    for i in range(len(bounds) - 1):
-      s, e = bounds[i], bounds[i + 1]   
-      count = len(tree.find_intervals_starting_and_stopping_within_interval(s, e))
-      intervals.append(BoundedInterval(s, e, {'depth': count}))
+      target = BoundedInterval(bounds[i], bounds[i+1], { })
+      found = tree.find_intervals_intersecting_or_tangent_to_interval(target)
+      if found:
+         depth = len(filter(lambda x: not x.low == target.high and not x.high == target.low, found))
+      else:
+         depth = 0
+      target.data['depth'] = depth
+      intervals.append(target)
 
    return IntervalTree(intervals)
