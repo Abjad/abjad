@@ -6,7 +6,7 @@ from fractions import Fraction
 class BoundedInterval(_Immutable):
    '''A low / high pair, carrying some metadata.'''
 
-   __slots__ = ('data', 'high', 'low', )
+   __slots__ = ('_data', '_high', '_low', )
 
    def __init__(self, *args, **kwargs):
       if len(args) == 1 and isinstance(args[0], BoundedInterval):
@@ -25,14 +25,15 @@ class BoundedInterval(_Immutable):
          data = copy.copy(data)
       else:
          data = { }
-      object.__setattr__(self, 'low', low)
-      object.__setattr__(self, 'high', high)
-      object.__setattr__(self, 'data', data)
+#      assert isinstance(data, dict)
+      object.__setattr__(self, '_low', low)
+      object.__setattr__(self, '_high', high)
+      object.__setattr__(self, '_data', data)
 
    ## OVERLOADS ##
 
    def __repr__(self):
-      return '%s(%s, %s, data = %s)' % \
+      return '%s(%s, %s, %s)' % \
          (self.__class__.__name__, \
          repr(self.low), \
          repr(self.high), \
@@ -44,6 +45,21 @@ class BoundedInterval(_Immutable):
    def centroid(self):
       '''Center point of low and high bounds.'''
       return Fraction(self.high + self.low) / 2
+
+   @property
+   def data(self):
+      '''Payload.'''
+      return self._data
+
+   @property
+   def high(self):
+      '''High bound.'''
+      return self._high
+
+   @property
+   def low(self):
+      '''Low bound.'''
+      return self._low
 
    @property
    def magnitude(self):

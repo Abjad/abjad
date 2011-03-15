@@ -4,7 +4,7 @@ from abjad.tools.treetools.BoundedInterval import BoundedInterval
 class Block(BoundedInterval):
    '''An abstract block of musical material occupying some amount of time.'''
 
-   __slots__ = ('data', 'high', 'low', )
+   __slots__ = ('_data', '_high', '_low', )
 
    def __init__(self, *args, **kwargs):
       if len(args) == 1 and isinstance(args[0], BoundedInterval):

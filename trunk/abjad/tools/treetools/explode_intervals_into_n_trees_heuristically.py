@@ -5,6 +5,8 @@ from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
    import all_are_intervals_or_trees_or_empty
 from abjad.tools.treetools.calculate_depth_density_of_intervals_in_interval \
    import calculate_depth_density_of_intervals_in_interval
+from abjad.tools.treetools.compute_logical_or_of_intervals \
+   import compute_logical_or_of_intervals
 
 
 def explode_intervals_into_n_trees_heuristically(intervals, n):
@@ -16,54 +18,55 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
    assert isinstance(n, int) and 0 < n
    tree = IntervalTree(intervals)
 
-   trees = [IntervalTree([ ])] * n
-
    if not tree:
-      return trees
+      return [IntervalTree([ ])] * n
+   elif n == 1:
+      return [tree]
 
-   trees[0] = IntervalTree([tree[0]])
+   xtrees = [IntervalTree([ ])] * n
+   xtrees[0] = IntervalTree([tree[0]])
+
+   # cache
+   treebounds = BoundedInterval(tree.low, tree.high)
+   densities = [calculate_depth_density_of_intervals_in_interval(xtrees[0], treebounds)]
+   densities.extend([0] * (n - 1 ))
+   logical_ors = [compute_logical_or_of_intervals(xtrees[0])]
+   logical_ors.extend([IntervalTree([ ])] * (n - 1))   
+
+   # loop through intervals
    for interval in tree[1:]:
+
+      empty_trees = [ ]
       nonoverlapping_trees = [ ]
       overlapping_trees = [ ]
 
-      # sort trees into overlapping and non-overlapping groups
-      for t in trees:
-         if not len(t):
-            nonoverlapping_trees.append(t)
-         elif not t[-1].is_overlapped_by_interval(interval):
-            nonoverlapping_trees.append(t)
+      for i, zipped in enumerate(zip(xtrees, densities, logical_ors)):
+         xtree = zipped[0]
+         density = zipped[1]
+         logical_or = zipped[2]
+         if not len(xtree):
+            empty_trees.append(i)
+            break
+         elif not logical_or[-1].is_overlapped_by_interval(interval):
+            nonoverlapping_trees.append((i, density,))
          else:
-            overlapping_trees.append(t)
+            overlapping_trees.append((i, density, logical_or,))
 
-      # if there are any non-overlapping trees, choose the least dense
-      if len(nonoverlapping_trees):
-         # sort by least dense
-         sorted(nonoverlapping_trees, key = lambda x: \
-            calculate_depth_density_of_intervals_in_interval(t, \
-               BoundedInterval(tree.low, tree.high)))
-         match_id = trees.index(nonoverlapping_trees[0])
-         trees[match_id] = IntervalTree([trees[match_id], interval])
-
-      # else, find the least-overlapping overlapping tree
+      if len(empty_trees):
+         i = empty_trees[0]
+      elif len(nonoverlapping_trees):
+         nonoverlapping_trees = sorted(nonoverlapping_trees, key = lambda x: x[1])
+         i = nonoverlapping_trees[0][0]
       else:
-         # first, sort by least overlap with current interval
-         sorted(overlapping_trees, key = lambda x: \
-            x[-1].get_overlap_with_interval(interval))
-
-         # test for tie
-         ties = filter(lambda x: x[-1].get_overlap_with_interval(interval) == \
-            overlapping_trees[0][-1].get_overlap_with_interval(interval), \
+         overlapping_trees = sorted(overlapping_trees, \
+            key = lambda x: x[2][-1].get_overlap_with_interval(interval))
+         overlapping_trees = filter( \
+            lambda x: x[2][-1].magnitude == overlapping_trees[0][2][-1].magnitude,
             overlapping_trees)
+         i = overlapping_trees[0][0]
 
-         # if no tie, add to least overlap
-         if len(ties) == 1:
-            trees[trees.index(ties[0])] = IntervalTree([trees[trees.index(ties[0])], interval])
+      xtrees[i] = IntervalTree([xtrees[i], interval])
+      densities[i] = calculate_depth_density_of_intervals_in_interval(xtrees[i], treebounds)
+      logical_ors[i] = compute_logical_or_of_intervals(xtrees[i])
 
-         # else add to least dense of tie
-         else:
-            sorted(ties, key = lambda x: \
-               calculate_depth_density_of_intervals_in_interval(t, \
-                  BoundedInterval(tree.low, tree.high)))
-            trees[trees.index(ties[0])] = IntervalTree([trees[trees.index(ties[0])], interval])
-
-   return trees
+   return xtrees
