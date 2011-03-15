@@ -2,7 +2,8 @@ from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
    import all_are_intervals_or_trees_or_empty
-from abjad.tools.treetools.compute_logical_not_of_intervals import compute_logical_not_of_intervals
+from abjad.tools.treetools.compute_logical_not_of_intervals_in_interval \
+   import compute_logical_not_of_intervals_in_interval
 from abjad.tools.treetools.split_intervals_at_rationals import split_intervals_at_rationals
 from abjad.tools.treetools.get_all_unique_bounds_in_intervals import get_all_unique_bounds_in_intervals
 
@@ -26,14 +27,14 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
    assert all_are_intervals_or_trees_or_empty(mask_intervals)
    masked_tree = IntervalTree(masked_intervals)
    mask_tree = IntervalTree(mask_intervals)
-   not_mask_tree = compute_logical_not_of_intervals(mask_tree)
+   not_mask_tree = compute_logical_not_of_intervals_in_interval(mask_tree, masked_tree.bounds)
 
-   if masked_tree.low < mask_tree.low:
-      not_mask_tree = IntervalTree([not_mask_tree,
-         BoundedInterval(masked_tree.low, mask_tree.low)])
-   if mask_tree.high < masked_tree.high:
-      not_mask_tree = IntervalTree([not_mask_tree, 
-         BoundedInterval(mask_tree.high, masked_tree.high)])
+#   if masked_tree.low < mask_tree.low:
+#      not_mask_tree = IntervalTree([not_mask_tree,
+#         BoundedInterval(masked_tree.low, mask_tree.low)])
+#   if mask_tree.high < masked_tree.high:
+#      not_mask_tree = IntervalTree([not_mask_tree, 
+#         BoundedInterval(mask_tree.high, masked_tree.high)])
    split_masked_tree = split_intervals_at_rationals(masked_tree, \
       get_all_unique_bounds_in_intervals(not_mask_tree))
 

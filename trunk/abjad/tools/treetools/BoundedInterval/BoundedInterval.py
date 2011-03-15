@@ -32,6 +32,14 @@ class BoundedInterval(_Immutable):
 
    ## OVERLOADS ##
 
+   def __eq__(self, other):
+      if type(other) == type(self):
+         if other.low == self.low:
+            if other.high == self.high:
+               if other.data == self.data:
+                  return True
+      return False
+
    def __repr__(self):
       return '%s(%s, %s, %s)' % \
          (self.__class__.__name__, \

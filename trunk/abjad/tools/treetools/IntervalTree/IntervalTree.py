@@ -108,6 +108,12 @@ class IntervalTree(_RedBlackTree):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def bounds(self):
+      if self:
+         return BoundedInterval(self.low, self.high)
+      return None
+
+   @property
    def high(self):
       return self.high_max
 
