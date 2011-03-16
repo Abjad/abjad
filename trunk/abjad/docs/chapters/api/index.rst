@@ -1189,6 +1189,8 @@ treetools
    tools/treetools/calculate_depth_density_of_intervals_in_interval
    tools/treetools/calculate_mean_attack_of_intervals
    tools/treetools/calculate_mean_release_of_intervals
+   tools/treetools/calculate_min_mean_and_max_depth_of_intervals
+   tools/treetools/calculate_min_mean_and_max_magnitude_of_intervals
    tools/treetools/calculate_sustain_centroid_of_intervals
    tools/treetools/clip_interval_magnitudes_to_range
    tools/treetools/compute_depth_of_intervals
@@ -1210,6 +1212,8 @@ treetools
    tools/treetools/get_all_unique_bounds_in_intervals
    tools/treetools/group_overlapping_intervals_and_yield_groups
    tools/treetools/group_tangent_or_overlapping_intervals_and_yield_groups
+   tools/treetools/make_monophonic_percussion_score_from_nonoverlapping_intervals
+   tools/treetools/make_polyphonic_percussion_score_from_nonoverlapping_trees
    tools/treetools/mask_intervals_with_intervals
    tools/treetools/round_interval_bounds_to_nearest_multiple_of_rational
    tools/treetools/scale_aggregate_magnitude_by_rational

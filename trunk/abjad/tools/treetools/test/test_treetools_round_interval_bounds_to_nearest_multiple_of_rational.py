@@ -43,7 +43,7 @@ def test_treetools_round_interval_bounds_to_nearest_multiple_of_rational_03( ):
    ])
 
 
-def test_treetools_round_interval_bounds_to_nearest_multiple_of_rational_03( ):
+def test_treetools_round_interval_bounds_to_nearest_multiple_of_rational_04( ):
    tree = IntervalTree([
       BoundedInterval(Fraction(1, 4), Fraction(7, 8)),
       BoundedInterval(Fraction(1, 3), Fraction(5, 3))
@@ -51,7 +51,7 @@ def test_treetools_round_interval_bounds_to_nearest_multiple_of_rational_03( ):
    py.test.raises(AssertionError, "result = round_interval_bounds_to_nearest_multiple_of_rational(tree, 0)")
 
 
-def test_treetools_round_interval_bounds_to_nearest_multiple_of_rational_03( ):
+def test_treetools_round_interval_bounds_to_nearest_multiple_of_rational_05( ):
    tree = IntervalTree([ ])
    result = round_interval_bounds_to_nearest_multiple_of_rational(tree, 1)
    assert result == tree
