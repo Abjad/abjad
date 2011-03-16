@@ -1,9 +1,9 @@
-import py.test
 from fractions import Fraction
 from abjad.tools.treetools import *
+from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
-
-py.test.skip('Tests not yet implemented.')
 
 def test_BoundedInterval_centroid_01( ):
-   pass
+   intervals = _make_test_blocks( )
+   for interval in intervals:
+      assert interval.centroid == Fraction(interval.low + interval.high, 2)

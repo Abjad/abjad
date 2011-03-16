@@ -34,6 +34,12 @@ class IntervalTree(_RedBlackTree):
       else:
          return False
 
+   def __eq__(self, other):
+      if type(self) == type(other):
+         if self[:] == other[:]:
+            return True
+      return False
+
    def __getitem__(self, item):
       return self._inorder.__getitem__(item)
 

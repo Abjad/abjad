@@ -14,7 +14,7 @@ def calculate_min_mean_and_max_depth_of_intervals(intervals):
    tree = IntervalTree(intervals)
    if not tree:
       return None              
-      
+
    depth_tree = compute_depth_of_intervals(tree)
    depths = [x.data['depth'] for x in depth_tree]
    mean = calculate_depth_density_of_intervals(tree)

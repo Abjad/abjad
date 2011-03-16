@@ -1,9 +1,16 @@
-import py.test
+from fractions import Fraction
 from abjad.tools.treetools import *
+from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
-
-py.test.skip('Tests not yet implemented.')
 
 def test_treetools_calculate_mean_release_of_intervals_01( ):
-   pass
+   tree = IntervalTree(_make_test_blocks( ))
+   release = calculate_mean_release_of_intervals(tree)
+   assert release == Fraction(sum([x.high for x in tree]), len(tree))
+
+
+def test_treetools_calculate_mean_release_of_intervals_02( ):
+   tree = IntervalTree([ ])
+   release = calculate_mean_release_of_intervals(tree)
+   assert release is None
 

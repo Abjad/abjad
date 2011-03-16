@@ -12,6 +12,6 @@ def calculate_min_mean_and_max_magnitude_of_intervals(intervals):
    tree = IntervalTree(intervals)
    if not tree:
       return None
-   
+
    magnitudes = [x.magnitude for x in tree]
    return (min(magnitudes), Fraction(sum(magnitudes), len(magnitudes)), max(magnitudes))

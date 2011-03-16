@@ -11,7 +11,8 @@ def calculate_sustain_centroid_of_intervals(intervals):
 
    assert all_are_intervals_or_trees_or_empty(intervals)
    tree = IntervalTree(intervals)   
-
-   return sum([(x.centroid * x.magnitude) for x in tree]) / \
-      sum([x.magnitude for x in tree])
-
+   if not tree:
+      return None
+   weighted_centroids = sum([(x.centroid * x.magnitude) for x in tree])
+   sum_of_weights = sum([x.magnitude for x in tree])
+   return Fraction(weighted_centroids) / sum_of_weights
