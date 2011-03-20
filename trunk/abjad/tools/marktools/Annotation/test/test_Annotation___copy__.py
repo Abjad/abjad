@@ -11,5 +11,5 @@ def test_Annotation___copy___01( ):
    annotation_2 = copy.copy(annotation_1)
    assert annotation_1 == annotation_2
    assert annotation_1 is not annotation_2
-   assert annotation_1.contents == annotation_2.contents == dictionary
-   assert annotation_1.contents is not annotation_2.contents is not dictionary
+   assert annotation_1.contents_string == annotation_2.contents_string == dictionary
+   assert annotation_1.contents_string is not annotation_2.contents_string is not dictionary

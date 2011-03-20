@@ -17,7 +17,7 @@ class Articulation(Mark):
       abjad> f(note)
       c'4 -\staccato
 
-   Articulations implement fixed attribute slots.
+   Articulations implement ``__slots__``.
    '''
 
    __slots__ = ('_string', '_direction', '_format_slot')

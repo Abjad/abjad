@@ -7,7 +7,7 @@ def test_Annotation___init___01( ):
 
    dictionary = { }
    annotation = marktools.Annotation(dictionary)
-   assert annotation.contents == dictionary
-   assert annotation.contents is not dictionary
+   assert annotation.contents_string == dictionary
+   assert annotation.contents_string is not dictionary
    
 
