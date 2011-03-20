@@ -5,8 +5,8 @@ def split_container_once_by_counts_and_do_not_fracture_crossing_spanners(contain
 
       abjad> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
       abjad> voice = Voice([container])
-      abjad> spannertools.BeamSpanner(voice)
-      abjad> spannertools.SlurSpanner(container)
+      abjad> beam = spannertools.BeamSpanner(voice)
+      abjad> slur = spannertools.SlurSpanner(container)
       
    ::
       

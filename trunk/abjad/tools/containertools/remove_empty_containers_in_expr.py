@@ -11,6 +11,9 @@ def remove_empty_containers_in_expr(expr):
       abjad> spannertools.BeamSpanner(staff[:])
       abjad> containertools.delete_contents_of_container(staff[1])
       abjad> containertools.delete_contents_of_container(staff[-1])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          {

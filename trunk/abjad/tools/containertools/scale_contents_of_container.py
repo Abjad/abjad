@@ -1,5 +1,5 @@
-from abjad.components._Leaf import _Leaf
 from abjad.components import Measure
+from abjad.components._Leaf import _Leaf
 from abjad.tools import tietools
 from abjad.tools import tuplettools
 from abjad.tools.tuplettools import FixedDurationTuplet
@@ -8,10 +8,13 @@ from abjad.tools.tuplettools import FixedDurationTuplet
 def scale_contents_of_container(container, multiplier):
    r'''.. versionadded:: 1.1.1
 
-   Scale `container` contents by dot `multiplier`::
+   Scale contents of `container` by dot `multiplier`::
 
-      abjad> staff = Staff(macros.scale(2))
+      abjad> staff = Staff("c'8 d'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -31,10 +34,13 @@ def scale_contents_of_container(container, multiplier):
          d'8. ]
       }
    
-   Scale `container` contents by tie `multiplier`::
+   Scale contents of `container` by tie `multiplier`::
 
-      abjad> staff = Staff(macros.scale(2))
+      abjad> staff = Staff("c'8 d'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -56,10 +62,13 @@ def scale_contents_of_container(container, multiplier):
          d'32 ]
       }
 
-   Scale `container` contents by nonbinary `multiplier`::
+   Scale contents of `container` by nonbinary `multiplier`::
 
-      abjad> staff = Staff(macros.scale(2))
+      abjad> staff = Staff("c'8 d'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -85,14 +94,8 @@ def scale_contents_of_container(container, multiplier):
 
    Return `container`.
 
-   .. todo:: Move to ``durtools``?
-
    .. versionchanged:: 1.1.2
       renamed ``containertools.contents_scale( )`` to
-      ``containertools.scale_contents_of_container( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``containertools.scale_container_contents( )`` to
       ``containertools.scale_contents_of_container( )``.
    '''
 

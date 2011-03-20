@@ -1,11 +1,13 @@
 def insert_component_and_do_not_fracture_crossing_spanners(container, i, component):
    r'''.. versionadded:: 1.1.2
 
-   Insert `component` into `container` at index `i`
-   and do not fracture spanners::
+   Insert `component` into `container` at index `i` and do not fracture crossing spanners::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [

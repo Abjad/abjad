@@ -2,10 +2,13 @@ from abjad.components import Container
 
 
 def delete_contents_of_container(container):
-   r'''Delete `container` contents::
+   r'''Delete contents of `container`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [

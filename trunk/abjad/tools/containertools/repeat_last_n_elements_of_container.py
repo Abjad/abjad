@@ -4,10 +4,13 @@ from abjad.tools.componenttools.clone_components_and_immediate_parent_of_first_c
 def repeat_last_n_elements_of_container(container, n = 1, total = 2):
    r'''.. versionadded:: 1.1.1
 
-   Extend `container` with last `n` elements `total` times::
+   Repeat last `n` elements of `container`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -36,8 +39,6 @@ def repeat_last_n_elements_of_container(container, n = 1, total = 2):
       }
 
    Return `container`.
-
-   .. todo:: harmonize name with ``containertools.repeat_contents_of_container( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``containertools.extend_cyclic( )`` to

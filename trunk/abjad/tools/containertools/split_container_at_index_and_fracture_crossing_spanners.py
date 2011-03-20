@@ -3,16 +3,16 @@ from abjad.tools.componenttools._split_component_at_index import _split_componen
 
 
 def split_container_at_index_and_fracture_crossing_spanners(container, index):
-   r'''Split `container` at `index`. Fracture spanners,
-   create two new copies of `container`, empty `container`
-   of original contents.
-   Return split parts. ::
+   r'''Split `container` at `index` and fracture crossing spanners::
 
-      abjad> t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-      abjad> tuplet = t[1]
-      abjad> macros.diatonicize(t)
-      abjad> spannertools.BeamSpanner(t[:])
-      abjad> f(t)
+      abjad> voice = Voice(tuplettools.FixedDurationTuplet((2, 8), "c'8 c'8 c'8") * 2)
+      abjad> tuplet = voice[1]
+      abjad> macros.diatonicize(voice)
+      abjad> beam = spannertools.BeamSpanner(voice[:])
+
+   ::
+
+      abjad> f(voice)
       \new Voice {
               \times 2/3 {
                       c'8 [
@@ -28,8 +28,11 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
 
    ::
 
-      abjad> left, right = split.container_fractured(tuplet, 1)
-      abjad> f(t)
+      abjad> left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(tuplet, 1)
+   
+   ::
+
+      abjad> f(voice)
       \new Voice {
               \times 2/3 {
                       c'8 [
@@ -45,14 +48,17 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
               }
       }
 
-   Function leaves leaves untouched.
+   Leave leaves untouched.
+
+   Create two new copies of `container`.
+
+   Empty `container` of original contents.
+
+   Return split parts.
 
    .. versionchanged:: 1.1.2
       renamed ``split.fractured_at_index( )`` to
       ``containertools.split_container_at_index_and_fracture_crossing_spanners( )``.
    '''
-
-   #if not isinstance(container, Container):
-   #   raise TypeError
 
    return _split_component_at_index(container, index, spanners = 'fractured')

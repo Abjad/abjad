@@ -4,17 +4,18 @@ from fractions import Fraction
 def get_first_element_starting_before_or_at_prolated_offset(container, prolated_offset):
    '''.. versionadded:: 1.1.2
 
-   Return rightmost element in `container` starting not after `prolated_offset`::
+   Get first `container` element starting before or at `prolated_offset`::
    
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
       abjad> containertools.get_first_element_starting_before_or_at_prolated_offset(staff, Fraction(1, 8))
       Note(d', 8)
 
-   Return none when no element in `container` starts not after `prolated_offset`::
+   Return component.
 
-      abjad> staff = Staff(macros.scale(4))
-      abjad> containertools.get_first_element_starting_before_or_at_prolated_offset(staff, Fraction(-1, 8)) is None
-      True
+   Return none when no `container` element starts before or at `prolated_offset`.
 
    .. versionchanged:: 1.1.2
       renamed ``containertools.get_rightmost_element_starting_not_after_prolated_offset( )`` to

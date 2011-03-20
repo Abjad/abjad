@@ -2,14 +2,16 @@ from abjad.tools.containertools.get_first_element_starting_before_or_at_prolated
    import get_first_element_starting_before_or_at_prolated_offset
 
 
-def delete_contents_of_container_starting_before_or_at_prolated_offset(
-   container, prolated_offset):
+def delete_contents_of_container_starting_before_or_at_prolated_offset(container, prolated_offset):
    r'''.. versionadded:: 1.1.2
 
-   Delete `container` contents starting not after `prolated_offset`::
+   Delete contents of `container` starting before or at `prolated_offset`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [

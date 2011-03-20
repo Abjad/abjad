@@ -5,10 +5,21 @@ from abjad.tools.containertools.repeat_last_n_elements_of_container import repea
 def repeat_contents_of_container(container, total = 2):
    r'''.. versionadded:: 1.1.1
 
-   Multiply `container` contents to `total` repetitions::
+   Repeat contents of `container`::
 
-      abjad> staff = Staff(macros.scale(2))
+      abjad> staff = Staff("c'8 d'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+   
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8 ]
+      }
+
+   ::
+
       abjad> containertools.repeat_contents_of_container(staff, 3)
       abjad> f(staff)
       \new Staff {
@@ -20,30 +31,11 @@ def repeat_contents_of_container(container, total = 2):
          d'8 ]
       }
 
-   Leave `container` unchanged when ``total = 1``::
+   Leave `container` unchanged when `total` is ``1``.
 
-      abjad> staff = Staff(macros.scale(2))
-      abjad> spannertools.BeamSpanner(staff.leaves)
-      abjad> containertools.repeat_contents_of_container(staff, 1)
-      abjad> f(staff)
-      \new Staff {
-         c'8 [
-         d'8 ]
-      }
-
-   Empty `container` when ``total = 0``::
-
-      abjad> staff = Staff(macros.scale(2))
-      abjad> spannertools.BeamSpanner(staff.leaves)
-      abjad> containertools.repeat_contents_of_container(staff, 0)
-      abjad> f(staff)
-      \new Staff {
-      }
+   Empty `container` when `total` is ``0``.
 
    Return `container`.
-
-   .. todo:: rename this function because 'multiply' clashes
-      with duration multiplication. Possibly 'reproduce'.
 
    .. versionchanged:: 1.1.2
       renamed ``containertools.contents_multiply( )`` to

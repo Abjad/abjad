@@ -2,14 +2,16 @@ from abjad.tools.containertools.get_first_element_starting_strictly_before_prola
    import get_first_element_starting_strictly_before_prolated_offset
 
 
-def delete_contents_of_container_starting_strictly_before_prolated_offset(
-   container, prolated_offset):
+def delete_contents_of_container_starting_strictly_before_prolated_offset(container, prolated_offset):
    r'''.. versionadded:: 1.1.2
 
-   Delete `container` contents starting before `prolated_offset`::
+   Delete contents of `container` contents starting strictly before `prolated_offset`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -41,8 +43,7 @@ def delete_contents_of_container_starting_strictly_before_prolated_offset(
 
    ## get index
    try:
-      element = get_first_element_starting_strictly_before_prolated_offset(
-         container, prolated_offset)
+      element = get_first_element_starting_strictly_before_prolated_offset(container, prolated_offset)
       index = container.index(element)
 
    ## return container if no index

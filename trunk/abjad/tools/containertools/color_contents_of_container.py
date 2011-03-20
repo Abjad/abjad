@@ -1,10 +1,17 @@
 def color_contents_of_container(container, color):
    r'''.. versionadded:: 1.1.2
 
-   Set `container` contents to `color`::
+   Color contents of `container`::
 
-      abjad> measure = Measure((2, 8), macros.scale(2))
+      abjad> measure = Measure((2, 8), "c'8 d'8")
+
+   ::
+
       abjad> containertools.color_contents_of_container(measure, 'red')
+
+   ::
+
+      abjad> f(measure)
       {
               \override Accidental #'color = #red
               \override Beam #'color = #red
@@ -27,7 +34,7 @@ def color_contents_of_container(container, color):
               \revert TupletNumber #'color
       }
    
-   Use to highlight structure.
+   Return none.
 
    .. versionchanged:: 1.1.2
       renamed ``containertools.contents_color( )`` to

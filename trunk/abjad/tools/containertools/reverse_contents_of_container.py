@@ -4,11 +4,14 @@ from abjad.components import Container
 def reverse_contents_of_container(container):
    r'''.. versionadded:: 1.1.1
 
-   Reverse `container` contents in place::
+   Reverse contents of `container`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves[:2])
       abjad> spannertools.SlurSpanner(staff.leaves[2:])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -53,8 +56,7 @@ def reverse_contents_of_container(container):
    elif isinstance(container, Container):
       container._music.reverse( )
       #spanners = container.spanners.contained
-      spanners = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
-         container)
+      spanners = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(container)
       for s in spanners:
          s._components.sort(_offset)
 

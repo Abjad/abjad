@@ -1,15 +1,19 @@
 from abjad.components import Container
-from abjad.tools import componenttools
 from abjad.components import Tuplet
+from abjad.tools import componenttools
 
 
+## TODO: change interface to fuse.containers_by_name( ) to pass containers-to-be-fused explicitly.
 def fuse_like_named_contiguous_containers_in_expr(expr):
    r'''Fuse like-named contiguous containers in `expr`::
 
-      abjad> staff = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
+      abjad> staff = Staff(Voice("c'8 c'8") * 2)
       abjad> macros.diatonicize(staff.leaves)
       abjad> staff[0].name = 'soprano'
       abjad> staff[1].name = 'soprano'
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          \context Voice = "soprano" {
@@ -40,9 +44,6 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
       }
 
    Return `expr`.
-
-   .. todo:: change interface to ``fuse.containers_by_name(staff[:])``
-      to pass containers-to-be-fused explicitly.
 
    .. versionchanged:: 1.1.2
       renamed ``fuse.containers_by_reference( )`` to

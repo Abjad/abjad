@@ -1,5 +1,4 @@
-from abjad.tools.containertools._report_container_modifications import \
-   _report_container_modifications
+from abjad.tools.containertools._report_container_modifications import _report_container_modifications
 
 
 def report_container_modifications_as_string(container):
@@ -7,24 +6,42 @@ def report_container_modifications_as_string(container):
 
    ::
 
-      abjad> container = Container(macros.scale(12))
+      abjad> container = Container("c'8 d'8 e'8 f'8")
       abjad> container.override.note_head.color = 'red'
       abjad> container.override.note_head.style = 'harmonic'
-      abjad> container.comments.before.append('Container comments')
-      abjad> print formattools.wrapper(container)
+
+   ::
+
+      abjad> f(container)
       {
-              \override NoteHead #'style = #'harmonic
-              \override NoteHead #'color = #red
-
-              %%% 12 components omitted %%%
-
-              \revert NoteHead #'style
-              \revert NoteHead #'color
+         \override NoteHead #'color = #red
+         \override NoteHead #'style = #'harmonic
+         c'8
+         d'8
+         e'8
+         f'8
+         \revert NoteHead #'color
+         \revert NoteHead #'style
       }
-      abjad> containertools.report_container_modifications_as_string(container)
-      "% Container comments\n{\n\t\\override NoteHead #'color = #red\n\t\\override NoteHea
-      d #'style = #'harmonic\n\n\t%%% 12 components omitted %%%\n\n\t\\revert NoteHead #'s
-      tyle\n\t\\revert NoteHead #'color\n}"
+
+   ::
+
+      abjad> string = containertools.report_container_modifications_as_string(container)
+
+   ::
+
+      abjad> print string
+      {
+         \override NoteHead #'color = #red
+         \override NoteHead #'style = #'harmonic
+
+         %%% 4 components omitted %%%
+
+         \revert NoteHead #'color
+         \revert NoteHead #'style
+      }
+
+   Return string.
    '''
 
    return _report_container_modifications(container, output = 'string')
