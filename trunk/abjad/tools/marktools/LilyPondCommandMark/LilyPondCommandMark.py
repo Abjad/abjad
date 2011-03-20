@@ -1,14 +1,21 @@
 from abjad.tools.marktools.Mark import Mark
 
 
+## TODO: extend LilyPond command marks to attach to spanners.
 class LilyPondCommandMark(Mark):
    r'''.. versionadded:: 1.1.2
 
-   Abjad model of LilyPond command mark::
+   LilyPond command mark::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
+
+   ::
+
       abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(staff[0])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          \slurDotted
@@ -18,16 +25,14 @@ class LilyPondCommandMark(Mark):
          f'8 )
       }
 
-   .. todo:: extend LilyPond command marks to attach to spanners.
+   LilyPond command marks are immutable.
    '''
-
 
    __slots__ = ('_command_name_string', '_format_slot', )
 
    def __init__(self, command_name_string, format_slot = 'opening'):
       Mark.__init__(self)
       self._command_name_string = command_name_string
-      #self._contents_repr_string = "'%s'" % command_name_string
       self._format_slot = format_slot
 
    ## OVERLOADS ##

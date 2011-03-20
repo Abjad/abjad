@@ -5,10 +5,12 @@ from abjad.tools.marktools.Mark import Mark
 class Comment(Mark):
    r'''.. versionadded:: 1.1.2
 
-   Abjad model of user comment::
+   User comment::
    
       abjad> marktools.Comment('this is a comment.')
       Comment('this is a comment.')
+
+   Comments are immutable.
    '''
 
    __slots__ = ('_comment_name_string', '_format_slot', )
@@ -49,6 +51,5 @@ class Comment(Mark):
          '% this is a comment.'
       '''
       from abjad.tools import iotools
-      command = iotools.underscore_delimited_lowercase_to_lowercamelcase(
-         self._comment_name_string)
+      command = iotools.underscore_delimited_lowercase_to_lowercamelcase(self._comment_name_string)
       return r'%% %s' % command

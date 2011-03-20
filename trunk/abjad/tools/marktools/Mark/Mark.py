@@ -4,8 +4,21 @@ from abjad.components._Component import _Component
 class Mark(object):
    '''.. versionadded:: 1.1.2
 
-   Mark models articulations, annotations, comments, LilyPond commands
-   and other symbols that attach directly to a note, rest or chord.
+   Abstract class from which concrete marks inherit::
+
+      abjad> marktools.Mark( )
+      Mark( )
+   
+   Marks override ``___call__( )`` to attach to a note, rest or chord::
+
+      abjad> note = Note("c'4")
+
+   ::
+
+      abjad> marktools.Mark( )(note)
+      Mark( )(c'4)
+
+   Marks are immutable.
    '''
 
    __slots__ = ('_start_component', )
@@ -80,14 +93,67 @@ class Mark(object):
 
    @property
    def start_component(self):
+      '''Read-only reference to mark start component::
+
+         abjad> note = Note("c'4")
+         abjad> mark = marktools.Mark( )(note)
+
+      ::
+
+         abjad> mark.start_component
+         Note("c'4")
+
+      Return component or none.
+      '''
       return self._start_component
 
    ## PUBLIC METHODS ##
 
    def attach_mark(self, start_component):
+      '''Attach mark to `start_component`::
+
+         abjad> note = Note("c'4")
+         abjad> mark = marktools.Mark( )
+
+      ::
+
+         abjad> mark.attach_mark(note)
+         Mark( )(c'4)
+
+      ::
+
+         abjad> mark.start_component
+         Note("c'4")
+
+      Same as ``__call__( )``.
+
+      Return mark.
+      '''
       self.__bind_start_component(start_component)
       return self
 
    def detach_mark(self):
+      '''Detach mark::
+
+         abjad> note = Note("c'4")
+         abjad> mark = marktools.Mark( )(note)
+
+      ::
+
+         abjad> mark.start_component
+         Note("c'4")
+
+      ::
+
+         abjad> mark.detach_mark( )
+         Mark( )
+
+      ::
+
+         abjad> mark.start_component is None
+         True
+
+      Return mark.
+      '''
       self.__unbind_start_component( )
       return self
