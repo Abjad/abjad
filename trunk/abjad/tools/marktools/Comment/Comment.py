@@ -5,12 +5,22 @@ from abjad.tools.marktools.Mark import Mark
 class Comment(Mark):
    r'''.. versionadded:: 1.1.2
 
-   User comment::
+   User-defined comment::
    
-      abjad> marktools.Comment('this is a comment.')
-      Comment('this is a comment.')
+      abjad> note = Note("c'4")
 
-   Comments are immutable.
+   ::
+
+      abjad> marktools.Comment('this is a comment')(note)
+      Comment('this is a comment')(c'4)
+
+   ::
+
+      abjad> f(note)
+      % this is a comment
+      c'4
+
+   Comments implement ``__slots__``.
    '''
 
    __slots__ = ('_comment_name_string', '_format_slot', )
@@ -39,6 +49,27 @@ class Comment(Mark):
       return repr(self._comment_name_string)
 
    ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def contents_string( ):
+      def fget(self):
+         r'''Get contents string of comment::
+
+            abjad> comment = marktools.Comment('comment contents string')
+            abjad> comment.contents_string
+            'comment contents string'
+
+         Set contents string of comment::
+
+            abjad> comment.contents_string = 'new comment contents string'
+            abjad> comment.contents_string
+            'new comment contents string'
+         '''
+         return self._comment_name_string
+      def fset(self, contents_string):
+         assert isinstance(contents_string, str)
+         self._comment_name_string = contents_string
+      return property(**locals( ))
 
    @property
    def format(self):

@@ -18,7 +18,7 @@ class Mark(object):
       abjad> marktools.Mark( )(note)
       Mark( )(c'4)
 
-   Marks are immutable.
+   Marks implement ``__slots__``.
    '''
 
    __slots__ = ('_start_component', )

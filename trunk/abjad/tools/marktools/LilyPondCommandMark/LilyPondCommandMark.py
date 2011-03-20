@@ -25,7 +25,7 @@ class LilyPondCommandMark(Mark):
          f'8 )
       }
 
-   LilyPond command marks are immutable.
+   LilyPond command marks implement ``__slots__``.
    '''
 
    __slots__ = ('_command_name_string', '_format_slot', )
@@ -55,17 +55,26 @@ class LilyPondCommandMark(Mark):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def command_name_string(self):
-      '''Read-only command name string of LilyPond command mark:
+   @apply
+   def command_name_string( ):
+      def fget(self):
+         '''Get command name string of LilyPond command mark::
 
-      ::
+            abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
+            abjad> lilypond_command.command_name_string
+            'slurDotted'
 
-         abjad> command_mark = marktools.LilyPondCommandMark('slurDotted')
-         abjad> command_mark.command_name_string
-         'slurDotted'
-      '''
-      return self._command_name_string
+         Set command name string of LilyPond command mark::
+   
+            abjad> lilypond_command.command_name_string = 'slurDashed'
+            abjad> lilypond_command.command_name_string
+            'slurDashed'
+         '''
+         return self._command_name_string
+      def fset(self, command_name_string):
+         assert isinstance(command_name_string, str)
+         self._command_name_string = command_name_string
+      return property(**locals( ))
 
    @property
    def format(self):
