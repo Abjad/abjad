@@ -8,15 +8,29 @@ def detach_annotations_attached_to_component(component):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
-      abjad> marktools.Comment('comment 1')(staff[0])
-      abjad> marktools.Comment('comment 2')(staff[0])
+      abjad> marktools.Annotation('annotation 1')(staff[0])
+      abjad> marktools.Annotation('annotation 2')(staff[0])
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 (
+         d'8
+         e'8
+         f'8 )
+      }
+
+
+   ::
+
       abjad> marktools.get_annotations_attached_to_component(staff[0])
-      (Annotation('comment 1')(c'8), Annotation('comment 2')(c'8))
+      (Annotation('annotation 1')(c'8), Annotation('annotation 2')(c'8))
 
    ::
 
       abjad> marktools.detach_annotations_attached_to_component(staff[0])
-      (Annotation('comment 1')(c'8), Annotation('comment 2')(c'8))
+      (Annotation('annotation 1')(c'8), Annotation('annotation 2')(c'8))
 
    ::
 
@@ -27,8 +41,8 @@ def detach_annotations_attached_to_component(component):
    '''
 
    annotations = [ ]
-   for comment in get_annotations_attached_to_component(component):
-      comment.detach_mark( )
-      annotations.append(comment)
+   for annotation in get_annotations_attached_to_component(component):
+      annotation.detach_mark( )
+      annotations.append(annotation)
 
    return tuple(annotations)

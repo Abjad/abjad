@@ -6,17 +6,14 @@ class Mark(object):
 
    Abstract class from which concrete marks inherit::
 
-      abjad> marktools.Mark( )
-      Mark( )
-   
-   Marks override ``___call__( )`` to attach to a note, rest or chord::
-
       abjad> note = Note("c'4")
 
    ::
 
       abjad> marktools.Mark( )(note)
       Mark( )(c'4)
+
+   Marks override ``___call__`` to attach to a note, rest or chord.
 
    Marks implement ``__slots__``.
    '''
@@ -124,8 +121,6 @@ class Mark(object):
 
          abjad> mark.start_component
          Note("c'4")
-
-      Same as ``__call__( )``.
 
       Return mark.
       '''

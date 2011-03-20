@@ -8,12 +8,18 @@ def is_component_with_lilypond_command_mark_attached(expr, command_name_string =
       abjad> note = Note(0, (1, 4))
       abjad> marktools.LilyPondCommandMark('stemUp')(note)
       LilyPondCommandMark('stemUp')(c'4)
+
+   ::
+
       abjad> marktools.is_component_with_lilypond_command_mark_attached(note)
       True
 
    False otherwise::
 
       abjad> note = Note(0, (1, 4))
+   
+   ::
+
       abjad> marktools.is_component_with_lilypond_command_mark_attached(note)
       False
 

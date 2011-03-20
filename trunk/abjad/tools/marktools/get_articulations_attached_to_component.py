@@ -9,6 +9,9 @@ def get_articulations_attached_to_component(component):
       abjad> staff = Staff(macros.scale(4))
       abjad> marktools.Articulation('staccato')(staff[0])
       abjad> marktools.Articulation('maracto')(staff[0])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          %% comment 1

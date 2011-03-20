@@ -10,6 +10,9 @@ def get_annotations_attached_to_component(component):
       abjad> staff = Staff(macros.scale(4))
       abjad> marktools.Annotation('annotation 1')(staff[0])
       abjad> marktools.Annotation('annotation 2')(staff[0])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8

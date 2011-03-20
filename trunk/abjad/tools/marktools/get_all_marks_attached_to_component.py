@@ -1,5 +1,5 @@
 def get_all_marks_attached_to_component(component):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
    Get all marks attached to `component`'::
 
@@ -7,6 +7,19 @@ def get_all_marks_attached_to_component(component):
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
       abjad> comment_mark = marktools.Comment('beginning of note content')(staff[0])
       abjad> marktools.LilyPondCommandMark('slurDotted')(staff[0])
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         % beginning of note content
+         \slurDotted
+         c'8 (
+         d'8
+         e'8
+         f'8 )
+      }
+
 
    ::
 

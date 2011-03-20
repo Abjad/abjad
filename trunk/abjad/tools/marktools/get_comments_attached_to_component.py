@@ -10,6 +10,9 @@ def get_comments_attached_to_component(component):
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
       abjad> marktools.Comment('comment 1')(staff[0])
       abjad> marktools.Comment('comment 2')(staff[0])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          %% comment 1
