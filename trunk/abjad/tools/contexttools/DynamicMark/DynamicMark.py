@@ -4,7 +4,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class DynamicMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a dynamic mark::
+   Abjad model of a dynamic mark::
 
       abjad> contexttools.DynamicMark('f')
       DynamicMark('f')

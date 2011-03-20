@@ -3,7 +3,7 @@ from abjad.components._Context._ContextFormatter import _ContextFormatter
 
 
 class _Context(Container):
-   '''The Abjad model of a horizontal layer of music.
+   '''Abjad model of a horizontal layer of music.
    '''
 
    __slots__ = ('_context', '_engraver_consists', '_engraver_removals', '_name', )

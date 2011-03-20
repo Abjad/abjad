@@ -4,7 +4,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class InstrumentMark(ContextMark):
    r'''.. versionadded:: 1.1.2
 
-   The Abjad model of an instrument change::
+   Abjad model of an instrument change::
 
       abjad> staff = Staff(macros.scale(4))
    

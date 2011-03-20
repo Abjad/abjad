@@ -9,7 +9,7 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 class NumberedChromaticPitchClass(_PitchClass):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a numbered chromatic pitch-class::
+   Abjad model of a numbered chromatic pitch-class::
 
       abjad> pitchtools.NumberedChromaticPitchClass(13)
       NumberedChromaticPitchClass(1)

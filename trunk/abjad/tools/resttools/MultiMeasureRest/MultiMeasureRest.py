@@ -5,7 +5,7 @@ from abjad.components._Leaf import _Leaf
 class MultiMeasureRest(Rest):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a multi-measure rest::
+   Abjad model of a multi-measure rest::
 
       abjad> resttools.MultiMeasureRest((1, 4))
       MultiMeasureRest('R4')

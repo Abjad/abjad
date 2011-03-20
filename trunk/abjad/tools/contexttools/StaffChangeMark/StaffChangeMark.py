@@ -4,7 +4,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class StaffChangeMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a staff change::
+   Abjad model of a staff change::
 
       abjad> staff = Staff([ ])
       abjad> staff.name = 'RH Staff'

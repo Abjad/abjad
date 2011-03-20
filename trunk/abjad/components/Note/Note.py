@@ -4,7 +4,7 @@ import re
 
 
 class Note(_Leaf):
-   '''The Abjad model of a note:
+   '''Abjad model of a note:
 
    ::
 

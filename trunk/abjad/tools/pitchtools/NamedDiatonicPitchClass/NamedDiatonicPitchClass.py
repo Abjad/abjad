@@ -5,7 +5,7 @@ from abjad.tools.pitchtools._DiatonicPitchClass import _DiatonicPitchClass
 class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a named diatonic pitch-class::
+   Abjad model of a named diatonic pitch-class::
 
       abjad> pitchtools.NamedDiatonicPitchClass('c')
       NamedDiatonicPitchClass('c')

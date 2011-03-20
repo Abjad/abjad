@@ -10,7 +10,7 @@ from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interva
 class NamedChromaticPitchSet(_PitchSet):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a named chromatic pitch set::
+   Abjad model of a named chromatic pitch set::
 
       abjad> pitchtools.NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
       NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'"])

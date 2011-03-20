@@ -6,7 +6,7 @@ from fractions import Fraction
 class TempoMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a tempo indication::
+   Abjad model of a tempo indication::
 
       abjad> contexttools.TempoMark((1, 8), 52)
       TempoMark(8, 52)

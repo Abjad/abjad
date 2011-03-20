@@ -5,12 +5,18 @@ from abjad.tools.marktools.Mark import Mark
 class ContextMark(Mark):
    '''.. versionadded:: 1.1.2
 
-   Mark models time signatures, key signatures, clef, dynamics
-   and other score symbols that establish a score setting to remain
-   in effect until the next occurrence of such a score symbol::
+   Abstract class from which concrete context marks inherit::
 
-      abjad> contexttools.ContextMark( )
-      ContextMark( )
+      abjad> note = Note("c'4")
+
+   ::
+
+      abjad> contexttools.ContextMark( )(note)
+      ContextMark( )(c'4)
+
+   Context marks override ``__call__`` to attach to Abjad components.
+
+   Context marks implement ``__slots__``.
    '''
 
    __slots__ = ('_effective_context', '_target_context', )
@@ -95,17 +101,65 @@ class ContextMark(Mark):
 
    @property
    def effective_context(self):
+      '''Read-only reference to effective context of context mark:
+
+      ::
+
+         abjad> note = Note("c'4")
+         abjad> context_mark = contexttools.ContextMark( )(note)
+
+      ::
+ 
+         abjad> context_mark.effective_context is None
+         True
+      '''
       if self.start_component is not None:
          self.start_component._update_marks_of_entire_score_tree_if_necessary( )
       return self._effective_context
 
    @property
    def target_context(self):
+      '''Read-only reference to target context of context mark:
+
+      ::
+
+         abjad> note = Note("c'4")
+         abjad> context_mark = contexttools.ContextMark( )(note)
+
+      ::
+ 
+         abjad> context_mark.target_context is None
+         True
+      '''
       return self._target_context
 
    ## PUBLIC METHODS ##
 
    def detach_mark(self):
+      '''Detach mark:
+
+      ::
+
+         abjad> note = Note("c'4")
+         abjad> context_mark = contexttools.ContextMark( )(note)
+
+      ::
+
+         abjad> context_mark.start_component
+         Note("c'4")
+
+      ::
+
+         abjad> context_mark.detach_mark( )
+         ContextMark( )
+
+      ::
+
+         abjad> context_mark.start_component is None
+         True
+
+      Return context mark.
+      '''
       Mark.detach_mark(self)
       self.__unbind_effective_context( )
       return self

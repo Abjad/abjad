@@ -4,7 +4,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class KeySignatureMark(ContextMark):
    '''.. versionadded:: 1.1.2
    
-   The Abjad model of a key signature setting or key signature change::
+   Abjad model of a key signature setting or key signature change::
 
       abjad> contexttools.KeySignatureMark('e', 'minor')
       KeySignatureMark(NamedChromaticPitchClass('e'), Mode(minor))

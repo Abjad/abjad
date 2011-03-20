@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 class NamedChromaticPitchSegment(_PitchSegment):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a named chromatic pitch segment::
+   Abjad model of a named chromatic pitch segment::
 
       abjad> pitchtools.NamedChromaticPitchSegment(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
       NamedChromaticPitchSegment(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])

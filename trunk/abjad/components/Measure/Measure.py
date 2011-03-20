@@ -7,7 +7,7 @@ from abjad.tools.metertools import Meter
 
 
 class Measure(Container):
-   r'''The Abjad model of a measure:
+   r'''Abjad model of a measure:
 
    ::
 

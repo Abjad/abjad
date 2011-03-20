@@ -2,12 +2,29 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class ClefMark(ContextMark):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   The Abjad model of a clef::
+   Abjad model of a clef::
 
-      abjad> contexttools.ClefMark('treble')
-      ClefMark('treble')
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> contexttools.ClefMark('treble')(staff)
+      ClefMark('treble')(Staff{4})
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \clef "treble"
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+
+   Clef marks target the staff context by default.
    '''
 
    _format_slot = 'opening'
@@ -44,8 +61,26 @@ class ClefMark(ContextMark):
 
    @property
    def format(self): 
+      r'''Read-only LilyPond format of clef:
+
+      ::
+
+         abjad> clef = contexttools.ClefMark('treble')
+         abjad> clef.format
+         '\\clef "treble"'
+      '''
       return r'\clef "%s"' % self._clef_name_string
 
    @property
    def middle_c_position(self):
+      '''Read-only middle-C position of clef:
+
+      ::
+
+         abjad> clef = contexttools.ClefMark('treble')
+         abjad> clef.middle_c_position
+         -6
+
+      Return integer number of stafflines.
+      '''
       return self._clef_name_to_middle_c_position[self._clef_name_string]

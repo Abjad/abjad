@@ -3,7 +3,7 @@ from abjad.core import LilyPondTweakReservoir
 
 
 class NoteHead(_UnaryComparator):
-   r'''The Abjad model of a note head:
+   r'''Abjad model of a note head:
 
    ::
 

@@ -4,7 +4,7 @@ from abjad.components.Tuplet._TupletFormatter import _TupletFormatter
 
 
 class Tuplet(Container):
-   r'''The Abjad model of a tuplet:
+   r'''Abjad model of a tuplet:
 
    ::
 

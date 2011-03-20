@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromatic
 
 
 class NumberedChromaticPitchClassColorMap(_Immutable):
-   '''The Abjad model of a numbered chromatic pitch-class color map::
+   '''Abjad model of a numbered chromatic pitch-class color map::
 
       abjad> chromatic_pitch_class_numbered = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
       abjad> colors = ['red', 'green', 'blue']

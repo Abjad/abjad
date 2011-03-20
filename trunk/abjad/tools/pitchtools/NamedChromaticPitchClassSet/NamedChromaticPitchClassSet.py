@@ -11,7 +11,7 @@ from abjad.tools.pitchtools.list_numeric_chromatic_pitch_classes_in_expr import 
 class NamedChromaticPitchClassSet(_PitchClassSet):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a named chromatic pitch-class set::
+   Abjad model of a named chromatic pitch-class set::
 
       abjad> pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
       NamedChromaticPitchClassSet(['as', 'c', 'cs', 'g', 'gs'])

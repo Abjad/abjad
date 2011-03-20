@@ -4,7 +4,7 @@ from abjad.components.Container._ContainerFormatter import _ContainerFormatter
 
 
 class Container(_Component):
-   '''The Abjad model of a music container:
+   '''Abjad model of a music container:
 
    ::
 

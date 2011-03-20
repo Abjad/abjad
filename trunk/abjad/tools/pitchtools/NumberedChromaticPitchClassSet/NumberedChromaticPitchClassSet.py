@@ -9,7 +9,7 @@ from abjad.tools.pitchtools.list_numeric_chromatic_pitch_classes_in_expr import 
 class  NumberedChromaticPitchClassSet(_PitchClassSet):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a numbered chromatic pitch-class set::
+   Abjad model of a numbered chromatic pitch-class set::
 
       abjad> pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
       NumberedChromaticPitchClassSet([6, 7, 10, 10.5])

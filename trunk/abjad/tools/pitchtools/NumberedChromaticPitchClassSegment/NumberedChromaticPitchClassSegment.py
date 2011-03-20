@@ -7,7 +7,7 @@ import copy
 class NumberedChromaticPitchClassSegment(_PitchClassSegment):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a numbered chromatic pitch-class segment::
+   Abjad model of a numbered chromatic pitch-class segment::
 
       abjad> pitchtools.NumberedChromaticPitchClassSegment([-2, -1.5, 6, 7, -1.5, 7])
       NumberedChromaticPitchClassSegment(10, 10.5, 6, 7, 10.5, 7)

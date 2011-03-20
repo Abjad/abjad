@@ -3,7 +3,7 @@ import copy
 
 
 class Skip(_Leaf):
-   '''The Abjad model of a LilyPond skip:
+   '''Abjad model of a LilyPond skip:
 
    ::
 

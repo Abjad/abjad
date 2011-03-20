@@ -4,7 +4,7 @@ import re
 
 
 class Chord(_Leaf):
-   '''The Abjad model of a chord:
+   '''Abjad model of a chord:
 
    ::
 

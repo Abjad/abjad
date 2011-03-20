@@ -7,7 +7,7 @@ from fractions import Fraction
 class TimeSignatureMark(ContextMark):
    '''.. versionadded:: 1.1.2
 
-   The Abjad model of a time signature.
+   Abjad model of a time signature.
 
    Initialize time signature mark to apply to first enclosing staff context::
 

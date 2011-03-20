@@ -3,7 +3,7 @@ import copy
 
 
 class Rest(_Leaf):
-   '''The Abjad model of a rest:
+   '''Abjad model of a rest:
 
    ::
 

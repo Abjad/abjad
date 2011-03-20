@@ -2,7 +2,7 @@ from abjad.components import Staff
 
 
 class RhythmicStaff(Staff):
-   '''The Abjad model of a rhythmic staff.
+   '''Abjad model of a rhythmic staff.
    '''
 
    __slots__ = ( )
