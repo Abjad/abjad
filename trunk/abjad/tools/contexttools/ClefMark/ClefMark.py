@@ -59,6 +59,27 @@ class ClefMark(ContextMark):
 
    ## PUBLIC ATTRIBUTES ##
 
+   @apply
+   def clef_name_string( ):
+      def fget(self):
+         r'''Get clef name string::
+
+            abjad> clef = contexttools.ClefMark('treble')
+            abjad> clef.clef_name_string
+            'treble'
+
+         Set clef name string::
+
+            abjad> clef.clef_name_string = 'alto'
+            abjad> clef.clef_name_string
+            'alto'
+         '''
+         return self._clef_name_string
+      def fset(self, clef_name_string):
+         assert isinstance(clef_name_string, str)
+         self._clef_name_string = clef_name_string
+      return property(**locals( ))
+
    @property
    def format(self): 
       r'''Read-only LilyPond format of clef:

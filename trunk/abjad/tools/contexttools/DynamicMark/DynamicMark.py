@@ -2,12 +2,28 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class DynamicMark(ContextMark):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
    Abjad model of a dynamic mark::
 
-      abjad> contexttools.DynamicMark('f')
-      DynamicMark('f')
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> contexttools.DynamicMark('f')(staff[0])
+      DynamicMark('f')(c'8)
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 \f
+         d'8
+         e'8
+         f'8
+      }
+
+   Dynamic marks target the staff context by default.
    '''
 
    _format_slot = 'right'
@@ -49,6 +65,27 @@ class DynamicMark(ContextMark):
       return repr(self._dynamic_name_string)
 
    ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def dynamic_name_string( ):
+      def fget(self):
+         r'''Get dynamic name string::
+
+            abjad> dynamic = contexttools.DynamicMark('f')
+            abjad> dynamic.dynamic_name_string
+            'f'
+
+         Set dynamic name string::
+
+            abjad> dynamic.dynamic_name_string = 'p'
+            abjad> dynamic.dynamic_name_string
+            'p'
+         '''
+         return self._dynamic_name_string
+      def fset(self, dynamic_name_string):
+         assert isinstance(dynamic_name_string, str)
+         self._dynamic_name_string = dynamic_name_string
+      return property(**locals( ))
 
    @property
    def format(self):

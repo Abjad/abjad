@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_contexttools_detach_context_marks_attached_to_start_component_01( ):
+def test_contexttools_detach_all_context_marks_attached_to_component_01( ):
 
    staff = Staff(macros.scale(4))
    clef_mark = contexttools.ClefMark('treble')(staff)
@@ -17,7 +17,7 @@ def test_contexttools_detach_context_marks_attached_to_start_component_01( ):
    }
    '''
 
-   contexttools.detach_context_marks_attached_to_start_component(staff[0])
+   contexttools.detach_all_context_marks_attached_to_component(staff[0])
 
    r'''
    \new Staff {

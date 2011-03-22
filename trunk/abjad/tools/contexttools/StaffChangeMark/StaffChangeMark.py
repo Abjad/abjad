@@ -2,17 +2,54 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class StaffChangeMark(ContextMark):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
    Abjad model of a staff change::
 
-      abjad> staff = Staff([ ])
-      abjad> staff.name = 'RH Staff'
+      abjad> piano_staff = scoretools.PianoStaff([ ])
+      abjad> rh_staff = Staff("c'8 d'8 e'8 f'8")
+      abjad> rh_staff.name = 'RHStaff'
+      abjad> lh_staff = Staff("s2")
+      abjad> lh_staff.name = 'LHStaff'
+      abjad> piano_staff.extend([rh_staff, lh_staff])
 
    ::
 
-      abjad> contexttools.StaffChangeMark(staff)
-      StaffChangeMark(Staff-"RH Staff"{ })
+      abjad> f(piano_staff)
+      \new PianoStaff <<
+         \context Staff = "RHStaff" {
+            c'8
+            d'8
+            e'8
+            f'8
+         }
+         \context Staff = "LHStaff" {
+            s2
+         }
+      >>
+
+   ::
+
+      abjad> contexttools.StaffChangeMark(lh_staff)(rh_staff[2])
+      StaffChangeMark(Staff-"LHStaff"{1})(e'8)
+
+   ::
+
+      abjad> f(piano_staff)
+      \new PianoStaff <<
+         \context Staff = "RHStaff" {
+            c'8
+            d'8
+            \change Staff = LHStaff
+            e'8
+            f'8
+         }
+         \context Staff = "LHStaff" {
+            s2
+         }
+      >>
+
+   Staff change marks target staff context by default.
    '''
 
    _format_slot = 'opening'
@@ -46,8 +83,40 @@ class StaffChangeMark(ContextMark):
 
    @property
    def format(self):
+      r'''Read-only LilyPond format of staff change mark:
+
+      ::
+
+         abjad> staff = Staff("c'8 d'8 e'8 f'8")
+         abjad> staff.name = 'RHStaff'
+         abjad> staff_change = contexttools.StaffChangeMark(staff)
+         abjad> staff_change.format
+         '\\change Staff = RHStaff'
+      '''
       return r'\change Staff = %s' % self.staff.name
 
-   @property
-   def staff(self):
-      return self._staff
+   @apply
+   def staff( ):
+      def fget(self):
+         r'''Get staff of staff change mark::
+
+            abjad> rh_staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> rh_staff.name = 'RHStaff'
+            abjad> staff_change = contexttools.StaffChangeMark(rh_staff)
+            abjad> staff_change.staff
+            Staff-"RHStaff"{4}
+
+         Set staff of staff change mark::
+
+            abjad> lh_staff = Staff("s2")
+            abjad> lh_staff.name = 'LHStaff'
+            abjad> staff_change.staff = lh_staff
+            abjad> staff_change.staff
+            Staff-"LHStaff"{1}
+         '''
+         return self._staff
+      def fset(self, staff):
+         from abjad.components import Staff
+         assert isinstance(staff, Staff)
+         self._staff = staff
+      return property(**locals( ))

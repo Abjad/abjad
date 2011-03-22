@@ -16,7 +16,7 @@ class IntermarkedHairpinCheck(_Check):
       for hairpin in hairpins:
          if 2 < len(hairpin.leaves):
             for leaf in hairpin.leaves[1:-1]:
-               if contexttools.get_dynamic_marks_attached_to_start_component(leaf):
+               if contexttools.get_dynamic_marks_attached_to_component(leaf):
                   violators.append(hairpin)
                   bad += 1
                   break

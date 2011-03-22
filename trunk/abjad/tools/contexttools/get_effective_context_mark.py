@@ -1,14 +1,33 @@
 from abjad.exceptions import ExtraMarkError
 
 
-def get_effective_mark(component, klass):
-   '''.. versionadded:: 1.1.2
+def get_effective_context_mark(component, klass):
+   r'''.. versionadded:: 1.1.2
 
-   Get effective mark of mark `klass` for `component`.
+   Get effective context mark of `klass` from `component`::
 
-   .. versionchanged:: 1.1.2
-      renamed ``marktools.get_effective_mark( )`` to
-      ``contexttools.get_effective_mark( )``.
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+      abjad> contexttools.TimeSignatureMark(4, 8)(staff)
+      TimeSignatureMark(4, 8)(Staff{4})
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \time 4/8
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+
+   ::
+
+      abjad> contexttools.get_effective_context_mark(staff[0], contexttools.TimeSignatureMark)
+      TimeSignatureMark(4, 8)(Staff{4})
+
+
+   Return context mark or none.
    '''
    from abjad.components import Measure
    from abjad.tools import componenttools

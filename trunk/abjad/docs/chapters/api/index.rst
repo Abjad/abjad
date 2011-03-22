@@ -232,15 +232,15 @@ contexttools
    tools/contexttools/StaffChangeMark/StaffChangeMark
    tools/contexttools/TempoMark/TempoMark
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
-   tools/contexttools/detach_context_marks_attached_to_start_component
+   tools/contexttools/detach_all_context_marks_attached_to_component
    tools/contexttools/get_all_context_marks_attached_to_any_improper_parent_of_component
-   tools/contexttools/get_context_marks_attached_to_start_component
-   tools/contexttools/get_dynamic_marks_attached_to_start_component
+   tools/contexttools/get_all_context_marks_attached_to_component
+   tools/contexttools/get_dynamic_marks_attached_to_component
    tools/contexttools/get_effective_clef
+   tools/contexttools/get_effective_context_mark
    tools/contexttools/get_effective_dynamic
    tools/contexttools/get_effective_instrument
    tools/contexttools/get_effective_key_signature
-   tools/contexttools/get_effective_mark
    tools/contexttools/get_effective_staff
    tools/contexttools/get_effective_tempo
    tools/contexttools/get_effective_time_signature

@@ -1,4 +1,4 @@
-from abjad.tools.contexttools.get_effective_mark import get_effective_mark
+from abjad.tools.contexttools.get_effective_context_mark import get_effective_context_mark
 from abjad.tools.contexttools.DynamicMark import DynamicMark
 
 
@@ -10,6 +10,9 @@ def get_effective_dynamic(component):
       abjad> staff = Staff(macros.scale(4))
       abjad> contexttools.DynamicMark('f')(staff[0])
       DynamicMark('f')(c'8)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 \f
@@ -20,8 +23,6 @@ def get_effective_dynamic(component):
 
    ::
 
-      abjad> contexttools.get_effective_dynamic(staff[1])
-      DynamicMark('f')(c'8)
       abjad> for note in staff:
       ...     print note, contexttools.get_effective_dynamic(note)
       ... 
@@ -33,4 +34,4 @@ def get_effective_dynamic(component):
    Return dynamic mark or none.
    '''
 
-   return get_effective_mark(component, DynamicMark)
+   return get_effective_context_mark(component, DynamicMark)

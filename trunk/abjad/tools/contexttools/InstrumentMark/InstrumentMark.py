@@ -24,6 +24,8 @@ class InstrumentMark(ContextMark):
          e'8
          f'8
       }
+
+   Instrument marks target staff context by default.
    '''
 
    _format_slot = 'opening'
@@ -66,23 +68,59 @@ class InstrumentMark(ContextMark):
 
    @property
    def format(self):
-      '''LilyPond input format of instrument mark.
+      '''Read-only LilyPond input format of instrument mark:
+
+      ::
+
+         abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+         abjad> instrument.format
+         ['\\set Staff.instrumentName = \\markup { Flute }', '\\set Staff.shortInstrumentName = \\markup { Fl. }']
       '''
       result = [ ]
-      result.append(r'\set %s.instrumentName = %s' % (
-         self._target_context_name, self.instrument_name))
-      result.append(r'\set %s.shortInstrumentName = %s' % (
-         self._target_context_name, self.short_instrument_name))
+      result.append(r'\set %s.instrumentName = %s' % (self._target_context_name, self.instrument_name))
+      result.append(r'\set %s.shortInstrumentName = %s' % (self._target_context_name, self.short_instrument_name))
       return result
 
-   @property
-   def instrument_name(self):
-      '''Full name of instrument.
-      '''
-      return self._instrument_name
+   @apply
+   def instrument_name( ):
+      def fget(self):
+         r'''Get instrument name::
 
-   @property
-   def short_instrument_name(self):
-      '''Short name of instrument.
-      '''
-      return self._short_instrument_name
+            abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+            abjad> instrument.instrument_name
+            Markup('Flute')
+
+         Set instrument name::
+
+            abjad> instrument.instrument_name = 'Alto Flute'
+            abjad> instrument.instrument_name
+            Markup('Alto Flute')
+         '''
+         return self._instrument_name
+      def fset(self, instrument_name):
+         from abjad.tools.markuptools import Markup
+         assert isinstance(instrument_name, str)
+         self._instrument_name = Markup(instrument_name)
+      return property(**locals( ))
+
+   @apply
+   def short_instrument_name( ):
+      def fget(self):
+         r'''Get short instrument name::
+
+            abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+            abjad> instrument.short_instrument_name
+            Markup('Fl.')
+
+         Set short instrument name::
+
+            abjad> instrument.short_instrument_name = 'Alto Fl.'
+            abjad> instrument.short_instrument_name
+            Markup('Alto Fl.')
+         '''
+         return self._short_instrument_name
+      def fset(self, short_instrument_name):
+         from abjad.tools.markuptools import Markup
+         assert isinstance(short_instrument_name, str)
+         self._short_instrument_name = Markup(short_instrument_name)
+      return property(**locals( ))

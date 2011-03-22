@@ -19,3 +19,14 @@ def test_TimeSignatureMark_partial_01( ):
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\partial 8\n\t\\time 2/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+
+
+def test_TimeSignatureMark_partial_02( ):
+   '''Time signature partial is read / write.
+   '''
+
+   meter = contexttools.TimeSignatureMark(3, 8, partial = Fraction(1, 8))
+   assert meter.partial == Fraction(1, 8)
+
+   meter.partial = Fraction(2, 8)
+   assert meter.partial == Fraction(2, 8)

@@ -1,12 +1,12 @@
 from abjad.tools.contexttools.DynamicMark import DynamicMark
-from abjad.tools.contexttools.get_context_marks_attached_to_start_component import \
-   get_context_marks_attached_to_start_component
+from abjad.tools.contexttools.get_all_context_marks_attached_to_component import \
+   get_all_context_marks_attached_to_component
 
 
-def get_dynamic_marks_attached_to_start_component(start_component):
+def get_dynamic_marks_attached_to_component(component):
    r'''.. versionadded:: 1.1.2
 
-   Get dynamic marks attached to `start_component`::
+   Get dynamic marks attached to `component`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> clef_mark = contexttools.ClefMark('treble')(staff)
@@ -22,10 +22,10 @@ def get_dynamic_marks_attached_to_start_component(start_component):
       
    ::
       
-      abjad> contexttools.get_dynamic_marks_attached_to_start_component(staff[0]) 
+      abjad> contexttools.get_dynamic_marks_attached_to_component(staff[0]) 
       (DynamicMark('p')(c'8),)
 
    Return tuple of zero or more dynamic marks.
    '''
 
-   return get_context_marks_attached_to_start_component(start_component, klasses = (DynamicMark, ))
+   return get_all_context_marks_attached_to_component(component, klasses = (DynamicMark, ))

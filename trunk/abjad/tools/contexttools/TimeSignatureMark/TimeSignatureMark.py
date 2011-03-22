@@ -2,22 +2,39 @@ from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.contexttools.ContextMark import ContextMark
 from fractions import Fraction
+import numbers
 
 
 class TimeSignatureMark(ContextMark):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   Abjad model of a time signature.
+   Abjad model of a time signature::
 
-   Initialize time signature mark to apply to first enclosing staff context::
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
 
-      abjad> contexttools.TimeSignatureMark((5, 32))
-      TimeSignatureMark(5, 32)
+   ::
 
-   Initialize time signature mark to apply to score context::
+      abjad> contexttools.TimeSignatureMark((4, 8))(staff[0])
+      TimeSignatureMark(4, 8)(c'8)
 
-      abjad> contexttools.TimeSignatureMark((5, 32), target_context = Score)
-      TimeSignatureMark(5, 32, target_context = Score)
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \time 4/8
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+
+
+   Abjad time signature marks target **staff context** by default.
+
+   Initialize time signature marks to **score context** like this::
+
+      abjad> contexttools.TimeSignatureMark((4, 8), target_context = Score)
+      TimeSignatureMark(4, 8, target_context = Score)
    '''
 
    _format_slot = 'opening'
@@ -75,7 +92,7 @@ class TimeSignatureMark(ContextMark):
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
       #object.__setattr__(self, '_multiplier', _multiplier)
       #object.__setattr__(self, '_is_nonbinary', not mathtools.is_nonnegative_integer_power_of_two(self.denominator))
-      self._duration = Fraction(numerator, denominator)
+      #self._duration = Fraction(numerator, denominator)
       self._format = r'\time %s/%s' % (numerator, denominator)
       self._multiplier = _multiplier
       self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
@@ -157,19 +174,51 @@ class TimeSignatureMark(ContextMark):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def denominator(self):
-      '''Integer denominator of meter.'''
-      return self._denominator
+   @apply
+   def denominator( ):
+      def fget(self):
+         r'''Get denominator of time signature mark::
+
+            abjad> meter = contexttools.TimeSignatureMark(3, 8)
+            abjad> meter
+            TimeSignatureMark(3, 8)
+            abjad> meter.denominator
+            8
+
+         Set denominator of time signature mark::
+
+            abjad> meter.denominator = 16
+            abjad> meter.denominator
+            16
+         '''
+         return self._denominator
+      def fset(self, denominator):
+         assert isinstance(denominator, int)
+         self._denominator = denominator
+      return property(**locals( ))
 
    @property
    def duration(self):
-      '''Fraction duration of meter.'''
-      return self._duration
+      r'''Read-only duration of time signature mark::
+
+         abjad> meter = contexttools.TimeSignatureMark(3, 8)
+         abjad> meter.duration
+         Fraction(3, 8)
+
+      Return fraction.
+      '''
+      return Fraction(self.numerator, self.denominator)
 
    @property
    def format(self):
-      '''LilyPond input format of meter.'''
+      r'''Read-only LilyPond format of time signature mark:
+
+      ::
+
+         abjad> meter = contexttools.TimeSignatureMark(3, 8)
+         abjad> meter.format
+         '\\time 3/8'
+      '''
       if self.suppress:
          return [ ]
       elif self.partial is None:
@@ -184,20 +233,66 @@ class TimeSignatureMark(ContextMark):
 
    @property
    def multiplier(self):
-      '''Fraction prolation multiplier of meter.'''
+      r'''Read-only multiplier of time signature mark::
+
+         abjad> meter = contexttools.TimeSignatureMark(3, 8)
+         abjad> meter.multiplier
+         Fraction(1, 1)
+
+      Return fraction.
+      '''
       return self._multiplier
 
-   @property
-   def numerator(self):
-      '''Integer numerator of meter.'''
-      return self._numerator
+   @apply
+   def numerator( ):
+      def fget(self):
+         '''Get numerator of time signature mark::
+
+            abjad> meter = contexttools.TimeSignatureMark(3, 8)
+            abjad> meter.numerator
+            3
+
+         Set numerator of time signature mark::
+
+            abjad> meter.numerator = 4
+            abjad> meter.numerator
+            4
+         '''
+         return self._numerator
+      def fset(self, numerator):
+         assert isinstance(numerator, int)
+         self._numerator = numerator
+      return property(**locals( ))
 
    @property
    def is_nonbinary(self):
-      '''Boolean indicator of nonbinary meter.'''
+      r'''Read-only indicator true when time siganture mark is nonbinary::
+
+         abjad> meter = contexttools.TimeSignatureMark(3, 8)
+         abjad> meter.is_nonbinary
+         False
+
+      Return boolean.
+      '''
       return self._is_nonbinary
 
-   @property
-   def partial(self):
-      '''Fraction partial-measure pickup prior to meter.'''
-      return self._partial
+   @apply
+   def partial( ):
+      def fget(self):
+         '''Get partial measure pick-up of time signature mark::
+
+            abjad> meter = contexttools.TimeSignatureMark(3, 8, partial = Fraction(1, 8))
+            abjad> meter.partial
+            Fraction(1, 8)
+
+         Set partial measure pick-up of time signature mark::
+
+            abjad> meter.partial = Fraction(1, 4)
+            abjad> meter.partial
+            Fraction(1, 4)
+         '''
+         return self._partial
+      def fset(self, partial):
+         assert isinstance(partial, numbers.Number)
+         self._partial = partial
+      return property(**locals( ))

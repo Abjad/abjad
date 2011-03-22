@@ -1,15 +1,37 @@
 from abjad.tools import durtools
 from abjad.tools.contexttools.ContextMark import ContextMark
 from fractions import Fraction
+import numbers
 
 
 class TempoMark(ContextMark):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
    Abjad model of a tempo indication::
 
-      abjad> contexttools.TempoMark((1, 8), 52)
-      TempoMark(8, 52)
+      abjad> score = Score([ ])
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+      abjad> score.append(staff)
+
+   ::
+
+      abjad> contexttools.TempoMark(Fraction(1, 8), 52)(staff[0])
+      TempoMark(8, 52)(c'8)
+
+   ::
+
+      abjad> f(score)
+      \new Score <<
+         \tempo 8=52
+         \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+         }
+      >>
+
+   Tempo marks target **score** context by default.
    '''
 
    _format_slot = 'opening'
@@ -102,22 +124,71 @@ class TempoMark(ContextMark):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def duration(self):
-      '''Duration of tempo indication.'''
-      return self._duration
+   @apply
+   def duration( ):
+      def fget(self):
+         '''Get duration of tempo mark::
+   
+            abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
+            abjad> tempo.duration
+            Fraction(1, 8)
+      
+         Set duration of tempo mark::
+
+            abjad> tempo.duration = Fraction(1, 4)
+            abjad> tempo.duration
+            Fraction(1, 4)
+         '''
+         return self._duration
+      def fset(self, duration):
+         try:
+            duration = Fraction(duration)
+         except TypeError:
+            duration = Fraction(*duration)
+         self._duration = duration
+      return property(**locals( ))
 
    @property
    def format(self):
-      '''Tempo indication as string.'''
+      r'''Read-only LilyPond format of tempo mark:
+
+      ::
+
+         abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
+         abjad> tempo.format
+         '\\tempo 8=52'
+      '''
       return r'\tempo %s' % self._equation
 
    @property
    def quarters_per_minute(self):
-      '''Read-only number of quarters per minute.'''
+      r'''Read-only quarters per minute of tempo mark::
+
+         abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
+         abjad> tempo.quarters_per_minute
+         Fraction(104, 1)
+
+      Return fraction.
+      '''
       return Fraction(1, 4) / self.duration * self.units_per_minute
 
-   @property
-   def units_per_minute(self):
-      '''Units per minute of tempo indication.'''
-      return self._units_per_minute
+   @apply
+   def units_per_minute( ):
+      def fget(self):
+         r'''Get units per minute of tempo mark::
+
+            abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
+            abjad> tempo.units_per_minute
+            52
+
+      Set units per minute of tempo mark::
+
+            abjad> tempo.units_per_minute = 56
+            abjad> tempo.units_per_minute
+            56
+         '''
+         return self._units_per_minute
+      def fset(self, units_per_minute):
+         assert isinstance(units_per_minute, numbers.Number)
+         self._units_per_minute = units_per_minute
+      return property(**locals( ))
