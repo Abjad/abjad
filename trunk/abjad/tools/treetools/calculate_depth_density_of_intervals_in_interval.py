@@ -15,7 +15,10 @@ def calculate_depth_density_of_intervals_in_interval(intervals, interval):
 
    assert all_are_intervals_or_trees_or_empty(intervals)
    assert isinstance(interval, BoundedInterval)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    depth = compute_depth_of_intervals_in_interval(tree, interval)
 
    return Fraction(sum([x.magnitude * x.data['depth'] for x in depth])) \

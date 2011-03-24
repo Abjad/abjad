@@ -14,7 +14,10 @@ def clip_interval_magnitudes_to_range(intervals, min = None, max = None):
    if isinstance(min, (int, Fraction)) and isinstance(max, (int, Fraction)):
       assert min <= max
 
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    if not tree:
       return tree
 

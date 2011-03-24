@@ -11,7 +11,10 @@ def calculate_density_of_attacks_in_interval(intervals, interval):
 
    assert all_are_intervals_or_trees_or_empty(intervals)
    assert isinstance(interval, BoundedInterval)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
 
    return len(tree.find_intervals_starting_within_interval(interval)) \
       / interval.magnitude

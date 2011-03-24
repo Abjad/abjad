@@ -11,7 +11,10 @@ def compute_logical_and_of_intervals(intervals):
    '''Compute the logical AND of a collection of intervals.'''
 
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    if not tree:
       return tree
 

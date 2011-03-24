@@ -9,7 +9,10 @@ def calculate_min_mean_and_max_magnitude_of_intervals(intervals):
    '''
 
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    if not tree:
       return None
 

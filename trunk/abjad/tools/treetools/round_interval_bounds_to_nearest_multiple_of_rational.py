@@ -8,7 +8,10 @@ def round_interval_bounds_to_nearest_multiple_of_rational(intervals, rational):
    assert all_are_intervals_or_trees_or_empty(intervals)
    assert isinstance(rational, (int, Fraction)) and 0 < rational
 
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    if not tree:
       return tree
 

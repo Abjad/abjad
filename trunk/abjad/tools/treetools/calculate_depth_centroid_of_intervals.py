@@ -14,7 +14,10 @@ def calculate_depth_centroid_of_intervals(intervals):
    '''
 
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    if not tree:
       return None
    depth = compute_depth_of_intervals(tree)

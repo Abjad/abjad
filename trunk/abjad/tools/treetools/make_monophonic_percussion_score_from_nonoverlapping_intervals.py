@@ -1,7 +1,8 @@
 from abjad import Score
 from abjad import Staff
 from abjad.tools.contexttools import ClefMark
-#from abjad.tools.lilyfiletools import make_basic_lily_file
+from abjad.tools.schemetools import SchemePair
+from abjad.tools.schemetools import SchemeVector
 from abjad.tools.treetools._make_voice_from_nonoverlapping_intervals \
    import _make_voice_from_nonoverlapping_intervals
 
@@ -21,5 +22,10 @@ def make_monophonic_percussion_score_from_nonoverlapping_intervals(intervals, co
    score.override.rest.transparent = True
    score.override.spacing_spanner.strict_note_spacing = True
    score.override.glissando.breakable = True
+   padding = 0.5
+   bound_details = SchemeVector( \
+      SchemeVector('right', SchemePair('attach-dir', 0), SchemePair('padding', padding)),
+      SchemeVector('left', SchemePair('attach-dir', 0), SchemePair('padding', padding)))
+   score.override.glissando.bound_details = bound_details
 
    return score

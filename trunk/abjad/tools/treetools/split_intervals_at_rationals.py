@@ -26,7 +26,10 @@ def split_intervals_at_rationals(intervals, rationals):
    assert len(rationals)
    assert all([isinstance(x, (int, Fraction)) for x in rationals])
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    if not tree or not rationals:
       return tree
 

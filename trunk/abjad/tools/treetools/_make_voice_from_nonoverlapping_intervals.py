@@ -15,7 +15,10 @@ def _make_voice_from_nonoverlapping_intervals(intervals,
    colorkey = None, bounds = None, pitch = None):
 
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    if not tree:
       return Voice([ ])
    assert all_intervals_are_nonoverlapping(tree)

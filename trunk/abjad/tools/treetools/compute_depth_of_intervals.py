@@ -28,7 +28,10 @@ def compute_depth_of_intervals(intervals):
    '''
 
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    bounds = list(get_all_unique_bounds_in_intervals(tree))
    intervals = [ ]
    for i in range(len(bounds) - 1):

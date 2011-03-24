@@ -15,7 +15,10 @@ def explode_intervals_compactly(intervals):
    '''
 
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
 
    depth_tree = compute_depth_of_intervals(tree)
    max_depth = max([x.data['depth'] for x in depth_tree])

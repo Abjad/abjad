@@ -9,7 +9,10 @@ def all_interval_payloads_contain_key_of_klass(intervals, key, klass):
    an instance of `klass`.'''
 
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
 
    if all([isinstance(interval.data, dict) for interval in tree]) and \
       all([interval.data.has_key(key) for interval in tree]) and \

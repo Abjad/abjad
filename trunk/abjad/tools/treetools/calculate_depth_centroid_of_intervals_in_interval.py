@@ -15,7 +15,10 @@ def calculate_depth_centroid_of_intervals_in_interval(intervals, interval):
 
    assert all_are_intervals_or_trees_or_empty(intervals)
    assert isinstance(interval, BoundedInterval)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    depth = compute_depth_of_intervals_in_interval(tree, interval)
    weighted_centroids = sum([x.centroid * x.data['depth'] for x in depth])
    sum_of_weights = sum([x.data['depth'] for x in depth])

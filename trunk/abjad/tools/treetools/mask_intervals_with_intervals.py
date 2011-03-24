@@ -25,16 +25,19 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
 
    assert all_are_intervals_or_trees_or_empty(masked_intervals)
    assert all_are_intervals_or_trees_or_empty(mask_intervals)
-   masked_tree = IntervalTree(masked_intervals)
-   mask_tree = IntervalTree(mask_intervals)
+
+   if isinstance(masked_intervals, IntervalTree):
+      masked_tree = masked_intervals
+   else:
+      masked_tree = IntervalTree(masked_intervals)
+
+   if isinstance(mask_intervals, IntervalTree):
+      mask_tree = mask_intervals
+   else:
+      mask_tree = IntervalTree(mask_intervals)
+
    not_mask_tree = compute_logical_not_of_intervals_in_interval(mask_tree, masked_tree.bounds)
 
-#   if masked_tree.low < mask_tree.low:
-#      not_mask_tree = IntervalTree([not_mask_tree,
-#         BoundedInterval(masked_tree.low, mask_tree.low)])
-#   if mask_tree.high < masked_tree.high:
-#      not_mask_tree = IntervalTree([not_mask_tree, 
-#         BoundedInterval(mask_tree.high, masked_tree.high)])
    split_masked_tree = split_intervals_at_rationals(masked_tree, \
       get_all_unique_bounds_in_intervals(not_mask_tree))
 

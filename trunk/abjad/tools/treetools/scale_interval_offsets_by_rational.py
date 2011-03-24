@@ -22,7 +22,10 @@ def scale_interval_offsets_by_rational(intervals, rational):
 
    assert isinstance(rational, (int, Fraction))
    assert all_are_intervals_or_trees_or_empty(intervals)
-   tree = IntervalTree(intervals)
+   if isinstance(intervals, IntervalTree):
+      tree = intervals
+   else:
+      tree = IntervalTree(intervals)
    if not tree or rational == 1:
       return tree
 

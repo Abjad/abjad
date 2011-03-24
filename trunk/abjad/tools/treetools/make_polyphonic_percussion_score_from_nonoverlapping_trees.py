@@ -3,6 +3,8 @@ from abjad import Score
 from abjad import Staff
 from abjad.tools.contexttools import ClefMark
 from abjad.tools.pitchtools import make_n_middle_c_centered_pitches
+from abjad.tools.schemetools import SchemePair
+from abjad.tools.schemetools import SchemeVector
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools._make_voice_from_nonoverlapping_intervals \
@@ -36,5 +38,10 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey =
    score.override.rest.transparent = True
    score.override.spacing_spanner.strict_note_spacing = True
    score.override.glissando.breakable = True
+   padding = 0.5
+   bound_details = SchemeVector( \
+      SchemeVector('right', SchemePair('attach-dir', 0), SchemePair('padding', padding)),
+      SchemeVector('left', SchemePair('attach-dir', 0), SchemePair('padding', padding)))
+   score.override.glissando.bound_details = bound_details
 
    return score
