@@ -32,6 +32,7 @@ def compute_depth_of_intervals(intervals):
       tree = intervals
    else:
       tree = IntervalTree(intervals)
+
    bounds = list(get_all_unique_bounds_in_intervals(tree))
    intervals = [ ]
    for i in range(len(bounds) - 1):
