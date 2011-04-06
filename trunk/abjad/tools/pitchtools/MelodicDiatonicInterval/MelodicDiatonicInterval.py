@@ -121,6 +121,15 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       return MelodicDiatonicIntervalClass(self)
 
    @property
+   def inversion_equivalent_chromatic_interval_class(self):
+      from abjad.tools import pitchtools
+      n = self.semitones
+      n %= 12
+      if 6 < n:
+         n = 12 - n
+      return pitchtools.InversionEquivalentChromaticIntervalClass(n)
+
+   @property
    def melodic_chromatic_interval(self):
       return MelodicChromaticInterval(self)
 

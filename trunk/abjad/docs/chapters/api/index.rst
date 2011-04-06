@@ -371,6 +371,7 @@ leaftools
    tools/leaftools/iterate_leaf_pairs_forward_in_expr
    tools/leaftools/iterate_leaves_backward_in_expr
    tools/leaftools/iterate_leaves_forward_in_expr
+   tools/leaftools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
    tools/leaftools/label_leaves_in_expr_with_leaf_depth
    tools/leaftools/label_leaves_in_expr_with_leaf_durations
    tools/leaftools/label_leaves_in_expr_with_leaf_indices
