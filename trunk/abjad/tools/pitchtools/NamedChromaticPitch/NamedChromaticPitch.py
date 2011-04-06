@@ -8,8 +8,8 @@ _accidental_spelling = _read_config_file( )['accidental_spelling']
 class NamedChromaticPitch(_Pitch):
    '''Abjad model of named chromatic pitch::
 
-      abjad> pitchtools.NamedChromaticPitch("cs'")
-      NamedChromaticPitch("cs'")
+      abjad> pitchtools.NamedChromaticPitch("cs''")
+      NamedChromaticPitch("cs''")
 
    Named chromatic pitches are immutable.
    '''
@@ -74,7 +74,7 @@ class NamedChromaticPitch(_Pitch):
       try:
          arg = type(self)(arg)
          if self._chromatic_pitch_name == arg._chromatic_pitch_name:
-            if self.deviation == arg.deviation:
+            if self.deviation_in_cents == arg.deviation_in_cents:
                return True
          return False
       except (TypeError, ValueError):
@@ -134,18 +134,18 @@ class NamedChromaticPitch(_Pitch):
       return not self == arg
 
    def __repr__(self):
-      if self._pitch_class_name and not self.octave_number is None:
-         if self.deviation is None:
+      if self.chromatic_pitch_class_name and not self.octave_number is None:
+         if self.deviation_in_cents is None:
             return '%s(%s)' % (self.__class__.__name__, repr(str(self)))
          else:
             return '%s(%s, deviation = %s)' % (self.__class__.__name__,
-               repr(str(self)), self.deviation)
+               repr(str(self)), self.deviation_in_cents)
       else:
          return '%s( )' % self.__class__.__name__
 
    def __str__(self):
-      if self._pitch_class_name and not self.octave_number is None:
-         return '%s%s' % (self._pitch_class_name, self._octave_tick_string)
+      if self.chromatic_pitch_class_name and not self.octave_number is None:
+         return '%s%s' % (self.chromatic_pitch_class_name, self._octave_tick_string)
       else:
          return ''
 
@@ -161,26 +161,26 @@ class NamedChromaticPitch(_Pitch):
    ## PRIVATE ATTRIBUTES ##
 
    @property
+   def _accidental(self):
+      from abjad.tools.pitchtools.Accidental import Accidental
+      from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
+      groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups( )
+      alphabetic_accidental_abbreviation = groups[1]
+      return Accidental(alphabetic_accidental_abbreviation)
+
+   @property
    def _diatonic_pitch_number(self):
       return abs(self.numbered_diatonic_pitch)
 
    @property
    def _numeric_deviation(self):
-      if self.deviation is None:
+      if self.deviation_in_cents is None:
          return 0
       else:
-         return self.deviation
+         return self.deviation_in_cents
 
    @property
    def _octave_tick_string(self):
-      '''Read-only octave tick string of named pitch:
-
-      ::
-
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
-         abjad> named_chromatic_pitch._octave_tick_string
-         "'"
-      '''
       if self.octave_number is not None:
          if self.octave_number <= 2:
             return ',' * (3 - self.octave_number)
@@ -190,20 +190,6 @@ class NamedChromaticPitch(_Pitch):
             return "'" * (self.octave_number - 3)
       else:
          return None
-
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _pitch_class_name(self):
-      '''Read-only pitch-class name of pitch:
-
-      ::
-
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
-         abjad> named_chromatic_pitch.pitch_class_name
-         'cs'
-      '''
-      return self.named_chromatic_pitch_class._chromatic_pitch_class_name
 
    ## PRIVATE METHODS ##
 
@@ -261,37 +247,117 @@ class NamedChromaticPitch(_Pitch):
    def _init_by_named_chromatic_pitch(self, named_chromatic_pitch):
       from abjad.tools import pitchtools
       object.__setattr__(self, '_chromatic_pitch_name', named_chromatic_pitch._chromatic_pitch_name)
-      object.__setattr__(self, '_deviation', named_chromatic_pitch.deviation)
+      object.__setattr__(self, '_deviation', named_chromatic_pitch.deviation_in_cents)
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def _accidental(self):
-      '''Read-only accidental of named chromatic pitch:
+   def chromatic_pitch_class_name(self):
+      '''Read-only chromatic pitch-class name of pitch:
 
       ::
 
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
-         abjad> named_chromatic_pitch.accidental
-         Accidental('s')
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_chromatic_pitch.chromatic_pitch_class_name
+         'cs'
       '''
-      from abjad.tools.pitchtools.Accidental import Accidental
-      from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
-      groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups( )
-      alphabetic_accidental_abbreviation = groups[1]
-      return Accidental(alphabetic_accidental_abbreviation)
+      return self.named_chromatic_pitch_class._chromatic_pitch_class_name
 
    @property
-   def deviation(self):
+   def chromatic_pitch_name(self):
+      '''Read-only chromatic pitch name of pitch:
+
+      ::
+
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_chromatic_pitch.chromatic_pitch_name
+         "cs''"
+      '''
+      return self._chromatic_pitch_name
+
+   @property
+   def chromatic_pitch_class_number(self):
+      '''Read-only chromatic pitch-class number of pitch:
+
+      ::
+
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_chromatic_pitch.chromatic_pitch_class_number
+         1
+      '''
+      return self.numbered_chromatic_pitch_class._chromatic_pitch_class_number
+
+   @property
+   def chromatic_pitch_number(self):
+      '''Read-only chromatic pitch-class number of pitch:
+
+      ::
+
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_chromatic_pitch.chromatic_pitch_number
+         13
+      '''
+      return self.numbered_chromatic_pitch._chromatic_pitch_number
+
+   @property
+   def deviation_in_cents(self):
       '''Read-only deviation of named chromatic pitch in cents:
 
       ::
 
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
-         abjad> named_chromatic_pitch.deviation is None
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_chromatic_pitch.deviation_in_cents is None
          True
       '''
       return self._deviation
+
+   @property
+   def diatonic_pitch_class_name(self):
+      '''Read-only diatonic pitch-class name of pitch:
+
+      ::
+
+         abjad> named_diatonic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_diatonic_pitch.diatonic_pitch_class_name
+         'c'
+      '''
+      return self.named_diatonic_pitch_class._diatonic_pitch_class_name
+
+   @property
+   def diatonic_pitch_name(self):
+      '''Read-only diatonic pitch name of pitch:
+
+      ::
+
+         abjad> named_diatonic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_diatonic_pitch.diatonic_pitch_name
+         "c''"
+      '''
+      return self.named_diatonic_pitch._diatonic_pitch_name
+
+   @property
+   def diatonic_pitch_class_number(self):
+      '''Read-only diatonic pitch-class number of pitch:
+
+      ::
+
+         abjad> named_diatonic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_diatonic_pitch.diatonic_pitch_class_number
+         0
+      '''
+      return self.numbered_diatonic_pitch_class._diatonic_pitch_class_number
+
+   @property
+   def diatonic_pitch_number(self):
+      '''Read-only diatonic number of pitch:
+
+      ::
+
+         abjad> named_diatonic_pitch = pitchtools.NamedChromaticPitch("cs''")
+         abjad> named_diatonic_pitch.diatonic_pitch_number
+         7
+      '''
+      return self.numbered_diatonic_pitch._diatonic_pitch_number
 
    @property
    def format(self):
@@ -299,9 +365,9 @@ class NamedChromaticPitch(_Pitch):
 
       ::
 
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.format
-         "cs'"
+         "cs''"
       '''
       return str(self)
 
@@ -339,9 +405,9 @@ class NamedChromaticPitch(_Pitch):
 
       ::
 
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.named_chromatic_pitch_class
-         NamedChromaticPitchClass(cs)
+         NamedChromaticPitchClass('cs')
       '''
       from abjad.tools.pitchtools import NamedChromaticPitchClass
       return NamedChromaticPitchClass(self._chromatic_pitch_name)
@@ -352,9 +418,9 @@ class NamedChromaticPitch(_Pitch):
 
       ::
 
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.octave_number
-         4
+         5
       '''
       from abjad.tools import pitchtools
       from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
@@ -394,7 +460,7 @@ class NamedChromaticPitch(_Pitch):
 
       ::
 
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.numbered_chromatic_pitch_class
          NumberedChromaticPitchClass(1)
       '''
@@ -407,7 +473,7 @@ class NamedChromaticPitch(_Pitch):
 
       ::
 
-         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs'")
+         abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.numbered_chromatic_pitch_class
          NumberedChromaticPitchClass(1)
       '''
