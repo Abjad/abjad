@@ -1,8 +1,7 @@
 from abjad.tools import spannertools
 from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
 from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import _restore_parentage_to_components_by_receipt
-from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
-   _reattach_blinded_marks_to_components_in_expr
+from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import _reattach_blinded_marks_to_components_in_expr
 import copy
 
 

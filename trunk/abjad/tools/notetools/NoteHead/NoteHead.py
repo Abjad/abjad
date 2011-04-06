@@ -16,6 +16,15 @@ class NoteHead(_UnaryComparator):
    __slots__ = ('_client', '_pitch', '_tweak')
 
    def __init__(self, *args):
+      primary_args = [ ]
+      tweak_pairs = [ ]
+      for x in args:
+         if isinstance(x, tuple) and len(x) == 2 and \
+            isinstance(x[0], str) and isinstance(x[1], str):
+            tweak_pairs.append(x)
+         else:
+            primary_args.append(x) 
+      args = primary_args
       if len(args) == 1:
          _client = None
          pitch = args[0]
@@ -27,6 +36,9 @@ class NoteHead(_UnaryComparator):
       self.pitch = pitch
       ## must assign comparison attribute after pitch initialization ##
       self._comparison_attribute = self.pitch
+      for tweak_pair in tweak_pairs:
+         key, value = tweak_pair
+         setattr(self.tweak, key, value)
 
    ## OVERLOADS ##
 
@@ -36,10 +48,15 @@ class NoteHead(_UnaryComparator):
    __deepcopy__ = __copy__
       
    def __getnewargs__(self):
-      return (self.pitch, )
+      args = [self.pitch]
+      args.extend(self.tweak._get_attribute_pairs( ))
+      return args
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, repr(self._format_string))
+      args = [repr(self._format_string)]
+      args.extend(self.tweak._get_attribute_pairs( ))
+      args = ', '.join([str(x) for x in args])
+      return '%s(%s)' % (self.__class__.__name__, args)
 
    def __str__(self):
       if self.pitch:
