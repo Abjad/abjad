@@ -50,6 +50,9 @@ class Chord(_Leaf):
       return note_head in self.note_heads
 
    #__deepcopy__ = __copy__
+   def __deepcopy__(self, memo):
+      new = copy.copy(self)
+      return new
 
    def __delitem__(self, i):
       del(self._note_heads[i])
