@@ -10,6 +10,8 @@ from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interva
 
 ## TODO: Reimplement pitchtools.octave_transposition( ) with diatonic transposition. ##
 
+## FIXME: currently broken now that chords correctly copy tweaked noteheads;
+##        make this function work with tweaked chords
 def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitches, pitch_range):
    r"""List octave transpositions of `pitches` in `pitch_range`.
 
