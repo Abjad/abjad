@@ -1,5 +1,7 @@
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools.pitchtools._Pitch import _Pitch
+from abjad.tools.pitchtools.Accidental import Accidental
+from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
 
 
 ## TODO: remove ##
@@ -17,7 +19,9 @@ class NamedChromaticPitch(_Pitch):
    ## TODO: remove ##
    accidental_spelling = _accidental_spelling
 
-   __slots__ = ('_chromatic_pitch_name', '_deviation')
+   ## calculate accidental_semitones, diatonic_pitch_number at init 
+   ## so notehead sorting doesn't take forever later on
+   __slots__ = ('_accidental_semitones', '_chromatic_pitch_name', '_deviation', '_diatonic_pitch_number')
 
    def __new__(klass, *args, **kwargs):
       from abjad.tools import pitchtools
@@ -51,6 +55,13 @@ class NamedChromaticPitch(_Pitch):
          raise ValueError('\n\tNot a valid pitch token: "%s".' % str(args))
       assert hasattr(self, '_deviation')
       assert hasattr(self, '_chromatic_pitch_name')
+      diatonic_pitch_number = pitchtools.chromatic_pitch_name_to_diatonic_pitch_number(self._chromatic_pitch_name)
+      object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)
+      groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups( )
+      alphabetic_accidental_abbreviation = groups[1]
+      accidental_semitones = Accidental._alphabetic_string_to_semitones[alphabetic_accidental_abbreviation]
+      object.__setattr__(self, '_accidental_semitones', accidental_semitones)
+
       return self
 
    def __getnewargs__(self):
@@ -85,9 +96,9 @@ class NamedChromaticPitch(_Pitch):
          arg = type(self)(arg)
          return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
             (self._diatonic_pitch_number == arg._diatonic_pitch_number and
-            self._accidental.semitones >= arg._accidental.semitones) or \
+            self._accidental_semitones >= arg._accidental_semitones) or \
             (self._diatonic_pitch_number == arg._diatonic_pitch_number and
-            self._accidental == arg._accidental and
+            self._accidental_semitones == arg._accidental_semitones and
             self._numeric_deviation >= arg._numeric_deviation)
       except (TypeError, ValueError):
          return False
@@ -97,9 +108,9 @@ class NamedChromaticPitch(_Pitch):
          return False
       return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self._accidental.semitones > arg._accidental.semitones) or \
+         self._accidental_semitones > arg._accidental_semitones) or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self._accidental == arg._accidental and \
+         self._accidental_semitones == arg._accidental_semitones and \
          self._numeric_deviation > arg._numeric_deviation)
 
    def __hash__(self):
@@ -116,8 +127,8 @@ class NamedChromaticPitch(_Pitch):
          return False
       if not self._diatonic_pitch_number == arg._diatonic_pitch_number:
          return self._diatonic_pitch_number <= arg._diatonic_pitch_number
-      if not self._accidental == arg._accidental:
-         return self._accidental <= arg._accidental
+      if not self._accidental_semitones == arg._accidental_semitones:
+         return self._accidental_semitones <= arg._accidental_semitones
       return self._numeric_deviation <= arg._numeric_deviation
 
    def __lt__(self, arg):
@@ -125,9 +136,9 @@ class NamedChromaticPitch(_Pitch):
          return False
       return self._diatonic_pitch_number < arg._diatonic_pitch_number or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self._accidental.semitones < arg._accidental.semitones) or \
+         self._accidental_semitones < arg._accidental_semitones) or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self._accidental == arg._accidental and \
+         self._accidental_semitones == arg._accidental_semitones and \
          self._numeric_deviation < arg._numeric_deviation)
 
    def __ne__(self, arg):
@@ -167,10 +178,6 @@ class NamedChromaticPitch(_Pitch):
       groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups( )
       alphabetic_accidental_abbreviation = groups[1]
       return Accidental(alphabetic_accidental_abbreviation)
-
-   @property
-   def _diatonic_pitch_number(self):
-      return abs(self.numbered_diatonic_pitch)
 
    @property
    def _numeric_deviation(self):

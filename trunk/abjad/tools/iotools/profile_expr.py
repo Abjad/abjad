@@ -5,26 +5,26 @@ def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
    '''Profile `expr`::
 
       abjad> iotools.profile_expr('Staff(notetools.make_repeated_notes(8))')
-      Sat Aug 15 15:29:14 2009    _tmp_abj_profile
+      Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
-               147262 function calls (123144 primitive calls) in 0.237 CPU seconds
+               2852 function calls (2829 primitive calls) in 0.006 CPU seconds
 
          Ordered by: cumulative time
-         List reduced from 155 to 12 due to restriction <12>
+         List reduced from 118 to 12 due to restriction <12>
 
          ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-              1    0.000    0.000    0.237    0.237 <string>:1(<module>)
-              1    0.000    0.000    0.231    0.231 run.py:5(run)
-              1    0.000    0.000    0.224    0.224 component.py:110(__mul__)
-            8/1    0.001    0.000    0.224    0.224 unspan.py:8(unspan)
-        19680/8    0.069    0.000    0.221    0.028 copy.py:144(deepcopy)
-          400/8    0.002    0.000    0.221    0.028 copy.py:223(_deepcopy_list)
-         2040/8    0.020    0.000    0.220    0.028 copy.py:299(_reconstruct)
-         2008/8    0.016    0.000    0.220    0.027 copy.py:250(_deepcopy_dict)
-           2408    0.029    0.000    0.044    0.000 copy.py:231(_deepcopy_tuple)
-           2040    0.024    0.000    0.024    0.000 {method '__reduce_ex__' of 'object' objects}
-           8728    0.015    0.000    0.019    0.000 copy.py:260(_keep_alive)
-          30448    0.010    0.000    0.010    0.000 {method 'get' of 'dict' objects}
+              1    0.000    0.000    0.006    0.006 <string>:1(<module>)
+              1    0.000    0.000    0.003    0.003 make_repeated_notes.py:5(make_repeated_notes)
+              1    0.001    0.001    0.003    0.003 make_notes.py:12(make_notes)
+              1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)
+              1    0.000    0.000    0.003    0.003 _Context.py:11(__init__)
+              1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
+              1    0.000    0.000    0.003    0.003 Container.py:271(_initialize_music)
+              2    0.000    0.000    0.002    0.001 all_are_thread_contiguous_components.py:9(all_are_thread_contiguous_components)
+             52    0.001    0.000    0.002    0.000 component_to_thread_signature.py:5(component_to_thread_signature)
+              1    0.000    0.000    0.002    0.002 _construct_unprolated_notes.py:4(_construct_unprolated_notes)
+              8    0.000    0.000    0.002    0.000 _construct_tied_note.py:5(_construct_tied_note)
+              8    0.000    0.000    0.002    0.000 _construct_tied_leaf.py:5(_construct_tied_leaf)
 
    Function wraps the built-in Python ``cProfile`` module.
 

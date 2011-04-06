@@ -13,8 +13,7 @@ class Accidental(_StrictComparator, _Immutable):
    Accidentals are immutable.
    '''
 
-   __slots__ = ('_alphabetic_string', '_is_adjusted', '_name_string', 
-      '_semitones', '_symbolic_string')
+   __slots__ = ('_alphabetic_string', '_is_adjusted', '_name_string', '_semitones', '_symbolic_string')
 
    def __new__(klass, arg = ''):
 
