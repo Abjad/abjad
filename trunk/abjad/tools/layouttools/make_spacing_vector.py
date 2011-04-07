@@ -43,6 +43,6 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
    return schemetools.SchemeVector(
       schemetools.SchemePair('basic_distance', basic_distance),
-      schemetools.SchemePair('minimum_distance', 0),
-      schemetools.SchemePair('padding', 12),
-      schemetools.SchemePair('stretchability', 0))
+      schemetools.SchemePair('minimum_distance', minimum_distance),
+      schemetools.SchemePair('padding', padding),
+      schemetools.SchemePair('stretchability', stretchability))
