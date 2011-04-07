@@ -13,6 +13,8 @@ class PitchRange(_Immutable):
 
    Init from pitch numbers, pitch instances or other pitch range objects.
 
+   Pitch ranges implement all six Python rich comparators.
+
    Pitch ranges are immutable.
    """
 
@@ -83,6 +85,42 @@ class PitchRange(_Immutable):
             if self._stop == arg._stop:
                return True
       return False
+
+   def __ge__(self, arg):
+      try:
+         pitch = NamedChromaticPitch(arg)
+         if self.start_pitch is None:
+            return False
+         return pitch <= self.start_pitch
+      except (TypeError, ValueError):
+         return False
+
+   def __gt__(self, arg):
+      try:
+         pitch = NamedChromaticPitch(arg)
+         if self.start_pitch is None:
+            return False
+         return pitch < self.start_pitch
+      except (TypeError, ValueError):
+         return False
+
+   def __le__(self, arg):
+      try:
+         pitch = NamedChromaticPitch(arg)
+         if self.stop_pitch is None:
+            return False
+         return self.stop_pitch <= pitch
+      except (TypeError, ValueError):
+         return False
+
+   def __lt__(self, arg):
+      try:
+         pitch = NamedChromaticPitch(arg)
+         if self.stop_pitch is None:
+            return False
+         return self.stop_pitch < pitch
+      except (TypeError, ValueError):
+         return False
 
    def __ne__(self, arg):
       return not self == arg
