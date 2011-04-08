@@ -1,4 +1,3 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
 from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 
@@ -15,11 +14,11 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
    '''
 
    def __init__(self, *args):
-      from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
       from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
          melodic_diatonic_interval_abbreviation_regex
+      from abjad.tools import pitchtools
       if len(args) == 1:
-         if isinstance(args[0], HarmonicDiatonicInterval):
+         if isinstance(args[0], pitchtools.HarmonicDiatonicInterval):
             quality_string = args[0]._quality_string
             number = args[0].number
          elif isinstance(args[0], str):
@@ -75,21 +74,21 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
    ## PUBLIC METHODS ##
 
    def invert(self):
-      '''Read-only inversion of harmonic diatonic interval class:
-
-      ::
+      '''Read-only inversion of harmonic diatonic interval class::
 
          abjad> hdic = pitchtools.HarmonicDiatonicIntervalClass('major', -9)
          abjad> hdic.invert( ) 
          HarmonicDiatonicIntervalClass(minor seventh)
+
+      Return harmonic diatonic interval-class.
       '''
-      from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-      from abjad.tools.pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch
-      low = NamedChromaticPitch('c', 4)
+      from abjad.tools import pitchtools
+      low = pitchtools.NamedChromaticPitch('c', 4)
       quality_string, number = self._quality_string, self.number
-      mdi = MelodicDiatonicInterval(quality_string, number)
+      mdi = pitchtools.MelodicDiatonicInterval(quality_string, number)
       middle = low + mdi
-      octave = MelodicDiatonicInterval('perfect', 8)
+      octave = pitchtools.MelodicDiatonicInterval('perfect', 8)
       high = low + octave
-      hdi = calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(middle, high)
+      hdi = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
+         middle, high)
       return hdi

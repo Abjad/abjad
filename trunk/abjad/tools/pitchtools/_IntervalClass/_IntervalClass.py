@@ -1,4 +1,7 @@
-class _IntervalClass(object):
+from abjad.core import _Immutable
+
+
+class _IntervalClass(_Immutable):
    '''.. versionadded:: 1.1.2
 
    Interval-class base class.

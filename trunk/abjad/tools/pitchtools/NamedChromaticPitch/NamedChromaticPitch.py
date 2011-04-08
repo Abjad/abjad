@@ -61,7 +61,6 @@ class NamedChromaticPitch(_Pitch):
       alphabetic_accidental_abbreviation = groups[1]
       accidental_semitones = Accidental._alphabetic_string_to_semitones[alphabetic_accidental_abbreviation]
       object.__setattr__(self, '_accidental_semitones', accidental_semitones)
-
       return self
 
    def __getnewargs__(self):

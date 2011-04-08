@@ -14,16 +14,19 @@ class MelodicCounterpointIntervalClass(_CounterpointIntervalClass, _MelodicInter
    Melodic counterpoint interval classes are immutable.
    '''
 
-   def __init__(self, token):
-      from abjad.tools.pitchtools._CounterpointInterval import _CounterpointInterval
+   __slots__ = ('_number', )
+
+   def __new__(klass, token):
+      from abjad.tools import pitchtools
+      self = object.__new__(klass)
       if isinstance(token, int):
          number = token
-      elif isinstance(token, _CounterpointInterval):
+      elif isinstance(token, pitchtools._CounterpointInterval._CounterpointInterval):
          number = token.number
       if number == 0:
          raise ValueError('must be nonzero.')
       if abs(number) == 1:
-         self._number = 1
+         object.__setattr__(self, '_number', 1)
       else:
          sign = mathtools.sign(number)
          number = abs(number) % 7
@@ -32,7 +35,8 @@ class MelodicCounterpointIntervalClass(_CounterpointIntervalClass, _MelodicInter
          elif number == 1:
             number = 8
          number *= sign
-         self._number = number
+         object.__setattr__(self, '_number', number)
+      return self
 
    ## OVERLOADS ##
 

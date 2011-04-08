@@ -13,8 +13,9 @@ class HarmonicCounterpointInterval(_CounterpointInterval, _HarmonicInterval):
    Harmonic counterpoint intervals are immutable.
    '''
 
-   def __init__(self, token):
+   def __new__(klass, token):
       from abjad.tools import pitchtools
+      self = object.__new__(klass)
       if isinstance(token, int):
          _number = abs(token)
       elif isinstance(token, pitchtools._DiatonicInterval._DiatonicInterval):
@@ -22,6 +23,7 @@ class HarmonicCounterpointInterval(_CounterpointInterval, _HarmonicInterval):
       else:
          raise TypeError('must be number or diatonic interval.')
       object.__setattr__(self, '_number', _number)
+      return self
 
    ## OVERLOADS ##
    

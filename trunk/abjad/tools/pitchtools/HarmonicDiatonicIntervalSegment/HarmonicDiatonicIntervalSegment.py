@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
-from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
 
 
 class HarmonicDiatonicIntervalSegment(_IntervalSegment):
@@ -14,13 +13,14 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
    '''
 
    def __new__(self, arg):
+      from abjad.tools import pitchtools
       if isinstance(arg, str):
          harmonic_diatonic_interval_tokens = arg.split( )
       else:
          harmonic_diatonic_interval_tokens = arg
       hdis = [ ]
       for token in harmonic_diatonic_interval_tokens:
-         hdi = HarmonicDiatonicInterval(token)
+         hdi = pitchtools.HarmonicDiatonicInterval(token)
          hdis.append(hdi)
       return tuple.__new__(self, hdis)
 
@@ -36,15 +36,15 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
 
    @property
    def harmonic_chromatic_interval_segment(self):
-      from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
-      return HarmonicChromaticIntervalSegment(self)
+      from abjad.tools import pitchtools
+      return pitchtools.HarmonicChromaticIntervalSegment(self)
 
    @property
    def melodic_chromatic_interval_segment(self):
-      from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
-      return MelodicChromaticIntervalSegment(self)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicChromaticIntervalSegment(self)
 
    @property
    def melodic_diatonic_interval_segment(self):
-      from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
-      return MelodicDiatonicIntervalSegment(self)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicDiatonicIntervalSegment(self)

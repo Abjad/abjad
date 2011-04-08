@@ -14,8 +14,9 @@ class HarmonicChromaticIntervalClass(_ChromaticIntervalClass, _HarmonicIntervalC
    Harmonic chromatic interval-classes are immutable.
    '''
 
-   def __init__(self, token):
+   def __new__(klass, token):
       from abjad.tools import pitchtools
+      self = object.__new__(klass)
       if isinstance(token, (int, float, long, Fraction)):
          number = token
       elif isinstance(token, pitchtools._Interval._Interval):   
@@ -27,6 +28,7 @@ class HarmonicChromaticIntervalClass(_ChromaticIntervalClass, _HarmonicIntervalC
       else:
          number = abs(number) % 12
       object.__setattr__(self, '_number', number)
+      return self
 
    ## OVERLOADS ##
 

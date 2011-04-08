@@ -9,7 +9,10 @@ class _ChromaticInterval(_Interval, _Chromatic):
    Chromatic interval base class.
    '''
 
-   def __init__(self, arg):
+   __slots__ = ('_number', )
+
+   def __new__(klass, arg):
+      self = object.__new__(klass)
       if isinstance(arg, (int, float, long)):
          _number = arg
       elif isinstance(arg, _Interval):
@@ -17,6 +20,7 @@ class _ChromaticInterval(_Interval, _Chromatic):
       else:
          raise TypeError('%s must be number or interval.' % arg)
       object.__setattr__(self, '_number', _number)
+      return self
 
    ## OVERLOADS ##
 

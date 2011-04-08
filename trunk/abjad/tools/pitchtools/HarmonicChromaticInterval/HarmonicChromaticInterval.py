@@ -1,5 +1,6 @@
 from abjad.tools.pitchtools._ChromaticInterval import _ChromaticInterval
 from abjad.tools.pitchtools._HarmonicInterval import _HarmonicInterval
+import numbers
 
 
 class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
@@ -13,10 +14,10 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
    Harmonic chromatic intervals are immutable.
    '''
 
-   def __init__(self, number):
-      _ChromaticInterval.__init__(self, number)
-      _number = abs(self.number)
-      object.__setattr__(self, '_number', _number)
+   def __new__(klass, arg):
+      self = _ChromaticInterval.__new__(klass, arg)
+      object.__setattr__(self, '_number', abs(self._number))
+      return self
 
    ## OVERLOADS ##
 

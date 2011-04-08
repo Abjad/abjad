@@ -1,6 +1,4 @@
 from abjad.tools.pitchtools._IntervalSet import _IntervalSet
-from abjad.tools.pitchtools.HarmonicChromaticIntervalSet import HarmonicChromaticIntervalSet
-from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
 
 
 class HarmonicDiatonicIntervalSet(_IntervalSet):
@@ -15,11 +13,12 @@ class HarmonicDiatonicIntervalSet(_IntervalSet):
    '''
 
    def __new__(self, arg):
+      from abjad.tools import pitchtools
       if isinstance(arg, str):
          interval_tokens = arg.split( )
       else:
          interval_tokens = arg
-      hdis = [HarmonicDiatonicInterval(x) for x in interval_tokens]
+      hdis = [pitchtools.HarmonicDiatonicInterval(x) for x in interval_tokens]
       return frozenset.__new__(self, hdis)
 
    ## OVERLOADS ##
@@ -43,7 +42,8 @@ class HarmonicDiatonicIntervalSet(_IntervalSet):
 
    @property
    def harmonic_chromatic_interval_set(self):
-      return HarmonicChromaticIntervalSet(self)
+      from abjad.tools import pitchtools
+      return pitchtools.HarmonicChromaticIntervalSet(self)
 
    @property
    def intervals(self):
