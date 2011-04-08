@@ -1,13 +1,6 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
-from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
-from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
-from abjad.tools.pitchtools.HarmonicCounterpointInterval import HarmonicCounterpointInterval
-from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
-from abjad.tools.pitchtools.MelodicCounterpointInterval import MelodicCounterpointInterval
-from abjad.tools.pitchtools.MelodicDiatonicIntervalClass import MelodicDiatonicIntervalClass
 
 
 class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
@@ -44,28 +37,27 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
    ## OVERLOADS ##
 
    def __abs__(self):
-      from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
-      return HarmonicDiatonicInterval(self.quality_string, abs(self.number))
+      from abjad.tools import pitchtools
+      return pitchtools.HarmonicDiatonicInterval(self.quality_string, abs(self.number))
 
    def __add__(self, arg):
-      from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
+      from abjad.tools import pitchtools
       if not isinstance(arg, type(self)):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
-      dummy_pitch = NamedChromaticPitch(0)
+      dummy_pitch = pitchtools.NamedChromaticPitch(0)
       new_pitch = dummy_pitch + self + arg 
-      return \
-         calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+      return pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
          dummy_pitch, new_pitch)
 
    def __mul__(self, arg):
-      from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
+      from abjad.tools import pitchtools
       if not isinstance(arg, (int, long)):
          raise TypeError('%s must be int.' % arg)
-      dummy_pitch = NamedChromaticPitch(0)
+      dummy_pitch = pitchtools.NamedChromaticPitch(0)
       for i in range(arg):
          dummy_pitch += self
-      return calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-         NamedChromaticPitch(0), dummy_pitch)
+      return pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+         pitchtools.NamedChromaticPitch(0), dummy_pitch)
 
    def __neg__(self):
       return type(self)(self.quality_string, -self.number)
@@ -77,16 +69,15 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       return self * arg
 
    def __str__(self):
-      return '%s%s%s' % (self._direction_symbol, self._quality_abbreviation,
-         abs(self.number))
+      return '%s%s%s' % (self._direction_symbol, self._quality_abbreviation, abs(self.number))
 
    def __sub__(self, arg):
-      from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
+      from abjad.tools import pitchtools
       if not isinstance(arg, type(self)):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
-      dummy_pitch = NamedChromaticPitch(0)
+      dummy_pitch = pitchtools.NamedChromaticPitch(0)
       new_pitch = dummy_pitch + self - arg 
-      return calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+      return pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
          dummy_pitch, new_pitch)
       
    ## PUBLIC ATTRIBUTES ##
@@ -109,19 +100,23 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
 
    @property
    def harmonic_chromatic_interval(self):
-      return HarmonicChromaticInterval(self)
+      from abjad.tools import pitchtools
+      return pitchtools.HarmonicChromaticInterval(self)
 
    @property
    def harmonic_counterpoint_interval(self):
-      return HarmonicCounterpointInterval(self)
+      from abjad.tools import pitchtools
+      return pitchtools.HarmonicCounterpointInterval(self)
 
    @property
    def harmonic_diatonic_interval(self):
-      return HarmonicDiatonicInterval(self)
+      from abjad.tools import pitchtools
+      return pitchtools.HarmonicDiatonicInterval(self)
 
    @property
    def interval_class(self):
-      return MelodicDiatonicIntervalClass(self)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicDiatonicIntervalClass(self)
 
    @property
    def inversion_equivalent_chromatic_interval_class(self):
@@ -134,23 +129,22 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
 
    @property
    def melodic_chromatic_interval(self):
-      return MelodicChromaticInterval(self)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicChromaticInterval(self)
 
    @property
    def melodic_counterpoint_interval(self):
-      return MelodicCounterpointInterval(self.number)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicCounterpointInterval(self.number)
 
    @property
    def semitones(self):
       result = 0
-      interval_class_number_to_semitones = {
-         1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8: 0}
+      interval_class_number_to_semitones = {1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8: 0}
       interval_class_number = abs(self.interval_class.number)
       result += interval_class_number_to_semitones[interval_class_number]
       result += (abs(self.number) - 1) / 7 * 12
-      quality_string_to_semitones = {
-         'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1,
-         'diminished': -1}
+      quality_string_to_semitones = {'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1, 'diminished': -1}
       result += quality_string_to_semitones[self.quality_string]
       if self.number < 0:
          result *= -1

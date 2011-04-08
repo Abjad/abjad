@@ -1,9 +1,6 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._ChromaticInterval import _ChromaticInterval
-from abjad.tools.pitchtools._Interval import _Interval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
-from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
-from abjad.tools.pitchtools.MelodicChromaticIntervalClass import MelodicChromaticIntervalClass
 
 
 class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
@@ -18,10 +15,11 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
    '''
 
    def __new__(klass, arg):
+      from abjad.tools import pitchtools
       self = object.__new__(klass)
       if isinstance(arg, (int, float, long)):
          number = arg
-      elif isinstance(arg, _Interval):
+      elif isinstance(arg, pitchtools._Interval._Interval):
          number = arg.semitones
       else:
          raise TypeError('%s must be number or interval.' % arg)
@@ -91,14 +89,17 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
 
    @property
    def harmonic_chromatic_interval(self):
+      from abjad.tools import pitchtools
       number = abs(self.number)
-      return HarmonicChromaticInterval(number)
+      return pitchtools.HarmonicChromaticInterval(number)
 
    @property
    def harmonic_interval(self):
+      from abjad.tools import pitchtools
       number = abs(self.number)
-      return HarmonicChromaticInterval(number)
+      return pitchtools.HarmonicChromaticInterval(number)
 
    @property
    def interval_class(self):
-      return MelodicChromaticIntervalClass(self)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicChromaticIntervalClass(self)

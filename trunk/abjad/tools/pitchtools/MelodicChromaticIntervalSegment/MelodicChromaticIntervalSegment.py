@@ -1,8 +1,4 @@
 from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
-from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
-from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
-from abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment import MelodicChromaticIntervalClassSegment
-from abjad.tools.pitchtools.MelodicChromaticIntervalClassVector import MelodicChromaticIntervalClassVector
 from fractions import Fraction
 
 
@@ -18,9 +14,10 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
    '''
 
    def __new__(self, mci_tokens):
+      from abjad.tools import pitchtools
       mcis = [ ]
       for token in mci_tokens:
-         mci = MelodicChromaticInterval(token)
+         mci = pitchtools.MelodicChromaticInterval(token)
          mcis.append(mci)
       return tuple.__new__(self, mcis)
 
@@ -33,12 +30,13 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
 
    @property
    def harmonic_chromatic_interval_segment(self):
-      from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
-      return HarmonicChromaticIntervalSegment(self)
+      from abjad.tools import pitchtools
+      return pitchtools.HarmonicChromaticIntervalSegment(self)
 
    @property
    def melodic_chromatic_interval_class_segment(self):
-      return MelodicChromaticIntervalClassSegment(self)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicChromaticIntervalClassSegment(self)
 
    @property
    def melodic_chromatic_interval_numbers(self):
@@ -46,7 +44,8 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
 
    @property
    def melodic_chromatic_interval_class_vector(self):
-      return MelodicChromaticIntervalClassVector(self)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicChromaticIntervalClassVector(self)
 
    @property
    def slope(self):
@@ -68,6 +67,7 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
          abjad> MelodicChromaticIntervalSegment([1, 1, 1, 2, -3, -2]).spread
          HarmonicChromaticInterval(5)
       '''
+      from abjad.tools import pitchtools
       current = maximum = minimum = 0
       for x in self.melodic_chromatic_interval_numbers:
          current += x
@@ -75,4 +75,4 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
             maximum = current
          if current < minimum:
             minimum = current
-      return HarmonicChromaticInterval(maximum - minimum)
+      return pitchtools.HarmonicChromaticInterval(maximum - minimum)

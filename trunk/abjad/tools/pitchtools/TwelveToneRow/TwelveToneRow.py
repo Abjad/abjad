@@ -1,4 +1,3 @@
-from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromaticPitchClass
 from abjad.tools.pitchtools.NumberedChromaticPitchClassSegment import NumberedChromaticPitchClassSegment
 
 
@@ -20,11 +19,11 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
    '''
 
    def __new__(self, pitch_classes):
-      from abjad.tools.pitchtools.TwelveToneRow._validate_pitch_classes import \
-         _validate_pitch_classes
-      pitch_classes = [NumberedChromaticPitchClass(pc) for pc in pitch_classes]
+      from abjad.tools import pitchtools
+      from abjad.tools.pitchtools.TwelveToneRow._validate_pitch_classes import _validate_pitch_classes
+      pitch_classes = [pitchtools.NumberedChromaticPitchClass(pc) for pc in pitch_classes]
       _validate_pitch_classes(pitch_classes)
-      return NumberedChromaticPitchClassSegment.__new__(self, pitch_classes)
+      return pitchtools.NumberedChromaticPitchClassSegment.__new__(self, pitch_classes)
 
    ## OVERLOADS ##
 

@@ -1,6 +1,4 @@
 from abjad.tools.pitchtools._PitchClass import _PitchClass
-from abjad.tools.pitchtools.Accidental import Accidental
-from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
    get_named_chromatic_pitch_from_pitch_carrier
 
@@ -24,8 +22,7 @@ class NamedChromaticPitchClass(_PitchClass):
       if hasattr(arg, '_chromatic_pitch_class_name'):
          chromatic_pitch_class_name = arg._chromatic_pitch_class_name
       elif pitchtools.is_chromatic_pitch_name(arg):
-         chromatic_pitch_class_name = \
-            pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(arg)
+         chromatic_pitch_class_name = pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(arg)
       else:
          try:
             named_chromatic_pitch_carrier = get_named_chromatic_pitch_from_pitch_carrier(arg)
@@ -51,9 +48,8 @@ class NamedChromaticPitchClass(_PitchClass):
       return abs(self.numbered_chromatic_pitch_class)
 
    def __add__(self, melodic_diatonic_interval):
-      from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
       from abjad.tools import pitchtools
-      dummy = NamedChromaticPitch(self._chromatic_pitch_class_name, 4)
+      dummy = pitchtools.NamedChromaticPitch(self._chromatic_pitch_class_name, 4)
       mdi = melodic_diatonic_interval
       new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(dummy, mdi)
       return new.named_chromatic_pitch_class
@@ -76,10 +72,9 @@ class NamedChromaticPitchClass(_PitchClass):
    def __sub__(self, arg):
       if not isinstance(arg, type(self)):
          raise TypeError('%s must be named pitch class.' % arg)
-      from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
       from abjad.tools import pitchtools
-      pitch_1 = NamedChromaticPitch(self, 4)
-      pitch_2 = NamedChromaticPitch(arg, 4)
+      pitch_1 = pitchtools.NamedChromaticPitch(self, 4)
+      pitch_2 = pitchtools.NamedChromaticPitch(arg, 4)
       mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
          pitch_1, pitch_2)
       dic = pitchtools.InversionEquivalentDiatonicIntervalClass(mdi.quality_string, mdi.number)
@@ -117,7 +112,8 @@ class NamedChromaticPitchClass(_PitchClass):
    @property
    def _accidental(self):
       '''Read-only accidental string of pitch-class name.'''
-      return Accidental(str(self)[1:])
+      from abjad.tools import pitchtools
+      return pitchtools.Accidental(str(self)[1:])
 
    @property
    def _diatonic_pitch_class_name(self):
@@ -157,7 +153,8 @@ class NamedChromaticPitchClass(_PitchClass):
          abjad> named_chromatic_pitch_class.apply_accidental('qs')
          NamedChromaticPitchClass('ctqs')
       '''
-      accidental = Accidental(accidental)
+      from abjad.tools import pitchtools
+      accidental = pitchtools.Accidental(accidental)
       new_accidental = self._accidental + accidental
       new_name = self._diatonic_pitch_class_name + new_accidental.alphabetic_string
       return type(self)(new_name)
@@ -171,10 +168,9 @@ class NamedChromaticPitchClass(_PitchClass):
          abjad> named_chromatic_pitch_class.transpose(pitchtools.MelodicDiatonicInterval('major', 2))
          NamedChromaticPitchClass('ds')
       '''
-      from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-      from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval \
-         import transpose_pitch_carrier_by_melodic_diatonic_interval
-      pitch = NamedChromaticPitch(self, 4)
-      transposed_pitch = transpose_pitch_carrier_by_melodic_diatonic_interval(pitch, melodic_diatonic_interval)
+      from abjad.tools import pitchtools
+      pitch = pitchtools.NamedChromaticPitch(self, 4)
+      transposed_pitch = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(
+         pitch, melodic_diatonic_interval)
       transposed_named_chromatic_pitch_class = transposed_pitch.named_chromatic_pitch_class
       return transposed_named_chromatic_pitch_class

@@ -1,8 +1,7 @@
-from abjad.core import _FlexEqualityComparator
 from abjad.tools.pitchtools._DiatonicPitchClass import _DiatonicPitchClass
 
 
-class NamedDiatonicPitchClass(_DiatonicPitchClass, _FlexEqualityComparator):
+class NamedDiatonicPitchClass(_DiatonicPitchClass):
    '''.. versionadded:: 1.1.2
 
    Abjad model of a named diatonic pitch-class::

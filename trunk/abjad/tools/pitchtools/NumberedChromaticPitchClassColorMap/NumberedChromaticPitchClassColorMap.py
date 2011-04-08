@@ -1,5 +1,4 @@
 from abjad.core import _Immutable
-from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromaticPitchClass
 
 
 class NumberedChromaticPitchClassColorMap(_Immutable):
@@ -27,7 +26,8 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
    ## OVERLOADS ##
 
    def __getitem__(self, pc):
-      pc = NumberedChromaticPitchClass(pc)
+      from abjad.tools import pitchtools
+      pc = pitchtools.NumberedChromaticPitchClass(pc)
       color = self._color_dictionary[abs(pc)]
       return color
 
@@ -39,9 +39,10 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
    ## PRIVATE METHODS ##
 
    def _init_color_dictionary(self):
+      from abjad.tools import pitchtools
       for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
          for pitch in pitch_iterable:
-            pc = NumberedChromaticPitchClass(pitch)
+            pc = pitchtools.NumberedChromaticPitchClass(pitch)
             if abs(pc) in self._color_dictionary.keys( ):
                print pc, self._color_dictionary.keys( )
                raise KeyError('Duplicated pitch class %s in color dictionary.' % pc)

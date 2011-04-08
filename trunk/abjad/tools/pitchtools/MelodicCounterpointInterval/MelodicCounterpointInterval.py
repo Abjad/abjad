@@ -1,6 +1,5 @@
 from abjad.tools.pitchtools._CounterpointInterval import _CounterpointInterval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
-from abjad.tools.pitchtools.MelodicCounterpointIntervalClass import MelodicCounterpointIntervalClass
 
 
 class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
@@ -51,4 +50,5 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
 
    @property
    def interval_class(self):
-      return MelodicCounterpointIntervalClass(self)
+      from abjad.tools import pitchtools
+      return pitchtools.MelodicCounterpointIntervalClass(self)

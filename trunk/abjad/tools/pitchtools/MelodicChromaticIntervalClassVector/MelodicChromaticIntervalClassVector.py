@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._Vector import _Vector
-from abjad.tools.pitchtools.MelodicChromaticIntervalClass import MelodicChromaticIntervalClass
 
 
 class MelodicChromaticIntervalClassVector(_Vector):
@@ -17,6 +16,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
    '''
 
    def __init__(self, mcic_tokens):
+      from abjad.tools import pitchtools
       for mcicn in range(13):
          dict.__setitem__(self, mcicn, 0)
          dict.__setitem__(self, -mcicn, 0)
@@ -25,7 +25,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
       dict.__delitem__(self, 12.5)
       dict.__delitem__(self, -12.5)
       for mcic_token in mcic_tokens:
-         mcic = MelodicChromaticIntervalClass(mcic_token)
+         mcic = pitchtools.MelodicChromaticIntervalClass(mcic_token)
          dict.__setitem__(self, mcic.number, self[mcic.number] + 1)
 
    ## OVERLOADS ##

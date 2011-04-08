@@ -1,9 +1,5 @@
 from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
 from abjad.tools import seqtools
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet import InversionEquivalentChromaticIntervalClassSet
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector import InversionEquivalentChromaticIntervalClassVector
-from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromaticPitchClass
-from abjad.tools.pitchtools.list_numeric_chromatic_pitch_classes_in_expr import list_numeric_chromatic_pitch_classes_in_expr
 
 
 class  NumberedChromaticPitchClassSet(_PitchClassSet):
@@ -18,24 +14,24 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
    '''
 
    def __new__(self, expr):
+      from abjad.tools import pitchtools
       pcs = [ ]
       ## assume expr is iterable
       try:
          for x in expr:
             try:
-               pcs.append(NumberedChromaticPitchClass(x))
+               pcs.append(pitchtools.NumberedChromaticPitchClass(x))
             except TypeError:
                pcs.extend(get_pitch_classes(x))
       ## if expr is not iterable
       except TypeError:
          ## assume expr can be turned into a single pc
          try:
-            pc = NumberedChromaticPitchClass(expr)
+            pc = pitchtools.NumberedChromaticPitchClass(expr)
             pcs.append(pc)
          ## expr is a Rest or non-PC type
          except TypeError:
             pcs = [ ]
-      #return frozenset.__new__(PitchClassSet, pcs)
       return frozenset.__new__(self, pcs)
 
    ## OVERLOADS ##
@@ -67,34 +63,33 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
    def _format_string(self):
       result = list(self)
       result.sort(lambda x, y: cmp(abs(x), abs(y)))
-      #return ', '.join([str(x) for x in sorted(self)])
       return ', '.join([str(x) for x in result])
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def interval_class_set(self):
-      #interval_class_set = InversionEquivalentChromaticIntervalClassSet([ ])
+      from abjad.tools import pitchtools
       interval_class_set = set([ ])
       for first_pc, second_pc in seqtools.yield_all_unordered_pairs_of_sequence(self):
          interval_class = first_pc - second_pc
          interval_class_set.add(interval_class)
-      interval_class_set = InversionEquivalentChromaticIntervalClassSet(interval_class_set)
+      interval_class_set = pitchtools.InversionEquivalentChromaticIntervalClassSet(interval_class_set)
       return interval_class_set
 
    @property
    def interval_class_vector(self):
+      from abjad.tools import pitchtools
       interval_classes = [ ]
       for first_pc, second_pc in seqtools.yield_all_unordered_pairs_of_sequence(self):
          interval_class = first_pc - second_pc
          interval_classes.append(interval_class)
-      return InversionEquivalentChromaticIntervalClassVector(interval_classes)
+      return pitchtools.InversionEquivalentChromaticIntervalClassVector(interval_classes)
 
    @property
    def pitch_classes(self):
       result = list(self)
       result.sort(lambda x, y: cmp(abs(x), abs(y)))
-      #return tuple(sorted(self))
       return tuple(result)
 
    @property

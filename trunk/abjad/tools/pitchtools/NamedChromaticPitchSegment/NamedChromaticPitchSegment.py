@@ -1,7 +1,5 @@
-from abjad.tools import seqtools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._PitchSegment import _PitchSegment
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 class NamedChromaticPitchSegment(_PitchSegment):
@@ -16,10 +14,11 @@ class NamedChromaticPitchSegment(_PitchSegment):
    '''
 
    def __new__(self, *args):
+      from abjad.tools import pitchtools
       if len(args) == 1 and isinstance(args[0], str):
-            pitches = [NamedChromaticPitch(x) for x in args[0].split( )]
+            pitches = [pitchtools.NamedChromaticPitch(x) for x in args[0].split( )]
       else:
-         pitches = [NamedChromaticPitch(x) for x in args[0]]
+         pitches = [pitchtools.NamedChromaticPitch(x) for x in args[0]]
       return tuple.__new__(self, pitches)
 
    ## OVERLOADS ##
@@ -41,8 +40,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
    @property
    def harmonic_chromatic_interval_class_segment(self):
-      return [
-         x.interval_class for x in self.harmonic_chromatic_interval_segment]
+      return [x.interval_class for x in self.harmonic_chromatic_interval_segment]
 
    @property
    def harmonic_chromatic_interval_segment(self):
@@ -60,7 +58,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
       from abjad.tools import pitchtools
       result = list(mathtools.difference_series(self.pitches))
       result = [-x for x in result]
-      return HarmonicDiatonicIntervalSegment(result)
+      return pitchtools.HarmonicDiatonicIntervalSegment(result)
 
    @property
    def inflection_point_count(self):

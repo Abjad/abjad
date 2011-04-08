@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._IntervalClassSegment import _IntervalClassSegment
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import InversionEquivalentChromaticIntervalClass
 
 
 class InversionEquivalentChromaticIntervalClassSegment(_IntervalClassSegment):
@@ -14,8 +13,8 @@ class InversionEquivalentChromaticIntervalClassSegment(_IntervalClassSegment):
    '''
 
    def __new__(self, interval_class_tokens):
-      interval_classes = [
-         InversionEquivalentChromaticIntervalClass(x) for x in interval_class_tokens]
+      from abjad.tools import pitchtools
+      interval_classes = [pitchtools.InversionEquivalentChromaticIntervalClass(x) for x in interval_class_tokens]
       return tuple.__new__(self, interval_classes)
 
    ## OVERLOADS ##

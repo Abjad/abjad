@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._Vector import _Vector
-from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromaticPitchClass
 
 
 class NumberedChromaticPitchClassVector(_Vector):
@@ -15,11 +14,12 @@ class NumberedChromaticPitchClassVector(_Vector):
    '''
 
    def __init__(self, pitch_class_tokens):
+      from abjad.tools import pitchtools
       for pcn in range(12):
          dict.__setitem__(self, pcn, 0)
          dict.__setitem__(self, pcn + 0.5, 0)
       for token in pitch_class_tokens:
-         pitch_class = NumberedChromaticPitchClass(token)
+         pitch_class = pitchtools.NumberedChromaticPitchClass(token)
          dict.__setitem__(self, abs(pitch_class), self[abs(pitch_class)] + 1)
          
    ## OVERLOADS ##
@@ -116,9 +116,10 @@ class NumberedChromaticPitchClassVector(_Vector):
 
    @property
    def pitch_classes(self):
+      from abjad.tools import pitchtools
       pitch_classes = [ ]
       for pitch_class_number, count in self.items( ):
          if 0 < count:
-            pitch_class = NumberedChromaticPitchClass(pitch_class_number)
+            pitch_class = pitchtools.NumberedChromaticPitchClass(pitch_class_number)
             pitch_classes.append(pitch_class)
       return pitch_classes

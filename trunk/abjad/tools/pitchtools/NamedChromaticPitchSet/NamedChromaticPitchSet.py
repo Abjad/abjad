@@ -1,10 +1,4 @@
 from abjad.tools.pitchtools._PitchSet import _PitchSet
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
-from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
-from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
-from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interval import \
-   transpose_pitch_carrier_by_melodic_chromatic_interval
 
 
 class NamedChromaticPitchSet(_PitchSet):
@@ -19,14 +13,15 @@ class NamedChromaticPitchSet(_PitchSet):
    '''
 
    def __new__(self, pitch_tokens):
-      from abjad.tools.notetools.NoteHead import NoteHead
+      from abjad.tools import notetools
+      from abjad.tools import pitchtools
       pitches = [ ]
       for token in pitch_tokens:
-         if isinstance(token, NoteHead):
-            pitch = NamedChromaticPitch(token.pitch)
+         if isinstance(token, notetools.NoteHead):
+            pitch = pitchtools.NamedChromaticPitch(token.pitch)
             pitches.append(pitch)
          else:
-            pitch = NamedChromaticPitch(token)
+            pitch = pitchtools.NamedChromaticPitch(token)
             pitches.append(pitch)
       return frozenset.__new__(self, pitches)
 
@@ -64,6 +59,7 @@ class NamedChromaticPitchSet(_PitchSet):
 
    @property
    def duplicate_pitch_classes(self):
+      from abjad.tools import pitchtools
       pitch_classes = [ ]
       duplicate_pitch_classes = [ ]
       for pitch in self:
@@ -71,7 +67,7 @@ class NamedChromaticPitchSet(_PitchSet):
          if pitch_class in pitch_classes:
             duplicate_pitch_classes.append(pitch_class)
          pitch_classes.append(pitch_class)
-      return NumberedChromaticPitchClassSet(duplicate_pitch_classes)
+      return pitchtools.NumberedChromaticPitchClassSet(duplicate_pitch_classes)
 
    @property
    def is_pitch_class_unique(self):
@@ -87,7 +83,8 @@ class NamedChromaticPitchSet(_PitchSet):
 
    @property
    def pitch_class_set(self):
-      return NumberedChromaticPitchClassSet(self)
+      from abjad.tools import pitchtools
+      return pitchtools.NumberedChromaticPitchClassSet(self)
       
    @property
    def pitches(self):
@@ -103,5 +100,6 @@ class NamedChromaticPitchSet(_PitchSet):
 
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
-      interval = MelodicChromaticInterval(n)
+      from abjad.tools import pitchtools
+      interval = pitchtools.MelodicChromaticInterval(n)
       return type(self)([transpose_by_chromatic_interval(pitch, interval) for pitch in self])

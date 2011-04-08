@@ -1,6 +1,4 @@
 from abjad.tools.pitchtools._PitchClassSegment import _PitchClassSegment
-from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromaticPitchClass
-from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 import copy
 
 
@@ -16,7 +14,8 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
    '''
 
    def __new__(self, pitch_class_tokens):
-      pitch_classes = [NumberedChromaticPitchClass(x) for x in pitch_class_tokens]
+      from abjad.tools import pitchtools
+      pitch_classes = [pitchtools.NumberedChromaticPitchClass(x) for x in pitch_class_tokens]
       return tuple.__new__(self, pitch_classes)
 
    ## OVERLOADS ##
@@ -49,9 +48,9 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
          InversionEquivalentChromaticIntervalClassSegment(0.5, 4.5, 1, 3.5, 3.5)
       '''
       from abjad.tools import mathtools
-      from abjad.tools.pitchtools import InversionEquivalentChromaticIntervalClassSegment
+      from abjad.tools import pitchtools
       interval_classes = list(mathtools.difference_series(self))
-      return InversionEquivalentChromaticIntervalClassSegment(interval_classes)
+      return pitchtools.InversionEquivalentChromaticIntervalClassSegment(interval_classes)
 
    @property
    def numbered_chromatic_pitch_class_set(self):
@@ -63,7 +62,8 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
          numbered_chromatic_pitch_class_segment.numbered_chromatic_pitch_class_set
          NumberedChromaticPitchClassSet([6, 7, 10, 10.5])
       '''
-      return NumberedChromaticPitchClassSet(self)
+      from abjad.tools import pitchtools
+      return pitchtools.NumberedChromaticPitchClassSet(self)
 
    ## PUBLIC METHODS ##
 

@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._IntervalClassSegment import _IntervalClassSegment
-from abjad.tools.pitchtools.MelodicChromaticIntervalClass import MelodicChromaticIntervalClass
 
 
 class MelodicChromaticIntervalClassSegment(_IntervalClassSegment):
@@ -14,8 +13,9 @@ class MelodicChromaticIntervalClassSegment(_IntervalClassSegment):
    '''
 
    def __new__(self, mcic_tokens):
+      from abjad.tools import pitchtools
       mcics = [ ]
       for mcic_token in mcic_tokens:
-         mcic = MelodicChromaticIntervalClass(mcic_token)
+         mcic = pitchtools.MelodicChromaticIntervalClass(mcic_token)
          mcics.append(mcic)
       return tuple.__new__(self, mcics)

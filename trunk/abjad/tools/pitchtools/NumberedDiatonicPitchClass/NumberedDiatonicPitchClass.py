@@ -52,5 +52,5 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
          abjad> numbered_diatonic_pitch_class.named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
       '''
-      from abjad.tools.pitchtools.NamedDiatonicPitchClass import NamedDiatonicPitchClass
-      return NamedDiatonicPitchClass(self.diatonic_pitch_class_number)
+      from abjad.tools import pitchtools
+      return pitchtools.NamedDiatonicPitchClass(self.diatonic_pitch_class_number)

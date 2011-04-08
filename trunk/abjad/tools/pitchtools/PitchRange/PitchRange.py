@@ -1,6 +1,4 @@
 from abjad.core import _Immutable
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
 class PitchRange(_Immutable):
@@ -19,6 +17,7 @@ class PitchRange(_Immutable):
    """
 
    def __init__(self, *args):
+      from abjad.tools import pitchtools
       if len(args) ==0:
          object.__setattr__(self, '_start', None)
          object.__setattr__(self, '_stop', None)
@@ -43,38 +42,39 @@ class PitchRange(_Immutable):
          if start is None:
             start = start
          elif isinstance(start, (int, long, float)):
-            pitch = NamedChromaticPitch(start)
+            pitch = pitchtools.NamedChromaticPitch(start)
             start = (pitch, 'inclusive')
          else:
             assert len(start) == 2
             pitch, containment = start
             assert containment in ('inclusive', 'exclusive')
-            pitch = NamedChromaticPitch(pitch)
+            pitch = pitchtools.NamedChromaticPitch(pitch)
             start = (pitch, containment)
          object.__setattr__(self, '_start', start)
          if stop is None:
             stop = stop
          elif isinstance(stop, (int, long, float)):
-            pitch = NamedChromaticPitch(stop)
+            pitch = pitchtools.NamedChromaticPitch(stop)
             stop = (pitch, 'inclusive')
          else:
             assert len(stop) == 2
             pitch, containment = stop
             assert containment in ('inclusive', 'exclusive')
-            pitch = NamedChromaticPitch(pitch)
+            pitch = pitchtools.NamedChromaticPitch(pitch)
             stop = (pitch, containment)
          object.__setattr__(self, '_stop', stop)
    
    ## OVERLOADS ##
 
    def __contains__(self, arg):
+      from abjad.tools import pitchtools
       if isinstance(arg, (int, long, float)):
-         pitch = NamedChromaticPitch(arg)
+         pitch = pitchtools.NamedChromaticPitch(arg)
          return self._contains_pitch(pitch)
-      elif isinstance(arg, NamedChromaticPitch):
+      elif isinstance(arg, pitchtools.NamedChromaticPitch):
          return self._contains_pitch(arg)
       else:
-         pitches = list_named_chromatic_pitches_in_expr(arg)
+         pitches = pitchtools.list_named_chromatic_pitches_in_expr(arg)
          if pitches:
             return all([self._contains_pitch(x) for x in pitches])
       return False
@@ -87,8 +87,9 @@ class PitchRange(_Immutable):
       return False
 
    def __ge__(self, arg):
+      from abjad.tools import pitchtools
       try:
-         pitch = NamedChromaticPitch(arg)
+         pitch = pitchtools.NamedChromaticPitch(arg)
          if self.start_pitch is None:
             return False
          return pitch <= self.start_pitch
@@ -96,8 +97,9 @@ class PitchRange(_Immutable):
          return False
 
    def __gt__(self, arg):
+      from abjad.tools import pitchtools
       try:
-         pitch = NamedChromaticPitch(arg)
+         pitch = pitchtools.NamedChromaticPitch(arg)
          if self.start_pitch is None:
             return False
          return pitch < self.start_pitch
@@ -105,8 +107,9 @@ class PitchRange(_Immutable):
          return False
 
    def __le__(self, arg):
+      from abjad.tools import pitchtools
       try:
-         pitch = NamedChromaticPitch(arg)
+         pitch = pitchtools.NamedChromaticPitch(arg)
          if self.stop_pitch is None:
             return False
          return self.stop_pitch <= pitch
@@ -114,8 +117,9 @@ class PitchRange(_Immutable):
          return False
 
    def __lt__(self, arg):
+      from abjad.tools import pitchtools
       try:
-         pitch = NamedChromaticPitch(arg)
+         pitch = pitchtools.NamedChromaticPitch(arg)
          if self.stop_pitch is None:
             return False
          return self.stop_pitch < pitch

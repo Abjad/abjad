@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._Vector import _Vector
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 class NamedChromaticPitchVector(_Vector):
@@ -14,8 +13,9 @@ class NamedChromaticPitchVector(_Vector):
    '''
 
    def __init__(self, pitch_tokens): 
+      from abjad.tools import pitchtools
       for token in pitch_tokens:
-         pitch = NamedChromaticPitch(token)
+         pitch = pitchtools.NamedChromaticPitch(token)
          try:
             dict.__setitem__(self, str(pitch), self[str(pitch)] + 1)
          except KeyError:
@@ -54,6 +54,7 @@ class NamedChromaticPitchVector(_Vector):
 
    @property
    def pitches(self):
-      pitches = [NamedChromaticPitch(key) for key, value in self.items( )]
+      from abjad.tools import pitchtools
+      pitches = [pitchtools.NamedChromaticPitch(key) for key, value in self.items( )]
       pitches.sort( )
       return pitches

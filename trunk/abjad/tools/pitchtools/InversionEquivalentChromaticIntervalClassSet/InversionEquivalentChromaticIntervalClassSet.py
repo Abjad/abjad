@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._IntervalClassSet import _IntervalClassSet
-from abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClass import InversionEquivalentChromaticIntervalClass
 
 
 class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
@@ -14,9 +13,10 @@ class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
    '''
 
    def __new__(self, interval_class_tokens):
+      from abjad.tools import pitchtools
       iecics = [ ]
       for token in interval_class_tokens:
-         iecic = InversionEquivalentChromaticIntervalClass(token)
+         iecic = pitchtools.InversionEquivalentChromaticIntervalClass(token)
          iecics.append(iecic)
       return frozenset.__new__(self, iecics)
 

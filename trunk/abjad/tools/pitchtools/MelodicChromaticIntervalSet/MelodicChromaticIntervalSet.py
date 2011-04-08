@@ -1,6 +1,4 @@
 from abjad.tools.pitchtools._IntervalSet import _IntervalSet
-from abjad.tools.pitchtools.HarmonicChromaticIntervalSet import HarmonicChromaticIntervalSet
-from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 
 
 class MelodicChromaticIntervalSet(_IntervalSet):
@@ -15,7 +13,8 @@ class MelodicChromaticIntervalSet(_IntervalSet):
    '''
 
    def __new__(self, interval_tokens):
-      mcis = [MelodicChromaticInterval(x) for x in interval_tokens]
+      from abjad.tools import pitchtools
+      mcis = [pitchtools.MelodicChromaticInterval(x) for x in interval_tokens]
       return frozenset.__new__(self, mcis)
 
    ## OVERLOADS ##
@@ -41,7 +40,8 @@ class MelodicChromaticIntervalSet(_IntervalSet):
 
    @property
    def harmonic_chromatic_interval_set(self):
-      return HarmonicChromaticIntervalSet(self)
+      from abjad.tools import pitchtools 
+      return pitchtools.HarmonicChromaticIntervalSet(self)
 
    @property
    def intervals(self):

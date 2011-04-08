@@ -1,9 +1,4 @@
 from abjad.tools.pitchtools._PitchClassSegment import _PitchClassSegment
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
-from abjad.tools.pitchtools.NumberedChromaticPitchClassSegment import NumberedChromaticPitchClassSegment
-from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 import copy
 
 
@@ -19,7 +14,8 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
    '''
 
    def __new__(self, named_chromatic_pitch_class_tokens):
-      npcs = [NamedChromaticPitchClass(x) for x in named_chromatic_pitch_class_tokens]
+      from abjad.tools import pitchtools
+      npcs = [pitchtools.NamedChromaticPitchClass(x) for x in named_chromatic_pitch_class_tokens]
       return tuple.__new__(self, npcs)
 
    ## OVERLOADS ##
@@ -60,11 +56,13 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
 
    @property
    def pitch_class_segment(self):
-      return NumberedChromaticPitchClassSegment(self)
+      from abjad.tools import pitchtools
+      return pitchtools.NumberedChromaticPitchClassSegment(self)
 
    @property
    def pitch_class_set(self):
-      return NumberedChromaticPitchClassSet(self)
+      from abjad.tools import pitchtools
+      return pitchtools.NumberedChromaticPitchClassSet(self)
 
    @property
    def pitch_classes(self):
@@ -73,11 +71,12 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
    ## PUBLIC METHODS ##
 
    def is_equivalent_under_transposition(self, arg):
+      from abjad.tools import pitchtools
       if not isinstance(arg, type(self)):
          return False
       if not len(self) == len(arg):
          return False
-      difference = -(NamedChromaticPitch(arg[0], 4) - NamedChromaticPitch(self[0], 4))
+      difference = -(pitchtools.NamedChromaticPitch(arg[0], 4) - pitchtools.NamedChromaticPitch(self[0], 4))
       new_npcs = [x + difference for x in self]
       new_npc_seg = type(self)(new_npcs)
       return arg == new_npc_seg
@@ -87,8 +86,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
 
    def rotate(self, n):
       from abjad.tools import seqtools
-      named_chromatic_pitch_classes = seqtools.rotate_sequence(
-         self.named_chromatic_pitch_classes, n)
+      named_chromatic_pitch_classes = seqtools.rotate_sequence(self.named_chromatic_pitch_classes, n)
       return type(self)(named_chromatic_pitch_classes)
       
    def transpose(self, melodic_diatonic_interval):

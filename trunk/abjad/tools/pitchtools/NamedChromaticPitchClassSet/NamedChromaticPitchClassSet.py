@@ -1,11 +1,4 @@
 from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools import seqtools
-from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector import InversionEquivalentDiatonicIntervalClassVector
-from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
-from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
-from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
-from abjad.tools.pitchtools.list_numeric_chromatic_pitch_classes_in_expr import list_numeric_chromatic_pitch_classes_in_expr
 
 
 class NamedChromaticPitchClassSet(_PitchClassSet):
@@ -20,12 +13,13 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
    '''
 
    def __new__(self, expr):
+      from abjad.tools import pitchtools
       npcs = [ ]
       ## assume expr is iterable
       try:
          for x in expr:
             try:
-               npcs.append(NamedChromaticPitchClass(x))
+               npcs.append(pitchtools.NamedChromaticPitchClass(x))
             except TypeError:
                ## TODO: probably fix next line ##
                npcs.extend(get_pitch_classes(x))
@@ -33,7 +27,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
       except TypeError:
          ## assume expr can be turned into a single pc
          try:
-            npc = NamedChromaticPitchClass(expr)
+            npc = pitchtools.NamedChromaticPitchClass(expr)
             npcs.append(npc)
          ## expr is a Rest or non-PC type
          except TypeError:
@@ -67,12 +61,10 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
    @property
    def _format_string(self):
-      #return ', '.join([str(x) for x in sorted(self)])
       return ', '.join([str(x) for x in self._sort_self( )])
 
    @property
    def _repr_string(self):
-      #return ', '.join([repr(str(x)) for x in sorted(self)])
       return ', '.join([repr(str(x)) for x in self._sort_self( )])
 
    ## PRIVATE METHODS ##
@@ -91,18 +83,19 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
    @property
    def diatonic_interval_class_vector(self):
-      pitches = [NamedChromaticPitch(x, 4) for x in self]
-      return InversionEquivalentDiatonicIntervalClassVector(pitches)
+      from abjad.tools import pitchtools
+      pitches = [pitchtools.NamedChromaticPitch(x, 4) for x in self]
+      return pitchtools.InversionEquivalentDiatonicIntervalClassVector(pitches)
 
    @property
    def named_chromatic_pitch_classes(self):
       result = list(self)
-      #return tuple(sorted(self))
       return tuple(self._sort_self( ))
 
    @property
    def pitch_class_set(self):
-      return NumberedChromaticPitchClassSet(self)
+      from abjad.tools import pitchtools
+      return pitchtools.NumberedChromaticPitchClassSet(self)
 
    @property
    def pitch_classes(self):
@@ -111,11 +104,12 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
    ## PUBLIC METHODS ##
    
    def order_by(self, npc_seg):
-      from abjad.tools.pitchtools.NamedChromaticPitchClassSegment import NamedChromaticPitchClassSegment
+      from abjad.tools import pitchtools
+      from abjad.tools import seqtools
       if not len(self) == len(npc_seg):
          raise ValueError('set and segment must be of equal length.')
       for npcs in seqtools.yield_all_permutations_of_sequence(self.named_chromatic_pitch_classes):
-         candidate_npc_seg = NamedChromaticPitchClassSegment(npcs)
+         candidate_npc_seg = pitchtools.NamedChromaticPitchClassSegment(npcs)
          if candidate_npc_seg.is_equivalent_under_transposition(npc_seg):
             return candidate_npc_seg
       message = 'named pitch-class set %s can not order by '
