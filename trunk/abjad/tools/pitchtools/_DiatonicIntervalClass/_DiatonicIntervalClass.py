@@ -23,9 +23,16 @@ class _DiatonicIntervalClass(_IntervalClass, _Diatonic):
    def __repr__(self):
       return "%s('%s')" % (self.__class__.__name__, str(self))
 
+   def __str__(self):
+      return self._format_string
+
    ## PRIVATE ATTRIBUTES ##
 
    _acceptable_quality_strings = ('perfect', 'major', 'minor', 'diminished', 'augmented')
+
+   @property
+   def _format_string(self):
+      return '%s%s' % (self._quality_abbreviation, self.number)
 
    _interval_number_to_interval_string = {1: 'unison', 2: 'second',
          3: 'third', 4: 'fourth', 5: 'fifth', 6: 'sixth',
@@ -44,3 +51,9 @@ class _DiatonicIntervalClass(_IntervalClass, _Diatonic):
    @property
    def _quality_abbreviation(self):
       return self._quality_string_to_quality_abbreviation[self._quality_string]
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def quality_string(self):
+      return self._quality_string

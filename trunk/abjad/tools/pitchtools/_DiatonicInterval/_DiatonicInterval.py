@@ -10,7 +10,9 @@ class _DiatonicInterval(_Interval, _Diatonic):
    Diatonic interval base class.
    '''
 
-   def __init__(self, quality_string, number):
+   #def __init__(self, quality_string, number):
+   def __new__(klass, quality_string, number):
+      self = object.__new__(klass)
       if quality_string == 'diminished':
          if abs(number) == 1:
             raise IntervalError('diminished unison makes no sense.')
@@ -27,6 +29,7 @@ class _DiatonicInterval(_Interval, _Diatonic):
       else:
          raise ValueError('interval must be integer.')
       object.__setattr__(self, '_number', number)
+      return self
 
    ## OVERLOADS ##
 
@@ -100,9 +103,9 @@ class _DiatonicInterval(_Interval, _Diatonic):
 
    @property
    def diatonic_interval_class(self):
-      from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import InversionEquivalentDiatonicIntervalClass
+      from abjad.tools import pitchtools
       quality_string, number = self._quality_string, self.number
-      return InversionEquivalentDiatonicIntervalClass(quality_string, number)
+      return pitchtools.InversionEquivalentDiatonicIntervalClass(quality_string, number)
 
    @property
    def interval_class(self):

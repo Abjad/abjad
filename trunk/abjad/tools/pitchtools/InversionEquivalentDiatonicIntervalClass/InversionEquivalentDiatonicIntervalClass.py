@@ -1,8 +1,8 @@
 from fractions import Fraction
-from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
+from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
 
 
-class InversionEquivalentDiatonicIntervalClass(_DiatonicInterval):
+class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
    Abjad model of inversion-equivalent diatonic interval class::
@@ -32,6 +32,18 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicInterval):
          self._init_by_quality_string_and_number(*args)
       else:
          raise ValueError('can not initialize diatonic interval class.')
+
+   ## OVERLOADS ##
+
+   def __eq__(self, arg):
+      if isinstance(arg, self.__class__):
+         if self.quality_string == arg.quality_string:
+            if self.number == arg.number:
+               return True
+      return False
+
+   def __ne__(self, arg):
+      return not self == arg
 
    ## PRIVATE METHODS ##
 
