@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
+from fractions import Fraction
 
 
 class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
@@ -13,9 +13,10 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
    Inversion-equivalent diatonic interval-classes are immutable.
    '''
 
-   def __init__(self, *args):
+   def __new__(klass, *args):
       from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
          melodic_diatonic_interval_abbreviation_regex
+      self = object.__new__(klass)
       if len(args) == 1 and isinstance(args[0], type(self)):
          self._init_by_self_reference(args[0])
       elif len(args) == 1 and isinstance(args[0], str):
@@ -27,11 +28,12 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
          number = int(number_string) 
          self._init_by_quality_string_and_number(quality_string, number)
       elif len(args) == 1 and isinstance(args[0], tuple):
-         self.__init__(*args[0])
+         self = self.__new__(klass, *args[0])
       elif len(args) == 2:
          self._init_by_quality_string_and_number(*args)
       else:
          raise ValueError('can not initialize diatonic interval class.')
+      return self
 
    ## OVERLOADS ##
 
@@ -70,7 +72,7 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
    def _init_by_self_reference(self, reference):
       quality_string = reference.quality_string
       number = reference.number
-      self.__init__(quality_string, number)
+      self._init_by_quality_string_and_number(quality_string, number)
 
    def _invert_quality_string(self, quality_string):
       inversions = {'major': 'minor', 'minor': 'major', 'perfect': 'perfect',

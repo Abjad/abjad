@@ -14,10 +14,11 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
    Melodic diatonic interval-classes are immutable.
    '''
 
-   def __init__(self, *args):
+   def __new__(klass, *args):
       from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
       from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
          melodic_diatonic_interval_abbreviation_regex
+      self = object.__new__(klass)
       if len(args) == 1:
          if isinstance(args[0], MelodicDiatonicInterval):
             quality_string = args[0]._quality_string
@@ -27,13 +28,13 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
             if match is None:
                raise ValueError('"%s" does not have the form of an abbreviation.' % args[0])
             direction_string, quality_abbreviation, number_string = match.groups( )
-            quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
+            quality_string = _DiatonicIntervalClass._quality_abbreviation_to_quality_string[quality_abbreviation]
             number = int(direction_string + number_string)
          else:
             raise TypeError('what type of instance is this?')
       else:
          quality_string, number = args
-      if quality_string not in self._acceptable_quality_strings:
+      if quality_string not in _DiatonicIntervalClass._acceptable_quality_strings:
          raise ValueError('not acceptable quality string.')
       if not isinstance(number, int):
          raise TypeError('must be integer.')
@@ -51,6 +52,7 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
          number *= sign
       object.__setattr__(self, '_number', number)
       object.__setattr__(self, '_quality_string', quality_string)
+      return self
 
    ## OVERLOADS ##
 

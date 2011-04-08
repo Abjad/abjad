@@ -13,10 +13,11 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
    Harmonic diatonic interval classes are immutable.
    '''
 
-   def __init__(self, *args):
+   def __new__(klass, *args):
       from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
          melodic_diatonic_interval_abbreviation_regex
       from abjad.tools import pitchtools
+      self = object.__new__(klass)
       if len(args) == 1:
          if isinstance(args[0], pitchtools.HarmonicDiatonicInterval):
             quality_string = args[0]._quality_string
@@ -26,7 +27,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
             if match is None:
                raise ValueError('"%s" does not have the form of an hdic abbreviation.' % args[0])
             direction_string, quality_abbreviation, number_string = match.groups( )
-            quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
+            quality_string = _DiatonicIntervalClass._quality_abbreviation_to_quality_string[quality_abbreviation]
             number = int(number_string)
          elif isinstance(args[0], tuple) and len(args[0]) == 2:
             quality_string, number = args[0]
@@ -34,7 +35,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
             raise TypeError
       else:
          quality_string, number = args   
-      if quality_string not in self._acceptable_quality_strings:
+      if quality_string not in _DiatonicIntervalClass._acceptable_quality_strings:
          raise ValueError('not acceptable quality string.')
       object.__setattr__(self, '_quality_string', quality_string)
       if not isinstance(number, int):
@@ -49,6 +50,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
          if number == 0:
             number = 7
       object.__setattr__(self, '_number', number)
+      return self
 
    ## OVERLOADS ##
 

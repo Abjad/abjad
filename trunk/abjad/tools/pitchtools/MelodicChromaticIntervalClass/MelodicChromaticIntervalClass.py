@@ -1,9 +1,9 @@
-from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._ChromaticIntervalClass import _ChromaticIntervalClass
 from abjad.tools.pitchtools._Interval import _Interval
 from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 from abjad.tools.pitchtools._MelodicIntervalClass import _MelodicIntervalClass
+from fractions import Fraction
 
 
 class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalClass):
@@ -17,7 +17,8 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
    Melodic chromatic interval classes are immutable.
    '''
 
-   def __init__(self, token):
+   def __new__(klass, token):
+      self = object.__new__(klass)
       if isinstance(token, (int, float, long, Fraction)):
          sign = mathtools.sign(token)
          abs_token = abs(token)
@@ -47,6 +48,7 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
       else:
          raise ValueError('must be number, interval or interval class.')
       object.__setattr__(self, '_number', number)
+      return self
 
    ## OVERLOADS ##
 

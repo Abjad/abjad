@@ -18,10 +18,9 @@ class NamedChromaticPitchClass(_PitchClass):
 
    __slots__ = ('_chromatic_pitch_class_name', )
 
-   ## TODO: use __new__ ##
-
-   def __init__(self, arg):
+   def __new__(klass, arg):
       from abjad.tools import pitchtools
+      self = object.__new__(klass)
       if hasattr(arg, '_chromatic_pitch_class_name'):
          chromatic_pitch_class_name = arg._chromatic_pitch_class_name
       elif pitchtools.is_chromatic_pitch_name(arg):
@@ -44,6 +43,7 @@ class NamedChromaticPitchClass(_PitchClass):
       chromatic_pitch_class_name = chromatic_pitch_class_name.lower( )
       object.__setattr__(self, '_chromatic_pitch_class_name', chromatic_pitch_class_name)
       object.__setattr__(self, '_comparison_attribute', chromatic_pitch_class_name)
+      return self
 
    ## OVERLOADS ##
 

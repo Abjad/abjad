@@ -10,7 +10,6 @@ class _DiatonicInterval(_Interval, _Diatonic):
    Diatonic interval base class.
    '''
 
-   #def __init__(self, quality_string, number):
    def __new__(klass, quality_string, number):
       self = object.__new__(klass)
       if quality_string == 'diminished':

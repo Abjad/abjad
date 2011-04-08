@@ -17,7 +17,8 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
    Melodic chromatic intervals are immutable.
    '''
 
-   def __init__(self, arg):
+   def __new__(klass, arg):
+      self = object.__new__(klass)
       if isinstance(arg, (int, float, long)):
          number = arg
       elif isinstance(arg, _Interval):
@@ -25,6 +26,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       else:
          raise TypeError('%s must be number or interval.' % arg)
       object.__setattr__(self, '_number', number)
+      return self
 
    ## OVERLOADS ##
 

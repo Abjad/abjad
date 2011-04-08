@@ -14,7 +14,6 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
    Harmonic diatonic intervals are immutable.
    '''
 
-   #def __init__(self, *args):
    def __new__(klass, *args):
       from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import \
          harmonic_diatonic_interval_abbreviation_regex
@@ -27,13 +26,11 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
          if match is None:
             raise ValueError('"%s" does not have the form of an hdi abbreviation.' % args[0])
          quality_abbreviation, number_string = match.groups( )
-         #_quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
          _quality_string = _DiatonicInterval._quality_abbreviation_to_quality_string[quality_abbreviation]
          _number = int(number_string)
       elif len(args) == 2:
          _quality_string = args[0]
          _number = abs(args[1])
-      #_DiatonicInterval.__init__(self, _quality_string, _number)
       object.__setattr__(self, '_quality_string', _quality_string)
       object.__setattr__(self, '_number', _number)
       return self
