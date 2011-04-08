@@ -1,8 +1,6 @@
-#from abjad.core import _UnaryComparator
 from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
 
 
-#class NamedDiatonicPitch(_UnaryComparator):
 class NamedDiatonicPitch(_DiatonicPitch):
    '''.. versionadded:: 1.1.2
 

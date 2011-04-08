@@ -15,7 +15,6 @@ class NamedChromaticPitchSegment(_PitchSegment):
    Named chromtic pitch segments are immutable.
    '''
 
-   #def __new__(self, pitch_tokens):
    def __new__(self, *args):
       if len(args) == 1 and isinstance(args[0], str):
             pitches = [NamedChromaticPitch(x) for x in args[0].split( )]

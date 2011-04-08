@@ -55,7 +55,7 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, MelodicDiatonicIntervalClass):
+      if isinstance(arg, type(self)):
          if self.direction_number == arg.direction_number:
             if self._quality_string == arg._quality_string:
                if self.number == arg.number:

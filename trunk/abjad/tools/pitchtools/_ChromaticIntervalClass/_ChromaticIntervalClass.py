@@ -1,10 +1,11 @@
+from abjad.tools.pitchtools._Chromatic import _Chromatic
 from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 
 
-class _ChromaticIntervalClass(_IntervalClass):
+class _ChromaticIntervalClass(_IntervalClass, _Chromatic):
    '''.. versionadded:: 1.1.2
 
-   Chromatic interval class.
+   Chromatic interval-class base class.
    '''
 
    ## OVERLOADS ##

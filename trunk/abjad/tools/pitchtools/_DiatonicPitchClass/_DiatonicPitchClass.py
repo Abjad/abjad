@@ -1,11 +1,14 @@
-from abjad.core import _Immutable
-from abjad.core import _StrictComparator
+#from abjad.core import _Immutable
+#from abjad.core import _StrictComparator
+from abjad.tools.pitchtools._PitchClass import _PitchClass
+from abjad.tools.pitchtools._Diatonic import _Diatonic
 
 
-class _DiatonicPitchClass(_Immutable, _StrictComparator):
+#class _DiatonicPitchClass(_Immutable, _StrictComparator):
+class _DiatonicPitchClass(_PitchClass, _Diatonic):
    '''.. versionadded:: 1.1.2
 
-   Base class for named diatonic pitch class and numeric diatonic pitch class.
+   Diatonic pitch-class base class.
    '''
 
    ## OVERLOADS ##

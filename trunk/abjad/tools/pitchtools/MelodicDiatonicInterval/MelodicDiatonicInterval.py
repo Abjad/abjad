@@ -24,7 +24,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
    def __init__(self, *args):
       from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
          melodic_diatonic_interval_abbreviation_regex
-      if len(args) == 1 and isinstance(args[0], MelodicDiatonicInterval):
+      if len(args) == 1 and isinstance(args[0], type(self)):
          quality_string = args[0].quality_string
          number = args[0].number
       elif len(args) == 1 and isinstance(args[0], str):
@@ -46,7 +46,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
 
    def __add__(self, arg):
       from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
-      if not isinstance(arg, MelodicDiatonicInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
       dummy_pitch = NamedChromaticPitch(0)
       new_pitch = dummy_pitch + self + arg 
@@ -65,7 +65,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          NamedChromaticPitch(0), dummy_pitch)
 
    def __neg__(self):
-      return MelodicDiatonicInterval(self.quality_string, -self.number)
+      return type(self)(self.quality_string, -self.number)
 
    def __repr__(self):
       return "%s('%s')" % (self.__class__.__name__, str(self))
@@ -79,7 +79,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
 
    def __sub__(self, arg):
       from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
-      if not isinstance(arg, MelodicDiatonicInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be melodic diatonic interval.' % arg)
       dummy_pitch = NamedChromaticPitch(0)
       new_pitch = dummy_pitch + self - arg 

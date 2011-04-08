@@ -1,10 +1,11 @@
+from abjad.tools.pitchtools._Diatonic import _Diatonic
 from abjad.tools.pitchtools._Pitch import _Pitch
 
 
-class _DiatonicPitch(_Pitch):
+class _DiatonicPitch(_Pitch, _Diatonic):
    '''.. versionadded:: 1.1.2
 
-   Base class for diatonic pitch classes.
+   Diatonic pitch base class.
    '''
 
    ## OVERLOADS ##

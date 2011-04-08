@@ -1,8 +1,12 @@
+from abjad.tools.pitchtools._Counterpoint import _Counterpoint
 from abjad.tools.pitchtools._Interval import _Interval
 
 
-## TODO: implement _CounterpointObject
-class _CounterpointInterval(_Interval):
+class _CounterpointInterval(_Interval, _Counterpoint):
+   '''..versionadded:: 1.1.2
+
+   Counterpoint interval base class.
+   '''
 
    ## OVERLOADS ##
 

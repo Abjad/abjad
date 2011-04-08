@@ -39,9 +39,9 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
       return self._chromatic_pitch_number
 
    def __add__(self, arg):
-      arg = NumberedChromaticPitch(arg)
+      arg = type(self)(arg)
       semitones = abs(self) + abs(arg)
-      return NumberedChromaticPitch(semitones)
+      return type(self)(semitones)
 
    def __float__(self):
       return float(self._chromatic_pitch_number)
@@ -53,7 +53,7 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
       return self._chromatic_pitch_number
 
    def __neg__(self):
-      return NumberedChromaticPitch(-abs(self))
+      return type(self)(-abs(self))
    
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, abs(self))
@@ -62,9 +62,9 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
       return '%s' % abs(self)
 
    def __sub__(self, arg):
-      arg = NumberedChromaticPitch(arg)
+      arg = type(self)(arg)
       semitones = abs(self) - abs(arg)
-      return NumberedChromaticPitch(semitones)
+      return type(self)(semitones)
      
    ## PUBLIC ATTRIBUTES ##
 

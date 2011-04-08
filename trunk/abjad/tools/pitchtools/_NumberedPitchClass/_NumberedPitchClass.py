@@ -1,11 +1,12 @@
-from abjad.core import _FlexEqualityComparator
+from abjad.tools.pitchtools._Numbered import _Numbered
 from abjad.tools.pitchtools._PitchClass import _PitchClass
 
 
-class _NumberedPitchClass(_PitchClass, _FlexEqualityComparator):
+#class _NumberedPitchClass(_PitchClass, _Numbered, _FlexEqualityComparator):
+class _NumberedPitchClass(_PitchClass, _Numbered):
    '''.. versionadded:: 1.1.2
 
-   Numeric pitch-class base class from which concrete classes inherit.
+   Numbered pitch-class base class.
    '''
 
    __slots__ = ( )

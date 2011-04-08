@@ -32,7 +32,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       return self.harmonic_interval
 
    def __ge__(self, arg):
-      if not isinstance(arg, MelodicChromaticInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be melodic chromatic interval.' % arg)
       if not self.direction_number == arg.direction_number:
          raise ValueError(
@@ -40,7 +40,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       return abs(self.number) >= abs(arg.number)
 
    def __gt__(self, arg):
-      if not isinstance(arg, MelodicChromaticInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be melodic chromatic interval.' % arg)
       if not self.direction_number == arg.direction_number:
          raise ValueError(
@@ -51,7 +51,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       return hash(repr(self))
 
    def __le__(self, arg):
-      if not isinstance(arg, MelodicChromaticInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be melodic chromatic interval.' % arg)
       if not self.direction_number == arg.direction_number:
          raise ValueError(
@@ -59,7 +59,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       return abs(self.number) <= abs(arg.number)
 
    def __lt__(self, arg):
-      if not isinstance(arg, MelodicChromaticInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be melodic chromatic interval.' % arg)
       if not self.direction_number == arg.direction_number:
          raise ValueError(
@@ -67,7 +67,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       return abs(self.number) < abs(arg.number)
 
    def __neg__(self):
-      return MelodicChromaticInterval(-self._number)
+      return type(self)(-self._number)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)

@@ -1,6 +1,11 @@
+from abjad.tools.pitchtools._Harmonic import _Harmonic
 from abjad.tools.pitchtools._Interval import _Interval
 
 
-class _HarmonicInterval(_Interval):
+class _HarmonicInterval(_Interval, _Harmonic):
+   '''..versionadded:: 1.1.2
+
+   Harmonic interval base class.
+   '''
 
    pass

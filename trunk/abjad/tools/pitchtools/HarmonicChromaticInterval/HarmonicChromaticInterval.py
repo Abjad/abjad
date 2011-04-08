@@ -1,6 +1,5 @@
 from abjad.tools.pitchtools._ChromaticInterval import _ChromaticInterval
 from abjad.tools.pitchtools._HarmonicInterval import _HarmonicInterval
-from abjad.tools.pitchtools.HarmonicChromaticIntervalClass import HarmonicChromaticIntervalClass
 
 
 class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
@@ -22,22 +21,22 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
    ## OVERLOADS ##
 
    def __ge__(self, arg):
-      if not isinstance(arg, HarmonicChromaticInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be harmonic chromatic interval.' % arg)
       return self.number >= arg.number
 
    def __gt__(self, arg):
-      if not isinstance(arg, HarmonicChromaticInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be harmonic chromatic interval.' % arg)
       return self.number > arg.number
 
    def __le__(self, arg):
-      if not isinstance(arg, HarmonicChromaticInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be harmonic chromatic interval.' % arg)
       return self.number <= arg.number
 
    def __lt__(self, arg):
-      if not isinstance(arg, HarmonicChromaticInterval):
+      if not isinstance(arg, type(self)):
          raise TypeError('%s must be harmonic chromatic interval.' % arg)
       return self.number < arg.number
 
@@ -53,4 +52,5 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
          abjad> harmonic_chromatic_interval.harmonic_chromatic_interval_class
          HarmonicChromaticIntervalClass(2)
       '''
-      return HarmonicChromaticIntervalClass(self)
+      from abjad.tools import pitchtools
+      return pitchtools.HarmonicChromaticIntervalClass(self)

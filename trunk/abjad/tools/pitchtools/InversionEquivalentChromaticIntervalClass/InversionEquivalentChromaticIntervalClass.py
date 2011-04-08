@@ -3,7 +3,6 @@ from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 from fractions import Fraction
 
 
-#class InversionEquivalentChromaticIntervalClass(_Immutable):
 class InversionEquivalentChromaticIntervalClass(_IntervalClass):
    '''.. versionadded:: 1.1.2
 
@@ -16,7 +15,7 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
    '''
 
    def __init__(self, interval_class_token):
-      if isinstance(interval_class_token, InversionEquivalentChromaticIntervalClass):
+      if isinstance(interval_class_token, type(self)):
          _number = interval_class_token.number
 
       elif isinstance(interval_class_token, (int, float, long, Fraction)):
@@ -30,13 +29,13 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
    ## OVERLOADS ##
 
    def __abs__(self):
-      return InversionEquivalentChromaticIntervalClass(abs(self.number))
+      return type(self)(abs(self.number))
 
    def __copy__(self):
-      return InversionEquivalentChromaticIntervalClass(self.number)
+      return type(self)(self.number)
 
    def __eq__(self, arg):
-      if isinstance(arg, InversionEquivalentChromaticIntervalClass):
+      if isinstance(arg, type(self)):
          if self.number == arg.number:
             return True
       return False
@@ -48,7 +47,7 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
       return not self == arg
 
    def __neg__(self):
-      return InversionEquivalentChromaticIntervalClass(self.number)
+      return type(self)(self.number)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)

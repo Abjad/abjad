@@ -51,7 +51,7 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, MelodicChromaticIntervalClass):
+      if isinstance(arg, type(self)):
          if self.number == arg.number:
             return True
       return False

@@ -51,7 +51,7 @@ class NumberedChromaticPitchClass(_PitchClass):
       '''Addition defined against melodic chromatic intervals only.'''
       if not isinstance(arg, MelodicChromaticInterval):
          raise TypeError('must be melodic chromatic interval.')
-      return NumberedChromaticPitchClass(abs(self) + arg.number % 12)
+      return type(self)(abs(self) + arg.number % 12)
 
    def __float__(self):
       return float(self._chromatic_pitch_class_number)
@@ -60,7 +60,7 @@ class NumberedChromaticPitchClass(_PitchClass):
       return self._chromatic_pitch_class_number
       
    def __neg__(self):
-      return NumberedChromaticPitchClass(-abs(self))
+      return type(self)(-abs(self))
    
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, abs(self))
@@ -77,7 +77,7 @@ class NumberedChromaticPitchClass(_PitchClass):
             interval_class_number = 12 - interval_class_number
          return InversionEquivalentChromaticIntervalClass(interval_class_number)
       elif isinstance(arg, InversionEquivalentChromaticIntervalClass):
-         return NumberedChromaticPitchClass(abs(self) - arg.number % 12)
+         return type(self)(abs(self) - arg.number % 12)
       else:
          raise TypeError('must be pitch class or interval class.')
      
@@ -90,16 +90,16 @@ class NumberedChromaticPitchClass(_PitchClass):
       from abjad.tools.pitchtools.Accidental import Accidental
       accidental = Accidental(accidental)
       semitones = abs(self) + accidental.semitones
-      return NumberedChromaticPitchClass(semitones)
+      return type(self)(semitones)
 
    def invert(self):
       '''Invert pitch class.'''
-      return NumberedChromaticPitchClass(12 - abs(self))
+      return type(self)(12 - abs(self))
 
    def multiply(self, n):
       '''Multiply pitch class by n.'''
-      return NumberedChromaticPitchClass(abs(self) * n)
+      return type(self)(abs(self) * n)
 
    def transpose(self, n):
       '''Transpose pitch class by n.'''
-      return NumberedChromaticPitchClass(abs(self) + n)
+      return type(self)(abs(self) + n)

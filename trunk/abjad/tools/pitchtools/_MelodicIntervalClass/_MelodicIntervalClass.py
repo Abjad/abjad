@@ -1,10 +1,11 @@
 from abjad.tools.pitchtools._IntervalClass import _IntervalClass
+from abjad.tools.pitchtools._Melodic import _Melodic
 
 
-class _MelodicIntervalClass(_IntervalClass):
+class _MelodicIntervalClass(_IntervalClass, _Melodic):
    '''.. versionadded:: 1.1.2
 
-   Melodic interval class.
+   Melodic interval-class base class.
    '''
 
    ## PRIVATE ATTRIBUTES ##

@@ -54,7 +54,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, HarmonicDiatonicIntervalClass):
+      if isinstance(arg, type(self)):
          if self._quality_string == arg._quality_string:
             if self.number == arg.number:
                return True

@@ -1,10 +1,11 @@
+from abjad.tools.pitchtools._Chromatic import _Chromatic
 from abjad.tools.pitchtools._Pitch import _Pitch
 
 
-class _ChromaticPitch(_Pitch):
+class _ChromaticPitch(_Pitch, _Chromatic):
    '''.. versionadded:: 1.1.2
 
-   Base class for chromatic pitch objects.
+   Chromatic pitch base class.
    '''
 
    pass

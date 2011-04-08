@@ -27,7 +27,7 @@ class MelodicDiatonicIntervalSegment(_IntervalSegment):
    ## OVERLOADS ##
 
    def __copy__(self):
-      return MelodicDiatonicIntervalSegment(self.intervals)
+      return type(self)(self.intervals)
 
    def __repr__(self):
       return "%s('%s')" % (self.__class__.__name__, ' '.join([str(x) for x in self]))

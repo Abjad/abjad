@@ -24,7 +24,7 @@ class HarmonicDiatonicIntervalClassSet(_IntervalClassSet):
    ## OVERLOADS ##
 
    def __copy__(self):
-      return HarmonicDiatonicIntervalClassSet(self)
+      return type(self)(self)
 
    def __repr__(self):
       return "%s('%s')" % (self.__class__.__name__, self._format_string)

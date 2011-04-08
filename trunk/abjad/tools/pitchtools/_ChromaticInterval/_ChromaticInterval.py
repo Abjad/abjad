@@ -1,19 +1,18 @@
 from abjad.tools import mathtools
+from abjad.tools.pitchtools._Chromatic import _Chromatic
 from abjad.tools.pitchtools._Interval import _Interval
 
 
-class _ChromaticInterval(_Interval):
+class _ChromaticInterval(_Interval, _Chromatic):
    '''.. versionadded:: 1.1.2
 
-   Abstract chromatic interval class from which concrete classes inherit.
+   Chromatic interval base class.
    '''
 
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
-         #self._number = arg
          _number = arg
       elif isinstance(arg, _Interval):
-         #self._number = arg.semitones
          _number = arg.semitones
       else:
          raise TypeError('%s must be number or interval.' % arg)

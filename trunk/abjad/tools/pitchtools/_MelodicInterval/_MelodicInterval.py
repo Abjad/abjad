@@ -1,17 +1,18 @@
 from abjad.tools.pitchtools._Interval import _Interval
-from abjad.tools.pitchtools._HarmonicInterval import _HarmonicInterval
+from abjad.tools.pitchtools._Melodic import _Melodic
 
 
 class _MelodicInterval(_Interval):
    '''.. versionadded:: 1.1.2
 
-   Directed melodic interval.
+   Melodic interval base class.
    '''
 
    ## OVERLOADS ##
 
    def __abs__(self):
-      return _HarmonicInterval(self)
+      from abjad.tools import pitchtools
+      return pitchtools._HarmonicInterval._HarmonicInterval(self)
 
    def __eq__(self, arg):
       if isinstance(arg, self.__class__):

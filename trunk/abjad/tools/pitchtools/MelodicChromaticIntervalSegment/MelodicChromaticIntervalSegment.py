@@ -1,9 +1,9 @@
-from fractions import Fraction
 from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
 from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment import MelodicChromaticIntervalClassSegment
 from abjad.tools.pitchtools.MelodicChromaticIntervalClassVector import MelodicChromaticIntervalClassVector
+from fractions import Fraction
 
 
 class MelodicChromaticIntervalSegment(_IntervalSegment):
@@ -27,7 +27,7 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
    ## OVERLOADS ##
 
    def __copy__(self):
-      return MelodicChromaticIntervalSegment(self.intervals)
+      return type(self)(self.intervals)
 
    ## PUBLIC ATTRIBUTES ##
 

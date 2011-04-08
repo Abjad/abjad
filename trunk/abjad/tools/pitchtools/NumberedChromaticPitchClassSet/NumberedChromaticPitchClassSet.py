@@ -41,7 +41,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, NumberedChromaticPitchClassSet):
+      if isinstance(arg, type(self)):
          for element in arg:
             if element not in self:
                return False
@@ -106,7 +106,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
    
    def invert(self):
       '''Invert all pcs in self.'''
-      return NumberedChromaticPitchClassSet([pc.invert( ) for pc in self])
+      return type(self)([pc.invert( ) for pc in self])
 
    def is_transposed_subset(self, pcset):
       for n in range(12):
@@ -122,8 +122,8 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
 
    def multiply(self, n):
       '''Transpose all pcs in self by n.'''
-      return NumberedChromaticPitchClassSet([pc.multiply(n) for pc in self])
+      return type(self)([pc.multiply(n) for pc in self])
 
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
-      return NumberedChromaticPitchClassSet([pc.transpose(n) for pc in self])
+      return type(self)([pc.transpose(n) for pc in self])

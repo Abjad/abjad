@@ -33,7 +33,7 @@ class NamedChromaticPitchSet(_PitchSet):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, NamedChromaticPitchSet):
+      if isinstance(arg, type(self)):
          for element in arg:
             if element not in self:
                return False
@@ -104,4 +104,4 @@ class NamedChromaticPitchSet(_PitchSet):
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
       interval = MelodicChromaticInterval(n)
-      return NamedChromaticPitchSet([transpose_by_chromatic_interval(pitch, interval) for pitch in self])
+      return type(self)([transpose_by_chromatic_interval(pitch, interval) for pitch in self])

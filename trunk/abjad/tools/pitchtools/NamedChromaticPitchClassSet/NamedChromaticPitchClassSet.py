@@ -43,7 +43,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, NamedChromaticPitchClassSet):
+      if isinstance(arg, type(self)):
          for element in arg:
             if element not in self:
                return False
@@ -124,5 +124,4 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
    def transpose(self, melodic_diatonic_interval):
       '''Transpose all npcs in self by melodic diatonic interval.'''
-      return NamedChromaticPitchClassSet([
-         npc + melodic_diatonic_interval for npc in self])
+      return type(self)([npc + melodic_diatonic_interval for npc in self])

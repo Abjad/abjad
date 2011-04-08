@@ -79,17 +79,17 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
          return False
       difference = -(NamedChromaticPitch(arg[0], 4) - NamedChromaticPitch(self[0], 4))
       new_npcs = [x + difference for x in self]
-      new_npc_seg = NamedChromaticPitchClassSegment(new_npcs)
+      new_npc_seg = type(self)(new_npcs)
       return arg == new_npc_seg
 
    def retrograde(self):
-      return NamedChromaticPitchClassSegment(reversed(self))
+      return type(self)(reversed(self))
 
    def rotate(self, n):
       from abjad.tools import seqtools
       named_chromatic_pitch_classes = seqtools.rotate_sequence(
          self.named_chromatic_pitch_classes, n)
-      return NamedChromaticPitchClassSegment(named_chromatic_pitch_classes)
+      return type(self)(named_chromatic_pitch_classes)
       
    def transpose(self, melodic_diatonic_interval):
-      return NamedChromaticPitchClassSegment([npc + melodic_diatonic_interval  for npc in self])
+      return type(self)([npc + melodic_diatonic_interval  for npc in self])

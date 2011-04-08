@@ -37,7 +37,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
    ## OVERLOADS ##
 
    def __copy__(self):
-      return HarmonicDiatonicInterval(self.quality_string, self.number)
+      return type(self)(self.quality_string, self.number)
 
    def __ge__(self, arg):
       if not isinstance(arg, type(self)):

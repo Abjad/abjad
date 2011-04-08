@@ -4,7 +4,7 @@ from abjad.core import _Immutable
 class _Interval(_Immutable):
    '''.. versionadded:: 1.1.2
 
-   Abstract interval class from which concrete classes inherit.
+   Interval base class.
    '''
 
    ## OVERLOADS ##

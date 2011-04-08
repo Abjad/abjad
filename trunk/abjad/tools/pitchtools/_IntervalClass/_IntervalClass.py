@@ -1,7 +1,7 @@
 class _IntervalClass(object):
    '''.. versionadded:: 1.1.2
 
-   Abstract interval class class from which conrete interval classes inherit.
+   Interval-class base class.
    '''
 
    ## OVERLOADS ##

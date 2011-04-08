@@ -59,7 +59,7 @@ class NamedChromaticPitchClass(_PitchClass):
       return new.named_chromatic_pitch_class
 
    def __copy__(self):
-      return NamedChromaticPitchClass(self)
+      return type(self)(self)
 
    def __float__(self):
       return float(self.numbered_chromatic_pitch_class)

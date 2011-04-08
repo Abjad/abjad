@@ -16,9 +16,7 @@ class Accidental(_StrictComparator, _Immutable):
    __slots__ = ('_alphabetic_string', '_is_adjusted', '_name_string', '_semitones', '_symbolic_string')
 
    def __new__(klass, arg = ''):
-
       self = object.__new__(klass)
-
       ## initializer symbolic string from arg
       if arg in self._all_accidental_alphabetic_strings:
          _alphabetic_string = arg
@@ -28,14 +26,13 @@ class Accidental(_StrictComparator, _Immutable):
          _alphabetic_string = self._name_string_to_alphabetic_string[arg]
       elif arg in self._all_accidental_semitone_values:
          _alphabetic_string = self._semitones_to_alphabetic_string[arg]
-      elif isinstance(arg, Accidental):
+      elif isinstance(arg, type(self)):
          _alphabetic_string = arg.alphabetic_string 
       elif isinstance(arg, type(None)):
          _alphabetic_string = ''
       else:
          raise ValueError('can not initialize accidental from value: %s' % arg)
       object.__setattr__(self, '_alphabetic_string', _alphabetic_string)
-
       ## initialize derived attributes
       _semitones = self._alphabetic_string_to_semitones[self.alphabetic_string]
       object.__setattr__(self, '_semitones', _semitones)
@@ -45,7 +42,6 @@ class Accidental(_StrictComparator, _Immutable):
       object.__setattr__(self, '_is_adjusted', _is_adjusted)
       _symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
       object.__setattr__(self, '_symbolic_string', _symbolic_string)
-
       return self
 
    def __getnewargs__(self):
@@ -57,7 +53,7 @@ class Accidental(_StrictComparator, _Immutable):
       if not isinstance(arg, type(self)):
          raise TypeError('can only add accidental to other accidental.')
       semitones = self.semitones + arg.semitones
-      return Accidental(semitones)
+      return type(self)(semitones)
 
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
@@ -81,7 +77,7 @@ class Accidental(_StrictComparator, _Immutable):
       return not self == arg
 
    def __neg__(self):
-      return Accidental(-self.semitones)
+      return type(self)(-self.semitones)
 
    def __nonzero__(self):
       return True
@@ -96,7 +92,7 @@ class Accidental(_StrictComparator, _Immutable):
       if not isinstance(arg, type(self)):
          raise TypeError('can only sub accidental from other accidental.')
       semitones = self.semitones - arg.semitones
-      return Accidental(semitones)
+      return type(self)(semitones)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -179,76 +175,76 @@ class Accidental(_StrictComparator, _Immutable):
 
    @property
    def alphabetic_string(self):
-      '''Read-only alphabetic string of accidental:
-
-      ::
+      '''Read-only alphabetic string of accidental::
 
          abjad> accidental = pitchtools.Accidental('s')
          abjad> accidental.alphabetic_string
          's'
+
+      Return string.
       '''
       return self._alphabetic_string
 
    @property
    def format(self):
-      '''Read-only LilyPond input format of accidental:
-
-      ::
+      '''Read-only LilyPond input format of accidental::
    
          abjad> accidental = pitchtools.Accidental('s')
          abjad> accidental.format
          's' 
 
       Defined equal to alphabetic string of accidental.
+
+      Return string.
       '''
       return self._alphabetic_string
 
    @property
    def is_adjusted(self):
-      '''Read-only adjustment indicator of accidental:
+      '''Read-only adjustment indicator of accidental.
 
-      ::
+      True for all accidentals equal to a nonzero number of semitones. False otherwise::
 
          abjad> accidental = pitchtools.Accidental('s')
          abjad> accidental.is_adjusted
          True
 
-      True for all accidentals equal to a nonzero number of semitones.
+      Return boolean.
       '''
       return self._is_adjusted
 
    @property
    def name_string(self):
-      '''Read-only name string of accidental:
-
-      ::
+      '''Read-only name string of accidental::
 
          abjad> accidental = pitchtools.Accidental('s')
          abjad> accidental.name_string
          'sharp'
+
+      Return string.
       '''
       return self._name_string
 
    @property
    def semitones(self):
-      '''Read-only semitones of accidental:
-
-      ::
+      '''Read-only semitones of accidental::
 
          abjad> accidental = pitchtools.Accidental('s')
          abjad> accidental.semitones
          1
+
+      Return number.
       '''
       return self._semitones
 
    @property
    def symbolic_string(self):
-      '''Read-only symbolic string of accidental:
-
-      ::
+      '''Read-only symbolic string of accidental::
 
          abjad> accidental = pitchtools.Accidental('s')
          abjad> accidental.symbolic_string
          '#'
+
+      Return string.
       '''
       return self._symbolic_string

@@ -1,11 +1,11 @@
+from abjad.tools.pitchtools._Diatonic import _Diatonic
 from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 
 
-## TODO: implement _Diatonic
-class _DiatonicIntervalClass(_IntervalClass):
+class _DiatonicIntervalClass(_IntervalClass, _Diatonic):
    '''.. versionadded:: 1.1.2
 
-   Diatonic interval class.
+   Diatonic interval-class base class.
    '''
 
    ## OVERLOADS ##

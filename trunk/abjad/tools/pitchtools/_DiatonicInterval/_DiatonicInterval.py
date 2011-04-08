@@ -1,13 +1,13 @@
 from abjad.exceptions import IntervalError
 from abjad.tools import mathtools
+from abjad.tools.pitchtools._Diatonic import _Diatonic
 from abjad.tools.pitchtools._Interval import _Interval
 
 
-## TODO: implement _Diatonic
-class _DiatonicInterval(_Interval):
+class _DiatonicInterval(_Interval, _Diatonic):
    '''.. versionadded:: 1.1.2
 
-   Abstract diatonic interval class from which concrete classes inherit.
+   Diatonic interval base class.
    '''
 
    def __init__(self, quality_string, number):

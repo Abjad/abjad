@@ -80,7 +80,7 @@ class PitchRange(_Immutable):
       return False
 
    def __eq__(self, arg):
-      if isinstance(arg, PitchRange):
+      if isinstance(arg, type(self)):
          if self._start == arg._start:
             if self._stop == arg._stop:
                return True

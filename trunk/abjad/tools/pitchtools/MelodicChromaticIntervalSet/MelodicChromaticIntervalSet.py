@@ -21,7 +21,7 @@ class MelodicChromaticIntervalSet(_IntervalSet):
    ## OVERLOADS ##
 
    def __copy__(self):
-      return MelodicChromaticIntervalSet(self)
+      return type(self)(self)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)

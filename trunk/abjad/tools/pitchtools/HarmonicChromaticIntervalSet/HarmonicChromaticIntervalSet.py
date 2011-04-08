@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools._IntervalSet import _IntervalSet
-from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
 
 
 class HarmonicChromaticIntervalSet(_IntervalSet):
@@ -14,16 +13,17 @@ class HarmonicChromaticIntervalSet(_IntervalSet):
    '''
 
    def __new__(self, interval_tokens):
+      from abjad.tools import pitchtools
       hcis = [ ]      
       for token in interval_tokens:
-         hci = HarmonicChromaticInterval(token)
+         hci = pitchtools.HarmonicChromaticInterval(token)
          hcis.append(hci)
       return frozenset.__new__(self, hcis)
 
    ## OVERLOADS ##
 
    def __copy__(self):
-      return HarmonicChromaticIntervalSet(self)
+      return type(self)(self)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)

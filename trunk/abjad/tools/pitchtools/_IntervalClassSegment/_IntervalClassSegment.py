@@ -4,8 +4,7 @@ from abjad.tools.pitchtools._Segment import _Segment
 class _IntervalClassSegment(_Segment):
    '''.. versionadded:: 1.1.2
 
-   Abstract ordered colleciton of interval class instances
-   from which concrete classes inherit.
+   Interval-class segment base class.
    '''
 
    ## OVERLOADS ##

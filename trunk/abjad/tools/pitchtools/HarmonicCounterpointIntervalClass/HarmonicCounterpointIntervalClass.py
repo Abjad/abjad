@@ -1,5 +1,3 @@
-from abjad.tools.pitchtools._CounterpointInterval import _CounterpointInterval
-from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._CounterpointIntervalClass import _CounterpointIntervalClass
 from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 
@@ -16,9 +14,12 @@ class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicInt
    '''
 
    def __init__(self, token):
+      from abjad.tools import pitchtools
       if isinstance(token, int):
          _number = token
-      elif isinstance(token, (_DiatonicInterval, _CounterpointInterval)):
+      elif isinstance(token, (
+         pitchtools._DiatonicInterval._DiatonicInterval, 
+         pitchtools._CounterpointInterval._CounterpointInterval)):
          _number = token.number
       if _number == 0:
          raise ValueError('must be nonzero.')
@@ -35,7 +36,7 @@ class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicInt
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      if isinstance(arg, HarmonicCounterpointIntervalClass):
+      if isinstance(arg, type(self)):
          if self.number == arg.number:
             return True
       return False

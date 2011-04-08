@@ -5,7 +5,7 @@ from abjad.core import _Immutable
 class _PitchClass(_Immutable, _FlexEqualityComparator):
    '''.. versionadded:: 1.1.2
 
-   Abstract pitch-class class.
+   Pitch-class base class.
    '''
 
    ## OVERLOADS ##

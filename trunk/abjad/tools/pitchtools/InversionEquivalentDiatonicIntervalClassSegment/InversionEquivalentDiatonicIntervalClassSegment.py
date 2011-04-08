@@ -23,7 +23,7 @@ class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):
    ## OVERLOADS ##
 
    def __copy__(self):
-      return InversionEquivalentDiatonicIntervalClassSegment(self.intervals)
+      return type(self)(self.intervals)
 
    ## PUBLIC ATTRIBUTES ##
 

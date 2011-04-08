@@ -29,13 +29,13 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
    ## OVERLOADS ##
 
    def __copy__(self):
-      return TwelveToneRow(self)
+      return type(self)(self)
 
    def __getslice__(self, start, stop):
       return NumberedChromaticPitchClassSegment(tuple.__getslice__(self, start, stop))
 
    def __eq__(self, arg):
-      if isinstance(arg, TwelveToneRow):
+      if isinstance(arg, type(self)):
          return tuple(self) == tuple(arg)
       return False
 
