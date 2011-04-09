@@ -1,12 +1,8 @@
 from abjad.tools.pitchtools.is_chromatic_pitch_number import is_chromatic_pitch_number
-from abjad.tools.pitchtools.octave_number_to_octave_tick_string import \
-   octave_number_to_octave_tick_string
-from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name import \
-   chromatic_pitch_class_number_to_chromatic_pitch_class_name
-from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import \
-   chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
-from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import \
-   chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
+from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_number_to_octave_tick_string
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name import chromatic_pitch_class_number_to_chromatic_pitch_class_name
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
 
 
 def chromatic_pitch_number_to_chromatic_pitch_name(
@@ -17,6 +13,8 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
 
       abjad> pitchtools.chromatic_pitch_number_to_chromatic_pitch_name(13)
       "cs''"
+
+   Return string.
    '''
 
    if not is_chromatic_pitch_number(chromatic_pitch_number):

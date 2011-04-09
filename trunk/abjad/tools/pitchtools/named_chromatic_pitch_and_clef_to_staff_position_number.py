@@ -1,7 +1,7 @@
 def named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef):
    r'''.. versionadded:: 1.1.2
 
-   Convert `pitch` and `clef` to staff position number. ::
+   Convert named chromatic `pitch` and `clef` to staff position number::
 
       abjad> staff = Staff(macros.scale(8))
       abjad> clef = contexttools.ClefMark('treble')
@@ -18,13 +18,7 @@ def named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef):
       b'    0
       c''   1
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pitch_and_clef_to_staff_position_number( )`` to
-      ``pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number( )`` to
-      ``pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number( )``.
+   Return integer.
    '''
 
    return abs(pitch.numbered_diatonic_pitch) + clef.middle_c_position   

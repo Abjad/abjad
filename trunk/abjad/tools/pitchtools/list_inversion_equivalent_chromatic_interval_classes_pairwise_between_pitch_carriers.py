@@ -3,7 +3,8 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 
-def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(pitch_carriers, wrap = False):
+def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+   pitch_carriers, wrap = False):
    r'''.. versionadded:: 1.1.2
 
    List inversion-equivalent chromatic interval classes pairwise between `pitch_carriers`::
@@ -63,6 +64,8 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
    When ``wrap = False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
 
    When ``wrap = True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+
+   Return list.
    '''
 
    result = [ ]

@@ -7,6 +7,8 @@ def is_diatonic_pitch_number(expr):
       True
 
    The diatonic pitch numbers are equal to the set of integers.
+
+   Return boolean.
    '''
 
    return isinstance(expr, (int, long))

@@ -21,6 +21,8 @@ def is_diatonic_pitch_name(expr):
       True
 
    The regex ``(^[a-g,A-G])(,+|'+|)$`` underlies this predicate.
+
+   Return boolean.
    '''
 
    if not isinstance(expr, str):

@@ -1,8 +1,6 @@
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
-from abjad.tools.pitchtools.octave_tick_string_to_octave_number import \
-   octave_tick_string_to_octave_number
-from abjad.tools.pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number import \
-   diatonic_pitch_class_name_to_diatonic_pitch_class_number
+from abjad.tools.pitchtools.octave_tick_string_to_octave_number import octave_tick_string_to_octave_number
+from abjad.tools.pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number import diatonic_pitch_class_name_to_diatonic_pitch_class_number
 
 
 def chromatic_pitch_name_to_diatonic_pitch_number(chromatic_pitch_name):
@@ -12,6 +10,8 @@ def chromatic_pitch_name_to_diatonic_pitch_number(chromatic_pitch_name):
 
       abjad> pitchtools.chromatic_pitch_name_to_diatonic_pitch_number("cs''")
       7
+
+   Return integer.
    '''
 
    if not isinstance(chromatic_pitch_name, str):

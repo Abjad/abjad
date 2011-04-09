@@ -17,12 +17,16 @@ chromatic_pitch_name_regex_body = '''
 chromatic_pitch_name_regex = re.compile('^%s$' % chromatic_pitch_name_regex_body, re.VERBOSE)
 
 def is_chromatic_pitch_name(expr):
-   '''True `expr` is a chromatic pitch name. Otherwise false::
+   '''.. versionadded:: 1.1.2
+
+   True `expr` is a chromatic pitch name. Otherwise false::
 
       abjad> pitchtools.is_chromatic_pitch_name('c,')
       True
 
    The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[f,s]|)!?)(,+|'+|)$`` underlies this predicate.
+
+   Return boolean.
    '''
 
    if not isinstance(expr, str):

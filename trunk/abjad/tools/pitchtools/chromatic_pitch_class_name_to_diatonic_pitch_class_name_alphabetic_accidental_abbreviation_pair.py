@@ -1,30 +1,20 @@
-def chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair(name):
-   '''Return name, accidental pair corresponding 
-   to pitch `name` string. ::
+def chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair(  chromatic_pitch_class_name):
+   '''.. versionadded:: 1.1.1
 
-      abjad> pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair('c')
-      ('c', '')
+   Convert `chromatic_pitch_class_name` to diatonic pitch-class name / alphabetic 
+   accidental abbreviation pair::
+
       abjad> pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair('cs')
       ('c', 's')
-      abjad> pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair('d')
-      ('d', '')
-      abjad> pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair('ds')
-      ('d', 's')
+
+   Return pair of strings.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.name_to_letter_accidental( )`` to
       ``pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pitch_name_to_pitch_letter_and_alphabetic_accidetnal_string_pair( )`` to
-      ``pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_string_pair( )`` to
-      ``pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair( )``.
    '''
 
-   if len(name) == 1:
-      return name, ''
+   if len(chromatic_pitch_class_name) == 1:
+      return chromatic_pitch_class_name, ''
    else:
-      return name[0], name[1:]
+      return chromatic_pitch_class_name[0], chromatic_pitch_class_name[1:]

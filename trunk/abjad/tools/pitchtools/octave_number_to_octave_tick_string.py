@@ -1,9 +1,10 @@
 def octave_number_to_octave_tick_string(octave_number):
-   r""" versionadded:: 1.1.2
+   r""".. versionadded:: 1.1.2
 
    Convert `octave_number` to octave tick string::
 
-      abjad> for octave_number in range(-1, 9):                                                           ...     print "%s\t%s" % (octave_number, pitchtools.octave_number_to_octave_tick_string(octave_number))
+      abjad> for octave_number in range(-1, 9):
+      ...     print "%s\t%s" % (octave_number, pitchtools.octave_number_to_octave_tick_string(octave_number))
       ... 
       -1 ,,,,
       0  ,,,
@@ -15,6 +16,10 @@ def octave_number_to_octave_tick_string(octave_number):
       6  '''
       7  ''''
       8  '''''
+
+   Raise type error on noninteger input.
+
+   Return string.
    """
 
    if not isinstance(octave_number, (int, long, float)):
@@ -22,7 +27,7 @@ def octave_number_to_octave_tick_string(octave_number):
 
    if isinstance(octave_number, float):
       if not int(octave_number) == octave_number:
-         raise ValueError('\n\tOctave number must equal to int: "%s".' % octave_number)      
+         raise TypeError('\n\tOctave number must equal to int: "%s".' % octave_number)      
       else:
          octave_number = int(octave_number)
 

@@ -5,24 +5,14 @@ def calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_t
    pitch_carrier_1, pitch_carrier_2):
    '''.. versionadded:: 1.1.2
 
-   Return harmonic counterpoint interval class from `pitch_carrier_1` to
-   `pitch_carrier_2`. ::
+   Calculate harmonic counterpoint interval class from `pitch_carrier_1` to
+   `pitch_carrier_2`::
 
-      abjad> pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch(NamedChromaticPitch(-2), NamedChromaticPitch(12))
+      abjad> pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch(
+         pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
       HarmonicCounterpointIntervalClass(2)
 
-   ::
-
-      abjad> pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch(NamedChromaticPitch(12), NamedChromaticPitch(-2))
-      HarmonicCounterpointIntervalClass(2)
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.harmonic_counterpoint_interval_class_from_to( )`` to
-      ``pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch( )`` to
-      ``pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pchromatic_pitch_to_named_chromatic_pitch( )``.
+   Return harmonic counterpoint interval-class.
    '''
 
    ## get melodic diatonic interval

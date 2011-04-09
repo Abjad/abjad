@@ -1,6 +1,8 @@
-def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pc):
-   '''Return pitch name string corresponding to `pc` spelled
-   with zero or more flats. ::
+def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
+   chromatic_pitch_class_number):
+   '''.. versionadded:: 1.1.1
+
+   Convert chromatic pitch-class number to chromatic pitch-class name with flats::
 
       abjad> for n in range(13):
       ...     pc = n / 2.0
@@ -21,22 +23,20 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pc):
       5.5   gtqf
       6.0   gf
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pc_to_pitch_name_flats( )`` to
-      ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats( )``.
+   Return string.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats( )`` to
+      renamed ``pitchtools.pc_to_pitch_name_flats( )`` to
       ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats( )``.
    '''
   
    try:
-      return _pcToPitchNameFlats[pc]
+      return _pitch_class_name_to_pitch_class_number_flats[chromatic_pitch_class_number]
    except KeyError:
-      return _pcToPitchNameFlats[abs(pc)]
+      return _pitch_class_name_to_pitch_class_number_flats[abs(chromatic_pitch_class_number)]
 
 
-_pcToPitchNameFlats = {
+_pitch_class_name_to_pitch_class_number_flats = {
       0:  'c',     0.5: 'dtqf',    1: 'df',    1.5:  'dqf',
       2:  'd',     2.5: 'etqf',    3: 'ef',    3.5:  'eqf',
       4:  'e',     4.5: 'fqf',     5: 'f',     5.5:  'gtqf',

@@ -3,18 +3,27 @@ from abjad.tools.pitchtools._ChromaticPitch import _ChromaticPitch
 
 
 def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segment):
-   '''Transpose `pitch` by each interval in `segment`, such that each transposition
-   transposes the resulting pitch of the previous transposition.
+   '''.. versionadded:: 1.1.2
+
+   Transpose chromatic `pitch` by melodic chromatic interval `segment`::
 
       abjad> ncp = NumberedChromaticPitch(0)
       abjad> mcis = MelodicChromaticIntervalSegment([0, -1, 2])
-      abjad> transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(ncp, mcis)
+      abjad> pitchtools.transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(ncp, mcis)
       [NumberedChromaticPitch(0), NumberedChromaticPitch(-1), NumberedChromaticPitch(1)]
 
+   Transpose by each interval in `segment` such that each tranposition
+   transposes the resulting pitch of the previous transposition.
+
+   Return list of numbered chromatic pitches.
    '''
 
-   assert isinstance(pitch, _ChromaticPitch)
-   assert isinstance(segment, MelodicChromaticIntervalSegment)
+   if not isinstance(pitch, _ChromaticPitch):
+      raise TypeError
+
+   if not isinstance(segment, MelodicChromaticIntervalSegment):
+      raise TypeError
+
    if not hasattr(pitch, 'transpose'):
       pitch = pitch.numbered_chromatic_pitch
    pitches = [pitch.transpose(segment[0].number)]

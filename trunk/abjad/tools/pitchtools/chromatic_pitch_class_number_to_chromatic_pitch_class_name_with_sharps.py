@@ -1,6 +1,8 @@
-def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(pc):
-   '''Return pitch name string corresponding to `pc` spelled
-   with zero or more sharps. ::
+def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(
+   chromatic_pitch_class_number):
+   '''.. versionadded:: 1.1.1
+
+   Convert `chromatic_pitch_class_number` to chromatic pitch-class name with sharps::
 
       abjad> for n in range(13):
       ...     pc = n / 2.0
@@ -21,22 +23,20 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(pc):
       5.5   fqs
       6.0   fs
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pc_to_pitch_name_sharps( )`` to
-      ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )``.
+   Return string.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )`` to
+      renamed ``pitchtools.pc_to_pitch_name_sharps( )`` to
       ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )``.
    '''
 
    try:
-      return _pcToPitchNameSharps[pc]
+      return _pitch_class_number_to_pitch_class_name_sharps[chromatic_pitch_class_number]
    except KeyError:
-      return _pcToPitchNameSharps[abs(pc)]
+      return _pitch_class_number_to_pitch_class_name_sharps[abs(chromatic_pitch_class_number)]
 
 
-_pcToPitchNameSharps = {
+_pitch_class_number_to_pitch_class_name_sharps = {
       0:  'c',     0.5: 'cqs',    1: 'cs',    1.5:  'ctqs',
       2:  'd',     2.5: 'dqs',    3: 'ds',    3.5:  'dtqs',
       4:  'e',     4.5: 'eqs',    5: 'f',     5.5:  'fqs',

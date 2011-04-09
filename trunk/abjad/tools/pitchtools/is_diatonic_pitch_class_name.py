@@ -9,12 +9,16 @@ diatonic_pitch_class_name_regex = re.compile('^%s$' %
    diatonic_pitch_class_name_regex_body, re.VERBOSE)
 
 def is_diatonic_pitch_class_name(expr):
-   '''True when `expr` is a diatonic pitch-class name. Otherwise false::
+   '''.. versionadded:: 1.1.2
+
+   True when `expr` is a diatonic pitch-class name. Otherwise false::
 
       abjad> pitchtools.is_diatonic_pitch_class_name('c')
       True
 
    The regex ``^[a-g,A-G]$`` underlies this predicate.
+
+   Return boolean.
    '''
 
    if not isinstance(expr, str):

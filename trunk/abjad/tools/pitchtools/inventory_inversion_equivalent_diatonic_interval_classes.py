@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import Inve
 def inventory_inversion_equivalent_diatonic_interval_classes( ):
    '''.. versionadded:: 1.1.2
 
-   List all 11 diatonic interval classes. ::
+   Inventory inversion-equivalent diatonic interval-classes::
 
       abjad> for dic in pitchtools.inventory_inversion_equivalent_diatonic_interval_classes( ):
       ...     dic
@@ -21,11 +21,11 @@ def inventory_inversion_equivalent_diatonic_interval_classes( ):
       InversionEquivalentDiatonicIntervalClass(perfect fourth)
       InversionEquivalentDiatonicIntervalClass(augmented fourth)
 
+   There are 11 inversion-equivalent diatonic interval-classes.
+
    It is an open question as to whether octaves should be included.
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_all_diatonic_interval_classes( )`` to
-      ``pitchtools.inventory_inversion_equivalent_diatonic_interval_classes( )``.
+   Return list of inversion-equivalent diatonic interval-classes.
    '''
 
    return [

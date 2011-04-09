@@ -8,6 +8,8 @@ def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
 
       abjad> pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name("c''")
       'c'
+
+   Return string.
    '''
 
    match = diatonic_pitch_name_regex.match(diatonic_pitch_name)

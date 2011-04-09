@@ -6,19 +6,10 @@ from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
    pitch_carriers, wrap = False):
-   r'''Return list of signed integers representing the intervals
-   between each of the elements in *pitch_carriers*.
+   r'''.. versionadded:: 1.1.1
+
+   List melodic chromatic interval numbers pairwise between `pitch_carriers`::
    
-   Behavior of ``wrap``:
-
-   *  When ``wrap = False`` do not return
-      ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
-   *  When ``wrap = True`` do return
-      ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
-   *  Default to ``False``.
-
-   ::
-
       abjad> staff = Staff(macros.scale(8))
       abjad> print staff.format
       \new Staff {
@@ -59,24 +50,14 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
       abjad> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(notes, wrap = True)
       [-1, -2, -2, -2, -1, -2, -2, 12]
 
+   When ``wrap = False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+
+   When ``wrap = True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+
+   Return list.
+
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.get_signed_interval_series( )`` to
-      ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitches( )`` to
-      ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers( )`` to
-      ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers( )`` to
-      ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_ppitch_carriers( )`` to
       ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers( )``.
    '''
 

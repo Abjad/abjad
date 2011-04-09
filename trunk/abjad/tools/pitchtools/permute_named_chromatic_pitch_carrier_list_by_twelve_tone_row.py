@@ -4,24 +4,18 @@ from abjad.tools.pitchtools.TwelveToneRow import TwelveToneRow
 
 
 def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
-   '''Permute `pitches` by `row`. 
+   '''.. versionadded:: 1.1.2
    
-   ::
+   Permute named chromatic pitch carrier list by twelve-tone `row`::
 
       abjad> notes = notetools.make_notes([17, -10, -2, 11], [Fraction(1, 4)])
       abjad> row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
       abjad> pitchtools.permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(notes, row)
       [Note(bf, 4), Note(d, 4), Note(f'', 4), Note(b', 4)]
 
-   This function works by reference only. No objects are cloned.
+   Function works by reference only. No objects are cloned.
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.permute_by_row( )`` to
-      ``pitchtools.permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.permute_pitch_list_by_twelve_tone_row( )`` to
-      ``pitchtools.permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row( )``.
+   Return list.
    '''
 
    if not isinstance(row, TwelveToneRow):

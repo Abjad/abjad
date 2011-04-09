@@ -8,6 +8,8 @@ def is_chromatic_pitch_number(expr):
 
    The chromatic pitch numbers are equal to the set of all integers in union
    with the set of all integers plus of minus ``0.5``.
+
+   Return boolean.
    '''
 
    if isinstance(expr, (int, long, float)):

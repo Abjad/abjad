@@ -9,6 +9,8 @@ def diatonic_pitch_class_number_to_chromatic_pitch_class_number(diatonic_pitch_c
 
       abjad> pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number(6)
       11
+
+   Return nonnegative integer.
    '''
 
    error_message = '\n\tNot a diatonic pitch-class number: "%s".' % diatonic_pitch_class_number

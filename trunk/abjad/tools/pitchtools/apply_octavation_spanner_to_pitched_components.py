@@ -2,12 +2,12 @@ from abjad.tools.spannertools import OctavationSpanner
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
+## TODO: rename to apply_octavation_spanner_to_pitched_components_in_expr
 def apply_octavation_spanner_to_pitched_components(expr, 
    ottava_numbered_diatonic_pitch = None, quindecisima_numbered_diatonic_pitch = None):
    r""".. versionadded:: 1.1.1
 
-   Apply octavation spanner to `expr` according to the diatonic pitch number
-   of the maximum pitch in `expr`. ::
+   Apply octavation spanner to pitched components in `expr`::
 
       abjad> t = Measure((4, 8), notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
       abjad> pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_numbered_diatonic_pitch = 14)
@@ -23,6 +23,11 @@ def apply_octavation_spanner_to_pitched_components(expr,
          ef'''8
          f'''8
          \ottava #0
+
+   Apply octavation spanner according to the diatonic pitch number of 
+   the maximum pitch in `expr`.
+
+   Return octavation spanner.
    """
 
    pitches = list_named_chromatic_pitches_in_expr(expr)

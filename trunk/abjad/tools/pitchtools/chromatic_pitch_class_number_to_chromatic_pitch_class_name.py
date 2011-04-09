@@ -1,7 +1,7 @@
-def chromatic_pitch_class_number_to_chromatic_pitch_class_name(pc):
-   '''Return pitch name string corresponding to `pc`.
+def chromatic_pitch_class_number_to_chromatic_pitch_class_name(chromatic_pitch_class_number):
+   '''.. versionadded:: 1.1.1
 
-   ::
+   Convert `chromatic_pitch_class_number` to chromatic pitch-class name::
 
       abjad> for n in range(0, 13):
       ...     pc = n / 2.0
@@ -22,19 +22,17 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name(pc):
       5.5   fqs
       6.0   fs
 
+   Return string.
+
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.pc_to_pitch_name( )`` to
       ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pitch_class_number_to_pitch_name( )`` to
-      ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name( )``.
    '''
 
-   return _pcToPitchName[pc]
+   return _pitch_class_number_to_pitch_class_name[chromatic_pitch_class_number]
    
 
-_pcToPitchName = {
+_pitch_class_number_to_pitch_class_name = {
    0:  'c',     0.5: 'cqs',    1: 'cs',    1.5:  'dqf',
    2:  'd',     2.5: 'dqs',    3: 'ef',    3.5:  'eqf',
    4:  'e',     4.5: 'eqs',    5: 'f',     5.5:  'fqs',

@@ -8,6 +8,8 @@ def diatonic_pitch_number_to_diatonic_pitch_class_number(diatonic_pitch_number):
 
       abjad> pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_number(7)
       0
+
+   Return nonnegative integer.
    '''
 
    if not is_diatonic_pitch_number(diatonic_pitch_number):

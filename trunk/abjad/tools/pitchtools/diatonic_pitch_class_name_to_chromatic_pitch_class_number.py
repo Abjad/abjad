@@ -1,21 +1,12 @@
 def diatonic_pitch_class_name_to_chromatic_pitch_class_number(diatonic_pitch_class_name):
-   '''Return nonnegative pitch class integer corresponding to 
-   length-one pitch class `letter` string. ::
+   '''.. versionadded:: 1.1.1
 
-      abjad> pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('c')
-      0
-      abjad> pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('d')
-      2
-      abjad> pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('e')
-      4
+   Convert `diatonic_pitch_class_name` to chromatic pitch-class number::
+
       abjad> pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('f')
       5
-      abjad> pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('g')
-      7
-      abjad> pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('a')
-      9
-      abjad> pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('b')
-      11
+
+   Return integer.
    '''
    from abjad.tools import pitchtools
 

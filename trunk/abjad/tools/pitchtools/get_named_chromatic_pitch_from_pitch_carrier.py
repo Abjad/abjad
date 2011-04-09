@@ -6,8 +6,9 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 
 
 def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
-   '''Get Abjad pitch instance from pitch, note, note head
-   of chord `pitch_carrier`::
+   '''.. versionadded:: 1.1.1
+
+   Get named chromatic pitch from `pitch_carrier`::
 
       abjad> pitch = NamedChromaticPitch('df', 5)
       abjad> pitch
@@ -39,62 +40,14 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
       NamedChromaticPitch(df, 5)
 
-   Raise :exc:`~abjad.exceptions.MissingPitchError` when
-   `pitch_carrier` carries no pitch. ::
+   Raise missing pitch error when `pitch_carrier` carries no pitch.
 
-      abjad> note = Note(('df', 5), (1, 4))
-      abjad> note.pitch = None
-      abjad> note
-      Note(None, 4)
-      abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note)
-      MissingPitchError
+   Raise extra pitch error when `pitch_carrier` carries more than one pitch.
 
-   ::
-
-      abjad> note = Note(('df', 5), (1, 4))
-      abjad> note.pitch = None
-      abjad> note.note_head
-      NoteHead( )
-      abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note.note_head)
-      MissingPitchError
-
-   ::
-
-      abjad> chord = Chord([('df', 5)], (1, 4))
-      abjad> chord.pitches = [ ]
-      abjad> chord
-      Chord(, 4)
-      abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
-      MissingPitchError
-
-   Raise :exc:`~abjad.exceptions.ExtraPitchError` when
-   chord carries more than one pitch. ::
-
-      abjad> chord = Chord([12, 14, 23], (1, 4))
-      abjad> chord
-      Chord(c'' d'' b'', 4)
-      abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
-      ExtraPitchError
-
-   .. note:: 'Defective' note and note head instances with no
-      pitch are allowed 
-      in the current implementation of Abjad but may deprecate in a future
-      implementation.
-
-   Raise :exc:`TypeError` when `pitch_carrier` is not a valid pitch carrier. ::
-
-      abjad> staff = Staff([ ])
-      abjad> staff
-      Staff{ }
-      abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(staff)
-      TypeError
+   Return named chromatic pitch.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.get_pitch( )`` to
-      ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier( )`` to
       ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier( )``.
    '''
    from abjad.tools.notetools.NoteHead import NoteHead

@@ -20,6 +20,8 @@ def is_alphabetic_accidental_abbreviation(expr):
       True
 
    The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this predicate.
+
+   Return boolean.
    '''
 
    if not isinstance(expr, str):

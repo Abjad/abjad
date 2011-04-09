@@ -1,8 +1,6 @@
 from abjad.tools.pitchtools.Accidental import Accidental
-from abjad.tools.pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number import \
-   diatonic_pitch_class_name_to_diatonic_pitch_class_number
-from abjad.tools.pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number import \
-   diatonic_pitch_class_number_to_chromatic_pitch_class_number
+from abjad.tools.pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number import diatonic_pitch_class_name_to_diatonic_pitch_class_number
+from abjad.tools.pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number import diatonic_pitch_class_number_to_chromatic_pitch_class_number
 from abjad.tools.pitchtools.is_chromatic_pitch_class_name import chromatic_pitch_class_name_regex
 
 
@@ -13,6 +11,8 @@ def chromatic_pitch_class_name_to_chromatic_pitch_class_number(chromatic_pitch_c
 
       abjad> pitchtools.chromatic_pitch_class_name_to_chromatic_pitch_class_number('cs')
       1
+
+   Return chromatic pitch-class number.
    '''
 
    match = chromatic_pitch_class_name_regex.match(chromatic_pitch_class_name)

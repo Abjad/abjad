@@ -5,26 +5,14 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChroma
 def expr_has_duplicate_numeric_chromatic_pitch_class(expr):
    '''.. versionadded:: 1.1.2
 
-   True when `expr` contains one or more duplicate pitch classes.
-   Otherwise false. ::
+   True when `expr` duplicated numeric chromatic pitch-class.
+   Otherwise false::
 
       abjad> chord = Chord([1, 13, 14], (1, 4))
       abjad> pitchtools.expr_has_duplicate_named_chromatic_pitch_class(chord)
       True
 
-   ::
-
-      abjad> chord = Chord([1, 14, 15], (1, 4))
-      abjad> pitchtools.expr_has_duplicate_named_chromatic_pitch_class(chord)
-      False 
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.has_duplicate_pitch_class( )`` to
-      ``pitchtools.expr_has_duplicate_numeric_chromatic_pitch_class( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class( )`` to
-      ``pitchtools.expr_has_duplicate_numeric_chromatic_pitch_class( )``.
+   Return boolean.
    '''
  
    pitch_classes = list_numeric_chromatic_pitch_classes_in_expr(expr)

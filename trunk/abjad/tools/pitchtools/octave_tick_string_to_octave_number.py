@@ -1,23 +1,19 @@
-from abjad.exceptions import PitchError
 import re
 
 
 def octave_tick_string_to_octave_number(tick_string):
    '''.. versionadded:: 1.1.2
 
-   Convert European `tick_string` to American octave number. ::
-
-      abjad> pitchtools.octave_tick_string_to_octave_number('')
-      3
-
-   ::
+   Convert `tick_string` to octave number::
 
       abjad> pitchtools.octave_tick_string_to_octave_number("'")
       4
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.tick_string_to_octave_number( )`` to
-      ``pitchtools.octave_tick_string_to_octave_number( )``.
+   Raise type error on nonstring input.
+
+   Raise value error on input not of tick string format.
+
+   Return integer.
    '''
 
    if not isinstance(tick_string, str):
@@ -30,4 +26,4 @@ def octave_tick_string_to_octave_number(tick_string):
    elif re.match('(\\,+)', tick_string):
       return 3 - len(tick_string)
    else:
-      PitchError('incorrect tick string format.')
+      raise ValueError('incorrect tick string format.')

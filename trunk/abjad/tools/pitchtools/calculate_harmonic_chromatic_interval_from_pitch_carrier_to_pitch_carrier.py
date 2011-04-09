@@ -1,31 +1,24 @@
 from abjad.tools.pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier import calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier
 
 
-def calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(pitch_carrier_1, pitch_carrier_2):
+def calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
+   pitch_carrier_1, pitch_carrier_2):
    '''.. versionadded:: 1.1.2
 
-   Return harmonic chromatic interval from `pitch_carrier_1` to
-   `pitch_carrier_2`. ::
+   Calculate harmonic chromatic interval from `pitch_carrier_1` to
+   `pitch_carrier_2`::
 
-      abjad> pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(NamedChromaticPitch(-2), NamedChromaticPitch(12))
+      abjad> pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
+         pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+      True
       HarmonicChromaticInterval(14)
 
-   ::
-
-      abjad> pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(NamedChromaticPitch(12), NamedChromaticPitch(-2))
-      HarmonicChromaticInterval(14)
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.harmonic_chromatic_interval_from_to( )`` to
-      ``pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.calculate_harmonic_chromatic_interval_from_pitch_to_pitch( )`` to
-      ``pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier( )``.
+   Return harmonic chromatic interval.
    '''
 
    ## get melodic chromatic interval
-   mci = calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(pitch_carrier_1, pitch_carrier_2)
+   mci = calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
+      pitch_carrier_1, pitch_carrier_2)
 
    ## return harmonic chromatic interval
    return mci.harmonic_chromatic_interval

@@ -5,40 +5,15 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromatic
 def list_numeric_chromatic_pitch_classes_in_expr(expr):
    '''.. versionadded:: 1.1.2
 
-   Get tuple of zero or more pitch classes from almost
-   any expression `expr`.
-
-   Works with notes. ::
-
-      abjad> note = Note(13, (1, 4))
-      abjad> pitchtools.list_numeric_chromatic_pitch_classes_in_expr(note)
-      (NumerciPitchClass(1),)
-
-   Works with multiple-note chords. ::
+   List numeric chromatic pitch-classes in `expr`::
 
       abjad> chord = Chord([13, 14, 15], (1, 4))
       abjad> pitchtools.list_numeric_chromatic_pitch_classes_in_expr(chord)
       (NumerciPitchClass(1), NumberedChromaticPitchClass(2), NumberedChromaticPitchClass(3))
 
-   Works with empty chords. ::
+   Works with notes, chords, defective chords.
 
-      abjad> empty_chord = Chord([ ], (1, 4))
-      abjad> pitchtools.list_numeric_chromatic_pitch_classes_in_expr(empty_chord)
-      ( )
-
-   Works with one-note chords. ::
-
-      abjad> one_note_chord = Chord([13], (1, 4))
-      abjad> pitchtools.list_numeric_chromatic_pitch_classes_in_expr(one_note_chord)
-      (NumberedChromaticPitchClass(1),)
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.get_numeric_chromatic_pitch_class_from_pitch_carrieres( )`` to
-      ``pitchtools.list_numeric_chromatic_pitch_classes_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_numbered_chromatic_pitch_classes_in_expr( )`` to
-      ``pitchtools.list_numeric_chromatic_pitch_classes_in_expr( )``.
+   Return tuple or zero or more numbered chromatic pitch-classes.
    '''
 
    pitches = list_named_chromatic_pitches_in_expr(expr)

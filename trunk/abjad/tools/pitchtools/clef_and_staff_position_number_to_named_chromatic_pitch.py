@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position_number):
    r'''.. versionadded:: 1.1.2
 
-   Convert `clef` and `staff_position_number` to pitch. ::
+   Convert `clef` and `staff_position_number` to named chromatic pitch::
 
       abjad> clef = contexttools.ClefMark('treble')
       abjad> for n in range(-6, 6):
@@ -23,13 +23,7 @@ def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position
       treble   4  f''
       treble   5  g''
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.clef_and_staff_position_number_to_pitch( )`` to
-      ``pitchtools.clef_and_staff_position_number_to_named_chromatic_pitch( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.clef_and_staff_position_number_to_named_chromatic_pitch( )`` to
-      ``pitchtools.clef_and_staff_position_number_to_named_chromatic_pitch( )``.
+   Return named chromatic pitch.
    '''
 
    position_residue_to_pitch_name = {

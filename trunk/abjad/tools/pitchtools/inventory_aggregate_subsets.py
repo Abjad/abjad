@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChroma
 def inventory_aggregate_subsets( ):
    '''.. versionadded:: 1.1.2
 
-   List all 4096 subsets of the twelve-tone aggregate. ::
+   Inventory aggregate subsets::
 
       abjad> U_star = pitchtools.inventory_aggregate_subsets( )
       abjad> len(U_star)
@@ -33,11 +33,11 @@ def inventory_aggregate_subsets( ):
       NumberedChromaticPitchClassSet([PitchClass(1), NumberedChromaticPitchClass(4)])
       NumberedChromaticPitchClassSet([PitchClass(0), NumberedChromaticPitchClass(1), NumberedChromaticPitchClass(4)])
 
+   There are 4096 subsets of the aggregate.
+
    This is ``U*`` in [Morris 1987].
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.make_all_aggregate_subsets( )`` to
-      ``pitchtools.inventory_aggregate_subsets( )``.
+   Return list of numbered chromatic pitch-class sets.
    '''
 
    def _helper(binary_string):

@@ -13,14 +13,16 @@ from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interva
 ## FIXME: currently broken now that chords correctly copy tweaked noteheads;
 ##        make this function work with tweaked chords
 def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitches, pitch_range):
-   r"""List octave transpositions of `pitches` in `pitch_range`.
+   r""".. versionadded:: 1.1.1
 
-   ::
+   List octave transpositions of `pitches` in `pitch_range`::
       
       abjad> chord = Chord([0, 2, 4], (1, 4))
       abjad> pitch_range = pitchtools.PitchRange(0, 48)
       abjad> pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range(chord, pitch_range)
       [Chord(c' d' e', 4), Chord(c'' d'' e'', 4), Chord(c''' d''' e''', 4), Chord(c'''' d'''' e'''', 4)]
+
+   Return list.
    """
 
    if not isinstance(pitch_range, PitchRange):

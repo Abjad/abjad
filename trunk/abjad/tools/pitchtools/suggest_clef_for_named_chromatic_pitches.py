@@ -3,32 +3,22 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 from abjad.tools import contexttools
 
 
+## TODO: renamed to suggest_clef_for_named_chromatic_pitches_in_expr
 def suggest_clef_for_named_chromatic_pitches(pitches, clefs = ['treble', 'bass']):
-   '''Suggest best clef from `clefs` for `pitches` 
-   as determined by minimal ledger lines. ::
+   '''.. versionadded:: 1.1.1
 
-      abjad> pitches = [NamedChromaticPitch(x) for x in (-30, 10, 20)]
-      abjad> pitchtools.suggest_clef_for_named_chromatic_pitches(pitches)
-      ClefMark('bass')
-
-   ::
-
-      abjad> pitches = [NamedChromaticPitch(x) for x in (-5, 30)]
-      abjad> pitchtools.suggest_clef_for_named_chromatic_pitches(pitches)
-      ClefMark('treble')
-
-   Works for arbitrary input expression. ::
+   Suggest clef for named chromatic `pitches`::
 
       abjad> staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))
       abjad> pitchtools.suggest_clef_for_named_chromatic_pitches(staff)
       ClefMark('bass')
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.suggest_clef( )`` to
-      ``pitchtools.suggest_clef_for_named_chromatic_pitches( )``.
+   Suggest clef based on minimal number of ledger lines.
+
+   Return clef mark.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.suggest_clef_for_named_chromatic_pitches( )`` to
+      renamed ``pitchtools.suggest_clef( )`` to
       ``pitchtools.suggest_clef_for_named_chromatic_pitches( )``.
    '''
 

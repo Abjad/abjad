@@ -3,11 +3,15 @@ from abjad.components import Note
 
 
 def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
-   r'''Apply ascending chromatic pitches 
-   to the notes and chords in `expr`. ::
+   r'''.. versionadded:: 1.1.1
+
+   Set ascending named chromatic pitches on nontied pitched components in `expr`::
 
       abjad> staff = Voice(notetools.make_notes(0, [(5, 32)] * 4))
       abjad> macros.chromaticize(staff)
+
+   ::
+
       abjad> f(staff)
       \new Voice {
               c'8 ~
@@ -22,12 +26,10 @@ def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(
 
    Used primarily in generating test file examples.
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.chromaticize( )`` to
-      ``macros.chromaticize( )``.
+   Return none.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.set_ascending_chromatic_pitches_on_nontied_pitched_components_in_expr( )`` to
+      renamed ``pitchtools.chromaticize( )`` to
       ``pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr( )``.
    '''
    from abjad.tools import tietools 

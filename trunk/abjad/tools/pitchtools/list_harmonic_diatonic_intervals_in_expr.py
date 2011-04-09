@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 def list_harmonic_diatonic_intervals_in_expr(expr):
    '''.. versionadded:: 1.1.2
 
-   Return unordered set of diatonic intervals in `expr`. ::
+   List harmonic diatonic intervals in `expr`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> pitchtools.list_harmonic_diatonic_intervals_in_expr(staff)
@@ -18,9 +18,7 @@ def list_harmonic_diatonic_intervals_in_expr(expr):
       HarmonicDiatonicInterval(major third)
       HarmonicDiatonicInterval(perfect fourth)
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.get_harmonic_diatonic_intervals_in( )`` to
-      ``pitchtools.list_harmonic_diatonic_intervals_in_expr( )``.
+   Return unordered set.
    '''
    
    diatonic_intervals = [ ]

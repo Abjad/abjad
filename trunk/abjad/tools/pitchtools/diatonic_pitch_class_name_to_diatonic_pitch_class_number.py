@@ -5,10 +5,12 @@ _diatonic_pitch_class_name_to_diatonic_pitch_class_number = {
 def diatonic_pitch_class_name_to_diatonic_pitch_class_number(diatonic_pitch_class_name):
    '''.. versionadded:: 1.1.2
 
-   Convert `diatonic_pitch_class_name` to diatonic pitc-class number::
+   Convert `diatonic_pitch_class_name` to diatonic pitch-class number::
 
       abjad> pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number('c')
       0
+
+   Return integer.
    '''
 
    error_message = '\n\tNot diatonic pitch class name: "%s".' % diatonic_pitch_class_name

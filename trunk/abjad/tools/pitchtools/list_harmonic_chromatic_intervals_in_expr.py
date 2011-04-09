@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 def list_harmonic_chromatic_intervals_in_expr(expr):
    '''.. versionadded:: 1.1.2
 
-   Return unordered set of harmonic chromatic intervals in `expr`. ::
+   List harmonic chromatic intervals in `expr`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> pitchtools.list_harmonic_chromatic_intervals_in_expr(staff)
@@ -20,9 +20,7 @@ def list_harmonic_chromatic_intervals_in_expr(expr):
       HarmonicChromaticInterval(3)
       HarmonicChromaticInterval(1)
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.get_harmonic_chromatic_intervals_in( )`` to
-      ``pitchtools.list_harmonic_chromatic_intervals_in_expr( )``.
+   Return unordered set.
    '''
    
    chromatic_intervals = [ ]

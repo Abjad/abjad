@@ -3,25 +3,18 @@ from abjad.tools.pitchtools.is_chromatic_pitch_class_name_octave_number_pair imp
 
 
 def is_named_chromatic_pitch_token(pitch_token):
-   '''True when `pitch_token` has the form of 
-   an Abjad pitch token. ::
+   '''.. versionadded:: 1.1.1
+
+   True when `pitch_token` has the form of an Abjad pitch token.
+   Otherwise false::
 
       abjad> pitchtools.is_named_chromatic_pitch_token(('c', 4))
       True
-      abjad> pitchtools.is_named_chromatic_pitch_token(NamedChromaticPitch('c', 4))
-      True
 
-   Otherwise false. ::
-
-      abjad> pitchtools.is_named_chromatic_pitch_token('foo')
-      False
+   Return boolean.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.is_pitch_token( )`` to
-      ``pitchtools.is_named_chromatic_pitch_token( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.is_named_chromatic_pitch_token( )`` to
       ``pitchtools.is_named_chromatic_pitch_token( )``.
    '''
 

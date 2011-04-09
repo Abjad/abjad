@@ -2,16 +2,18 @@ from abjad.tools.pitchtools.is_chromatic_pitch_class_name import is_chromatic_pi
 
 
 def is_chromatic_pitch_class_name_octave_number_pair(expr):
-   '''True when `arg` has the form of a chromatic pitch-class / octave number pair::
+   '''.. versionadded:: 1.1.1
+
+   True when `arg` has the form of a chromatic pitch-class / octave number pair.
+   Otherwise false::
 
       abjad> pitchtools.is_chromatic_pitch_class_name_octave_number_pair(('cs', 5))
       True
 
-   Otherwise false.
+   Return boolean.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.is_pair( )`` to
-      ``pitchtools.is_pitch_pair( )`` to
       ``pitchtools.is_chromatic_pitch_class_name_octave_number_pair( )``.
    '''
 

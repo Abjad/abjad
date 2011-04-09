@@ -4,7 +4,7 @@ from abjad.tools import seqtools
 def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
    r'''.. versionadded:: 1.1.2
 
-   Iterate left-to-right, top-to-bottom pitch pairs in `expr`. ::
+   Iterate left-to-right, top-to-bottom named chromatic pitch pairs in `expr`::
 
       abjad> score = Score([ ])
       abjad> notes = macros.scale(4) + [Note(7, (1, 4))]
@@ -82,17 +82,7 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
       (NamedChromaticPitch(e, 4), NamedChromaticPitch(g, 5))
       (NamedChromaticPitch(f, 5), NamedChromaticPitch(g, 5))
 
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.pitch_pairs_forward_in( )`` to
-      ``pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.pitch_pairs_forward_in_expr( )`` to
-      ``pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.iterate_pitch_pairs_forward_in_expr( )`` to
-      ``pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr( )``.
+   Return generator.
    '''
    from abjad.tools.leaftools.iterate_leaf_pairs_forward_in_expr import iterate_leaf_pairs_forward_in_expr
 

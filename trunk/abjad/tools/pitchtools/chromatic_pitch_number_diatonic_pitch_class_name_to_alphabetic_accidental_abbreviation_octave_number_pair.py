@@ -4,55 +4,43 @@ from abjad.tools.pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to
 from abjad.tools.pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number import chromatic_pitch_number_and_accidental_semitones_to_octave_number
 
 
-def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(number, letter):
+def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(chromatic_pitch_number, diatonic_pitch_class_name):
    '''.. versionadded:: 1.1.1
 
-   Return accidental, octave pair necessary to notate pitch `number`
-   spelled starting with pitch `letter`. ::
+   Convert `chromatic_pitch_number` and `diatonic_pitch_class_name` to
+   alphabetic accidental abbreviation / octave number pair::
 
       abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'c')
       ('ss', 5)
 
-   ::
-
-      abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'd')
-      ('', 5)
-
-   ::
-
-      abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'e')
-      ('ff', 5)
+   Return pair.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.number_letter_to_accidental_octave( )`` to
       ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_string_octave_number_pair( )`` to
-      ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair( )``.
    '''
 
    ## check input
-   if not isinstance(number, (int, long, float)):
+   if not isinstance(chromatic_pitch_number, (int, long, float)):
       raise TypeError
 
-   if not isinstance(letter, str):
+   if not isinstance(diatonic_pitch_class_name, str):
       raise TypeError
 
-   if not letter in ['c', 'd', 'e', 'f', 'g', 'a', 'b']:
+   if not diatonic_pitch_class_name in ['c', 'd', 'e', 'f', 'g', 'a', 'b']:
       raise ValueError
    
    ## find accidental semitones
-   pc = pitchtools_diatonic_pitch_class_name_to_chromatic_pitch_class_number(letter)
-   nearest_neighbor = pitchtools_transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number(number, pc)
-   semitones = number - nearest_neighbor
+   pc = pitchtools_diatonic_pitch_class_name_to_chromatic_pitch_class_number(diatonic_pitch_class_name)
+   nearest_neighbor = pitchtools_transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number(chromatic_pitch_number, pc)
+   semitones = chromatic_pitch_number - nearest_neighbor
    
    ## find accidental alphabetic string
    alphabetic_string = Accidental._semitones_to_alphabetic_string[semitones]
    
    ## find octave
    octave = chromatic_pitch_number_and_accidental_semitones_to_octave_number(
-      number, semitones)
+      chromatic_pitch_number, semitones)
 
    ## return unique pair of accidental string and octave
    return alphabetic_string, octave

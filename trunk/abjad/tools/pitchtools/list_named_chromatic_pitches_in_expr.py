@@ -6,66 +6,14 @@ from abjad.tools.spannertools import Spanner
 
 
 def list_named_chromatic_pitches_in_expr(expr):
-   '''Get tuple of zero or more Abjad :class:`~abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch` 
-   instances from almost any expression. ::
+   '''.. versionadded:: 1.1.2
 
-      abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-      abjad> pitchtools.list_named_chromatic_pitches_in_expr(t)
-      ((NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4))
+   List named chromatic pitches in `expr`::
 
-   ::
-
-      abjad> t = Staff(macros.scale(4))
+      abjad> t = Staff("c'4 d'4 e'4 f'4")
       abjad> beam = spannertools.BeamSpanner(t[:])
       abjad> pitchtools.list_named_chromatic_pitches_in_expr(beam)
       ((NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 4))
-
-   ::
-
-      abjad> pitch = NamedChromaticPitch('df', 5)
-      abjad> pitchtools.list_named_chromatic_pitches_in_expr(pitch)
-      (NamedChromaticPitch(df, 5),)
-
-   ::
-
-      abjad> note = Note(('df', 5), (1, 4))
-      abjad> pitchtools.list_named_chromatic_pitches_in_expr(note)
-      (NamedChromaticPitch(df, 5),)
-
-   ::
-
-      abjad> chord = Chord([0, 2, 10], (1, 4))
-      abjad> pitchtools.list_named_chromatic_pitches_in_expr(chord)
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(bf, 4))
-
-   ::
-      
-      abjad> pitchtools.list_named_chromatic_pitches_in_expr('foo')
-      ( )
-
-   ::
-
-      abjad> pitchtools.list_named_chromatic_pitches_in_expr(Rest((1, 4)))
-      ( )
-
-   Works with pitch sets. ::
-
-      abjad> pitch_set = pitchtools.NamedChromaticPitchSet([0, 2, 4, 5])
-      abjad> pitchtools.list_named_chromatic_pitches_in_expr(pitch_set)
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 4))
-
-   Raises neither :exc:`MissingPitchError` nor :exc:`ExtraPitchError`.
-
-   .. note:: The logic implemented here to iterate over the contents of
-      spanners is unusual but useful.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.get_named_chromatic_pitch_from_pitch_carrieres( )`` to
-      ``pitchtools.list_named_chromatic_pitches_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.list_named_chromatic_pitches_in_expr( )`` to
-      ``pitchtools.list_named_chromatic_pitches_in_expr( )``.
    '''
    from abjad.components import Rest
    from abjad.tools import leaftools

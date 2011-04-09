@@ -1,9 +1,11 @@
 from abjad.tools import mathtools
 
 
-def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, transpose=1, phase=0):
-   '''Return integer chromatic pitch number corresponding to 
-   integer `pentatonic_scale_degree`. ::
+def pentatonic_pitch_number_to_chromatic_pitch_number(
+   pentatonic_scale_degree, transpose=1, phase=0):
+   '''.. versionadded:: 1.1.1
+
+   Convert `pentatonic_scale_degree` number to chromatic pitch number::
 
       abjad> for pentatonic_scale_degree in range(9):
       ...     chromatic_pitch_number = pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree)
@@ -19,7 +21,7 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, t
       7  18
       8  20
 
-   Pentatonic scale degrees may be negative. ::
+   Pentatonic scale degrees may be negative::
 
       abjad> for pentatonic_scale_degree in range(-1, -9, -1):
       ...     chromatic_pitch_number = pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree)
@@ -34,12 +36,10 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, t
       -7 -16
       -8 -18
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pentatonic_to_chromatic( )`` to
-      ``pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number( )``.
+   Return integer.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.zero_indexed_pentatonic_scale_degree_number_to_pitch_number( )`` to
+      renamed ``pitchtools.pentatonic_to_chromatic( )`` to
       ``pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number( )``.
    '''
 
@@ -48,9 +48,9 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, t
    assert 0 <= phase
    assert phase < 5
 
-   penta_intervals = [2,3,2,2,3] * 2
+   pentatonic_intervals = [2,3,2,2,3] * 2
    penta = dict(zip([0,1,2,3,4],
-      mathtools.cumulative_sums_zero(penta_intervals[phase:phase+5])))
+      mathtools.cumulative_sums_zero(pentatonic_intervals[phase:phase+5])))
    pclass = pentatonic_scale_degree % 5
    octave = pentatonic_scale_degree // 5
    return 12 * octave + penta[pclass] + transpose

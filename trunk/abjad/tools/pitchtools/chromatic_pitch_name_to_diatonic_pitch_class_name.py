@@ -8,6 +8,8 @@ def chromatic_pitch_name_to_diatonic_pitch_class_name(chromatic_pitch_name):
 
       abjad> pitchtools.chromatic_pitch_name_to_diatonic_pitch_class_name("cs''")
       'c'
+
+   Return string.
    '''
 
    if not is_chromatic_pitch_name(chromatic_pitch_name):

@@ -1,9 +1,12 @@
-def transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_number, mapping):
-   '''Transpose `pitch_number` by the some number of octaves up or down.
+def transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+   chromatic_pitch_number, mapping):
+   '''.. versionadded:: 1.1.1
+
+   Transpose `chromatic_pitch_number` by the some number of octaves up or down.
    Derive correct number of octaves from `mapping` where 
    `mapping` is a list of ``(range_spec, octave)`` pairs 
    and ``range_spec`` is, in turn, a ``(start, stop)`` pair 
-   suitable to pass to the built-in Python ``range( )`` function. ::
+   suitable to pass to the built-in Python ``range( )`` function::
 
       abjad> mapping = [((-39, -13), 0), ((-12, 23), 12), ((24, 48), 24)]
 
@@ -31,7 +34,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_numbe
    disjunct subranges and then explains how to transpose pitches 
    found in any of those three disjunct subranges. This means that,
    for example, all the f-sharps within the range of the piano now 
-   undergo a known transposition under `mapping` as defined here. ::
+   undergo a known transposition under `mapping` as defined here::
 
       abjad> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(-30, mapping)
       6
@@ -41,7 +44,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_numbe
    defined by `mapping` from ``-39`` to ``-13`` and then noting 
    that `mapping` sends pitches with that subrange to the octave 
    rooted at pitch ``0``. The octave transposition of ``-30`` that 
-   falls within the octave rooted at ``0`` is ``6``. ::
+   falls within the octave rooted at ``0`` is ``6``::
 
       abjad> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(-18, mapping)
       6
@@ -52,7 +55,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_numbe
    the octave rooted at ``0``.
 
    In this way we can map all f-sharps from ``-39`` to ``48`` according 
-   to `mapping`. ::
+   to `mapping`::
 
       abjad> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
       abjad> for n in pitch_numbers:
@@ -67,20 +70,18 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_numbe
 
    And so on.
 
+   Return chromatic pitch number.
+
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.send_pitch_number_to_octave( )`` to
       ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping( )`` to
-      ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping( )``.
    '''
 
-   target_pitch_class = pitch_number % 12
+   target_pitch_class = chromatic_pitch_number % 12
 
    for ((start, stop), octave_root) in mapping:
       source_range = range(start, stop + 1)
-      if pitch_number in source_range:
+      if chromatic_pitch_number in source_range:
          target_octave = range(octave_root, octave_root + 12)
          for candidate_pitch in target_octave:
             candidate_pitch_class = candidate_pitch % 12

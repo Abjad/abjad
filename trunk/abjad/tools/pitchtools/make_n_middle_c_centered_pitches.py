@@ -3,7 +3,9 @@ from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_nu
 
 
 def make_n_middle_c_centered_pitches(n):
-   '''Make `n` middle-c centered pitches, where 0 < `n` ::
+   '''.. versionadded:: 1.1.2
+
+   Make `n` middle-c centered pitches, where 0 < `n`::
 
       abjad> for p in make_n_middle_c_centered_pitches(5): p
       NamedChromaticPitch('f')
@@ -20,6 +22,7 @@ def make_n_middle_c_centered_pitches(n):
       NamedChromaticPitch("d'")
       NamedChromaticPitch("f'")
 
+   Return list of zero or more named chromatic pitches.
    '''
 
    if n == 0:

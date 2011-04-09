@@ -6,11 +6,15 @@ from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterv
 
 def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
    expr, key_signature = None):
-   r'''Apply ascending diatonic pitches to the notes
-   and chords in `expr`. ::
+   r'''.. versionadded:: 1.1.1
+
+   Set ascending named diatonic pitches on nontied pitched components in `expr`::
 
       abjad> staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
       abjad> macros.diatonicize(staff)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 ~
@@ -28,12 +32,10 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
    .. versionadded:: 1.1.2
       Optional `key_signature` keyword argument.
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.diatonicize( )`` to
-      ``macros.diatonicize( )``.
+   Return none.
 
    .. versionchanged:: 1.1.2
-      renamed ``pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr( )`` to
+      renamed ``pitchtools.diatonicize( )`` to
       ``pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr( )``.
    '''
    from abjad.tools import tietools

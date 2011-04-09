@@ -12,12 +12,16 @@ melodic_diatonic_interval_abbreviation_regex = re.compile(
    '^%s$' % melodic_diatonic_interval_abbreviation_regex_body, re.VERBOSE)
 
 def is_melodic_diatonic_interval_abbreviation(expr):
-   '''True when `expr` is a melodic diatonic interval abbreviation. Otherwise false::
+   '''.. versionadded:: 1.1.2
+
+   True when `expr` is a melodic diatonic interval abbreviation. Otherwise false::
 
       abjad> pitchtools.is_melodic_diatonic_interval_abbreviation('+M9')
       True
 
    The regex ``^([+,-]?)(M|m|P|aug|dim)(\d+)$`` underlies this predicate.
+
+   Return boolean.
    '''
 
    if not isinstance(expr, str):

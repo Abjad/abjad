@@ -9,6 +9,8 @@ def diatonic_pitch_class_number_to_diatonic_pitch_class_name(diatonic_pitch_clas
 
       abjad> pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name(0)
       'c'
+
+   Return string.
    '''
 
    error_message = '\n\tNot diatonic pitch-class number: "%s".' % diatonic_pitch_class_number

@@ -1,30 +1,20 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
-   get_named_chromatic_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
-def calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(pitch_carrier_1, pitch_carrier_2):
+def calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
+   pitch_carrier_1, pitch_carrier_2):
    '''.. versionadded:: 1.1.2
 
-   Return melodic chromatic interval from `pitch_carrier_1` to
-   `pitch_carrier_2`. ::
+   Calculate melodic chromatic interval from `pitch_carrier_1` to
+   `pitch_carrier_2`::
 
-      abjad> pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(NamedChromaticPitch(-2), NamedChromaticPitch(12))
+      abjad> pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
+         pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
       MelodicChromaticInterval(+14)
 
-   ::
-
-      abjad> pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(NamedChromaticPitch(12), NamedChromaticPitch(-2))
-      MelodicChromaticInterval(-14)
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.melodic_chromatic_interval_from_to( )`` to
-      ``pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.calculate_melodic_chromatic_interval_from_pitch_to_pitch( )`` to
-      ``pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier( )``.
+   Return melodic chromatic interval.
    '''
 
    ## get pitches

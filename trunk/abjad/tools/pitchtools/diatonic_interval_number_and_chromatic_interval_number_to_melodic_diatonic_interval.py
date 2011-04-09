@@ -7,31 +7,13 @@ def diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_i
    diatonic_interval_number, chromatic_interval_number):
    '''.. versionadded:: 1.1.2
 
-   Return diatonic interval equal to both `chromatic_interval_number`
-   and `diatonic_interval_number`. ::
+   Convert `diatonic_interval_number` and `chromatic_interval_number` 
+   to melodic diatonic interval::
 
-      abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(1, 0)
-      MelodicDiatonicInterval(perfect unison)
-      abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(1, 1)
-      MelodicDiatonicInterval(augmented unison)
-      abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(2, 0)
-      MelodicDiatonicInterval(ascending diminished second)
       abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(2, 1)
       MelodicDiatonicInterval(ascending minor second)
-      abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(2, 2)
-      MelodicDiatonicInterval(ascending major second)
-      abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(2, 3)
-      MelodicDiatonicInterval(ascending augmented second)
-      abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(5, 6)
-      MelodicDiatonicInterval(ascending diminished fifth)
-      abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(5, 7)
-      MelodicDiatonicInterval(ascending perfect fifth)
-      abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(5, 8)
-      MelodicDiatonicInterval(ascending augmented fifth)
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval( )`` to
-      ``pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval( )``.
+   Return melodic diatonic interval.
    '''
 
    #diatonic_interval_number = abs(diatonic_interval_number)

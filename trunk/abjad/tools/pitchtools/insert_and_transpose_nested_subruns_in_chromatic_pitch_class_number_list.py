@@ -1,28 +1,15 @@
 from abjad.components import Note
 from abjad.tools import componenttools
 from abjad.tools import seqtools
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
-   get_named_chromatic_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
 def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
    notes, subrun_indicators):
-   '''Insert transposed subruns according to ``subrun_indicators``.
+   '''.. versionadded:: 1.1.1
 
-   *  *pitches* must be a list of zero or more Abjad
-      :class:`~abjad.components.Note.note.Note` instances.
-   *  *subrun_indicators* must be a list of zero or more
-      ``(index, length_list)`` pairs.
-
-   For each ``(index, length_list)`` pair in *subrun_indicators* 
-   the function will read *index* mod ``len(notes)`` and insert
-   a subrun of length ``length_list[0]`` immediately after ``notes[index]``,
-   a subrun of length ``length_list[1]`` immediately after ``notes[index+1]``,
-   and, in general, a subrun of ``length_list[i]`` immediately after
-   ``notes[index+i]``, for ``i < length(length_list)``.   
-   This is easiest to see with an example.
-
-   ::
+   Insert and transpose nested subruns in `chromatic_pitch_class_number_list` 
+   according to `subrun_indicators`::
 
       abjad> notes = [Note(p, (1, 4)) for p in [0, 2, 7, 9, 5, 11, 4]]
       abjad> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
@@ -37,33 +24,38 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
       abjad> t
       [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]
 
-   .. note:: New subruns are wrapped with lists.
-      These wrapper lists are designed 
-      to allow inspection of the structural changes to *notes*
-      immediately after the function returns.
-      For this reason most calls to this function will be followed
-      by ``notes = seqtools.flatten_sequence(notes)``.
+   Set `subrun_indicators` to a list of zero or more ``(index, length_list)`` pairs.
 
-   ::
+   For each ``(index, length_list)`` pair in *subrun_indicators* 
+   the function will read *index* mod ``len(notes)`` and insert
+   a subrun of length ``length_list[0]`` immediately after ``notes[index]``,
+   a subrun of length ``length_list[1]`` immediately after ``notes[index+1]``,
+   and, in general, a subrun of ``length_list[i]`` immediately after
+   ``notes[index+i]``, for ``i < length(length_list)``.   
+
+   New subruns are wrapped with lists.
+   These wrapper lists are designed 
+   to allow inspection of the structural changes to *notes*
+   immediately after the function returns.
+   For this reason most calls to this function will be followed
+   by ``notes = seqtools.flatten_sequence(notes)``::
 
       abjad> notes = seqtools.flatten_sequence(notes)
       abjad> notes
       [0, 5, 7, 2, 4, 0, 6, 11, 7, 9, 5, 10, 6, 8, 11, 7, 4]
 
-   .. note:: This function is designed to work on a built-in Python list
-      of notes. This function is **not** designed to work on Abjad
-      voices, staves or other containers because the function currently
-      implements no spanner-handling.
-      Specifically, this function is designed to be used during
-      precomposition when other, similar abstract pitch transforms
-      may be common.
+   This function is designed to work on a built-in Python list
+   of notes. This function is **not** designed to work on Abjad
+   voices, staves or other containers because the function currently
+   implements no spanner-handling.
+   That is, this function is designed to be used during
+   precomposition when other, similar abstract pitch transforms
+   may be common.
+
+   Return list of integers and / or floats.
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.insert_transposed_pc_subruns( )`` to
-      ``pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.insert_and_transpose_nested_subruns_in_lpitch_class_number_list( )`` to
       ``pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list( )``.
    '''
 

@@ -1,28 +1,22 @@
 from abjad.components import Chord
 from abjad.components import Note
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import componenttools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name import one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name
 
 
 def transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic_diatonic_interval):
    '''.. versionadded:: 1.1.2
 
-   Transpose `pitch_carrier` by `melodic_diatonic_interval`. ::
+   Transpose `pitch_carrier` by `melodic_diatonic_interval`::
 
       abjad> pitch = NamedChromaticPitch(12)
       abjad> mdi = pitchtools.MelodicDiatonicInterval('minor', -3)
       abjad> pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(pitch, mdi)
       NamedChromaticPitch(a, 4)
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.transpose_by_melodic_diatonic_interval( )`` to
-      ``pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.transpose_pitch_by_melodic_diatonic_interval( )`` to
-      ``pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval( )``.
+   Return named chromatic pitch.
    '''
 
    if not isinstance(melodic_diatonic_interval, MelodicDiatonicInterval):
