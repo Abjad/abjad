@@ -695,7 +695,6 @@ pitchtools
    tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
    tools/pitchtools/diatonic_pitch_class_name_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number
-   tools/pitchtools/diatonic_pitch_class_name_to_one_indexed_diatonic_scale_degree_number
    tools/pitchtools/diatonic_pitch_class_number_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_number_to_diatonic_pitch_class_name
    tools/pitchtools/diatonic_pitch_name_to_chromatic_pitch_class_name
