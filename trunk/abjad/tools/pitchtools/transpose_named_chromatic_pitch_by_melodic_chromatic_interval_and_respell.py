@@ -1,6 +1,5 @@
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name import one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name
-
+from abjad.tools.pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name import diatonic_pitch_class_number_to_diatonic_pitch_class_name
 
 def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
    pitch, staff_spaces, melodic_chromatic_interval):
@@ -20,9 +19,8 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
       ``pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell( )``.
    '''
 
-   pitch_number = abs(pitch.numbered_chromatic_pitch) + melodic_chromatic_interval
-   diatonic_scale_degree = \
-      (pitch.numbered_diatonic_pitch_class._diatonic_pitch_class_number + 1) + staff_spaces
-   letter = one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name(
-      diatonic_scale_degree)
-   return NamedChromaticPitch(pitch_number, letter)
+   chromatic_pitch_number = pitch.chromatic_pitch_number + melodic_chromatic_interval
+   diatonic_pitch_class_number = (pitch.diatonic_pitch_class_number + staff_spaces) % 7
+   diatonic_pitch_class_name = diatonic_pitch_class_number_to_diatonic_pitch_class_name(
+      diatonic_pitch_class_number)
+   return NamedChromaticPitch(chromatic_pitch_number, diatonic_pitch_class_name)
