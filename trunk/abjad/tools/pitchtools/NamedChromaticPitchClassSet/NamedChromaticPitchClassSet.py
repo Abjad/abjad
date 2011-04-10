@@ -6,8 +6,17 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
    Abjad model of a named chromatic pitch-class set::
 
-      abjad> pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
+      abjad> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
+
+   ::
+
+      abjad> named_chromatic_pitch_class_set
       NamedChromaticPitchClassSet(['as', 'c', 'cs', 'g', 'gs'])
+
+   ::
+
+      abjad> print named_chromatic_pitch_class_set
+      {as, c, cs, g, gs}
 
    Named chromatic pitch-class sets are immutable.
    '''
@@ -82,24 +91,28 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def diatonic_interval_class_vector(self):
+   def inversion_equivalent_diatonic_interval_class_vector(self):
       from abjad.tools import pitchtools
       pitches = [pitchtools.NamedChromaticPitch(x, 4) for x in self]
       return pitchtools.InversionEquivalentDiatonicIntervalClassVector(pitches)
 
    @property
-   def named_chromatic_pitch_classes(self):
-      result = list(self)
-      return tuple(self._sort_self( ))
-
-   @property
-   def pitch_class_set(self):
+   def numbered_chromatic_pitch_class_set(self):
       from abjad.tools import pitchtools
       return pitchtools.NumberedChromaticPitchClassSet(self)
 
    @property
-   def pitch_classes(self):
-      return self.pitch_class_set.pitch_classes
+   def named_chromatic_pitch_classes(self):
+      '''Read-only named chromatic pitch-classes::
+
+         abjad> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
+         abjad> named_chromatic_pitch_class_set.named_chromatic_pitch_classes
+         (NamedChromaticPitchClass('c'), NamedChromaticPitchClass('cs'), NamedChromaticPitchClass('g'), NamedChromaticPitchClass('gs'), NamedChromaticPitchClass('as'))
+
+      Return tuple.
+      '''
+      result = list(self)
+      return tuple(self._sort_self( ))
 
    ## PUBLIC METHODS ##
    

@@ -261,133 +261,133 @@ class NamedChromaticPitch(_Pitch):
 
    @property
    def chromatic_pitch_class_name(self):
-      '''Read-only chromatic pitch-class name of pitch:
-
-      ::
+      '''Read-only chromatic pitch-class name::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.chromatic_pitch_class_name
          'cs'
+
+      Return string.
       '''
       return self.named_chromatic_pitch_class._chromatic_pitch_class_name
 
    @property
    def chromatic_pitch_name(self):
-      '''Read-only chromatic pitch name of pitch:
-
-      ::
+      '''Read-only chromatic pitch name::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.chromatic_pitch_name
          "cs''"
+
+      Return string.
       '''
       return self._chromatic_pitch_name
 
    @property
    def chromatic_pitch_class_number(self):
-      '''Read-only chromatic pitch-class number of pitch:
-
-      ::
+      '''Read-only chromatic pitch-class number::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.chromatic_pitch_class_number
          1
+
+      Return integer or float.
       '''
       return self.numbered_chromatic_pitch_class._chromatic_pitch_class_number
 
    @property
    def chromatic_pitch_number(self):
-      '''Read-only chromatic pitch-class number of pitch:
-
-      ::
+      '''Read-only chromatic pitch-class number::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.chromatic_pitch_number
          13
+
+      Return integer or float.
       '''
       return self.numbered_chromatic_pitch._chromatic_pitch_number
 
    @property
    def deviation_in_cents(self):
-      '''Read-only deviation of named chromatic pitch in cents:
-
-      ::
+      '''Read-only deviation of named chromatic pitch in cents::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.deviation_in_cents is None
          True
+
+      Return integer or none.
       '''
       return self._deviation
 
    @property
    def diatonic_pitch_class_name(self):
-      '''Read-only diatonic pitch-class name of pitch:
-
-      ::
+      '''Read-only diatonic pitch-class name::
 
          abjad> named_diatonic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_diatonic_pitch.diatonic_pitch_class_name
          'c'
+
+      Return string.
       '''
       return self.named_diatonic_pitch_class._diatonic_pitch_class_name
 
    @property
    def diatonic_pitch_name(self):
-      '''Read-only diatonic pitch name of pitch:
-
-      ::
+      '''Read-only diatonic pitch name::
 
          abjad> named_diatonic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_diatonic_pitch.diatonic_pitch_name
          "c''"
+
+      Return string.
       '''
       return self.named_diatonic_pitch._diatonic_pitch_name
 
    @property
    def diatonic_pitch_class_number(self):
-      '''Read-only diatonic pitch-class number of pitch:
-
-      ::
+      '''Read-only diatonic pitch-class number::
 
          abjad> named_diatonic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_diatonic_pitch.diatonic_pitch_class_number
          0
+
+      Return integer.
       '''
       return self.numbered_diatonic_pitch_class._diatonic_pitch_class_number
 
    @property
    def diatonic_pitch_number(self):
-      '''Read-only diatonic number of pitch:
-
-      ::
+      '''Read-only diatonic pitch number::
 
          abjad> named_diatonic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_diatonic_pitch.diatonic_pitch_number
          7
+
+      Return integer.
       '''
       return self.numbered_diatonic_pitch._diatonic_pitch_number
 
    @property
    def format(self):
-      '''Read-only LilyPond input format of named chromatic pitch:
-
-      ::
+      '''Read-only LilyPond input format of named chromatic pitch::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.format
          "cs''"
+
+      Return string.
       '''
       return str(self)
 
    @property
    def named_diatonic_pitch(self):
-      '''New named diatonic pitch from named chromatic pitch:
-
-      ::
+      '''Read-only named diatonic pitch::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.named_diatonic_pitch
          NamedDiatonicPitch("c''")
+
+      Return named diatonic pitch.
       '''
       from abjad.tools import pitchtools
       tmp = pitchtools.chromatic_pitch_name_to_diatonic_pitch_name
@@ -396,39 +396,39 @@ class NamedChromaticPitch(_Pitch):
 
    @property
    def named_diatonic_pitch_class(self):
-      '''New named diatonic pitch-class from named chromatic pitch:
-
-      ::
+      '''Read-only named diatonic pitch-class::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
+
+      Return named diatonic pitch-class.
       '''
       from abjad.tools.pitchtools import NamedDiatonicPitchClass
       return NamedDiatonicPitchClass(self._chromatic_pitch_name)
    
    @property
    def named_chromatic_pitch_class(self):
-      '''New named pitch class from named chromatic pitch:
-
-      ::
+      '''Read-only named pitch class::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.named_chromatic_pitch_class
          NamedChromaticPitchClass('cs')
+
+      Return named chromatic pitch-class.
       '''
       from abjad.tools.pitchtools import NamedChromaticPitchClass
       return NamedChromaticPitchClass(self._chromatic_pitch_name)
 
    @property
    def octave_number(self):
-      '''Read-only integer octave number of named chromatic pitch:
-
-      ::
+      '''Read-only integer octave number::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.octave_number
          5
+
+      Return integer.
       '''
       from abjad.tools import pitchtools
       from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
@@ -438,52 +438,52 @@ class NamedChromaticPitch(_Pitch):
 
    @property
    def numbered_diatonic_pitch(self):
-      '''New numeric diatonic pitch from named chromatic pitch:
-
-      ::
+      '''Read-only numeric diatonic pitch::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.numbered_diatonic_pitch
          NumberedDiatonicPitch(7)
+
+      Return numbered diatonic pitch.
       '''
       from abjad.tools.pitchtools import NumberedDiatonicPitch
       return NumberedDiatonicPitch(self._chromatic_pitch_name)
 
    @property
    def numbered_diatonic_pitch_class(self):
-      '''New numeric diatonic pitch from named chromatic pitch:
-
-      ::
+      '''Read-only numeric diatonic pitch::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.numbered_diatonic_pitch_class
          NumberedDiatonicPitchClass(0)
+
+      Return numbered diatonic pitch-class.
       '''
       from abjad.tools.pitchtools import NumberedDiatonicPitchClass
       return NumberedDiatonicPitchClass(self._chromatic_pitch_name)
 
    @property
    def numbered_chromatic_pitch(self):
-      '''New numbered chromatic pitch from named chromatic pitch:
-
-      ::
+      '''Read-only numbered chromatic pitch from named chromatic pitch::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.numbered_chromatic_pitch_class
          NumberedChromaticPitchClass(1)
+
+      Return numbered chromatic pitch-class.
       '''
       from abjad.tools import pitchtools
       return pitchtools.NumberedChromaticPitch(self._chromatic_pitch_name)
 
    @property
    def numbered_chromatic_pitch_class(self):
-      '''New numbered pitch-class from named chromatic pitch:
-
-      ::
+      '''Read-only numbered pitch-class::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.numbered_chromatic_pitch_class
          NumberedChromaticPitchClass(1)
+
+      Return numbered chromatic pitch-class.
       '''
       from abjad.tools.pitchtools import NumberedChromaticPitchClass
       return NumberedChromaticPitchClass(self._chromatic_pitch_name)

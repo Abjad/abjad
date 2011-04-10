@@ -36,7 +36,7 @@ def label_leaves_in_expr_with_melodic_diatonic_interval_classes(expr, markup_dir
          if isinstance(next_leaf, Note):
             mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
                note, next_leaf)
-            mdic = mdi.interval_class
+            mdic = mdi.melodic_diatonic_interval_class
             markuptools.Markup(mdic, markup_direction)(note)
       except StopIteration:
          pass

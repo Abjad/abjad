@@ -44,13 +44,13 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
 
    @property
    def named_diatonic_pitch_class(self):
-      '''Named diatonic pitch class from numeric diatonic pitch class:
-
-      ::
+      '''Read-only named diatonic pitch class from numeric diatonic pitch class::
 
          abjad> numbered_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0)
          abjad> numbered_diatonic_pitch_class.named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
+
+      Return named diatonic pitch-class.
       '''
       from abjad.tools import pitchtools
       return pitchtools.NamedDiatonicPitchClass(self.diatonic_pitch_class_number)

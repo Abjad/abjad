@@ -10,7 +10,7 @@ def test_NamedChromticPitchSegment_transpose_01( ):
 
    "PitchSegment(g,, af,, ef, e, af,, e)"
 
-   assert new_pitch_segment.numbers == [-17, -16, -9, -8, -16, -8]
+   assert new_pitch_segment.chromatic_pitch_numbers == [-17, -16, -9, -8, -16, -8]
 
 
 def test_NamedChromticPitchSegment_transpose_02( ):
@@ -22,4 +22,4 @@ def test_NamedChromticPitchSegment_transpose_02( ):
 
    "PitchSegment(c', cs', gs', a', cs', a')"
 
-   assert new_pitch_segment.numbers == [0, 1, 8, 9, 1, 9]
+   assert new_pitch_segment.chromatic_pitch_numbers == [0, 1, 8, 9, 1, 9]

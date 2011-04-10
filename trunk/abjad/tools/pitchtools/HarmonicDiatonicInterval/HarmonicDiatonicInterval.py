@@ -77,12 +77,14 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def counterpoint_interval(self):
+   #def counterpoint_interval(self):
+   def harmonic_counterpoint_interval(self):
       from abjad.tools import pitchtools
       return pitchtools.HarmonicCounterpointInterval(self)
 
    @property
-   def interval_class(self):
+   #def interval_class(self):
+   def harmonic_diatonic_interval_class(self):
       from abjad.tools import pitchtools
       return pitchtools.HarmonicDiatonicIntervalClass(self)
 
@@ -94,6 +96,24 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
    @property
    def melodic_diatonic_interval_descending(self):
       return -self.melodic_diatonic_interval_ascending
+
+   ## TODO: this can be abstracted higher up the inheritence hierarchy
+   @property
+   def semitones(self):
+      result = 0
+      interval_class_number_to_semitones = {1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
+      try:
+         interval_class_number = abs(self.harmonic_diatonic_interval_class.number)
+      except AttributeError:
+         interval_class_number = self.number
+      result += interval_class_number_to_semitones[interval_class_number]
+      result += (abs(self.number) - 1) / 7 * 12
+      quality_string_to_semitones = {
+         'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1, 'diminished': -1}
+      result += quality_string_to_semitones[self.quality_string]
+      if self.number < 0:
+         result *= -1
+      return result
 
    @property
    def staff_spaces(self):

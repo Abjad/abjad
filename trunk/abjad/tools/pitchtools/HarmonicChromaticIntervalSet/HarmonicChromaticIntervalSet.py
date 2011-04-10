@@ -35,14 +35,16 @@ class HarmonicChromaticIntervalSet(_IntervalSet):
 
    @property
    def _format_string(self):
-      return ', '.join([str(x) for x in sorted(self.intervals)])
+      return ', '.join([str(x) for x in sorted(self.harmonic_chromatic_intervals)])
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def intervals(self):
+   #def intervals(self):
+   def harmonic_chromatic_intervals(self):
       return set(self)
       
    @property
-   def numbers(self):
+   #def numbers(self):
+   def harmonic_chromatic_interval_numbers(self):
       return set([interval.number for interval in self])

@@ -45,13 +45,13 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
 
    @property
    def harmonic_chromatic_interval_class(self):
-      '''New harmonic chromatic interval-class from harmonic chromatic interval:
-
-      ::
+      '''Read-only harmonic chromatic interval-class::
 
          abjad> harmonic_chromatic_interval = pitchtools.HarmonicChromaticInterval(14)
          abjad> harmonic_chromatic_interval.harmonic_chromatic_interval_class
          HarmonicChromaticIntervalClass(2)
+
+      Return harmonic chromatic interval-class.
       '''
       from abjad.tools import pitchtools
       return pitchtools.HarmonicChromaticIntervalClass(self)

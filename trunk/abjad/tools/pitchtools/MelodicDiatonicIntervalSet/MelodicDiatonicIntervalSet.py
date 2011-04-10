@@ -36,7 +36,7 @@ class MelodicDiatonicIntervalSet(_IntervalSet):
 
    @property
    def _format_string(self):
-      intervals = list(self.intervals)
+      intervals = list(self.melodic_diatonic_intervals)
       intervals.sort(lambda x, y: cmp(x.number, y.number))
       return ' '.join([str(x) for x in intervals])
 
@@ -58,9 +58,11 @@ class MelodicDiatonicIntervalSet(_IntervalSet):
       return pitchtools.MelodicChromaticIntervalSet(self)
 
    @property
-   def intervals(self):
+   #def intervals(self):
+   def melodic_diatonic_intervals(self):
       return set(self)
       
    @property
-   def numbers(self):
+   #def numbers(self):
+   def melodic_diatonic_interval_numbers(self):
       return set([interval.number for interval in self])

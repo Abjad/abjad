@@ -29,7 +29,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
    ## OVERLOADS ##
 
    def __abs__(self):
-      return self.harmonic_interval
+      return self.harmonic_chromatic_interval
 
    def __ge__(self, arg):
       if not isinstance(arg, type(self)):
@@ -94,12 +94,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       return pitchtools.HarmonicChromaticInterval(number)
 
    @property
-   def harmonic_interval(self):
-      from abjad.tools import pitchtools
-      number = abs(self.number)
-      return pitchtools.HarmonicChromaticInterval(number)
-
-   @property
-   def interval_class(self):
+   #def interval_class(self):
+   def melodic_chromatic_interval_class(self):
       from abjad.tools import pitchtools
       return pitchtools.MelodicChromaticIntervalClass(self)

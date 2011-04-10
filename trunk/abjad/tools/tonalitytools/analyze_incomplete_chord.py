@@ -25,7 +25,7 @@ def analyze_incomplete_chord(expr):
 
    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
    npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
-   dicv = npcset.diatonic_interval_class_vector
+   dicv = npcset.inversion_equivalent_diatonic_interval_class_vector
 
    #print npcset
    #print dicv
@@ -76,4 +76,4 @@ def analyze_incomplete_chord(expr):
 
 def _make_dicv(*named_chromatic_pitch_classes):
    npcset = pitchtools.NamedChromaticPitchClassSet(named_chromatic_pitch_classes)
-   return npcset.diatonic_interval_class_vector
+   return npcset.inversion_equivalent_diatonic_interval_class_vector

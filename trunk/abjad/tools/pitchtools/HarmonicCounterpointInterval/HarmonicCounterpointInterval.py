@@ -39,6 +39,7 @@ class HarmonicCounterpointInterval(_CounterpointInterval, _HarmonicInterval):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def interval_class(self):
+   #def interval_class(self):
+   def harmonic_counterpoint_interval_class(self):
       from abjad.tools import pitchtools
       return pitchtools.HarmonicCounterpointIntervalClass(self)

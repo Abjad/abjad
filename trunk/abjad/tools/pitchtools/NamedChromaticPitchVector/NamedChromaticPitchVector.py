@@ -6,7 +6,16 @@ class NamedChromaticPitchVector(_Vector):
 
    Abjad model of named chromatic pitch vector::
 
-      abjad> pitchtools.NamedChromaticPitchVector(["c''", "c''", "cs''", "cs''", "cs''"])
+      abjad> named_chromatic_pitch_vector = pitchtools.NamedChromaticPitchVector(["c''", "c''", "cs''", "cs''", "cs''"])
+
+   ::
+
+      abjad> named_chromatic_pitch_vector
+      NamedChromaticPitchVector(c'': 2, cs'': 3)
+
+   ::
+
+      abjad> print named_chromatic_pitch_vector
       NamedChromaticPitchVector(c'': 2, cs'': 3)
 
    Named chromatic pitch vectors are immutable.
@@ -30,7 +39,7 @@ class NamedChromaticPitchVector(_Vector):
 
    @property
    def _format_string(self):
-      pitches = self.pitches
+      pitches = self.named_chromatic_pitches
       if not pitches:
          return ' '
       substrings = [ ]
@@ -43,17 +52,17 @@ class NamedChromaticPitchVector(_Vector):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def numbers(self):
+   def chromatic_pitch_numbers(self):
       numbers = [ ]
-      for pitch in self.pitches:
-         number = pitch.number
+      for pitch in self.named_chromatic_pitches:
+         number = pitch.chromatic_pitch_number
          if number not in numbers:
             numbers.append(number)
       numbers.sort( )
       return numbers
 
    @property
-   def pitches(self):
+   def named_chromatic_pitches(self):
       from abjad.tools import pitchtools
       pitches = [pitchtools.NamedChromaticPitch(key) for key, value in self.items( )]
       pitches.sort( )

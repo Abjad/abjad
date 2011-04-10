@@ -83,12 +83,32 @@ class NamedChromaticPitchClass(_PitchClass):
    ## PRIVATE ATTRIBUTES ##
 
    @property
+   def _accidental(self):
+      '''Read-only accidental string of pitch-class name.'''
+      from abjad.tools import pitchtools
+      return pitchtools.Accidental(str(self)[1:])
+
+   @property
    def _accidental_string(self):
       return str(self)[1:]
 
    @property
+   def _diatonic_pitch_class_name(self):
+      '''Read-only first letter of pitch-class name.'''
+      return str(self)[0]
+
+   @property
    def _repr_string(self):
       return repr(str(self))
+
+   @property
+   def _symbolic_name(self):
+      '''Read-only letter plus punctuation of pitch name.'''
+      accidental_to_symbol = {
+         '': '', 's': '#', 'f': 'b', 'ss': '##', 'ff': 'bb',
+         'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}
+      symbol = accidental_to_symbol[self._accidental.alphabetic_string]
+      return self._diatonic_pitch_class_name + symbol
 
    ## PRIVATE METHODS ##
 
@@ -110,48 +130,28 @@ class NamedChromaticPitchClass(_PitchClass):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def _accidental(self):
-      '''Read-only accidental string of pitch-class name.'''
-      from abjad.tools import pitchtools
-      return pitchtools.Accidental(str(self)[1:])
-
-   @property
-   def _diatonic_pitch_class_name(self):
-      '''Read-only first letter of pitch-class name.'''
-      return str(self)[0]
-
-   @property
    def numbered_chromatic_pitch_class(self):
-      '''New numbered chromatic pitch-class from named chromatic pitch-class:
-
-      ::
+      '''Read-only numbered chromatic pitch-class::
 
          abjad> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
          abjad> named_chromatic_pitch_class.numbered_chromatic_pitch_class
          NumberedChromaticPitchClass(1)
+
+      Return numbered chromatic pitch-class.
       '''
       from abjad.tools import pitchtools
       return pitchtools.NumberedChromaticPitchClass(self._chromatic_pitch_class_name)
 
-   @property
-   def _symbolic_name(self):
-      '''Read-only letter plus punctuation of pitch name.'''
-      accidental_to_symbol = {
-         '': '', 's': '#', 'f': 'b', 'ss': '##', 'ff': 'bb',
-         'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}
-      symbol = accidental_to_symbol[self._accidental.alphabetic_string]
-      return self._diatonic_pitch_class_name + symbol
-
    ## PUBLIC METHODS ##
 
    def apply_accidental(self, accidental):
-      '''Apply `accidental` and emit new named pitch-class instance:
-
-      ::
+      '''Apply `accidental`::
 
          abjad> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
          abjad> named_chromatic_pitch_class.apply_accidental('qs')
          NamedChromaticPitchClass('ctqs')
+
+      Return named chromatic pitch-class.
       '''
       from abjad.tools import pitchtools
       accidental = pitchtools.Accidental(accidental)
@@ -160,13 +160,13 @@ class NamedChromaticPitchClass(_PitchClass):
       return type(self)(new_name)
 
    def transpose(self, melodic_diatonic_interval):
-      '''Transpose named chromatic pitch-class by `melodic_diatonic_interval`:
-
-      ::
+      '''Transpose named chromatic pitch-class by `melodic_diatonic_interval`::
 
          abjad> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
          abjad> named_chromatic_pitch_class.transpose(pitchtools.MelodicDiatonicInterval('major', 2))
          NamedChromaticPitchClass('ds')
+
+      Return named chromatic pitch-class.
       '''
       from abjad.tools import pitchtools
       pitch = pitchtools.NamedChromaticPitch(self, 4)

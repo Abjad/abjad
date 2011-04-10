@@ -37,11 +37,13 @@ class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
    ## PUBLIC ATTRIBUTES ##
       
    @property
-   def interval_classes(self):
+   #def interval_classes(self):
+   def inversion_equivalent_chromatic_interval_classes(self):
       interval_classes = list(self)
       interval_classes.sort(lambda x, y: cmp(x.number, y.number))
       return interval_classes
 
    @property
-   def numbers(self):
+   #def numbers(self):
+   def inversion_equivalent_chromatic_interval_class_numbers(self):
       return set([interval_class.number for interval_class in self])

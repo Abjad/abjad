@@ -37,7 +37,7 @@ def analyze_chord(expr):
    ordered_npcs = pitchtools.NamedChromaticPitchClassSegment(ordered_npcs)
    for x in range(len(ordered_npcs)):
       ordered_npcs = ordered_npcs.rotate(1)
-      if ordered_npcs.diatonic_interval_class_segment.is_tertian:
+      if ordered_npcs.inversion_equivalent_diatonic_interval_class_segment.is_tertian:
          break
    else:
       #raise TonalHarmonyError('expr is not tertian harmony: %s' % str(expr))
@@ -46,7 +46,7 @@ def analyze_chord(expr):
    root = ordered_npcs[0]
    bass = min(pitches).named_chromatic_pitch_class
    inversion = ordered_npcs.index(bass)
-   dic_seg =  ordered_npcs.diatonic_interval_class_segment
+   dic_seg =  ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
    cardinality = len(ordered_npcs)
    extent = chord_class_cardinality_to_extent(cardinality)
    quality = diatonic_interval_class_segment_to_chord_quality_string(dic_seg)

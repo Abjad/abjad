@@ -76,19 +76,13 @@ class HarmonicChromaticIntervalClassVector(_Vector):
 
    def has_none_of(self, chromatic_interval_numbers):
       '''True when harmonic chromatic interval class vector contains none of 
-      `chromatic_interval_numbers`:
-
-      ::
+      `chromatic_interval_numbers`. Otherwise false::
 
          abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(Staff(macros.scale(5)))
          abjad> hcicv.has_none_of([9, 10, 11]) 
          True
 
-      Otherwise false::
-         
-         abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(Staff(macros.scale(5)))
-         abjad> hcicv.has_none_of([0, 1, 2]) 
-         False
+      Return boolean.
       ''' 
       for chromatic_interval_number in chromatic_interval_numbers:
          if self[chromatic_interval_number]:

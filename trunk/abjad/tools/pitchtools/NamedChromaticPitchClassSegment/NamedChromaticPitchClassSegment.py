@@ -39,7 +39,8 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def diatonic_interval_class_segment(self):
+   #def diatonic_interval_class_segment(self):
+   def inversion_equivalent_diatonic_interval_class_segment(self):
       from abjad.tools import mathtools
       from abjad.tools import pitchtools
       dics = mathtools.difference_series(self)
@@ -55,17 +56,20 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
       return tuple(self[:])
 
    @property
-   def pitch_class_segment(self):
+   #def pitch_class_segment(self):
+   def numbered_chromatic_pitch_class_segment(self):
       from abjad.tools import pitchtools
       return pitchtools.NumberedChromaticPitchClassSegment(self)
 
    @property
-   def pitch_class_set(self):
+   #def pitch_class_set(self):
+   def numbered_chromatic_pitch_class_set(self):
       from abjad.tools import pitchtools
       return pitchtools.NumberedChromaticPitchClassSet(self)
 
    @property
-   def pitch_classes(self):
+   #def pitch_classes(self):
+   def numbered_chromatic_pitch_classes(self):
       return self.pitch_class_segment.pitch_classes
 
    ## PUBLIC METHODS ##
@@ -76,7 +80,8 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
          return False
       if not len(self) == len(arg):
          return False
-      difference = -(pitchtools.NamedChromaticPitch(arg[0], 4) - pitchtools.NamedChromaticPitch(self[0], 4))
+      difference = -(pitchtools.NamedChromaticPitch(arg[0], 4) - 
+         pitchtools.NamedChromaticPitch(self[0], 4))
       new_npcs = [x + difference for x in self]
       new_npc_seg = type(self)(new_npcs)
       return arg == new_npc_seg
@@ -86,7 +91,8 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
 
    def rotate(self, n):
       from abjad.tools import seqtools
-      named_chromatic_pitch_classes = seqtools.rotate_sequence(self.named_chromatic_pitch_classes, n)
+      named_chromatic_pitch_classes = seqtools.rotate_sequence(
+         self.named_chromatic_pitch_classes, n)
       return type(self)(named_chromatic_pitch_classes)
       
    def transpose(self, melodic_diatonic_interval):

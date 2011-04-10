@@ -41,5 +41,6 @@ class HarmonicDiatonicIntervalClassSet(_IntervalClassSet):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def interval_classes(self):
+   #def interval_classes(self):
+   def harmonic_diatonic_interval_classes(self):
       return set(self)

@@ -20,4 +20,4 @@ def calculate_melodic_diatonic_interval_class_from_named_chromatic_pitch_to_name
       pitch_carrier_1, pitch_carrier_2)
 
    ## return melodic diatonic interval class
-   return mdi.interval_class
+   return mdi.melodic_diatonic_interval_class

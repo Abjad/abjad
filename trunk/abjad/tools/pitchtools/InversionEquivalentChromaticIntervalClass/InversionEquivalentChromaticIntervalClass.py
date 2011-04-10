@@ -66,5 +66,6 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def number(self):
+   #def number(self):
+   def inversion_equivalent_chromatic_interval_number(self):
       return self._number

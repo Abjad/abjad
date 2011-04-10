@@ -19,5 +19,5 @@ def calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_nam
    mdi = calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
       pitch_carrier_1, pitch_carrier_2)
 
-   ## return melodic diatonic interval class
-   return mdi.harmonic_diatonic_interval.interval_class
+   ## return harmonic diatonic interval class
+   return mdi.harmonic_diatonic_interval.harmonic_diatonic_interval_class

@@ -43,7 +43,7 @@ class NamedChromaticPitchSet(_PitchSet):
       return '%s([%s])' % (self.__class__.__name__, self._repr_string)
 
    def __str__(self):
-      return '{%s}' % ' '.join([str(pitch) for pitch in self.pitches])
+      return '{%s}' % ' '.join([str(pitch) for pitch in self.named_chromatic_pitches])
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -53,7 +53,7 @@ class NamedChromaticPitchSet(_PitchSet):
 
    @property
    def _repr_string(self):
-      return ', '.join([repr(str(pitch)) for pitch in self.pitches])
+      return ', '.join([repr(str(pitch)) for pitch in self.named_chromatic_pitches])
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -71,23 +71,27 @@ class NamedChromaticPitchSet(_PitchSet):
 
    @property
    def is_pitch_class_unique(self):
-      return len(self) == len(self.pitch_class_set)
+      return len(self) == len(self.numbered_chromatic_pitch_class_set)
 
    @property
-   def numbers(self):
+   #def numbers(self):
+   def chromatic_pitch_numbers(self):
       return tuple(sorted([pitch.numbered_chromatic_pitch._chromatic_pitch_number for pitch in self]))
 
    @property
-   def pitch_classes(self):
+   #def pitch_classes(self):
+   def numbered_chromatic_pitch_classes(self):
       return tuple([pitch.numbered_chromatic_pitch_class for pitch in self.pitches])
 
    @property
-   def pitch_class_set(self):
+   #def pitch_class_set(self):
+   def numbered_chromatic_pitch_class_set(self):
       from abjad.tools import pitchtools
       return pitchtools.NumberedChromaticPitchClassSet(self)
       
    @property
-   def pitches(self):
+   #def pitches(self):
+   def named_chromatic_pitches(self):
       return tuple(sorted(self))
 
    ## PUBLIC METHODS ##

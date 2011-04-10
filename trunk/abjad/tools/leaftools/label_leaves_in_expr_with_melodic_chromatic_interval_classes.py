@@ -35,7 +35,7 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
          if isinstance(next_leaf, Note):
             mdi = note.pitch - next_leaf.pitch
             mci = mdi.melodic_chromatic_interval
-            mcic = mci.interval_class
+            mcic = mci.melodic_chromatic_interval_class
             markuptools.Markup(mcic, markup_direction)(note)
       except StopIteration:
          pass

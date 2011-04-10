@@ -6,8 +6,17 @@ class NamedDiatonicPitch(_DiatonicPitch):
 
    Abjad model of a named diatonic pitch::
 
-      abjad> pitchtools.NamedDiatonicPitch("c''")
+      abjad> named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")
+
+   ::
+
+      abjad> named_diatonic_pitch
       NamedDiatonicPitch("c''")
+
+   ::
+
+      abjad> print named_diatonic_pitch
+      c''
 
    Named diatonic pitches are immutable.
    '''
@@ -56,25 +65,25 @@ class NamedDiatonicPitch(_DiatonicPitch):
 
    @property
    def format(self):
-      '''Read-only LilyPond input format of named diatonic pitch:
-
-      ::
+      '''Read-only LilyPond input format of named diatonic pitch::
 
          abjad> named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")
          abjad> named_diatonic_pitch.format
          "c''"
+
+      Return string.
       '''
       return self._diatonic_pitch_name
 
    @property
    def named_diatonic_pitch_class(self):
-      '''Named diatonic pitch-class from named diatonic pitch:
-
-      ::
+      '''Read-only named diatonic pitch-class::
 
          abjad> named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")
          abjad> named_diatonic_pitch.named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
+
+      Return named diatonic pitch-class.
       '''
       from abjad.tools import pitchtools
       tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name
@@ -82,13 +91,13 @@ class NamedDiatonicPitch(_DiatonicPitch):
 
    @property
    def numbered_diatonic_pitch(self):
-      '''Numeric diatonic pitch from named diatonic pitch:
-
-      ::
+      '''Read-only numbered diatonic pitch::
 
          abjad> named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")
          abjad> named_diatonic_pitch.numbered_diatonic_pitch
          NumberedDiatonicPitch(7)
+
+      Return numbered diatonic pitch.
       '''
       from abjad.tools import pitchtools
       tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_number
@@ -96,13 +105,13 @@ class NamedDiatonicPitch(_DiatonicPitch):
 
    @property
    def numbered_diatonic_pitch_class(self):
-      '''Numeric diatonic pitch class from named diatonic pitch class:
-
-      ::
+      '''Read-only numbered diatonic pitch class::
 
          abjad> named_diatonic_pitch_class = pitchtools.NamedDiatonicPitch("c''")
          abjad> named_diatonic_pitch.numbered_diatonic_pitch_class
          NumberedDiatonicPitchClass(0)
+
+      Return numbered diatonic pitch-class.
       '''
       from abjad.tools import pitchtools
       tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_number

@@ -177,7 +177,7 @@ class Accidental(_StrictComparator, _Immutable):
 
    @property
    def alphabetic_string(self):
-      '''Read-only alphabetic string of accidental::
+      '''Read-only alphabetic string::
 
          abjad> accidental = pitchtools.Accidental('s')
          abjad> accidental.alphabetic_string
@@ -195,17 +195,13 @@ class Accidental(_StrictComparator, _Immutable):
          abjad> accidental.format
          's' 
 
-      Defined equal to alphabetic string of accidental.
-
       Return string.
       '''
       return self._alphabetic_string
 
    @property
    def is_adjusted(self):
-      '''Read-only adjustment indicator of accidental.
-
-      True for all accidentals equal to a nonzero number of semitones. False otherwise::
+      '''True for all accidentals equal to a nonzero number of semitones. False otherwise::
 
          abjad> accidental = pitchtools.Accidental('s')
          abjad> accidental.is_adjusted

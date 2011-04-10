@@ -20,4 +20,4 @@ def calculate_melodic_chromatic_interval_class_from_pitch_carrier_to_pitch_carri
       pitch_carrier_1, pitch_carrier_2)
 
    ## return melodic chromatic interval class
-   return mci.interval_class
+   return mci.melodic_chromatic_interval_class

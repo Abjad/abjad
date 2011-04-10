@@ -46,9 +46,11 @@ class HarmonicDiatonicIntervalSet(_IntervalSet):
       return pitchtools.HarmonicChromaticIntervalSet(self)
 
    @property
-   def intervals(self):
+   #def intervals(self):
+   def harmonic_diatonic_intervals(self):
       return set(self)
       
    @property
-   def numbers(self):
+   #def numbers(self):
+   def harmonic_diatonic_interval_numbers(self):
       return set([interval.number for interval in self])

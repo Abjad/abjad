@@ -49,6 +49,7 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
          raise ValueError
 
    @property
-   def interval_class(self):
+   #def interval_class(self):
+   def melodic_counterpoint_interval_class(self):
       from abjad.tools import pitchtools
       return pitchtools.MelodicCounterpointIntervalClass(self)
