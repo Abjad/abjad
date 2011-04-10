@@ -56,7 +56,7 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass):
 
    @property
    def numbered_diatonic_pitch_class(self):
-      '''Read-only numbered diatonic pitch class from named diatonic pitch class::
+      '''Read-only numbered diatonic pitch-class from named diatonic pitch-class::
 
          abjad> named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass('c')
          abjad> named_diatonic_pitch_class.numbered_diatonic_pitch_class

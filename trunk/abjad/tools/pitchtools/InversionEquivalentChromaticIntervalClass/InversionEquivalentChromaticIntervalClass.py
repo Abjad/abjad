@@ -24,7 +24,7 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
             raise ValueError('must be between 0 and 6, inclusive.')
          _number = interval_class_token
       else:
-         raise TypeError('must be interval class instance or number.')
+         raise TypeError('must be interval-class instance or number.')
       object.__setattr__(self, '_number', _number)
       return self
    

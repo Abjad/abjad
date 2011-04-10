@@ -5,12 +5,12 @@ from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Abjad model harmonic diatonic interval class::
+   Abjad model harmonic diatonic interval-class::
 
       abjad> pitchtools.HarmonicDiatonicIntervalClass('-M9')
       HarmonicDiatonicIntervalClass('M2')
 
-   Harmonic diatonic interval classes are immutable.
+   Harmonic diatonic interval-classes are immutable.
    '''
 
    def __new__(klass, *args):
@@ -76,7 +76,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
    ## PUBLIC METHODS ##
 
    def invert(self):
-      '''Read-only inversion of harmonic diatonic interval class::
+      '''Read-only inversion of harmonic diatonic interval-class::
 
          abjad> hdic = pitchtools.HarmonicDiatonicIntervalClass('major', -9)
          abjad> hdic.invert( ) 

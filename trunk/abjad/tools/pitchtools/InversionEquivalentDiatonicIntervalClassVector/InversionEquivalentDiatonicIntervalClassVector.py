@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_cla
 class InversionEquivalentDiatonicIntervalClassVector(_Vector):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of inversion-equivalent diatonic interval class vector::
+   Abjad model of inversion-equivalent diatonic interval-class vector::
 
       abjad> staff = Staff(macros.scale(5))
       abjad> pitchtools.InversionEquivalentDiatonicIntervalClassVector(staff) 

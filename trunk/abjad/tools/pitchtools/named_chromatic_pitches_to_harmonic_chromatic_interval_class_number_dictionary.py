@@ -5,7 +5,7 @@ from abjad.tools import seqtools
 def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(pitches):
    '''.. versionadded:: 1.1.1
 
-   Convert named chromatic pitches to harmonic chromatic interval class number dictionary::
+   Convert named chromatic pitches to harmonic chromatic interval-class number dictionary::
 
       abjad> chord = Chord([0, 2, 11], (1, 4))
       abjad> vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(chord.pitches)

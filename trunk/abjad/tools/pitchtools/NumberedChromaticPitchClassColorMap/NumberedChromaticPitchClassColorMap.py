@@ -47,7 +47,7 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
             pc = pitchtools.NumberedChromaticPitchClass(pitch)
             if abs(pc) in self._color_dictionary.keys( ):
                print pc, self._color_dictionary.keys( )
-               raise KeyError('Duplicated pitch class %s in color dictionary.' % pc)
+               raise KeyError('Duplicated pitch-class %s in color dictionary.' % pc)
             self._color_dictionary[abs(pc)] = color
 
    ## PUBLIC ATTRIBUTES ##

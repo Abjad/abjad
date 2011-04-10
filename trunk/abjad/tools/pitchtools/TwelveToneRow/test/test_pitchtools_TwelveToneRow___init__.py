@@ -10,7 +10,7 @@ def test_pitchtools_TwelveToneRow___init___01( ):
 
 
 def test_pitchtools_TwelveToneRow___init___02( ):
-   '''Rows initialize with pitch classes.'''
+   '''Rows initialize with pitch-classes.'''
 
    numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
    pitch_classes = [pitchtools.NumberedChromaticPitchClass(number) for number in numbers]
@@ -26,6 +26,6 @@ def test_pitchtools_TwelveToneRow___init___03( ):
 
 
 def test_pitchtools_TwelveToneRow___init___04( ):
-   '''Rows do not initialize with defective pitch class content.'''
+   '''Rows do not initialize with defective pitch-class content.'''
 
    assert py.test.raises(ValueError, 'pitchtools.TwelveToneRow([0, 1, 2, 3])')

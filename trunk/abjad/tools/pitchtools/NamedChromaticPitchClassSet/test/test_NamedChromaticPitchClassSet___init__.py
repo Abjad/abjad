@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NamedChromaticPitchClassSet___init___01( ):
-   '''Init with named pitch classes.'''
+   '''Init with named pitch-classes.'''
 
    npc_set = pitchtools.NamedChromaticPitchClassSet([
       pitchtools.NamedChromaticPitchClass('c'),

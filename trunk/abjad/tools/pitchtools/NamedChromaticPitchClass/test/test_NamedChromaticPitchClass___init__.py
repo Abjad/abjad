@@ -12,7 +12,7 @@ def test_NamedChromaticPitchClass___init___01( ):
 
 
 def test_NamedChromaticPitchClass___init___02( ):
-   '''Init from other named pitch class instance.'''
+   '''Init from other named pitch-class instance.'''
 
    npc = pitchtools.NamedChromaticPitchClass('c')
    new = pitchtools.NamedChromaticPitchClass(npc)

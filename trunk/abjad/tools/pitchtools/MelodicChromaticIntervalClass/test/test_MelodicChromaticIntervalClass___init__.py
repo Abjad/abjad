@@ -39,7 +39,7 @@ def test_MelodicChromaticIntervalClass___init___03( ):
 
 
 def test_MelodicChromaticIntervalClass___init___04( ):
-   '''Works with other interval class instances.'''
+   '''Works with other interval-class instances.'''
 
    mcic = pitchtools.MelodicChromaticIntervalClass(12)
    new_mcic = pitchtools.MelodicChromaticIntervalClass(mcic)

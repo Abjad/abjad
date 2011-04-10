@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NamedChromaticPitchClassSet___eq___01( ):
-   '''Named pitch class set equality works as expected.'''
+   '''Named pitch-class set equality works as expected.'''
 
    npc_set_1 = pitchtools.NamedChromaticPitchClassSet([
       pitchtools.NamedChromaticPitchClass('c'),

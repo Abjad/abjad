@@ -6,12 +6,12 @@ from abjad.tools.pitchtools._MelodicIntervalClass import _MelodicIntervalClass
 class MelodicCounterpointIntervalClass(_CounterpointIntervalClass, _MelodicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of melodic counterpoint interval class::
+   Abjad model of melodic counterpoint interval-class::
 
       abjad> pitchtools.MelodicCounterpointIntervalClass(-9)
       MelodicCounterpointIntervalClass(-2)
 
-   Melodic counterpoint interval classes are immutable.
+   Melodic counterpoint interval-classes are immutable.
    '''
 
    __slots__ = ('_number', )

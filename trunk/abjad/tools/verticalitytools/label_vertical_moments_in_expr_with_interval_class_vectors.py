@@ -6,7 +6,7 @@ from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr impor
 def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
-   Label interval class vector of every vertical moment in `expr`. ::
+   Label interval-class vector of every vertical moment in `expr`. ::
 
       abjad> score = Score(Staff([ ]) * 3)
       abjad> score[0].extend(macros.scale(4))

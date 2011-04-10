@@ -5,7 +5,7 @@ from fractions import Fraction
 class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of inversion-equivalent diatonic interval class::
+   Abjad model of inversion-equivalent diatonic interval-class::
 
       abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('-m14')
       InversionEquivalentDiatonicIntervalClass('M2')
@@ -32,7 +32,7 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
       elif len(args) == 2:
          self._init_by_quality_string_and_number(*args)
       else:
-         raise ValueError('can not initialize diatonic interval class.')
+         raise ValueError('can not initialize diatonic interval-class.')
       return self
 
    ## OVERLOADS ##

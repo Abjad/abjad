@@ -5,12 +5,12 @@ from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of harmonic counterpoint interval class::
+   Abjad model of harmonic counterpoint interval-class::
 
       abjad> pitchtools.HarmonicCounterpointIntervalClass(-9)
       HarmonicCounterpointIntervalClass(2)
 
-   Harmonic counterpoint interval classes are immutable.
+   Harmonic counterpoint interval-classes are immutable.
    '''
 
    def __new__(klass, token):

@@ -71,7 +71,7 @@ class NamedChromaticPitchClass(_PitchClass):
 
    def __sub__(self, arg):
       if not isinstance(arg, type(self)):
-         raise TypeError('%s must be named pitch class.' % arg)
+         raise TypeError('%s must be named pitch-class.' % arg)
       from abjad.tools import pitchtools
       pitch_1 = pitchtools.NamedChromaticPitch(self, 4)
       pitch_2 = pitchtools.NamedChromaticPitch(arg, 4)

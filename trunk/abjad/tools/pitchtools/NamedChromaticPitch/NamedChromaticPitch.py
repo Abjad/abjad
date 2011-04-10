@@ -409,7 +409,7 @@ class NamedChromaticPitch(_Pitch):
    
    @property
    def named_chromatic_pitch_class(self):
-      '''Read-only named pitch class::
+      '''Read-only named pitch-class::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.named_chromatic_pitch_class

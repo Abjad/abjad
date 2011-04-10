@@ -7,12 +7,12 @@ from fractions import Fraction
 class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalClass):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of melodic chromatic interval class::
+   Abjad model of melodic chromatic interval-class::
 
       abjad> pitchtools.MelodicChromaticIntervalClass(-14)
       MelodicChromaticIntervalClass(-2)
 
-   Melodic chromatic interval classes are immutable.
+   Melodic chromatic interval-classes are immutable.
    '''
 
    def __new__(klass, token):
@@ -45,7 +45,7 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
             number = abs_number % 12
          number *= sign
       else:
-         raise ValueError('must be number, interval or interval class.')
+         raise ValueError('must be number, interval or interval-class.')
       object.__setattr__(self, '_number', number)
       return self
 

@@ -29,7 +29,7 @@ class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):
 
    @property
    def is_tertian(self):
-      '''True when all diatonic interval classes in segment are tertian.
+      '''True when all diatonic interval-classes in segment are tertian.
       Otherwise false::
 
          abjad> dics = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([('major', 3), ('minor', 6), ('major', 6)])

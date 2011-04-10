@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NamedChromaticPitchClass___cmp___01( ):
-   '''Referentially equal named pitch classes compare equally.'''
+   '''Referentially equal named pitch-classes compare equally.'''
 
    npc = pitchtools.NamedChromaticPitchClass('fs')
    assert     npc == npc

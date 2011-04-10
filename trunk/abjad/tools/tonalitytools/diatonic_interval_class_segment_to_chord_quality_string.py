@@ -5,7 +5,7 @@ from abjad.tools import pitchtools
 def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
    '''.. versionadded:: 1.1.2
 
-   Convert diatonic interval class segment `dic_seg` to chord
+   Convert diatonic interval-class segment `dic_seg` to chord
    quality string. ::
 
       abjad> dic_seg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
@@ -74,7 +74,7 @@ def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
    try:
       quality_string = dic_seg_to_quality_string[repr(dic_seg)]
    except KeyError:
-      raise TonalHarmonyError('unknown diatonic interval class segment: %s' %
+      raise TonalHarmonyError('unknown diatonic interval-class segment: %s' %
          dic_seg)   
 
    return quality_string

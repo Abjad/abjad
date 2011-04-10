@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NumberedChromaticPitchClass___add___01( ):
-   '''Ascending melodic chromatic interval added to pitch class.'''
+   '''Ascending melodic chromatic interval added to pitch-class.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(0)
    MCI = pitchtools.MelodicChromaticInterval
@@ -21,7 +21,7 @@ def test_NumberedChromaticPitchClass___add___01( ):
 
 
 def test_NumberedChromaticPitchClass___add___02( ):
-   '''Ascending melodic chromatic interval added to pitch class.'''
+   '''Ascending melodic chromatic interval added to pitch-class.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(0)
    MCI = pitchtools.MelodicChromaticInterval
@@ -41,7 +41,7 @@ def test_NumberedChromaticPitchClass___add___02( ):
 
 
 def test_NumberedChromaticPitchClass___add___03( ):
-   '''Descending melodic chromatic interval added to pitch class.'''
+   '''Descending melodic chromatic interval added to pitch-class.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(0)
    MCI = pitchtools.MelodicChromaticInterval
@@ -60,7 +60,7 @@ def test_NumberedChromaticPitchClass___add___03( ):
 
 
 def test_NumberedChromaticPitchClass___add___04( ):
-   '''Descending melodic chromatic interval added to pitch class.'''
+   '''Descending melodic chromatic interval added to pitch-class.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(0)
    MCI = pitchtools.MelodicChromaticInterval
@@ -80,7 +80,7 @@ def test_NumberedChromaticPitchClass___add___04( ):
 
 
 def test_NumberedChromaticPitchClass___add___05( ):
-   '''Melodic chromatic unison added to pitch class.'''
+   '''Melodic chromatic unison added to pitch-class.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(0)
    MCI = pitchtools.MelodicChromaticInterval

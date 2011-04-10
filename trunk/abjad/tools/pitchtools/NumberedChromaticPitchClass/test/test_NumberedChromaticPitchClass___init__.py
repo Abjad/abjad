@@ -20,7 +20,7 @@ def test_NumberedChromaticPitchClass___init___01( ):
 
 
 def test_NumberedChromaticPitchClass___init___02( ):
-   '''Pitch class initialization works with other pitch classes.'''
+   '''Pitch class initialization works with other pitch-classes.'''
 
    pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NumberedChromaticPitchClass(0))
    assert isinstance(pc, pitchtools.NumberedChromaticPitchClass)
@@ -56,7 +56,7 @@ def test_NumberedChromaticPitchClass___init___05( ):
 
 
 def test_NumberedChromaticPitchClass___init___06( ):
-   '''Init with named pitch class instance.'''
+   '''Init with named pitch-class instance.'''
 
    npc = pitchtools.NamedChromaticPitchClass('cs')
    pc = pitchtools.NumberedChromaticPitchClass(npc)
@@ -84,7 +84,7 @@ def test_NumberedChromaticPitchClass___init___09( ):
 
 
 def test_NumberedChromaticPitchClass___init___10( ):
-   '''Init from named pitch class string.'''
+   '''Init from named pitch-class string.'''
 
    assert pitchtools.NumberedChromaticPitchClass('c') == 0
    assert pitchtools.NumberedChromaticPitchClass('cs') == 1

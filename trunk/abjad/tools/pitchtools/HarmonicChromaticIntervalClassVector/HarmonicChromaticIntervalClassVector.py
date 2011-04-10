@@ -5,14 +5,14 @@ from abjad.tools.pitchtools.list_harmonic_chromatic_intervals_in_expr import lis
 class HarmonicChromaticIntervalClassVector(_Vector):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of harmonic chromatic interval class vector::
+   Abjad model of harmonic chromatic interval-class vector::
 
       abjad> staff = Staff(macros.scale(5))
       abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(staff)
       abjad> print hcicv
       0 1 3 2 1 2 0 1 0 0 0 0
 
-   Harmonic chromatic interval class vector is quartertone-aware::
+   Harmonic chromatic interval-class vector is quartertone-aware::
 
       abjad> staff.append(Note(1.5, (1, 4)))
       abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(staff)
@@ -20,7 +20,7 @@ class HarmonicChromaticIntervalClassVector(_Vector):
       0 1 3 2 1 2 0 1 0 0 0 0
       1 1 1 1 0 1 0 0 0 0 0 0
 
-   Harmonic chromatic interval class vectors are immutable.
+   Harmonic chromatic interval-class vectors are immutable.
    '''
 
    def __init__(self, expr):
@@ -75,7 +75,7 @@ class HarmonicChromaticIntervalClassVector(_Vector):
    ## PUBLIC METHODS ##
 
    def has_none_of(self, chromatic_interval_numbers):
-      '''True when harmonic chromatic interval class vector contains none of 
+      '''True when harmonic chromatic interval-class vector contains none of 
       `chromatic_interval_numbers`. Otherwise false::
 
          abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(Staff(macros.scale(5)))

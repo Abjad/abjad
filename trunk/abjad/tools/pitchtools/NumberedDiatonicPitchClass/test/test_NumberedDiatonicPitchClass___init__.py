@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NumberedDiatonicPitchClass___init___01( ):
-   '''Init numbered diatonic pitch class from diatonic pitch class number.
+   '''Init numbered diatonic pitch-class from diatonic pitch-class number.
    '''
 
    numbered_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0)
@@ -16,7 +16,7 @@ def test_NumberedDiatonicPitchClass___init___01( ):
 
 
 def test_NumberedDiatonicPitchClass___init___02( ):
-   '''Init numbered diatonic pitch class from diatonic pitch class name.
+   '''Init numbered diatonic pitch-class from diatonic pitch-class name.
    '''
 
    diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass('c')
@@ -24,7 +24,7 @@ def test_NumberedDiatonicPitchClass___init___02( ):
 
 
 def test_NumberedDiatonicPitchClass___init___03( ):
-   '''Init numbered diatonic pitch class from diatonic pitch class.
+   '''Init numbered diatonic pitch-class from diatonic pitch-class.
    '''
 
    diatonic_pitch_class_1 = pitchtools.NumberedDiatonicPitchClass(0)

@@ -13,7 +13,7 @@ def diatonic_pitch_class_name_to_diatonic_pitch_class_number(diatonic_pitch_clas
    Return integer.
    '''
 
-   error_message = '\n\tNot diatonic pitch class name: "%s".' % diatonic_pitch_class_name
+   error_message = '\n\tNot diatonic pitch-class name: "%s".' % diatonic_pitch_class_name
    if not isinstance(diatonic_pitch_class_name, str):
       raise TypeError(error_message)
 

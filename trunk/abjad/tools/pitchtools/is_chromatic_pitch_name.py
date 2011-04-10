@@ -7,7 +7,7 @@ import re
 
 
 chromatic_pitch_name_regex_body = '''
-   %s             ## exactly one diatonic pitch class name string
+   %s             ## exactly one diatonic pitch-class name string
    %s             ## followed by exactly one alphabetic accidental name string
    %s             ## followed by exactly one octave tick string
    ''' % (diatonic_pitch_class_name_regex_body,

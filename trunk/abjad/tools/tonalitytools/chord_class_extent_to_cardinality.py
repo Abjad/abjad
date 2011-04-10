@@ -9,7 +9,7 @@ def chord_class_extent_to_cardinality(extent):
       abjad> tonalitytools.chord_class_extent_to_cardinality(7)
       4
    
-   The call above shows that a seventh chord comprises 4 unique pitch classes.
+   The call above shows that a seventh chord comprises 4 unique pitch-classes.
    '''
 
    cardinality_to_extent = {

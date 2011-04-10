@@ -8,7 +8,7 @@ def test_NumberedChromaticPitchClassSet___init___01( ):
 
 
 def test_NumberedChromaticPitchClassSet___init___02( ):
-   '''Works with pitch classes.'''
+   '''Works with pitch-classes.'''
 
    assert len(pitchtools.NumberedChromaticPitchClassSet(
       [pitchtools.NumberedChromaticPitchClass(x) for x in [0, 2, 6, 7]])) == 4
