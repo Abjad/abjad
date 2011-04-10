@@ -67,12 +67,6 @@ class Container(_Component):
       _withdraw_components_in_expr_from_crossing_spanners(components)
       _switch_components_to_parent(components, None)
 
-   def __eq__(self, arg):
-      if isinstance(arg, type(self)):
-         if self[:] == arg[:]:
-            return True
-      return False
-
    def __getitem__(self, i):
       '''Return component at index i in container.
       Shallow traversal of container for numeric indices only.
@@ -95,9 +89,6 @@ class Container(_Component):
    def __len__(self):
       '''Return nonnegative integer number of components in container.'''
       return len(self._music)
-
-   def __ne__(self, arg):
-      return not self == arg
 
    def __radd__(self, expr):
       '''Extend container by contents of expr to the right.'''

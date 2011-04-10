@@ -28,8 +28,8 @@ def test_Container___cmp___02( ):
    container_1 = Container([ ])
    container_2 = Container([ ])
 
-   assert     container_1 == container_2
-   assert not container_1 != container_2
+   assert not container_1 == container_2
+   assert     container_1 != container_2
 
    comparison_string = 'container_1 <  container_2'
    assert py.test.raises(NotImplementedError, comparison_string)

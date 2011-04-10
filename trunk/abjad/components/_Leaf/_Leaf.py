@@ -29,13 +29,6 @@ class _Leaf(_Component, _StrictComparator):
          new._set = copy.copy(self.set)
       return new
 
-#   def __eq__(self, arg):
-#      if isinstance(arg, type(self)):
-#         if self.duration.written == arg.duration.written:
-#            if self.duration.multiplier == arg.duration.multiplier:
-#               return True
-#      return False
-
    def __getnewargs__(self):
       result = [ ]
       result.append(self.duration.written)
@@ -45,9 +38,6 @@ class _Leaf(_Component, _StrictComparator):
 
    def __or__(self, arg):
       return self._operate(arg, operator.__or__)
-
-#   def __ne__(self, arg):
-#      return not self == arg
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, repr(self._compact_representation))

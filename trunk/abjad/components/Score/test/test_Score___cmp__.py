@@ -28,8 +28,8 @@ def test_Score___cmp___02( ):
    score_1 = Score([ ])
    score_2 = Score([ ])
 
-   assert     score_1 == score_2
-   assert not score_1 != score_2
+   assert not score_1 == score_2
+   assert     score_1 != score_2
 
    comparison_string = 'score_1 <  score_2'
    assert py.test.raises(NotImplementedError, comparison_string)
