@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interval import transpose_pitch_carrier_by_melodic_chromatic_interval
-from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval import transpose_pitch_carrier_by_melodic_diatonic_interval
+from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_chromatic_interval import _transpose_pitch_carrier_by_melodic_chromatic_interval
+from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_diatonic_interval import _transpose_pitch_carrier_by_melodic_diatonic_interval
 
 
 def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval):
@@ -33,10 +33,10 @@ def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval)
    '''
 
    if isinstance(melodic_interval, MelodicDiatonicInterval):
-      return transpose_pitch_carrier_by_melodic_diatonic_interval(
+      return _transpose_pitch_carrier_by_melodic_diatonic_interval(
          pitch_carrier, melodic_interval)
    elif isinstance(melodic_interval, MelodicChromaticInterval):
-      return transpose_pitch_carrier_by_melodic_chromatic_interval(
+      return _transpose_pitch_carrier_by_melodic_chromatic_interval(
          pitch_carrier, melodic_interval)
    else:
       raise TypeError('must be diatonic or chromatic melodic interval.')

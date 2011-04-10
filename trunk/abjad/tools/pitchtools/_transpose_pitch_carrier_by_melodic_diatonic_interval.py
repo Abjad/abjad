@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 from abjad.tools.pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name import diatonic_pitch_class_number_to_diatonic_pitch_class_name
 
 
-def transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic_diatonic_interval):
+def _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic_diatonic_interval):
    '''.. versionadded:: 1.1.2
 
    Transpose `pitch_carrier` by `melodic_diatonic_interval`::

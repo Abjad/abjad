@@ -56,7 +56,7 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fo
 
    chord = Chord(note)
    chord.append(chord[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number)
-   chord[1].pitch = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(
+   chord[1].pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(
       chord[1].pitch, melodic_diatonic_interval)
    chord[1].tweak.style = 'harmonic'
    componenttools.move_parentage_and_spanners_from_components_to_components([note], [chord])

@@ -1,6 +1,5 @@
 from abjad.tools.pitchtools._PitchClass import _PitchClass
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
-   get_named_chromatic_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
 class NamedChromaticPitchClass(_PitchClass):
@@ -51,7 +50,7 @@ class NamedChromaticPitchClass(_PitchClass):
       from abjad.tools import pitchtools
       dummy = pitchtools.NamedChromaticPitch(self._chromatic_pitch_class_name, 4)
       mdi = melodic_diatonic_interval
-      new = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(dummy, mdi)
+      new = pitchtools.transpose_pitch_carrier_by_melodic_interval(dummy, mdi)
       return new.named_chromatic_pitch_class
 
    def __copy__(self):
@@ -170,7 +169,7 @@ class NamedChromaticPitchClass(_PitchClass):
       '''
       from abjad.tools import pitchtools
       pitch = pitchtools.NamedChromaticPitch(self, 4)
-      transposed_pitch = pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(
+      transposed_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(
          pitch, melodic_diatonic_interval)
       transposed_named_chromatic_pitch_class = transposed_pitch.named_chromatic_pitch_class
       return transposed_named_chromatic_pitch_class

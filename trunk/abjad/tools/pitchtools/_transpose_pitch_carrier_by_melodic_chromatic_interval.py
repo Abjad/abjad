@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInte
 from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 
 
-def transpose_pitch_carrier_by_melodic_chromatic_interval(
+def _transpose_pitch_carrier_by_melodic_chromatic_interval(
    pitch_carrier, melodic_chromatic_interval):
    '''.. versionadded:: 1.1.2
 
