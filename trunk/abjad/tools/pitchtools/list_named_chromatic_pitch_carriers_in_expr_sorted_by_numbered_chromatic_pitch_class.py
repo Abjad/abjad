@@ -5,7 +5,7 @@ def list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pit
    pitch_carriers):
    '''.. versionadded:: 1.1.2
    
-   List named chromatic pitch carriers in `expr` sorted by numeric chromatic pitch class::
+   List named chromatic pitch carriers in `expr` sorted by numbered chromatic pitch class::
 
       abjad> chord = Chord([9, 11, 12, 14, 16], (1, 4))
       abjad> notes = chordtools.arpeggiate_chord(chord)

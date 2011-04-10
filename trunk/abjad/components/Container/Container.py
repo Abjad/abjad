@@ -75,9 +75,8 @@ class Container(_Component):
 
    def __getitem__(self, i):
       '''Return component at index i in container.
-      Shallow traversal of container for numeric indices only..
-      For deep, recursive traversal of container for named indices,
-      use Container.get(expr).'''
+      Shallow traversal of container for numeric indices only.
+      '''
       return self._music[i]
             
    def __iadd__(self, expr):

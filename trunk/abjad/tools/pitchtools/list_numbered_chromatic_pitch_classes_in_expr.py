@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromatic
 def list_numbered_chromatic_pitch_classes_in_expr(expr):
    '''.. versionadded:: 1.1.2
 
-   List numeric chromatic pitch-classes in `expr`::
+   List numbered chromatic pitch-classes in `expr`::
 
       abjad> chord = Chord([13, 14, 15], (1, 4))
       abjad> pitchtools.list_numbered_chromatic_pitch_classes_in_expr(chord)

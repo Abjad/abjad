@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClass import NumberedChromatic
 def get_numbered_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
    '''.. versionadded:: 1.1.2
 
-   Get numeric chromatic pitch-class from `pitch_carrier`::
+   Get numbered chromatic pitch-class from `pitch_carrier`::
 
       abjad> note = Note("cs'4")
       abjad> pitchtools.get_numbered_chromatic_pitch_class_from_pitch_carrier(note)

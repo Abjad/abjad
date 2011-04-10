@@ -100,7 +100,7 @@ class NamedChromaticPitch(_Pitch):
             self._accidental_semitones >= arg._accidental_semitones) or \
             (self._diatonic_pitch_number == arg._diatonic_pitch_number and
             self._accidental_semitones == arg._accidental_semitones and
-            self._numeric_deviation >= arg._numeric_deviation)
+            self._deviation_in_cents >= arg._deviation_in_cents)
       except (TypeError, ValueError):
          return False
 
@@ -112,7 +112,7 @@ class NamedChromaticPitch(_Pitch):
          self._accidental_semitones > arg._accidental_semitones) or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
          self._accidental_semitones == arg._accidental_semitones and \
-         self._numeric_deviation > arg._numeric_deviation)
+         self._deviation_in_cents > arg._deviation_in_cents)
 
    def __hash__(self):
       return hash(repr(self))
@@ -130,7 +130,7 @@ class NamedChromaticPitch(_Pitch):
          return self._diatonic_pitch_number <= arg._diatonic_pitch_number
       if not self._accidental_semitones == arg._accidental_semitones:
          return self._accidental_semitones <= arg._accidental_semitones
-      return self._numeric_deviation <= arg._numeric_deviation
+      return self._deviation_in_cents <= arg._deviation_in_cents
 
    def __lt__(self, arg):
       if not isinstance(arg, type(self)):
@@ -140,7 +140,7 @@ class NamedChromaticPitch(_Pitch):
          self._accidental_semitones < arg._accidental_semitones) or \
          (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
          self._accidental_semitones == arg._accidental_semitones and \
-         self._numeric_deviation < arg._numeric_deviation)
+         self._deviation_in_cents < arg._deviation_in_cents)
 
    def __ne__(self, arg):
       return not self == arg
@@ -181,7 +181,7 @@ class NamedChromaticPitch(_Pitch):
       return Accidental(alphabetic_accidental_abbreviation)
 
    @property
-   def _numeric_deviation(self):
+   def _deviation_in_cents(self):
       if self.deviation_in_cents is None:
          return 0
       else:
@@ -438,7 +438,7 @@ class NamedChromaticPitch(_Pitch):
 
    @property
    def numbered_diatonic_pitch(self):
-      '''Read-only numeric diatonic pitch::
+      '''Read-only numbered diatonic pitch::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.numbered_diatonic_pitch
@@ -451,7 +451,7 @@ class NamedChromaticPitch(_Pitch):
 
    @property
    def numbered_diatonic_pitch_class(self):
-      '''Read-only numeric diatonic pitch::
+      '''Read-only numbered diatonic pitch::
 
          abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
          abjad> named_chromatic_pitch.numbered_diatonic_pitch_class

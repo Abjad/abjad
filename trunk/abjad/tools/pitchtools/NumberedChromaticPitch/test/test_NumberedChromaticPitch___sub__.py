@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NumberedChromaticPitch___sub___01( ):
-   '''Subtract numeric pitch from numeric pitch.'''
+   '''Subtract numbered chromatic pitch from numbered chromatic pitch.'''
 
    p = pitchtools.NumberedChromaticPitch(12)
    q = pitchtools.NumberedChromaticPitch(13)
@@ -12,7 +12,7 @@ def test_NumberedChromaticPitch___sub___01( ):
 
 
 def test_NumberedChromaticPitch___sub___02( ):
-   '''Subtract number from numeric pitch.'''
+   '''Subtract number from numbered chromatic pitch.'''
 
    p = pitchtools.NumberedChromaticPitch(12)
 

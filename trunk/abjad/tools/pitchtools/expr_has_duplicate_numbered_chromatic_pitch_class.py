@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChroma
 def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
    '''.. versionadded:: 1.1.2
 
-   True when `expr` duplicated numeric chromatic pitch-class.
+   True when `expr` has duplicate numbered chromatic pitch-class.
    Otherwise false::
 
       abjad> chord = Chord([1, 13, 14], (1, 4))

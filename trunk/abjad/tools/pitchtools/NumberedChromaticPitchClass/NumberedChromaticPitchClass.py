@@ -78,7 +78,7 @@ class NumberedChromaticPitchClass(_PitchClass):
    ## PUBLIC METHODS ##
 
    def apply_accidental(self, accidental = None):
-      '''Emit new numeric pitch class as sum of self and accidental.'''
+      '''Emit new numbered chromatic pitch class as sum of self and accidental.'''
       from abjad.tools import pitchtools
       accidental = pitchtools.Accidental(accidental)
       semitones = abs(self) + accidental.semitones

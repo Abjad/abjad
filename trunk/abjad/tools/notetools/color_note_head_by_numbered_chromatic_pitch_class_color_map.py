@@ -21,7 +21,7 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
       \once \override NoteHead #'color = #(x11-color 'red)
       c'4
    
-   Numeric chromatic pitch-class color map::
+   Numbered chromatic pitch-class color map::
 
       0: red
       1: MediumBlue
@@ -37,7 +37,7 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
       11: SeaGreen
       12: LimeGreen
 
-   Numeric chromatic pitch-class color map can not be changed.
+   Numbered chromatic pitch-class color map can not be changed.
 
    Raise type error when `pitch_carrier` is not a pitch carrier.
 

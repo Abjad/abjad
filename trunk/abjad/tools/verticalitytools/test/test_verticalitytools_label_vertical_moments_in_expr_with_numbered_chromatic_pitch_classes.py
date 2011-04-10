@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_verticalitytools_label_vertical_moments_in_expr_with_numeric_pitch_classes_01( ):
+def test_verticalitytools_label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes_01( ):
 
    score = Score(Staff([ ]) * 3)
    score[0].extend(macros.scale(4))

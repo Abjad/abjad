@@ -32,7 +32,7 @@ def test_NamedDiatonicPitch___cmp___02( ):
 
 
 def test_NamedDiatonicPitch___cmp___03( ):
-   '''Compare unequal numeric diatonic pitches.
+   '''Compare unequal numbered diatonic pitches.
    '''
 
    named_diatonic_pitch_1 = pitchtools.NamedDiatonicPitch("c''")
@@ -47,7 +47,7 @@ def test_NamedDiatonicPitch___cmp___03( ):
 
 
 def test_NamedDiatonicPitch___cmp___04( ):
-   '''Compare numeric diatonic pitches to inequivalent diatonic pitch name.
+   '''Compare numbered diatonic pitches to inequivalent diatonic pitch name.
    '''
 
    named_diatonic_pitch_1 = pitchtools.NamedDiatonicPitch("c''")

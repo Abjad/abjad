@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NumberedDiatonicPitchClass___cmp___01( ):
-   '''Compare equal numeric diatonic pitch-classes.
+   '''Compare equal numbered diatonic pitch-classes.
    '''
 
    numbered_diatonic_pitch_class_1 = pitchtools.NumberedDiatonicPitchClass(0)
@@ -23,7 +23,7 @@ def test_NumberedDiatonicPitchClass___cmp___01( ):
 
 
 def test_NumberedDiatonicPitchClass___cmp___02( ):
-   '''Compare numeric diatonic pitch-class to equivalent diatonic pitch-class number.
+   '''Compare numbered diatonic pitch-class to equivalent diatonic pitch-class number.
    '''
 
    numbered_diatonic_pitch_class_1 = pitchtools.NumberedDiatonicPitchClass(0)
@@ -43,7 +43,7 @@ def test_NumberedDiatonicPitchClass___cmp___02( ):
 
 
 def test_NumberedDiatonicPitchClass___cmp___03( ):
-   '''Compare unequal numeric diatonic pitch-classes.
+   '''Compare unequal numbered diatonic pitch-classes.
    '''
 
    numbered_diatonic_pitch_class_1 = pitchtools.NumberedDiatonicPitchClass(0)
@@ -63,7 +63,7 @@ def test_NumberedDiatonicPitchClass___cmp___03( ):
 
 
 def test_NumberedDiatonicPitchClass___cmp___04( ):
-   '''Compare numeric diatonic pitch-class to unequal diatonic pitch-class number.
+   '''Compare numbered diatonic pitch-class to unequal diatonic pitch-class number.
    '''
 
    numbered_diatonic_pitch_class_1 = pitchtools.NumberedDiatonicPitchClass(0)
