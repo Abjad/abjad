@@ -10,5 +10,5 @@ def test_Rest___repr___01( ):
 
    assert isinstance(rest_1, Rest)
    assert isinstance(rest_2, Rest)
-   assert rest_1 == rest_2
+   assert rest_1.format == rest_2.format
    assert rest_1 is not rest_2

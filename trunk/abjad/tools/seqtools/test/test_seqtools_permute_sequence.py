@@ -20,7 +20,7 @@ def test_seqtools_permute_sequence_03( ):
    '''
 
    container = Container("c'8 d'8 e'8")
-   assert seqtools.permute_sequence(container, [2, 0, 1]) == Container("e'8 c'8 d'8")
+   assert seqtools.permute_sequence(container, [2, 0, 1]).format == Container("e'8 c'8 d'8").format
 
 
 def test_seqtools_permute_sequence_04( ):

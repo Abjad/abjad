@@ -72,7 +72,7 @@ def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avo
       duration, [1, -2, -2, 3, 3])
    t2 = tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
       duration, [2, -4, -4, 6, 6])
-   assert t1 == t2
+   assert t1.format == t2.format
 
    t = tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
       Fraction(1, 8), [27])

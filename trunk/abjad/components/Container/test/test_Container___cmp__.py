@@ -67,8 +67,8 @@ def test_Container___cmp___04( ):
    container_1 = Container("c'8 d'8 e'8")
    container_2 = Container("c'8 d'8 e'8")
 
-   assert     container_1 == container_2
-   assert not container_1 != container_2
+   assert not container_1 == container_2
+   assert     container_1 != container_2
 
    comparison_string = 'container_1 <  container_2'
    assert py.test.raises(NotImplementedError, comparison_string)

@@ -10,7 +10,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(note)
    assert skeleton == "Note(('c', 4), Fraction(1, 4), duration__multiplier = Fraction(1, 2))"
    new_note = eval(skeleton)
-   assert new_note == note
+   assert new_note.format == note.format
 
    rest = Rest((1, 4))
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(rest)

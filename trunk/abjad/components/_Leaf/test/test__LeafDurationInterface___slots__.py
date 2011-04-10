@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_LeafDurationInterface___slots___01( ):
+def test__LeafDurationInterface___slots___01( ):
    '''Slots contstrain leaf duration interface attributes.
    '''
 

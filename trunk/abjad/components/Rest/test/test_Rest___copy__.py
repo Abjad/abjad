@@ -11,7 +11,6 @@ def test_Rest___copy___01( ):
 
    assert isinstance(rest_1, Rest)
    assert isinstance(rest_2, Rest)
-   assert rest_1 == rest_2
    assert rest_1.format == rest_2.format
    assert rest_1 is not rest_2
 
@@ -25,7 +24,6 @@ def test_Rest___copy___02( ):
 
    assert isinstance(rest_1, Rest)
    assert isinstance(rest_2, Rest)
-   assert rest_1 == rest_2
    assert rest_1.format == rest_2.format
    assert rest_1 is not rest_2
 
@@ -42,6 +40,5 @@ def test_Rest___copy___03( ):
 
    assert isinstance(rest_1, Rest)
    assert isinstance(rest_2, Rest)
-   assert rest_1 == rest_2
    assert rest_1.format == rest_2.format
    assert rest_1 is not rest_2

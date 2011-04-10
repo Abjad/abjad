@@ -7,7 +7,9 @@ def test__Leaf_symmetric_difference_01( ):
    u = Chord([3, 4, 5], (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v == Chord([0, 1, 2, 3, 4, 5], (1, 4))
+   #assert v == Chord([0, 1, 2, 3, 4, 5], (1, 4))
+   assert v.pitches == (0, 1, 2, 3, 4, 5)
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
 
 
@@ -17,7 +19,9 @@ def test__Leaf_symmetric_difference_02( ):
    u = Chord([1, 2, 3], (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v == Chord([0, 3], (1, 4))
+   #assert v == Chord([0, 3], (1, 4))
+   assert v.pitches == (0, 3)
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
 
 
@@ -27,7 +31,8 @@ def test__Leaf_symmetric_difference_03( ):
    u = Chord([0, 1, 2], (1, 4))
    v = t ^ u
    assert isinstance(v, Rest)
-   assert v == Rest((1, 4))
+   #assert v == Rest((1, 4))
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
    
 
@@ -37,7 +42,9 @@ def test__Leaf_symmetric_difference_04( ):
    u = Chord([0, ('df', 4), 2], (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v == Chord([1, ('df', 4)], (1, 4))
+   #assert v == Chord([1, ('df', 4)], (1, 4))
+   assert v.pitches == (1, "df'")
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
 
 
@@ -47,7 +54,8 @@ def test__Leaf_symmetric_difference_05( ):
    u = Chord([3, 4, 5], (1, 8))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v == Chord([0, 1, 2, 3, 4, 5], (1, 4))
+   #assert v == Chord([0, 1, 2, 3, 4, 5], (1, 4))
+   assert v.pitches == (0, 1, 2, 3, 4, 5)
    assert v.duration.written == t.duration.written
    assert t is not u is not v
 
@@ -58,7 +66,8 @@ def test__Leaf_symmetric_difference_06( ):
    u = Chord([3, 4, 5], (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v == Chord([0, 1, 2, 3, 4, 5], (1, 8))
+   #assert v == Chord([0, 1, 2, 3, 4, 5], (1, 8))
+   assert v.pitches == (0, 1, 2, 3, 4, 5)
    assert v.duration.written == t.duration.written
    assert t is not u is not v
 
@@ -69,7 +78,8 @@ def test__Leaf_symmetric_difference_07( ):
    u = Rest((1, 4))
    v = t ^ u
    assert isinstance(v, Rest)
-   assert v == Rest((1, 4))
+   #assert v == Rest((1, 4))
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
 
 
@@ -79,7 +89,9 @@ def test__Leaf_symmetric_difference_08( ):
    u = Note(0, (1, 4))
    v = t ^ u
    assert isinstance(v, Note)
-   assert v == Note(0, (1, 4))
+   #assert v == Note(0, (1, 4))
+   assert v.pitch == 0
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
 
 
@@ -89,7 +101,8 @@ def test__Leaf_symmetric_difference_09( ):
    u = Note(0, (1, 4))
    v = t ^ u
    assert isinstance(v, Rest)
-   assert v == Rest((1, 4))
+   #assert v == Rest((1, 4))
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
 
 
@@ -99,7 +112,9 @@ def test__Leaf_symmetric_difference_10( ):
    u = Note(2, (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v == Chord([0, 2], (1, 4))
+   #assert v == Chord([0, 2], (1, 4))
+   assert v.pitches == (0, 2)
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
 
 
@@ -109,7 +124,9 @@ def test__Leaf_symmetric_difference_11( ):
    u = Note(4, (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v == Chord([0, 2, 4], (1, 4))
+   #assert v == Chord([0, 2, 4], (1, 4))
+   assert v.pitches == (0, 2, 4)
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v
 
 
@@ -119,5 +136,7 @@ def test__Leaf_symmetric_difference_12( ):
    u = Note(0, (1, 4))
    v = t ^ u
    assert isinstance(v, Note)
-   assert v == Note(2, (1, 4))
+   #assert v == Note(2, (1, 4))
+   assert v.pitch == 2
+   assert v.duration.written == Fraction(1, 4)
    assert t is not u is not v

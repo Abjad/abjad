@@ -11,7 +11,6 @@ def test_Chord___copy___01( ):
 
    assert isinstance(chord_1, Chord)
    assert isinstance(chord_2, Chord)
-   assert chord_1 == chord_2
    assert chord_1.format == chord_2.format
    assert chord_1 is not chord_2
 
@@ -25,7 +24,6 @@ def test_Chord___copy___02( ):
 
    assert isinstance(chord_1, Chord)
    assert isinstance(chord_2, Chord)
-   assert chord_1 == chord_2
    assert chord_1.format == chord_2.format
    assert chord_1 is not chord_2
 
@@ -42,6 +40,5 @@ def test_Chord___copy___03( ):
 
    assert isinstance(chord_1, Chord)
    assert isinstance(chord_2, Chord)
-   assert chord_1 == chord_2
    assert chord_1.format == chord_2.format
    assert chord_1 is not chord_2

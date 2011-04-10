@@ -18,6 +18,4 @@ def test_seqtools_yield_all_permutations_of_sequence_02( ):
    container = Container("c'8 d'8 e'8")
    generator = seqtools.yield_all_permutations_of_sequence(container)
    permutations = list(generator)
-   assert permutations == [
-      Container("c'8 d'8 e'8"), Container("c'8 e'8 d'8"), Container("d'8 c'8 e'8"),
-      Container("d'8 e'8 c'8"), Container("e'8 c'8 d'8"), Container("e'8 d'8 c'8")]
+   assert str(permutations) == "[{c'8, d'8, e'8}, {c'8, e'8, d'8}, {d'8, c'8, e'8}, {d'8, e'8, c'8}, {e'8, c'8, d'8}, {e'8, d'8, c'8}]"

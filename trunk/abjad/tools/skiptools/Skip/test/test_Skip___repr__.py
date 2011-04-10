@@ -11,5 +11,5 @@ def test_Skip___repr___01( ):
 
    assert isinstance(skip_1, Skip)
    assert isinstance(skip_2, Skip)
-   assert skip_1 == skip_2
+   assert skip_1.format == skip_2.format
    assert skip_1 is not skip_2

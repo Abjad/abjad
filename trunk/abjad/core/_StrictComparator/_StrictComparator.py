@@ -25,7 +25,8 @@ class _StrictComparator(object):
       raise NotImplementedError('\n\tLess-than not implemented on "%s".' % repr(arg))
 
    def __ne__(self, arg):
-      return id(self) != id(arg)
+      #return id(self) != id(arg)
+      return not self == arg
 
    def __nonzero__(self):
       return True

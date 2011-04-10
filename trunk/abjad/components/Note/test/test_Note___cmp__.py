@@ -9,8 +9,8 @@ def test_Note___cmp___01( ):
    note_1 = Note(12, (1, 4))
    note_2 = Note(12, (1, 4))
 
-   assert     note_1 == note_2
-   assert not note_1 != note_2
+   assert not note_1 == note_2
+   assert     note_1 != note_2
 
    comparison_string = 'note_1 <  note_2'
    assert py.test.raises(NotImplementedError, comparison_string)

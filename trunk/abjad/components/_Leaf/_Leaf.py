@@ -1,10 +1,11 @@
 from abjad.components._Component._Component import _Component
 from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
+from abjad.core._StrictComparator import _StrictComparator
 import copy
 import operator
 
 
-class _Leaf(_Component):
+class _Leaf(_Component, _StrictComparator):
 
    ## TODO: encapsuate grace and tremolo attributes ##
    __slots__ = ('_after_grace', '_duration', '_grace', 'after_grace', 'grace', 
@@ -28,12 +29,12 @@ class _Leaf(_Component):
          new._set = copy.copy(self.set)
       return new
 
-   def __eq__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.duration.written == arg.duration.written:
-            if self.duration.multiplier == arg.duration.multiplier:
-               return True
-      return False
+#   def __eq__(self, arg):
+#      if isinstance(arg, type(self)):
+#         if self.duration.written == arg.duration.written:
+#            if self.duration.multiplier == arg.duration.multiplier:
+#               return True
+#      return False
 
    def __getnewargs__(self):
       result = [ ]
@@ -45,8 +46,8 @@ class _Leaf(_Component):
    def __or__(self, arg):
       return self._operate(arg, operator.__or__)
 
-   def __ne__(self, arg):
-      return not self == arg
+#   def __ne__(self, arg):
+#      return not self == arg
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, repr(self._compact_representation))

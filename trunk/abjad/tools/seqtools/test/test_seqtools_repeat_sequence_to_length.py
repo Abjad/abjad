@@ -59,5 +59,5 @@ def test_seqtools_repeat_sequence_to_length_08( ):
 
    container = Container("c'8 d'8 e'8")
    new = seqtools.repeat_sequence_to_length(container, 5)
-   assert new == Container("c'8 d'8 e'8 c'8 d'8")
+   assert new.format == Container("c'8 d'8 e'8 c'8 d'8").format
    assert new[0] is not container[0]

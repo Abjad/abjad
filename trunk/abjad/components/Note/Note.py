@@ -48,11 +48,11 @@ class Note(_Leaf):
 
    #__deepcopy__ = __copy__
 
-   def __eq__(self, arg):
-      if _Leaf.__eq__(self, arg):
-         if self.pitch == arg.pitch:
-            return True
-      return False
+#   def __eq__(self, arg):
+#      if _Leaf.__eq__(self, arg):
+#         if self.pitch == arg.pitch:
+#            return True
+#      return False
 
    def __getnewargs__(self):
       result = [ ]

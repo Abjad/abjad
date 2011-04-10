@@ -9,5 +9,5 @@ def test_MultiMeasureRest___copy___01( ):
    
    assert isinstance(multi_measure_rest_1, resttools.MultiMeasureRest)
    assert isinstance(multi_measure_rest_2, resttools.MultiMeasureRest)
-   assert multi_measure_rest_1 == multi_measure_rest_2
+   assert multi_measure_rest_1.format == multi_measure_rest_2.format
    assert multi_measure_rest_1 is not multi_measure_rest_2

@@ -21,6 +21,7 @@ def yield_all_rotations_of_sequence(sequence, n = 1):
    index = n
    while True:
       rotation = rotate_sequence(sequence, index)
+      ## this line loops infinitely on sequence of note objects
       if rotation == sequence:
          break
       else:
