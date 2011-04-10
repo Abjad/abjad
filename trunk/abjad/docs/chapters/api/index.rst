@@ -753,7 +753,6 @@ pitchtools
    tools/pitchtools/named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary
    tools/pitchtools/octave_number_to_octave_tick_string
    tools/pitchtools/octave_tick_string_to_octave_number
-   tools/pitchtools/one_indexed_diatonic_scale_degree_number_to_diatonic_pitch_class_name
    tools/pitchtools/ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers
    tools/pitchtools/pentatonic_pitch_number_to_chromatic_pitch_number
    tools/pitchtools/permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row
