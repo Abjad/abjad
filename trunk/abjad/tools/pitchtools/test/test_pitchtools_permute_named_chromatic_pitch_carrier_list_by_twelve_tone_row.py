@@ -10,4 +10,4 @@ def test_pitchtools_permute_named_chromatic_pitch_carrier_list_by_twelve_tone_ro
    "[Note(bf, 4), Note(d, 4), Note(f'', 4), Note(b', 4)]"
 
    pcs = [pitchtools.NumberedChromaticPitchClass(number) for number in [10, 2, 5, 11]]
-   assert pitchtools.list_numeric_chromatic_pitch_classes_in_expr(notes) == tuple(pcs)
+   assert pitchtools.list_numbered_chromatic_pitch_classes_in_expr(notes) == tuple(pcs)

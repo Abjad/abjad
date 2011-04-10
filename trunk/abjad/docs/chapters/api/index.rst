@@ -582,7 +582,7 @@ notetools
    tools/notetools/NaturalHarmonic/NaturalHarmonic
    tools/notetools/NoteHead/NoteHead
    tools/notetools/add_artificial_harmonic_to_note
-   tools/notetools/color_note_head_by_numeric_chromatic_pitch_class_color_map
+   tools/notetools/color_note_head_by_numbered_chromatic_pitch_class_color_map
    tools/notetools/iterate_notes_backward_in_expr
    tools/notetools/iterate_notes_forward_in_expr
    tools/notetools/make_accelerating_notes_with_lilypond_multipliers
@@ -700,10 +700,10 @@ pitchtools
    tools/pitchtools/diatonic_pitch_number_to_diatonic_pitch_class_number
    tools/pitchtools/diatonic_pitch_number_to_diatonic_pitch_name
    tools/pitchtools/expr_has_duplicate_named_chromatic_pitch
-   tools/pitchtools/expr_has_duplicate_numeric_chromatic_pitch_class
+   tools/pitchtools/expr_has_duplicate_numbered_chromatic_pitch_class
    tools/pitchtools/expr_to_melodic_chromatic_interval_segment
    tools/pitchtools/get_named_chromatic_pitch_from_pitch_carrier
-   tools/pitchtools/get_numeric_chromatic_pitch_class_from_pitch_carrier
+   tools/pitchtools/get_numbered_chromatic_pitch_class_from_pitch_carrier
    tools/pitchtools/insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list
    tools/pitchtools/instantiate_pitch_and_interval_test_collection
    tools/pitchtools/inventory_aggregate_subsets
@@ -730,9 +730,9 @@ pitchtools
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
    tools/pitchtools/list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers
    tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers
-   tools/pitchtools/list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class
+   tools/pitchtools/list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class
    tools/pitchtools/list_named_chromatic_pitches_in_expr
-   tools/pitchtools/list_numeric_chromatic_pitch_classes_in_expr
+   tools/pitchtools/list_numbered_chromatic_pitch_classes_in_expr
    tools/pitchtools/list_octave_transpositions_of_pitch_carrier_within_pitch_range
    tools/pitchtools/list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2
    tools/pitchtools/list_unordered_named_chromatic_pitch_pairs_in_expr

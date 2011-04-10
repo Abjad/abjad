@@ -3,7 +3,9 @@ from abjad.core import _Immutable
 
 
 class Accidental(_StrictComparator, _Immutable):
-   '''Abjad model of the accidental:
+   '''.. versionadded:: 1.1.2
+
+   Abjad model of the accidental:
 
    ::
 

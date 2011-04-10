@@ -8,7 +8,9 @@ from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_
 _accidental_spelling = _read_config_file( )['accidental_spelling']
 
 class NamedChromaticPitch(_Pitch):
-   '''Abjad model of named chromatic pitch::
+   '''.. versionadded:: 1.1.1
+
+   Abjad model of named chromatic pitch::
 
       abjad> pitchtools.NamedChromaticPitch("cs''")
       NamedChromaticPitch("cs''")

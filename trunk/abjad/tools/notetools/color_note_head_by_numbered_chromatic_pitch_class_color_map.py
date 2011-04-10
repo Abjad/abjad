@@ -5,14 +5,14 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
    get_named_chromatic_pitch_from_pitch_carrier
 
 
-def color_note_head_by_numeric_chromatic_pitch_class_color_map(pitch_carrier):
+def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
    r'''Color `pitch_carrier` note head::
 
       abjad> note = Note("c'4")
 
    ::
 
-      abjad> notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map(note)
+      abjad> notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)
       Note("c'4")
 
    ::
@@ -49,7 +49,11 @@ def color_note_head_by_numeric_chromatic_pitch_class_color_map(pitch_carrier):
 
    .. versionchanged:: 1.1.2
       renamed ``pitchtools.color_by_pc( )`` to
-      ``notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )``.
+      ``notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )`` to
+      ``notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map( )``.
    '''
    
    pitch = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier)
