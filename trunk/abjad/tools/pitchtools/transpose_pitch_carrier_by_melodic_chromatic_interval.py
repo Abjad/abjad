@@ -1,8 +1,9 @@
 from abjad.components import Chord
 from abjad.components import Note
 from abjad.tools import componenttools
+from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
+from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 
 
 def transpose_pitch_carrier_by_melodic_chromatic_interval(
@@ -16,16 +17,18 @@ def transpose_pitch_carrier_by_melodic_chromatic_interval(
       abjad> pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interval(pitch, mci)
       NamedChromaticPitch(a, 4)
    
-   Return new named chromatic pitch.
+   Return new `pitch_carrier` type object.
    '''
    
-   if not isinstance(melodic_chromatic_interval, MelodicChromaticInterval):
+   try:
+      melodic_chromatic_interval = MelodicChromaticInterval(melodic_chromatic_interval)
+   except (TypeError, ValueError):
       raise TypeError('must be melodic chromatic interval.')
-   
-   if isinstance(pitch_carrier, NamedChromaticPitch):
-      return NamedChromaticPitch(
-         abs(pitch_carrier.numbered_chromatic_pitch) + 
-         melodic_chromatic_interval.number)
+      
+   ## works for named & numbered pitches both chromatic & diatonic
+   if isinstance(pitch_carrier, _Pitch):
+      return type(pitch_carrier)(pitch_carrier.chromatic_pitch_number + 
+         melodic_chromatic_interval.semitones)
    elif isinstance(pitch_carrier, Note):
       new_note = componenttools.clone_components_and_remove_all_spanners([pitch_carrier])[0]
       new_pitch = NamedChromaticPitch(

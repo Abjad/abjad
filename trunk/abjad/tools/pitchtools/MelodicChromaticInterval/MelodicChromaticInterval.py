@@ -84,17 +84,48 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def chromatic_interval_number(self):
+      '''Read-only chromatic interval number::
+
+         abjad> pitchtools.MelodicChromaticInterval(-14).chromatic_interval_number
+         -14
+
+      Return integer or float.
+      '''
+      return self._number
+
+   @property
    def direction_number(self):
+      '''Read-only numeric sign::
+
+         abjad> pitchtools.MelodicChromaticInterval(-14).direction_number
+         -1
+
+      Return integer.
+      '''
       return mathtools.sign(self.number) 
 
    @property
    def harmonic_chromatic_interval(self):
+      '''Read-only harmonic chromatic interval::
+
+         abjad> pitchtools.MelodicChromaticInterval(-14).harmonic_chromatic_interval
+         HarmonicChromaticInterval(14)
+
+      Return harmonic chromatic interval.
+      '''
       from abjad.tools import pitchtools
       number = abs(self.number)
       return pitchtools.HarmonicChromaticInterval(number)
 
    @property
-   #def interval_class(self):
    def melodic_chromatic_interval_class(self):
+      '''Read-only melodic chromatic interval-class::
+
+         abjad> pitchtools.MelodicChromaticInterval(-14).melodic_chromatic_interval_class
+         MelodicChromaticIntervalClass(-2)
+
+      Return melodic chromatic interval-class.
+      '''
       from abjad.tools import pitchtools
       return pitchtools.MelodicChromaticIntervalClass(self)

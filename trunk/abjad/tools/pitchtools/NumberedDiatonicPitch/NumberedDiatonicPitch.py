@@ -49,11 +49,33 @@ class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def chromatic_pitch_number(self):
+      '''Read-only chromatic pitch number::
+
+         abjad> pitchtools.NumberedDiatonicPitch(7).chromatic_pitch_number
+         12
+
+      Return integer.
+      '''
+      from abjad.tools import pitchtools
+      return pitchtools.diatonic_pitch_number_to_chromatic_pitch_number(self.diatonic_pitch_number)
+
+   @property
+   def diatonic_pitch_number(self):
+      '''Read-only diatonic pitch number::
+
+         abjad> pitchtools.NumberedDiatonicPitch(7).diatonic_pitch_number
+         7
+
+      Return integer.
+      '''
+      return self._diatonic_pitch_number
+
+   @property
    def named_diatonic_pitch(self):
       '''Read-only named diatonic pitch::
 
-         abjad> numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
-         abjad> numbered_diatonic_pitch.named_diatonic_pitch
+         abjad> pitchtools.NumberedDiatonicPitch(7).named_diatonic_pitch
          NamedDiatonicPitch("c''")
 
       Return named diatonic pitch.
@@ -67,8 +89,7 @@ class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
    def named_diatonic_pitch_class(self):
       '''Read-only named diatonic pitch-class::
 
-         abjad> numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
-         abjad> numbered_diatonic_pitch.named_diatonic_pitch_class
+         abjad> pitchtools.NumberedDiatonicPitch(7).named_diatonic_pitch_class
          NamedDiatonicPitchClass('c')
 
       Return named diatonic pitch-class.
@@ -82,8 +103,7 @@ class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
    def numbered_diatonic_pitch_class(self):
       '''Read-only numbered diatonic pitch-class::
 
-         abjad> numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
-         abjad> numbered_diatonic_pitch.numbered_diatonic_pitch_class
+         abjad> pitchtools.NumberedDiatonicPitch(7).numbered_diatonic_pitch_class
          NumberedDiatonicPitchClass(0)
       
       Return numbered diatonic pitch-class.

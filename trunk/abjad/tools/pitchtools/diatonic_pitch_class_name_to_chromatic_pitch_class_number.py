@@ -8,7 +8,6 @@ def diatonic_pitch_class_name_to_chromatic_pitch_class_number(diatonic_pitch_cla
 
    Return integer.
    '''
-   from abjad.tools import pitchtools
 
    return _diatonic_pitch_class_name_to_chromatic_pitch_number[diatonic_pitch_class_name]
 

@@ -68,16 +68,64 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
      
    ## PUBLIC ATTRIBUTES ##
 
+   @property
+   def chromatic_pitch_number(self):
+      '''Read-only chromatic pitch-class number::
+
+         abjad> pitchtools.NumberedChromaticPitch(13).chromatic_pitch_number
+         13
+
+      Return integer or float.
+      '''
+      return self._chromatic_pitch_number
+
+   @property
+   def diatonic_pitch_class_number(self):
+      '''Read-only diatonic pitch-class number::
+
+         abjad> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_class_number
+         0
+
+      Return integer.
+      '''
+      from abjad.tools import pitchtools
+      return pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_number(
+         self.chromatic_pitch_number)
+
+   @property
+   def diatonic_pitch_number(self):
+      '''Read-only diatonic pitch-class number::
+
+         abjad> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_number
+         7
+
+      Return integer.
+      '''
+      from abjad.tools import pitchtools
+      return pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(self.chromatic_pitch_number)
+
    ## PUBLIC METHODS ##
 
    def apply_accidental(self, accidental = None):
-      '''Emit new numbered chromatic pitch as sum of self and accidental.'''
+      '''Apply `accidental`::
+
+         abjad> pitchtools.NumberedChromaticPitch(13).apply_accidental('flat')
+         NumberedChromaticPitch(12)
+
+      Return numbered chromatic pitch.
+      '''
       from abjad.tools.pitchtools.Accidental import Accidental
       accidental = Accidental(accidental)
       semitones = abs(self) + accidental.semitones
       return type(self)(semitones)
 
    def transpose(self, n = 0):
-      '''Transpose numbered chromatic pitch by n.'''
+      '''Tranpose by `n` semitones::
+
+         abjad> pitchtools.NumberedChromaticPitch(13).transpose(1)
+         NumberedChromaticPitch(14)
+
+      Return numbered chromatic pitch.
+      '''
       semitones = abs(self) + n
       return type(self)(semitones)

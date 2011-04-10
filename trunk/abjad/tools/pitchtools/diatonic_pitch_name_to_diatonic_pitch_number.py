@@ -11,7 +11,7 @@ def diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name):
       abjad> pitchtools.diatonic_pitch_name_to_diatonic_pitch_number("c''")
       7
 
-   Return positive integer.
+   Return integer.
    '''
 
    match = diatonic_pitch_name_regex.match(diatonic_pitch_name)
