@@ -93,6 +93,7 @@ class NamedChromaticPitch(_Pitch):
          return False
 
    def __ge__(self, arg):
+      from abjad.tools import pitchtools
       try:
          arg = type(self)(arg)
          return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
@@ -102,17 +103,24 @@ class NamedChromaticPitch(_Pitch):
             self._accidental_semitones == arg._accidental_semitones and
             self._deviation_in_cents >= arg._deviation_in_cents)
       except (TypeError, ValueError):
-         return False
+         if isinstance(arg, pitchtools.PitchRange):
+            return self >= arg.stop_pitch
+      return False
 
    def __gt__(self, arg):
-      if not isinstance(arg, type(self)):
-         return False
-      return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
-         (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self._accidental_semitones > arg._accidental_semitones) or \
-         (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self._accidental_semitones == arg._accidental_semitones and \
-         self._deviation_in_cents > arg._deviation_in_cents)
+      from abjad.tools import pitchtools
+      #if not isinstance(arg, type(self)):
+      #   return False
+      if isinstance(arg, type(self)):
+         return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
+            (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
+            self._accidental_semitones > arg._accidental_semitones) or \
+            (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
+            self._accidental_semitones == arg._accidental_semitones and \
+            self._deviation_in_cents > arg._deviation_in_cents)
+      elif isinstance(arg, pitchtools.PitchRange):
+         return self > arg.stop_pitch
+      return False
 
    def __hash__(self):
       return hash(repr(self))
@@ -124,24 +132,34 @@ class NamedChromaticPitch(_Pitch):
       return float(self.numbered_chromatic_pitch)
 
    def __le__(self, arg):
-      if not isinstance(arg, type(self)):
-         return False
-      if not self._diatonic_pitch_number == arg._diatonic_pitch_number:
-         return self._diatonic_pitch_number <= arg._diatonic_pitch_number
-      if not self._accidental_semitones == arg._accidental_semitones:
-         return self._accidental_semitones <= arg._accidental_semitones
-      return self._deviation_in_cents <= arg._deviation_in_cents
+      from abjad.tools import pitchtools
+      #if not isinstance(arg, type(self)):
+      #   return False
+      if isinstance(arg, type(self)):
+         if not self._diatonic_pitch_number == arg._diatonic_pitch_number:
+            return self._diatonic_pitch_number <= arg._diatonic_pitch_number
+         if not self._accidental_semitones == arg._accidental_semitones:
+            return self._accidental_semitones <= arg._accidental_semitones
+         return self._deviation_in_cents <= arg._deviation_in_cents
+      elif isinstance(arg, pitchtools.PitchRange):
+         return self <= arg.start_pitch
+      return False
 
    def __lt__(self, arg):
-      if not isinstance(arg, type(self)):
-         return False
-      return self._diatonic_pitch_number < arg._diatonic_pitch_number or \
-         (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self._accidental_semitones < arg._accidental_semitones) or \
-         (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-         self._accidental_semitones == arg._accidental_semitones and \
-         self._deviation_in_cents < arg._deviation_in_cents)
-
+      from abjad.tools import pitchtools
+      #if not isinstance(arg, type(self)):
+      #   return False
+      if isinstance(arg, type(self)):
+         return self._diatonic_pitch_number < arg._diatonic_pitch_number or \
+            (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
+            self._accidental_semitones < arg._accidental_semitones) or \
+            (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
+            self._accidental_semitones == arg._accidental_semitones and \
+            self._deviation_in_cents < arg._deviation_in_cents)
+      elif isinstance(arg, pitchtools.PitchRange):
+         return self < arg.start_pitch
+      return False
+      
    def __ne__(self, arg):
       return not self == arg
 

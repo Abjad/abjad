@@ -766,6 +766,7 @@ pitchtools
    tools/pitchtools/transpose_chromatic_pitch_number_by_octave_transposition_mapping
    tools/pitchtools/transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell
    tools/pitchtools/transpose_pitch_carrier_by_melodic_interval
+   tools/pitchtools/transpose_pitch_expr_into_pitch_range
 
 
 resttools

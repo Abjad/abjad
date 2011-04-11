@@ -33,10 +33,9 @@ def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval)
    '''
 
    if isinstance(melodic_interval, MelodicDiatonicInterval):
-      return _transpose_pitch_carrier_by_melodic_diatonic_interval(
-         pitch_carrier, melodic_interval)
+      return _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic_interval)
    elif isinstance(melodic_interval, MelodicChromaticInterval):
-      return _transpose_pitch_carrier_by_melodic_chromatic_interval(
-         pitch_carrier, melodic_interval)
+      return _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_interval)
    else:
-      raise TypeError('must be diatonic or chromatic melodic interval.')
+      melodic_interval = MelodicChromaticInterval(melodic_interval)
+      return _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_interval)
