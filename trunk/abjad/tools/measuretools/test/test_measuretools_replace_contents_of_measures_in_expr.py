@@ -7,7 +7,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_01( ):
    Note spacer skip at end of second measure.
    '''
 
-   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (3, 16)]))
+   t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (3, 16)]))
 
    r'''
    \new Staff {
@@ -50,7 +50,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_02( ):
    Small measures skipped.
    '''
 
-   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 16), (3, 16), (1, 16), (3, 16)]))
+   t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 16), (3, 16), (1, 16), (3, 16)]))
 
    r'''
    \new Staff {
@@ -117,7 +117,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_03( ):
 def test_measuretools_replace_contents_of_measures_in_expr_04( ):
    '''Raise StopIteration when not enough measures.'''
 
-   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
+   t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
    notes = macros.scale(6, Fraction(1, 16))
 
    assert py.test.raises(StopIteration, 
@@ -127,7 +127,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_04( ):
 def test_measuretools_replace_contents_of_measures_in_expr_05( ):
    '''Populate measures even when not enough total measures.'''
 
-   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
+   t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
    notes = macros.scale(6, Fraction(1, 16))
 
    try:

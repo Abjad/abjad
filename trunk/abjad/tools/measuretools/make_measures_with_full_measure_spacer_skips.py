@@ -5,10 +5,10 @@ from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_ski
    fill_measures_in_expr_with_full_measure_spacer_skips
 
 
-def make_rigid_measures_with_full_measure_spacer_skips(meters):
+def make_measures_with_full_measure_spacer_skips(meters):
    r'''Make rigid measures with full-measure spacer skips from `meters`::
 
-      abjad> measures = measuretools.make_rigid_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)]))
+      abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)]))
       [Measure(1/8, [s1 * 1/8]), Measure(5/16, [s1 * 5/16]), Measure(5/16, [s1 * 5/16])]
 
    ::
@@ -34,7 +34,11 @@ def make_rigid_measures_with_full_measure_spacer_skips(meters):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.make( )`` to
-      ``measuretools.make_rigid_measures_with_full_measure_spacer_skips( )``.
+      ``measuretools.make_measures_with_full_measure_spacer_skips( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.make_rigid_measures_with_full_measure_spacer_skips( )`` to
+      ``measuretools.make_measures_with_full_measure_spacer_skips( )``.
    '''
 
    ## check input

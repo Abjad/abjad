@@ -6,7 +6,7 @@ py.test.skip('numbering disabled until after update reimplementation.')
 def test_Measure_number_01( ):
    '''Measures in staff number correctly starting from 1.'''
 
-   t = Staff(measuretools.make_rigid_measures_with_full_measure_spacer_skips(
+   t = Staff(measuretools.make_measures_with_full_measure_spacer_skips(
          [(3, 16), (5, 16), (5, 16)]))
    assert t[0].number == 1
    assert t[1].number == 2
