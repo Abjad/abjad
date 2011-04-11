@@ -1,4 +1,5 @@
 from abjad.core import _Immutable
+import numbers
 
 
 class PitchRange(_Immutable):
@@ -77,6 +78,11 @@ class PitchRange(_Immutable):
          pitches = pitchtools.list_named_chromatic_pitches_in_expr(arg)
          if pitches:
             return all([self._contains_pitch(x) for x in pitches])
+         else:
+            try:
+               return all([self._contains_pitch(x) for x in arg])
+            except TypeError:
+               return False
       return False
 
    def __eq__(self, arg):
@@ -135,6 +141,12 @@ class PitchRange(_Immutable):
    ## PRIVATE METHODS ##
 
    def _contains_pitch(self, pitch):
+      from abjad.tools import pitchtools
+      if isinstance(pitch, numbers.Number):
+         #pitch = pitchtools.NumberedChromaticPitch(pitch)
+         pitch = pitchtools.NamedChromaticPitch(pitch)
+      elif isinstance(pitch, str):
+         pitch = pitchtools.NamedChromaticPitch(pitch)
       if self._start is None and self._stop is None:
          return True
       elif self._start is None:

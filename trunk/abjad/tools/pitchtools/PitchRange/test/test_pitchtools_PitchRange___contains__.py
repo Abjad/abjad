@@ -128,3 +128,12 @@ def test_pitchtools_PitchRange___contains___12( ):
    pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
    assert Rest((1, 4)) not in pr
    assert skiptools.Skip((1, 4)) not in pr
+
+
+def test_pitchtools_PitchRange___contains__13( ):
+   '''Iterable containment.'''
+
+   chromatic_pitch_numbers = range(10)
+
+   assert chromatic_pitch_numbers in pitchtools.PitchRange(-39, 48)
+   assert not chromatic_pitch_numbers in pitchtools.PitchRange(36, 48)
