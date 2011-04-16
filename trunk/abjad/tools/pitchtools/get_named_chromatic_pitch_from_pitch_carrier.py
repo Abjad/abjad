@@ -3,6 +3,7 @@ from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.components import Note
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
+import numbers
 
 
 def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
@@ -40,6 +41,11 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
       NamedChromaticPitch(df, 5)
 
+   ::
+
+      abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(13)
+      NamedChromaticPitch("cs''")
+
    Raise missing pitch error when `pitch_carrier` carries no pitch.
 
    Raise extra pitch error when `pitch_carrier` carries more than one pitch.
@@ -54,6 +60,8 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
    
    if isinstance(pitch_carrier, NamedChromaticPitch):
       return pitch_carrier
+   elif isinstance(pitch_carrier, numbers.Number):
+      return NamedChromaticPitch(pitch_carrier)
    elif isinstance(pitch_carrier, Note):
       pitch = pitch_carrier.pitch
       if pitch is not None:
