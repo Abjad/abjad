@@ -1225,6 +1225,8 @@ treetools
    tools/treetools/make_monophonic_percussion_score_from_nonoverlapping_intervals
    tools/treetools/make_polyphonic_percussion_score_from_nonoverlapping_trees
    tools/treetools/mask_intervals_with_intervals
+   tools/treetools/resolve_overlaps_between_nonoverlapping_trees
+   tools/treetools/resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational
    tools/treetools/round_interval_bounds_to_nearest_multiple_of_rational
    tools/treetools/scale_aggregate_magnitude_by_rational
    tools/treetools/scale_aggregate_magnitude_to_rational
