@@ -1,3 +1,4 @@
+import copy
 from fractions import Fraction
 from collections import Iterable
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
@@ -33,6 +34,9 @@ class IntervalTree(_RedBlackTree):
          return True
       else:
          return False
+
+   def __copy__(self):
+      return IntervalTree([copy.copy(x) for x in self])
 
    def __eq__(self, other):
       if type(self) == type(other):
@@ -197,7 +201,7 @@ class IntervalTree(_RedBlackTree):
          intervals = [ ]
          if node == self._sentinel:
             return intervals
-         if node != self._sentinel and node.key <= high and low <= node.high_max:
+         if node.key <= high and low <= node.high_max:
             for interval in node.payload:
                if interval.low <= high and low <= interval.high:
                   intervals.append(interval)
@@ -221,7 +225,7 @@ class IntervalTree(_RedBlackTree):
          raise ValueError
       return tuple(sorted(recurse(self._root, low, high), key=lambda x: x.signature))
 
-   def find_intervals_intersecting_or_tangent_to_rational(self, offset):
+   def find_intervals_intersecting_or_tangent_to_offset(self, offset):
       def recurse(node, offset):
          intervals = [ ]
          if node == self._sentinel:

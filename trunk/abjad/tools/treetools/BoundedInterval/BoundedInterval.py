@@ -32,6 +32,15 @@ class BoundedInterval(_Immutable):
 
    ## OVERLOADS ##
 
+   def __copy__(self):
+      return BoundedInterval(self.low, self.high, copy.copy(self.data))
+
+   def __delitem__(self, item):
+      if isinstance(self.data, dict):
+         del(self.data[item])
+      else:
+         raise Exception('BoundedInterval data is not a dictionary.')
+
    def __eq__(self, other):
       if type(other) == type(self):
          if other.low == self.low:
@@ -40,12 +49,24 @@ class BoundedInterval(_Immutable):
                   return True
       return False
 
+   def __getitem__(self, item):
+      if isinstance(self.data, dict):
+         return self.data[item]
+      else:
+         raise Exception('BoundedInterval data is not a dictionary.')
+
    def __repr__(self):
       return '%s(%s, %s, %s)' % \
          (self.__class__.__name__, \
          repr(self.low), \
          repr(self.high), \
          repr(self.data))
+
+   def __setitem__(self, item, value):
+      if isinstance(self.data, dict):
+         self.data[item] = value
+      else:
+         raise Exception('BoundedInterval data is not a dictionary.')
 
    ## PUBLIC ATTRIBUTES ##
 

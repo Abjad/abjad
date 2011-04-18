@@ -3,6 +3,7 @@ from abjad import Rest
 from abjad import Voice
 from abjad.tools.schemetools import SchemeColor
 from abjad.tools.spannertools import GlissandoSpanner
+from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.treetools.all_intervals_are_nonoverlapping import all_intervals_are_nonoverlapping
 from abjad.tools.treetools.compute_depth_of_intervals import compute_depth_of_intervals
@@ -11,8 +12,7 @@ from abjad.tools.treetools.compute_depth_of_intervals_in_interval \
 from abjad.tools.treetools.IntervalTree import IntervalTree
 
 
-def _make_voice_from_nonoverlapping_intervals(intervals,
-   colorkey = None, bounds = None, pitch = None):
+def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, bounds = None, pitch = None):
 
    assert all_are_intervals_or_trees_or_empty(intervals)
    if isinstance(intervals, IntervalTree):
@@ -25,10 +25,12 @@ def _make_voice_from_nonoverlapping_intervals(intervals,
 
    voice = Voice([ ])
 
-   if bounds is None:
-      depth_tree = compute_depth_of_intervals(tree)
-   else:
-      depth_tree = compute_depth_of_intervals_in_interval(tree, bounds)
+#   if bounds is None:
+#      depth_tree = compute_depth_of_intervals(tree)
+#   else:
+#      depth_tree = compute_depth_of_intervals_in_interval(tree, bounds)
+
+   depth_tree = compute_depth_of_intervals_in_interval(tree, BoundedInterval(0, tree.high))
 
    if pitch is None:
       pitch = 0

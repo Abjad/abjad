@@ -1,8 +1,11 @@
 from collections import Iterable
+from abjad import Fraction
 from abjad import Score
 from abjad import Staff
 from abjad.tools.contexttools import ClefMark
+from abjad.tools.lilyfiletools import make_basic_lily_file
 from abjad.tools.pitchtools import make_n_middle_c_centered_pitches
+from abjad.tools.schemetools import SchemeMoment
 from abjad.tools.schemetools import SchemePair
 from abjad.tools.schemetools import SchemeVector
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
@@ -37,11 +40,17 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey =
    score.override.note_head.style = 'harmonic'
    score.override.rest.transparent = True
    score.override.spacing_spanner.strict_note_spacing = True
+   score.override.spacing_spanner.uniform_stretching = True
    score.override.glissando.breakable = True
+   score.set.proportional_notation_duration = SchemeMoment(Fraction(1, 32))
    padding = 0.5
    bound_details = SchemeVector( \
       SchemeVector('right', SchemePair('attach-dir', 0), SchemePair('padding', padding)),
       SchemeVector('left', SchemePair('attach-dir', 0), SchemePair('padding', padding)))
    score.override.glissando.bound_details = bound_details
 
-   return score
+   lily = make_basic_lily_file(score)
+   lily.default_paper_size = ('11x17', 'landscape')
+   lily.paper_block.ragged_right = True
+
+   return lily
