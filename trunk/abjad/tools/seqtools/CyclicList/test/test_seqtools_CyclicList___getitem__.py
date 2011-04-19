@@ -1,9 +1,9 @@
-import baca
+from abjad import *
 
 
 def test_seqtools_CyclicList___getitem___01( ):
 
-   cyclic_list = baca.utilities.CyclicList(range(3))
+   cyclic_list = seqtools.CyclicList(range(3))
    assert cyclic_list[0] == 0
    assert cyclic_list[1] == 1
    assert cyclic_list[2] == 2
@@ -14,7 +14,7 @@ def test_seqtools_CyclicList___getitem___01( ):
 
 def test_seqtools_CyclicList___getitem___02( ):
 
-   cyclic_list = baca.utilities.CyclicList(range(3))
+   cyclic_list = seqtools.CyclicList(range(3))
    assert cyclic_list[-0] == 0
    assert cyclic_list[-1] == 2
    assert cyclic_list[-2] == 1

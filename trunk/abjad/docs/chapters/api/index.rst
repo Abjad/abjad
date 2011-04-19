@@ -820,6 +820,8 @@ seqtools
    :maxdepth: 1
 
    tools/seqtools/CyclicList/CyclicList
+   tools/seqtools/CyclicMatrix/CyclicMatrix
+   tools/seqtools/CyclicTuple/CyclicTuple
    tools/seqtools/Matrix/Matrix
    tools/seqtools/all_are_assignable_integers
    tools/seqtools/all_are_equal

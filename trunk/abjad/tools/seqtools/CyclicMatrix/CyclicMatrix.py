@@ -1,57 +1,71 @@
-class Matrix(object):
+from abjad.tools.seqtools.CyclicTuple import CyclicTuple
+from abjad.tools.seqtools.Matrix import Matrix
+
+
+class CyclicMatrix(Matrix):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of matrix.
+   Abjad model of cyclic matrix.
 
    Initialize from rows::
 
-      abjad> matrix = seqtools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+      abjad> cyclic_matrix = seqtools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
    
    ::
 
-      abjad> matrix
-      Matrix(3x4)
+      abjad> cyclic_matrix
+      CyclicMatrix(3x4)
 
    ::
 
-      abjad> matrix[:]
-      ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
-
-   ::
-
-      abjad> matrix[2]
+      abjad> cyclic_matrix[2]
       (20, 21, 22, 23)
 
    ::
 
-      abjad> matrix[2][0]
-      20
+      abjad> cyclic_matrix[2][2]
+      22
+
+   ::
+
+      abjad> cyclic_matrix[99]
+      (0, 1, 2, 3)
+
+   ::
+
+      abjad> cyclic_matrix[99][99]
+      3
 
    Initialize from columns::
 
-      abjad> matrix = seqtools.Matrix(columns = [[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+      abjad> cyclic_matrix = seqtools.CyclicMatrix(columns = [[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
    ::
 
-      abjad> matrix
-      Matrix(3x4)
+      abjad> cyclic_matrix
+      CyclicMatrix(3x4)
 
    ::
 
-      abjad> matrix[:]
-      ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
-
-   ::
-
-      abjad> matrix[2]
+      abjad> cyclic_matrix[2]
       (20, 21, 22, 23)
 
    ::
 
-      abjad> matrix[2][0]
-      20
+      abjad> cyclic_matrix[2][2]
+      22
 
-   Matrix implements only item retrieval in this revision.
+   ::
+
+      abjad> cyclic_matrix[99]
+      (0, 1, 2, 3)
+
+   ::
+
+      abjad> cyclic_matrix[99][99]
+      3
+
+   CyclicMatrix implements only item retrieval in this revision.
 
    Concatenation and division remain to be implemented.
 
@@ -83,23 +97,23 @@ class Matrix(object):
    ## PRIVATE METHODS ##
 
    def _init_from_columns(self, columns):
-      columns = tuple([tuple(column) for column in columns])      
+      columns = CyclicTuple([CyclicTuple(column) for column in columns])      
       assert len(set([len(column) for column in columns])) in (0, 1)
       rows = [ ]
       for row_index in range(len(columns[0])):
-         row = tuple([column[row_index] for column in columns])
+         row = CyclicTuple([column[row_index] for column in columns])
          rows.append(row)
-      rows = tuple(rows)
+      rows = CyclicTuple(rows)
       return rows, columns
 
    def _init_from_rows(self, rows):
-      rows = tuple([tuple(row) for row in rows])
+      rows = CyclicTuple([CyclicTuple(row) for row in rows])
       assert len(set([len(row) for row in rows])) in (0, 1)
       columns = [ ]
       for column_index in range(len(rows[0])):
-         column = tuple([row[column_index] for row in rows])
+         column = CyclicTuple([row[column_index] for row in rows])
          columns.append(column)
-      columns = tuple(columns)
+      columns = CyclicTuple(columns)
       return rows, columns
 
    ## PUBLIC ATTRIBUTES ##
@@ -108,14 +122,14 @@ class Matrix(object):
    def columns(self):
       '''Read-only columns::
 
-         abjad> matrix = seqtools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+         abjad> cyclic_matrix = seqtools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
       ::
 
-         abjad> matrix.columns
+         abjad> cyclic_matrix.columns
          ((0, 10, 20), (1, 11, 21), (2, 12, 22), (3, 13, 23))
 
-      Return tuple.
+      Return cyclic tuple.
       '''
       return self._columns
 
@@ -123,13 +137,13 @@ class Matrix(object):
    def rows(self):
       '''Read-only rows::
 
-         abjad> matrix = seqtools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+         abjad> cyclic_matrix = seqtools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
       ::
 
-         abjad> matrix.rows
+         abjad> cyclic_matrix.rows
          ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
 
-      Return tuple.
+      Return cyclic tuple.
       '''
       return self._rows
