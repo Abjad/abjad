@@ -21,7 +21,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_02( ):
    assert transposed == pitchtools.NamedChromaticPitch('cs', 5)
 
 
-def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_01( ):
+def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_03( ):
    '''Transpose pitch.'''
 
    pitch = pitchtools.NamedChromaticPitch(12)
@@ -31,7 +31,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_01( ):
    assert new is not pitch
 
 
-def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_02( ):
+def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_04( ):
    '''Transpose note.'''
 
    note = Note(12, (1, 4))
@@ -41,7 +41,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_02( ):
    assert new is not note
 
 
-def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_03( ):
+def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_05( ):
    '''Transpose chord.'''
 
    chord = Chord([12, 13, 14], (1, 4))
@@ -51,7 +51,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_03( ):
    assert new is not chord
 
 
-def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_01( ):
+def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_06( ):
 
    pitch = pitchtools.NamedChromaticPitch(12)
    mdi = pitchtools.MelodicDiatonicInterval('minor', -3)

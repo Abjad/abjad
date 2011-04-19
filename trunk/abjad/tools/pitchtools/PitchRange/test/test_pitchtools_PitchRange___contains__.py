@@ -130,7 +130,7 @@ def test_pitchtools_PitchRange___contains___12( ):
    assert skiptools.Skip((1, 4)) not in pr
 
 
-def test_pitchtools_PitchRange___contains__13( ):
+def test_pitchtools_PitchRange___contains___13( ):
    '''Iterable containment.'''
 
    chromatic_pitch_numbers = range(10)
