@@ -820,6 +820,7 @@ seqtools
    :maxdepth: 1
 
    tools/seqtools/CyclicList/CyclicList
+   tools/seqtools/Matrix/Matrix
    tools/seqtools/all_are_assignable_integers
    tools/seqtools/all_are_equal
    tools/seqtools/all_are_nonnegative_integer_powers_of_two
