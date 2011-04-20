@@ -1,4 +1,4 @@
-from abjad.tools.importtools._get_functions_in_module import _get_functions_in_module
+from abjad.tools.importtools._get_public_names_in_module import _get_public_names_in_module
 from abjad.tools.importtools._remove_modules_from_namespace import _remove_modules_from_namespace
 import os
 
@@ -34,7 +34,7 @@ def _import_functions_in_package_to_namespace(package, namespace, skip_dirs=['te
       for file in files:
          if file.endswith('py') and not file.startswith(('_', '.')):
             module = os.path.join(root, file[:-3])
-            functions.extend(_get_functions_in_module(module))
+            functions.extend(_get_public_names_in_module(module))
 
    ## put functions retrieved into namespace
    for func in functions:

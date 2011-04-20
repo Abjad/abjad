@@ -1,4 +1,4 @@
-from abjad.tools.importtools._get_functions_in_module import _get_functions_in_module
+from abjad.tools.importtools._get_public_names_in_module import _get_public_names_in_module
 import os
 
 
@@ -14,7 +14,6 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
    Do not inspect lower levels of path.
    '''
 
-   #module = path[path.rindex('abjad'):]
    module = path[path.rindex(package_root_name):]
    module = module.replace(os.sep, '.')
 
@@ -23,7 +22,7 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
          if not element.startswith('_') and element.endswith('.py'):
             ## import function inside module
             submod = os.path.join(module, element[:-3])
-            functions = _get_functions_in_module(submod)
+            functions = _get_public_names_in_module(submod)
             for f in functions:
                namespace[f.__name__] = f
       elif os.path.isdir(os.path.join(path, element)):

@@ -1,7 +1,7 @@
 import os
 
 
-def _get_functions_in_module(module_file):
+def _get_public_names_in_module(module_file):
    '''Collects and returns all functions defined in module_file.'''
 
    result = [ ]
