@@ -14,17 +14,15 @@ def _find_initializers( ):
             if parent_directory not in ('abjad', ):
                initializers.append(os.path.join(path, f))
    print 'There are %s initializers ...' % len(initializers)
-   total_manual_imports = 0
+   inits_with_manual_imports = set([ ])
    for x in initializers:
-      kept_lines = [ ]
       for line in file(x, 'r').readlines( ):
          if line.startswith('from ') and line[5].isupper( ):
-            total_manual_imports += 1
-         else:
-            kept_lines.append(line)
-      file(x, 'w').write(kept_lines)
+            inits_with_manual_imports.add(x)
+   for x in sorted(inits_with_manual_imports):
+      print x
       
-   print 'Total manual imports: %s' % total_manual_imports
+   print 'Total initializers with manual imports: %s' % len(inits_with_manual_imports)
 
 if __name__ == '__main__':
    os.system('clear')
