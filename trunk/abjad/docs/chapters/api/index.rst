@@ -262,6 +262,7 @@ durtools
    tools/durtools/is_assignable_rational
    tools/durtools/is_binary_rational
    tools/durtools/is_duration_pair
+   tools/durtools/is_duration_token
    tools/durtools/is_lilypond_duration_name
    tools/durtools/is_lilypond_duration_string
    tools/durtools/lilypond_duration_string_to_rational
