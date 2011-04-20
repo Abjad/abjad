@@ -23,4 +23,7 @@ def _import_contents_of_public_packages_in_path_into_namespace(
             for public_name in public_names:
                namespace[public_name.__name__] = public_name
 
-   del(namespace['_import_contents_of_public_packages_in_path_into_namespace'])
+   try:
+      del(namespace['_import_contents_of_public_packages_in_path_into_namespace'])
+   except KeyError:
+      pass

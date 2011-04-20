@@ -1,4 +1,5 @@
 from abjad.tools.importtools._get_public_names_in_module import _get_public_names_in_module
+from abjad.tools.importtools._import_contents_of_public_packages_in_path_into_namespace import _import_contents_of_public_packages_in_path_into_namespace
 import os
 
 
@@ -32,5 +33,7 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
             namespace[element] = __import__(submod, fromlist =['*'])
       else:
          raise ImportError('Not a dir, not a file, what is %s?' % element)
+
+   _import_contents_of_public_packages_in_path_into_namespace(path, namespace)
 
    del(namespace['_import_public_names_from_path_into_namespace'])
