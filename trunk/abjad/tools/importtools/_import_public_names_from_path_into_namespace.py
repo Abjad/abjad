@@ -2,16 +2,20 @@ from abjad.tools.importtools._get_functions_in_module import _get_functions_in_m
 import os
 
 
-def _import_public_names_from_path_into_namespace(path, namespace):
-   r'''Nonrecursive import helper. 
-   All packages (nonleaf submodules) in `path` are imported to the 
-   given `namespace`.
+def _import_public_names_from_path_into_namespace(path, namespace, package_root_name = 'abjad'):
+   r'''Inspect the top level of path.
 
-   All the functions and classes inside modules (leaf-modules, \*.py files) 
-   found in `path` are imported into `namespace`.
+   Find .py modules in path and import public functions from .py modules into namespace.
+
+   Find packages in path and import package names into namespace.
+
+   Do not import package content into namespace.
+
+   Do not inspect lower levels of path.
    '''
 
-   module = path[path.rindex('abjad'):]
+   #module = path[path.rindex('abjad'):]
+   module = path[path.rindex(package_root_name):]
    module = module.replace(os.sep, '.')
 
    for element in os.listdir(path):
@@ -22,13 +26,12 @@ def _import_public_names_from_path_into_namespace(path, namespace):
             functions = _get_functions_in_module(submod)
             for f in functions:
                namespace[f.__name__] = f
-
       elif os.path.isdir(os.path.join(path, element)):
          if not element in ('.svn', 'test'):
             #exec('from %s import %s' % (module, element))
             submod = '.'.join([module, element])
             namespace[element] = __import__(submod, fromlist =['*'])
       else:
-         print 'Not a dir, not a file, what is %s?' % element
+         raise ImportError('Not a dir, not a file, what is %s?' % element)
 
    del(namespace['_import_public_names_from_path_into_namespace'])
