@@ -98,7 +98,6 @@ class CyclicMatrix(Matrix):
 
    def _init_from_columns(self, columns):
       columns = CyclicTuple([CyclicTuple(column) for column in columns])      
-      assert len(set([len(column) for column in columns])) in (0, 1)
       rows = [ ]
       for row_index in range(len(columns[0])):
          row = CyclicTuple([column[row_index] for column in columns])
@@ -108,7 +107,6 @@ class CyclicMatrix(Matrix):
 
    def _init_from_rows(self, rows):
       rows = CyclicTuple([CyclicTuple(row) for row in rows])
-      assert len(set([len(row) for row in rows])) in (0, 1)
       columns = [ ]
       for column_index in range(len(rows[0])):
          column = CyclicTuple([row[column_index] for row in rows])
