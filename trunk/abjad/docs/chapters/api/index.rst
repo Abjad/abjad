@@ -825,6 +825,7 @@ seqtools
    tools/seqtools/Matrix/Matrix
    tools/seqtools/all_are_assignable_integers
    tools/seqtools/all_are_equal
+   tools/seqtools/all_are_integer_equivalent_numbers
    tools/seqtools/all_are_nonnegative_integer_powers_of_two
    tools/seqtools/all_are_nonnegative_integers
    tools/seqtools/all_are_numbers
