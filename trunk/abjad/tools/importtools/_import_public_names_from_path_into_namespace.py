@@ -36,4 +36,7 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
 
    _import_contents_of_public_packages_in_path_into_namespace(path, namespace, package_root_name)
 
-   del(namespace['_import_public_names_from_path_into_namespace'])
+   try:
+      del(namespace['_import_public_names_from_path_into_namespace'])
+   except KeyError:
+      pass
