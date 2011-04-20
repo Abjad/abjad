@@ -1,9 +1,10 @@
+from abjad.tools.importtools._import_public_names_from_path_into_namespace import _import_public_names_from_path_into_namespace
+
+_import_public_names_from_path_into_namespace(__path__[0], globals( ))
+
 from _FlexEqualityComparator import _FlexEqualityComparator
 from _Immutable import _Immutable
 from _ImmutableDictionary import _ImmutableDictionary
 from _StrictComparator import _StrictComparator
 from _UnaryComparator import _UnaryComparator
-from LilyPondContextSettingComponentPlugIn import LilyPondContextSettingComponentPlugIn
-from LilyPondGrobOverrideComponentPlugIn import LilyPondGrobOverrideComponentPlugIn
-from LilyPondTweakReservoir import LilyPondTweakReservoir
 from fractions import Fraction as Fraction

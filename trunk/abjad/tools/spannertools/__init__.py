@@ -1,26 +1,3 @@
 from abjad.tools.importtools._import_public_names_from_path_into_namespace import _import_public_names_from_path_into_namespace
 
 _import_public_names_from_path_into_namespace(__path__[0], globals( ))
-
-from BeamSpanner import BeamSpanner
-from BracketSpanner import BracketSpanner
-from ComplexBeamSpanner import ComplexBeamSpanner
-from CrescendoSpanner import CrescendoSpanner
-from DecrescendoSpanner import DecrescendoSpanner
-from DuratedComplexBeamSpanner import DuratedComplexBeamSpanner
-from DynamicTextSpanner import DynamicTextSpanner
-from GlissandoSpanner import GlissandoSpanner
-from HairpinSpanner import HairpinSpanner
-from HiddenStaffSpanner import HiddenStaffSpanner
-from MeasuredComplexBeamSpanner import MeasuredComplexBeamSpanner
-from MultipartBeamSpanner import MultipartBeamSpanner
-from MetricGridSpanner import MetricGridSpanner
-from OctavationSpanner import OctavationSpanner
-from PhrasingSlurSpanner import PhrasingSlurSpanner
-from PianoPedalSpanner import PianoPedalSpanner
-from SlurSpanner import SlurSpanner
-from Spanner import Spanner
-from StaffLinesSpanner import StaffLinesSpanner
-from TextScriptSpanner import TextScriptSpanner
-from TextSpanner import TextSpanner
-from TrillSpanner import TrillSpanner

@@ -1,16 +1,3 @@
 from abjad.tools.importtools._import_public_names_from_path_into_namespace import _import_public_names_from_path_into_namespace
 
 _import_public_names_from_path_into_namespace(__path__[0], globals( ))
-
-from SchemeAssociativeList import SchemeAssociativeList
-from SchemeBoolean import SchemeBoolean
-from SchemeColor import SchemeColor
-from SchemeFunction import SchemeFunction
-from SchemeMoment import SchemeMoment
-from SchemeNumber import SchemeNumber
-from SchemePair import SchemePair
-from SchemeString import SchemeString
-from SchemeVariable import SchemeVariable
-from SchemeVector import SchemeVector
-from SchemeVectorConstant import SchemeVectorConstant
-

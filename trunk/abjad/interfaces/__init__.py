@@ -1,4 +1,7 @@
-from ParentageInterface import ParentageInterface
+from abjad.tools.importtools._import_public_names_from_path_into_namespace import _import_public_names_from_path_into_namespace
+
+_import_public_names_from_path_into_namespace(__path__[0], globals( ))
+
 from _OffsetInterface import _OffsetInterface
 from _NavigationInterface import _NavigationInterface
 from _NumberingInterface import _NumberingInterface
