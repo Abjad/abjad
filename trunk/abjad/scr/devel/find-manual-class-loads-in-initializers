@@ -10,6 +10,7 @@ def _find_initializers( ):
       for f in files:
          if f == '__init__.py':
             parent_directory = path.split(os.sep)[-1]
+            ## protect abjad/__init__.py
             if parent_directory not in ('abjad', ):
                initializers.append(os.path.join(path, f))
    print 'There are %s initializers ...' % len(initializers)
