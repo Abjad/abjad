@@ -13,7 +13,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    def __init__(self, _client, duration_token):
       _ComponentDurationInterface.__init__(self, _client)
       self.multiplier = None
-      self.written = Fraction(*durtools.duration_token_to_reduced_duration_pair(duration_token))
+      self.written = Fraction(*durtools.duration_token_to_duration_pair(duration_token))
 
    ## OVERLOADS ##
 

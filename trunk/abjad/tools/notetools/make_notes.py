@@ -67,7 +67,7 @@ def make_notes(pitches, durations, direction='big-endian'):
    ## Durations should always reduce;
    ## So tokens can represent tuplet multipliers or something
    ## else that shouldn't reduce?
-   durations = [durtools.duration_token_to_reduced_duration_pair(dur) for dur in durations]
+   durations = [durtools.duration_token_to_duration_pair(dur) for dur in durations]
 
    ## set lists of pitches and durations to the same length
    size = max(len(durations), len(pitches))

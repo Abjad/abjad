@@ -43,8 +43,8 @@ def make_percussion_note(pitch, total_duration, max_note_duration = (1, 8)):
       ``notetools.make_percussion_note( )``.
    '''
 
-   total_duration = Fraction(*durtools.duration_token_to_reduced_duration_pair(total_duration))
-   max_note_duration = Fraction(*durtools.duration_token_to_reduced_duration_pair(max_note_duration))
+   total_duration = Fraction(*durtools.duration_token_to_duration_pair(total_duration))
+   max_note_duration = Fraction(*durtools.duration_token_to_duration_pair(max_note_duration))
 
    if max_note_duration < total_duration:
       rest_duration = total_duration - max_note_duration

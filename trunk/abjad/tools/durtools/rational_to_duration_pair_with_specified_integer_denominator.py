@@ -1,5 +1,5 @@
 from fractions import Fraction
-from abjad.tools.durtools.duration_token_to_reduced_duration_pair import duration_token_to_reduced_duration_pair
+from abjad.tools.durtools.duration_token_to_duration_pair import duration_token_to_duration_pair
 
 
 def rational_to_duration_pair_with_specified_integer_denominator(duration, desired_denominator):
@@ -38,7 +38,7 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, desir
    '''
 
    assert isinstance(duration, (Fraction, int, long, tuple))
-   n, d = duration_token_to_reduced_duration_pair(duration)
+   n, d = duration_token_to_duration_pair(duration)
    multiplier = Fraction(desired_denominator, d)
    new_numerator = multiplier * n
    new_denominator = multiplier * d

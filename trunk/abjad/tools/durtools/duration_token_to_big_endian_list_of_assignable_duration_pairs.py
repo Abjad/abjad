@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.durtools.duration_token_to_reduced_duration_pair import duration_token_to_reduced_duration_pair
+from abjad.tools.durtools.duration_token_to_duration_pair import duration_token_to_duration_pair
 
 
 def duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_token):
@@ -27,7 +27,7 @@ def duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_toke
       ``durtools.duration_token_to_big_endian_list_of_assignable_duration_pairs( )``.
    '''
 
-   numerator, denominator = duration_token_to_reduced_duration_pair(duration_token)
+   numerator, denominator = duration_token_to_duration_pair(duration_token)
    result = [(n, denominator) 
       for n in mathtools.partition_integer_into_canonic_parts(numerator)]
    return tuple(result)

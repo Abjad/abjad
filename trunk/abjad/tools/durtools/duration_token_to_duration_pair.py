@@ -2,35 +2,35 @@ from abjad.tools.durtools.lilypond_duration_string_to_rational import lilypond_d
 from fractions import Fraction
 
 
-def duration_token_to_reduced_duration_pair(duration_token):
-   '''Convert fraction to reduced duration pair::
+def duration_token_to_duration_pair(duration_token):
+   '''Convert fraction to duration pair::
 
-      abjad> durtools.duration_token_to_reduced_duration_pair(Fraction(1, 4))
-      (1, 4)
+      abjad> durtools.duration_token_to_duration_pair(Fraction(2, 4))
+      (2, 4)
 
-   Convert integer pair to reduced duration pair::
+   Convert integer pair to duration pair::
 
-      abjad> durtools.duration_token_to_reduced_duration_pair((1, 4))
-      (1, 4)
+      abjad> durtools.duration_token_to_duration_pair((2, 4))
+      (2, 4)
 
-   Convert ``2``-element list to reduced duration pair::
+   Convert ``2``-element list to duration pair::
 
-      abjad> durtools.duration_token_to_reduced_duration_pair([1, 4])
-      (1, 4)
+      abjad> durtools.duration_token_to_duration_pair([2, 4])
+      (2, 4)
 
-   Convert ``1``-element integer tuple to reduced duration pair::
+   Convert ``1``-element integer tuple to duration pair::
 
-      abjad> durtools.duration_token_to_reduced_duration_pair((2, ))
+      abjad> durtools.duration_token_to_duration_pair((2, ))
       (2, 1)
 
-   Convert ``1``-element list to reduced duration pair::
+   Convert ``1``-element list to duration pair::
 
-      abjad> durtools.duration_token_to_reduced_duration_pair([2])
+      abjad> durtools.duration_token_to_duration_pair([2])
       (2, 1)
 
-   Convert integer to reduced duration pair::
+   Convert integer to duration pair::
 
-      abjad> durtools.duration_token_to_reduced_duration_pair(2)
+      abjad> durtools.duration_token_to_duration_pair(2)
       (2, 1)
 
    .. versionadded:: 1.1.2
@@ -38,14 +38,14 @@ def duration_token_to_reduced_duration_pair(duration_token):
 
    ::
 
-      abjad> durtools.duration_token_to_reduced_duration_pair('8.')
+      abjad> durtools.duration_token_to_duration_pair('8.')
       (3, 16)
 
    Return integer pair.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.token_unpack( )`` to
-      ``durtools.duration_token_to_reduced_duration_pair( )``.
+      ``durtools.duration_token_to_duration_pair( )``.
    '''
 
    if isinstance(duration_token, (tuple, list)):

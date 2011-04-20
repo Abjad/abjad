@@ -256,7 +256,7 @@ durtools
    tools/durtools/assignable_rational_to_lilypond_duration_string
    tools/durtools/duration_pair_to_prolation_string
    tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
-   tools/durtools/duration_token_to_reduced_duration_pair
+   tools/durtools/duration_token_to_duration_pair
    tools/durtools/group_duration_tokens_by_implied_prolation
    tools/durtools/is_assignable_rational
    tools/durtools/is_binary_rational
