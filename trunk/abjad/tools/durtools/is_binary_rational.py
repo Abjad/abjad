@@ -3,7 +3,9 @@ import math
 
 
 def is_binary_rational(rational):
-   '''True when `rational` is of the form ``1/2**n``. Otherwise false::
+   '''.. versionadded:: 1.1.1
+
+   True when `rational` is of the form ``1/2**n``. Otherwise false::
 
       abjad> for n in range(1, 17):
       ...     rational = Fraction(1, n)

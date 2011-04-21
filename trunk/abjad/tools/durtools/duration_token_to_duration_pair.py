@@ -3,7 +3,9 @@ from fractions import Fraction
 
 
 def duration_token_to_duration_pair(duration_token):
-   '''Convert fraction to duration pair::
+   '''.. versionadded:: 1.1.1
+
+   Convert fraction to duration pair::
 
       abjad> durtools.duration_token_to_duration_pair(Fraction(2, 4))
       (2, 4)

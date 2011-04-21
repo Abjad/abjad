@@ -2,7 +2,9 @@ from fractions import Fraction
 
 
 def numeric_seconds_to_clock_string(seconds):
-   r'''Convert numeric `seconds` to clock string::
+   r'''.. versionadded:: 1.1.2
+
+   Convert numeric `seconds` to clock string::
 
       abjad> durtools.numeric_seconds_to_clock_string(117)   
       '1\'57"'

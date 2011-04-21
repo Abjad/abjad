@@ -32,7 +32,9 @@ lilypond_duration_string_regex = re.compile('^%s$' %
    lilypond_duration_string_regex_body, re.VERBOSE)
 
 def is_lilypond_duration_string(expr):
-   '''True when `expr` is a LilyPond duration string::
+   '''.. versionadded:: 1.1.2
+
+   True when `expr` is a LilyPond duration string::
 
       abjad> durtools.is_lilypond_duration_string('4.. * 1/2')
       True

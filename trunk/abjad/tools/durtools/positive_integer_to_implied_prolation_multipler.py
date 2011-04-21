@@ -3,7 +3,9 @@ from abjad.tools import mathtools
 
 
 def positive_integer_to_implied_prolation_multipler(denominator):
-   '''Return prolation attaching to integer `denominator`.
+   '''.. versionadded:: 1.1.1
+
+   Return prolation attaching to integer `denominator`.
 
    ::
 

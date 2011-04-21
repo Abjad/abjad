@@ -2,9 +2,10 @@ from fractions import Fraction
 from abjad.tools.durtools.duration_token_to_duration_pair import duration_token_to_duration_pair
 
 
-def rational_to_duration_pair_with_specified_integer_denominator(duration, desired_denominator):
-   r'''Rewrite `duration` as a pair
-   with positive integer `desired_denominator`. ::
+def rational_to_duration_pair_with_specified_integer_denominator(duration, integer_denominator):
+   r'''.. versionadded:: 1.1.1
+
+   Change `duration` to duraiton pair with specified `integer_denominator`::
 
       abjad> for n in range(1, 17):
       ...     rational = Fraction(n, 16)
@@ -39,7 +40,7 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, desir
 
    assert isinstance(duration, (Fraction, int, long, tuple))
    n, d = duration_token_to_duration_pair(duration)
-   multiplier = Fraction(desired_denominator, d)
+   multiplier = Fraction(integer_denominator, d)
    new_numerator = multiplier * n
    new_denominator = multiplier * d
    if new_numerator.denominator == 1 and new_denominator.denominator == 1:

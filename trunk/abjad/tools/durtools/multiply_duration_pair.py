@@ -2,7 +2,9 @@ from fractions import Fraction
 
 
 def multiply_duration_pair(pair, multiplier):
-   '''Multiply duration `pair` by rational `multiplier`::
+   '''.. versionadded:: 1.1.1
+
+   Multiply duration `pair` by rational `multiplier`::
 
       abjad> durtools.multiply_duration_pair((4, 8), Fraction(4, 5))
       (16, 40)

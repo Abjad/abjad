@@ -8,7 +8,9 @@ import math
 
 
 def rational_to_equal_or_greater_assignable_rational(prolated_duration):
-   '''Return the least note-head-assignable rational not
+   '''.. versionadded:: 1.1.1
+
+   Return the least note-head-assignable rational not
    less than `prolated_duration`. ::
 
       abjad> for n in range(1, 17):

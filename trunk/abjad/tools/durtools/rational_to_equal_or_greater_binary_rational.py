@@ -3,7 +3,9 @@ import math
 
 
 def rational_to_equal_or_greater_binary_rational(prolated_duration):
-   '''Rational `prolated_duration` to equal to greater binary rational::
+   '''.. versionadded:: 1.1.1
+
+   Rational `prolated_duration` to equal to greater binary rational::
 
       abjad> for n in range(1, 17):
       ...     prolated_duration = Fraction(n, 16)

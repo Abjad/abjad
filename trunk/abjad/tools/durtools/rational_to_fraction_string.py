@@ -2,7 +2,9 @@ from fractions import Fraction
 
 
 def rational_to_fraction_string(rational):
-   '''Format `rational` as a string of the form ``p/q``.
+   '''.. versionadded:: 1.1.1
+
+   Format `rational` as a string of the form ``p/q``.
 
    ::
 

@@ -3,7 +3,9 @@ import math
 
 
 def rational_to_equal_or_lesser_binary_rational(prolated_duration):
-   '''Return the greatest rational of the form ``1/2**n`` 
+   '''.. versionadded:: 1.1.1
+
+   Return the greatest rational of the form ``1/2**n`` 
    less than or equal to `prolated_duration`. ::
 
       abjad> for n in range(1, 17):

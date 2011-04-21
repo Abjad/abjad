@@ -2,7 +2,9 @@ from abjad.tools import mathtools
 
 
 def group_duration_tokens_by_implied_prolation(durations):
-   '''Group `durations` by implied prolation::
+   '''.. versionadded:: 1.1.1
+
+   Group `durations` by implied prolation::
    
       abjad> durtools.group_duration_tokens_by_implied_prolation([(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)])
       [[(1, 4), (1, 8)], [(1, 3), (1, 6)], [(1, 4)]]

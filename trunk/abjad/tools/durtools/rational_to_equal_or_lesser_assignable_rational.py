@@ -8,7 +8,9 @@ import math
 
 
 def rational_to_equal_or_lesser_assignable_rational(prolated_duration):
-   '''Return the greatest note-head-assignable rational not greater than
+   '''.. versionadded:: 1.1.1
+
+   Return the greatest note-head-assignable rational not greater than
    `prolated_duration`. ::
 
       abjad> for n in range(1, 17):

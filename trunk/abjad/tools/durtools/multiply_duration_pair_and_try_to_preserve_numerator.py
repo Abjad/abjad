@@ -2,7 +2,9 @@ from fractions import Fraction
 
 
 def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
-   '''Multiply duration `pair` by rational `multiplier` and try to preserve numerator::
+   '''.. versionadded:: 1.1.1
+
+   Multiply duration `pair` by rational `multiplier` and try to preserve numerator::
 
       abjad> durtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(2, 3))
       (9, 24)
