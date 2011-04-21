@@ -916,6 +916,8 @@ seqtools
    tools/seqtools/splice_new_elements_between_sequence_elements
    tools/seqtools/split_sequence_cyclically_by_weights_with_overhang
    tools/seqtools/split_sequence_cyclically_by_weights_without_overhang
+   tools/seqtools/split_sequence_extended_to_weights_with_overhang
+   tools/seqtools/split_sequence_extended_to_weights_without_overhang
    tools/seqtools/split_sequence_once_by_weights_with_overhang
    tools/seqtools/split_sequence_once_by_weights_without_overhang
    tools/seqtools/sum_consecutive_sequence_elements_by_sign
