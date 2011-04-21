@@ -1,14 +1,15 @@
 from abjad.components import Note
 from abjad.components import Rest
 from abjad.tools.leaftools.make_leaves import make_leaves
+from fractions import Fraction
 
 
-def make_leaves_from_note_value_signal(note_value_signal, unit_of_signal, tied_rests = False):
+def make_leaves_from_note_value_signal(note_value_signal, denominator_of_signal, tied_rests = False):
    r'''.. versionadded:: 1.1.2
 
-   Make leaves from `note_value_signal` and `unit_of_signal`::
+   Make leaves from `note_value_signal` and `denominator_of_signal`::
 
-      abjad> leaves = leaftools.make_leaves_from_note_value_signal([3, -3, 5, -5], Fraction(1, 8))
+      abjad> leaves = leaftools.make_leaves_from_note_value_signal([3, -3, 5, -5], 8)
       abjad> staff = Staff(leaves)
 
    ::
@@ -38,9 +39,9 @@ def make_leaves_from_note_value_signal(note_value_signal, unit_of_signal, tied_r
       if note_value == 0:
          raise ValueError('note values must be nonzero.')
       elif 0 < note_value:
-         leaves = make_leaves([0], [note_value * unit_of_signal])
+         leaves = make_leaves([0], [Fraction(note_value, denominator_of_signal)])
       else:
-         leaves = make_leaves([None], [-note_value * unit_of_signal], tied_rests = tied_rests)
+         leaves = make_leaves([None], [Fraction(-note_value, denominator_of_signal)], tied_rests = tied_rests)
       result.extend(leaves)
 
    return result

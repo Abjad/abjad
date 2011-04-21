@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_make_leaves_from_note_value_signal_01( ):
 
-   leaves = leaftools.make_leaves_from_note_value_signal([3, -3, 5, -5], Fraction(1, 8))
+   leaves = leaftools.make_leaves_from_note_value_signal([3, -3, 5, -5], 8)
    staff = Staff(leaves)
 
    r'''
