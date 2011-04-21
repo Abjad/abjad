@@ -259,7 +259,9 @@ durtools
    tools/durtools/duration_token_to_duration_pair
    tools/durtools/duration_token_to_rational
    tools/durtools/duration_tokens_to_duration_pairs
+   tools/durtools/duration_tokens_to_duration_pairs_with_least_common_denominator
    tools/durtools/duration_tokens_to_least_common_denominator
+   tools/durtools/duration_tokens_to_rationals
    tools/durtools/group_duration_tokens_by_implied_prolation
    tools/durtools/is_assignable_rational
    tools/durtools/is_binary_rational
