@@ -401,6 +401,7 @@ leaftools
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
+   tools/leaftools/make_leaves_from_note_value_signal
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
    tools/leaftools/remove_markup_from_leaves_in_expr
    tools/leaftools/repeat_leaf_and_extend_spanners
