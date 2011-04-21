@@ -258,6 +258,8 @@ durtools
    tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
    tools/durtools/duration_token_to_duration_pair
    tools/durtools/duration_token_to_rational
+   tools/durtools/duration_tokens_to_duration_pairs
+   tools/durtools/duration_tokens_to_least_common_denominator
    tools/durtools/group_duration_tokens_by_implied_prolation
    tools/durtools/is_assignable_rational
    tools/durtools/is_binary_rational

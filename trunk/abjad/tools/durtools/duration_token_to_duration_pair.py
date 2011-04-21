@@ -5,35 +5,10 @@ from fractions import Fraction
 def duration_token_to_duration_pair(duration_token):
    '''.. versionadded:: 1.1.1
 
-   Convert fraction to duration pair::
+   Change `duration_token` to duration pair::
 
       abjad> durtools.duration_token_to_duration_pair(Fraction(2, 4))
       (2, 4)
-
-   Convert integer pair to duration pair::
-
-      abjad> durtools.duration_token_to_duration_pair((2, 4))
-      (2, 4)
-
-   Convert ``2``-element list to duration pair::
-
-      abjad> durtools.duration_token_to_duration_pair([2, 4])
-      (2, 4)
-
-   Convert ``1``-element integer tuple to duration pair::
-
-      abjad> durtools.duration_token_to_duration_pair((2, ))
-      (2, 1)
-
-   Convert ``1``-element list to duration pair::
-
-      abjad> durtools.duration_token_to_duration_pair([2])
-      (2, 1)
-
-   Convert integer to duration pair::
-
-      abjad> durtools.duration_token_to_duration_pair(2)
-      (2, 1)
 
    .. versionadded:: 1.1.2
       Convert LilyPond duration string to duration pair:
@@ -43,7 +18,7 @@ def duration_token_to_duration_pair(duration_token):
       abjad> durtools.duration_token_to_duration_pair('8.')
       (3, 16)
 
-   Return integer pair.
+   Return pair.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.token_unpack( )`` to
