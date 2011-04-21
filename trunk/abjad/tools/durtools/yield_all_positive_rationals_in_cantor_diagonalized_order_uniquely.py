@@ -6,9 +6,7 @@ from abjad.tools.durtools.yield_all_positive_integer_pairs_in_cantor_diagonalize
 def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( ):
    r'''.. versionadded:: 1.1.2
 
-   Cantor diagonalization of the rationals.
-   
-   Values appear only once. ::
+   Yield all positive rationals in Cantor diagonalized order uniquely::
 
       abjad> generator = durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_unique( )
       abjad> for n in range(16):
@@ -31,13 +29,7 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( ):
       Fraction(3, 4)
       Fraction(2, 5)
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.diagonalize_all_rationals_unique( )`` to
-      ``durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.yield_all_unique_positive_rationals_in_cantor_diagonalized_order( )`` to
-      ``durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( )``.
+   Return fraction generator.
    '''
 
    generator = yield_all_positive_integer_pairs_in_cantor_diagonalized_order( )

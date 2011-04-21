@@ -6,7 +6,7 @@ from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 def yield_all_assignable_rationals_in_cantor_diagonalized_order( ):
    '''.. versionadded:: 1.1.2
 
-   Cantor diagonalization of all note-head-assignable durations. ::
+   Yield all assignable rationals in Cantor diagonalized order::
 
       abjad> generator = durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order( )
       abjad> for n in range(16):
@@ -29,13 +29,7 @@ def yield_all_assignable_rationals_in_cantor_diagonalized_order( ):
       Fraction(3, 8)
       Fraction(12, 1)
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.diagonalize_all_assignable_durations( )`` to
-      ``durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.yield_all_assignable_durations_in_cantor_diagonalized_order( )`` to
-      ``durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order( )``.
+   Return fraction generator.
    '''
 
 

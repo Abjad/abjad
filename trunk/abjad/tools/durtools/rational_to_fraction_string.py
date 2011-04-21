@@ -4,27 +4,12 @@ from fractions import Fraction
 def rational_to_fraction_string(rational):
    '''.. versionadded:: 1.1.1
 
-   Format `rational` as a string of the form ``p/q``.
-
-   ::
-
-      abjad> durtools.rational_to_fraction_string(Fraction(1, 4))
-      '1/4'
-
-   ::
+   Change `rational` to fraction string::
 
       abjad> durtools.rational_to_fraction_string(Fraction(2, 4))
       '1/2'
 
-   ::
-
-      abjad> durtools.rational_to_fraction_string(Fraction(3, 4))
-      '3/4'
-
-   ::
-
-      abjad> durtools.rational_to_fraction_string(Fraction(4, 4))
-      '1/1'
+   Return string.
    '''
 
    if not isinstance(rational, Fraction):

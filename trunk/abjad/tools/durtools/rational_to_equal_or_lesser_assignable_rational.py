@@ -1,21 +1,17 @@
-from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
-from abjad.tools.durtools.rational_to_equal_or_lesser_binary_rational \
-   import rational_to_equal_or_lesser_binary_rational \
-   as durtools_rational_to_equal_or_lesser_binary_rational
+from fractions import Fraction
 import math
 
 
-def rational_to_equal_or_lesser_assignable_rational(prolated_duration):
+def rational_to_equal_or_lesser_assignable_rational(rational):
    '''.. versionadded:: 1.1.1
 
-   Return the greatest note-head-assignable rational not greater than
-   `prolated_duration`. ::
+   Change `rational` to equal or lesser assignable rational::
 
       abjad> for n in range(1, 17):
-      ...     prolated = Fraction(n, 16)
-      ...     written = durtools.rational_to_equal_or_lesser_assignable_rational(prolated)
+      ...     rational = Fraction(n, 16)
+      ...     written = durtools.rational_to_equal_or_lesser_assignable_rational(rational)
       ...     print '%s/16\\t%s' % (n, written)
       ... 
       1/16    1/16
@@ -35,8 +31,9 @@ def rational_to_equal_or_lesser_assignable_rational(prolated_duration):
       15/16   15/16
       16/16   1
 
-   .. note:: this function returns dotted and double dotted durations
-      where possible.
+   Return fraction.
+
+   Function returns dotted and double dotted durations where possible.
 
    .. versionchanged:: 1.1.2
       Fixed to produce monotonically increasing output
@@ -47,15 +44,9 @@ def rational_to_equal_or_lesser_assignable_rational(prolated_duration):
       ``durtools.rational_to_equal_or_lesser_assignable_rational( )``.
    '''
 
-#   if is_assignable_rational(prolated_duration):
-#      return prolated_duration
-#   else:
-#      return durtools_rational_to_equal_or_lesser_binary_rational(
-#         prolated_duration)
+   good_denominator = mathtools.least_power_of_two_greater_equal(rational.denominator)
 
-   good_denominator = mathtools.least_power_of_two_greater_equal(prolated_duration.denominator)
-
-   cur_numerator = prolated_duration.numerator
+   cur_numerator = rational.numerator
    candidate = Fraction(cur_numerator, good_denominator)
 
    while not is_assignable_rational(candidate):

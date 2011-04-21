@@ -38,6 +38,8 @@ def rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
       abjad> durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(Fraction(1, 2), 40)
       (20, 40)
 
+   Return integer pair.
+
    .. versionchanged:: 1.1.2
       renamed ``durtools.in_terms_of_binary_multiple( )`` to
       ``durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator( )``.

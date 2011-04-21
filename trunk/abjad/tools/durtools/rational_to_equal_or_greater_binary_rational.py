@@ -2,14 +2,14 @@ from fractions import Fraction
 import math
 
 
-def rational_to_equal_or_greater_binary_rational(prolated_duration):
+def rational_to_equal_or_greater_binary_rational(rational):
    '''.. versionadded:: 1.1.1
 
-   Rational `prolated_duration` to equal to greater binary rational::
+   Change `rational` to equal to greater binary rational::
 
       abjad> for n in range(1, 17):
-      ...     prolated_duration = Fraction(n, 16)
-      ...     written_duration = durtools.rational_to_equal_or_greater_binary_rational(prolated_duration)
+      ...     rational = Fraction(n, 16)
+      ...     written_duration = durtools.rational_to_equal_or_greater_binary_rational(rational)
       ...     print '%s/16\\t%s' % (n, written_duration)
       ... 
       1/16    1/16
@@ -49,12 +49,9 @@ def rational_to_equal_or_greater_binary_rational(prolated_duration):
    '''
 
    # find exponent of denominator
-   exponent = -int(math.ceil(math.log(prolated_duration, 2)))
+   exponent = -int(math.ceil(math.log(rational, 2)))
 
    # find numerator, denominator and written duration
-   #numerator = 1
-   #denominator = 2 ** exponent
-   #written_duration = Fraction(numerator, denominator)
    written_duration = Fraction(1, 2) ** exponent
 
    # return written duration

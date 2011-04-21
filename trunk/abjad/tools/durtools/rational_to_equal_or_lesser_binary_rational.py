@@ -2,15 +2,14 @@ from fractions import Fraction
 import math
 
 
-def rational_to_equal_or_lesser_binary_rational(prolated_duration):
+def rational_to_equal_or_lesser_binary_rational(rational):
    '''.. versionadded:: 1.1.1
 
-   Return the greatest rational of the form ``1/2**n`` 
-   less than or equal to `prolated_duration`. ::
+   Change `rational` to equal or lesser binary rational::
 
       abjad> for n in range(1, 17):
-      ...     prolated_duration = Fraction(n, 16)
-      ...     written_duration = durtools.rational_to_equal_or_lesser_binary_rational(prolated_duration)
+      ...     rational = Fraction(n, 16)
+      ...     written_duration = durtools.rational_to_equal_or_lesser_binary_rational(rational)
       ...     print '%s/16\\t%s' % (n, written_duration)
       ... 
       1/16    1/16
@@ -35,6 +34,8 @@ def rational_to_equal_or_lesser_binary_rational(prolated_duration):
       abjad> durtools.rational_to_equal_or_lesser_binary_rational(Fraction(1, 80))
       Fraction(1, 128)
 
+   Return fraction.
+
    Function intended to find written duration of notes inside tuplet.
 
    .. versionchanged:: 1.1.2
@@ -43,7 +44,7 @@ def rational_to_equal_or_lesser_binary_rational(prolated_duration):
    '''
 
    ## find exponent of denominator
-   exponent = -int(math.floor(math.log(prolated_duration, 2)))
+   exponent = -int(math.floor(math.log(rational, 2)))
 
    ## find written duration 
    written_duration = Fraction(1, 2) ** exponent

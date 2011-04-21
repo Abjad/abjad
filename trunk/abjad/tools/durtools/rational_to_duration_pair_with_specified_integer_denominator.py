@@ -29,12 +29,10 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, integ
       15/16   (15, 16)
       1       (16, 16)
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.in_terms_of( )`` to
-      ``durtools.rational_to_duration_pair_with_specified_integer_denominator( )``.
+   Return integer pair.
 
    .. versionchanged:: 1.1.2
-      renamed ``durtools.rational_to_duration_pair_with_integer_denominator( )`` to
+      renamed ``durtools.in_terms_of( )`` to
       ``durtools.rational_to_duration_pair_with_specified_integer_denominator( )``.
    '''
 

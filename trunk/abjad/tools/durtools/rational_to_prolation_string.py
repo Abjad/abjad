@@ -1,7 +1,7 @@
 def rational_to_prolation_string(rational):
    r'''.. versionadded:: 1.1.2
 
-   Format `rational` as a colon-delimited prolation string. ::
+   Change `rational` to prolation string::
 
       abjad> generator = durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_unique( )
       abjad> for n in range(16):
@@ -25,6 +25,8 @@ def rational_to_prolation_string(rational):
       4/3     3:4
       3/4     4:3
       2/5     5:2
+
+   Return string.
    '''
 
    return '%s:%s' % (rational.denominator, rational.numerator)

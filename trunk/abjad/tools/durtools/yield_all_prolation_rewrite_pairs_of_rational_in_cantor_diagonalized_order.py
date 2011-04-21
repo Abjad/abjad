@@ -7,12 +7,11 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
    prolated_duration, minimum_written_duration = Fraction(1, 128)):
    r'''.. versionadded:: 1.1.2
 
-   Return tuple of the different ways to notate `prolated_duration`
-   as prolation, written pairs.
+   Yield all prolation rewrite pairs of `prolated_duration` in Cantor diagonalized order.
 
    Ensure written duration never less than `minimum_written_duration`.
 
-   The different ways to notate a prolated duration of ``1/8``. ::
+   The different ways to notate a prolated duration of ``1/8``::
 
       abjad> pairs = durtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(1, 8))
       abjad> for pair in pairs: pair
@@ -52,9 +51,7 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
       (Fraction(40, 21), Fraction(7, 128))
       (Fraction(8, 9), Fraction(15, 128))      
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.prolated_to_prolation_written_pairs( )`` to
-      ``durtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order( )``.
+   Return generator of paired fractions.
    '''
    from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
 

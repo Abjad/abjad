@@ -8,6 +8,8 @@ def rational_to_proper_fraction(rational):
 
       abjad> durtools.rational_to_proper_fraction(Fraction(116, 8))
       (14, Fraction(1, 2))
+   
+   Return pair.
    '''
 
    if not isinstance(rational, Fraction):

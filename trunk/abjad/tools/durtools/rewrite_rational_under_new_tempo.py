@@ -35,9 +35,7 @@ def rewrite_rational_under_new_tempo(prolated_duration_1,
       abjad> durtools.rewrite_rational_under_new_tempo(Fraction(1, 8), tempo_mark_1, tempo_mark_2):
       Fraction(3, 16)
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.prolated_to_prolated( )`` to
-      ``durtools.rewrite_rational_under_new_tempo( )``.
+   Return fraction.
    '''
 
    tempo_ratio = tempo_mark_2 / tempo_mark_1

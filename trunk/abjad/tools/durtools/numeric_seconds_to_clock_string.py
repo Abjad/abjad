@@ -4,16 +4,12 @@ from fractions import Fraction
 def numeric_seconds_to_clock_string(seconds):
    r'''.. versionadded:: 1.1.2
 
-   Convert numeric `seconds` to clock string::
+   Change numeric `seconds` to clock string::
 
       abjad> durtools.numeric_seconds_to_clock_string(117)   
       '1\'57"'
 
    Return string.
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.seconds_to_clock_string( )`` to
-      ``durtools.numeric_seconds_to_clock_string( )``.
    '''
 
    assert isinstance(seconds, (int, float, Fraction))

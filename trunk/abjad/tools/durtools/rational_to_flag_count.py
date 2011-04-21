@@ -4,11 +4,12 @@ import math
 def rational_to_flag_count(rational):
    '''.. versionadded:: 1.1.2
 
-   Convert `rational` to nonnegative integer number of flags
-   required to notate. ::
+   Change `rational` to number of flags required to notate::
 
       abjad> durtools.rational_to_flag_count(Fraction(1, 32))
       3
+
+   Return nonnegative integer.
    '''
 
    flag_count = max(-int(math.floor(math.log(float(rational.numerator) /

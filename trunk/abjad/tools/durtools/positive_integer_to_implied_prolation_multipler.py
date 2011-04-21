@@ -1,13 +1,12 @@
-from fractions import Fraction
 from abjad.tools import mathtools
+from fractions import Fraction
 
 
-def positive_integer_to_implied_prolation_multipler(denominator):
+## TODO: respell function name correctly
+def positive_integer_to_implied_prolation_multipler(n):
    '''.. versionadded:: 1.1.1
 
-   Return prolation attaching to integer `denominator`.
-
-   ::
+   Change positive integer `n` to implied porlation multiplier::
 
       abjad> for denominator in range(1, 17):
       ...     multiplier = durtools.positive_integer_to_implied_prolation_multipler(denominator)
@@ -30,16 +29,11 @@ def positive_integer_to_implied_prolation_multipler(denominator):
       15      8/15
       16      1
 
-   .. note:: result always less than or equal to 1.
+   Return positive fraction less than or equal to ``1``.
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.denominator_to_multiplier( )`` to
       ``durtools.positive_integer_to_implied_prolation_multipler( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.integer_denominator_to_implied_prolation( )`` to
-      ``durtools.positive_integer_to_implied_prolation_multipler( )``.
    '''
 
-   return Fraction(
-      mathtools.greatest_power_of_two_less_equal(denominator), denominator)
+   return Fraction(mathtools.greatest_power_of_two_less_equal(n), n)
