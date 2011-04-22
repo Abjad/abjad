@@ -58,10 +58,6 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
    .. versionchanged:: 1.1.2
       renamed ``measuretools.overwrite_contents( )`` to
       ``measuretools.replace_contents_of_measures_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.replace_measure_contents_in( )`` to
-      ``measuretools.replace_contents_of_measures_in_expr( )``.
    '''
 
    ## init return list

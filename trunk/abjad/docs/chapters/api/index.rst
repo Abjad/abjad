@@ -887,6 +887,8 @@ seqtools
    tools/seqtools/partition_sequence_cyclically_by_weights_at_most_without_overhang
    tools/seqtools/partition_sequence_cyclically_by_weights_exactly_with_overhang
    tools/seqtools/partition_sequence_cyclically_by_weights_exactly_without_overhang
+   tools/seqtools/partition_sequence_extended_to_counts_with_overhang
+   tools/seqtools/partition_sequence_extended_to_counts_without_overhang
    tools/seqtools/partition_sequence_once_by_counts_with_overhang
    tools/seqtools/partition_sequence_once_by_counts_without_overhang
    tools/seqtools/partition_sequence_once_by_weights_at_least_with_overhang
