@@ -4,7 +4,9 @@ from abjad.exceptions import ContiguityError
 
 
 def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = None):
-   r'''Clone `component` together with children of `component` 
+   r'''.. versionadded:: 1.1.1
+
+   Clone `component` together with children of `component` 
    and with sequential parentage of `component` 
    from `start` leaf to `stop` leaf::
 

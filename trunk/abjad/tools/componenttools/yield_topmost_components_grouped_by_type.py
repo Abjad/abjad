@@ -13,22 +13,6 @@ def yield_topmost_components_grouped_by_type(expr):
       (Note(c', 8), Note(d', 8), Note(e', 8))
       (Rest(8), Rest(8))
       (Note(f', 8), Note(g', 8))
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.group_by_leaf_type( )`` to
-      ``componenttools.yield_topmost_components_grouped_by_type( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.group_by_type_and_yield_groups( )`` to
-      ``componenttools.yield_topmost_components_grouped_by_type( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.group_topmost_components_in_expr_by_type_and_yield_groups( )`` to
-      ``componenttools.yield_topmost_components_grouped_by_type( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``componenttools.group_topmost_components_in_expr_by_type_and_yield_groups( )`` to
-      ``componenttools.yield_topmost_components_grouped_by_type( )``.
    '''
 
    grouper = itertools.groupby(expr, type)

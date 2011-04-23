@@ -3,7 +3,9 @@ from abjad.tools.componenttools._report_component_format_contributions import \
 
 
 def report_component_format_contributions_to_screen(component, verbose = False):
-   r'''Report `component` format contributions to screen::
+   r'''.. versionadded:: 1.1.1
+
+   Report `component` format contributions to screen::
 
       abjad> note = Note(0, (1, 4))
       abjad> note.note_head.style = 'cross'

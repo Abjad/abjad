@@ -3,7 +3,9 @@ from abjad.tools.chordtools.Cluster._ClusterFormatter import _ClusterFormatter
 
 
 class Cluster(Container):
-   '''Abjad model of a tone cluster container::
+   '''.. versionadded:: 1.1.1
+
+   Abjad model of a tone cluster container::
 
       abjad> cluster = chordtools.Cluster("c'8 d'8 b'8")
 

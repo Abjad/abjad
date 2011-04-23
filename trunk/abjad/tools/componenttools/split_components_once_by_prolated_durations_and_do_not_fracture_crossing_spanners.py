@@ -3,7 +3,9 @@ from abjad.tools.componenttools._split_components_by_prolated_durations import _
 
 def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(
    components, durations, tie_after = False):
-   r'''Partition `components` according to `durations`.
+   r'''.. versionadded:: 1.1.1
+
+   Partition `components` according to `durations`.
    Do not fracture spanners. ::
 
       abjad> t = Staff(Container(notetools.make_repeated_notes(2)) * 2)

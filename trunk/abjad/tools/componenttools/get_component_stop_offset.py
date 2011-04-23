@@ -1,5 +1,7 @@
 def get_component_stop_offset(component):
-   r'''Get `component` stop offset::
+   r'''.. versionadded:: 1.1.1
+
+   Get `component` stop offset::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> f(staff)

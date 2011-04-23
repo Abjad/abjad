@@ -2,7 +2,9 @@ from fractions import Fraction
 
 
 def list_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
-   '''Return tuple of ``components[:i]`` together with 
+   '''.. versionadded:: 1.1.2
+
+   Return tuple of ``components[:i]`` together with 
    the prolated duration of ``components[:i]``. ::
 
       abjad> voice = Voice(macros.scale(4))

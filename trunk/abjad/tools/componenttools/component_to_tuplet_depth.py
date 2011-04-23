@@ -3,7 +3,9 @@ from abjad.tools.componenttools.get_proper_parentage_of_component import \
 
 
 def component_to_tuplet_depth(component):
-   '''Change `component` to tuplet depth::
+   '''.. versionadded:: 1.1.1
+
+   Change `component` to tuplet depth::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])

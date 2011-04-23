@@ -2,7 +2,9 @@ from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 
 
 def all_are_components_scalable_by_multiplier(components, multiplier):
-   '''True when `components` are all scalable by `multiplier`::
+   '''.. versionadded:: 1.1.1
+
+   True when `components` are all scalable by `multiplier`::
 
       abjad> components = [Note(0, (1, 8))]
       abjad> componenttools.all_are_components_scalable_by_multiplier(components, Fraction(3, 2))

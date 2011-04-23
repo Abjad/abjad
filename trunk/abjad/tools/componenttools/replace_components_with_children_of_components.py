@@ -1,6 +1,7 @@
 def replace_components_with_children_of_components(components):
-   r'''Remove arbitrary `components` from score 
-   but retain children of `components` in score. ::
+   r'''.. versionadded:: 1.1.1
+
+   Remove arbitrary `components` from score but retain children of `components` in score::
 
       abjad> staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)

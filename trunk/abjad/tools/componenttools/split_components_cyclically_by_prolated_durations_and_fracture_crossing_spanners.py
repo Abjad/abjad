@@ -3,7 +3,9 @@ from abjad.tools.componenttools._split_components_by_prolated_durations import _
 
 def split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(
    components, durations, tie_after = False):
-   r'''Partition `components` cyclically by `durations`
+   r'''.. versionadded:: 1.1.1
+
+   Partition `components` cyclically by `durations`
    and fracture spanners in the process::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)

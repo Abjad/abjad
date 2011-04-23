@@ -3,7 +3,9 @@ from abjad.tools.componenttools.get_proper_parentage_of_component import \
 
 
 def is_orphan_component(component):
-   '''True when `component` has no parent. Otherwise false::
+   '''.. versionadded:: 1.1.1
+
+   True when `component` has no parent. Otherwise false::
 
       abjad> note = Note(0, (1, 4))
       abjad> componenttools.is_orphan_component(note)

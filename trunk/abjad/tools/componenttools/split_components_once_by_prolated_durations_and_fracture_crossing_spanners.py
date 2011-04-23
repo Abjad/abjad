@@ -3,7 +3,9 @@ from abjad.tools.componenttools._split_components_by_prolated_durations import _
 
 def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
    components, durations, tie_after = False):
-   r'''Partition `components` by `durations`.
+   r'''.. versionadded:: 1.1.1
+
+   Partition `components` by `durations`.
    Fracture all spanners attached to any component at
    any duration split-point.  ::
 

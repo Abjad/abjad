@@ -1,5 +1,7 @@
 def get_component_start_offset_in_seconds(component):
-   r'''Get `component` start offset in seconds::
+   r'''.. versionadded:: 1.1.1
+
+   Get `component` start offset in seconds::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> score = Score([staff])

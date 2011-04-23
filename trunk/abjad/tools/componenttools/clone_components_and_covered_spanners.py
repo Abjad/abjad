@@ -1,13 +1,14 @@
 from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
 from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import _restore_parentage_to_components_by_receipt
 from abjad.tools import spannertools
-from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
-   _reattach_blinded_marks_to_components_in_expr
+from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import _reattach_blinded_marks_to_components_in_expr
 import copy
 
 
 def clone_components_and_covered_spanners(components, n = 1):
-   r'''Clone thread-contiguous `components` together with 
+   r'''.. versionadded:: 1.1.1
+
+   Clone thread-contiguous `components` together with 
    spanners that cover `components`.
 
    The steps taken in this function are as follows.

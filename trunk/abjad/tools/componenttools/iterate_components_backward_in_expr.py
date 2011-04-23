@@ -1,10 +1,10 @@
-#from abjad.components._Leaf import _Leaf
 from abjad.components._Component import _Component
 
 
-#def iterate_components_backward_in_expr(expr, klass = _Leaf, start = 0, stop = None):
 def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, stop = None):
-   r'''Yield right-to-left instances of `klass` in `expr`.
+   r'''.. versionadded:: 1.1.1
+
+   Yield right-to-left instances of `klass` in `expr`.
 
    ::
 

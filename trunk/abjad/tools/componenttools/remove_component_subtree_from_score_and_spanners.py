@@ -2,8 +2,9 @@ from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanner
 
 
 def remove_component_subtree_from_score_and_spanners(components):
-   r'''Remove arbitrary `components` and children of `components` 
-   from score. ::
+   r'''.. versionadded:: 1.1.1
+
+   Remove arbitrary `components` and children of `components` from score::
 
       abjad> score = Voice(notetools.make_repeated_notes(2))
       abjad> score.insert(1, Container(notetools.make_repeated_notes(2)))

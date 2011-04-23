@@ -3,7 +3,9 @@ from abjad.tools.componenttools.get_improper_parentage_of_component import \
 
 
 def component_to_score_root(component):
-   '''Get score root of `component`::
+   '''.. versionadded:: 1.1.1
+
+   Get score root of `component`::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])

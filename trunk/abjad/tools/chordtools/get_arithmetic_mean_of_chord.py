@@ -1,5 +1,7 @@
 def get_arithmetic_mean_of_chord(chord):
-   '''Get arithmetic mean of chromatic pitch number of pitches in `chord`::
+   '''.. versionadded:: 1.1.2
+
+   Get arithmetic mean of chromatic pitch number of pitches in `chord`::
 
       abjad> chord = Chord("<g' c'' e''>4")
 

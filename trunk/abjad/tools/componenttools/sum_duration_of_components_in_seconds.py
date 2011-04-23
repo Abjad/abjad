@@ -1,5 +1,7 @@
 def sum_duration_of_components_in_seconds(components):
-   r'''Sum duration of `components` in seconds::
+   r'''.. versionadded:: 1.1.1
+
+   Sum duration of `components` in seconds::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> score = Score([Staff([tuplet])])

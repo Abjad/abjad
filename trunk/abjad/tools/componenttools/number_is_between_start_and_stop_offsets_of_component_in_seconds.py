@@ -2,8 +2,9 @@ from fractions import Fraction
 
 
 def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, component):
-   '''True when `timepoint` is within the duration 
-   of `component` in seconds. ::
+   '''.. versionadded:: 1.1.2
+
+   True when `timepoint` is within the duration of `component` in seconds::
    
       abjad> staff = Staff(macros.scale(4))
       abjad> contexttools.TempoMark(Fraction(1, 2), 60, target_context = Staff)(staff)
@@ -14,14 +15,10 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
       abjad> componenttools.number_is_between_start_and_stop_offsets_of_component_in_seconds(0.333, leaf)
       True
 
-   Otherwise false. ::
+   Otherwise false::
 
       abjad> componenttools.number_is_between_start_and_stop_offsets_of_component_in_seconds(0.5, t)
       False
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.within_seconds( )`` to
-      ``componenttools.number_is_between_start_and_stop_offsets_of_component_in_seconds( )``.
    '''
 
    try:

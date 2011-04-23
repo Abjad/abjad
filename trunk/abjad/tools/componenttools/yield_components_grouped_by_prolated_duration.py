@@ -11,14 +11,6 @@ def yield_components_grouped_by_prolated_duration(components):
       (Note(c', 4), Note(c', 4))
       (Note(c', 8),)
       (Note(c', 16), Note(c', 16), Note(c', 16))
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.group_by_duration_prolated( )`` to
-      ``componenttools.yield_components_grouped_by_prolated_duration( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``componenttools.group_components_by_like_prolated_duration( )`` to
-      ``componenttools.yield_components_grouped_by_prolated_duration( )``.
    '''
       
    cur_group = [ ]

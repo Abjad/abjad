@@ -6,7 +6,9 @@ from abjad.tools import durtools
 
 
 def clone_governed_component_subtree_from_prolated_duration_to(component, start = 0, stop = None):
-   r'''Clone `component` together with children of `component` and with
+   r'''.. versionadded:: 1.1.1
+
+   Clone `component` together with children of `component` and with
    sequential parentage of `component` from prolated duration `start`
    to prolated duration `stop`::
 

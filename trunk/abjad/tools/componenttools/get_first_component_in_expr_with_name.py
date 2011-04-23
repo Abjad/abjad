@@ -4,7 +4,9 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 
 
 def get_first_component_in_expr_with_name(expr, name):
-   '''Get first component in `expr` with `name`::
+   '''.. versionadded:: 1.1.1
+
+   Get first component in `expr` with `name`::
 
       abjad> flute_staff = Staff(macros.scale(4))
       abjad> flute_staff.name = 'Flute'

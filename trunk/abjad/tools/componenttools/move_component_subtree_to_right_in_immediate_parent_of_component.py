@@ -2,7 +2,9 @@ from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 
 
 def move_component_subtree_to_right_in_immediate_parent_of_component(component):
-   r'''Flip `component` one index to the right in parent and spanners. ::
+   r'''.. versionadded:: 1.1.2
+
+   Flip `component` one index to the right in parent and spanners::
 
       abjad> t = Voice(macros.scale(4))
       abjad> spannertools.BeamSpanner(t[:2])

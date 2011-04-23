@@ -1,8 +1,11 @@
 from abjad.tools.componenttools._partition_components_by_durations import _partition_components_by_durations
 
 
-def partition_components_cyclically_by_prolated_durations_ge_with_overhang(components, prolated_durations):
-   r'''Partition `components` cyclically by `prolated_durations` greater than
+def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
+   components, prolated_durations):
+   r'''.. versionadded:: 1.1.1
+
+   Partition `components` cyclically by `prolated_durations` greater than
    or equal. Allow for terminal overhang part::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)

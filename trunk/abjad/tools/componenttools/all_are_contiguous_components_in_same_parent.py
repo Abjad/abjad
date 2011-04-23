@@ -4,7 +4,9 @@ import types
 
 
 def all_are_contiguous_components_in_same_parent(expr, klasses = None, allow_orphans = True):
-   '''True when elements in `expr` are all contiguous components in same parent.
+   '''.. versionadded:: 1.1.1
+
+   True when elements in `expr` are all contiguous components in same parent.
    Otherwise false::
 
       abjad> staff = Staff(macros.scale(3))

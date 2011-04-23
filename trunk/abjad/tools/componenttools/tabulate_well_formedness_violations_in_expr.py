@@ -2,7 +2,9 @@ from abjad import checks as _checks
 
 
 def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = True):
-   r'''Tabulate well-formedness violations in `expr`::
+   r'''.. versionadded:: 1.1.1
+
+   Tabulate well-formedness violations in `expr`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> staff[1].duration.written = Fraction(1, 4)

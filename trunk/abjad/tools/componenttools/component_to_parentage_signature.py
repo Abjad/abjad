@@ -2,7 +2,9 @@ from abjad.tools.componenttools._ContainmentSignature import _ContainmentSignatu
 
 
 def component_to_parentage_signature(component):
-   '''Get parentage signature of `component`::
+   '''.. versionadded:: 1.1.1
+
+   Get parentage signature of `component`::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> staff = Staff([tuplet])

@@ -1,5 +1,7 @@
 def get_improper_parentage_of_component(component):
-   '''Get improper parentage of `component`::
+   '''.. versionadded:: 1.1.1
+
+   Get improper parentage of `component`::
 
       abjad> tuplet = Tuplet((2, 3), macros.scale(3))
       abjad> staff = Staff([tuplet])

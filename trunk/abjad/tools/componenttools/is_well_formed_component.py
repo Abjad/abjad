@@ -3,7 +3,9 @@ from abjad.components._Component._Component import _Component
 
 
 def is_well_formed_component(expr, allow_empty_containers = True):
-   r'''True when `component` is well formed::
+   r'''.. versionadded:: 1.1.1
+
+   True when `component` is well formed::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff[:])

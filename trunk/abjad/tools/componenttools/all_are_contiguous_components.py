@@ -4,7 +4,9 @@ import types
 
 
 def all_are_contiguous_components(expr, klasses = None, allow_orphans = True):
-   '''True when elements in `expr` are all contiguous components. Otherwise false::
+   '''.. versionadded:: 1.1.1
+
+   True when elements in `expr` are all contiguous components. Otherwise false::
 
       abjad> staff = Staff(macros.scale(3))
       abjad> componenttools.all_are_contiguous_components(staff.leaves) 

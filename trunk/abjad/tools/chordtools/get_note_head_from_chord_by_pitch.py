@@ -7,7 +7,9 @@ from numbers import Number
 
 
 def get_note_head_from_chord_by_pitch(chord, pitch):
-   '''Get note head from `chord` by `pitch`::
+   '''.. versionadded:: 1.1.2
+
+   Get note head from `chord` by `pitch`::
 
       abjad> chord = Chord("<c'' d'' b''>4")
 

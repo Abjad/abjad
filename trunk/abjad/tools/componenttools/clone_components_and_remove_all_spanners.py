@@ -6,7 +6,9 @@ import copy
 
 
 def clone_components_and_remove_all_spanners(components, n = 1):
-   r'''Clone thread-contiguous `components` and remove any spanners.
+   r'''.. versionadded:: 1.1.1
+
+   Clone thread-contiguous `components` and remove any spanners.
    
    The steps taken by this function are as follows.
    Withdraw all components at any level in `components` from spanners.

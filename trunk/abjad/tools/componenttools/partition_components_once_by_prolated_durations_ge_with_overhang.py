@@ -1,8 +1,11 @@
 from abjad.tools.componenttools._partition_components_by_durations import _partition_components_by_durations
 
 
-def partition_components_once_by_prolated_durations_ge_with_overhang(components, prolated_durations):
-   '''Partition `components` cyclically by prolated durations that
+def partition_components_once_by_prolated_durations_ge_with_overhang(
+   components, prolated_durations):
+   '''.. versionadded:: 1.1.1
+
+   Partition `components` cyclically by prolated durations that
    equal or are just greater than `prolated_durations` and
    allow for overhang components at end.
    '''

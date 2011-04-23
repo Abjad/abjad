@@ -15,10 +15,6 @@ def yield_components_grouped_by_preprolated_duration(components):
    .. versionchanged:: 1.1.2
       renamed ``durtools.group_by_duration_preprolated( )`` to
       ``componenttools.yield_components_grouped_by_preprolated_duration( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``componenttools.group_components_by_like_preprolated_duration( )`` to
-      ``componenttools.yield_components_grouped_by_preprolated_duration( )``.
    '''
       
    cur_group = [ ]

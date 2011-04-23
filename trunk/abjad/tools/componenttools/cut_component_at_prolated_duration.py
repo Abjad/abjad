@@ -7,7 +7,9 @@ from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_
 
 
 def cut_component_at_prolated_duration(component, prolated_duration):
-   r'''Cut `component` at dotted `prolated_duration`::
+   r'''.. versionadded:: 1.1.2
+
+   Cut `component` at dotted `prolated_duration`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)

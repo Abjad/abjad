@@ -3,11 +3,10 @@ from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
 from numbers import Number
 
 
-def make_rests(durations, direction='big-endian', tied=False):
-   r'''Make note head-assignable rests::
+def make_rests(duration_tokens, direction='big-endian', tied=False):
+   r'''.. versionadded:: 1.1.1
 
-      abjad> resttools.make_rests([(1, 16), (2, 16), (3, 16)])
-      [Rest('r16'), Rest('r8'), Rest('r8.')]
+   Make rests.
 
    Make big-endian rests::
 
@@ -33,18 +32,17 @@ def make_rests(durations, direction='big-endian', tied=False):
          r16
       }
 
-   Return list of zero or more newly constructed rests.
+   Return list of rests.
 
    .. versionchanged:: 1.1.2
       renamed ``construct.rests( )`` to
       ``resttools.make_rests( )``.
    '''
 
-   #if durtools.is_duration_token(durations):
-   if isinstance(durations, (Number, tuple)):
-      durations = [durations]
+   if isinstance(duration_tokens, (Number, tuple)):
+      duration_tokens = [duration_tokens]
 
    result = [ ]
-   for d in durations:
+   for d in duration_tokens:
       result.extend(_construct_tied_rest(d, direction, tied))
    return result

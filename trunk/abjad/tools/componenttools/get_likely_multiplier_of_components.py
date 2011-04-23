@@ -6,7 +6,9 @@ from abjad.tools import mathtools
 ## TODO: Maybe move get_likely_multiplier_of_components( ) from durtools to measuretools? ##
 
 def get_likely_multiplier_of_components(components):
-   r'''Get likely multiplier of `components`::
+   r'''.. versionadded:: 1.1.2
+
+   Get likely multiplier of `components`::
 
       abjad> staff = Staff(macros.scale(4, (7, 32)))
       abjad> f(staff)

@@ -3,7 +3,9 @@ import types
 
 
 def all_are_components(expr, klasses = None):
-   '''True when elements in `expr` are all components::
+   '''.. versionadded:: 1.1.1
+
+   True when elements in `expr` are all components::
 
       abjad> componenttools.all_are_components(3 * Note("c'4"))
       True

@@ -5,7 +5,9 @@ import types
 
 
 def all_are_contiguous_components_in_same_thread(expr, klasses = None, allow_orphans = True):
-   '''True when elements in `expr` are all contiguous components in same thread.
+   '''.. versionadded:: 1.1.1
+
+   True when elements in `expr` are all contiguous components in same thread.
    Otherwise false::
 
       abjad> staff = Staff(macros.scale(3))

@@ -3,7 +3,9 @@ from abjad.components import Note
 
 
 def arpeggiate_chord(chord):
-   '''Arpeggiate `chord`::
+   '''.. versionadded:: 1.1.1
+
+   Arpeggiate `chord`::
 
       abjad> chord = Chord("<c' d'' ef''>8")
 
