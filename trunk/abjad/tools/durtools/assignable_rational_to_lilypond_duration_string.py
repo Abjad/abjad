@@ -9,7 +9,7 @@ from fractions import Fraction
 def assignable_rational_to_lilypond_duration_string(rational):
    '''.. versionadded:: 1.1.2
 
-   Convert assignable `rational` to LilyPond duration string::
+   Change assignable `rational` to LilyPond duration string::
 
       abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
       '8.'

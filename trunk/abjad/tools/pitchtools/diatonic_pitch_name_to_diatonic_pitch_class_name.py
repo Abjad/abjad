@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.is_diatonic_pitch_name import diatonic_pitch_name_re
 def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
    '''.. versionadded:: 1.1.2
 
-   Convert `diatonic_pitch_name` to diatonic pitch-class name::
+   Change `diatonic_pitch_name` to diatonic pitch-class name::
 
       abjad> pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name("c''")
       'c'

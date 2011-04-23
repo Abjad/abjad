@@ -59,7 +59,7 @@ def make_notes(pitches, durations, direction='big-endian'):
    # this block is a hack to allow the function to accept a Fraction
    # as the duration input parameter; better will be to change
    # the rest of the implementation to allow for Fractions directly.
-   ## [VA] We don't want to convert to Fractions internally because
+   ## [VA] We don't want to change to Fractions internally because
    ## Fractions reduce fractions to their minimum expression. e.g. 
    ## (3, 3) --> Fraction(1, 1), and we sometimes generate duration
    ## tokens that are not reduced, so we want to preserve the denominator 3.

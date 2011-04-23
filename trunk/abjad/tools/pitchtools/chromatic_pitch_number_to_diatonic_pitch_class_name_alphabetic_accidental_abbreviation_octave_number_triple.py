@@ -9,7 +9,7 @@ import math
 def chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(chromatic_pitch_number, accidental_spelling = 'mixed'):
    '''.. versionadded: 1.1.1
 
-   Convert `chromatic_pitch_number` to diatonic pitch-class name / alphabetic
+   Change `chromatic_pitch_number` to diatonic pitch-class name / alphabetic
    accidental abbreviation / octave number triple::
 
       abjad> pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(

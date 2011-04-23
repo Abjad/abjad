@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.calculate_melodic_chromatic_interval_from_pitch_carr
 def expr_to_melodic_chromatic_interval_segment(expr):
    '''.. versionadded:: 1.1.2
 
-   Convert `expr` to melodic chromatic interval segment::
+   Change `expr` to melodic chromatic interval segment::
 
       abjad> staff = Staff(macros.scale(8))
       abjad> pitchtools.expr_to_melodic_chromatic_interval_segment(staff)

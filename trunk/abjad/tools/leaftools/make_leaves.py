@@ -112,7 +112,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    if isinstance(durations, (Number, tuple)):
       durations = [durations]
 
-   ## convert Fractions to duration tokens.
+   ## change Fractions to duration tokens.
    durations = [durtools.duration_token_to_duration_pair(dur) for dur in durations]
 
    ## set lists of pitches and durations to the same length

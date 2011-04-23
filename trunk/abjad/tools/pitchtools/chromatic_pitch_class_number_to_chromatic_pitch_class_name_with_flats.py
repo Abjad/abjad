@@ -2,7 +2,7 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
    chromatic_pitch_class_number):
    '''.. versionadded:: 1.1.1
 
-   Convert chromatic pitch-class number to chromatic pitch-class name with flats::
+   Change chromatic pitch-class number to chromatic pitch-class name with flats::
 
       abjad> for n in range(13):
       ...     pc = n / 2.0

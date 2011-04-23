@@ -1,7 +1,7 @@
 def chord_class_extent_to_extent_name(extent):
    '''.. versionadded:: 1.1.2
 
-   Convert integer chord class `extent` to extent name string. ::
+   Change integer chord class `extent` to extent name string. ::
 
       abjad> tonalitytools.chord_class_extent_to_extent_name(7)
       'seventh'

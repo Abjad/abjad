@@ -6,7 +6,7 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
    pitches):
    r'''.. versionadded:: 1.1.1
 
-   Convert named chromatic `pitches` to inversion-equivalent chromatic interval-class number
+   Change named chromatic `pitches` to inversion-equivalent chromatic interval-class number
    dictionary::
 
       abjad> chord = Chord([0, 2, 11], (1, 4))

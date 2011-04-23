@@ -4,7 +4,7 @@ import math
 def chromatic_pitch_number_to_octave_number(chromatic_pitch_number):
    '''.. versionadded:: 1.1.1
 
-   Convert `chromatic_pitch_number` to octave number::
+   Change `chromatic_pitch_number` to octave number::
 
       abjad> pitchtools.chromatic_pitch_number_to_octave_number(13)
       5

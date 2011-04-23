@@ -11,7 +11,7 @@ def duration_token_to_duration_pair(duration_token):
       (2, 4)
 
    .. versionadded:: 1.1.2
-      Convert LilyPond duration string to duration pair:
+      Change LilyPond duration string to duration pair:
 
    ::
 

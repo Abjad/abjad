@@ -9,7 +9,7 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
    chromatic_pitch_number, accidental_spelling = 'mixed'):
    '''.. versionadded:: 1.1.2
 
-   Convert `chromatic_pitch_number` to chromatic pitch name::
+   Change `chromatic_pitch_number` to chromatic pitch name::
 
       abjad> pitchtools.chromatic_pitch_number_to_chromatic_pitch_name(13)
       "cs''"

@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 def named_chromatic_pitch_tokens_to_named_chromatic_pitches(pitch_tokens):
    '''.. versionadded:: 1.1.2
 
-   Convert named chromatic `pitch_tokens` to named chromatic pitches::
+   Change named chromatic `pitch_tokens` to named chromatic pitches::
 
       abjad> pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches([0, 2, ('ef', 4)])
       [NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(ef, 4)]

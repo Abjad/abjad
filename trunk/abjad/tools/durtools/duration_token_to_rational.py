@@ -5,7 +5,7 @@ from fractions import Fraction
 def duration_token_to_rational(duration_token):
    '''.. versionadded:: 1.1.2
 
-   Convert `duration_token` to rational::
+   Change `duration_token` to rational::
 
       abjad> durtools.duration_token_to_rational((4, 16))
       Fraction(1, 4)

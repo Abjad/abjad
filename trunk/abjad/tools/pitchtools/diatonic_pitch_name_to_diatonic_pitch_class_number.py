@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name imp
 def diatonic_pitch_name_to_diatonic_pitch_class_number(diatonic_pitch_name):
    '''.. versionadded:: 1.1.2
 
-   Convert `diatonic_pitch_name` to diatonic pitch-class number::
+   Change `diatonic_pitch_name` to diatonic pitch-class number::
 
       abjad> pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_number("c''")
       0

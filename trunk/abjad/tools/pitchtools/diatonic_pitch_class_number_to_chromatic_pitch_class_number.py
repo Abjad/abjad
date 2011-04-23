@@ -5,7 +5,7 @@ _diatonic_pitch_class_number_to_chromatic_pitch_class_number = {
 def diatonic_pitch_class_number_to_chromatic_pitch_class_number(diatonic_pitch_class_number):
    '''.. versionadded:: 1.1.2
 
-   Convert `diatonic_pitch_class_number` to chromatic pitch-class number::
+   Change `diatonic_pitch_class_number` to chromatic pitch-class number::
 
       abjad> pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number(6)
       11

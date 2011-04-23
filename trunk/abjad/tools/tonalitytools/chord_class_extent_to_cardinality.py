@@ -4,7 +4,7 @@ from abjad.exceptions import TonalHarmonyError
 def chord_class_extent_to_cardinality(extent):
    '''..versionadded:: 1.1.2
 
-   Convert integer chord class `extent` to integer chord class cardinality. ::
+   Change integer chord class `extent` to integer chord class cardinality::
 
       abjad> tonalitytools.chord_class_extent_to_cardinality(7)
       4

@@ -5,7 +5,7 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(
    pentatonic_scale_degree, transpose=1, phase=0):
    '''.. versionadded:: 1.1.1
 
-   Convert `pentatonic_scale_degree` number to chromatic pitch number::
+   Changed `pentatonic_scale_degree` number to chromatic pitch number::
 
       abjad> for pentatonic_scale_degree in range(9):
       ...     chromatic_pitch_number = pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree)

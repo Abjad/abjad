@@ -39,7 +39,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
 
    dts = mathtools.interpolate_divide(total, start, stop, exp)
 
-   ## convert floats to rationals
+   ## change floats to rationals
    dts = [Fraction(int(round(x * 2**10)), 2**10) for x in dts]
 
    ## make notes

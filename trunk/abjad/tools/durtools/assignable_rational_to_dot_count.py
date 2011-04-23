@@ -6,7 +6,7 @@ from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 def assignable_rational_to_dot_count(rational):
    r'''.. versionadded:: 1.1.2
 
-   Convert assignable `rational` to dot count::
+   Change assignable `rational` to dot count::
 
       abjad> for n in range(1, 9):
       ...     try:

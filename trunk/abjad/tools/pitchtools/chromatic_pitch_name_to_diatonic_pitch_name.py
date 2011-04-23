@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_
 def chromatic_pitch_name_to_diatonic_pitch_name(chromatic_pitch_name):
    '''.. versionadded:: 1.1.2
 
-   Convert `chromatic_pitch_name` to diatonic pitch name::
+   Change `chromatic_pitch_name` to diatonic pitch name::
 
       abjad> pitchtools.chromatic_pitch_name_to_diatonic_pitch_name("cs''")
       'cs'

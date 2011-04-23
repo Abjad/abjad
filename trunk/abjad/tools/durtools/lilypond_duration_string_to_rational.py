@@ -6,7 +6,7 @@ import re
 def lilypond_duration_string_to_rational(duration_string):
    '''.. versionadded:: 1.1.2
 
-   Convert LilyPond `duration_string` to rational::
+   Change LilyPond `duration_string` to rational::
 
       abjad> durtools.lilypond_duration_string_to_rational('8.')
       Fraction(3, 16)

@@ -7,7 +7,7 @@ def diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_i
    diatonic_interval_number, chromatic_interval_number):
    '''.. versionadded:: 1.1.2
 
-   Convert `diatonic_interval_number` and `chromatic_interval_number` 
+   Change `diatonic_interval_number` and `chromatic_interval_number` 
    to melodic diatonic interval::
 
       abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(2, 1)

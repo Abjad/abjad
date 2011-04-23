@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.octave_tick_string_to_octave_number import octave_ti
 def diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name):
    '''.. versionadded:: 1.1.2
 
-   Convert `diatonic_pitch_name` to diatonic pitch number::
+   Change `diatonic_pitch_name` to diatonic pitch number::
 
       abjad> pitchtools.diatonic_pitch_name_to_diatonic_pitch_number("c''")
       7

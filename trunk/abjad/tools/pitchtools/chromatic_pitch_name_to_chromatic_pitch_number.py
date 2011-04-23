@@ -9,7 +9,7 @@ from abjad.tools.pitchtools.chromatic_pitch_class_name_to_chromatic_pitch_class_
 def chromatic_pitch_name_to_chromatic_pitch_number(chromatic_pitch_name):
    '''.. versionadded:: 1.1.2
 
-   Convert `chromatic_pitch_name` to chromatic pitch number::
+   Change `chromatic_pitch_name` to chromatic pitch number::
 
       abjad> pitchtools.chromatic_pitch_name_to_chromatic_pitch_number("cs''")
       13

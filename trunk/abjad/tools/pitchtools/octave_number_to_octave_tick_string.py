@@ -1,7 +1,7 @@
 def octave_number_to_octave_tick_string(octave_number):
    r""".. versionadded:: 1.1.2
 
-   Convert `octave_number` to octave tick string::
+   Change `octave_number` to octave tick string::
 
       abjad> for octave_number in range(-1, 9):
       ...     print "%s\t%s" % (octave_number, pitchtools.octave_number_to_octave_tick_string(octave_number))
