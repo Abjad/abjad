@@ -499,6 +499,7 @@ mathtools
    tools/mathtools/is_integer_equivalent_number
    tools/mathtools/is_negative_integer
    tools/mathtools/is_nonnegative_integer
+   tools/mathtools/is_nonnegative_integer_equivalent_number
    tools/mathtools/is_nonnegative_integer_power_of_two
    tools/mathtools/is_positive_integer
    tools/mathtools/is_positive_integer_equivalent_number
@@ -834,6 +835,7 @@ seqtools
    tools/seqtools/all_are_assignable_integers
    tools/seqtools/all_are_equal
    tools/seqtools/all_are_integer_equivalent_numbers
+   tools/seqtools/all_are_nonnegative_integer_equivalent_numbers
    tools/seqtools/all_are_nonnegative_integer_powers_of_two
    tools/seqtools/all_are_nonnegative_integers
    tools/seqtools/all_are_numbers
