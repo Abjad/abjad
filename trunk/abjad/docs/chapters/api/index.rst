@@ -501,6 +501,7 @@ mathtools
    tools/mathtools/is_nonnegative_integer
    tools/mathtools/is_nonnegative_integer_power_of_two
    tools/mathtools/is_positive_integer
+   tools/mathtools/is_positive_integer_equivalent_number
    tools/mathtools/least_common_multiple
    tools/mathtools/least_multiple_greater_equal
    tools/mathtools/least_power_of_two_greater_equal
@@ -836,6 +837,7 @@ seqtools
    tools/seqtools/all_are_nonnegative_integer_powers_of_two
    tools/seqtools/all_are_nonnegative_integers
    tools/seqtools/all_are_numbers
+   tools/seqtools/all_are_positive_integer_equivalent_numbers
    tools/seqtools/all_are_positive_integers
    tools/seqtools/all_are_unequal
    tools/seqtools/count_length_two_runs_in_sequence
