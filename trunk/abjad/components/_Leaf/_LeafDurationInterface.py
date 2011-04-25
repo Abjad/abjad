@@ -36,7 +36,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    @property
    def multiplied(self):
       if self.written:
-         if self.multiplier:
+         if self.multiplier is not None:
             return self.written * self.multiplier
          else:
             return Fraction(self.written)
