@@ -7,7 +7,7 @@ def negate_absolute_value_of_sequence_elements_at_indices(sequence, indices):
 
    ::
 
-      abjad> seqtools.flip_sign_of_sequence_elements_at_indices(sequence, [0, 1, 2])
+      abjad> seqtools.negate_sequence_elements_at_indices(sequence, [0, 1, 2])
       [-1, -2, -3, 4, 5, -6, -7, -8, -9, -10]
 
    Return newly constructed list. 

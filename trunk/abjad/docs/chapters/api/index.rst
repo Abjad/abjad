@@ -846,7 +846,6 @@ seqtools
    tools/seqtools/divide_sequence_elements_by_greatest_common_divisor
    tools/seqtools/flatten_sequence
    tools/seqtools/flatten_sequence_at_indices
-   tools/seqtools/flip_sign_of_sequence_elements_at_indices
    tools/seqtools/get_indices_of_sequence_elements_equal_to_true
    tools/seqtools/get_sequence_degree_of_rotational_symmetry
    tools/seqtools/get_sequence_element_at_cyclic_index
@@ -878,6 +877,7 @@ seqtools
    tools/seqtools/map_sequence_elements_to_numbered_sublists
    tools/seqtools/negate_absolute_value_of_sequence_elements_at_indices
    tools/seqtools/negate_absolute_value_of_sequence_elements_cyclically
+   tools/seqtools/negate_sequence_elements_at_indices
    tools/seqtools/overwrite_sequence_elements_at_indices
    tools/seqtools/partition_sequence_by_ratio_of_lengths
    tools/seqtools/partition_sequence_by_ratio_of_weights

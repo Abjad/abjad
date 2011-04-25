@@ -1,23 +1,27 @@
-def flip_sign_of_sequence_elements_at_indices(sequence, indices, period = None):
+def negate_sequence_elements_at_indices(sequence, indices, period = None):
    '''.. versionadded:: 1.1.1
 
    Negate `sequence` elements at `indices`::
 
       abjad> l = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
-      abjad> seqtools.flip_sign_of_sequence_elements_at_indices(l, [0, 1, 2])
+      abjad> seqtools.negate_sequence_elements_at_indices(l, [0, 1, 2])
       [-1, -2, -3, 4, 5, -6, -7, -8, -9, -10]
 
    Negate `sequence` elements at `indices` cyclically according to `period`::
 
       abjad> l = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
-      abjad> seqtools.flip_sign_of_sequence_elements_at_indices(l, [0, 1, 2], period = 5)
+      abjad> seqtools.negate_sequence_elements_at_indices(l, [0, 1, 2], period = 5)
       [-1, -2, -3, 4, 5, 6, 7, -8, -9, -10]
 
    Return newly constructed list.
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.negate_elements_at_indices( )`` to
-      ``seqtools.flip_sign_of_sequence_elements_at_indices( )``.
+      ``seqtools.negate_sequence_elements_at_indices( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``seqtools.flip_sign_of_sequence_elements_at_indices( )`` to
+      ``seqtools.negate_sequence_elements_at_indices( )``.
    '''
    
    if not isinstance(sequence, list):
