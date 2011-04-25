@@ -1,14 +1,14 @@
 from abjad.tools import mathtools
 
 
-def _group_sequence_elements_by_weights_at_most(sequence, weights, cyclic, overhang):
+def _partition_sequence_elements_by_weights_at_most(sequence, weights, cyclic, overhang):
    if not cyclic:
-      return _group_sequence_elements_once_by_weights_at_most(sequence, weights, overhang)
+      return _partition_sequence_elements_once_by_weights_at_most(sequence, weights, overhang)
    else:
-      return _group_sequence_elements_cyclically_by_weights_at_most(sequence, weights, overhang)
+      return _partition_sequence_elements_cyclically_by_weights_at_most(sequence, weights, overhang)
 
 
-def _group_sequence_elements_once_by_weights_at_most(sequence, weights, overhang):
+def _partition_sequence_elements_once_by_weights_at_most(sequence, weights, overhang):
 
    l_copy = sequence[:]
    result = [ ]
@@ -48,7 +48,7 @@ def _group_sequence_elements_once_by_weights_at_most(sequence, weights, overhang
    return result
 
 
-def _group_sequence_elements_cyclically_by_weights_at_most(sequence, weights, overhang):
+def _partition_sequence_elements_cyclically_by_weights_at_most(sequence, weights, overhang):
 
    result = [ ]
    cur_part = [ ]

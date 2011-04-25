@@ -1,5 +1,5 @@
-from abjad.tools.seqtools._group_sequence_elements_by_weights_exactly import \
-   _group_sequence_elements_by_weights_exactly
+from abjad.tools.seqtools._partition_sequence_elements_by_weights_exactly import \
+   _partition_sequence_elements_by_weights_exactly
 
 
 def partition_sequence_once_by_weights_exactly_without_overhang(sequence, weights):
@@ -18,5 +18,5 @@ def partition_sequence_once_by_weights_exactly_without_overhang(sequence, weight
       ``seqtools.partition_sequence_once_by_weights_exactly_without_overhang( )``.
    '''
 
-   return _group_sequence_elements_by_weights_exactly(
+   return _partition_sequence_elements_by_weights_exactly(
       sequence, weights, cyclic = False, overhang = False)
