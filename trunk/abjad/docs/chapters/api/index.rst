@@ -878,6 +878,7 @@ seqtools
    tools/seqtools/negate_absolute_value_of_sequence_elements_at_indices
    tools/seqtools/negate_absolute_value_of_sequence_elements_cyclically
    tools/seqtools/negate_sequence_elements_at_indices
+   tools/seqtools/negate_sequence_elements_cyclically
    tools/seqtools/overwrite_sequence_elements_at_indices
    tools/seqtools/partition_sequence_by_ratio_of_lengths
    tools/seqtools/partition_sequence_by_ratio_of_weights
