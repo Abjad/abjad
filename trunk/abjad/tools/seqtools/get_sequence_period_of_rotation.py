@@ -22,18 +22,6 @@ def get_sequence_period_of_rotation(sequence, n):
       1
 
    Return positive integer.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.get_period( )`` to
-      ``seqtools.get_sequence_period_of_rotation( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.sequence_to_period_of_rotation( )`` to
-      ``seqtools.get_sequence_period_of_rotation( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.get_period_of_rotation_of_sequence( )`` to
-      ``seqtools.get_sequence_period_of_rotation( )``.
    '''
    
    degree = get_sequence_degree_of_rotational_symmetry(sequence)

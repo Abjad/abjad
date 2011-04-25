@@ -4,7 +4,9 @@ import itertools
 ## TODO: merge with seqtools.repeat_to_length( ) ##
 
 def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
-   '''Iterate `sequence` cyclically according to `step`, `start` and `length`::
+   '''.. versionadded:: 1.1.1
+
+   Iterate `sequence` cyclically according to `step`, `start` and `length`::
 
       sequence = [1, 2, 3, 4, 5, 6, 7]
 

@@ -13,18 +13,6 @@ def repeat_sequence_elements_at_indices_cyclically(sequence, cycle_token, total)
       [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]
 
    Return list.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.repeat_sequence_elements_at_indices_cyclic( )`` to
-      ``seqtools.repeat_sequence_elements_at_indices_cyclically( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.repeat_elements_at_indices_cyclically( )`` to
-      ``seqtools.repeat_sequence_elements_at_indices_cyclically( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.repeate_sequence_elements_at_indices_cyclically( )`` to
-      ``seqtools.repeat_sequence_elements_at_indices_cyclically( )``.
    '''
    from abjad.tools import sievetools
 

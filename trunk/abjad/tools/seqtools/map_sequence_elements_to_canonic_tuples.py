@@ -2,7 +2,9 @@ from abjad.tools import mathtools
 
 
 def map_sequence_elements_to_canonic_tuples(sequence, direction = 'big-endian'):
-   '''Partition `sequence` elements into canonic big-endian parts::
+   '''.. versionadded:: 1.1.1
+
+   Partition `sequence` elements into canonic big-endian parts::
 
       abjad> seqtools.map_sequence_elements_to_canonic_tuples(range(10))
       [(0,), (1,), (2,), (3,), (4,), (4, 1), (6,), (7,), (8,), (8, 1)]
@@ -26,10 +28,6 @@ def map_sequence_elements_to_canonic_tuples(sequence, direction = 'big-endian'):
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.partition_elements_into_canonic_parts( )`` to
-      ``seqtools.map_sequence_elements_to_canonic_tuples( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.partition_sequence_elements_into_canonic_parts( )`` to
       ``seqtools.map_sequence_elements_to_canonic_tuples( )``.
    '''
 

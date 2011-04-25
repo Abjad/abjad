@@ -19,10 +19,6 @@ def yield_all_k_ary_sequences_of_length(k, length):
       (1, 1, 1)
 
    Return generator of tuples.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.generate_all_k_ary_sequences_of_length( )`` to
-      ``seqtools.yield_all_k_ary_sequences_of_length( )``.
    '''
 
    assert isinstance(k, int) and 1 <= k

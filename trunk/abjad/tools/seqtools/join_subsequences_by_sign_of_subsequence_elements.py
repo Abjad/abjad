@@ -2,7 +2,9 @@ from abjad.tools.mathtools.get_shared_numeric_sign import get_shared_numeric_sig
 
 
 def join_subsequences_by_sign_of_subsequence_elements(sequence):
-   '''Join subsequences in `sequence` by sign::
+   '''.. versionadded:: 1.1.1
+
+   Join subsequences in `sequence` by sign::
 
       abjad> sequence = [[1, 2], [3, 4], [-5, -6, -7], [-8, -9, -10], [11, 12]]
       abjad> seqtools.join_subsequences_by_sign_of_subsequence_elements(sequence)
@@ -18,10 +20,6 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.join_sublists_by_sign( )`` to
-      ``seqtools.join_subsequences_by_sign_of_subsequence_elements( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.join_subsequences_by_sign( )`` to
       ``seqtools.join_subsequences_by_sign_of_subsequence_elements( )``.
    '''
 

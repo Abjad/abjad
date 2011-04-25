@@ -1,5 +1,7 @@
 def iterate_sequence_pairwise_cyclic(sequence):
-   '''Iterate `sequence` pairwise cyclic::
+   '''.. versionadded:: 1.1.1
+
+   Iterate `sequence` pairwise cyclic::
 
       abjad> generator = seqtools.iterate_sequence_pairwise_cyclic(range(6))
 

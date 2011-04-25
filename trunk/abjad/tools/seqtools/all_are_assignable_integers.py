@@ -20,10 +20,6 @@ def all_are_assignable_integers(expr):
       False
 
    Return boolean.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.is_assignable( )`` to 
-      ``seqtools.all_are_assignable_integers( )``.
    '''
 
    try:

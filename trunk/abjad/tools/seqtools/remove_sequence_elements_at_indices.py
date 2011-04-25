@@ -9,10 +9,6 @@ def remove_sequence_elements_at_indices(sequence, indices):
    Ignore negative indices.
 
    Return list.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.remove_elements_at_indices( )`` to
-      ``seqtools.remove_sequence_elements_at_indices( )``.
    '''
 
    result = [ ]

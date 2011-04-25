@@ -29,10 +29,6 @@ def yield_all_set_partitions_of_sequence(sequence):
       [[21], [22], [23], [24]]
 
    Return generator of list of lists.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.all_set_partitions( )`` to
-      ``seqtools.yield_all_set_partitions_of_sequence( )``.
    '''
 
    for rgf in yield_all_restricted_growth_functions_of_length(len(sequence)):

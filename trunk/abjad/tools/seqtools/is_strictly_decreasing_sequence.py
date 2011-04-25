@@ -42,10 +42,6 @@ def is_strictly_decreasing_sequence(expr):
       False
 
    Return boolean.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.is_decreasing_strictly( )`` to
-      ``seqtools.is_strictly_decreasing_sequence( )``.
    '''
 
    try:

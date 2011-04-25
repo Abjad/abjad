@@ -20,10 +20,6 @@ def partition_sequence_by_restricted_growth_function(sequence, restricted_growth
       ValueError
 
    Return list of lists.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.partition_by_restricted_growth_function( )`` to
-      ``seqtools.partition_sequence_by_restricted_growth_function( )``.
    '''
 
    if not is_restricted_growth_function(restricted_growth_function):

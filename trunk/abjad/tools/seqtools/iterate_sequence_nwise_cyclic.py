@@ -18,10 +18,6 @@ def iterate_sequence_nwise_cyclic(sequence, n):
       (3, 4, 5)
 
    Return generator.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.nwise_cyclic( )`` to
-      ``seqtools.iterate_sequence_nwise_cyclic( )``.
    '''
 
    buffer = [ ]

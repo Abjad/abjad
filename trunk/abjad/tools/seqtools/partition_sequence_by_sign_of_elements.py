@@ -3,7 +3,9 @@ import itertools
 
 
 def partition_sequence_by_sign_of_elements(sequence, sign = [-1, 0, 1]):
-   '''Group `sequence` elements by sign::
+   '''.. versionadded:: 1.1.1
+
+   Partition `sequence` elements by sign::
 
       abjad> sequence = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 
@@ -57,14 +59,6 @@ def partition_sequence_by_sign_of_elements(sequence, sign = [-1, 0, 1]):
 
    .. versionchanged:: 1.1.2
       renamed ``listtools.group_by_sign( )`` to
-      ``seqtools.partition_sequence_by_sign_of_elements( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.group_sequence_elements_by_sign( )`` to
-      ``seqtools.partition_sequence_by_sign_of_elements( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.partition_sequence_by_sign( )`` to
       ``seqtools.partition_sequence_by_sign_of_elements( )``.
    '''
 

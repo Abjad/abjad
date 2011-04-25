@@ -9,17 +9,12 @@ def retain_sequence_elements_at_indices(sequence, indices):
    Ignore negative indices.
 
    Return list.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.retain_elements_at_indices( )`` to
-      ``seqtools.retain_sequence_elements_at_indices( )``.
    '''
 
    result = [ ]
 
    for i, element in enumerate(sequence):
       if i in indices:
-         #yield element
          result.append(element)
 
    return result

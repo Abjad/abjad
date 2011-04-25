@@ -1,5 +1,7 @@
 def flip_sign_of_sequence_elements_at_indices(sequence, indices, period = None):
-   '''Negate `sequence` elements at `indices`::
+   '''.. versionadded:: 1.1.1
+
+   Negate `sequence` elements at `indices`::
 
       abjad> l = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
       abjad> seqtools.flip_sign_of_sequence_elements_at_indices(l, [0, 1, 2])
@@ -15,10 +17,6 @@ def flip_sign_of_sequence_elements_at_indices(sequence, indices, period = None):
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.negate_elements_at_indices( )`` to
-      ``seqtools.flip_sign_of_sequence_elements_at_indices( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.negate_sequence_elements_at_indices( )`` to
       ``seqtools.flip_sign_of_sequence_elements_at_indices( )``.
    '''
    

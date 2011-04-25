@@ -1,5 +1,7 @@
 def zip_sequences_without_truncation(*sequences):
-   '''Zip `sequences` nontruncating::
+   '''.. versionadded:: 1.1.1
+
+   Zip `sequences` nontruncating::
 
       abjad> seqtools.zip_sequences_without_truncation([1, 2, 3, 4], [11, 12, 13], [21, 22, 23])
       [(1, 11, 21), (2, 12, 22), (3, 13, 23), (4,)]
@@ -11,10 +13,6 @@ def zip_sequences_without_truncation(*sequences):
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.zip_nontruncating( )`` to
-      ``seqtools.zip_sequences_without_truncation( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.zip_sequences_nontruncating( )`` to
       ``seqtools.zip_sequences_without_truncation( )``.
    '''
 

@@ -2,7 +2,9 @@ from abjad.tools import mathtools
 
 
 def truncate_sequence_to_weight(sequence, weight):
-   '''Truncate `sequence` to `weight`::
+   '''.. versionadded:: 1.1.1
+
+   Truncate `sequence` to `weight`::
 
       abjad> l = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
       abjad> for x in range(10):

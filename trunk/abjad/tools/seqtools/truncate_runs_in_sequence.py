@@ -2,7 +2,9 @@ from fractions import Fraction
 
 
 def truncate_runs_in_sequence(sequence):
-   '''Truncate subruns of like elements in `sequence` to length ``1``::
+   '''.. versionadded:: 1.1.1
+
+   Truncate subruns of like elements in `sequence` to length ``1``::
 
       abjad> seqtools.truncate_runs_in_sequence([1, 1, 2, 3, 3, 3, 9, 4, 4, 4])
       [1, 2, 3, 9, 4]

@@ -17,10 +17,6 @@ def flatten_sequence_at_indices(sequence, indices, klasses = None, depth = -1):
    Leave `sequence` unchanged.
 
    Return newly constructed `sequence` object.
-
-   .. versionchanged:: 1.1.2
-      renamed ``listtools.flatten_at_indices( )`` to
-      ``seqtools.flatten_sequence_at_indices( )``.
    '''
 
    if klasses is None:

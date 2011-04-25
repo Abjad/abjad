@@ -11,10 +11,6 @@ def permute_sequence(sequence, permutation):
       [15, 14, 10, 11, 12, 13]
 
    Return newly constructed `sequence` object.
-
-   .. versionchanged:: 1.1.2
-      renamed ``listtools.permute( )`` to
-      ``seqtools.permute_sequence( )``.
    '''
 
    if not is_permutation(permutation, length = len(sequence)):

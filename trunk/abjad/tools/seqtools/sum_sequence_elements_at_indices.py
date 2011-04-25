@@ -3,7 +3,9 @@ import types
 
 
 def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = True):
-   '''Sum `sequence` elements at indices according to `pairs`::
+   '''.. versionadded:: 1.1.1
+
+   Sum `sequence` elements at indices according to `pairs`::
 
       abjad> seqtools.sum_sequence_elements_at_indices(range(10), [(0, 3)])
       [3, 3, 4, 5, 6, 7, 8, 9]
@@ -28,10 +30,6 @@ def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = 
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.sum_slices_at( )`` to
-      ``seqtools.sum_sequence_elements_at_indices( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.sum_elements_at_indices( )`` to
       ``seqtools.sum_sequence_elements_at_indices( )``.
    '''
 

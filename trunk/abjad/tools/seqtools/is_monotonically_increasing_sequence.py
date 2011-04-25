@@ -43,10 +43,6 @@ def is_monotonically_increasing_sequence(expr):
       False
 
    Return boolean.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.is_increasing_monotonically( )`` to
-      ``seqtools.is_monotonically_increasing_sequence( )``.
    '''
 
    try:

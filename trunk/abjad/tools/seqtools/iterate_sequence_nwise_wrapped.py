@@ -7,10 +7,6 @@ def iterate_sequence_nwise_wrapped(sequence, n):
       [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 0), (5, 0, 1)]
 
    Return generator.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.nwise_wrapped( )`` to
-      ``seqtools.iterate_sequence_nwise_wrapped( )``.
    '''
 
    first_n_minus_1 = [ ]

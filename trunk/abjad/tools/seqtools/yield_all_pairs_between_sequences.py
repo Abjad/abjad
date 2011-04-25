@@ -14,10 +14,6 @@ def yield_all_pairs_between_sequences(l, m):
       (3, 5)
 
    Return pair generator.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.pairs_from_to( )`` to
-      ``seqtools.yield_all_pairs_between_sequences( )``.
    '''
 
    for x in l:

@@ -9,21 +9,12 @@ def remove_sequence_elements_at_indices_cyclically(sequence, indices, period, of
    Ignore negative indices.
 
    Return list.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.remove_sequence_elements_at_indices_cyclic( )`` to
-      ``seqtools.remove_sequence_elements_at_indices_cyclically( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.remove_elements_at_indices_cyclically( )`` to
-      ``seqtools.remove_sequence_elements_at_indices_cyclically( )``.
    '''
 
    result = [ ]
 
    for i, element in enumerate(sequence):
       if (i - offset) % period not in indices:
-         #yield element
          result.append(element)
 
    return result

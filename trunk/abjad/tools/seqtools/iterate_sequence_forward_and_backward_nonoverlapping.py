@@ -7,10 +7,6 @@ def iterate_sequence_forward_and_backward_nonoverlapping(sequence):
       [1, 2, 3, 4, 5, 5, 4, 3, 2, 1]
 
    Return generator.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.forward_and_backward_nonoverlapping( )`` to
-      ``seqtools.iterate_sequence_forward_and_backward_nonoverlapping( )``.
    '''
 
    sequence_copy = [ ]

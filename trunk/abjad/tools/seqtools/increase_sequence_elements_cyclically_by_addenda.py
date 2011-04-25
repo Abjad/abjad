@@ -1,5 +1,7 @@
 def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield = True, trim = True):
-   '''Increase `sequence` cyclically by `addenda`::
+   '''.. versionadded:: 1.1.1.
+
+   Increase `sequence` cyclically by `addenda`::
 
       abjad> seqtools.increase_sequence_elements_cyclically_by_addenda(range(10), [10, -10], shield = False)
       [10, -9, 12, -7, 14, -5, 16, -3, 18, -1]
@@ -13,10 +15,6 @@ def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield =
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.increase_cyclic( )`` to
-      ``seqtools.increase_sequence_elements_cyclically_by_addenda( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.increase_elements_cyclically_by_addenda( )`` to
       ``seqtools.increase_sequence_elements_cyclically_by_addenda( )``.
    '''
 

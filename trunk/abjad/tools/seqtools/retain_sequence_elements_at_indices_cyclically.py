@@ -9,21 +9,12 @@ def retain_sequence_elements_at_indices_cyclically(sequence, indices, period, of
    Ignore negative values in `indices`.
 
    Return list.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.retain_sequence_elements_at_indices_cyclic( )`` to
-      ``seqtools.retain_sequence_elements_at_indices_cyclically( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.retain_elements_at_indices_cyclically( )`` to
-      ``seqtools.retain_sequence_elements_at_indices_cyclically( )``.
    '''
 
    result = [ ]
 
    for i, element in enumerate(sequence):
       if (i - offset) % period in indices:
-         #yield element
          result.append(element)
 
    return result

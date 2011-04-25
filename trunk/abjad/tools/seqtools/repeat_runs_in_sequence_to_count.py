@@ -2,7 +2,9 @@ from abjad.components._Component import _Component
 
 
 def repeat_runs_in_sequence_to_count(sequence, indicators):
-   '''Repeat subruns in `sequence` according to `indicators`.
+   '''.. versionadded:: 1.1.1
+
+   Repeat subruns in `sequence` according to `indicators`.
    The `indicators` input parameter must be a list of 
    zero or more ``(start, length, count)`` triples.
    For every ``(start, length, count)`` indicator in `indicators`,

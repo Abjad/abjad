@@ -25,10 +25,6 @@ def yield_all_subsequences_of_sequence(sequence, min_length = 0, max_length = No
       [[0, 1, 2], [1, 2, 3], [2, 3, 4]]
 
    Return generator of newly created `sequence` slices.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.contiguous_sublists( )`` to
-      ``seqtools.yield_all_subsequences_of_sequence( )``.
    '''
 
    len_sequence = len(sequence)

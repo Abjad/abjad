@@ -2,7 +2,9 @@ from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 
 
 def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices):
-   '''Increase `sequence` by `addenda` at `indices`::
+   '''.. versionadded:: 1.1.1
+
+   Increase `sequence` by `addenda` at `indices`::
 
       abjad> sequence = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
       abjad> seqtools.increase_sequence_elements_at_indices_by_addenda(sequence, [0.5, 0.5], [0, 4, 8])
@@ -12,10 +14,6 @@ def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices)
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.increase_at_indices( )`` to
-      ``seqtools.increase_sequence_elements_at_indices_by_addenda( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.increase_elements_at_indices_by_addenda( )`` to
       ``seqtools.increase_sequence_elements_at_indices_by_addenda( )``.
    '''
 

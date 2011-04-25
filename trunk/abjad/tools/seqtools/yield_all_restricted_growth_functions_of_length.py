@@ -26,14 +26,6 @@ def yield_all_restricted_growth_functions_of_length(length):
       (1, 2, 3, 4)
 
    Return generator of tuples.
-
-   .. versionchanged:: 1.1.2
-      renamed ``listtools.all_restricted_growth_functions_of_length( )`` to
-      ``seqtools.yield_all_restricted_growth_functions_of_length( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.generate_all_restricted_growth_functions_of_length( )`` to
-      ``seqtools.yield_all_restricted_growth_functions_of_length( )``.
    '''
 
    if not mathtools.is_positive_integer(length):

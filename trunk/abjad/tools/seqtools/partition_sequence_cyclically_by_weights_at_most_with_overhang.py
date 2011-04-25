@@ -3,7 +3,9 @@ from abjad.tools.seqtools._group_sequence_elements_by_weights_at_most import \
 
 
 def partition_sequence_cyclically_by_weights_at_most_with_overhang(sequence, weights):
-   '''Group `sequence` elements cyclically by `weights` at most with overhang::
+   '''.. versionadded:: 1.1.1
+
+   Partition `sequence` elements cyclically by `weights` at most with overhang::
 
       abjad> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
       abjad> groups = seqtools.partition_sequence_cyclically_by_weights_at_most_with_overhang(sequence, [10, 5])

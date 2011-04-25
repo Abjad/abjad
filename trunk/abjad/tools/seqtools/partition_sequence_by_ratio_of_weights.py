@@ -1,8 +1,8 @@
-from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools.mathtools.cumulative_sums import cumulative_sums
 from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from abjad.tools.mathtools.weight import weight
+from fractions import Fraction
 
 
 def partition_sequence_by_ratio_of_weights(sequence, weights):
@@ -44,10 +44,6 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
    with some rounding magic.
 
    Return list of lists.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.partition_sequence_by_weights_ratio( )`` to
-      ``seqtools.partition_sequence_by_ratio_of_weights( )``.
    '''
 
    list_weight = weight(sequence)

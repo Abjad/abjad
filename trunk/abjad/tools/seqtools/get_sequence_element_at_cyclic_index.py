@@ -37,10 +37,6 @@ def get_sequence_element_at_cyclic_index(sequence, index):
       -10   r
 
    Return reference to `sequence` element.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.get_element_at_cyclic_index( )`` to
-      ``seqtools.get_sequence_element_at_cyclic_index( )``.
    '''
 
    return sequence[mathtools.sign(index) * (abs(index) % len(sequence))]

@@ -19,10 +19,6 @@ def yield_all_partitions_of_sequence(sequence):
       [[0], [1], [2], [3]]
 
    Return generator of newly created lists.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.all_ordered_sublists( )`` to
-      ``seqtools.yield_all_partitions_of_sequence( )``.
    '''
 
    ## TODO: remove type restriction ##

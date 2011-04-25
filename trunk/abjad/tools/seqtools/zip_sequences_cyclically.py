@@ -3,8 +3,9 @@ import math
 
 
 def zip_sequences_cyclically(*sequences):
-   '''Zip `sequences` cyclically::
+   '''.. versionadded:: 1.1.1
 
+   Zip `sequences` cyclically::
 
       abjad> seqtools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
       [(1, 'a'), (2, 'b'), (3, 'a')]
@@ -23,10 +24,6 @@ def zip_sequences_cyclically(*sequences):
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.zip_cyclic( )`` to
-      ``seqtools.zip_sequences_cyclically( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.zip_sequences_cyclic( )`` to
       ``seqtools.zip_sequences_cyclically( )``.
    '''
 

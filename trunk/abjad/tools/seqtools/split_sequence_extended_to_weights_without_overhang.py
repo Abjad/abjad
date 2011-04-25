@@ -9,7 +9,6 @@ def split_sequence_extended_to_weights_without_overhang(sequence, weights):
       abjad> seqtools.split_sequence_extended_to_weights_with_overhang([1, 2, 3, 4, 5], [7, 7, 7])
       [[1, 2, 3, 1], [3, 4], [1, 1, 2, 3]]
 
-
    Return new object of `sequence` type.
    '''
 

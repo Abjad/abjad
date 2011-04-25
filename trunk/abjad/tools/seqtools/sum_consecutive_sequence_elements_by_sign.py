@@ -3,7 +3,9 @@ import itertools
 
 
 def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
-   '''Sum consecutive `sequence` elements by `sign`::
+   '''.. versionadded:: 1.1.1
+
+   Sum consecutive `sequence` elements by `sign`::
 
       abjad> sequence = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 
@@ -60,10 +62,6 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
    .. versionchanged:: 1.1.2
       renamed ``seqtools.sum_by_sign( )`` to
       ``seqtools.sum_consecutive_sequence_elements_by_sign( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.sum_consecutive_elements_by_sign( )`` to
-      ``seqtools.sum_consecutive_sequence_elements_by_sign( )``.
    '''
 
    result = [ ]
@@ -71,11 +69,9 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
    generator = itertools.groupby(sequence, mathtools.sign)
    for cur_sign, group in generator:
       if cur_sign in sign:
-         #yield sum(group)
          result.append(sum(group))
       else:
          for x in group:
-            #yield x
             result.append(x)
 
    return result

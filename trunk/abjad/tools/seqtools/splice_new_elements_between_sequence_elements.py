@@ -1,5 +1,7 @@
 def splice_new_elements_between_sequence_elements(sequence, new_elements, overhang = (0, 0)):
-   '''Splice copies of `new_elements` between each of the elements of `sequence`::
+   '''.. versionadded:: 1.1.1
+
+   Splice copies of `new_elements` between each of the elements of `sequence`::
 
       abjad> sequence = [0, 1, 2, 3, 4]
       abjad> new_elements = ['A', 'B']

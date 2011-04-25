@@ -8,10 +8,6 @@ def iterate_sequence_forward_and_backward_overlapping(sequence):
       [1, 2, 3, 4, 5, 4, 3, 2]
 
    Return generator.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.forward_and_backward_overlapping( )`` to
-      ``seqtools.iterate_sequence_forward_and_backward_overlapping( )``.
    '''
 
    sequence_copy = [ ]

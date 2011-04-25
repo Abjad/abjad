@@ -1,7 +1,9 @@
 ## TODO Implement optional period keyword.
 ## TODO Read anchor_index and length values cyclically.
 def overwrite_sequence_elements_at_indices(sequence, pairs):
-   '''Overwrite `sequence` elements at indices according to `pairs`::
+   '''.. versionadded:: 1.1.1
+
+   Overwrite `sequence` elements at indices according to `pairs`::
 
       seqtools.overwrite_sequence_elements_at_indices(range(10), [(0, 3), (5, 3)])
       [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]
@@ -12,10 +14,6 @@ def overwrite_sequence_elements_at_indices(sequence, pairs):
 
    .. versionchanged:: 1.1.2
       renamed ``seqtools.overwrite_slices_at( )`` to
-      ``seqtools.overwrite_sequence_elements_at_indices( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.overwrite_elements_at_indices( )`` to
       ``seqtools.overwrite_sequence_elements_at_indices( )``.
    '''
 

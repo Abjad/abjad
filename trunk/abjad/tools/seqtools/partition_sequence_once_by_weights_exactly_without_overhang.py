@@ -3,12 +3,13 @@ from abjad.tools.seqtools._group_sequence_elements_by_weights_exactly import \
 
 
 def partition_sequence_once_by_weights_exactly_without_overhang(sequence, weights):
-   '''Group `sequence` elements once by `weights` exactly without overhang::
+   '''.. versionadded:: 1.1.1
+
+   Partition `sequence` elements once by `weights` exactly without overhang::
 
       abjad> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
       abjad> groups = seqtools.partition_sequence_once_by_weights_exactly_without_overhang(sequence, [3, 9])
       [[3], [3, 3, 3]]
-
 
    Return list sequence element reference lists.
 

@@ -1,5 +1,5 @@
 def is_restricted_growth_function(expr):
-   '''.. versionadded:: 1.2.2
+   '''.. versionadded:: 1.1.2
 
    True when `expr` is a sequence and `expr` meets the criteria for a restricted
    growth function::

@@ -1,6 +1,8 @@
 ## TODO: make function return a list of two-element multisets.
 def yield_all_unordered_pairs_of_sequence(sequence):
-   '''Yield all unordered pairs of `sequence`::
+   '''.. versionadded:: 1.1.2
+
+   Yield all unordered pairs of `sequence`::
    
       abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1, 2, 3, 4]))
       [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
@@ -23,10 +25,6 @@ def yield_all_unordered_pairs_of_sequence(sequence):
    Pairs are tuples instead of sets to accommodate duplicate `sequence` elements.
 
    Return generator.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.get_unordered_pairs( )`` to
-      ``seqtools.yield_all_unordered_pairs_of_sequence( )``.
    '''
 
    #result = [ ]

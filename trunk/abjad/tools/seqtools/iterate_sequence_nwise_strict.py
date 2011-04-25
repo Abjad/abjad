@@ -7,10 +7,6 @@ def iterate_sequence_nwise_strict(sequence, n):
       [(0, 1, 2, 3), (1, 2, 3, 4), (2, 3, 4, 5), (3, 4, 5, 6), (4, 5, 6, 7), (5, 6, 7, 8), (6, 7, 8, 9)]
 
    Return generator.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.nwise_strict( )`` to
-      ``seqtools.iterate_sequence_nwise_strict( )``.
    '''
 
    buffer = [ ]

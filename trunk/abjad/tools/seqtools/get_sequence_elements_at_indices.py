@@ -7,10 +7,6 @@ def get_sequence_elements_at_indices(sequence, indices):
       ('r', 'i', 't', 'x')
 
    Return newly constructed tuple of references to `sequence` elements.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.get_elements_at_indices( )`` to
-      ``seqtools.get_sequence_elements_at_indices( )``.
    '''
 
    result = [ ]

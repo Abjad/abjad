@@ -20,10 +20,6 @@ def all_are_nonnegative_integer_powers_of_two(expr):
       False
 
    Return boolean.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.all_are_powers_of_two( )`` to
-      ``seqtools.all_are_nonnegative_integer_powers_of_two( )``.
    '''
 
    try:

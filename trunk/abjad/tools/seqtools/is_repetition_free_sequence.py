@@ -25,10 +25,6 @@ def is_repetition_free_sequence(expr):
       False
 
    Return boolean.
-
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.is_repetition_free( )`` to
-      ``seqtools.is_repetition_free_sequence( )``.
    '''
 
    try:
