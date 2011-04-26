@@ -1031,6 +1031,8 @@ stafftools
    :maxdepth: 1
 
    tools/stafftools/RhythmicStaff/RhythmicStaff
+   tools/stafftools/iterate_staves_backward_in_expr
+   tools/stafftools/iterate_staves_forward_in_expr
    tools/stafftools/make_invisible_staff
    tools/stafftools/make_rhythmic_sketch_staff
 
