@@ -4,6 +4,7 @@ from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in_expr 
 from abjad.tools.measuretools.get_next_measure_from_component import get_next_measure_from_component
 
 
+## TODO: fix bug in function that causes tied notes to become untied
 def replace_contents_of_measures_in_expr(expr, new_contents):
    r'''.. versionadded:: 1.1.1
 
