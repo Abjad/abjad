@@ -68,7 +68,7 @@ Finally we combine the two voices in a parallel Container:
 ::
 
 	abjad> p = Container([voice_lower, voice_higher])
-	abjad> p.parallel = True
+	abjad> p.is_parallel = True
 
 
 This results in the complete *Désordre* *cell*:
@@ -78,9 +78,8 @@ This results in the complete *Désordre* *cell*:
 Because this *cell* appears over and over again, we want to reuse this code to generate any number of these *cells*. We here encapsulate it in a function that will take only a list of pitches::
 
    def desordre_cell(pitches):
-      '''The function constructs and returns a *Désordre cell*.
-         - `pitches` is a list of numbers or, more generally, pitch tokens.
-      '''
+      '''Returns a parallel container encapsulating a Ligeti "cell".'''
+      pitchtools.NamedChromaticPitch.accidental_spelling = 'sharps'
       notes = [Note(p, (1, 8)) for p in pitches]
       spannertools.BeamSpanner(notes)
       spannertools.SlurSpanner(notes)
@@ -88,8 +87,7 @@ Because this *cell* appears over and over again, we want to reuse this code to g
       contexttools.DynamicMark('p')(notes[1])
       v_lower = Voice(notes)
       v_lower.name = 'rh_lower'
-      marktools.LilyPondCommandMark('voiceTwo')(v_lower)
-
+      marktools.LilyPondCommandMark('voiceTwo')(v_lower)   
       n = int(math.ceil(len(pitches) / 2.))
       chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
       marktools.Articulation('>')(chord)
@@ -97,10 +95,10 @@ Because this *cell* appears over and over again, we want to reuse this code to g
       v_higher.name = 'rh_higher'
       marktools.LilyPondCommandMark('voiceOne')(v_higher)
       p = Container([v_lower, v_higher])
-      p.parallel = True
+      p.is_parallel = True
       ## make all 1/8 beats breakable
       for n in v_lower.leaves[:-1]:
-         n.bar_line.kind = ''
+         marktools.LilyPondCommandMark('bar ""', format_slot = 'closing')(n)
       return p
 
 Now we can call this function to create any number of *cells*. That was actually the hardest part of reconstructing the opening of Ligeti's *Désordre*. Because the repetition of patters occurs also at the level of measures and staves, we will now define functions to create these other higher level constructs.
@@ -111,13 +109,14 @@ The measure
 We define a function to create a measure from a list of lists of numbers::
 
    def measure_build(pitches):
-      '''Constructs a measure composed of *Désordre cells*. 
-         - `pitches` is a list of lists of number (e.g., [[1,2,3], [2,3,4]])
-      The function returns a DynamicMeasure.
-      '''
-      result = DynamicMeasure([ ])
+      '''Returns a DynamicMeasure containing Ligeti "cells".'''
+      result = measuretools.DynamicMeasure([ ])
       for seq in pitches:
          result.append(desordre_cell(seq))
+      ## make denominator 8
+      if contexttools.get_effective_time_signature(result).denominator == 1:
+         result.denominator = 8
+      return result
 
 The function is very simple. It simply creates a DynamicMeasure and then populates it with *cells* that are created internally with the function previously defined. The function takes a list `pitches` which is actually a list of lists of pitches (e.g., ``[[1,2,3], [2,3,4]]``. The list of lists of pitches is iterated to create each of the *cells* to be appended to the DynamicMeasures. We could have defined the function to take ready made *cells* directly, but we are building the hierarchy of functions so that we can pass simple lists of lists of numbers to generate the full structure.
 To construct a Ligeti measure we would call the function like so:
@@ -161,14 +160,16 @@ Finally a function that will generate the whole opening section of the piece *D�
    def desordre_build(pitches):
       '''Returns a complete PianoStaff with Ligeti music!'''
       assert len(pitches) == 2
-      piano = PianoStaff([ ])
-      ## build the music...
+      piano = scoretools.PianoStaff([ ])
+      ## set tempo indication...
+      contexttools.TempoMark(Fraction(1, 1), 60)(piano)
+      ## build music...
       for hand in pitches:
          seq = staff_build(hand)
          piano.append(seq)
-      ## set clef and key signature to left hand staff...
-      piano[1].clef.forced = stafftools.Clef('bass')
-      piano[1].key_signature.forced = tonalitytools.KeySignature('b', 'major')
+      ## set clef and key to lower staff...
+      contexttools.ClefMark('bass')(piano[1])   
+      contexttools.KeySignatureMark('b', 'major')(piano[1])
       return piano
 
 The function creates a PianoStaff, constructs Staves with Ligeti music and appends these to the empty PianoStaff. Finally it sets the clef and key signature of the lower staff to match the original score.
@@ -182,7 +183,7 @@ The final result:
 	abjad> bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
 	abjad> 
 	abjad> desordre = desordre_build([top, bottom])
-	abjad> show(desordre)
+	abjad> show(desordre, template = 'tirnaveni')
 
 .. image:: images/desordre_final.png
 
