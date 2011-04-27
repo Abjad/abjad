@@ -1105,6 +1105,8 @@ tuplettools
    tools/tuplettools/fix_contents_of_tuplets_in_expr
    tools/tuplettools/fuse_tuplets
    tools/tuplettools/is_proper_tuplet_multiplier
+   tools/tuplettools/iterate_tuplets_backward_in_expr
+   tools/tuplettools/iterate_tuplets_forward_in_expr
    tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots
    tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots
    tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots
