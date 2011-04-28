@@ -3,7 +3,9 @@ from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_leaf_indices(expr, markup_direction = 'down'):
-   r'''Label leaf indices in `expr` from 0.
+   r'''.. versionadded:: 1.1.2
+
+   Label leaf indices in `expr` from 0.
 
    ::
 
@@ -16,12 +18,7 @@ def label_leaves_in_expr_with_leaf_indices(expr, markup_direction = 'down'):
               f'8 _ \markup { \small 3 }
       } 
 
-   .. versionadded:: 1.1.2
-      new `markup_direction` keyword parameter.
-
-   .. versionchanged:: 1.1.2
-      renamed ``label.leaf_indices( )`` to
-      ``leaftools.label_leaves_in_expr_with_leaf_indices( )``.
+   Return none.
    '''
 
    for i, leaf in enumerate(iterate_leaves_forward_in_expr(expr)):
