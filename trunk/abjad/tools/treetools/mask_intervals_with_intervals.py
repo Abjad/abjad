@@ -4,6 +4,8 @@ from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
    import all_are_intervals_or_trees_or_empty
 from abjad.tools.treetools.compute_logical_not_of_intervals_in_interval \
    import compute_logical_not_of_intervals_in_interval
+from abjad.tools.treetools.compute_logical_or_of_intervals \
+   import compute_logical_or_of_intervals
 from abjad.tools.treetools.split_intervals_at_rationals import split_intervals_at_rationals
 from abjad.tools.treetools.get_all_unique_bounds_in_intervals import get_all_unique_bounds_in_intervals
 
@@ -36,10 +38,14 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
    else:
       mask_tree = IntervalTree(mask_intervals)
 
-   not_mask_tree = compute_logical_not_of_intervals_in_interval(mask_tree, masked_tree.bounds)
+   if not masked_tree or not mask_tree:
+      return IntervalTree([ ])
 
-   split_masked_tree = split_intervals_at_rationals(masked_tree, \
-      get_all_unique_bounds_in_intervals(not_mask_tree))
+   low = min(mask_tree.low, masked_tree.low)
+   high = max(mask_tree.high, masked_tree.high)
+   not_mask_tree = compute_logical_not_of_intervals_in_interval(mask_tree, BoundedInterval(low, high))
+   not_mask_tree_bounds = get_all_unique_bounds_in_intervals(not_mask_tree)
+   split_masked_tree = split_intervals_at_rationals(masked_tree, not_mask_tree_bounds)
 
    for interval in not_mask_tree:
       starts = set(split_masked_tree.find_intervals_starting_within_interval(interval))
