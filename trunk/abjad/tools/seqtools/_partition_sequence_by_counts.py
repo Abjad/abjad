@@ -6,8 +6,8 @@ from abjad.tools import mathtools
 import copy
 
 
-def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = False, 
-   copy_elements = True):
+#def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = False, copy_elements = True):
+def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = False, copy_elements = False):
    '''Partition sequence by count:
 
       abjad> seqtools._partition_sequence_by_counts(range(10), [3])
@@ -69,13 +69,14 @@ def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = F
          counts.append(len(sequence) - weight_counts)
 
    for start, stop in cumulative_sums_zero_pairwise(counts):
-      if copy_elements:
-         part = [ ]
-         for element in sequence[start:stop]:
-            part.append(copy.copy(element))
-         part = type(sequence)(part)
-         result.append(part)
-      else:
-         result.append(sequence[start:stop])
+#      if copy_elements:
+#         part = [ ]
+#         for element in sequence[start:stop]:
+#            part.append(copy.copy(element))
+#         part = type(sequence)(part)
+#         result.append(part)
+#      else:
+#         result.append(sequence[start:stop])
+      result.append(type(sequence)(sequence[start:stop]))
 
    return result
