@@ -304,6 +304,41 @@ gracetools
    tools/gracetools/iterate_components_and_grace_containers_forward_in_expr
 
 
+instrumenttools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/instrumenttools/Accordion/Accordion
+   tools/instrumenttools/AltoFlute/AltoFlute
+   tools/instrumenttools/BFlatClarinet/BFlatClarinet
+   tools/instrumenttools/BassClarinet/BassClarinet
+   tools/instrumenttools/BassFlute/BassFlute
+   tools/instrumenttools/Bassoon/Bassoon
+   tools/instrumenttools/Cello/Cello
+   tools/instrumenttools/Contrabass/Contrabass
+   tools/instrumenttools/ContrabassFlute/ContrabassFlute
+   tools/instrumenttools/Contrabassoon/Contrabassoon
+   tools/instrumenttools/EFlatClarinet/EFlatClarinet
+   tools/instrumenttools/EnglishHorn/EnglishHorn
+   tools/instrumenttools/Flute/Flute
+   tools/instrumenttools/FrenchHorn/FrenchHorn
+   tools/instrumenttools/Glockenspiel/Glockenspiel
+   tools/instrumenttools/Guitar/Guitar
+   tools/instrumenttools/Harp/Harp
+   tools/instrumenttools/Marimba/Marimba
+   tools/instrumenttools/Oboe/Oboe
+   tools/instrumenttools/Piano/Piano
+   tools/instrumenttools/Piccolo/Piccolo
+   tools/instrumenttools/Trombone/Trombone
+   tools/instrumenttools/Trumpet/Trumpet
+   tools/instrumenttools/Tuba/Tuba
+   tools/instrumenttools/Vibraphone/Vibraphone
+   tools/instrumenttools/Viola/Viola
+   tools/instrumenttools/Violin/Violin
+   tools/instrumenttools/Xylophone/Xylophone
+
+
 iotools
 
 .. toctree::

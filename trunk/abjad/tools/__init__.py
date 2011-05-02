@@ -4,6 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import gracetools
+from abjad.tools import instrumenttools
 from abjad.tools import layouttools
 from abjad.tools import lilyfiletools
 from abjad.tools import contexttools
