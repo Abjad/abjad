@@ -58,3 +58,12 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_06( ):
 
    transposed_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, mdi) 
    assert transposed_pitch == pitchtools.NamedChromaticPitch('a', 4)
+
+
+def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_07( ):
+   '''Retun non-pitch-carrying input changed.
+   '''
+
+   rest = Rest('r4')
+   
+   assert pitchtools.transpose_pitch_carrier_by_melodic_interval(rest, '+m2') is rest

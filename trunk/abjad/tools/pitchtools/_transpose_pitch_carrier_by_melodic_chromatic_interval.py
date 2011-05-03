@@ -8,7 +8,8 @@ from abjad.tools.pitchtools.NumberedChromaticPitch import NumberedChromaticPitch
 import numbers
 
 
-def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_chromatic_interval):
+def _transpose_pitch_carrier_by_melodic_chromatic_interval(
+   pitch_carrier, melodic_chromatic_interval):
    '''.. versionadded:: 1.1.2
 
    Transpose `pitch_carrier` by `melodic_chromatic_interval`::
@@ -47,4 +48,5 @@ def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodi
          new_nh.pitch = new_pitch
       return new_chord
    else:
-      raise TypeError('must be Abjad pitch, note or chord.')
+      #raise TypeError('must be Abjad pitch, note or chord.')
+      return pitch_carrier
