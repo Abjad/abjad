@@ -337,6 +337,7 @@ instrumenttools
    tools/instrumenttools/Viola/Viola
    tools/instrumenttools/Violin/Violin
    tools/instrumenttools/Xylophone/Xylophone
+   tools/instrumenttools/get_effective_instrument
 
 
 iotools

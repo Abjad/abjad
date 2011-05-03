@@ -31,5 +31,5 @@ class Piccolo(Flute):
 
    def __init__(self, 
       instrument_name = 'Piccolo', short_instrument_name = 'Picc.', target_context = None):
-      Flute.__init__(self, 'Piccolo', 'Picc.', target_context)
+      Flute.__init__(self, instrument_name, short_instrument_name, target_context)
       self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c''")
