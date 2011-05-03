@@ -338,6 +338,8 @@ instrumenttools
    tools/instrumenttools/Violin/Violin
    tools/instrumenttools/Xylophone/Xylophone
    tools/instrumenttools/get_effective_instrument
+   tools/instrumenttools/transpose_leaves_in_expr_from_fingered_pitch_to_sounding_pitch
+   tools/instrumenttools/transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch
 
 
 iotools
