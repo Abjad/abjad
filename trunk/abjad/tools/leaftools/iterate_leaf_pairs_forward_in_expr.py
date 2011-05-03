@@ -5,7 +5,7 @@ from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr impor
 def iterate_leaf_pairs_forward_in_expr(expr):
    r'''.. versionadded:: 1.1.2
 
-   Iterate left-to-right, top-to-bottom leaf pairs in `expr`. ::
+   Iterate leaf pairs forward in `expr`::
 
       abjad> score = Score([ ])
       abjad> notes = macros.scale(4) + [Note(7, (1, 4))]
@@ -53,13 +53,9 @@ def iterate_leaf_pairs_forward_in_expr(expr):
       (Note(a,, 4), Note(g,, 4))
       (Note(g', 4), Note(g,, 4))
 
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.leaf_pairs_forward_in( )`` to
-      ``leaftools.iterate_leaf_pairs_forward_in_expr( )``.
+   Iterate leaf pairs left-to-right and top-to-bottom.
 
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.leaf_pairs_forward_in_expr( )`` to
-      ``leaftools.iterate_leaf_pairs_forward_in_expr( )``.
+   Return generator.
    '''
 
    vertical_moments = iterate_vertical_moments_forward_in_expr(expr)

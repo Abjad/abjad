@@ -1,11 +1,11 @@
 from abjad.components import Rest
 
 
+## TODO: implement corresponding function to rest left half
 def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.1
 
    Split `leaf` at `prolated_duration` and rest right half::
-
 
       abjad> t = Staff(macros.scale(4))
       abjad> spannertools.SlurSpanner(t[:])
@@ -34,11 +34,8 @@ def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration)
          f'8 )
       }
 
-   Return list of leaves to left of `prolated_durration`
+   Return list of leaves to left of `prolated_duration`
    together with list of leaves to right of `prolated_duration`.
-
-   .. todo:: implement 
-      ``leaftools.split_leaf_at_prolated_duration_and_rest_left_half( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.shorten( )`` to

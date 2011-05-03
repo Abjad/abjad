@@ -4,7 +4,7 @@ from abjad.components._Leaf import _Leaf
 def get_nth_leaf_in_thread_from_leaf(leaf, n = 0):
    r'''.. versionadded:: 1.1.2
 
-   Get nth leaf in thread from `leaf`::
+   Get `n` th leaf in thread from `leaf`::
 
       abjad> staff = Staff(2 * Voice(macros.scale(4)))
       abjad> macros.diatonicize(staff)

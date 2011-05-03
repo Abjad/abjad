@@ -26,6 +26,8 @@ def is_bar_line_crossing_leaf(leaf):
 
       abjad> leaftools.is_bar_line_crossing_leaf(t.leaves[3])
       False
+
+   Return boolean.
    '''
 
    meter = contexttools.get_effective_time_signature(leaf)

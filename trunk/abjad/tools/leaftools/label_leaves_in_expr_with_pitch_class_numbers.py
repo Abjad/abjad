@@ -6,11 +6,9 @@ from abjad.tools import threadtools
 
 def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = False, 
    markup_direction = 'down'):
-   r'''Label the pitch-class of every leaf in `expr`.
+   r'''.. versionadded:: 1.1.1
 
-   When ``number = True`` add markup below leaves.
-
-   ::
+   Label leaves in `expr` with pitch-class numbers::
 
       abjad> t = Staff(macros.scale(4))
       abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t)
@@ -40,11 +38,13 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
          f'8
       }
 
-   You can of course set `number` and `color` at the same time.
+   You can set `number` and `color` at the same time.
 
    .. versionchanged:: 1.1.2
       renamed ``label.leaf_pcs( )`` to
       ``leaftools.label_leaves_in_expr_with_pitch_class_numbers( )``.
+
+   Return none.
    '''
 
    from abjad.components import Note

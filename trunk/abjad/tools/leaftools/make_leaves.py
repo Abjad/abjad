@@ -23,7 +23,9 @@ from numbers import Number
 ##       Only possible after the two extensions to leaftools.make_leaves( ), above.
 
 def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
-   r'''Construct a list of notes, rests or chords.
+   r'''.. versionadded:: 1.1.1
+
+   Construct a list of notes, rests or chords.
 
    Set `pitches` is a single pitch, or a list of pitches, or a tuple
    of pitches.
@@ -88,6 +90,8 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
               r4 ~
               r16
       }
+
+   Return list of leaves.
 
    .. versionchanged:: 1.1.2
       renamed ``construct.leaves( )`` to

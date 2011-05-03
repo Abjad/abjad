@@ -8,7 +8,7 @@ from abjad.tools import threadtools
 def label_leaves_in_expr_with_melodic_diatonic_intervals(expr, markup_direction = 'up'):
    r""".. versionadded:: 1.1.2
 
-   Label the melodic diatonic interval of every leaf in `expr`. ::
+   Label leaves in `expr` with melodic diatonic intervals::
 
       abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Fraction(1, 8)]))
       abjad> leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals(staff)
@@ -25,6 +25,8 @@ def label_leaves_in_expr_with_melodic_diatonic_intervals(expr, markup_direction 
               fs'8 ^ \markup { -aug1 }
               f'8
       }
+
+   Return none.
    """
    from abjad.tools import pitchtools
 

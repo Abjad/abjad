@@ -8,8 +8,7 @@ from abjad.tools import threadtools
 def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup_direction = 'up'):
    r""".. versionadded:: 1.1.2
 
-   Label the melodic counterpoint interval-class between 
-   every leaf in `expr`. ::
+   Label leaves in `expr` with melodic counterpoint interval classes::
 
       abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Fraction(1, 8)]))
       abjad> leaftools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes(staff)
@@ -26,6 +25,8 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup
               fs'8 ^ \markup { +1 }
               f'8
       }
+
+   Return none.
    """
    from abjad.tools import pitchtools
    

@@ -10,7 +10,9 @@ from fractions import Fraction
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
-   r'''Remove `leaf` and shrink durated parent containers::
+   r'''.. versionadded:: 1.1.1
+
+   Remove `leaf` and shrink durated parent containers::
 
       abjad> measure = Measure((4, 8), tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> macros.diatonicize(measure)

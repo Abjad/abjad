@@ -1,5 +1,8 @@
+## TODO: implement corresponding little-endian function
 def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
-   r'''Fuse leaves in `tie_chain` by parent::
+   r'''.. versionadded:: 1.1.1
+
+   Fuse leaves in `tie_chain` by immediate parent::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> tietools.TieSpanner(staff.leaves)
@@ -37,9 +40,6 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
       }
 
    Return list of fused notes by parent.
-
-   .. todo::
-      implement corresponding little-endian function.
 
    .. versionchanged:: 1.1.2
       renamed ``fuse.leaves_in_tie_chain( )`` to

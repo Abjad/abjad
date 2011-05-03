@@ -2,10 +2,12 @@ from abjad.components._Leaf import _Leaf
 from abjad.tools.componenttools.get_nth_component_in_expr import get_nth_component_in_expr
 
 
+## TODO: implement ``iterate.yield_leaves(expr, i = 0, j = None)``
+##       as a generalization of, and companion to, this function.
 def get_nth_leaf_in_expr(expr, n = 0):
    r'''.. versionadded:: 1.1.2
 
-   Return leaf `n` in `expr`. ::
+   Get `n` th leaf in `expr`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(staff)
@@ -51,19 +53,7 @@ def get_nth_leaf_in_expr(expr, n = 0):
       It is likewise more efficient to call
       ``leaftools.get_nth_leaf_in_expr(expr, -1)`` than ``expr.leaves[-1]``.
 
-   .. todo:: implement ``iterate.yield_leaves(expr, i = 0, j = None)``
-      as a generalization of, and companion to, this function.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_leaf( )`` to ``leaftools.get_nth_leaf_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_leaf_in( )`` to
-      ``leaftools.get_nth_leaf_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_leaf_in_expr( )`` to
-      ``leaftools.get_nth_leaf_in_expr( )``.
+   Return leaf of none.
    '''
 
    return get_nth_component_in_expr(expr, _Leaf, n)

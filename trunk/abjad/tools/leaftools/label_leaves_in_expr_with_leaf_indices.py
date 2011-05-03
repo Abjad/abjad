@@ -5,9 +5,7 @@ from abjad.tools import markuptools
 def label_leaves_in_expr_with_leaf_indices(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
-   Label leaf indices in `expr` from 0.
-
-   ::
+   Label leaves in `expr` with leaf indices::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> leaftools.label_leaves_in_expr_with_leaf_indices(staff)

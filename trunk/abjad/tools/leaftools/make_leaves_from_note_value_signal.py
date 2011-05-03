@@ -4,7 +4,8 @@ from abjad.tools.leaftools.make_leaves import make_leaves
 from fractions import Fraction
 
 
-def make_leaves_from_note_value_signal(note_value_signal, denominator_of_signal, tied_rests = False):
+def make_leaves_from_note_value_signal(
+   note_value_signal, denominator_of_signal, tied_rests = False):
    r'''.. versionadded:: 1.1.2
 
    Make leaves from `note_value_signal` and `denominator_of_signal`::

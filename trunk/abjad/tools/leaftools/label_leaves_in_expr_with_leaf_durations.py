@@ -3,8 +3,9 @@ from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import \
 
 
 def label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down'):
-   r'''Label leaves in `expr` with both written leaf duration
-   and prolated leaf duration::
+   r'''.. versionadded:: 1.1.1
+
+   Label leaves in `expr` with leaf durations::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), macros.scale(3))
       abjad> leaftools.label_leaves_in_expr_with_leaf_durations(tuplet)
@@ -14,6 +15,8 @@ def label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down'):
               d'8 _ \markup { \column { \small 1/8 \small 1/12 } }
               e'8 _ \markup { \column { \small 1/8 \small 1/12 } }
       }
+
+   Label both written duration and prolated duration.
    
    Return none.
    '''

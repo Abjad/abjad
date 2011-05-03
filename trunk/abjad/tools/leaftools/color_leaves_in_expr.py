@@ -5,7 +5,7 @@ from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_
 def color_leaves_in_expr(expr, color):
    r""".. versionadded:: 1.1.2
 
-   Color leaves in `expr` with `color`::
+   Color leaves in `expr`::
 
       abjad> staff = Staff([Note(1, (3, 16)), Rest((3, 16)), Skip((3, 16)), Chord([0, 1, 9], (3, 16))])
       abjad> spannertools.BeamSpanner(staff.leaves)

@@ -1,6 +1,8 @@
 def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
    components, prolated_durations):
-   r'''Fuse `components` tied leaves by `prolated_durations`::
+   r'''.. versionadded:: 1.1.1
+
+   Fuse tied leaves in `components` once by `prolated_durations` without overhang::
 
       abjad> staff = Staff(notetools.make_repeated_notes(8))
       abjad> tietools.TieSpanner(staff.leaves)

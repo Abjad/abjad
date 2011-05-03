@@ -14,10 +14,6 @@ def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_l
       Rest(4 * 1/2)
 
    Return `target_leaf`.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.copy_written_duration_and_multiplier_from_to( )`` to
-      ``leaftools.copy_written_duration_and_multiplier_from_leaf_to_leaf( )``.
    '''
 
    ## check source leaf type

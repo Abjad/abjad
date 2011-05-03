@@ -1,5 +1,8 @@
+## TODO: implement leaftools.fuse_leaves_little_endian( )
 def fuse_leaves_big_endian(leaves):
-   r'''Fuse thread-contiguous `leaves`::
+   r'''.. versionadded:: 1.1.1
+
+   Fuse thread-contiguous `leaves`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> leaftools.fuse_leaves_big_endian(staff[1:])
@@ -15,9 +18,6 @@ def fuse_leaves_big_endian(leaves):
    Detach all leaves in `leaves` other than first leaf from score.
 
    Return list of first leaf in `leaves`.
-
-   .. todo::
-      implement ``leaftools.fuse_leaves_little_endian( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``fuse.leaves_by_reference( )`` to

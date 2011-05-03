@@ -2,9 +2,9 @@ from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_
 
 
 def label_leaves_in_expr_with_leaf_depth(expr, markup_direction = 'down'):
-   r'''Label the depth of every leaf in `expr`.
+   r'''.. versionadded:: 1.1.1
 
-   ::
+   Label leaves in `expr` with leaf depth::
 
       abjad> staff = Staff(macros.scale(5))
       abjad> tuplettools.FixedDurationTuplet((2, 8), staff[-3:])
@@ -22,10 +22,8 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction = 'down'):
    .. versionchanged:: 1.1.2
       renamed ``label.leaf_depth( )`` to
       ``leaftools.label_leaves_in_expr_with_leaf_depth( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.label_leaves_in_expr_with_score_depth( )`` to
-      ``leaftools.label_leaves_in_expr_with_leaf_depth( )``.
+   
+   Return none.
    '''
 
    for leaf in iterate_leaves_forward_in_expr(expr):

@@ -3,9 +3,9 @@ from abjad.tools import markuptools
 
 
 def remove_markup_from_leaves_in_expr(expr):
-   r'''Remove markup from all leaves in `expr`.
+   r'''.. versionadded:: 1.1.1
 
-   ::
+   Remove markup from leaves in `expr`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(staff)
@@ -26,6 +26,8 @@ def remove_markup_from_leaves_in_expr(expr):
               e'8
               f'8
       }
+
+   Return none.
 
    .. versionchanged:: 1.1.2
       renamed ``label.clear_leaves( )`` to

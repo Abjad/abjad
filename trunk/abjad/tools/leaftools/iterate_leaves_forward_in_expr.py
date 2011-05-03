@@ -5,7 +5,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
    r'''.. versionadded:: 1.1.2
 
-   Yield left-to-right leaves in `expr`. ::
+   Iterate leaves forward in `expr`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(staff)
@@ -67,15 +67,9 @@ def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
       Note(e', 8)
       Note(f', 8)
 
-   .. note:: naive iteration ignores threads.
+   Ignore threads.
 
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.leaves_forward_in( )`` to
-      ``leaftools.iterate_leaves_forward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.leaves_forward_in_expr( )`` to
-      ``leaftools.iterate_leaves_forward_in_expr( )``.
+   Return generator.
    '''
 
    return iterate_components_forward_in_expr(expr, _Leaf, start = start, stop = stop)

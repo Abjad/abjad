@@ -29,12 +29,9 @@ def show_leaves(leaves, template = None, title = None, suppress_pdf = False):
               >>
       >>
 
-   Return temporary piano staff score.
-
    Useful when working with notes, rests, chords not yet added to score.
 
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.show_leaves( )`` to ``leaftools.show_leaves( )``.
+   Return temporary piano staff score.
    """
 
    score, treble, bass = make_piano_sketch_score_from_leaves(leaves)

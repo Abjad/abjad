@@ -3,8 +3,9 @@ from fractions import Fraction
 
 
 def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, written_duration):
-   '''Change `leaf` written duration to `written_duration` and 
-   preserve `leaf` preprolated duration::
+   '''.. versionadded:: 1.1.1
+
+   Change `leaf` written duration to `written_duration` and preserve preprolated `leaf` duration::
 
       abjad> note = Note(0, (1, 4))
       abjad> note.duration.written 
@@ -30,9 +31,6 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
    
    .. versionchanged:: 1.1.2
       Renamed from ``leaftools.duration_rewrite( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.change_written_duration_and_preserve_preprolated_duration( )`` to
       ``leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration( )``.
    '''
 

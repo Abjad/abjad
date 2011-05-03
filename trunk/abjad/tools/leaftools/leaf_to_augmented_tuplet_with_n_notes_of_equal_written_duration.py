@@ -1,13 +1,11 @@
-#from abjad.tools.divide._leaf_into_even_fixed_duration_tuplet import \
-#   _leaf_into_even_fixed_duration_tuplet
 from abjad.tools.leaftools._leaf_to_tuplet_with_n_notes_of_equal_written_duration import \
    _leaf_to_tuplet_with_n_notes_of_equal_written_duration
 
 
 def leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
-   '''Divide written duration of `leaf` into even `n`.
+   '''.. versionadded:: 1.1.2
 
-   Return (augmented) fixed-duration tuplet. ::
+   Change `leaf` to augmented tuplet with `n` notes of equal written duration::
 
       abjad> for n in range(1, 11):
       ...     note = Note(0, (3, 16))
@@ -25,10 +23,7 @@ def leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
       {@ 3:4 c'64, c'64, c'64, c'64, c'64, c'64, c'64, c'64, c'64 @}
       {@ 5:6 c'64, c'64, c'64, c'64, c'64, c'64, c'64, c'64, c'64, c'64 @}
 
-   .. versionchanged:: 1.1.2
-      renamed ``divide.leaf_into_even_augmentation( )`` to
-      ``leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration( )``.
+   Return augmented fixed-duration tuplet.
    '''
 
-   #return _leaf_into_even_fixed_duration_tuplet(leaf, n, 'augmentation')
    return _leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, 'augmentation')

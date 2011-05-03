@@ -52,10 +52,6 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
    .. versionchanged:: 1.1.2
       renamed ``leaftools.meiose( )`` to 
       ``leaftools.divide_leaves_in_expr_meiotically( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.divide_leaves_meiotically_in( )`` to
-      ``leaftools.divide_leaves_in_expr_meiotically( )``.
    '''
 
    ## can not wrap with update control because of        ##

@@ -5,7 +5,7 @@ from abjad.tools import componenttools
 def repeat_leaf_and_extend_spanners(leaf, total = 1):
    r'''.. versionadded:: 1.1.1
 
-   Clone and splice `leaf` `total` times::
+   Repeat `leaf` and extend spanners::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -44,4 +44,5 @@ def repeat_leaf_and_extend_spanners(leaf, total = 1):
       ``leaftools.repeat_leaf_and_extend_spanners( )``.
    '''
 
-   componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, componenttools.clone_components_and_remove_all_spanners([leaf], total - 1))
+   componenttools.extend_in_parent_of_component_and_grow_spanners(
+      leaf, componenttools.clone_components_and_remove_all_spanners([leaf], total - 1))

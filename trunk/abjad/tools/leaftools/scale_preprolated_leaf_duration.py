@@ -2,7 +2,9 @@ from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_
 
 
 def scale_preprolated_leaf_duration(leaf, multiplier):
-   r'''Scale `leaf` preprolated duration by dotted `multiplier`::
+   r'''.. versionadded:: 1.1.1
+   
+   Scale preprolated `leaf` leaf duration by dotted `multiplier`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -15,7 +17,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
          f'8 ]
       }
       
-   Scale `leaf` preprolated duration by tied `multiplier`::
+   Scale preprolated `leaf` duration by tied `multiplier`::
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -29,7 +31,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
          f'8 ]
       }
       
-   Scale `leaf` preprolated duration by nonbinary `multiplier`::
+   Scale preprolated `leaf` duration by nonbinary `multiplier`::
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -44,7 +46,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
          f'8 ]
       }
       
-   Scale `leaf` preprolated duration by tied nonbinary `multiplier`::
+   Scale preprolated `leaf` duration by tied nonbinary `multiplier`::
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -64,9 +66,6 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
 
    .. versionchanged:: 1.1.2
       renamed from ``leaftools.duration_scale( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.scale_leaf_preprolated_duration( )`` to
       ``leaftools.scale_preprolated_leaf_duration( )``.
    '''
 

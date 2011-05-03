@@ -6,7 +6,7 @@ from abjad.components import Rest
 def color_leaf(leaf, color):
    r'''.. versionadded:: 1.1.2
 
-   Color note with `color`::
+   Color note::
 
       abjad> note = Note("c'4")
 
@@ -23,7 +23,7 @@ def color_leaf(leaf, color):
       \once \override NoteHead #'color = #red
       c'4
 
-   Color rest with `color`::
+   Color rest::
 
       abjad> rest = Rest('r4')
 
@@ -39,7 +39,7 @@ def color_leaf(leaf, color):
       \once \override Rest #'color = #red
       r4
 
-   Color chord with `color`::
+   Color chord::
 
       abjad> chord = Chord("<c' e' bf'>4")
 

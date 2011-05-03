@@ -9,7 +9,9 @@ from fractions import Fraction
 
    
 def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
-   r'''Change `leaf` to dotted `preprolated_duration`::
+   r'''.. versionadded:: 1.1.1
+
+   Set preprolated `leaf` duration::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -23,7 +25,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          f'8 ]
       }
       
-   Change `leaf` to tied `preprolated_duration`::
+   Set tied preprolated `leaf` duration::
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -38,7 +40,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          f'8 ]
       }
       
-   Change `leaf` to nonbinary `preprolated_duration`::
+   Set nonbinary preprolated `leaf` duration::
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -54,7 +56,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          f'8 ]
       }
       
-   Change `leaf` to tied nonbinary `preprolated_duration`::
+   Set tied nonbinary preprolated `leaf` duration::
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
@@ -71,7 +73,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          f'8 ]
       }
       
-   Change `preprolated_duration` of `leaf` with LilyPond multiplier::
+   Set preprolated `leaf` duration with LilyPond multiplier::
       
       abjad> note = Note(0, (1, 8))
       abjad> note.duration.multiplier = Fraction(1, 2)
