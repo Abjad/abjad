@@ -54,10 +54,13 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       if not isinstance(arg, (int, long)):
          raise TypeError('%s must be int.' % arg)
       dummy_pitch = pitchtools.NamedChromaticPitch(0)
-      for i in range(arg):
+      for i in range(abs(arg)):
          dummy_pitch += self
-      return pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+      result = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
          pitchtools.NamedChromaticPitch(0), dummy_pitch)
+      if arg < 0:
+         return -result
+      return result
 
    def __neg__(self):
       return type(self)(self.quality_string, -self.number)
