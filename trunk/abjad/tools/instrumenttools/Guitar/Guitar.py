@@ -33,6 +33,6 @@ class Guitar(_StringInstrument):
    def __init__(self,
       instrument_name = 'Guitar', short_instrument_name = 'Gt.', target_context = None):
       _StringInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
-      self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch('c')
+      self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('c')
       self.primary_clefs = [contexttools.ClefMark('treble')]
       self._copy_primary_clefs_to_all_clefs( )

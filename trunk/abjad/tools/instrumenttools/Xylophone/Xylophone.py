@@ -10,6 +10,6 @@ class Xylophone(_PercussionInstrument):
    '''
 
    def __init__(self):
-      self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c''")
+      self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c''")
       self.primary_clefs = [contexttools.ClefMark('treble')]
       self._copy_primary_clefs_to_all_clefs( )

@@ -32,4 +32,4 @@ class AltoFlute(Flute):
    def __init__(self,
       instrument_name = 'Alto Flute', short_instrument_name = 'Alt. Fl.', target_context = None):
       Flute.__init__(self, instrument_name, short_instrument_name, target_context)
-      self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("g")
+      self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("g")
