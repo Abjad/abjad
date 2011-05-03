@@ -1,5 +1,13 @@
+class ClefError(Exception):
+   '''Any type of clef error.'''
+   pass
+
 class DurationError(Exception):
    '''Any type of duration error.'''
+   pass
+
+class InstrumentError(Exception):
+   '''Any type of instrument error.'''
    pass
 
 class IntervalError(Exception):

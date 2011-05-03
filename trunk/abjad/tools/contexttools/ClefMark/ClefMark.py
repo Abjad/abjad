@@ -30,12 +30,15 @@ class ClefMark(ContextMark):
    _format_slot = 'opening'
    #default_target_context = Staff
 
-   def __init__(self, clef_name_string, target_context = None):
+   def __init__(self, arg, target_context = None):
       from abjad.components import Staff
       ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
-      self._clef_name_string = clef_name_string
+      if isinstance(arg, str):
+         self._clef_name_string = arg
+      elif isinstance(arg, type(self)):
+         self._clef_name_string = arg.clef_name_string
 
    ## OVERLOADS ##
 
