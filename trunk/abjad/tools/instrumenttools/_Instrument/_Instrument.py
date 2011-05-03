@@ -64,7 +64,7 @@ class _Instrument(contexttools.InstrumentMark):
    @apply
    def sounding_pitch_of_fingered_middle_c( ):
       def fset(self, pitch):
-         r'''Read / write sounding pitch of written middle C.
+         r'''Read / write sounding pitch of fingered middle C.
 
          Return named chromatic pitch.
          '''

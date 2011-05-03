@@ -26,7 +26,7 @@ class Piccolo(Flute):
          f'8
       }
 
-   Piccolo targets staff context by default.
+   The piccolo targets staff context by default.
    '''
 
    def __init__(self, 

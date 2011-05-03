@@ -26,7 +26,7 @@ class AltoFlute(Flute):
          f'8
       }
 
-   Alto flute targets staff context by default.
+   The alto flute targets staff context by default.
    '''
 
    def __init__(self,

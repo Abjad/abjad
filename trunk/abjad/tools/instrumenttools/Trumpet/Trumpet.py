@@ -4,12 +4,35 @@ from abjad.tools.instrumenttools._BrassInstrument import _BrassInstrument
 
 
 class Trumpet(_BrassInstrument):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   Abjad model of the trumpet.
+   Abjad model of the trumpet::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> instrumenttools.Trumpet( )(staff)
+      Trumpet('Trumpet', 'Tp.')
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \set Staff.instrumentName = \markup { Trumpet }
+         \set Staff.shortInstrumentName = \markup { Tp. }
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+
+   The trumpet targets staff context by default.
    '''
 
-   def __init__(self):
+   def __init__(self,
+      instrument_name = 'Trumpet', short_instrument_name = 'Tp.', target_context = None):
+      _BrassInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
       self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
       self.primary_clefs = [contexttools.ClefMark('treble')]
       self._copy_primary_clefs_to_all_clefs( )

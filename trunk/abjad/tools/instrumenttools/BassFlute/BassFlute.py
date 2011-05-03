@@ -26,7 +26,7 @@ class BassFlute(Flute):
          f'8
       }
    
-   Bass flute targets staff context by default.
+   The bass flute targets staff context by default.
    '''
 
    def __init__(self, 

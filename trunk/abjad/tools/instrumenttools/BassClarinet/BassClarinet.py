@@ -27,7 +27,7 @@ class BassClarinet(Clarinet):
          f'8
       }
 
-   Bass clarinet targets staff context by default.
+   The bass clarinet targets staff context by default.
    '''
 
    def __init__(self,

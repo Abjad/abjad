@@ -26,7 +26,7 @@ class ContrabassFlute(Flute):
          f'8
       }
 
-   Contrabass flute targets staff context by default.
+   The contrabass flute targets staff context by default.
    '''
 
    def __init__(self,

@@ -27,7 +27,7 @@ class Marimba(_PercussionInstrument):
          f'8
       }
 
-   Marimba targets staff context by default.
+   The marimba targets staff context by default.
    '''
 
    def __init__(self,

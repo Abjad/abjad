@@ -27,7 +27,7 @@ class Guitar(_StringInstrument):
          f'8
       }
 
-   Guitar targets staff context by default.
+   The guitar targets staff context by default.
    '''
 
    def __init__(self,

@@ -27,7 +27,7 @@ class Glockenspiel(_PercussionInstrument):
          f'8
       }
 
-   Glockenspiel targets staff context by default.
+   The glockenspiel targets staff context by default.
    '''
 
    def __init__(self, 

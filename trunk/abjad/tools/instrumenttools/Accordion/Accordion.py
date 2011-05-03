@@ -30,7 +30,7 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
          f'8
       }
 
-   Accordion targets piano staff context by default.
+   The accordion targets piano staff context by default.
    '''
 
    def __init__( self, 

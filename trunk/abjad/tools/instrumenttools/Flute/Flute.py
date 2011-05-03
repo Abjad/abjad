@@ -27,7 +27,7 @@ class Flute(_WindInstrument):
          f'8
       }
 
-   Flute targets staff context by default.
+   The flute targets staff context by default.
    '''
 
    def __init__(self, 

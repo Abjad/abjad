@@ -4,9 +4,30 @@ from abjad.tools.instrumenttools._SingleReedInstrument import _SingleReedInstrum
 
 
 class Clarinet(_SingleReedInstrument):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   Abjad model of the B-flat clarinet.
+   Abjad model of the B-flat clarinet::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> instrumenttools.Clarinet( )(staff)
+      Clarinet('Clarinet', 'Cl.')
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \set Staff.instrumentName = \markup { Clarinet }
+         \set Staff.shortInstrumentName = \markup { Cl. }
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+
+   The clarinet targets staff context by default.
    '''
 
    def __init__(self,
