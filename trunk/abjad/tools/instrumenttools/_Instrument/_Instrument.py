@@ -2,19 +2,16 @@ from abjad.tools import contexttools
 from abjad.tools import pitchtools
 
 
-class _Instrument(object):
+class _Instrument(contexttools.InstrumentMark):
    '''.. versionadded:: 1.1.2
 
    Abjad model of the musical instrument.
    '''
    
-   def __init__(self):
+   def __init__(self, instrument_name, short_instrument_name, target_context):
       self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
-
-   ## OVERLOADS ##
-
-   def __repr__(self):
-      return '%s( )' % self.__class__.__name__
+      contexttools.InstrumentMark.__init__(
+         self, instrument_name, short_instrument_name, target_context)
 
    ## PRIVATE METHODS ##
 
@@ -41,8 +38,8 @@ class _Instrument(object):
 
       Return boolean.
       '''
-      from abjd.tools import pitchtools
-      return not self.sounding_pitch_of_written_middle_c == pitchtools.NamedChromaticPith("c'")
+      from abjad.tools import pitchtools
+      return not self.sounding_pitch_of_written_middle_c == pitchtools.NamedChromaticPitch("c'")
    
    @apply
    def primary_clefs( ):

@@ -3,7 +3,7 @@ from abjad.tools import pitchtools
 from abjad.tools.instrumenttools._SingleReedInstrument import _SingleReedInstrument
 
 
-class BFlatClarinet(_SingleReedInstrument):
+class Clarinet(_SingleReedInstrument):
    '''.. versionadded:: 1.1.2
 
    Abjad model of the B-flat clarinet.
