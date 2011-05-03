@@ -60,3 +60,13 @@ def test_pitchtools_PitchRange___init___06( ):
    assert isinstance(pitch_range_2, pitchtools.PitchRange)
    assert pitch_range_1 == pitch_range_2
    assert pitch_range_1 is not pitch_range_2
+
+
+def test_pitchtools_PitchRange___init___07( ):
+   '''Init pitch range from pair.
+   '''
+
+   pitch_range_1 = pitchtools.PitchRange(-39, 48)
+   pitch_range_2 = pitchtools.PitchRange((-39, 48))
+
+   assert pitch_range_1 == pitch_range_2

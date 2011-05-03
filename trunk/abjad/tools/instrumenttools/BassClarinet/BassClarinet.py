@@ -36,3 +36,4 @@ class BassClarinet(Clarinet):
       self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('bf,')
       self.primary_clefs = [contexttools.ClefMark('treble')]
       self.all_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
+      self.traditional_range = (-26, 19)

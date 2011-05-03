@@ -19,11 +19,10 @@ class PitchRange(_Immutable):
 
    def __init__(self, *args):
       from abjad.tools import pitchtools
-      if len(args) ==0:
+      if len(args) == 0:
          object.__setattr__(self, '_start', None)
          object.__setattr__(self, '_stop', None)
-      elif len(args) == 1:
-         assert isinstance(args[0], type(self))
+      elif len(args) == 1 and isinstance(args[0], type(self)):
          if args[0].start_pitch_is_included_in_range:
             indicator = 'inclusive'
          else:
@@ -37,6 +36,9 @@ class PitchRange(_Immutable):
             indicator = 'exclusive'
          stop = (args[0].stop_pitch, indicator)
          object.__setattr__(self, '_stop', stop)
+      elif len(args) == 1 and isinstance(args[0], (tuple, list)):
+         start, stop = args[0]
+         type(self).__init__(self, start, stop)
       else:
          assert len(args) == 2
          start, stop = args

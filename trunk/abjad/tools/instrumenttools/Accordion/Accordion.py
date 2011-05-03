@@ -40,3 +40,4 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
       _KeyboardInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
       self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
       self._copy_primary_clefs_to_all_clefs( )
+      self.traditional_range = (-32, 48)

@@ -34,3 +34,4 @@ class ContrabassFlute(Flute):
       target_context = None):
       Flute.__init__(self, instrument_name, short_instrument_name, target_context)
       self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('g,')
+      self.traditional_range = (-17, 19)

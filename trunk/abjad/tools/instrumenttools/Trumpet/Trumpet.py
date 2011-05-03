@@ -36,3 +36,4 @@ class Trumpet(_BrassInstrument):
       self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
       self.primary_clefs = [contexttools.ClefMark('treble')]
       self._copy_primary_clefs_to_all_clefs( )
+      self.traditional_range = (-6, 26)
