@@ -31,6 +31,15 @@ class _Instrument(contexttools.InstrumentMark):
          self._all_clefs = clefs
       def fget(self):
          return self._all_clefs
+
+   @property
+   def interval_of_transposition(self):
+      r'''Read-only interval of transposition.
+      
+      Return melodic diatonic interval.
+      '''
+      return pitchtools.NamedChromaticPitch("c'") - self.sounding_pitch_of_written_middle_c
+      
       
    @property
    def is_transposing(self):
@@ -38,7 +47,6 @@ class _Instrument(contexttools.InstrumentMark):
 
       Return boolean.
       '''
-      from abjad.tools import pitchtools
       return not self.sounding_pitch_of_written_middle_c == pitchtools.NamedChromaticPitch("c'")
    
    @apply
