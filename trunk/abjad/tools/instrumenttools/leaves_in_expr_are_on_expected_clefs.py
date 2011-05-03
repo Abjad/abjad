@@ -38,11 +38,14 @@ def leaves_in_expr_are_on_expected_clefs(expr):
    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
       instrument = get_effective_instrument(leaf)
       if not instrument:
+         #print 'foo'
          return False
       clef = contexttools.get_effective_clef(leaf)
       if not clef:
+         #print 'bar'
          return False
       if clef not in instrument.all_clefs:
+         #print 'blah'
          return False
    else:
       return True

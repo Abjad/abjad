@@ -184,6 +184,8 @@ containertools
    tools/containertools/delete_contents_of_container_starting_strictly_before_prolated_offset
    tools/containertools/fuse_like_named_contiguous_containers_in_expr
    tools/containertools/get_element_starting_at_exactly_prolated_offset
+   tools/containertools/get_first_container_in_improper_parentage_of_component
+   tools/containertools/get_first_container_in_proper_parentage_of_component
    tools/containertools/get_first_element_starting_at_or_after_prolated_offset
    tools/containertools/get_first_element_starting_before_or_at_prolated_offset
    tools/containertools/get_first_element_starting_strictly_after_prolated_offset
@@ -1072,6 +1074,8 @@ stafftools
    :maxdepth: 1
 
    tools/stafftools/RhythmicStaff/RhythmicStaff
+   tools/stafftools/get_first_staff_in_improper_parentage_of_component
+   tools/stafftools/get_first_staff_in_proper_parentage_of_component
    tools/stafftools/iterate_staves_backward_in_expr
    tools/stafftools/iterate_staves_forward_in_expr
    tools/stafftools/make_invisible_staff
@@ -1145,6 +1149,8 @@ tuplettools
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
    tools/tuplettools/fix_contents_of_tuplets_in_expr
    tools/tuplettools/fuse_tuplets
+   tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
+   tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
    tools/tuplettools/is_proper_tuplet_multiplier
    tools/tuplettools/iterate_tuplets_backward_in_expr
    tools/tuplettools/iterate_tuplets_forward_in_expr
