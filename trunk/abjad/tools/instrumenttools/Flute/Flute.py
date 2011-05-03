@@ -4,9 +4,30 @@ from abjad.tools.instrumenttools._WindInstrument import _WindInstrument
 
 
 class Flute(_WindInstrument):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   Abjad model of the flute.
+   Abjad model of the flute::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> instrumenttools.Flute( )(staff)
+      Flute('Flute', 'Fl.')
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \set Staff.instrumentName = \markup { Flute }
+         \set Staff.shortInstrumentName = \markup { Fl. }
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+
+   Flute targets staff context by default.
    '''
 
    def __init__(self, 

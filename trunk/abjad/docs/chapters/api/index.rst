@@ -311,11 +311,11 @@ instrumenttools
 
    tools/instrumenttools/Accordion/Accordion
    tools/instrumenttools/AltoFlute/AltoFlute
-   tools/instrumenttools/BFlatClarinet/BFlatClarinet
    tools/instrumenttools/BassClarinet/BassClarinet
    tools/instrumenttools/BassFlute/BassFlute
    tools/instrumenttools/Bassoon/Bassoon
    tools/instrumenttools/Cello/Cello
+   tools/instrumenttools/Clarinet/Clarinet
    tools/instrumenttools/Contrabass/Contrabass
    tools/instrumenttools/ContrabassFlute/ContrabassFlute
    tools/instrumenttools/Contrabassoon/Contrabassoon

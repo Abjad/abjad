@@ -3,11 +3,34 @@ from abjad.tools.instrumenttools.Flute import Flute
 
 
 class ContrabassFlute(Flute):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   Abjad model of the contrabass flute.
+   Abjad model of the contrabass flute::
+
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+   ::
+
+      abjad> instrumenttools.ContrabassFlute( )(staff)
+      ContrabassFlute('Contrabass Flute', 'Contrabass Fl.')
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \set Staff.instrumentName = \markup { Contrabass Flute }
+         \set Staff.shortInstrumentName = \markup { Contrabass Fl. }
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+
+   Contrabass flute targets staff context by default.
    '''
 
-   def __init__(self):
-      Flute.__init__(self)
+   def __init__(self,
+      instrument_name = 'Contrabass Flute', short_instrument_name = 'Contrabass Fl.',
+      target_context = None):
+      Flute.__init__(self, instrument_name, short_instrument_name, target_context)
       self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch('g,')
