@@ -94,6 +94,45 @@ class Chord(_Leaf):
 
    ## PUBLIC ATTRIBUTES ## 
 
+   @property
+   def fingered_pitches(self):
+      r"""Read-only fingered pitches::
+
+         abjad> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+         abjad> glockenspiel = instrumenttools.Glockenspiel( )(staff)
+         abjad> instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+
+      ::
+
+         abjad> f(staff)
+         \new Staff {
+            \set Staff.instrumentName = \markup { Glockenspiel }
+            \set Staff.shortInstrumentName = \markup { Gkspl. }
+            <c' e'>4
+            <d' fs'>4
+         }
+
+      ::
+
+         abjad> staff[0].fingered_pitches
+         (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
+
+      Return tuple of named chromatic pitches.
+      """
+      from abjad.tools import instrumenttools
+      from abjad.tools import pitchtools
+      if self.pitch_indication_is_at_sounding_pitch:
+         instrument = instrumenttools.get_effective_instrument(self)
+         if not instrument:
+            raise InstrumentError('effective instrument of note can not be determined.')
+         t_n = instrument.interval_of_transposition
+         t_n *= -1
+         fingered_pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
+            for pitch in self.pitches]
+         return tuple(fingered_pitches)
+      else:
+         return self.pitches
+
    @apply
    def note_heads( ):
       def fget(self):
@@ -139,6 +178,44 @@ class Chord(_Leaf):
       def fset(self, pitch_tokens):
          self.note_heads = pitch_tokens
       return property(**locals( ))
+
+   @property
+   def sounding_pitches(self):
+      r"""Read-only sounding pitches::
+
+         abjad> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+         abjad> glockenspiel = instrumenttools.Glockenspiel( )(staff)
+         abjad> instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+
+      ::
+
+         abjad> f(staff)
+         \new Staff {
+            \set Staff.instrumentName = \markup { Glockenspiel }
+            \set Staff.shortInstrumentName = \markup { Gkspl. }
+            <c' e'>4
+            <d' fs'>4
+         }
+
+      ::
+
+         abjad> staff[0].sounding_pitches
+         (NamedChromaticPitch("c'''"), NamedChromaticPitch("e'''"))
+
+      Return tuple of named chromatic pitches.
+      """
+      from abjad.tools import instrumenttools
+      from abjad.tools import pitchtools
+      if self.pitch_indication_is_at_sounding_pitch:
+         return self.pitches
+      else:
+         instrument = instrumenttools.get_effective_instrument(self)
+         if not instrument:
+            raise InstrumentError('effective instrument of note can not be determined.')
+         t_n = instrument.interval_of_transposition
+         sounding_pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
+            for pitch in self.pitches]
+         return tuple(sounding_pitches)
 
    ## PUBLIC METHODS ## 
 

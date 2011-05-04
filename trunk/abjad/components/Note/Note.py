@@ -70,6 +70,46 @@ class Note(_Leaf):
 
    ## PUBLIC ATTRIBUTES ##
 
+   @property
+   def fingered_pitch(self):
+      r'''Read-only fingered pitch of note::
+
+         abjad> staff = Staff("d''8 e''8 f''8 g''8")
+         abjad> piccolo = instrumenttools.Piccolo( )(staff)
+         abjad> instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+
+      ::
+
+         abjad> f(staff)
+         \new Staff {
+            \set Staff.instrumentName = \markup { Piccolo }
+            \set Staff.shortInstrumentName = \markup { Picc. }
+            d'8
+            e'8
+            f'8
+            g'8
+         }
+
+      ::
+   
+         abjad> staff[0].fingered_pitch
+         NamedChromaticPitch("d'")
+
+      Return named chromatic pitch.
+      '''
+      from abjad.tools import instrumenttools
+      from abjad.tools import pitchtools
+      if self.pitch_indication_is_at_sounding_pitch:
+         instrument = instrumenttools.get_effective_instrument(self)
+         if not instrument:
+            raise InstrumentError('effective instrument of note can not be determined.')
+         t_n = instrument.interval_of_transposition
+         t_n *= -1
+         fingered_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.pitch, t_n)
+         return fingered_pitch
+      else:
+         return self.pitch
+
    @apply
    def note_head( ):
       def fget(self):
@@ -131,3 +171,42 @@ class Note(_Leaf):
                pitch = pitchtools.NamedChromaticPitch(arg)
                self.note_head.pitch = pitch
       return property(**locals( ))
+
+   @property
+   def sounding_pitch(self):
+      r'''Read-only sounding pitch of note::
+
+         abjad> staff = Staff("d''8 e''8 f''8 g''8")
+         abjad> piccolo = instrumenttools.Piccolo( )(staff)
+         abjad> instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+
+      ::
+
+         abjad> f(staff)
+         \new Staff {
+            \set Staff.instrumentName = \markup { Piccolo }
+            \set Staff.shortInstrumentName = \markup { Picc. }
+            d'8
+            e'8
+            f'8
+            g'8
+         }
+
+      ::
+   
+         abjad> staff[0].sounding_pitch
+         NamedChromaticPitch("d''")
+
+      Return named chromatic pitch.
+      '''
+      from abjad.tools import instrumenttools
+      from abjad.tools import pitchtools
+      if self.pitch_indication_is_at_sounding_pitch:
+         return self.pitch
+      else:
+         instrument = instrumenttools.get_effective_instrument(self)
+         if not instrument:
+            raise InstrumentError('effective instrument of note can not be determined.')
+         t_n = instrument.interval_of_transposition
+         sounding_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.pitch, t_n)
+         return sounding_pitch

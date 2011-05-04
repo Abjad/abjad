@@ -1,3 +1,5 @@
+from abjad.components import Chord
+from abjad.components import Note
 from abjad.core import _Immutable
 import numbers
 
@@ -76,6 +78,11 @@ class PitchRange(_Immutable):
          return self._contains_pitch(pitch)
       elif isinstance(arg, pitchtools.NamedChromaticPitch):
          return self._contains_pitch(arg)
+#      elif isinstance(arg, Note):
+#         if arg.pitch_indication_is_at_sounding_pitch:
+#            return self._contains_pitch(arg.pitch)
+#         else:
+#            'TODO'
       else:
          pitches = pitchtools.list_named_chromatic_pitches_in_expr(arg)
          if pitches:

@@ -1,5 +1,6 @@
 from abjad.tools import leaftools
 from abjad.tools import pitchtools
+from abjad.tools import voicetools
 from abjad.tools.instrumenttools.get_effective_instrument import get_effective_instrument
 
 
@@ -37,6 +38,9 @@ def leaves_in_expr_are_within_traditional_instrument_ranges(expr):
       if pitchtools.is_pitch_carrier(leaf) and not leaf in instrument.traditional_range:
          print 'bar'
          print leaf
+         #voice = voicetools.get_first_voice_in_improper_parentage_of_component(leaf)
+         #print voice
+         #print voice.leaves.index(leaf)
          return False
    else:
       return True
