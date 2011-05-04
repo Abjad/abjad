@@ -161,3 +161,30 @@ def test_pitchtools_PitchRange___contains___14( ):
    assert staff in glockenspiel.traditional_range
 
    assert not Note("c'4") in glockenspiel.traditional_range
+
+
+def test_pitchtools_PitchRange___contains___15( ):
+   '''Nonsemantic notes and chords are evaluated as in-range by definition.
+   '''
+
+   staff = Staff("c'4 d'4 c4 d4")
+   flute = instrumenttools.Flute( )(staff)
+   staff[2].written_pitch_indication_is_nonsemantic = True
+   staff[3].written_pitch_indication_is_nonsemantic = True
+   staff[2].override.note_head.style = 'cross'
+   staff[3].override.note_head.style = 'cross'
+   
+   r'''
+   \new Staff {
+      \set Staff.instrumentName = \markup { Flute }
+      \set Staff.shortInstrumentName = \markup { Fl. }
+      c'4
+      d'4
+      \once \override NoteHead #'style = #'cross
+      c4
+      \once \override NoteHead #'style = #'cross
+      d4
+   }
+   '''
+
+   assert staff in flute.traditional_range

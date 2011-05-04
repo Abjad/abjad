@@ -76,7 +76,9 @@ class PitchRange(_Immutable):
    def __contains__(self, arg):
       from abjad.tools import pitchtools
       from abjad.tools.skiptools.Skip import Skip
-      if isinstance(arg, (int, long, float)):
+      if getattr(arg, 'written_pitch_indication_is_nonsemantic', False):
+         return True
+      elif isinstance(arg, (int, long, float)):
          pitch = pitchtools.NamedChromaticPitch(arg)
          return self._contains_pitch(pitch)
       elif isinstance(arg, pitchtools.NamedChromaticPitch):
