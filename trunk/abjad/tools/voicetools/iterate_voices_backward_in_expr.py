@@ -1,0 +1,41 @@
+from abjad.components import Voice
+from abjad.tools import componenttools
+
+
+def iterate_voices_backward_in_expr(expr):
+   r'''.. versionadded:: 1.1.2
+
+   Iterate voices backward in `expr`::
+
+      abjad> voice_1 = Voice("c'8 d'8 e'8 f'8")
+      abjad> voice_2 = Voice("c'4 b4")
+      abjad> staff = Staff([voice_1, voice_2])
+      abjad> staff.is_parallel = True
+
+   ::
+
+      abjad> f(staff)
+      \new Staff <<
+         \new Voice {
+            c'8
+            d'8
+            e'8
+            f'8
+         }
+         \new Voice {
+            c'4
+            b4
+         }
+      >>
+
+   ::
+
+      abjad> for voice in voicetools.iterate_voices_backward_in_expr:
+      ...   voice
+      Voice{2}
+      Voice{4}
+
+   Return generator.
+   '''
+
+   return componenttools.iterate_components_backward_in_expr(expr, Voice)
