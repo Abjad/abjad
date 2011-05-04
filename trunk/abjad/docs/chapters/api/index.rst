@@ -587,6 +587,8 @@ measuretools
    tools/measuretools/fill_measures_in_expr_with_repeated_notes
    tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
    tools/measuretools/fuse_measures
+   tools/measuretools/get_first_measure_in_improper_parentage_of_component
+   tools/measuretools/get_first_measure_in_proper_parentage_of_component
    tools/measuretools/get_next_measure_from_component
    tools/measuretools/get_nth_measure_in_expr
    tools/measuretools/get_one_indexed_measure_number_in_expr
@@ -860,6 +862,8 @@ scoretools
    tools/scoretools/GrandStaff/GrandStaff
    tools/scoretools/PianoStaff/PianoStaff
    tools/scoretools/StaffGroup/StaffGroup
+   tools/scoretools/get_first_score_in_improper_parentage_of_component
+   tools/scoretools/get_first_score_in_proper_parentage_of_component
    tools/scoretools/make_empty_piano_score
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves
@@ -1181,6 +1185,15 @@ verticalitytools
    tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
    tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
+
+
+voicetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/voicetools/get_first_voice_in_improper_parentage_of_component
+   tools/voicetools/get_first_voice_in_proper_parentage_of_component
 
 
 Additional Abjad composition packages (load manually)
