@@ -9,16 +9,16 @@ class _Leaf(_Component, _StrictComparator):
 
    ## TODO: encapsuate grace and tremolo attributes ##
    __slots__ = ('_after_grace', '_duration', '_grace', 
-      '_pitch_indication_is_nonsemantic',
-      '_pitch_indication_is_at_sounding_pitch',
+      '_written_pitch_indication_is_nonsemantic',
+      '_written_pitch_indication_is_at_sounding_pitch',
       'after_grace', 'grace', 'tremolo_subdivision', )
 
    def __init__(self, written_duration, lilypond_multiplier = None):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, written_duration)
       self._duration.multiplier = lilypond_multiplier
-      self.pitch_indication_is_nonsemantic = False
-      self.pitch_indication_is_at_sounding_pitch = True
+      self.written_pitch_indication_is_nonsemantic = False
+      self.written_pitch_indication_is_at_sounding_pitch = True
 
    ## OVERLOADS ##
 
@@ -94,7 +94,7 @@ class _Leaf(_Component, _StrictComparator):
       return _format_leaf(self)
    
    @apply
-   def pitch_indication_is_nonsemantic( ):
+   def written_pitch_indication_is_nonsemantic( ):
       def fset(self, arg):
          '''Read / write flag to be set when using leaves only graphically.
 
@@ -102,21 +102,21 @@ class _Leaf(_Component, _StrictComparator):
          '''
          if not isinstance(arg, type(True)):
             raise TypeError
-         self._pitch_indication_is_nonsemantic = arg
+         self._written_pitch_indication_is_nonsemantic = arg
          if arg == True:
-            self.pitch_indication_is_at_sounding_pitch = False
+            self.written_pitch_indication_is_at_sounding_pitch = False
       def fget(self):
-         return self._pitch_indication_is_nonsemantic
+         return self._written_pitch_indication_is_nonsemantic
       return property(**locals( ))
 
    @apply
-   def pitch_indication_is_at_sounding_pitch( ):
+   def written_pitch_indication_is_at_sounding_pitch( ):
       def fset(self, arg):
          '''Read / write flag to be set to false when pitch indication is transposed.
          '''
          if not isinstance(arg, type(True)):
             raise TypeError
-         self._pitch_indication_is_at_sounding_pitch = arg
+         self._written_pitch_indication_is_at_sounding_pitch = arg
       def fget(self):
-         return self._pitch_indication_is_at_sounding_pitch
+         return self._written_pitch_indication_is_at_sounding_pitch
       return property(**locals( ))

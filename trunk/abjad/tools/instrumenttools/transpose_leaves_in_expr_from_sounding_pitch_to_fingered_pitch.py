@@ -45,7 +45,7 @@ def transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(expr):
    '''
 
    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-      if not leaf.pitch_indication_is_at_sounding_pitch:
+      if not leaf.written_pitch_indication_is_at_sounding_pitch:
          continue
       instrument = get_effective_instrument(leaf)
       if not instrument:
@@ -54,9 +54,9 @@ def transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(expr):
       t_n *= -1
       if isinstance(leaf, Note):
          leaf.pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(leaf.pitch, t_n)
-         leaf.pitch_indication_is_at_sounding_pitch = False
+         leaf.written_pitch_indication_is_at_sounding_pitch = False
       elif isinstance(leaf, Chord):               
          pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
             for pitch in leaf.pitches]
          leaf.pitches = pitches
-         leaf.pitch_indication_is_at_sounding_pitch = False
+         leaf.written_pitch_indication_is_at_sounding_pitch = False

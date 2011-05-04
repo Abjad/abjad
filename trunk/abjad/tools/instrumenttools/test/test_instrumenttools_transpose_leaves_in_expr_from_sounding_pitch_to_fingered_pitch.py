@@ -8,7 +8,7 @@ def test_instrumenttools_transpose_leaves_in_expr_from_sounding_pitch_to_fingere
 
    for leaf in staff.leaves:
       if isinstance(leaf, (Note, Chord)):
-         assert leaf.pitch_indication_is_at_sounding_pitch
+         assert leaf.written_pitch_indication_is_at_sounding_pitch
 
    instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
@@ -25,6 +25,6 @@ def test_instrumenttools_transpose_leaves_in_expr_from_sounding_pitch_to_fingere
 
    for leaf in staff.leaves:
       if isinstance(leaf, (Note, Chord)):
-         assert not leaf.pitch_indication_is_at_sounding_pitch
+         assert not leaf.written_pitch_indication_is_at_sounding_pitch
 
    assert staff.format == "\\new Staff {\n\t\\set Staff.instrumentName = \\markup { Clarinet }\n\t\\set Staff.shortInstrumentName = \\markup { Cl. }\n\t<d' fs' a'>4\n\te'4\n\tr4\n\tfs'4\n}"
