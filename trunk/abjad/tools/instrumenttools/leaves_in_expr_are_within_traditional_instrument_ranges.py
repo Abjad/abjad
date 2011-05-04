@@ -32,15 +32,7 @@ def leaves_in_expr_are_within_traditional_instrument_ranges(expr):
 
    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
       instrument = get_effective_instrument(leaf)
-      if not instrument:
-         print 'foo'
-         return False
-      if pitchtools.is_pitch_carrier(leaf) and not leaf in instrument.traditional_range:
-         print 'bar'
-         print leaf
-         #voice = voicetools.get_first_voice_in_improper_parentage_of_component(leaf)
-         #print voice
-         #print voice.leaves.index(leaf)
+      if leaf not in instrument.traditional_range:
          return False
    else:
       return True
