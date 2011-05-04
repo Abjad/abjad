@@ -1206,6 +1206,8 @@ voicetools
 
    tools/voicetools/get_first_voice_in_improper_parentage_of_component
    tools/voicetools/get_first_voice_in_proper_parentage_of_component
+   tools/voicetools/iterate_semantic_voices_backward_in_expr
+   tools/voicetools/iterate_semantic_voices_forward_in_expr
    tools/voicetools/iterate_voices_backward_in_expr
    tools/voicetools/iterate_voices_forward_in_expr
 
