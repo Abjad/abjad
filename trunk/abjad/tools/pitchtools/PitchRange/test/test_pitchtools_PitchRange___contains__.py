@@ -126,8 +126,8 @@ def test_pitchtools_PitchRange___contains___12( ):
    '''Rest and skip containement.'''
 
    pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
-   assert Rest((1, 4)) not in pr
-   assert skiptools.Skip((1, 4)) not in pr
+   assert Rest((1, 4)) in pr
+   assert skiptools.Skip((1, 4)) in pr
 
 
 def test_pitchtools_PitchRange___contains___13( ):
@@ -137,3 +137,27 @@ def test_pitchtools_PitchRange___contains___13( ):
 
    assert chromatic_pitch_numbers in pitchtools.PitchRange(-39, 48)
    assert not chromatic_pitch_numbers in pitchtools.PitchRange(36, 48)
+
+
+def test_pitchtools_PitchRange___contains___14( ):
+   '''Works with transposed pitches.
+   '''
+
+   staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+   glockenspiel = instrumenttools.Glockenspiel( )(staff)
+   instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+
+   r'''
+   \new Staff {
+      \set Staff.instrumentName = \markup { Glockenspiel }
+      \set Staff.shortInstrumentName = \markup { Gkspl. }
+      <c' e'>4
+      <d' fs'>4
+   }
+   '''
+
+   assert staff[0] in glockenspiel.traditional_range
+   assert staff[1] in glockenspiel.traditional_range
+   assert staff in glockenspiel.traditional_range
+
+   assert not Note("c'4") in glockenspiel.traditional_range
