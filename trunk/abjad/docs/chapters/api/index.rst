@@ -55,6 +55,8 @@ chordtools
    tools/chordtools/divide_chord_by_diatonic_pitch_number
    tools/chordtools/get_arithmetic_mean_of_chord
    tools/chordtools/get_note_head_from_chord_by_pitch
+   tools/chordtools/iterate_chords_backward_in_expr
+   tools/chordtools/iterate_chords_forward_in_expr
    tools/chordtools/yield_all_subchords_of_chord
 
 
@@ -192,6 +194,8 @@ containertools
    tools/containertools/get_first_element_starting_strictly_before_prolated_offset
    tools/containertools/insert_component_and_do_not_fracture_crossing_spanners
    tools/containertools/insert_component_and_fracture_crossing_spanners
+   tools/containertools/iterate_containers_backward_in_expr
+   tools/containertools/iterate_containers_forward_in_expr
    tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
    tools/containertools/remove_empty_containers_in_expr
    tools/containertools/repeat_contents_of_container
@@ -246,6 +250,8 @@ contexttools
    tools/contexttools/get_effective_staff
    tools/contexttools/get_effective_tempo
    tools/contexttools/get_effective_time_signature
+   tools/contexttools/iterate_contexts_backward_in_expr
+   tools/contexttools/iterate_contexts_forward_in_expr
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
 
@@ -830,6 +836,8 @@ resttools
 
    tools/resttools/MultiMeasureRest/MultiMeasureRest
    tools/resttools/is_lilypond_rest_string
+   tools/resttools/iterate_rests_backward_in_expr
+   tools/resttools/iterate_rests_forward_in_expr
    tools/resttools/make_repeated_rests_from_time_signature
    tools/resttools/make_repeated_rests_from_time_signatures
    tools/resttools/make_rests
@@ -864,6 +872,8 @@ scoretools
    tools/scoretools/StaffGroup/StaffGroup
    tools/scoretools/get_first_score_in_improper_parentage_of_component
    tools/scoretools/get_first_score_in_proper_parentage_of_component
+   tools/scoretools/iterate_scores_backward_in_expr
+   tools/scoretools/iterate_scores_forward_in_expr
    tools/scoretools/make_empty_piano_score
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves
@@ -1003,6 +1013,8 @@ skiptools
    :maxdepth: 1
 
    tools/skiptools/Skip/Skip
+   tools/skiptools/iterate_skips_backward_in_expr
+   tools/skiptools/iterate_skips_forward_in_expr
    tools/skiptools/make_repeated_skips_from_time_signature
    tools/skiptools/make_repeated_skips_from_time_signatures
    tools/skiptools/make_skips_with_multiplied_durations
