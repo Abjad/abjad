@@ -490,6 +490,7 @@ marktools
    tools/marktools/Comment/Comment
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
    tools/marktools/Mark/Mark
+   tools/marktools/apply_articulations_to_notes_and_chords_in_expr
    tools/marktools/detach_annotations_attached_to_component
    tools/marktools/detach_comments_attached_to_component
    tools/marktools/detach_lilypond_command_marks_attached_to_component
