@@ -4,7 +4,7 @@ from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 def move_component_subtree_to_right_in_immediate_parent_of_component(component):
    r'''.. versionadded:: 1.1.2
 
-   Flip `component` one index to the right in parent and spanners::
+   Move `component` subtree to right in immediate parent of `component`::
 
       abjad> t = Voice(macros.scale(4))
       abjad> spannertools.BeamSpanner(t[:2])
@@ -57,12 +57,10 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
       abjad> componenttools.is_well_formed_component(voice) 
       False   
 
-   .. versionchanged:: 1.1.2
-      renamed ``componenttools.flip( )`` to
-      ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component( )``.
+   Preserve spanners.
 
    .. versionchanged:: 1.1.2
-      renamed ``componenttools.move_component_subtree_to_right_in_score_and_spanners( )`` to
+      renamed ``componenttools.flip( )`` to
       ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component( )``.
    '''
 

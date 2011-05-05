@@ -5,7 +5,9 @@ from fractions import Fraction
 from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most \
    import list_leftmost_components_with_prolated_duration_at_most
 
-
+## TODO: implement related function to cut from right edge.
+## TODO: implement related function to cut in middle.
+## TODO: allow large values of `prolated_duration` to empty container contents.
 def cut_component_at_prolated_duration(component, prolated_duration):
    r'''.. versionadded:: 1.1.2
 
@@ -52,17 +54,6 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       }
 
    Return none.
-
-   .. todo:: implement related function to cut from right edge.
-
-   .. todo:: implement related function to cut in middle.
-
-   .. todo:: allow large values of `prolated_duration` to empty
-      container contents.
-
-   .. versionchanged:: 1.1.2
-      renamed ``cut.by_prolated_duration( )`` to
-      ``componenttools.cut_component_at_prolated_duration( )``.
    '''
    from abjad.tools import leaftools
 

@@ -5,8 +5,7 @@ def partition_components_cyclically_by_prolated_durations_exactly_without_overha
    components, prolated_durations):
    '''.. versionadded:: 1.1.1
 
-   Partition `components` cyclically by exact `prolated_durations` and
-   do not allow for overhang components at end.
+   Partition `components` cyclically by `prolated_durations` exactly, without overhang.
    '''
    
    parts = _partition_components_by_durations('prolated', components, prolated_durations, 

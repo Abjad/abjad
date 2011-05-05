@@ -5,7 +5,7 @@ from abjad.components._Leaf import _Leaf
 def component_to_pitch_and_rhythm_skeleton(component):
    r'''.. versionadded:: 1.1.2
 
-   Make pitch and rhythm skeleton of `component`::
+   Change `component` to pitch and rhythm skeleton::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((3, 8), macros.scale(4))
       abjad> measure = Measure((6, 16), [tuplet])   
@@ -73,14 +73,6 @@ def component_to_pitch_and_rhythm_skeleton(component):
             }
          }
       >>
-
-   .. versionchanged:: 1.1.2
-      renamed ``persistencetools.pitch_and_rhythm_skeleton( )`` to
-      ``componenttools.component_to_pitch_and_rhythm_skeleton( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``persistencetools.component_to_pitch_and_rhythm_skeleton( )`` to
-      ``componenttools.component_to_pitch_and_rhythm_skeleton( )``.
    '''
    from abjad.tools.containertools._container_to_pitch_and_rhythm_skeleton import \
       _container_to_pitch_and_rhythm_skeleton

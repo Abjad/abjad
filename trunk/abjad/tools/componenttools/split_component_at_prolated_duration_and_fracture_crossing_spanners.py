@@ -5,8 +5,8 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
    component, prolated_duration, tie_after = False):
    r'''.. versionadded:: 1.1.1
 
-   Split `component` at `prolated_duration`.
-   Fracture spanners.
+   Split `component` at `prolated_duration` and fracture crossing spanners.
+
    Return split parts::
 
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)

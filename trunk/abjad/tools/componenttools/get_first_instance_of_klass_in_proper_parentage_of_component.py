@@ -5,7 +5,7 @@ from abjad.tools.componenttools.get_proper_parentage_of_component import \
 def get_first_instance_of_klass_in_proper_parentage_of_component(component, klass):
    '''.. versionadded:: 1.1.1
 
-   Get first instance of `klass` in parentage of `component`. ::
+   Get first instance of `klass` in proper parentage of `component`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(staff[0], Staff)

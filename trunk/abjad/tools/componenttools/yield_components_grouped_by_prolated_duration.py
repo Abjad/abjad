@@ -1,8 +1,7 @@
 def yield_components_grouped_by_prolated_duration(components):
    '''.. versionadded:: 1.1.2
 
-   Yield successive tuples from `components` with like
-   prolated duration. ::
+   Yield `component` grouped by prolated duration::
 
       abjad> notes = notetools.make_notes([0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
       abjad> for x in componenttools.yield_components_grouped_by_prolated_duration(notes):

@@ -5,7 +5,7 @@ from abjad.components._Leaf import _Leaf
 def component_to_pitch_and_rhythm_skeleton_with_interface_attributes(component):
    r'''.. versionadded:: 1.1.2
 
-   Make pitch and rhythm skeleton of `component` with interface attributes::
+   Change `component` to pitch and rhythm skeleton with interface attributes::
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((3, 8), macros.scale(4))
       abjad> measure = Measure((6, 16), [tuplet])   

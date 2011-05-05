@@ -9,8 +9,9 @@ import copy
 def clone_components_and_fracture_crossing_spanners(components, n = 1):
    r'''.. versionadded:: 1.1.1
 
-   Clone thread-contiguous `components` and fracture 
-   spanners that cover `components`.
+   Clone `components` and fracture crossing spanners.
+
+   The `components` must be thread-contiguous.
 
    The steps this function takes are as follows.
    Deep copy `components`.

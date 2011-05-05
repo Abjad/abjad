@@ -8,9 +8,10 @@ from abjad.tools import durtools
 def clone_governed_component_subtree_from_prolated_duration_to(component, start = 0, stop = None):
    r'''.. versionadded:: 1.1.1
 
-   Clone `component` together with children of `component` and with
-   sequential parentage of `component` from prolated duration `start`
-   to prolated duration `stop`::
+   Clone governed `component` subtree from `start` prolated duration
+   to `stop` prolated duration.
+
+   Governed subtree refers to `component` together with the children of `component`::
 
       abjad> voice = Voice(notetools.make_repeated_notes(2))
       abjad> voice.append(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))

@@ -24,10 +24,6 @@ def get_nth_namesake_from_component(component, n):
       Note(d', 8)
 
    Return component or none.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_namesake_from( )`` to
-      ``componenttools.get_nth_namesake_from_component( )``.
    '''
 
    if 0 <= n:

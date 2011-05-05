@@ -5,6 +5,8 @@ from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanner
 def move_parentage_and_spanners_from_components_to_components(donors, recipients):
    '''.. versionadded:: 1.1.1
       
+   Move parentage and spanners from `donors` to `recipients`.
+
    Give everything from donors to recipients.
    Almost exactly the same as container setitem logic.
    This helper works with orphan donors.

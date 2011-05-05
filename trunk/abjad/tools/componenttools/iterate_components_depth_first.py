@@ -5,7 +5,7 @@ def iterate_components_depth_first(component, capped = True, unique = True,
    forbid = None, direction = 'left'):
    '''.. versionadded:: 1.1.1
 
-   Iterate entire `component` score depth-first from `component`.
+   Iterate components depth-first from `component`.
 
    .. todo:: Add usage examples.
 

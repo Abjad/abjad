@@ -9,7 +9,7 @@ from abjad.tools import mathtools
 def clone_and_partition_governed_component_subtree_by_leaf_counts(container, leaf_counts):
    r'''.. versionadded:: 1.1.1
 
-   Clone `container` and partition clone according to `leaf_counts`. ::
+   Clone `container` and partition clone according to `leaf_counts`::
 
       abjad> voice = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> spannertools.BeamSpanner(voice[0].leaves)

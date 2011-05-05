@@ -1,7 +1,7 @@
 def component_to_score_index(component):
    r'''.. versionadded:: 1.1.2
 
-   Get score index of `component`::
+   Change `component` to score index::
 
       abjad> staff_1 = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> staff_2 = Staff([tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))])

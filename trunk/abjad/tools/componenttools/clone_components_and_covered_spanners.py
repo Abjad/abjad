@@ -8,8 +8,11 @@ import copy
 def clone_components_and_covered_spanners(components, n = 1):
    r'''.. versionadded:: 1.1.1
 
-   Clone thread-contiguous `components` together with 
-   spanners that cover `components`.
+   Clone `components` and covered spanners.
+
+   The `components` must be thread-contiguous.
+
+   Covered spanners are those spanners that cover `components`.
 
    The steps taken in this function are as follows.
    Withdraw `components` from crossing spanners.

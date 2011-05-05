@@ -26,7 +26,8 @@ def extend_in_parent_of_component_and_do_not_grow_spanners(component, components
 
    Return list of `component` and `components`.
 
-   .. versionchanged:: renamed ``extend_in_parent( )`` to
+   .. versionchanged:: 1.1.2
+      renamed ``extend_in_parent( )`` to
       ``extend_in_parent_of_component_and_do_not_grow_spanners( )``.
    '''
 

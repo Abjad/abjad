@@ -6,8 +6,7 @@ def partition_components_once_by_durations_in_seconds_le_without_overhang(
    '''.. versionadded:: 1.1.1
 
    Partition `components` once by durations in seconds that equal
-   or are just less than `durations_in_seconds` and
-   do not allow for overhang components at end.
+   or are just less than `durations_in_seconds`, without overhang.
    '''
    
    parts = _partition_components_by_durations('seconds', components, durations_in_seconds, 

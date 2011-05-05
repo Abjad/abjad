@@ -1,8 +1,7 @@
 def yield_components_grouped_by_preprolated_duration(components):
    '''.. versionadded:: 1.1.2
 
-   Yield successive tuples from `components` with like
-   preprolated duration. ::
+   Yield components grouped by preprolated duration::
 
       abjad> notes = notetools.make_notes([0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
       abjad> for x in componenttools.yield_components_grouped_by_preprolated_duration(notes):
@@ -11,10 +10,6 @@ def yield_components_grouped_by_preprolated_duration(components):
       (Note(c', 4), Note(c', 4))
       (Note(c', 8),)
       (Note(c', 16), Note(c', 16), Note(c', 16))
-
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.group_by_duration_preprolated( )`` to
-      ``componenttools.yield_components_grouped_by_preprolated_duration( )``.
    '''
       
    cur_group = [ ]

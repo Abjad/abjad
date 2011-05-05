@@ -6,9 +6,12 @@ from abjad.exceptions import ContiguityError
 def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = None):
    r'''.. versionadded:: 1.1.1
 
-   Clone `component` together with children of `component` 
-   and with sequential parentage of `component` 
-   from `start` leaf to `stop` leaf::
+   Clone governed `component` subtree by leaf range.
+
+   Governed subtree means `component` together with children of `component`.
+
+   Leaf range refers to the sequential parentage of `component` from `start` leaf index
+   to `stop` leaf index::
 
       abjad> t = Staff([Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)])
       abjad> macros.diatonicize(t)

@@ -7,9 +7,7 @@ from abjad.tools.componenttools.iterate_timeline_backward_in_expr import \
 def iterate_timeline_backward_from_component(expr, klass = _Leaf):
    r'''.. versionadded:: 1.1.2
 
-   Yield `klass` instances in score of `expr`, 
-   sorted backward by score offset stop time,
-   starting from `expr`. ::
+   Iterate timeline backward from `component`::
 
       abjad> score = Score([ ])
       abjad> score.append(Staff(notetools.make_repeated_notes(4, Fraction(1, 4))))
@@ -38,15 +36,9 @@ def iterate_timeline_backward_from_component(expr, klass = _Leaf):
       Note(a', 8)
       Note(g', 8)
 
+   Yield components sorted backward by score offset stop time.
+
    .. todo:: optimize to avoid behind-the-scenes full-score traversal.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.timeline_backward_from( )`` to
-      ``componenttools.iterate_timeline_backward_from_component( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.timeline_backward_from_component( )`` to
-      ``componenttools.iterate_timeline_backward_from_component( )``.
    '''
 
    root = component_to_score_root(expr)

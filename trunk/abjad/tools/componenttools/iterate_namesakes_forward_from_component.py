@@ -1,8 +1,7 @@
 def iterate_namesakes_forward_from_component(component, start = 0, stop = None):
    r'''.. versionadded:: 1.1.1
 
-   Yield left-to-right namesakes of `component` starting
-   from `component`. ::
+   Iterate namesakes forward from `component`::
 
       abjad> container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
       abjad> container.is_parallel = True
@@ -49,14 +48,6 @@ def iterate_namesakes_forward_from_component(component, start = 0, stop = None):
               g'8
               a'8
       }
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.namesakes_forward_from( )`` to
-      ``componenttools.iterate_namesakes_forward_from_component( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.namesakes_forward_from_component( )`` to
-      ``componenttools.iterate_namesakes_forward_from_component( )``.
    '''
 
    cur_component = component

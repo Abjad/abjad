@@ -8,7 +8,9 @@ from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners 
 def clone_components_and_immediate_parent_of_first_component(components):
    r'''.. versionadded:: 1.1.1
 
-   Copy thread-contiguous `components`.
+   Clone `components` and immediate parent of first component.
+
+   The `components` must be thread-contiguous.
    
    Return in newly created container equal to type of 
    first element in `copmonents`.

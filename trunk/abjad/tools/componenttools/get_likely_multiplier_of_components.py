@@ -48,10 +48,6 @@ def get_likely_multiplier_of_components(components):
       True
 
    Return fraction or none.
-
-   .. versionchanged:: 1.1.2
-      renamed ``componenttools.get_likely_multiplier( )`` to
-      ``componenttools.get_likely_multiplier_of_components( )``.
    '''
    from abjad.tools import componenttools
    from abjad.tools import tietools

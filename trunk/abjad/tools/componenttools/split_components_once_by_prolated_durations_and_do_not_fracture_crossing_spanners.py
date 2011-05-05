@@ -5,8 +5,7 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
    components, durations, tie_after = False):
    r'''.. versionadded:: 1.1.1
 
-   Partition `components` according to `durations`.
-   Do not fracture spanners. ::
+   Split `components` once by prolated `durations` and do not fracture crossing spanners::
 
       abjad> t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(t)

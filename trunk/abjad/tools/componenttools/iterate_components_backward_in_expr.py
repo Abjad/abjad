@@ -4,9 +4,7 @@ from abjad.components._Component import _Component
 def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, stop = None):
    r'''.. versionadded:: 1.1.1
 
-   Yield right-to-left instances of `klass` in `expr`.
-
-   ::
+   Iterate components backward in `expr`::
 
       abjad> staff = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> macros.diatonicize(staff)
@@ -65,14 +63,7 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
    This function is thread-agnostic.
 
    .. versionchanged:: 1.1.2
-      Renamed from ``iterate.backwards( )`` to ``componenttools.iterate_components_backward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.naive_backward_in( )`` to
-      ``componenttools.iterate_components_backward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.naive_backward_in_expr( )`` to
+      renamed ``iterate.backwards( )`` to
       ``componenttools.iterate_components_backward_in_expr( )``.
    '''
 

@@ -6,7 +6,7 @@ def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
    r'''.. versionadded:: 1.1.1
 
    Partition `components` cyclically by `prolated_durations` greater than
-   or equal. Allow for terminal overhang part::
+   or equal, with overhang::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
       abjad> macros.diatonicize(staff)

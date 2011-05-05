@@ -6,8 +6,7 @@ def partition_components_cyclically_by_durations_in_seconds_ge_without_overhang(
    '''.. versionadded:: 1.1.1
 
    Partition `components` cyclically by durations in seconds that are
-   equal to or just greater than `durations_in_seconds` 
-   and do not allow for overhang components at end.
+   equal to or just greater than `durations_in_seconds`, without overhang.
    '''
    
    parts = _partition_components_by_durations('prolated', components, prolated_duration, 

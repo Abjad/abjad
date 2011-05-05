@@ -5,7 +5,7 @@ from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component impo
 def detach_lilypond_command_marks_attached_to_component(component, command_name_string = None):
    r'''.. versionadded:: 1.1.2
 
-   Get LilyPond command marks attached to `component`::
+   Detach LilyPond command marks attached to `component`::
 
       abjad> staff = Staff(macros.scale(4))
       abjad> slur = spannertools.SlurSpanner(staff.leaves)

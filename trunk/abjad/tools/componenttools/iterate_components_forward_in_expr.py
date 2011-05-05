@@ -4,7 +4,7 @@ from abjad.components._Component import _Component
 def iterate_components_forward_in_expr(expr, klass = _Component, start = 0, stop = None):
    r'''.. versionadded:: 1.1.1
 
-   Yield left-to-right instances of `klass` in `expr`. ::
+   Iterate components forward in `expr`::
 
       abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> container.is_parallel = True
@@ -81,17 +81,7 @@ def iterate_components_forward_in_expr(expr, klass = _Component, start = 0, stop
    This function is thread-agnostic.
 
    .. versionchanged:: 1.1.2
-      Renamed from ``iterate.naive( )`` to ``componenttools.iterate_components_forward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      `klass` now defaults to ``_Leaf``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.naive_forward_in( )`` to
-      ``componenttools.iterate_components_forward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.naive_forward_in_expr( )`` to
+      renamed ``iterate.naive( )`` to
       ``componenttools.iterate_components_forward_in_expr( )``.
 
    .. versionchanged:: 1.1.2

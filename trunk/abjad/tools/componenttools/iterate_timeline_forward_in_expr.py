@@ -6,8 +6,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 def iterate_timeline_forward_in_expr(expr, klass = _Leaf):
    r'''.. versionadded:: 1.1.2
 
-   Yield `klass` instances in `expr` 
-   sorted forward by prolated offset start time. ::
+   Iterate timeline forward in `expr`::
 
       abjad> score = Score([ ])
       abjad> score.append(Staff(notetools.make_repeated_notes(4, Fraction(1, 4))))
@@ -41,14 +40,6 @@ def iterate_timeline_forward_in_expr(expr, klass = _Leaf):
       Note(f', 4)
 
    .. todo:: optimize to avoid behind-the-scenes full-score traversal.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.timeline_forward_in( )`` to
-      ``componenttools.iterate_timeline_forward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.timeline_forward_in_expr( )`` to
-      ``componenttools.iterate_timeline_forward_in_expr( )``.
    '''
 
    component_generator = iterate_components_forward_in_expr(expr, klass = klass)

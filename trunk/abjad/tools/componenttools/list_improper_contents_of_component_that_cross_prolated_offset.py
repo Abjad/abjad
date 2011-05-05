@@ -6,7 +6,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
    r'''.. versionadded:: 1.1.2
 
-   List all components in `component` that cross `prolated_offset`. ::
+   List improper contents of `component` that cross `prolated_offset`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
@@ -50,10 +50,6 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
 
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
       [ ]
-
-   .. versionchanged:: 1.1.2
-      renamed ``componenttools.get_duration_crossers( )`` to
-      ``componenttools.list_improper_contents_of_component_that_cross_prolated_offset( )``.
    '''
 
    assert isinstance(component, _Component)

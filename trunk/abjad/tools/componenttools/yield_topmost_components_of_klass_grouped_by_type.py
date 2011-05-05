@@ -5,8 +5,7 @@ from abjad.tools.componenttools.yield_topmost_components_grouped_by_type import 
 def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
    '''.. versionadded:: 1.1.2
 
-   Group elements in `expr` by type and yield only those
-   groups with all elements of `klass`::
+   Yield topmost components of `klass` in `expr` grouped by type::
 
       staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
       abjad> for x in leaftools.subruns_of_type(staff, Note):
