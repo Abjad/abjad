@@ -5,9 +5,6 @@ def test_Annotation___init___01( ):
    '''Initialize annotation with dictionary.
    '''
 
-   dictionary = { }
-   annotation = marktools.Annotation(dictionary)
-   assert annotation.contents_string == dictionary
-   assert annotation.contents_string is not dictionary
-   
+   annotation = marktools.Annotation('special dictionary', { })
 
+   assert isinstance(annotation, marktools.Annotation)
