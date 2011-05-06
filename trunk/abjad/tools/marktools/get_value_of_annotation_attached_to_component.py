@@ -1,10 +1,9 @@
 from abjad.exceptions import ExtraMarkError
-from abjad.exceptions import MissingMarkError
-from abjad.tools.marktools.get_annotations_attached_to_component import \
-   get_annotations_attached_to_component
+#from abjad.exceptions import MissingMarkError
+from abjad.tools.marktools.get_annotations_attached_to_component import get_annotations_attached_to_component
 
 
-def get_value_of_annotation_attached_to_component(component, name):
+def get_value_of_annotation_attached_to_component(component, name, default_value = None):
    r'''.. versionadded:: 1.1.2
 
    Get value of annotation with `name` attached to `component`::
@@ -29,14 +28,14 @@ def get_value_of_annotation_attached_to_component(component, name):
 
    Return arbitrary value of annotation.
 
-   Raise missing mark error when no annotation with `name` is attached.
+   Return `default_value` when no annotation with `name` is attached.
 
    Raise extra mark error when more than one annotation with `name` is attached.
    '''
 
    annotations = get_annotations_attached_to_component(component)
    if not annotations:
-      raise MissingMarkError
+      return default_value
 
    with_correct_name = [ ]
    for annotation in annotations:
@@ -44,7 +43,7 @@ def get_value_of_annotation_attached_to_component(component, name):
          with_correct_name.append(annotation)
 
    if not with_correct_name:
-      raise MissingMarkError
+      return default_value
 
    if 1 < len(with_correct_name):
       raise ExtraMarkError
