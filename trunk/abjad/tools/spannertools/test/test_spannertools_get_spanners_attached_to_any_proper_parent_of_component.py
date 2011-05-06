@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_get_all_spanners_attached_to_any_improper_parent_of_component_01( ):
+def test_spannertools_get_spanners_attached_to_any_proper_parent_of_component_01( ):
 
    staff = Staff(macros.scale(4))
    beam = spannertools.BeamSpanner(staff.leaves)
@@ -17,7 +17,7 @@ def test_spannertools_get_all_spanners_attached_to_any_improper_parent_of_compon
    }
    '''
 
-   assert spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(staff[0]) == \
-      set([beam, slur, trill])
-   assert spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(staff) == \
+   assert spannertools.get_spanners_attached_to_any_proper_parent_of_component(staff[0]) == \
       set([trill])
+   assert spannertools.get_spanners_attached_to_any_proper_parent_of_component(staff) == \
+      set([ ])

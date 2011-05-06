@@ -12,7 +12,7 @@ class ShortHairpinCheck(_Check):
       total, bad = 0, 0
       #hairpins = [
       #   p for p in expr.spanners.contained if isinstance(p, HairpinSpanner)]
-      hairpins = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
+      hairpins = spannertools.get_spanners_attached_to_any_improper_child_of_component(
          expr, HairpinSpanner)
       for hairpin in hairpins:
          if len(hairpin.leaves) <= 1:

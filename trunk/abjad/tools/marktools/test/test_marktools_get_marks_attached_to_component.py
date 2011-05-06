@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_marktools_get_all_marks_attached_to_component_01( ):
+def test_marktools_get_marks_attached_to_component_01( ):
 
    staff = Staff(macros.scale(4))
    slur = spannertools.SlurSpanner(staff.leaves)
@@ -19,7 +19,7 @@ def test_marktools_get_all_marks_attached_to_component_01( ):
    }
    '''
 
-   marks = marktools.get_all_marks_attached_to_component(staff[0])
+   marks = marktools.get_marks_attached_to_component(staff[0])
 
    assert comment_mark in marks
    assert lilypond_command_mark in marks

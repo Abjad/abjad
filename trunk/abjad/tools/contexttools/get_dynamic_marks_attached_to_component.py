@@ -1,6 +1,5 @@
 from abjad.tools.contexttools.DynamicMark import DynamicMark
-from abjad.tools.contexttools.get_all_context_marks_attached_to_component import \
-   get_all_context_marks_attached_to_component
+from abjad.tools.contexttools.get_context_marks_attached_to_component import get_context_marks_attached_to_component
 
 
 def get_dynamic_marks_attached_to_component(component):
@@ -28,4 +27,4 @@ def get_dynamic_marks_attached_to_component(component):
    Return tuple of zero or more dynamic marks.
    '''
 
-   return get_all_context_marks_attached_to_component(component, klasses = (DynamicMark, ))
+   return get_context_marks_attached_to_component(component, klasses = (DynamicMark, ))

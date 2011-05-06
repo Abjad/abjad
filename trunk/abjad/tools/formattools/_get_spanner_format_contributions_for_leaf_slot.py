@@ -4,7 +4,7 @@ def _get_spanner_format_contributions_for_leaf_slot(leaf, slot):
    from abjad.tools import spannertools
 
    result = [ ]
-   spanners = spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(leaf)
+   spanners = spannertools.get_spanners_attached_to_any_improper_parent_of_component(leaf)
    spanners = list(spanners)
    spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
    if slot == 'before':

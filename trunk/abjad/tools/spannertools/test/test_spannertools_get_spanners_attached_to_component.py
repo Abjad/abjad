@@ -1,6 +1,6 @@
 from abjad import *
 
-def test_spannertools_get_all_spanners_attached_to_component_01( ):
+def test_spannertools_get_spanners_attached_to_component_01( ):
 
    staff = Staff(macros.scale(4))
    beam = spannertools.BeamSpanner(staff.leaves)
@@ -19,15 +19,15 @@ def test_spannertools_get_all_spanners_attached_to_component_01( ):
 
    leaf = staff[0]
 
-   spanners = spannertools.get_all_spanners_attached_to_component(leaf)
+   spanners = spannertools.get_spanners_attached_to_component(leaf)
    assert spanners == set([beam, first_slur, crescendo])
 
-   spanners = spannertools.get_all_spanners_attached_to_component(leaf, spannertools.BeamSpanner)
+   spanners = spannertools.get_spanners_attached_to_component(leaf, spannertools.BeamSpanner)
    assert spanners == set([beam])
 
    spanner_klasses = (spannertools.BeamSpanner, spannertools.SlurSpanner)
-   spanners = spannertools.get_all_spanners_attached_to_component(leaf, spanner_klasses)
+   spanners = spannertools.get_spanners_attached_to_component(leaf, spanner_klasses)
    assert spanners == set([beam, first_slur])
 
-   spanners = spannertools.get_all_spanners_attached_to_component(leaf, tietools.TieSpanner)
+   spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
    assert spanners == set([ ])

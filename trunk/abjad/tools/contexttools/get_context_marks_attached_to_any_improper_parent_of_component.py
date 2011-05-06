@@ -1,7 +1,7 @@
 from abjad.components._Context import _Context
 
 
-def get_all_context_marks_attached_to_any_improper_parent_of_component(component):
+def get_context_marks_attached_to_any_improper_parent_of_component(component):
 
 
    r'''.. versionadded:: 1.1.2
@@ -27,10 +27,14 @@ def get_all_context_marks_attached_to_any_improper_parent_of_component(component
 
    ::
 
-      abjad> contexttools.get_all_context_marks_attached_to_any_improper_parent_of_component(staff[0])
+      abjad> contexttools.get_context_marks_attached_to_any_improper_parent_of_component(staff[0])
       set([DynamicMark('f')(c'8), ClefMark('treble')(Staff{4})])
 
    Return unordered set of zero or more context marks.
+
+   .. versionchanged:: 1.1.2
+      renamed ``contexttools.get_all_context_marks_attached_to_any_improper_parent_of_component( )`` to
+      ``contexttools.get_context_marks_attached_to_any_improper_parent_of_component( )``.
    '''
    from abjad.tools import componenttools
 

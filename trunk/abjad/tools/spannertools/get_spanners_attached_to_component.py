@@ -1,4 +1,4 @@
-def get_all_spanners_attached_to_component(component, klass = None):
+def get_spanners_attached_to_component(component, klass = None):
    r'''.. versionadded:: 1.1.2
 
    Get all spanners attached to `component`::
@@ -37,6 +37,10 @@ def get_all_spanners_attached_to_component(component, klass = None):
       set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8)])
 
    Return unordered set of zero or more spanners.
+
+   .. versionchanged:: 1.1.2
+      renamed ``spannertools.get_all_spanners_attached_to_component( )`` to
+      ``spannertools.get_spanners_attached_to_component( )``.
    '''
 
    ## note: externalization of (old) component spanner aggregator 'spanners' property

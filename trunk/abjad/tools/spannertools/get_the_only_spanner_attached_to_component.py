@@ -1,7 +1,6 @@
 from abjad.exceptions import ExtraSpannerError
 from abjad.exceptions import MissingSpannerError
-from abjad.tools.spannertools.get_all_spanners_attached_to_component import \
-   get_all_spanners_attached_to_component
+from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 
 def get_the_only_spanner_attached_to_component(component, klass = None):
@@ -36,7 +35,7 @@ def get_the_only_spanner_attached_to_component(component, klass = None):
    '''
    
    ## get spanners and count spanners
-   spanners_attached_to_component = get_all_spanners_attached_to_component(
+   spanners_attached_to_component = get_spanners_attached_to_component(
       component, klass)
    count = len(spanners_attached_to_component)
 

@@ -1,7 +1,7 @@
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-def get_all_context_marks_attached_to_component(start_component, klasses = (ContextMark, )):
+def get_context_marks_attached_to_component(start_component, klasses = (ContextMark, )):
    r'''.. versionadded:: 1.1.2
 
    Get context marks attached to `start_component`::
@@ -23,14 +23,18 @@ def get_all_context_marks_attached_to_component(start_component, klasses = (Cont
       
    ::
       
-      abjad> contexttools.get_all_context_marks_attached_to_component(staff[0]) 
+      abjad> contexttools.get_context_marks_attached_to_component(staff[0]) 
       (DynamicMark('p')(c'8),)
 
    Return tuple of zero or more context marks.
 
    .. versionchanged:: 1.1.2
       renamed ``contexttools.get_context_marks_attached_to_start_component( )`` to
-      ``contexttools.get_all_context_marks_attached_to_component( )``.
+      ``contexttools.get_context_marks_attached_to_component( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``contexttools.get_all_context_marks_attached_to_component( )`` to
+      ``contexttools.get_context_marks_attached_to_component( )``.
    '''
 
    result = [ ]

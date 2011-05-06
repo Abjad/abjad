@@ -1,4 +1,4 @@
-def get_all_spanners_attached_to_any_proper_parent_of_component(component, klass = None):
+def get_spanners_attached_to_any_proper_parent_of_component(component, klass = None):
    r'''.. versionadded:: 1.1.2
 
    Get all spanners attached to any proper parent of `component`::
@@ -17,10 +17,14 @@ def get_all_spanners_attached_to_any_proper_parent_of_component(component, klass
       
    ::
       
-      abjad> spannertools.get_all_spanners_attached_to_any_proper_parent_of_component(staff[0])
+      abjad> spannertools.get_spanners_attached_to_any_proper_parent_of_component(staff[0])
       set([TrillSpanner({c'8, d'8, e'8, f'8})])
 
    Return unordered set of zero or more spanners.
+
+   .. versionchanged:: 1.1.2
+      renamed ``spannertools.get_all_spanners_attached_to_any_proper_parent_of_component( )`` to
+      ``spannertools.get_spanners_attached_to_any_proper_parent_of_component( )``.
    '''
    from abjad.tools import componenttools
 

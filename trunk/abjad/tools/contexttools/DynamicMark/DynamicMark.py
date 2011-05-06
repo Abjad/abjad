@@ -42,7 +42,7 @@ class DynamicMark(ContextMark):
       from abjad.tools import spannertools
       if len(args) == 1:
          dynamic_spanners = \
-            spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+            spannertools.get_spanners_attached_to_any_improper_parent_of_component(
             args[0], klass = (spannertools.DynamicTextSpanner, spannertools.HairpinSpanner))
          for dynamic_spanner in dynamic_spanners:
             if not dynamic_spanner._is_exterior_leaf(args[0]):

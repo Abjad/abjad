@@ -16,7 +16,7 @@ class MispitchedTieCheck(_Check):
       total = 0
       for leaf in componenttools.iterate_components_forward_in_expr(expr, Note):
          total += 1
-         spanners = spannertools.get_all_spanners_attached_to_component(
+         spanners = spannertools.get_spanners_attached_to_component(
             leaf, tietools.TieSpanner)
          if spanners:
             spanner = spanners.pop( )

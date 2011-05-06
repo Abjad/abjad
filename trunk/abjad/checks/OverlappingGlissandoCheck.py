@@ -13,7 +13,7 @@ class OverlappingGlissandoCheck(_Check):
       for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
          #glissandi = leaf.glissando.spanners
          #glissandi = leaf.spanners.get_all_attached_spanners_of_type(GlissandoSpanner)
-         glissandi = spannertools.get_all_spanners_attached_to_component(
+         glissandi = spannertools.get_spanners_attached_to_component(
             leaf, GlissandoSpanner)
          if 1 < len(glissandi):
             if len(glissandi) == 2:
@@ -31,6 +31,6 @@ class OverlappingGlissandoCheck(_Check):
                if glissando not in violators:
                   violators.append(glissando)
       #total = [p for p in expr.spanners.contained if isinstance(p, GlissandoSpanner)]
-      total = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(
+      total = spannertools.get_spanners_attached_to_any_improper_child_of_component(
          expr, GlissandoSpanner)
       return violators, len(total)

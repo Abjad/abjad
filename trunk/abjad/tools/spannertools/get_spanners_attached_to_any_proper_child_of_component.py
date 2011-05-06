@@ -1,8 +1,7 @@
-from abjad.tools.spannertools.get_all_spanners_attached_to_component import \
-   get_all_spanners_attached_to_component
+from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 
-def get_all_spanners_attached_to_any_proper_child_of_component(component, klass = None):
+def get_spanners_attached_to_any_proper_child_of_component(component, klass = None):
    r'''.. versionadded:: 1.1.2
 
    Get all spanners attached to any proper children of `component`::
@@ -25,26 +24,30 @@ def get_all_spanners_attached_to_any_proper_child_of_component(component, klass 
 
    ::
 
-      abjad> spannertools.get_all_spanners_attached_to_any_proper_child_of_component(staff)
+      abjad> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff)
       set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), CrescendoSpanner(c'8, d'8, e'8, f'8), SlurSpanner(e'8, f'8)])
 
    Get all spanners of `klass` attached to any proper children of `component`::
 
       abjad> spanner_klass = spannertools.SlurSpanner
-      abjad> spannertools.get_all_spanners_attached_to_any_proper_child_of_component(staff, spanner_klass)
+      abjad> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klass)
       set([SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)])
 
    Get all spanners of any `klass` attached to any proper children of `component`::
 
       abjad> spanner_klasses = (spannertools.SlurSpanner, spannertools.BeamSpanner)
-      abjad>spannertools.get_all_spanners_attached_to_any_proper_child_of_component(staff, spanner_klasses)
+      abjad>spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klasses)
       set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)])
 
    Return unordered set of zero or more spanners.
 
    .. versionchanged:: 1.1.2
       renamed ``spannertools.get_all_spanners_attached_to_any_proper_children_of_component( )`` to
-      ``spannertools.get_all_spanners_attached_to_any_proper_child_of_component( )``.
+      ``spannertools.get_spanners_attached_to_any_proper_child_of_component( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``spannertools.get_all_spanners_attached_to_any_proper_child_of_component( )`` to
+      ``spannertools.get_spanners_attached_to_any_proper_child_of_component( )``.
    '''
    from abjad.tools import componenttools
 
@@ -57,7 +60,7 @@ def get_all_spanners_attached_to_any_proper_child_of_component(component, klass 
    
    ## iterate only proper children of component and save spanners
    for component in components:
-      result.update(get_all_spanners_attached_to_component(component, klass))
+      result.update(get_spanners_attached_to_component(component, klass))
 
    ## return result
    return result

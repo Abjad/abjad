@@ -16,7 +16,7 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down',
    
    for leaf in iterate_leaves_forward_in_expr(expr):
       if ties == 'together':
-         tie_spanners = spannertools.get_all_spanners_attached_to_component(
+         tie_spanners = spannertools.get_spanners_attached_to_component(
             leaf, tietools.TieSpanner)
          if not tie_spanners:
             if leaf.duration.multiplier is not None:

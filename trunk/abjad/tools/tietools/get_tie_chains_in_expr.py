@@ -22,7 +22,7 @@ def get_tie_chains_in_expr(components):
    ## collect tie spanners in components
    tie_spanners = [ ]
    for component in components:
-      spanners = spannertools.get_all_spanners_attached_to_component(component, TieSpanner)
+      spanners = spannertools.get_spanners_attached_to_component(component, TieSpanner)
       #if component.tie.spanned:
       if spanners:
          #spanner = component.tie.spanner

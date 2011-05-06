@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_get_all_spanners_attached_to_any_proper_child_of_component_01( ):
+def test_spannertools_get_spanners_attached_to_any_proper_child_of_component_01( ):
 
    staff = Staff(macros.scale(4))
    beam = spannertools.BeamSpanner(staff.leaves)
@@ -18,18 +18,18 @@ def test_spannertools_get_all_spanners_attached_to_any_proper_child_of_component
    }
    '''   
 
-   spanners = spannertools.get_all_spanners_attached_to_any_proper_child_of_component(staff)
+   spanners = spannertools.get_spanners_attached_to_any_proper_child_of_component(staff)
    assert spanners == set([beam, first_slur, second_slur])
    assert trill not in spanners
 
-   spanners = spannertools.get_all_spanners_attached_to_any_proper_child_of_component(
+   spanners = spannertools.get_spanners_attached_to_any_proper_child_of_component(
       staff, spannertools.SlurSpanner)
    assert spanners == set([first_slur, second_slur])
 
-   spanners = spannertools.get_all_spanners_attached_to_any_proper_child_of_component(
+   spanners = spannertools.get_spanners_attached_to_any_proper_child_of_component(
       staff, (spannertools.BeamSpanner, spannertools.SlurSpanner))
    assert spanners == set([beam, first_slur, second_slur])
 
-   spanners = spannertools.get_all_spanners_attached_to_any_proper_child_of_component(
+   spanners = spannertools.get_spanners_attached_to_any_proper_child_of_component(
       staff, spannertools.TrillSpanner)
    assert spanners == set([ ])

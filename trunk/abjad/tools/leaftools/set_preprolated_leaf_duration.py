@@ -112,7 +112,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
          componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, tied_leaves)
-         if not spannertools.get_all_spanners_attached_to_any_improper_parent_of_component(
+         if not spannertools.get_spanners_attached_to_any_improper_parent_of_component(
             leaf, tietools.TieSpanner):
             tietools.TieSpanner(all_leaves)
       elif isinstance(duration_tokens[0], Tuplet):

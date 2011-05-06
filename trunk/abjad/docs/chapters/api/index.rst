@@ -239,8 +239,8 @@ contexttools
    tools/contexttools/TempoMark/TempoMark
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
    tools/contexttools/detach_all_context_marks_attached_to_component
-   tools/contexttools/get_all_context_marks_attached_to_any_improper_parent_of_component
-   tools/contexttools/get_all_context_marks_attached_to_component
+   tools/contexttools/get_context_marks_attached_to_any_improper_parent_of_component
+   tools/contexttools/get_context_marks_attached_to_component
    tools/contexttools/get_dynamic_marks_attached_to_component
    tools/contexttools/get_effective_clef
    tools/contexttools/get_effective_context_mark
@@ -497,12 +497,12 @@ marktools
    tools/marktools/detach_annotations_attached_to_component
    tools/marktools/detach_comments_attached_to_component
    tools/marktools/detach_lilypond_command_marks_attached_to_component
-   tools/marktools/get_all_marks_attached_to_component
    tools/marktools/get_annotation_attached_to_component
    tools/marktools/get_annotations_attached_to_component
    tools/marktools/get_articulations_attached_to_component
    tools/marktools/get_comments_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
+   tools/marktools/get_marks_attached_to_component
    tools/marktools/get_value_of_annotation_attached_to_component
    tools/marktools/is_component_with_lilypond_command_mark_attached
 
@@ -1058,13 +1058,13 @@ spannertools
    tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
    tools/spannertools/fracture_all_spanners_attached_to_component
    tools/spannertools/fracture_spanners_that_cross_components
-   tools/spannertools/get_all_spanners_attached_to_any_improper_child_of_component
-   tools/spannertools/get_all_spanners_attached_to_any_improper_parent_of_component
-   tools/spannertools/get_all_spanners_attached_to_any_proper_child_of_component
-   tools/spannertools/get_all_spanners_attached_to_any_proper_parent_of_component
-   tools/spannertools/get_all_spanners_attached_to_component
    tools/spannertools/get_beam_spanner_attached_to_component
    tools/spannertools/get_nth_leaf_in_spanner
+   tools/spannertools/get_spanners_attached_to_any_improper_child_of_component
+   tools/spannertools/get_spanners_attached_to_any_improper_parent_of_component
+   tools/spannertools/get_spanners_attached_to_any_proper_child_of_component
+   tools/spannertools/get_spanners_attached_to_any_proper_parent_of_component
+   tools/spannertools/get_spanners_attached_to_component
    tools/spannertools/get_spanners_contained_by_components
    tools/spannertools/get_spanners_covered_by_components
    tools/spannertools/get_spanners_on_components_or_component_children

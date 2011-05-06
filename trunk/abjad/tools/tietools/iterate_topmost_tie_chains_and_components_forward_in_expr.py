@@ -60,7 +60,7 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
    elif isinstance(expr, (list, Container)):
       for component in expr:
          if isinstance(component, _Leaf):
-            tie_spanners = spannertools.get_all_spanners_attached_to_component(
+            tie_spanners = spannertools.get_spanners_attached_to_component(
                component, TieSpanner)
             #if not component.tie.spanned or component.tie.last:
             if not tie_spanners or tuple(tie_spanners)[0]._is_my_last_leaf(component):

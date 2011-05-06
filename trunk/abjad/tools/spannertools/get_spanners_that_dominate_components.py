@@ -1,6 +1,5 @@
 from abjad.components._Component import _Component
-from abjad.tools.spannertools.get_all_spanners_attached_to_component import \
-   get_all_spanners_attached_to_component
+from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 
 def get_spanners_that_dominate_components(components):
@@ -36,7 +35,7 @@ def get_spanners_that_dominate_components(components):
    stop_components = set(last._navigator._contemporaneous_stop_contents)
    for component in start_components:
       #for spanner in component.spanners.attached:
-      for spanner in get_all_spanners_attached_to_component(component):
+      for spanner in get_spanners_attached_to_component(component):
          if set(spanner[:]) & stop_components != set([ ]):
             index = spanner.index(component)
             receipt.add((spanner, index))

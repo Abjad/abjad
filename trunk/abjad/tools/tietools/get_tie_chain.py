@@ -9,7 +9,7 @@ def get_tie_chain(component):
    Get tie chain from `component`.
    '''
 
-   tie_spanners = spannertools.get_all_spanners_attached_to_component(component, TieSpanner)
+   tie_spanners = spannertools.get_spanners_attached_to_component(component, TieSpanner)
    count = len(tie_spanners)
 
    if count == 0:

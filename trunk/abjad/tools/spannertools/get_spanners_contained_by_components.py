@@ -1,5 +1,4 @@
-from abjad.tools.spannertools.get_all_spanners_attached_to_any_improper_child_of_component import \
-   get_all_spanners_attached_to_any_improper_child_of_component
+from abjad.tools.spannertools.get_spanners_attached_to_any_improper_child_of_component import get_spanners_attached_to_any_improper_child_of_component
 
 
 def get_spanners_contained_by_components(components):
@@ -18,5 +17,5 @@ def get_spanners_contained_by_components(components):
    result = set([ ]) 
    for component in components:
       #result.update(component.spanners.contained)
-      result.update(get_all_spanners_attached_to_any_improper_child_of_component(component))
+      result.update(get_spanners_attached_to_any_improper_child_of_component(component))
    return result

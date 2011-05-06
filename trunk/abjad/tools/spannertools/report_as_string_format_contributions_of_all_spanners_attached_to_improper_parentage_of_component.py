@@ -1,5 +1,4 @@
-from abjad.tools.spannertools.get_all_spanners_attached_to_any_improper_parent_of_component import \
-   get_all_spanners_attached_to_any_improper_parent_of_component
+from abjad.tools.spannertools.get_spanners_attached_to_any_improper_parent_of_component import get_spanners_attached_to_any_improper_parent_of_component
 
 
 def report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component(
@@ -30,7 +29,7 @@ def report_as_string_format_contributions_of_all_spanners_attached_to_improper_p
 
    result = ''
    locations = ('_before', '_left', '_right', '_after')
-   spanners = list(get_all_spanners_attached_to_any_improper_parent_of_component(component, klass))
+   spanners = list(get_spanners_attached_to_any_improper_parent_of_component(component, klass))
    spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
    for spanner in spanners:
       result += '%s\n' % spanner.__class__.__name__

@@ -56,7 +56,7 @@ def reverse_contents_of_container(container):
    elif isinstance(container, Container):
       container._music.reverse( )
       #spanners = container.spanners.contained
-      spanners = spannertools.get_all_spanners_attached_to_any_improper_child_of_component(container)
+      spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(container)
       for s in spanners:
          s._components.sort(_offset)
 

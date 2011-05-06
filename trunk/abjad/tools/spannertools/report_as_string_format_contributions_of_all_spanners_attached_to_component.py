@@ -1,5 +1,4 @@
-from abjad.tools.spannertools.get_all_spanners_attached_to_component import \
-   get_all_spanners_attached_to_component
+from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 
 def report_as_string_format_contributions_of_all_spanners_attached_to_component(
