@@ -453,8 +453,10 @@ leaftools
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
    tools/leaftools/make_leaves_from_note_value_signal
+   tools/leaftools/remove_initial_rests_from_sequence
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
-   tools/leaftools/remove_markup_from_leaves_in_expr
+   tools/leaftools/remove_outer_rests_from_sequence
+   tools/leaftools/remove_terminal_rests_from_sequence
    tools/leaftools/repeat_leaf_and_extend_spanners
    tools/leaftools/repeat_leaves_in_expr_and_extend_spanners
    tools/leaftools/scale_preprolated_leaf_duration
@@ -519,6 +521,7 @@ markuptools
    tools/markuptools/get_markup_attached_to_component
    tools/markuptools/make_big_centered_page_number_markup
    tools/markuptools/remove_markup_attached_to_component
+   tools/markuptools/remove_markup_from_leaves_in_expr
 
 
 mathtools

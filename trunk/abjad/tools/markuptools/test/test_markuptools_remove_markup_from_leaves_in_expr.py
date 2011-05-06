@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_remove_markup_from_leaves_in_expr_01( ):
+def test_markuptools_remove_markup_from_leaves_in_expr_01( ):
    '''Clear multiple pieces of down-markup.'''
 
    t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
@@ -15,7 +15,7 @@ def test_leaftools_remove_markup_from_leaves_in_expr_01( ):
    }
    '''
 
-   leaftools.remove_markup_from_leaves_in_expr(t)
+   markuptools.remove_markup_from_leaves_in_expr(t)
    
    r'''
    \times 2/3 {
