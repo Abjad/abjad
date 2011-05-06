@@ -38,13 +38,10 @@ def get_value_of_annotation_attached_to_component(component, name):
    if not annotations:
       raise MissingMarkError
 
-   print annotations
-
    with_correct_name = [ ]
    for annotation in annotations:
       if annotation.name == name:
          with_correct_name.append(annotation)
-   print with_correct_name
 
    if not with_correct_name:
       raise MissingMarkError
