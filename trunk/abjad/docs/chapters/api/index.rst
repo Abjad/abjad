@@ -427,6 +427,8 @@ leaftools
    tools/leaftools/iterate_leaf_pairs_forward_in_expr
    tools/leaftools/iterate_leaves_backward_in_expr
    tools/leaftools/iterate_leaves_forward_in_expr
+   tools/leaftools/iterate_notes_and_chords_backward_in_expr
+   tools/leaftools/iterate_notes_and_chords_forward_in_expr
    tools/leaftools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
    tools/leaftools/label_leaves_in_expr_with_leaf_depth
    tools/leaftools/label_leaves_in_expr_with_leaf_durations
@@ -797,8 +799,6 @@ pitchtools
    tools/pitchtools/is_octave_tick_string
    tools/pitchtools/is_pitch_carrier
    tools/pitchtools/iterate_named_chromatic_pitch_pairs_forward_in_expr
-   tools/pitchtools/iterate_notes_and_chords_backward_in_expr
-   tools/pitchtools/iterate_notes_and_chords_forward_in_expr
    tools/pitchtools/list_chromatic_pitch_numbers_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr

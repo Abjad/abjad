@@ -23,8 +23,8 @@ def iterate_notes_and_chords_forward_in_expr(expr, start = 0, stop = None):
 
    ::
 
-      abjad> for chord in chordtools.iterate_chords_forward_in_expr(staff):
-      ...   chord
+      abjad> for leaf in leaftools.iterate_notes_and_chords_forward_in_expr(staff):
+      ...   leaf
       Chord("<e' g' c''>8")
       Note("a'8")
       Chord("<d' f' b'>8")
@@ -32,6 +32,10 @@ def iterate_notes_and_chords_forward_in_expr(expr, start = 0, stop = None):
    Ignore threads.
 
    Return generator.
+
+   .. versionchanged:: 1.1.2
+      renamed ``pitchtools.iterate_notes_and_chords_forward_in_expr( )`` to
+      ``leaftools.iterate_notes_and_chords_forward_in_expr( )``.
    '''
    
    return componenttools.iterate_components_forward_in_expr(

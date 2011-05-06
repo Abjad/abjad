@@ -21,8 +21,8 @@ def apply_articulations_to_notes_and_chords_in_expr(expr, articulations):
 
    Return none.
    '''
-   from abjad.tools import pitchtools
+   from abjad.tools import leaftools
 
-   for leaf in pitchtools.iterate_notes_and_chords_forward_in_expr(expr):
+   for leaf in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
       for articulation in articulations:
          Articulation(articulation)(leaf)
