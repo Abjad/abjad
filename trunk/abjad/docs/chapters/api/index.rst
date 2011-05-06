@@ -58,6 +58,7 @@ chordtools
    tools/chordtools/iterate_chords_backward_in_expr
    tools/chordtools/iterate_chords_forward_in_expr
    tools/chordtools/yield_all_subchords_of_chord
+   tools/chordtools/yield_groups_of_chords_in_sequence
 
 
 componenttools
@@ -169,6 +170,7 @@ componenttools
    tools/componenttools/tabulate_well_formedness_violations_in_expr
    tools/componenttools/yield_components_grouped_by_preprolated_duration
    tools/componenttools/yield_components_grouped_by_prolated_duration
+   tools/componenttools/yield_groups_of_mixed_klasses_in_sequence
    tools/componenttools/yield_topmost_components_grouped_by_type
    tools/componenttools/yield_topmost_components_of_klass_grouped_by_type
 
@@ -463,6 +465,7 @@ leaftools
    tools/leaftools/set_preprolated_leaf_duration
    tools/leaftools/show_leaves
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
+   tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 
 
 lilyfiletools
@@ -664,6 +667,7 @@ notetools
    tools/notetools/make_repeated_notes_from_time_signature
    tools/notetools/make_repeated_notes_from_time_signatures
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
+   tools/notetools/yield_groups_of_notes_in_sequence
 
 
 pitchtools
@@ -852,6 +856,7 @@ resttools
    tools/resttools/make_repeated_rests_from_time_signatures
    tools/resttools/make_rests
    tools/resttools/set_vertical_positioning_pitch_on_rest
+   tools/resttools/yield_groups_of_rests_in_sequence
 
 
 schemetools
@@ -1029,6 +1034,7 @@ skiptools
    tools/skiptools/make_repeated_skips_from_time_signatures
    tools/skiptools/make_skips_with_multiplied_durations
    tools/skiptools/replace_leaves_in_expr_with_skips
+   tools/skiptools/yield_groups_of_skips_in_sequence
 
 
 spannertools

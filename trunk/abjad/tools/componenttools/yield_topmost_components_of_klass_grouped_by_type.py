@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.yield_topmost_components_grouped_by_type import \
-   yield_topmost_components_grouped_by_type
+from abjad.tools.componenttools.yield_topmost_components_grouped_by_type import yield_topmost_components_grouped_by_type
 
 
 def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
