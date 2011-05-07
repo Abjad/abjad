@@ -11,7 +11,7 @@ class _Leaf(_Component, _StrictComparator):
    __slots__ = ('_after_grace', '_duration', '_grace', 
       '_written_pitch_indication_is_nonsemantic',
       '_written_pitch_indication_is_at_sounding_pitch',
-      'after_grace', 'grace', 'tremolo_subdivision', )
+      'after_grace', 'grace', )
 
    def __init__(self, written_duration, lilypond_multiplier = None):
       _Component.__init__(self)

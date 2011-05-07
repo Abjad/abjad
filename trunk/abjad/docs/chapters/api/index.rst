@@ -498,18 +498,21 @@ marktools
    tools/marktools/Comment/Comment
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
    tools/marktools/Mark/Mark
+   tools/marktools/StemTremolo/StemTremolo
    tools/marktools/apply_articulations_to_notes_and_chords_in_expr
    tools/marktools/detach_annotations_attached_to_component
    tools/marktools/detach_articulations_attached_to_component
    tools/marktools/detach_comments_attached_to_component
    tools/marktools/detach_lilypond_command_marks_attached_to_component
    tools/marktools/detach_marks_attached_to_component
+   tools/marktools/detach_stem_tremolos_attached_to_component
    tools/marktools/get_annotation_attached_to_component
    tools/marktools/get_annotations_attached_to_component
    tools/marktools/get_articulations_attached_to_component
    tools/marktools/get_comments_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
    tools/marktools/get_marks_attached_to_component
+   tools/marktools/get_stem_tremolos_attached_to_component
    tools/marktools/get_value_of_annotation_attached_to_component
    tools/marktools/is_component_with_lilypond_command_mark_attached
 

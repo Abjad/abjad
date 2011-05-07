@@ -14,6 +14,8 @@ from abjad.tools.formattools._get_markup_format_contributions import \
    _get_markup_format_contributions
 from abjad.tools.formattools._get_spanner_format_contributions_for_leaf_slot import \
    _get_spanner_format_contributions_for_leaf_slot
+from abjad.tools.formattools._get_stem_tremolo_format_contributions import \
+   _get_stem_tremolo_format_contributions
 
 
 def _format_leaf(leaf):
@@ -59,7 +61,7 @@ def _leaf_body(leaf):
    client = leaf
    spanners = client.spanners
    result.extend(_nucleus(leaf))
-   result.extend(_tremolo_subdivision_contribution(leaf))
+   result.extend(_get_stem_tremolo_format_contributions(leaf))
    result.extend(_get_articulation_format_contributions(leaf))
    result.extend(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'right'))
    ## remove next line ##
@@ -105,13 +107,6 @@ def _nucleus(leaf):
 #      elif contribution == 'comment':
 #         result.append(r'%% leaf %s' % leaf.number)
 #   return result
-
-def _tremolo_subdivision_contribution(leaf):
-   result = [ ]
-   subdivision = getattr(leaf, 'tremolo_subdivision', None)
-   if subdivision:
-      result.append(':%s' % subdivision) 
-   return result
 
 def _get_slot_1(leaf):
    result = [ ]
