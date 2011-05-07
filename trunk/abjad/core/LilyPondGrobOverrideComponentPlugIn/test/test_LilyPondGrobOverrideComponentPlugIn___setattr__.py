@@ -920,23 +920,23 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___43( ):
    '''Override LilyPond StemTremolo grob.
    '''
 
-   t = Staff(macros.scale(4))
-   t.override.stem_tremolo.staff_padding = 2
-   t.override.stem_tremolo.Y_extent = (-1.5, 1.5)
+   staff = Staff("c'8 d'8 e'8 f'8")
+   staff.override.stem_tremolo.slope = 0.5
+   staff.override.stem_tremolo.staff_padding = 2
 
    r'''
    \new Staff \with {
-           \override StemTremolo #'Y-extent = #'(-1.5 . 1.5)
-           \override StemTremolo #'staff-padding = #2
+      \override StemTremolo #'slope = #0.5
+      \override StemTremolo #'staff-padding = #2
    } {
-           c'8
-           d'8
-           e'8
-           f'8
+      c'8
+      d'8
+      e'8
+      f'8
    }
    '''
 
-   assert t.format == "\\new Staff \\with {\n\t\\override StemTremolo #'Y-extent = #'(-1.5 . 1.5)\n\t\\override StemTremolo #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+   assert staff.format == "\\new Staff \\with {\n\t\\override StemTremolo #'slope = #0.5\n\t\\override StemTremolo #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___44( ):
