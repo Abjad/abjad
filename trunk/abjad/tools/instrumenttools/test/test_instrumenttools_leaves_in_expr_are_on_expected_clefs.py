@@ -29,3 +29,16 @@ def test_instrumenttools_leaves_in_expr_are_on_expected_clefs_02( ):
    instrumenttools.Bassoon( )(staff)
 
    assert not instrumenttools.leaves_in_expr_are_on_expected_clefs(staff)
+
+
+def test_instrumenttools_leaves_in_expr_are_on_expected_clefs_03( ):
+
+   staff = Staff("c'8 d'8 e'8 f'8")
+   contexttools.ClefMark('percussion')(staff)
+   instrumenttools.Violin( )(staff)
+
+   assert instrumenttools.leaves_in_expr_are_on_expected_clefs(
+      staff, percussion_clef_is_allowed = True)
+
+   assert not instrumenttools.leaves_in_expr_are_on_expected_clefs(
+      staff, percussion_clef_is_allowed = False)
