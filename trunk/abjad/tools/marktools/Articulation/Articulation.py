@@ -68,10 +68,10 @@ class Articulation(Mark):
    __deepcopy__ = __copy__
 
    def __eq__(self, expr):
-      assert isinstance(expr, type(self))
-      if expr.name_string == self.name_string:
-         if self.direction_string == expr.direction_string:
-            return True
+      if isinstance(expr, type(self)):
+         if expr.name_string == self.name_string:
+            if self.direction_string == expr.direction_string:
+               return True
       return False
 
    def __str__(self):
