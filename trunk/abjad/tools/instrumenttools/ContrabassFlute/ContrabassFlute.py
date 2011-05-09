@@ -30,7 +30,8 @@ class ContrabassFlute(Flute):
    '''
 
    def __init__(self,
-      instrument_name = 'Contrabass Flute', short_instrument_name = 'Contrabass Fl.',
+      instrument_name = r'Contrabass Flute', 
+      short_instrument_name = r'Cbass Fl.',
       target_context = None):
       Flute.__init__(self, instrument_name, short_instrument_name, target_context)
       self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('g,')
