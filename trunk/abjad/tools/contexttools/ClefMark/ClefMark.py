@@ -39,6 +39,8 @@ class ClefMark(ContextMark):
          self._clef_name_string = arg
       elif isinstance(arg, type(self)):
          self._clef_name_string = arg.clef_name_string
+      else:
+         raise TypeError('can not init clef from %s.' % arg)
 
    ## OVERLOADS ##
 
