@@ -1,3 +1,4 @@
+from abjad.exceptions import MissingInstrumentError
 from abjad.tools import leaftools
 from abjad.tools import pitchtools
 from abjad.tools import voicetools
@@ -23,5 +24,7 @@ def iterate_leaves_in_expr_outside_traditional_instrument_ranges(expr):
 
    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
       instrument = get_effective_instrument(leaf)
+      if instrument is None:
+         raise MissingInstrumentError
       if leaf not in instrument.traditional_range:
          yield leaf

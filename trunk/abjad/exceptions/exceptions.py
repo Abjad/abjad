@@ -10,12 +10,16 @@ class InstrumentError(Exception):
    '''Any type of instrument error.'''
    pass
 
+class MissingInstrumentError(Exception):
+   '''Operation assumes presence of instrument but none is found.'''
+   pass
+
 class IntervalError(Exception):
    '''Any type of error relating to pitch intervals.'''
    pass
 
 class MissingComponentError(Exception):
-   '''Operation assumes presence of component, but none is found.'''
+   '''Operation assumes presence of component but none is found.'''
    pass
 
 class MarkError(Exception):
@@ -66,8 +70,7 @@ class MeasureContiguityError(ContiguityError):
    pass
 
 class ExtraSpannerError(Exception):
-   '''Operation assumes presence of a single spanner,
-      but more than one spanner is present.'''
+   '''Operation assumes presence of a single spanner but more than one spanner is present.'''
    pass
 
 class InputSpecificationError(Exception):
@@ -88,8 +91,7 @@ class MeterAssignmentError(MeterError):
    pass
 
 class MissingSpannerError(Exception):
-   '''Operation assumes presence of spanner,
-       but spanner is missing.'''
+   '''Operation assumes presence of spanner but spanner is missing.'''
    pass
 
 class MusicContentsError(Exception):
@@ -148,8 +150,7 @@ class MissingPitchError(PitchError):
    pass
 
 class ExtraPitchError(PitchError):
-   '''Operation assumes presence of a single pitch,
-      but more than one pitch is present.'''
+   '''Operation assumes presence of a single pitch but more than one pitch is present.'''
    pass
 
 class SpacingError(Exception):
