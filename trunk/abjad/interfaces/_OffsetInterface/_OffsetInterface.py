@@ -1,4 +1,4 @@
-from abjad.exceptions import UndefinedTempoError
+from abjad.exceptions import MissingTempoError
 from abjad.interfaces._Interface import _Interface
 from fractions import Fraction
 
@@ -34,9 +34,9 @@ class _OffsetInterface(_Interface):
             self._start_in_seconds = Fraction(0)
          ## this one case is possible for containers only
          if self._start_in_seconds is None:
-            raise UndefinedTempoError
+            raise MissingTempoError
          self._stop_in_seconds = self._start_in_seconds + cur_duration_in_seconds
-      except UndefinedTempoError:
+      except MissingTempoError:
          pass
       
    def _update_prolated_offset_values_of_component(self):
@@ -67,7 +67,7 @@ class _OffsetInterface(_Interface):
 #      return self._start_in_seconds
       self._component._update_marks_of_entire_score_tree_if_necessary( )
       if self._start_in_seconds is None:
-         raise UndefinedTempoError
+         raise MissingTempoError
       return self._start_in_seconds
 
    @property
@@ -75,6 +75,6 @@ class _OffsetInterface(_Interface):
 #      return self.start_in_seconds + self._client.duration.seconds
 #      self._component._update_entire_score_tree_if_necessary( )
 #      if self._stop_in_seconds is None:
-#         raise UndefinedTempoError
+#         raise MissingTempoError
 #      return self._stop_in_seconds
       return self.start_in_seconds + self._client.duration.seconds

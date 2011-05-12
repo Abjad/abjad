@@ -1,6 +1,6 @@
 from abjad.components._Component import _Component
 from abjad.exceptions import MissingSpannerError
-from abjad.exceptions import UndefinedTempoError
+from abjad.exceptions import MissingTempoError
 from abjad.interfaces._Interface import _Interface
 from abjad.tools.leaftools._inspect_leaf_instance_attributes import _inspect_leaf_instance_attributes
 from fractions import Fraction
@@ -63,7 +63,7 @@ def _handle_read_only_property(property_host_name, property_host, property_name)
          else:
             interface_name, interface = property_name, attribute
          result.extend(_handle_interface(interface_name, interface))
-   except (MissingSpannerError, UndefinedTempoError):
+   except (MissingSpannerError, MissingTempoError):
       pass
    return result
 

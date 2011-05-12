@@ -1,7 +1,7 @@
 from abjad.components._Component._ComponentDurationInterface import _ComponentDurationInterface
 from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import AssignabilityError
-from abjad.exceptions import UndefinedTempoError
+from abjad.exceptions import MissingTempoError
 from abjad.tools import durtools
 from fractions import Fraction
 
@@ -75,7 +75,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
       tempo = contexttools.get_effective_tempo(self._client)
       if tempo is not None:
          return self.prolated / tempo.duration / tempo.units_per_minute * 60
-      raise UndefinedTempoError
+      raise MissingTempoError
 
    @apply
    def written( ):

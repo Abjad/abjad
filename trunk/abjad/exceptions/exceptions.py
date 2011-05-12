@@ -202,7 +202,7 @@ class TypographicWhitespaceError(Exception):
       Insert whitespace after measure instead.'''
    pass
 
-class UndefinedTempoError(TempoError):
+class MissingTempoError(TempoError):
    '''Tempo required for calculation but not yet defined.'''
    pass
 

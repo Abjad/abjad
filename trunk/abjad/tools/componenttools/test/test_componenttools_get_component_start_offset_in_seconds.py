@@ -16,9 +16,9 @@ def test_componenttools_get_component_start_offset_in_seconds_01( ):
    }
    '''
 
-   assert py.test.raises(UndefinedTempoError, 
+   assert py.test.raises(MissingTempoError, 
       'componenttools.get_component_start_offset_in_seconds(t[0])')
-   assert py.test.raises(UndefinedTempoError, 
+   assert py.test.raises(MissingTempoError, 
       'componenttools.get_component_stop_offset_in_seconds(t[0])')
 
 

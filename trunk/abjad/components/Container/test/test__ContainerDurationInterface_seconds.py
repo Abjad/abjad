@@ -33,4 +33,4 @@ def test__ContainerDurationInterface_seconds_02( ):
       without tempo indication.'''
 
    t = Container(macros.scale(4))
-   assert py.test.raises(UndefinedTempoError, 't.duration.seconds')
+   assert py.test.raises(MissingTempoError, 't.duration.seconds')
