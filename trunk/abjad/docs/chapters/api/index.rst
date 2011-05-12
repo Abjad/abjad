@@ -888,6 +888,8 @@ scoretools
    tools/scoretools/GrandStaff/GrandStaff
    tools/scoretools/PianoStaff/PianoStaff
    tools/scoretools/StaffGroup/StaffGroup
+   tools/scoretools/add_double_bar_to_end_of_score
+   tools/scoretools/add_markup_to_end_of_score
    tools/scoretools/get_first_score_in_improper_parentage_of_component
    tools/scoretools/get_first_score_in_proper_parentage_of_component
    tools/scoretools/iterate_scores_backward_in_expr
