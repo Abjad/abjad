@@ -25,6 +25,8 @@ def iterate_leaves_in_expr_outside_traditional_instrument_ranges(expr):
    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
       instrument = get_effective_instrument(leaf)
       if instrument is None:
+         print leaf
+         print leaf._parentage.parent._parentage.parent
          raise MissingInstrumentError
       if leaf not in instrument.traditional_range:
          yield leaf
