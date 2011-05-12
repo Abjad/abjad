@@ -100,7 +100,7 @@ class Chord(_Leaf):
 
          abjad> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
          abjad> glockenspiel = instrumenttools.Glockenspiel( )(staff)
-         abjad> instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+         abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
       ::
 
@@ -185,7 +185,7 @@ class Chord(_Leaf):
 
          abjad> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
          abjad> glockenspiel = instrumenttools.Glockenspiel( )(staff)
-         abjad> instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+         abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
       ::
 

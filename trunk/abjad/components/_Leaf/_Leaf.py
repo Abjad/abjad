@@ -92,7 +92,7 @@ class _Leaf(_Component, _StrictComparator):
    def format(self):
       from abjad.tools.leaftools._format_leaf import _format_leaf
       return _format_leaf(self)
-   
+
    @apply
    def written_pitch_indication_is_nonsemantic( ):
       def fset(self, arg):

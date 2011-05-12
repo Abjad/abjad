@@ -145,7 +145,7 @@ def test_pitchtools_PitchRange___contains___14( ):
 
    staff = Staff("<c''' e'''>4 <d''' fs'''>4")
    glockenspiel = instrumenttools.Glockenspiel( )(staff)
-   instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+   instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
    r'''
    \new Staff {

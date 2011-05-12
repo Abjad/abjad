@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_instrumenttools_transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch_01( ):
+def test_instrumenttools_transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch_01( ):
 
    staff = Staff("<c' e' g'>4 d'4 r4 e'4")
    instrumenttools.Clarinet( )(staff)
@@ -10,7 +10,7 @@ def test_instrumenttools_transpose_leaves_in_expr_from_sounding_pitch_to_fingere
       if isinstance(leaf, (Note, Chord)):
          assert leaf.written_pitch_indication_is_at_sounding_pitch
 
-   instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+   instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
    r'''
    \new Staff {

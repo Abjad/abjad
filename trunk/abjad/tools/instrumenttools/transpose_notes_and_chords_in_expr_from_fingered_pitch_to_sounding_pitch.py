@@ -5,10 +5,10 @@ from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.get_effective_instrument import get_effective_instrument
 
 
-def transpose_leaves_in_expr_from_fingered_pitch_to_sounding_pitch(expr):
+def transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch(expr):
    r'''.. versionadded:: 1.1.2
 
-   Transpose leaves in `expr` from sounding pitch to fingered pitch::
+   Transpose notes and chords in `expr` from sounding pitch to fingered pitch::
 
       abjad> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
       abjad> instrumenttools.Clarinet( )(staff)
@@ -27,7 +27,7 @@ def transpose_leaves_in_expr_from_fingered_pitch_to_sounding_pitch(expr):
 
    ::
 
-      abjad> instrumenttools.transpose_leaves_in_expr_from_fingered_pitch_to_sounding_pitch(staff)
+      abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch(staff)
 
    ::
 
@@ -44,18 +44,19 @@ def transpose_leaves_in_expr_from_fingered_pitch_to_sounding_pitch(expr):
    Return none.
    '''
 
-   for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-      if leaf.written_pitch_indication_is_at_sounding_pitch:
+   for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
+      if note_or_chord.written_pitch_indication_is_at_sounding_pitch:
          continue
-      instrument = get_effective_instrument(leaf)
+      instrument = get_effective_instrument(note_or_chord)
       if not instrument:
          continue
       t_n = instrument.interval_of_transposition
-      if isinstance(leaf, Note):
-         leaf.pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(leaf.pitch, t_n)
-         leaf.written_pitch_indication_is_at_sounding_pitch = True
-      elif isinstance(leaf, Chord):
+      if isinstance(note_or_chord, Note):
+         note_or_chord.pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(
+            note_or_chord.pitch, t_n)
+         note_or_chord.written_pitch_indication_is_at_sounding_pitch = True
+      elif isinstance(note_or_chord, Chord):
          pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
-            for pitch in leaf.pitches]
-         leaf.pitches = pitches
-         leaf.written_pitch_indication_is_at_sounding_pitch = True
+            for pitch in note_or_chord.pitches]
+         note_or_chord.pitches = pitches
+         note_or_chord.written_pitch_indication_is_at_sounding_pitch = True

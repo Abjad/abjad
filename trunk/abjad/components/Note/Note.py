@@ -76,7 +76,7 @@ class Note(_Leaf):
 
          abjad> staff = Staff("d''8 e''8 f''8 g''8")
          abjad> piccolo = instrumenttools.Piccolo( )(staff)
-         abjad> instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+         abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
       ::
 
@@ -178,7 +178,7 @@ class Note(_Leaf):
 
          abjad> staff = Staff("d''8 e''8 f''8 g''8")
          abjad> piccolo = instrumenttools.Piccolo( )(staff)
-         abjad> instrumenttools.transpose_leaves_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+         abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
       ::
 
