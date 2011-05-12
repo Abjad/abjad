@@ -145,6 +145,10 @@ class _Context(Container):
          self._is_nonsemantic = arg
       return property(**locals( ))
 
+   @property
+   def is_semantic(self):
+      return not self.is_nonsemantic
+
    @apply
    def name( ):
       def fget(self):
