@@ -3,6 +3,8 @@ from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 
+py.test.skip('Being re-implemented.')
+
 def test_treetools_compute_logical_not_of_intervals_01( ):
    tree = IntervalTree(_make_test_blocks( ))
    logical_not = compute_logical_not_of_intervals(tree)

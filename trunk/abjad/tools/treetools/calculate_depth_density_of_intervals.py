@@ -31,8 +31,11 @@ def calculate_depth_density_of_intervals(intervals):
       tree = intervals
    else:
       tree = IntervalTree(intervals)
+
    if not tree:
       return Fraction(0)
-   depth = compute_depth_of_intervals(tree)
-   return Fraction(sum([x.magnitude * x.data['depth'] for x in depth])) \
-      / depth.magnitude
+   return Fraction(sum([x.magnitude for x in tree])) / tree.magnitude
+
+#   depth = compute_depth_of_intervals(tree)
+#   return Fraction(sum([x.magnitude * x.data['depth'] for x in depth])) \
+#      / depth.magnitude

@@ -5,6 +5,8 @@ from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
    import all_are_intervals_or_trees_or_empty
 from abjad.tools.treetools.compute_depth_of_intervals_in_interval \
    import compute_depth_of_intervals_in_interval
+from abjad.tools.treetools.split_intervals_at_rationals \
+   import split_intervals_at_rationals
 
 
 def calculate_depth_density_of_intervals_in_interval(intervals, interval):
@@ -19,7 +21,14 @@ def calculate_depth_density_of_intervals_in_interval(intervals, interval):
       tree = intervals
    else:
       tree = IntervalTree(intervals)
-   depth = compute_depth_of_intervals_in_interval(tree, interval)
 
-   return Fraction(sum([x.magnitude * x.data['depth'] for x in depth])) \
-      / depth.magnitude
+   split_tree = split_intervals_at_rationals(tree, [interval.low, interval.high])
+   split_tree = IntervalTree(split_tree.find_intervals_starting_and_stopping_within_interval(interval))
+
+   if not split_tree:
+      return Fraction(0)
+   return Fraction(sum([x.magnitude for x in split_tree])) / interval.magnitude
+
+#   depth = compute_depth_of_intervals_in_interval(tree, interval)
+#   return Fraction(sum([x.magnitude * x.data['depth'] for x in depth])) \
+#      / depth.magnitude

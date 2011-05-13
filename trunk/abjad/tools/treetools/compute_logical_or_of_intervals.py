@@ -21,6 +21,8 @@ def compute_logical_or_of_intervals(intervals):
    depth_tree = compute_depth_of_intervals(tree)
    logic_tree = IntervalTree(filter(lambda x: 1 <= x.data['depth'], depth_tree))
 
-   if not logic_tree:
-      return logic_tree
-   return fuse_tangent_or_overlapping_intervals(logic_tree)
+   return logic_tree
+
+#   if not logic_tree:
+#      return logic_tree
+#   return fuse_tangent_or_overlapping_intervals(logic_tree)

@@ -41,9 +41,16 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
    if not masked_tree or not mask_tree:
       return IntervalTree([ ])
 
+#   print 'masked: %d, %s | mask: %d, %s' % (len(masked_tree), get_all_unique_bounds_in_intervals(masked_tree), \
+#      len(mask_tree), get_all_unique_bounds_in_intervals(mask_tree))
+
    low = min(mask_tree.low, masked_tree.low)
    high = max(mask_tree.high, masked_tree.high)
    not_mask_tree = compute_logical_not_of_intervals_in_interval(mask_tree, BoundedInterval(low, high))
+
+   if not not_mask_tree:
+      return masked_tree
+
    not_mask_tree_bounds = get_all_unique_bounds_in_intervals(not_mask_tree)
    split_masked_tree = split_intervals_at_rationals(masked_tree, not_mask_tree_bounds)
 
