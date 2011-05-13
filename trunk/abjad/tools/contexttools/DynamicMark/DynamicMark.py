@@ -64,6 +64,14 @@ class DynamicMark(ContextMark):
    def _contents_repr_string(self):
       return repr(self._dynamic_name_string)
 
+   _dynamic_names = (
+      'ppppp', 'pppp', 'ppp', 'pp', 'p',
+      'mp', 'mf',
+      'f', 'ff', 'fff', 'ffff', 'fffff', 
+      'fp', 'sf', 'sff', 'sp', 'spp',
+      'sfz', 'sfp', 'rfz',
+      )
+
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -98,3 +106,16 @@ class DynamicMark(ContextMark):
          '\\f'
       '''
       return r'\%s' % self._dynamic_name_string
+
+   ## PUBLIC METHODS ##
+
+   @staticmethod
+   def is_dynamic_name(arg):
+      '''True when `arg` is dynamic name. False otherwise::
+
+         abjad> contexttools.DynamicMark.is_dynamic_name('f')
+         True
+
+      Return boolean.
+      '''
+      return arg in DynamicMark._dynamic_names
