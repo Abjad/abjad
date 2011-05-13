@@ -80,6 +80,10 @@ class HairpinSpanner(Spanner):
       self.shape_string = shape_string
       self.start_dynamic_string = start_dynamic_string
       self.stop_dynamic_string = stop_dynamic_string
+
+   ## PRIVATE ATTRIBUTES ##
+
+   _hairpin_shape_strings = ('<', '>')
    
    ## PRIVATE METHODS ##
 
@@ -221,3 +225,16 @@ class HairpinSpanner(Spanner):
       def fset(self, arg):
          self._stop = arg
       return property(**locals( ))
+
+   ## PUBLIC METHODS ##
+
+   @staticmethod
+   def is_hairpin_shape_string(arg):
+      '''True when `arg` is a hairpin shape string. Otherwise false::
+
+         abjad> spannertools.HairpinSpanner.is_hairpin_shape_string('<')
+         True
+
+      Return boolean.
+      '''
+      return arg in HairpinSpanner._hairpin_shape_strings
