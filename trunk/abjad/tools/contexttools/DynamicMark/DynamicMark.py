@@ -64,13 +64,27 @@ class DynamicMark(ContextMark):
    def _contents_repr_string(self):
       return repr(self._dynamic_name_string)
 
+   _dynamic_name_to_dynamic_ordinal = {
+      'ppppp': -6, 'pppp': -5, 'ppp': -4, 'pp': -3, 'p': -2, 
+      'mp': -1,
+      'mf': 1,
+      'f': 2, 'ff': 3, 'fff': 4, 'ffff': 5, 'fffff': 6, 
+      }
+
    _dynamic_names = (
       'ppppp', 'pppp', 'ppp', 'pp', 'p',
       'mp', 'mf',
-      'f', 'ff', 'fff', 'ffff', 'fffff', 
+      'f', 'ff', 'fff', 'ffff', 'fffff',
       'fp', 'sf', 'sff', 'sp', 'spp',
       'sfz', 'sfp', 'rfz',
       )
+
+   _dynamic_ordinal_to_dynamic_name = {
+      -6: 'ppppp', -5: 'pppp', -4: 'ppp', -3: 'pp', -2: 'p',
+      -1: 'mp',
+      1: 'mf',
+      2: 'f', 3: 'ff', 4: 'fff', 5: 'ffff', 6: 'fffff',
+      }
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -108,6 +122,28 @@ class DynamicMark(ContextMark):
       return r'\%s' % self._dynamic_name_string
 
    ## PUBLIC METHODS ##
+
+   @staticmethod
+   def dynamic_name_to_dynamic_ordinal(dynamic_name):
+      '''Change `dynamic_name` to dynamic ordinal::
+
+         abjad> contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal('fff')
+         4
+
+      Return integer.
+      '''
+      return DynamicMark._dynamic_name_to_dynamic_ordinal[dynamic_name]
+
+   @staticmethod
+   def dynamic_ordinal_to_dynamic_name(dynamic_ordinal):
+      '''Change `dynamic_ordinal` to dynamic name::
+
+         abjad> contexttools.DynamicMark.dynamic_ordinal_to_dynamic_name(-5)
+         'pppp'
+
+      Return string.
+      '''
+      return DynamicMark._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
 
    @staticmethod
    def is_dynamic_name(arg):
