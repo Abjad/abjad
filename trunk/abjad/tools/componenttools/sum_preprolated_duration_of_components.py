@@ -35,10 +35,6 @@ def sum_preprolated_duration_of_components(components):
    .. versionchanged:: 1.1.2
       renamed ``componenttools.get_duration_preprolated( )`` to
       ``componenttools.sum_preprolated_duration_of_components( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``componenttools.get_preprolated_duration_of_components( )`` to
-      ``componenttools.sum_preprolated_duration_of_components( )``.
    '''
 
    ## sum preprolated durations
