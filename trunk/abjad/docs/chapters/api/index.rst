@@ -855,6 +855,7 @@ resttools
    tools/resttools/is_lilypond_rest_string
    tools/resttools/iterate_rests_backward_in_expr
    tools/resttools/iterate_rests_forward_in_expr
+   tools/resttools/make_multi_measure_rests
    tools/resttools/make_repeated_rests_from_time_signature
    tools/resttools/make_repeated_rests_from_time_signatures
    tools/resttools/make_rests

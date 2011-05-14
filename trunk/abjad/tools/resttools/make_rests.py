@@ -3,7 +3,7 @@ from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
 from numbers import Number
 
 
-def make_rests(duration_tokens, direction='big-endian', tied=False):
+def make_rests(duration_tokens, direction = 'big-endian', tied = False):
    r'''.. versionadded:: 1.1.1
 
    Make rests.
