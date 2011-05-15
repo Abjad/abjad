@@ -60,6 +60,12 @@ class DynamicMark(ContextMark):
 
    ## PRIVATE ATTRIBUTES ##
 
+   _composite_dynamic_name_to_steady_state_dynamic_name = {
+      'fp': 'p', 'sf': 'f', 'sff': 'ff', 
+      'sp': 'p', 'spp': 'pp',
+      'sfz': 'f', 'sfp': 'p', 'rfz': 'f',
+   }
+
    @property
    def _contents_repr_string(self):
       return repr(self._dynamic_name_string)
@@ -124,6 +130,17 @@ class DynamicMark(ContextMark):
    ## PUBLIC METHODS ##
 
    @staticmethod
+   def composite_dynamic_name_to_steady_state_dynamic_name(dynamic_name):
+      '''Change composite `dynamic_name` to steady state dynamic name::
+
+         abjad> contexttools.DynamicMark.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
+         'p'
+
+      Return string.
+      '''
+      return DynamicMark._composite_dynamic_name_to_steady_state_dynamic_name[dynamic_name]
+
+   @staticmethod
    def dynamic_name_to_dynamic_ordinal(dynamic_name):
       '''Change `dynamic_name` to dynamic ordinal::
 
@@ -132,7 +149,12 @@ class DynamicMark(ContextMark):
 
       Return integer.
       '''
-      return DynamicMark._dynamic_name_to_dynamic_ordinal[dynamic_name]
+      try:
+         return DynamicMark._dynamic_name_to_dynamic_ordinal[dynamic_name]
+      except KeyError:
+         dynamic_name = DynamicMark.composite_dynamic_name_to_steady_state_dynamic_name(
+            dynamic_name)
+         return DynamicMark._dynamic_name_to_dynamic_ordinal[dynamic_name]
 
    @staticmethod
    def dynamic_ordinal_to_dynamic_name(dynamic_ordinal):
