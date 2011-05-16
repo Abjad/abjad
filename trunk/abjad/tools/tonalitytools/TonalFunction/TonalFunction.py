@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from abjad.tools.markuptools import Markup
+from abjad.tools import markuptools
 from abjad.tools.tonalitytools.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalitytools.InversionIndicator import InversionIndicator
 from abjad.tools.tonalitytools.QualityIndicator import QualityIndicator
@@ -272,7 +272,7 @@ class TonalFunction(_Immutable):
    def markup(self):
       symbolic_string = self.symbolic_string
       symbolic_string = symbolic_string.replace('#', r'\sharp ')
-      return markuptools.Markup(symbolic_string)
+      return markuptools.Markup(symbolic_string, 'down')
 
    @property
    def quality(self):
