@@ -21,6 +21,8 @@ def analyze_chord(expr):
       abjad> chord = Chord(['c', 'cs', 'd'], (1, 4))
       abjad> tonalitytools.analyze_chord(chord) is None
       True
+
+   Raise tonal harmony error when chord can not analyze.
    '''
 
    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
@@ -43,12 +45,15 @@ def analyze_chord(expr):
       #raise TonalHarmonyError('expr is not tertian harmony: %s' % str(expr))
       return None
 
-   root = ordered_npcs[0]
-   bass = min(pitches).named_chromatic_pitch_class
-   inversion = ordered_npcs.index(bass)
-   dic_seg =  ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
-   cardinality = len(ordered_npcs)
-   extent = chord_class_cardinality_to_extent(cardinality)
-   quality = diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
+   try:
+      root = ordered_npcs[0]
+      bass = min(pitches).named_chromatic_pitch_class
+      inversion = ordered_npcs.index(bass)
+      dic_seg =  ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
+      cardinality = len(ordered_npcs)
+      extent = chord_class_cardinality_to_extent(cardinality)
+      quality = diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
+   except TonalHarmonyError:
+      return None
 
    return ChordClass(root, quality, extent, inversion)

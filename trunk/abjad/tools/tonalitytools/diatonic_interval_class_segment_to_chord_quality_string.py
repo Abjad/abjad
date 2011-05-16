@@ -73,7 +73,6 @@ def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
    try:
       quality_string = dic_seg_to_quality_string[repr(dic_seg)]
    except KeyError:
-      raise TonalHarmonyError('unknown diatonic interval-class segment: %s' %
-         dic_seg)   
+      raise TonalHarmonyError('unknown diatonic interval-class segment: %s' % str(dic_seg))   
 
    return quality_string

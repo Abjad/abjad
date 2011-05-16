@@ -1,4 +1,4 @@
-from abjad.tools.markuptools import Markup
+from abjad.tools import markuptools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
 from abjad.tools.pitchtools.NamedChromaticPitchClassSet import NamedChromaticPitchClassSet
@@ -54,18 +54,19 @@ class ChordClass(NamedChromaticPitchClassSet):
 
    @property
    def _markup_root(self):
-      if self.quality_indicator._quality_string in (
-         'major', 'augmented', 'dominant'):
+      if self.quality_indicator._quality_string in ('major', 'augmented', 'dominant'):
          root = str(self.root).upper( )
       else:
          root = str(self.root).lower( )
       if len(root) == 2:
-         adjustment = r'\hspace #-1 \raise #1 \fontsize #-3'
-         if root[-1] == 's':
+         #adjustment = r'\hspace #-1 \raise #1 \fontsize #-3'
+         adjustment = r'\hspace #-0.5 \raise #1 \fontsize #-3'
+         if root[-1].lower( ) == 's':
             root = root[0] + r'%s \sharp' % adjustment
-         elif root[-1] == 'f':
+         elif root[-1].lower( ) == 'f':
             root = root[0] + r'%s \flat' % adjustment
          else:
+            print self
             raise ValueError('unknown note name: %s' % root)
       return root
 
@@ -146,17 +147,21 @@ class ChordClass(NamedChromaticPitchClassSet):
    def markup(self):
       markup = [self._markup_root, self._markup_symbol, self.figured_bass]
       markup = ''.join(markup)
-      markup = r'\fontsize #1 %s \hspace #-1' % self._markup_root
+      markup = r'\fontsize #1 %s \hspace #-0.5' % self._markup_root
       symbol = self._markup_symbol
       if symbol:
-         markup += r' \raise #1 \fontsize #-3 %s' % symbol
-         markup += r' \hspace #-1.2'
+         markup += r' \hspace #0.5 \raise #1 \fontsize #-3 %s' % symbol
+         if 'circle' in symbol:
+            if 'sharp' in self._markup_root:
+               markup += r' \hspace #0'
+            else:
+               markup += r' \hspace #-1.2'
       inversion = self.figured_bass
       if inversion:
          inv = r" \raise #1 \fontsize #-3 \override #'(baseline-skip . 1.5)"
          inv += r' \column { %s }' % ' '.join(inversion.split('/'))
          markup += inv
-      return markuptools.Markup(markup)
+      return markuptools.Markup(markup, 'down')
 
    @property
    def quality_indicator(self):
