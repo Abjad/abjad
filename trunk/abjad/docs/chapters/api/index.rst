@@ -343,6 +343,7 @@ instrumenttools
    tools/instrumenttools/Trombone/Trombone
    tools/instrumenttools/Trumpet/Trumpet
    tools/instrumenttools/Tuba/Tuba
+   tools/instrumenttools/UntunedPercussion/UntunedPercussion
    tools/instrumenttools/Vibraphone/Vibraphone
    tools/instrumenttools/Viola/Viola
    tools/instrumenttools/Violin/Violin
