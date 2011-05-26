@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
+from abjad.tools import iotools
 import os
 import sys
 
 
-os.system('clear')
-os.system('grep -Irn "%s" * | grep -v svn | grep -v docs' % 
-   sys.argv[1])
+iotools.clear_terminal( )
+os.system('grep -Irn "%s" * | grep -v svn | grep -v docs' % sys.argv[1])

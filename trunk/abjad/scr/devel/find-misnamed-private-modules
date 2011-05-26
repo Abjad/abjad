@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 from abjad.cfg.cfg import ABJADPATH
+from abjad.tools import iotools
 import os
 import pprint
 
@@ -32,6 +33,6 @@ def _find_misnamed_private_modules( ):
       
 
 if __name__ == '__main__':
-   os.system('clear')
+   iotools.clear_terminal( )
    print 'Finding misnamed private modules ...'
    _find_misnamed_private_modules( )

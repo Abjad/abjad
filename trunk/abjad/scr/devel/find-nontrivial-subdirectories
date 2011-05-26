@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+
+from abjad.tools import iotools
 import os
 
 
@@ -22,7 +24,7 @@ def find_nontrivial_subdirectories( ):
 
 
 if __name__ == '__main__':
-   os.system('clear')
+   iotools.clear_terminal( )
    print 'Finding nontrivial subdirectories ...'
    print ''
    find_nontrivial_subdirectories( )

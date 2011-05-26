@@ -3,7 +3,6 @@ from abjad.cfg._config_file_dict import _config_file_dict as default_dict
 from abjad.cfg._config_file_to_dict import _config_file_to_dict
 from abjad.cfg._write_config_file import _write_config_file
 from abjad.cfg._update_config_file import _update_config_file
-import os
 
 
 def _verify_config_file( ):
@@ -26,8 +25,6 @@ def _verify_config_file( ):
          print ''
          raw_input('   Press any key to continue: ')
          _update_config_file(default_dict, user_dict)
-         ## TODO: clear not portable to Windows ##
-         #os.system('clear')
 
    except IOError:
       print ''
@@ -37,5 +34,3 @@ def _verify_config_file( ):
       raw_input('   Press any key to continue: ')
       print ''
       _write_config_file(ABJADCONFIG, default_dict)
-      ## TODO: clear not portable to Windows ##
-      #os.system('clear')

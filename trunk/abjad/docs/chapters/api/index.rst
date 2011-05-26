@@ -361,6 +361,7 @@ iotools
 .. toctree::
    :maxdepth: 1
 
+   tools/iotools/clear_terminal
    tools/iotools/f
    tools/iotools/format_input_lines_as_doc_string
    tools/iotools/format_input_lines_as_regression_test

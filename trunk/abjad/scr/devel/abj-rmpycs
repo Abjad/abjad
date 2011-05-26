@@ -1,14 +1,5 @@
 #! /usr/bin/env python
 
-import os
-#from abjad.cfg._remove_abjad_pyc_files import _remove_abjad_pyc_files
-from abjad.tools.iotools.remove_abjad_pyc_files import remove_abjad_pyc_files
+from abjad.tools import iotools
 
-
-remove_abjad_pyc_files( )
-
-## OS-portable version of something like ...
-##
-##    find . -name '*.pyc' -exec rm {} \; 
-##
-## ... that uses Python instead.
+iotools.remove_abjad_pyc_files( )

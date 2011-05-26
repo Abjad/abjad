@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+
+from abjad.tools import iotools
 import os
 
 
@@ -185,7 +187,7 @@ lilypond_grob_names = '''
 '''
 
 if __name__ == '__main__':
-   os.system('clear')
+   iotools.clear_terminal( )
    print 'Formatting LilyPond context names with underscores ...\n'
    print format_lilypond_context_names_with_underscores(lilypond_context_names)
    print ''

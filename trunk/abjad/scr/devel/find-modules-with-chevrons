@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 from abjad.cfg.cfg import ABJADPATH
+from abjad.tools import iotools
 import os
 import pprint
 import re
@@ -38,6 +39,6 @@ def _has_python_prompt_chevrons(path, f):
 
 
 if __name__ == '__main__':
-   os.system('clear')
+   iotools.clear_terminal( )
    print 'Finding modules with chevrons ...'
    _find_modules_with_chevrons( )

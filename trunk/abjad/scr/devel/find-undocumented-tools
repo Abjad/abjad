@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 from abjad.cfg.cfg import ABJADPATH
+from abjad.tools import iotools
 import os
 import pprint
 import re
@@ -56,5 +57,5 @@ def _has_undocumented_tool(path, f):
          
 
 if __name__ == '__main__':
-   os.system('clear')
+   iotools.clear_terminal( )
    _find_undocumented_tools( )

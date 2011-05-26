@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 
+from abjad.tools import iotools
 import os
 
 
@@ -28,5 +29,5 @@ def _rebuild_docs( ):
    
 
 if __name__ == '__main__':
-   os.system('clear')
+   iotools.clear_terminal( )
    _rebuild_docs( )

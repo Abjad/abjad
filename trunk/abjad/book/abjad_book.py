@@ -1,6 +1,7 @@
 from abjad.book.parser._AbjadHTMLTag import _AbjadHTMLTag
 from abjad.book.parser._AbjadLatexTag import _AbjadLatexTag
 from abjad.book.parser._AbjadReSTTag import _AbjadReSTTag
+from abjad.tools import iotools
 import getopt
 import os
 import sys
@@ -122,5 +123,5 @@ def _abjad_book( ):
 
 
 if __name__ == '__main__':
-   os.system('clear')
+   iotools.clear_terminal( )
    _abjad_book( )
