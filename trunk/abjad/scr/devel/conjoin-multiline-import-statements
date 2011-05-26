@@ -1,0 +1,44 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+from abjad.tools import iotools
+import os
+
+
+def _conjoin_multiline_import_statements( ):
+   total_multiline_import_statements = 0
+   for path, subdirectories, files in os.walk(ABJADPATH):
+      for f in files:
+         file_lines_to_output = [ ]
+         found_import_statement_in_file = False
+         if f.endswith('.py'):
+            full_file_name = os.path.join(path, f)
+            fp = file(full_file_name, 'r')
+            within_multiline_import, constituent_lines = False, [ ]
+            for line in fp:
+               if 'import' in line and line.endswith('\\\n'):
+                  constituent_lines.append(line)
+                  within_multiline_import = True
+               elif within_multiline_import:
+                  constituent_lines.append(line)
+                  if not line.endswith('\\\n'):   
+                     conjoined_line = ' '.join([x.strip( ) for x in constituent_lines]) + '\n'
+                     conjoined_line = conjoined_line.replace(' \\', '')
+                     print conjoined_line
+                     file_lines_to_output.append(conjoined_line)
+                     within_multiline_import, constituent_lines = False, [ ]
+               else:
+                  file_lines_to_output.append(line)
+            fp.close( )
+            fp = file(full_file_name, 'w')
+            fp.write(''.join(file_lines_to_output))
+            fp.close( )
+            print full_file_name
+            raise Exception
+
+
+if __name__ == '__main__':
+   iotools.clear_terminal( )
+   print 'Conjoining multiline import statements ...'
+   print ''
+   _conjoin_multiline_import_statements( )
