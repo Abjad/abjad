@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.get_improper_parentage_of_component import \
-   get_improper_parentage_of_component
+from abjad.tools.componenttools.get_improper_parentage_of_component import get_improper_parentage_of_component
 
 
 def get_proper_parentage_of_component(component):

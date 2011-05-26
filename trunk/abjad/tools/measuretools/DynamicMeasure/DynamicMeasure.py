@@ -1,8 +1,7 @@
 from abjad.components.Measure.Measure import Measure
 from abjad.tools import durtools
 from abjad.tools import contexttools
-from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface import \
-   _DynamicMeasureDurationInterface
+from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface import _DynamicMeasureDurationInterface
 
 
 class DynamicMeasure(Measure):

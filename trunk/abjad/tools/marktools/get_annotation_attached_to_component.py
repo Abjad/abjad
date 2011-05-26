@@ -1,7 +1,6 @@
 from abjad.exceptions import ExtraMarkError
 from abjad.exceptions import MissingMarkError
-from abjad.tools.marktools.get_annotations_attached_to_component import \
-   get_annotations_attached_to_component
+from abjad.tools.marktools.get_annotations_attached_to_component import get_annotations_attached_to_component
 
 
 def get_annotation_attached_to_component(component):

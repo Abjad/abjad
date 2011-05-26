@@ -1,5 +1,4 @@
-from abjad.tools.containertools._replace_half_of_elements_in_container_with_rests import \
-   _replace_half_of_elements_in_container_with_rests
+from abjad.tools.containertools._replace_half_of_elements_in_container_with_rests import _replace_half_of_elements_in_container_with_rests
 
 
 def replace_smaller_right_half_of_elements_in_container_with_big_endian_rests(container):

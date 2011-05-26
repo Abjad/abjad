@@ -1,6 +1,5 @@
 from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import \
-   get_parent_and_start_stop_indices_of_components
+from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
 
 
 def extend_in_parent_of_component_and_do_not_grow_spanners(component, components):

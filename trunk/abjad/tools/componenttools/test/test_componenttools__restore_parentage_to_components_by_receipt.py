@@ -1,7 +1,6 @@
 from abjad import *
 from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
-from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import \
-   _restore_parentage_to_components_by_receipt
+from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import _restore_parentage_to_components_by_receipt
 
 
 def test_componenttools__restore_parentage_to_components_by_receipt_01( ):

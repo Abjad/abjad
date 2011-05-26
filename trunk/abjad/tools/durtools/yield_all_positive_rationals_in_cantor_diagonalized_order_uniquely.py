@@ -1,6 +1,5 @@
 from fractions import Fraction
-from abjad.tools.durtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order import \
-   yield_all_positive_integer_pairs_in_cantor_diagonalized_order
+from abjad.tools.durtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order import yield_all_positive_integer_pairs_in_cantor_diagonalized_order
 
 
 def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( ):

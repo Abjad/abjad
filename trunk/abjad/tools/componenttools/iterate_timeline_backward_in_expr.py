@@ -1,7 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools.componenttools.component_to_score_index import component_to_score_index
-from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr \
-   as componenttools_iterate_components_forward_in_expr
+from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr as componenttools_iterate_components_forward_in_expr
 
 
 def iterate_timeline_backward_in_expr(expr, klass = _Leaf):

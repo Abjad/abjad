@@ -96,10 +96,8 @@ def component_to_pitch_and_rhythm_skeleton_with_interface_attributes(component):
          }
       >>
    '''
-   from abjad.tools.containertools._container_to_pitch_and_rhythm_skeleton import \
-      _container_to_pitch_and_rhythm_skeleton
-   from abjad.tools.leaftools._leaf_to_pitch_and_rhythm_skeleton import \
-      _leaf_to_pitch_and_rhythm_skeleton
+   from abjad.tools.containertools._container_to_pitch_and_rhythm_skeleton import _container_to_pitch_and_rhythm_skeleton
+   from abjad.tools.leaftools._leaf_to_pitch_and_rhythm_skeleton import _leaf_to_pitch_and_rhythm_skeleton
    
    if not isinstance(component, _Component):
       raise TypeError('must be Abjad component.')

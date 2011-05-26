@@ -14,8 +14,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
    '''
 
    def __new__(klass, *args):
-      from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
-         melodic_diatonic_interval_abbreviation_regex
+      from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
       from abjad.tools import pitchtools
       self = object.__new__(klass)
       if len(args) == 1:

@@ -1,7 +1,5 @@
-from abjad.components.Container._ContainerFormatterNumberInterface import \
-   _ContainerFormatterNumberInterface
-from abjad.components.Container._ContainerFormatterSlotsInterface import \
-   _ContainerFormatterSlotsInterface
+from abjad.components.Container._ContainerFormatterNumberInterface import _ContainerFormatterNumberInterface
+from abjad.components.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
 from abjad.components._Component._ComponentFormatter import _ComponentFormatter
 
 

@@ -123,8 +123,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
 
 def _scopy_leaf(leaf, start, stop):
    from abjad.tools import leaftools
-   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
-      clone_components_and_fracture_crossing_spanners
+   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
    if leaf.duration.prolated <= start:
       return None
    if leaf.duration.prolated < stop:
@@ -158,8 +157,7 @@ def _scopy_container(container, start, stop):
 
 
 def _get_lcopy(container, start, stop):
-   from abjad.tools.componenttools.clone_governed_component_subtree_by_leaf_range import \
-      clone_governed_component_subtree_by_leaf_range
+   from abjad.tools.componenttools.clone_governed_component_subtree_by_leaf_range import clone_governed_component_subtree_by_leaf_range
    from abjad.tools import leaftools
    total_dur = Fraction(0)
    start_leaf, stop_leaf = None, None

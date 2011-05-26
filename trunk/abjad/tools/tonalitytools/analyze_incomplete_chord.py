@@ -1,10 +1,8 @@
 from abjad.exceptions import TonalHarmonyError
 from abjad.tools import pitchtools
 from abjad.tools.tonalitytools.ChordClass import ChordClass
-from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import \
-   chord_class_cardinality_to_extent
-from abjad.tools.tonalitytools.diatonic_interval_class_segment_to_chord_quality_string import \
-   diatonic_interval_class_segment_to_chord_quality_string
+from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import chord_class_cardinality_to_extent
+from abjad.tools.tonalitytools.diatonic_interval_class_segment_to_chord_quality_string import diatonic_interval_class_segment_to_chord_quality_string
 
 
 def analyze_incomplete_chord(expr):

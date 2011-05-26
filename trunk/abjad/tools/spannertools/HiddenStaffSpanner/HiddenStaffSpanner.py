@@ -1,6 +1,5 @@
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.spannertools.HiddenStaffSpanner._HiddenStaffSpannerFormatInterface import \
-   _HiddenStaffSpannerFormatInterface
+from abjad.tools.spannertools.HiddenStaffSpanner._HiddenStaffSpannerFormatInterface import _HiddenStaffSpannerFormatInterface
 
 
 class HiddenStaffSpanner(Spanner):

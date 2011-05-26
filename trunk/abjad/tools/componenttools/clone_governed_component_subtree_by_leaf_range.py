@@ -60,8 +60,7 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
       ``componenttools.clone_governed_component_subtree_by_leaf_range( )``.
    '''
    from abjad.tools import leaftools
-   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
-      clone_components_and_fracture_crossing_spanners
+   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
 
    # trivial leaf lcopy
    if isinstance(component, _Leaf):

@@ -1,8 +1,7 @@
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.tools import schemetools
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
-   get_named_chromatic_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
 def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):

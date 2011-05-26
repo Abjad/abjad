@@ -1,6 +1,5 @@
 from abjad.tools import markuptools
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
-   iterate_vertical_moments_forward_in_expr
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 
 
 def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_direction = 'down'):

@@ -1,5 +1,4 @@
-from abjad.tools.leaftools._leaf_to_tuplet_with_n_notes_of_equal_written_duration import \
-   _leaf_to_tuplet_with_n_notes_of_equal_written_duration
+from abjad.tools.leaftools._leaf_to_tuplet_with_n_notes_of_equal_written_duration import _leaf_to_tuplet_with_n_notes_of_equal_written_duration
 
 
 def leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration(leaf, n):

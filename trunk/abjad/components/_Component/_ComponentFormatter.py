@@ -1,6 +1,5 @@
 from abjad.interfaces._Interface import _Interface
-from abjad.components._Component._ComponentFormatterSlotsInterface import \
-   _ComponentFormatterSlotsInterface
+from abjad.components._Component._ComponentFormatterSlotsInterface import _ComponentFormatterSlotsInterface
 
 
 class _ComponentFormatter(_Interface):

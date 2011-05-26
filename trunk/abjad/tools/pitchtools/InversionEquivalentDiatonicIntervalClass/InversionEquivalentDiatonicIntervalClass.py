@@ -14,8 +14,7 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
    '''
 
    def __new__(klass, *args):
-      from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import \
-         melodic_diatonic_interval_abbreviation_regex
+      from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
       self = object.__new__(klass)
       if len(args) == 1 and isinstance(args[0], type(self)):
          self._init_by_self_reference(args[0])

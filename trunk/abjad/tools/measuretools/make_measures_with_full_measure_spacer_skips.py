@@ -1,8 +1,7 @@
 from abjad.components import Measure
 from abjad.tools import metertools
 from abjad.tools.skiptools.Skip import Skip
-from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_skips import \
-   fill_measures_in_expr_with_full_measure_spacer_skips
+from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_skips import fill_measures_in_expr_with_full_measure_spacer_skips
 
 
 def make_measures_with_full_measure_spacer_skips(meters):

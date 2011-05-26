@@ -2,10 +2,8 @@ from abjad.components.Container._ContainerFormatter import _ContainerFormatter
 from abjad.exceptions import NonbinaryMeterSuppressionError
 from abjad.exceptions import OverfullMeasureError
 from abjad.exceptions import UnderfullMeasureError
-from abjad.components.Measure._MeasureFormatterNumberInterface import \
-   _MeasureFormatterNumberInterface
-from abjad.components.Measure._MeasureFormatterSlotsInterface import \
-   _MeasureFormatterSlotsInterface
+from abjad.components.Measure._MeasureFormatterNumberInterface import _MeasureFormatterNumberInterface
+from abjad.components.Measure._MeasureFormatterSlotsInterface import _MeasureFormatterSlotsInterface
 
 
 class _MeasureFormatter(_ContainerFormatter):

@@ -1,5 +1,4 @@
-from abjad.tools.spannertools.fracture_all_spanners_attached_to_component import \
-   fracture_all_spanners_attached_to_component
+from abjad.tools.spannertools.fracture_all_spanners_attached_to_component import fracture_all_spanners_attached_to_component
 
 
 def fracture_spanners_that_cross_components(components):

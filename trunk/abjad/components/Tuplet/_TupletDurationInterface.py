@@ -1,5 +1,4 @@
-from abjad.components.Container._MultipliedContainerDurationInterface import \
-   _MultipliedContainerDurationInterface
+from abjad.components.Container._MultipliedContainerDurationInterface import _MultipliedContainerDurationInterface
 from abjad.tools import mathtools
 from fractions import Fraction
 

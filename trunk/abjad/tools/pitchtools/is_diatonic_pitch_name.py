@@ -1,5 +1,4 @@
-from abjad.tools.pitchtools.is_diatonic_pitch_class_name import \
-   diatonic_pitch_class_name_regex_body
+from abjad.tools.pitchtools.is_diatonic_pitch_class_name import diatonic_pitch_class_name_regex_body
 from abjad.tools.pitchtools.is_octave_tick_string import octave_tick_regex_body
 import re
 

@@ -2,8 +2,7 @@ from abjad.components._Leaf import _Leaf
 from abjad.exceptions import MissingSpannerError
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
-from abjad.tools.tietools.are_components_in_same_tie_spanner import \
-   are_components_in_same_tie_spanner
+from abjad.tools.tietools.are_components_in_same_tie_spanner import are_components_in_same_tie_spanner
 
 
 def apply_tie_spanner_to_leaf_pair(left, right):

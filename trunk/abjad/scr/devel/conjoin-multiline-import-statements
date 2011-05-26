@@ -17,12 +17,14 @@ def _conjoin_multiline_import_statements( ):
             within_multiline_import, constituent_lines = False, [ ]
             for line in fp:
                if 'import' in line and line.endswith('\\\n'):
-                  constituent_lines.append(line)
+                  ## strip only right edge of first line to preserve indentation at left
+                  constituent_lines.append(line.rstrip( ))
                   within_multiline_import = True
                elif within_multiline_import:
-                  constituent_lines.append(line)
+                  ## strip both left and right edges of subsequent lines
+                  constituent_lines.append(line.strip( ))
                   if not line.endswith('\\\n'):   
-                     conjoined_line = ' '.join([x.strip( ) for x in constituent_lines]) + '\n'
+                     conjoined_line = ' '.join(constituent_lines) + '\n'
                      conjoined_line = conjoined_line.replace(' \\', '')
                      print conjoined_line
                      file_lines_to_output.append(conjoined_line)
@@ -33,8 +35,6 @@ def _conjoin_multiline_import_statements( ):
             fp = file(full_file_name, 'w')
             fp.write(''.join(file_lines_to_output))
             fp.close( )
-            print full_file_name
-            raise Exception
 
 
 if __name__ == '__main__':

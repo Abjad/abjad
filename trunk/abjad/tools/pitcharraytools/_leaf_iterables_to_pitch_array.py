@@ -1,7 +1,6 @@
 from abjad.tools import seqtools
 from abjad.tools.pitcharraytools.PitchArray import PitchArray
-from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import \
-   list_named_chromatic_pitches_in_expr
+from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
 def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):

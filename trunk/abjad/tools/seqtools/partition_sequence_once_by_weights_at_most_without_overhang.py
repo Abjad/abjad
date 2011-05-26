@@ -1,5 +1,4 @@
-from abjad.tools.seqtools._partition_sequence_elements_by_weights_at_most import \
-   _partition_sequence_elements_by_weights_at_most
+from abjad.tools.seqtools._partition_sequence_elements_by_weights_at_most import _partition_sequence_elements_by_weights_at_most
 
 
 def partition_sequence_once_by_weights_at_most_without_overhang(sequence, weights):

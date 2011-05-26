@@ -1,5 +1,4 @@
-from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import \
-   _replace_first_n_elements_in_container_with_rests
+from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import _replace_first_n_elements_in_container_with_rests
 
 
 def replace_n_edge_elements_in_container_with_rests(container, n):

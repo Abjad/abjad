@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.get_proper_parentage_of_component import \
-   get_proper_parentage_of_component
+from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
 
 
 def get_first_instance_of_klass_in_proper_parentage_of_component(component, klass):

@@ -1,10 +1,8 @@
 from abjad.components import Measure
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.tools.componenttools.get_proper_parentage_of_component import \
-   get_proper_parentage_of_component
-from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import \
-   remove_component_subtree_from_score_and_spanners
+from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
+from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
 from abjad.tools.metertools import Meter
 from fractions import Fraction
 

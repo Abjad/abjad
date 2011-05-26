@@ -1,5 +1,4 @@
-from abjad.tools.importtools._import_functions_in_package_to_namespace import \
-   _import_functions_in_package_to_namespace
+from abjad.tools.importtools._import_functions_in_package_to_namespace import _import_functions_in_package_to_namespace
 
 ## Do not use dynamic import code any more;
 ## hand manage global package contents instead.
@@ -20,8 +19,7 @@ for _key in globals( ).keys( ):
 '''
 
 ## reimport import tools since they were removed after previous import
-from abjad.tools.importtools._import_functions_in_package_to_namespace import \
-   _import_functions_in_package_to_namespace
+from abjad.tools.importtools._import_functions_in_package_to_namespace import _import_functions_in_package_to_namespace
 import os
 
 ## import exceptions

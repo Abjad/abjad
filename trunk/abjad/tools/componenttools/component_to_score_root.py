@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.get_improper_parentage_of_component import \
-   get_improper_parentage_of_component
+from abjad.tools.componenttools.get_improper_parentage_of_component import get_improper_parentage_of_component
 
 
 def component_to_score_root(component):

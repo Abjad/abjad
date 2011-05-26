@@ -1,5 +1,4 @@
-from abjad.tools.marktools.get_comments_attached_to_component import \
-   get_comments_attached_to_component
+from abjad.tools.marktools.get_comments_attached_to_component import get_comments_attached_to_component
 
 
 def detach_comments_attached_to_component(component):

@@ -4,10 +4,8 @@ def _get_context_setting_format_contributions(component):
    result = [ ]
    from abjad.components._Leaf import _Leaf
    from abjad.components import Measure
-   from abjad.tools.lilyfiletools._format_lilypond_context_setting_inline import \
-      _format_lilypond_context_setting_inline
-   from abjad.tools.lilyfiletools._format_lilypond_context_setting_in_with_block import \
-      _format_lilypond_context_setting_in_with_block
+   from abjad.tools.lilyfiletools._format_lilypond_context_setting_inline import _format_lilypond_context_setting_inline
+   from abjad.tools.lilyfiletools._format_lilypond_context_setting_in_with_block import _format_lilypond_context_setting_in_with_block
    if isinstance(component, (_Leaf, Measure)):
       for name, value in vars(component.set).iteritems( ):
          ## if we've found a leaf LilyPondContextNamespace

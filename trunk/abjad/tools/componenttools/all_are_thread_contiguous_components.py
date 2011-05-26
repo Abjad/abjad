@@ -1,8 +1,7 @@
 from abjad.components._Component import _Component
 from abjad.tools import threadtools
 from abjad.tools.componenttools.is_orphan_component import is_orphan_component
-from abjad.tools.componenttools.iterate_components_depth_first import \
-   iterate_components_depth_first
+from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
 import types
 
 

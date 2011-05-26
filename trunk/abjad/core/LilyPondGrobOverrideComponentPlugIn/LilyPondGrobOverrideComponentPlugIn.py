@@ -116,10 +116,8 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
    ## PRIVATE METHODS ##
 
    def _list_format_contributions(self, contribution_type, is_once = False):
-      from abjad.tools.lilyfiletools._make_lilypond_override_string import \
-         _make_lilypond_override_string
-      from abjad.tools.lilyfiletools._make_lilypond_revert_string import \
-         _make_lilypond_revert_string
+      from abjad.tools.lilyfiletools._make_lilypond_override_string import _make_lilypond_override_string
+      from abjad.tools.lilyfiletools._make_lilypond_revert_string import _make_lilypond_revert_string
       assert contribution_type in ('override', 'revert')
       result = [ ]
       for attribute_tuple in self._get_attribute_tuples( ):

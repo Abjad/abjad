@@ -1,6 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import \
-   _replace_first_n_elements_in_container_with_rests
+from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import _replace_first_n_elements_in_container_with_rests
 
 
 def _replace_half_of_elements_in_container_with_rests(container, rested_half, bigger_half, 

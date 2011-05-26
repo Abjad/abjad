@@ -1,6 +1,5 @@
 from abjad import *
-from abjad.tools.componenttools._give_music_from_donor_components_to_recipient_components import \
-   _give_music_from_donor_components_to_recipient_components
+from abjad.tools.componenttools._give_music_from_donor_components_to_recipient_components import _give_music_from_donor_components_to_recipient_components
 import py.test
 
 

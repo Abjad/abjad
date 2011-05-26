@@ -58,8 +58,7 @@ class Container(_Component):
       Withdraw component(s) from crossing spanners.
       Preserve spanners that component(s) cover(s).'''
       #from abjad.tools.componenttools._switch import _switch
-      from abjad.tools.componenttools._switch_components_to_parent import \
-         _switch_components_to_parent
+      from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
       from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
       components = self[i]
       if not isinstance(components, list):
@@ -261,8 +260,7 @@ class Container(_Component):
    def _initialize_music(self, music):
       from abjad.tools import componenttools
       from abjad.tools import iotools
-      from abjad.tools.componenttools._switch_components_to_parent import \
-         _switch_components_to_parent
+      from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
       music = music or [ ]
       if componenttools.all_are_contiguous_components_in_same_thread(music):
          parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(

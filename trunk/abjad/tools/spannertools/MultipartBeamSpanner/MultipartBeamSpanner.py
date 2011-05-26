@@ -1,5 +1,4 @@
-from abjad.tools.spannertools.MultipartBeamSpanner._MultipartBeamSpannerFormatInterface import \
-   _MultipartBeamSpannerFormatInterface
+from abjad.tools.spannertools.MultipartBeamSpanner._MultipartBeamSpannerFormatInterface import _MultipartBeamSpannerFormatInterface
 from abjad.tools.spannertools.BeamSpanner import BeamSpanner
 
 

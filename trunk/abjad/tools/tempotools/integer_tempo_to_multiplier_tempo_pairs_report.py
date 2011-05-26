@@ -1,6 +1,5 @@
 from abjad.tools import durtools
-from abjad.tools.tempotools.integer_tempo_to_multiplier_tempo_pairs import \
-   integer_tempo_to_multiplier_tempo_pairs
+from abjad.tools.tempotools.integer_tempo_to_multiplier_tempo_pairs import integer_tempo_to_multiplier_tempo_pairs
 
 
 def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,

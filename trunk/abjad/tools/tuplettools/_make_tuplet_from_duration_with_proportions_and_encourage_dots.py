@@ -6,12 +6,9 @@ from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import seqtools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-from abjad.tools.tuplettools.change_augmented_tuplets_in_expr_to_diminished import \
-   change_augmented_tuplets_in_expr_to_diminished
-from abjad.tools.tuplettools.change_diminished_tuplets_in_expr_to_augmented import \
-   change_diminished_tuplets_in_expr_to_augmented
-from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import \
-   fix_contents_of_tuplets_in_expr
+from abjad.tools.tuplettools.change_augmented_tuplets_in_expr_to_diminished import change_augmented_tuplets_in_expr_to_diminished
+from abjad.tools.tuplettools.change_diminished_tuplets_in_expr_to_augmented import change_diminished_tuplets_in_expr_to_augmented
+from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr
 from fractions import Fraction
 
 

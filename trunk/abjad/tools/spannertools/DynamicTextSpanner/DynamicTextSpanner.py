@@ -1,5 +1,4 @@
-from abjad.tools.spannertools.DynamicTextSpanner._DynamicTextSpannerFormatInterface import \
-   _DynamicTextSpannerFormatInterface
+from abjad.tools.spannertools.DynamicTextSpanner._DynamicTextSpannerFormatInterface import _DynamicTextSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 

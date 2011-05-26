@@ -1,6 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.seqtools.get_sequence_degree_of_rotational_symmetry import \
-   get_sequence_degree_of_rotational_symmetry
+from abjad.tools.seqtools.get_sequence_degree_of_rotational_symmetry import get_sequence_degree_of_rotational_symmetry
 
 
 def get_sequence_period_of_rotation(sequence, n):

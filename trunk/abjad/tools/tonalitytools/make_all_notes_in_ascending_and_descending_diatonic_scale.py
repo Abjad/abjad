@@ -4,8 +4,7 @@ from abjad.components import Staff
 from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import schemetools
-from abjad.tools.tonalitytools.make_first_n_notes_in_ascending_diatonic_scale import \
-   make_first_n_notes_in_ascending_diatonic_scale
+from abjad.tools.tonalitytools.make_first_n_notes_in_ascending_diatonic_scale import make_first_n_notes_in_ascending_diatonic_scale
 
 
 

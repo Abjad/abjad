@@ -71,8 +71,7 @@ def clone_and_partition_governed_component_subtree_by_leaf_counts(container, lea
       renamed ``clonewp.by_leaf_counts_with_parentage( )`` to
       ``componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts( )``.
    '''
-   from abjad.tools.componenttools.clone_governed_component_subtree_by_leaf_range import \
-      clone_governed_component_subtree_by_leaf_range
+   from abjad.tools.componenttools.clone_governed_component_subtree_by_leaf_range import clone_governed_component_subtree_by_leaf_range
    
    assert isinstance(container, Container)
    assert all([isinstance(x, int) for x in leaf_counts])

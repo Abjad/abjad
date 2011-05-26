@@ -1,5 +1,4 @@
-from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import \
-   _label_leaves_in_expr_with_leaf_durations
+from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import _label_leaves_in_expr_with_leaf_durations
 
 
 def label_leaves_in_expr_with_written_leaf_duration(expr, markup_direction = 'down'):

@@ -4,8 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
-from abjad.tools.tietools.get_preprolated_tie_chain_duration import \
-   get_preprolated_tie_chain_duration
+from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from fractions import Fraction
 

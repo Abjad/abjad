@@ -1,5 +1,4 @@
-from abjad.components.Container._ContainerFormatterSlotsInterface import \
-   _ContainerFormatterSlotsInterface
+from abjad.components.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
 
 
 class _ClusterFormatterSlotsInterface(_ContainerFormatterSlotsInterface):

@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.get_proper_parentage_of_component import \
-   get_proper_parentage_of_component
+from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
 
 
 def component_to_tuplet_depth(component):

@@ -1,6 +1,5 @@
 from abjad.tools import seqtools
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
-   get_named_chromatic_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 

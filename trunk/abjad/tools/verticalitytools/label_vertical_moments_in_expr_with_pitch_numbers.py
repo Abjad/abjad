@@ -1,5 +1,4 @@
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import \
-   iterate_vertical_moments_forward_in_expr
+from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 from abjad.tools import markuptools
 
 

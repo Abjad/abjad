@@ -1,6 +1,5 @@
 from abjad.tools.iotools.show import show
-from abjad.tools.scoretools.make_piano_sketch_score_from_leaves import \
-   make_piano_sketch_score_from_leaves
+from abjad.tools.scoretools.make_piano_sketch_score_from_leaves import make_piano_sketch_score_from_leaves
 
 
 def show_leaves(leaves, template = None, title = None, suppress_pdf = False):

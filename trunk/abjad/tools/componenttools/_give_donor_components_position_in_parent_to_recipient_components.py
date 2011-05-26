@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import \
-   get_parent_and_start_stop_indices_of_components
+from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
 from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 
 

@@ -1,5 +1,4 @@
-from abjad.tools.leaftools._leaf_to_tuplet_with_proportions import \
-   _leaf_to_tuplet_with_proportions
+from abjad.tools.leaftools._leaf_to_tuplet_with_proportions import _leaf_to_tuplet_with_proportions
 
 
 def leaf_to_augmented_tuplet_with_proportions(leaf, proportions):

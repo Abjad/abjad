@@ -1,8 +1,7 @@
 from abjad.tools import durtools
 from abjad.tools import contexttools
 from abjad.tools.metertools import Meter
-from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
-   clone_components_and_fracture_crossing_spanners
+from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
 
 
 def clone_components_and_immediate_parent_of_first_component(components):

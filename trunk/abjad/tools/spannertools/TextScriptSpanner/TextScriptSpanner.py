@@ -1,6 +1,5 @@
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.spannertools.TextScriptSpanner._TextScriptSpannerFormatInterface import \
-   _TextScriptSpannerFormatInterface
+from abjad.tools.spannertools.TextScriptSpanner._TextScriptSpannerFormatInterface import _TextScriptSpannerFormatInterface
 
 
 class TextScriptSpanner(Spanner):

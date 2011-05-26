@@ -1,7 +1,6 @@
 from abjad.tools import gracetools
 from abjad.tools import mathtools
-from abjad.tools.spannertools.MetricGridSpanner._MetricGridSpannerFormatInterface import \
-   _MetricGridSpannerFormatInterface
+from abjad.tools.spannertools.MetricGridSpanner._MetricGridSpannerFormatInterface import _MetricGridSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 

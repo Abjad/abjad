@@ -1,6 +1,5 @@
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.spannertools.SlurSpanner._SlurSpannerFormatInterface import \
-   _SlurSpannerFormatInterface
+from abjad.tools.spannertools.SlurSpanner._SlurSpannerFormatInterface import _SlurSpannerFormatInterface
 
 
 class SlurSpanner(Spanner):

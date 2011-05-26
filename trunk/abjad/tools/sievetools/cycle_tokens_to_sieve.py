@@ -1,5 +1,4 @@
-from abjad.tools.sievetools._cycle_token_to_sieve import \
-   _cycle_token_to_sieve
+from abjad.tools.sievetools._cycle_token_to_sieve import _cycle_token_to_sieve
 from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
 
 

@@ -1,5 +1,4 @@
-from abjad.tools.pitcharraytools._leaf_iterables_to_pitch_array import \
-   _leaf_iterables_to_pitch_array
+from abjad.tools.pitcharraytools._leaf_iterables_to_pitch_array import _leaf_iterables_to_pitch_array
 
 
 def make_populated_pitch_array_from_list_of_pitch_lists(leaf_iterables):

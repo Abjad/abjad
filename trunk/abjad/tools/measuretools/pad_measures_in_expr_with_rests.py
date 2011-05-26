@@ -1,6 +1,5 @@
 from abjad.components import Rest
-from abjad.tools.layouttools._insert_measure_padding import \
-   _insert_measure_padding as layout__insert_measure_padding
+from abjad.tools.layouttools._insert_measure_padding import _insert_measure_padding as layout__insert_measure_padding
 
 
 def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
