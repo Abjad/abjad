@@ -2,6 +2,7 @@
 
 import os
 from abjad.cfg.cfg import ABJADPATH
+from abjad.tools import iotools
 from abjad.tools.iotools._write_abjad_version_file import _write_abjad_version_file
 from abjad.tools.iotools.remove_abjad_pyc_files import remove_abjad_pyc_files
 
