@@ -1,6 +1,6 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools.componenttools.component_to_score_index import component_to_score_index
-from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr as componenttools_iterate_components_forward_in_expr
+from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
 def iterate_timeline_backward_in_expr(expr, klass = _Leaf):
@@ -42,7 +42,7 @@ def iterate_timeline_backward_in_expr(expr, klass = _Leaf):
    .. todo:: optimize to avoid behind-the-scenes full-score traversal.
    '''
 
-   component_generator = componenttools_iterate_components_forward_in_expr(expr, klass = klass)
+   component_generator = iterate_components_forward_in_expr(expr, klass = klass)
    components = list(component_generator)
    
    def _sort_helper(component_1, component_2):

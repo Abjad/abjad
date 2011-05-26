@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.layouttools._rational_to_whitespace_measure_string import _rational_to_whitespace_measure_string as layouttools__rational_to_whitespace_measure_string
+from abjad.tools.layouttools._rational_to_whitespace_measure_string import _rational_to_whitespace_measure_string
 import py
 py.test.skip('skipping until clean way to pass multiline format contributions.')
 
@@ -7,7 +7,7 @@ py.test.skip('skipping until clean way to pass multiline format contributions.')
 def test_layouttools__rational_to_whitespace_measure_string_01( ):
    '''Turn nonbinary rational into whitespace measure string.'''
 
-   t = layouttools__rational_to_whitespace_measure_string(Fraction(1, 40))
+   t = _rational_to_whitespace_measure_string(Fraction(1, 40))
 
    r'''
    {
@@ -28,7 +28,7 @@ def test_layouttools__rational_to_whitespace_measure_string_01( ):
 def test_layouttools__rational_to_whitespace_measure_string_02( ):
    '''Turn binary rational into whitespace measure string.'''
 
-   t = layouttools__rational_to_whitespace_measure_string(Fraction(1, 32))
+   t = _rational_to_whitespace_measure_string(Fraction(1, 32))
 
    r'''
    {

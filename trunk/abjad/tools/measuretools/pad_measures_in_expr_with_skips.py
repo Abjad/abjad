@@ -1,5 +1,5 @@
 from abjad.tools.skiptools.Skip import Skip
-from abjad.tools.layouttools._insert_measure_padding import _insert_measure_padding as layout__insert_measure_padding
+from abjad.tools.layouttools._insert_measure_padding import _insert_measure_padding
 
 
 def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
@@ -118,6 +118,5 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
    '''
 
    klass_token = Skip((1, 4))
-   result = layout__insert_measure_padding(
-      expr, front, back, klass_token, splice = splice)
+   result = _insert_measure_padding(expr, front, back, klass_token, splice = splice)
    return result

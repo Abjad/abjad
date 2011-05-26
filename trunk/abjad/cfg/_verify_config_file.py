@@ -1,5 +1,5 @@
 from abjad.cfg.cfg import ABJADCONFIG
-from abjad.cfg._config_file_dict import _config_file_dict as default_dict
+from abjad.cfg._config_file_dict import _config_file_dict
 from abjad.cfg._config_file_to_dict import _config_file_to_dict
 from abjad.cfg._write_config_file import _write_config_file
 from abjad.cfg._update_config_file import _update_config_file
@@ -15,7 +15,7 @@ def _verify_config_file( ):
       ##       Fix and allow user-specific config file additions?                        ##
       ##       Or remove the message about old keys being maintained?                    ##
 
-      default_keyset = set(default_dict.keys( ))
+      default_keyset = set(_config_file_dict.keys( ))
       user_keyset = set(user_dict.keys( ))
       if default_keyset.intersection(user_keyset) != default_keyset:
          print ''
@@ -24,7 +24,7 @@ def _verify_config_file( ):
          print '   Any custom keys from your old configuration will be maintained.'
          print ''
          raw_input('   Press any key to continue: ')
-         _update_config_file(default_dict, user_dict)
+         _update_config_file(_config_file_dict, user_dict)
 
    except IOError:
       print ''
@@ -33,4 +33,4 @@ def _verify_config_file( ):
       print ''
       raw_input('   Press any key to continue: ')
       print ''
-      _write_config_file(ABJADCONFIG, default_dict)
+      _write_config_file(ABJADCONFIG, _config_file_dict)

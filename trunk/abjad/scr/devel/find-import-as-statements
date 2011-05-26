@@ -25,8 +25,7 @@ def _find_import_as_statements( ):
                   total_import_as_statements += 1
          if found_import_as_statement:
             print ''
-   print 'Modules with import as statements: %s' % \
-      total_modules_with_import_as_statements
+   print 'Modules with import as statements: %s' % total_modules_with_import_as_statements
    print 'Total import as statements:        %s' % total_import_as_statements
    print ''
 

@@ -7,4 +7,4 @@ from _Immutable import _Immutable
 from _ImmutableDictionary import _ImmutableDictionary
 from _StrictComparator import _StrictComparator
 from _UnaryComparator import _UnaryComparator
-from fractions import Fraction as Fraction
+from fractions import Fraction
