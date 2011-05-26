@@ -4,7 +4,7 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
-from copy import deepcopy as python_deepcopy
+from copy import deepcopy
 from fractions import Fraction
 
 
@@ -452,7 +452,7 @@ class Spanner(_StrictComparator):
 
       my_components = self._components[:]
       self._components = [ ]
-      result = python_deepcopy(self)
+      result = deepcopy(self)
       self._components = my_components
 
 ##      if stop is not None:
