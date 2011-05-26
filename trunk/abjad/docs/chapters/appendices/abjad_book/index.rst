@@ -160,9 +160,6 @@ normally use on your computer. ::
 
 And then open the resulting PDF.
 
-.. image:: images/latex-example-1.png
-
-
 Using ``abjad-book`` on ReST documents
 --------------------------------------
 

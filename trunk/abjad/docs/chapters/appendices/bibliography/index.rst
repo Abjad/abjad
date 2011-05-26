@@ -1,7 +1,7 @@
 Bibliography
 ============
 
-.. [Adán2006] Víctor Adán.
+.. [Adan2006] Víctor Adán.
    Music <-> Geometry <-> Meta-Music. Draft February 12, 2006.
 
 .. [AgonAssayagBresson2006]. Carlos Agon, Gérard Assayag, Jean Bresson.
@@ -21,7 +21,7 @@ Bibliography
    athenaCL.
    Dissertation.com, Boca Raton. 2005.
 
-.. [BačaAdán2007] Trevor Bača & Víctor Adán. 
+.. [BacaAdan2007] Trevor Bača & Víctor Adán. 
    Cuepatlahto and Lascaux: two approaches to the formalized control of musical score.
    Draft June 7, 2007.
 

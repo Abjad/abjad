@@ -49,13 +49,11 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
       abjad> seqtools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1])
       [0, -2, 5, -5, 8, -11]
 
-   .. |element| unicode:: U+2208 .. set membership
+   When ``-1`` in `sign`, sum consecutive negative elements.
 
-   When ``-1`` |element| `sign`, sum consecutive negative elements.
+   When ``0`` in `sign`, sum consecutive ``0`` elements.
 
-   When ``0`` |element| `sign`, sum consecutive ``0`` elements.
-
-   When ``1`` |element| `sign`, sum consecutive positive elements.
+   When ``1`` in `sign`, sum consecutive positive elements.
 
    Return list.
 

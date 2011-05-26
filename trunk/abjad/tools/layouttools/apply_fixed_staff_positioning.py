@@ -76,16 +76,20 @@ def apply_fixed_staff_positioning(expr, positioning, klass = Measure):
    if not isinstance(positioning, FixedStaffPositioning):
       raise TypeError
 
+#   print ''
+#   print positioning.staff_alignment_offsets.alignment_distances
+#   print positioning.system_y_offsets
+#   print ''
+
    systems_per_page = positioning.system_y_offsets.systems_per_page
    starting_system = positioning.system_y_offsets.skip_systems_on_first_page
 
    if positioning.staff_alignment_offsets is not None:
-      try:
-         alignment_values = \
-            positioning.staff_alignment_offsets.alignment_offsets
-      except AttributeError:
-         alignment_values = \
-            positioning.staff_alignment_offsets.alignment_distances
+#      try:
+#         alignment_values = positioning.staff_alignment_offsets.alignment_offsets
+#      except AttributeError:
+#         alignment_values = positioning.staff_alignment_offsets.alignment_distances
+      alignment_values = positioning.staff_alignment_offsets.alignment_distances
    else:
       alignment_values = [0]
 
@@ -99,19 +103,28 @@ def apply_fixed_staff_positioning(expr, positioning, klass = Measure):
          y_offset = positioning.system_y_offsets[system_on_page]
          ## TODO: update this if functionality is still desired ##
          #cur.breaks.y = y_offset
-         if isinstance(positioning.staff_alignment_offsets, StaffAlignmentOffsets):
-            cur.breaks.alignment_offsets = alignment_values
-         elif isinstance(positioning.staff_alignment_offsets, 
-            StaffAlignmentDistances):
-            cur.breaks.alignment_distances = alignment_values
+         if isinstance(positioning.staff_alignment_offsets, StaffAlignmentDistances):
+            #cur.breaks.alignment_distances = alignment_values
+            override_string = _make_override_string(y_offset, alignment_values)
+            marktools.LilyPondCommandMark(override_string, 'before')(cur)
          else:
-            raise TypeError('should be alignment offsets or distances.')
+            raise TypeError('should be staff alignment distances.')
          line_breaks_found += 1
          if system_on_page == 0:
             if prev is not None:
-               prev.breaks.page = True
+               #prev.breaks.page = True
+               marktools.LilyPondCommandMark('pageBreak', 'after')(prev)
          ## TODO: Write test cases for this this branch. ##
          else:
             if prev is not None:
-               prev.breaks.page = False
+               #prev.breaks.page = False
+               marktools.LilyPondCommandMark('noPageBreak', 'after')(prev)
       prev = cur
+
+def _make_override_string(y_offset, alignment_values):
+   alignment_values = ' '.join([str(x) for x in alignment_values])
+   override_string = '''overrideProperty #"Score.NonMusicalPaperColumn"
+#'line-break-system-details
+#'((Y-offset . %s) (alignment-distances . (%s)))''' % (
+   y_offset, alignment_values)
+   return override_string

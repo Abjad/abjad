@@ -2,16 +2,16 @@ Duration interfaces compared
 ============================
 
 =========== ====  ====  =========   =======  ======   =========   =========
-\           core  leaf  container   measure  tuplet   fd tuplet   fm tuplet 
+type        core  leaf  container   measure  tuplet   fd tuplet   fm tuplet 
 =========== ====  ====  =========   =======  ======   =========   =========
-contents    –     –     ↵           ↵        ↵        ↵           ↵ 
-multiplied  –     ↵     –           –        –        ↵           ↵
-multiplier  –     √     –           ↵        ↵        ↵           √ 
-preprolated ↵     ↵     ↵           ↵        ↵        ↵           ↵ 
-prolated    ↵     ↵     ↵           ↵        ↵        ↵           ↵ 
-prolation   ↵     ↵     ↵           ↵        ↵        ↵           ↵ 
-target      –     –     –           –        –        √           – 
-written     –     √     –           –        –        –           –
+contents    –     –     R           R        R        R           R
+multiplied  –     R     –           –        –        R           R
+multiplier  –     RW    –           R        R        R           RW 
+preprolated R     R     R           R        R        R           R 
+prolated    R     R     R           R        R        R           R
+prolation   R     R     R           R        R        R           R
+target      –     –     –           –        –        RW          – 
+written     –     RW    –           –        –        –           –
 =========== ====  ====  =========   =======  ======   =========   =========
 
 
@@ -27,5 +27,3 @@ nest an entire voice within a fixed-duration tuplet.
 
 .. note::
    :class:`_MeasureDurationInterface <abjad.measure.duration._MeasureDurationInterface>` implements `nonbinary` attributes not shown above.  
-
-
