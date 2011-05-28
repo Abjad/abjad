@@ -1,5 +1,4 @@
-from abjad.tools.musicxmltools._all_are_nodes_with_tag \
-   import _all_are_nodes_with_tag
+from abjad.tools.musicxmltools._all_are_nodes_with_tag import _all_are_nodes_with_tag
 
 
 def _note_nodes_contain_chords(nodes):

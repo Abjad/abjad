@@ -1,6 +1,5 @@
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
-   import all_are_intervals_or_trees_or_empty
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 
 
 def get_all_unique_bounds_in_intervals(intervals):

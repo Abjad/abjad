@@ -1,5 +1,4 @@
-from abjad.tools.musicxmltools._all_are_nodes_with_tag \
-   import _all_are_nodes_with_tag
+from abjad.tools.musicxmltools._all_are_nodes_with_tag import _all_are_nodes_with_tag
 from abjad.tools.pitchtools import Accidental
 from abjad.tools.pitchtools import NamedChromaticPitch
 from abjad.tools.pitchtools import apply_accidental_to_named_chromatic_pitch

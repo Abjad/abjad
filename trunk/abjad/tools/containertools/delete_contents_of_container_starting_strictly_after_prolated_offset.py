@@ -1,5 +1,4 @@
-from abjad.tools.containertools.get_first_element_starting_strictly_after_prolated_offset \
-   import get_first_element_starting_strictly_after_prolated_offset
+from abjad.tools.containertools.get_first_element_starting_strictly_after_prolated_offset import get_first_element_starting_strictly_after_prolated_offset
 
 
 def delete_contents_of_container_starting_strictly_after_prolated_offset(container, prolated_offset):

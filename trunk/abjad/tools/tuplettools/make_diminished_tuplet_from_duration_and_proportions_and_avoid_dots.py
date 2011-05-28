@@ -1,5 +1,4 @@
-from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avoid_dots \
-   import _make_tuplet_from_duration_with_proportions_and_avoid_dots
+from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avoid_dots import _make_tuplet_from_duration_with_proportions_and_avoid_dots
 
 def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(
    duration, proportions, direction = 'big-endian'):

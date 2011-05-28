@@ -1,5 +1,4 @@
-from abjad.tools.durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely \
-   import yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
+from abjad.tools.durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely import yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 
 

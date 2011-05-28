@@ -1,12 +1,9 @@
 from abjad.tools.seqtools import iterate_sequence_pairwise_strict
 from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
-from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
-   import all_are_intervals_or_trees_or_empty
-from abjad.tools.treetools.get_all_unique_bounds_in_intervals \
-   import get_all_unique_bounds_in_intervals
-from abjad.tools.treetools.split_intervals_at_rationals \
-   import split_intervals_at_rationals
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
+from abjad.tools.treetools.get_all_unique_bounds_in_intervals import get_all_unique_bounds_in_intervals
+from abjad.tools.treetools.split_intervals_at_rationals import split_intervals_at_rationals
 
 
 def compute_depth_of_intervals_in_interval(intervals, interval):

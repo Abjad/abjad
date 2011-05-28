@@ -1,7 +1,8 @@
 from abjad import *
 from abjad.checks import MisduratedMeasureCheck
-checker = MisduratedMeasureCheck( )
 
+
+checker = MisduratedMeasureCheck( )
 
 def test_Measure_in_place_apply_01( ):
 

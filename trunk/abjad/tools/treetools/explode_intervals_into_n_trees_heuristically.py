@@ -1,12 +1,9 @@
 from fractions import Fraction
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
-   import all_are_intervals_or_trees_or_empty
-from abjad.tools.treetools.calculate_depth_density_of_intervals_in_interval \
-   import calculate_depth_density_of_intervals_in_interval
-from abjad.tools.treetools.compute_logical_or_of_intervals \
-   import compute_logical_or_of_intervals
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
+from abjad.tools.treetools.calculate_depth_density_of_intervals_in_interval import calculate_depth_density_of_intervals_in_interval
+from abjad.tools.treetools.compute_logical_or_of_intervals import compute_logical_or_of_intervals
 
 
 def explode_intervals_into_n_trees_heuristically(intervals, n):

@@ -10,8 +10,7 @@ from abjad.tools.schemetools import SchemePair
 from abjad.tools.schemetools import SchemeVector
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools._make_voice_from_nonoverlapping_intervals \
-   import _make_voice_from_nonoverlapping_intervals
+from abjad.tools.treetools._make_voice_from_nonoverlapping_intervals import _make_voice_from_nonoverlapping_intervals
 
 
 def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey = None):

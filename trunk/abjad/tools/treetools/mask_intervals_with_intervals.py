@@ -1,11 +1,8 @@
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
-   import all_are_intervals_or_trees_or_empty
-from abjad.tools.treetools.compute_logical_not_of_intervals_in_interval \
-   import compute_logical_not_of_intervals_in_interval
-from abjad.tools.treetools.compute_logical_or_of_intervals \
-   import compute_logical_or_of_intervals
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
+from abjad.tools.treetools.compute_logical_not_of_intervals_in_interval import compute_logical_not_of_intervals_in_interval
+from abjad.tools.treetools.compute_logical_or_of_intervals import compute_logical_or_of_intervals
 from abjad.tools.treetools.split_intervals_at_rationals import split_intervals_at_rationals
 from abjad.tools.treetools.get_all_unique_bounds_in_intervals import get_all_unique_bounds_in_intervals
 

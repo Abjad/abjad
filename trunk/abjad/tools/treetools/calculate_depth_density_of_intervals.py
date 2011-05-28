@@ -1,9 +1,7 @@
 from fractions import Fraction
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
-   import all_are_intervals_or_trees_or_empty
-from abjad.tools.treetools.compute_depth_of_intervals \
-   import compute_depth_of_intervals
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
+from abjad.tools.treetools.compute_depth_of_intervals import compute_depth_of_intervals
 
 
 def calculate_depth_density_of_intervals(intervals):

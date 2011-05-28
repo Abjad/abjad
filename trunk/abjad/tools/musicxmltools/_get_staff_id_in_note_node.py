@@ -1,5 +1,4 @@
-from abjad.tools.musicxmltools._all_are_nodes_with_tag \
-   import _all_are_nodes_with_tag
+from abjad.tools.musicxmltools._all_are_nodes_with_tag import _all_are_nodes_with_tag
 
 
 def _get_staff_id_in_note_node(node):

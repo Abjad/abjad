@@ -16,7 +16,7 @@ def _conjoin_multiline_import_statements( ):
             fp = file(full_file_name, 'r')
             within_multiline_import, constituent_lines = False, [ ]
             for line in fp:
-               if 'import' in line and line.endswith('\\\n'):
+               if ('import' in line or line.startswith('from')) and line.endswith('\\\n'):
                   ## strip only right edge of first line to preserve indentation at left
                   constituent_lines.append(line.rstrip( ))
                   within_multiline_import = True

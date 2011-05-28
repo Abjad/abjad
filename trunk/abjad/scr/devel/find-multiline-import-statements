@@ -16,7 +16,7 @@ def _find_multiline_import_statements( ):
             fp = file(full_file_name, 'r')
             within_multiline_import, constituent_lines = False, [ ]
             for line in fp:
-               if 'import' in line and line.endswith('\\\n'):
+               if ('import' in line or line.startswith('from')) and line.endswith('\\\n'):
                   if not found_import_statement_in_file:
                      print full_file_name 
                      found_import_statement_in_file = True
@@ -36,6 +36,6 @@ def _find_multiline_import_statements( ):
 
 if __name__ == '__main__':
    iotools.clear_terminal( )
-   print 'Conjoining multiline import statements ...'
+   print 'Finding multiline import statements ...'
    print ''
    _find_multiline_import_statements( )

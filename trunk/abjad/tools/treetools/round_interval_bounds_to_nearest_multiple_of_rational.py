@@ -1,7 +1,6 @@
 from fractions import Fraction
 from abjad.tools.treetools.IntervalTree import IntervalTree
-from abjad.tools.treetools.all_are_intervals_or_trees_or_empty \
-   import all_are_intervals_or_trees_or_empty
+from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 
 
 def round_interval_bounds_to_nearest_multiple_of_rational(intervals, rational):

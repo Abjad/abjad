@@ -2,8 +2,8 @@ from abjad.components._Component import _Component
 from abjad.exceptions import NegativeDurationError
 from abjad.components._Leaf import _Leaf
 from fractions import Fraction
-from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most \
-   import list_leftmost_components_with_prolated_duration_at_most
+from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most import list_leftmost_components_with_prolated_duration_at_most
+
 
 ## TODO: implement related function to cut from right edge.
 ## TODO: implement related function to cut in middle.

@@ -7,8 +7,7 @@ from abjad.tools import contexttools
 from abjad.tools import metertools
 from abjad.tools import spannertools
 from abjad.tools.metertools import Meter
-from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components \
-   import get_parent_and_start_stop_indices_of_components
+from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
 
 
 def _split_component_at_index(component, i, spanners = 'unfractured'):
