@@ -7,7 +7,7 @@ from fractions import Fraction
 from numbers import Number
 import math
 import operator
-      
+
 
 def make_notes(pitches, durations, direction='big-endian'):
    '''Make notes according to `pitches` and `durations`.

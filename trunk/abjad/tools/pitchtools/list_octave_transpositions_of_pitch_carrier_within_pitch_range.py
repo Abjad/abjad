@@ -2,7 +2,6 @@ from abjad.components import Chord
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
 from abjad.tools.pitchtools.PitchRange import PitchRange
-#from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interval import transpose_pitch_carrier_by_melodic_chromatic_interval
 from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_interval import transpose_pitch_carrier_by_melodic_interval
 
 

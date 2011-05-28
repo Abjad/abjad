@@ -1,7 +1,8 @@
 from abjad import *
 from abjad.tools import sievetools
-RC = sievetools.ResidueClass
 
+
+RC = sievetools.ResidueClass
 
 def test_ResidueClassexpression_representative_congruent_bases_01( ):
 

@@ -3,7 +3,6 @@ from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import metertools
 from abjad.tools import componenttools
-#from abjad.tools.componenttools._switch import _switch
 from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
 from fractions import Fraction
