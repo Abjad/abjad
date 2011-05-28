@@ -31,8 +31,9 @@ def _find_modules_with_chevrons( ):
 
 def _has_python_prompt_chevrons(path, f):
    full_name = os.path.join(path, f)
+   chevrons = 3 * '>'
    for line in file(full_name, 'r'):
-      if '>>>' in line:
+      if chevrons in line:
          return True
    else:
       return False
