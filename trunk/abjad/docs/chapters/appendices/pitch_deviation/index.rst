@@ -33,6 +33,6 @@ Use markup to include indications of pitch deviation in your score:
 
 ::
 
-	abjad> markuptools.Markup(note_2.pitch.deviation, 'up')(note_2)
+	abjad> markuptools.Markup(note_2.pitch.deviation_in_cents, 'up')(note_2)
 
 .. image:: images/example-2.png

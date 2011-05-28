@@ -133,16 +133,16 @@ according to the following table:
    Chromatic pitch-class number      Chromatic pitch-class name (default)
    ============================      ====================================
       0                              C 
-      1                              C# 
+      1                              C♯ 
       2                              D 
-      3                              Eb 
+      3                              E♭ 
       4                              E 
       5                              F 
-      6                              F# 
+      6                              F♯ 
       7                              G 
-      8                              Gb 
+      8                              G♭ 
       9                              A 
-      10                             Bb 
+      10                             B♭ 
       11                             B
    ============================      ====================================
 

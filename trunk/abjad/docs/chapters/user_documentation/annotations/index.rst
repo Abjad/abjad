@@ -12,13 +12,13 @@ Use mark tools to create annotations:
 
 ::
 
-	abjad> annotation = marktools.Annotation('special information')
+	abjad> annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
 
 
 ::
 
 	abjad> annotation
-	Annotation('special information')
+	Annotation('special pitch', NamedChromaticPitch('bs'))
 
 
 Attaching annotations
@@ -35,7 +35,7 @@ Attach annotations by calling them:
 ::
 
 	abjad> annotation
-	Annotation('special information')(c'4)
+	Annotation('special pitch', NamedChromaticPitch('bs'))(c'4)
 
 
 Creating and attaching annotations in one step
@@ -45,13 +45,13 @@ Create and attach annotations in one step like this:
 
 ::
 
-	abjad> another_annotation = marktools.Annotation('more special information')(note)
+	abjad> another_annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))(note)
 
 
 ::
 
 	abjad> another_annotation
-	Annotation('more special information')(c'4)
+	Annotation('special pitch', NamedChromaticPitch('bs'))(c'4)
 
 
 Getting annotations
@@ -62,7 +62,7 @@ Use mark tools to get annotations:
 ::
 
 	abjad> marktools.get_annotations_attached_to_component(note)
-	(Annotation('special information')(c'4), Annotation('more special information')(c'4))
+	(Annotation('special pitch', NamedChromaticPitch('bs'))(c'4), Annotation('special pitch', NamedChromaticPitch('bs'))(c'4))
 
 
 Detaching annotations by hand
@@ -78,7 +78,7 @@ Detach annotations by hand:
 ::
 
 	abjad> annotation
-	Annotation('special information')
+	Annotation('special pitch', NamedChromaticPitch('bs'))
 
 
 Detaching annotations automatically
@@ -89,7 +89,7 @@ Or use mark tools to detach all annotations at once:
 ::
 
 	abjad> print marktools.detach_annotations_attached_to_component(note)
-	(Annotation('more special information'),)
+	(Annotation('special pitch', NamedChromaticPitch('bs')),)
 
 
 ::
@@ -114,13 +114,24 @@ Use ``start_component`` to inspect attachment:
 	Note("c'4")
 
 
-Inspecting contents
--------------------
+Inspecting name
+---------------
 
-And use ``contents`` to get the contents of any annotation:
+Use ``name`` to get the name of any annotation:
 
 ::
 
-	abjad> annotation.contents
-	'special information'
+	abjad> annotation.name
+	'special pitch'
+
+
+Inspecting value
+----------------
+
+And use ``value`` to get the value of any annotation:
+
+::
+
+	abjad> annotation.value
+	NamedChromaticPitch('bs')
 

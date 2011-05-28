@@ -247,8 +247,8 @@ And two ties connecting the last notes in the upper and lower staves:
 
 ::
 
-	abjad> spannertools.TieSpanner(upper_staff[-2:])
-	abjad> spannertools.TieSpanner([appendix_voice_m4[0], appendix_voice_m5[0]])
+	abjad> tietools.TieSpanner(upper_staff[-2:])
+	abjad> tietools.TieSpanner([appendix_voice_m4[0], appendix_voice_m5[0]])
 
 
 The final result:

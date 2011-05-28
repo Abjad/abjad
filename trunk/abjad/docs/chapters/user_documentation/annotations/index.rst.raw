@@ -11,7 +11,7 @@ Creating annotations
 Use mark tools to create annotations:
 
 <abjad>
-annotation = marktools.Annotation('special information')
+annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
 </abjad>
 
 <abjad>
@@ -40,7 +40,7 @@ Creating and attaching annotations in one step
 Create and attach annotations in one step like this:
 
 <abjad>
-another_annotation = marktools.Annotation('more special information')(note)
+another_annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))(note)
 </abjad>
 
 <abjad>
@@ -100,12 +100,22 @@ annotation.start_component
 print repr(annotation.start_component) <hide
 </abjad>
 
-Inspecting contents
--------------------
+Inspecting name
+---------------
 
-And use ``contents`` to get the contents of any annotation:
+Use ``name`` to get the name of any annotation:
 
 <abjad>
-annotation.contents
-print repr(annotation.contents) <hide
+annotation.name
+print repr(annotation.name) <hide
+</abjad>
+
+Inspecting value
+----------------
+
+And use ``value`` to get the value of any annotation:
+
+<abjad>
+annotation.value
+print repr(annotation.value) <hide
 </abjad>
