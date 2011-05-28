@@ -1,7 +1,7 @@
 from abjad.components import Chord
 from abjad.components import Note
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(

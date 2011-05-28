@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
+from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
 def expr_has_duplicate_named_chromatic_pitch(expr):

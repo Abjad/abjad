@@ -1,5 +1,5 @@
-from abjad.tools.tietools import TieSpanner
 from abjad.tools import durtools
+from abjad.tools.tietools import TieSpanner
 
 
 def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None, tied=True):

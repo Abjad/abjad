@@ -1,8 +1,8 @@
+from abjad.components import Tuplet
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import seqtools
-from abjad.components import Tuplet
 from fractions import Fraction
 from numbers import Number
 import math

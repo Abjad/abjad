@@ -2,8 +2,8 @@ from abjad.components import Measure
 from abjad.tools import componenttools
 from abjad.tools import marktools
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
-from abjad.tools.layouttools.StaffAlignmentOffsets import StaffAlignmentOffsets
 from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistances
+from abjad.tools.layouttools.StaffAlignmentOffsets import StaffAlignmentOffsets
 
 
 def apply_fixed_staff_positioning(expr, positioning, klass = Measure):

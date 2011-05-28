@@ -1,5 +1,5 @@
-import os
 from xml.etree import ElementTree
+import os
 
 
 def _import_test_file( ):

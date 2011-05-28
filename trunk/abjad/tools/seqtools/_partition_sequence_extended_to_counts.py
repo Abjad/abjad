@@ -1,5 +1,5 @@
-from abjad.tools.seqtools.repeat_sequence_n_times import repeat_sequence_n_times
 from abjad.tools.seqtools._partition_sequence_by_counts import _partition_sequence_by_counts
+from abjad.tools.seqtools.repeat_sequence_n_times import repeat_sequence_n_times
 import math
 
 

@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
 from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import InversionEquivalentDiatonicIntervalClass
+from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
 
 
 class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):

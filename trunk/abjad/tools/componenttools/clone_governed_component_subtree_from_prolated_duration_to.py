@@ -1,8 +1,8 @@
-from abjad.components._Component import _Component
 from abjad.components import Container
+from abjad.components._Component import _Component
 from abjad.components._Leaf import _Leaf
-from fractions import Fraction
 from abjad.tools import durtools
+from fractions import Fraction
 
 
 def clone_governed_component_subtree_from_prolated_duration_to(component, start = 0, stop = None):

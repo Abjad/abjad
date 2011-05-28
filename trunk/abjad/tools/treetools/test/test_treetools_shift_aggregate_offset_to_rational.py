@@ -1,7 +1,7 @@
-import py.test
-from fractions import Fraction
 from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from fractions import Fraction
+import py.test
 
 
 def test_treetools_shift_aggregate_offset_to_rational_01( ):

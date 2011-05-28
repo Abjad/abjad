@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.components.Tuplet._TupletDurationInterface import _TupletDurationInterface
+from fractions import Fraction
 
 
 class _FixedDurationTupletDurationInterface(_TupletDurationInterface):

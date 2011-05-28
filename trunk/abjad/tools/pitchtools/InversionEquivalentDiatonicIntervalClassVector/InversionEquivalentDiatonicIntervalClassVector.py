@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools._Vector import _Vector
-from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
 from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_classes import inventory_inversion_equivalent_diatonic_interval_classes
+from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
 
 
 class InversionEquivalentDiatonicIntervalClassVector(_Vector):

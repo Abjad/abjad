@@ -1,8 +1,8 @@
+from abjad.components import Tuplet
 from abjad.components._Leaf import _Leaf
-from fractions import Fraction
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-from abjad.components import Tuplet
+from fractions import Fraction
 import math
 
 

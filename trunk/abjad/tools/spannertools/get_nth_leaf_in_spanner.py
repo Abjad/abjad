@@ -1,7 +1,7 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools.spannertools import Spanner
-from abjad.tools.spannertools.iterate_components_forward_in_spanner import iterate_components_forward_in_spanner
 from abjad.tools.spannertools.iterate_components_backward_in_spanner import iterate_components_backward_in_spanner
+from abjad.tools.spannertools.iterate_components_forward_in_spanner import iterate_components_forward_in_spanner
 
 
 def get_nth_leaf_in_spanner(spanner, idx):

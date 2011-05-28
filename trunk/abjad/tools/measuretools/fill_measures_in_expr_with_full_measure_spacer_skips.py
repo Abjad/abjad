@@ -1,6 +1,6 @@
-from abjad.tools.skiptools.Skip import Skip
 from abjad.tools import contexttools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools.skiptools.Skip import Skip
 from abjad.tools.spannertools._withdraw_component_from_attached_spanners import _withdraw_component_from_attached_spanners
 
 

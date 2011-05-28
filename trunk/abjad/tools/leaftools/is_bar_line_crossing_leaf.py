@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools import contexttools
+from fractions import Fraction
 
 
 def is_bar_line_crossing_leaf(leaf):

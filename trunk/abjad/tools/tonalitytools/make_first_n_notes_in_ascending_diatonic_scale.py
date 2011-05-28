@@ -1,7 +1,7 @@
 from abjad.components import Note
-from fractions import Fraction
 from abjad.tools import pitchtools
 from abjad.tools.notetools.make_notes import make_notes
+from fractions import Fraction
 
 
 def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = Fraction(1, 8), key_signature = None):

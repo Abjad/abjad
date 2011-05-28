@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
 from abjad.tools import seqtools
+from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
 
 
 class  NumberedChromaticPitchClassSet(_PitchClassSet):

@@ -1,5 +1,5 @@
-from abjad.components._Leaf import _Leaf
 from abjad.components import Note
+from abjad.components._Leaf import _Leaf
 from abjad.tools import componenttools
 from abjad.tools import markuptools
 from abjad.tools import threadtools

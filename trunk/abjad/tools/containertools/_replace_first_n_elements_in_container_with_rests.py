@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools import resttools
+from fractions import Fraction
 
 
 def _replace_first_n_elements_in_container_with_rests(container, i, rested_half, 

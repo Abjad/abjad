@@ -1,5 +1,5 @@
-from abjad.tools.contexttools.get_effective_context_mark import get_effective_context_mark
 from abjad.tools.contexttools.InstrumentMark import InstrumentMark
+from abjad.tools.contexttools.get_effective_context_mark import get_effective_context_mark
 
 
 def get_effective_instrument(component):

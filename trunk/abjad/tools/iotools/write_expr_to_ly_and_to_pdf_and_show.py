@@ -1,8 +1,8 @@
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools.iotools._open_file import _open_file
+from abjad.tools.iotools.show import show
 from abjad.tools.iotools.write_expr_to_ly import write_expr_to_ly
 from abjad.tools.iotools.write_expr_to_pdf import write_expr_to_pdf
-from abjad.tools.iotools.show import show
 
 
 def write_expr_to_ly_and_to_pdf_and_show(expr, name, template = None, write = True):

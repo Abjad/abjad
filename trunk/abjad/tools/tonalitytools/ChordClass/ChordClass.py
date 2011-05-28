@@ -2,8 +2,8 @@ from abjad.tools import markuptools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
 from abjad.tools.pitchtools.NamedChromaticPitchClassSet import NamedChromaticPitchClassSet
-from abjad.tools.tonalitytools.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalitytools.ChordQualityIndicator import ChordQualityIndicator
+from abjad.tools.tonalitytools.ExtentIndicator import ExtentIndicator
 
 
 class ChordClass(NamedChromaticPitchClassSet):

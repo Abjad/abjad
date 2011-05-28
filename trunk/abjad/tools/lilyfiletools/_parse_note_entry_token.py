@@ -1,11 +1,11 @@
 from abjad.components import Note
 from abjad.components import Rest
-from abjad.tools.skiptools.Skip import Skip
 from abjad.exceptions import InputSpecificationError
 from abjad.tools import pitchtools
 from abjad.tools.lilyfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
 from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
 from abjad.tools.resttools.MultiMeasureRest import MultiMeasureRest
+from abjad.tools.skiptools.Skip import Skip
 import re
 
 

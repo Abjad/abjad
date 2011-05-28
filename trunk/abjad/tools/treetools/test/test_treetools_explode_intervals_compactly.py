@@ -1,7 +1,7 @@
-import py.test
-from fractions import Fraction
 from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from fractions import Fraction
+import py.test
 
 
 def test_treetools_explode_intervals_compactly_01( ):

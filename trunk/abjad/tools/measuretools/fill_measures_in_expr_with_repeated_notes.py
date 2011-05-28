@@ -1,7 +1,7 @@
-from fractions import Fraction
 from abjad.tools import contexttools
 from abjad.tools import notetools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from fractions import Fraction
 
 
 def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl = None):

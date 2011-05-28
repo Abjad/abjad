@@ -1,6 +1,6 @@
 from abjad.components import Score
-from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
 from abjad.tools.chordtools.divide_chord_by_chromatic_pitch_number import divide_chord_by_chromatic_pitch_number
+from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
 
 
 def make_piano_score_from_leaves(leaves):

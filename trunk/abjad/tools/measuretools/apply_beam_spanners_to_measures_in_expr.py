@@ -1,6 +1,6 @@
-from abjad.tools.spannertools import BeamSpanner
 from abjad.tools.measuretools.apply_beam_spanner_to_measure import apply_beam_spanner_to_measure
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools.spannertools import BeamSpanner
 
 
 def apply_beam_spanners_to_measures_in_expr(expr):

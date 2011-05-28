@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools import mathtools
+from fractions import Fraction
 import math
 
 

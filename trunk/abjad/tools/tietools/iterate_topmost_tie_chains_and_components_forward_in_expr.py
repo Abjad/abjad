@@ -1,5 +1,5 @@
-from abjad.components._Leaf import _Leaf
 from abjad.components import Container
+from abjad.components._Leaf import _Leaf
 from abjad.exceptions import TieChainError
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner

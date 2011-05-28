@@ -1,8 +1,8 @@
-from abjad.cfg.cfg import ABJADCONFIG
 from abjad.cfg._config_file_dict import _config_file_dict
 from abjad.cfg._config_file_to_dict import _config_file_to_dict
-from abjad.cfg._write_config_file import _write_config_file
 from abjad.cfg._update_config_file import _update_config_file
+from abjad.cfg._write_config_file import _write_config_file
+from abjad.cfg.cfg import ABJADCONFIG
 
 
 def _verify_config_file( ):

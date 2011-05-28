@@ -1,7 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools.mathtools.cumulative_sums import cumulative_sums
-from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from abjad.tools.mathtools.weight import weight
+from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from fractions import Fraction
 
 

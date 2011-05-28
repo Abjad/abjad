@@ -1,6 +1,6 @@
 from abjad.components._Component import _Component
-from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 from abjad.tools.componenttools.component_to_score_root import component_to_score_root
+from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 import types
 
 

@@ -1,7 +1,7 @@
-from fractions import Fraction
 from abjad.tools import mathtools
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 from abjad.tools.durtools.rational_to_equal_or_greater_binary_rational import rational_to_equal_or_greater_binary_rational
+from fractions import Fraction
 import math
 
 

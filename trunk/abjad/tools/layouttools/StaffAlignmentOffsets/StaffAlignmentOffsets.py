@@ -1,5 +1,5 @@
-from abjad.core import _StrictComparator
 from abjad.core import _Immutable
+from abjad.core import _StrictComparator
 
 
 class StaffAlignmentOffsets(_StrictComparator, _Immutable):

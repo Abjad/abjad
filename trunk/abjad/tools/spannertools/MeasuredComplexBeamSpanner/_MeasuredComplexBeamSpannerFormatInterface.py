@@ -1,5 +1,5 @@
-from abjad.tools.spannertools.ComplexBeamSpanner._ComplexBeamSpannerFormatInterface import _ComplexBeamSpannerFormatInterface
 from abjad.tools import durtools
+from abjad.tools.spannertools.ComplexBeamSpanner._ComplexBeamSpannerFormatInterface import _ComplexBeamSpannerFormatInterface
 
 
 class _MeasuredComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterface):

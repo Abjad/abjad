@@ -1,5 +1,5 @@
-from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import MeasureContiguityError
+from abjad.interfaces._Interface import _Interface
 
 
 class _NumberingInterface(_Interface):

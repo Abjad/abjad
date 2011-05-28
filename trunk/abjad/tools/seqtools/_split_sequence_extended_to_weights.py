@@ -1,6 +1,6 @@
 from abjad.tools import mathtools
-from abjad.tools.seqtools.repeat_sequence_n_times import repeat_sequence_n_times
 from abjad.tools.seqtools._split_sequence_by_weights import _split_sequence_by_weights
+from abjad.tools.seqtools.repeat_sequence_n_times import repeat_sequence_n_times
 import math
 
 

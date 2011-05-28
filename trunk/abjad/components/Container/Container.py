@@ -1,6 +1,6 @@
-from abjad.components._Component._Component import _Component
 from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
 from abjad.components.Container._ContainerFormatter import _ContainerFormatter
+from abjad.components._Component._Component import _Component
 
 
 class Container(_Component):

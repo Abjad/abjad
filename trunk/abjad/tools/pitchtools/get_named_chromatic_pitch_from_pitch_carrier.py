@@ -1,7 +1,7 @@
 from abjad.components import Chord
+from abjad.components import Note
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
-from abjad.components import Note
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 import numbers
 

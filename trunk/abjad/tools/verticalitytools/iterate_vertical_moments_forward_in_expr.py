@@ -1,6 +1,6 @@
 from abjad.components._Component import _Component
-from fractions import Fraction
 from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import _yield_vertical_moments_forward_in_expr
+from fractions import Fraction
 
 
 def iterate_vertical_moments_forward_in_expr(governor):

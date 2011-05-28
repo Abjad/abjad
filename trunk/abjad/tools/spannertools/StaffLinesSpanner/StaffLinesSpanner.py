@@ -1,5 +1,5 @@
-from abjad.tools.spannertools.Spanner import Spanner
 from _StaffLinesSpannerFormatInterface import _StaffLinesSpannerFormatInterface
+from abjad.tools.spannertools.Spanner import Spanner
 
 
 class StaffLinesSpanner(Spanner):

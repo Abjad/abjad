@@ -1,5 +1,5 @@
-from abjad.components._Leaf import _Leaf
 from abjad.components import Container
+from abjad.components._Leaf import _Leaf
 from abjad.exceptions import MusicContentsError
 from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 

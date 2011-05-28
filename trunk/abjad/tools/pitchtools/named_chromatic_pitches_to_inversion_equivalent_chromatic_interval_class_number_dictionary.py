@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import seqtools
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(

@@ -1,6 +1,6 @@
 from abjad.components import Container
-from abjad.tools import seqtools
 from abjad.tools import mathtools
+from abjad.tools import seqtools
 
 
 ## TODO: Implement in-place containertools.partition_components_by_counts( ) ##

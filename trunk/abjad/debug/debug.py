@@ -1,5 +1,5 @@
-from abjad.core import _StrictComparator
 from abjad.cfg._read_config_file import _read_config_file
+from abjad.core import _StrictComparator
 from abjad.tools import componenttools
 
 if _read_config_file( )['DEBUG'] == False:

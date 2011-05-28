@@ -1,9 +1,9 @@
+from abjad.tools import componenttools
+from abjad.tools import contexttools
+from abjad.tools import durtools
+from abjad.tools import mathtools
 from abjad.tools.metertools import Meter
 from fractions import Fraction
-from abjad.tools import componenttools
-from abjad.tools import durtools
-from abjad.tools import contexttools
-from abjad.tools import mathtools
 
 
 def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Fraction(1)):

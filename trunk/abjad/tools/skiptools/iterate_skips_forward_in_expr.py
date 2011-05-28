@@ -1,5 +1,5 @@
-from abjad.tools.skiptools.Skip import Skip
 from abjad.tools import componenttools
+from abjad.tools.skiptools.Skip import Skip
 
 
 def iterate_skips_forward_in_expr(expr, start = 0, stop = None):

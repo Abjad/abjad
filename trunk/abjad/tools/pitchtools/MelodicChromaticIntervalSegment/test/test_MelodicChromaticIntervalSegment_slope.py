@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools.pitchtools import MelodicChromaticIntervalSegment
+from fractions import Fraction
 
 
 def test_MelodicChromaticIntervalSegment_slope_01( ):

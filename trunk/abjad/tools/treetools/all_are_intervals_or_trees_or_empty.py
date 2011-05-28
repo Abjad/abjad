@@ -1,6 +1,6 @@
-from collections import Iterable
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.IntervalTree import IntervalTree
+from collections import Iterable
 
 
 def all_are_intervals_or_trees_or_empty(input):

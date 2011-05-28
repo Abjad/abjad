@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.chordtools._divide_chord import _divide_chord
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
 def divide_chord_by_diatonic_pitch_number(chord, pitch = NamedChromaticPitch('b', 3)):

@@ -1,6 +1,6 @@
 from abjad import *
-from abjad.tools.pitchtools import PitchRange
 from abjad.tools.pitchtools import NamedChromaticPitch
+from abjad.tools.pitchtools import PitchRange
 
 
 def test_pitchtools_PitchRange___repr___01( ):

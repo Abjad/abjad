@@ -1,6 +1,6 @@
-from fractions import Fraction
 from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
+from fractions import Fraction
 
 
 def scale_aggregate_magnitude_by_rational(intervals, rational):

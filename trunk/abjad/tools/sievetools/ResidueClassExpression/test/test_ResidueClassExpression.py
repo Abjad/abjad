@@ -1,6 +1,6 @@
 from abjad.tools import sievetools
-from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
 from abjad.tools.sievetools.ResidueClass import ResidueClass
+from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
 import py.test
 
 RC = ResidueClass

@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools._PitchClass import _PitchClass
 from abjad.tools.pitchtools._Diatonic import _Diatonic
+from abjad.tools.pitchtools._PitchClass import _PitchClass
 
 
 class _DiatonicPitchClass(_PitchClass, _Diatonic):

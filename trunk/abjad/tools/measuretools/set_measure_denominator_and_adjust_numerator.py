@@ -1,6 +1,6 @@
 from abjad.components import Measure
-from abjad.tools import durtools
 from abjad.tools import contexttools
+from abjad.tools import durtools
 from abjad.tools.metertools import Meter
 
 

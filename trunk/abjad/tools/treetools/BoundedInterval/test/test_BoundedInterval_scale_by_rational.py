@@ -1,6 +1,6 @@
-import py.test
-from fractions import Fraction
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
+from fractions import Fraction
+import py.test
 
 
 def test_BoundedInterval_scale_by_rational_01( ):

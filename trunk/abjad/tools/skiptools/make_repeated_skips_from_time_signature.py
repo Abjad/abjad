@@ -1,5 +1,5 @@
-from abjad.tools.skiptools.Skip import Skip
 from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
+from abjad.tools.skiptools.Skip import Skip
 
 
 def make_repeated_skips_from_time_signature(time_signature):

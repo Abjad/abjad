@@ -1,5 +1,5 @@
-from abjad.core import _UnaryComparator
 from abjad.core import LilyPondTweakReservoir
+from abjad.core import _UnaryComparator
 
 
 class NoteHead(_UnaryComparator):

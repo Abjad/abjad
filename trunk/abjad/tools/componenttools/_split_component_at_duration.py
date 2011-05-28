@@ -1,6 +1,6 @@
-from abjad.components._Leaf import _Leaf
 from abjad.components import Container
 from abjad.components import Measure
+from abjad.components._Leaf import _Leaf
 from abjad.exceptions import ContainmentError
 from abjad.tools import durtools
 from abjad.tools import mathtools

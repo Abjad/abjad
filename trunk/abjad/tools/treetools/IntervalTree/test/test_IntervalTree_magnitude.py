@@ -1,5 +1,5 @@
-import py.test
 from abjad.tools.treetools import *
+import py.test
 
 
 def test_IntervalTree_magnitude_01( ):

@@ -1,7 +1,7 @@
-from abjad.core import _StrictComparator
 from abjad.core import _Immutable
-from fractions import Fraction
+from abjad.core import _StrictComparator
 from abjad.tools import tempotools
+from fractions import Fraction
 
 
 class SpacingIndication(_StrictComparator, _Immutable):

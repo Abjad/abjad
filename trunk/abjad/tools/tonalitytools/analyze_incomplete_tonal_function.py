@@ -1,7 +1,7 @@
-from abjad.tools.tonalitytools.analyze_incomplete_chord import analyze_incomplete_chord
 from abjad.tools.tonalitytools.ChordClass import ChordClass
 from abjad.tools.tonalitytools.Scale import Scale
 from abjad.tools.tonalitytools.TonalFunction import TonalFunction
+from abjad.tools.tonalitytools.analyze_incomplete_chord import analyze_incomplete_chord
 
 
 ## TODO: Write tests ##

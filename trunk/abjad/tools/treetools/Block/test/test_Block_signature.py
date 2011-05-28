@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools.treetools import *
+from fractions import Fraction
 
 
 def test_Block_signature_01( ):

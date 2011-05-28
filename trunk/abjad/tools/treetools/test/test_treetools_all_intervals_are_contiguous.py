@@ -1,6 +1,6 @@
-import py.test
 from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+import py.test
 
 
 def test_treetools_all_intervals_are_contiguous_01( ):

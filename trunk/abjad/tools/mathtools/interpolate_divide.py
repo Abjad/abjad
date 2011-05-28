@@ -1,6 +1,6 @@
-from fractions import Fraction
 from abjad.tools.mathtools.interpolate_cosine import interpolate_cosine
 from abjad.tools.mathtools.interpolate_exponential import interpolate_exponential
+from fractions import Fraction
 
 
 def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):

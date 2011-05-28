@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
+from fractions import Fraction
 
 
 def test_BoundedInterval_shift_to_rational_01( ):

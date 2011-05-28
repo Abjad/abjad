@@ -1,8 +1,8 @@
 from abjad.components import Measure
-from abjad.tools.metertools import Meter
-from fractions import Fraction
 from abjad.tools import leaftools
+from abjad.tools.metertools import Meter
 from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
+from fractions import Fraction
 
 
 def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):

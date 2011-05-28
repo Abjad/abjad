@@ -1,5 +1,5 @@
-from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools import get_all_unique_bounds_in_intervals
+from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 

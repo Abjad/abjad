@@ -1,6 +1,6 @@
-from abjad.tools.metertools.Meter import Meter
-from abjad.tools import mathtools
 from abjad.tools import durtools
+from abjad.tools import mathtools
+from abjad.tools.metertools.Meter import Meter
 
 
 def duration_and_possible_denominators_to_meter(duration, denominators = None, factor = None):

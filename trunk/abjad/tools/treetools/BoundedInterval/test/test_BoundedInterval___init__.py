@@ -1,5 +1,5 @@
-import py.test
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
+import py.test
 
 
 def test_BoundedInterval___init___01( ):

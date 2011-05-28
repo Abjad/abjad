@@ -1,7 +1,7 @@
 from abjad.components import Note
 from abjad.tools import componenttools
-from abjad.tools import seqtools
 from abjad.tools import pitchtools
+from abjad.tools import seqtools
 
 
 def are_stepwise_notes(*expr):

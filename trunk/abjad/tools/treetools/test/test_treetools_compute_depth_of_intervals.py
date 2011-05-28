@@ -1,5 +1,5 @@
-from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools import compute_depth_of_intervals
+from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
 
 

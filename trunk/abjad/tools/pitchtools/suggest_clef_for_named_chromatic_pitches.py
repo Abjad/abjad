@@ -1,6 +1,6 @@
+from abjad.tools import contexttools
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
-from abjad.tools import contexttools
 
 
 ## TODO: renamed to suggest_clef_for_named_chromatic_pitches_in_expr

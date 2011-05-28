@@ -1,5 +1,5 @@
-from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.spannertools.PhrasingSlurSpanner._PhrasingSlurSpannerFormatInterface import _PhrasingSlurSpannerFormatInterface
+from abjad.tools.spannertools.Spanner import Spanner
 
 
 class PhrasingSlurSpanner(Spanner):

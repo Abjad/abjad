@@ -1,8 +1,8 @@
-from abjad.tools.seqtools.all_are_nonnegative_integers import all_are_nonnegative_integers
+from abjad.tools import mathtools
 from abjad.tools.mathtools.cumulative_sums_zero_pairwise import cumulative_sums_zero_pairwise
+from abjad.tools.seqtools.all_are_nonnegative_integers import all_are_nonnegative_integers
 from abjad.tools.seqtools.repeat_sequence_to_weight_at_most import repeat_sequence_to_weight_at_most
 from abjad.tools.seqtools.repeat_sequence_to_weight_exactly import repeat_sequence_to_weight_exactly
-from abjad.tools import mathtools
 import copy
 
 

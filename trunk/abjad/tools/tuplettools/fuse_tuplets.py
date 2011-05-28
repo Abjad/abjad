@@ -1,9 +1,9 @@
 from abjad.components import Container
 from abjad.components import Tuplet
-from fractions import Fraction
 from abjad.exceptions import TupletFuseError
 from abjad.tools.componenttools.component_to_score_root import component_to_score_root
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
+from fractions import Fraction
 
 
 def fuse_tuplets(tuplets):

@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools.componenttools._split_component_at_duration import _split_component_at_duration
+from fractions import Fraction
 
 
 ## TODO: Take care of bug that unintentionally fractures ties. ##

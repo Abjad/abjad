@@ -1,5 +1,5 @@
-from abjad.components._Component._Component import _Component
 from abjad import *
+from abjad.components._Component._Component import _Component
 
 
 def test_componenttools_all_are_components_in_same_score_01( ):

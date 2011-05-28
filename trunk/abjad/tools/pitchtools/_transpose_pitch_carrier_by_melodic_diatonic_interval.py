@@ -1,9 +1,9 @@
 from abjad.components import Chord
 from abjad.components import Note
 from abjad.tools import componenttools
-from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
+from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name import diatonic_pitch_class_number_to_diatonic_pitch_class_name
 
 

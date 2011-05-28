@@ -1,5 +1,5 @@
-from abjad.tools.spannertools import OctavationSpanner
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
+from abjad.tools.spannertools import OctavationSpanner
 
 
 ## TODO: rename to apply_octavation_spanner_to_pitched_components_in_expr

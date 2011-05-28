@@ -1,8 +1,8 @@
-from fractions import Fraction
-from abjad.tools import durtools
 from abjad.tools import contexttools
+from abjad.tools import durtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.scale_contents_of_measures_in_expr import scale_contents_of_measures_in_expr
+from fractions import Fraction
 
 
 def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominator_factor):

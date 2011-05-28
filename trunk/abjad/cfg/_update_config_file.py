@@ -1,5 +1,5 @@
-from abjad.cfg.cfg import ABJADCONFIG
 from abjad.cfg._write_config_file import _write_config_file
+from abjad.cfg.cfg import ABJADCONFIG
 
 
 def _update_config_file(default_dict, user_dict):

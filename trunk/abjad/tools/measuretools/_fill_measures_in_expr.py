@@ -3,8 +3,8 @@ from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools.skiptools.Skip import Skip
-from numbers import Number
 from fractions import Fraction
+from numbers import Number
 
 
 def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):

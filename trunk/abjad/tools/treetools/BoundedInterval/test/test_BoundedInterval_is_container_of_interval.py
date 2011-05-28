@@ -1,5 +1,5 @@
-import py.test
 from abjad.tools.treetools import *
+import py.test
 
 
 def test_BoundedInterval_is_container_of_interval_01( ):

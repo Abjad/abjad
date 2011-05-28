@@ -1,10 +1,10 @@
-from abjad.tools.metertools import Meter
 from abjad.components import Tuplet
-from fractions import Fraction
 from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools.metertools import Meter
+from fractions import Fraction
 
 
 def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):

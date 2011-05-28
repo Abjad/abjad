@@ -1,5 +1,5 @@
-from abjad.components._Leaf import _Leaf
 from abjad.components import Container
+from abjad.components._Leaf import _Leaf
 from abjad.tools.gracetools.Grace._GraceFormatter import _GraceFormatter
 
 

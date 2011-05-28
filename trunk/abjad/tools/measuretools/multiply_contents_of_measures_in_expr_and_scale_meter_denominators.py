@@ -1,7 +1,7 @@
-from fractions import Fraction
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 from abjad.tools.measuretools.multiply_contents_of_measures_in_expr import multiply_contents_of_measures_in_expr
 from abjad.tools.measuretools.scale_measure_by_multiplier_and_adjust_meter import scale_measure_by_multiplier_and_adjust_meter
+from fractions import Fraction
 
 
 def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, concentration_pairs):

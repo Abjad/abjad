@@ -1,5 +1,5 @@
-import py.test
 from abjad.tools.treetools import *
+import py.test
 
 
 py.test.skip('Tests not yet implemented.')

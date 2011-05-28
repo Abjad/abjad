@@ -1,7 +1,7 @@
 from abjad.components._Component._ComponentDurationInterface import _ComponentDurationInterface
-from abjad.interfaces._Interface import _Interface
 from abjad.exceptions import AssignabilityError
 from abjad.exceptions import MissingTempoError
+from abjad.interfaces._Interface import _Interface
 from abjad.tools import durtools
 from fractions import Fraction
 

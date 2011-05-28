@@ -1,5 +1,5 @@
-from fractions import Fraction
 from abjad.tools.durtools.duration_token_to_duration_pair import duration_token_to_duration_pair
+from fractions import Fraction
 
 
 def rational_to_duration_pair_with_specified_integer_denominator(duration, integer_denominator):

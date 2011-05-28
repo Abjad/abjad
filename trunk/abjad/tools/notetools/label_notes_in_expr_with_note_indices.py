@@ -1,5 +1,5 @@
-from abjad.tools.notetools.iterate_notes_forward_in_expr import iterate_notes_forward_in_expr
 from abjad.tools import markuptools
+from abjad.tools.notetools.iterate_notes_forward_in_expr import iterate_notes_forward_in_expr
 
 
 def label_notes_in_expr_with_note_indices(expr, markup_direction = 'down'):

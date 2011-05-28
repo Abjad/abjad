@@ -1,6 +1,6 @@
-from abjad.core._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
 from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
 from abjad.core.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
+from abjad.core._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
 
 
 class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):

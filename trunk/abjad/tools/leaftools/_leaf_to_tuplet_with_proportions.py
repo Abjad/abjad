@@ -1,10 +1,10 @@
-from abjad.exceptions import AssignabilityError
 from abjad.components import Note
-from fractions import Fraction
+from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.notetools.make_notes import make_notes
+from fractions import Fraction
 
 
 def _leaf_to_tuplet_with_proportions(l, divisions, prolation):

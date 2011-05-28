@@ -1,9 +1,9 @@
-from abjad.core import _StrictComparator
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
+from abjad.core import _StrictComparator
+from abjad.interfaces import ParentageInterface
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface
-from abjad.interfaces import ParentageInterface
 from fractions import Fraction
 
 

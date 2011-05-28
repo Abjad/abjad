@@ -1,9 +1,9 @@
-from abjad.core import _StrictComparator
 from abjad.core import _Immutable
-from fractions import Fraction
+from abjad.core import _StrictComparator
 from abjad.tools.layouttools.FixedStaffPositioning import FixedStaffPositioning
 from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistances
 from abjad.tools.layouttools.SystemYOffsets import SystemYOffsets
+from fractions import Fraction
 
 
 class LayoutSchema(_StrictComparator, _Immutable):

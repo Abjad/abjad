@@ -1,5 +1,5 @@
-from abjad.debug.debug import _debug
 from abjad.debug.debug import DEBUG
+from abjad.debug.debug import _debug
 import py.test
 
 

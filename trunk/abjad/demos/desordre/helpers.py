@@ -1,6 +1,6 @@
 from abjad import *
-import math
 from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
+import math
 
 
 def desordre_build(pitches):

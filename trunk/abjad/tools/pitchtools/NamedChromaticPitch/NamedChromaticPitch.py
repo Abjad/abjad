@@ -1,6 +1,6 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.Accidental import Accidental
+from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
 
 

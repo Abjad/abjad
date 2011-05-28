@@ -1,10 +1,10 @@
 from abjad.components import Chord
 from abjad.components import Note
 from abjad.tools import componenttools
-from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.NumberedChromaticPitch import NumberedChromaticPitch
+from abjad.tools.pitchtools._Pitch import _Pitch
 import numbers
 
 

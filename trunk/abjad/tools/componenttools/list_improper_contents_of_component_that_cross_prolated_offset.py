@@ -1,6 +1,6 @@
 from abjad.components._Component import _Component
-from fractions import Fraction
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
+from fractions import Fraction
 
 
 def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):

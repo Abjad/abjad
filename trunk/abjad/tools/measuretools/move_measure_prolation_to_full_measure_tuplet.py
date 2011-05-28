@@ -1,10 +1,10 @@
-from fractions import Fraction
-from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
+from fractions import Fraction
 
 
 

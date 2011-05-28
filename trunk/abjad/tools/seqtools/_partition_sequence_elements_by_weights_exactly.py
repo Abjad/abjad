@@ -1,5 +1,5 @@
-from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 from abjad.tools.seqtools._split_sequence_by_weights import _split_sequence_by_weights
+from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 
 
 def _partition_sequence_elements_by_weights_exactly(sequence, weights, cyclic, overhang):

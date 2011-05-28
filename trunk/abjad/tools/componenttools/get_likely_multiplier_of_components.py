@@ -1,6 +1,6 @@
-from fractions import Fraction
-from abjad.tools import seqtools
 from abjad.tools import mathtools
+from abjad.tools import seqtools
+from fractions import Fraction
 
 
 ## TODO: Maybe move get_likely_multiplier_of_components( ) from durtools to measuretools? ##

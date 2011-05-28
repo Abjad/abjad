@@ -1,5 +1,5 @@
-from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.spannertools.OctavationSpanner._OctavationSpannerFormatInterface import _OctavationSpannerFormatInterface
+from abjad.tools.spannertools.Spanner import Spanner
 
 
 class OctavationSpanner(Spanner):

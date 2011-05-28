@@ -1,7 +1,7 @@
-import py.test
-from fractions import Fraction
 from abjad.tools.treetools import * 
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from fractions import Fraction
+import py.test
 
 
 def test_treetools_round_interval_bounds_to_nearest_multiple_of_rational_01( ):

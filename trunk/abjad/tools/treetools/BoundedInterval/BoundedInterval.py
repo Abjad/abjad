@@ -1,6 +1,6 @@
-import copy
 from abjad.core import _Immutable
 from fractions import Fraction
+import copy
 
 
 class BoundedInterval(_Immutable):

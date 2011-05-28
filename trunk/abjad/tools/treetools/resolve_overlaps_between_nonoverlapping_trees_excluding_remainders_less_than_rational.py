@@ -1,9 +1,9 @@
-from collections import Iterable
-from fractions import Fraction
 from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.all_intervals_are_nonoverlapping import all_intervals_are_nonoverlapping
 from abjad.tools.treetools.compute_logical_xor_of_intervals import compute_logical_xor_of_intervals
 from abjad.tools.treetools.mask_intervals_with_intervals import mask_intervals_with_intervals
+from collections import Iterable
+from fractions import Fraction
 
 
 def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational(trees, rational):
