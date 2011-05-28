@@ -49,7 +49,6 @@ del sys
 del os
 
 del cfg
-del checks
 del components
 del core
 del importtools

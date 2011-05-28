@@ -1,6 +1,3 @@
-from abjad import checks as _checks
-
-
 def list_badly_formed_components_in_expr(expr, allow_empty_containers = True):
    r'''.. versionadded:: 1.1.1
 
@@ -23,6 +20,7 @@ def list_badly_formed_components_in_expr(expr, allow_empty_containers = True):
 
    Return newly created list of zero or more components.
    '''
+   from abjad import checks as _checks
    
    badly_formed_components = [ ]
    for key, value in sorted(vars(_checks).items( )):

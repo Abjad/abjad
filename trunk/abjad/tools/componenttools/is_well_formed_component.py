@@ -1,4 +1,3 @@
-from abjad import checks as _checks
 from abjad.components._Component._Component import _Component
 
 
@@ -24,6 +23,7 @@ def is_well_formed_component(expr, allow_empty_containers = True):
 
    Return boolean.
    '''
+   from abjad import checks as _checks
    
    if not isinstance(expr, _Component):
       return False

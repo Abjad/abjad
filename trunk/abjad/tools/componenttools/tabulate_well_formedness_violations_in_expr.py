@@ -1,6 +1,3 @@
-from abjad import checks as _checks
-
-
 def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = True):
    r'''.. versionadded:: 1.1.1
 
@@ -39,6 +36,7 @@ def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = T
 
    Beamed quarter notes are not well formed.
    '''
+   from abjad import checks as _checks
    
    for key, value in sorted(vars(_checks).items( )):
       checker = value( )
