@@ -70,33 +70,33 @@ class Note(_Leaf):
 
    ## PUBLIC ATTRIBUTES ##
 
-#   @property
-#   def fingered_pitch(self):
-#      r'''Read-only fingered pitch of note::
-#
-#         abjad> staff = Staff("d''8 e''8 f''8 g''8")
-#         abjad> piccolo = instrumenttools.Piccolo( )(staff)
-#         abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
-#
-#      ::
-#
-#         abjad> f(staff)
-#         \new Staff {
-#            \set Staff.instrumentName = \markup { Piccolo }
-#            \set Staff.shortInstrumentName = \markup { Picc. }
-#            d'8
-#            e'8
-#            f'8
-#            g'8
-#         }
-#
-#      ::
-#   
-#         abjad> staff[0].fingered_pitch
-#         NamedChromaticPitch("d'")
-#
-#      Return named chromatic pitch.
-#      '''
+   @property
+   def fingered_pitch(self):
+      r'''Read-only fingered pitch of note::
+
+         abjad> staff = Staff("d''8 e''8 f''8 g''8")
+         abjad> piccolo = instrumenttools.Piccolo( )(staff)
+         abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+
+      ::
+
+         abjad> f(staff)
+         \new Staff {
+            \set Staff.instrumentName = \markup { Piccolo }
+            \set Staff.shortInstrumentName = \markup { Picc. }
+            d'8
+            e'8
+            f'8
+            g'8
+         }
+
+      ::
+   
+         abjad> staff[0].fingered_pitch
+         NamedChromaticPitch("d'")
+
+      Return named chromatic pitch.
+      '''
       from abjad.tools import instrumenttools
       from abjad.tools import pitchtools
       if self.written_pitch_indication_is_at_sounding_pitch:
