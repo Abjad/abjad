@@ -7,7 +7,7 @@ def get_abjad_revision_string( ):
    Get Abjad revision string::
 
       abjad> cfgtools.get_abjad_revision_string( )
-      '3979'
+      '4392'
 
    Return string.
    '''

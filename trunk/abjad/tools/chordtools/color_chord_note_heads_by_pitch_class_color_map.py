@@ -19,7 +19,7 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
    ::
 
       abjad> chordtools.color_chord_note_heads_by_pitch_class_color_map(chord, color_map)
-      Chord(c'' d'' fs'' a'' b'', 4)
+      Chord("<c'' d'' fs'' a'' b''>4")
 
    ::
 
@@ -44,7 +44,7 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
    ::
 
       abjad> chordtools.color_chord_note_heads_by_pitch_class_color_map(note, color_map)
-      Note(c', 4)
+      Note("c'4")
 
    ::
 

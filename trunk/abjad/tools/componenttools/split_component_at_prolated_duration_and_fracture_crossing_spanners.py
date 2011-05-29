@@ -12,8 +12,11 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(t)
       abjad> spannertools.BeamSpanner(t[0])
+      BeamSpanner(|2/8(2)|)
       abjad> spannertools.BeamSpanner(t[1])
+      BeamSpanner(|2/8(2)|)
       abjad> spannertools.SlurSpanner(t.leaves)
+      SlurSpanner(c'8, d'8, e'8, f'8)
       abjad> f(t)
       \new Staff {
          {

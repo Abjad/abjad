@@ -10,8 +10,11 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
       abjad> t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(t)
       abjad> spannertools.BeamSpanner(t[0])
+      BeamSpanner({c'8, d'8})
       abjad> spannertools.BeamSpanner(t[1])
+      BeamSpanner({e'8, f'8})
       abjad> spannertools.SlurSpanner(t.leaves)
+      SlurSpanner(c'8, d'8, e'8, f'8)
       abjad> f(t)
       \new Staff {
          {
@@ -28,6 +31,8 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
 
       abjad> durations = [Fraction(1, 32), Fraction(3, 32), Fraction(5, 32)]
       abjad> parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:1], durations)
+
+      abjad> f(t)
       \new Staff {
          {
             c'32 [ (

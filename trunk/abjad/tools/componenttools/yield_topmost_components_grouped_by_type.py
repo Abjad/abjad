@@ -10,9 +10,11 @@ def yield_topmost_components_grouped_by_type(expr):
       abjad> for x in componenttools.yield_topmost_components_grouped_by_type(staff):
       ...     x
       ... 
-      (Note(c', 8), Note(d', 8), Note(e', 8))
-      (Rest(8), Rest(8))
-      (Note(f', 8), Note(g', 8))
+      (Note("c'8"), Note("d'8"), Note("e'8"))
+      (Rest('r8'), Rest('r8'))
+      (Note("f'8"), Note("g'8"))
+
+   Return generator.
    '''
 
    grouper = itertools.groupby(expr, type)

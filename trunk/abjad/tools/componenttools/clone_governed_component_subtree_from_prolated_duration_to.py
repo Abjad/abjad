@@ -103,6 +103,9 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
       c'8
       abjad> new_leaf._parentage.parent is None 
       True
+
+   
+   Return (untrimmed_copy, first_dif, second_dif).
    '''
    assert isinstance(component, _Component)
    start = Fraction(*durtools.duration_token_to_duration_pair(start))

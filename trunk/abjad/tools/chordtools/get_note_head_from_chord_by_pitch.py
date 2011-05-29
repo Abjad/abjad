@@ -16,7 +16,7 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
    ::
 
       abjad> chordtools.get_note_head_from_chord_by_pitch(chord, 14)
-      NoteHead('d', 5)
+      NoteHead("d''")
 
    Raise missing note head error when `chord` contains no 
    note head with pitch equal to `pitch`.

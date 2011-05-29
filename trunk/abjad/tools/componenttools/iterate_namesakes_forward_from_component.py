@@ -48,6 +48,8 @@ def iterate_namesakes_forward_from_component(component, start = 0, stop = None):
               g'8
               a'8
       }
+
+   Return generator.
    '''
 
    cur_component = component

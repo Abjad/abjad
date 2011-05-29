@@ -6,12 +6,14 @@ def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
 
    Yield topmost components of `klass` in `expr` grouped by type::
 
-      staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
-      abjad> for x in leaftools.subruns_of_type(staff, Note):
+      abjad> staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
+      abjad> for x in componenttools.yield_topmost_components_of_klass_grouped_by_type(staff, Note):
       ...     x
       ... 
-      (Note(c', 8), Note(d', 8), Note(e', 8))
-      (Note(f', 8), Note(g', 8))
+      (Note("c'8"), Note("d'8"), Note("e'8"))
+      (Note("f'8"), Note("g'8"))
+
+   Return generator.
    '''
 
    for group in yield_topmost_components_grouped_by_type(expr):

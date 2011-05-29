@@ -7,9 +7,11 @@ def yield_components_grouped_by_prolated_duration(components):
       abjad> for x in componenttools.yield_components_grouped_by_prolated_duration(notes):
       ...     x
       ... 
-      (Note(c', 4), Note(c', 4))
-      (Note(c', 8),)
-      (Note(c', 16), Note(c', 16), Note(c', 16))
+      (Note("c'4"), Note("c'4"))
+      (Note("c'8"),)
+      (Note("c'16"), Note("c'16"), Note("c'16"))
+
+   Return generator.
    '''
       
    cur_group = [ ]

@@ -10,7 +10,7 @@ def sum_preprolated_duration_of_components(components):
    Return zero on empty iterable::
 
       abjad> componenttools.sum_preprolated_duration_of_components([ ])
-      Fraction(0)
+      0
 
    Raise contiguity error on nonparent-contiguous `components`::
 
@@ -30,7 +30,7 @@ def sum_preprolated_duration_of_components(components):
          }
       }
       abjad> componenttools.sum_preprolated_duration_of_components(t.leaves)
-      ContiguityError
+      Fraction(3, 4)
 
    .. versionchanged:: 1.1.2
       renamed ``componenttools.get_duration_preprolated( )`` to

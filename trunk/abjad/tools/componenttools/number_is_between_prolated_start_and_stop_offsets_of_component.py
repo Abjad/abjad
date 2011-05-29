@@ -17,6 +17,8 @@ def number_is_between_prolated_start_and_stop_offsets_of_component(timepoint, co
 
       abjad> componenttools.number_is_between_prolated_start_and_stop_offsets_of_component(Fraction(1, 4), t)
       False
+
+   Return boolean.
    '''
 
    try:

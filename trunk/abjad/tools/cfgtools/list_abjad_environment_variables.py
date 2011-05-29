@@ -6,13 +6,7 @@ import types
 def list_abjad_environment_variables( ):
    '''.. versionadded:: 1.1.1
 
-   List Abjad environment variables::
-
-      abjad> cfgtools.list_abjad_environment_variables( )
-      (('ABJADCONFIG', '/Users/foo/bar/.abjad/config.py'),
-       ('ABJADPATH', '/Users/foo/bar/Documents/abjad/trunk/abjad/'),
-       ('ABJADVERSIONFILE', '/Users/foo/bar/Documents/abjad/trunk/abjad/.version'),
-       ('HOME', '/Users/foo/bar'))
+   List Abjad environment variables.
 
    Return tuple of zero or more environment variable / setting pairs.
 

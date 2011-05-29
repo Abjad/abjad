@@ -15,22 +15,22 @@ def yield_all_subchords_of_chord(chord):
       abjad> for subchord in chordtools.yield_all_subchords_of_chord(chord):
       ...     subchord
       ... 
-      Rest(4)
-      Note(c', 4)
-      Note(d', 4)
-      Chord(c' d', 4)
-      Note(af', 4)
-      Chord(c' af', 4)
-      Chord(d' af', 4)
-      Chord(c' d' af', 4)
-      Note(a', 4)
-      Chord(c' a', 4)
-      Chord(d' a', 4)
-      Chord(c' d' a', 4)
-      Chord(af' a', 4)
-      Chord(c' af' a', 4)
-      Chord(d' af' a', 4)
-      Chord(c' d' af' a', 4)
+      Rest('r4')
+      Note("c'4")
+      Note("d'4")
+      Chord("<c' d'>4")
+      Note("af'4")
+      Chord("<c' af'>4")
+      Chord("<d' af'>4")
+      Chord("<c' d' af'>4")
+      Note("a'4")
+      Chord("<c' a'>4")
+      Chord("<d' a'>4")
+      Chord("<c' d' a'>4")
+      Chord("<af' a'>4")
+      Chord("<c' af' a'>4")
+      Chord("<d' af' a'>4")
+      Chord("<c' d' af' a'>4")
 
    Include empty chord as rest.
 

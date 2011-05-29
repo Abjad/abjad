@@ -44,8 +44,7 @@ def _report_component_format_contributions(component, verbose = False, output = 
    '''
 
    if isinstance(component, _Component): 
-      return component._formatter.report(
-         verbose = verbose, output = output)
+      return component._formatter.report(verbose = verbose, output = output)
    elif isinstance(component, Spanner):
       return component._format.report(output = output)
    else:

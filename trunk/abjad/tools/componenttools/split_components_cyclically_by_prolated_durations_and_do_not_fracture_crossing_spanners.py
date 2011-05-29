@@ -10,8 +10,11 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
       abjad> spannertools.BeamSpanner(staff[0])
+      BeamSpanner(|2/8(2)|)
       abjad> spannertools.BeamSpanner(staff[1])
+      BeamSpanner(|2/8(2)|)
       abjad> spannertools.SlurSpanner(staff.leaves)
+      SlurSpanner(c'8, d'8, e'8, f'8)
       abjad> f(staff)
       \new Staff {
          {
@@ -30,8 +33,8 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
       
       abjad> durations = [Fraction(3, 32)]
       abjad> componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(staff.leaves, durations) 
-      [[Note(c', 16.)], [Note(c', 32), Note(d', 16)], 
-      [Note(d', 16), Note(e', 32)], [Note(e', 16.)], [Note(f', 16.)], [Note(f', 32)]]
+      [[Note("c'16.")], [Note("c'32"), Note("d'16")], 
+      [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
       
    ::
       

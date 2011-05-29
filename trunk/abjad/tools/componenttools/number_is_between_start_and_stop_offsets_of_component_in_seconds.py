@@ -19,6 +19,8 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
 
       abjad> componenttools.number_is_between_start_and_stop_offsets_of_component_in_seconds(0.5, t)
       False
+
+   Return boolean.
    '''
 
    try:

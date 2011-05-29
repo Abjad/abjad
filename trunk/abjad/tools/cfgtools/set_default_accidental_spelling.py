@@ -11,7 +11,7 @@ def set_default_accidental_spelling(spelling = 'mixed'):
    ::
 
       abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
-      [Note(cs'', 5), Note(ef'', 5)]
+      [Note("cs''4"), Note("ef''4")]
 
    Set default accidental spelling to sharps::
 
@@ -20,7 +20,7 @@ def set_default_accidental_spelling(spelling = 'mixed'):
    ::
 
       abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
-      [Note(cs'', 5), Note(ds'', 5)]
+      [Note("cs''4"), Note("ds''4")]
 
    Set default accidental spelling to flats::
 
@@ -29,7 +29,7 @@ def set_default_accidental_spelling(spelling = 'mixed'):
    ::
 
       abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
-      [Note(df'', 5), Note(ef'', 5)]
+      [Note("df''4"), Note("ef''4")]
 
    Return none.
 

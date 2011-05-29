@@ -22,6 +22,8 @@ class Cluster(Container):
          d'8
          b'8
       }
+
+   Return cluster object.
    '''
 
    def __init__(self, music = None, **kwargs):

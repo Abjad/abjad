@@ -6,7 +6,10 @@ def replace_components_with_children_of_components(components):
       abjad> staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
       abjad> macros.diatonicize(staff)
       abjad> spannertools.SlurSpanner(staff[:])
+      SlurSpanner({c'8, d'8}, {e'8, f'8})
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
+      
       abjad> f(staff)
       \new Staff {
          {

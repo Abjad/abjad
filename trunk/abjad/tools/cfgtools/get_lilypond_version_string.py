@@ -9,7 +9,7 @@ def get_lilypond_version_string( ):
    Get LilyPond version string::
 
       abjad> cfgtools.get_lilypond_version_string( )
-      '2.13.34'
+      '2.13.61'
 
    Return string.
    '''

@@ -50,6 +50,8 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
 
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
       [ ]
+
+   Return list.
    '''
 
    assert isinstance(component, _Component)
