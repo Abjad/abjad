@@ -10,7 +10,7 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
 
       abjad> voice = Voice(macros.scale(4))
       abjad> componenttools.list_leftmost_components_with_prolated_duration_at_most(voice[:], Fraction(1, 4))
-      ([Note(c', 8), Note(d', 8)], Fraction(1, 4))
+      ([Note("c'8"), Note("d'8")], Fraction(1, 4))
 
    Maximize ``i`` such that the prolated duration of 
    ``components[:i]`` is no greater than `prolated_duration`.

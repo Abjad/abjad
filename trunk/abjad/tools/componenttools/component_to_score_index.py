@@ -35,15 +35,15 @@ def component_to_score_index(component):
       abjad> for leaf in score.leaves:
       ...     leaf, componenttools.component_to_score_index(leaf)
       ... 
-      (Note(c', 8), (0, 0, 0))
-      (Note(d', 8), (0, 0, 1))
-      (Note(e', 8), (0, 0, 2))
-      (Note(f', 8), (0, 1, 0))
-      (Note(g', 8), (0, 1, 1))
-      (Note(a', 8), (0, 1, 2))
-      (Note(b', 8), (1, 0, 0))
-      (Note(c'', 8), (1, 0, 1))
-      (Note(d'', 8), (1, 0, 2))
+      (Note("c'8"), (0, 0, 0))
+      (Note("d'8"), (0, 0, 1))
+      (Note("e'8"), (0, 0, 2))
+      (Note("f'8"), (0, 1, 0))
+      (Note("g'8"), (0, 1, 1))
+      (Note("a'8"), (0, 1, 2))
+      (Note("b'8"), (1, 0, 0))
+      (Note("c''8"), (1, 0, 1))
+      (Note("d''8"), (1, 0, 2))
 
    Return tuple of zero or more nonnegative integers.
    '''

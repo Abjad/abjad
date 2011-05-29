@@ -30,10 +30,10 @@ def iterate_timeline_backward_from_component(expr, klass = _Leaf):
       abjad> for leaf in componenttools.iterate_timeline_backward_from_component(score[1][2]):
       ...     leaf
       ... 
-      Note(b', 8)
-      Note(c', 4)
-      Note(a', 8)
-      Note(g', 8)
+      Note("b'8")
+      Note("c'4")
+      Note("a'8")
+      Note("g'8")
 
    Yield components sorted backward by score offset stop time.
 

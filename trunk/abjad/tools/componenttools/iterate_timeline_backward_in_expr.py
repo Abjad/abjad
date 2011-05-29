@@ -30,14 +30,14 @@ def iterate_timeline_backward_in_expr(expr, klass = _Leaf):
       abjad> for leaf in componenttools.iterate_timeline_backward_in_expr(score):
       ...     leaf
       ... 
-      Note(f', 4)
-      Note(e', 4)
-      Note(d', 4)
-      Note(c'', 8)
-      Note(b', 8)
-      Note(c', 4)
-      Note(a', 8)
-      Note(g', 8)
+      Note("f'4")
+      Note("e'4")
+      Note("d'4")
+      Note("c''8")
+      Note("b'8")
+      Note("c'4")
+      Note("a'8")
+      Note("g'8")
 
    .. todo:: optimize to avoid behind-the-scenes full-score traversal.
    '''

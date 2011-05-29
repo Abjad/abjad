@@ -29,12 +29,12 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
    No components cross prolated offset ``0``::
       
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 0)
-      [ ]
+      []
 
    Staff, measure and leaf cross prolated offset ``1/16``::
 
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Fraction(1, 16))
-      [Staff{2}, Measure(2/8, [c'8, d'8]), Note(c', 8)]
+      [Staff{2}, Measure(2/8, [c'8, d'8]), Note("c'8")]
 
    Staff and measure cross prolated offset ``1/8``::
 
@@ -49,7 +49,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
    No components cross prolated offset ``99``::
 
       abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
-      [ ]
+      []
 
    Return list.
    '''

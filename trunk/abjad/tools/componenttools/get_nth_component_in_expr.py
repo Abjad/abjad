@@ -33,20 +33,20 @@ def get_nth_component_in_expr(expr, klasses, n = 0):
       abjad> for n in range(4):
       ...      componenttools.get_nth_component_in_expr(staff, Note, n)
       ...
-      Note(c', 16)
-      Note(d', 8)
-      Note(e', 8.)
-      Note(f', 4)
+      Note("c'16")
+      Note("d'8")
+      Note("e'8.")
+      Note("f'4")
 
    ::
 
       abjad> for n in range(4):
       ...      componenttools.get_nth_component_in_expr(staff, Rest, n)
       ...
-      Rest(16)
-      Rest(8)
-      Rest(8.)
-      Rest(4)
+      Rest('r16')
+      Rest('r8')
+      Rest('r8.')
+      Rest('r4')
 
    ::
 
@@ -58,10 +58,10 @@ def get_nth_component_in_expr(expr, klasses, n = 0):
       abjad> for n in range(3, -1, -1):
       ...      componenttools.get_nth_component_in_expr(staff, Rest, n)
       ...
-      Rest(4)
-      Rest(8.)
-      Rest(8)
-      Rest(16)      
+      Rest('r4')
+      Rest('r8.')
+      Rest('r8')
+      Rest('r16')      
 
    Return component or none.
 

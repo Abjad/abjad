@@ -6,6 +6,7 @@ def list_badly_formed_components_in_expr(expr, allow_empty_containers = True):
       abjad> staff = Staff(macros.scale(4))
       abjad> staff[1].duration.written = Fraction(1, 4)
       abjad> spannertools.BeamSpanner(staff[:])
+      BeamSpanner(c'8, d'4, e'8, f'8)
       abjad> f(staff)
       \new Staff {
               c'8 [
@@ -13,8 +14,8 @@ def list_badly_formed_components_in_expr(expr, allow_empty_containers = True):
               e'8
               f'8 ]
       }
-      abjad> componenttools.list_badly_formed_compoennts_in_expr(staff)
-      [Note(d', 4)]
+      abjad> componenttools.list_badly_formed_components_in_expr(staff)
+      [Note("d'4")]
 
    Beamed quarter notes are not well formed.
 

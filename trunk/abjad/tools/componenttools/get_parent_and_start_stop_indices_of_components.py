@@ -18,7 +18,7 @@ def get_parent_and_start_stop_indices_of_components(components):
 
       abjad> leaves = t[-2:]
       abjad> leaves
-      [Note(g', 8), Note(a', 8)]
+      [Note("g'8"), Note("a'8")]
       abjad> componenttools.get_parent_and_start_stop_indices_of_components(leaves)
       (Staff{6}, 4, 5)
 

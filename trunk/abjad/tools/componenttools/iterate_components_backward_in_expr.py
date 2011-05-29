@@ -24,12 +24,12 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
       abjad> for x in componenttools.iterate_components_backward_in_expr(staff, Note):
       ...     x 
       ... 
-      Note(a', 8)
-      Note(g', 8)
-      Note(f', 8)
-      Note(e', 8)
-      Note(d', 8)
-      Note(c', 8)
+      Note("a'8")
+      Note("g'8")
+      Note("f'8")
+      Note("e'8")
+      Note("d'8")
+      Note("c'8")
 
    .. versionadded:: 1.1.2
       optional `start` and `stop` keyword parameters.
@@ -39,26 +39,26 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
       abjad> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 0, stop = 4):
       ...     x
       ... 
-      Note(a', 8)
-      Note(g', 8)
-      Note(f', 8)
-      Note(e', 8)
+      Note("a'8")
+      Note("g'8")
+      Note("f'8")
+      Note("e'8")
 
    ::
 
       abjad> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 4):
       ...     x
       ... 
-      Note(d', 8)
-      Note(c', 8)
+      Note("d'8")
+      Note("c'8")
 
    ::
 
       abjad> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 4, stop = 6):
       ...     x
       ... 
-      Note(d', 8)
-      Note(c', 8)
+      Note("d'8")
+      Note("c'8")
 
    This function is thread-agnostic.
 

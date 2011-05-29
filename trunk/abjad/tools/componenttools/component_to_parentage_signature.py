@@ -10,12 +10,12 @@ def component_to_parentage_signature(component):
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
       abjad> print componenttools.component_to_parentage_signature(note)
-            root: Staff-18830800 (18830800)
+            root: Staff-... (...)
            score: 
       staffgroup: 
-           staff: Staff-18830800
+           staff: Staff-...
            voice: 
-            self: Note-18619728
+            self: Note-...
 
    Return parentage signature.
    '''

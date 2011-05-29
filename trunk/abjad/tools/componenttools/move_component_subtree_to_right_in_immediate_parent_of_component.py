@@ -8,7 +8,9 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
       abjad> t = Voice(macros.scale(4))
       abjad> spannertools.BeamSpanner(t[:2])
+      BeamSpanner(c'8, d'8)
       abjad> spannertools.BeamSpanner(t[2:])
+      BeamSpanner(e'8, f'8)
       abjad> f(t)
       \new Voice {
          c'8 [
@@ -39,6 +41,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
       abjad> voice = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> spannertools.BeamSpanner(voice.leaves[:4])
+      BeamSpanner(c'8, c'8, c'8, c'8)
       abjad> macros.diatonicize(voice)
       abjad> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[0])
       abjad> f(voice)

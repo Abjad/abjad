@@ -9,7 +9,9 @@ def extend_in_parent_of_component_and_do_not_grow_spanners(component, components
 
       abjad> t = Voice(macros.scale(3))
       abjad> spannertools.BeamSpanner(t[:])
-      abjad> componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(t[-1], macros.scale(3)))
+      BeamSpanner(c'8, d'8, e'8)
+      abjad> componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(t[-1], macros.scale(3))
+      [Note("e'8"), Note("c'8"), Note("d'8"), Note("e'8")]
 
    ::
 

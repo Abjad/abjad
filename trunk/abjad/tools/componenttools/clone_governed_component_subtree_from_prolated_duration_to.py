@@ -55,12 +55,10 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
                 d'8
         }
       >>
-      abjad> componenttools.clone_governed_component_subtree_from_prolated_duration_to(staff, 0, (1, 8))
-      ContiguityError
 
-   .. note:: cases with ``0 = start`` work correctly.
+   Raise contiguity error when attempting to copy fleaves from parallel container.
 
-   ::
+   But note that cases with ``0 = start`` work correctly::
 
       abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, (0, 8), (1, 8))
       abjad> f(new)
@@ -68,9 +66,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
         c'8
       }
       
-   .. note:: cases with ``0 < start`` do not work correctly.
-
-   ::
+   Cases with ``0 < start`` do not work correctly::
       
       abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, (1, 8), (2, 8))
       abjad> f(new)
@@ -79,9 +75,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
         d'8
       }
 
-   .. note:: function creates ad hoc tuplets as required.
-
-   ::
+   Create ad hoc tuplets as required::
 
       abjad> voice = Voice([Note(0, (1, 4))])
       abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, 0, (1, 12))
@@ -92,10 +86,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
         }
       }
 
-   .. note:: function does NOT clone parentage of `component`
-      when `component` is a leaf.
-
-   ::
+   Function does NOT clone parentage of `component` when `component` is a leaf::
 
       abjad> voice = Voice([Note(0, (1, 4))])
       abjad> new_leaf = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice[0], 0, (1, 8))
@@ -104,7 +95,6 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
       abjad> new_leaf._parentage.parent is None 
       True
 
-   
    Return (untrimmed_copy, first_dif, second_dif).
    '''
    assert isinstance(component, _Component)

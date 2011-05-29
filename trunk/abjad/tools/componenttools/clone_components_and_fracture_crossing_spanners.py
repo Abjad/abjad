@@ -45,7 +45,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
       abjad> result = componenttools.clone_components_and_fracture_crossing_spanners(voice.leaves[2:4])
       abjad> result
-      (Note(e', 8), Note(f', 8))
+      (Note("e'8"), Note("f'8"))
 
    ::
 
@@ -61,16 +61,11 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
       abjad> voice.leaves[2] is new_voice.leaves[0]
       False
 
-   ::
-
-      abjad> voice.leaves[2].beam.spanner is new_voice.leaves[0].beam.spanner
-      False
-
    Clone `components` a total of `n` times. ::
 
       abjad> result = componenttools.clone_components_and_fracture_crossing_spanners(voice.leaves[2:4], n = 3)
       abjad> result
-      (Note(e', 8), Note(f', 8), Note(e', 8), Note(f', 8), Note(e', 8), Note(f', 8))
+      (Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"))
 
    ::
 

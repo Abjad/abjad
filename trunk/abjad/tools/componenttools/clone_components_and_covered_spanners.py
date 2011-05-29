@@ -47,7 +47,7 @@ def clone_components_and_covered_spanners(components, n = 1):
 
       abjad> result = componenttools.clone_components_and_covered_spanners(voice.leaves)
       abjad> result
-      (Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8), Note(g', 8), Note(a', 8))
+      (Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"))
 
    ::
 
@@ -67,16 +67,11 @@ def clone_components_and_covered_spanners(components, n = 1):
       abjad> voice.leaves[0] is new_voice.leaves[0]
       False
 
-   ::
-
-      abjad> voice.leaves[0].beam.spanner is new_voice.leaves[0].beam.spanner
-      False
-
    Clone `components` a total of `n` times. ::
 
       abjad> result = componenttools.clone_components_and_covered_spanners(voice.leaves[:2], n = 3)
       abjad> result
-      (Note(c', 8), Note(d', 8), Note(c', 8), Note(d', 8), Note(c', 8), Note(d', 8))
+      (Note("c'8"), Note("d'8"), Note("c'8"), Note("d'8"), Note("c'8"), Note("d'8"))
 
    ::
 

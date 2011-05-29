@@ -7,7 +7,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
    Change `component` to pitch and rhythm skeleton::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((3, 8), macros.scale(4))
+      abjad> tuplet = Tuplet((3, 4), macros.scale(4))
       abjad> measure = Measure((6, 16), [tuplet])   
       abjad> staff = Staff([measure])   
       abjad> score = Score(staff * 2)   
@@ -19,8 +19,8 @@ def component_to_pitch_and_rhythm_skeleton(component):
       abjad> print skeleton
       Score([
          Staff([
-            Measure(Meter(6, 16), [
-               tuplettools.FixedDurationTuplet(Fraction(3, 8), [
+            Measure((6, 16), [
+               Tuplet(Fraction(3, 4), [
                   Note(('c', 4), Fraction(1, 8)),
                   Note(('d', 4), Fraction(1, 8)),
                   Note(('e', 4), Fraction(1, 8)),
@@ -29,8 +29,8 @@ def component_to_pitch_and_rhythm_skeleton(component):
             ])
          ]),
          Staff([
-            Measure(Meter(6, 16), [
-               tuplettools.FixedDurationTuplet(Fraction(3, 8), [
+            Measure((6, 16), [
+               Tuplet(Fraction(3, 4), [
                   Note(('g', 4), Fraction(1, 8)),
                   Note(('a', 4), Fraction(1, 8)),
                   Note(('b', 4), Fraction(1, 8)),

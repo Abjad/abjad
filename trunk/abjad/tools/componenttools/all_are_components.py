@@ -22,7 +22,7 @@ def all_are_components(expr, klasses = None):
 
    Otherwise false::
 
-      abjad> componenttools.all_are_components(['foo', 'bar'], klases = Note)
+      abjad> componenttools.all_are_components(['foo', 'bar'], klasses = Note)
       False
 
    Return boolean.

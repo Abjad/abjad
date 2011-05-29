@@ -18,7 +18,7 @@ def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = T
    ::
 
       abjad> componenttools.tabulate_well_formedness_violations_in_expr(staff)
-       0 /    4 beamed quarter note
+       1 /    4 beamed quarter note
        0 /    1 discontiguous spanner
        0 /    5 duplicate i d
        0 /    1 empty container

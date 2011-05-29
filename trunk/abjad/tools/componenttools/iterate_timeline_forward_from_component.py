@@ -30,10 +30,10 @@ def iterate_timeline_forward_from_component(expr, klass = _Leaf):
       abjad> for leaf in componenttools.iterate_timeline_forward_from_component(score[1][2]):
       ...     leaf
       ... 
-      Note(b', 8)
-      Note(c'', 8)
-      Note(e', 4)
-      Note(f', 4)
+      Note("b'8")
+      Note("c''8")
+      Note("e'4")
+      Note("f'4")
 
    .. todo:: optimize to avoid behind-the-scenes full-score traversal.
    '''
