@@ -14,6 +14,8 @@ class Staff(_Context):
          e'8
          f'8
       }
+
+   Return staff object.
    '''
 
    __slots__ = ( )

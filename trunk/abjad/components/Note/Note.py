@@ -10,6 +10,7 @@ class Note(_Leaf):
 
       abjad> Note(13, (3, 16))
       Note("cs''8.")
+
    '''
 
    __slots__ = ('_note_head', '_pitch', )
@@ -125,6 +126,7 @@ class Note(_Leaf):
             abjad> note.note_head = 14
             abjad> note
             Note("d''8.")
+
          '''
          return self._note_head
       def fset(self, arg):
@@ -153,6 +155,7 @@ class Note(_Leaf):
             abjad> note.pitch = 14
             abjad> note
             Note("d''8.")
+
          '''
          if self.note_head is not None and hasattr(self.note_head, 'pitch'):
             return self._note_head.pitch
@@ -176,7 +179,6 @@ class Note(_Leaf):
    def sounding_pitch(self):
       r'''Read-only sounding pitch of note::
 
-         abjad> from abjad import *
          abjad> staff = Staff("d''8 e''8 f''8 g''8")
          abjad> piccolo = instrumenttools.Piccolo( )(staff)
 
@@ -186,7 +188,7 @@ class Note(_Leaf):
 
       ::
 
-         abjad> f(staff) # doctest: +NORMALIZE_WHITESPACE
+         abjad> f(staff)
          \new Staff {
             \set Staff.instrumentName = \markup { Piccolo }
             \set Staff.shortInstrumentName = \markup { Picc. }

@@ -30,10 +30,11 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> import pprint
-         abjad> pprint.pprint(t.formatter.slots.slot_1)
-         ([(<CommentsInterface>, 'before'), [ ]],
-          [(<DirectivesInterface>, 'before'), [ ]],
-          [(<InterfaceAggregator>, 'overrides'), [ ]])
+         abjad> pprint.pprint(t._formatter.slots.slot_1)
+         ([('comment_marks', ''), []],
+          [('lilypond_command_marks', ''), []],
+          [('overrides', 'overrides'), []])
+
          abjad> print t.format
          \times 2/3 {
                  c'8
@@ -42,28 +43,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          }
 
       Modified tuplets, on the other hand, may make
-      format contributions to slot 1. ::
-
-         abjad> marktools.Comment('This is a tuplet', 'opening')(t)
-         abjad> t.override.note_head.color = 'red'
-         abjad> t.override.dots.color = 'red'
-         abjad> import pprint
-         abjad> pprint.pprint(t.formatter.slots.slot_1)
-         ([(<CommentsInterface>, 'before'), ['% This is a tuplet']],
-          [(<DirectivesInterface>, 'before'), [ ]],
-          [(<InterfaceAggregator>, 'overrides'),
-           ["\\override Dots #'color = #red", "\\override NoteHead #'color = #red"]])
-         abjad> print t.format
-         % This is a tuplet
-         \override Dots #'color = #red
-         \override NoteHead #'color = #red
-         \times 2/3 {
-                 c'8
-                 d'8
-                 e'8
-         }
-         \revert Dots #'color
-         \revert NoteHead #'color
+      format contributions to slot 1.
       '''
       result = [ ]
       tuplet = self.formatter.tuplet
@@ -97,44 +77,24 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
       This is apparent in the contents of the slot 2. ::
 
-         abjad> pprint.pprint(t.formatter.slots.slot_2)
-         ([(<BracketsInterface>, 'open'), ['\\times 2/3 {']],)
+         abjad> pprint.pprint(t._formatter.slots.slot_2)
+         ([('tuplet_brackets', 'open'), ['\\times 2/3 {']],)
 
       Trivial tuplets carry a ratio of ``1:1``. ::
 
-         abjad> t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3)
+         abjad> t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
          abjad> t.duration.multiplier
          Fraction(1, 1)
 
-      Such tuplets output unscaled notes and rests. ::
-
-         abjad> print t.format
-                 c'8
-                 d'8
-                 e'8
+      Such tuplets output unscaled notes and rests.
 
       For this reason, trivial tuplets make no 
-      format contributions to slot 2::
-
-         abjad> pprint.pprint(t.formatter.slots.slot_2)
-         ( )
+      format contributions to slot 2.
 
       You can make trivial tuplets format as actual tuplets
       by setting ``color = True`` on the class of
       the tuplet in question.
-      Colored trivial tuplets appear blue in printed output. ::
-
-         abjad> t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
-         abjad> FixedDurationTuplet.color = True
-         abjad> print t.format
-         \tweak #'color #blue
-         \times 1/1 {
-                 c'8
-                 d'8
-                 e'8
-         }
-         abjad> pprint.pprint(t.formatter.slots.slot_2)
-         ([(<BracketsInterface>, 'open'), ['\\times 1/1 {']],)
+      Colored trivial tuplets appear blue in printed output
 
       Note that ``color`` is a tuplet class attribute,
       not a tuplet instance attribute.
@@ -151,12 +111,14 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                  d'8
                  e'8
          }
-         abjad> pprint.pprint(t.formatter.slots.slot_2)
-         ([(tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8]), 'is_invisible'),
+         abjad> pprint.pprint(t._formatter.slots.slot_2)
+         ([(FixedDurationTuplet(1/4, [c'8, d'8, e'8]), 'is_invisible'),
            ["\\scaleDurations #'(2 . 3) {"]],)
 
       Invisible tuplets carry neither tuplet bracket nor
       tuplet ratio in the printed output.
+
+      Return list.
       '''
       result = [ ]
       formatter = self.formatter
@@ -186,7 +148,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_3(self):
       '''Read-only tuple of format contributions to appear
-      immediately after tuplet opening.'''
+      immediately after tuplet opening.
+      '''
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append([('comment_marks', ''),
@@ -199,7 +162,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_5(self):
       '''Read-only tuple of format contributions to appear
-      immediately before tuplet closing.'''
+      immediately before tuplet closing.
+      '''
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append([('lilypond_command_marks', ''),
@@ -213,7 +177,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_6(self):
       '''Read-only tuplet of format contributions used
       to generate tuplet closing.
-      Usually just a single ``}`` close brace.'''
+      Usually just a single ``}`` close brace.
+      '''
       result = [ ]
       tuplet = self.formatter.tuplet
       if tuplet.duration.multiplier:
@@ -223,7 +188,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_7(self):
       '''Read-only tuple of format contributions
-      to appear immediately after tuplet closing.'''
+      to appear immediately after tuplet closing.
+      '''
       result = [ ]
       tuplet = self.formatter.tuplet
       result.append([('lilypond_command_marks', ''),

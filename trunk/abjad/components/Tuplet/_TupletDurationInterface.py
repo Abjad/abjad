@@ -42,6 +42,8 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.duration.is_augmentation
          False
+
+      Return boolean.
       '''
       if self.multiplier:
          return 1 < self.multiplier
@@ -65,6 +67,8 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.duration.is_diminution
          True
+   
+      Return boolean.
       '''
       if self.multiplier:
          return self.multiplier < 1
@@ -123,5 +127,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.duration.preprolated
          Fraction(1, 4)
+
+      Return duration.
       '''
       return self.multiplied

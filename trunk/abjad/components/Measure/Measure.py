@@ -20,6 +20,8 @@ class Measure(Container):
          e'8
          f'8
       }
+
+   Return measure object.
    '''
 
    __slots__ = ('_explicit_meter', )
@@ -46,7 +48,8 @@ class Measure(Container):
       return new
 
    def __delitem__(self, i):
-      '''Container deletion with meter adjustment.'''
+      '''Container deletion with meter adjustment.
+      '''
       try:
          old_denominator = contexttools.get_effective_time_signature(self).denominator
       except AttributeError:

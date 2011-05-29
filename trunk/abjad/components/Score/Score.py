@@ -24,6 +24,8 @@ class Score(_Context):
             f'8
          }
       >>
+
+   Return score object.
    '''
 
    __slots__ = ( )

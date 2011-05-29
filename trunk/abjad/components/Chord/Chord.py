@@ -10,6 +10,8 @@ class Chord(_Leaf):
 
       abjad> Chord([4, 13, 17], (1, 4))
       Chord("ef' cs'' f''", '4')
+
+   Return chord instance.
    '''
 
    __slots__ = ('_note_heads', '_pitches', )
@@ -148,6 +150,7 @@ class Chord(_Leaf):
             abjad> chord.note_heads = [0, 2, 6]
             abjad> chord
             Chord(c' d' fs', 4)
+
          '''
          #return tuple(self)
          return tuple(self._note_heads)
@@ -173,6 +176,7 @@ class Chord(_Leaf):
             abjad> chord.pitches = [0, 2, 6]
             abjad> chord
             Chord(c' d' fs', 4)
+
          '''
          return tuple([note_head.pitch for note_head in self])
       def fset(self, pitch_tokens):

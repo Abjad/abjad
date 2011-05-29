@@ -9,6 +9,7 @@ class Rest(_Leaf):
 
       abjad> Rest((3, 16))
       Rest('r8.')
+
    '''
 
    ## TODO: add vertical positioning pitch only as needed ##

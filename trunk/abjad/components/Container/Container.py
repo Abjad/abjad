@@ -16,6 +16,8 @@ class Container(_Component):
          e'8
          f'8
       }
+
+   Return container object.
    '''
 
    __slots__ = ('_formatter', '_music', '_parallel', )
@@ -56,7 +58,8 @@ class Container(_Component):
       '''Find component(s) at index or slice 'i' in container.
       Detach component(s) from parentage.
       Withdraw component(s) from crossing spanners.
-      Preserve spanners that component(s) cover(s).'''
+      Preserve spanners that component(s) cover(s).
+      '''
       #from abjad.tools.componenttools._switch import _switch
       from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
       from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
@@ -73,7 +76,8 @@ class Container(_Component):
       return self._music[i]
             
    def __iadd__(self, expr):
-      '''__iadd__ avoids unnecessary copying of structures.'''
+      '''__iadd__ avoids unnecessary copying of structures.
+      '''
       from abjad.tools import componenttools
       from abjad.tools import containertools
       return containertools.fuse_like_named_contiguous_containers_in_expr([self, 
@@ -81,20 +85,24 @@ class Container(_Component):
 
    def __imul__(self, total):
       '''Multiply contents of container 'total' times.
-         Return multiplied container.'''
+      Return multiplied container.
+      '''
       from abjad.tools import containertools
       return containertools.repeat_contents_of_container(self, total = total)
 
    def __len__(self):
-      '''Return nonnegative integer number of components in container.'''
+      '''Return nonnegative integer number of components in container.
+      '''
       return len(self._music)
 
    def __radd__(self, expr):
-      '''Extend container by contents of expr to the right.'''
+      '''Extend container by contents of expr to the right.
+      '''
       return self + expr
 
    def __repr__(self):
-      '''String format of container for interpreter display.'''
+      '''String format of container for interpreter display.
+      '''
       return self._compact_representation
 
    def __setitem__(self, i, expr):
@@ -149,7 +157,8 @@ class Container(_Component):
 
    @property
    def _compact_representation(self):
-      '''Compact form used in spanner display.'''
+      '''Compact form used in spanner display.
+      '''
       if not self.is_parallel:
          return '{%s}' % self._summary
       else:
@@ -157,7 +166,8 @@ class Container(_Component):
 
    @property
    def _summary(self):
-      '''Formatted summary of container contents for repr output.'''
+      '''Formatted summary of container contents for repr output.
+      '''
       if 0 < len(self):
          return ', '.join([str(x) for x in self._music])
       else:

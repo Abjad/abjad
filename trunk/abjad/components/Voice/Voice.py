@@ -14,6 +14,8 @@ class Voice(_Context):
          e'8
          f'8
       }
+
+   Return voice object.
    '''
 
    __slots__ = ( )

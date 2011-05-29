@@ -65,6 +65,7 @@ class _Context(Container):
                  \consists Horizontal_bracket_engraver
          } {
          }
+
       '''
       return self._engraver_consists
 
@@ -83,6 +84,7 @@ class _Context(Container):
                  \remove Time_signature_engraver
          } {
          }
+
       '''
       return self._engraver_removals
 

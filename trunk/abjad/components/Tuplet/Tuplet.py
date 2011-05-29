@@ -15,6 +15,8 @@ class Tuplet(Container):
          d'8
          e'8
       }
+
+   Return tuplet object.
    '''
 
    __slots__ = ('_force_fraction', '_is_invisible', '_signifier', )
@@ -31,7 +33,8 @@ class Tuplet(Container):
    ## OVERLOADS ##
 
    def __add__(self, arg):
-      '''Add two tuplets of same type and with same multiplier.'''
+      '''Add two tuplets of same type and with same multiplier.
+      '''
       from abjad.tools import tuplettools
       assert isinstance(arg, type(self))
       new = tuplettools.fuse_tuplets([self, arg])
@@ -64,7 +67,8 @@ class Tuplet(Container):
 
    @property
    def duration(self):
-      '''Tuplet duration interface.'''
+      '''Tuplet duration interface.
+      '''
       return self._duration
 
    @apply
@@ -83,7 +87,8 @@ class Tuplet(Container):
    @apply
    def is_invisible( ):
       def fget(self):
-         '''Read / write boolean to render tuplet invisible.'''
+         '''Read / write boolean to render tuplet invisible.
+         '''
          return self._is_invisible
       def fset(self, arg):
          assert isinstance(arg, (bool, type(None)))
@@ -92,12 +97,14 @@ class Tuplet(Container):
 
    @property
    def is_trivial(self):
-      '''True when tuplet multiplier is one, otherwise False.'''
+      '''True when tuplet multiplier is one, otherwise False.
+      '''
       return self.duration.multiplier == 1
 
    @property
    def ratio(self):
-      '''Tuplet multiplier formatted with colon as ratio.'''
+      '''Tuplet multiplier formatted with colon as ratio.
+      '''
       multiplier = self.duration.multiplier
       if multiplier is not None:
          return '%s:%s' % (multiplier.denominator, multiplier.numerator)
