@@ -104,7 +104,7 @@ class ParentageInterface(_Interface):
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note._parentage.parent
-         tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
    
       Equivalent to ``component._parentage.proper_parentage[0]`` for those components
       with proper parentage. Otherwise ``None``.

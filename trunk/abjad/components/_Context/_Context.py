@@ -78,7 +78,7 @@ class _Context(Container):
       Manage with add, update, other standard set commands. ::
 
          abjad> staff = Staff([ ])
-         abjad> staff.engraver_consists.add('Time_signature_engraver')
+         abjad> staff.engraver_removals.add('Time_signature_engraver')
          abjad> f(staff)
          \new Staff \with {
                  \remove Time_signature_engraver
@@ -93,7 +93,7 @@ class _Context(Container):
       def fget(self):
          r'''Set indicator of nonsemantic voice::
 
-            abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16))
+            abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
             abjad> voice = Voice(measures)
             abjad> voice.name = 'HiddenTimeSignatureVoice'
 

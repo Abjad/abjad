@@ -9,7 +9,7 @@ class Chord(_Leaf):
    ::
 
       abjad> Chord([4, 13, 17], (1, 4))
-      Chord("ef' cs'' f''", '4')
+      Chord("<e' cs'' f''>4")
 
    Return chord instance.
    '''
@@ -142,14 +142,14 @@ class Chord(_Leaf):
 
             abjad> chord = Chord([7, 12, 16], (1, 4))
             abjad> chord.note_heads
-            (NoteHead(g'), NoteHead(c''), NoteHead(e''))
+            (NoteHead("g'"), NoteHead("c''"), NoteHead("e''"))
    
          Set chord note heads from any iterable::
 
             abjad> chord = Chord([7, 12, 16], (1, 4))
             abjad> chord.note_heads = [0, 2, 6]
             abjad> chord
-            Chord(c' d' fs', 4)
+            Chord("<c' d' fs'>4")
 
          '''
          #return tuple(self)
@@ -168,14 +168,14 @@ class Chord(_Leaf):
 
             abjad> chord = Chord([7, 12, 16], (1, 4))
             abjad> chord.pitches
-            (NamedChromaticPitch(g, 4), NamedChromaticPitch(c, 5), NamedChromaticPitch(e, 5))
+            (NamedChromaticPitch("g'"), NamedChromaticPitch("c''"), NamedChromaticPitch("e''"))
 
          Set chord pitches from any iterable::
 
             abjad> chord = Chord([7, 12, 16], (1, 4))
             abjad> chord.pitches = [0, 2, 6]
             abjad> chord
-            Chord(c' d' fs', 4)
+            Chord("<c' d' fs'>4")
 
          '''
          return tuple([note_head.pitch for note_head in self])
@@ -228,13 +228,13 @@ class Chord(_Leaf):
 
          abjad> chord = Chord([4, 13, 17], (1, 4))
          abjad> chord
-         Chord(e' cs'' f'', 4)
+         Chord("<e' cs'' f''>4")
 
       ::
 
          abjad> chord.append(19)
          abjad> chord
-         Chord(e' cs'' f'' g'', 4)
+         Chord("<e' cs'' f'' g''>4")
 
       Sort chord note heads automatically after append and return none.
       '''
@@ -252,13 +252,13 @@ class Chord(_Leaf):
 
          abjad> chord = Chord([4, 13, 17], (1, 4))
          abjad> chord
-         Chord(e' cs'' f'', 4)
+         Chord("<e' cs'' f''>4")
 
       ::
 
          abjad> chord.extend([2, 12, 18])
          abjad> chord
-         Chord(d' e' c'' cs'' f'' fs'', 4)
+         Chord("<d' e' c'' cs'' f'' fs''>4")
 
       Sort chord note heads automatically after extend and return none.
       '''
@@ -270,17 +270,17 @@ class Chord(_Leaf):
 
          abjad> chord = Chord([4, 13, 17], (1, 4))
          abjad> chord
-         Chord(e' cs'' f'', 4)
+         Chord("<e' cs'' f''>4")
 
       ::
 
          abjad> chord.pop(1)
-         NoteHead(cs'')
+         NoteHead("cs''")
 
       ::
 
          abjad> chord
-         Chord(e' f'', 4)
+         Chord("<e' f''>4")
 
       Return note head.
       '''
@@ -293,13 +293,13 @@ class Chord(_Leaf):
 
          abjad> chord = Chord([4, 13, 17], (1, 4))
          abjad> chord
-         Chord(e' cs'' f'', 4)
+         Chord("<e' cs'' f''>4")
 
       ::
 
          abjad> chord.remove(chord[1])
          abjad> chord
-         Chord(e' f'', 4)
+         Chord("<e' f''>4")
 
       Return none.
       '''
