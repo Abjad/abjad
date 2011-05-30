@@ -8,6 +8,7 @@ def repeat_last_n_elements_of_container(container, n = 1, total = 2):
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
 
    ::
 

@@ -12,6 +12,7 @@ def scale_contents_of_container(container, multiplier):
 
       abjad> staff = Staff("c'8 d'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8)
 
    ::
 
@@ -38,6 +39,7 @@ def scale_contents_of_container(container, multiplier):
 
       abjad> staff = Staff("c'8 d'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8)
 
    ::
 
@@ -66,6 +68,7 @@ def scale_contents_of_container(container, multiplier):
 
       abjad> staff = Staff("c'8 d'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8)
 
    ::
 

@@ -11,7 +11,7 @@ def get_first_element_starting_strictly_after_prolated_offset(container, prolate
    ::
 
       abjad> containertools.get_first_element_starting_strictly_after_prolated_offset(staff, Fraction(1, 8))
-      Note(e', 8)
+      Note("e'8")
 
    Return component.
 

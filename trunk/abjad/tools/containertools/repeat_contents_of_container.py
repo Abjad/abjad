@@ -9,6 +9,7 @@ def repeat_contents_of_container(container, total = 2):
 
       abjad> staff = Staff("c'8 d'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8)
 
    ::
    
@@ -21,6 +22,10 @@ def repeat_contents_of_container(container, total = 2):
    ::
 
       abjad> containertools.repeat_contents_of_container(staff, 3)
+      Staff{6}
+   
+   ::
+
       abjad> f(staff)
       \new Staff {
          c'8 [

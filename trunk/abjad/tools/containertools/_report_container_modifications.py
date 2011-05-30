@@ -1,21 +1,5 @@
 def _report_container_modifications(container, output):
-   r'''Read-only string representation of all parts of container
-   format except container contents::
-
-      abjad> container = Container(macros.scale(12))
-      abjad> container.override.note_head.color = 'red'
-      abjad> container.override.note_head.style = 'harmonic'
-      abjad> container.comments.before.append('Container comments')
-      abjad> print formattools.wrapper(container)
-      {
-              \override NoteHead #'style = #'harmonic
-              \override NoteHead #'color = #red
-
-              %%% 12 components omitted %%%
-
-              \revert NoteHead #'style
-              \revert NoteHead #'color
-      }
+   r'''Read-only string representation of all parts of container format except container contents.
    '''
 
    from abjad.components.Container.Container import Container

@@ -6,6 +6,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
       abjad> staff = Staff(Tuplet((2, 3), "c'8 d'8 e'8") * 3)
       abjad> macros.diatonicize(staff)
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, ... [5] ..., c''8, d''8)
 
    ::
 
@@ -32,6 +33,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
       
       abjad> container = Container(macros.scale(3))
       abjad> spannertools.SlurSpanner(container.leaves)
+      SlurSpanner(c'8, d'8, e'8)
 
    ::
 
@@ -45,6 +47,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
    ::
       
       abjad> containertools.replace_contents_of_target_container_with_contents_of_source_container(staff[1], container)
+      Tuplet(2/3, [c'8, d'8, e'8])
       
    ::
       

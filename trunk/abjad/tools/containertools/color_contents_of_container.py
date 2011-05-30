@@ -8,6 +8,7 @@ def color_contents_of_container(container, color):
    ::
 
       abjad> containertools.color_contents_of_container(measure, 'red')
+      Measure(2/8, [c'8, d'8])
 
    ::
 

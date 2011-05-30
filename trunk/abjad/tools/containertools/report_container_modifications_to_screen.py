@@ -26,7 +26,7 @@ def report_container_modifications_to_screen(container):
 
    ::
 
-      abjad> containertools.report_container_modifications_to_screen(container)
+      abjad> containertools.report_container_modifications_to_screen(container) # doctest: +SKIP
       {
          \override NoteHead #'color = #red
          \override NoteHead #'style = #'harmonic

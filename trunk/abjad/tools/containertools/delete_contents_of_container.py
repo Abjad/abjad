@@ -6,6 +6,7 @@ def delete_contents_of_container(container):
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
 
    ::
 
@@ -20,7 +21,7 @@ def delete_contents_of_container(container):
    ::
       
       abjad> containertools.delete_contents_of_container(staff)
-      [Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8)]
+      [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
    ::
 

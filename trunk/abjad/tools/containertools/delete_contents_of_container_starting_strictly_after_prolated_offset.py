@@ -8,6 +8,7 @@ def delete_contents_of_container_starting_strictly_after_prolated_offset(contain
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
 
    ::
 
@@ -21,7 +22,7 @@ def delete_contents_of_container_starting_strictly_after_prolated_offset(contain
       
    ::
       
-      abjad> containertools.delete_contents_of_container_starting_after_prolated_offset(staff, Fraction(1, 8))
+      abjad> containertools.delete_contents_of_container_starting_strictly_after_prolated_offset(staff, Fraction(1, 8))
       Staff{2}
       
    ::

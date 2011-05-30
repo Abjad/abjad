@@ -30,7 +30,7 @@ def report_container_modifications_as_string(container):
 
    ::
 
-      abjad> print string
+      abjad> print string # doctest: +SKIP
       {
          \override NoteHead #'color = #red
          \override NoteHead #'style = #'harmonic

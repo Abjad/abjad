@@ -4,11 +4,13 @@ from fractions import Fraction
 
 def _replace_first_n_elements_in_container_with_rests(container, i, rested_half, 
    direction = 'automatic'):
-   r'''Replace the `i` elements in the `rested_half` of `container` 
-   with rests::
+   r'''Replace the `i` elements in the `rested_half` of `container` with rests::
+
+      abjad> from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import _replace_first_n_elements_in_container_with_rests
 
       abjad> staff = Staff(macros.scale(7))
-      abjad> containertools.rest_by_count(staff, 5, 'left', 'automatic')
+      abjad> _replace_first_n_elements_in_container_with_rests(staff, 5, 'left', 'automatic')
+      Staff{4}
       abjad> f(staff)
       \new Staff {
          r8
@@ -20,7 +22,8 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
    ::
       
       abjad> staff = Staff(macros.scale(7))
-      abjad> containertools.rest_by_count(staff, 5, 'left', 'big-endian')
+      abjad> _replace_first_n_elements_in_container_with_rests(staff, 5, 'left', 'big-endian')
+      Staff{4}
       abjad> f(staff)
       \new Staff {
          r2
@@ -32,7 +35,8 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
    ::
       
       abjad> staff = Staff(macros.scale(7))
-      abjad> containertools.rest_by_count(staff, 5, 'left', 'little-endian')
+      abjad> _replace_first_n_elements_in_container_with_rests(staff, 5, 'left', 'little-endian')
+      Staff{4}
       abjad> f(staff)
       \new Staff {
          r8
@@ -44,7 +48,8 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
    ::
       
       abjad> staff = Staff(macros.scale(7))
-      abjad> containertools.rest_by_count(staff, 2, 'right', 'automatic')
+      abjad> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'automatic')
+      Staff{4}
       abjad> f(staff)
       \new Staff {
          c'8
@@ -56,7 +61,8 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
    ::
       
       abjad> staff = Staff(macros.scale(7))
-      abjad> containertools.rest_by_count(staff, 2, 'right', 'big-endian')
+      abjad> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'big-endian')
+      Staff{4}
       abjad> f(staff)
       \new Staff {
          c'8
@@ -68,7 +74,8 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
    ::
       
       abjad> staff = Staff(macros.scale(7))
-      abjad> containertools.rest_by_count(staff, 2, 'right', 'little-endian')
+      abjad> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'little-endian')
+      Staff{4}
       abjad> f(staff)
       \new Staff {
          c'8

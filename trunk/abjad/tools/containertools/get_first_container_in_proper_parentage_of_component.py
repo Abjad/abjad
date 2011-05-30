@@ -11,7 +11,7 @@ def get_first_container_in_proper_parentage_of_component(component):
 
    ::
 
-      abjad> f(container)
+      abjad> f(staff)
       \new Staff {
          c'8
          d'8
