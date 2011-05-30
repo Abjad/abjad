@@ -7,12 +7,12 @@ def write_expr_to_ly(expr, file_name, template = None):
    '''Write `expr` to `file_name`::
 
       abjad> note = Note(0, (1, 4))
-      abjad> write_expr_to_ly(note, '/home/user/foo.ly')
+      abjad> iotools.write_expr_to_ly(note, '/home/user/foo.ly') # doctest: +SKIP
    
    Write `expr` to `file_name` with `template`::
 
       abjad> note = Note(0, (1, 4))
-      abjad> write_expr_to_ly(note, '/home/user/foo.ly', 'paris')
+      abjad> iotools.write_expr_to_ly(note, '/home/user/foo.ly', 'paris') # doctest: +SKIP
 
    Retur none.
 

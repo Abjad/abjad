@@ -108,6 +108,8 @@ class DynamicMark(ContextMark):
             abjad> dynamic.dynamic_name_string = 'p'
             abjad> dynamic.dynamic_name_string
             'p'
+
+         Return string.
          '''
          return self._dynamic_name_string
       def fset(self, dynamic_name_string):
@@ -124,6 +126,8 @@ class DynamicMark(ContextMark):
          abjad> dynamic_mark = contexttools.DynamicMark('f')
          abjad> dynamic_mark.format
          '\\f'
+
+      Return string.
       '''
       return r'\%s' % self._dynamic_name_string
 

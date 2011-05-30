@@ -16,7 +16,6 @@ def assignable_rational_to_dot_count(rational):
       ...     except AssignabilityError:
       ...             pass
       ... 
-
       1/16    0
       1/8     0
       3/16    1
@@ -25,10 +24,7 @@ def assignable_rational_to_dot_count(rational):
       7/16    2
       1/2     0
 
-   Raise assignability error when `rational` not assignable::
-
-      abjad> durtools.assignable_rational_to_dot_count(Fraction(5, 16))
-      AssignabilityError
+   Raise assignability error when `rational` not assignable.
 
    Return nonnegative integer.
    '''

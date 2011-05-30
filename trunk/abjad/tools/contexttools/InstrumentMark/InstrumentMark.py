@@ -10,12 +10,12 @@ class InstrumentMark(ContextMark):
    
    ::
 
-      abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
+      abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff) # doctest: +SKIP
       InstrumentMark('Flute', 'Fl.')(Staff{4})
 
    ::
 
-      abjad> f(staff)
+      abjad> f(staff) # doctest: +SKIP
       \new Staff {
          \set Staff.instrumentName = \markup { Flute }
          \set Staff.shortInstrumentName = \markup { Fl. }
@@ -75,6 +75,8 @@ class InstrumentMark(ContextMark):
          abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
          abjad> instrument.format
          ['\\set Staff.instrumentName = \\markup { Flute }', '\\set Staff.shortInstrumentName = \\markup { Fl. }']
+
+      Return list.
       '''
       result = [ ]
       result.append(r'\set %s.instrumentName = %s' % (self._target_context_name, self.instrument_name))
@@ -95,6 +97,8 @@ class InstrumentMark(ContextMark):
             abjad> instrument.instrument_name = 'Alto Flute'
             abjad> instrument.instrument_name
             Markup('Alto Flute')
+
+         Return markup.
          '''
          return self._instrument_name
       def fset(self, instrument_name):
@@ -117,6 +121,8 @@ class InstrumentMark(ContextMark):
             abjad> instrument.short_instrument_name = 'Alto Fl.'
             abjad> instrument.short_instrument_name
             Markup('Alto Fl.')
+
+         Return markup.
          '''
          return self._short_instrument_name
       def fset(self, short_instrument_name):

@@ -8,7 +8,7 @@ import os
 def ly(target = -1):
    r'''Open the last LilyPond output file in ``vi``::
 
-      abjad> iotools.ly( )
+      abjad> iotools.ly( ) # doctest: +SKIP
 
    ::
 
@@ -25,7 +25,7 @@ def ly(target = -1):
 
    Open the next-to-last LilyPond output file in ``vi``::
 
-      abjad> iotools.ly(-2)
+      abjad> iotools.ly(-2) # doctest: +SKIP
 
    Exit ``vi`` in the usual way with ``:q`` or equivalent.
 

@@ -21,8 +21,8 @@ class Harp(_StringInstrument):
 
       abjad> f(piano_staff)
       \new PianoStaff <<
-         %%% \set Staff.instrumentName = \markup { Harp } %%%
-         %%% \set Staff.shortInstrumentName = \markup { Hp. } %%%
+         \set PianoStaff.instrumentName = \markup { Harp }
+         \set PianoStaff.shortInstrumentName = \markup { Hp. }
          \new Staff {
             c'8
             d'8

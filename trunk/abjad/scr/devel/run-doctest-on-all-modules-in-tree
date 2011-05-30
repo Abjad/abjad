@@ -13,10 +13,8 @@ def _main( ):
          if file_name.endswith('.py') and \
             not file_name.startswith('test_') and \
             not file_name == '__init__.py':
-            #print file_name
             total_modules += 1
             full_file_name = os.path.abspath(os.path.join(dir_path, file_name))
-            #print full_file_name
             doctest.testfile(full_file_name, module_relative = False, globs = globals( ),
                optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
    print 'Total modules: %s' % total_modules

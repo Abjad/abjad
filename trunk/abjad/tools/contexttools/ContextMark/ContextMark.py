@@ -112,6 +112,8 @@ class ContextMark(Mark):
  
          abjad> context_mark.effective_context is None
          True
+
+      Return context mark or none.
       '''
       if self.start_component is not None:
          self.start_component._update_marks_of_entire_score_tree_if_necessary( )
@@ -130,6 +132,8 @@ class ContextMark(Mark):
  
          abjad> context_mark.target_context is None
          True
+
+      Return context mark or none.
       '''
       return self._target_context
 

@@ -35,6 +35,8 @@ class TimeSignatureMark(ContextMark):
 
       abjad> contexttools.TimeSignatureMark((4, 8), target_context = Score)
       TimeSignatureMark(4, 8, target_context = Score)
+
+   Time signatures are immutable.
    '''
 
    _format_slot = 'opening'
@@ -190,6 +192,8 @@ class TimeSignatureMark(ContextMark):
             abjad> meter.denominator = 16
             abjad> meter.denominator
             16
+
+         Return integer.
          '''
          return self._denominator
       def fset(self, denominator):
@@ -211,13 +215,13 @@ class TimeSignatureMark(ContextMark):
 
    @property
    def format(self):
-      r'''Read-only LilyPond format of time signature mark:
-
-      ::
+      r'''Read-only LilyPond format of time signature mark::
 
          abjad> meter = contexttools.TimeSignatureMark(3, 8)
          abjad> meter.format
          '\\time 3/8'
+
+      Return string.
       '''
       if self.suppress:
          return [ ]
@@ -257,6 +261,8 @@ class TimeSignatureMark(ContextMark):
             abjad> meter.numerator = 4
             abjad> meter.numerator
             4
+
+         Set integer.
          '''
          return self._numerator
       def fset(self, numerator):
@@ -290,6 +296,8 @@ class TimeSignatureMark(ContextMark):
             abjad> meter.partial = Fraction(1, 4)
             abjad> meter.partial
             Fraction(1, 4)
+
+         Set fraction.
          '''
          return self._partial
       def fset(self, partial):

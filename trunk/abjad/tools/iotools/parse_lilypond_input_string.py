@@ -18,7 +18,7 @@ def parse_lilypond_input_string(note_entry_string):
 
       abjad> note_entry_string = "g'2 a'2 g'4. fs'8 e'4 d'4"
       abjad> iotools.parse_lilypond_input_string(note_entry_string)
-      {g'4, a'4, a'2, fs'8, e'4, d'4}
+      {g'2, a'2, g'4., fs'8, e'4, d'4}
 
    Return container of note, rest and chord instances.
 

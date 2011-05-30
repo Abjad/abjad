@@ -13,10 +13,7 @@ def assignable_rational_to_lilypond_duration_string(rational):
       abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
       '8.'
 
-   Raise assignability error when `rational` not assignable::
-
-      abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(5, 16))
-      AssignabilityError
+   Raise assignability error when `rational` not assignable.
 
    Return string.
    '''

@@ -7,8 +7,9 @@ def numeric_seconds_to_escaped_clock_string(seconds):
    Change numeric `seconds` to escaped clock string::
 
       abjad> note = Note(0, (1, 4))
-      abjad> clock_string = durtools.numeric_seconds_to_clock_string(117)
+      abjad> clock_string = durtools.numeric_seconds_to_escaped_clock_string(117)
       abjad> markuptools.Markup('"%s"' % clock_string, 'up')(note)
+      Markup('"1\'57\\""', 'up')
 
    ::
 

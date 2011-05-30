@@ -75,6 +75,8 @@ class KeySignatureMark(ContextMark):
          abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
          abjad> key_signature.format
          '\\key e \\major'
+
+      Return string.
       '''
       return r'\key %s \%s' % (self.tonic, self.mode)
 
@@ -92,6 +94,8 @@ class KeySignatureMark(ContextMark):
             abjad> key_signature.mode = 'minor'
             abjad> key_signature.mode
             Mode(minor)
+
+         Return mode.
          '''
          return self._mode
       def fset(self, mode):
@@ -109,6 +113,8 @@ class KeySignatureMark(ContextMark):
          abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
          abjad> key_signature.name
          'E major'
+
+      Return string.
       '''
       if self.mode.mode_name_string == 'major':
          tonic = str(self.tonic).upper( )   
@@ -130,6 +136,8 @@ class KeySignatureMark(ContextMark):
             abjad> key_signature.tonic = 'd'
             abjad> key_signature.tonic
             NamedChromaticPitchClass('d')
+
+         Return named chromatic pitch.
          '''
          return self._tonic
       def fset(self, tonic):

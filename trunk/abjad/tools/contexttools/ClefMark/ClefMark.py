@@ -78,6 +78,8 @@ class ClefMark(ContextMark):
             abjad> clef.clef_name_string = 'alto'
             abjad> clef.clef_name_string
             'alto'
+
+         Return string.
          '''
          return self._clef_name_string
       def fset(self, clef_name_string):
@@ -94,6 +96,8 @@ class ClefMark(ContextMark):
          abjad> clef = contexttools.ClefMark('treble')
          abjad> clef.format
          '\\clef "treble"'
+
+      Return string.
       '''
       return r'\clef "%s"' % self._clef_name_string
 

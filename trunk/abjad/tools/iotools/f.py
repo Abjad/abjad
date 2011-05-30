@@ -5,7 +5,7 @@ def f(expr):
 
    ::
    
-      abjad> f(t)
+      abjad> f(staff)
       \new Staff {
               c'8
               d'8

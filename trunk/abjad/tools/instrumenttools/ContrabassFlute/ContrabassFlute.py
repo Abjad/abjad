@@ -12,14 +12,14 @@ class ContrabassFlute(Flute):
    ::
 
       abjad> instrumenttools.ContrabassFlute( )(staff)
-      ContrabassFlute('Contrabass Flute', 'Contrabass Fl.')
+      ContrabassFlute('Contrabass Flute', 'Cbass Fl.')
 
    ::
 
       abjad> f(staff)
       \new Staff {
          \set Staff.instrumentName = \markup { Contrabass Flute }
-         \set Staff.shortInstrumentName = \markup { Contrabass Fl. }
+         \set Staff.shortInstrumentName = \markup { Cbass Fl. }
          c'8
          d'8
          e'8

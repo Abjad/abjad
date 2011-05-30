@@ -13,7 +13,7 @@ def is_lilypond_duration_name(expr):
 
    True when `expr` is a LilyPond duartion name::
 
-      abjad> durtools.is_lilypond_duration_name('breve')
+      abjad> durtools.is_lilypond_duration_name('\\breve')
       True
 
    Otherwise false::

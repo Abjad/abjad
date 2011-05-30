@@ -7,9 +7,12 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
 
       abjad> t = Voice(macros.scale(4))
       abjad> spannertools.BeamSpanner(t[:])
+      BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> notes = macros.scale(4, Fraction(1, 16))
-      abjad> t[1].grace.before.extend(notes[:2])
-      abjad> t[1].grace.after.extend(notes[2:])
+      abjad> gracetools.Grace(notes[:2], kind = 'grace')(t[1])
+      Note("d'8")
+      abjad> gracetools.Grace(notes[2:], kind = 'after')(t[1])
+      Note("d'8")
       abjad> print t.format
       \new Voice {
               c'8 [
@@ -29,17 +32,17 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
 
    ::
 
-      abjad> for x in componenttools.iterate_components_and_grace_containers_forward_in_expr(t, Note):
+      abjad> for x in gracetools.iterate_components_and_grace_containers_forward_in_expr(t, Note):
       ...     x
       ... 
-      Note(c', 8)
-      Note(c', 16)
-      Note(d', 16)
-      Note(d', 8)
-      Note(e', 16)
-      Note(f', 16)
-      Note(e', 8)
-      Note(f', 8)
+      Note("c'8")
+      Note("c'16")
+      Note("d'16")
+      Note("d'8")
+      Note("e'16")
+      Note("f'16")
+      Note("e'8")
+      Note("f'8")
 
    .. note:: This naive iteration ignores threads.
 

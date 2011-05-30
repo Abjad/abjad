@@ -7,7 +7,7 @@ import os
 def log( ):
    '''Open the LilyPond log file in the ``vi``::
 
-      abjad> iotools.log( )
+      abjad> iotools.log( ) ## doctest: +SKIP
 
    ::
 

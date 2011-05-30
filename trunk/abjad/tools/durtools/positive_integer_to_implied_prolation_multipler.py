@@ -8,7 +8,7 @@ def positive_integer_to_implied_prolation_multipler(n):
 
    Change positive integer `n` to implied porlation multiplier::
 
-      abjad> for denominator in range(1, 17):
+      abjad> for denominator in range(1, 17): # doctest: +SKIP
       ...     multiplier = durtools.positive_integer_to_implied_prolation_multipler(denominator)
       ...     print '%s\\t%s' % (denominator, multiplier)
       ... 

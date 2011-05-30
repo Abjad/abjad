@@ -9,7 +9,7 @@ def rational_to_equal_or_lesser_assignable_rational(rational):
 
    Change `rational` to equal or lesser assignable rational::
 
-      abjad> for n in range(1, 17):
+      abjad> for n in range(1, 17): # doctest: +SKIP
       ...     rational = Fraction(n, 16)
       ...     written = durtools.rational_to_equal_or_lesser_assignable_rational(rational)
       ...     print '%s/16\\t%s' % (n, written)

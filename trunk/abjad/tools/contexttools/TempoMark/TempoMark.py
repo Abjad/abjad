@@ -138,6 +138,8 @@ class TempoMark(ContextMark):
             abjad> tempo.duration = Fraction(1, 4)
             abjad> tempo.duration
             Fraction(1, 4)
+
+         Return duration.
          '''
          return self._duration
       def fset(self, duration):
@@ -157,6 +159,8 @@ class TempoMark(ContextMark):
          abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
          abjad> tempo.format
          '\\tempo 8=52'
+
+      Return string.
       '''
       return r'\tempo %s' % self._equation
 
@@ -181,11 +185,13 @@ class TempoMark(ContextMark):
             abjad> tempo.units_per_minute
             52
 
-      Set units per minute of tempo mark::
+         Set units per minute of tempo mark::
 
             abjad> tempo.units_per_minute = 56
             abjad> tempo.units_per_minute
             56
+
+         Return number.
          '''
          return self._units_per_minute
       def fset(self, units_per_minute):

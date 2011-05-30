@@ -35,7 +35,7 @@ class StaffChangeMark(ContextMark):
 
    ::
 
-      abjad> f(piano_staff)
+      abjad> f(piano_staff) # doctest: +SKIP
       \new PianoStaff <<
          \context Staff = "RHStaff" {
             c'8
@@ -92,6 +92,8 @@ class StaffChangeMark(ContextMark):
          abjad> staff_change = contexttools.StaffChangeMark(staff)
          abjad> staff_change.format
          '\\change Staff = RHStaff'
+
+      Return string.
       '''
       return r'\change Staff = %s' % self.staff.name
 
@@ -113,6 +115,8 @@ class StaffChangeMark(ContextMark):
             abjad> staff_change.staff = lh_staff
             abjad> staff_change.staff
             Staff-"LHStaff"{1}
+
+         Return staff.
          '''
          return self._staff
       def fset(self, staff):

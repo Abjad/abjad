@@ -3,10 +3,7 @@ from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_n
 
 
 def get_next_output_file_name( ):
-   '''Get next output file name::
-
-      abjad> iotools.get_next_output_file_name( )
-      '6223.ly'
+   '''Get next output file name like ``6223.ly``.
 
    Return string.
    '''

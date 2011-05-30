@@ -1,45 +1,7 @@
 def format_input_lines_as_doc_string(input_lines, tab_width = 3):
    r""".. versionadded:: 1.1.2
 
-   Format `input_lines` as doc string::
-
-      abjad> input_lines = '''
-      ... staff = Staff(macros.scale(4))
-      ... spannertools.BeamSpanner(staff.leaves)
-      ... f(staff)
-      ... 
-      ... tuplettools.FixedDurationTuplet((2, 8), staff[:3]) ##
-
-      ... f(staff)
-      ... '''
-      abjad> iotools.format_input_lines_as_doc_string(input_lines)
-
-            abjad> staff = Staff(macros.scale(4))
-            abjad> spannertools.BeamSpanner(staff.leaves)
-            abjad> f(staff)
-            \new Staff {
-               c'8 [
-               d'8
-               e'8
-               f'8 ]
-            }
-            
-         ::
-            
-            abjad> tuplettools.FixedDurationTuplet((2, 8), staff[:3])
-            tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-
-         ::
-
-            abjad> f(staff)
-            \new Staff {
-               \times 2/3 {
-                  c'8 [
-                  d'8
-                  e'8
-               }
-               f'8 ]
-            }
+   Format `input_lines` as doc string.
 
    Format expressions intelligently.
 
@@ -48,6 +10,8 @@ def format_input_lines_as_doc_string(input_lines, tab_width = 3):
    Capture hash-suffixed line output.
 
    Use when writing docstrings.
+
+   Example skipped because docstring goes crazy on example input.
    """
 
    tab = '   '

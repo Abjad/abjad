@@ -8,7 +8,7 @@ def save_last_pdf_as(file_name):
 
    Save last PDF as `file_name`::
 
-      abjad> iotools.save_last_pdf_as('/project/output/example-1.pdf')
+      abjad> iotools.save_last_pdf_as('/project/output/example-1.pdf') # doctest: +SKIP
 
    Return none.
    '''

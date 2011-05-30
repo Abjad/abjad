@@ -26,13 +26,13 @@ def rewrite_rational_under_new_tempo(prolated_duration_1,
    An triplet eighth note at tempo 1 equals a regular eighth note
    at tempo 2. ::
 
-      abjad> durtools.rewrite_rational_under_new_tempo(Fraction(1, 12), tempo_mark_1, tempo_mark_2):
+      abjad> durtools.rewrite_rational_under_new_tempo(Fraction(1, 12), tempo_mark_1, tempo_mark_2)
       Fraction(1, 8)
 
    Conversely, a regular eighth not at tempo 1 equals a dotted
    sixteenth at tempo 2. ::
 
-      abjad> durtools.rewrite_rational_under_new_tempo(Fraction(1, 8), tempo_mark_1, tempo_mark_2):
+      abjad> durtools.rewrite_rational_under_new_tempo(Fraction(1, 8), tempo_mark_1, tempo_mark_2)
       Fraction(3, 16)
 
    Return fraction.

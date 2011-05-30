@@ -6,7 +6,7 @@ def lilypond_duration_string_to_rational_list(duration_string):
 
    Change LilyPond `duration_string` to rational list::
 
-      abjad> durtools.lilypond_duration_string_to_rationals('8.. 32 8.. 32')            
+      abjad> durtools.lilypond_duration_string_to_rational_list('8.. 32 8.. 32')            
       [Fraction(7, 32), Fraction(1, 32), Fraction(7, 32), Fraction(1, 32)]
 
    Return list of fractions.

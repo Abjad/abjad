@@ -8,7 +8,7 @@ def save_last_ly_as(file_name):
 
    Save last ly file as `file_name`::
 
-      abjad> iotools.save_last_ly_as('/project/output/example-1.ly')
+      abjad> iotools.save_last_ly_as('/project/output/example-1.ly') # doctest: +SKIP
 
    Return none.
    '''

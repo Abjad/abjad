@@ -3,8 +3,8 @@ def rational_to_prolation_string(rational):
 
    Change `rational` to prolation string::
 
-      abjad> generator = durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_unique( )
-      abjad> for n in range(16):
+      abjad> generator = durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( )
+      abjad> for n in range(16): # doctest: +SKIP
       ...     rational = generator.next( )
       ...     prolation_string = durtools.rational_to_prolation_string(rational)
       ...     print '%s\\t%s' % (rational, prolation_string)

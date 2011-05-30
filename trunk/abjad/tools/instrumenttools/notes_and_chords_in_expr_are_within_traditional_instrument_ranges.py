@@ -11,6 +11,7 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
       abjad> staff = Staff("c'8 r8 <d' fs'>8 r8")
       abjad> instrumenttools.Violin( )(staff)
+      Violin('Violin', 'Vn.')
    
    ::
 
@@ -21,6 +22,7 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
       abjad> staff = Staff("c'8 r8 <d fs>8 r8")
       abjad> instrumenttools.Violin( )(staff)
+      Violin('Violin', 'Vn.')
    
    ::
 
