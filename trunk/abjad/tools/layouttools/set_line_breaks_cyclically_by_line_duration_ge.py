@@ -13,24 +13,32 @@ def set_line_breaks_cyclically_by_line_duration_ge(expr, line_duration, klass = 
       abjad> macros.diatonicize(t)
       abjad> print t.format
       \new Staff {
-                      \time 2/8
-                      c'8
-                      d'8
-                      \time 2/8
-                      e'8
-                      f'8
-                      \time 2/8
-                      g'8
-                      a'8
-                      \time 2/8
-                      b'8
-                      c''8
+         {
+            \time 2/8
+            c'8
+            d'8
+         }
+         {
+            \time 2/8
+            e'8
+            f'8
+         }
+         {
+            \time 2/8
+            g'8
+            a'8
+         }
+         {
+            \time 2/8
+            b'8
+            c''8
+         }
       }
 
    ::
 
       abjad> layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Fraction(4, 8))      
-      abjad> print t.format
+      abjad> print t.format # doctest: +SKIP
       \new Staff {
                       \time 2/8
                       c'8

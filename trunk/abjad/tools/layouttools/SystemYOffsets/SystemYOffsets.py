@@ -11,7 +11,7 @@ class SystemYOffsets(_StrictComparator, _Immutable):
    Set `skip_systems_on_first_page` to a positive integer less than 
    `systems_per_page`, defaulting to ``1``. ::
 
-      abjad> specification = SystemYOffsets(38, 5)
+      abjad> specification = layouttools.SystemYOffsets(38, 5) # doctest: +SKIP
       SystemYOffsets([0], 44, 88, 132, 176 | 0, 44, 88, 132, 176 | ...) 
 
    Pass instances of this class to other layout functions.

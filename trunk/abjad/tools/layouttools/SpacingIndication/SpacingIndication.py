@@ -12,9 +12,11 @@ class SpacingIndication(_StrictComparator, _Immutable):
    equals ``tempo_indication``. ::
 
       abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 44)
-      abjad> spacing_indication = spacing.SpacingIndication(tempo, Fraction(1, 68))
+      abjad> spacing_indication = layouttools.SpacingIndication(tempo, Fraction(1, 68))
       abjad> spacing_indication
-      SpacingIndication(TempoMark(8., 72), 1/68)
+      SpacingIndication(TempoMark(8, 44), 1/68)
+
+   Spacing indications are immutable.
    '''
 
    def __init__(self, tempo_indication, proportional_notation_duration):

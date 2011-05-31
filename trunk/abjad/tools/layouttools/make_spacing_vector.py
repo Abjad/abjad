@@ -17,7 +17,7 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
    ::
 
-      abjad> f(lily_file)
+      abjad> f(lily_file) # doctest: +SKIP
       % Abjad revision 4229
       % 2011-04-07 15:19
 

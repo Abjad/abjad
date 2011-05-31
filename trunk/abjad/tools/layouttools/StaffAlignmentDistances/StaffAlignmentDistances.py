@@ -7,7 +7,7 @@ class StaffAlignmentDistances(_StrictComparator, _Immutable):
    Specify distances by hand when initializing the class.
    Distances may be even or uneven. ::
 
-      abjad> staves = StaffAlignmentDistances(18, 18, 18)
+      abjad> staves = layouttools.StaffAlignmentDistances(18, 18, 18)
 
    Pass instances of this class as the second argument to 
    :class:`~abjad.layout.fixed_staff_positioning.FixedStaffPositioning`.

@@ -8,7 +8,7 @@ class StaffAlignmentOffsets(_StrictComparator, _Immutable):
    Distances may be even or uneven. LilyPond reads distances going
    down the page; distances should therefore be negative. ::
 
-      abjad> staves = StaffAlignmentOffsets(0, -15, -32, -47)
+      abjad> staves = layouttools.StaffAlignmentOffsets(0, -15, -32, -47)
 
    Pass instances of this class as the second argument to 
    :class:`~abjad.layout.fixed_staff_positioning.FixedStaffPositioning`.

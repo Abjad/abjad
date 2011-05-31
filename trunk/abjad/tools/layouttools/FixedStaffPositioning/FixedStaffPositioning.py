@@ -29,9 +29,9 @@ class FixedStaffPositioning(_StrictComparator, _Immutable):
                       \break
       }
 
-      abjad> systems = SystemYOffsets(40, 5)
-      abjad> staves = StaffAlignmentOffsets(0, 15)
-      abjad> positioning = FixedStaffPositioning(systems, staves)
+      abjad> systems = layouttools.SystemYOffsets(40, 5)
+      abjad> staves = layouttools.StaffAlignmentDistances(0, 15)
+      abjad> positioning = layouttools.FixedStaffPositioning(systems, staves)
       abjad> layouttools.apply_fixed_staff_positioning(t, positioning)
 
       \new Staff {
