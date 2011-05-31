@@ -37,7 +37,7 @@ def test_layouttools_apply_fixed_staff_positioning_01( ):
    '''
 
    systems = layouttools.SystemYOffsets(20, 1)
-   staves = layouttools.StaffAlignmentOffsets(0)
+   staves = layouttools.StaffAlignmentDistances(0)
    positioning = layouttools.FixedStaffPositioning(systems, staves)
    layouttools.apply_fixed_staff_positioning(t, positioning)
 

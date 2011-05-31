@@ -5,7 +5,7 @@ py.test.skip('skipping until clean way to pass multiline format contributions.')
 
 def test_layouttools_apply_layouttools_schema_01( ):
    '''Short-cut to avoid instantiating SystemYOffsets,
-   StaffAlignmentOffsets, FixedStaffPositioning by hand.
+   StaffAlignmentDistances, FixedStaffPositioning by hand.
    '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
@@ -85,7 +85,7 @@ def test_layouttools_apply_layouttools_schema_01( ):
 
 def test_layouttools_apply_layouttools_schema_02( ):
    '''Short-cut to avoid instantiating SystemYOffsets,
-   StaffAlignmentOffsets, FixedStaffPositioning by hand.
+   StaffAlignmentDistances, FixedStaffPositioning by hand.
 
    Here operating on leaves instead of measures with optional klass keyword.
    '''

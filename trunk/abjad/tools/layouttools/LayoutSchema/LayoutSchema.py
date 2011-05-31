@@ -11,7 +11,7 @@ class LayoutSchema(_StrictComparator, _Immutable):
    position staves and systems regularly throughout.
 
    Short-cut to avoid instanting SystemYOffsets and
-   StaffAlignmentOffsets by hand.
+   StaffAlignmentDistances by hand.
    '''
 
    def __init__(self, line_break_duration, system_y_offsets_tuple,
