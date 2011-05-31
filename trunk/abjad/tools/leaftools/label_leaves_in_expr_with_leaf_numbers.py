@@ -9,6 +9,7 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction = 'down'):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> leaftools.label_leaves_in_expr_with_leaf_numbers(staff)
+      abjad> f(staff)
       \new Staff {
               c'8 _ \markup { \small 1 }
               d'8 _ \markup { \small 2 }

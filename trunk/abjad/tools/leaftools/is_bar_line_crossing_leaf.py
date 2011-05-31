@@ -10,12 +10,13 @@ def is_bar_line_crossing_leaf(leaf):
       abjad> t = Staff(macros.scale(4))
       abjad> t[2].duration.written *= 2
       abjad> contexttools.TimeSignatureMark(2, 8, partial = Fraction(1, 8))(t[2])
+      TimeSignatureMark(2, 8, partial = Fraction(1, 8))(e'4)
       abjad> f(t)
       \new Staff {
-              \time 2/8
-              \partial 8
               c'8
               d'8
+              \partial 8
+              \time 2/8
               e'4
               f'8
       }

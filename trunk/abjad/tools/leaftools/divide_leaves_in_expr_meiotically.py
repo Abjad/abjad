@@ -10,6 +10,7 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> f(staff)
       \new Staff {
          c'8 [

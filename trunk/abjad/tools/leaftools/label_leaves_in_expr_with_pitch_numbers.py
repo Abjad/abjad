@@ -28,5 +28,5 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
    for leaf in iterate_leaves_forward_in_expr(expr):
       for pitch in reversed(pitchtools.list_named_chromatic_pitches_in_expr(leaf)):
          if pitch is not None:
-            pitch_number = r'\small %s' % pitch.number
+            pitch_number = r'\small %s' % pitch.chromatic_pitch_number
             markuptools.Markup(pitch_number, markup_direction)(leaf)

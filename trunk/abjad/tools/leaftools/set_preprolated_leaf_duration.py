@@ -15,8 +15,9 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Fraction(3, 16))
-      [Note(d', 8.)]
+      [Note("d'8.")]
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -29,8 +30,9 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8) 
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Fraction(5, 32))
-      [Note(d', 8), Note(d', 32)]
+      [Note("d'8"), Note("d'32")]
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -44,8 +46,9 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Fraction(1, 12))
-      [Note(d', 8)]
+      [Note("d'8")]
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -60,8 +63,9 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> leaftools.set_preprolated_leaf_duration(staff[1], Fraction(5, 48))
-      [Note(d', 8), Note(d', 32)]
+      [Note("d'8"), Note("d'32")]
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -78,7 +82,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       abjad> note = Note(0, (1, 8))
       abjad> note.duration.multiplier = Fraction(1, 2)
       abjad> leaftools.set_preprolated_leaf_duration(note, Fraction(5, 48))
-      [Note(c', 8 * 5/6)]
+      [Note("c'8 * 5/6")]
       abjad> f(note)
       c'8 * 5/6
 

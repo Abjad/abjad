@@ -25,7 +25,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
    ::
 
       abjad> t = Staff(macros.scale(4))
-      abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t)
+      abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t, color = True, number = False)
       abjad> print t.format
       \new Staff {
          \once \override NoteHead #'color = #(x11-color 'red)

@@ -30,7 +30,7 @@ def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index
    ::
 
       abjad> leaftools.get_leaf_at_index_in_measure_number_in_expr(t, 2, 0)
-      Note(e', 8)
+      Note("e'8")
 
    Return leaf or none.
    '''

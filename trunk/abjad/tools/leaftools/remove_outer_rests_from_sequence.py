@@ -24,7 +24,7 @@ def remove_outer_rests_from_sequence(sequence):
    ::
 
       abjad> leaftools.remove_outer_rests_from_sequence(staff)
-      [Note("e'8"), Note("f'8")]
+      [Note("c'8"), Note("d'8")]
 
    ::
 

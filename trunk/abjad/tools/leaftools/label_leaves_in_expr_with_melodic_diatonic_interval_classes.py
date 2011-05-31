@@ -11,7 +11,7 @@ def label_leaves_in_expr_with_melodic_diatonic_interval_classes(expr, markup_dir
    Label leaves in `expr` with melodic diatonic interval classes::
 
       abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Fraction(1, 8)]))
-      abjad> leaftools.label_leaves_in_expr_with_melodic_diatonic_inteval_classes(staff)
+      abjad> leaftools.label_leaves_in_expr_with_melodic_diatonic_interval_classes(staff)
       abjad> f(staff)
       \new Staff {
               c'8 ^ \markup { +aug8 }

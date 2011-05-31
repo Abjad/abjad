@@ -2,13 +2,13 @@ from abjad.tools.iotools.show import show
 from abjad.tools.scoretools.make_piano_sketch_score_from_leaves import make_piano_sketch_score_from_leaves
 
 
-def show_leaves(leaves, template = None, title = None, suppress_pdf = False):
+def show_leaves(leaves, template = None, suppress_pdf = False):
    r""".. versionadded:: 1.1.2
 
    Show `leaves` in temporary piano staff score::
    
       abjad> leaves = leaftools.make_leaves([None, 1, (-24, -22, 7, 21), None], (1, 4))
-      abjad> score = leaftools.show_leaves(leaves)
+      abjad> score = leaftools.show_leaves(leaves) # doctest: +SKIP
       \new Score <<
               \new PianoStaff <<
                       \context Staff = "treble" {
@@ -34,6 +34,6 @@ def show_leaves(leaves, template = None, title = None, suppress_pdf = False):
    """
 
    score, treble, bass = make_piano_sketch_score_from_leaves(leaves)
-   show(score, template = template, title = title, suppress_pdf = suppress_pdf)
+   show(score, template = template, suppress_pdf = suppress_pdf)
 
    return score

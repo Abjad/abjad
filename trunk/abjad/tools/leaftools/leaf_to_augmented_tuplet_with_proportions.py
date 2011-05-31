@@ -12,7 +12,7 @@ def leaf_to_augmented_tuplet_with_proportions(leaf, proportions):
       abjad> print leaftools.leaf_to_augmented_tuplet_with_proportions(note, [1, 2])
       {@ 1:1 c'16, c'8 @}
       abjad> print leaftools.leaf_to_augmented_tuplet_with_proportions(note, [1, 2, 2])
-      {@ 5:6 c'32, c'16, c'16 @}
+      {@ 5:8 c'64., c'32., c'32. @}
       abjad> print leaftools.leaf_to_augmented_tuplet_with_proportions(note, [1, 2, 2, 3])
       {@ 2:3 c'64, c'32, c'32, c'32. @}
       abjad> print leaftools.leaf_to_augmented_tuplet_with_proportions(note, [1, 2, 2, 3, 3])

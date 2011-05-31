@@ -33,19 +33,19 @@ def get_nth_leaf_in_expr(expr, n = 0):
    ::
 
       abjad> for n in range(6):
-      ...     leaftools.get_nth_leaf_in_expr(t, n)
+      ...     leaftools.get_nth_leaf_in_expr(staff, n)
       ... 
-      Note(c', 8)
-      Note(d', 8)
-      Note(e', 8)
-      Note(f', 8)
-      Note(g', 8)
-      Note(a', 8)
+      Note("c'8")
+      Note("d'8")
+      Note("e'8")
+      Note("f'8")
+      Note("g'8")
+      Note("a'8")
 
    Read backwards for negative values of `n`. ::
 
-      abjad> leaftools.get_nth_leaf_in_expr(t, -1)
-      Note(a', 8)
+      abjad> leaftools.get_nth_leaf_in_expr(staff, -1)
+      Note("a'8")
       
    .. note:: Because this function returns as soon as it finds instance
       `n` of `klasses`, it is more efficient to call

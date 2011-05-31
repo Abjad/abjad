@@ -8,7 +8,9 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction = 'down'):
 
       abjad> staff = Staff(macros.scale(5))
       abjad> tuplettools.FixedDurationTuplet((2, 8), staff[-3:])
-      abjad> leaftools.label_leaves_in_expr_with_leaf_depth_tuplet(staff)
+      FixedDurationTuplet(1/4, [e'8, f'8, g'8])
+      abjad> leaftools.label_leaves_in_expr_with_tuplet_depth(staff)
+      abjad> f(staff)
       \new Staff {
               c'8 _ \markup { \small 0 }
               d'8 _ \markup { \small 0 }
@@ -25,8 +27,9 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction = 'down'):
       renamed ``label.leaf_depth_tuplet( )`` to
       ``leaftools.label_leaves_in_expr_with_tuplet_depth( )``.
    '''
+   from abjad.tools import componenttools
+   from abjad.tools import markuptools
 
    for leaf in iterate_leaves_forward_in_expr(expr):
-      label = r'\small %s' % leaf._parentage.depth_tuplet
-      markup_list = getattr(leaf.markup, markup_direction)
-      markup_list.append(label)
+      label = r'\small %s' % componenttools.component_to_tuplet_depth(leaf)
+      markuptools.Markup(label, markup_direction)(leaf)

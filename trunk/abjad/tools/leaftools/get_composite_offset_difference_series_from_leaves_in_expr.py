@@ -14,7 +14,7 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
       abjad> f(score)
          \new Score <<
                  \new Staff {
-                         \times 4/3 {
+                         \fraction \times 4/3 {
                                  c'8
                                  d'8
                                  e'8

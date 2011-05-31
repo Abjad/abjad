@@ -11,7 +11,7 @@ def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_l
       abjad> note.duration.multiplier = Fraction(1, 2)
       abjad> rest = Rest((1, 64))
       abjad> leaftools.copy_written_duration_and_multiplier_from_leaf_to_leaf(note, rest)
-      Rest(4 * 1/2)
+      Rest('r4 * 1/2')
 
    Return `target_leaf`.
    '''

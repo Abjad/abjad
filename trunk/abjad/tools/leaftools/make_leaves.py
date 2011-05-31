@@ -33,28 +33,28 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    Integer pitches create notes. ::
 
       abjad> leaftools.make_leaves([2, 4, 19], [(1, 4)])
-      [Note(d', 4), Note(e', 4), Note(g'', 4)]
+      [Note("d'4"), Note("e'4"), Note("g''4")]
 
    Tuple pitches create chords. ::
 
       abjad> leaftools.make_leaves([(0, 1, 2), (3, 4, 5), (6, 7, 8)], [(1, 4)])
-      [Chord(c' cs' d', 4), Chord(ef' e' f', 4), Chord(fs' g' af', 4)]
+      [Chord("<c' cs' d'>4"), Chord("<ef' e' f'>4"), Chord("<fs' g' af'>4")]
 
    Set `pitches` to a list of none to create rests. ::
 
       abjad> leaftools.make_leaves([None, None, None, None], [(1, 8)])
-      [Rest(8), Rest(8), Rest(8), Rest(8)]
+      [Rest('r8'), Rest('r8'), Rest('r8'), Rest('r8')]
 
    You can mix and match pitch values. ::
 
       abjad> leaftools.make_leaves([12, (1, 2, 3), None, 12], [(1, 4)])
-      [Note(c'', 4), Chord(cs' d' ef', 4), Rest(4), Note(c'', 4)]
+      [Note("c''4"), Chord("<cs' d' ef'>4"), Rest('r4'), Note("c''4")]
 
    If the length of `pitches` is less than the length of `durations`,
    the function reads `durations` cyclically. ::
 
       abjad> leaftools.make_leaves([13], [(1, 8), (1, 8), (1, 4), (1, 4)])
-      [Note(cs'', 8), Note(cs'', 8), Note(cs'', 4), Note(cs'', 4)]
+      [Note("cs''8"), Note("cs''8"), Note("cs''4"), Note("cs''4")]
 
    Set `durations` to a single duration, a list of duration, or
    a tuple of durations.
@@ -63,7 +63,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    the function reads `pitches` cyclically. ::
 
       abjad> leaftools.make_leaves([13, 14, 15, 16], [(1, 8)])
-      [Note(cs'', 8), Note(d'', 8), Note(ef'', 8), Note(e'', 8)]
+      [Note("cs''8"), Note("d''8"), Note("ef''8"), Note("e''8")]
       
    Duration values not of the form ``m / 2 ** n`` return
    leaves nested inside a fixed-multiplier tuplet. ::
@@ -74,7 +74,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    Set `direction` to ``'little-endian'`` to return tied leaf
    durations from least to greatest. ::
 
-      abjad> staff = Staff(leaftools.make_leaves([15], ([13, 16]), direction = 'little-endian'))
+      abjad> staff = Staff(leaftools.make_leaves([15], [(13, 16)], direction = 'little-endian'))
       abjad> f(staff)
       \new Staff {
               ef''16 ~

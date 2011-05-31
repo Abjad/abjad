@@ -6,7 +6,7 @@ def fuse_leaves_big_endian(leaves):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> leaftools.fuse_leaves_big_endian(staff[1:])
-      [Note(d', 4.)]
+      [Note("d'4.")]
       abjad> f(staff)
       \new Staff {
          c'8

@@ -33,12 +33,12 @@ def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
       abjad> for leaf in leaftools.iterate_leaves_forward_in_expr(staff):
       ...     leaf
       ... 
-      Note(c', 8)
-      Note(d', 8)
-      Note(e', 8)
-      Note(f', 8)
-      Note(g', 8)
-      Note(a', 8)
+      Note("c'8")
+      Note("d'8")
+      Note("e'8")
+      Note("f'8")
+      Note("g'8")
+      Note("a'8")
 
    Use the optional `start` and `stop` keyword parameters to control
    the start and stop indices of iteration. ::
@@ -46,26 +46,26 @@ def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
       abjad> for leaf in leaftools.iterate_leaves_forward_in_expr(staff, start = 3):
       ...     leaf
       ... 
-      Note(f', 8)
-      Note(g', 8)
-      Note(a', 8)
+      Note("f'8")
+      Note("g'8")
+      Note("a'8")
 
    ::
 
       abjad> for leaf in leaftools.iterate_leaves_forward_in_expr(staff, start = 0, stop = 3):
       ...     leaf
       ... 
-      Note(c', 8)
-      Note(d', 8)
-      Note(e', 8)
+      Note("c'8")
+      Note("d'8")
+      Note("e'8")
 
    ::
 
       abjad> for leaf in leaftools.iterate_leaves_forward_in_expr(staff, start = 2, stop = 4):
       ...     leaf
       ... 
-      Note(e', 8)
-      Note(f', 8)
+      Note("e'8")
+      Note("f'8")
 
    Ignore threads.
 

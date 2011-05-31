@@ -9,6 +9,7 @@ def repeat_leaf_and_extend_spanners(leaf, total = 1):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> f(staff)
       \new Staff {
          c'8 [

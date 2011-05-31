@@ -23,7 +23,7 @@ def remove_terminal_rests_from_sequence(sequence):
    ::
 
       abjad> leaftools.remove_terminal_rests_from_sequence(staff)
-      [Rest('r8'), Rest('r8'), Note("e'8"), Note("f'8")]
+      [Rest('r8'), Rest('r8'), Note("c'8"), Note("d'8")]
 
    ::
 

@@ -13,6 +13,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
       abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
       abjad> score.append(Staff(notes))
       abjad> contexttools.ClefMark('bass')(score[1])
+      ClefMark('bass')(Staff{3})
 
    ::
 
@@ -37,21 +38,21 @@ def iterate_leaf_pairs_forward_in_expr(expr):
 
       abjad> for pair in leaftools.iterate_leaf_pairs_forward_in_expr(score):
       ...      pair
-      (Note(c', 8), Note(c, 4))
-      (Note(c', 8), Note(d', 8))
-      (Note(c, 4), Note(d', 8))
-      (Note(d', 8), Note(e', 8))
-      (Note(d', 8), Note(a,, 4))
-      (Note(c, 4), Note(e', 8))
-      (Note(c, 4), Note(a,, 4))
-      (Note(e', 8), Note(a,, 4))
-      (Note(e', 8), Note(f', 8))
-      (Note(a,, 4), Note(f', 8))
-      (Note(f', 8), Note(g', 4))
-      (Note(f', 8), Note(g,, 4))
-      (Note(a,, 4), Note(g', 4))
-      (Note(a,, 4), Note(g,, 4))
-      (Note(g', 4), Note(g,, 4))
+      (Note("c'8"), Note('c4'))
+      (Note("c'8"), Note("d'8"))
+      (Note('c4'), Note("d'8"))
+      (Note("d'8"), Note("e'8"))
+      (Note("d'8"), Note('a,4'))
+      (Note('c4'), Note("e'8"))
+      (Note('c4'), Note('a,4'))
+      (Note("e'8"), Note('a,4'))
+      (Note("e'8"), Note("f'8"))
+      (Note('a,4'), Note("f'8"))
+      (Note("f'8"), Note("g'4"))
+      (Note("f'8"), Note('g,4'))
+      (Note('a,4'), Note("g'4"))
+      (Note('a,4'), Note('g,4'))
+      (Note("g'4"), Note('g,4'))
 
    Iterate leaf pairs left-to-right and top-to-bottom.
 

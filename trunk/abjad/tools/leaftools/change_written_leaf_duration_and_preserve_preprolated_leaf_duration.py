@@ -16,7 +16,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
    ::
       
       abjad> leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(note, Fraction(3, 16)) 
-      Note(c', 8. * 4/3)
+      Note("c'8. * 4/3")
       
    ::
       

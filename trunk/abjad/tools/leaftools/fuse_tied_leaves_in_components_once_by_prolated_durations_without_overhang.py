@@ -6,6 +6,7 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
 
       abjad> staff = Staff(notetools.make_repeated_notes(8))
       abjad> tietools.TieSpanner(staff.leaves)
+      TieSpanner(c'8, c'8, c'8, c'8, c'8, c'8, c'8, c'8)
       abjad> f(staff)
       \new Staff {
          c'8 ~
