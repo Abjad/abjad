@@ -31,6 +31,8 @@ from fractions import Fraction
 Fraction = Fraction
 Fraction
 
+from abjad.tools.durtools import Duration
+
 from components import *
 from abjad.tools import *
 del pitcharraytools

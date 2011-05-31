@@ -262,6 +262,7 @@ durtools
 .. toctree::
    :maxdepth: 1
 
+   tools/durtools/Duration/Duration
    tools/durtools/assignable_rational_to_dot_count
    tools/durtools/assignable_rational_to_lilypond_duration_string
    tools/durtools/duration_pair_to_prolation_string

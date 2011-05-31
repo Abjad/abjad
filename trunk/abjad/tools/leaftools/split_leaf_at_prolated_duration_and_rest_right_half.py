@@ -1,5 +1,5 @@
 from abjad.components import Rest
-from fractions import Fraction
+from abjad.tools.durtools import Duration
 
 
 ## TODO: implement corresponding function to rest left half
@@ -46,11 +46,7 @@ def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration)
    from abjad.tools.componenttools.move_parentage_and_spanners_from_components_to_components import move_parentage_and_spanners_from_components_to_components
    from abjad.tools.componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners import split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
 
-
-   try:
-      prolated_duration = Fraction(prolated_duration)
-   except TypeError:
-      prolated_duration = Fraction(*prolated_duration)
+   prolated_duration = Duration(prolated_duration)
 
    left, right = split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
       leaf, prolated_duration)
