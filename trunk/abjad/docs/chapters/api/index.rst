@@ -394,7 +394,6 @@ layouttools
    tools/layouttools/LayoutSchema/LayoutSchema
    tools/layouttools/SpacingIndication/SpacingIndication
    tools/layouttools/StaffAlignmentDistances/StaffAlignmentDistances
-   tools/layouttools/StaffAlignmentOffsets/StaffAlignmentOffsets
    tools/layouttools/SystemYOffsets/SystemYOffsets
    tools/layouttools/apply_fixed_staff_positioning
    tools/layouttools/apply_layout_schema
