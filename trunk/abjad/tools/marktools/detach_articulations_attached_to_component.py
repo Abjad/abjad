@@ -9,7 +9,9 @@ def detach_articulations_attached_to_component(component):
       abjad> staff = Staff(macros.scale(4))
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
       abjad> marktools.Articulation('^')(staff[0])
+      Articulation('^', '-')(c'8)
       abjad> marktools.Articulation('.')(staff[0])
+      Articulation('.', '-')(c'8)
 
    ::
 
@@ -33,7 +35,7 @@ def detach_articulations_attached_to_component(component):
 
    ::
 
-      abjad> marktools.get_articulations_attached_to_components(staff[0])
+      abjad> marktools.get_articulations_attached_to_component(staff[0])
       ()
       
    Return tuple or zero or more articulations detached.

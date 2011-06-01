@@ -8,24 +8,24 @@ def get_articulations_attached_to_component(component):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> marktools.Articulation('staccato')(staff[0])
-      abjad> marktools.Articulation('maracto')(staff[0])
+      Articulation('staccato', '-')(c'8)
+      abjad> marktools.Articulation('marcato')(staff[0])
+      Articulation('marcato', '-')(c'8)
 
    ::
 
       abjad> f(staff)
       \new Staff {
-         %% comment 1
-         %% comment 2
-         c'8 (
+         c'8 -\marcato -\staccato
          d'8
          e'8
-         f'8 )
+         f'8
       }
       
    ::
       
       abjad> marktools.get_articulations_attached_to_component(staff[0]) 
-      (Articulation('comment 1')(c'8), Articulation('comment 2')(c'8))
+      (Articulation('staccato', '-')(c'8), Articulation('marcato', '-')(c'8))
 
    Return tuple of zero or more articulations.
    '''

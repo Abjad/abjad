@@ -128,6 +128,8 @@ class Articulation(Mark):
             abjad> articulation.direction_string = '^'
             abjad> articulation.direction_string
             '^'
+
+         Set string.
          '''
          return self._direction
       def fset(self, direction_string):
@@ -137,13 +139,13 @@ class Articulation(Mark):
 
    @property
    def format(self):
-      '''Read-only LilyPond format string of articulation:
-
-      ::
+      '''Read-only LilyPond format string of articulation::
 
          abjad> articulation = marktools.Articulation('staccato', 'up')
          abjad> articulation.format
-         '^\staccato'
+         '^\\staccato'
+
+      Return string.
       '''
       return str(self)
 
@@ -159,8 +161,10 @@ class Articulation(Mark):
          Set name string of articulation::
 
             abjad> articulation.name_string = 'marcato'
-            abjad> articualtion.name_string
+            abjad> articulation.name_string
             'marcato'
+
+         Set string.
          '''
          return self._string
       def fset(self, name_string):

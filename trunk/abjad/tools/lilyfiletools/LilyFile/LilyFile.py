@@ -28,7 +28,7 @@ class LilyFile(list):
       
    ::
       
-      abjad> f(lily_file)
+      abjad> f(lily_file) # doctest: +SKIP
       % Abjad revision 3719
       % 2010-09-24 09:01
       

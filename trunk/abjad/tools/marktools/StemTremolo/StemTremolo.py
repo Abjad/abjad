@@ -58,13 +58,13 @@ class StemTremolo(Mark):
 
    @property
    def format(self):
-      '''Read-only LilyPond format string:
-
-      ::
+      '''Read-only LilyPond format string::
 
          abjad> stem_tremolo = marktools.StemTremolo(16)
          abjad> stem_tremolo.format
          ':16'
+
+      Return string.
       '''
       return str(self)
 
@@ -80,8 +80,10 @@ class StemTremolo(Mark):
          Set tremolo flags::
 
             abjad> stem_tremolo.tremolo_flags = 32
-            abjad> articualtion.tremolo_flags
+            abjad> stem_tremolo.tremolo_flags
             32
+
+         Set integer.
          '''
          return self._tremolo_flags
       def fset(self, tremolo_flags):

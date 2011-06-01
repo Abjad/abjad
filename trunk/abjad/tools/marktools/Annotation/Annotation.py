@@ -22,7 +22,7 @@ class Annotation(Mark):
 
    ::
 
-      abjad> marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('ds')(staff[0])
+      abjad> marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('ds'))(staff[0])
       Annotation('special pitch', NamedChromaticPitch('ds'))(c'8)
 
    ::
@@ -114,6 +114,8 @@ class Annotation(Mark):
             abjad> annotation.name = 'revised special pitch'
             abjad> annotation.name
             'revised special pitch'
+
+         Set string.
          '''
          return self._name
       def fset(self, name):
@@ -135,6 +137,8 @@ class Annotation(Mark):
             abjad> annotation.value = pitchtools.NamedChromaticPitch('e')
             abjad> annotation.value
             NamedChromaticPitch('e')
+
+         Set arbitrary object.
          '''
          return self._value
       def fset(self, value):

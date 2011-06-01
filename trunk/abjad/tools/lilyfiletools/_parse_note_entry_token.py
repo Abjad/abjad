@@ -12,15 +12,9 @@ import re
 def _parse_note_entry_token(note_entry_token):
    '''.. versionadded:: 1.1.2
 
-   Parse simple LilyPond `note_entry_token`. ::
+   Parse simple LilyPond `note_entry_token`.
 
-      abjad> _parse_note_entry_token("c'4.")
-      Note(c', 4.)
-
-   ::
-
-      abjad> _parse_note_entry_token('r8')  
-      Rest(8)
+   Return leaf.
    '''
 
    if not isinstance(note_entry_token, str):

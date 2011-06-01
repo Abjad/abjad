@@ -8,7 +8,9 @@ class DateTimeToken(_Immutable):
    Date time token::
 
       abjad> lilyfiletools.DateTimeToken( )
-      DateTimeToken(2010-09-24 10:19)
+      DateTimeToken(...)
+
+   Return date / time token.
    '''
 
    ## OVERLOADS ##
@@ -20,12 +22,12 @@ class DateTimeToken(_Immutable):
 
    @property
    def format(self):
-      '''Format contribution of date time token:
-
-      ::
+      '''Format contribution of date time token::
 
          abjad> lilyfiletools.DateTimeToken( ).format
-         '2010-09-24 10:19'
+         '...'
+
+      Return string.
       '''
       current_time_string = time.strftime('%Y-%m-%d %H:%M')
       return current_time_string

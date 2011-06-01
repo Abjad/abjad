@@ -9,7 +9,9 @@ def get_lilypond_command_marks_attached_to_component(component, command_name_str
       abjad> staff = Staff(macros.scale(4))
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
       abjad> marktools.LilyPondCommandMark('slurDotted')(staff[0])
+      LilyPondCommandMark('slurDotted')(c'8)
       abjad> marktools.LilyPondCommandMark('slurUp')(staff[0])
+      LilyPondCommandMark('slurUp')(c'8)
 
    ::
 

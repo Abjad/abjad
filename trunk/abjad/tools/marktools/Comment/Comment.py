@@ -64,6 +64,8 @@ class Comment(Mark):
             abjad> comment.contents_string = 'new comment contents string'
             abjad> comment.contents_string
             'new comment contents string'
+
+         Set string.
          '''
          return self._comment_name_string
       def fset(self, contents_string):
@@ -80,6 +82,8 @@ class Comment(Mark):
          abjad> comment = marktools.Comment('this is a comment.')
          abjad> comment.format
          '% this is a comment.'
+
+      Return string.
       '''
       from abjad.tools import iotools
       command = iotools.underscore_delimited_lowercase_to_lowercamelcase(self._comment_name_string)

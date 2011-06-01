@@ -9,7 +9,9 @@ class LilyPondLanguageToken(_Immutable):
    LilyPond language token::
 
       abjad> lilyfiletools.LilyPondLanguageToken( )
-      LilyPondVersionToken(\include "english.ly")
+      LilyPondLanguageToken(\include "english.ly")
+
+   Return LilyPond language token.
    '''
 
    ## OVERLOADS ##
@@ -21,12 +23,12 @@ class LilyPondLanguageToken(_Immutable):
 
    @property
    def format(self):
-      r'''Format contribution of LilyPond language token:
+      r'''Format contribution of LilyPond language token::
 
-      ::
+         abjad> lilyfiletools.LilyPondLanguageToken( ).format
+         '\\include "english.ly"'
 
-         abjad> lilyfiletools.LilyPondVersionToken( ).format
-         '\\include "english.ly"
+      Return string.
       '''
       lilypond_language = _read_config_file( )['lilypond_lang']
       return r'\include "%s.ly"' % lilypond_language.lower( )

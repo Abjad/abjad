@@ -69,6 +69,8 @@ class LilyPondCommandMark(Mark):
             abjad> lilypond_command.command_name_string = 'slurDashed'
             abjad> lilypond_command.command_name_string
             'slurDashed'
+
+         Set string.
          '''
          return self._command_name_string
       def fset(self, command_name_string):
@@ -78,14 +80,14 @@ class LilyPondCommandMark(Mark):
 
    @property
    def format(self):
-      '''Read-only LilyPond input format of LilyPond command mark:
-
-      ::
+      '''Read-only LilyPond input format of LilyPond command mark::
 
          abjad> note = Note(0, (1, 4))
          abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
          abjad> lilypond_command.format
          '\\slurDotted'
+
+      Return string.
       '''
       from abjad.tools import iotools
       command = self._command_name_string

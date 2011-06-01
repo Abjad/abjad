@@ -17,6 +17,8 @@ class HeaderBlock(_BlockAttributed):
          composer = \markup { Josquin }
          title = \markup { Missa sexti tonus }
       }
+
+   Return header block.
    '''
 
    def __init__(self):

@@ -19,7 +19,7 @@ def make_basic_lily_file(music = None):
 
    ::
 
-      abjad> f(lily_file)
+      abjad> f(lily_file) # doctest: +SKIP
       \header {
               composer = \markup { Josquin }
       }

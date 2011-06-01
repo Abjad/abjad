@@ -8,7 +8,9 @@ class AbjadRevisionToken(_Immutable):
    Abjad version token::
 
       abjad> lilyfiletools.AbjadRevisionToken( )
-      AbjadRevisionToken(Abjad revision 3719)
+      AbjadRevisionToken(Abjad revision ...)
+
+   Return Abjad version token.
    '''
 
    ## OVERLOADS ##
@@ -20,12 +22,12 @@ class AbjadRevisionToken(_Immutable):
 
    @property
    def format(self):
-      '''Format contribution of Abjad version token:
-
-      ::
+      '''Format contribution of Abjad version token::
 
          abjad> lilyfiletools.AbjadRevisionToken( ).format
-         'Abjad revision 3719'
+         'Abjad revision ...'
+
+      Return string.
       '''
       abjad_revision_string = get_abjad_revision_string( )
       return 'Abjad revision %s' % abjad_revision_string
