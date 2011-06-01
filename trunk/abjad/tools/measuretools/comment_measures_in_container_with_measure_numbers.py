@@ -11,8 +11,8 @@ def comment_measures_in_container_with_measure_numbers(container, style = 'comme
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> macros.diatonicize(staff)
-      abjad> measuretools.comment_measures_in_container_with_measure_numbers(staff, style = 'comment')
-      abjad> print staff.format
+      abjad> measuretools.comment_measures_in_container_with_measure_numbers(staff, style = 'comment') # doctest: +SKIP
+      abjad> f(staff) # doctest: +SKIP
       \new Staff {
               % start measure 1
               {
@@ -39,8 +39,8 @@ def comment_measures_in_container_with_measure_numbers(container, style = 'comme
 
    Turn measure number labels off with ``style = None``. ::
 
-      abjad> measuretools.comment_measures_in_container_with_measure_numbers(staff, style = None)
-      abjad> print staff.format
+      abjad> measuretools.comment_measures_in_container_with_measure_numbers(staff, style = None) # doctest: +SKIP
+      abjad> f(staff) # doctest: +SKIP
       \new Staff {
               {
                       \time 2/8

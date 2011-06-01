@@ -10,7 +10,9 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
 
       abjad> staff = Staff(Measure((3, 8), macros.scale(3)) * 3)
       abjad> contexttools.TimeSignatureMark(4, 8)(staff[1])
+      TimeSignatureMark(4, 8)(|4/8, c'8, d'8, e'8|)
       abjad> contexttools.TimeSignatureMark(5, 8)(staff[2])
+      TimeSignatureMark(5, 8)(|5/8, c'8, d'8, e'8|)
       abjad> staff[1].duration.is_underfull 
       True
       abjad> staff[2].duration.is_underfull 

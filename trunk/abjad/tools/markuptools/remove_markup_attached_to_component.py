@@ -10,7 +10,9 @@ def remove_markup_attached_to_component(component):
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> slur = spannertools.SlurSpanner(staff[:])
       abjad> markuptools.Markup('foo')(staff[0])
+      Markup('foo')
       abjad> markuptools.Markup('bar')(staff[0])
+      Markup('bar')
 
    ::
 

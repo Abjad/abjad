@@ -6,11 +6,11 @@ def make_repeated_notes(count, duration = Fraction(1, 8)):
    r'''Make `count` repeated notes with note head-assignable `duration`::
 
       abjad> notetools.make_repeated_notes(4)
-      [Note(c', 8), Note(c', 8), Note(c', 8), Note(c', 8)]
+      [Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8")]
 
    Make `count` repeated tie chains with tied `duration`::
 
-      abjad> notes = notetools.make_repeated_notes(2, (5, 16)))
+      abjad> notes = notetools.make_repeated_notes(2, (5, 16))
       abjad> voice = Voice(notes)
 
    ::

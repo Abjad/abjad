@@ -23,19 +23,19 @@ def color_measure(measure, color = 'red'):
       
       abjad> f(measure)
       {
-         \override Beam #'color = #red
-         \override Dots #'color = #red
-         \override Staff.TimeSignature #'color = #red
-         \override NoteHead #'color = #red
-         \override Stem #'color = #red
-         \time 2/8
-         c'8
-         d'8
-         \revert Beam #'color
-         \revert Dots #'color
-         \revert Staff.TimeSignature #'color
-         \revert NoteHead #'color
-         \revert Stem #'color
+        \override Beam #'color = #red
+        \override Dots #'color = #red
+        \override NoteHead #'color = #red
+        \override Staff.TimeSignature #'color = #red
+        \override Stem #'color = #red
+        \time 2/8
+        c'8
+        d'8
+        \revert Beam #'color
+        \revert Dots #'color
+        \revert NoteHead #'color
+        \revert Staff.TimeSignature #'color
+        \revert Stem #'color
       }
 
    Return colored `measure`.

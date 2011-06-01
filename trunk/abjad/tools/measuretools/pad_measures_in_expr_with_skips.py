@@ -9,9 +9,9 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
    to `front` at beginning of each measure. Insert skip with
    duation aqual to `back` at end of each measure. 
 
-   Set `front` to a positive rational or ``None``.
-   Set `back` to a positive rational or ``None``.
-   Return ``None``.
+   Set `front` to a positive rational or none.
+   Set `back` to a positive rational or none.
+   Return none.
 
    .. note:: This function is designed to
       help create regularly spaced charts and tables of musical materials.
@@ -22,11 +22,10 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
 
    ::
 
-      abjad> t = Staff(AnonymousMeasure(macros.scale(2)) * 2)
+      abjad> t = Staff(measuretools.AnonymousMeasure(macros.scale(2)) * 2)
       abjad> front, back = Fraction(1, 32), Fraction(1, 64)
-      abjad> measuretools.pad_measures_in_expr_with_skips(t, front, back)
-      abjad> print t.format
-
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, front, back) # doctest: +SKIP
+      abjad> f(t) # doctest: +SKIP
       \new Staff {
                       \override Staff.TimeSignature #'stencil = ##f
                       \time 19/64
@@ -46,15 +45,15 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
 
    Works when measures contain stacked voices. ::
 
-      abjad> measure = DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
+      abjad> measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> measure.is_parallel = True
       abjad> t = Staff(measure * 2)
       abjad> macros.diatonicize(t)
-      abjad> measuretools.pad_measures_in_expr_with_skips(t, Fraction(1, 32), Fraction(1, 64))
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, Fraction(1, 32), Fraction(1, 64)) # doctest: +SKIP
 
    ::
 
-      abjad> print t.format
+      abjad> f(t) # doctest: +SKIP
       \new Staff {
             \time 19/64
             \new Voice {
@@ -87,14 +86,15 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
    Set the optional `splice` keyword to ``True`` to extend edge
    spanners over newly inserted skips. ::
 
-      abjad> t = DynamicMeasure(macros.scale(2))
+      abjad> t = measuretools.DynamicMeasure(macros.scale(2))
       abjad> spannertools.BeamSpanner(t[:])
-      abjad> t.formatter.number.self = 'comment'
-      abjad> measuretools.pad_measures_in_expr_with_skips(t, Fraction(1, 32), Fraction(1, 64), splice = True)
+      BeamSpanner(c'8, d'8)
+      abjad> t.formatter.number.self = 'comment' # doctest: +SKIP
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, Fraction(1, 32), Fraction(1, 64), splice = True) # doctest: +SKIP
 
    ::
 
-      abjad> print t.format
+      abjad> f(t) # doctest: +SKIP
       % start measure 1
          \time 19/64
          s32 [
@@ -103,14 +103,9 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
          s64 ]
       % stop measure 1
 
-   Raise :exc:`ValueError` when `front` is neither a positive
-   rational nor ``None``.
-   Raise :exc:`ValueError` when `back` is neither a positive
-   rational nor ``None``. ::
+   Raise value error when `front` is neither a positive rational nor none.
 
-      abjad> t = Staff(AnonymousMeasure(macros.scale(2)) * 2)
-      abjad> measuretools.pad_measures_in_expr_with_skips(t, 'foo', 'bar')
-      ValueError
+   Raise value error when `back` is neither a positive rational nor none.
 
    .. versionchanged:: 1.1.2
       renamed ``layout.insert_measure_padding_skip( )`` to

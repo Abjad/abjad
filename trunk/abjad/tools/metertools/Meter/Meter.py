@@ -14,6 +14,8 @@ class Meter(_StrictComparator, _Immutable):
 
       abjad> metertools.Meter((5, 32))
       Meter(5, 32)
+
+   return meter.
    '''
 
    __slots__ = ('_denominator', '_duration', '_format', '_is_nonbinary',

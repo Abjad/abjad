@@ -10,6 +10,7 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
 
       abjad> staff = Staff(Measure((2, 8), macros.scale(2)) * 2)
       abjad> measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
+      Measure(3/12, [c'8., d'8.])
       abjad> f(staff)
       \new Staff {
          {
@@ -29,34 +30,34 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
    ::
       
       abjad> measuretools.color_nonbinary_measures_in_expr(staff, 'red')
-      [Measure(3/12(2))]
+      [Measure(3/12, [c'8., d'8.])]
       
    ::
       
       abjad> f(staff)
       \new Staff {
-         {
-            \time 2/8
-            c'8
-            d'8
-         }
-         {
-            \override Beam #'color = #red
-            \override Dots #'color = #red
-            \override Staff.TimeSignature #'color = #red
-            \override NoteHead #'color = #red
-            \override Stem #'color = #red
-            \time 3/12
-            \scaleDurations #'(2 . 3) {
-               c'8.
-               d'8.
-            }
-            \revert Beam #'color
-            \revert Dots #'color
-            \revert Staff.TimeSignature #'color
-            \revert NoteHead #'color
-            \revert Stem #'color
-         }
+        {
+           \time 2/8
+           c'8
+           d'8
+        }
+        {
+           \override Beam #'color = #red
+           \override Dots #'color = #red
+           \override NoteHead #'color = #red
+           \override Staff.TimeSignature #'color = #red
+           \override Stem #'color = #red
+           \time 3/12
+           \scaleDurations #'(2 . 3) {
+              c'8.
+              d'8.
+           }
+           \revert Beam #'color
+           \revert Dots #'color
+           \revert NoteHead #'color
+           \revert Staff.TimeSignature #'color
+           \revert Stem #'color
+        }
       }
 
    Return list of measures colored.

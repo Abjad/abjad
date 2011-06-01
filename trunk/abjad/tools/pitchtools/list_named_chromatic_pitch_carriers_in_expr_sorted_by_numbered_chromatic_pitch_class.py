@@ -10,7 +10,7 @@ def list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pit
       abjad> chord = Chord([9, 11, 12, 14, 16], (1, 4))
       abjad> notes = chordtools.arpeggiate_chord(chord)
       abjad> pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class(notes)      
-      [Note(c'', 4), Note(d'', 4), Note(e'', 4), Note(a', 4), Note(b', 4)]
+      [Note("c''4"), Note("d''4"), Note("e''4"), Note("a'4"), Note("b'4")]
 
    The elements in `pitch_carriers` are not changed in any way.
 

@@ -7,7 +7,7 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(
 
    Changed `pentatonic_scale_degree` number to chromatic pitch number::
 
-      abjad> for pentatonic_scale_degree in range(9):
+      abjad> for pentatonic_scale_degree in range(9): # doctest: +SKIP
       ...     chromatic_pitch_number = pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree)
       ...     print '%s\\t%s' % (pentatonic_scale_degree, chromatic_pitch_number)
       ... 
@@ -23,7 +23,7 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(
 
    Pentatonic scale degrees may be negative::
 
-      abjad> for pentatonic_scale_degree in range(-1, -9, -1):
+      abjad> for pentatonic_scale_degree in range(-1, -9, -1): # doctest: +SKIP
       ...     chromatic_pitch_number = pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree)
       ...     print '%s\\t%s' % (pentatonic_scale_degree, chromatic_pitch_number)
       ... 

@@ -5,7 +5,7 @@ from fractions import Fraction
 def cumulative_sums_zero_pairwise(sequence):
    '''List pairwise cumulative sums of `sequence` from ``0``::
 
-      abjad> mathtools.iterate_sequence_pairwise_cumulative_sums_zero([1, 2, 3, 4, 5, 6])
+      abjad> mathtools.cumulative_sums_zero_pairwise([1, 2, 3, 4, 5, 6])
       [(0, 1), (1, 3), (3, 6), (6, 10), (10, 15), (15, 21)]
 
    Return list of pairs.

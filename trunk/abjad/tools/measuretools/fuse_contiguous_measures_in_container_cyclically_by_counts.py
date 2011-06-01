@@ -42,11 +42,11 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
    ::
       
       abjad> counts = (2, 1)
-      abjad> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, counts)
+      abjad> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, counts) # doctest: +SKIP
       
    ::
       
-      abjad> f(staff)
+      abjad> f(staff) # doctest: +SKIP
       \new Staff {
          {
             \time 4/8
@@ -72,8 +72,6 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
    Return none.
 
    Set `mark` to true to mark fused measures for later reference.
-
-   .. todo:: rename `counts` to `counts`.
 
    .. versionchanged:: 1.1.2
       renamed ``fuse.measures_by_counts_cyclic( )`` to

@@ -7,6 +7,10 @@ def list_nonspanning_subarrays_of_pitch_array(pitch_array):
 
    List nonspanning subarrays of `pitch_array`::
 
+      abjad> from abjad.tools import pitcharraytools
+
+   ::
+
       abjad> array = pitcharraytools.PitchArray([
       ...     [2, 2, 3, 1],
       ...     [1, 2, 1, 1, 2, 1],
@@ -42,6 +46,8 @@ def list_nonspanning_subarrays_of_pitch_array(pitch_array):
       [ ]
       [ ]
       [ ]
+
+   Return list.
    '''
 
    if not isinstance(pitch_array, PitchArray):

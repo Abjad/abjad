@@ -37,7 +37,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
       abjad> notes = macros.scale(8)  
       abjad> notes.reverse( )
       abjad> notes
-      [Note(c'', 8), Note(b', 8), Note(a', 8), Note(g', 8), Note(f', 8), Note(e', 8), Note(d', 8), Note(c', 8)]
+      [Note("c''8"), Note("b'8"), Note("a'8"), Note("g'8"), Note("f'8"), Note("e'8"), Note("d'8"), Note("c'8")]
 
    ::
 

@@ -60,13 +60,13 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(
       abjad> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
       abjad> for n in pitch_numbers:
       ...   n, pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(n, mapping)
-      -30 6
-      -18 6
-      -6 18
-      6 18
-      18 18
-      30 30
-      42 30
+      (-30, 6)
+      (-18, 6)
+      (-6, 18)
+      (6, 18)
+      (18, 18)
+      (30, 30)
+      (42, 30)
 
    And so on.
 

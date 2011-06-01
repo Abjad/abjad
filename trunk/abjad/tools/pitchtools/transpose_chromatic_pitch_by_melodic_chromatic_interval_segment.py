@@ -7,8 +7,8 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
 
    Transpose chromatic `pitch` by melodic chromatic interval `segment`::
 
-      abjad> ncp = NumberedChromaticPitch(0)
-      abjad> mcis = MelodicChromaticIntervalSegment([0, -1, 2])
+      abjad> ncp = pitchtools.NumberedChromaticPitch(0)
+      abjad> mcis = pitchtools.MelodicChromaticIntervalSegment([0, -1, 2])
       abjad> pitchtools.transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(ncp, mcis)
       [NumberedChromaticPitch(0), NumberedChromaticPitch(-1), NumberedChromaticPitch(1)]
 

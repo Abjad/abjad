@@ -6,28 +6,34 @@ from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArray
 class PitchArrayColumn(_StrictComparator):
    '''.. versionadded:: 1.1.2
 
-   Column in a pitch array. ::
+   Column in a pitch array::
+
+      abjad> from abjad.tools import pitcharraytools
+
+   ::
 
       abjad> array = pitcharraytools.PitchArray([
-         [1, (2, 1), (-1.5, 2)],
-         [(7, 2), (6, 1), 1]])
+      ...   [1, (2, 1), (-1.5, 2)],
+      ...   [(7, 2), (6, 1), 1]])
 
-      ::
+   ::
 
-         abjad> print array
-         [  ] [bf] [bqf    ]
-         [g'     ] [fs'] [ ]
+      abjad> print array
+      [  ] [d'] [bqf    ]
+      [g'     ] [fs'] [ ]
 
-      ::
+   ::
 
-         abjad> array.columns[0]
-         PitchArrayColumn(x1, g' x2)
+      abjad> array.columns[0]
+      PitchArrayColumn(x1, g' x2)
 
-      ::
+   ::
 
-         abjad> print array.columns[0]
-         [  ]
-         [g'     ]
+      abjad> print array.columns[0]
+      [  ]
+      [g'     ]
+
+   Return pitch array column.
    '''
 
    def __init__(self, cells):

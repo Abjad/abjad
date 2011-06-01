@@ -76,26 +76,26 @@ class NoteHead(_UnaryComparator):
 
    @property
    def format(self):
-      '''Read-only LilyPond input format of note head:
-
-      ::
+      '''Read-only LilyPond input format of note head::
       
          abjad> note_head = notetools.NoteHead("cs''")
          abjad> note_head.format
-         "cs'"
+         "cs''"
+
+      Return string.
       '''
       from abjad.tools.notetools._format_note_head import _format_note_head
       return _format_note_head(self)
 
    @property
    def named_chromatic_pitch(self):
-      '''Read-only named chromatic pitch equal to note head:
-
-      ::
+      '''Read-only named chromatic pitch equal to note head::
 
          abjad> note_head = notetools.NoteHead("cs''")
          abjad> note_head.named_chromatic_pitch
          NamedChromaticPitch("cs''")
+
+      Return named chromatic pitch.
       '''
       return self.pitch
 
@@ -115,6 +115,8 @@ class NoteHead(_UnaryComparator):
             abjad> note_head.pitch = "d''"
             abjad> note_head.pitch
             NamedChromaticPitch("d''")
+
+         Set pitch token.
          '''
          return self._pitch
       def fset(self, arg):
@@ -125,13 +127,13 @@ class NoteHead(_UnaryComparator):
 
    @property
    def tweak(self):
-      '''Read-only LilyPond tweak reservoir:
-
-      ::
+      '''Read-only LilyPond tweak reservoir::
 
          abjad> note_head = notetools.NoteHead("cs''")
          abjad> note_head.tweak
          LilyPondTweakReservoir( )
+
+      Return LilyPond tweak reservoir.
       '''
       if not hasattr(self, '_tweak'):
          self._tweak = LilyPondTweakReservoir( )

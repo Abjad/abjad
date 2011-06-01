@@ -9,6 +9,10 @@ class PitchArrayRow(_StrictComparator):
 
    One row in pitch array. ::
 
+      abjad> from abjad.tools import pitcharraytools
+
+   ::
+
       abjad> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
       abjad> array[0].cells[0].pitches.append(0)
       abjad> array[0].cells[1].pitches.append(2)
@@ -25,7 +29,7 @@ class PitchArrayRow(_StrictComparator):
    ::
 
       abjad> array[0].cell_widths
-      [1, 2, 1]
+      (1, 2, 1)
 
    ::
 
@@ -35,7 +39,9 @@ class PitchArrayRow(_StrictComparator):
    ::
 
       abjad> array[0].pitches
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
+
+   Return pitch array row.
    '''
 
    def __init__(self, cells):

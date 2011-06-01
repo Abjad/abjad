@@ -18,7 +18,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitches, pitc
       
       abjad> chord = Chord([0, 2, 4], (1, 4))
       abjad> pitch_range = pitchtools.PitchRange(0, 48)
-      abjad> pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range(chord, pitch_range)
+      abjad> pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range(chord, pitch_range) # doctest: +SKIP
       [Chord(c' d' e', 4), Chord(c'' d'' e'', 4), Chord(c''' d''' e''', 4), Chord(c'''' d'''' e'''', 4)]
 
    Return list.

@@ -106,7 +106,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
       '''Read-only named chromatic pitch-classes::
 
          abjad> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
-         abjad> named_chromatic_pitch_class_set.named_chromatic_pitch_classes
+         abjad> named_chromatic_pitch_class_set.named_chromatic_pitch_classes # doctest: +SKIP
          (NamedChromaticPitchClass('c'), NamedChromaticPitchClass('cs'), NamedChromaticPitchClass('g'), NamedChromaticPitchClass('gs'), NamedChromaticPitchClass('as'))
 
       Return tuple.

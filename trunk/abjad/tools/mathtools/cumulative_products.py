@@ -9,15 +9,9 @@ def cumulative_products(sequence):
       abjad> mathtools.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
       [1, -2, -6, 24, 120, -720, -5040, 40320]
 
-   Raise type error when `sequence` is neither list nor tuple::
+   Raise type error when `sequence` is neither list nor tuple.
 
-      abjad> mathtools.cumulative_products('foo')
-      TypeError
-
-   Raise value error on empty `sequence`::
-
-      abjad> mathtools.cumulative_products([ ])
-      ValueError
+   Raise value error on empty `sequence`.
 
    Return list.
 

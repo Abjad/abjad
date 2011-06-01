@@ -18,7 +18,7 @@ def apply_beam_spanner_to_measure(measure):
    ::
       
       abjad> measuretools.apply_beam_spanner_to_measure(measure)
-      spannertools.BeamSpanner(|2/8(2)|)
+      BeamSpanner(|2/8(2)|)
       
    ::
       

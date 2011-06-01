@@ -18,14 +18,16 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = Fraction(
 
          abjad> t = Measure((3, 8), macros.scale(3))
          abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(2, 3))
-         abjad> print t.format
-
+         Measure(3/12, [c'8, d'8, e'8])
+         abjad> f(t)
+         {
               \time 3/12
               \scaleDurations #'(2 . 3) {
                       c'8
                       d'8
                       e'8
               }
+         }
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.scale_and_remeter( )`` to

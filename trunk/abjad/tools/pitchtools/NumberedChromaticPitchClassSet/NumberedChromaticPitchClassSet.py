@@ -81,7 +81,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
       '''Read-only inversion-equivalent chromatic interval-class set::
 
          abjad> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
-         abjad> numbered_chromatic_pitch_class_set.interval_class_set
+         abjad> numbered_chromatic_pitch_class_set.inversion_equivalent_chromatic_interval_class_set
          InversionEquivalentChromaticIntervalClassSet(0.5, 1, 3, 3.5, 4, 4.5)
 
       Return inversion-equivalent chromatic interval-class set.
@@ -198,7 +198,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
 
          abjad> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
          abjad> numbered_chromatic_pitch_class_set.multiply(5)
-         NumberedChromaticPitchClassSet([0, 3, 3.5, 11])
+         NumberedChromaticPitchClassSet([2, 4.5, 6, 11])
 
       Return numbered chromatic pitch-class set.
       '''

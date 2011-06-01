@@ -6,7 +6,7 @@ def report_meter_distribution_to_screen(expr):
 
    ::
 
-      abjad> measuretools.report_meter_distribution_to_screen(t)
+      abjad> measuretools.report_meter_distribution_to_screen(t) # doctest: +SKIP
         2/16    62
         3/16    14
         4/16    66

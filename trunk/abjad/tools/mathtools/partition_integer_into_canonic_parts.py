@@ -59,10 +59,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
       *  ``t_i`` can be written without recourse to ties, and
       *  ``t_(i + 1) < t_i`` for every ``t_i`` in ``t``.
 
-   Raise type error on noninteger `n`::
-
-      abjad> mathtools.partition_integer_into_canonic_parts(7.5)
-      TypeError
+   Raise type error on noninteger `n`.
 
    Return tuple of one or more integers.
    '''

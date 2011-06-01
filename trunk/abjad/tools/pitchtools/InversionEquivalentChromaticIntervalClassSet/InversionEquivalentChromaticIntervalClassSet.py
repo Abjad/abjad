@@ -32,7 +32,7 @@ class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
 
    @property
    def _format_string(self):
-      return ', '.join([str(x) for x in sorted(self.numbers)])
+      return ', '.join([str(x) for x in sorted(self.inversion_equivalent_chromatic_interval_class_numbers)])
 
    ## PUBLIC ATTRIBUTES ##
       

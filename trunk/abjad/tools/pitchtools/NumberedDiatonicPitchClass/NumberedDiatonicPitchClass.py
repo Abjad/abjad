@@ -53,4 +53,4 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
       Return named diatonic pitch-class.
       '''
       from abjad.tools import pitchtools
-      return pitchtools.NamedDiatonicPitchClass(self.diatonic_pitch_class_number)
+      return pitchtools.NamedDiatonicPitchClass(int(self))

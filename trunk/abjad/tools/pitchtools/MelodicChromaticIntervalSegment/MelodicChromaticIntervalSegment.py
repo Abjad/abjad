@@ -50,22 +50,26 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
    @property
    def slope(self):
       '''The slope of a melodic interval segment is the sum of its intervals
-      divided by its length ::
+      divided by its length::
 
-         abjad> MelodicChromaticIntervalSegment([1, 2]).slope
+         abjad> pitchtools.MelodicChromaticIntervalSegment([1, 2]).slope
          Fraction(3, 2)
+
+      Return fraction.
       '''
       return Fraction.from_float(sum([x.number for x in self])) / len(self)
 
    @property
    def spread(self):
       '''The maximum harmonic interval spanned by any combination of the intervals within
-      a harmonic chromatic interval segment ::
+      a harmonic chromatic interval segment::
 
-         abjad> MelodicChromaticIntervalSegment([1, 2, -3, 1, -2, 1]).spread
+         abjad> pitchtools.MelodicChromaticIntervalSegment([1, 2, -3, 1, -2, 1]).spread
          HarmonicChromaticInterval(4)
-         abjad> MelodicChromaticIntervalSegment([1, 1, 1, 2, -3, -2]).spread
+         abjad> pitchtools.MelodicChromaticIntervalSegment([1, 1, 1, 2, -3, -2]).spread
          HarmonicChromaticInterval(5)
+
+      Return harmonic chromatic interval.
       '''
       from abjad.tools import pitchtools
       current = maximum = minimum = 0

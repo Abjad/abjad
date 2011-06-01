@@ -12,7 +12,9 @@ def list_named_chromatic_pitches_in_expr(expr):
       abjad> t = Staff("c'4 d'4 e'4 f'4")
       abjad> beam = spannertools.BeamSpanner(t[:])
       abjad> pitchtools.list_named_chromatic_pitches_in_expr(beam)
-      ((NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 4))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"), NamedChromaticPitch("e'"), NamedChromaticPitch("f'"))
+
+   Return tuple.
    '''
    from abjad.components import Rest
    from abjad.tools import leaftools

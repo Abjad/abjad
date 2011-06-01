@@ -34,20 +34,11 @@ def partition_integer_into_halves(n, bigger = 'left', even = 'allowed'):
       abjad> mathtools.partition_integer_into_halves(0)
       (0, 0)
 
-   When `n` is ``0`` and ``even = 'disallowed'`` raise partition error::
+   When `n` is ``0`` and ``even = 'disallowed'`` raise partition error.
 
-      abjad> mathtools.partition_integer_into_halves(0, even = 'disallowed')
-      PartitionError
+   Raise type error on noninteger `n`.
 
-   Raise type error on noninteger `n`::
-
-      abjad> mathtools.partition_integer_into_halves('foo')
-      TypeError
-
-   Raise value error on negative `n`::
-
-      abjad> mathtools.partition_integer_into_halves(-1)
-      ValueError
+   Raise value error on negative `n`.
 
    Return pair of positive integers.
    ''' 

@@ -151,13 +151,13 @@ class Markup(ContextMark):
    
    @property
    def format(self):
-      r'''Read-only LilyPond format of markup:
-
-      ::
+      r'''Read-only LilyPond format of markup::
 
          abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
          abjad> markup.format
          '\\markup { \\bold { "This is markup text." } }'
+
+      Return string.
       '''
       result = ''
       if self._style_string == 'backslash':

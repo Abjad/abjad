@@ -14,15 +14,9 @@ def remove_powers_of_two(n):
          80 5
          90 45
 
-   Raise type error on noninteger `n`::
+   Raise type error on noninteger `n`.
 
-      abjad> mathtools.remove_powers_of_two(7.5)
-      TypeError
-
-   Raise value error on nonpositive `n`::
-
-      abjad> mathtools.remove_powers_of_two(-1)
-      ValueError
+   Raise value error on nonpositive `n`.
 
    Return positive integer.
    '''

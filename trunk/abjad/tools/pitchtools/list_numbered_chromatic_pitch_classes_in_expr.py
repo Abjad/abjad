@@ -9,7 +9,7 @@ def list_numbered_chromatic_pitch_classes_in_expr(expr):
 
       abjad> chord = Chord([13, 14, 15], (1, 4))
       abjad> pitchtools.list_numbered_chromatic_pitch_classes_in_expr(chord)
-      (NumerciPitchClass(1), NumberedChromaticPitchClass(2), NumberedChromaticPitchClass(3))
+      (NumberedChromaticPitchClass(1), NumberedChromaticPitchClass(2), NumberedChromaticPitchClass(3))
 
    Works with notes, chords, defective chords.
 

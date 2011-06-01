@@ -8,6 +8,7 @@ def remove_markup_from_leaves_in_expr(expr):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(staff)
+      abjad> f(staff)
       \new Staff {
               c'8 _ \markup { \small 0 }
               d'8 _ \markup { \small 2 }

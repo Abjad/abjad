@@ -10,7 +10,7 @@ class Accidental(_StrictComparator, _Immutable):
    ::
 
       abjad> pitchtools.Accidental('s')
-      Accidental(sharp)
+      Accidental('s')
 
    Accidentals are immutable.
    '''

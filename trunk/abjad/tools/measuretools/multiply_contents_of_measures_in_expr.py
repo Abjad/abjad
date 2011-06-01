@@ -11,6 +11,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
 
       abjad> measure = Measure((3, 8), macros.scale(3))
       abjad> spannertools.BeamSpanner(measure.leaves)
+      BeamSpanner(c'8, d'8, e'8)
       abjad> f(measure)
       {
          \time 3/8

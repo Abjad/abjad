@@ -15,6 +15,7 @@ def fuse_measures(measures):
       abjad> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Fraction(1, 16))
       abjad> macros.diatonicize(staff)
       abjad> spannertools.BeamSpanner(staff.leaves)
+      BeamSpanner(c'16, d'16, e'16, f'16)
       abjad> f(staff)
       \new Staff {
          {

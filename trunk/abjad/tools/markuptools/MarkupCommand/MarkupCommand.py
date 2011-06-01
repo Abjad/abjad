@@ -26,6 +26,7 @@ class MarkupCommand(_Immutable):
    ::
 
       abjad> markup(note)
+      Markup('\\combine \\rotate #60 \\line { \\rounded-box hello? wow! } \\draw-circle #2.5 #0.1 ##f')
 
    ::
 
@@ -141,7 +142,7 @@ class MarkupCommand(_Immutable):
 
          abjad> markup_command = markuptools.MarkupCommand('draw-circle', ['#2.5', '#0.1', '##f'], None)
          abjad> markup_command.format
-         ['\\draw-circle #2.5 #0.1 ##f']
+         '\\draw-circle #2.5 #0.1 ##f'
 
       Return list of strings.
       '''

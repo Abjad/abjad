@@ -7,22 +7,22 @@ from abjad.tools.mathtools.weight import weight
 def partition_integer_by_ratio(n, ratio):
    '''Partition positive integer-equivalent `n` by `ratio`::
 
-      abjad> partition_integer_by_ratio(10, [1, 2])
+      abjad> mathtools.partition_integer_by_ratio(10, [1, 2])
       [3, 7]
 
    Partition positive integer-equivalent `n` by `ratio` with negative parts::
 
-      abjad> ratio(10, [1, -2])
+      abjad> mathtools.partition_integer_by_ratio(10, [1, -2])
       [3, -7]
 
    Partition negative integer-equivalent `n` by `ratio`::
 
-      abjad> ratio(-10, [1, 2])
+      abjad> mathtools.partition_integer_by_ratio(-10, [1, 2])
       [-3, -7]
 
    Partition negative integer-equivalent `n` by `ratio` with negative parts::
 
-      abjad> ratio(-10, [1, -2])
+      abjad> mathtools.partition_integer_by_ratio(-10, [1, -2])
       [-3, 7]
 
    Return result with weight equal to absolute value of `n`.

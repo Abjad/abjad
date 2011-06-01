@@ -9,7 +9,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
    '''Make accelerating notes with LilyPond multipliers::
 
       abjad> notetools.make_accelerating_notes_with_lilypond_multipliers([1,2], (1, 2), (1, 4), (1, 8))
-      [Note(cs', 8 * 113/64), Note(d', 8 * 169/128), Note(cs', 8 * 117/128)]
+      [Note("cs'8 * 113/64"), Note("d'8 * 169/128"), Note("cs'8 * 117/128")]
 
    ::
 

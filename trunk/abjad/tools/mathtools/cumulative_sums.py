@@ -4,15 +4,9 @@ def cumulative_sums(sequence):
       abjad> mathtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8])
       [1, 3, 6, 10, 15, 21, 28, 36]
 
-   Raise type error when `sequence` is neither list nor tuple::
+   Raise type error when `sequence` is neither list nor tuple.
 
-      abjad> mathtools.cumulative_sums('foo')
-      TypeError
-
-   Raise value error on empty `sequence`::
-
-      abjad> mathtools.cumulative_sums([ ])
-      ValueError
+   Raise value error on empty `sequence`.
 
    Return list.
 

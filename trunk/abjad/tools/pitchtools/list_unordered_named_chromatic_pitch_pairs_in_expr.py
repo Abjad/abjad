@@ -10,12 +10,12 @@ def list_unordered_named_chromatic_pitch_pairs_in_expr(expr):
       abjad> for pair in pitchtools.list_unordered_named_chromatic_pitch_pairs_in_expr(Chord([0, 1, 2, 3], (1, 4))):
       ...     pair
       ... 
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(cs, 4))
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4))
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(ef, 4))
-      (NamedChromaticPitch(d, 4), NamedChromaticPitch(cs, 4))
-      (NamedChromaticPitch(cs, 4), NamedChromaticPitch(ef, 4))
-      (NamedChromaticPitch(d, 4), NamedChromaticPitch(ef, 4))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("cs'"))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("ef'"))
+      (NamedChromaticPitch("cs'"), NamedChromaticPitch("d'"))
+      (NamedChromaticPitch("cs'"), NamedChromaticPitch("ef'"))
+      (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'"))
 
    Return generator.
    '''

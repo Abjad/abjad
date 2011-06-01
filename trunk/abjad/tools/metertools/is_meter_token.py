@@ -23,6 +23,8 @@ def is_meter_token(expr):
 
       abjad> metertools.is_meter_token('text')
       False
+
+   Return boolean.
    '''
 
    if isinstance(expr, Meter):

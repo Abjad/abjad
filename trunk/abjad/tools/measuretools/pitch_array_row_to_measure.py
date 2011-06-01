@@ -11,6 +11,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
    Change `pitch_array_row` to measure with meter 
    `pitch_array_row.width` over `cell_duration_denominator`. ::
 
+      abjad> from abjad.tools import pitcharraytools
       abjad> array = pitcharraytools.PitchArray([
       ...     [1, (2, 1), ([-2, -1.5], 2)],
       ...     [(7, 2), (6, 1), 1]])
@@ -28,6 +29,8 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
               d'8
               <bf bqf>4
       }
+
+   Return measure.
    '''
 
    if not isinstance(pitch_array_row, PitchArrayRow):

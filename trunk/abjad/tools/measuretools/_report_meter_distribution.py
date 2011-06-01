@@ -6,9 +6,10 @@ import itertools
 def _report_meter_distribution(expr, delivery = 'screen'):
    r'''Inventory meters in `expr` with frequency count of each.
 
-   When ``delivery = 'screen'`` print results to stdout. ::
+   When ``delivery = 'screen'`` print results to stdout::
    
-      abjad> measuretools.report_meter_distribution(t)
+      abjad> from abjad.tools.measuretools._report_meter_distribution import _report_meter_distribution
+      abjad> _report_meter_distribution(t) # doctest: +SKIP
         2/16    62
         3/16    14
         4/16    66
@@ -21,10 +22,12 @@ def _report_meter_distribution(expr, delivery = 'screen'):
    
    When ``delivery = 'string'`` return results as a single string. ::
 
-      abjad> measuretools.report_meter_distribution(t, delivery = 'string')
+      abjad> measuretools.report_meter_distribution(t, delivery = 'string') # doctest: +SKIP
       '\t3/80\t2\n\t2/16\t73\n\t7/40\t1\n\t3/16\t20\n\t16/80\t1\n\t17/80\t1\n
       \t19/80\t1\n\t4/16\t73\n\t5/16\t62\n\t13/40\t1\n\t27/80\t1\n\t6/16\t12\
       n\t7/16\t16\n\t8/16\t13\n\t9/16\t15\n\t10/16\t4\n'
+
+   Return string or none.
    '''
 
    meters = [ ]

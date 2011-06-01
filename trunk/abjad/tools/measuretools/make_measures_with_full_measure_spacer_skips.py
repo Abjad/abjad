@@ -7,8 +7,7 @@ from abjad.tools.skiptools.Skip import Skip
 def make_measures_with_full_measure_spacer_skips(meters):
    r'''Make rigid measures with full-measure spacer skips from `meters`::
 
-      abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)]))
-      [Measure(1/8, [s1 * 1/8]), Measure(5/16, [s1 * 5/16]), Measure(5/16, [s1 * 5/16])]
+      abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
 
    ::
 

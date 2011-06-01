@@ -15,7 +15,7 @@ def partition_integer_into_units(n):
    Partition ``0`` into units::
 
       abjad> mathtools.partition_integer_into_units(0)
-      [ ]
+      []
 
    Return list of zero or more parts with absolute value equal to ``1``.
    '''

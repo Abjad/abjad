@@ -7,6 +7,10 @@ class PitchArrayCell(_StrictComparator):
 
    One cell in a pitch array. ::
 
+      abjad> from abjad.tools import pitcharraytools
+
+   ::
+
       abjad> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
       abjad> print array
       [ ] [     ] [ ]
@@ -58,7 +62,7 @@ class PitchArrayCell(_StrictComparator):
    ::
 
       abjad> cell.pitches
-      [ ]
+      []
 
    ::
 
@@ -79,6 +83,8 @@ class PitchArrayCell(_StrictComparator):
 
       abjad> cell.width
       2
+
+   Return pitch array cell.
    '''
 
    def __init__(self, cell_token = None):

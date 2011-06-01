@@ -8,9 +8,9 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
    Transpose named chromatic pitch by `melodic_chromatic_interval` and respell `staff_spaces`
    above or below::
 
-      abjad> pitch = NamedChromaticPitch(0)
+      abjad> pitch = pitchtools.NamedChromaticPitch(0)
       abjad> pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(pitch, 1, 0.5)
-      NamedChromaticPitch('dtqf', 4)
+      NamedChromaticPitch("dtqf'")
 
    Return new named chromatic pitch.
 

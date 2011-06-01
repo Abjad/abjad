@@ -79,7 +79,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
 
          abjad> hdic = pitchtools.HarmonicDiatonicIntervalClass('major', -9)
          abjad> hdic.invert( ) 
-         HarmonicDiatonicIntervalClass(minor seventh)
+         HarmonicDiatonicIntervalClass('m7')
 
       Return harmonic diatonic interval-class.
       '''

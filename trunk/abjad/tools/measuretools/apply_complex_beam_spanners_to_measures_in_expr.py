@@ -27,7 +27,7 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
    ::
       
       abjad> measuretools.apply_complex_beam_spanners_to_measures_in_expr(staff)
-      [DuratedComplexspannertools.BeamSpanner(|2/8(2)|), DuratedComplexspannertools.BeamSpanner(|2/8(2)|)]
+      [DuratedComplexBeamSpanner(|2/8(2)|), DuratedComplexBeamSpanner(|2/8(2)|)]
       
    ::
       

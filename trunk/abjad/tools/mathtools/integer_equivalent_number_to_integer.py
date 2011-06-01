@@ -15,10 +15,7 @@ def integer_equivalent_number_to_integer(number):
       abjad> mathtools.integer_equivalent_number_to_integer(17.5)
       17.5
 
-   Raise type error on nonnumber input::
-
-      abjad> mathtools.integer_equivalent_number_to_integer('foo')
-      TypeError
+   Raise type error on nonnumber input.
 
    Return number.
    '''

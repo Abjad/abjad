@@ -36,7 +36,7 @@ class HarmonicDiatonicIntervalSet(_IntervalSet):
 
    @property
    def _format_string(self):
-      return ' '.join([str(x) for x in sorted(self.intervals)])
+      return ' '.join([str(x) for x in sorted(self.harmonic_diatonic_intervals)])
 
    ## PUBLIC ATTRIBUTES ##
 

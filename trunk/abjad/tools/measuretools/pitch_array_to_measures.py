@@ -8,6 +8,7 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator = 8):
    `row.width` over `cell_duration_denominator` for each
    row in `pitch_array`. ::
 
+      abjad> from abjad.tools import pitcharraytools
       abjad> array = pitcharraytools.PitchArray([
       ...     [1, (2, 1), ([-2, -1.5], 2)],
       ...     [(7, 2), (6, 1), 1]])
@@ -34,6 +35,8 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator = 8):
               fs'8
               r8
       }
+
+   Return list of measures.
    '''
 
    measures = [ ]

@@ -8,10 +8,7 @@ def cumulative_signed_weights(sequence):
       abjad> mathtools.cumulative_signed_weights(l)
       [1, -3, -6, 10, -15, -21, 28, -36, -45, 55]
 
-   Raise type error when `sequence` is not a list::
-
-      abjad> list(mathtools.cumulative_signed_weights('foo'))
-      TypeError
+   Raise type error when `sequence` is not a list.
 
    For cumulative (unsigned) weights use ``mathtools.cumulative_sums([abs(x) for x in l])``.
 

@@ -39,19 +39,13 @@ def least_power_of_two_greater_equal(n, i = 0):
          19 64
 
    When ``i = 2``, return the second integer power of ``2`` greater than
-   the least integer power of ``2`` greater than or equal to *n*, and,
+   the least integer power of ``2`` greater than or equal to `n`, and,
    in general, return the ``i`` th integer power of ``2`` greater than
-   the least integer power of ``2`` greater than or equal to *n*.
+   the least integer power of ``2`` greater than or equal to `n`.
 
-   Raise type error on nonnumeric `n`::
+   Raise type error on nonnumeric `n`.
 
-      abjad> mathtools.least_power_of_two_greater_equal('foo')
-      TypeError
-
-   Raise value error on nonpositive `n`::
-
-      abjad> mathtools.least_power_of_two_greater_equal(-1)
-      ValueError
+   Raise value error on nonpositive `n`.
 
    Return integer.
    '''

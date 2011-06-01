@@ -4,10 +4,10 @@ def cumulative_sums_zero(sequence):
       abjad> mathtools.cumulative_sums_zero([1, 2, 3, 4, 5, 6, 7, 8])
       [0, 1, 3, 6, 10, 15, 21, 28, 36]
 
-   Raise value error on empty `sequence`::
+   Return ``[0]`` on empty `sequence`::
 
       abjad> mathtools.cumulative_sums_zero([ ])
-      ValueError
+      [0]
 
    Return list.
 

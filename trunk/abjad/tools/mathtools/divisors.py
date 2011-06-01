@@ -5,7 +5,7 @@ def divisors(n):
    '''Positive divisors of integer `n` in increasing order::
 
       abjad> mathtools.divisors(84)
-      [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84
+      [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84]
 
    ::
 

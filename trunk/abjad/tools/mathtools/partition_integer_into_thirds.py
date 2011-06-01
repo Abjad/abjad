@@ -8,31 +8,25 @@ def partition_integer_into_thirds(n, smallest = 'middle', biggest = 'middle'):
 
    When ``n % 3 == 1``, set biggest part to `biggest`::
 
-      abjad> maththools.partition_integer_into_thirds(10, biggest = 'left')
+      abjad> mathtools.partition_integer_into_thirds(10, biggest = 'left')
       (4, 3, 3)
-      abjad> maththools.partition_integer_into_thirds(10, biggest = 'middle')
+      abjad> mathtools.partition_integer_into_thirds(10, biggest = 'middle')
       (3, 4, 3)
-      abjad> maththools.partition_integer_into_thirds(10, biggest = 'right')
+      abjad> mathtools.partition_integer_into_thirds(10, biggest = 'right')
       (3, 3, 4)
 
    When ``n % 3 == 2``, set smallest part to `smallest`::
 
-      abjad> maththools.partition_integer_into_thirds(11, smallest = 'left')
+      abjad> mathtools.partition_integer_into_thirds(11, smallest = 'left')
       (3, 4, 4)
-      abjad> maththools.partition_integer_into_thirds(11, smallest = 'middle')
+      abjad> mathtools.partition_integer_into_thirds(11, smallest = 'middle')
       (4, 3, 4)
-      abjad> maththools.partition_integer_into_thirds(11, smallest = 'right')
+      abjad> mathtools.partition_integer_into_thirds(11, smallest = 'right')
       (4, 4, 3)
 
-   Raise type error on noninteger `n`::
+   Raise type error on noninteger `n`.
 
-      abjad> mathtools.partition_integer_into_thirds(7.5)
-      TypeError
-
-   Raise value error on nonpositive `n`::
-
-      abjad> mathtools.partition_integer_into_thirds(-1)
-      ValueError
+   Raise value error on nonpositive `n`.
 
    Return triple of positive integers.
    '''

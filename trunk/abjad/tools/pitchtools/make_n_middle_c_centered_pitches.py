@@ -7,7 +7,7 @@ def make_n_middle_c_centered_pitches(n):
 
    Make `n` middle-c centered pitches, where 0 < `n`::
 
-      abjad> for p in make_n_middle_c_centered_pitches(5): p
+      abjad> for p in pitchtools.make_n_middle_c_centered_pitches(5): p
       NamedChromaticPitch('f')
       NamedChromaticPitch('a')
       NamedChromaticPitch("c'")
@@ -16,7 +16,7 @@ def make_n_middle_c_centered_pitches(n):
 
    ::
 
-      abjad> for p in make_n_middle_c_centered_pitches(4): p
+      abjad> for p in pitchtools.make_n_middle_c_centered_pitches(4): p
       NamedChromaticPitch('g')
       NamedChromaticPitch('b')
       NamedChromaticPitch("d'")
