@@ -4,15 +4,6 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 def set_default_accidental_spelling(spelling = 'mixed'):
    '''.. versionadded:: 1.1.1
 
-   Set default accidental spelling to mixed::
-
-      abjad> cfgtools.set_default_accidental_spelling( )
-
-   ::
-
-      abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
-      [Note("cs''4"), Note("ef''4")]
-
    Set default accidental spelling to sharps::
 
       abjad> cfgtools.set_default_accidental_spelling('sharps')
@@ -30,6 +21,19 @@ def set_default_accidental_spelling(spelling = 'mixed'):
 
       abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
       [Note("df''4"), Note("ef''4")]
+
+   Set default accidental spelling to mixed::
+
+      abjad> cfgtools.set_default_accidental_spelling( )
+
+   ::
+
+      abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
+      [Note("cs''4"), Note("ef''4")]
+
+   Mixed is system default.
+
+   Mixed test case must appear last here for doc tests to check correctly.
 
    Return none.
 

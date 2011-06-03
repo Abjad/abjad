@@ -6,7 +6,7 @@ def get_abjad_revision_string( ):
 
    Get Abjad revision string::
 
-      abjad> cfgtools.get_abjad_revision_string( )
+      abjad> cfgtools.get_abjad_revision_string( ) # doctest: +SKIP
       '4392'
 
    Return string.
