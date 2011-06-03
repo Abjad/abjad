@@ -4,9 +4,9 @@ def truncate_sequence_to_sum(sequence, sum):
    Truncate `sequence` to `sum`::
 
       abjad> for n in range(10):
-      ...     print n, seqtools.truncate_sequence_to_sum([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10, n)
+      ...     print n, seqtools.truncate_sequence_to_sum([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10], n)
       ... 
-      0 [ ]
+      0 []
       1 [-1, 2]
       2 [-1, 2, -3, 4]
       3 [-1, 2, -3, 4, -5, 6]
@@ -20,17 +20,11 @@ def truncate_sequence_to_sum(sequence, sum):
    Return empty list when `sum` is ``0``::
 
       abjad> seqtools.truncate_sequence_to_sum([1, 2, 3, 4, 5], 0)
-      [ ]
+      []
 
-   Raise type error when `sequence` is not a list::
+   Raise type error when `sequence` is not a list.
 
-      abjad> seqtools.truncate_sequence_to_sum('foo', 4)
-      TypeError
-
-   Raise value error on negative `sum`::
-
-      abjad> seqtools.truncate_sequence_to_sum([2, 2, 2], -4)
-      ValueError
+   Raise value error on negative `sum`.
 
    Return new list.
 

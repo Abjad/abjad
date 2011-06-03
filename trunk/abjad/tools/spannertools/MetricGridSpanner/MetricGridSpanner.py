@@ -107,7 +107,8 @@ class MetricGridSpanner(Spanner):
             leaftools.fuse_leaves_big_endian(r)
          
    def _matching_meter(self, leaf):
-      '''Return the MetricStrip for which meter._offset == leaf._offset'''
+      '''Return the MetricStrip for which meter._offset == leaf._offset.
+      '''
       #for m in self.meters:
       for m, moffset, temp_hide in self.meters:
          #if leaf._offset.start == m._offset: 
@@ -115,7 +116,8 @@ class MetricGridSpanner(Spanner):
             return m, temp_hide
 
    def _slicing_meters(self, leaf):
-      '''Return the MetricStrip(s) that slices leaf, if any.'''
+      '''Return the MetricStrip(s) that slices leaf, if any.
+      '''
       #for m in self.meters:
       for m, moffset, temp_hide in self.meters:
          #if leaf._offset.start < m._offset:
@@ -135,9 +137,7 @@ class MetricGridSpanner(Spanner):
 
             abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
             abjad> metric_grid_spanner = spannertools.MetricGridSpanner(staff.leaves, meters = [(1, 8), (1, 4)]) 
-            abjad> metric_grid_spanner.meters
-            <generator object fget at 0x7bf350>
-            abjad> list(_)
+            abjad> list(metric_grid_spanner.meters)
             [(Meter(1, 8), 0, False), (Meter(1, 4), Fraction(1, 8), False), (Meter(1, 8), Fraction(3, 8), False), 
              (Meter(1, 4), Fraction(1, 2), False), (Meter(1, 8), Fraction(3, 4), False), (Meter(1, 4), Fraction(7, 8), False)]
 
@@ -146,10 +146,10 @@ class MetricGridSpanner(Spanner):
             abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
             abjad> metric_grid_spanner = spannertools.MetricGridSpanner(staff.leaves, meters = [(1, 8), (1, 4)]) 
             abjad> metric_grid_spanner.meters = [(1, 4)]
-            abjad> metric_grid_spanner.meters <generator object fget at 0x7b2b48>
-            abjad> list(_)
-            [(Meter(1, 4), 0, False), (Meter(1, 4), Fraction(1, 4), True), (Meter(1, 4), Fraction(1, 2), True), 
-             (Meter(1, 4), Fraction(3, 4), True)]
+            abjad> list(metric_grid_spanner.meters)
+            [(Meter(1, 4), 0, False), (Meter(1, 4), Fraction(1, 4), True), (Meter(1, 4), Fraction(1, 2), True), (Meter(1, 4), Fraction(3, 4), True)]
+
+         Set iterable.
          '''
          from abjad.tools.metertools import Meter
          i = 0

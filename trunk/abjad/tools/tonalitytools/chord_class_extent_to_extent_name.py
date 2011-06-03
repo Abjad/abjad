@@ -3,6 +3,10 @@ def chord_class_extent_to_extent_name(extent):
 
    Change integer chord class `extent` to extent name string. ::
 
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+
       abjad> tonalitytools.chord_class_extent_to_extent_name(7)
       'seventh'
 

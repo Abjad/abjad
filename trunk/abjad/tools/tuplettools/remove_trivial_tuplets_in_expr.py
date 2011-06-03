@@ -14,9 +14,9 @@ def remove_trivial_tuplets_in_expr(expr):
    ::
 
       abjad> s[0]
-      tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+      FixedDurationTuplet(1/4, [c'8, d'8, e'8])
       abjad> s[1]
-      tuplettools.FixedDurationTuplet(1/4, [c'8, d'8])
+      FixedDurationTuplet(1/4, [c'8, d'8])
 
    ::
 
@@ -24,11 +24,11 @@ def remove_trivial_tuplets_in_expr(expr):
       abjad> len(s)
       3
       abjad> s[0]
-      tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+      FixedDurationTuplet(1/4, [c'8, d'8, e'8])
       abjad> s[1]
-      Note(c', 8)
+      Note("c'8")
       abjad> s[2]
-      Note(d', 8)
+      Note("d'8")
 
    ::
 

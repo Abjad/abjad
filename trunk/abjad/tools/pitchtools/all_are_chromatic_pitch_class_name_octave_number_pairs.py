@@ -6,7 +6,7 @@ def all_are_chromatic_pitch_class_name_octave_number_pairs(expr):
 
    True when all elements of `expr` are pitch tokens. Otherwise false::
 
-      abjad> pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs([('c', 4), ('d', 4), NamedChromaticPitch('e', 4)])
+      abjad> pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs([('c', 4), ('d', 4), pitchtools.NamedChromaticPitch('e', 4)])
       True
 
    Return boolean.

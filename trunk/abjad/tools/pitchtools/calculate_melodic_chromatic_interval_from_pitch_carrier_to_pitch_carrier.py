@@ -10,8 +10,7 @@ def calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
    Calculate melodic chromatic interval from `pitch_carrier_1` to
    `pitch_carrier_2`::
 
-      abjad> pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-         pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+      abjad> pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
       MelodicChromaticInterval(+14)
 
    Return melodic chromatic interval.

@@ -10,12 +10,12 @@ def yield_all_unordered_pairs_of_sequence(sequence):
    Yield all unordered pairs of length-``1`` `sequence`::
 
       abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1]))
-      [ ]
+      []
 
    Yield all unordered pairs of empty `sequence`::
 
       abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([ ]))
-      [ ]
+      []
 
    Yield all unordered pairs of `sequence` with duplicate elements::
 

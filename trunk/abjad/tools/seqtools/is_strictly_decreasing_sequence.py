@@ -23,13 +23,13 @@ def is_strictly_decreasing_sequence(expr):
 
       abjad> expr = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
       abjad> seqtools.is_strictly_decreasing_sequence(expr)
-      True
+      False
 
    ::
 
       abjad> expr = [3, 3, 3, 3, 3, 3, 3, 2, 1, 0]
       abjad> seqtools.is_strictly_decreasing_sequence(expr)
-      True
+      False
 
    True when `expr` is an empty sequence::
 

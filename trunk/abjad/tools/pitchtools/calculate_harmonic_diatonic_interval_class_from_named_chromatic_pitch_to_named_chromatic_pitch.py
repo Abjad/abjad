@@ -8,9 +8,8 @@ def calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_nam
    Calculate harmonic diatonic interval-class from `pitch_carrier_1` to 
    `pitch_carrier_2`::
 
-      abjad> pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
-         pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
-      HarmonicDiatonicIntervalClass(major second)
+      abjad> pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+      HarmonicDiatonicIntervalClass('M2')
 
    Return harmonic diatonic interval-class.
    '''

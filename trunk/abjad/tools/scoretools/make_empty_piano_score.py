@@ -15,15 +15,16 @@ def make_empty_piano_score( ):
 
       abjad> f(score)
       \new Score <<
-         \new PianoStaff <<
-            \new Staff {
-               \clef "treble"
-            }
-            \new Staff {
-               \clef "bass"
-            }
-         >>
+        \new PianoStaff <<
+           \context Staff = "treble" {
+              \clef "treble"
+           }
+           \context Staff = "bass" {
+              \clef "bass"
+           }
+        >>
       >>
+
 
    Return score, treble staff, bass staff.
 

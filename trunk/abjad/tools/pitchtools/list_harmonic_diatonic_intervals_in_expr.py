@@ -8,15 +8,15 @@ def list_harmonic_diatonic_intervals_in_expr(expr):
    List harmonic diatonic intervals in `expr`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> pitchtools.list_harmonic_diatonic_intervals_in_expr(staff)
-      abjad> for interval in pitchtools.list_harmonic_diatonic_intervals_in_expr(staff):
+      abjad> for interval in sorted(pitchtools.list_harmonic_diatonic_intervals_in_expr(staff)):
       ...     interval
       ... 
-      HarmonicDiatonicInterval(minor third)
-      HarmonicDiatonicInterval(minor second)
-      HarmonicDiatonicInterval(major second)
-      HarmonicDiatonicInterval(major third)
-      HarmonicDiatonicInterval(perfect fourth)
+      HarmonicDiatonicInterval('m2')
+      HarmonicDiatonicInterval('M2')
+      HarmonicDiatonicInterval('M2')
+      HarmonicDiatonicInterval('m3')
+      HarmonicDiatonicInterval('M3')
+      HarmonicDiatonicInterval('P4')
 
    Return unordered set.
    '''

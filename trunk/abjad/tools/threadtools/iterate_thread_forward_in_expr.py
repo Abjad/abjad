@@ -43,10 +43,10 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
       abjad> for x in threadtools.iterate_thread_forward_in_expr(staff, Note, signature):
       ...     x
       ... 
-      Note(c', 8)
-      Note(d', 8)
-      Note(g', 8)
-      Note(a', 8)
+      Note("c'8")
+      Note("d'8")
+      Note("g'8")
+      Note("a'8")
 
    The important thing to note is that the function yields only
    those leaves that sit in the same thread.

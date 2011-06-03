@@ -35,10 +35,10 @@ class SchemeVariable(_StrictComparator, _Immutable):
    def format(self):
       '''LilyPond input format of Scheme variable:
 
-      ::
-
          abjad> scheme_variable = schemetools.SchemeVariable('UP')
          abjad> scheme_variable.format
          '#UP'
+
+      Return string.
       '''
       return '#%s' % self._string

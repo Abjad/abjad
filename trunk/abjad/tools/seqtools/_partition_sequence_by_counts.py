@@ -10,43 +10,44 @@ import copy
 def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = False, copy_elements = False):
    '''Partition sequence by count:
 
-      abjad> seqtools._partition_sequence_by_counts(range(10), [3])
+      abjad> from abjad.tools.seqtools._partition_sequence_by_counts import _partition_sequence_by_counts
+
+      abjad> _partition_sequence_by_counts(range(10), [3])
       [[0, 1, 2]]
 
    Partition sequence cyclically by count:
 
-      abjad> seqtools._partition_sequence_by_counts(range(10), [3], cyclic = True) 
+      abjad> _partition_sequence_by_counts(range(10), [3], cyclic = True) 
       [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
    Partition sequence by count with overhang:
 
-      abjad> seqtools._partition_sequence_by_counts(range(10), [3], overhang = True)
+      abjad> _partition_sequence_by_counts(range(10), [3], overhang = True)
       [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
 
    Partition sequence cyclically by count with overhang:
 
-      abjad> seqtools._partition_sequence_by_counts(range(10), [3], cyclic = True, overhang = True)
+      abjad> _partition_sequence_by_counts(range(10), [3], cyclic = True, overhang = True)
       [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
 
    Partition sequence once by counts:
 
-      abjad> seqtools._partition_sequence_by_counts(range(16), [4, 3])
+      abjad> _partition_sequence_by_counts(range(16), [4, 3])
       [[0, 1, 2, 3], [4, 5, 6]]
 
    Partition sequence cyclically by counts:
 
-      abjad> seqtools._partition_sequence_by_counts(range(16), [4, 3], cyclic = True)
+      abjad> _partition_sequence_by_counts(range(16), [4, 3], cyclic = True)
       [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13]]
 
    Partition sequence by counts with overhang:
 
-      abjad> seqtools._partition_sequence_by_counts(range(16), [4, 3], overhang = True)
+      abjad> _partition_sequence_by_counts(range(16), [4, 3], overhang = True)
       [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10, 11, 12, 13, 14, 15]]
 
    Partition sequence cyclically by counts with overhang:
 
-      abjad> seqtools._partition_sequence_by_counts(
-         range(16), [4, 3], cyclic = True, overhang = True)
+      abjad> _partition_sequence_by_counts(range(16), [4, 3], cyclic = True, overhang = True)
       [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]
 
    Return list of sequence types.

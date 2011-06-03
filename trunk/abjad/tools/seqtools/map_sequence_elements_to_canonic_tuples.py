@@ -14,15 +14,9 @@ def map_sequence_elements_to_canonic_tuples(sequence, direction = 'big-endian'):
       abjad> seqtools.map_sequence_elements_to_canonic_tuples(range(10), direction = 'little-endian')
       [(0,), (1,), (2,), (3,), (4,), (1, 4), (6,), (7,), (8,), (1, 8)]
 
-   Raise type error when `sequence` is not a list::
+   Raise type error when `sequence` is not a list.
 
-      abjad> seqtools.map_sequence_elements_to_canonic_tuples('foo')
-      TypeError
-
-   Raise value error on noninteger elements in `sequence`::
-
-      abjad> seqtools.map_sequence_elements_to_canonic_tuples([Fraction(1, 2), Fraction(1, 2)])
-      ValueError
+   Raise value error on noninteger elements in `sequence`.
 
    Return list of tuples.
 

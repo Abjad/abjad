@@ -9,11 +9,11 @@ def iterate_components_backward_in_spanner(spanner, klass = _Component):
 
       abjad> t = Staff(macros.scale(4))
       abjad> p = spannertools.BeamSpanner(t[2:])
-      abjad> notes = spannertools.iterate_components_backward_in_spanner(p, class = Note)
+      abjad> notes = spannertools.iterate_components_backward_in_spanner(p, klass = Note)
       abjad> for note in notes:
-         print note
-      Note(f', 8)
-      Note(e', 8)
+      ...   note
+      Note("f'8")
+      Note("e'8")
 
    .. versionchanged:: 1.1.2
       renamed ``spannertools.iterate_components_backward( )`` to

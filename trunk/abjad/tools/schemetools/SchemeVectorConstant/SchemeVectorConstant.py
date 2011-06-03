@@ -51,12 +51,12 @@ class SchemeVectorConstant(tuple, _Immutable):
 
    @property
    def format(self):
-      '''LilyPond input format of scheme vector constant:
-
-      ::
+      '''LilyPond input format of scheme vector constant::
 
          abjad> scheme_vector_constant = schemetools.SchemeVectorConstant(True, True, False)
          abjad> scheme_vector_constant.format
          "#'#(#t #t #f)"
+
+      Return string.
       '''
       return "#'#%s" % self.__str__( )

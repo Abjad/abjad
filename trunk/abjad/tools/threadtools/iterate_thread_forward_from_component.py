@@ -49,31 +49,31 @@ def iterate_thread_forward_from_component(component, klass = None):
       abjad> for x in threadtools.iterate_thread_forward_from_component(staff.leaves[0], Note):
       ...     x
       ... 
-      Note(c', 8)
-      Note(d', 8)
-      Note(g', 8)
-      Note(a', 8)
+      Note("c'8")
+      Note("d'8")
+      Note("g'8")
+      Note("a'8")
 
    Starting from the second leaf in score. ::
 
       abjad> for x in threadtools.iterate_thread_forward_from_component(staff.leaves[1], Note):
       ...     x
       ... 
-      Note(d', 8)
-      Note(g', 8)
-      Note(a', 8)
+      Note("d'8")
+      Note("g'8")
+      Note("a'8")
 
    Yield all components in thread. ::
 
       abjad> for x in threadtools.iterate_thread_forward_from_component(staff.leaves[0]):
       ...     x
       ... 
-      Note(c', 8)
-      Voice{2}
-      Note(d', 8)
-      Voice{2}
-      Note(g', 8)
-      Note(a', 8)
+      Note("c'8")
+      Voice-"voice 1"{2}
+      Note("d'8")
+      Voice-"voice 1"{2}
+      Note("g'8")
+      Note("a'8")
    
    Note that this function is a special type of depth-first search.
 

@@ -7,7 +7,7 @@ class TieSpanner(Spanner):
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> tietools.TieSpanner(staff[:])
-      tietools.TieSpanner(c'8, c'8, c'8, c'8)
+      TieSpanner(c'8, c'8, c'8, c'8)
       abjad> f(staff)
       \new Staff {
          c'8 ~

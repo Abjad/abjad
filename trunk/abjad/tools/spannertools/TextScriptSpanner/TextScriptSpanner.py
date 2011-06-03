@@ -12,8 +12,9 @@ class TextScriptSpanner(Spanner):
    ::
 
       abjad> spanner = spannertools.TextScriptSpanner(staff[:])
-      abjad> spanner.color = 'red'
+      abjad> spanner.override.text_script.color = 'red'
       abjad> markuptools.Markup(r'\italic { espressivo }', 'up')(staff[1])
+      Markup('\\italic { espressivo }', 'up')
 
    ::
 

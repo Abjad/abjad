@@ -8,7 +8,7 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
 
    Iterate `sequence` cyclically according to `step`, `start` and `length`::
 
-      sequence = [1, 2, 3, 4, 5, 6, 7]
+      abjad> sequence = [1, 2, 3, 4, 5, 6, 7]
 
    ::
 

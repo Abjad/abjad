@@ -24,8 +24,8 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass = No
 
    ::
 
-      abjad> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff)
-      set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), CrescendoSpanner(c'8, d'8, e'8, f'8), SlurSpanner(e'8, f'8)])
+      abjad> len(spannertools.get_spanners_attached_to_any_proper_child_of_component(staff)) == 3
+      True
 
    Get all spanners of `klass` attached to any proper children of `component`::
 

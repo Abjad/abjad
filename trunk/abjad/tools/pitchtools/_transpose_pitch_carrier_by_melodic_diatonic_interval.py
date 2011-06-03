@@ -12,10 +12,12 @@ def _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic
 
    Transpose `pitch_carrier` by `melodic_diatonic_interval`::
 
+      abjad> from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_diatonic_interval import _transpose_pitch_carrier_by_melodic_diatonic_interval
+
       abjad> pitch_carrier = pitchtools.NamedChromaticPitch("c''")
       abjad> mdi = pitchtools.MelodicDiatonicInterval('minor', -3)
-      abjad> pitchtools.transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, mdi)
-      NamedChromaticPitch(a, 4)
+      abjad> _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, mdi)
+      NamedChromaticPitch("a'")
 
    Return named chromatic pitch.
    '''

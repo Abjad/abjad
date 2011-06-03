@@ -7,19 +7,27 @@ def split_intervals_at_rationals(intervals, rationals):
    '''Split `intervals` at each rational in 
    `rationals` ::
 
+      abjad> from abjad.tools import treetools
+      abjad> from abjad.tools.treetools import BoundedInterval
+      abjad> from abjad.tools.treetools import IntervalTree
+
+   ::
+
       abjad> a = BoundedInterval(-1, 3)
       abjad> b = BoundedInterval(6, 12)
       abjad> c = BoundedInterval(9, 16)
       abjad> tree = IntervalTree([a, b, c])
-      abjad> split_intervals_at_rationals(tree, [1, Fraction(19, 2)])
+      abjad> treetools.split_intervals_at_rationals(tree, [1, Fraction(19, 2)])
       IntervalTree([
-         BoundedInterval(-1, 1, data = {}),
-         BoundedInterval(1, 3, data = {}),
-         BoundedInterval(6, Fraction(19, 2), data = {}),
-         BoundedInterval(9, Fraction(19, 2), data = {}),
-         BoundedInterval(Fraction(19, 2), 12, data = {}),
-         BoundedInterval(Fraction(19, 2), 16, data = {})
-      ]) 
+        BoundedInterval(-1, 1, {}),
+        BoundedInterval(1, 3, {}),
+        BoundedInterval(6, Fraction(19, 2), {}),
+        BoundedInterval(9, Fraction(19, 2), {}),
+        BoundedInterval(Fraction(19, 2), 12, {}),
+        BoundedInterval(Fraction(19, 2), 16, {})
+      ])
+
+   Return interval tree.
    '''
 
    assert len(rationals)

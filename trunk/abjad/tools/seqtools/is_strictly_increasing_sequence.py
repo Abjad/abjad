@@ -23,13 +23,13 @@ def is_strictly_increasing_sequence(expr):
 
       abjad> expr = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
       abjad> seqtools.is_strictly_increasing_sequence(expr)
-      True
+      False
 
    ::
 
       abjad> expr = [0, 1, 2, 3, 3, 3, 3, 3, 3, 3]
       abjad> seqtools.is_strictly_increasing_sequence(expr)
-      True
+      False
 
    True when `expr` is an empty sequence::
 

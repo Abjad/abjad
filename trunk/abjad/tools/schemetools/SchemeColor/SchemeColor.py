@@ -28,12 +28,12 @@ class SchemeColor(_StrictComparator, _Immutable):
    
    @property
    def format(self):
-      '''LilyPond input format of Scheme color:
-
-      ::
+      '''LilyPond input format of Scheme color::
 
          abjad> scheme_color = schemetools.SchemeColor('ForestGreen')
          abjad> scheme_color.format
          "#(x11-color 'ForestGreen)"
+
+      Return string.
       '''
       return "#(x11-color '%s)" % self.color_name

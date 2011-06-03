@@ -9,7 +9,7 @@ def flatten_sequence(sequence, klasses = None, depth = -1):
    Flatten `sequence` to depth ``1``::
 
       abjad> seqtools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 1)
-      [1, [2, 3, [4]], 5, [6, 7, [8]]]
+      [1, 2, 3, [4], 5, 6, 7, [8]]
 
    Flatten `sequence` to depth ``2``::
 

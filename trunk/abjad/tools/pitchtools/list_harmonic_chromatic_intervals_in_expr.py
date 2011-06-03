@@ -9,16 +9,15 @@ def list_harmonic_chromatic_intervals_in_expr(expr):
    List harmonic chromatic intervals in `expr`::
 
       abjad> staff = Staff(macros.scale(4))
-      abjad> pitchtools.list_harmonic_chromatic_intervals_in_expr(staff)
-      abjad> for interval in pitchtools.list_harmonic_chromatic_intervals_in_expr(staff):
+      abjad> for interval in sorted(pitchtools.list_harmonic_chromatic_intervals_in_expr(staff)):
       ...     interval
       ... 
-      HarmonicChromaticInterval(4)
+      HarmonicChromaticInterval(1)
       HarmonicChromaticInterval(2)
-      HarmonicChromaticInterval(5)
       HarmonicChromaticInterval(2)
       HarmonicChromaticInterval(3)
-      HarmonicChromaticInterval(1)
+      HarmonicChromaticInterval(4)
+      HarmonicChromaticInterval(5)
 
    Return unordered set.
    '''

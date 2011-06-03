@@ -10,6 +10,10 @@ def analyze_chord(expr):
 
    Analyze `expr` and return chord class. ::
 
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+   
       abjad> chord = Chord([7, 10, 12, 16], (1, 4))
       abjad> tonalitytools.analyze_chord(chord)
       CDominantSeventhInSecondInversion

@@ -16,16 +16,18 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
       abjad> c = BoundedInterval(9, 15)
       abjad> tree = IntervalTree([a, b, c])
       abjad> d = BoundedInterval(-1, 16)
-      abjad> compute_depth_of_intervals_in_interval(tree)
+      abjad> compute_depth_of_intervals_in_interval(tree, d)
       IntervalTree([
-         BoundedInterval(-1, 0, data = {'depth': 0}),
-         BoundedInterval(0, 3, data = {'depth': 1}),
-         BoundedInterval(3, 6, data = {'depth': 0}),
-         BoundedInterval(6, 9, data = {'depth': 1}),
-         BoundedInterval(9, 12, data = {'depth': 2}),
-         BoundedInterval(12, 15, data = {'depth': 1}),
-         BoundedInterval(15, 16, data = {'depth': 0})
+         BoundedInterval(-1, 0, {'depth': 0}),
+         BoundedInterval(0, 3, {'depth': 1}),
+         BoundedInterval(3, 6, {'depth': 0}),
+         BoundedInterval(6, 9, {'depth': 1}),
+         BoundedInterval(9, 12, {'depth': 2}),
+         BoundedInterval(12, 15, {'depth': 1}),
+         BoundedInterval(15, 16, {'depth': 0})
       ])
+
+   Return interval tree.
    '''
 
    assert all_are_intervals_or_trees_or_empty(intervals)

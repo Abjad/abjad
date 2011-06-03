@@ -30,7 +30,7 @@ def iterate_voices_backward_in_expr(expr):
 
    ::
 
-      abjad> for voice in voicetools.iterate_voices_backward_in_expr:
+      abjad> for voice in voicetools.iterate_voices_backward_in_expr(staff):
       ...   voice
       Voice{2}
       Voice{4}

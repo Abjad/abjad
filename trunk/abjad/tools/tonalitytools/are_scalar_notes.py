@@ -9,6 +9,10 @@ def are_scalar_notes(*expr):
 
    True when notes in `expr` are scalar. ::
 
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+
       abjad> t = Staff(macros.scale(4))
       abjad> tonalitytools.are_scalar_notes(t[:])
       True

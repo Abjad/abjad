@@ -13,7 +13,7 @@ def repeat_sequence_n_times(sequence, n):
    Repeat `sequence` ``0`` times::
 
       abjad> seqtools.repeat_sequence_n_times((1, 2, 3, 4, 5), 0)
-      ( )
+      ()
 
    Return newly constructed `sequence` object of copied `sequence` elements.
    '''

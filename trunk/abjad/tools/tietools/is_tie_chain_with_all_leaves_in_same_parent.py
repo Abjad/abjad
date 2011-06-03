@@ -12,6 +12,7 @@ def is_tie_chain_with_all_leaves_in_same_parent(expr):
 
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> tietools.TieSpanner(t.leaves[1:3])
+      TieSpanner(c'8, c'8)
 
       \new Staff {
             \time 2/8
@@ -22,10 +23,14 @@ def is_tie_chain_with_all_leaves_in_same_parent(expr):
             c'8
       }
 
-      abjad> assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[0].tie.chain)
-      abjad> assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[1].tie.chain)
-      abjad> assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[2].tie.chain)
-      abjad> assert tietools.is_tie_chain_with_all_leaves_in_same_parent(t.leaves[3].tie.chain)
+      abjad> tie_chain = tietools.get_tie_chain(t.leaves[0])
+      abjad> assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tie_chain)
+      abjad> tie_chain = tietools.get_tie_chain(t.leaves[1])
+      abjad> assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(tie_chain)
+      abjad> tie_chain = tietools.get_tie_chain(t.leaves[2])
+      abjad> assert not tietools.is_tie_chain_with_all_leaves_in_same_parent(tie_chain)
+      abjad> tie_chain = tietools.get_tie_chain(t.leaves[3])
+      abjad> assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tie_chain)
 
    .. versionchanged:: 1.1.2
       renamed ``tietools.is_in_same_parent( )`` to

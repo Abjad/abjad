@@ -11,18 +11,20 @@ def apply_octavation_spanner_to_pitched_components(expr,
 
       abjad> t = Measure((4, 8), notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
       abjad> pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_numbered_diatonic_pitch = 14)
-      spannertools.OctavationSpanner(|4/8, c'''8, d'''8, ef'''8, f'''8|)
+      OctavationSpanner(|4/8(4)|)
 
    ::
 
       abjad> print t.format
-         \time 4/8
-         \ottava #1
-         c'''8
-         d'''8
-         ef'''8
-         f'''8
-         \ottava #0
+         {
+            \time 4/8
+            \ottava #1
+            c'''8
+            d'''8
+            ef'''8
+            f'''8
+            \ottava #0
+         }
 
    Apply octavation spanner according to the diatonic pitch number of 
    the maximum pitch in `expr`.

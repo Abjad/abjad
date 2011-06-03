@@ -38,13 +38,13 @@ class SchemeBoolean(_Immutable):
    
    @property
    def format(self):
-      '''LilyPond input format of Scheme boolean:
-
-      ::
+      '''LilyPond input format of Scheme boolean::
 
          abjad> scheme_boolean = schemetools.SchemeBoolean(True)
          abjad> scheme_boolean.format
          '##t'
+
+      Return string.
       '''
       if self.arg:
           return '##t'

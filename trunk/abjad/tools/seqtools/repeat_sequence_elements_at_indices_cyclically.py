@@ -8,6 +8,10 @@ def repeat_sequence_elements_at_indices_cyclically(sequence, cycle_token, total)
 
    The `cycle_token` may be a sieve::
 
+      abjad> from abjad.tools import sievetools
+
+   ::
+
       abjad> sieve = sievetools.cycle_tokens_to_sieve((5, [1, 2]))
       abjad> seqtools.repeat_sequence_elements_at_indices_cyclically(range(10), sieve, 3)
       [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]

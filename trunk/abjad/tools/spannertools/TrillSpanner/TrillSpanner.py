@@ -10,7 +10,7 @@ class TrillSpanner(Spanner):
    ::
 
       abjad> spannertools.TrillSpanner(staff[:])
-      spannertools.TrillSpanner(c'8, d'8, e'8, f'8)
+      TrillSpanner(c'8, d'8, e'8, f'8)
 
    ::
 
@@ -54,6 +54,8 @@ class TrillSpanner(Spanner):
                   e'8
                   f'8
                }
+
+         Set pitch.
          '''
          return self._pitch
       def fset(self, expr):

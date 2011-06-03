@@ -24,12 +24,12 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
 
    ::
 
-      abjad> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(t)
+      abjad> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(staff)
       [2, 2, 1, 2, 2, 2, 1]
 
    ::
 
-      abjad> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(t, wrap = True)
+      abjad> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(staff, wrap = True)
       [2, 2, 1, 2, 2, 2, 1, -12]
 
    ::

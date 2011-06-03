@@ -11,16 +11,23 @@ def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than
    Intervals in higher-indexed trees in `trees` only appear in part or whole where they do not
    overlap intervals from lower-indexed trees, and then only where their magnitudes are equal to or greater than
    `rational` ::
+
+      abjad> from abjad.tools import treetools
+      abjad> from abjad.tools.treetools import BoundedInterval
+      abjad> from abjad.tools.treetools import IntervalTree
+
+   ::
    
       abjad> a = IntervalTree(BoundedInterval(0, 1, 'a'))
       abjad> b = IntervalTree(BoundedInterval(Fraction(1, 32), Fraction(33, 32), 'b')) 
       abjad> c = IntervalTree(BoundedInterval(Fraction(1, 16), Fraction(17, 16), 'c')) 
-      abjad> resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational([a, b, c], Fraction(1, 16))
+      abjad> treetools.resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational([a, b, c], Fraction(1, 16))
       IntervalTree([
          BoundedInterval(0, 1, 'a'),
          BoundedInterval(1, Fraction(17, 16), 'c')
       ])
    
+   Return interval tree.
    '''
 
    assert isinstance(trees, Iterable) and len(trees) \

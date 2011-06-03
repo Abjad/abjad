@@ -11,22 +11,23 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components = None
    
       abjad> t = Staff(macros.scale(4))
       abjad> spannertools.make_dynamic_spanner_below_with_nib_at_right('mp', t[:])
+      TextSpanner(c'8, d'8, e'8, f'8)
       abjad> f(t)
       \new Staff {
-              \override TextSpanner #'bound-details #'left #'text = \markup { \dynamic { mp } }
-              \override TextSpanner #'bound-details #'right #'text = #(markup #:draw-line '(0 . 1))
-              \override TextSpanner #'bound-details #'right-broken #'text = ##f
-              \override TextSpanner #'dash-fraction = #1
-              \override TextSpanner #'direction = #down
-              c'8 \startTextSpan
-              d'8
-              e'8
-              f'8 \stopTextSpan
-              \revert TextSpanner #'direction
-              \revert TextSpanner #'bound-details #'left #'text
-              \revert TextSpanner #'dash-fraction
-              \revert TextSpanner #'bound-details #'right #'text
-              \revert TextSpanner #'bound-details #'right-broken #'text
+        \override TextSpanner #'bound-details #'left #'text = \markup { \dynamic { mp } }
+        \override TextSpanner #'bound-details #'right #'text = #(markup #:draw-line '(0 . 1))
+        \override TextSpanner #'bound-details #'right-broken #'text = ##f
+        \override TextSpanner #'dash-fraction = #1
+        \override TextSpanner #'direction = #down
+        c'8 \startTextSpan
+        d'8
+        e'8
+        f'8 \stopTextSpan
+        \revert TextSpanner #'bound-details #'left #'text
+        \revert TextSpanner #'bound-details #'right #'text
+        \revert TextSpanner #'bound-details #'right-broken #'text
+        \revert TextSpanner #'dash-fraction
+        \revert TextSpanner #'direction
       }
 
    .. versionchanged:: 1.1.2

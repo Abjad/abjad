@@ -14,12 +14,13 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
       abjad> contexttools.ClefMark('bass')(piano_staff[1])
+      ClefMark('bass')(Staff{4})
       abjad> score.append(piano_staff)
       abjad> macros.diatonicize(list(reversed(score.leaves)))  
       abjad> f(score)
       \new Score <<
               \new Staff {
-                      \times 4/3 {
+                      \fraction \times 4/3 {
                               d''8
                               c''8
                               b'8
@@ -40,13 +41,13 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
               >>
       >>
       abjad> verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][1])
-      VerticalMoment(Score<<2>>, Staff{1}, {@ 3:4 d''8, c''8, b'8 @}, d''8, PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)
+      VerticalMoment(1/8, <<3>>)
 
    When `governor` is not none, get vertical moment at
    ``expr._offset.start`` in `governor`. ::
 
       abjad> verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][1], piano_staff)
-      VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)
+      VerticalMoment(1/8, <<2>>)
 
    .. todo:: optimize without full-component traversal.
 

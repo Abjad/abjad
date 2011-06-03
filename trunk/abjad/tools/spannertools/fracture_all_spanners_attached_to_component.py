@@ -18,6 +18,7 @@ def fracture_all_spanners_attached_to_component(component, direction = 'both', k
    ::
       
       abjad> spannertools.fracture_all_spanners_attached_to_component(staff[1], 'right')
+      [(BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8, d'8), BeamSpanner(e'8, f'8)), (SlurSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8))]
       abjad> f(staff)
       \new Staff {
          c'8 [ ( \startTrillSpan

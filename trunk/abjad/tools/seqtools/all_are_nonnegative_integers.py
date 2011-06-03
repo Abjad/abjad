@@ -6,7 +6,7 @@ def all_are_nonnegative_integers(expr):
 
    True when `expr` is a sequence and all elements  in `expr` are nonnegative integers::
 
-      abjad> seqtools.all_are_nonnegative_integers([0 1, 2, 99])
+      abjad> seqtools.all_are_nonnegative_integers([0, 1, 2, 99])
       True
 
    Otherwise false::

@@ -4,19 +4,26 @@ from fractions import Fraction
 
 
 def shift_aggregate_offset_to_rational(intervals, rational):
-   '''Shift the aggregate offset of `intervals` to
-   `rational` ::
+   '''Shift the aggregate offset of `intervals` to `rational` ::
+
+      abjad> from abjad.tools import treetools
+      abjad> from abjad.tools.treetools import BoundedInterval
+      abjad> from abjad.tools.treetools import IntervalTree
+
+   ::
 
       abjad> a = BoundedInterval(-1, 3)
       abjad> b = BoundedInterval(6, 12)
       abjad> c = BoundedInterval(9, 16)
       abjad> tree = IntervalTree([a, b, c])
-      abjad> shift_aggregate_offset_to_rational(tree, Fraction(10, 7))
+      abjad> treetools.shift_aggregate_offset_to_rational(tree, Fraction(10, 7))
       IntervalTree([
-         BoundedInterval(Fraction(10, 7), Fraction(38, 7), data = {}),
-         BoundedInterval(Fraction(59, 7), Fraction(101, 7), data = {}),
-         BoundedInterval(Fraction(80, 7), Fraction(129, 7), data = {})
+        BoundedInterval(Fraction(10, 7), Fraction(38, 7), {}),
+        BoundedInterval(Fraction(59, 7), Fraction(101, 7), {}),
+        BoundedInterval(Fraction(80, 7), Fraction(129, 7), {})
       ])
+
+   Return interval tree.
    '''
 
    assert isinstance(rational, (int, Fraction))

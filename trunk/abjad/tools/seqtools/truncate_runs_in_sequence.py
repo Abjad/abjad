@@ -12,12 +12,9 @@ def truncate_runs_in_sequence(sequence):
    Return empty list when `sequence` is empty::
 
       abjad> seqtools.truncate_runs_in_sequence([ ])
-      [ ]
+      []
 
-   Raise type error when `sequence` is not a list::
-
-      abjad> seqtools.truncate_runs_in_sequence(1)
-      TypeError
+   Raise type error when `sequence` is not a list.
 
    Return new list.
 

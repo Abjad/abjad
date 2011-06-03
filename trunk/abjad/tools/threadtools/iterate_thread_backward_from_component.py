@@ -48,23 +48,21 @@ def iterate_thread_backward_from_component(component, klass = None):
 
       abjad> for x in threadtools.iterate_thread_backward_from_component(staff.leaves[-1], Note):
       ...     x
-      ... 
-      Note(c', 8)
-      Note(d', 8)
-      Note(g', 8)
-      Note(a', 8)
+      Note("c''8")
+      Note("b'8")
+      Note("f'8")
+      Note("e'8")
 
-   Yield all components in thread. ::
+   Yield all components in thread::
 
       abjad> for x in threadtools.iterate_thread_backward_from_component(staff.leaves[-1]):
       ...     x
-      ... 
-      Note(c'', 8)
-      Voice{2}
-      Note(b', 8)
-      Voice{2}
-      Note(f', 8)
-      Note(e', 8)
+      Note("c''8")
+      Voice-"voice 2"{2}
+      Note("b'8")
+      Voice-"voice 2"{2}
+      Note("f'8")
+      Note("e'8")
    
    Note that this function is a special type of depth-first search.
 

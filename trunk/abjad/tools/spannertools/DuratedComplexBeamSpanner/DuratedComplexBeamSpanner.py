@@ -79,6 +79,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
             abjad> beam.durations = [Fraction(1, 4)]
             abjad> beam.durations
             [Fraction(1, 4)]
+
+         Set iterable.
          '''
          return self._durations
       def fset(self, arg):
@@ -114,6 +116,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
             abjad> beam.span = 2
             abjad> beam.span
             2
+
+         Set nonnegative integer.
          '''
          return self._span
       def fset(self, arg):

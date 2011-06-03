@@ -10,13 +10,19 @@ def analyze_incomplete_chord(expr):
 
    Analyze `expr` and return chord class based on incomplete pitches. ::
 
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+
       abjad> tonalitytools.analyze_incomplete_chord(Chord([7, 11], (1, 4)))
       GMajorTriadInRootPosition
    
    ::
 
       abjad> tonalitytools.analyze_incomplete_chord(Chord(['fs', 'g', 'b'], (1, 4)))
-      GDominantSeventhInSecondInversion
+      GMajorSeventhInSecondInversion
+
+   Return chord class.
    '''
 
    #print 'expr is %s ...' % str(expr)

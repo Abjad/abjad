@@ -10,7 +10,7 @@ def make_piano_sketch_score_from_leaves(leaves):
 
    Make piano sketch score from `leaves`::
 
-      notes = notetools.make_notes([-12, -10, -8, -7, -5, 0, 2, 4, 5, 7], [(1, 4)])
+      abjad> notes = notetools.make_notes([-12, -10, -8, -7, -5, 0, 2, 4, 5, 7], [(1, 4)])
       abjad> score, treble_staff, bass_staff = scoretools.make_piano_sketch_score_from_leaves(notes)
 
    ::

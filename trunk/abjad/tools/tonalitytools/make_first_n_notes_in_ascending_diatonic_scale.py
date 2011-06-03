@@ -9,7 +9,7 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = Fra
    according to `key_signature`::
 
       abjad> macros.scale(4)
-      [Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8)]
+      [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
    Allow nonassignable `written_duration`::
 

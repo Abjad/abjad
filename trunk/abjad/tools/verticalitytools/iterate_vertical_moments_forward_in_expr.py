@@ -10,16 +10,17 @@ def iterate_vertical_moments_forward_in_expr(governor):
 
       abjad> score = Score([ ])
       abjad> score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
-      abjad> piano_staff = PianoStaff([ ])
+      abjad> piano_staff = scoretools.PianoStaff([ ])
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
       abjad> contexttools.ClefMark('bass')(piano_staff[1])
+      ClefMark('bass')(Staff{4})
       abjad> score.append(piano_staff)
       abjad> macros.diatonicize(list(reversed(score.leaves)))
       abjad> f(score)
       \new Score <<
               \new Staff {
-                      \times 4/3 {
+                      \fraction \times 4/3 {
                               d''8
                               c''8
                               b'8
@@ -42,19 +43,19 @@ def iterate_vertical_moments_forward_in_expr(governor):
       abjad> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
       ...     vertical_moment.leaves
       ... 
-      (Note(d'', 8), Note(a', 4), Note(f', 8))
-      (Note(d'', 8), Note(a', 4), Note(e', 8))
-      (Note(c'', 8), Note(a', 4), Note(e', 8))
-      (Note(c'', 8), Note(g', 4), Note(d', 8))
-      (Note(b', 8), Note(g', 4), Note(d', 8))
-      (Note(b', 8), Note(g', 4), Note(c', 8))
+      (Note("d''8"), Note("a'4"), Note("f'8"))
+      (Note("d''8"), Note("a'4"), Note("e'8"))
+      (Note("c''8"), Note("a'4"), Note("e'8"))
+      (Note("c''8"), Note("g'4"), Note("d'8"))
+      (Note("b'8"), Note("g'4"), Note("d'8"))
+      (Note("b'8"), Note("g'4"), Note("c'8"))
       abjad> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(piano_staff):
       ...     vertical_moment.leaves
       ... 
-      (Note(a', 4), Note(f', 8))
-      (Note(a', 4), Note(e', 8))
-      (Note(g', 4), Note(d', 8))
-      (Note(g', 4), Note(c', 8))
+      (Note("a'4"), Note("f'8"))
+      (Note("a'4"), Note("e'8"))
+      (Note("g'4"), Note("d'8"))
+      (Note("g'4"), Note("c'8"))
 
    .. todo:: optimize without multiple full-component traversal.
 

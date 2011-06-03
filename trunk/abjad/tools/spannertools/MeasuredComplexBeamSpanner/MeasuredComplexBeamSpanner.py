@@ -58,18 +58,20 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
       def fget(self):
          '''Get top-level beam count::
 
-            abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")], 1)
+            abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
             abjad> beam = spannertools.MeasuredComplexBeamSpanner(staff.leaves)
             abjad> beam.span
             1
 
          Set top-level beam count::
 
-            abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")], 1)
+            abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
             abjad> beam = spannertools.MeasuredComplexBeamSpanner(staff.leaves)
             abjad> beam.span = 2
             abjad> beam.span
-            1
+            2
+
+         Set nonnegative integer.
          '''
          return self._span
       def fset(self, arg):

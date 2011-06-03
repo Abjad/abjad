@@ -9,17 +9,17 @@ def inventory_inversion_equivalent_diatonic_interval_classes( ):
       abjad> for dic in pitchtools.inventory_inversion_equivalent_diatonic_interval_classes( ):
       ...     dic
       ... 
-      InversionEquivalentDiatonicIntervalClass(perfect unison)
-      InversionEquivalentDiatonicIntervalClass(augmented unison)
-      InversionEquivalentDiatonicIntervalClass(minor second)
-      InversionEquivalentDiatonicIntervalClass(major second)
-      InversionEquivalentDiatonicIntervalClass(augmented second)
-      InversionEquivalentDiatonicIntervalClass(diminished third)
-      InversionEquivalentDiatonicIntervalClass(minor third)
-      InversionEquivalentDiatonicIntervalClass(major third)
-      InversionEquivalentDiatonicIntervalClass(diminished fourth)
-      InversionEquivalentDiatonicIntervalClass(perfect fourth)
-      InversionEquivalentDiatonicIntervalClass(augmented fourth)
+      InversionEquivalentDiatonicIntervalClass('P1')
+      InversionEquivalentDiatonicIntervalClass('aug1')
+      InversionEquivalentDiatonicIntervalClass('m2')
+      InversionEquivalentDiatonicIntervalClass('M2')
+      InversionEquivalentDiatonicIntervalClass('aug2')
+      InversionEquivalentDiatonicIntervalClass('dim3')
+      InversionEquivalentDiatonicIntervalClass('m3')
+      InversionEquivalentDiatonicIntervalClass('M3')
+      InversionEquivalentDiatonicIntervalClass('dim4')
+      InversionEquivalentDiatonicIntervalClass('P4')
+      InversionEquivalentDiatonicIntervalClass('aug4')
 
    There are 11 inversion-equivalent diatonic interval-classes.
 

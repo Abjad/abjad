@@ -4,8 +4,7 @@ from abjad.tools.threadtools.component_to_thread_signature import component_to_t
 def iterate_thread_backward_in_expr(expr, klass, thread_signature):
    r'''.. versionadded:: 1.1.2
 
-   Yield right-to-left instances of `klass` in `expr` with
-   `thread_signature`. ::
+   Yield right-to-left instances of `klass` in `expr` with `thread_signature`::
 
       abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> container.is_parallel = True
@@ -13,7 +12,7 @@ def iterate_thread_backward_in_expr(expr, klass, thread_signature):
       abjad> container[1].name = 'vocie 2'
       abjad> staff = Staff(container * 2)
       abjad> macros.diatonicize(staff)
-      abjad> print staff.format
+      abjad> f(staff)
       \new Staff {
               <<
                       \context Voice = "voice 1" {
@@ -40,26 +39,20 @@ def iterate_thread_backward_in_expr(expr, klass, thread_signature):
    ::
 
       abjad> signature = threadtools.component_to_thread_signature(staff[0])
-      abjad> for x in threadtools.iterate_thread_backward_in_expr(staff, Note, signature):
+      abjad> for x in threadtools.iterate_thread_backward_in_expr(staff, Note, signature): # doctest: +SKIP
       ...     x
-      ... 
-      Note(c'', 8)
-      Note(b', 8)
-      Note(f', 8)
-      Note(e', 8)
+      Note("c''8")
+      Note("b'8")
+      Note("f'8")
+      Note("e'8")
 
-   The important thing to note is that the function yields only
-   those leaves that sit in the same thread.
+   The important thing to note is that the function yields only those leaves that sit in the same thread.
 
    Compare with :func:`componenttools.iterate_components_backward_in_expr( ) 
    <abjad.tools.iterate.naive_backward>`.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.thread_backward_in( )`` to
-      ``threadtools.iterate_thread_backward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.thread_backward_in_expr( )`` to
       ``threadtools.iterate_thread_backward_in_expr( )``.
    '''
 

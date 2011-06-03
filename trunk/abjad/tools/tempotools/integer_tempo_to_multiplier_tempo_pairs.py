@@ -20,6 +20,8 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
       (Fraction(1, 1), Fraction(58, 1))
       (Fraction(3, 2), Fraction(87, 1))
       (Fraction(2, 1), Fraction(116, 1))
+
+   Return list.
    '''
 
    pairs = [ ]

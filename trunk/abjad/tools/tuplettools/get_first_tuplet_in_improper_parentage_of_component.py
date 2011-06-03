@@ -9,6 +9,7 @@ def get_first_tuplet_in_improper_parentage_of_component(component):
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> Tuplet((2, 3), staff[:3])
+      Tuplet(2/3, [c'8, d'8, e'8])
 
    ::
 

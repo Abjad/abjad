@@ -16,12 +16,13 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
       abjad> contexttools.ClefMark('bass')(piano_staff[1])
+      ClefMark('bass')(Staff{4})
       abjad> score.append(piano_staff)
       abjad> macros.diatonicize(list(reversed(score.leaves)))
       abjad> f(score)
       \new Score <<
               \new Staff {
-                      \times 4/3 {
+                      \fraction \times 4/3 {
                               d''8
                               c''8
                               b'8
@@ -43,7 +44,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
       >>
       abjad> vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(piano_staff, Fraction(1, 8))
       abjad> vertical_moment.leaves
-      (Note(a', 4), Note(e', 8))
+      (Note("a'4"), Note("e'8"))
 
    .. todo:: optimize without full-component traversal.
 

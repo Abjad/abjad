@@ -8,7 +8,7 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length = None, max
    Yield all combinations of `sequence` in binary string order::
 
       abjad> list(seqtools.yield_all_combinations_of_sequence_elements([1, 2, 3, 4]))
-      [[ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], 
+      [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], 
       [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
 
    Yield all combinations of `sequence` greater than or equal to `min_length`
@@ -21,7 +21,7 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length = None, max
    in binary string order::
 
       abjad> list(seqtools.yield_all_combinations_of_sequence_elements([1, 2, 3, 4], max_length = 2))
-      [[ ], [1], [2], [1, 2], [3], [1, 3], [2, 3], [4], [1, 4], [2, 4], [3, 4]]
+      [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [4], [1, 4], [2, 4], [3, 4]]
 
    Yield all combiantions of `sequence` greater than or equal to `min_length` and
    less than or equal to `max_length` in lex order::

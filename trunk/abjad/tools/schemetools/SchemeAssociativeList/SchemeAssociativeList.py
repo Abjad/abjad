@@ -56,12 +56,12 @@ class SchemeAssociativeList(tuple, _Immutable):
 
    @property
    def format(self):
-      '''LilyPond input format of Scheme associative list:
-
-      ::
+      '''LilyPond input format of Scheme associative list::
 
          abjad> scheme_associative_list = schemetools.SchemeAssociativeList(('space', 2), ('padding', 0.5))
          abjad> scheme_associative_list.format
          "#'((space . 2) (padding . 0.5))"
+      
+      Return string. 
       '''
       return "#'%s" % self.__str__( )

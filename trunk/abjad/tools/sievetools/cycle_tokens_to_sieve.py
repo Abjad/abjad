@@ -7,13 +7,16 @@ def cycle_tokens_to_sieve(*cycle_tokens):
 
    Make Xenakis sieve from arbitrarily many `cycle_tokens`. ::
 
+      abjad> from abjad.tools import sievetools
+
+   ::
+
       abjad> cycle_token_1 = (6, [0, 4, 5])
       abjad> cycle_token_2 = (10, [0, 1, 2], 6) 
       abjad> sievetools.cycle_tokens_to_sieve(cycle_token_1, cycle_token_2)
-      {RC(6, 0) | RC(6, 4) | RC(6, 5) | RC(10, 6) | RC(10, 7) | RC(10, 8)}
+      {ResidueClass(6, 0) | ResidueClass(6, 4) | ResidueClass(6, 5) | ResidueClass(10, 6) | ResidueClass(10, 7) | ResidueClass(10, 8)}
 
-   Cycle token comprises mandatory `modulo`, mandatory `residues` 
-   and optional `offset`.
+   Cycle token comprises mandatory `modulo`, mandatory `residues` and optional `offset`.
    '''
 
    sieves = [ ]

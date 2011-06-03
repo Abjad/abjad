@@ -8,9 +8,7 @@ def calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
    Calculate harmonic chromatic interval from `pitch_carrier_1` to
    `pitch_carrier_2`::
 
-      abjad> pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
-         pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
-      True
+      abjad> pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
       HarmonicChromaticInterval(14)
 
    Return harmonic chromatic interval.

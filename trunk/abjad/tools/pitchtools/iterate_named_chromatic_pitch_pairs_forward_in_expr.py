@@ -12,6 +12,7 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
       abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
       abjad> score.append(Staff(notes))
       abjad> contexttools.ClefMark('bass')(score[1])
+      ClefMark('bass')(Staff{3})
 
    ::
 
@@ -37,21 +38,21 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
       abjad> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(score):
       ...     pair
       ... 
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(c, 3))
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4))
-      (NamedChromaticPitch(c, 3), NamedChromaticPitch(d, 4))
-      (NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4))
-      (NamedChromaticPitch(d, 4), NamedChromaticPitch(a, 2))
-      (NamedChromaticPitch(c, 3), NamedChromaticPitch(e, 4))
-      (NamedChromaticPitch(c, 3), NamedChromaticPitch(a, 2))
-      (NamedChromaticPitch(e, 4), NamedChromaticPitch(a, 2))
-      (NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 4))
-      (NamedChromaticPitch(a, 2), NamedChromaticPitch(f, 4))
-      (NamedChromaticPitch(f, 4), NamedChromaticPitch(g, 4))
-      (NamedChromaticPitch(f, 4), NamedChromaticPitch(g, 2))
-      (NamedChromaticPitch(a, 2), NamedChromaticPitch(g, 4))
-      (NamedChromaticPitch(a, 2), NamedChromaticPitch(g, 2))
-      (NamedChromaticPitch(g, 4), NamedChromaticPitch(g, 2))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch('c'))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
+      (NamedChromaticPitch('c'), NamedChromaticPitch("d'"))
+      (NamedChromaticPitch("d'"), NamedChromaticPitch("e'"))
+      (NamedChromaticPitch("d'"), NamedChromaticPitch('a,'))
+      (NamedChromaticPitch('c'), NamedChromaticPitch("e'"))
+      (NamedChromaticPitch('c'), NamedChromaticPitch('a,'))
+      (NamedChromaticPitch("e'"), NamedChromaticPitch('a,'))
+      (NamedChromaticPitch("e'"), NamedChromaticPitch("f'"))
+      (NamedChromaticPitch('a,'), NamedChromaticPitch("f'"))
+      (NamedChromaticPitch("f'"), NamedChromaticPitch("g'"))
+      (NamedChromaticPitch("f'"), NamedChromaticPitch('g,'))
+      (NamedChromaticPitch('a,'), NamedChromaticPitch("g'"))
+      (NamedChromaticPitch('a,'), NamedChromaticPitch('g,'))
+      (NamedChromaticPitch("g'"), NamedChromaticPitch('g,'))
 
    Chords are handled correctly. ::
 
@@ -71,16 +72,16 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
       abjad> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(staff):
       ...   print pair
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(d, 4))
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(e, 4))
-      (NamedChromaticPitch(d, 4), NamedChromaticPitch(e, 4))
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(f, 5))
-      (NamedChromaticPitch(c, 4), NamedChromaticPitch(g, 5))
-      (NamedChromaticPitch(d, 4), NamedChromaticPitch(f, 5))
-      (NamedChromaticPitch(d, 4), NamedChromaticPitch(g, 5))
-      (NamedChromaticPitch(e, 4), NamedChromaticPitch(f, 5))
-      (NamedChromaticPitch(e, 4), NamedChromaticPitch(g, 5))
-      (NamedChromaticPitch(f, 5), NamedChromaticPitch(g, 5))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
+      (NamedChromaticPitch("d'"), NamedChromaticPitch("e'"))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("f''"))
+      (NamedChromaticPitch("c'"), NamedChromaticPitch("g''"))
+      (NamedChromaticPitch("d'"), NamedChromaticPitch("f''"))
+      (NamedChromaticPitch("d'"), NamedChromaticPitch("g''"))
+      (NamedChromaticPitch("e'"), NamedChromaticPitch("f''"))
+      (NamedChromaticPitch("e'"), NamedChromaticPitch("g''"))
+      (NamedChromaticPitch("f''"), NamedChromaticPitch("g''"))
 
    Return generator.
    '''

@@ -10,6 +10,7 @@ def add_markup_to_end_of_score(score, markup, extra_offset = None):
       abjad> markup = r'\italic \right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }'
       abjad> markup = markuptools.Markup(markup, 'down')
       abjad> scoretools.add_markup_to_end_of_score(staff, markup, (4, -2))
+      Markup('\\italic \\right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }', 'down')
 
    ::
 

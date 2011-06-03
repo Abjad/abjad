@@ -28,9 +28,10 @@ def destroy_all_spanners_attached_to_component(component, klass = None):
          e'8
          f'8 \stopTrillSpan
       }
+
+   Return none.
    '''
 
-   #for spanner in set(component.spanners.attached):
    for spanner in get_spanners_attached_to_component(component):
       if klass is None:
          spanner.clear( )

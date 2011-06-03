@@ -9,9 +9,9 @@ def change_diminished_tuplets_in_expr_to_augmented(tuplet):
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> tuplet
-      tuplettools.FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+      FixedDurationTuplet(1/4, [c'8, d'8, e'8])
       abjad> tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
-      tuplettools.FixedDurationTuplet(1/4, [c'16, d'16, e'16])
+      FixedDurationTuplet(1/4, [c'16, d'16, e'16])
 
    .. todo:: make work with nested tuplets.
 

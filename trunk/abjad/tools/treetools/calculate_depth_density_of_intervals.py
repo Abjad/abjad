@@ -11,17 +11,25 @@ def calculate_depth_density_of_intervals(intervals):
 
    The depth density of a single interval is 1 ::
 
+      abjad> from abjad.tools import treetools
+      abjad> from abjad.tools.treetools import BoundedInterval
+      abjad> from abjad.tools.treetools import IntervalTree
+
+   ::
+
       abjad> a = BoundedInterval(0, 1)
       abjad> b = BoundedInterval(0, 1)
       abjad> c = BoundedInterval(Fraction(1, 2), 1)
-      abjad> calculate_depth_density_of_intervals(a)
+      abjad> treetools.calculate_depth_density_of_intervals(a)
       Fraction(1, 1)
-      abjad> calculate_depth_density_of_intervals([a, b])
+      abjad> treetools.calculate_depth_density_of_intervals([a, b])
       Fraction(2, 1)
-      abjad> calculate_depth_density_of_intervals([a, c])
+      abjad> treetools.calculate_depth_density_of_intervals([a, c])
       Fraction(3, 2)
-      abjad> calculate_depth_density_of_intervals([a, b, c])
+      abjad> treetools.calculate_depth_density_of_intervals([a, b, c])
       Fraction(5, 2)
+
+   Return fraction.
    '''
 
    assert all_are_intervals_or_trees_or_empty(intervals)

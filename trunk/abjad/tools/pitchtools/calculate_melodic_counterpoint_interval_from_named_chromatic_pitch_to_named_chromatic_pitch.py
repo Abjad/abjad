@@ -8,9 +8,8 @@ def calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_
    Calculate melodic counterpoint interval `pitch_carrier_1` to
    `pitch_carrier_2`::
 
-      abjad> pitchtools.calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
-         pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
-      MelodicCounterpointInterval(9)
+      abjad> pitchtools.calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+      MelodicCounterpointInterval(+9)
 
    Return melodic counterpoint interval.
    '''

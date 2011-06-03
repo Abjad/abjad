@@ -109,6 +109,8 @@ class ComplexBeamSpanner(BeamSpanner):
          ::
 
             abjad> f(note)
+            \set stemLeftBeamCount = #2
+            \set stemRightBeamCount = #2
             c'16 [ ]
       
          Do not beam lone leaf::

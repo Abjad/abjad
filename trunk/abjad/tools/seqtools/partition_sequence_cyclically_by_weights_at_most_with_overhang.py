@@ -7,7 +7,7 @@ def partition_sequence_cyclically_by_weights_at_most_with_overhang(sequence, wei
    Partition `sequence` elements cyclically by `weights` at most with overhang::
 
       abjad> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
-      abjad> groups = seqtools.partition_sequence_cyclically_by_weights_at_most_with_overhang(sequence, [10, 5])
+      abjad> seqtools.partition_sequence_cyclically_by_weights_at_most_with_overhang(sequence, [10, 5])
       [[3, 3, 3], [3], [4, 4], [4], [4, 5], [5]]
 
    Return list sequence element reference lists.

@@ -11,15 +11,23 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
    '''Clip or remove all intervals in `masked_intervals` outside of the bounds
    defined in `mask_intervals`, while maintaining `masked_intervals`' payload contents ::
 
+      abjad> from abjad.tools import treetools
+      abjad> from abjad.tools.treetools import BoundedInterval
+      abjad> from abjad.tools.treetools import IntervalTree
+
+   ::
+
       abjad> a = BoundedInterval(0, 10, 'a')
       abjad> b = BoundedInterval(5, 15, 'b')
       abjad> tree = IntervalTree([a, b])
       abjad> mask = BoundedInterval(4, 11)
-      abjad> mask_intervals_with_intervals(tree, mask)
+      abjad> treetools.mask_intervals_with_intervals(tree, mask)
       IntervalTree([
-         BoundedInterval(4, 10, data = 'a'),
-         BoundedInterval(5, 11, data = 'b')
+         BoundedInterval(4, 10, 'a'),
+         BoundedInterval(5, 11, 'b')
       ])
+
+   Return interval tree.
    '''    
 
    assert all_are_intervals_or_trees_or_empty(masked_intervals)

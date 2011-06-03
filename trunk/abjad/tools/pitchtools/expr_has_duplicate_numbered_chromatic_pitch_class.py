@@ -9,7 +9,7 @@ def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
    Otherwise false::
 
       abjad> chord = Chord([1, 13, 14], (1, 4))
-      abjad> pitchtools.expr_has_duplicate_named_chromatic_pitch_class(chord)
+      abjad> pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class(chord)
       True
 
    Return boolean.

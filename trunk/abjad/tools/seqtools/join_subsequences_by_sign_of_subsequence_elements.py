@@ -14,7 +14,7 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
 
       abjad> sequence = [[1, 2], [ ], [ ], [3, 4, 5], [6, 7]]
       abjad> seqtools.join_subsequences_by_sign_of_subsequence_elements(sequence)
-      [[1, 2], [ ], [3, 4, 5, 6, 7]]
+      [[1, 2], [], [3, 4, 5, 6, 7]]
 
    Return newly constructed list.
 

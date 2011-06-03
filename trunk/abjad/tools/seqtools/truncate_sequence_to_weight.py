@@ -10,7 +10,7 @@ def truncate_sequence_to_weight(sequence, weight):
       abjad> for x in range(10):
       ...     print x, seqtools.truncate_sequence_to_weight(l, x)
       ... 
-      0 [ ]
+      0 []
       1 [-1]
       2 [-1, 1]
       3 [-1, 2]
@@ -24,17 +24,11 @@ def truncate_sequence_to_weight(sequence, weight):
    Return empty list when `weight` is ``0``::
 
       abjad> seqtools.truncate_sequence_to_weight([1, 2, 3, 4, 5], 0)
-      [ ]
+      []
 
-   Raise type error when `sequence` is not a list::
+   Raise type error when `sequence` is not a list.
 
-      abjad> seqtools.truncate_sequence_to_weight('foo', 4)
-      TypeError
-
-   Raise value error on negative `weight`::
-
-      abjad> seqtools.truncate_sequence_to_weight([2, 2, 2], -4)
-      ValueError
+   Raise value error on negative `weight`.
 
    Return new list.
 

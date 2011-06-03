@@ -8,16 +8,17 @@ from abjad.tools.pitchtools._Pitch import _Pitch
 import numbers
 
 
-def _transpose_pitch_carrier_by_melodic_chromatic_interval(
-   pitch_carrier, melodic_chromatic_interval):
+def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_chromatic_interval):
    '''.. versionadded:: 1.1.2
 
    Transpose `pitch_carrier` by `melodic_chromatic_interval`::
 
-      abjad> pitch = NamedChromaticPitch(12)
+      abjad> from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_chromatic_interval import _transpose_pitch_carrier_by_melodic_chromatic_interval 
+
+      abjad> pitch = pitchtools.NamedChromaticPitch(12)
       abjad> mci = pitchtools.MelodicChromaticInterval(-3)
-      abjad> pitchtools.transpose_pitch_carrier_by_melodic_chromatic_interval(pitch, mci)
-      NamedChromaticPitch(a, 4)
+      abjad> _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch, mci)
+      NamedChromaticPitch("a'")
    
    Return new `pitch_carrier` object.
    '''

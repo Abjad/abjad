@@ -9,6 +9,10 @@ def is_passing_tone(note):
    True when `note` is both preceeded and followed by scalewise
    sibling notes. Otherwise false. ::
 
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+
       abjad> t = Staff(macros.scale(4))
       abjad> for note in t:
       ...     print '%s\t%s' % (note, tonalitytools.is_passing_tone(note))
@@ -17,6 +21,8 @@ def is_passing_tone(note):
       d'8     True
       e'8     True
       f'8     False
+
+   Return boolean.
    '''
    
    if not isinstance(note, Note):

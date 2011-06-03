@@ -65,6 +65,8 @@ class StaffLinesSpanner(Spanner):
             abjad> spanner.lines = 2
             abjad> spanner.lines
             2
+
+         Set integer.
          '''
          return self._lines
       def fset(self, arg):

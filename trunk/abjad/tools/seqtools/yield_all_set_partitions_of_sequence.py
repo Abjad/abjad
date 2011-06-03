@@ -7,7 +7,7 @@ def yield_all_set_partitions_of_sequence(sequence):
 
    Yield all set partitions of `sequence` in restricted growth function order::
 
-      abjad> for set_parition in seqtools.yield_all_set_partitions_of_sequence([21, 22, 23, 24]):
+      abjad> for set_partition in seqtools.yield_all_set_partitions_of_sequence([21, 22, 23, 24]):
       ...     set_partition
       ... 
       [[21, 22, 23, 24]]

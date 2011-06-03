@@ -15,26 +15,26 @@ def make_piano_score_from_leaves(leaves):
 
       abjad> f(score)
       \new Score <<
-              \new PianoStaff <<
-                      \context Staff = "treble" {
-                              \clef "treble"
-                              r4
-                              cs''''4
-                              r4
-                              ef'''4
-                              e'4
-                              f''4
-                      }
-                      \context Staff = "bass" {
-                              \clef "bass"
-                              c4
-                              r4
-                              d4
-                              r4
-                              r4
-                              r4
-                      }
-              >>
+        \new PianoStaff <<
+           \context Staff = "treble" {
+              \clef "treble"
+              r4
+              cs''''4
+              r4
+              d'4
+              e'4
+              f''4
+           }
+           \context Staff = "bass" {
+              \clef "bass"
+              c4
+              r4
+              d4
+              r4
+              r4
+              r4
+           }
+        >>
       >>
 
    Return score, treble staff, bass staff.

@@ -11,35 +11,35 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
 
    Get named chromatic pitch from `pitch_carrier`::
 
-      abjad> pitch = NamedChromaticPitch('df', 5)
+      abjad> pitch = pitchtools.NamedChromaticPitch('df', 5)
       abjad> pitch
-      NamedChromaticPitch(df, 5)
+      NamedChromaticPitch("df''")
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch)
-      NamedChromaticPitch(df, 5)
+      NamedChromaticPitch("df''")
 
    ::
 
       abjad> note = Note(('df', 5), (1, 4))
       abjad> note
-      Note(df'', 4)
+      Note("df''4")
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note)
-      NamedChromaticPitch(df, 5)
+      NamedChromaticPitch("df''")
 
    ::
 
       abjad> note = Note(('df', 5), (1, 4))
       abjad> note.note_head
-      NoteHead(df'')
+      NoteHead("df''")
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note.note_head)
-      NamedChromaticPitch(df, 5)
+      NamedChromaticPitch("df''")
 
    ::
 
       abjad> chord = Chord([('df', 5)], (1, 4))
       abjad> chord
-      Chord(df'', 4)
+      Chord("<df''>4")
       abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
-      NamedChromaticPitch(df, 5)
+      NamedChromaticPitch("df''")
 
    ::
 

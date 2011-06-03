@@ -7,7 +7,7 @@ def remove_subsequence_of_weight_at_index(sequence, weight, index):
    Remove subsequence of `weight` at `index`::
 
       abjad> seqtools.remove_subsequence_of_weight_at_index((1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6), 13, 4)
-      [1, 1, 2, 3, 5, 5, 6]
+      (1, 1, 2, 3, 5, 5, 6)
 
    Return newly constructed `sequence` object.
 

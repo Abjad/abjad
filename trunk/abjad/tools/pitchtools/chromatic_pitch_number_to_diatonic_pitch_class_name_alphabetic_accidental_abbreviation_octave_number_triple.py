@@ -12,8 +12,7 @@ def chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_ab
    Change `chromatic_pitch_number` to diatonic pitch-class name / alphabetic
    accidental abbreviation / octave number triple::
 
-      abjad> pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(
-         13, accidental_spelling = 'sharps')
+      abjad> pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(13, accidental_spelling = 'sharps')
       ('c', 's', 5)
 
    Return tuple.

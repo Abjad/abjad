@@ -44,13 +44,13 @@ class SchemeFunction(_StrictComparator, _Immutable):
    
    @property
    def format(self):
-      '''LilyPond input format of Scheme function:
-
-      ::
+      '''LilyPond input format of Scheme function::
 
          abjad> scheme_function = schemetools.SchemeFunction('magstep', -3)
          abjad> scheme_function.format
          '#(magstep -3)'
+
+      Return string.
       '''
       if len(self.args) == 0:
          body = self.name

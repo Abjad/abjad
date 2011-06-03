@@ -8,7 +8,7 @@ def negate_sequence_elements_cyclically(sequence, indices, period):
    ::
 
       abjad> seqtools.negate_sequence_elements_cyclically(sequence, [0, 1, 2], 5)
-      [-1, -2, -3, 4, 5, 6, 7, -8, -9, -10]
+      [-1, -2, -3, 4, 5, 6, 7, 8, -9, -10]
 
    Return newly constructed list.
    '''

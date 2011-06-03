@@ -11,6 +11,10 @@ def is_neighbor_note(note):
    and followed by a stepwise interval in the other direction.
    Otherwise false. ::
 
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+
       abjad> t = Staff(macros.scale(4))
       abjad> for note in t:
       ...     print '%s\t%s' % (note, tonalitytools.is_neighbor_note(note))
@@ -19,6 +23,8 @@ def is_neighbor_note(note):
       d'8     False
       e'8     False
       f'8     False
+
+   Return boolean.
    '''
    
    if not isinstance(note, Note):

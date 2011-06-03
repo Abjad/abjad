@@ -1,7 +1,8 @@
 from abjad.tools.spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component import report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component
 
 
-def report_to_screen_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component(component, klass = None):
+def report_to_screen_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component(
+   component, klass = None):
    r'''.. versionadded:: 1.1.1
 
    Report to screen format contributions of all spanners attached to improper parentage 
@@ -31,6 +32,8 @@ def report_to_screen_format_contributions_of_all_spanners_attached_to_improper_p
       TrillSpanner
          _right
             \startTrillSpan
+
+   Return none.
    '''
 
    report = report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component(component, klass)

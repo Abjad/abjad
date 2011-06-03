@@ -64,12 +64,12 @@ class SchemePair(tuple, _Immutable):
 
    @property
    def format(self):
-      '''LilyPond input format of Scheme pair:
-   
-      ::
+      '''LilyPond input format of Scheme pair::
 
          abjad> scheme_pair = schemetools.SchemePair('spacing', 4)
          abjad> scheme_pair.format
          "#'(spacing . 4)"
+
+      Return string.
       '''
       return "#'%s" % self.__str__( )

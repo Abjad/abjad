@@ -15,11 +15,12 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
       abjad> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
       abjad> pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators)
 
+      abjad> t = [ ]
       abjad> for x in notes:
-         try:
-            t.append(x.pitch.pitch_number)
-         except AttributeError:
-            t.append([y.pitch.pitch_number for y in x])
+      ...   try:
+      ...      t.append(x.pitch.chromatic_pitch_number)
+      ...   except AttributeError:
+      ...      t.append([y.pitch.chromatic_pitch_number for y in x])
 
       abjad> t
       [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]
@@ -42,7 +43,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
 
       abjad> notes = seqtools.flatten_sequence(notes)
       abjad> notes
-      [0, 5, 7, 2, 4, 0, 6, 11, 7, 9, 5, 10, 6, 8, 11, 7, 4]
+      [Note("c'4"), Note("f'4"), Note("g'4"), Note("d'4"), Note("e'4"), Note("c'4"), Note("fs'4"), Note("b'4"), Note("g'4"), Note("a'4"), Note("f'4"), Note("bf'4"), Note("fs'4"), Note("af'4"), Note("b'4"), Note("g'4"), Note("e'4")]
 
    This function is designed to work on a built-in Python list
    of notes. This function is **not** designed to work on Abjad

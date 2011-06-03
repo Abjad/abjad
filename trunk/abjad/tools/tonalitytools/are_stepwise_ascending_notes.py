@@ -9,13 +9,17 @@ def are_stepwise_ascending_notes(*expr):
 
    True when notes in `expr` are stepwise ascneding. ::
 
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+
       abjad> t = Staff(macros.scale(4))
-      abjad> tonalitytools.are_stepwise_notes_ascending(t[:])
+      abjad> tonalitytools.are_stepwise_ascending_notes(t[:])
       True
 
    Otherwise false. ::
 
-      abjad> tonalitytools.are_stepwise_notes_ascending(Note(0, (1, 4)), Note(0, (1, 4)))
+      abjad> tonalitytools.are_stepwise_ascending_notes(Note(0, (1, 4)), Note(0, (1, 4)))
       False
 
    .. versionchanged:: 1.1.2

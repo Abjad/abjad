@@ -24,8 +24,8 @@ def iterate_rests_backward_in_expr(expr, start = 0, stop = None):
 
       abjad> for rest in resttools.iterate_rests_backward_in_expr(staff):
       ...   rest
-      Rest('r8')
       Rest('r2')
+      Rest('r8')
 
    Ignore threads.
 

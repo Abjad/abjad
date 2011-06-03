@@ -12,8 +12,10 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
       abjad> score = Score(Staff([ ]) * 3)
       abjad> score[0].extend(macros.scale(4))
       abjad> contexttools.ClefMark('alto')(score[1])
+      ClefMark('alto')(Staff{ })
       abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
       abjad> contexttools.ClefMark('bass')(score[2])
+      ClefMark('bass')(Staff{ })
       abjad> score[2].append(Note(-24, (1, 2)))
       abjad> verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes(score)
       abjad> f(score)
@@ -31,7 +33,7 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
               }
               \new Staff {
                       \clef "bass"
-                      c,2 _ \markup { \small { \column { 0 7 } } }
+                      c,2 _ \markup { \small { \column { 12 7 } } }
               }
       >>
 

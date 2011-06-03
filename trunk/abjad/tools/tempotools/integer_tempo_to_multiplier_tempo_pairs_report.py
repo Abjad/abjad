@@ -39,6 +39,8 @@ def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
       29:30   60
       2:3     87
       1:2     116
+
+   Return none. 
    '''
 
    pairs = integer_tempo_to_multiplier_tempo_pairs(

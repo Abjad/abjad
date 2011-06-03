@@ -10,6 +10,8 @@ class FixedDurationTuplet(Tuplet):
 
       abjad> tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
       FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+
+   Return fixed-duration tuplet.
    '''
 
    def __init__(self, duration, music, **kwargs):

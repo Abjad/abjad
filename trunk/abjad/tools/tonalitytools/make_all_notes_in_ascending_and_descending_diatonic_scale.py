@@ -13,7 +13,11 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
 
    Construct one up-down period of scale according to `key_signature`::
 
-      abjad> score = macros.scale_period(contexttools.KeySignatureMark('E', 'major'))
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+
+      abjad> score = tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale(contexttools.KeySignatureMark('E', 'major'))
       abjad> f(score)
       \new Score \with {
               tempoWholesPerMinute = #(ly:make-moment 30 1)

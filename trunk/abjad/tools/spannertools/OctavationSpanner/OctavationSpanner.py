@@ -54,6 +54,8 @@ class OctavationSpanner(Spanner):
             abjad> octavation = spannertools.OctavationSpanner(staff[:], start = 1)
             abjad> octavation.start
             1
+
+         Set integer.
          '''
          return self._start
       def fset(self, arg):
@@ -78,6 +80,8 @@ class OctavationSpanner(Spanner):
             abjad> octavation.stop = 0
             abjad> octavation.stop
             0
+
+         Set integer.
          '''
          return self._stop
       def fset(self, arg):

@@ -7,16 +7,24 @@ def scale_aggregate_magnitude_by_rational(intervals, rational):
    '''Scale the aggregate magnitude of all intervals in `intervals` by
    `rational`, maintaining the original low offset ::
 
+      abjad> from abjad.tools import treetools
+      abjad> from abjad.tools.treetools import BoundedInterval
+      abjad> from abjad.tools.treetools import IntervalTree
+
+   ::
+
       abjad> a = BoundedInterval(-1, 3)
       abjad> b = BoundedInterval(6, 12)
       abjad> c = BoundedInterval(9, 16)
       abjad> tree = IntervalTree([a, b, c])
-      abjad> scale_aggregate_magnitude_by_rational(tree, Fraction(1, 3))
+      abjad> treetools.scale_aggregate_magnitude_by_rational(tree, Fraction(1, 3))
       IntervalTree([
-         BoundedInterval(-1, Fraction(1, 3), data = {}),
-         BoundedInterval(Fraction(4, 3), Fraction(10, 3), data = {}),
-         BoundedInterval(Fraction(7, 3), Fraction(14, 3), data = {})
+         BoundedInterval(-1, Fraction(1, 3), {}),
+         BoundedInterval(Fraction(4, 3), Fraction(10, 3), {}),
+         BoundedInterval(Fraction(7, 3), Fraction(14, 3), {})
       ])
+
+   Return interval tree.
    '''
 
    assert isinstance(rational, (int, Fraction)) and 0 < rational

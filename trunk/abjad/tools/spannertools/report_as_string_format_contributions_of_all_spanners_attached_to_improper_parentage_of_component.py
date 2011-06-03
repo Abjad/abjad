@@ -23,8 +23,9 @@ def report_as_string_format_contributions_of_all_spanners_attached_to_improper_p
    ::
       
       abjad> spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_component(staff[0])
-      'BeamSpanner\n\t_right\n\t\t[\nSlurSpanner\n\t_right\n\t\t(\nTrillSpanner\n\t_right\n\t\t\\startTrillSpan\n'
+      'BeamSpanner\n\t_right\n\t\t[\nSlurSpanner\n\t_right\n\t\t(\n'
 
+   Return string.
    '''
 
    result = ''

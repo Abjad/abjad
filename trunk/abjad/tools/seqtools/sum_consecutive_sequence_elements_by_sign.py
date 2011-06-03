@@ -41,7 +41,7 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
 
    ::
    
-      abjad> sequence(seqtools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [0, 1])
+      abjad> seqtools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [0, 1])
       [0, -1, -1, 5, -5, 8, -5, -6]
 
    ::

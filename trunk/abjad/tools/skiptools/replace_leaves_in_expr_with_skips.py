@@ -11,12 +11,16 @@ def replace_leaves_in_expr_with_skips(expr):
       abjad> skiptools.replace_leaves_in_expr_with_skips(staff[0])
       abjad> print staff.format
       \new Staff {
-            \time 2/8
-            s8
-            s8
-            \time 2/8
-            c'8
-            d'8
+        {
+           \time 2/8
+           s8
+           s8
+        }
+        {
+           \time 2/8
+           c'8
+           d'8
+        }
       }
 
    Return none.

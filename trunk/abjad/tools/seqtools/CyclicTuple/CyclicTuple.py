@@ -3,7 +3,7 @@ class CyclicTuple(tuple):
 
    Abjad model of cyclic tuple::
 
-      abjad> cyclic_tuple = seqtools.CyclicList('abcd')
+      abjad> cyclic_tuple = seqtools.CyclicTuple('abcd')
 
    ::
 

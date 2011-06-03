@@ -11,7 +11,7 @@ class BracketSpanner(TextSpanner):
    ::
 
       abjad> spannertools.BracketSpanner(staff[:])
-      spannertools.BracketSpanner(c'8, d'8, e'8, f'8)
+      BracketSpanner(c'8, d'8, e'8, f'8)
 
    ::
 

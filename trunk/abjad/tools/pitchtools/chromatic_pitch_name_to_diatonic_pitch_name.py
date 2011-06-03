@@ -7,7 +7,7 @@ def chromatic_pitch_name_to_diatonic_pitch_name(chromatic_pitch_name):
    Change `chromatic_pitch_name` to diatonic pitch name::
 
       abjad> pitchtools.chromatic_pitch_name_to_diatonic_pitch_name("cs''")
-      'cs'
+      "c''"
 
    Return string.
    '''

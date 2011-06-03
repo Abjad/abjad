@@ -4,17 +4,24 @@ from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_in
 from abjad.tools.treetools.group_tangent_or_overlapping_intervals_and_yield_groups import group_tangent_or_overlapping_intervals_and_yield_groups
 
 def fuse_tangent_or_overlapping_intervals(intervals):
-   '''Fuse all tangent or overlapping intervals and return an `IntervalTree`
-   of the result ::
+   '''Fuse all tangent or overlapping intervals and return an `IntervalTree` of the result ::
+
+      abjad> from abjad.tools import treetools
+      abjad> from abjad.tools.treetools import BoundedInterval
+      abjad> from abjad.tools.treetools import IntervalTree
+
+   ::
 
       abjad> a = BoundedInterval(0, 10)
       abjad> b = BoundedInterval(5, 15)
       abjad> c = BoundedInterval(15, 25)
       abjad> tree = IntervalTree([a, b, c])
-      abjad> fuse_tangent_or_overlapping_intervals(tree)
+      abjad> treetools.fuse_tangent_or_overlapping_intervals(tree)
       IntervalTree([
-         BoundedInterval(0, 25, data = {}),
+         BoundedInterval(0, 25, {})
       ])
+
+   Return interval tree.
    '''
 
    assert all_are_intervals_or_trees_or_empty(intervals)

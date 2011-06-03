@@ -6,7 +6,7 @@ class SchemeNumber(_Immutable):
    '''Abjad model of Scheme number::
 
       abjad> schemetools.SchemeNumber(1.1)
-      SchemeNumber(1.1)
+      SchemeNumber(1.1...)
 
    Scheme numbers are immutable.
    '''
@@ -45,12 +45,12 @@ class SchemeNumber(_Immutable):
    
    @property
    def format(self):
-      '''LilyPond input format of Scheme number:
-
-      ::
+      '''LilyPond input format of Scheme number::
 
          abjad> scheme_number = schemetools.SchemeNumber(1.1)
          abjad> scheme_number.format
          '#1.1'
+
+      Return string.
       '''
       return '#%s' % self.number

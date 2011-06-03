@@ -39,7 +39,7 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
    ::
 
       abjad> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1, 2, 4], (7, 16))
-      FixedDurationTuplet(7/16, [c'32, c'16, c'8, c'32, c'16, c'8])
+      FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8, c'4])
 
    .. note:: function accepts a pair rather than a rational.
 

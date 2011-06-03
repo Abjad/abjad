@@ -10,6 +10,7 @@ def apply_tie_spanner_to_leaf_pair(left, right):
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> tietools.TieSpanner(staff[:2])
+      TieSpanner(c'8, c'8)
       abjad> f(staff)
       \new Staff {
          c'8 ~

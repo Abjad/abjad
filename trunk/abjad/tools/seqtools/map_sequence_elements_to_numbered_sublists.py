@@ -12,7 +12,7 @@ def map_sequence_elements_to_numbered_sublists(sequence):
    ::
 
       abjad> seqtools.map_sequence_elements_to_numbered_sublists([1, 0, -3, -4, 5])
-      [[1], [ ], [-2, -3, -4], [-5, -6, -7, -8], [9, 10, 11, 12, 13]]
+      [[1], [], [-2, -3, -4], [-5, -6, -7, -8], [9, 10, 11, 12, 13]]
 
    Note that numbering starts at ``1``.
 

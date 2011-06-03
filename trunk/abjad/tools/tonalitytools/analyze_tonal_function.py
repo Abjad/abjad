@@ -9,6 +9,10 @@ def analyze_tonal_function(expr, key_signature):
 
    Analyze `expr` and return tonal function according to `key_signature`. ::
 
+      abjad> from abjad.tools import tonalitytools
+
+   ::
+
       abjad> chord = Chord(['ef', 'g', 'bf'], (1, 4))
       abjad> key_signature = contexttools.KeySignatureMark('c', 'major')
       abjad> tonalitytools.analyze_tonal_function(chord, key_signature)
@@ -20,6 +24,8 @@ def analyze_tonal_function(expr, key_signature):
       abjad> key_signature = contexttools.KeySignatureMark('c', 'major')
       abjad> tonalitytools.analyze_tonal_function(chord, key_signature) is None
       True
+
+   Return tonal function or none.
    '''
 
    if isinstance(expr, ChordClass):

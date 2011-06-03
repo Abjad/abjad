@@ -11,7 +11,7 @@ def diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_i
    to melodic diatonic interval::
 
       abjad> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(2, 1)
-      MelodicDiatonicInterval(ascending minor second)
+      MelodicDiatonicInterval('+m2')
 
    Return melodic diatonic interval.
    '''

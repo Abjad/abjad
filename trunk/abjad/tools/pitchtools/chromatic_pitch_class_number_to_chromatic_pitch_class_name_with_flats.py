@@ -6,8 +6,8 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
 
       abjad> for n in range(13):
       ...     pc = n / 2.0
-      ...     name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats_flats(pc)
-      ...     print '%s\\t%s' % (pc, name)
+      ...     name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pc)
+      ...     print '%s   %s' % (pc, name)
       ... 
       0.0   c
       0.5   dtqf

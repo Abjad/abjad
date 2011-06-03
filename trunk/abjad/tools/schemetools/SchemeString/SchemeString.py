@@ -30,12 +30,12 @@ class SchemeString(_StrictComparator, _Immutable):
    
    @property
    def format(self):
-      '''LilyPond input format of Scheme string:
-
-      ::
+      '''LilyPond input format of Scheme string::
 
          abjad> scheme_string = schemetools.SchemeString('grace')
          abjad> scheme_string.format
          '#"grace"'
+
+      Return string.
       '''
       return '#"%s"' % self._string

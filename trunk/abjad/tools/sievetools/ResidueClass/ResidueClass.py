@@ -11,7 +11,8 @@ class ResidueClass(_BaseResidueClass, _Immutable):
 
    Example from the opening of Xenakis's *Psappha* for solo percussion:: 
 
-      abjad> RC = ResidueClass
+      abjad> from abjad.tools.sievetools import ResidueClass as RC
+
       abjad> s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
       abjad> s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
       abjad> s3 = RC(8, 3)
@@ -22,10 +23,7 @@ class ResidueClass(_BaseResidueClass, _Immutable):
 
       abjad> y = s1 | s2 | s3 | s4 | s5 | s6 | s7 
       abjad> y
-      {{{RC(8, 0) | RC(8, 1) | RC(8, 7)} & {RC(5, 1) | RC(5, 3)}} | 
-      {{RC(8, 0) | RC(8, 1) | RC(8, 2)} & RC(5, 0)} | RC(8, 3) | RC(8, 4) | 
-      {{RC(8, 5) | RC(8, 6)} & {RC(5, 2) | RC(5, 3) | RC(5, 4)}} | 
-      {RC(8, 1) & RC(5, 2)} | {RC(8, 6) & RC(5, 1)}}
+      {{{ResidueClass(8, 0) | ResidueClass(8, 1) | ResidueClass(8, 7)} & {ResidueClass(5, 1) | ResidueClass(5, 3)}} | {{ResidueClass(8, 0) | ResidueClass(8, 1) | ResidueClass(8, 2)} & ResidueClass(5, 0)} | ResidueClass(8, 3) | ResidueClass(8, 4) | {{ResidueClass(8, 5) | ResidueClass(8, 6)} & {ResidueClass(5, 2) | ResidueClass(5, 3) | ResidueClass(5, 4)}} | {ResidueClass(5, 2) & ResidueClass(8, 1)} | {ResidueClass(5, 1) & ResidueClass(8, 6)}}
 
       abjad> y.get_congruent_bases(40)
          [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22, 23, 25, 27, 
@@ -33,6 +31,8 @@ class ResidueClass(_BaseResidueClass, _Immutable):
       abjad> y.get_boolean_train(40)
          [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 
          1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
+
+   Return residue class.
    '''
 
    def __init__(self, *args):
@@ -109,12 +109,14 @@ class ResidueClass(_BaseResidueClass, _Immutable):
 
    @property
    def modulo(self):
-      '''Period of residue class.'''
+      '''Period of residue class.
+      '''
       return self._modulo
 
    @property
    def residue(self):
-      '''Residue of residue class.'''
+      '''Residue of residue class.
+      '''
       return self._residue
 
    ## PUBLIC METHODS ##
@@ -128,11 +130,15 @@ class ResidueClass(_BaseResidueClass, _Immutable):
 
       Example::
 
-         abjad> r = ResidueClass(3, 0) 
+         abjad> from abjad.tools.sievetools import ResidueClass as RC
+         
+         abjad> r = RC(3, 0) 
          abjad> r.get_boolean_train(6)
          [1, 0, 0, 1, 0, 0]
-         abjad> k.get_congruent_bases(-6, 6)
-         [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0]
+         abjad> r.get_congruent_bases(-6, 6)
+         [-6, -3, 0, 3, 6]
+
+      Return list.
       '''
 
       min, max = _process_min_max_attribute(*min_max)
@@ -152,12 +158,16 @@ class ResidueClass(_BaseResidueClass, _Immutable):
       the min is assumed to be 0.
       
       Example::
+
+         abjad> from abjad.tools.sievetools import ResidueClass as RC
          
-         abjad> r = ResidueClass(3, 0)
+         abjad> r = RC(3, 0)
          abjad> r.get_congruent_bases(6)
          [0, 3, 6]
          abjad> r.get_congruent_bases(-6, 6)
          [-6, -3, 0, 3, 6]
+
+      Return list.
       '''
 
       min, max = _process_min_max_attribute(*min_max)

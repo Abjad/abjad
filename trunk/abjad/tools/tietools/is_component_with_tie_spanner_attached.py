@@ -10,6 +10,7 @@ def is_component_with_tie_spanner_attached(expr):
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> tietools.TieSpanner(staff[:])
+      TieSpanner(c'8, c'8, c'8, c'8)
       abjad> f(staff)
       \new Staff {
          c'8 ~
@@ -18,12 +19,13 @@ def is_component_with_tie_spanner_attached(expr):
          c'8
       }
       abjad> tietools.is_component_with_tie_spanner_attached(staff)
-      True
+      False
 
    Otherwise false::
 
       abjad> staff = Staff(notetools.make_repeated_notes(4))
       abjad> tietools.TieSpanner(staff[:])
+      TieSpanner(c'8, c'8, c'8, c'8)
       abjad> f(staff)
       \new Staff {
          c'8 ~
@@ -31,8 +33,10 @@ def is_component_with_tie_spanner_attached(expr):
          c'8 ~
          c'8
       }
-      abjad> tietools.is_component_with_tie_spanner_attached(t[1])
-      False
+      abjad> tietools.is_component_with_tie_spanner_attached(staff[1])
+      True
+
+   Return boolean.
    '''
 
    if not isinstance(expr, _Component):

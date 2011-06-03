@@ -11,7 +11,7 @@ def set_vertical_positioning_pitch_on_rest(rest, pitch):
    ::
 
       abjad> resttools.set_vertical_positioning_pitch_on_rest(rest, "d''")
-      Rest(4)
+      Rest('r4')
 
    ::
 

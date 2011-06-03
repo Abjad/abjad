@@ -21,7 +21,7 @@ class DecrescendoSpanner(HairpinSpanner):
    ::
 
       abjad> spannertools.DecrescendoSpanner(staff[:], include_rests = True)
-      CrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
+      DecrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
    ::
 

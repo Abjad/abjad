@@ -75,25 +75,25 @@ class SchemeMoment(_StrictComparator, _Immutable):
 
    @property
    def duration(self):
-      '''Duration of scheme moment:
-
-      ::
+      '''Duration of scheme moment::
 
          abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
          abjad> scheme_moment.duration
          Fraction(1, 68)
+
+      Return duration.
       '''
       return self._duration
 
    @property
    def format(self):
-      '''LilyPond input format of scheme moment:
-
-      ::
+      '''LilyPond input format of scheme moment::
 
          abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
          abjad> scheme_moment.format
          '#(ly:make-moment 1 68)'
+
+      Return string.
       '''
       numerator, denominator = self.duration.numerator, self.duration.denominator
       return '#(ly:make-moment %s %s)' % (numerator, denominator)

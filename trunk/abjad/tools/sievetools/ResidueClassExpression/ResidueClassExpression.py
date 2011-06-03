@@ -57,7 +57,8 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
 
    @property
    def operator(self):
-      '''Operator of residue class expression.'''
+      '''Operator of residue class expression.
+      '''
       return self._operator
 
    @property
@@ -73,7 +74,8 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
 
    @property
    def rcs(self):
-      '''Residue classes of expression.'''
+      '''Residue classes of expression.
+      '''
       return self._rcs
 
    @property
@@ -99,12 +101,17 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
 
       Example::
 
-         abjad> RC = ResidueClass
+         abjad> from abjad.tools.sievetools import ResidueClass as RC
+
+      ::
+
          abjad> e = RC(3, 0) | RC(2, 0)
          abjad> e.get_boolean_train(6)
          [1, 0, 1, 1, 1, 0]
          abjad> e.get_congruent_bases(-6, 6)
-         [1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0]
+         [-6, -4, -3, -2, 0, 2, 3, 4, 6]
+
+      Return list.
       '''
 
       min, max = _process_min_max_attribute(*min_max)
@@ -125,12 +132,18 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
       and min is assumed to be 0.
       
       Example::
+
+         abjad> from abjad.tools.sievetools import ResidueClass as RC
+
+      ::
          
          abjad> e = RC(3, 0) | RC(2, 0)
          abjad> e.get_congruent_bases(6)
          [0, 2, 3, 4, 6]
          abjad> e.get_congruent_bases(-6, 6)
          [-6, -4, -3, -2, 0, 2, 3, 4, 6]
+
+      Return list.
       '''
 
       min, max = _process_min_max_attribute(*min_max)

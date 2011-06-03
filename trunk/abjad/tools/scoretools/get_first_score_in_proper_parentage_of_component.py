@@ -25,7 +25,7 @@ def get_first_score_in_proper_parentage_of_component(component):
 
    ::
 
-      abjad> stafftools.get_first_score_in_proper_parentage_of_component(score.leaves[0])
+      abjad> scoretools.get_first_score_in_proper_parentage_of_component(score.leaves[0])
       Score<<1>>
 
    Return score or none.

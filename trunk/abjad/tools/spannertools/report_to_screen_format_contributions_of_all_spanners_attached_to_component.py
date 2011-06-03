@@ -21,16 +21,17 @@ def report_to_screen_format_contributions_of_all_spanners_attached_to_component(
       
    ::
       
-      abjad> spannertools.report_format_contributions_of_all_spanners_attached_to_component_to_screen(staff[0])
+      abjad> spannertools.report_to_screen_format_contributions_of_all_spanners_attached_to_component(staff[0])
       BeamSpanner
          _right
             [
       SlurSpanner
          _right
             (
+
+   Return none.
    '''
 
-   report = report_as_string_format_contributions_of_all_spanners_attached_to_component(
-      component, klass)
+   report = report_as_string_format_contributions_of_all_spanners_attached_to_component(component, klass)
    
    print report
