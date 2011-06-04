@@ -33,20 +33,26 @@ def get_effective_context_mark(component, klass):
    from abjad.tools import componenttools
    from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
 
-   #print 'getting ready to get effective mark ...'
-   component._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
+   #print 'getting effective context mark mark ...'
+   ## following line was tested to be completely unnecessary; remove after statal bug fix:
+   #component._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
    component._update_marks_of_entire_score_tree_if_necessary( )
 
-   #print 'now getting effective mark ...'
+   #print 'gathering candidate marks ...'
    candidate_marks = set([ ])
    for parent in componenttools.get_improper_parentage_of_component(component):
-      for mark in parent.marks:
+      parent_marks = parent.marks
+      #print 'parent marks %s ...' % str(parent_marks)
+      for mark in parent_marks:
+         #print 'now checking %s ...' % mark
          if isinstance(mark, klass):
+            #print 'mark.effective_context is %s ...' % mark.effective_context
             if mark.effective_context is not None:
                candidate_marks.add(mark)
             elif isinstance(mark, TimeSignatureMark):
                if isinstance(mark.start_component, Measure):
                   candidate_marks.add(mark)
+   #print 'unsorted canddiate marks %s ...' % candidate_marks
    candidate_marks = sorted(candidate_marks, 
       cmp = lambda m, n: cmp(m.start_component._offset.start, n.start_component._offset.start)) 
    #print candidate_marks

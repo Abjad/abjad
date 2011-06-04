@@ -46,8 +46,9 @@ class ContextMark(Mark):
       self._effective_context = correct_effective_context
       correct_effective_context._mark_entire_score_tree_for_later_update('marks')
 
-   def __bind_start_component(self, start_component):
-      Mark.__bind_start_component(self, start_component)
+   def _bind_start_component(self, start_component):
+      #print 'binding CONTEXT MARK to start component ...'
+      Mark._bind_start_component(self, start_component)
       self._start_component._mark_entire_score_tree_for_later_update('marks')
 
    def __unbind_effective_context(self):
@@ -92,6 +93,7 @@ class ContextMark(Mark):
    def _update_effective_context(self):
       '''This function is designed to be called by score components during score update.
       '''
+      #print '\tupdating effective context of %s ...' % self.__class__.__name__
       current_effective_context = self._effective_context
       correct_effective_context = self._find_correct_effective_context( )
       if current_effective_context is not correct_effective_context:

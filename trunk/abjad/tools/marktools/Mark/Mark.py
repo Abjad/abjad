@@ -71,7 +71,9 @@ class Mark(object):
 
    ## MANGLED METHODS ##
 
-   def __bind_start_component(self, start_component):
+   ## method must NOT be preceeded by __ so that child ContextMark objects can call it
+   def _bind_start_component(self, start_component):
+      #print 'binding MARK to start component ...'
       assert isinstance(start_component, _Component)
       self.__unbind_start_component( )
       start_component._marks_for_which_component_functions_as_start_component.append(self)
@@ -124,7 +126,7 @@ class Mark(object):
 
       Return mark.
       '''
-      self.__bind_start_component(start_component)
+      self._bind_start_component(start_component)
       return self
 
    def detach_mark(self):
