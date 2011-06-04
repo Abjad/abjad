@@ -41,7 +41,7 @@ class TimeSignatureMark(ContextMark):
 
    _format_slot = 'opening'
 
-   #__slots__ = ('_denominator', '_duration', '_format', '_format_slot', '_multiplier',
+   #__slots__ = ('_denominator', '_duration', '_format_slot', '_multiplier',
    #   '_is_nonbinary', '_numerator', '_partial', )
 
    def __init__(self, *args, **kwargs):
@@ -90,12 +90,10 @@ class TimeSignatureMark(ContextMark):
 
       ## initialize derived attributes
       #object.__setattr__(self, '_duration', Fraction(numerator, denominator))
-      #object.__setattr__(self, '_format', r'\time %s/%s' % (numerator, denominator))
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
       #object.__setattr__(self, '_multiplier', _multiplier)
       #object.__setattr__(self, '_is_nonbinary', not mathtools.is_nonnegative_integer_power_of_two(self.denominator))
       #self._duration = Fraction(numerator, denominator)
-      self._format = r'\time %s/%s' % (numerator, denominator)
       self._multiplier = _multiplier
       self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
 
@@ -226,10 +224,10 @@ class TimeSignatureMark(ContextMark):
       if self.suppress:
          return [ ]
       elif self.partial is None:
-         return self._format
+         return r'\time %s/%s' % (self.numerator, self.denominator)
       else:
          result = [ ]
-         result.append(self._format)
+         result.append(r'\time %s/%s' % (self.numerator, self.denominator))
          duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.partial)
          partial_directive = r'\partial %s' % duration_string
          result.append(partial_directive)
