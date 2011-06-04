@@ -295,10 +295,10 @@ class TimeSignatureMark(ContextMark):
             abjad> meter.partial
             Fraction(1, 4)
 
-         Set fraction.
+         Set fraction or none.
          '''
          return self._partial
       def fset(self, partial):
-         assert isinstance(partial, numbers.Number)
+         assert isinstance(partial, (numbers.Number, type(None)))
          self._partial = partial
       return property(**locals( ))

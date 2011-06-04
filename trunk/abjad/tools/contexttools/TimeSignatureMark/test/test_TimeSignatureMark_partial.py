@@ -30,3 +30,43 @@ def test_TimeSignatureMark_partial_02( ):
 
    meter.partial = Fraction(2, 8)
    assert meter.partial == Fraction(2, 8)
+
+
+def test_TimeSignatureMark_partial_03( ):
+   '''Time signature partial can be cleared with none.
+   '''
+
+   staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
+   time_signature = contexttools.TimeSignatureMark(4, 8)(staff)
+   time_signature.partial = Fraction(2, 8)
+
+   r'''
+   \new Staff {
+      \partial 4
+      \time 4/8
+      c'8
+      d'8
+      e'8
+      f'8
+      g'8
+      a'8
+   }
+   '''
+
+   assert staff.format == "\\new Staff {\n\t\\partial 4\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
+
+   time_signature.partial = None
+
+   r'''
+   \new Staff {
+      \time 4/8
+      c'8
+      d'8
+      e'8
+      f'8
+      g'8
+      a'8
+   }
+   '''
+
+   assert staff.format == "\\new Staff {\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
