@@ -30,7 +30,7 @@ def test__Leaf_set_minus_03( ):
    v = t - u
    assert isinstance(v, Rest)
    #assert v == Rest((1, 4))
-   assert v.duration.written == Fraction(1, 4)
+   assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
    
 
@@ -77,7 +77,7 @@ def test__Leaf_set_minus_07( ):
    v = t - u
    assert isinstance(v, Rest)
    #assert v == Rest((1, 4))
-   assert v.duration.written == Fraction(1, 4)
+   assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 
 
@@ -88,7 +88,7 @@ def test__Leaf_set_minus_08( ):
    v = t - u
    assert isinstance(v, Rest)
    #assert v == Rest((1, 4))
-   assert v.duration.written == Fraction(1, 4)
+   assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 
 
@@ -99,7 +99,7 @@ def test__Leaf_set_minus_09( ):
    v = t - u
    assert isinstance(v, Rest)
    #assert v == Rest((1, 4))
-   assert v.duration.written == Fraction(1, 4)
+   assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 
 

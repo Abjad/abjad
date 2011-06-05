@@ -9,7 +9,7 @@ def desordre_build(pitches):
    #piano = make_empty_piano_score( )[0]
    piano = scoretools.PianoStaff([ ])
    ## set tempo indication...
-   contexttools.TempoMark(Fraction(1, 1), 60)(piano)
+   contexttools.TempoMark(Duration(1, 1), 60)(piano)
    ## build music...
    for hand in pitches:
       seq = staff_build(hand)

@@ -5,7 +5,7 @@ def test_Chord_append_01( ):
    '''Append tweaked note head.
    '''
 
-   chord = Chord([0, 2], Fraction(1, 4))
+   chord = Chord([0, 2], Duration(1, 4))
    note_head = notetools.NoteHead(11)
    note_head.tweak.style = 'harmonic'
    chord.append(note_head)

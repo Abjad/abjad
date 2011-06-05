@@ -84,7 +84,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
          abjad> t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
          abjad> t.duration.multiplier
-         Fraction(1, 1)
+         Duration(1, 1)
 
       Such tuplets output unscaled notes and rests.
 

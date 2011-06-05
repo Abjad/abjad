@@ -1,6 +1,5 @@
 from abjad import *
 import py.test
-py.test.skip('unskip after leaf duration interfaces use durations instead of fractions.')
 
 
 def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):

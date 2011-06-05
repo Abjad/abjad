@@ -49,7 +49,7 @@ def test_Container___setitem___integer_02( ):
    }
    '''
 
-   t[1] = Container(notetools.make_repeated_notes(3, Fraction(1, 16)))
+   t[1] = Container(notetools.make_repeated_notes(3, Duration(1, 16)))
 
    r'''
    \new Voice {

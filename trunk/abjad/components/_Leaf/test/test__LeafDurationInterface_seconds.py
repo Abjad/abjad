@@ -7,8 +7,8 @@ def test__LeafDurationInterface_seconds_01( ):
 
    #t = Container(macros.scale(4))
    t = Staff(macros.scale(4))
-   contexttools.TempoMark(Fraction(1, 4), 38)(t)
-   contexttools.TempoMark(Fraction(1, 4), 42)(t[2])
+   contexttools.TempoMark(Duration(1, 4), 38)(t)
+   contexttools.TempoMark(Duration(1, 4), 42)(t[2])
    Score([t])
 
    r'''
@@ -22,10 +22,10 @@ def test__LeafDurationInterface_seconds_01( ):
    }
    '''
 
-   assert t[0].duration.seconds == Fraction(15, 19)
-   assert t[1].duration.seconds == Fraction(15, 19)
-   assert t[2].duration.seconds == Fraction(5, 7)
-   assert t[3].duration.seconds == Fraction(5, 7)
+   assert t[0].duration.seconds == Duration(15, 19)
+   assert t[1].duration.seconds == Duration(15, 19)
+   assert t[2].duration.seconds == Duration(5, 7)
+   assert t[3].duration.seconds == Duration(5, 7)
 
 
 def test__LeafDurationInterface_seconds_02( ):

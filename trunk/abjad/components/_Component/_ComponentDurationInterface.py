@@ -1,6 +1,6 @@
 from abjad.interfaces._Interface import _Interface
 from abjad.tools import mathtools
-from fractions import Fraction
+import fractions
 
 
 class _ComponentDurationInterface(_Interface):
@@ -17,7 +17,7 @@ class _ComponentDurationInterface(_Interface):
       result = [ ]
       parent = self._client._parentage.parent
       while parent is not None:
-         result.append(getattr(parent.duration, 'multiplier', Fraction(1)))
+         result.append(getattr(parent.duration, 'multiplier', fractions.Fraction(1)))
          parent = parent._parentage.parent
       return result
 
@@ -33,5 +33,5 @@ class _ComponentDurationInterface(_Interface):
 
    @property
    def prolation(self):
-      products = mathtools.cumulative_products([Fraction(1)] + self._prolations)
+      products = mathtools.cumulative_products([fractions.Fraction(1)] + self._prolations)
       return products[-1]

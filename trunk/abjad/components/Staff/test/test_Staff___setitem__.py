@@ -60,9 +60,9 @@ def test_Staff___setitem___01( ):
 def test_Staff___setitem___02( ):
    '''Reassign the *entire* contents of t.'''
    t = Staff(Note(0, (1, 4)) * 4)
-   assert t.duration.contents == Fraction(4, 4)
+   assert t.duration.contents == Duration(4, 4)
    t[:] = Note(0, (1, 8)) * 4
-   assert t.duration.contents == Fraction(4, 8)
+   assert t.duration.contents == Duration(4, 8)
 
 
 def test_Staff___setitem___03( ):
@@ -111,9 +111,9 @@ def test_Staff___setitem___08( ):
    t[0:4] = Chord([2, 3, 4], (1, 4)) * 4
    assert len(t) == 8
    for x in t[0:4]:
-      assert x.duration.written == Fraction(1, 4)
+      assert x.duration.written == Duration(1, 4)
    for x in t[4:8]:
-      assert x.duration.written == Fraction(1, 8)
+      assert x.duration.written == Duration(1, 8)
    assert componenttools.is_well_formed_component(t)
 
 

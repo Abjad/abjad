@@ -3,7 +3,7 @@ from abjad.exceptions import AssignabilityError
 from abjad.exceptions import MissingTempoError
 from abjad.interfaces._Interface import _Interface
 from abjad.tools import durtools
-from fractions import Fraction
+import fractions
 
 
 class _LeafDurationInterface(_ComponentDurationInterface):
@@ -13,7 +13,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    def __init__(self, _client, duration_token):
       _ComponentDurationInterface.__init__(self, _client)
       self.multiplier = None
-      self.written = Fraction(*durtools.duration_token_to_duration_pair(duration_token))
+      self.written = durtools.Duration(durtools.duration_token_to_duration_pair(duration_token))
 
    ## OVERLOADS ##
 
@@ -39,7 +39,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
          if self.multiplier is not None:
             return self.written * self.multiplier
          else:
-            return Fraction(self.written)
+            return durtools.Duration(self.written)
       else:
          return None
 
@@ -51,12 +51,12 @@ class _LeafDurationInterface(_ComponentDurationInterface):
          if expr is None:
             self._multiplier = None
          else:
-            if isinstance(expr, Fraction):
+            if isinstance(expr, fractions.Fraction):
                rational = expr
             elif isinstance(expr, (int, long)):
-               rational = Fraction(expr)
+               rational = fractions.Fraction(expr)
             elif isinstance(expr, tuple):
-               rational = Fraction(*expr)
+               rational = fractions.Fraction(*expr)
             else:
                raise TypeError('can not set duration multiplier: "%s".' % str(expr))
             assert 0 <= rational
@@ -82,12 +82,13 @@ class _LeafDurationInterface(_ComponentDurationInterface):
       def fget(self):
          return self._written
       def fset(self, expr):
-         if isinstance(expr, Fraction):
-            rational = expr
-         elif isinstance(expr, (int, long)):
-            rational = Fraction(expr)
-         else:
-            raise ValueError('can not set written duration: "%s".' % str(expr))
+#         if isinstance(expr, Duration):
+#            rational = expr
+#         elif isinstance(expr, (int, long)):
+#            rational = Duration(expr)
+#         else:
+#            raise ValueError('can not set written duration: "%s".' % str(expr))
+         rational = durtools.Duration(expr)
          if not durtools.is_assignable_rational(rational):
             raise AssignabilityError('not assignable duration: "%s".' % str(rational))
          self._written = rational

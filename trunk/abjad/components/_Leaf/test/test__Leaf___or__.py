@@ -76,7 +76,7 @@ def test__Leaf___or___07( ):
    v = t | u
    assert isinstance(v, Rest)
    #assert v == Rest((1, 4))
-   assert v.duration.written == Fraction(1, 4)
+   assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 
 

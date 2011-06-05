@@ -1,5 +1,5 @@
 from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class _MultipliedContainerDurationInterface(_ContainerDurationInterface):
@@ -11,7 +11,7 @@ class _MultipliedContainerDurationInterface(_ContainerDurationInterface):
 
    @property
    def multiplier(self):
-      return Fraction(1)
+      return Duration(1)
 
    @property
    def preprolated(self):

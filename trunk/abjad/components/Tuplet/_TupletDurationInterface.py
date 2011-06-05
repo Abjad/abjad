@@ -1,6 +1,7 @@
 from abjad.components.Container._MultipliedContainerDurationInterface import _MultipliedContainerDurationInterface
 from abjad.tools import mathtools
-from fractions import Fraction
+from abjad.tools import durtools
+import fractions
 
 
 class _TupletDurationInterface(_MultipliedContainerDurationInterface):
@@ -19,13 +20,13 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       if 0 < len(self._client):
          return self.multiplier * self.contents
       else:
-         return Fraction(0)
+         return durtools.Duration(0)
 
    @property
    def _multiplier_fraction_string(self):
       from abjad.tools import durtools
       if self.preferred_denominator is not None:
-         inverse_multiplier = Fraction(self.multiplier.denominator, self.multiplier.numerator)
+         inverse_multiplier = fractions.Fraction(self.multiplier.denominator, self.multiplier.numerator)
          d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             inverse_multiplier, self.preferred_denominator)
       else:
@@ -89,11 +90,11 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          return self._multiplier
       def fset(self, expr):
          if isinstance(expr, (int, long)):
-            rational = Fraction(expr)
+            rational = fractions.Fraction(expr)
          elif isinstance(expr, tuple):
-            rational = Fraction(*expr)
-         elif isinstance(expr, Fraction):
-            rational = Fraction(expr)
+            rational = fractions.Fraction(*expr)
+         elif isinstance(expr, fractions.Fraction):
+            rational = fractions.Fraction(expr)
          else:
             raise ValueError('can not set tuplet multiplier: "%s".' % str(expr))
          if 0 < rational:
@@ -126,7 +127,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
          abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.duration.preprolated
-         Fraction(1, 4)
+         Duration(1, 4)
 
       Return duration.
       '''

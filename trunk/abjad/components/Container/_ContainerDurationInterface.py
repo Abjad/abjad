@@ -1,5 +1,5 @@
 from abjad.components._Component._ComponentDurationInterface import _ComponentDurationInterface
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class _ContainerDurationInterface(_ComponentDurationInterface):
@@ -20,9 +20,9 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
       client = self._client
       if client.is_parallel: 
          return max(
-            [Fraction(0)] + [x.duration.preprolated for x in client])
+            [durtools.Duration(0)] + [x.duration.preprolated for x in client])
       else:
-         duration = Fraction(0)
+         duration = durtools.Duration(0)
          for x in client:
             duration += x.duration.preprolated
          return duration
@@ -38,9 +38,9 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
       client = self._client
       if client.is_parallel:
          return max(
-            [Fraction(0)] + [x.duration.seconds for x in client])
+            [durtools.Duration(0)] + [x.duration.seconds for x in client])
       else:
-         duration = Fraction(0)
+         duration = durtools.Duration(0)
          for leaf in client.leaves:
             duration += leaf.duration.seconds
          return duration

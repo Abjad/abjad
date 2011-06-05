@@ -8,8 +8,8 @@ def test__ContainerDurationInterface_seconds_01( ):
    '''
 
    t = Staff(macros.scale(4))
-   contexttools.TempoMark(Fraction(1, 4), 38)(t)
-   contexttools.TempoMark(Fraction(1, 4), 42)(t[2])
+   contexttools.TempoMark(Duration(1, 4), 38)(t)
+   contexttools.TempoMark(Duration(1, 4), 42)(t[2])
    score = Score([t])
 
    r'''
@@ -25,7 +25,7 @@ def test__ContainerDurationInterface_seconds_01( ):
    >>
    '''
 
-   assert score.duration.seconds == Fraction(400, 133)
+   assert score.duration.seconds == Duration(400, 133)
 
 
 def test__ContainerDurationInterface_seconds_02( ):

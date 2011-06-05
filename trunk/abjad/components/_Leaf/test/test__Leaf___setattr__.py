@@ -7,6 +7,6 @@ def test__Leaf___setattr___01( ):
    '''Slots constrain leaf attributes.
    '''
 
-   leaf = _Leaf(Fraction(1, 4))
+   leaf = _Leaf(Duration(1, 4))
 
    assert py.test.raises(AttributeError, "leaf.foo = 'bar'")

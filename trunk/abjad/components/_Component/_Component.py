@@ -4,7 +4,7 @@ from abjad.core import _StrictComparator
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class _Component(_StrictComparator):
@@ -108,6 +108,7 @@ class _Component(_StrictComparator):
 #      for attribute in most_attributes:
 #         target_object = getattr(target_object, attribute)
 #      setattr(target_object, last_attribute, value)
+      from fractions import Fraction
       attribute_chain = key.split('__')
       plug_in_name = attribute_chain[0]
       names = attribute_chain[1:]
