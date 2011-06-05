@@ -27,4 +27,4 @@ def test_leaftools_get_composite_offset_difference_series_from_leaves_in_expr_01
    '''
 
    result = leaftools.get_composite_offset_difference_series_from_leaves_in_expr(score)
-   assert result == [Fraction(1, 8), Fraction(1, 24), Fraction(1, 12), Fraction(1, 12), Fraction(1, 24), Fraction(1, 8)]
+   assert result == [Duration(1, 8), Duration(1, 24), Duration(1, 12), Duration(1, 12), Duration(1, 24), Duration(1, 8)]

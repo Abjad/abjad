@@ -25,7 +25,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], Fraction(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], Duration(1, 32))
 
    r'''
    \new Staff {
@@ -73,7 +73,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], Fraction(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], Duration(1, 32))
 
    r'''
    \new Staff {
@@ -124,7 +124,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t, Fraction(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t, Duration(1, 32))
 
    "halves[0][0]"
 
@@ -184,7 +184,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   d = Fraction(1, 32)
+   d = Duration(1, 32)
    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], d, tie_after = True)
 
    r'''
@@ -235,7 +235,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   d = Fraction(1, 32)
+   d = Duration(1, 32)
    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d, tie_after = True)
 
    r'''
@@ -290,7 +290,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   d = Fraction(1, 5)
+   d = Duration(1, 5)
    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d)
 
    r'''
@@ -349,7 +349,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   d = Fraction(1, 5)
+   d = Duration(1, 5)
    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d, tie_after = True)
 
    r'''

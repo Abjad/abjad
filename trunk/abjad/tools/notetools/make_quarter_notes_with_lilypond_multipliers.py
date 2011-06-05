@@ -1,7 +1,8 @@
 from abjad.components import Note
 from abjad.tools import durtools
 from abjad.tools import seqtools
-from fractions import Fraction
+from abjad.tools import durtools
+import fractions
 
 
 def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
@@ -34,10 +35,10 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
    quarter_notes = [ ]
 
    for pitch, duration in seqtools.zip_sequences_cyclically(pitches, multiplied_durations):
-      quarter_note = Note(pitch, Fraction(1, 4))
+      quarter_note = Note(pitch, durtools.Duration(1, 4))
       duration_token = durtools.duration_token_to_duration_pair(duration)
-      duration = Fraction(*duration_token)
-      multiplier = duration / Fraction(1, 4)
+      duration = durtools.Duration(*duration_token)
+      multiplier = fractions.Fraction(duration / durtools.Duration(1, 4))
       quarter_note.duration.multiplier = multiplier
       quarter_notes.append(quarter_note)
 

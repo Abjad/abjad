@@ -1,7 +1,7 @@
 from abjad.components import Rest
 from abjad.components._Leaf import _Leaf
 from abjad.tools.skiptools.Skip import Skip
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def _insert_measure_padding(expr, front, back, klass, splice = False):
@@ -13,10 +13,10 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    from abjad.tools import componenttools
    from abjad.tools import measuretools
 
-   if not isinstance(front, (Fraction, type(None))):
+   if not isinstance(front, (Duration, type(None))):
       raise ValueError
 
-   if not isinstance(back, (Fraction, type(None))):
+   if not isinstance(back, (Duration, type(None))):
       raise ValueError
 
    if not isinstance(klass, (Rest, Skip)):

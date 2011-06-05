@@ -3,7 +3,7 @@ from abjad import *
 
 def test_MeasuredComplexBeamSpanner_01( ):
 
-   t = Staff(Measure((2, 16), notetools.make_repeated_notes(2, Fraction(1, 16))) * 3)
+   t = Staff(Measure((2, 16), notetools.make_repeated_notes(2, Duration(1, 16))) * 3)
    macros.diatonicize(t)
 
    r'''

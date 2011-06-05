@@ -1,7 +1,7 @@
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 from abjad.tools.measuretools.multiply_contents_of_measures_in_expr import multiply_contents_of_measures_in_expr
 from abjad.tools.measuretools.scale_measure_by_multiplier_and_adjust_meter import scale_measure_by_multiplier_and_adjust_meter
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, concentration_pairs):
@@ -18,19 +18,19 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
 
    Example::
 
-      abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))
+      abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])[0])
       |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
    Example::
 
-      abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))
+      abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 2)])[0])
       |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
    
    Example::
 
-      abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))
+      abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 1)])[0])
       |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
 
@@ -53,7 +53,7 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
       assert isinstance(concentration_pair, tuple)
       spin_count, scalar_denominator = concentration_pair
       multiply_contents_of_measures_in_expr(measure, spin_count)
-      multiplier = Fraction(1, scalar_denominator)
+      multiplier = durtools.Duration(1, scalar_denominator)
       scale_measure_by_multiplier_and_adjust_meter(measure, multiplier)
       result.append(measure)
 

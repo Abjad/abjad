@@ -1,5 +1,5 @@
 from abjad.core import _StrictComparator
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class _SpannerOffsetInterface(_StrictComparator):
@@ -15,7 +15,7 @@ class _SpannerOffsetInterface(_StrictComparator):
       if len(client):
          return client[0]._offset.start
       else:
-         return Fraction(0)
+         return Duration(0)
 
    @property
    def stop(self):
@@ -24,4 +24,4 @@ class _SpannerOffsetInterface(_StrictComparator):
          last = client[-1]
          return last._offset.stop
       else:
-         return Fraction(0)
+         return Duration(0)

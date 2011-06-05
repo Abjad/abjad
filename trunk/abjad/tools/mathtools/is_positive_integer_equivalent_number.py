@@ -6,7 +6,7 @@ def is_positive_integer_equivalent_number(expr):
 
    True when `expr` is a positive integer-equivalent number. Otherwise false::
 
-      abjad> mathtools.is_positive_integer_equivalent_number(Fraction(4, 2))
+      abjad> mathtools.is_positive_integer_equivalent_number(Duration(4, 2))
       True
 
    Return boolean.

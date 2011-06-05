@@ -26,7 +26,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t.leaves[0], Fraction(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t.leaves[0], Duration(1, 32))
 
    r'''
    \new Staff {
@@ -76,7 +76,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(1, 32))
 
    r'''
    \new Staff {
@@ -128,7 +128,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Fraction(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Duration(1, 32))
 
    "halves[0][0]"
 
@@ -189,7 +189,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t.leaves[1], Fraction(1, 32))
+   componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t.leaves[1], Duration(1, 32))
 
    r'''
    \new Staff {
@@ -237,7 +237,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(7, 32))
+   componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(7, 32))
 
    r'''
    \new Staff {
@@ -286,7 +286,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   parts = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(1, 8))
+   parts = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(1, 8))
 
    r'''
    \new Staff {
@@ -321,7 +321,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    "c'8 [ ]"
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Fraction(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Duration(1, 32))
 
    "c'32 [ ]"
    assert componenttools.is_well_formed_component(halves[0][0])
@@ -355,7 +355,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   d = Fraction(1, 32)
+   d = Duration(1, 32)
    halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t.leaves[0], d, tie_after = True)
 
    r'''
@@ -407,7 +407,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   d = Fraction(1, 32)
+   d = Duration(1, 32)
    halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], d, tie_after = True)
 
    r'''
@@ -462,7 +462,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   d = Fraction(1, 5)
+   d = Duration(1, 5)
    halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], d)
 
    r'''
@@ -520,7 +520,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   d = Fraction(1, 5)
+   d = Duration(1, 5)
    halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], d, tie_after = True)
 
    r'''
@@ -582,7 +582,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(7, 20))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(7, 20))
 
    r'''
    \new Staff {
@@ -623,11 +623,11 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Halves carry adjusted LilyPond multipliers.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Fraction(1, 2)
+   t.duration.multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Fraction(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Duration(1, 32))
 
    assert len(halves) == 2
    assert componenttools.is_well_formed_component(halves[0][0])
@@ -644,11 +644,11 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Halves carry adjusted LilyPond multipliers.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Fraction(1, 2)
+   t.duration.multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Fraction(1, 48))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Duration(1, 48))
 
    assert len(halves) == 2
    assert componenttools.is_well_formed_component(halves[0][0])
@@ -666,7 +666,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    for leaf in t.leaves:
-      leaf.duration.multiplier = Fraction(1, 2)
+      leaf.duration.multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -686,7 +686,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(1, 16))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(1, 16))
 
    r'''
    \new Staff {
@@ -719,7 +719,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    for leaf in t.leaves:
-      leaf.duration.multiplier = Fraction(1, 2)
+      leaf.duration.multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -739,7 +739,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(3, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(3, 32))
 
    r'''
    \new Staff {
@@ -775,7 +775,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
    macros.diatonicize(t)
    for leaf in t.leaves:
-      leaf.duration.multiplier = Fraction(1, 2)
+      leaf.duration.multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -795,7 +795,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(2, 24))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(2, 24))
 
    r'''
    \new Staff {
@@ -832,7 +832,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    py.test.skip('infinite loop?')
 
    t = Staff([Measure((5, 16), [Skip((1, 1))])])
-   t.leaves[0].duration.multiplier = Fraction(5, 16)
+   t.leaves[0].duration.multiplier = Duration(5, 16)
 
    r'''
    \new Staff {
@@ -843,7 +843,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(16, 80))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(16, 80))
 
    r'''
    \new Staff {
@@ -873,7 +873,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Split between leaves but do fracture spanners.'''
 
    t = Staff([Measure((15, 80), notetools.make_notes(
-      0, [Fraction(1, 32)] * 7 + [Fraction(1, 64)]))])
+      0, [Duration(1, 32)] * 7 + [Duration(1, 64)]))])
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t.leaves)
@@ -896,7 +896,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Fraction(14, 80))
+   halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t[0], Duration(14, 80))
 
    r'''
    \new Staff {

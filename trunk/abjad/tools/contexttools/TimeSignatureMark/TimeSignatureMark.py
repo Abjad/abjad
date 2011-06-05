@@ -1,7 +1,7 @@
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.contexttools.ContextMark import ContextMark
-from fractions import Fraction
+from abjad.tools import durtools
 import numbers
 
 
@@ -58,7 +58,7 @@ class TimeSignatureMark(ContextMark):
       if len(args) == 1 and isinstance(args[0], type(self)):
          meter = args[0]
          numerator, denominator = meter.numerator, meter.denominator
-      elif len(args) == 1 and isinstance(args[0], Fraction):
+      elif len(args) == 1 and isinstance(args[0], durtools.Duration):
          numerator, denominator = args[0].numerator, args[0].denominator
       elif len(args) == 1 and isinstance(args[0], tuple):
          numerator, denominator = args[0][0], args[0][1]
@@ -73,7 +73,7 @@ class TimeSignatureMark(ContextMark):
 
       ## initialize partial from **kwargs
       partial = kwargs.get('partial', None)
-      if not isinstance(partial, (type(None), Fraction)):
+      if not isinstance(partial, (type(None), durtools.Duration)):
          raise TypeError
       #object.__setattr__(self, '_partial', partial)
       self._partial = partial
@@ -89,11 +89,11 @@ class TimeSignatureMark(ContextMark):
       self.suppress = suppress
 
       ## initialize derived attributes
-      #object.__setattr__(self, '_duration', Fraction(numerator, denominator))
+      #object.__setattr__(self, '_duration', durtools.Duration(numerator, denominator))
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
       #object.__setattr__(self, '_multiplier', _multiplier)
       #object.__setattr__(self, '_is_nonbinary', not mathtools.is_nonnegative_integer_power_of_two(self.denominator))
-      #self._duration = Fraction(numerator, denominator)
+      #self._duration = durtools.Duration(numerator, denominator)
       self._multiplier = _multiplier
       self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
 
@@ -205,11 +205,11 @@ class TimeSignatureMark(ContextMark):
 
          abjad> meter = contexttools.TimeSignatureMark(3, 8)
          abjad> meter.duration
-         Fraction(3, 8)
+         Duration(3, 8)
 
       Return fraction.
       '''
-      return Fraction(self.numerator, self.denominator)
+      return durtools.Duration(self.numerator, self.denominator)
 
    @property
    def format(self):
@@ -239,7 +239,7 @@ class TimeSignatureMark(ContextMark):
 
          abjad> meter = contexttools.TimeSignatureMark(3, 8)
          abjad> meter.multiplier
-         Fraction(1, 1)
+         Duration(1, 1)
 
       Return fraction.
       '''
@@ -285,15 +285,15 @@ class TimeSignatureMark(ContextMark):
       def fget(self):
          '''Get partial measure pick-up of time signature mark::
 
-            abjad> meter = contexttools.TimeSignatureMark(3, 8, partial = Fraction(1, 8))
+            abjad> meter = contexttools.TimeSignatureMark(3, 8, partial = Duration(1, 8))
             abjad> meter.partial
-            Fraction(1, 8)
+            Duration(1, 8)
 
          Set partial measure pick-up of time signature mark::
 
-            abjad> meter.partial = Fraction(1, 4)
+            abjad> meter.partial = Duration(1, 4)
             abjad> meter.partial
-            Fraction(1, 4)
+            Duration(1, 4)
 
          Set fraction or none.
          '''

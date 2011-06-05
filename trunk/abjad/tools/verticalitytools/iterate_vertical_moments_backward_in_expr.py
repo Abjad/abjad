@@ -1,7 +1,7 @@
 from abjad.components._Component import _Component
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 from abjad.tools.verticalitytools.get_vertical_moment_at_prolated_offset_in_expr import get_vertical_moment_at_prolated_offset_in_expr
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def iterate_vertical_moments_backward_in_expr(governor):
@@ -12,7 +12,7 @@ def iterate_vertical_moments_backward_in_expr(governor):
       abjad> score = Score([ ])
       abjad> score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
       abjad> piano_staff = scoretools.PianoStaff([ ])
-      abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
+      abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
       abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
       abjad> contexttools.ClefMark('bass')(piano_staff[1])
       ClefMark('bass')(Staff{4})

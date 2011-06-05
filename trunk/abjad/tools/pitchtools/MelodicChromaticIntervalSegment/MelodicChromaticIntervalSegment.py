@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
-from fractions import Fraction
+import fractions
 
 
 class MelodicChromaticIntervalSegment(_IntervalSegment):
@@ -57,7 +57,7 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
 
       Return fraction.
       '''
-      return Fraction.from_float(sum([x.number for x in self])) / len(self)
+      return fractions.Fraction.from_float(sum([x.number for x in self])) / len(self)
 
    @property
    def spread(self):

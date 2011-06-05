@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import durtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.scale_contents_of_measures_in_expr import scale_contents_of_measures_in_expr
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominator_factor):
@@ -69,7 +69,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
 
    ## inverse scale measure ... but throw away resultant meter
    numerator, denominator = new_measure_multiplier.numerator, new_measure_multiplier.denominator
-   inverse_measure_multiplier = Fraction(denominator, numerator)
+   inverse_measure_multiplier = durtools.Duration(denominator, numerator)
    scale_contents_of_measures_in_expr(measure, inverse_measure_multiplier)
 
    ## assign new meter

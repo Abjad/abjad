@@ -5,7 +5,7 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_prolat
    
    staff = Staff(macros.scale(4))
    spannertools.BeamSpanner(staff.leaves)
-   containertools.delete_contents_of_container_starting_at_or_after_prolated_offset(staff, Fraction(1, 8))
+   containertools.delete_contents_of_container_starting_at_or_after_prolated_offset(staff, Duration(1, 8))
 
    r'''
    \new Staff {
@@ -21,7 +21,7 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_prolat
 
    staff = Staff(macros.scale(4))
    spannertools.BeamSpanner(staff.leaves)
-   containertools.delete_contents_of_container_starting_at_or_after_prolated_offset(staff, Fraction(3, 16))
+   containertools.delete_contents_of_container_starting_at_or_after_prolated_offset(staff, Duration(3, 16))
 
    r'''
    \new Staff {

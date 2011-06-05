@@ -7,8 +7,8 @@ def test_contexttools_get_effective_tempo_01( ):
    '''
 
    t = Staff(macros.scale(4))
-   contexttools.TempoMark(Fraction(1, 8), 38, target_context = Staff)(t)
-   contexttools.TempoMark(Fraction(1, 8), 42, target_context = Staff)(t[2])
+   contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(t)
+   contexttools.TempoMark(Duration(1, 8), 42, target_context = Staff)(t[2])
 
    r'''
    \new Staff {
@@ -22,10 +22,10 @@ def test_contexttools_get_effective_tempo_01( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert contexttools.get_effective_tempo(t[0]) == contexttools.TempoMark(Fraction(1, 8), 38)
-   assert contexttools.get_effective_tempo(t[1]) == contexttools.TempoMark(Fraction(1, 8), 38)
-   assert contexttools.get_effective_tempo(t[2]) == contexttools.TempoMark(Fraction(1, 8), 42)
-   assert contexttools.get_effective_tempo(t[3]) == contexttools.TempoMark(Fraction(1, 8), 42)
+   assert contexttools.get_effective_tempo(t[0]) == contexttools.TempoMark(Duration(1, 8), 38)
+   assert contexttools.get_effective_tempo(t[1]) == contexttools.TempoMark(Duration(1, 8), 38)
+   assert contexttools.get_effective_tempo(t[2]) == contexttools.TempoMark(Duration(1, 8), 42)
+   assert contexttools.get_effective_tempo(t[3]) == contexttools.TempoMark(Duration(1, 8), 42)
    assert t.format == "\\new Staff {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\t\\tempo 8=42\n\te'8\n\tf'8\n}"
 
 
@@ -35,7 +35,7 @@ def test_contexttools_get_effective_tempo_02( ):
    '''
 
    t = Staff([Chord([2, 3, 4], (1, 4))])
-   contexttools.TempoMark(Fraction(1, 8), 38, target_context = Staff)(t[0])
+   contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(t[0])
 
    r'''
    \new Staff {
@@ -51,7 +51,7 @@ def test_contexttools_get_effective_tempo_03( ):
    '''Tempo interface accepts durations.'''
 
    staff = Staff([Note(0, (1, 4))])
-   contexttools.TempoMark(Fraction(1, 8), 38, target_context = Staff)(staff[0])
+   contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff[0])
 
    r'''
    \new Staff {
@@ -68,7 +68,7 @@ def test_contexttools_get_effective_tempo_04( ):
    '''
 
    staff = Staff([Note(0, (1, 4))])
-   tempo = contexttools.TempoMark(Fraction(1, 8), 38, target_context = Staff)(staff[0])
+   tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff[0])
    tempo.detach_mark( )
    
 

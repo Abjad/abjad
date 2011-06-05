@@ -4,7 +4,7 @@ from abjad import *
 def test_Meter_partial_01( ):
 
    t = Staff(macros.scale(4))
-   contexttools.TimeSignatureMark(2, 8, partial = Fraction(1, 8))(t)
+   contexttools.TimeSignatureMark(2, 8, partial = Duration(1, 8))(t)
 
    r'''
    \new Staff {

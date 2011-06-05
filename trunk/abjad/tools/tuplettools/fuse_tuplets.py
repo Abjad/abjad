@@ -3,7 +3,7 @@ from abjad.components import Tuplet
 from abjad.exceptions import TupletFuseError
 from abjad.tools.componenttools.component_to_score_root import component_to_score_root
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def fuse_tuplets(tuplets):

@@ -5,9 +5,9 @@ import py.test
 def test_measuretools_fuse_measures_01( ):
    '''Fuse unicorporated binary measures.'''
 
-   t1 = Measure((1, 8), macros.scale(2, Fraction(1, 16)))
+   t1 = Measure((1, 8), macros.scale(2, Duration(1, 16)))
    spannertools.BeamSpanner(t1[:])
-   t2 = Measure((2, 16), macros.scale(2, Fraction(1, 16)))
+   t2 = Measure((2, 16), macros.scale(2, Duration(1, 16)))
    spannertools.SlurSpanner(t2[:])
 
    r'''
@@ -51,7 +51,7 @@ def test_measuretools_fuse_measures_02( ):
       Beams are OK because they attach to leaves rather than containers.'''
 
    t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-   measuretools.fill_measures_in_expr_with_repeated_notes(t, Fraction(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
    macros.diatonicize(t)
    spannertools.BeamSpanner(t.leaves)
 
@@ -94,7 +94,7 @@ def test_measuretools_fuse_measures_03( ):
       Beam attaches to container rather than leaves.'''
 
    t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-   measuretools.fill_measures_in_expr_with_repeated_notes(t, Fraction(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
    macros.diatonicize(t)
    spannertools.BeamSpanner(t[0])
 
@@ -195,7 +195,7 @@ def test_measuretools_fuse_measures_07( ):
    '''Fuse three measures.'''
 
    t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
-   measuretools.fill_measures_in_expr_with_repeated_notes(t, Fraction(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
    macros.diatonicize(t)
    spannertools.BeamSpanner(t.leaves)
 

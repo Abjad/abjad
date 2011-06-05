@@ -11,7 +11,7 @@ def sign(n):
 
    Return ``1`` on positive `n`::
 
-      abjad> mathtools.sign(Fraction(9, 8))
+      abjad> mathtools.sign(Duration(9, 8))
       1
 
    Return ``-1``, ``0`` or ``1``.

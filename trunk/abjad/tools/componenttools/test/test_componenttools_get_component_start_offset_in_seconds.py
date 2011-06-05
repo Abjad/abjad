@@ -26,7 +26,7 @@ def test_componenttools_get_component_start_offset_in_seconds_02( ):
    '''Offset seconds work with explicit tempo indication.'''
 
    t = Staff(macros.scale(4))
-   contexttools.TempoMark(Fraction(1, 8), 48, target_context = Staff)(t)
+   contexttools.TempoMark(Duration(1, 8), 48, target_context = Staff)(t)
    
    r'''
    \new Staff {
@@ -38,5 +38,5 @@ def test_componenttools_get_component_start_offset_in_seconds_02( ):
    }
    '''
 
-   assert componenttools.get_component_start_offset_in_seconds(t[0]) == Fraction(0)
-   assert componenttools.get_component_start_offset_in_seconds(t[1]) == Fraction(5, 4)
+   assert componenttools.get_component_start_offset_in_seconds(t[0]) == Duration(0)
+   assert componenttools.get_component_start_offset_in_seconds(t[1]) == Duration(5, 4)

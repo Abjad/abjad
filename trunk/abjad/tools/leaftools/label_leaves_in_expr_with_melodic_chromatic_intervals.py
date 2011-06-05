@@ -10,7 +10,7 @@ def label_leaves_in_expr_with_melodic_chromatic_intervals(expr, markup_direction
 
    Label leaves in `expr` with melodic chromatic intervals::
 
-      abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Fraction(1, 8)]))
+      abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
       abjad> leaftools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
       abjad> f(staff)
       \new Staff {

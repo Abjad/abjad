@@ -5,14 +5,14 @@ from abjad.tools import metertools
 from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 from abjad.tools.metertools import Meter
 from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def fuse_measures(measures):
    r'''Fuse `measures`::
 
       abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-      abjad> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Fraction(1, 16))
+      abjad> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Duration(1, 16))
       abjad> macros.diatonicize(staff)
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'16, d'16, e'16, f'16)
@@ -89,7 +89,7 @@ def fuse_measures(measures):
    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(measures)
 
    old_denominators = [ ]
-   new_duration = Fraction(0)
+   new_duration = durtools.Duration(0)
    for measure in measures:
       effective_meter = contexttools.get_effective_time_signature(measure)
       old_denominators.append(effective_meter.denominator)

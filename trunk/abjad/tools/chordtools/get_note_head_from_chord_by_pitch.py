@@ -2,7 +2,6 @@ from abjad.components import Chord
 from abjad.exceptions import ExtraNoteHeadError
 from abjad.exceptions import MissingNoteHeadError
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from fractions import Fraction
 from numbers import Number
 
 

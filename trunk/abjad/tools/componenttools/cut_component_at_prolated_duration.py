@@ -2,7 +2,7 @@ from abjad.components._Component import _Component
 from abjad.components._Leaf import _Leaf
 from abjad.exceptions import NegativeDurationError
 from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most import list_leftmost_components_with_prolated_duration_at_most
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 ## TODO: implement related function to cut from right edge.
@@ -16,7 +16,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> componenttools.cut_component_at_prolated_duration(staff, Fraction(1, 32))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(1, 32))
       abjad> f(staff)
       \new Staff {
          c'16. [
@@ -30,7 +30,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> componenttools.cut_component_at_prolated_duration(staff, Fraction(3, 64))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(3, 64))
       abjad> f(staff)
       \new Staff {
          c'16 [ ~
@@ -45,7 +45,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> componenttools.cut_component_at_prolated_duration(staff, Fraction(1, 24))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(1, 24))
       abjad> f(staff)
       \new Staff {
          \times 2/3 {
@@ -61,7 +61,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
    from abjad.tools import leaftools
 
    assert isinstance(component, _Component)
-   assert isinstance(prolated_duration, Fraction)
+   assert isinstance(prolated_duration, durtools.Duration)
 
    if component.duration.prolated <= prolated_duration:
       raise NegativeDurationError('component durations must be positive.')

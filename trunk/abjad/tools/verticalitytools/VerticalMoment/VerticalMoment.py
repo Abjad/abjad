@@ -4,7 +4,7 @@ from abjad.components import Note
 from abjad.components._Leaf import _Leaf
 from abjad.core import _Immutable
 from abjad.tools import componenttools
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class VerticalMoment(_Immutable):
@@ -51,7 +51,7 @@ class VerticalMoment(_Immutable):
    '''
 
    def __init__(self, prolated_offset, governors, components):
-      prolated_offset = Fraction(prolated_offset)
+      prolated_offset = durtools.Duration(prolated_offset)
       assert isinstance(governors, tuple)
       assert isinstance(components, tuple)
       #self._prolated_offset = prolated_offset
@@ -230,7 +230,7 @@ class VerticalMoment(_Immutable):
       from abjad.tools import verticalitytools
       if self.prolated_offset == 0:
          raise IndexError
-      most_recent_start_offset = Fraction(0)
+      most_recent_start_offset = durtools.Duration(0)
       token_leaf = None
       for leaf in self.leaves:
          #print ''

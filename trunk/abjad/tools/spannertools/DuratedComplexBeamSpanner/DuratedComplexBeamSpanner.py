@@ -1,6 +1,6 @@
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
 from abjad.tools.spannertools.DuratedComplexBeamSpanner._DuratedComplexBeamSpannerFormatInterface import _DuratedComplexBeamSpannerFormatInterface
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
@@ -10,7 +10,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
    ::
 
-      durations = [Fraction(1, 8), Fraction(1, 8)]
+      durations = [Duration(1, 8), Duration(1, 8)]
       beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations, 1)
 
    ::
@@ -66,19 +66,19 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
          '''Get spanner leaf group durations::
 
             abjad> staff = Staff("c'16 d'16 e'16 f'16")
-            abjad> durations = [Fraction(1, 8), Fraction(1, 8)]
+            abjad> durations = [Duration(1, 8), Duration(1, 8)]
             abjad> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations)
             abjad> beam.durations
-            [Fraction(1, 8), Fraction(1, 8)]
+            [Duration(1, 8), Duration(1, 8)]
 
          Set spanner leaf group durations::   
 
             abjad> staff = Staff("c'16 d'16 e'16 f'16")
-            abjad> durations = [Fraction(1, 8), Fraction(1, 8)]
+            abjad> durations = [Duration(1, 8), Duration(1, 8)]
             abjad> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations)
-            abjad> beam.durations = [Fraction(1, 4)]
+            abjad> beam.durations = [Duration(1, 4)]
             abjad> beam.durations
-            [Fraction(1, 4)]
+            [Duration(1, 4)]
 
          Set iterable.
          '''
@@ -89,12 +89,12 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
          elif isinstance(arg, list):
             for i, d in enumerate(arg):
                if isinstance(d, tuple):
-                  arg[i] = Fraction(*d)
+                  arg[i] = durtools.Duration(*d)
                else:
-                  arg[i] = Fraction(d)
+                  arg[i] = durtools.Duration(d)
             self._durations = arg
          else:
-            raise ValueError('durations must be list of Fractions, or None.')
+            raise ValueError('durations must be list of Durations, or None.')
       return property(**locals( ))
 
    @apply
@@ -103,7 +103,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
          r'''Get top-level beam count::
 
             abjad> staff = Staff("c'16 d'16 e'16 f'16")
-            abjad> durations = [Fraction(1, 8), Fraction(1, 8)]
+            abjad> durations = [Duration(1, 8), Duration(1, 8)]
             abjad> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations, 1)
             abjad> beam.span
             1
@@ -111,7 +111,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
          Set top-level beam count::
 
             abjad> staff = Staff("c'16 d'16 e'16 f'16")
-            abjad> durations = [Fraction(1, 8), Fraction(1, 8)]
+            abjad> durations = [Duration(1, 8), Duration(1, 8)]
             abjad> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations, 1)
             abjad> beam.span = 2
             abjad> beam.span

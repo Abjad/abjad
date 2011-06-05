@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
 from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
 from abjad.tools.metertools import Meter
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
@@ -59,14 +59,14 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
    prolated_leaf_duration = leaf.duration.prolated
    prolations = leaf.duration._prolations
-   cur_prolation, i = Fraction(1), 0
+   cur_prolation, i = durtools.Duration(1), 0
    parent = leaf._parentage.parent
 
    while parent is not None and not parent.is_parallel:
       cur_prolation *= prolations[i]
       if isinstance(parent, FixedDurationTuplet):
          candidate_new_parent_dur = parent.duration.target - cur_prolation * leaf.duration.written
-         if Fraction(0) < candidate_new_parent_dur:
+         if durtools.Duration(0) < candidate_new_parent_dur:
             parent.duration.target = candidate_new_parent_dur
       elif isinstance(parent, Measure):
          old_denominator = parent._explicit_meter.denominator

@@ -147,9 +147,9 @@ def test_MetricGridSpanner_split_on_bar_05( ):
    m.split_on_bar( )
 
    assert isinstance(v[-1], Rest)
-   assert v[-1].duration.prolated == Fraction(4, 4)
+   assert v[-1].duration.prolated == Duration(4, 4)
    assert isinstance(v[-2], Rest)
-   assert v[-2].duration.prolated == Fraction(1, 4)
+   assert v[-2].duration.prolated == Duration(1, 4)
    #assert v[-2].tie.spanner == v[-1].tie.spanner
    assert spannertools.get_the_only_spanner_attached_to_component(
       v[-2], tietools.TieSpanner) == \
@@ -182,9 +182,9 @@ def test_MetricGridSpanner_split_on_bar_06( ):
 
    assert componenttools.is_well_formed_component(v)
    assert len(v) == 5
-   assert v[0].duration.written == v[1].duration.written == Fraction(1, 8)
-   assert v[3].duration.written == v[3].duration.written == Fraction(1, 8)
-   assert v[2].duration.written == Fraction(1, 4)
+   assert v[0].duration.written == v[1].duration.written == Duration(1, 8)
+   assert v[3].duration.written == v[3].duration.written == Duration(1, 8)
+   assert v[2].duration.written == Duration(1, 4)
    #ties = len([p for p in v.spanners.contained if isinstance(p, tietools.TieSpanner)]) == 2
    ties = spannertools.get_spanners_attached_to_any_improper_child_of_component(
       v, tietools.TieSpanner)

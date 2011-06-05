@@ -31,7 +31,7 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
       
    ::
       
-      abjad> durations = [Fraction(3, 32)]
+      abjad> durations = [Duration(3, 32)]
       abjad> componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(staff.leaves, durations) 
       [[Note("c'16.")], [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")], 
       [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]

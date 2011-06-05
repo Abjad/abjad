@@ -10,7 +10,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Fraction(4, 8))
+   layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))
 
    r'''
    \new Staff {
@@ -49,7 +49,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Fraction(1, 8), klass = _Leaf)
+   layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(1, 8), klass = _Leaf)
 
    r'''
    \new Staff {
@@ -92,7 +92,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_03( ):
    '''With add_empty_bars keyword.'''
 
    t = Staff(macros.scale(8))
-   schema = layouttools.LayoutSchema(Fraction(3, 8), (40, 5, 0), (0, ))
+   schema = layouttools.LayoutSchema(Duration(3, 8), (40, 5, 0), (0, ))
    layouttools.apply_layout_schema(t, schema, klass = Note, add_empty_bars = True)
 
    r'''

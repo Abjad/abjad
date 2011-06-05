@@ -10,7 +10,7 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup
 
    Label leaves in `expr` with melodic counterpoint interval classes::
 
-      abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Fraction(1, 8)]))
+      abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
       abjad> leaftools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes(staff)
       abjad> f(staff)
       \new Staff {

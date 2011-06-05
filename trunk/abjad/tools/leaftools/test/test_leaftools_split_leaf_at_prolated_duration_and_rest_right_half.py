@@ -7,7 +7,7 @@ def test_leaftools_split_leaf_at_prolated_duration_and_rest_right_half_01( ):
    spannertools.SlurSpanner(t[:])
 
    leaftools.split_leaf_at_prolated_duration_and_rest_right_half(
-      t.leaves[1], Fraction(1, 32))
+      t.leaves[1], Duration(1, 32))
 
    r'''
    \new Staff {

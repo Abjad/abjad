@@ -2,7 +2,8 @@ from abjad.components import Tuplet
 from abjad.components._Leaf import _Leaf
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-from fractions import Fraction
+from abjad.tools import durtools
+import fractions
 import math
 
 
@@ -11,7 +12,7 @@ def fix_contents_of_tuplets_in_expr(tuplet):
    if tuplet multiplier less than 1/2 or greater than 2.
    Return tuplet. ::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3, Fraction(1, 4)))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3, Duration(1, 4)))
       abjad> tuplet   
       FixedDurationTuplet(1/4, [c'4, d'4, e'4])
       abjad> tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
@@ -28,7 +29,7 @@ def fix_contents_of_tuplets_in_expr(tuplet):
 
    # find tuplet multiplier
    integer_exponent = int(math.log(tuplet.duration.multiplier, 2))
-   leaf_multiplier = Fraction(2) ** integer_exponent
+   leaf_multiplier = fractions.Fraction(2) ** integer_exponent
 
    # scale leaves in tuplet by power of two
    for component in tuplet[:]:

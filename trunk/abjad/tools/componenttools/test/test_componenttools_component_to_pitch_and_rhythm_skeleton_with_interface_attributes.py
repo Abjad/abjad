@@ -22,13 +22,13 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_with_interface_at
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton_with_interface_attributes(note)
 
    r'''
-   Note(('c', 4), Fraction(1, 4), 
+   Note(('c', 4), Duration(1, 4), 
       override__beam__thickness = 2,
       override__note_head__color = 'red',
       override__note_head__size = 3)
    '''
    
-   assert skeleton == "Note(('c', 4), Fraction(1, 4), \n\toverride__beam__thickness = 2,\n\toverride__note_head__color = 'red',\n\toverride__note_head__size = 3)"
+   assert skeleton == "Note(('c', 4), Duration(1, 4), \n\toverride__beam__thickness = 2,\n\toverride__note_head__color = 'red',\n\toverride__note_head__size = 3)"
 
    new_note = eval(skeleton)
    new_skeleton = \
@@ -58,14 +58,14 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_with_interface_at
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton_with_interface_attributes(note)
 
    r'''
-   Note(('c', 4), Fraction(1, 4), 
+   Note(('c', 4), Duration(1, 4), 
       set__auto_beaming = False,
       set__staff__instrument_name = 'Foo Bar',
       set__staff__short_instrument_name = 'F. b.',
       set__tuplet_full_length = True)
    '''
 
-   assert skeleton == "Note(('c', 4), Fraction(1, 4), \n\tset__auto_beaming = False,\n\tset__staff__instrument_name = 'Foo Bar',\n\tset__staff__short_instrument_name = 'F. b.',\n\tset__tuplet_full_length = True)"
+   assert skeleton == "Note(('c', 4), Duration(1, 4), \n\tset__auto_beaming = False,\n\tset__staff__instrument_name = 'Foo Bar',\n\tset__staff__short_instrument_name = 'F. b.',\n\tset__tuplet_full_length = True)"
 
    new_note = eval(skeleton)
    new_skeleton = \

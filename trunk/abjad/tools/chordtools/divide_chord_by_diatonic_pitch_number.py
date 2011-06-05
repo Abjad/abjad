@@ -7,7 +7,7 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch = NamedChromaticPitch('b'
 
    Divide `chord` by diatonic `pitch` number::
 
-      abjad> chord = Chord(range(12), Fraction(1, 4))
+      abjad> chord = Chord(range(12), Duration(1, 4))
 
    ::
 

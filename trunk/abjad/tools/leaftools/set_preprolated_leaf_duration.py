@@ -5,7 +5,7 @@ from abjad.tools import componenttools
 from abjad.tools import spannertools
 from abjad.tools import tietools
 from abjad.tools.notetools.make_notes import make_notes
-from fractions import Fraction
+from abjad.tools import durtools
 
    
 def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
@@ -16,7 +16,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> leaftools.set_preprolated_leaf_duration(staff[1], Fraction(3, 16))
+      abjad> leaftools.set_preprolated_leaf_duration(staff[1], Duration(3, 16))
       [Note("d'8.")]
       abjad> f(staff)
       \new Staff {
@@ -31,7 +31,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8) 
-      abjad> leaftools.set_preprolated_leaf_duration(staff[1], Fraction(5, 32))
+      abjad> leaftools.set_preprolated_leaf_duration(staff[1], Duration(5, 32))
       [Note("d'8"), Note("d'32")]
       abjad> f(staff)
       \new Staff {
@@ -47,7 +47,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> leaftools.set_preprolated_leaf_duration(staff[1], Fraction(1, 12))
+      abjad> leaftools.set_preprolated_leaf_duration(staff[1], Duration(1, 12))
       [Note("d'8")]
       abjad> f(staff)
       \new Staff {
@@ -64,7 +64,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> leaftools.set_preprolated_leaf_duration(staff[1], Fraction(5, 48))
+      abjad> leaftools.set_preprolated_leaf_duration(staff[1], Duration(5, 48))
       [Note("d'8"), Note("d'32")]
       abjad> f(staff)
       \new Staff {
@@ -80,8 +80,8 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    Set preprolated `leaf` duration with LilyPond multiplier::
       
       abjad> note = Note(0, (1, 8))
-      abjad> note.duration.multiplier = Fraction(1, 2)
-      abjad> leaftools.set_preprolated_leaf_duration(note, Fraction(5, 48))
+      abjad> note.duration.multiplier = Duration(1, 2)
+      abjad> leaftools.set_preprolated_leaf_duration(note, Duration(5, 48))
       [Note("c'8 * 5/6")]
       abjad> f(note)
       c'8 * 5/6
@@ -95,7 +95,8 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    from abjad.tools import componenttools
 
    assert isinstance(leaf, _Leaf)
-   assert isinstance(new_preprolated_duration, Fraction)
+   #assert isinstance(new_preprolated_duration, durtools.Duration)
+   new_preprolated_duration = durtools.Duration(new_preprolated_duration)
 
    ## If leaf carries LilyPond multiplier, change only LilyPond multiplier.
    if leaf.duration.multiplier is not None:

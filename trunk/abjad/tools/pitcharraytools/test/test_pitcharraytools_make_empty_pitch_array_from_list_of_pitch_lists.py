@@ -8,7 +8,7 @@ def test_pitcharraytools_make_empty_pitch_array_from_list_of_pitch_lists_01( ):
 
    score = Score([ ])
    score.append(Staff(macros.scale(6)))
-   score.append(Staff(macros.scale(3, Fraction(1, 4))))
+   score.append(Staff(macros.scale(3, Duration(1, 4))))
    score.append(Staff(macros.scale(6)))
 
    r'''
@@ -54,7 +54,7 @@ def test_pitcharraytools_make_empty_pitch_array_from_list_of_pitch_lists_02( ):
 
    score = Score([ ])
    score.append(Staff(macros.scale(4)))
-   score.append(Staff(macros.scale(2, Fraction(1, 4))))
+   score.append(Staff(macros.scale(2, Duration(1, 4))))
    score.append(Staff(tuplettools.FixedDurationTuplet((2, 8), macros.scale(3)) * 2))
 
    r'''

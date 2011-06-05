@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip('unskip after leaf duration interfaces use durations instead of fractions.')
 
 
 def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
@@ -8,21 +10,21 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
    note = Note(0, (1, 4))
    note.duration.multiplier = Fraction(1, 2)
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(note)
-   assert skeleton == "Note(('c', 4), Fraction(1, 4), duration__multiplier = Fraction(1, 2))"
+   assert skeleton == "Note(('c', 4), Duration(1, 4), duration__multiplier = Fraction(1, 2))"
    new_note = eval(skeleton)
    assert new_note.format == note.format
 
    rest = Rest((1, 4))
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(rest)
-   assert skeleton == "Rest(Fraction(1, 4))"
+   assert skeleton == "Rest(Duration(1, 4))"
 
    chord = Chord([0, 2, 4], (1, 4))
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(chord)
-   assert skeleton == "Chord((('c', 4), ('d', 4), ('e', 4)), Fraction(1, 4))"
+   assert skeleton == "Chord((('c', 4), ('d', 4), ('e', 4)), Duration(1, 4))"
 
    skip = skiptools.Skip((1, 4))
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(skip)
-   assert skeleton == "Skip(Fraction(1, 4))"
+   assert skeleton == "Skip(Duration(1, 4))"
 
 
 def test_componenttools_component_to_pitch_and_rhythm_skeleton_02( ):
@@ -32,14 +34,14 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_02( ):
 
    r'''
    Staff([
-      Note(('c', 4), Fraction(1, 8)),
-      Note(('d', 4), Fraction(1, 8)),
-      Note(('e', 4), Fraction(1, 8)),
-      Note(('f', 4), Fraction(1, 8))
+      Note(('c', 4), Duration(1, 8)),
+      Note(('d', 4), Duration(1, 8)),
+      Note(('e', 4), Duration(1, 8)),
+      Note(('f', 4), Duration(1, 8))
    ])
    '''
 
-   assert skeleton == "Staff([\n\tNote(('c', 4), Fraction(1, 8)),\n\tNote(('d', 4), Fraction(1, 8)),\n\tNote(('e', 4), Fraction(1, 8)),\n\tNote(('f', 4), Fraction(1, 8))\n])"
+   assert skeleton == "Staff([\n\tNote(('c', 4), Duration(1, 8)),\n\tNote(('d', 4), Duration(1, 8)),\n\tNote(('e', 4), Duration(1, 8)),\n\tNote(('f', 4), Duration(1, 8))\n])"
 
    new = eval(skeleton)
 
@@ -88,28 +90,28 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
    Score([
       Staff([
          Measure((6, 16), [
-            FixedDurationTuplet(Fraction(3, 8), [
-               Note(('c', 4), Fraction(1, 8)),
-               Note(('d', 4), Fraction(1, 8)),
-               Note(('e', 4), Fraction(1, 8)),
-               Note(('f', 4), Fraction(1, 8))
+            FixedDurationTuplet(Duration(3, 8), [
+               Note(('c', 4), Duration(1, 8)),
+               Note(('d', 4), Duration(1, 8)),
+               Note(('e', 4), Duration(1, 8)),
+               Note(('f', 4), Duration(1, 8))
             ])
          ])
       ]),
       Staff([
          Measure((6, 16), [
-            FixedDurationTuplet(Fraction(3, 8), [
-               Note(('g', 4), Fraction(1, 8)),
-               Note(('a', 4), Fraction(1, 8)),
-               Note(('b', 4), Fraction(1, 8)),
-               Note(('c', 5), Fraction(1, 8))
+            FixedDurationTuplet(Duration(3, 8), [
+               Note(('g', 4), Duration(1, 8)),
+               Note(('a', 4), Duration(1, 8)),
+               Note(('b', 4), Duration(1, 8)),
+               Note(('c', 5), Duration(1, 8))
             ])
          ])
       ])
    ])
    '''
 
-   assert skeleton == "Score([\n\tStaff([\n\t\tMeasure((6, 16), [\n\t\t\tFixedDurationTuplet(Fraction(3, 8), [\n\t\t\t\tNote(('c', 4), Fraction(1, 8)),\n\t\t\t\tNote(('d', 4), Fraction(1, 8)),\n\t\t\t\tNote(('e', 4), Fraction(1, 8)),\n\t\t\t\tNote(('f', 4), Fraction(1, 8))\n\t\t\t])\n\t\t])\n\t]),\n\tStaff([\n\t\tMeasure((6, 16), [\n\t\t\tFixedDurationTuplet(Fraction(3, 8), [\n\t\t\t\tNote(('g', 4), Fraction(1, 8)),\n\t\t\t\tNote(('a', 4), Fraction(1, 8)),\n\t\t\t\tNote(('b', 4), Fraction(1, 8)),\n\t\t\t\tNote(('c', 5), Fraction(1, 8))\n\t\t\t])\n\t\t])\n\t])\n])"
+   assert skeleton == "Score([\n\tStaff([\n\t\tMeasure((6, 16), [\n\t\t\tFixedDurationTuplet(Duration(3, 8), [\n\t\t\t\tNote(('c', 4), Duration(1, 8)),\n\t\t\t\tNote(('d', 4), Duration(1, 8)),\n\t\t\t\tNote(('e', 4), Duration(1, 8)),\n\t\t\t\tNote(('f', 4), Duration(1, 8))\n\t\t\t])\n\t\t])\n\t]),\n\tStaff([\n\t\tMeasure((6, 16), [\n\t\t\tFixedDurationTuplet(Duration(3, 8), [\n\t\t\t\tNote(('g', 4), Duration(1, 8)),\n\t\t\t\tNote(('a', 4), Duration(1, 8)),\n\t\t\t\tNote(('b', 4), Duration(1, 8)),\n\t\t\t\tNote(('c', 5), Duration(1, 8))\n\t\t\t])\n\t\t])\n\t])\n])"
 
    from abjad.tools.tuplettools import FixedDurationTuplet
    new = eval(skeleton)

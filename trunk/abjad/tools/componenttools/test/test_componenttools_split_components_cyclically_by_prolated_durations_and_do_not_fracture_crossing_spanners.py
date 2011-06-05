@@ -27,7 +27,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    }
    '''
 
-   durations = [Fraction(3, 64)]
+   durations = [Duration(3, 64)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[0][1:2], durations)
 
    r'''
@@ -78,7 +78,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    }
    '''
 
-   durations = [Fraction(3, 32)]
+   durations = [Duration(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(t.leaves, durations)
 
    r'''
@@ -130,7 +130,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    }
    '''
 
-   durations = [Fraction(3, 32)]
+   durations = [Duration(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:1], durations)
 
    r'''
@@ -187,7 +187,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    }
    '''
 
-   durations = [Fraction(3, 32)]
+   durations = [Duration(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:], durations)
 
    r'''
@@ -234,7 +234,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    '''Cyclically duration partition list of leaves outside of score.'''
 
    leaves = macros.scale(4)
-   durations = [Fraction(3, 32)]
+   durations = [Duration(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(leaves, durations)
 
    assert len(parts) == 6
@@ -271,7 +271,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    spannertools.BeamSpanner(measures[1])
    macros.diatonicize(measures)
 
-   durations = [Fraction(3, 32)]
+   durations = [Duration(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(measures, durations)
 
    assert len(parts) == 6
@@ -344,7 +344,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    }
    '''
 
-   durations = [Fraction(1, 32)]
+   durations = [Duration(1, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
       t[0][1:], durations, tie_after = True)
 
@@ -397,7 +397,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    }
    '''
 
-   durations = [Fraction(1, 16)]
+   durations = [Duration(1, 16)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
       t.leaves, durations, tie_after = True)
 
@@ -451,7 +451,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    }
    '''
 
-   durations = [Fraction(1, 16)]
+   durations = [Duration(1, 16)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
       t[:1], durations, tie_after = True)
 
@@ -513,7 +513,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    }
    '''
 
-   durations = [Fraction(3, 32)]
+   durations = [Duration(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
       t[:], durations, tie_after = True)
 

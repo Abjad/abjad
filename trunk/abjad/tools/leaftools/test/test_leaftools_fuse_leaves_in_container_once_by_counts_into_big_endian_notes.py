@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes_01( ):
    '''Glom voice.'''
 
-   t = Voice(notetools.make_repeated_notes(5, Fraction(1, 16)))
+   t = Voice(notetools.make_repeated_notes(5, Duration(1, 16)))
    spannertools.SlurSpanner(t[:])
    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes(t, [1, 2, 2])
 

@@ -9,7 +9,7 @@ from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprola
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import remove_all_leaves_in_tie_chain_except_first
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 ## TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( ) carefully. ##
@@ -28,7 +28,8 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
    from abjad.tools import notetools
 
    assert is_tie_chain(tie_chain)
-   assert isinstance(new_written_duration, Fraction)
+   #assert isinstance(new_written_duration, Duration)
+   new_written_duration = durtools.Duration(new_written_duration)
 
    if durtools.is_assignable_rational(new_written_duration):
       tie_chain[0].duration.written = new_written_duration

@@ -1,6 +1,6 @@
 from abjad.tools import mathtools
 from abjad.tools import seqtools
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 ## TODO: Maybe move get_likely_multiplier_of_components( ) from durtools to measuretools? ##
@@ -19,7 +19,7 @@ def get_likely_multiplier_of_components(components):
          f'8..
       }
       abjad> componenttools.get_likely_multiplier_of_components(staff[:])
-      Fraction(7, 4)
+      Duration(7, 4)
    
    Return 1 when no multiplier is likely::
 
@@ -32,7 +32,7 @@ def get_likely_multiplier_of_components(components):
          f'8
       }
       abjad> componenttools.get_likely_multiplier_of_components(staff[:])
-      Fraction(1, 1)
+      Duration(1, 1)
 
    Return none when more than one multiplier is likely::
 
@@ -63,5 +63,5 @@ def get_likely_multiplier_of_components(components):
    if len(seqtools.truncate_runs_in_sequence(chain_duration_numerators)) == 1:
       numerator = chain_duration_numerators[0]
       denominator = mathtools.greatest_power_of_two_less_equal(numerator)
-      likely_multiplier = Fraction(numerator, denominator)
+      likely_multiplier = durtools.Duration(numerator, denominator)
       return likely_multiplier

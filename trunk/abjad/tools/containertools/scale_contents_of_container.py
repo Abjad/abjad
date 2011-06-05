@@ -24,7 +24,7 @@ def scale_contents_of_container(container, multiplier):
       
    ::
       
-      abjad> containertools.scale_contents_of_container(staff, Fraction(3, 2))
+      abjad> containertools.scale_contents_of_container(staff, Duration(3, 2))
       Staff{2}
 
    ::
@@ -51,7 +51,7 @@ def scale_contents_of_container(container, multiplier):
       
    ::
       
-      abjad> containertools.scale_contents_of_container(staff, Fraction(5, 4))
+      abjad> containertools.scale_contents_of_container(staff, Duration(5, 4))
       Staff{4}
 
    ::
@@ -80,7 +80,7 @@ def scale_contents_of_container(container, multiplier):
       
    ::
       
-      abjad> containertools.scale_contents_of_container(staff, Fraction(4, 3))
+      abjad> containertools.scale_contents_of_container(staff, Duration(4, 3))
       Staff{2}
 
    ::

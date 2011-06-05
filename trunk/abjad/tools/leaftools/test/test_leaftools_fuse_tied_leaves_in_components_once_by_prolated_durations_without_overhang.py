@@ -5,7 +5,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 
    t = Voice(notetools.make_repeated_notes(4))
    tie = tietools.TieSpanner(t.leaves)
-   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Fraction(1, 4)])
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Duration(1, 4)])
 
    r'''
    \new Voice {
@@ -16,9 +16,9 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    '''
 
    assert len(t) == 3
-   assert t[0].duration.prolated == Fraction(1, 4)
-   assert t[1].duration.prolated == Fraction(1, 8)
-   assert t[2].duration.prolated == Fraction(1, 8)
+   assert t[0].duration.prolated == Duration(1, 4)
+   assert t[1].duration.prolated == Duration(1, 8)
+   assert t[2].duration.prolated == Duration(1, 8)
    assert t[0] in tie
    assert t[1] in tie
    assert t[2] in tie
@@ -32,7 +32,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 
    t = Voice(notetools.make_repeated_notes(4))
    tie = tietools.TieSpanner(t.leaves[1:])
-   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Fraction(1, 4)])
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Duration(1, 4)])
 
    r'''
    \new Voice {
@@ -44,10 +44,10 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    '''
 
    assert len(t) == 4
-   assert t[0].duration.prolated == Fraction(1, 8)
-   assert t[1].duration.prolated == Fraction(1, 8)
-   assert t[2].duration.prolated == Fraction(1, 8)
-   assert t[3].duration.prolated == Fraction(1, 8)
+   assert t[0].duration.prolated == Duration(1, 8)
+   assert t[1].duration.prolated == Duration(1, 8)
+   assert t[2].duration.prolated == Duration(1, 8)
+   assert t[3].duration.prolated == Duration(1, 8)
    assert t[0] not in tie
    assert t[1] in tie
    assert t[2] in tie
@@ -63,7 +63,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    t = Voice(notetools.make_repeated_notes(4))
    tie1 = tietools.TieSpanner(t.leaves[0:2])
    tie2 = tietools.TieSpanner(t.leaves[2:])
-   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Fraction(1, 4)] * 2)
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Duration(1, 4)] * 2)
 
    r'''
    \new Voice {
@@ -73,8 +73,8 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    '''
 
    assert len(t) == 2
-   assert t[0].duration.prolated == Fraction(1, 4)
-   assert t[1].duration.prolated == Fraction(1, 4)
+   assert t[0].duration.prolated == Duration(1, 4)
+   assert t[1].duration.prolated == Duration(1, 4)
    assert t[0] in tie1
    assert t[1] in tie2
 
@@ -102,7 +102,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    }
    '''
 
-   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves[1:-1], [Fraction(1, 4)] * 3)
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves[1:-1], [Duration(1, 4)] * 3)
 
    r'''
    \new Voice {
@@ -127,7 +127,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
    t = stafftools.make_rhythmic_sketch_staff(notes)
 
    meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
-   meters = [Fraction(*meter) for meter in meters]
+   meters = [Duration(*meter) for meter in meters]
 
    componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t.leaves, meters, tie_after=True)
 

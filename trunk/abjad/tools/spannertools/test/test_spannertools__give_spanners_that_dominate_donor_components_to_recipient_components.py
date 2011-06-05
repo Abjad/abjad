@@ -23,7 +23,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
    }
    '''
 
-   recipient = Voice(notetools.make_repeated_notes(3, Fraction(1, 16)))
+   recipient = Voice(notetools.make_repeated_notes(3, Duration(1, 16)))
    spannertools.BeamSpanner(recipient)
 
    r'''

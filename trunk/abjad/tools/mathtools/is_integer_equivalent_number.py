@@ -11,7 +11,7 @@ def is_integer_equivalent_number(expr):
 
    Otherwise false::
 
-      abjad> mathtools.is_integer_equivalent_number(Fraction(1, 2))
+      abjad> mathtools.is_integer_equivalent_number(Duration(1, 2))
       False
 
    Return boolean.

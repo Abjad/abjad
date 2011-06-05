@@ -5,7 +5,7 @@ from abjad.exceptions import ContainmentError
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def _split_component_at_duration(component, duration, spanners = 'unfractured', tie_after = False):
@@ -25,7 +25,7 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
    from abjad.tools.leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian \
       import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
 
-   duration = Fraction(duration)
+   duration = durtools.Duration(duration)
    assert 0 <= duration
 
    ## if zero duration then return component

@@ -4,7 +4,7 @@ from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 from abjad.tools.metertools import Meter
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
@@ -41,7 +41,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
             tuplet_denominator = tuplet_multiplier.denominator
             reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
             meter = contexttools.get_effective_time_signature(measure)
-            meter_rational = Fraction(meter.numerator, meter.denominator)
+            meter_rational = durtools.Duration(meter.numerator, meter.denominator)
             numerator = meter_rational.numerator * reduced_denominator
             denominator = meter_rational.denominator * reduced_denominator
             measure._attach_explicit_meter(numerator, denominator)

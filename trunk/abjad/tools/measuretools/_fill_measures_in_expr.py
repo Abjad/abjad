@@ -3,7 +3,7 @@ from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools.skiptools.Skip import Skip
-from fractions import Fraction
+from abjad.tools import durtools
 from numbers import Number
 
 

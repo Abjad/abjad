@@ -33,7 +33,7 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
 
    ::
 
-      halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t.leaves[0], Fraction(1, 32))
+      halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t.leaves[0], Duration(1, 32))
       \new Staff {
          {
             \time 2/8

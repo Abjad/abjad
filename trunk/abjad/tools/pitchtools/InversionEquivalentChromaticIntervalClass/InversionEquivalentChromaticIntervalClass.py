@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools._IntervalClass import _IntervalClass
-from fractions import Fraction
+import numbers
 
 
 class InversionEquivalentChromaticIntervalClass(_IntervalClass):
@@ -19,7 +19,7 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
       self = object.__new__(klass)
       if isinstance(interval_class_token, type(self)):
          _number = interval_class_token.number
-      elif isinstance(interval_class_token, (int, float, long, Fraction)):
+      elif isinstance(interval_class_token, numbers.Number):
          if not 0 <= interval_class_token <= 6:
             raise ValueError('must be between 0 and 6, inclusive.')
          _number = interval_class_token

@@ -5,7 +5,7 @@ from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerD
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 from copy import deepcopy
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class Spanner(_StrictComparator):
@@ -286,17 +286,17 @@ class Spanner(_StrictComparator):
       ::
 
          abjad> spanner.duration.written
-         Fraction(1, 4)
+         Duration(1, 4)
 
       ::
 
          abjad> spanner.duration.preprolated
-         Fraction(1, 4)
+         Duration(1, 4)
 
       ::
 
          abjad> spanner.duration.prolated
-         Fraction(1, 4)
+         Duration(1, 4)
 
       Spanner duration interface also implements ``seconds`` attribute.
       '''
@@ -348,12 +348,12 @@ class Spanner(_StrictComparator):
       ::
 
          abjad> spanner._offset.start
-         Fraction(1, 4)
+         Duration(1, 4)
 
       ::
 
          abjad> spanner._offset.stop
-         Fraction(1, 2)
+         Duration(1, 2)
 
       Return duration.
       '''

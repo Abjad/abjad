@@ -5,7 +5,7 @@ def sum_duration_of_components_in_seconds(components):
 
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> score = Score([Staff([tuplet])])
-      abjad> contexttools.TempoMark(Fraction(1, 4), 48)(score)
+      abjad> contexttools.TempoMark(Duration(1, 4), 48)(score)
       TempoMark(4, 48)(Score<<1>>)
       abjad> f(score) # doctest: +SKIP
       \new Score <<
@@ -22,7 +22,7 @@ def sum_duration_of_components_in_seconds(components):
    ::
       
       abjad> componenttools.sum_duration_of_components_in_seconds(tuplet[:]) 
-      Fraction(5, 4)
+      Duration(5, 4)
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.sum_seconds( )`` to

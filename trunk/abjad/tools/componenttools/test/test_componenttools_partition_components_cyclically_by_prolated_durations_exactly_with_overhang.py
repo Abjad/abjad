@@ -25,7 +25,7 @@ def test_componenttools_partition_components_cyclically_by_prolated_durations_ex
 
    groups = \
       componenttools.partition_components_cyclically_by_prolated_durations_exactly_with_overhang(
-      t.leaves, [Fraction(3, 8)])
+      t.leaves, [Duration(3, 8)])
 
    "[[Note(c'', 8), Note(b', 8), Note(a', 8)], [Note(g', 8), Note(f', 8), Note(e', 8)], [Note(d', 8), Note(c', 8)]]"
 

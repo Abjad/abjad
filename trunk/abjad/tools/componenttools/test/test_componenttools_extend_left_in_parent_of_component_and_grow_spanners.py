@@ -7,7 +7,7 @@ def test_componenttools_extend_left_in_parent_of_component_and_grow_spanners_01(
    t = Voice(macros.scale(3))
    spannertools.BeamSpanner(t[:])
    result = componenttools.extend_left_in_parent_of_component_and_grow_spanners(
-      t[0], macros.scale(3, Fraction(1, 16)))
+      t[0], macros.scale(3, Duration(1, 16)))
 
    r'''
    \new Voice {

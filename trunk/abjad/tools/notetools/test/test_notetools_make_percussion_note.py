@@ -9,8 +9,8 @@ def test_notetools_make_percussion_note_01( ):
    assert t[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
-   assert t[0].duration.written == Fraction(1, 16)
-   assert t[1].duration.written == Fraction(1, 64)
+   assert t[0].duration.written == Duration(1, 16)
+   assert t[1].duration.written == Duration(1, 64)
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
    assert not tietools.is_component_with_tie_spanner_attached(t[1])
 
@@ -23,8 +23,8 @@ def test_notetools_make_percussion_note_02( ):
    assert len(t) == 2
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
-   assert t[0].duration.written == Fraction(1, 64)
-   assert t[1].duration.written == Fraction(1, 16)
+   assert t[0].duration.written == Duration(1, 64)
+   assert t[1].duration.written == Duration(1, 16)
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
    assert not tietools.is_component_with_tie_spanner_attached(t[1])
 
@@ -36,7 +36,7 @@ def test_notetools_make_percussion_note_03( ):
 
    assert len(t) == 1
    assert isinstance(t[0], Note)
-   assert t[0].duration.written == Fraction(3, 64)
+   assert t[0].duration.written == Duration(3, 64)
 
 
 def test_notetools_make_percussion_note_04( ):
@@ -47,8 +47,8 @@ def test_notetools_make_percussion_note_04( ):
    assert len(t) == 2
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
-   assert t[0].duration.written == Fraction(1, 64)
-   assert t[1].duration.written == Fraction(1, 32)
+   assert t[0].duration.written == Duration(1, 64)
+   assert t[1].duration.written == Duration(1, 32)
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
    assert not tietools.is_component_with_tie_spanner_attached(t[1])
 

@@ -1,7 +1,7 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools import componenttools
 from abjad.tools import mathtools
-from fractions import Fraction
+from abjad.tools import durtools
 import math
 
 
@@ -61,7 +61,7 @@ def divide_leaf_meiotically(leaf, n = 2):
 
    new_leaves = componenttools.clone_components_and_remove_all_spanners([leaf], n - 1)
    componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, new_leaves)
-   adjustment_multiplier = Fraction(1, n)
+   adjustment_multiplier = durtools.Duration(1, n)
    leaf.duration.written *= adjustment_multiplier
    for new_leaf in new_leaves:
       new_leaf.duration.written *= adjustment_multiplier

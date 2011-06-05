@@ -15,7 +15,7 @@ def get_component_start_offset(component):
    ::
       
       abjad> componenttools.get_component_start_offset(staff[1]) 
-      Fraction(1, 8)
+      Duration(1, 8)
 
    Return nonnegative fraction.
    '''

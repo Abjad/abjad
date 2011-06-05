@@ -5,7 +5,7 @@ def test_measuretools_fill_measures_in_expr_with_repeated_notes_01( ):
    '''Populate nonbinary measure with note train.'''
 
    t = Measure((5, 18), [ ])
-   measuretools.fill_measures_in_expr_with_repeated_notes(t, Fraction(1, 16))
+   measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
 
    r'''
    {

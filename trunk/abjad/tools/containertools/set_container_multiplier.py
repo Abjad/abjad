@@ -18,7 +18,7 @@ def set_container_multiplier(container, multiplier):
 
    ::
 
-      abjad> containertools.set_container_multiplier(tuplet, Fraction(3, 4))
+      abjad> containertools.set_container_multiplier(tuplet, Duration(3, 4))
 
    ::
 

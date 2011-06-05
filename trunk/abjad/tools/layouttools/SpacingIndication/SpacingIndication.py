@@ -1,7 +1,7 @@
 from abjad.core import _Immutable
 from abjad.core import _StrictComparator
 from abjad.tools import tempotools
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class SpacingIndication(_StrictComparator, _Immutable):
@@ -11,8 +11,8 @@ class SpacingIndication(_StrictComparator, _Immutable):
    will equal ``proportional_notation_duration`` when tempo
    equals ``tempo_indication``. ::
 
-      abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 44)
-      abjad> spacing_indication = layouttools.SpacingIndication(tempo, Fraction(1, 68))
+      abjad> tempo = contexttools.TempoMark(Duration(1, 8), 44)
+      abjad> spacing_indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
       abjad> spacing_indication
       SpacingIndication(TempoMark(8, 44), 1/68)
 
@@ -50,7 +50,7 @@ class SpacingIndication(_StrictComparator, _Immutable):
       '''Read-only proportional notation duration at 60 MM.'''
       indication = self.tempo_indication
       duration = self.proportional_notation_duration
-      scalar = indication.duration / indication.units_per_minute * 60 / Fraction(1, 4)
+      scalar = indication.duration / indication.units_per_minute * 60 / durtools.Duration(1, 4)
       return scalar * self.proportional_notation_duration
 
    @property

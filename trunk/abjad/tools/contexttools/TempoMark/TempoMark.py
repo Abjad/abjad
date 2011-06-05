@@ -1,6 +1,6 @@
 from abjad.tools import durtools
 from abjad.tools.contexttools.ContextMark import ContextMark
-from fractions import Fraction
+from abjad.tools import durtools
 import numbers
 
 
@@ -15,7 +15,7 @@ class TempoMark(ContextMark):
 
    ::
 
-      abjad> contexttools.TempoMark(Fraction(1, 8), 52)(staff[0])
+      abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff[0])
       TempoMark(8, 52)(c'8)
 
    ::
@@ -43,16 +43,16 @@ class TempoMark(ContextMark):
          self._target_context = Score
       if len(args) == 1 and isinstance(args[0], type(self)):
          tempo_indication = args[0]
-         duration = Fraction(tempo_indication.duration)
+         duration = durtools.Duration(tempo_indication.duration)
          units_per_minute = tempo_indication.units_per_minute
       elif len(args) == 2:
          duration, units_per_minute = args
-         #assert isinstance(duration, Fraction)
+         #assert isinstance(duration, durtools.Duration)
          try:
-            duration = Fraction(duration)
+            duration = durtools.Duration(duration)
          except TypeError:
-            duration = Fraction(*duration)
-         assert isinstance(units_per_minute, (int, long, float, Fraction))
+            duration = durtools.Duration(*duration)
+         assert isinstance(units_per_minute, (int, long, float, durtools.Duration))
          #duration = duration
          units_per_minute = units_per_minute
       else:
@@ -69,7 +69,7 @@ class TempoMark(ContextMark):
          new_units_per_minute, new_duration_denominator = \
             durtools.rational_to_duration_pair_with_specified_integer_denominator(
             new_quarters_per_minute / 4, minimum_denominator)
-         new_duration = Fraction(1, new_duration_denominator)
+         new_duration = durtools.Duration(1, new_duration_denominator)
          new_tempo_indication = type(self)(new_duration, new_units_per_minute)
          return new_tempo_indication
 
@@ -89,9 +89,9 @@ class TempoMark(ContextMark):
       return False
 
    def __mul__(self, multiplier):
-      if isinstance(multiplier, (int, float, Fraction)):
+      if isinstance(multiplier, (int, float, durtools.Duration)):
          new_units_per_minute = multiplier * self.units_per_minute
-         new_duration = Fraction(self.duration)
+         new_duration = durtools.Duration(self.duration)
          new_tempo_indication = type(self)(new_duration, new_units_per_minute)
          return new_tempo_indication
 
@@ -102,7 +102,7 @@ class TempoMark(ContextMark):
          new_units_per_minute, new_duration_denominator = \
             durtools.rational_to_duration_pair_with_specified_integer_denominator(
             new_quarters_per_minute / 4, minimum_denominator)
-         new_duration = Fraction(1, new_duration_denominator)
+         new_duration = durtools.Duration(1, new_duration_denominator)
          new_tempo_indication = type(self)(new_duration, new_units_per_minute)
          return new_tempo_indication
 
@@ -129,24 +129,24 @@ class TempoMark(ContextMark):
       def fget(self):
          '''Get duration of tempo mark::
    
-            abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
+            abjad> tempo = contexttools.TempoMark(Duration(1, 8), 52)
             abjad> tempo.duration
-            Fraction(1, 8)
+            Duration(1, 8)
       
          Set duration of tempo mark::
 
-            abjad> tempo.duration = Fraction(1, 4)
+            abjad> tempo.duration = Duration(1, 4)
             abjad> tempo.duration
-            Fraction(1, 4)
+            Duration(1, 4)
 
          Return duration.
          '''
          return self._duration
       def fset(self, duration):
          try:
-            duration = Fraction(duration)
+            duration = durtools.Duration(duration)
          except TypeError:
-            duration = Fraction(*duration)
+            duration = durtools.Duration(*duration)
          self._duration = duration
       return property(**locals( ))
 
@@ -156,7 +156,7 @@ class TempoMark(ContextMark):
 
       ::
 
-         abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
+         abjad> tempo = contexttools.TempoMark(Duration(1, 8), 52)
          abjad> tempo.format
          '\\tempo 8=52'
 
@@ -168,20 +168,20 @@ class TempoMark(ContextMark):
    def quarters_per_minute(self):
       r'''Read-only quarters per minute of tempo mark::
 
-         abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
+         abjad> tempo = contexttools.TempoMark(Duration(1, 8), 52)
          abjad> tempo.quarters_per_minute
-         Fraction(104, 1)
+         Duration(104, 1)
 
       Return fraction.
       '''
-      return Fraction(1, 4) / self.duration * self.units_per_minute
+      return durtools.Duration(1, 4) / self.duration * self.units_per_minute
 
    @apply
    def units_per_minute( ):
       def fget(self):
          r'''Get units per minute of tempo mark::
 
-            abjad> tempo = contexttools.TempoMark(Fraction(1, 8), 52)
+            abjad> tempo = contexttools.TempoMark(Duration(1, 8), 52)
             abjad> tempo.units_per_minute
             52
 

@@ -1,4 +1,5 @@
 from abjad import *
+from fractions import Fraction
 import py.test
 
 

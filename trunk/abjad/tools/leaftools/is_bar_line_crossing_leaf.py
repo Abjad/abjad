@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def is_bar_line_crossing_leaf(leaf):
@@ -9,8 +9,8 @@ def is_bar_line_crossing_leaf(leaf):
 
       abjad> t = Staff(macros.scale(4))
       abjad> t[2].duration.written *= 2
-      abjad> contexttools.TimeSignatureMark(2, 8, partial = Fraction(1, 8))(t[2])
-      TimeSignatureMark(2, 8, partial = Fraction(1, 8))(e'4)
+      abjad> contexttools.TimeSignatureMark(2, 8, partial = Duration(1, 8))(t[2])
+      TimeSignatureMark(2, 8, partial = Duration(1, 8))(e'4)
       abjad> f(t)
       \new Staff {
               c'8
@@ -34,7 +34,7 @@ def is_bar_line_crossing_leaf(leaf):
    meter = contexttools.get_effective_time_signature(leaf)
    partial = meter.partial
    if meter.partial is None:
-      partial = Fraction(0)
+      partial = Duration(0)
 
    shifted_start = (leaf._offset.start - partial) % meter.duration
    shifted_stop = (leaf._offset.stop - partial) % meter.duration

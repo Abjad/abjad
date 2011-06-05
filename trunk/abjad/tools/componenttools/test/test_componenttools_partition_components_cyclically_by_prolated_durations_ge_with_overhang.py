@@ -33,7 +33,7 @@ def test_componenttools_partition_components_cyclically_by_prolated_durations_ge
 
    groups = \
       componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang(
-      staff.leaves, [Fraction(3, 16), Fraction(1, 16)])
+      staff.leaves, [Duration(3, 16), Duration(1, 16)])
 
    "[[Note(c', 8), Note(d', 8)], [Note(e', 8)], [Note(f', 8), Note(g', 8)], [Note(a', 8)], [Note(b', 8), Note(c'', 8)]]"
 

@@ -1,6 +1,6 @@
 from abjad.components import Container
 from abjad.components._Component import _Component
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def _yield_vertical_moments_forward_in_expr(expr):
@@ -14,7 +14,7 @@ def _yield_vertical_moments_forward_in_expr(expr):
       raise TypeError('must be Abjad component.')
 
    governors = (expr, )
-   cur_offset, stop_offsets, buffer = Fraction(0), [ ], [ ]
+   cur_offset, stop_offsets, buffer = durtools.Duration(0), [ ], [ ]
    _buffer_components_starting_with(expr, buffer, stop_offsets)
    
    while buffer:

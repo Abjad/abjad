@@ -107,7 +107,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_05( ):
    '''Subsume nested tuplet.'''
 
-   inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))
+   inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
    notes = notetools.make_repeated_notes(2)
    outer = tuplettools.FixedDurationTuplet((2, 8), [inner] + notes)
    t = Measure((2, 8), [outer])

@@ -994,8 +994,8 @@ def test_componenttools_all_are_components_in_same_thread_37( ):
    a, b, t = tuplettools.FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 4) * 3
    b.insert(2, a)
    t.insert(2, b)
-   b.duration.target = Fraction(6, 8)
-   t.duration.target = Fraction(9, 8)
+   b.duration.target = Duration(6, 8)
+   t.duration.target = Duration(9, 8)
    macros.chromaticize(t)
 
    r'''

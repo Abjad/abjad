@@ -31,7 +31,7 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
 
    ::
 
-      abjad> durations = [Fraction(1, 32), Fraction(3, 32), Fraction(5, 32)]
+      abjad> durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
       abjad> parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:1], durations)
       abjad> f(t)
       \new Staff {

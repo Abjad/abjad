@@ -10,7 +10,7 @@ def get_element_starting_at_exactly_prolated_offset(container, prolated_offset):
 
    ::
 
-      abjad> containertools.get_element_starting_at_exactly_prolated_offset(voice, Fraction(6, 8))
+      abjad> containertools.get_element_starting_at_exactly_prolated_offset(voice, Duration(6, 8))
       Note("b'8")
    
    Raise missing component error when no `container` element starts at exactly `prolated_offset`.

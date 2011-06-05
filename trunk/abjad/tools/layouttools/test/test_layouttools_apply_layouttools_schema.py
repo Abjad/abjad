@@ -42,7 +42,7 @@ def test_layouttools_apply_layouttools_schema_01( ):
    ## then leave blank space equivalent to 1 system at top of first page;
    ## then position the second staff 15 units below the first staff.
 
-   schema = layouttools.LayoutSchema(Fraction(4, 8), (40, 5, 1), (15, ))   
+   schema = layouttools.LayoutSchema(Duration(4, 8), (40, 5, 1), (15, ))   
    layouttools.apply_layout_schema(t, schema)
 
    r'''
@@ -105,7 +105,7 @@ def test_layouttools_apply_layouttools_schema_02( ):
    }
    '''
 
-   schema = layouttools.LayoutSchema(Fraction(4, 8), (40, 5, 1), (15, ))
+   schema = layouttools.LayoutSchema(Duration(4, 8), (40, 5, 1), (15, ))
    layouttools.apply_layout_schema(t, schema, klass = Note)
 
    r'''

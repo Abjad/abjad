@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def is_proper_tuplet_multiplier(multiplier):
@@ -7,7 +7,7 @@ def is_proper_tuplet_multiplier(multiplier):
    ::
 
       abjad> for n in range(17):
-      ...     rational = Fraction(n, 8)
+      ...     rational = fractions.Fraction(n, 8)
       ...     multiplier = tuplettools.is_proper_tuplet_multiplier(rational)
       ...     print '%s   %s' % (rational, multiplier)
       ... 
@@ -38,10 +38,7 @@ def is_proper_tuplet_multiplier(multiplier):
       ``tuplettools.is_proper_tuplet_multiplier( )``.
    '''
 
-   #if not isinstance(multiplier, Fraction):
-   #   raise TypeError('must be rational.')
-
-   if Fraction(1, 2) < multiplier < Fraction(2):
+   if fractions.Fraction(1, 2) < multiplier < fractions.Fraction(2):
       return True   
 
    return False

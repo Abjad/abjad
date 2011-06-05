@@ -1,5 +1,4 @@
 from abjad.tools.mathtools.cumulative_sums_zero import cumulative_sums_zero
-from fractions import Fraction
 
 
 def cumulative_sums_zero_pairwise(sequence):

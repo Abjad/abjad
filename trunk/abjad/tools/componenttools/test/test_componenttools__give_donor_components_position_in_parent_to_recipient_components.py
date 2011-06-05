@@ -7,7 +7,7 @@ def test_componenttools__give_donor_components_position_in_parent_to_recipient_c
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   notes = macros.scale(2, Fraction(1, 16))
+   notes = macros.scale(2, Duration(1, 16))
 
    _give_donor_components_position_in_parent_to_recipient_components(t[0:1], notes)
 

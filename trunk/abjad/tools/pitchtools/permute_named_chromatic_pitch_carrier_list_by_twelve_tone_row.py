@@ -8,7 +8,7 @@ def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
    
    Permute named chromatic pitch carrier list by twelve-tone `row`::
 
-      abjad> notes = notetools.make_notes([17, -10, -2, 11], [Fraction(1, 4)])
+      abjad> notes = notetools.make_notes([17, -10, -2, 11], [Duration(1, 4)])
       abjad> row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
       abjad> pitchtools.permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(notes, row)
       [Note('bf4'), Note('d4'), Note("f''4"), Note("b'4")]

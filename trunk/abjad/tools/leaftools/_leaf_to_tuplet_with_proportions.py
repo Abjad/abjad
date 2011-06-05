@@ -4,7 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.notetools.make_notes import make_notes
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
@@ -32,7 +32,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
       notes = [Note(0, x) for x in written_durations]
    except AssignabilityError:
       denominator = target_duration._denominator
-      note_durations = [Fraction(x, denominator) for x in divisions]
+      note_durations = [durtools.Duration(x, denominator) for x in divisions]
       notes = make_notes(0, note_durations)
 
    ## make tuplet

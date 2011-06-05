@@ -9,10 +9,10 @@ def test_Meter_numerator_01( ):
 
    assert t.numerator == 3
    assert t.denominator == 8
-   assert t.duration == Fraction(3, 8)
+   assert t.duration == Duration(3, 8)
 
 #   t.numerator = 4
 #
 #   assert t.numerator == 4
 #   assert t.denominator == 8
-#   assert t.duration == Fraction(1, 2)
+#   assert t.duration == Duration(1, 2)

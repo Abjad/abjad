@@ -1,7 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._ChromaticIntervalClass import _ChromaticIntervalClass
 from abjad.tools.pitchtools._MelodicIntervalClass import _MelodicIntervalClass
-from fractions import Fraction
+import numbers
 
 
 class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalClass):
@@ -18,7 +18,7 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
    def __new__(klass, token):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
-      if isinstance(token, (int, float, long, Fraction)):
+      if isinstance(token, numbers.Number):
          sign = mathtools.sign(token)
          abs_token = abs(token)
          if abs_token % 12 == 0 and 12 <= abs_token:

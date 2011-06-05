@@ -19,7 +19,7 @@ def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
       
    ::
       
-      abjad> spannertools.find_index_of_spanner_component_at_score_offset(beam, Fraction(3, 8)) 
+      abjad> spannertools.find_index_of_spanner_component_at_score_offset(beam, Duration(3, 8)) 
       3
 
    Raise spanner population error when no component in `spanner` begins at exactly `score_offset`.

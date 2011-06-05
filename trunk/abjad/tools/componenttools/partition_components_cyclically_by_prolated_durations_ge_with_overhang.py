@@ -36,7 +36,7 @@ def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
       
    ::
       
-      abjad> groups = componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang(staff.leaves, [Fraction(3, 16), Fraction(1, 16)])
+      abjad> groups = componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang(staff.leaves, [Duration(3, 16), Duration(1, 16)])
 
    ::
    

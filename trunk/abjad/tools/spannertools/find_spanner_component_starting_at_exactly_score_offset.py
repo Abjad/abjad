@@ -16,7 +16,7 @@ def find_spanner_component_starting_at_exactly_score_offset(spanner, score_offse
       
    ::
       
-      abjad> spannertools.find_spanner_component_starting_at_exactly_score_offset(beam, Fraction(3, 8)) 
+      abjad> spannertools.find_spanner_component_starting_at_exactly_score_offset(beam, Duration(3, 8)) 
       Note("f'8")
 
    When no `spanner` component starts at exactly `score_offset` return none.

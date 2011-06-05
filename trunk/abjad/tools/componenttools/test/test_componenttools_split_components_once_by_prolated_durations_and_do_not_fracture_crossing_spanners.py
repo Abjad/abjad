@@ -24,7 +24,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
    }
    '''
 
-   durations = [Fraction(1, 32), Fraction(3, 32), Fraction(5, 32)]
+   durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
    parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:1], durations)
 
    r'''
@@ -74,7 +74,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
    }
    '''
 
-   durations = [Fraction(1, 32), Fraction(3, 32), Fraction(5, 32)]
+   durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
    parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:], durations)
 
    r'''

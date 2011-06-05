@@ -1,5 +1,5 @@
 from abjad.components._Leaf import _Leaf
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, written_duration):
@@ -9,21 +9,21 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
 
       abjad> note = Note(0, (1, 4))
       abjad> note.duration.written 
-      Fraction(1, 4)
+      Duration(1, 4)
       abjad> note.duration.preprolated 
-      Fraction(1, 4)
+      Duration(1, 4)
       
    ::
       
-      abjad> leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(note, Fraction(3, 16)) 
+      abjad> leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(note, Duration(3, 16)) 
       Note("c'8. * 4/3")
       
    ::
       
       abjad> note.duration.written 
-      Fraction(3, 16)
+      Duration(3, 16)
       abjad> note.duration.preprolated 
-      Fraction(1, 4)
+      Duration(1, 4)
 
    Add LilyPond multiplier where necessary.
 
@@ -39,7 +39,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
       raise TypeError('must be leaf: %s' % leaf)
 
    ## check written duration type
-   written_duration = Fraction(written_duration)
+   written_duration = durtools.Duration(written_duration)
 
    ## change leaf written duration
    previous = leaf.duration.multiplied

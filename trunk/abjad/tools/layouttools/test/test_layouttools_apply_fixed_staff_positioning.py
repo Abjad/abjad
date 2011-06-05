@@ -7,7 +7,7 @@ def test_layouttools_apply_fixed_staff_positioning_01( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Fraction(4, 8))      
+   layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))      
 
    r'''
    \new Staff {
@@ -85,7 +85,7 @@ def test_layouttools_apply_fixed_staff_positioning_02( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    macros.diatonicize(t)
-   layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Fraction(4, 8))      
+   layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))      
 
    r'''
    \new Staff {

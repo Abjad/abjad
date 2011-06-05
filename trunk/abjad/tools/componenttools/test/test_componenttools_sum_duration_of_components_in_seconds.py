@@ -5,7 +5,7 @@ def test_componenttools_sum_duration_of_components_in_seconds_01( ):
 
    tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
    score = Score([Staff([tuplet])])
-   contexttools.TempoMark(Fraction(1, 4), 48)(score)
+   contexttools.TempoMark(Duration(1, 4), 48)(score)
 
    r'''
    \new Score <<
@@ -20,4 +20,4 @@ def test_componenttools_sum_duration_of_components_in_seconds_01( ):
    >>
    '''
 
-   assert componenttools.sum_duration_of_components_in_seconds(tuplet[:]) == Fraction(5, 4)
+   assert componenttools.sum_duration_of_components_in_seconds(tuplet[:]) == Duration(5, 4)

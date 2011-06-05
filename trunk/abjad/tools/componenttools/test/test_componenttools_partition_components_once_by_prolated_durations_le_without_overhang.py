@@ -25,7 +25,7 @@ def test_componenttools_partition_components_once_by_prolated_durations_le_witho
 
    groups = \
       componenttools.partition_components_once_by_prolated_durations_le_without_overhang(
-      t.leaves, [Fraction(3, 16)])
+      t.leaves, [Duration(3, 16)])
 
    "[[Note(c', 8)]]"
 

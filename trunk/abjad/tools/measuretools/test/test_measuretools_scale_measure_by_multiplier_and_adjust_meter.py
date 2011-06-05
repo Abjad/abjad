@@ -7,7 +7,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_01( ):
       No note_head rewriting necessary.'''
 
    t = Measure((3, 8), macros.scale(3))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(2, 3))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
 
    r'''
    {
@@ -30,7 +30,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_02( ):
       No note_head rewriting necessary.'''
   
    t = Measure((3, 12), macros.scale(3))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(3, 2))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(3, 2))
 
    r'''
    {
@@ -50,7 +50,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_03( ):
       Noteheads rewrite with dots.'''
 
    t = Measure((3, 8), macros.scale(3))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(3, 2))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(3, 2))
 
    r'''
    {
@@ -69,8 +69,8 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_04( ):
    '''Scale binary meter to binary meter.
       Noteheads rewrite without dots.'''
 
-   t = Measure((9, 16), macros.scale(3, Fraction(3, 16)))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(2, 3))
+   t = Measure((9, 16), macros.scale(3, Duration(3, 16)))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
 
    r'''
    {
@@ -89,8 +89,8 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_05( ):
    '''Scale binary meter to nonbinary meter.
       No note_head rewriting necessary.'''
 
-   t = Measure((9, 16), macros.scale(9, Fraction(1, 16)))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(2, 3))
+   t = Measure((9, 16), macros.scale(9, Duration(1, 16)))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
 
    r'''
    {
@@ -118,7 +118,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_06( ):
       Noteheads rewrite with double duration.'''
 
    t = Measure((3, 12), macros.scale(3))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(3))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(3))
 
    r'''
    {
@@ -138,8 +138,8 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_07( ):
       Noteheads rewrite with half duration.
       Meter rewrites with double denominator.'''
 
-   t = Measure((6, 16), macros.scale(6, Fraction(1, 16)))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(1, 2))
+   t = Measure((6, 16), macros.scale(6, Duration(1, 16)))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(1, 2))
 
    r'''
    {
@@ -162,8 +162,8 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_08( ):
       Noteheads rewrite with quarter duration.
       Meter rewrites with quadruple denominator.'''
 
-   t = Measure((6, 16), macros.scale(6, Fraction(1, 16)))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(1, 4))
+   t = Measure((6, 16), macros.scale(6, Duration(1, 16)))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(1, 4))
 
    r'''
    {
@@ -186,8 +186,8 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_09( ):
       Noteheads rewrite with double duration.
       Meter rewrites with half denominator.'''
 
-   t = Measure((6, 16), macros.scale(6, Fraction(1, 16)))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(2))
+   t = Measure((6, 16), macros.scale(6, Duration(1, 16)))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2))
 
    r'''
    {
@@ -210,8 +210,8 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_10( ):
       Noteheads rewrite with quadruple duration.
       Meter rewrites with quarter denominator.'''
 
-   t = Measure((6, 16), macros.scale(6, Fraction(1, 16)))
-   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Fraction(4))
+   t = Measure((6, 16), macros.scale(6, Duration(1, 16)))
+   measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(4))
 
    r'''
    {
@@ -232,5 +232,5 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_10( ):
 def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_11( ):
    '''Raise ZeroDivisionError when multiplier equals zero.'''
 
-   t = Measure((6, 16), macros.scale(6, Fraction(1, 16)))
+   t = Measure((6, 16), macros.scale(6, Duration(1, 16)))
    py.test.raises(ZeroDivisionError, 'measuretools.scale_measure_by_multiplier_and_adjust_meter(t, 0)')

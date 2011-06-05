@@ -2,7 +2,7 @@ from abjad.core import _Immutable
 from abjad.core import _StrictComparator
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 class Meter(_StrictComparator, _Immutable):
@@ -27,7 +27,7 @@ class Meter(_StrictComparator, _Immutable):
       if len(args) == 1 and isinstance(args[0], Meter):
          meter = args[0]
          numerator, denominator = meter.numerator, meter.denominator
-      elif len(args) == 1 and isinstance(args[0], Fraction):
+      elif len(args) == 1 and isinstance(args[0], durtools.Duration):
          numerator, denominator = args[0].numerator, args[0].denominator
       elif len(args) == 1 and isinstance(args[0], tuple):
          numerator, denominator = args[0][0], args[0][1]
@@ -40,12 +40,12 @@ class Meter(_StrictComparator, _Immutable):
 
       ## initialize partial from **kwargs
       partial = kwargs.get('partial', None)
-      if not isinstance(partial, (type(None), Fraction)):
+      if not isinstance(partial, (type(None), durtools.Duration)):
          raise TypeError
       object.__setattr__(self, '_partial', partial)
 
       ## initialize derived attributes
-      object.__setattr__(self, '_duration', Fraction(numerator, denominator))
+      object.__setattr__(self, '_duration', durtools.Duration(numerator, denominator))
       object.__setattr__(self, '_format', r'\time %s/%s' % (numerator, denominator))
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
       object.__setattr__(self, '_multiplier', _multiplier)
@@ -106,7 +106,7 @@ class Meter(_StrictComparator, _Immutable):
 
    @property
    def duration(self):
-      '''Fraction duration of meter.'''
+      '''Duration duration of meter.'''
       return self._duration
 
    @property
@@ -116,7 +116,7 @@ class Meter(_StrictComparator, _Immutable):
 
    @property
    def multiplier(self):
-      '''Fraction prolation multiplier of meter.'''
+      '''Duration prolation multiplier of meter.'''
       return self._multiplier
 
    @property
@@ -131,5 +131,5 @@ class Meter(_StrictComparator, _Immutable):
 
    @property
    def partial(self):
-      '''Fraction partial-measure pickup prior to meter.'''
+      '''Duration partial-measure pickup prior to meter.'''
       return self._partial

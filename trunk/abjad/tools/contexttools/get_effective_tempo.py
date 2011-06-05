@@ -10,7 +10,7 @@ def get_effective_tempo(component):
       abjad> score = Score([ ])
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> score.append(staff)
-      abjad> contexttools.TempoMark(Fraction(1, 8), 52)(staff[0])
+      abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff[0])
       TempoMark(8, 52)(c'8)
 
    ::

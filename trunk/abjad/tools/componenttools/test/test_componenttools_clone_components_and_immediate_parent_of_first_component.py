@@ -54,7 +54,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
    '''
 
    assert isinstance(u, tuplettools.FixedDurationTuplet)
-   assert u.duration.target == Fraction(3, 10)
+   assert u.duration.target == Duration(3, 10)
    assert len(u) == 3
 
    assert u.format == "\\times 4/5 {\n\tc'8\n\td'8\n\te'8\n}"

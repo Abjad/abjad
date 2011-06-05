@@ -6,7 +6,7 @@ from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
@@ -52,7 +52,7 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
       notes = [Note(0, x) for x in written_durations]
    except AssignabilityError:
       denominator = target_duration._denominator
-      note_durations = [Fraction(x, denominator) for x in divisions]
+      note_durations = [Duration(x, denominator) for x in divisions]
       notes = notetools.make_notes(0, note_durations)
 
    # make tuplet

@@ -23,7 +23,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
    ::
 
       abjad> t = Staff(measuretools.AnonymousMeasure(macros.scale(2)) * 2)
-      abjad> front, back = Fraction(1, 32), Fraction(1, 64)
+      abjad> front, back = Duration(1, 32), Duration(1, 64)
       abjad> measuretools.pad_measures_in_expr_with_rests(t, front, back) # doctest: +SKIP
       abjad> f(t) # doctest: +SKIP
       \new Staff {
@@ -49,7 +49,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
       abjad> measure.is_parallel = True
       abjad> t = Staff(measure * 2)
       abjad> macros.diatonicize(t)
-      abjad> measuretools.pad_measures_in_expr_with_rests(t, Fraction(1, 32), Fraction(1, 64)) # doctest: +SKIP
+      abjad> measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64)) # doctest: +SKIP
 
    ::
 
@@ -90,7 +90,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
       abjad> spannertools.BeamSpanner(t[:])
       BeamSpanner(c'8, d'8)
       abjad> t.formatter.number.self = 'comment' # doctest: +SKIP
-      abjad> measuretools.pad_measures_in_expr_with_rests(t, Fraction(1, 32), Fraction(1, 64), splice = True) # doctest: +SKIP
+      abjad> measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64), splice = True) # doctest: +SKIP
 
    ::
 

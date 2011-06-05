@@ -40,11 +40,11 @@ def test_metertools_meter_to_binary_meter_03( ):
 def test_metertools_meter_to_binary_meter_04( ):
    '''Make n/24 meters into n/8 meters, where possible.'''
 
-   assert metertools.meter_to_binary_meter(metertools.Meter(1, 24), Fraction(99)) == metertools.Meter(1, 24)
-   assert metertools.meter_to_binary_meter(metertools.Meter(2, 24), Fraction(99)) == metertools.Meter(2, 24)
-   assert metertools.meter_to_binary_meter(metertools.Meter(3, 24), Fraction(99)) == metertools.Meter(1, 8)
-   assert metertools.meter_to_binary_meter(metertools.Meter(4, 24), Fraction(99)) == metertools.Meter(4, 24)
-   assert metertools.meter_to_binary_meter(metertools.Meter(5, 24), Fraction(99)) == metertools.Meter(5, 24)
-   assert metertools.meter_to_binary_meter(metertools.Meter(6, 24), Fraction(99)) == metertools.Meter(2, 8)
-   assert metertools.meter_to_binary_meter(metertools.Meter(7, 24), Fraction(99)) == metertools.Meter(7, 24)
-   assert metertools.meter_to_binary_meter(metertools.Meter(8, 24), Fraction(99)) == metertools.Meter(8, 24)
+   assert metertools.meter_to_binary_meter(metertools.Meter(1, 24), Duration(99)) == metertools.Meter(1, 24)
+   assert metertools.meter_to_binary_meter(metertools.Meter(2, 24), Duration(99)) == metertools.Meter(2, 24)
+   assert metertools.meter_to_binary_meter(metertools.Meter(3, 24), Duration(99)) == metertools.Meter(1, 8)
+   assert metertools.meter_to_binary_meter(metertools.Meter(4, 24), Duration(99)) == metertools.Meter(4, 24)
+   assert metertools.meter_to_binary_meter(metertools.Meter(5, 24), Duration(99)) == metertools.Meter(5, 24)
+   assert metertools.meter_to_binary_meter(metertools.Meter(6, 24), Duration(99)) == metertools.Meter(2, 8)
+   assert metertools.meter_to_binary_meter(metertools.Meter(7, 24), Duration(99)) == metertools.Meter(7, 24)
+   assert metertools.meter_to_binary_meter(metertools.Meter(8, 24), Duration(99)) == metertools.Meter(8, 24)

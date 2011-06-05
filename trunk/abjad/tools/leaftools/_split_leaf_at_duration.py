@@ -1,7 +1,7 @@
 from abjad.components._Leaf import _Leaf
 from abjad.tools import contexttools
 from abjad.tools.tietools import TieSpanner
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after = False):
@@ -17,7 +17,7 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
    from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_leaf_duration
 
    assert isinstance(leaf, _Leaf)
-   assert isinstance(split_dur, Fraction)
+   assert isinstance(split_dur, durtools.Duration)
 
    leaf_multiplied_duration = leaf.duration.multiplied
    unprolated_split_dur = split_dur / leaf.duration.prolation

@@ -21,6 +21,6 @@ def test__SpannerDurationInterface_prolated_01( ):
    }
    '''
 
-   assert beam.duration.prolated == Fraction(5, 12)
-   assert crescendo.duration.prolated == Fraction(2, 12)
-   assert decrescendo.duration.prolated == Fraction(2, 8)
+   assert beam.duration.prolated == Duration(5, 12)
+   assert crescendo.duration.prolated == Duration(2, 12)
+   assert decrescendo.duration.prolated == Duration(2, 8)

@@ -1,7 +1,7 @@
 from abjad.tools.tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration import add_or_remove_tie_chain_notes_to_achieve_written_duration
 from abjad.tools.tietools.get_written_tie_chain_duration import get_written_tie_chain_duration
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, multiplier):

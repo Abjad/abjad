@@ -1,4 +1,4 @@
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def get_first_element_starting_strictly_before_prolated_offset(container, prolated_offset):
@@ -10,7 +10,7 @@ def get_first_element_starting_strictly_before_prolated_offset(container, prolat
 
    ::
 
-      abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Fraction(1, 8))
+      abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Duration(1, 8))
       Note("c'8")
 
    Return component.
@@ -22,7 +22,7 @@ def get_first_element_starting_strictly_before_prolated_offset(container, prolat
       ``containertools.get_first_element_starting_strictly_before_prolated_offset( )``.
    '''
 
-   prolated_offset = Fraction(prolated_offset)
+   prolated_offset = durtools.Duration(prolated_offset)
 
    for element in reversed(container):
       if element._offset.start < prolated_offset:

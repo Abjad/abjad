@@ -4,7 +4,8 @@ from abjad.tools import leaftools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr
 from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
-from fractions import Fraction
+from abjad.tools import durtools
+import fractions
 
 
 def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
@@ -16,7 +17,7 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
    # check input
    if not isinstance(tuplet, FixedDurationTuplet):
       raise TypeError('must be tuplet.')
-   assert isinstance(multiplier, Fraction)
+   assert isinstance(multiplier, fractions.Fraction)
 
    # find new target duration
    old_target_duration = tuplet.duration.target

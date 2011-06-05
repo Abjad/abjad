@@ -1,4 +1,4 @@
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, component):
@@ -7,7 +7,7 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
    True when `timepoint` is within the duration of `component` in seconds::
    
       abjad> staff = Staff(macros.scale(4))
-      abjad> contexttools.TempoMark(Fraction(1, 2), 60, target_context = Staff)(staff)
+      abjad> contexttools.TempoMark(Duration(1, 2), 60, target_context = Staff)(staff)
       TempoMark(2, 60)(Staff{4})
 
    ::
@@ -27,7 +27,7 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
    '''
 
    try:
-      timepoint = Fraction(timepoint)
+      timepoint = durtools.Duration(timepoint)
    except TypeError:
       pass
 

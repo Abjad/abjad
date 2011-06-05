@@ -15,7 +15,7 @@ def is_well_formed_component(expr, allow_empty_containers = True):
    Otherwise false::
       
       abjad> staff = Staff(macros.scale(4))
-      abjad> staff[1].duration.written = Fraction(1, 4)
+      abjad> staff[1].duration.written = Duration(1, 4)
       abjad> spannertools.BeamSpanner(staff[:])
       BeamSpanner(c'8, d'4, e'8, f'8)
       abjad> componenttools.is_well_formed_component(staff)

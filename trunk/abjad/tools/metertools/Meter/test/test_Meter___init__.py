@@ -9,7 +9,7 @@ def test_Meter___init___01( ):
 
    assert t.numerator == 3
    assert t.denominator == 8
-   assert t.duration == Fraction(3, 8)
+   assert t.duration == Duration(3, 8)
 
 
 def test_Meter___init___02( ):
@@ -20,18 +20,18 @@ def test_Meter___init___02( ):
 
    assert t.numerator == 3
    assert t.denominator == 8
-   assert t.duration == Fraction(3, 8)
+   assert t.duration == Duration(3, 8)
 
 
 def test_Meter___init___03( ):
    '''Meter can initialize from a rational.
    '''
 
-   t = metertools.Meter(Fraction(3, 8))
+   t = metertools.Meter(Duration(3, 8))
 
    assert t.numerator == 3
    assert t.denominator == 8
-   assert t.duration == Fraction(3, 8)
+   assert t.duration == Duration(3, 8)
 
 
 def test_Meter___init___04( ):
@@ -42,4 +42,4 @@ def test_Meter___init___04( ):
 
    assert t.numerator == 3
    assert t.denominator == 8
-   assert t.duration == Fraction(3, 8)
+   assert t.duration == Duration(3, 8)

@@ -8,7 +8,7 @@ from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from fractions import Fraction
+from abjad.tools import durtools
 from numbers import Number
 
 
@@ -116,7 +116,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    if isinstance(durations, (Number, tuple)):
       durations = [durations]
 
-   ## change Fractions to duration tokens.
+   ## change Durations to duration tokens.
    durations = [durtools.duration_token_to_duration_pair(dur) for dur in durations]
 
    ## set lists of pitches and durations to the same length
@@ -145,8 +145,8 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
          denominator = ds[0][1]
          numerator = mathtools.greatest_power_of_two_less_equal(denominator)
          multiplier = (numerator, denominator)
-         ratio = 1 / Fraction(*multiplier)
-         ds = [ratio * Fraction(*d) for d in ds]
+         ratio = 1 / durtools.Duration(*multiplier)
+         ds = [ratio * durtools.Duration(*d) for d in ds]
          ## make leaves
          leaves = [ ]
          for pch, dur in zip(ps, ds):

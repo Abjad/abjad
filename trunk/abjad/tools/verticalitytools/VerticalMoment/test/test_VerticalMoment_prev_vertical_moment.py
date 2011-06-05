@@ -6,7 +6,7 @@ def test_VerticalMoment_prev_vertical_moment_01( ):
    score = Score([ ])
    score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
    piano_staff = scoretools.PianoStaff([ ])
-   piano_staff.append(Staff(notetools.make_repeated_notes(2, Fraction(1, 4))))
+   piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    contexttools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
@@ -39,19 +39,19 @@ def test_VerticalMoment_prev_vertical_moment_01( ):
 
    last_leaf = score.leaves[-1]
    vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(last_leaf)
-   assert vertical_moment.prolated_offset == Fraction(3, 8)
+   assert vertical_moment.prolated_offset == Duration(3, 8)
 
    vertical_moment = vertical_moment.prev_vertical_moment
-   assert vertical_moment.prolated_offset == Fraction(1, 3)
+   assert vertical_moment.prolated_offset == Duration(1, 3)
 
    vertical_moment = vertical_moment.prev_vertical_moment
-   assert vertical_moment.prolated_offset == Fraction(1, 4)
+   assert vertical_moment.prolated_offset == Duration(1, 4)
 
    vertical_moment = vertical_moment.prev_vertical_moment
-   assert vertical_moment.prolated_offset == Fraction(1, 6)
+   assert vertical_moment.prolated_offset == Duration(1, 6)
 
    vertical_moment = vertical_moment.prev_vertical_moment
-   assert vertical_moment.prolated_offset == Fraction(1, 8)
+   assert vertical_moment.prolated_offset == Duration(1, 8)
 
    vertical_moment = vertical_moment.prev_vertical_moment
-   assert vertical_moment.prolated_offset == Fraction(0)
+   assert vertical_moment.prolated_offset == Duration(0)

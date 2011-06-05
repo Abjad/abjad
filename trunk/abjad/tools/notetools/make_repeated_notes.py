@@ -1,8 +1,8 @@
 from abjad.tools.notetools.make_notes import make_notes
-from fractions import Fraction
+from abjad.tools import durtools
 
 
-def make_repeated_notes(count, duration = Fraction(1, 8)):
+def make_repeated_notes(count, duration = durtools.Duration(1, 8)):
    r'''Make `count` repeated notes with note head-assignable `duration`::
 
       abjad> notetools.make_repeated_notes(4)

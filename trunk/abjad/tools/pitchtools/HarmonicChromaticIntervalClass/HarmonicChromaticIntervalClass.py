@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools._ChromaticIntervalClass import _ChromaticIntervalClass
 from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
-from fractions import Fraction
+import numbers
 
 
 class HarmonicChromaticIntervalClass(_ChromaticIntervalClass, _HarmonicIntervalClass):
@@ -17,7 +17,7 @@ class HarmonicChromaticIntervalClass(_ChromaticIntervalClass, _HarmonicIntervalC
    def __new__(klass, token):
       from abjad.tools import pitchtools
       self = object.__new__(klass)
-      if isinstance(token, (int, float, long, Fraction)):
+      if isinstance(token, numbers.Number):
          number = token
       elif isinstance(token, pitchtools._Interval._Interval):   
          number = token.semitones

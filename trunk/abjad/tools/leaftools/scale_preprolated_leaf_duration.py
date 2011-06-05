@@ -9,7 +9,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Fraction(3, 2))
+      abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Duration(3, 2))
       [Note("d'8.")]
       abjad> f(staff)
       \new Staff {
@@ -24,7 +24,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Fraction(5, 4))
+      abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Duration(5, 4))
       [Note("d'8"), Note("d'32")]
       abjad> f(staff)
       \new Staff {
@@ -40,7 +40,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Fraction(2, 3))
+      abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Duration(2, 3))
       [Note("d'8")]
       abjad> f(staff)
       \new Staff {
@@ -57,7 +57,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
       abjad> staff = Staff(macros.scale(4))
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Fraction(5, 6))
+      abjad> leaftools.scale_preprolated_leaf_duration(staff[1], Duration(5, 6))
       [Note("d'8"), Note("d'32")]
       abjad> f(staff)
       \new Staff {

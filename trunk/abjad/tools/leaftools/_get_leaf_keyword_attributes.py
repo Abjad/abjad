@@ -3,7 +3,7 @@ from abjad.exceptions import MissingSpannerError
 from abjad.exceptions import MissingTempoError
 from abjad.interfaces._Interface import _Interface
 from abjad.tools.leaftools._inspect_leaf_instance_attributes import _inspect_leaf_instance_attributes
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 _types_forbidden_to_write_as_keyword_values = (_Component, _Interface)

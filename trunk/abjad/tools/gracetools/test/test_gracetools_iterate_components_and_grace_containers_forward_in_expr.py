@@ -6,7 +6,7 @@ def test_gracetools_iterate_components_and_grace_containers_forward_in_expr_01( 
 
    t = Voice(macros.scale(4))
    spannertools.BeamSpanner(t[:])
-   notes = macros.scale(4, Fraction(1, 16))
+   notes = macros.scale(4, Duration(1, 16))
    gracetools.Grace(notes[:2], kind = 'grace')(t[1])
    gracetools.Grace(notes[2:], kind = 'after')(t[1])
 

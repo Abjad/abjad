@@ -1,6 +1,6 @@
 from abjad.tools import durtools
 from abjad.tools.metertools.Meter import Meter
-from fractions import Fraction
+from abjad.tools import durtools
 
 
 def is_meter_token(expr):
@@ -11,7 +11,7 @@ def is_meter_token(expr):
 
    ::
 
-      abjad> metertools.is_meter_token(Fraction(3, 8))
+      abjad> metertools.is_meter_token(Duration(3, 8))
       True
 
    ::
@@ -29,7 +29,7 @@ def is_meter_token(expr):
 
    if isinstance(expr, Meter):
       return True
-   elif isinstance(expr, Fraction):
+   elif isinstance(expr, durtools.Duration):
       return True
    elif durtools.is_duration_pair(expr):
       return True

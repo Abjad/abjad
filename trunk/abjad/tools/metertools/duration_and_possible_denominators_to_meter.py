@@ -6,17 +6,17 @@ from abjad.tools.metertools.Meter import Meter
 def duration_and_possible_denominators_to_meter(duration, denominators = None, factor = None):
    '''Make new meter equal to `duration`::
 
-      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2))
+      abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2))
       Meter(3, 2)
 
    Make new meter equal to `duration` with denominator equal to the first possible element in `denominators`::
 
-      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), denominators = [5, 6, 7, 8])
+      abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), denominators = [5, 6, 7, 8])
       Meter(9, 6)
 
    Make new meter equal to `duration` with denominator divisible by `factor`::
 
-      abjad> metertools.duration_and_possible_denominators_to_meter(Fraction(3, 2), factor = 5)
+      abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), factor = 5)
       Meter(15, 10)
 
    Return new meter.

@@ -15,4 +15,4 @@ def test_spannertools_find_index_of_spanner_component_at_score_offset_01( ):
    }
    '''
 
-   assert spannertools.find_index_of_spanner_component_at_score_offset(beam, Fraction(3, 8)) == 3
+   assert spannertools.find_index_of_spanner_component_at_score_offset(beam, Duration(3, 8)) == 3

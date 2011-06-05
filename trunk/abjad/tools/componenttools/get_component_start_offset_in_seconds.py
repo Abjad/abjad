@@ -5,7 +5,7 @@ def get_component_start_offset_in_seconds(component):
 
       abjad> staff = Staff(macros.scale(4))
       abjad> score = Score([staff])
-      abjad> contexttools.TempoMark(Fraction(1, 4), 52)(score)
+      abjad> contexttools.TempoMark(Duration(1, 4), 52)(score)
       TempoMark(4, 52)(Score<<1>>)
       abjad> f(score) # doctest: +SKIP
       \new Score <<
@@ -21,7 +21,7 @@ def get_component_start_offset_in_seconds(component):
    ::
 
       abjad> componenttools.get_component_start_offset_in_seconds(score.leaves[1])
-      Fraction(15, 26)
+      Duration(15, 26)
 
    Return nonnegative fraction.
    '''
