@@ -4,7 +4,74 @@ from abjad.tools.gracetools.Grace._GraceFormatter import _GraceFormatter
 
 
 class Grace(Container):
-   '''Abjad model of grace music.
+   r'''Abjad model of grace music::
+
+      abjad> voice = Voice("c'8 d'8 e'8 f'8")
+      abjad> spannertools.BeamSpanner(voice[:])
+      BeamSpanner(c'8, d'8, e'8, f'8)
+
+   ::
+
+      abjad> f(voice)
+      \new Voice {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
+      }
+
+   ::
+
+      abjad> grace_notes = [Note("c'16"), Note("d'16")]
+      abjad> gracetools.Grace(grace_notes, kind = 'grace')(voice[1])
+      Note("d'8")
+
+   ::
+      
+      abjad> f(voice)
+      \new Voice {
+         c'8 [
+         \grace {
+            c'16
+            d'16
+         }
+         d'8
+         e'8
+         f'8 ]
+      }
+
+
+   ::
+
+      abjad> after_grace_notes = [Note("e'16"), Note("f'16")]
+      abjad> gracetools.Grace(after_grace_notes, kind = 'after')(voice[1])
+      Note("d'8")
+
+   ::
+
+      abjad> f(voice)
+      \new Voice {
+              c'8 [
+              \grace {
+                      c'16
+                      d'16
+              }
+              \afterGrace
+              d'8
+              {
+                      e'16
+                      f'16
+              }
+              e'8
+              f'8 ]
+      }
+
+
+   Grace objects are containers you can fill with notes, rests and chords.
+
+   Grace containers override the special ``__call__`` method.
+
+   Use ``Grace( )`` to attach grace containers to nongrace notes, rests and chords.
    '''
 
    def __init__(self, music = None, kind = 'grace', **kwargs):
@@ -38,6 +105,29 @@ class Grace(Container):
    @apply
    def kind( ):
       def fget(self):
+         r'''Get `kind` of grace container::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> gracetools.Grace([Note("cs'16")], kind = 'grace')(staff[1])
+            abjad> grace_container = staff[1].grace
+            abjad> grace_container.kind
+            'grace'
+
+         Return string.
+
+         Set `kind` of grace container::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+            abjad> gracetools.Grace([Note("cs'16")], kind = 'grace')(staff[1])
+            abjad> grace_container = staff[1].grace
+            abjad> grace_container.kind = 'acciaccatura'
+            abjad> grace_container.kinda
+            'acciaccatura'
+
+         Set string.
+
+         Valid options include ``'after'``, ``'grace'``, ``'acciaccatura'``, ``'appoggiatura'``.
+         '''
          return self._kind
       def fset(self, arg):
          assert arg in ('after', 'grace', 'acciaccatura', 'appoggiatura')

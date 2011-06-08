@@ -1,19 +1,25 @@
 def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
-   r'''Yield left-to-right `klass` instances in `expr`.
-   
-   Include grace leaves before main leaves.
+   r'''Iterate components of `klass` forward in `expr`::
 
-   Include grace leaves after main leaves. ::
-
-      abjad> t = Voice(macros.scale(4))
-      abjad> spannertools.BeamSpanner(t[:])
+      abjad> voice = Voice("c'8 d'8 e'8 f'8")
+      abjad> spannertools.BeamSpanner(voice[:])
       BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> notes = macros.scale(4, Fraction(1, 16))
-      abjad> gracetools.Grace(notes[:2], kind = 'grace')(t[1])
+
+   ::
+
+      abjad> grace_notes = [Note("c'16"), Note("d'16")]
+      abjad> gracetools.Grace(grace_notes, kind = 'grace')(voice[1])
       Note("d'8")
-      abjad> gracetools.Grace(notes[2:], kind = 'after')(t[1])
+
+   ::
+
+      abjad> after_grace_notes = [Note("e'16"), Note("f'16")]
+      abjad> gracetools.Grace(after_grace_notes, kind = 'after')(voice[1])
       Note("d'8")
-      abjad> print t.format
+
+   ::
+
+      abjad> f(voice)
       \new Voice {
               c'8 [
               \grace {
@@ -32,8 +38,8 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
 
    ::
 
-      abjad> for x in gracetools.iterate_components_and_grace_containers_forward_in_expr(t, Note):
-      ...     x
+      abjad> for note in gracetools.iterate_components_and_grace_containers_forward_in_expr(voice, Note):
+      ...     note
       ... 
       Note("c'8")
       Note("c'16")
@@ -44,14 +50,12 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
       Note("e'8")
       Note("f'8")
 
-   .. note:: This naive iteration ignores threads.
+   Include grace leaves before main leaves.
+
+   Include grace leaves after main leaves.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.grace( )`` to
-      ``componenttools.iterate_components_and_grace_containers_forward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.components_and_grace_containers_forward_in_expr( )`` to
       ``componenttools.iterate_components_and_grace_containers_forward_in_expr( )``.
    '''
 
