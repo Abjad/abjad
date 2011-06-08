@@ -87,7 +87,7 @@ class Grace(Container):
 
    def __call__(self, arg):
       if not isinstance(arg, _Leaf):
-         raise TypeError('object to which grace attaches much be leaf: "%s".' % arg)
+         raise TypeError('object to which grace container attaches much be leaf: "%s".' % arg)
       if self.kind == 'after':
          arg._after_grace = self
          arg.after_grace = self
@@ -133,3 +133,48 @@ class Grace(Container):
          assert arg in ('after', 'grace', 'acciaccatura', 'appoggiatura')
          self._kind = arg
       return property(**locals( ))
+
+   ## PUBLIC METHODS ##
+
+   def detach(self):
+      r'''Detach grace container from leaf::
+
+         abjad> staff = Staff("c'8 d'8 e'8 f'8")
+         abjad> grace_container = gracetools.Grace([Note("cs'16")], kind = 'grace')
+         abjad> grace_container(staff[1])
+         abjad> f(staff)
+         \new Staff {
+            c'8
+            \grace {
+               cs'16
+            }
+            d'8
+            e'8
+            f'8
+         }
+
+      ::
+
+         abjad> grace_container.detach( )
+         Grace( )
+         abjad> f(staff)
+         \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+         }
+
+      Return grace container.
+      '''
+      if self._carrier is not None:
+         carrier = self._carrier
+         if self.kind == 'after':
+            delattr(carrier, '_after_grace')
+            delattr(carrier, 'after_grace')
+         else:
+            delattr(carrier, '_grace')
+            delattr(carrier, 'grace')
+         self._carrier = None
+         self[:] = [ ]
+      return self

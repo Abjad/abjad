@@ -312,6 +312,8 @@ gracetools
    :maxdepth: 1
 
    tools/gracetools/Grace/Grace
+   tools/gracetools/detach_grace_containers_attached_to_leaf
+   tools/gracetools/get_grace_containers_attached_to_leaf
    tools/gracetools/iterate_components_and_grace_containers_forward_in_expr
 
 

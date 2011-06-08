@@ -31,10 +31,6 @@ def get_context_marks_attached_to_component(start_component, klasses = (ContextM
    .. versionchanged:: 1.1.2
       renamed ``contexttools.get_context_marks_attached_to_start_component( )`` to
       ``contexttools.get_context_marks_attached_to_component( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``contexttools.get_all_context_marks_attached_to_component( )`` to
-      ``contexttools.get_context_marks_attached_to_component( )``.
    '''
 
    result = [ ]
