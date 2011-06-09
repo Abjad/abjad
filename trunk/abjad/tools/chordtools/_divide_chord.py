@@ -15,7 +15,9 @@ def _divide_chord(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_c
    Return pair of newly created leaves.
    '''
 
-   assert isinstance(chord, _Leaf)
+   if not isinstance(chord, _Leaf):
+      raise TypeError('%s is not a chord.' % str(chord))
+
    assert pitchtools.is_named_chromatic_pitch_token(pitch)
    assert attr in ('numbered_chromatic_pitch', 'numbered_diatonic_pitch')
 
