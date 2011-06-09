@@ -1,10 +1,10 @@
 #! /usr/bin/env python
 
-import os
 from abjad.cfg.cfg import ABJADPATH
 from abjad.tools import iotools
+from abjad.tools.iotools._update_docs_release_string import _update_docs_release_string
 from abjad.tools.iotools._write_abjad_version_file import _write_abjad_version_file
-from abjad.tools.iotools.remove_abjad_pyc_files import remove_abjad_pyc_files
+import os
 
 
 ## find start directory and project root
@@ -20,5 +20,8 @@ os.chdir(start_directory)
 ## write version file
 _write_abjad_version_file( )
 
+## update docs release string
+_update_docs_release_string( )
+
 ## remove Abjad *.pyc files
-remove_abjad_pyc_files( )
+iotools.remove_abjad_pyc_files( )
