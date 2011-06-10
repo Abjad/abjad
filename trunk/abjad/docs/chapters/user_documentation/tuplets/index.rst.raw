@@ -1,3 +1,315 @@
 Working with tuplets
 ====================
 
+Making a tuplet from a LilyPond input string
+--------------------------------------------
+
+You can make an Abjad tuplet from a multiplier and a LilyPond input string:
+
+<abjad>
+tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+</abjad>
+
+<abjad>
+show(tuplet)
+measure = measuretools.AnonymousMeasure([tuplet]) <hide
+iotools.write_expr_to_ly(measure, 'example-1') <hide
+</abjad>
+
+Making a tuplet from a list of other Abjad components
+-----------------------------------------------------
+
+You can also make a tuplet from a multiplier and a list of other Abjad components:
+
+<abjad>
+leaves = [Note("fs'8"), Note("g'8"), Rest('r8')]
+</abjad>
+
+<abjad>
+tuplet = Tuplet(Fraction(2, 3), leaves)
+measure = measuretools.AnonymousMeasure([tuplet]) <hide
+</abjad>
+
+<abjad>
+show(tuplet)
+iotools.write_expr_to_ly(measure, 'example-2') <hide
+</abjad>
+
+Understanding the interpreter display of a tuplet
+-------------------------------------------------
+
+The interprer display of an Abjad tuplet contains three parts:
+
+<abjad>
+tuplet
+print repr(tuplet) <hide
+</abjad>
+
+``Tuplet`` tells you the tuplet's class.
+
+``2/3`` tells you the tuplet's multiplier.
+
+The list ``[fs'8, g'8, r8]`` shows the top-level components the tuplet contains.
+
+Understanding the string representation of a tuplet
+---------------------------------------------------
+
+The string representation of a tuplet contains four parts:
+
+<abjad>
+print tuplet
+</abjad>
+
+Curly braces ``{`` and ``}`` indicate that the tuplet's music is interpreted sequentially
+instead of in parallel.
+
+The asterisks ``*`` denote a fixed-multiplier tuplet.
+
+``3:2`` tells you the tuplet's ratio.
+
+The remaining arguments show the top-level components of tuplet.
+
+Inspecting the LilyPond format of a tuplet
+------------------------------------------
+
+Get the LilyPond input format of any Abjad object with ``format``:
+
+<abjad>
+tuplet.format
+print repr(tuplet.format) <hide
+</abjad>
+
+Use ``f( )`` as a short-cut to print the LilyPond format of any Abjad object:
+
+<abjad>
+f(tuplet)
+</abjad>
+
+Inspecting the music in a tuplet
+--------------------------------
+
+Get the music in any Abjad container with ``music``:
+
+<abjad>
+tuplet.music
+print repr(tuplet.music) <hide
+</abjad>
+
+Abjad returns a read-only tuple of components.
+
+Inspecting a tuplet's leaves
+----------------------------
+
+Get the leaves in any Abjad container with ``leaves``:
+
+<abjad>
+tuplet.leaves
+print repr(tuplet.leaves) <hide
+</abjad>
+
+Abjad returns a read-only tuple of leaves.
+
+Getting the length of a tuplet
+------------------------------
+
+Get the length of any Abjad container with ``len( )``:
+
+<abjad>
+len(tuplet)
+print repr(len(tuplet)) <hide
+</abjad>
+
+The length of every Abjad container is defined equal to the number of 
+top-level components present in the container.
+
+Getting the duration attributes of a tuplet
+-------------------------------------------
+
+You set the multiplier of a tuplet at initialization:
+
+<abjad>
+tuplet.duration.multiplier
+print repr(tuplet.duration.multiplier) <hide
+</abjad>
+
+The contents durations of a tuplet equals the sum of written durations of the components in the tuplet:
+
+<abjad>
+tuplet.duration.contents
+print repr(tuplet.duration.contents) <hide
+</abjad>
+
+The multiplied duration of a tuplet equals the product of the tuplet's multiplier 
+and the tuplet's contents duration:
+
+<abjad>
+tuplet.duration.multiplied
+print repr(tuplet.duration.preprolated) <hide
+</abjad>
+
+Understanding rhythmic augmentation and diminution
+--------------------------------------------------
+
+A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic diminution:
+
+<abjad>
+tuplet.duration.multiplier
+print repr(tuplet.duration.multiplier) <hide
+</abjad>
+
+<abjad>
+tuplet.duration.is_diminution
+print repr(tuplet.duration.is_diminution) <hide
+</abjad>
+
+A tuplet with a multiplier greater than ``1`` is a type of rhythmic augmentation:
+
+<abjad>
+tuplet.duration.is_augmentation
+print repr(tuplet.duration.is_augmentation) <hide
+</abjad>
+
+Understanding binary and nonbinary tuplets
+------------------------------------------
+
+A tuplet is considered binary if the numerator of the tuplet multiplier is an integer power of ``2``:
+
+<abjad>
+tuplet.duration.multiplier
+print repr(tuplet.duration.multiplier) <hide
+</abjad>
+
+<abjad>
+tuplet.duration.is_binary
+print repr(tuplet.duration.is_binary) <hide
+</abjad>
+
+Other tuplets are nonbinary:
+
+<abjad>
+tuplet.duration.is_nonbinary
+print repr(tuplet.duration.is_nonbinary) <hide
+</abjad>
+
+Adding one component to the end of a tuplet
+--------------------------------------------
+
+Add one component to the end of a tuplet with ``append``:
+
+<abjad>
+measure[:] = [ ] <hide
+tuplet.append(Note("e'4."))
+measure = measuretools.AnonymousMeasure([tuplet]) <hide
+</abjad>
+
+<abjad>
+show(tuplet)
+iotools.write_expr_to_ly(measure, 'example-3') <hide
+</abjad>
+
+Adding many components to the end of a tuplet
+---------------------------------------------
+
+Add many components to the end of a tuplet with ``extend``:
+
+<abjad>
+measure[:] = [ ] <hide
+notes = [Note("fs'8"), Note("e'8"), Note("d'8"), Note("c'4.")]
+tuplet.extend(notes)
+measure = measuretools.AnonymousMeasure([tuplet]) <hide
+</abjad>
+
+<abjad>
+show(tuplet)
+iotools.write_expr_to_ly(measure, 'example-4') <hide
+</abjad>
+
+Finding the index of a component in a tuplet
+--------------------------------------------
+
+Find the index of a component in a tuplet with ``index( )``:
+
+<abjad>
+notes[1]
+print repr(notes[1]) <hide
+</abjad>
+
+<abjad>
+tuplet.index(notes[1])
+print repr(tuplet.index(notes[1])) <hide
+</abjad>
+
+Removing a tuplet component by index
+------------------------------------
+
+Use ``pop( )`` to remove a tuplet component by index:
+
+<abjad>
+tuplet[7]
+print repr(tuplet[7]) <hide
+</abjad>
+
+<abjad>
+tuplet.pop(7)
+spannertools.BeamSpanner(tuplet[-3:]) <hide
+</abjad>
+
+<abjad>
+show(tuplet)
+iotools.write_expr_to_ly(measure, 'example-5') <hide
+</abjad>
+
+Removing a tuplet component by reference
+----------------------------------------
+
+Remove tuplet components by reference with ``remove( )``:
+
+<abjad>
+tuplet.remove(tuplet[3])
+</abjad>
+
+<abjad>
+show(tuplet)
+iotools.write_expr_to_ly(measure, 'example-6') <hide
+</abjad>
+
+Overriding attributes of the LilyPond tuplet number grob
+--------------------------------------------------------
+
+Override attributes of the LilyPond tuplet number grob like this:
+
+<abjad>
+tuplet.override.tuplet_number.text = schemetools.SchemeFunction('tuplet-number::calc-fraction-text')
+tuplet.override.tuplet_number.color = 'red'
+</abjad>
+
+<abjad>
+f(tuplet)
+</abjad>
+
+<abjad>
+show(tuplet)
+iotools.write_expr_to_ly(measure, 'example-7') <hide
+</abjad>
+
+See the LilyPond docs for lists of grob attributes available.
+
+Overriding attributes of the LilyPond tuplet bracket grob
+---------------------------------------------------------
+
+Override attributes of the LilyPond tuplet bracket grob like this:
+
+<abjad>
+tuplet.override.tuplet_bracket.color = 'red'
+</abjad>
+
+<abjad>
+f(tuplet)
+</abjad>
+
+<abjad>
+show(tuplet)
+iotools.write_expr_to_ly(measure, 'example-8') <hide
+</abjad>
+
+See the LilyPond docs for lists of grob attributes available.
