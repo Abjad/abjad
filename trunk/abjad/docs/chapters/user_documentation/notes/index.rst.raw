@@ -1,10 +1,10 @@
 Working with notes
 ==================
 
-Creating notes
---------------
+Making notes from a string
+--------------------------
 
-Create notes with a string:
+You can make notes from string:
 
 <abjad>
 note = Note("c'4")
@@ -16,32 +16,47 @@ measure = measuretools.AnonymousMeasure([note]) <hide
 iotools.write_expr_to_ly(measure, 'example-1', 'oedo.ly') <hide
 </abjad>
 
-(You can also use ``Note(0, Fraction(1, 4))`` to create notes with numbers.)
+Making notes from chromatic pitch number and duration
+-----------------------------------------------------
 
-Getting pitch
--------------
+You can also make notes from chromatic pitch number and duration:
 
-You can get the pitch of notes:
+<abjad>
+note = Note(0, Duration(1, 4))
+</abjad>
+
+<abjad>
+show(note)
+measure = measuretools.AnonymousMeasure([note]) <hide
+iotools.write_expr_to_ly(measure, 'example-2', 'oedo.ly') <hide
+</abjad>
+
+(You even use ``Note(0, (1, 4))`` to create notes with numbers alone.)
+
+Getting the written pitch of notes
+----------------------------------
+
+You can get the written pitch of notes:
 
 <abjad>
 note.pitch
 print repr(note.pitch) <hide
 </abjad>
 
-Changing pitch
---------------
+Changing the written pitch of notes
+-----------------------------------
 
-And you can change the pitch of notes:
+And you can change the written pitch of notes:
 
 <abjad>
 note.pitch = "cs'"
-iotools.write_expr_to_ly(measure, 'example-2', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'example-3', 'oedo.ly') <hide
 </abjad>
 
 (You can use ``note.pitch = 1`` to change pitch with numbers, too.)
 
-Duration attributes
--------------------
+Getting the duration attributes of notes
+----------------------------------------
 
 Get the written duration of notes like this:
 
@@ -73,7 +88,7 @@ tuplet = Tuplet((2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
 <abjad>
 show(tuplet)
 measure = measuretools.AnonymousMeasure([tuplet]) <hide
-iotools.write_expr_to_ly(measure, 'example-3', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'example-4', 'oedo.ly') <hide
 </abjad>
 
 <abjad>
@@ -101,21 +116,21 @@ note.duration.prolated
 print repr(note.duration.prolated) <hide
 </abjad>
 
-Changing duration
------------------
+Changing the written duration of notes
+--------------------------------------
 
 You can change the written duration of notes:
 
 <abjad>
-tuplet[0].duration.written = Fraction(1, 8)
-tuplet[1].duration.written = Fraction(1, 8)
-tuplet[2].duration.written = Fraction(1, 8)
+tuplet[0].duration.written = Duration(1, 8)
+tuplet[1].duration.written = Duration(1, 8)
+tuplet[2].duration.written = Duration(1, 8)
 spannertools.BeamSpanner(tuplet) <hide
 </abjad>
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-4', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'example-5', 'oedo.ly') <hide
 </abjad>
 
 Other duration attributes are read-only.

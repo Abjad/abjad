@@ -1,10 +1,10 @@
 Working with notes
 ==================
 
-Creating notes
---------------
+Making notes from a string
+--------------------------
 
-Create notes with a string:
+You can make notes from string:
 
 ::
 
@@ -17,12 +17,28 @@ Create notes with a string:
 
 .. image:: images/example-1.png
 
-(You can also use ``Note(0, Fraction(1, 4))`` to create notes with numbers.)
+Making notes from chromatic pitch number and duration
+-----------------------------------------------------
 
-Getting pitch
--------------
+You can also make notes from chromatic pitch number and duration:
 
-You can get the pitch of notes:
+::
+
+	abjad> note = Note(0, Duration(1, 4))
+
+
+::
+
+	abjad> show(note)
+
+.. image:: images/example-2.png
+
+(You even use ``Note(0, (1, 4))`` to create notes with numbers alone.)
+
+Getting the written pitch of notes
+----------------------------------
+
+You can get the written pitch of notes:
 
 ::
 
@@ -30,28 +46,28 @@ You can get the pitch of notes:
 	NamedChromaticPitch("c'")
 
 
-Changing pitch
---------------
+Changing the written pitch of notes
+-----------------------------------
 
-And you can change the pitch of notes:
+And you can change the written pitch of notes:
 
 ::
 
 	abjad> note.pitch = "cs'"
 
-.. image:: images/example-2.png
+.. image:: images/example-3.png
 
 (You can use ``note.pitch = 1`` to change pitch with numbers, too.)
 
-Duration attributes
--------------------
+Getting the duration attributes of notes
+----------------------------------------
 
 Get the written duration of notes like this:
 
 ::
 
 	abjad> note.duration.written
-	Fraction(1, 4)
+	Duration(1, 4)
 
 
 Which is usually the same as preprolated duration:
@@ -59,7 +75,7 @@ Which is usually the same as preprolated duration:
 ::
 
 	abjad> note.duration.preprolated
-	Fraction(1, 4)
+	Duration(1, 4)
 
 
 And prolated duration:
@@ -67,7 +83,7 @@ And prolated duration:
 ::
 
 	abjad> note.duration.prolated
-	Fraction(1, 4)
+	Duration(1, 4)
 
 
 Except for notes inside a tuplet:
@@ -81,7 +97,7 @@ Except for notes inside a tuplet:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-3.png
+.. image:: images/example-4.png
 
 ::
 
@@ -93,7 +109,7 @@ Tupletted notes carry written duration:
 ::
 
 	abjad> note.duration.written
-	Fraction(1, 4)
+	Duration(1, 4)
 
 
 Prolation:
@@ -109,25 +125,25 @@ And prolated duration that is the product of the two:
 ::
 
 	abjad> note.duration.prolated
-	Fraction(1, 6)
+	Duration(1, 6)
 
 
-Changing duration
------------------
+Changing the written duration of notes
+--------------------------------------
 
 You can change the written duration of notes:
 
 ::
 
-	abjad> tuplet[0].duration.written = Fraction(1, 8)
-	abjad> tuplet[1].duration.written = Fraction(1, 8)
-	abjad> tuplet[2].duration.written = Fraction(1, 8)
+	abjad> tuplet[0].duration.written = Duration(1, 8)
+	abjad> tuplet[1].duration.written = Duration(1, 8)
+	abjad> tuplet[2].duration.written = Duration(1, 8)
 
 
 ::
 
 	abjad> show(tuplet)
 
-.. image:: images/example-4.png
+.. image:: images/example-5.png
 
 Other duration attributes are read-only.
