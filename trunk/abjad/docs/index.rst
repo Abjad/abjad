@@ -148,6 +148,13 @@ Reference manual --- voices
 
    chapters/user_documentation/voices/index
 
+Advanced tutorials
+
+.. toctree::
+   :numbered:
+
+   chapters/tutorials/time_signature_marks/index
+
 Developer documentation
 
 .. toctree::
