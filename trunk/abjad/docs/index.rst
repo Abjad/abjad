@@ -32,29 +32,22 @@ Examples
    chapters/examples/lehman/index
    chapters/examples/ligeti/index
 
-Core classes
+Reference manual --- chords
 
 .. toctree::
    :numbered:
-   
-   chapters/user_documentation/notes/index
-   chapters/user_documentation/rests/index
-   chapters/user_documentation/chords/index
-   chapters/user_documentation/tuplets/index
-   chapters/user_documentation/measures/index
-   chapters/user_documentation/voices/index
-   chapters/user_documentation/staves/index
-   chapters/user_documentation/scores/index
-   chapters/user_documentation/lily_files/index
 
-User documentation --- containers
+   chapters/user_documentation/chords/index
+
+
+Reference manual --- containers
 
 .. toctree::
    :numbered:
 
    chapters/user_documentation/containers/index
 
-User documentation --- grobs
+Reference manual --- grobs
 
 .. toctree::
    :numbered:
@@ -65,7 +58,14 @@ User documentation --- grobs
    chapters/user_documentation/overriding_leaves/index
    chapters/user_documentation/overriding_spanners/index
 
-User documentation --- marks
+Reference manual --- LilyPond files
+
+.. toctree::
+   :numbered:
+   
+   chapters/user_documentation/lily_files/index
+
+Reference manual --- marks
 
 .. toctree::
    :numbered:
@@ -74,22 +74,58 @@ User documentation --- marks
    chapters/user_documentation/comments/index
    chapters/user_documentation/instrument_marks/index
 
-User documentation --- measures
+Reference manual --- measures
 
 .. toctree::
    :numbered:
 
+   chapters/user_documentation/measures/index
    chapters/user_documentation/dynamic_measures/index
    chapters/user_documentation/anonymous_measures/index
 
-User documentation --- pitch
+Reference manual --- notes
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/notes/index
+
+Reference manual --- pitch
 
 .. toctree::
    :numbered:
 
    chapters/user_documentation/pitch/named_chromatic_pitch/index
 
-User documentation --- score structure
+Reference manual --- rests
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/rests/index
+
+Reference manual --- scores
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/scores/index
+
+Reference manual --- spanners
+
+.. toctree::
+   :numbered:
+   
+   chapters/user_documentation/spanners/index
+
+Reference manual --- staves
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/staves/index
+
+Reference manual --- tree structure
 
 .. toctree::
    :numbered:
@@ -98,12 +134,19 @@ User documentation --- score structure
    chapters/user_documentation/parentage/index
    chapters/user_documentation/threads/index
 
-User documentation --- spanners
+Reference manual --- tuplets
 
 .. toctree::
    :numbered:
-   
-   chapters/user_documentation/spanners/index
+
+   chapters/user_documentation/tuplets/index
+
+Reference manual --- voices
+
+.. toctree::
+   :numbered:
+
+   chapters/user_documentation/voices/index
 
 Developer documentation
 
