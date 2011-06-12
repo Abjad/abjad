@@ -53,7 +53,7 @@ Score contents duration is equal to the duration of the longest component in sco
 ::
 
 	abjad> score.duration.contents
-	Fraction(2, 1)
+	Duration(2, 1)
 
 
 Adding one component to the bottom of a score

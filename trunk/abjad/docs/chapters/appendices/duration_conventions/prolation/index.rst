@@ -26,7 +26,7 @@ Tuplets prolate their contents:
 
 	abjad> note = tuplet[0]
 	abjad> note.duration.written
-	Fraction(1, 8)
+	Duration(1, 8)
 
 
 ::
@@ -38,7 +38,7 @@ Tuplets prolate their contents:
 ::
 
 	abjad> note.duration.prolated
-	Fraction(5, 32)
+	Duration(5, 32)
 
 
 Notes here with written duration ``1/8`` carry prolation factor ``5/4`` 
@@ -72,7 +72,7 @@ Such **nonbinary meters** rhythmically diminish the contents of the measures the
 ::
 
 	abjad> note.duration.prolated
-	Fraction(1, 8)
+	Duration(1, 8)
 
 
 ::
@@ -84,7 +84,7 @@ Such **nonbinary meters** rhythmically diminish the contents of the measures the
 ::
 
 	abjad> note.duration.prolated
-	Fraction(1, 10)
+	Duration(1, 10)
 
 
 Notes here with written duration ``1/8`` carry prolation factor ``4/5``
@@ -119,13 +119,13 @@ All durated components carry a prolation chain:
 
 	abjad> note = measure.leaves[0]
 	abjad> note.duration.prolation
-	Fraction(32, 35)
+	Duration(32, 35)
 
 
 ::
 
 	abjad> note.duration.prolated
-	Fraction(2, 35)
+	Duration(2, 35)
 
 
 Notes here with written duration ``1/16`` carry prolated duration ``2/35``.

@@ -20,7 +20,7 @@ These sixteenth notes are worth a sixteenth of a whole note:
 	abjad> staff = stafftools.RhythmicStaff([measure])
 	abjad> note = measure[0]
 	abjad> note.duration.written
-	Fraction(1, 16)
+	Duration(1, 16)
 
 .. image:: images/written_dur1.png
 
@@ -34,7 +34,7 @@ These sixteenth notes are worth more than a sixteenth of a whole note:
 	abjad> staff = stafftools.RhythmicStaff([measure])
 	abjad> note = tuplet[0]
 	abjad> note.duration.written
-	Fraction(1, 16)
+	Duration(1, 16)
 
 .. image:: images/written_dur2.png
 
@@ -84,7 +84,7 @@ These elements carry preprolated durations equal to 1/8, 1/8 and 2/8, respective
 	measure = Measure((4, 8), notes + [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
 	abjad> measure.duration.contents
-	Fraction(1, 2)
+	Duration(1, 2)
 
 .. image:: images/contents_dur1.png
 
@@ -108,7 +108,7 @@ This fixed-duration tuplet carries a target duration equal to 4/8:
 	abjad> print tuplet.duration.contents
 	5/8
 	abjad> tuplet.duration.target
-	Fraction(1, 2)
+	Duration(1, 2)
 
 .. image:: images/target_dur1.png
 
@@ -133,7 +133,7 @@ The first two notes below carry leaf mulitipliers equal to 2/1:
 	abjad> staff = stafftools.RhythmicStaff([measure])
 	abjad> note = measure[0]
 	abjad> note.duration.written
-	Fraction(1, 16)
+	Duration(1, 16)
 
 .. image:: images/multiplied_dur1.png
 
@@ -146,9 +146,9 @@ The first two notes below carry leaf mulitipliers equal to 2/1:
 ::
 
 	abjad> note.duration.written * note.duration.multiplier
-	Fraction(1, 8)
+	Duration(1, 8)
 	abjad> note.duration.multiplied
-	Fraction(1, 8)
+	Duration(1, 8)
 
 
 The written duration of these first two notes equals 1/16 and so 

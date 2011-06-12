@@ -70,7 +70,7 @@ Contents duration equals the sum of the duration of everything inside the contai
 ::
 
 	abjad> container.duration.contents
-	Fraction(7, 8)
+	Duration(7, 8)
 
 
 Adding one component to the end of a container

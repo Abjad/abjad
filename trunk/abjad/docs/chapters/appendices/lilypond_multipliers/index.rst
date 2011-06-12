@@ -17,7 +17,7 @@ LilyPond multipliers change the multiplied duration of notes, rests, chords and 
 ::
 
 	abjad> note.duration.multiplied
-	Fraction(1, 24)
+	Duration(1, 24)
 
 
 LilyPond multipliers leave written duration unchanged:
@@ -25,5 +25,5 @@ LilyPond multipliers leave written duration unchanged:
 ::
 
 	abjad> note.duration.written
-	Fraction(1, 4)
+	Duration(1, 4)
 

@@ -31,7 +31,7 @@ duration of a note, rest or chord as affected by the multiplier.
 ::
 
 	abjad> note.duration.multiplied
-	Fraction(1, 8)
+	Duration(1, 8)
 
 
 LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
