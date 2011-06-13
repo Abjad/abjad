@@ -1,5 +1,5 @@
-Working with annotations
-========================
+Annotations
+===========
 
 Annotate components with user-specific information for future use.
 

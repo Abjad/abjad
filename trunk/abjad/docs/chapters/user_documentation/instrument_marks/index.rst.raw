@@ -1,5 +1,8 @@
-Working with instrument marks
-=============================
+Instrument marks
+================
+
+Creating instrument marks
+-------------------------
 
 Use context tools to add instrument marks:
 

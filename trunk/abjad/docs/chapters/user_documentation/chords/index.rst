@@ -1,5 +1,5 @@
-Working with chords
-===================
+Chords
+======
 
 Making chords from a LilyPond input string
 ------------------------------------------

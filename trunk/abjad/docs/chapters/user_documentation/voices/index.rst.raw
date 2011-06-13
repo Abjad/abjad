@@ -1,5 +1,5 @@
-Working with voices
-===================
+Voices
+======
 
 Making a voice from a LilyPond input string
 -------------------------------------------

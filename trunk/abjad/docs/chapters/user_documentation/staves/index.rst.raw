@@ -1,5 +1,5 @@
-Working with staves
-===================
+Staves
+======
 
 Creating staves
 ---------------

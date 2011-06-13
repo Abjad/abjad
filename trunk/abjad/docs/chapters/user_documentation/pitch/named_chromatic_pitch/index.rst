@@ -1,5 +1,5 @@
-Working with named chromatic pitches
-====================================
+Pitches
+=======
 
 Named chromatic pitches are the everyday pitches attached to notes and chords:
 

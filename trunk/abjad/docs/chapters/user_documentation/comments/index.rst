@@ -1,5 +1,5 @@
-Working with comments
-=====================
+Comments
+========
 
 LilyPond comments begin with the ``%`` sign.
 Abjad models LilyPond comments as marks.

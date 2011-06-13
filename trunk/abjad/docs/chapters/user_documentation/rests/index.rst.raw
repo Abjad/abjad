@@ -1,5 +1,5 @@
-Working with rests
-==================
+Rests
+=====
 
 Making rests from strings
 -------------------------

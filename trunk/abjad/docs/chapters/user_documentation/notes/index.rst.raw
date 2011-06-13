@@ -1,5 +1,5 @@
-Working with notes
-==================
+Notes
+=====
 
 Making notes from a string
 --------------------------
@@ -134,3 +134,58 @@ iotools.write_expr_to_ly(measure, 'example-5', 'oedo.ly') <hide
 </abjad>
 
 Other duration attributes are read-only.
+
+Overriding notes
+----------------
+
+The notes below are black with fixed thickness and predetermined spacing:
+
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
+slur_1 = spannertools.SlurSpanner(staff[:2])
+slur_2 = spannertools.SlurSpanner(staff[2:4])
+slur_3 = spannertools.SlurSpanner(staff[4:6])
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'example-6') <hide
+</abjad>
+
+But you can override LilyPond grobs to change the look of notes, rests and chords:
+
+<abjad>
+staff[-1].override.note_head.color = 'red'
+staff[-1].override.stem.color = 'red'
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'example-7') <hide
+</abjad>
+
+Removing note overrides
+-----------------------
+
+Delete grob overrides you no longer want:
+
+<abjad>
+del(staff[-1].override.stem)
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'example-8') <hide
+</abjad>

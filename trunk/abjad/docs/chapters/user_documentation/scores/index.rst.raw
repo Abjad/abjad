@@ -1,5 +1,5 @@
-Working with scores
-===================
+Scores
+======
 
 Creating scores
 ---------------

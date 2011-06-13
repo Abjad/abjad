@@ -1,6 +1,5 @@
-Working with measures
-=====================
-
+Measures
+========
 
 Understanding measures in LilyPond
 ----------------------------------
@@ -82,3 +81,142 @@ Create a measure with a meter and music:
 	abjad> show(measure)
 
 .. image:: images/example-2.png
+
+Working with dynamic measures
+-----------------------------
+
+Dynamic measures adjust their time signatures on the fly as you add
+and remove music.
+
+Create dynamic measures without a time signature:
+
+::
+
+	abjad> measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
+
+
+::
+
+	abjad> show(measure)
+
+.. image:: images/example-3.png
+
+Adding music to dynamic measures
+--------------------------------
+
+Add music to dynamic measures the same as to all containers:
+
+::
+
+	abjad> measure.extend([Note("fs'8"), Note("gs'8")])
+
+
+::
+
+	abjad> show(measure)
+
+.. image:: images/example-4.png
+
+Removing music from dynamic measures
+------------------------------------
+
+Remove music from dynamic measures the same as with other containers:
+
+::
+
+	abjad> del(measure[1:3])
+
+
+::
+
+	abjad> show(measure)
+
+.. image:: images/example-5.png
+
+Setting the denominator of dynamic measures
+-------------------------------------------
+
+You can set the denominator of dynamic measures to any integer power of ``2``:
+
+::
+
+	abjad> measure.denominator = 32
+
+
+::
+
+	abjad> show(measure)
+
+.. image:: images/example-6.png
+
+Suppressing the meter of dynamic measures
+-----------------------------------------
+
+You can temporarily suppress the meter of dynamic measures:
+
+::
+
+	abjad> measure.suppress_meter = True
+
+
+::
+
+	abjad> f(measure)
+	{
+		c'8
+		fs'8
+		gs'8
+	}
+
+
+LilyPond will engrave the last active meter.
+
+Working with anonymous measures
+-------------------------------
+
+Anonymous determine their time signatures on the fly and then hide them at format time.
+
+Create anonymous measures without a time signature:
+
+::
+
+	abjad> measure = measuretools.AnonymousMeasure("c'8 d'8 e'8")
+
+
+::
+
+	abjad> show(measure)
+
+.. image:: images/example-7.png
+
+Adding music to anonymous measures
+----------------------------------
+
+Add music to anonymous measures the same as to other containers:
+
+::
+
+	abjad> measure.extend([Note("fs'8"), Note("gs'8")])
+
+
+::
+
+	abjad> show(measure)
+
+.. image:: images/example-8.png
+
+Removing music from anonymous measures
+--------------------------------------
+
+Remove music from anonymous measure the same as from other containers:
+
+::
+
+	abjad> del(measure[1:3])
+
+
+::
+
+	abjad> show(measure)
+
+.. image:: images/example-9.png
