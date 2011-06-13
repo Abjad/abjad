@@ -9,7 +9,7 @@ def test_AnonymousMeasure_meter_change_01( ):
 
    t = Staff([ ])
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
-   t.append(measuretools.AnonymousMeasure(macros.scale(3)))
+   t.append(measuretools.AnonymousMeasure("c'8 d'8 e'8"))
    t.append(measuretools.AnonymousMeasure(macros.scale(2)))
 
    r'''

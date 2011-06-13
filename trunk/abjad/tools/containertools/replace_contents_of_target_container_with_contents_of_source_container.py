@@ -31,7 +31,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
       
    ::
       
-      abjad> container = Container(macros.scale(3))
+      abjad> container = Container("c'8 d'8 e'8")
       abjad> spannertools.SlurSpanner(container.leaves)
       SlurSpanner(c'8, d'8, e'8)
 

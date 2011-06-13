@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01( ):
 
-   t = Staff(Measure((3, 8), macros.scale(3)) * 3)
+   t = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
    contexttools.TimeSignatureMark(4, 8)(t[1])
    contexttools.TimeSignatureMark(5, 8)(t[2])
 

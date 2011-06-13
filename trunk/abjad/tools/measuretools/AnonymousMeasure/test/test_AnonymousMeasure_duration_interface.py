@@ -29,7 +29,7 @@ def test_AnonymousMeasure_duration_interface_01( ):
 def test_AnonymousMeasure_duration_interface_02( ):
    '''Works with binary tuplet as contents.'''
 
-   t = measuretools.AnonymousMeasure([tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
+   t = measuretools.AnonymousMeasure([tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
 
    r'''
    {

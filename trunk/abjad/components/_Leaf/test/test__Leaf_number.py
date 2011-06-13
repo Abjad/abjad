@@ -6,7 +6,7 @@ py.test.skip('fix numbering after update reimplementation.')
 def test__Leaf_number_01( ):
    '''Leaves in staff number correctly.'''
 
-   t = Staff(macros.scale(3))
+   t = Staff("c'8 d'8 e'8")
    assert t[0].number == 0
    assert t[1].number == 1
    assert t[2].number == 2
@@ -15,7 +15,7 @@ def test__Leaf_number_01( ):
 def test__Leaf_number_02( ):
    '''Leaves in measure in staff number correctly.'''
 
-   t = Staff([Measure((3, 8), macros.scale(3))])
+   t = Staff([Measure((3, 8), "c'8 d'8 e'8")])
    leaves = t.leaves
    assert leaves[0].number == 0
    assert leaves[1].number == 1

@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_01( ):
    '''Container.'''
 
-   t = Container(macros.scale(3))
+   t = Container("c'8 d'8 e'8")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''
@@ -20,7 +20,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to002( ):
    '''Container with rest.'''
    
-   t = Container(macros.scale(3))
+   t = Container("c'8 d'8 e'8")
    rest = Rest(t[1])
    componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [rest])
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
@@ -39,7 +39,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
    '''Clone measure.
    '''
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''
@@ -56,7 +56,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_04( ):
    '''Fixed duration tuplet.'''
 
-   t = tuplettools.FixedDurationTuplet((1, 4), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
    r'''
@@ -72,7 +72,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_05( ):
    '''Fixed multiplier tuplet.'''
 
-   t = Tuplet((2, 3), macros.scale(3))
+   t = Tuplet((2, 3), "c'8 d'8 e'8")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
    r'''
@@ -88,7 +88,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_06( ):
    '''Voice.'''
 
-   t = Voice(macros.scale(3))
+   t = Voice("c'8 d'8 e'8")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''
@@ -104,7 +104,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_07( ):
    '''Staff.'''
 
-   t = Staff(macros.scale(3))
+   t = Staff("c'8 d'8 e'8")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''

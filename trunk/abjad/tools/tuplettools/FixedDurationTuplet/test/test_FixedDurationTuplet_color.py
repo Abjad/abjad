@@ -6,7 +6,7 @@ def test_FixedDurationTuplet_color_01( ):
    both prints and colors trivial tuplets at format-time.'''
 
    tuplettools.FixedDurationTuplet.color = True
-   t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((3, 8), "c'8 d'8 e'8")
 
    r'''
    \tweak #'color #blue

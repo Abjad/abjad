@@ -3,7 +3,7 @@ def sum_preprolated_duration_of_components(components):
 
    Sum preprolated duration of `components`::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
       abjad> componenttools.sum_preprolated_duration_of_components(tuplet[:])
       Duration(3, 8)
 

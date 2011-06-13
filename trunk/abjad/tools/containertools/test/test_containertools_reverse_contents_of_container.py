@@ -138,7 +138,7 @@ def test_containertools_reverse_contents_of_container_09( ):
    py.test.skip('fix dynamic measures.')
 
    m1 = measuretools.DynamicMeasure(macros.scale(4)) 
-   m2 = measuretools.DynamicMeasure(macros.scale(3))
+   m2 = measuretools.DynamicMeasure("c'8 d'8 e'8")
    staff = Staff([m1, m2])
    pedal = spannertools.PianoPedalSpanner(staff)
    trill = spannertools.TrillSpanner(staff[:])

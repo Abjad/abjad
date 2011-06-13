@@ -5,7 +5,7 @@ import py.test
 def test_FixedDurationTuplet___add___01( ):
    '''Add two fixed-duration tuplets with same multiplier outside of score.'''
 
-   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t1[:])
    t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
    spannertools.SlurSpanner(t2[:])
@@ -50,7 +50,7 @@ def test_FixedDurationTuplet___add___01( ):
 def test_FixedDurationTuplet___add___02( ):
    '''Add fixed-duration tuplets with same multiplier in score.'''
 
-   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t1[:])
    t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
    spannertools.SlurSpanner(t2[:])

@@ -4,10 +4,10 @@ from abjad import *
 def test_componenttools_extend_in_parent_of_component_and_do_not_grow_spanners_01( ):
    '''Extend leaves rightwards after leaf.'''
 
-   t = Voice(macros.scale(3))
+   t = Voice("c'8 d'8 e'8")
    spannertools.BeamSpanner(t[:])
    result = componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(
-      t[-1], macros.scale(3))
+      t[-1], [Note("c'8"), Note("d'8"), Note("e'8")])
 
    r'''
    \new Voice {
@@ -28,7 +28,7 @@ def test_componenttools_extend_in_parent_of_component_and_do_not_grow_spanners_0
 def test_componenttools_extend_in_parent_of_component_and_do_not_grow_spanners_02( ):
    '''Extend leaf rightwards after interior leaf.'''
 
-   t = Voice(macros.scale(3))
+   t = Voice("c'8 d'8 e'8")
    spannertools.BeamSpanner(t[:])
    result = componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(
       t[1], [Note(2.5, (1, 8))])

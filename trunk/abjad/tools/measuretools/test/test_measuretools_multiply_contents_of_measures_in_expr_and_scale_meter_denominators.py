@@ -6,7 +6,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
       Meter 3/8 goes to 9/24.
       Numerator and denominator both triple.'''
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t[:])
    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])
 

@@ -6,7 +6,7 @@ def component_to_score_root(component):
 
    Change `component` to score root::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
       abjad> componenttools.component_to_score_root(note)

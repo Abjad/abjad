@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_01( ):
    '''Subsume complete binary tuplet.'''
 
-   t = Measure((2, 8), [tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
+   t = Measure((2, 8), [tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''
@@ -152,7 +152,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_06( ):
    '''Submsume 6:5. Meter should go from 5/16 to 15/48.'''
 
-   tuplet = tuplettools.FixedDurationTuplet((5, 16), macros.scale(3))
+   tuplet = tuplettools.FixedDurationTuplet((5, 16), "c'8 d'8 e'8")
    t = Measure((5, 16), [tuplet])
 
    r'''

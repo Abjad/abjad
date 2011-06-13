@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_multiply_contents_of_measures_in_expr_01( ):
    '''Spin one measure out three times.'''
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
    measuretools.multiply_contents_of_measures_in_expr(t, 3)
 
    r'''

@@ -6,7 +6,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_01( ):
    '''Scale binary to nonbinary.
       No note_head rewriting necessary.'''
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
 
    r'''
@@ -29,7 +29,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_02( ):
    '''Scale nonbinary meter to binary. 
       No note_head rewriting necessary.'''
   
-   t = Measure((3, 12), macros.scale(3))
+   t = Measure((3, 12), "c'8 d'8 e'8")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(3, 2))
 
    r'''
@@ -49,7 +49,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_03( ):
    '''Scale binary meter to binary meter. 
       Noteheads rewrite with dots.'''
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(3, 2))
 
    r'''
@@ -117,7 +117,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_06( ):
    '''Scale nonbinary meter to binary meter.
       Noteheads rewrite with double duration.'''
 
-   t = Measure((3, 12), macros.scale(3))
+   t = Measure((3, 12), "c'8 d'8 e'8")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(3))
 
    r'''

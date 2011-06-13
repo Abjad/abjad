@@ -8,7 +8,7 @@ class Tuplet(Container):
 
    ::
 
-      abjad> tuplet = Tuplet((2, 3), macros.scale(3))
+      abjad> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
       abjad> f(tuplet)
       \times 2/3 {
          c'8

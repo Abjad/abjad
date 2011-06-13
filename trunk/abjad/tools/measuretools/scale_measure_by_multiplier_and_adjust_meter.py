@@ -16,7 +16,7 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
 
       Example::
 
-         abjad> t = Measure((3, 8), macros.scale(3))
+         abjad> t = Measure((3, 8), "c'8 d'8 e'8")
          abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
          Measure(3/12, [c'8, d'8, e'8])
          abjad> f(t)

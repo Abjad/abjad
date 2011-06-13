@@ -5,7 +5,7 @@ import py.test
 def test__MeasureDurationInterface_01( ):
    '''Binary meter, properly filled.'''
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
 
    r'''
    {
@@ -27,7 +27,7 @@ def test__MeasureDurationInterface_01( ):
 def test__MeasureDurationInterface_02( ):
    '''Nonbinary meter, properly filled.'''
 
-   t = Measure((3, 10), macros.scale(3))
+   t = Measure((3, 10), "c'8 d'8 e'8")
 
    r'''
    {

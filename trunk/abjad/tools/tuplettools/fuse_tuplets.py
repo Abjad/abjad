@@ -9,7 +9,7 @@ from abjad.tools import durtools
 def fuse_tuplets(tuplets):
    r'''Fuse parent-contiguous `tuplets`::
 
-      abjad> t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
       abjad> spannertools.BeamSpanner(t1[:])
       BeamSpanner(c'8, d'8, e'8)
       abjad> t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))

@@ -5,7 +5,7 @@ import py.test
 def test_tuplettools_fuse_tuplets_01( ):
    '''Fuse two unincorporated fixed-duration tuplets with same multiplier.'''
 
-   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t1[:])
    t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
    spannertools.SlurSpanner(t2[:])
@@ -51,7 +51,7 @@ def test_tuplettools_fuse_tuplets_01( ):
 def test_tuplettools_fuse_tuplets_02( ):
    '''Fuse fixed-duration tuplets with same multiplier in score.'''
 
-   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t1[:])
    t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
    spannertools.SlurSpanner(t2[:])
@@ -94,8 +94,8 @@ def test_tuplettools_fuse_tuplets_02( ):
 def test_tuplettools_fuse_tuplets_03( ):
    '''Fuse fixed-multiplier tuplets with same multiplier in score.'''
 
-   #t1 = Tuplet((2, 3), macros.scale(3))
-   t1 = Tuplet((2, 3), macros.scale(3))
+   #t1 = Tuplet((2, 3), "c'8 d'8 e'8")
+   t1 = Tuplet((2, 3), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t1[:])
    #t2 = Tuplet((2, 3), macros.scale(5))
    t2 = Tuplet((2, 3), macros.scale(5))
@@ -143,7 +143,7 @@ def test_tuplettools_fuse_tuplets_03( ):
 def test_tuplettools_fuse_tuplets_04( ):
    '''Tuplets must carry same multiplier.'''
 
-   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    t2 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(5))
 
    assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
@@ -152,9 +152,9 @@ def test_tuplettools_fuse_tuplets_04( ):
 def test_tuplettools_fuse_tuplets_05( ):
    '''Tuplets must be same type.'''
 
-   t1 = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
-   #t2 = Tuplet((2, 3), macros.scale(3))
-   t2 = Tuplet((2, 3), macros.scale(3))
+   t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+   #t2 = Tuplet((2, 3), "c'8 d'8 e'8")
+   t2 = Tuplet((2, 3), "c'8 d'8 e'8")
 
    assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
 

@@ -3,7 +3,7 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
    
    Extend `new_components` left in parent of `component` and grow spanners::
 
-      abjad> voice = Voice(macros.scale(3))
+      abjad> voice = Voice("c'8 d'8 e'8")
       abjad> spannertools.BeamSpanner(voice[:])
       BeamSpanner(c'8, d'8, e'8)
       

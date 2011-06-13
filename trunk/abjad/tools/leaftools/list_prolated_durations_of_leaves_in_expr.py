@@ -6,7 +6,7 @@ def list_prolated_durations_of_leaves_in_expr(expr):
 
    List prolated durations of leaves in `expr`::
 
-      abjad> staff = Staff(tuplettools.FixedDurationTuplet((2, 8), macros.scale(3)) * 2)
+      abjad> staff = Staff(tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8") * 2)
       abjad> leaftools.list_prolated_durations_of_leaves_in_expr(staff)
       [Duration(1, 12), Duration(1, 12), Duration(1, 12), Duration(1, 12), Duration(1, 12), Duration(1, 12)]
 

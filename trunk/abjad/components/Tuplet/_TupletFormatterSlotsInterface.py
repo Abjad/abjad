@@ -28,7 +28,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       Newly created, unmodified tuplets make no format
       contributions to slot 1. ::
 
-         abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
          abjad> import pprint
          abjad> pprint.pprint(t._formatter.slots.slot_1)
          ([('comment_marks', ''), []],
@@ -67,7 +67,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
       Most tuplets open with the LilyPond ``\times`` command only. ::
 
-         abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
          abjad> print t.format
          \times 2/3 {
                  c'8
@@ -82,7 +82,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
       Trivial tuplets carry a ratio of ``1:1``. ::
 
-         abjad> t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
+         abjad> t = tuplettools.FixedDurationTuplet((3, 8), "c'8 d'8 e'8")
          abjad> t.duration.multiplier
          Duration(1, 1)
 
@@ -103,7 +103,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       to output with the LilyPond ``\scaleDurations`` command
       instead of the the Lilypond ``\times`` command. ::
 
-         abjad> t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+         abjad> t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
          abjad> t.is_invisible = True
          abjad> print t.format
          \scaleDurations #'(2 . 3) {

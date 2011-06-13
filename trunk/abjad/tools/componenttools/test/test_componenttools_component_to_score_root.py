@@ -3,7 +3,7 @@ from abjad import *
 
 def test_componenttools_component_to_score_root_01( ):
 
-   tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    staff = Staff([tuplet])
 
    assert componenttools.component_to_score_root(staff) is staff

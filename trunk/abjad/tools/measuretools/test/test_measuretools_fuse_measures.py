@@ -185,7 +185,7 @@ def test_measuretools_fuse_measures_05( ):
 def test_measuretools_fuse_measures_06( ):
    '''Fusing list of only one measure returns measure unaltered.'''
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
    new = measuretools.fuse_measures([t])
 
    assert new is t

@@ -6,7 +6,7 @@ def component_to_parentage_signature(component):
 
    Change `component` to parentage signature::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
       abjad> print componenttools.component_to_parentage_signature(note)

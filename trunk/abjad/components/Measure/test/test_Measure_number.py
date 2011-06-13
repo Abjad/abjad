@@ -16,7 +16,7 @@ def test_Measure_number_01( ):
 def test_Measure_number_02( ):
    '''Orphan measures number correctly starting from 1.'''
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
    assert t.number == 1
 
 

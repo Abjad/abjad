@@ -156,7 +156,7 @@ def test_Container___delitem___06( ):
 def test_Container___delitem___07( ):
    '''Detach leaf from tuplet and spanner.'''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t[:])
 
    del(t[1])

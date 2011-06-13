@@ -3,7 +3,7 @@ from abjad import *
 
 def test_containertools_replace_contents_of_target_container_with_contents_of_source_container_01( ):
    
-   staff = Staff(Tuplet((2, 3), macros.scale(3)) * 3)
+   staff = Staff(Tuplet((2, 3), "c'8 d'8 e'8") * 3)
    macros.diatonicize(staff)
    spannertools.BeamSpanner(staff.leaves)
 
@@ -27,7 +27,7 @@ def test_containertools_replace_contents_of_target_container_with_contents_of_so
    }
    '''
 
-   container = Container(macros.scale(3))
+   container = Container("c'8 d'8 e'8")
    spannertools.SlurSpanner(container.leaves)
 
    r'''

@@ -6,7 +6,7 @@ def list_chromatic_pitch_numbers_in_expr(expr):
 
    List chromatic pitch numbers in `expr`::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
       abjad> pitchtools.list_chromatic_pitch_numbers_in_expr(tuplet)
       (0, 2, 4)
 

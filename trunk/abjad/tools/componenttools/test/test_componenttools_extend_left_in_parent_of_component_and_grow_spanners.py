@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_extend_left_in_parent_of_component_and_grow_spanners_01( ):
    '''Splice leaves left of leaf.'''
 
-   t = Voice(macros.scale(3))
+   t = Voice("c'8 d'8 e'8")
    spannertools.BeamSpanner(t[:])
    result = componenttools.extend_left_in_parent_of_component_and_grow_spanners(
       t[0], macros.scale(3, Duration(1, 16)))
@@ -28,7 +28,7 @@ def test_componenttools_extend_left_in_parent_of_component_and_grow_spanners_01(
 def test_componenttools_extend_left_in_parent_of_component_and_grow_spanners_02( ):
    '''Splice leaf left of interior leaf.'''
 
-   t = Voice(macros.scale(3))
+   t = Voice("c'8 d'8 e'8")
    spannertools.BeamSpanner(t[:])
    result = componenttools.extend_left_in_parent_of_component_and_grow_spanners(
       t[1], [Note(1.5, (1, 8))])
@@ -50,10 +50,10 @@ def test_componenttools_extend_left_in_parent_of_component_and_grow_spanners_02(
 def test_componenttools_extend_left_in_parent_of_component_and_grow_spanners_03( ):
    '''Splice tuplet left of tuplet.'''
 
-   t = Voice([tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
+   t = Voice([tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
    spannertools.BeamSpanner(t[0])
    result = componenttools.extend_left_in_parent_of_component_and_grow_spanners(
-      t[0], [tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
+      t[0], [tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
 
    r'''
    \new Voice {

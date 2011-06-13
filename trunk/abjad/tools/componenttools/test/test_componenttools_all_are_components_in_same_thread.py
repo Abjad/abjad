@@ -33,7 +33,7 @@ def test_componenttools_all_are_components_in_same_thread_02( ):
 def test_componenttools_all_are_components_in_same_thread_03( ):
    '''Tuplet and leaves all thread.'''
    
-   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    
    r'''
    \times 2/3 {

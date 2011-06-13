@@ -22,7 +22,7 @@ def test_FixedDurationTuplet_fraction_01( ):
 def test_FixedDurationTuplet_fraction_02( ):
    '''Fraction format all augmentations, even binary ones.'''
 
-   t = tuplettools.FixedDurationTuplet((4, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((4, 8), "c'8 d'8 e'8")
 
 
    r'''
@@ -40,7 +40,7 @@ def test_FixedDurationTuplet_fraction_02( ):
 def test_FixedDurationTuplet_fraction_03( ):
    '''Do not fraction format trivial tuplets.'''
 
-   t = tuplettools.FixedDurationTuplet((3, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((3, 8), "c'8 d'8 e'8")
 
    r'''
    {

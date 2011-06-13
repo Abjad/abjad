@@ -3,7 +3,7 @@ def get_improper_parentage_of_component(component):
 
    Get improper parentage of `component`::
 
-      abjad> tuplet = Tuplet((2, 3), macros.scale(3))
+      abjad> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
       abjad> staff = Staff([tuplet])
       abjad> note = staff.leaves[0]
       

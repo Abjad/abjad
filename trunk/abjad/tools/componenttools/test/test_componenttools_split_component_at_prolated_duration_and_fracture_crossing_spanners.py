@@ -560,7 +560,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''
    py.test.skip('fix broken split test.')
 
-   t = Staff(Measure((3, 8), macros.scale(3)) * 2)
+   t = Staff(Measure((3, 8), "c'8 d'8 e'8") * 2)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)

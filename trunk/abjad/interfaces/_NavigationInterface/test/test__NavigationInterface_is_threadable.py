@@ -118,7 +118,7 @@ def test__NavigationInterface_is_threadable_03( ):
 def test__NavigationInterface_is_threadable_06( ):
    '''Tuplets and leaves all thread.'''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
 
    assert t[0]._navigator._is_threadable(t[1])
    assert t[1]._navigator._is_threadable(t[0])

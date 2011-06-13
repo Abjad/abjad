@@ -9,7 +9,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
    r'''Multiply contents ``n - 1`` times and adjust meter
    of every measure in `expr`::
 
-      abjad> measure = Measure((3, 8), macros.scale(3))
+      abjad> measure = Measure((3, 8), "c'8 d'8 e'8")
       abjad> spannertools.BeamSpanner(measure.leaves)
       BeamSpanner(c'8, d'8, e'8)
       abjad> f(measure)

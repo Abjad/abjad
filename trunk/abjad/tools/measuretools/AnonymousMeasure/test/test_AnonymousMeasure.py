@@ -33,7 +33,7 @@ def test_AnonymousMeasure_02( ):
    Anonymous measures print no meter.
    '''
 
-   t = measuretools.AnonymousMeasure(macros.scale(3))
+   t = measuretools.AnonymousMeasure("c'8 d'8 e'8")
    
    r'''
    {

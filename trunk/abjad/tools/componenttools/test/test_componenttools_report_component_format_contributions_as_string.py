@@ -33,7 +33,7 @@ def test_componenttools_report_component_format_contributions_as_string_03( ):
    '''You can report_component_format_contributions_as_string on tuplets.
    '''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    marktools.LilyPondCommandMark("#(set-accidental-style 'forget")(t)
    marktools.LilyPondCommandMark('bar "|."')(t)
    staff = Staff([t])

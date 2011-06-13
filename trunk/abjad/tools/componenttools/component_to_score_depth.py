@@ -6,7 +6,7 @@ def component_to_score_depth(component):
 
    Change `component` to score depth::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
       abjad> staff = Staff([tuplet])
       abjad> componenttools.component_to_score_depth(staff.leaves[0])
       2

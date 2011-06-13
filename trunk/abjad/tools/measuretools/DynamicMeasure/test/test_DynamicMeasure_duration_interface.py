@@ -28,7 +28,7 @@ def test_DynamicMeasure_duration_interface_01( ):
 def test_DynamicMeasure_duration_interface_02( ):
    '''Binary tuplet as contents.'''
 
-   t = measuretools.DynamicMeasure([tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))])
+   t = measuretools.DynamicMeasure([tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
    t.denominator = 8
 
    r'''

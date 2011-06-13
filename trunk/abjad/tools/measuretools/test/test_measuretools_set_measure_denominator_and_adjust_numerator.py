@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_set_measure_denominator_and_adjust_numerator_01( ):
 
-   t = Measure((3, 8), macros.scale(3))
+   t = Measure((3, 8), "c'8 d'8 e'8")
    measuretools.set_measure_denominator_and_adjust_numerator(t, 16)
 
    r'''

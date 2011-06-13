@@ -168,7 +168,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    spannertools.BeamSpanner(t[:])
    macros.diatonicize(t)
 
-   tuplet = tuplettools.FixedDurationTuplet((2, 8), macros.scale(3))
+   tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    assert py.test.raises(MusicContentsError, 
       'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], tuplet)')
 

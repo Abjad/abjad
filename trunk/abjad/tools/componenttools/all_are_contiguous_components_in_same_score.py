@@ -10,14 +10,14 @@ def all_are_contiguous_components_in_same_score(expr, klasses = None, allow_orph
    True when elements in `expr` are all contiguous components in same score.
    Otherwise false::
 
-      abjad> score = Score([Staff(macros.scale(3))])
+      abjad> score = Score([Staff("c'8 d'8 e'8")])
       abjad> componenttools.all_are_contiguous_components_in_same_score(score.leaves) 
       True
 
    True when elements in `expr` are all contiguous `klasses` in same score.
    Otherwise false::
 
-      abjad> score = Score([Staff(macros.scale(3))])
+      abjad> score = Score([Staff("c'8 d'8 e'8")])
       abjad> componenttools.all_are_contiguous_components_in_same_score(score.leaves, klasses = Note) 
       True
 
