@@ -6,6 +6,10 @@ def set_default_accidental_spelling(spelling = 'mixed'):
 
    Set default accidental spelling to sharps::
 
+      abjad> from abjad.tools import cfgtools
+
+   ::
+
       abjad> cfgtools.set_default_accidental_spelling('sharps')
 
    ::

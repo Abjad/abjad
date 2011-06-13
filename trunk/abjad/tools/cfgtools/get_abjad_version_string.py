@@ -6,6 +6,10 @@ def get_abjad_version_string( ):
 
    Get Abjad version string::
 
+      abjad> from abjad.tools import cfgtools
+
+   ::
+
       abjad> cfgtools.get_abjad_version_string( )
       '1.1.2'
 

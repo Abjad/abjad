@@ -7,7 +7,9 @@ from abjad.tools.layouttools.StaffAlignmentDistances import StaffAlignmentDistan
 
 def apply_fixed_staff_positioning(expr, positioning, klass = Measure):
    r'''Apply `positioning` to `expr`.
-   Music `expr` must already be marked with line breaks.
+   Music `expr` must already be marked with line breaks::
+
+      abjad> from abjad.tools import layouttools
 
    ::
 

@@ -6,6 +6,10 @@ def get_python_version_string( ):
 
    Get Python version string::
 
+      abjad> from abjad.tools import cfgtools
+
+   ::
+
       abjad> cfgtools.get_python_version_string( )
       '2.6.1'
 

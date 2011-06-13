@@ -7,6 +7,10 @@ class StaffAlignmentDistances(_StrictComparator, _Immutable):
    Specify distances by hand when initializing the class.
    Distances may be even or uneven. ::
 
+      abjad> from abjad.tools import layouttools
+
+   ::
+
       abjad> staves = layouttools.StaffAlignmentDistances(18, 18, 18)
 
    Pass instances of this class as the second argument to 

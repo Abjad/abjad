@@ -6,6 +6,10 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
    Make spacing vector::
 
+      abjad> from abjad.tools import layouttools
+
+   ::
+
       abjad> layouttools.make_spacing_vector(0, 0, 12, 0)
       SchemeVector((basic_distance . 0), (minimum_distance . 0), (padding . 12), (stretchability . 0))
 

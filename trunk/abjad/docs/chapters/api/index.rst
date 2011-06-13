@@ -374,23 +374,6 @@ iotools
    tools/iotools/write_expr_to_pdf
 
 
-layouttools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/layouttools/FixedStaffPositioning/FixedStaffPositioning
-   tools/layouttools/LayoutSchema/LayoutSchema
-   tools/layouttools/SpacingIndication/SpacingIndication
-   tools/layouttools/StaffAlignmentDistances/StaffAlignmentDistances
-   tools/layouttools/SystemYOffsets/SystemYOffsets
-   tools/layouttools/apply_fixed_staff_positioning
-   tools/layouttools/apply_layout_schema
-   tools/layouttools/make_spacing_vector
-   tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
-   tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
-
-
 leaftools
 
 .. toctree::
@@ -1245,6 +1228,23 @@ cfgtools
    tools/cfgtools/list_abjad_environment_variables
    tools/cfgtools/list_abjad_templates
    tools/cfgtools/set_default_accidental_spelling
+
+
+layouttools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/layouttools/FixedStaffPositioning/FixedStaffPositioning
+   tools/layouttools/LayoutSchema/LayoutSchema
+   tools/layouttools/SpacingIndication/SpacingIndication
+   tools/layouttools/StaffAlignmentDistances/StaffAlignmentDistances
+   tools/layouttools/SystemYOffsets/SystemYOffsets
+   tools/layouttools/apply_fixed_staff_positioning
+   tools/layouttools/apply_layout_schema
+   tools/layouttools/make_spacing_vector
+   tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
+   tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
 
 pitcharraytools

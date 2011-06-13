@@ -5,7 +5,9 @@ from abjad.tools.layouttools._line_break_every import _line_break_every
 def set_line_breaks_cyclically_by_line_duration_ge(expr, line_duration, klass = Measure,
    adjust_eol = False, add_empty_bars = False):
    r'''Iterate `klass` instances in `expr` and accumulate prolated duration.
-   Add line break after every total less than or equal to `line_duration`.
+   Add line break after every total less than or equal to `line_duration`::
+
+      abjad> from abjad.tools import layouttools
 
    ::
 

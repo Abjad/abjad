@@ -8,6 +8,10 @@ class FixedStaffPositioning(_StrictComparator, _Immutable):
    object with numeric indication of fixed distances between systems.
    Then pass to :func:`~abjad.tools.layouttools.apply_fixed_staff_positioning.apply_fixed_staff_positioning`. ::
 
+      abjad> from abjad.tools import layouttools
+
+   ::
+
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
       abjad> macros.diatonicize(t)
       abjad> layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))      

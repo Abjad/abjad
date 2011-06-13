@@ -11,6 +11,10 @@ class SpacingIndication(_StrictComparator, _Immutable):
    will equal ``proportional_notation_duration`` when tempo
    equals ``tempo_indication``. ::
 
+      abjad> from abjad.tools import layouttools
+
+   ::
+
       abjad> tempo = contexttools.TempoMark(Duration(1, 8), 44)
       abjad> spacing_indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
       abjad> spacing_indication

@@ -19,6 +19,10 @@ def apply_layout_schema(expr, layout_schema,
    to alignment distance 0 and sets the second staff in each
    system to alignment distance 15. ::
 
+      abjad> from abjad.tools import layouttools
+
+   ::
+
       abjad> score = Score(2 * Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4))
       abjad> macros.diatonicize(score)
       abjad> schema = layouttools.LayoutSchema(Duration(4, 8), (40, 5, 1), (15, ))

@@ -35,6 +35,8 @@ from abjad.tools.durtools import Duration
 
 from components import *
 from abjad.tools import *
+del cfgtools
+del layouttools
 del pitcharraytools
 del sievetools
 del tonalitytools
