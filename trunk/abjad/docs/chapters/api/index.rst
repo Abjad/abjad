@@ -28,20 +28,6 @@ Abjad composition packages
 
 
 
-cfgtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/cfgtools/get_abjad_revision_string
-   tools/cfgtools/get_abjad_version_string
-   tools/cfgtools/get_lilypond_version_string
-   tools/cfgtools/get_python_version_string
-   tools/cfgtools/list_abjad_environment_variables
-   tools/cfgtools/list_abjad_templates
-   tools/cfgtools/set_default_accidental_spelling
-
-
 chordtools
 
 .. toctree::
@@ -1245,6 +1231,20 @@ Additional Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+
+
+cfgtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/cfgtools/get_abjad_revision_string
+   tools/cfgtools/get_abjad_version_string
+   tools/cfgtools/get_lilypond_version_string
+   tools/cfgtools/get_python_version_string
+   tools/cfgtools/list_abjad_environment_variables
+   tools/cfgtools/list_abjad_templates
+   tools/cfgtools/set_default_accidental_spelling
 
 
 pitcharraytools

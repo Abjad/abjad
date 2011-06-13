@@ -61,7 +61,13 @@ def make_sphinx_toc( ):
    tools.sort(lambda x, y: cmp(x['module'], y['module']))
    manual_loading_tools = [ ]
    manual_loading_tools_names = (
-      'musicxmltools', 'pitcharraytools', 'sievetools', 'tonalitytools', 'treetools', )
+      'cfgtools',
+      'musicxmltools', 
+      'pitcharraytools', 
+      'sievetools', 
+      'tonalitytools', 
+      'treetools', 
+      )
    for dictionary in tools[:]:
       for tools_name in manual_loading_tools_names:
          if tools_name in dictionary['module']:
