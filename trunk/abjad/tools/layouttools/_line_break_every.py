@@ -19,7 +19,7 @@ def _line_break_every(expr, line_duration, klass = Measure,
    '''
 
    prev = None
-   cum_duration = Duration(0)
+   cum_duration = durtools.Duration(0)
    for cur in componenttools.iterate_components_forward_in_expr(expr, klass):
       cur_duration = getattr(cur.duration, kind)
       candidate_duration = cum_duration + cur_duration
@@ -35,7 +35,7 @@ def _line_break_every(expr, line_duration, klass = Measure,
          if add_empty_bars:
             if cur.bar_line.kind is None:
                cur.bar_line.kind = ''
-         cum_duration = Duration(0)
+         cum_duration = durtools.Duration(0)
       else:
          if prev is not None:
             #prev.breaks.line = True

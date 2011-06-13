@@ -239,7 +239,7 @@ class TimeSignatureMark(ContextMark):
 
          abjad> meter = contexttools.TimeSignatureMark(3, 8)
          abjad> meter.multiplier
-         Duration(1, 1)
+         Fraction(1, 1)
 
       Return fraction.
       '''

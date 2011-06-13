@@ -109,6 +109,7 @@ class Grace(Container):
 
             abjad> staff = Staff("c'8 d'8 e'8 f'8")
             abjad> gracetools.Grace([Note("cs'16")], kind = 'grace')(staff[1])
+            Note("d'8")
             abjad> grace_container = staff[1].grace
             abjad> grace_container.kind
             'grace'
@@ -119,9 +120,10 @@ class Grace(Container):
 
             abjad> staff = Staff("c'8 d'8 e'8 f'8")
             abjad> gracetools.Grace([Note("cs'16")], kind = 'grace')(staff[1])
+            Note("d'8")
             abjad> grace_container = staff[1].grace
             abjad> grace_container.kind = 'acciaccatura'
-            abjad> grace_container.kinda
+            abjad> grace_container.kind
             'acciaccatura'
 
          Set string.
@@ -142,6 +144,7 @@ class Grace(Container):
          abjad> staff = Staff("c'8 d'8 e'8 f'8")
          abjad> grace_container = gracetools.Grace([Note("cs'16")], kind = 'grace')
          abjad> grace_container(staff[1])
+         Note("d'8")
          abjad> f(staff)
          \new Staff {
             c'8

@@ -5,7 +5,9 @@ def get_grace_containers_attached_to_leaf(leaf):
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> gracetools.Grace([Note("cs'16")], kind = 'grace')(staff[1])
+      Note("d'8")
       abjad> gracetools.Grace([Note("ds'16")], kind = 'after')(staff[1])
+      Note("d'8")
 
    ::
 
