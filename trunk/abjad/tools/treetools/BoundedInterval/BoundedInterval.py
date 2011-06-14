@@ -1,72 +1,50 @@
 from abjad.core import _Immutable
 from fractions import Fraction
-import copy
 
 
-class BoundedInterval(_Immutable):
+class BoundedInterval(dict, _Immutable):
    '''A low / high pair, carrying some metadata.'''
 
-   __slots__ = ('_data', '_high', '_low', )
+   __slots__ = ('_high', '_low', )
 
-   def __init__(self, *args, **kwargs):
+   def __init__(self, *args):
+      dict.__init__(self)
       if len(args) == 1 and isinstance(args[0], BoundedInterval):
-         low, high, data = args[0].low, args[0].high, args[0].data
+         low, high, data = args[0].low, args[0].high, args[0]
       elif len(args) == 2:
-         low, high, data = args[0], args[1], None
-         if 'data' in kwargs:
-            data = kwargs['data']
+         low, high, data = args[0], args[1], { }
       elif len(args) == 3:
          low, high, data = args[0], args[1], args[2]
       assert isinstance(low, (int, Fraction))
       assert isinstance(high, (int, Fraction))
-#        assert low <= high 
       assert low < high
-      if data is not None:
-         data = copy.copy(data)
-      else:
-         data = { }
-#      assert isinstance(data, dict)
+      assert isinstance(data, dict)
       object.__setattr__(self, '_low', low)
       object.__setattr__(self, '_high', high)
-      object.__setattr__(self, '_data', data)
+      self.update(data)
 
    ## OVERLOADS ##
-
-   def __copy__(self):
-      return BoundedInterval(self.low, self.high, copy.copy(self.data))
-
-   def __delitem__(self, item):
-      if isinstance(self.data, dict):
-         del(self.data[item])
-      else:
-         raise Exception('BoundedInterval data is not a dictionary.')
 
    def __eq__(self, other):
       if type(other) == type(self):
          if other.low == self.low:
             if other.high == self.high:
-               if other.data == self.data:
+               if dict.__eq__(self, other):
                   return True
       return False
 
-   def __getitem__(self, item):
-      if isinstance(self.data, dict):
-         return self.data[item]
-      else:
-         raise Exception('BoundedInterval data is not a dictionary.')
+   def __hash__(self):
+      return id(self)
+
+   def __ne__(self, other):
+      return not self.__eq__(other)
 
    def __repr__(self):
       return '%s(%s, %s, %s)' % \
          (self.__class__.__name__, \
          repr(self.low), \
          repr(self.high), \
-         repr(self.data))
-
-   def __setitem__(self, item, value):
-      if isinstance(self.data, dict):
-         self.data[item] = value
-      else:
-         raise Exception('BoundedInterval data is not a dictionary.')
+         dict.__repr__(self))
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -74,11 +52,6 @@ class BoundedInterval(_Immutable):
    def centroid(self):
       '''Center point of low and high bounds.'''
       return Fraction(self.high + self.low) / 2
-
-   @property
-   def data(self):
-      '''Payload.'''
-      return self._data
 
    @property
    def high(self):
@@ -163,7 +136,7 @@ class BoundedInterval(_Immutable):
       assert 0 <= rational
       if rational != 1:
          new_magnitude = (self.high - self.low) * rational
-         return self.__class__(BoundedInterval(self.low, self.low + new_magnitude, self.data))
+         return self.__class__(BoundedInterval(self.low, self.low + new_magnitude, self))
       else:
          return self
 
@@ -171,14 +144,14 @@ class BoundedInterval(_Immutable):
       assert isinstance(rational, (int, Fraction))
       assert 0 <= rational
       if rational != self.magnitude:
-         return self.__class__(BoundedInterval(self.low, self.low + rational, self.data))
+         return self.__class__(BoundedInterval(self.low, self.low + rational, self))
       else:
          return self
 
    def shift_by_rational(self, rational):
       assert isinstance(rational, (int, Fraction))
       if rational != 0:
-         return self.__class__(BoundedInterval(self.low + rational, self.high + rational, self.data))
+         return self.__class__(BoundedInterval(self.low + rational, self.high + rational, self))
       else:
          return self
 
@@ -186,14 +159,14 @@ class BoundedInterval(_Immutable):
       assert isinstance(rational, (int, Fraction))
       if rational != self.low:
          magnitude = self.high - self.low
-         return self.__class__(BoundedInterval(rational, rational + magnitude, self.data))
+         return self.__class__(BoundedInterval(rational, rational + magnitude, self))
       else:
          return self
 
    def split_at_rational(self, rational):
       assert isinstance(rational, (int, Fraction))
       if self.low < rational < self.high:
-         return (self.__class__(BoundedInterval(self.low, rational, self.data)),
-               self.__class__(BoundedInterval(rational, self.high, self.data)))
+         return (self.__class__(BoundedInterval(self.low, rational, self)),
+               self.__class__(BoundedInterval(rational, self.high, self)))
       else:
          return (self,)

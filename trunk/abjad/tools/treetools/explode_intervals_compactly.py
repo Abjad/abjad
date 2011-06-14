@@ -20,7 +20,7 @@ def explode_intervals_compactly(intervals):
       tree = IntervalTree(intervals)
 
    depth_tree = compute_depth_of_intervals(tree)
-   max_depth = max([x.data['depth'] for x in depth_tree])
+   max_depth = max([x['depth'] for x in depth_tree])
    layers = [[ ] for i in range(max_depth)]
 
    for interval in tree:

@@ -26,6 +26,6 @@ def test_BoundedInterval___eq___04( ):
 
 
 def test_BoundedInterval___eq___05( ):
-   a = BoundedInterval(0, 10)
-   b = BoundedInterval(0, 10, 'duck')
+   a = BoundedInterval(0, 10, {'animal': 'goose'})
+   b = BoundedInterval(0, 10, {'animal': 'duck'})
    assert a != b

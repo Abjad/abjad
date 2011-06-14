@@ -93,11 +93,11 @@ class IntervalTree(_RedBlackTree):
 
    def _insert(self, args):
       def recurse(x):
-         if isinstance(x, Iterable) and \
+         if isinstance(x, BoundedInterval): # BoundedIntervals are Iterable!
+            return [x]
+         elif isinstance(x, Iterable) and \
          not isinstance(x, (basestring)):
             return [a for i in x for a in recurse(i)]
-         else:
-            return [x]
 
       intervals = recurse(args)
       assert all([isinstance(x, BoundedInterval) for x in intervals])

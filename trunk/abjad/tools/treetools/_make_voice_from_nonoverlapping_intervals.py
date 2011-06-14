@@ -35,7 +35,7 @@ def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, bounds
       pitch = 0
 
    for i, depth_interval in enumerate(depth_tree):
-      if depth_interval.data['depth'] == 0:
+      if depth_interval['depth'] == 0:
          if i == 0:
             rest = Rest(1)
             rest.duration.multiplier = depth_interval.magnitude
@@ -55,19 +55,19 @@ def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, bounds
 #                rest.duration.multiplier = depth_interval.magnitude
 #                voice.append(rest)
 
-      elif depth_interval.data['depth'] == 1:
+      elif depth_interval['depth'] == 1:
          note = Note(pitch, 1)
          note.duration.multiplier = depth_interval.magnitude
          if colorkey is not None:
             try:
                original_interval = tree.find_intervals_starting_at_offset(depth_interval.low)[0]
-               color = SchemeColor(original_interval.data[colorkey])
+               color = SchemeColor(original_interval[colorkey])
                note.override.note_head.color = color
                note.override.glissando.color = color
             except KeyError:
                pass
          voice.append(note)
-         if i != 0 and 0 < depth_tree[i - 1].data['depth']:
+         if i != 0 and 0 < depth_tree[i - 1]['depth']:
             GlissandoSpanner(voice[-2:])
          if depth_interval == depth_tree[-1]:
             note = Note(pitch, 1)

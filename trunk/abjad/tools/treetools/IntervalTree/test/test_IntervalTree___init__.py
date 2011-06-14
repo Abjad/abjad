@@ -20,17 +20,17 @@ def tree_IntervalTree___init___03( ):
 
 def test_IntervalTree___init___02( ):
    '''IntervalTree can be initialized from a list of BoundedIntervals.'''
-   a = BoundedInterval(0, 10, 'a')
-   b = BoundedInterval(5, 15, 'b')
-   c = BoundedInterval(10, 25, 'c')
+   a = BoundedInterval(0, 10, {'a': 1})
+   b = BoundedInterval(5, 15, {'b': 2})
+   c = BoundedInterval(10, 25, {'c': 3})
    tree = IntervalTree([a, b, c])
    assert all([block in tree for block in [a, b, c]])
 
 def test_IntervalTree___init___03( ):
-   '''IntervalTree can be initialized from a list of Blocks.'''
-   a = Block(0, 10, 'a')
-   b = Block(5, 15, 'b')
-   c = Block(10, 5, 'c')
+   '''IntervalTree can be initialized from a list of BoundedIntervals.'''
+   a = BoundedInterval(0, 10, {'a': 1})
+   b = BoundedInterval(5, 15, {'b': 2})
+   c = BoundedInterval(10, 25, {'c': 3})
    tree = IntervalTree([a, b, c])
 
 def test_IntervalTree___init___04( ):
@@ -41,7 +41,7 @@ def test_IntervalTree___init___04( ):
    b = BoundedInterval(5, 15)
    t = IntervalTree([a, b])
    c = BoundedInterval(21, 23)
-   d = Block(2001, 9)
+   d = BoundedInterval(2001, 2009)
    tree = IntervalTree([a, b, [c, d], [[t]]])
    assert [x.signature for x in tree] == \
-      [(0, 10), (0, 10), (5, 15), (5, 15), (21, 23), (2001, 2010)]
+      [(0, 10), (0, 10), (5, 15), (5, 15), (21, 23), (2001, 2009)]

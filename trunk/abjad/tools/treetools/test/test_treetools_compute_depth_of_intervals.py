@@ -29,5 +29,5 @@ def test_treetools_compute_depth_of_intervals_01( ):
       ((32, 34), 1),
       ((34, 37), 1),
    ]
-   actual = [(i.signature, i.data['depth']) for i in depths]
+   actual = [(i.signature, i['depth']) for i in depths]
    assert actual == target 

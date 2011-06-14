@@ -9,7 +9,7 @@ def test_treetools_explode_intervals_compactly_01( ):
    tree = IntervalTree(_make_test_blocks( ))
    dtree = compute_depth_of_intervals(tree)
    xtrees = explode_intervals_compactly(tree)
-   assert len(xtrees) == max([interval.data['depth'] for interval in dtree])
+   assert len(xtrees) == max([interval['depth'] for interval in dtree])
 
 def test_treetools_explode_intervals_compactly_02( ):
    '''All resulting trees are non-zero in length.'''

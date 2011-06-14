@@ -16,15 +16,15 @@ def resolve_overlaps_between_nonoverlapping_trees(trees):
 
    ::
 
-      abjad> a = IntervalTree(BoundedInterval(0, 4, 'a'))
-      abjad> b = IntervalTree(BoundedInterval(1, 5, 'b')) 
-      abjad> c = IntervalTree(BoundedInterval(2, 6, 'c')) 
-      abjad> d = IntervalTree(BoundedInterval(1, 3, 'd'))
+      abjad> a = IntervalTree(BoundedInterval(0, 4, {'a': 1}))
+      abjad> b = IntervalTree(BoundedInterval(1, 5, {'b': 2})) 
+      abjad> c = IntervalTree(BoundedInterval(2, 6, {'c': 3})) 
+      abjad> d = IntervalTree(BoundedInterval(1, 3, {'d': 4}))
       abjad> treetools.resolve_overlaps_between_nonoverlapping_trees([a, b, c, d])
       IntervalTree([
-         BoundedInterval(0, 4, 'a'),
-         BoundedInterval(4, 5, 'b'),
-         BoundedInterval(5, 6, 'c')
+         BoundedInterval(0, 4, {'a': 1}),
+         BoundedInterval(4, 5, {'b': 2}),
+         BoundedInterval(5, 6, {'c': 3})
       ])
    
    Return interval tree.

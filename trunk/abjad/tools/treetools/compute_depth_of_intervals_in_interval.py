@@ -59,30 +59,10 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
       target = BoundedInterval(pair[0], pair[1], { })
       found = tree.find_intervals_intersecting_or_tangent_to_interval(target)
       if found:
-         target.data['depth'] = len(filter( \
+         target['depth'] = len(filter( \
             lambda x: not x.low == target.high and not x.high == target.low, found))
       else:
-         target.data['depth'] = 0
+         target['depth'] = 0
       intervals.append(target)
 
    return IntervalTree(intervals)
-
-#   tree = split_intervals_at_rationals(tree, [interval.low, interval.high])
-#   tree = IntervalTree(tree.find_intervals_starting_and_stopping_within_interval(interval.low, interval.high))
-#   bounds = list(get_all_unique_bounds_in_intervals(tree))
-#   if interval.low not in bounds:
-#      bounds.append(interval.low)
-#   if interval.high not in bounds:
-#      bounds.append(interval.high)
-#   bounds.sort( )
-#   intervals = [ ]
-#   for i in range(len(bounds) - 1):
-#      target = BoundedInterval(bounds[i], bounds[i+1], { })
-#      found = tree.find_intervals_intersecting_or_tangent_to_interval(target)
-#      if found:
-#         depth = len(filter(lambda x: not x.low == target.high and not x.high == target.low, found))
-#      else:
-#         depth = 0
-#      target.data['depth'] = depth
-#      intervals.append(target)
-#   return IntervalTree(intervals)

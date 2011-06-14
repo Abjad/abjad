@@ -27,5 +27,5 @@ def calculate_depth_density_of_intervals_in_interval(intervals, interval):
    return Fraction(sum([x.magnitude for x in split_tree])) / interval.magnitude
 
 #   depth = compute_depth_of_intervals_in_interval(tree, interval)
-#   return Fraction(sum([x.magnitude * x.data['depth'] for x in depth])) \
+#   return Fraction(sum([x.magnitude * x['depth'] for x in depth])) \
 #      / depth.magnitude

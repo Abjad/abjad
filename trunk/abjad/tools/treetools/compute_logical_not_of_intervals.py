@@ -17,7 +17,7 @@ def compute_logical_not_of_intervals(intervals):
       return tree
 
    depth_tree = compute_depth_of_intervals(tree)
-   logic_tree = IntervalTree(filter(lambda x: 0 == x.data['depth'], depth_tree))
+   logic_tree = IntervalTree(filter(lambda x: 0 == x['depth'], depth_tree))
 
    return logic_tree
 

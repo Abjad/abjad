@@ -43,5 +43,5 @@ def calculate_depth_density_of_intervals(intervals):
    return Fraction(sum([x.magnitude for x in tree])) / tree.magnitude
 
 #   depth = compute_depth_of_intervals(tree)
-#   return Fraction(sum([x.magnitude * x.data['depth'] for x in depth])) \
+#   return Fraction(sum([x.magnitude * x['depth'] for x in depth])) \
 #      / depth.magnitude

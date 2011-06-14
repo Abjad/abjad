@@ -3,7 +3,7 @@ import py.test
 
 
 def test_BoundedInterval___init___01( ):
-   '''High offset must be greater than or equal to low offset.'''
+   '''High offset must be greater than low offset.'''
    py.test.raises(AssertionError,
       "i = BoundedInterval(0, -10, 'this should fail.')")
 
@@ -14,22 +14,27 @@ def test_BoundedInterval___init___02( ):
 
 def test_BoundedInterval___init___03( ):
    '''BoundedIntervals can be instantiated from other intervals.'''
-   i1 = BoundedInterval(0, 10, 'data')
+   i1 = BoundedInterval(0, 10, {'hello': 'world!'})
    i2 = BoundedInterval(i1)
-   assert i1.signature == i2.signature
-   assert i1 != i2
+   assert i1 == i2
+   assert i1 is not i2
 
 def test_BoundedInterval___init___04( ):
    '''BoundedIntervals can be instantiated with just a low and high offset.'''
    i = BoundedInterval(0, 10)
 
 def test_BoundedInterval___init___05( ):
-   '''BoundedIntervals can be instantiated with 3 non-keyword arguments.'''
-   i = BoundedInterval(0, 10, 'data')
+   '''BoundedIntervals can be instantiated with low offset, high offset and dictionary.'''
+   i = BoundedInterval(0, 10, {'hello': 'world!'})
 
 def test_BoundedInterval___init___06( ):
+   '''BoundedIntervals must take a dictionary as their data argument.'''
+   py.test.raises(AssertionError,
+      'i = BoundedInterval(0, 10, "nope")')
+
+def test_BoundedInterval___init___07( ):
    '''BoundedIntervals copy data on instantiation.'''
    data = { }
    i = BoundedInterval(0, 10, data)
    data['cat'] = 'dog'
-   assert data != i.data
+   assert data != i

@@ -41,7 +41,7 @@ def compute_depth_of_intervals(intervals):
          depth = len(filter(lambda x: not x.low == target.high and not x.high == target.low, found))
       else:
          depth = 0
-      target.data['depth'] = depth
+      target['depth'] = depth
       intervals.append(target)
 
    return IntervalTree(intervals)

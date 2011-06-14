@@ -18,8 +18,8 @@ def calculate_depth_centroid_of_intervals_in_interval(intervals, interval):
    else:
       tree = IntervalTree(intervals)
    depth = compute_depth_of_intervals_in_interval(tree, interval)
-   weighted_centroids = sum([x.centroid * x.data['depth'] for x in depth])
-   sum_of_weights = sum([x.data['depth'] for x in depth])
+   weighted_centroids = sum([x.centroid * x['depth'] for x in depth])
+   sum_of_weights = sum([x['depth'] for x in depth])
    if not sum_of_weights:
       return None
    return Fraction(weighted_centroids) / sum_of_weights

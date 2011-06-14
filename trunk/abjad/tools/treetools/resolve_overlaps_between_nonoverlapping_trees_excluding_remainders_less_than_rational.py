@@ -18,13 +18,13 @@ def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than
 
    ::
    
-      abjad> a = IntervalTree(BoundedInterval(0, 1, 'a'))
-      abjad> b = IntervalTree(BoundedInterval(Fraction(1, 32), Fraction(33, 32), 'b')) 
-      abjad> c = IntervalTree(BoundedInterval(Fraction(1, 16), Fraction(17, 16), 'c')) 
+      abjad> a = IntervalTree(BoundedInterval(0, 1, {'a': 1}))
+      abjad> b = IntervalTree(BoundedInterval(Fraction(1, 32), Fraction(33, 32), {'b': 2})) 
+      abjad> c = IntervalTree(BoundedInterval(Fraction(1, 16), Fraction(17, 16), {'c': 3})) 
       abjad> treetools.resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational([a, b, c], Fraction(1, 16))
       IntervalTree([
-         BoundedInterval(0, 1, 'a'),
-         BoundedInterval(1, Fraction(17, 16), 'c')
+         BoundedInterval(0, 1, {'a': 1}),
+         BoundedInterval(1, Fraction(17, 16), {'c': 3})
       ])
    
    Return interval tree.

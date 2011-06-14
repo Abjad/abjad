@@ -17,14 +17,14 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
 
    ::
 
-      abjad> a = BoundedInterval(0, 10, 'a')
-      abjad> b = BoundedInterval(5, 15, 'b')
+      abjad> a = BoundedInterval(0, 10, {'a': 1})
+      abjad> b = BoundedInterval(5, 15, {'b': 2})
       abjad> tree = IntervalTree([a, b])
       abjad> mask = BoundedInterval(4, 11)
       abjad> treetools.mask_intervals_with_intervals(tree, mask)
       IntervalTree([
-         BoundedInterval(4, 10, 'a'),
-         BoundedInterval(5, 11, 'b')
+         BoundedInterval(4, 10, {'a': 1}),
+         BoundedInterval(5, 11, {'b': 2})
       ])
 
    Return interval tree.
