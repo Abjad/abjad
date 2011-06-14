@@ -173,7 +173,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    '''Index split voice outside of score.
       Fracture spanners.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
 
    r'''
@@ -211,7 +211,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
 
-   t = Staff([Voice(macros.scale(4))])
+   t = Staff([Voice("c'8 d'8 e'8 f'8")])
    v = t[0]
    spannertools.BeamSpanner(v)
 
@@ -251,7 +251,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Righthand part instantiates empty.
       Original container empties contents.'''
 
-   t = Staff([Voice(macros.scale(4))])
+   t = Staff([Voice("c'8 d'8 e'8 f'8")])
    v = t[0]
    spannertools.BeamSpanner(v)
 

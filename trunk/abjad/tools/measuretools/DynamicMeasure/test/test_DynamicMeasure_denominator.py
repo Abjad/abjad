@@ -5,7 +5,7 @@ def test_DynamicMeasure_denominator_01( ):
    '''You can control the denominator of dynamic measures.
    '''
 
-   t = measuretools.DynamicMeasure(macros.scale(4))
+   t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
    t.denominator = 32
 
    assert contexttools.get_effective_time_signature(t) == (16, 32)
@@ -27,7 +27,7 @@ def test_DynamicMeasure_denominator_02( ):
    '''Bad denominator values have no effect.
    '''
 
-   t = measuretools.DynamicMeasure(macros.scale(4))
+   t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
    t.denominator = 117
 
    r'''

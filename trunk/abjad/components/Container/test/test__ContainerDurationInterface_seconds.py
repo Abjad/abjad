@@ -7,7 +7,7 @@ def test__ContainerDurationInterface_seconds_01( ):
    sum of leaf durations in seconds.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    contexttools.TempoMark(Duration(1, 4), 38)(t)
    contexttools.TempoMark(Duration(1, 4), 42)(t[2])
    score = Score([t])
@@ -32,5 +32,5 @@ def test__ContainerDurationInterface_seconds_02( ):
    '''Container can not calculate duration in seconds 
       without tempo indication.'''
 
-   t = Container(macros.scale(4))
+   t = Container("c'8 d'8 e'8 f'8")
    assert py.test.raises(MissingTempoError, 't.duration.seconds')

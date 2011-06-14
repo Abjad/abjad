@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_01( ):
 
-   staff = Staff(2 * Voice(macros.scale(4)))
+   staff = Staff(2 * Voice("c'8 d'8 e'8 f'8"))
    macros.diatonicize(staff)
    f(staff)
 

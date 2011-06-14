@@ -5,7 +5,7 @@ def test_componenttools_all_are_contiguous_components_01( ):
    '''True for strictly contiguous leaves in voice.
       False for other time orderings of leaves in voice.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    
    assert componenttools.all_are_contiguous_components(t.leaves)
 
@@ -58,11 +58,10 @@ def test_componenttools_all_are_contiguous_components_02( ):
 def test_componenttools_all_are_contiguous_components_03( ):
    '''Unicorporated leaves can not be evaluated for contiguity.'''
 
-   t = macros.scale(4)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
-   assert componenttools.all_are_contiguous_components(t)
-   assert not componenttools.all_are_contiguous_components(t, 
-      allow_orphans = False)
+   assert componenttools.all_are_contiguous_components(notes)
+   assert not componenttools.all_are_contiguous_components(notes, allow_orphans = False)
 
 
 def test_componenttools_all_are_contiguous_components_04( ):

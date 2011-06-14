@@ -45,7 +45,7 @@ def test__Leaf_number_04( ):
 def test__Leaf_number_05( ):
    '''Leaves number correctly after contents rotation.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
 
    assert t[0].number == 0
    assert t[1].number == 1

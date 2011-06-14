@@ -36,8 +36,8 @@ def test_componenttools_all_are_components_in_same_parent_01( ):
 
 def test_componenttools_all_are_components_in_same_parent_02( ):
 
-   t1 = Voice(macros.scale(4))
-   t2 = Voice(macros.scale(4))
+   t1 = Voice("c'8 d'8 e'8 f'8")
+   t2 = Voice("c'8 d'8 e'8 f'8")
 
    assert componenttools.all_are_components_in_same_parent(t1.leaves)
    assert componenttools.all_are_components_in_same_parent(t2.leaves)

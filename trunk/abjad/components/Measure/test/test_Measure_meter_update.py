@@ -4,7 +4,7 @@ from abjad import *
 def test_Measure_meter_update_01( ):
    '''Measures allow meter update.'''
 
-   t = Measure((4, 8), macros.scale(4))
+   t = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
    r'''
    {

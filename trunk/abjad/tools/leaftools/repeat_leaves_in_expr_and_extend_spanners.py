@@ -7,7 +7,7 @@ def repeat_leaves_in_expr_and_extend_spanners(expr, total = 1):
 
    Repeat leaves in `expr` and extend spanners::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> f(staff)

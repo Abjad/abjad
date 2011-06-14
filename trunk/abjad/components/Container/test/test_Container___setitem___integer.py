@@ -5,7 +5,7 @@ import py.test
 def test_Container___setitem___integer_01( ):
    '''Spanned leaves exchange correctly.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:2])
    spannertools.GlissandoSpanner(t.leaves)
 
@@ -36,7 +36,7 @@ def test_Container___setitem___integer_01( ):
 def test_Container___setitem___integer_02( ):
    '''Spanned leaf hands position over to container correctly.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:2])
    spannertools.GlissandoSpanner(t.leaves)
 

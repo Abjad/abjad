@@ -7,7 +7,7 @@ class TextSpanner(Spanner):
 
    Abjad text spanner::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> text_spanner = spannertools.TextSpanner(staff[:])
 
    ::

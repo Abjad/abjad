@@ -5,8 +5,8 @@ import py.test
 def test__LeafDurationInterface_seconds_01( ):
    '''Clock duration equals prolated duration divide by effective tempo.'''
 
-   #t = Container(macros.scale(4))
-   t = Staff(macros.scale(4))
+   #t = Container("c'8 d'8 e'8 f'8")
+   t = Staff("c'8 d'8 e'8 f'8")
    contexttools.TempoMark(Duration(1, 4), 38)(t)
    contexttools.TempoMark(Duration(1, 4), 42)(t[2])
    Score([t])

@@ -5,7 +5,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___01( ):
    '''Define LilyPond autoBeaming context setting.
    ''' 
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.auto_beaming = True
 
    r'''
@@ -27,7 +27,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___02( ):
    '''Remove LilyPond autoBeaming context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.auto_beaming = True
    del(t.set.auto_beaming)
 
@@ -48,7 +48,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___03( ):
    '''Define LilyPond currentBarNumber context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t[0].set.score.current_bar_number = 12
 
    r'''
@@ -96,7 +96,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___05( ):
    '''Define LilyPond fontSize context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.font_size = -3
 
    r'''
@@ -118,7 +118,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___06( ):
    '''Define LilyPond instrumentName context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.instrument_name = 'Violini I'
 
    r'''
@@ -140,7 +140,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___07( ):
    '''Define LilyPond instrumentName context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.instrument_name = markuptools.Markup(r'\circle { V }')
 
    r'''
@@ -162,7 +162,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___08( ):
    '''Define LilyPond proportionalNotationDuration context setting.
    '''
 
-   t = Score([Staff(macros.scale(4))])
+   t = Score([Staff("c'8 d'8 e'8 f'8")])
    t.set.proportional_notation_duration = schemetools.SchemeMoment(Fraction(1, 56))
 
    r'''
@@ -186,7 +186,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___09( ):
    '''Define LilyPond shortInstrumentName context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.short_instrument_name = 'Vni. I'
 
    r'''
@@ -208,7 +208,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___10( ):
    '''Define LilyPond shortInstrumentName context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.short_instrument_name = markuptools.Markup(r'\circle { V }')
 
    r'''
@@ -230,7 +230,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___11( ):
    '''Define LilyPond suggestAccidentals context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.suggest_accidentals = True
 
    r'''
@@ -252,7 +252,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___12( ):
    '''Define LilyPond suggestAccidentals context setting.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t[1].set.suggest_accidentals = True
    
    r'''

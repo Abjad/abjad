@@ -13,7 +13,7 @@ def are_stepwise_descending_notes(*expr):
 
    ::
 
-      abjad> t = Staff(list(reversed(macros.scale(4))))
+      abjad> t = Staff(list(reversed("c'8 d'8 e'8 f'8")))
       abjad> tonalitytools.are_stepwise_descending_notes(t[:])
       True
 

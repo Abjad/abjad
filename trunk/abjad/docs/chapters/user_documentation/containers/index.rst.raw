@@ -161,9 +161,9 @@ Naming containers
 You can name Abjad containers:
 
 <abjad>
-flute_staff = Staff(macros.scale(4))
+flute_staff = Staff("c'8 d'8 e'8 f'8")
 flute_staff.name = 'Flute'
-violin_staff = Staff(macros.scale(4))
+violin_staff = Staff("c'8 d'8 e'8 f'8")
 violin_staff.name = 'Violin'
 staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
 score = Score([staff_group])

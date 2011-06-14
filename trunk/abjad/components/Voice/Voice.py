@@ -6,7 +6,7 @@ class Voice(_Context):
 
    ::
 
-      abjad> voice = Voice(macros.scale(4))
+      abjad> voice = Voice("c'8 d'8 e'8 f'8")
       abjad> f(voice)
       \new Voice {
          c'8

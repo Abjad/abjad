@@ -3,7 +3,7 @@ from abjad import *
 
 def test_contexttools_get_context_marks_attached_to_component_01( ):
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    clef_mark = contexttools.ClefMark('treble')(staff)
    dynamic_mark = contexttools.DynamicMark('p')(staff[0])
 

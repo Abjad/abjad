@@ -3,7 +3,7 @@ from abjad import *
 
 def test_markuptools_get_markup_attached_to_component_01( ):
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    slur = spannertools.SlurSpanner(staff.leaves)
    markup_1 = markuptools.Markup('foo')(staff[0])
    markup_2 = markuptools.Markup('bar')(staff[0])

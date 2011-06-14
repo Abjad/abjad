@@ -4,7 +4,7 @@ from abjad import *
 def test_TrillSpanner_pitch_01( ):
    '''Assign Abjad pitch instance to create a pitched trill.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    trill = spannertools.TrillSpanner(t[:2])
    trill.pitch = pitchtools.NamedChromaticPitch(1)
 
@@ -25,7 +25,7 @@ def test_TrillSpanner_pitch_01( ):
 def test_TrillSpanner_pitch_02( ):
    '''Any pitch init value will work.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    trill = spannertools.TrillSpanner(t[:2])
    trill.pitch = 1
 
@@ -46,7 +46,7 @@ def test_TrillSpanner_pitch_02( ):
 def test_TrillSpanner_pitch_03( ):
    '''Clear with None.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    trill = spannertools.TrillSpanner(t[:2])
    trill.pitch = pitchtools.NamedChromaticPitch(1)
    trill.pitch = None

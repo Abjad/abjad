@@ -4,7 +4,7 @@ from abjad import *
 def test_Comment_closing_01( ):
    '''Test container comments closing.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    marktools.Comment('Voice closing comments here.', 'closing')(t)
    marktools.Comment('More voice closing comments.', 'closing')(t)

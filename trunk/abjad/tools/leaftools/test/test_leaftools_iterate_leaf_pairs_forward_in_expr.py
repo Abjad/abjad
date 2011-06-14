@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_iterate_leaf_pairs_forward_in_expr_01( ):
 
    score = Score([ ])
-   notes = macros.scale(4) + [Note(7, (1, 4))]
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
    score.append(Staff(notes))
    notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
    score.append(Staff(notes))

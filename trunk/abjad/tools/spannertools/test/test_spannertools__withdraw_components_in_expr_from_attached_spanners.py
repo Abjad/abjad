@@ -6,7 +6,7 @@ def test_spannertools__withdraw_components_in_expr_from_attached_spanners_01( ):
    '''Unspan every component in components.
       Navigate down into components and traverse deeply.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t)
    spannertools.CrescendoSpanner(t[:])
 

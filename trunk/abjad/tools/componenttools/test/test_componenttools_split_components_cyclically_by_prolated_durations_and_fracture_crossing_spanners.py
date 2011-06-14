@@ -232,9 +232,10 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_05( ):
    '''Cyclically duration partition list of leaves outside of score.'''
 
-   leaves = macros.scale(4)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
    durations = [Duration(3, 32)]
-   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(leaves, durations)
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(
+      notes, durations)
 
    assert len(parts) == 6
 

@@ -8,9 +8,9 @@ def get_first_component_in_expr_with_name(expr, name):
 
    Get first component in `expr` with `name`::
 
-      abjad> flute_staff = Staff(macros.scale(4))
+      abjad> flute_staff = Staff("c'8 d'8 e'8 f'8")
       abjad> flute_staff.name = 'Flute'
-      abjad> violin_staff = Staff(macros.scale(4))
+      abjad> violin_staff = Staff("c'8 d'8 e'8 f'8")
       abjad> violin_staff.name = 'Violin'
       abjad> staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
       abjad> score = Score([staff_group])

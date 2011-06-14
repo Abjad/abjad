@@ -12,7 +12,7 @@ def test_Spanner___init___01( ):
 def test_Spanner___init___02( ):
    '''Init nonempty spanner.'''
 
-   t = Container(macros.scale(4))
+   t = Container("c'8 d'8 e'8 f'8")
    p = spannertools.BeamSpanner(t[:])
 
    r'''

@@ -8,7 +8,7 @@ class Container(_Component):
 
    ::
 
-      abjad> container = Container(macros.scale(4))
+      abjad> container = Container("c'8 d'8 e'8 f'8")
       abjad> f(container)
       {
          c'8

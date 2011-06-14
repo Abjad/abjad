@@ -6,7 +6,7 @@ def test_contexttools_get_effective_tempo_01( ):
    '''Tempo interface works on staves.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(t)
    contexttools.TempoMark(Duration(1, 8), 42, target_context = Staff)(t[2])
 

@@ -9,7 +9,7 @@ def label_vertical_moments_in_expr_with_counterpoint_intervals(expr, markup_dire
    Label counterpoint interval of every vertical moment in `expr`. ::
 
       abjad> score = Score(Staff([ ]) * 3)
-      abjad> score[0].extend(macros.scale(4))
+      abjad> score[0].extend("c'8 d'8 e'8 f'8")
       abjad> contexttools.ClefMark('alto')(score[1])
       ClefMark('alto')(Staff{ })
       abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])

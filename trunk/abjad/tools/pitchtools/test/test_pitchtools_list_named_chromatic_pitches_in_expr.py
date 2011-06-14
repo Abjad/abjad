@@ -14,7 +14,7 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_01( ):
 def test_pitchtools_list_named_chromatic_pitches_in_expr_02( ):
    '''Works with spanners.'''
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    beam = spannertools.BeamSpanner(staff[:])
    t = pitchtools.list_named_chromatic_pitches_in_expr(beam)
 

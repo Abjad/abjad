@@ -3,7 +3,7 @@ from abjad import *
 
 def test_Staff_engraver_removals_01( ):
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.engraver_removals.add('Time_signature_engraver')
    t.engraver_removals.add('Bar_number_engraver')
 

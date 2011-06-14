@@ -4,7 +4,7 @@ from abjad import *
 def test_AnonymousMeasure_duration_interface_01( ):
    '''Notes as contents.'''
 
-   t = measuretools.AnonymousMeasure(macros.scale(4))
+   t = measuretools.AnonymousMeasure("c'8 d'8 e'8 f'8")
 
    r'''
    {
@@ -55,7 +55,7 @@ def test_AnonymousMeasure_duration_interface_02( ):
 def test_AnonymousMeasure_duration_interface_03( ):
    '''Works with nonbinary tuplet.'''
 
-   t = measuretools.AnonymousMeasure([Tuplet((2, 3), macros.scale(4))])
+   t = measuretools.AnonymousMeasure([Tuplet((2, 3), "c'8 d'8 e'8 f'8")])
    t.denominator = 12
 
    r'''

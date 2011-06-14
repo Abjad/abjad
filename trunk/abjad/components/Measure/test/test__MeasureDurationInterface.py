@@ -53,7 +53,7 @@ def test__MeasureDurationInterface_02( ):
 def test__MeasureDurationInterface_03( ):
    '''Binary meter, improperly filled.'''
 
-   t = Measure((3, 8), macros.scale(4))
+   t = Measure((3, 8), "c'8 d'8 e'8 f'8")
 
    assert py.test.raises(OverfullMeasureError, 't.format')
    
@@ -66,7 +66,7 @@ def test__MeasureDurationInterface_03( ):
 def test__MeasureDurationInterface_04( ):
    '''Nonbinary meter, improperly filled.'''
 
-   t = Measure((3, 10), macros.scale(4))
+   t = Measure((3, 10), "c'8 d'8 e'8 f'8")
 
    assert py.test.raises(OverfullMeasureError, 't.format')
 

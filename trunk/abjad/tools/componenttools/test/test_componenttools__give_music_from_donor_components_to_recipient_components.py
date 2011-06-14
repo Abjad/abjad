@@ -82,8 +82,8 @@ def test_componenttools__give_music_from_donor_components_to_recipient_component
    '''When recipient is unable to accept donated music raise music contents error.
    '''
 
-   donor = Voice(macros.scale(4))
-   recipient = Voice(macros.scale(4))
+   donor = Voice("c'8 d'8 e'8 f'8")
+   recipient = Voice("c'8 d'8 e'8 f'8")
 
    assert py.test.raises(
       MusicContentsError, '_give_music_from_donor_components_to_recipient_components([donor], recipient)')

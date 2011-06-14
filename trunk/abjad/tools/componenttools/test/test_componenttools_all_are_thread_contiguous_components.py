@@ -96,7 +96,7 @@ def test_componenttools_all_are_thread_contiguous_components_03( ):
 def test_componenttools_all_are_thread_contiguous_components_04( ):
    '''True for strictly contiguous leaves in same staff.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    assert componenttools.all_are_thread_contiguous_components(t[:])
 
 
@@ -104,21 +104,22 @@ def test_componenttools_all_are_thread_contiguous_components_05( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
-   assert componenttools.all_are_thread_contiguous_components(macros.scale(4))
-   assert not componenttools.all_are_thread_contiguous_components(macros.scale(4), allow_orphans = False)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+   assert componenttools.all_are_thread_contiguous_components(notes)
+   assert not componenttools.all_are_thread_contiguous_components(notes, allow_orphans = False)
 
 
 def test_componenttools_all_are_thread_contiguous_components_06( ):
    '''False for time reordered leaves in staff.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    assert not componenttools.all_are_thread_contiguous_components(t[2:] + t[:2])
 
 
 def test_componenttools_all_are_thread_contiguous_components_07( ):
    '''True for unincorporated component.'''
 
-   assert componenttools.all_are_thread_contiguous_components([Staff(macros.scale(4))])
+   assert componenttools.all_are_thread_contiguous_components([Staff("c'8 d'8 e'8 f'8")])
 
 
 def test_componenttools_all_are_thread_contiguous_components_08( ):

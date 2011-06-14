@@ -137,7 +137,7 @@ def test_containertools_reverse_contents_of_container_09( ):
       no parent and with spanners at all levels.'''
    py.test.skip('fix dynamic measures.')
 
-   m1 = measuretools.DynamicMeasure(macros.scale(4)) 
+   m1 = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8") 
    m2 = measuretools.DynamicMeasure("c'8 d'8 e'8")
    staff = Staff([m1, m2])
    pedal = spannertools.PianoPedalSpanner(staff)

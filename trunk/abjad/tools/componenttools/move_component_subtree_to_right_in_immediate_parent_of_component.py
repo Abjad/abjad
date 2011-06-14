@@ -6,7 +6,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
    Move `component` subtree to right in immediate parent of `component`::
 
-      abjad> t = Voice(macros.scale(4))
+      abjad> t = Voice("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(t[:2])
       BeamSpanner(c'8, d'8)
       abjad> spannertools.BeamSpanner(t[2:])

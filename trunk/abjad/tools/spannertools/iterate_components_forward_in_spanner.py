@@ -7,7 +7,7 @@ def iterate_components_forward_in_spanner(spanner, klass = _Component):
 
    Yield components in `spanner` one at a time from left to right. ::
 
-      abjad> t = Staff(macros.scale(4))
+      abjad> t = Staff("c'8 d'8 e'8 f'8")
       abjad> p = spannertools.BeamSpanner(t[2:])
       abjad> notes = spannertools.iterate_components_forward_in_spanner(p, klass = Note)
       abjad> for note in notes:

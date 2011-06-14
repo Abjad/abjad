@@ -6,7 +6,7 @@ def get_first_instance_of_klass_in_proper_parentage_of_component(component, klas
 
    Get first instance of `klass` in proper parentage of `component`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(staff[0], Staff)
       Staff{4}
 

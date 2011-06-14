@@ -8,7 +8,7 @@ def test_AnonymousMeasure_01( ):
    '''
    py.test.skip('simplify update produres to fix dynamic measure effective meter.')
 
-   t = measuretools.AnonymousMeasure(macros.scale(4))
+   t = measuretools.AnonymousMeasure("c'8 d'8 e'8 f'8")
    
    r'''
    {

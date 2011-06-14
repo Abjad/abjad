@@ -44,7 +44,7 @@ def test_Measure___del___04( ):
 def test_Measure___del___05( ):
    '''Trim nonbinary measure.'''
 
-   t = Measure((4, 9), macros.scale(4))
+   t = Measure((4, 9), "c'8 d'8 e'8 f'8")
    del(t[:1]) 
 
    r'''
@@ -66,7 +66,7 @@ def test_Measure___del___05( ):
 def tet_rigid_measure_trim_06( ):
    '''Trim nonbinary measure, with denominator change.'''
 
-   notes = macros.scale(4)
+   notes = "c'8 d'8 e'8 f'8"
    notes[0].duration.written = Duration(1, 16)
    notes[1].duration.written = Duration(1, 16)
    t = Measure((3, 9), notes)

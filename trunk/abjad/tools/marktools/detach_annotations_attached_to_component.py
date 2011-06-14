@@ -6,7 +6,7 @@ def detach_annotations_attached_to_component(component):
    
    Detach annotations attached to `component`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
       abjad> marktools.Annotation('annotation 1')(staff[0])
       Annotation('annotation 1')(c'8)

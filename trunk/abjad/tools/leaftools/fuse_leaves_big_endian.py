@@ -4,7 +4,7 @@ def fuse_leaves_big_endian(leaves):
 
    Fuse thread-contiguous `leaves`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> leaftools.fuse_leaves_big_endian(staff[1:])
       [Note("d'4.")]
       abjad> f(staff)

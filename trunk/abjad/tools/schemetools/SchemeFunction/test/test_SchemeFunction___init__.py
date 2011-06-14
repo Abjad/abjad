@@ -4,7 +4,7 @@ from abjad import *
 def test_SchemeFunction___init___01( ):
    '''Scheme function with only a name and no arguments.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.time_signature.break_visibility = schemetools.SchemeFunction('end-of-line-invisible')
 
    r'''
@@ -24,7 +24,7 @@ def test_SchemeFunction___init___01( ):
 def test_SchemeFunction___init___02( ):
    '''Scheme function with a name and a single numeric argument.'''
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    staff.override.staff_symbol.staff_space = schemetools.SchemeFunction('magstep', -3)
    staff.override.staff_symbol.thickness = schemetools.SchemeFunction('magstep', -3)
 

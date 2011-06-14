@@ -10,7 +10,7 @@ def test_Spanner__remove_01( ):
    Follow immediately with operation to remove component from score.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    macros.diatonicize(t)
    p = spannertools.BeamSpanner(t[:])
    

@@ -5,7 +5,7 @@ def test_SlurSpanner_01( ):
    '''Slur spanner can attach to a container.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    s = spannertools.SlurSpanner(t)
 
    r'''
@@ -25,7 +25,7 @@ def test_SlurSpanner_02( ):
    '''Slur spanner can attach to leaves.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    s = spannertools.SlurSpanner(t[:])
 
    assert len(t.spanners) == 0

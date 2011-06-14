@@ -18,7 +18,7 @@ def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_in
 
 def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary_02( ):
 
-   t = Staff(macros.scale(4) + macros.scale(4) + macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8")
    pitches = pitchtools.list_named_chromatic_pitches_in_expr(t)
    vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(pitches)
 

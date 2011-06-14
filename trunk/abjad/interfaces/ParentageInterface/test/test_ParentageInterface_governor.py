@@ -45,7 +45,7 @@ def test_ParentageInterface_governor_03( ):
       such that the next element in the parentage of client is
       either a parallel container or None.'''
 
-   t = Staff([Voice([Container(macros.scale(4))])])
+   t = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
 
    r'''
    \new Staff {
@@ -71,7 +71,7 @@ def test_ParentageInterface_governor_04( ):
       such that the next element in the parentage of client is
       either a parallel container or None.'''
 
-   t = Staff([Voice([Container(macros.scale(4))])])
+   t = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
 
    r'''
    \new Staff {

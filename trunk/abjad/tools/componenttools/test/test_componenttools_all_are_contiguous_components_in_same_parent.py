@@ -5,7 +5,7 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_01( ):
    '''True for strictly contiguous leaves in voice.
       False for other time orderings of leaves in voice.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    
    assert componenttools.all_are_contiguous_components_in_same_parent(t.leaves)
 
@@ -61,11 +61,10 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_03( ):
    '''True for orphan leaves when allow_orphans is True.
       False for orphan leaves when allow_orphans is False.'''
 
-   t = macros.scale(4)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
-   assert componenttools.all_are_contiguous_components_in_same_parent(t)
-   assert not componenttools.all_are_contiguous_components_in_same_parent(t, 
-      allow_orphans = False)
+   assert componenttools.all_are_contiguous_components_in_same_parent(notes)
+   assert not componenttools.all_are_contiguous_components_in_same_parent(notes, allow_orphans = False)
 
 
 def test_componenttools_all_are_contiguous_components_in_same_parent_04( ):

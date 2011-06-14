@@ -3,7 +3,7 @@ from abjad import *
 
 def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_01( ):
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    
    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
       t[0], Note) is t[0]
@@ -16,7 +16,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
    '''Return first explicit Abjad ``Staff`` in parentage of client.
       Otherwise ``None``.'''
 
-   t = Score([Staff(macros.scale(4))])
+   t = Score([Staff("c'8 d'8 e'8 f'8")])
 
    r'''
    \new Score <<
@@ -51,7 +51,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
    '''Get first instance of score in improper parentage.
    '''
 
-   t = Score([Staff(macros.scale(4))])
+   t = Score([Staff("c'8 d'8 e'8 f'8")])
    t.name = 'foo'
 
    r'''
@@ -81,7 +81,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
    '''First explicit Abjad ``Score`` in parentage of client.
       If no explicit ``Score`` in parentage, return ``None``.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.name = 'foo'
 
    r'''
@@ -106,7 +106,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
    '''Get first instance of voice in improper parentage of component.
    '''
 
-   t = Score([Staff([Voice(macros.scale(4))])])
+   t = Score([Staff([Voice("c'8 d'8 e'8 f'8")])])
    voice = t[0][0]
 
    r'''

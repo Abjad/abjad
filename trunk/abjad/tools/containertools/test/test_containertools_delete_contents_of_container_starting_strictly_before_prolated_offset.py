@@ -3,7 +3,7 @@ from abjad import *
 
 def test_containertools_delete_contents_of_container_starting_strictly_before_prolated_offset_01( ):
    
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(staff.leaves)
    containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, Duration(1, 8))
 
@@ -21,7 +21,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_pr
 
 def test_containertools_delete_contents_of_container_starting_strictly_before_prolated_offset_02( ):
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(staff.leaves)
    containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, Duration(3, 16))
 
@@ -39,7 +39,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_pr
 def test_containertools_delete_contents_of_container_starting_strictly_before_prolated_offset_03( ):
    '''Delete nothing when no contents start before prolated offset.'''
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(staff.leaves)
    containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, 0)
 
@@ -59,7 +59,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_pr
 def test_containertools_delete_contents_of_container_starting_strictly_before_prolated_offset_04( ):
    '''Delete all contents when all elements start before prolated offset.'''
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(staff.leaves)
    containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, 99)
 

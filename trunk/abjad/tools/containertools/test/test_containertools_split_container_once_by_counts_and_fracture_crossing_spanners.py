@@ -58,7 +58,7 @@ def test_containertools_split_container_once_by_counts_and_fracture_crossing_spa
    Input container cedes contents to new instance.
    Expression appears unaltered.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t[0].leaves)
    container = t[0]
@@ -99,7 +99,7 @@ def test_containertools_split_container_once_by_counts_and_fracture_crossing_spa
    First part counts apply and extra part counts do not apply.
    Result contains no empty parts.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t[0].leaves)
 
@@ -139,7 +139,7 @@ def test_containertools_split_container_once_by_counts_and_fracture_crossing_spa
    '''Partition by empty part counts list.
    Input container returns within one-element result list.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t[0].leaves)
 

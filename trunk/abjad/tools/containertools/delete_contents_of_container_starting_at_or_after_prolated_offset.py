@@ -6,7 +6,7 @@ def delete_contents_of_container_starting_at_or_after_prolated_offset(container,
 
    Delete contents of `container` starting at or after `prolated_offset`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
 

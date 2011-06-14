@@ -7,7 +7,7 @@ def get_effective_dynamic(component):
 
    Get effective dynamic of `component`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> contexttools.DynamicMark('f')(staff[0])
       DynamicMark('f')(c'8)
 

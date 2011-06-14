@@ -8,7 +8,7 @@ def report_as_string_format_contributions_of_all_spanners_attached_to_improper_p
    Report as string format contributions of all spanners attached to improper
    parentage of `component`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> beam = spannertools.BeamSpanner(staff.leaves)
       abjad> slur = spannertools.SlurSpanner(staff.leaves)
       abjad> trill = spannertools.TrillSpanner(staff)

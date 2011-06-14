@@ -5,7 +5,7 @@ def test_LilypondContextProxy___setattr___01( ):
    r'''Works with score tempo interface.
    Does not include LilyPond \set command.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    score = Score([t])
    score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 
@@ -29,7 +29,7 @@ def test_LilypondContextProxy___setattr___02( ):
    r'''Works with leaf tempo interface.
    Includes LilyPond \set command.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    score = Score([t])
    score.leaves[1].set.score.tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 

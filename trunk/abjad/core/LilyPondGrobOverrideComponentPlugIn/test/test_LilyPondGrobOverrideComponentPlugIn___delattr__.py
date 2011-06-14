@@ -30,7 +30,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___02( ):
    '''Delete LilyPond Rest grob override.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.rest.transparent = True
    del(t.override.rest)
 

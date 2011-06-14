@@ -5,7 +5,7 @@ def test_DynamicMeasure_suppress_meter_01( ):
    '''It is possible to suppress meter from dynamic measures.
    '''
 
-   t = measuretools.DynamicMeasure(macros.scale(4))
+   t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
    t.suppress_meter = True
 
    r'''

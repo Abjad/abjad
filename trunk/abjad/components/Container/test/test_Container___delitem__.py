@@ -62,7 +62,7 @@ def test_Container___delitem___02( ):
    '''Delete 1 leaf in container. 
    Spanner structure is preserved.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
 
    del(t[1])
@@ -82,7 +82,7 @@ def test_Container___delitem___02( ):
 def test_Container___delitem___03( ):
    '''Delete slice in middle of container.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
 
    del(t[1:3])
@@ -101,7 +101,7 @@ def test_Container___delitem___03( ):
 def test_Container___delitem___04( ):
    '''Delete slice from beginning to middle of container.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
 
    del(t[:2])
@@ -120,7 +120,7 @@ def test_Container___delitem___04( ):
 def test_Container___delitem___05( ):
    '''Delete slice from middle to end of container.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
 
    del(t[2:])
@@ -139,7 +139,7 @@ def test_Container___delitem___05( ):
 def test_Container___delitem___06( ):
    '''Delete slice from beginning to end of container.'''
 
-   t = Voice(macros.scale(4)) 
+   t = Voice("c'8 d'8 e'8 f'8") 
    spannertools.BeamSpanner(t[:])
 
    del(t[:])

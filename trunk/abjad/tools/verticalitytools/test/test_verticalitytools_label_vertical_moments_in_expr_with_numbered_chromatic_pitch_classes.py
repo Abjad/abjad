@@ -4,7 +4,8 @@ from abjad import *
 def test_verticalitytools_label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes_01( ):
 
    score = Score(Staff([ ]) * 3)
-   score[0].extend(macros.scale(4))
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+   score[0].extend(notes)
    contexttools.ClefMark('alto')(score[1])
    score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
    contexttools.ClefMark('bass')(score[2])

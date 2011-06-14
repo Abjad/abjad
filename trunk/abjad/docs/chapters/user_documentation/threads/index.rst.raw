@@ -16,7 +16,7 @@ v = Voice( )
 Or they may exist implicitly in certain score constructs in the absence of voice containers:
 
 <abjad>
-staff = Staff(macros.scale(4))
+staff = Staff("c'8 d'8 e'8 f'8")
 </abjad>
 
 Two contiguous voices must have the same name in order to be part of the same thread. 

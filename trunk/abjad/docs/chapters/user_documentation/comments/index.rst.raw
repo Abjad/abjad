@@ -27,7 +27,7 @@ f(note)
 You can add comments before, after, in the opening or in the closing of any container:
 
 <abjad>
-staff = Staff(macros.scale(4))
+staff = Staff("c'8 d'8 e'8 f'8")
 show(staff)
 iotools.write_expr_to_ly(staff, 'staff-ex', 'oedo') <hide
 </abjad>

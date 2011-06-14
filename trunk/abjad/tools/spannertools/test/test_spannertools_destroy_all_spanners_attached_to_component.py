@@ -5,7 +5,7 @@ def test_spannertools_destroy_all_spanners_attached_to_component_01( ):
    '''Destory all spanners attached to component.
    '''
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    beam = spannertools.BeamSpanner(staff.leaves)
    slur = spannertools.SlurSpanner(staff.leaves)
    trill = spannertools.TrillSpanner(staff)
@@ -38,7 +38,7 @@ def test_spannertools_destroy_all_spanners_attached_to_component_02( ):
    '''Destroy all spanners of klass attached to component.
    '''
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    beam = spannertools.BeamSpanner(staff.leaves)
    slur = spannertools.SlurSpanner(staff.leaves)
    trill = spannertools.TrillSpanner(staff)

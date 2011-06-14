@@ -7,7 +7,7 @@ def get_annotations_attached_to_component(component):
 
    Get annotations attached to `component`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> marktools.Annotation('annotation 1')(staff[0])
       Annotation('annotation 1')(c'8)
       abjad> marktools.Annotation('annotation 2')(staff[0])

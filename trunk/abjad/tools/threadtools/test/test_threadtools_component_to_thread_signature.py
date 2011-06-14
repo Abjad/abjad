@@ -6,7 +6,7 @@ import py.test
 def test_threadtools_component_to_thread_signature_01( ):
    '''An anonymous  Staff and it's contained unvoiced leaves share the 
    same signature.'''
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
 
    containment = threadtools.component_to_thread_signature(t)
    for component in componenttools.iterate_components_forward_in_expr(t, _Component):
@@ -17,7 +17,7 @@ def test_threadtools_component_to_thread_signature_02( ):
    '''A named Staff and it's contained unvoiced leaves share the 
    same signature.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.name = 'foo'
 
    containment = threadtools.component_to_thread_signature(t) 
@@ -28,7 +28,7 @@ def test_threadtools_component_to_thread_signature_03( ):
    '''Leaves inside equally named sequential voices inside a Staff 
    share the same signature.'''
 
-   t = Staff(Voice(macros.scale(4)) * 2)
+   t = Staff(Voice("c'8 d'8 e'8 f'8") * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
 

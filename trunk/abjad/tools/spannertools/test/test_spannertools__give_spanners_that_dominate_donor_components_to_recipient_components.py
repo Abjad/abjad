@@ -9,7 +9,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
    The operation can mangle spanners.
    Remove donor_components from parentage immediately after.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.CrescendoSpanner(t[:])
    spannertools.BeamSpanner(t[:2])
    spannertools.SlurSpanner(t[1:3])
@@ -90,7 +90,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
    '''
 
    donor = t[0]
-   recipient = Voice(macros.scale(4))
+   recipient = Voice("c'8 d'8 e'8 f'8")
    _give_spanners_that_dominate_donor_components_to_recipient_components([donor], [recipient])
    
    "Container t is now ..."

@@ -6,7 +6,7 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass = 
 
    Get all spanners attached to any improper children of `component`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> beam = spannertools.BeamSpanner(staff.leaves)
       abjad> first_slur = spannertools.SlurSpanner(staff.leaves[:2])
       abjad> second_slur = spannertools.SlurSpanner(staff.leaves[2:])

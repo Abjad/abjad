@@ -3,7 +3,7 @@ from abjad import *
 
 def test_LilyFile_format_01( ):
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    lily_file = lilyfiletools.make_basic_lily_file(staff)
    lily_file.file_initial_system_comments = [ ]
    lily_file.file_initial_system_includes = [ ]

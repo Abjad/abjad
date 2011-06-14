@@ -13,7 +13,7 @@ def are_stepwise_notes(*expr):
 
    ::
 
-      abjad> t = Staff(macros.scale(4))
+      abjad> t = Staff("c'8 d'8 e'8 f'8")
       abjad> tonalitytools.are_stepwise_notes(t[:])
       True
 

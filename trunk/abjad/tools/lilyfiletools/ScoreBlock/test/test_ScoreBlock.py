@@ -6,7 +6,7 @@ def test_ScoreBlock_01( ):
    Layout block must be explicitly set to format when empty.
    '''
 
-   score = Score([Staff(macros.scale(4))])
+   score = Score([Staff("c'8 d'8 e'8 f'8")])
    score_block = lilyfiletools.ScoreBlock( )
    layout_block = lilyfiletools.LayoutBlock( )
    layout_block.is_formatted_when_empty = True

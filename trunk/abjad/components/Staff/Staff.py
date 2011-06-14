@@ -6,7 +6,7 @@ class Staff(_Context):
 
    ::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> f(staff)
       \new Staff {
          c'8

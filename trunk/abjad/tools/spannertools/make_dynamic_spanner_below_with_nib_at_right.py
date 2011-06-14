@@ -9,7 +9,7 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components = None
    Position spanner below staff and configure with `dynamic_text`,
    solid line and upward-pointing nib at right. ::
    
-      abjad> t = Staff(macros.scale(4))
+      abjad> t = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.make_dynamic_spanner_below_with_nib_at_right('mp', t[:])
       TextSpanner(c'8, d'8, e'8, f'8)
       abjad> f(t)

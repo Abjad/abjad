@@ -16,7 +16,7 @@ def test_componenttools_get_first_component_in_expr_with_name_01( ):
 def test_componenttools_get_first_component_in_expr_with_name_02( ):
    '''Raise missing component error on no match.'''
 
-   v = Voice(macros.scale(4))
+   v = Voice("c'8 d'8 e'8 f'8")
    v.context = 'MyStrangeVoice'
    v.name = 'voice_1'
    t = Staff([v])

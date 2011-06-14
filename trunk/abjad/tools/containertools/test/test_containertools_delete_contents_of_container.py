@@ -5,7 +5,7 @@ import py.test
 def test_containertools_delete_contents_of_container_01( ):
    '''Eject container contents.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t)
 
    contents = containertools.delete_contents_of_container(t)

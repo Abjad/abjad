@@ -5,7 +5,7 @@ Use the scale macro to create many notes at once:
 
 ::
 
-	abjad> macros.scale(4)
+	abjad> "c'8 d'8 e'8 f'8"
 	[Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
 
@@ -13,7 +13,7 @@ Show these notes in a staff:
 
 ::
 
-	abjad> staff = Staff(macros.scale(4))
+	abjad> staff = Staff("c'8 d'8 e'8 f'8")
 	abjad> show(staff)
 
 .. image:: images/test.png

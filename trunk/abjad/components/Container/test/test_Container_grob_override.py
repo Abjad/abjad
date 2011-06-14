@@ -4,7 +4,7 @@ from abjad import *
 def test_Container_grob_override_01( ):
    '''Noncontext containers bracket grob overrides at opening and closing.'''
 
-   t = Container(macros.scale(4))
+   t = Container("c'8 d'8 e'8 f'8")
    t.override.glissando.thickness = 3
 
    r'''

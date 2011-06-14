@@ -5,7 +5,7 @@ def test_LilyPondCommandMark_format_01( ):
    '''AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
 
    r'''
@@ -25,7 +25,7 @@ def test_LilyPondCommandMark_format_02( ):
    '''AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t[1])
 
    r'''
@@ -73,7 +73,7 @@ def test_LilyPondCommandMark_format_04( ):
 def test_LilyPondCommandMark_format_05( ):
    '''Empty LilyPond bar line string.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    marktools.LilyPondCommandMark(r'bar ""', 'after')(t[0])
 
    r'''

@@ -261,7 +261,7 @@ class Spanner(_StrictComparator):
    def components(self):
       '''Return read-only tuple of components in spanner. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[:2])
          abjad> spanner.components
          (Note("c'8"), Note("d'8"))
@@ -278,7 +278,7 @@ class Spanner(_StrictComparator):
       Spanner duration interface implements ``written``, 
       ``preprolated`` and ``prolated`` attributes. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[:2])
          abjad> spanner
          Spanner(c'8, d'8)
@@ -307,7 +307,7 @@ class Spanner(_StrictComparator):
    def leaves(self):
       '''Return read-only tuple of leaves in spanner. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[:2])
          abjad> spanner.leaves
          (Note("c'8"), Note("d'8"))
@@ -340,7 +340,7 @@ class Spanner(_StrictComparator):
 
       Spanner offset interface implements ``start`` and ``stop`` attributes. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[2:])
          abjad> spanner
          Spanner(e'8, f'8)
@@ -383,7 +383,7 @@ class Spanner(_StrictComparator):
 
       :: 
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[:2])
          abjad> spanner
          Spanner(c'8, d'8)
@@ -410,7 +410,7 @@ class Spanner(_StrictComparator):
 
       :: 
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[2:])
          abjad> spanner
          Spanner(e'8, f'8)
@@ -434,7 +434,7 @@ class Spanner(_StrictComparator):
    def clear(self):
       r'''Remove all components from spanner::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[:])
          abjad> spanner
          Spanner(c'8, d'8, e'8, f'8)
@@ -482,7 +482,7 @@ class Spanner(_StrictComparator):
    def extend(self, components):
       '''Add iterable `components` to right of spanner::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[:2])
          abjad> spanner
          Spanner(c'8, d'8)
@@ -507,7 +507,7 @@ class Spanner(_StrictComparator):
    def extend_left(self, components):
       '''Add iterable `components` to left of spanner::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[2:])
          abjad> spanner
          Spanner(e'8, f'8)
@@ -534,7 +534,7 @@ class Spanner(_StrictComparator):
 
       Return original, left and right spanners. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> beam = spannertools.BeamSpanner(voice[:])
          abjad> beam
          BeamSpanner(c'8, d'8, e'8, f'8)
@@ -584,7 +584,7 @@ class Spanner(_StrictComparator):
 
       Return new spanner. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> left_beam = spannertools.BeamSpanner(voice[:2])
          abjad> right_beam = spannertools.BeamSpanner(voice[2:])
 
@@ -621,7 +621,7 @@ class Spanner(_StrictComparator):
    def index(self, component):
       '''Return nonnegative integer index of `component` in spanner. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[2:])
          abjad> spanner
          Spanner(e'8, f'8)
@@ -644,7 +644,7 @@ class Spanner(_StrictComparator):
    def pop(self):
       '''Remove and return rightmost component in spanner. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[:])
          abjad> spanner
          Spanner(c'8, d'8, e'8, f'8)
@@ -669,7 +669,7 @@ class Spanner(_StrictComparator):
    def pop_left(self):
       '''Remove and return leftmost component in spanner. ::
 
-         abjad> voice = Voice(macros.scale(4))
+         abjad> voice = Voice("c'8 d'8 e'8 f'8")
          abjad> spanner = spannertools.Spanner(voice[:])
          abjad> spanner
          Spanner(c'8, d'8, e'8, f'8)

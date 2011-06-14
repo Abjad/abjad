@@ -6,7 +6,7 @@ def test_Spanner_format_01( ):
    However, base spanner causes no explosions at format-time, either.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    p = spannertools.Spanner(t[:])
 
    r'''

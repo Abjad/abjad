@@ -8,7 +8,7 @@ def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration)
 
    Split `leaf` at `prolated_duration` and rest right half::
 
-      abjad> t = Staff(macros.scale(4))
+      abjad> t = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.SlurSpanner(t[:])
       SlurSpanner(c'8, d'8, e'8, f'8)
       abjad> f(t)

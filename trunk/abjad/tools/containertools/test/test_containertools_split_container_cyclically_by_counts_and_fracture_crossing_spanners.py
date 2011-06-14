@@ -59,7 +59,7 @@ def test_containertools_split_container_cyclically_by_counts_and_fracture_crossi
 def test_containertools_split_container_cyclically_by_counts_and_fracture_crossing_spanners_02( ):
    '''Cyclic by [1] splits all elements in container.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t[0].leaves)
 
@@ -104,7 +104,7 @@ def test_containertools_split_container_cyclically_by_counts_and_fracture_crossi
       Input container cedes contents to new instance.
       Expression appears unaltered.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t[0].leaves)
    container = t[0]
@@ -145,7 +145,7 @@ def test_containertools_split_container_cyclically_by_counts_and_fracture_crossi
       First part counts apply and extra part counts do not apply.
       Result contains no empty parts.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t[0].leaves)
 
@@ -185,7 +185,7 @@ def test_containertools_split_container_cyclically_by_counts_and_fracture_crossi
    '''Partition by large empty part counts list.
       Empty list returns and expression remains unaltered.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t[0].leaves)
 

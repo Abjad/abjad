@@ -13,7 +13,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
 
    Cut `component` at dotted `prolated_duration`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(1, 32))
@@ -27,7 +27,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       
    Cut `component` at tied `prolated_duration`::
       
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(3, 64))
@@ -42,7 +42,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       
    Cut `component` at nonbinary `prolated_duration`::
       
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(1, 24))

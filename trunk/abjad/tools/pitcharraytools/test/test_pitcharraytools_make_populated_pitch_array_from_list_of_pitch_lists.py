@@ -53,7 +53,7 @@ def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_01(
 def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_02( ):
 
    score = Score([ ])
-   score.append(Staff(macros.scale(4)))
+   score.append(Staff("c'8 d'8 e'8 f'8"))
    score.append(Staff(macros.scale(2, Duration(1, 4))))
    score.append(Staff(tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8") * 2))
 

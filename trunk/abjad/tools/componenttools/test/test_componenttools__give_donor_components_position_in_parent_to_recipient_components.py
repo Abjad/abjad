@@ -5,7 +5,7 @@ from abjad.tools.componenttools._give_donor_components_position_in_parent_to_rec
 def test_componenttools__give_donor_components_position_in_parent_to_recipient_components_01( ):
    '''Not composer-safe.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    notes = macros.scale(2, Duration(1, 16))
 

@@ -5,7 +5,7 @@ import py.test
 def test_Container___getitem___01( ):
    '''Get one container component with positive index.'''
 
-   notes = macros.scale(4)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
    t = Voice(notes)
 
    assert t[0] is notes[0]
@@ -17,7 +17,7 @@ def test_Container___getitem___01( ):
 def test_Container___getitem___02( ):
    '''Get one container component with negative index.'''
 
-   notes = macros.scale(4)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
    t = Voice(notes)
    
    assert t[-1] is notes[3]
@@ -29,7 +29,7 @@ def test_Container___getitem___02( ):
 def test_Container___getitem___03( ):
    '''Get slice from container.'''
 
-   notes = macros.scale(4)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
    t = Voice(notes)
 
    assert t[:1] == notes[:1]
@@ -41,6 +41,6 @@ def test_Container___getitem___03( ):
 def test_Container___getitem___04( ):
    '''Bad index raises IndexError.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
 
    assert py.test.raises(IndexError, 't[99]')

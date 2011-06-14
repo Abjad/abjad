@@ -7,7 +7,7 @@ def is_bar_line_crossing_leaf(leaf):
 
    True when `leaf` crosses bar line::
 
-      abjad> t = Staff(macros.scale(4))
+      abjad> t = Staff("c'8 d'8 e'8 f'8")
       abjad> t[2].duration.written *= 2
       abjad> contexttools.TimeSignatureMark(2, 8, partial = Duration(1, 8))(t[2])
       TimeSignatureMark(2, 8, partial = Duration(1, 8))(e'4)

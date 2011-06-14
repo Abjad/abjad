@@ -4,7 +4,7 @@ from abjad import *
 def test_DynamicMeasure_duration_interface_01( ):
    '''Notes as contents.'''
 
-   t = measuretools.DynamicMeasure(macros.scale(4))
+   t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
    t.denominator = 8
 
    r'''
@@ -53,7 +53,7 @@ def test_DynamicMeasure_duration_interface_02( ):
 def test_DynamicMeasure_duration_interface_03( ):
    '''Nonbinary tuplet as contents.'''
 
-   t = measuretools.DynamicMeasure([Tuplet((2, 3), macros.scale(4))])
+   t = measuretools.DynamicMeasure([Tuplet((2, 3), "c'8 d'8 e'8 f'8")])
    t.denominator = 12
 
    r'''

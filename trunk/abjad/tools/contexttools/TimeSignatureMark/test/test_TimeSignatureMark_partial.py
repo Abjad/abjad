@@ -3,7 +3,7 @@ from abjad import *
 
 def test_TimeSignatureMark_partial_01( ):
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    contexttools.TimeSignatureMark(2, 8, partial = Duration(1, 8))(t)
 
    r'''

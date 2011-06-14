@@ -8,7 +8,7 @@ def test_Spanner_insert_01( ):
       Not composer-safe.
       Inserting into middle of spanner may leave discontiguous spanner.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    p = spannertools.BeamSpanner(t[:2])
 
    r'''

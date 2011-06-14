@@ -6,7 +6,7 @@ def remove_markup_from_leaves_in_expr(expr):
 
    Remove markup from leaves in `expr`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(staff)
       abjad> f(staff)
       \new Staff {

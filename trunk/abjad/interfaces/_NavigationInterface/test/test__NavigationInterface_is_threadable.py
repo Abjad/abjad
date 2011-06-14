@@ -5,7 +5,7 @@ import py.test
 def test__NavigationInterface_is_threadable_01( ):
    '''Voice and leaves all thread.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
 
    assert t[0]._navigator._is_threadable(t[1])
    assert t[1]._navigator._is_threadable(t[2])
@@ -24,7 +24,7 @@ def test__NavigationInterface_is_threadable_01( ):
 def test__NavigationInterface_is_threadable_02( ):
    '''Staff and leaves all thread.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
 
    assert t[0]._navigator._is_threadable(t[1])
    assert t[1]._navigator._is_threadable(t[2])
@@ -43,7 +43,7 @@ def test__NavigationInterface_is_threadable_02( ):
 def test__NavigationInterface_is_threadable_03( ):
    '''Paths exist between all notes in a sequential.'''
 
-   t = Container(macros.scale(4))
+   t = Container("c'8 d'8 e'8 f'8")
 
    assert t[0]._navigator._is_threadable(t[1])
    assert t[1]._navigator._is_threadable(t[2])
@@ -76,7 +76,7 @@ def test__NavigationInterface_is_threadable_03( ):
 #   ## this is the current implementation behavior as of Apr. 3, 2009.
 #   ## See the next test. 
 #
-#   t = Container(macros.scale(4))
+#   t = Container("c'8 d'8 e'8 f'8")
 #   t.is_parallel = True
 #
 #   assert not t[0]._navigator._is_threadable(t[1])
@@ -97,7 +97,7 @@ def test__NavigationInterface_is_threadable_03( ):
 #   contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating chords.'''
 #
-#   t = Container(macros.scale(4))
+#   t = Container("c'8 d'8 e'8 f'8")
 #   t.is_parallel = True
 #   v = Voice([t])
 #

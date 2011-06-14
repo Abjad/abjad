@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_clone_components_and_immediate_parent_of_first_component_01( ):
    '''Copy adjacent notes in staff.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[:2])
 
    r'''
@@ -22,7 +22,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
 def test_componenttools_clone_components_and_immediate_parent_of_first_component_02( ):
    '''Copy adjacent notes in staff.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[-2:])
 
    r'''

@@ -140,7 +140,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_04( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_05( ):
    '''Copy consecutive notes in binary measure.'''
 
-   t = Measure((4, 8), macros.scale(4))
+   t = Measure((4, 8), "c'8 d'8 e'8 f'8")
    u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 3)
 
    r'''
@@ -158,7 +158,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_05( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_06( ):
    '''Copy consecutive notes in staff and score.'''
 
-   score = Score([Staff(macros.scale(4))])
+   score = Score([Staff("c'8 d'8 e'8 f'8")])
    t = score[0]
    new = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 3)
 

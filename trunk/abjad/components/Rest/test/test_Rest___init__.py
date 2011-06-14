@@ -162,7 +162,7 @@ def test_Rest___init___13( ):
    '''Init rest from spanned note.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    rest = Rest(t[-1])
    componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
@@ -183,7 +183,7 @@ def test_Rest___init___14( ):
    '''Init multiple rests from spanned notes.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    for note in t:
       rest = Rest(note)

@@ -6,7 +6,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___01( ):
    '''Override LilyPond Accidental grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.accidental.color = 'red'
 
    r'''
@@ -27,7 +27,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___02( ):
    '''Override LilyPond Accidental grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t[1].override.accidental.color = 'red'
 
    r'''
@@ -74,7 +74,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___04( ):
    '''Override LilyPond BarNumber grob.
    '''
 
-   t = Score([Staff(macros.scale(4))])
+   t = Score([Staff("c'8 d'8 e'8 f'8")])
    t.override.bar_number.color = 'red'
 
    r'''
@@ -98,7 +98,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___05( ):
    '''Override LilyPond Beam grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    p = spannertools.BeamSpanner(t[:])
    p.override.beam.positions = (4, 4)
 
@@ -148,7 +148,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___08( ):
    '''Override LilyPond Clef grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.clef.color = 'red'
 
    r'''
@@ -206,7 +206,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___10( ):
    '''Override LilyPond DynamicLineSpanner grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    p = spannertools.HairpinSpanner(t[:], 'p < f')
    p.override.dynamic_line_spanner.staff_padding = 4
 
@@ -228,7 +228,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___11( ):
    '''Override LilyPond DynamicLineSpanner grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.dynamic_line_spanner.staff_padding = 2
    t.override.dynamic_line_spanner.Y_extent = (-1.5, 1.5)
 
@@ -251,7 +251,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12( ):
    '''Override LilyPond DynamicText grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    p = spannertools.DynamicTextSpanner(t[:], 'f')
    p.override.dynamic_text.thickness = 3
@@ -275,7 +275,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___13( ):
    '''Override LilyPond DynamicText grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.dynamic_text.staff_padding = 2
    t.override.dynamic_text.Y_extent = (-1.5, 1.5)
 
@@ -298,7 +298,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___14( ):
    '''Override LilyPond DynamicTextSpanner grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.dynamic_text_spanner.staff_padding = 2
    t.override.dynamic_text_spanner.Y_extent = (-1.5, 1.5)
 
@@ -321,7 +321,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___15( ):
    '''Override LilyPond Glissando grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    p = spannertools.GlissandoSpanner(t[:])
    p.override.glissando.thickness = 3
 
@@ -343,7 +343,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___16( ):
    '''Override LilyPond Hairpin grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.hairpin.staff_padding = 2
    t.override.hairpin.Y_extent = (-1.5, 1.5)
 
@@ -366,7 +366,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___17( ):
    '''Override LilyPond InstrumentName grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.set.instrument_name = markuptools.Markup(r'\circle { V }')
    t.override.instrument_name.color = 'red'
 
@@ -390,7 +390,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18( ):
    '''Override LilyPond MetronomeMark grob.
    '''
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    score = Score([staff])
    contexttools.TempoMark(Duration(1, 4), 58)(staff[0])
    score.override.metronome_mark.color = 'red'
@@ -435,7 +435,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___20( ):
    '''Override LilyPond NonMusicalPaperColumn grob.
    '''
 
-   t = Score([Staff(macros.scale(4))])
+   t = Score([Staff("c'8 d'8 e'8 f'8")])
    t.override.non_musical_paper_column.line_break_permission = False
    t.override.non_musical_paper_column.page_break_permission = False
 
@@ -477,7 +477,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___22( ):
    '''Override LilyPond NoteColumn grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.note_column.ignore_collision = True
 
    r'''
@@ -586,7 +586,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___29( ):
    '''Override LilyPond NoteHead grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    t.override.note_head.color = 'red'
 
    r'''
@@ -608,7 +608,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___30( ):
    '''Override LilyPond OctavationBracket grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    p = spannertools.OctavationSpanner(t[:], 1)
    p.override.staff.ottava_bracket.staff_position = 4
 
@@ -632,7 +632,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___31( ):
    '''Override LilyPond RehearsalMark grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.rehearsal_mark.staff_padding = 2
    t.override.rehearsal_mark.Y_extent = (-1.5, 1.5)
 
@@ -655,7 +655,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___32( ):
    '''Override LilyPond Rest grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.rest.transparent = True
 
    r'''
@@ -692,7 +692,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___34( ):
    '''Override LilyPond Script grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.script.staff_padding = 2
    t.override.script.Y_extent = (-1.5, 1.5)
 
@@ -715,7 +715,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35( ):
    '''Override LilyPond SpacingSpanner grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    p = spannertools.Spanner(t[:])
    p.override.score.spacing_spanner.strict_grace_spacing = True
    p.override.score.spacing_spanner.strict_note_spacing = True
@@ -808,8 +808,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___38( ):
    '''
 
    score, treble, bass = scoretools.make_empty_piano_score( )
-   treble.extend(macros.scale(4))
-   bass.extend(macros.scale(4))
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+   treble.extend(notes)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+   bass.extend(notes)
    score.override.span_bar.color = 'red'
 
    r'''
@@ -843,7 +845,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___39( ):
    '''Override LilyPond StaffSymbol grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.staff_symbol.color = 'red'
 
    r'''
@@ -864,7 +866,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___40( ):
    '''Override LilyPond StaffSymbol grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t[2].override.staff.staff_symbol.color = 'red'
 
    r'''
@@ -884,7 +886,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___41( ):
    '''Override LilyPond StaffSymbol grob.
    '''
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    staff.override.staff_symbol.line_positions = schemetools.SchemeVector(-4, -2, 2, 4)
 
    r'''
@@ -974,7 +976,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___45( ):
    '''Override LilyPond TextScript grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    text_script_spanner = spannertools.TextScriptSpanner(t[:])
    text_script_spanner.override.text_script.color = 'red'
 
@@ -1029,7 +1031,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___48( ):
    '''Override LilyPond TimeSignature grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.time_signature.transparent = True
 
    r'''
@@ -1050,7 +1052,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___49( ):
    '''Override LilyPond TimeSignature grob.
    '''
 
-   t = Measure((4, 8), macros.scale(4))
+   t = Measure((4, 8), "c'8 d'8 e'8 f'8")
    t.override.time_signature.transparent = True
 
    r'''
@@ -1072,7 +1074,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___50( ):
    '''Override LilyPond TimeSignature grob.
    '''
 
-   t = Measure((4, 8), macros.scale(4))
+   t = Measure((4, 8), "c'8 d'8 e'8 f'8")
    t.override.staff.time_signature.transparent = True
 
    r'''
@@ -1094,7 +1096,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___51( ):
    '''Override LilyPond TrillPitchAccidental grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.trill_pitch_accidental.staff_padding = 2
    t.override.trill_pitch_accidental.Y_extent = (-1.5, 1.5)
 
@@ -1117,7 +1119,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___52( ):
    '''Override LilyPond TrillSpanner grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    p = spannertools.TrillSpanner(t[:])
    p.override.trill_spanner.color = 'red'
 
@@ -1139,7 +1141,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53( ):
    '''Override LilyPond TupletBracket grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    t.override.tuplet_bracket.direction = 'down'
 
@@ -1162,7 +1164,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54( ):
    '''Override LilyPond TupletBracket grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    t[1].override.tuplet_bracket.direction = 'down'
 
@@ -1205,7 +1207,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56( ):
    '''Override LilyPond TupletNumber grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    t.override.tuplet_number.fraction = True
 
@@ -1228,7 +1230,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57( ):
    '''Override LilyPond TupletNumber grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    t[1].override.tuplet_number.fraction = True
 
@@ -1250,7 +1252,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58( ):
    '''Override LilyPond TupletNumber grob.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    t.override.tuplet_number.text = markuptools.Markup('"6:4"')
 
@@ -1273,7 +1275,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___59( ):
    '''Override LilyPond VerticalAlignment grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.vertical_alignment.staff_padding = 2
    t.override.vertical_alignment.Y_extent = (-1.5, 1.5)
 
@@ -1296,7 +1298,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___60( ):
    '''Override LilyPond VerticalAxis grob.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.override.vertical_axis_group.staff_padding = 2
    t.override.vertical_axis_group.Y_extent = (-1.5, 1.5)
 

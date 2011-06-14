@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_set_preprolated_leaf_duration_01( ):
    '''Change leaf to tied duration.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:2])
 
    r'''
@@ -69,7 +69,7 @@ def test_leaftools_set_preprolated_leaf_duration_03( ):
    '''Change leaf to nontied duration.
       Same as t.duration.written = Duration(3, 16).'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:2])
 
    r'''
@@ -100,7 +100,7 @@ def test_leaftools_set_preprolated_leaf_duration_04( ):
    '''Change leaf to tied, nonbinary duration.
       Tuplet inserted over new tied notes.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:2])
 
    r'''
@@ -134,7 +134,7 @@ def test_leaftools_set_preprolated_leaf_duration_05( ):
    '''Change leaf to untied, nonbinary duration.
       Tuplet inserted over input leaf.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:2])
 
    r'''

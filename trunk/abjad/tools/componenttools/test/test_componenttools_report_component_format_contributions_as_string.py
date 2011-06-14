@@ -22,7 +22,7 @@ def test_componenttools_report_component_format_contributions_as_string_01( ):
 def test_componenttools_report_component_format_contributions_as_string_02( ):
    '''You can report on spanners, too.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    spanner = spannertools.BeamSpanner(t[2:])
 
    result = componenttools.report_component_format_contributions_as_string(spanner)

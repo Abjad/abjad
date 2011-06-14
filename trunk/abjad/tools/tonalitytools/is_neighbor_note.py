@@ -15,7 +15,7 @@ def is_neighbor_note(note):
 
    ::
 
-      abjad> t = Staff(macros.scale(4))
+      abjad> t = Staff("c'8 d'8 e'8 f'8")
       abjad> for note in t:
       ...     print '%s\t%s' % (note, tonalitytools.is_neighbor_note(note))
       ... 

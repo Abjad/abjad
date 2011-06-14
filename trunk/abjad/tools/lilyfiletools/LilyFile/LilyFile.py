@@ -11,7 +11,7 @@ class LilyFile(list):
 
    Abjad model of LilyPond input file::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> lily_file = lilyfiletools.make_basic_lily_file(staff)
       abjad> lily_file.file_initial_user_comments.append('File construct as an example.')
       abjad> lily_file.file_initial_user_comments.append('Parts shown here for positioning.')

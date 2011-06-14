@@ -4,7 +4,7 @@ from abjad import *
 def test_Comment_after_01( ):
    '''Test context comments after.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    beam = spannertools.BeamSpanner(t[:])
    beam.override.beam.thickness = 3
    marktools.Comment('Voice after comments here.', 'after')(t)

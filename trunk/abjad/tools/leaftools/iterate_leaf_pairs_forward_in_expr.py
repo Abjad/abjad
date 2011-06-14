@@ -8,7 +8,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
    Iterate leaf pairs forward in `expr`::
 
       abjad> score = Score([ ])
-      abjad> notes = macros.scale(4) + [Note(7, (1, 4))]
+      abjad> notes = "c'8 d'8 e'8 f'8" + [Note(7, (1, 4))]
       abjad> score.append(Staff(notes))
       abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
       abjad> score.append(Staff(notes))

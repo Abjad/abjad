@@ -72,7 +72,7 @@ def test_Container_append_04( ):
    }
    '''
 
-   u = Voice(macros.scale(4))
+   u = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(u[:])
 
    r'''
@@ -118,7 +118,7 @@ def test_Container_append_05( ):
    '''Append spanned leaf from donor container to recipient container.
       Donor and recipient containers are the same.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
 
    r'''

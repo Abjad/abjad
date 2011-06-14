@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Measure_empty_01( ):
-   assert py.test.raises(TypeError, 't = Measure(None, macros.scale(4))')
+   assert py.test.raises(TypeError, '''t = Measure(None, "c'8 d'8 e'8 f'8")''')
 
 
 def test_Measure_empty_02( ):

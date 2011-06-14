@@ -7,7 +7,7 @@ def get_dynamic_marks_attached_to_component(component):
 
    Get dynamic marks attached to `component`::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> clef_mark = contexttools.ClefMark('treble')(staff)
       abjad> dynamic_mark = contexttools.DynamicMark('p')(staff[0])
       abjad> f(staff)

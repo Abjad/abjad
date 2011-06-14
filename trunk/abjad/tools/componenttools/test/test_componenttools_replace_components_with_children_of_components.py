@@ -43,7 +43,7 @@ def test_componenttools_replace_components_with_children_of_components_01( ):
 def test_componenttools_replace_components_with_children_of_components_02( ):
    '''Slip leaf from parentage and spanners.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    spannertools.GlissandoSpanner(t[:])
   
@@ -65,7 +65,7 @@ def test_componenttools_replace_components_with_children_of_components_02( ):
 def test_componenttools_replace_components_with_children_of_components_03( ):
    '''Slip multiple leaves.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    spannertools.GlissandoSpanner(t[:])
 

@@ -6,7 +6,7 @@ py.test.skip('temporary skip.')
 def test_containertools_report_container_modifications_as_string_01( ):
    '''Context formatter report_container_modifications_as_string.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    t.comments.before.append('Example voice')
    t.override.note_head.color = 'red'
    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)

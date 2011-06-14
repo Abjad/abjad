@@ -59,7 +59,7 @@ def test_containertools_split_container_cyclically_by_counts_and_do_not_fracture
 def test_containertools_split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners_02( ):
    '''Cyclic by [1] splits all elements in container.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t[0].leaves)
 

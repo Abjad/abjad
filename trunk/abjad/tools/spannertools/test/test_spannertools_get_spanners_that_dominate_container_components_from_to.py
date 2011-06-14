@@ -4,7 +4,7 @@ from abjad import *
 def test_spannertools_get_spanners_that_dominate_container_components_from_to_01( ):
    '''Get dominant spanners over zero-length 'crack'.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    beam = spannertools.BeamSpanner(t[:2])
    glissando = spannertools.GlissandoSpanner(t[:])
 
@@ -26,7 +26,7 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_01
 def test_spannertools_get_spanners_that_dominate_container_components_from_to_02( ):
    '''Get dominant spanners over one-component slice.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    beam = spannertools.BeamSpanner(t[:2])
    glissando = spannertools.GlissandoSpanner(t[:])
 
@@ -49,7 +49,7 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_02
 def test_spannertools_get_spanners_that_dominate_container_components_from_to_03( ):
    '''Get dominant spanners over four-component slice.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    beam = spannertools.BeamSpanner(t[:2])
    glissando = spannertools.GlissandoSpanner(t[:])
 

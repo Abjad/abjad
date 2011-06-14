@@ -2,12 +2,12 @@ from abjad import *
 
 
 def test_componenttools_all_are_components_01( ):
-   t = macros.scale(4)
-   assert componenttools.all_are_components(t)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+   assert componenttools.all_are_components(notes)
 
 
 def test_componenttools_all_are_components_02( ):
-   t = Staff(macros.scale(4)) * 4
+   t = Staff("c'8 d'8 e'8 f'8") * 4
    assert componenttools.all_are_components(t)
 
 

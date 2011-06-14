@@ -5,7 +5,7 @@ import py.test
 def test_componenttools_get_component_start_offset_in_seconds_01( ):
    '''Offset seconds can not calculate without excplit tempo indication.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    
    r'''
    \new Staff {
@@ -25,7 +25,7 @@ def test_componenttools_get_component_start_offset_in_seconds_01( ):
 def test_componenttools_get_component_start_offset_in_seconds_02( ):
    '''Offset seconds work with explicit tempo indication.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    contexttools.TempoMark(Duration(1, 8), 48, target_context = Staff)(t)
    
    r'''

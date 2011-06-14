@@ -3,7 +3,7 @@ from abjad import *
 
 def test_Staff_engraver_consists_01( ):
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    t.engraver_consists.add('Horizontal_bracket_engraver')
    t.engraver_consists.add('Instrument_name_engraver')
 

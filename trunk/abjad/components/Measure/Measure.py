@@ -11,7 +11,7 @@ class Measure(Container):
 
    ::
 
-      abjad> measure = Measure((4, 8), macros.scale(4))
+      abjad> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
       abjad> f(measure)
       {
          \time 4/8

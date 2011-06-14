@@ -8,15 +8,15 @@ def test_componenttools_all_are_components_in_same_thread_01( ):
       Unicorporated leaves do not share a root component.
       False if not allow orphans; True if allow orphans.'''
 
-   assert componenttools.all_are_components_in_same_thread(macros.scale(4))
-   assert not componenttools.all_are_components_in_same_thread(macros.scale(4), 
-      allow_orphans = False)
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+   assert componenttools.all_are_components_in_same_thread(notes)
+   assert not componenttools.all_are_components_in_same_thread(notes, allow_orphans = False)
 
 
 def test_componenttools_all_are_components_in_same_thread_02( ):
    '''Container and leaves all thread.'''
 
-   t = Container(macros.scale(4))
+   t = Container("c'8 d'8 e'8 f'8")
 
    r'''
    {
@@ -52,7 +52,7 @@ def test_componenttools_all_are_components_in_same_thread_03( ):
 #      Abjad mimics this behavior and assigns each leaf 
 #      to a different thread.'''
 #
-#   t = Container(macros.scale(4))
+#   t = Container("c'8 d'8 e'8 f'8")
 #   t.is_parallel = True
 #
 #   r'''<<
@@ -68,7 +68,7 @@ def test_componenttools_all_are_components_in_same_thread_03( ):
 def test_componenttools_all_are_components_in_same_thread_05( ):
    '''Voice and leaves all thread.'''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
 
    r'''
    \new Voice {
@@ -85,7 +85,7 @@ def test_componenttools_all_are_components_in_same_thread_05( ):
 def test_componenttools_all_are_components_in_same_thread_06( ):
    '''Anonymous staff and leaves all thread.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
 
    r'''
    \new Staff {
@@ -1216,7 +1216,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #def test_componenttools_all_are_components_in_same_thread_43( ):
 #   '''A parallel Staff and only leaves as it's content DO NOT thread.'''
 #
-#   t = Staff(macros.scale(4))
+#   t = Staff("c'8 d'8 e'8 f'8")
 #   t.is_parallel = True
 #
 #   r'''\new Staff <<
@@ -1235,7 +1235,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #   This mimics LilyPond's behavior of not collapsing then notes into
 #   a chord. '''
 #
-#   t = Staff(macros.scale(4))
+#   t = Staff("c'8 d'8 e'8 f'8")
 #   t.is_parallel = True
 #
 #   r'''\new Staff <<

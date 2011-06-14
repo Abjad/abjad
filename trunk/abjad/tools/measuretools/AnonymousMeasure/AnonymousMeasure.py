@@ -6,7 +6,7 @@ class AnonymousMeasure(DynamicMeasure):
    
    ::
 
-      abjad> measure = measuretools.AnonymousMeasure(macros.scale(4))
+      abjad> measure = measuretools.AnonymousMeasure("c'8 d'8 e'8 f'8")
       abjad> f(measure)
       {
          \override Staff.TimeSignature #'stencil = ##f

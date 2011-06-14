@@ -131,7 +131,7 @@ def test_Container_extend_07( ):
    }
    '''
 
-   u = Voice(macros.scale(4))
+   u = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(u[:])
 
    r'''
@@ -187,7 +187,7 @@ def test_Container_extend_08( ):
    }
    '''
 
-   u = Voice(macros.scale(4))
+   u = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(u[:])
    spannertools.SlurSpanner(u[-2:])
 

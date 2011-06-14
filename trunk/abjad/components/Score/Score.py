@@ -6,8 +6,8 @@ class Score(_Context):
 
    ::
 
-      abjad> staff_1 = Staff(macros.scale(4))
-      abjad> staff_2 = Staff(macros.scale(4))
+      abjad> staff_1 = Staff("c'8 d'8 e'8 f'8")
+      abjad> staff_2 = Staff("c'8 d'8 e'8 f'8")
       abjad> score = Score([staff_1, staff_2])
       abjad> f(score)
       \new Score <<

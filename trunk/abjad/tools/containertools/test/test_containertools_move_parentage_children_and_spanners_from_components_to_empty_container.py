@@ -206,7 +206,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07( ):
    '''Move parentage, children and spanners from multiple dynamic measure to empty measure.'''
 
-   t = measuretools.DynamicMeasure(macros.scale(4))
+   t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
 
    r'''
    {

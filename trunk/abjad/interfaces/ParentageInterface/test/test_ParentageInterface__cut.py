@@ -5,7 +5,7 @@ import py.test
 def test_ParentageInterface__cut_01( ):
    '''Unspanned leaves can parentage-cut.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    note = t[1]
    note._parentage._cut( )
 
@@ -28,7 +28,7 @@ def test_ParentageInterface__cut_02( ):
    '''Spanned leaves can parentage-cut.
       Spanners continue to attach to parentage-cut leaves.'''
 
-   t = Voice([Container(macros.scale(4))])
+   t = Voice([Container("c'8 d'8 e'8 f'8")])
    p = spannertools.BeamSpanner(t.leaves)
    leaf = t.leaves[0]
 

@@ -7,7 +7,7 @@ def test_spannertools_fracture_spanners_that_cross_components_01( ):
       fracture all spanners to the right of the rightmost component in list.
    '''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    spannertools.fracture_spanners_that_cross_components(t[1:3])
 
@@ -28,7 +28,7 @@ def test_spannertools_fracture_spanners_that_cross_components_02( ):
    '''Fracture to the left of leftmost component;
       fracture to the right of rightmost component.'''
 
-   t = Staff(macros.scale(4))
+   t = Staff("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:])
    spannertools.fracture_spanners_that_cross_components(t[1:2])
 

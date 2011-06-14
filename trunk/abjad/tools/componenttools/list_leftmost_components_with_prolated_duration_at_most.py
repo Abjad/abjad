@@ -8,7 +8,7 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
 
    Return tuple of ``components[:i]`` together with the prolated duration of ``components[:i]``::
 
-      abjad> voice = Voice(macros.scale(4))
+      abjad> voice = Voice("c'8 d'8 e'8 f'8")
       abjad> componenttools.list_leftmost_components_with_prolated_duration_at_most(voice[:], Duration(1, 4))
       ([Note("c'8"), Note("d'8")], Duration(1, 4))
 

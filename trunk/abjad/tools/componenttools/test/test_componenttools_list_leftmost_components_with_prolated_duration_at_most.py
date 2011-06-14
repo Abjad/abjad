@@ -7,7 +7,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
    than prolated duration at input.
    '''
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
       t[:], Duration(1, 4))
 
@@ -17,7 +17,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
 
 def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_02( ):
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
       t[:], Duration(99))
 
@@ -27,7 +27,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
 
 def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_03( ):
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
       t[:], Duration(0))
 
@@ -37,7 +37,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
 
 def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_04( ):
 
-   t = Voice(macros.scale(4))
+   t = Voice("c'8 d'8 e'8 f'8")
    components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
       t[:], Duration(3, 16))
 

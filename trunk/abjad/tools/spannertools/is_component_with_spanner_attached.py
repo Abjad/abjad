@@ -3,7 +3,7 @@ def is_component_with_spanner_attached(expr, klass = None):
 
    True when `expr` is a component with spanner attached::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> beam = spannertools.BeamSpanner(staff.leaves)
       abjad> f(staff)
       \new Staff {

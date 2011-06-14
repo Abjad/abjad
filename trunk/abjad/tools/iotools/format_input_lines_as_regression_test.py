@@ -4,7 +4,7 @@ def format_input_lines_as_regression_test(input_lines, tab_width = 3):
    Format `input_lines` as regression test::
 
       abjad> input_lines = '''
-      ... staff = Staff(macros.scale(4))
+      ... staff = Staff("c'8 d'8 e'8 f'8")
       ... spannertools.BeamSpanner(staff.leaves)
       ... f(staff)
       ... 
@@ -13,7 +13,7 @@ def format_input_lines_as_regression_test(input_lines, tab_width = 3):
       ... '''
       abjad> iotools.format_input_lines_as_regression_test(input_lines) # doctest: +SKIP
 
-         staff = Staff(macros.scale(4))
+         staff = Staff("c'8 d'8 e'8 f'8")
          spannertools.BeamSpanner(staff.leaves)
 
          r'''

@@ -3,7 +3,7 @@ def get_component_start_offset_in_seconds(component):
 
    Get `component` start offset in seconds::
 
-      abjad> staff = Staff(macros.scale(4))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> score = Score([staff])
       abjad> contexttools.TempoMark(Duration(1, 4), 52)(score)
       TempoMark(4, 52)(Score<<1>>)

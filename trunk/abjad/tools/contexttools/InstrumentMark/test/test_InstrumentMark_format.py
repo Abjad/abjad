@@ -4,7 +4,7 @@ import py.test
 
 def test_InstrumentMark_format_01( ):
 
-   staff = Staff(macros.scale(4))
+   staff = Staff("c'8 d'8 e'8 f'8")
    contexttools.InstrumentMark('Flute', 'Fl.')(staff)
 
    r'''
@@ -24,10 +24,10 @@ def test_InstrumentMark_format_01( ):
 def test_InstrumentMark_format_02( ):
    py.test.skip('make work with container names.')
 
-   flute_staff = Staff(macros.scale(4))
+   flute_staff = Staff("c'8 d'8 e'8 f'8")
    #flute_staff.name = 'Flute'
    contexttools.InstrumentMark('Flute', 'Fl.')(flute_staff)
-   violin_staff = Staff(macros.scale(4))
+   violin_staff = Staff("c'8 d'8 e'8 f'8")
    #violin_staff.name = 'Violin'
    contexttools.InstrumentMark('Violin', 'Vn.')(violin_staff)
    staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
