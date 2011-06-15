@@ -21,6 +21,7 @@ del cfgtools
 del components
 del core
 del exceptions
+del formattools
 del importtools
 del interfaces
 del layouttools
