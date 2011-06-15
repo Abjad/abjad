@@ -1,7 +1,7 @@
 from abjad.tools import leaftools
 from abjad.tools import pitchtools
 from abjad.tools import voicetools
-from abjad.tools.instrumenttools.get_effective_instrument import get_effective_instrument
+from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
 
 def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):

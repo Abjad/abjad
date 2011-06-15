@@ -2,7 +2,7 @@ from abjad.components import Chord
 from abjad.components import Note
 from abjad.tools import leaftools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.get_effective_instrument import get_effective_instrument
+from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
 
 def transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch(expr):

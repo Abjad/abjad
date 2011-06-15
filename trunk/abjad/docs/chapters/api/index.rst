@@ -337,7 +337,6 @@ instrumenttools
    tools/instrumenttools/Viola/Viola
    tools/instrumenttools/Violin/Violin
    tools/instrumenttools/Xylophone/Xylophone
-   tools/instrumenttools/get_effective_instrument
    tools/instrumenttools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
    tools/instrumenttools/notes_and_chords_in_expr_are_on_expected_clefs
    tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges

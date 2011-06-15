@@ -2,7 +2,7 @@ from abjad.exceptions import MissingInstrumentError
 from abjad.tools import leaftools
 from abjad.tools import pitchtools
 from abjad.tools import voicetools
-from abjad.tools.instrumenttools.get_effective_instrument import get_effective_instrument
+from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
 
 def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr):

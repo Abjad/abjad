@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import leaftools
-from abjad.tools.instrumenttools.get_effective_instrument import get_effective_instrument
+from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
 
 def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allowed = True):

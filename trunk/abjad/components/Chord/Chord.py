@@ -121,10 +121,10 @@ class Chord(_Leaf):
 
       Return tuple of named chromatic pitches.
       """
-      from abjad.tools import instrumenttools
+      from abjad.tools import contexttools
       from abjad.tools import pitchtools
       if self.written_pitch_indication_is_at_sounding_pitch:
-         instrument = instrumenttools.get_effective_instrument(self)
+         instrument = contexttools.get_effective_instrument(self)
          if not instrument:
             raise InstrumentError('effective instrument of note can not be determined.')
          t_n = instrument.interval_of_transposition
@@ -208,12 +208,12 @@ class Chord(_Leaf):
 
       Return tuple of named chromatic pitches.
       """
-      from abjad.tools import instrumenttools
+      from abjad.tools import contexttools
       from abjad.tools import pitchtools
       if self.written_pitch_indication_is_at_sounding_pitch:
          return self.pitches
       else:
-         instrument = instrumenttools.get_effective_instrument(self)
+         instrument = contexttools.get_effective_instrument(self)
          if not instrument:
             raise InstrumentError('effective instrument of note can not be determined.')
          t_n = instrument.interval_of_transposition
