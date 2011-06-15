@@ -115,10 +115,7 @@ better to think of each staff as having its own set of measures.
 Notice also that the notes in each staff fall within the region of one
 and only one measure, i.e. measures seem to contain notes.
 There is not one note that is at once in two measures  
-(this is standard practice in musical notation, but it need not always be the
-case. See the 
-:doc:`metric grid example </chapters/examples/lehman/index>` 
-for a non-containment approach to meters). 
+(this is standard practice in musical notation, but it need not always be the case.)
 
 As we continue describing the relationships between the
 musical signs in the page, we begin to discover a certain structure,
