@@ -30,6 +30,7 @@ del pitcharraytools
 del sievetools
 del sys
 del tempotools
+del threadtools
 del tonalitytools
 del tools
 del verticalitytools

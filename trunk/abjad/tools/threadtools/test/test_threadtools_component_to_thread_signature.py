@@ -1,5 +1,6 @@
 from abjad import *
 from abjad.components._Component._Component import _Component
+from abjad.tools import threadtools
 import py.test
 
 

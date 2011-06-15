@@ -5,7 +5,11 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
    r'''.. versionadded:: 1.1.1
 
    Yield left-to-right instances of `klass` in `expr` with
-   `thread_signature`. ::
+   `thread_signature`::
+
+      abjad> from abjad.tools import threadtools
+
+   ::
 
       abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> container.is_parallel = True

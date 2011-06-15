@@ -67,6 +67,7 @@ def make_sphinx_toc( ):
       'pitcharraytools', 
       'sievetools', 
       'tempotools',
+      'threadtools',
       'tonalitytools', 
       'treetools', 
       'verticalitytools',

@@ -12,7 +12,11 @@ def iterate_thread_forward_from_component(component, klass = None):
    When ``klass = None`` return all components in the thread of `component`.
 
    When `klass` is set to some other Abjad class,
-   yield only `klass` instances in the thread of `component`. ::
+   yield only `klass` instances in the thread of `component`::
+
+      abjad> from abjad.tools import threadtools
+
+   ::
 
       abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> container.is_parallel = True

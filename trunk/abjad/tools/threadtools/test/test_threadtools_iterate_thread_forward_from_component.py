@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import threadtools
 
 
 def test_threadtools_iterate_thread_forward_from_component_01( ):

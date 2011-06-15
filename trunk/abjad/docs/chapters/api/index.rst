@@ -1092,18 +1092,6 @@ stafftools
    tools/stafftools/make_rhythmic_sketch_staff
 
 
-threadtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/threadtools/component_to_thread_signature
-   tools/threadtools/iterate_thread_backward_from_component
-   tools/threadtools/iterate_thread_backward_in_expr
-   tools/threadtools/iterate_thread_forward_from_component
-   tools/threadtools/iterate_thread_forward_in_expr
-
-
 tietools
 
 .. toctree::
@@ -1250,6 +1238,18 @@ tempotools
 
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
+
+
+threadtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/threadtools/component_to_thread_signature
+   tools/threadtools/iterate_thread_backward_from_component
+   tools/threadtools/iterate_thread_backward_in_expr
+   tools/threadtools/iterate_thread_forward_from_component
+   tools/threadtools/iterate_thread_forward_in_expr
 
 
 tonalitytools
