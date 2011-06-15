@@ -7,7 +7,7 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
    Iterate left-to-right, top-to-bottom named chromatic pitch pairs in `expr`::
 
       abjad> score = Score([ ])
-      abjad> notes = "c'8 d'8 e'8 f'8" + [Note(7, (1, 4))]
+      abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
       abjad> score.append(Staff(notes))
       abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
       abjad> score.append(Staff(notes))

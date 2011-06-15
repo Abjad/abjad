@@ -10,7 +10,8 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
    of every vertical moment in `expr`. ::
 
       abjad> score = Score(Staff([ ]) * 3)
-      abjad> score[0].extend("c'8 d'8 e'8 f'8")
+      abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+      abjad> score[0].extend(notes)
       abjad> contexttools.ClefMark('alto')(score[1])
       ClefMark('alto')(Staff{ })
       abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
