@@ -66,6 +66,7 @@ def make_sphinx_toc( ):
       'musicxmltools', 
       'pitcharraytools', 
       'sievetools', 
+      'tempotools',
       'tonalitytools', 
       'treetools', 
       )

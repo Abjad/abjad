@@ -29,5 +29,6 @@ del os
 del pitcharraytools
 del sievetools
 del sys
+del tempotools
 del tonalitytools
 del tools

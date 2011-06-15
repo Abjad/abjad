@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import tempotools
 
 
 def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_01( ):
