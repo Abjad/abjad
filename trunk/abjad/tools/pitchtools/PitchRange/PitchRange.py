@@ -1,7 +1,6 @@
 from abjad.components import Chord
 from abjad.components import Container
 from abjad.components import Note
-from abjad.components import Rest
 from abjad.core import _Immutable
 import numbers
 
@@ -75,7 +74,8 @@ class PitchRange(_Immutable):
 
    def __contains__(self, arg):
       from abjad.tools import pitchtools
-      from abjad.tools.skiptools.Skip import Skip
+      from abjad.tools import resttools
+      from abjad.tools import skiptools
       if getattr(arg, 'written_pitch_indication_is_nonsemantic', False):
          return True
       elif isinstance(arg, (int, long, float)):
@@ -87,7 +87,7 @@ class PitchRange(_Immutable):
          return self._contains_pitch(arg.sounding_pitch)
       elif isinstance(arg, Chord):
          return all([self._contains_pitch(x) for x in arg.sounding_pitches])
-      elif isinstance(arg, (Rest, Skip)):
+      elif isinstance(arg, (resttools.Rest, skiptools.Skip)):
          return True
       elif isinstance(arg, Container):
          return all([x in self for x in arg.leaves])

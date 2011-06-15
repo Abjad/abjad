@@ -1,4 +1,4 @@
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 
 
 def set_vertical_positioning_pitch_on_rest(rest, pitch):

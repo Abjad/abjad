@@ -1,6 +1,5 @@
 from abjad.components import Chord
 from abjad.components import Note
-from abjad.components import Rest
 from abjad.components._Leaf import _Leaf
 from abjad.tools import componenttools
 from abjad.tools import markuptools
@@ -14,6 +13,7 @@ def _divide_chord(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_c
 
    Return pair of newly created leaves.
    '''
+   from abjad.tools import resttools
 
    if not isinstance(chord, _Leaf):
       raise TypeError('%s is not a chord.' % str(chord))
@@ -30,8 +30,8 @@ def _divide_chord(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_c
    
    if isinstance(treble, Note):
       if getattr(treble.pitch, attr) < getattr(pitch, attr):
-         treble = Rest(treble)
-   elif isinstance(treble, Rest):
+         treble = resttools.Rest(treble)
+   elif isinstance(treble, resttools.Rest):
       pass
    elif isinstance(treble, Chord):
       for note_head in treble.note_heads:
@@ -42,8 +42,8 @@ def _divide_chord(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_c
 
    if isinstance(bass, Note):
       if getattr(pitch, attr) <= getattr(bass.pitch, attr):
-         bass = Rest(bass)
-   elif isinstance(bass, Rest):
+         bass = resttools.Rest(bass)
+   elif isinstance(bass, resttools.Rest):
       pass
    elif isinstance(bass, Chord):
       for note_head in bass.note_heads:

@@ -1,6 +1,6 @@
 from abjad.components import Chord
 from abjad.components import Note
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 
 
 def color_leaf(leaf, color):

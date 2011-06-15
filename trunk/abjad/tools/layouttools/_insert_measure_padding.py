@@ -1,4 +1,4 @@
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 from abjad.components._Leaf import _Leaf
 from abjad.tools.skiptools.Skip import Skip
 from abjad.tools import durtools

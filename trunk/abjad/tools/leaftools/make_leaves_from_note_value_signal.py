@@ -1,5 +1,5 @@
 from abjad.components import Note
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 from abjad.tools.leaftools.make_leaves import make_leaves
 from abjad.tools import durtools
 

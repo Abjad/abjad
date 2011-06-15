@@ -16,7 +16,7 @@ def list_named_chromatic_pitches_in_expr(expr):
 
    Return tuple.
    '''
-   from abjad.components import Rest
+   from abjad.tools.resttools.Rest import Rest
    from abjad.tools import leaftools
    from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
 

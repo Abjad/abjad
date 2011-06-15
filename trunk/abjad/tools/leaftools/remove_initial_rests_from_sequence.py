@@ -1,4 +1,4 @@
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 
 
 def remove_initial_rests_from_sequence(sequence):

@@ -1,4 +1,4 @@
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 from abjad.tools.leaftools.remove_terminal_rests_from_sequence import remove_terminal_rests_from_sequence
 
 

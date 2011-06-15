@@ -1,6 +1,6 @@
 from abjad.components import Container
 from abjad.components import Note
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 from abjad.exceptions import AssignabilityError
 from abjad.tools import leaftools
 from abjad.tools import mathtools

@@ -1,5 +1,5 @@
 from abjad.components import Note
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 from abjad.tools import durtools
 from abjad.tools.leaftools._construct_tied_leaf import _construct_tied_leaf
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note

@@ -1,5 +1,5 @@
 from abjad.components import Note
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 from abjad.exceptions import InputSpecificationError
 from abjad.tools import pitchtools
 from abjad.tools.lilyfiletools._lilypond_leaf_regex import _lilypond_leaf_regex

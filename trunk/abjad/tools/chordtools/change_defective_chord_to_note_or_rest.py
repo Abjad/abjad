@@ -1,6 +1,6 @@
 from abjad.components import Chord
 from abjad.components import Note
-from abjad.components import Rest
+#from abjad.tools.resttools.Rest import Rest
 
 
 def change_defective_chord_to_note_or_rest(chord):
@@ -82,10 +82,11 @@ def change_defective_chord_to_note_or_rest(chord):
       renamed ``chordtools.cast_defective( )`` to
       ``chordtools.change_defective_chord_to_note_or_rest( )``.
    '''
+   from abjad.tools import resttools
 
    if isinstance(chord, Chord):
       if len(chord) == 0:
-         return Rest(chord)
+         return resttools.Rest(chord)
       elif len(chord) == 1:
          return Note(chord)
 

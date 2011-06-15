@@ -13,7 +13,6 @@ Abjad score components
    components/Container/Container
    components/Measure/Measure
    components/Note/Note
-   components/Rest/Rest
    components/Score/Score
    components/Staff/Staff
    components/Tuplet/Tuplet
@@ -824,6 +823,7 @@ resttools
    :maxdepth: 1
 
    tools/resttools/MultiMeasureRest/MultiMeasureRest
+   tools/resttools/Rest/Rest
    tools/resttools/is_lilypond_rest_string
    tools/resttools/iterate_rests_backward_in_expr
    tools/resttools/iterate_rests_forward_in_expr

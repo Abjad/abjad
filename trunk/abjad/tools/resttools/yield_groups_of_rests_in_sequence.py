@@ -1,4 +1,4 @@
-from abjad.components import Rest
+from abjad.tools.resttools.Rest import Rest
 
 
 def yield_groups_of_rests_in_sequence(sequence):

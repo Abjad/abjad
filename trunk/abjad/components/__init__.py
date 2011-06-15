@@ -2,7 +2,6 @@ from Chord import Chord
 from Container import Container
 from Measure import Measure
 from Note import Note
-from Rest import Rest
 from Score import Score
 from Staff import Staff
 from Tuplet import Tuplet
