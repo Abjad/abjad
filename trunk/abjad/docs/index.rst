@@ -29,7 +29,6 @@ Examples
 
    chapters/examples/bartok/index
    chapters/examples/ferneyhough/index
-   chapters/examples/lehman/index
    chapters/examples/ligeti/index
 
 Reference manual
