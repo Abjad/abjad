@@ -24,7 +24,7 @@ def test_DuratedComplexBeamSpanner_lone_02( ):
    '''Do not span lone note when lone is set to false.
    '''
 
-   t = Voice(macros.scale(1))
+   t = Voice("c'8")
    spannertools.DuratedComplexBeamSpanner(t, lone = False)
 
    r'''

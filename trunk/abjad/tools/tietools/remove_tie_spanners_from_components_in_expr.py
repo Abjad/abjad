@@ -5,7 +5,7 @@ from abjad.tools.tietools.TieSpanner import TieSpanner
 def remove_tie_spanners_from_components_in_expr(expr):
    r'''Remove tie spanners components in `expr`::
 
-      abjad> staff = Staff(macros.scale(2, (5, 16)))
+      abjad> staff = Staff("c'4 ~ c'16 d'4 ~ d'16")
       abjad> f(staff)
       \new Staff {
          c'4 ~

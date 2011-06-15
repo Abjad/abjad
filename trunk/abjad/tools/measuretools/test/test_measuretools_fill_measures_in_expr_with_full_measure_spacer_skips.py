@@ -88,7 +88,11 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03( )
    '''Populate measures conditionally.
       Iteration control tests measure length.'''
 
-   t = Staff([Measure((n, 8), macros.scale(n)) for n in (2, 3, 4)])
+   t = Staff([
+      Measure((2, 8), "c'8 d'8"),
+      Measure((3, 8), "c'8 d'8 e'8"),
+      Measure((4, 8), "c'8 d'8 e'8 f'8"),
+      ])
 
    r'''
    \new Staff {

@@ -17,7 +17,7 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = dur
 
    Allow nonassignable `written_duration`::
 
-      abjad> staff = Staff(macros.scale(2, (5, 16)))
+      abjad> staff = Staff(tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(2, (5, 16)))
       abjad> f(staff)
       \new Staff {
               c'4 ~
@@ -28,10 +28,6 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = dur
 
    .. versionadded:: 1.1.2
       Optional `key_signature` keyword parameter.
-
-   .. versionchanged:: 1.1.2
-      renamed ``construct.scale( )`` to
-      ``macros.scale( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.make_first_n_notes_in_ascending_diatonic_scale( )`` to

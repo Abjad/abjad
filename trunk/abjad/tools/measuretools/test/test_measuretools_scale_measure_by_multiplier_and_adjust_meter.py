@@ -69,7 +69,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_04( ):
    '''Scale binary meter to binary meter.
       Noteheads rewrite without dots.'''
 
-   t = Measure((9, 16), macros.scale(3, Duration(3, 16)))
+   t = Measure((9, 16), "c'8. d'8. e'8.")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
 
    r'''

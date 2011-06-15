@@ -15,7 +15,7 @@ def test_Container_extend_01( ):
    }
    '''
 
-   t.extend("c'8 d'8")
+   t.extend([Note("c'8"), Note("d'8")])
 
    r'''
    \new Voice {

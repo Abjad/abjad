@@ -26,7 +26,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
    '''Subsume complete nonbinary tuplet.'''
 
    t = Measure((3, 16), [
-      tuplettools.FixedDurationTuplet((3, 16), macros.scale(5, (1, 16)))])
+      tuplettools.FixedDurationTuplet((3, 16), "c'16 d'16 e'16 f'16 g'16")])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''

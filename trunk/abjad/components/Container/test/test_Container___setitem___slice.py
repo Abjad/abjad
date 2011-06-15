@@ -48,7 +48,8 @@ def test_Container___setitem___slice_03( ):
    '''Containers set sequence of leaves 
       between spanned components.'''
 
-   notes = "c'8 d'8 e'8 f'8 g'8 a'8"
+   notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8")]
+
    beginning = notes[:2]
    middle = notes[2:4]
    end = notes[4:]
