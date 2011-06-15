@@ -1313,11 +1313,9 @@ treetools
 .. toctree::
    :maxdepth: 1
 
-   tools/treetools/Block/Block
    tools/treetools/BoundedInterval/BoundedInterval
    tools/treetools/IntervalTree/IntervalTree
    tools/treetools/all_are_intervals_or_trees_or_empty
-   tools/treetools/all_interval_payloads_contain_key_of_klass
    tools/treetools/all_intervals_are_contiguous
    tools/treetools/all_intervals_are_nonoverlapping
    tools/treetools/calculate_density_of_attacks_in_interval
