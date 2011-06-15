@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from fractions import Fraction
+from abjad import Fraction
 
 
 class BoundedInterval(dict, _Immutable):

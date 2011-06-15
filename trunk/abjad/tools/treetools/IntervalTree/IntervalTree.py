@@ -2,7 +2,7 @@ from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools._IntervalNode import _IntervalNode
 from abjad.tools.treetools._RedBlackTree import _RedBlackTree
 from collections import Iterable
-from fractions import Fraction
+from abjad import Fraction
 import copy
 
 

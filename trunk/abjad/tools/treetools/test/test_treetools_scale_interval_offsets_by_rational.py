@@ -1,10 +1,25 @@
 from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
-from fractions import Fraction
+from abjad import Fraction
 import py.test
 
 
-py.test.skip('Tests not yet implemented.')
-
 def test_treetools_scale_interval_offsets_by_rational_01( ):
-   pass
+   a = BoundedInterval(0, 10, {'a': 1})
+   b = BoundedInterval(Fraction(5, 3), 8, {'b': 2})
+   c = BoundedInterval(5, Fraction(61, 7), {'c': 3})
+   tree = IntervalTree([a, b, c])
+   scalar = Fraction(5, 2)
+   scaled = scale_interval_offsets_by_rational(tree, scalar)   
+   assert scaled[0] == BoundedInterval(0, 10, {'a': 1})
+   assert scaled[1] == BoundedInterval(Fraction(25, 6), Fraction(21, 2), {'b': 2})
+   assert scaled[2] == BoundedInterval(Fraction(25, 2), Fraction(227, 14), {'c': 3})
+   assert scaled[0].magnitude == a.magnitude
+   assert scaled[1].magnitude == b.magnitude
+   assert scaled[2].magnitude == c.magnitude
+
+def test_treetools_scale_interval_offsets_by_rational_02( ):
+   tree = IntervalTree([ ])
+   scalar = Fraction(5, 2)
+   scaled = scale_interval_offsets_by_rational(tree, scalar)
+   assert scaled == tree

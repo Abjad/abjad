@@ -1,7 +1,7 @@
 from abjad.tools.treetools import IntervalTree
 from abjad.tools.treetools import calculate_min_mean_and_max_depth_of_intervals
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
-from fractions import Fraction
+from abjad import Fraction
 
 
 def test_treetools_calculate_min_mean_and_max_depth_of_intervals_01( ):

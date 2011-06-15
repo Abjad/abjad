@@ -1,7 +1,7 @@
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from fractions import Fraction
+from abjad import Fraction
 
 
 def calculate_density_of_releases_in_interval(intervals, interval):
@@ -16,5 +16,5 @@ def calculate_density_of_releases_in_interval(intervals, interval):
    else:
       tree = IntervalTree(intervals)
 
-   return len(tree.find_intervals_stopping_within_interval(interval)) \
+   return Fraction(len(tree.find_intervals_stopping_within_interval(interval))) \
       / interval.magnitude

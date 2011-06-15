@@ -1,6 +1,6 @@
 from abjad.tools.treetools import *
 from abjad.tools.treetools._make_test_blocks import _make_test_blocks
-from fractions import Fraction
+from abjad import Fraction
 
 
 def test_treetools_calculate_mean_release_of_intervals_01( ):

@@ -1,6 +1,6 @@
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
 from abjad.tools.treetools._RedBlackNode import _RedBlackNode
-from fractions import Fraction
+from abjad import Fraction
 
 
 class _IntervalNode(_RedBlackNode):

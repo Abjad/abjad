@@ -1,6 +1,6 @@
 from abjad.tools.treetools.IntervalTree import IntervalTree
 from abjad.tools.treetools.shift_aggregate_offset_to_rational import shift_aggregate_offset_to_rational
-from fractions import Fraction
+from abjad import Fraction
 
 
 def concatenate_trees(trees, padding = 0):

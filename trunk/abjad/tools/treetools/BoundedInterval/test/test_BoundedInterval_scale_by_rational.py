@@ -1,5 +1,5 @@
 from abjad.tools.treetools.BoundedInterval import BoundedInterval
-from fractions import Fraction
+from abjad import Fraction
 import py.test
 
 
