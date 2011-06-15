@@ -41,7 +41,7 @@ def test_DuratedComplexBeamSpanner_lone_03( ):
    '''Ignore lone when spanner spans more than one leaf.
    '''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.DuratedComplexBeamSpanner(t, lone = False)
 
    r'''

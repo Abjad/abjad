@@ -5,7 +5,7 @@ import py.test
 def test_Container_extend_01( ):
    '''Extend container with list of leaves.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
 
    r'''
@@ -15,7 +15,7 @@ def test_Container_extend_01( ):
    }
    '''
 
-   t.extend(macros.scale(2))
+   t.extend("c'8 d'8")
 
    r'''
    \new Voice {
@@ -33,7 +33,7 @@ def test_Container_extend_01( ):
 def test_Container_extend_02( ):
    '''Extend container with contents of other container.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
 
    r'''
@@ -63,7 +63,7 @@ def test_Container_extend_02( ):
 def test_Container_extend_03( ):
    '''Extending container with empty list leaves container unchanged.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
    t.extend([ ])
 
@@ -82,7 +82,7 @@ def test_Container_extend_04( ):
    '''Extending one container with empty second container 
       leaves both containers unchanged.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
    t.extend(Voice([ ]))
 
@@ -100,7 +100,7 @@ def test_Container_extend_04( ):
 def test_Container_extend_05( ):
    '''Trying to extend container with noncomponent raises TypeError.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
 
    assert py.test.raises(Exception, 't.extend(7)')
@@ -110,7 +110,7 @@ def test_Container_extend_05( ):
 def test_Container_extend_06( ):
    '''Trying to extend container with noncontainer raises TypeError.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
 
    assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
@@ -121,7 +121,7 @@ def test_Container_extend_07( ):
    '''Extend container with partial and 
       spanned contents of other container.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
 
    r'''
@@ -177,7 +177,7 @@ def test_Container_extend_08( ):
       spanned contents of other container.
       Covered span comes with components from donor container.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
 
    r'''

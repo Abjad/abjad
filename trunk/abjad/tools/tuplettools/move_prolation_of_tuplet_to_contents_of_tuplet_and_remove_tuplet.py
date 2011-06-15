@@ -8,7 +8,7 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
 
    Return orphaned ``tuplet`` emptied of all contents. ::
 
-      abjad> t = Staff(tuplettools.FixedDurationTuplet((3, 8), macros.scale(2)) * 2)
+      abjad> t = Staff(tuplettools.FixedDurationTuplet((3, 8), "c'8 d'8") * 2)
       abjad> spannertools.BeamSpanner(t.leaves)
       BeamSpanner(c'8, d'8, c'8, d'8)
       abjad> print t.format

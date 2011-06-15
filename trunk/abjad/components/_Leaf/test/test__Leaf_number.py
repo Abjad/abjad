@@ -25,7 +25,7 @@ def test__Leaf_number_02( ):
 def test__Leaf_number_03( ):
    '''Leaves in multiple measures in staff number corretly.'''
 
-   t = Staff(Measure((2, 8), macros.scale(2)) * 3)
+   t = Staff(Measure((2, 8), "c'8 d'8") * 3)
    leaves = t.leaves
    assert leaves[0].number == 0
    assert leaves[1].number == 1

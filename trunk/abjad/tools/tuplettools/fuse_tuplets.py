@@ -12,7 +12,7 @@ def fuse_tuplets(tuplets):
       abjad> t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
       abjad> spannertools.BeamSpanner(t1[:])
       BeamSpanner(c'8, d'8, e'8)
-      abjad> t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
+      abjad> t2 = tuplettools.FixedDurationTuplet((2, 16), "c'16 d'16 e'16")
       abjad> spannertools.SlurSpanner(t2[:])
       SlurSpanner(c'16, d'16, e'16)
       abjad> staff = Staff([t1, t2])

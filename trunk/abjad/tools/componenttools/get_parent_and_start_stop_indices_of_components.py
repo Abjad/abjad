@@ -3,7 +3,7 @@ def get_parent_and_start_stop_indices_of_components(components):
 
    Get parent and start / stop indices of `components`::
    
-      abjad> t = Staff(macros.scale(6))
+      abjad> t = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
       abjad> print t.format
       \new Staff {
          c'8

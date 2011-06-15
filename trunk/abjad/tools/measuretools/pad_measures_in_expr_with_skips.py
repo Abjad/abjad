@@ -22,7 +22,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
 
    ::
 
-      abjad> t = Staff(measuretools.AnonymousMeasure(macros.scale(2)) * 2)
+      abjad> t = Staff(measuretools.AnonymousMeasure("c'8 d'8") * 2)
       abjad> front, back = Duration(1, 32), Duration(1, 64)
       abjad> measuretools.pad_measures_in_expr_with_skips(t, front, back) # doctest: +SKIP
       abjad> f(t) # doctest: +SKIP
@@ -86,7 +86,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
    Set the optional `splice` keyword to ``True`` to extend edge
    spanners over newly inserted skips. ::
 
-      abjad> t = measuretools.DynamicMeasure(macros.scale(2))
+      abjad> t = measuretools.DynamicMeasure("c'8 d'8")
       abjad> spannertools.BeamSpanner(t[:])
       BeamSpanner(c'8, d'8)
       abjad> t.formatter.number.self = 'comment' # doctest: +SKIP

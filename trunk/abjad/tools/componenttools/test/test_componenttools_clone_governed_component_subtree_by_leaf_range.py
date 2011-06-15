@@ -178,7 +178,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_07( ):
    '''Copy consecutive leaves from tuplet in binary measure;
       nonbinary measure results.'''
 
-   t = Measure((4, 8), [tuplettools.FixedDurationTuplet((4, 8), macros.scale(5))])
+   t = Measure((4, 8), [tuplettools.FixedDurationTuplet((4, 8), "c'8 d'8 e'8 f'8 g'8")])
 
    r'''
    {
@@ -218,7 +218,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
    nonbinary measure results.'''
 
    t = Voice([Measure((4, 8), 
-      [tuplettools.FixedDurationTuplet((4, 8), macros.scale(5))])])
+      [tuplettools.FixedDurationTuplet((4, 8), "c'8 d'8 e'8 f'8 g'8")])])
   
    r'''
    \new Voice {

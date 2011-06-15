@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_repeat_contents_of_container_01( ):
    '''Multiply notes in voice.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
    containertools.repeat_contents_of_container(t, total = 3)
 
@@ -26,7 +26,7 @@ def test_containertools_repeat_contents_of_container_01( ):
 def test_containertools_repeat_contents_of_container_02( ):
    '''Multiplication by one leaves contents unchanged.'''
 
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
    containertools.repeat_contents_of_container(t, total = 1)
 
@@ -44,7 +44,7 @@ def test_containertools_repeat_contents_of_container_02( ):
 def test_containertools_repeat_contents_of_container_03( ):
    '''Multiplication by zero empties container.'''
    
-   t = Voice(macros.scale(2))
+   t = Voice("c'8 d'8")
    spannertools.BeamSpanner(t[:])
    containertools.repeat_contents_of_container(t, total = 0)
 

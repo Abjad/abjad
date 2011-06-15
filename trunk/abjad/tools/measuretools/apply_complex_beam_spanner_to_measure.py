@@ -7,7 +7,7 @@ def apply_complex_beam_spanner_to_measure(measure):
 
    Apply complex beam spanner to `measure`::
 
-      abjad> measure = Measure((2, 8), macros.scale(2))
+      abjad> measure = Measure((2, 8), "c'8 d'8")
       abjad> f(measure)
       {
          \time 2/8

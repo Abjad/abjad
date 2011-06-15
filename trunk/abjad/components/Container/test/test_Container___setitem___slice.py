@@ -48,7 +48,7 @@ def test_Container___setitem___slice_03( ):
    '''Containers set sequence of leaves 
       between spanned components.'''
 
-   notes = macros.scale(6)
+   notes = "c'8 d'8 e'8 f'8 g'8 a'8"
    beginning = notes[:2]
    middle = notes[2:4]
    end = notes[4:]

@@ -47,7 +47,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___03( ):
    '''Override LilyPond BarNumber grob.
    '''
 
-   score = Score([Staff(macros.scale(8))])
+   score = Score([Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
    score.override.bar_number.break_visibility = schemetools.SchemeFunction('end-of-line-invisible')
 
    r'''

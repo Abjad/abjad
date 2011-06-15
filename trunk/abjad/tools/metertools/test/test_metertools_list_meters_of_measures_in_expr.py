@@ -4,7 +4,7 @@ from abjad import *
 def test_metertools_list_meters_of_measures_in_expr_01( ):
    '''Extract ordered list of meter pairs from components.'''
 
-   t = Staff([Measure((2, 8), macros.scale(2)),
+   t = Staff([Measure((2, 8), "c'8 d'8"),
       Measure((3, 8), "c'8 d'8 e'8"),
       Measure((4, 8), "c'8 d'8 e'8 f'8")])   
 

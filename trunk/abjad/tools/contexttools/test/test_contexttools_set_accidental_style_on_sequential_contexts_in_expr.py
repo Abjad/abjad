@@ -3,7 +3,7 @@ from abjad import *
 
 def test_contexttools_set_accidental_style_on_sequential_contexts_in_expr_01( ):
 
-   score = Score(Staff(macros.scale(2)) * 2)
+   score = Score(Staff("c'8 d'8") * 2)
    contexttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
 
    r'''
@@ -29,7 +29,7 @@ def test_contexttools_set_accidental_style_on_sequential_contexts_in_expr_02( ):
    '''Skip nonsemantic contexts.
    '''
 
-   score = Score(Staff(macros.scale(2)) * 2)
+   score = Score(Staff("c'8 d'8") * 2)
    score[0].is_nonsemantic = True
    contexttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
 

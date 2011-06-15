@@ -5,9 +5,9 @@ import py.test
 def test_measuretools_fuse_measures_01( ):
    '''Fuse unicorporated binary measures.'''
 
-   t1 = Measure((1, 8), macros.scale(2, Duration(1, 16)))
+   t1 = Measure((1, 8), "c'16 d'16")
    spannertools.BeamSpanner(t1[:])
-   t2 = Measure((2, 16), macros.scale(2, Duration(1, 16)))
+   t2 = Measure((2, 16), "c'16 d'16")
    spannertools.SlurSpanner(t2[:])
 
    r'''

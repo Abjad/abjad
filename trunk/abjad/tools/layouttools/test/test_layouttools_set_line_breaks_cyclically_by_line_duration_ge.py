@@ -91,7 +91,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02( ):
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_03( ):
    '''With add_empty_bars keyword.'''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    schema = layouttools.LayoutSchema(Duration(3, 8), (40, 5, 0), (0, ))
    layouttools.apply_layout_schema(t, schema, klass = Note, add_empty_bars = True)
 

@@ -131,7 +131,7 @@ def test_componenttools_all_are_thread_contiguous_components_08( ):
 def test_componenttools_all_are_thread_contiguous_components_09( ):
    '''False when components belonging to same thread are ommitted.'''
 
-   t = Voice(macros.scale(6))
+   t = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
    spannertools.BeamSpanner(t[:])
 
    r'''

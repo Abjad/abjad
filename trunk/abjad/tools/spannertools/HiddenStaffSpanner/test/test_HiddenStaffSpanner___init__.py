@@ -12,7 +12,7 @@ def test_HiddenStaffSpanner___init___01( ):
 def test_HiddenStaffSpanner___init___02( ):
    '''Hide staff around one measure.'''
 
-   t = Staff(Measure((2, 8), macros.scale(2)) * 3)
+   t = Staff(Measure((2, 8), "c'8 d'8") * 3)
    macros.diatonicize(t)
 
    r'''

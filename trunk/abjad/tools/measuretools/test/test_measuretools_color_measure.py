@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_color_measure_01( ):
 
-   measure = Measure((2, 8), macros.scale(2))
+   measure = Measure((2, 8), "c'8 d'8")
 
    r'''
    {

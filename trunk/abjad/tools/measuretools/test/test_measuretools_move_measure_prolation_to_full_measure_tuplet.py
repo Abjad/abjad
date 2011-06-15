@@ -53,7 +53,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
 
-   t = Measure((5, 8), [tuplettools.FixedDurationTuplet((5, 8), macros.scale(6))])
+   t = Measure((5, 8), [tuplettools.FixedDurationTuplet((5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''

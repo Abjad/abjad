@@ -6,7 +6,7 @@ def test_contexttools_get_effective_clef_01( ):
    '''Clef defaults to none.
    '''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    for note in t:
       assert contexttools.get_effective_clef(note) is None
    
@@ -15,7 +15,7 @@ def test_contexttools_get_effective_clef_02( ):
    '''Clefs carry over to notes following.
    '''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    contexttools.ClefMark('treble')(t)
    for note in t:
       assert contexttools.get_effective_clef(note) == contexttools.ClefMark('treble')
@@ -26,7 +26,7 @@ def test_contexttools_get_effective_clef_03( ):
    Clefs carry over to notes following.
    '''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    contexttools.ClefMark('bass')(t[4])
    for i, note in enumerate(t):
       if i in (0, 1, 2, 3):
@@ -39,7 +39,7 @@ def test_contexttools_get_effective_clef_04( ):
    '''Clefs carry over to notes following.
    '''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    contexttools.ClefMark('treble')(t[0])
    contexttools.ClefMark('bass')(t[4])
    assert [contexttools.get_effective_clef(note) for note in t] == \
@@ -51,7 +51,7 @@ def test_contexttools_get_effective_clef_05( ):
    '''None cancels an explicit clef.
    '''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    contexttools.ClefMark('treble')(t[0])
    contexttools.ClefMark('bass')(t[4])
    clef = contexttools.get_effective_clef(t[4])

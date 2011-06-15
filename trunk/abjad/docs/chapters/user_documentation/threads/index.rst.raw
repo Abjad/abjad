@@ -24,8 +24,8 @@ Two contiguous voices must have the same name in order to be part of the same th
 Here a thread does **not** exist between notes in different voices:
 
 <abjad>
-v_one = Voice(macros.scale(4, (1, 16)))
-v_two = Voice(macros.scale(2))
+v_one = Voice("c'16 d'16 e'16 f'16")
+v_two = Voice("c'8 d'8")
 staff = Staff([v_one, v_two])
 f(staff)
 </abjad>

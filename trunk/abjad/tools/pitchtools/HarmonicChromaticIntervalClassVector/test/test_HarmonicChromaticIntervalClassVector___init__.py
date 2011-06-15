@@ -3,7 +3,7 @@ from abjad import *
 
 def test_HarmonicChromaticIntervalClassVector___init___01( ):
 
-   staff = Staff(macros.scale(5))
+   staff = Staff("c'8 d'8 e'8 f'8 g'8")
 
    r'''
    \new Staff {

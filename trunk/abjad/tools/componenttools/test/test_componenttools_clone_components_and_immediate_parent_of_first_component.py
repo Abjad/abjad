@@ -42,7 +42,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
    '''Copy notes from tuplet and adjust tuplet target duration
    in order to preserve tuplet multiplier.'''
 
-   t = tuplettools.FixedDurationTuplet((4, 8), macros.scale(5))
+   t = tuplettools.FixedDurationTuplet((4, 8), "c'8 d'8 e'8 f'8 g'8")
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[:3])
 
    r'''

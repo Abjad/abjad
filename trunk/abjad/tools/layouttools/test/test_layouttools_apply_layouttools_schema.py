@@ -90,7 +90,7 @@ def test_layouttools_apply_layouttools_schema_02( ):
    Here operating on leaves instead of measures with optional klass keyword.
    '''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 
    r'''
    \new Staff {

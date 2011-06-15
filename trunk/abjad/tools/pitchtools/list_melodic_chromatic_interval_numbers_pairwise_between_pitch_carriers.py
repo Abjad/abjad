@@ -9,7 +9,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
 
    List melodic chromatic interval numbers pairwise between `pitch_carriers`::
    
-      abjad> staff = Staff(macros.scale(8))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
       abjad> print staff.format
       \new Staff {
               c'8
@@ -34,7 +34,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
 
    ::
 
-      abjad> notes = macros.scale(8)  
+      abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")]
       abjad> notes.reverse( )
       abjad> notes
       [Note("c''8"), Note("b'8"), Note("a'8"), Note("g'8"), Note("f'8"), Note("e'8"), Note("d'8"), Note("c'8")]

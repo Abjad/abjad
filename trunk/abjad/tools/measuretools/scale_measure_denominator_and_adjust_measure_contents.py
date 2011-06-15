@@ -11,7 +11,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
    Change binary `measure` to nonbinary measure
    with `new_denominator_factor`::
 
-      abjad> measure = Measure((2, 8), macros.scale(2))
+      abjad> measure = Measure((2, 8), "c'8 d'8")
       abjad> spannertools.BeamSpanner(measure.leaves)
       BeamSpanner(c'8, d'8)
       abjad> f(measure)

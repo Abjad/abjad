@@ -3,7 +3,7 @@ from abjad import *
 
 def test_FixedDurationTuplet_preferred_duration_01( ):
 
-   t = tuplettools.FixedDurationTuplet((4, 8), macros.scale(6))
+   t = tuplettools.FixedDurationTuplet((4, 8), "c'8 d'8 e'8 f'8 g'8 a'8")
    t.duration.preferred_denominator = 4
 
    r'''

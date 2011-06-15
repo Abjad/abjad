@@ -5,8 +5,8 @@ def test__SpannerDurationInterface_seconds_01( ):
    '''Spanner duration in seconds equals sum of duration
       of all leaves in spanner, in seconds.'''
 
-   t = Voice([Measure((2, 12), macros.scale(2)), 
-      Measure((2, 8), macros.scale(2))])
+   t = Voice([Measure((2, 12), "c'8 d'8"), 
+      Measure((2, 8), "c'8 d'8")])
    contexttools.TempoMark(Duration(1, 8), 42, target_context = Voice)(t)
    beam = spannertools.BeamSpanner(t.leaves)
    crescendo = spannertools.CrescendoSpanner(t[0][:])

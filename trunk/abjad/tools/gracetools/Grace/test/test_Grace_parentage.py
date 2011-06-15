@@ -30,9 +30,11 @@ def test_Grace_parentage_03( ):
    assert t.after_grace._carrier is t
    assert t.grace._carrier is t
    t.after_grace[:] = [ ]
-   t.after_grace.extend(macros.scale(2))
+   notes = [Note("c'8"), Note("d'8")]
+   t.after_grace.extend(notes)
    t.grace[:] = [ ]
-   t.grace.extend(macros.scale(2))
+   notes = [Note("c'8"), Note("d'8")]
+   t.grace.extend(notes)
    assert t.after_grace._carrier is t
    assert t.grace._carrier is t
    t.after_grace[:] = [ ]

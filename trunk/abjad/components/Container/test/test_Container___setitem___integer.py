@@ -269,7 +269,7 @@ def test_Container___setitem___integer_08( ):
       and insert into recipient container.
       Both donor and recipient check after set item.'''
 
-   notes = macros.scale(6)
+   notes = "c'8 d'8 e'8 f'8 g'8 a'8"
 
    t = Voice(notes[:3])
    spannertools.BeamSpanner(t[:])
@@ -326,7 +326,7 @@ def test_Container___setitem___integer_09( ):
       from donor container and insert into recipient container.
       Both donor and recipient check after set item.'''
 
-   notes = macros.scale(7)
+   notes = "c'8 d'8 e'8 f'8 g'8 a'8 b'8"
 
    t = Voice(notes[:3])
    spannertools.BeamSpanner(t[:])

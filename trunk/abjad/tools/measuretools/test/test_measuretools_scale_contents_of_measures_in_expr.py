@@ -5,7 +5,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_01( ):
    '''Quadruple binary meter.
       Meter denominator adjust appropriately.'''
 
-   t = Measure((3, 32), macros.scale(3, Duration(1, 32)))
+   t = Measure((3, 32), "c'32 d'32 e'32")
    spannertools.BeamSpanner(t[:])
 
    measuretools.scale_contents_of_measures_in_expr(t, Duration(4))
@@ -26,7 +26,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_01( ):
 def test_measuretools_scale_contents_of_measures_in_expr_02( ):
    '''Triple binary meter.'''
 
-   t = Measure((3, 32), macros.scale(3, Duration(1, 32)))
+   t = Measure((3, 32), "c'32 d'32 e'32")
    spannertools.BeamSpanner(t[:])
 
    measuretools.scale_contents_of_measures_in_expr(t, Duration(3))

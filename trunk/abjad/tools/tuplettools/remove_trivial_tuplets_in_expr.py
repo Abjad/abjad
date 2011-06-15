@@ -6,7 +6,7 @@ def remove_trivial_tuplets_in_expr(expr):
    r'''Remove trivial tuplets in `expr`::
 
       abjad> t = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
-      abjad> u = tuplettools.FixedDurationTuplet((1, 4), macros.scale(2))
+      abjad> u = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8")
       abjad> s = Staff([t, u])
       abjad> len(s)
       2

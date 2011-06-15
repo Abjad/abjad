@@ -25,7 +25,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
       
    ::
       
-      abjad> notes = macros.scale(4, Duration(1, 16))
+      abjad> notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
       abjad> measuretools.replace_contents_of_measures_in_expr(staff, notes) 
       [Measure(1/8, [c'16, d'16]), Measure(3/16, [e'16, f'16, s1 * 1/16])]
       

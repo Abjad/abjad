@@ -5,7 +5,7 @@ import py.test
 def test_containertools_reverse_contents_of_container_01( ):
    '''Retrograde works on a depth-0 Container with no spanners and no parent.'''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    leaves_rev = reversed(t.leaves)
    containertools.reverse_contents_of_container(t)
 
@@ -17,7 +17,7 @@ def test_containertools_reverse_contents_of_container_02( ):
    '''Retrograde works on a depth-0 Container with 
       one spanner attached and no parent.'''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    beam = spannertools.BeamSpanner(t)
    leaves_rev = reversed(t.leaves)
    containertools.reverse_contents_of_container(t)
@@ -31,7 +31,7 @@ def test_containertools_reverse_contents_of_container_03( ):
    '''Retrograde works on a depth-0 Container 
       with one spanner attached to its leaves and with no parent.'''
 
-   t = Staff(macros.scale(8))
+   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    beam = spannertools.BeamSpanner(t.leaves)
    leaves_rev = reversed(t.leaves)
    containertools.reverse_contents_of_container(t)
@@ -46,7 +46,7 @@ def test_containertools_reverse_contents_of_container_04( ):
       attached to itself and with a parent.'''
    py.test.skip('fix dynamic measures.')
 
-   t = Staff([measuretools.DynamicMeasure(macros.scale(8))] + notetools.make_repeated_notes(2))
+   t = Staff([measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
    beam = spannertools.BeamSpanner(t[0])
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
@@ -60,7 +60,7 @@ def test_containertools_reverse_contents_of_container_05( ):
       attached to its leaves and with a parent.'''
    py.test.skip('fix dynamic measures.')
 
-   t = Staff([measuretools.DynamicMeasure(macros.scale(8))] + notetools.make_repeated_notes(2))
+   t = Staff([measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
    beam = spannertools.BeamSpanner(t[0].leaves)
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
@@ -74,7 +74,7 @@ def test_containertools_reverse_contents_of_container_06( ):
       attached to its parent.'''
    py.test.skip('fix dynamic measures.')
 
-   t = Staff([measuretools.DynamicMeasure(macros.scale(8))] + macros.scale(2))
+   t = Staff([measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + "c'8 d'8")
    beam = spannertools.BeamSpanner(t)
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
@@ -88,8 +88,8 @@ def test_containertools_reverse_contents_of_container_07( ):
       attached to its parent's contents.'''
    py.test.skip('fix dynamic measures.')
 
-   notes = macros.scale(2)
-   measure = measuretools.DynamicMeasure(macros.scale(8))
+   notes = "c'8 d'8"
+   measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    t = Staff([measure] + notes)
    beam = spannertools.BeamSpanner(t[:])
    leaves_rev = reversed(t[0].leaves)
@@ -105,8 +105,8 @@ def test_containertools_reverse_contents_of_container_08( ):
    '''Retrograde unable to apply because of measure contiguity.'''
    py.test.skip('fix dynamic measures.')
 
-   notes = macros.scale(2)
-   measure = measuretools.DynamicMeasure(macros.scale(8))
+   notes = "c'8 d'8"
+   measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    t = Staff([measure] + notes)
    beam = spannertools.BeamSpanner(t[:])
 

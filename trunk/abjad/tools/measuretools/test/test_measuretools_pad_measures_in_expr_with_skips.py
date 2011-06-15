@@ -5,7 +5,7 @@ py.test.skip('fix layout tools after update reimplementation.')
 
 def test_measuretools_pad_measures_in_expr_with_skips_01( ):
 
-   t = Staff(measuretools.AnonymousMeasure(macros.scale(2)) * 2)
+   t = Staff(measuretools.AnonymousMeasure("c'8 d'8") * 2)
 
    r'''
    \new Staff {
@@ -135,7 +135,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_02( ):
 def test_measuretools_pad_measures_in_expr_with_skips_03( ):
    '''Set splice = True to extend edge spanners over newly insert rests.'''
 
-   t = measuretools.DynamicMeasure(macros.scale(2))
+   t = measuretools.DynamicMeasure("c'8 d'8")
    spannertools.BeamSpanner(t[:])
    measuretools.comment_measures_in_container_with_measure_numbers(t)
    measuretools.pad_measures_in_expr_with_skips(

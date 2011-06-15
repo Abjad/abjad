@@ -20,7 +20,8 @@ class AnonymousMeasure(DynamicMeasure):
 
    ::
       
-      abjad> measure.extend(macros.scale(2))
+      abjad> notes = [Note("c'8"), Note("d'8")]
+      abjad> measure.extend(notes)
       abjad> f(measure)
       {
          \override Staff.TimeSignature #'stencil = ##f

@@ -10,7 +10,7 @@ def _replace_half_of_elements_in_container_with_rests(container, rested_half, bi
 
       abjad> from abjad.tools.containertools._replace_half_of_elements_in_container_with_rests import _replace_half_of_elements_in_container_with_rests
 
-      abjad> staff = Staff(macros.scale(9))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 d''8")
       abjad> _replace_half_of_elements_in_container_with_rests(staff, 'left', 'left')
       Staff{6}
       abjad> f(staff)
@@ -27,7 +27,7 @@ def _replace_half_of_elements_in_container_with_rests(container, rested_half, bi
    half of `container` holding a greater number of elements
    than the left half::
       
-      abjad> staff = Staff(macros.scale(9))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 d''8")
       abjad> _replace_half_of_elements_in_container_with_rests(staff, 'left', 'right')
       Staff{6}
       abjad> f(staff)
@@ -44,7 +44,7 @@ def _replace_half_of_elements_in_container_with_rests(container, rested_half, bi
    half of `container` holding a greater number of elements
    than the right half::
       
-      abjad> staff = Staff(macros.scale(9))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 d''8")
       abjad> _replace_half_of_elements_in_container_with_rests(staff, 'right', 'left')
       Staff{6}
       abjad> f(staff)
@@ -61,7 +61,7 @@ def _replace_half_of_elements_in_container_with_rests(container, rested_half, bi
    half of `container` holding a greater number of elements
    than the left half::
       
-      abjad> staff = Staff(macros.scale(9))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 d''8")
       abjad> _replace_half_of_elements_in_container_with_rests(staff, 'right', 'right')
       Staff{6}
       abjad> f(staff)

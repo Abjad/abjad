@@ -29,7 +29,7 @@ def test_FixedDurationTuplet_color_02( ):
 
    tuplettools.FixedDurationTuplet.color = True
    t = tuplettools.FixedDurationTuplet((3, 8), tuplettools.FixedDurationTuplet((2, 8), 
-      macros.scale(2)) * 2)
+      "c'8 d'8") * 2)
    macros.diatonicize(t)
 
    r'''

@@ -137,7 +137,7 @@ def test_threadtools_component_to_thread_signature_06( ):
    first voice, staff and score in parentage of component.
    '''
 
-   t = Container(Staff([Voice(macros.scale(2))]) * 2)
+   t = Container(Staff([Voice("c'8 d'8")]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
@@ -268,7 +268,7 @@ def test_threadtools_component_to_thread_signature_10( ):
    '''Measure and leaves must carry same thread signature.
    '''
 
-   t = Staff([measuretools.DynamicMeasure(macros.scale(2))] + notetools.make_repeated_notes(2))
+   t = Staff([measuretools.DynamicMeasure("c'8 d'8")] + notetools.make_repeated_notes(2))
    macros.diatonicize(t)
 
    r'''

@@ -95,7 +95,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_04( ):
    '''Donate from empty container to leaf.'''
 
-   t = Voice([Container(macros.scale(2)), Container([ ])])
+   t = Voice([Container("c'8 d'8"), Container([ ])])
    spannertools.GlissandoSpanner(t[:])
    spannertools.BeamSpanner(t[:])
 
@@ -131,7 +131,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_05( ):
    '''Donate from empty container to nonempty container.'''
 
-   t = Voice([Container(macros.scale(2)), Container([ ])])
+   t = Voice([Container("c'8 d'8"), Container([ ])])
    spannertools.GlissandoSpanner(t[:])
    spannertools.BeamSpanner(t[:])
 

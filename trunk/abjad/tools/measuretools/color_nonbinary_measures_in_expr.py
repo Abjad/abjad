@@ -8,7 +8,7 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
 
    Color nonbinary measures in `expr` with `color`::
 
-      abjad> staff = Staff(Measure((2, 8), macros.scale(2)) * 2)
+      abjad> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
       abjad> measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
       Measure(3/12, [c'8., d'8.])
       abjad> f(staff)

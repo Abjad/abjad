@@ -47,6 +47,6 @@ def test_measuretools_get_next_measure_from_component_01( ):
 def test_measuretools_get_next_measure_from_component_02( ):
    '''Can retrieve first measure in a Python list.'''
 
-   t = [Note(0, (1, 4)), Measure((2, 8), macros.scale(2))]
+   t = [Note(0, (1, 4)), Measure((2, 8), "c'8 d'8")]
 
    assert measuretools.get_next_measure_from_component(t) is t[1]

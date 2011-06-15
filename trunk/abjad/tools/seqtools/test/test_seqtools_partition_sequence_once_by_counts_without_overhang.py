@@ -22,7 +22,7 @@ def test_seqtools_partition_sequence_once_by_counts_without_overhang_03( ):
    '''Partition Abjad container.
    '''
 
-   container = Container(macros.scale(6))
+   container = Container("c'8 d'8 e'8 f'8 g'8 a'8")
    parts = seqtools.partition_sequence_once_by_counts_without_overhang(container, [1, 2])
 
    "[{c'8}, {d'8, e'8}]"

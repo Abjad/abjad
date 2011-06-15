@@ -7,7 +7,7 @@ def test_FixedDurationTuplet___add___01( ):
 
    t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t1[:])
-   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
+   t2 = tuplettools.FixedDurationTuplet((2, 16), "c'16 d'16 e'16")
    spannertools.SlurSpanner(t2[:])
 
    r'''
@@ -52,7 +52,7 @@ def test_FixedDurationTuplet___add___02( ):
 
    t1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    spannertools.BeamSpanner(t1[:])
-   t2 = tuplettools.FixedDurationTuplet((2, 16), macros.scale(3, Fraction(1, 16)))
+   t2 = tuplettools.FixedDurationTuplet((2, 16), "c'16 d'16 e'16")
    spannertools.SlurSpanner(t2[:])
    t = Voice([t1, t2])
 
@@ -93,7 +93,7 @@ def test_FixedDurationTuplet___add___02( ):
 def test_FixedDurationTuplet___add___03( ):
    '''Tuplets must carry same multiplier.'''
 
-   t1 = tuplettools.FixedDurationTuplet((4, 16), macros.scale(5))
-   t2 = tuplettools.FixedDurationTuplet((4, 16), macros.scale(6))
+   t1 = tuplettools.FixedDurationTuplet((4, 16), "c'8 d'8 e'8 f'8 g'8")
+   t2 = tuplettools.FixedDurationTuplet((4, 16), "c'8 d'8 e'8 f'8 g'8 a'8")
   
    assert py.test.raises(TupletFuseError, 't1 + t2')

@@ -4,7 +4,7 @@ from abjad import *
 def test_DuratedComplexBeamSpanner_span_01( ):
    '''1-beam span between adjacent groups of 1/16th notes.'''
 
-   t = Voice(macros.scale(4, (1, 16)))
+   t = Voice("c'16 d'16 e'16 f'16")
    spannertools.DuratedComplexBeamSpanner(t, durations = [(1, 8), (1, 8)], span = 1)
 
    r'''
@@ -32,7 +32,7 @@ def test_DuratedComplexBeamSpanner_span_01( ):
 def test_DuratedComplexBeamSpanner_span_02( ):
    '''2-beam span between adjacent groups of 1/16th notes.'''
 
-   t = Voice(macros.scale(4, (1, 16)))
+   t = Voice("c'16 d'16 e'16 f'16")
    spannertools.DuratedComplexBeamSpanner(t, durations = [(1, 8), (1, 8)], span = 2)
 
    r'''

@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_replace_n_edge_elements_in_container_with_little_endian_rests_01( ):
    '''For positive n replace first n elements in container with little-endian rests.'''
 
-   staff = Staff(macros.scale(6))
+   staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
 
    r'''
    \new Staff {
@@ -34,7 +34,7 @@ def test_containertools_replace_n_edge_elements_in_container_with_little_endian_
 def test_containertools_replace_n_edge_elements_in_container_with_little_endian_rests_02( ):
    '''For negative n replace last n elements in container with little-endian rests.'''
 
-   staff = Staff(macros.scale(6))
+   staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
 
    r'''
    \new Staff {

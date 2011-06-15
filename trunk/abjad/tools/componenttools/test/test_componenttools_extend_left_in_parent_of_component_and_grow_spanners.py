@@ -6,8 +6,8 @@ def test_componenttools_extend_left_in_parent_of_component_and_grow_spanners_01(
 
    t = Voice("c'8 d'8 e'8")
    spannertools.BeamSpanner(t[:])
-   result = componenttools.extend_left_in_parent_of_component_and_grow_spanners(
-      t[0], macros.scale(3, Duration(1, 16)))
+   notes = [Note("c'16"), Note("d'16"), Note("e'16")]
+   result = componenttools.extend_left_in_parent_of_component_and_grow_spanners(t[0], notes)
 
    r'''
    \new Voice {

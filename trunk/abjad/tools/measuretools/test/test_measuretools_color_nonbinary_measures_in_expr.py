@@ -5,7 +5,7 @@ py.test.skip('skip until container reverts work for containers again.')
 
 def test_measuretools_color_nonbinary_measures_in_expr_01( ):
 
-   staff = Staff(Measure((2, 8), macros.scale(2)) * 2)
+   staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
    measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
 
    r'''

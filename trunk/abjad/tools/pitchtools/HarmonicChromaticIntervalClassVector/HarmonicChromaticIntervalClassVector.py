@@ -7,7 +7,7 @@ class HarmonicChromaticIntervalClassVector(_Vector):
 
    Abjad model of harmonic chromatic interval-class vector::
 
-      abjad> staff = Staff(macros.scale(5))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8")
       abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(staff)
       abjad> print hcicv
       0 1 3 2 1 2 0 1 0 0 0 0
@@ -78,7 +78,7 @@ class HarmonicChromaticIntervalClassVector(_Vector):
       '''True when harmonic chromatic interval-class vector contains none of 
       `chromatic_interval_numbers`. Otherwise false::
 
-         abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(Staff(macros.scale(5)))
+         abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(Staff("c'8 d'8 e'8 f'8 g'8"))
          abjad> hcicv.has_none_of([9, 10, 11]) 
          True
 

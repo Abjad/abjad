@@ -8,7 +8,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
 
       abjad> from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import _replace_first_n_elements_in_container_with_rests
 
-      abjad> staff = Staff(macros.scale(7))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
       abjad> _replace_first_n_elements_in_container_with_rests(staff, 5, 'left', 'automatic')
       Staff{4}
       abjad> f(staff)
@@ -21,7 +21,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
       
    ::
       
-      abjad> staff = Staff(macros.scale(7))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
       abjad> _replace_first_n_elements_in_container_with_rests(staff, 5, 'left', 'big-endian')
       Staff{4}
       abjad> f(staff)
@@ -34,7 +34,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
       
    ::
       
-      abjad> staff = Staff(macros.scale(7))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
       abjad> _replace_first_n_elements_in_container_with_rests(staff, 5, 'left', 'little-endian')
       Staff{4}
       abjad> f(staff)
@@ -47,7 +47,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
       
    ::
       
-      abjad> staff = Staff(macros.scale(7))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
       abjad> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'automatic')
       Staff{4}
       abjad> f(staff)
@@ -60,7 +60,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
       
    ::
       
-      abjad> staff = Staff(macros.scale(7))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
       abjad> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'big-endian')
       Staff{4}
       abjad> f(staff)
@@ -73,7 +73,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
       
    ::
       
-      abjad> staff = Staff(macros.scale(7))
+      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
       abjad> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'little-endian')
       Staff{4}
       abjad> f(staff)

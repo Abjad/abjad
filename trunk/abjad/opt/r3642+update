@@ -3,7 +3,7 @@ r3642
 As of r3642 (plus current changes) the follow snippet ...
 
    abjad> staff = Staff([ ])
-   abjad> measure = measuretools.DynamicMeasure(macros.scale(2))
+   abjad> measure = measuretools.DynamicMeasure("c'8 d'8")
    abjad> staff.append(measure)
    abjad> f(staff)
 
