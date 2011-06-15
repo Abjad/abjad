@@ -1,6 +1,7 @@
-class _Harmonic(object):
+class _Flageolet(object):
    '''Abjad model of both natural and artificial harmonics.
-      Abstract base class.'''
+   Abstract base class.
+   '''
 
    __slots__ = ( )
 
@@ -8,5 +9,6 @@ class _Harmonic(object):
 
    @property
    def suono_reale(self):
-      '''Actual sound of the harmonic when played.'''
+      '''Actual sound of the harmonic when played.
+      '''
       raise Exception('Not Implemented')

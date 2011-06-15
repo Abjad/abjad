@@ -1,8 +1,8 @@
 from abjad.components import Note
-from abjad.tools.notetools._Harmonic._Harmonic import _Harmonic
+from abjad.tools.notetools._Flageolet._Flageolet import _Flageolet
 
 
-class NaturalHarmonic(Note, _Harmonic):
+class NaturalHarmonic(Note, _Flageolet):
    '''Abjad model of natural harmonic.
 
    Initialize natural harmonic by hand::
