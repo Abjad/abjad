@@ -6,7 +6,11 @@ from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr impor
 def label_vertical_moments_in_expr_with_counterpoint_intervals(expr, markup_direction = 'down'):
    r'''.. versionadded:: 1.1.2
 
-   Label counterpoint interval of every vertical moment in `expr`. ::
+   Label counterpoint interval of every vertical moment in `expr`::
+
+      abjad> from abjad.tools import verticalitytools
+
+   ::
 
       abjad> score = Score(Staff([ ]) * 3)
       abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]

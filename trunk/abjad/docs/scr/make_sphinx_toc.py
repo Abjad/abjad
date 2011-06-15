@@ -69,6 +69,7 @@ def make_sphinx_toc( ):
       'tempotools',
       'tonalitytools', 
       'treetools', 
+      'verticalitytools',
       )
    for dictionary in tools[:]:
       for tools_name in manual_loading_tools_names:

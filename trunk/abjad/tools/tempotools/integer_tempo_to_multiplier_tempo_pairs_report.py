@@ -9,7 +9,11 @@ def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
    Print all multiplier, tempo pairs possible from `integer_tempo`.
 
    Allow no tempi less than ``integer_tempo / 2`` nor greater than
-   ``2 * integer_tempo``. ::
+   ``2 * integer_tempo``::
+
+      abjad> from abjad.tools import tempotools
+
+   ::
 
       abjad> tempotools.integer_tempo_to_multiplier_tempo_pairs_report(58, 8, 8)
       2:1     29

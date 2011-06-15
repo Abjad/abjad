@@ -1092,15 +1092,6 @@ stafftools
    tools/stafftools/make_rhythmic_sketch_staff
 
 
-tempotools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
-   tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
-
-
 threadtools
 
 .. toctree::
@@ -1173,25 +1164,6 @@ tuplettools
    tools/tuplettools/remove_trivial_tuplets_in_expr
    tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
    tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
-
-
-verticalitytools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/verticalitytools/VerticalMoment/VerticalMoment
-   tools/verticalitytools/get_vertical_moment_at_prolated_offset_in_expr
-   tools/verticalitytools/get_vertical_moment_starting_with_component
-   tools/verticalitytools/iterate_vertical_moments_backward_in_expr
-   tools/verticalitytools/iterate_vertical_moments_forward_in_expr
-   tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_interval_classes
-   tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_intervals
-   tools/verticalitytools/label_vertical_moments_in_expr_with_counterpoint_intervals
-   tools/verticalitytools/label_vertical_moments_in_expr_with_diatonic_intervals
-   tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
-   tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
-   tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
 
 
 voicetools
@@ -1269,6 +1241,15 @@ sievetools
    tools/sievetools/ResidueClass/ResidueClass
    tools/sievetools/ResidueClassExpression/ResidueClassExpression
    tools/sievetools/cycle_tokens_to_sieve
+
+
+tempotools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
+   tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
 
 
 tonalitytools
@@ -1362,3 +1343,22 @@ treetools
    tools/treetools/shift_aggregate_offset_by_rational
    tools/treetools/shift_aggregate_offset_to_rational
    tools/treetools/split_intervals_at_rationals
+
+
+verticalitytools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/verticalitytools/VerticalMoment/VerticalMoment
+   tools/verticalitytools/get_vertical_moment_at_prolated_offset_in_expr
+   tools/verticalitytools/get_vertical_moment_starting_with_component
+   tools/verticalitytools/iterate_vertical_moments_backward_in_expr
+   tools/verticalitytools/iterate_vertical_moments_forward_in_expr
+   tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_interval_classes
+   tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_intervals
+   tools/verticalitytools/label_vertical_moments_in_expr_with_counterpoint_intervals
+   tools/verticalitytools/label_vertical_moments_in_expr_with_diatonic_intervals
+   tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
+   tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
+   tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers

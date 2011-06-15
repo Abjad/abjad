@@ -8,6 +8,10 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
    When `governor` is none, get vertical moment at 
    ``expr._offset.start`` in score root of `expr`::
 
+      abjad> from abjad.tools import verticalitytools
+
+   ::
+
       abjad> score = Score([ ])
       abjad> score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
       abjad> piano_staff = scoretools.PianoStaff([ ])

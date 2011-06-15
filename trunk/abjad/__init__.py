@@ -32,3 +32,4 @@ del sys
 del tempotools
 del tonalitytools
 del tools
+del verticalitytools

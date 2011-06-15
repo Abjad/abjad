@@ -10,7 +10,11 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
    Return all multiplier, tempo pairs possible from `integer_tempo`.
 
    Tempi must be no less than ``integer_tempo / 2`` and not greater
-   than ``2 * integer_tempo``. ::
+   than ``2 * integer_tempo``::
+
+      abjad> from abjad.tools import tempotools
+
+   ::
 
       abjad> pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 8, 8)
       abjad> for pair in pairs:

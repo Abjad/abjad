@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import verticalitytools
 
 
 def test_verticalitytools_label_vertical_moments_in_expr_with_interval_class_vectors_01( ):

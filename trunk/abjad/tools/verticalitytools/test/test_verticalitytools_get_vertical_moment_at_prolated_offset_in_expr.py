@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import verticalitytools
 
 
 def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_01( ):

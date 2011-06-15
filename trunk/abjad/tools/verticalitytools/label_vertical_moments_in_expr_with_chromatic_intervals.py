@@ -7,7 +7,11 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(expr, markup_directi
    r'''.. versionadded:: 1.1.2
 
    Label harmonic chromatic intervals 
-   of every vertical moment in `expr`. ::
+   of every vertical moment in `expr`::
+
+      abjad> from abjad.tools import verticalitytools
+
+   ::
 
       abjad> score = Score(Staff([ ]) * 3)
       abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]

@@ -6,7 +6,11 @@ from abjad.tools import durtools
 def iterate_vertical_moments_forward_in_expr(governor):
    r'''.. versionadded:: 1.1.2
 
-   Yield vertical moments forward in `governor`. ::
+   Yield vertical moments forward in `governor`::
+
+      abjad> from abjad.tools import verticalitytools
+
+   ::
 
       abjad> score = Score([ ])
       abjad> score.append(Staff([tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(3))]))
