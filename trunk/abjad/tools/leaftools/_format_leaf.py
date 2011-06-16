@@ -64,7 +64,7 @@ def _leaf_body(leaf):
    return [' '.join(result)]
 
 def _nucleus(leaf):
-   from abjad.components import Chord
+   from abjad.tools.chordtools.Chord import Chord
    if not isinstance(leaf, Chord):
       return leaf._body
    result =  [ ]

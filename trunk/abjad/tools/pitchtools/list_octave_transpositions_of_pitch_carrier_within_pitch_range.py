@@ -1,4 +1,4 @@
-from abjad.components import Chord
+from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
 from abjad.tools.pitchtools.PitchRange import PitchRange

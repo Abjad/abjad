@@ -1,4 +1,5 @@
-from abjad.components import Chord, Note
+from abjad.components import Note
+from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 
 

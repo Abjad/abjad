@@ -1,4 +1,4 @@
-from abjad.components import Chord
+from abjad.tools.chordtools.Chord import Chord
 
 
 def yield_groups_of_chords_in_sequence(sequence):

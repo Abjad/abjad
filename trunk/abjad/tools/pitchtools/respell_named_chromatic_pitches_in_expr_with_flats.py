@@ -1,4 +1,4 @@
-from abjad.components import Chord
+from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
 from abjad.tools.pitchtools.chromatic_pitch_number_to_octave_number import chromatic_pitch_number_to_octave_number

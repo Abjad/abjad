@@ -1,7 +1,7 @@
 def _format_note_head(note_head):
    from abjad.tools.lilyfiletools._format_lilypond_attribute import _format_lilypond_attribute 
    from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
-   from abjad.components import Chord
+   from abjad.tools.chordtools.Chord import Chord
 
    ## make sure note head has pitch
    assert note_head.pitch

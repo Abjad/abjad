@@ -9,7 +9,7 @@ def is_beamable_component(expr):
    Return boolean.
    '''
    from abjad.components._Leaf import _Leaf
-   from abjad.components import Chord
+   from abjad.tools.chordtools.Chord import Chord
    from abjad.components import Note
    from abjad.tools import durtools
 
