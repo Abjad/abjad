@@ -6,6 +6,7 @@ from abjad.tools.durtools import Duration
 from abjad.tools.iotools import f
 from abjad.tools.iotools import play
 from abjad.tools.iotools import show
+from abjad.tools.measuretools import Measure
 from abjad.tools.notetools import Note
 from abjad.tools.resttools import Rest
 from abjad.tools.scoretools import Score

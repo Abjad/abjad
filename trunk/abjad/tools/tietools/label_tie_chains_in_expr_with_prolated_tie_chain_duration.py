@@ -1,6 +1,3 @@
-from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import _label_leaves_in_expr_with_leaf_durations
-
-
 def label_tie_chains_in_expr_with_prolated_tie_chain_duration(expr, markup_direction = 'down'):
    r'''Label tie chains in `expr` with prolated tie chain duration::
 
@@ -24,6 +21,7 @@ def label_tie_chains_in_expr_with_prolated_tie_chain_duration(expr, markup_direc
 
    Return none.
    '''
+   from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import _label_leaves_in_expr_with_leaf_durations
 
    show = ['prolated']
    return _label_leaves_in_expr_with_leaf_durations(

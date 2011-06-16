@@ -1,4 +1,4 @@
-from abjad.components import Measure
+from abjad.tools.measuretools.Measure import Measure
 from abjad.tools import leaftools
 from abjad.tools.metertools import Meter
 from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow

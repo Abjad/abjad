@@ -1,8 +1,5 @@
-from abjad.components import Measure
 from abjad.components._Leaf import _Leaf
 from abjad.tools import tietools
-from abjad.tools import tuplettools
-from abjad.tools.tuplettools import FixedDurationTuplet
 
 
 def scale_contents_of_container(container, multiplier):
@@ -101,6 +98,9 @@ def scale_contents_of_container(container, multiplier):
       renamed ``containertools.contents_scale( )`` to
       ``containertools.scale_contents_of_container( )``.
    '''
+   from abjad.tools import tuplettools
+   from abjad.tools.tuplettools import FixedDurationTuplet
+   from abjad.tools.measuretools.Measure import Measure
 
    for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(container[:]):
       if tietools.is_tie_chain(expr):

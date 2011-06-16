@@ -1,4 +1,4 @@
-from abjad.components import Measure
+from abjad.tools.measuretools.Measure import Measure
 
 
 def color_measure(measure, color = 'red'):

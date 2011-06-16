@@ -76,7 +76,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
       ``componenttools.clone_components_and_immediate_parent_of_first_component( )``.
    '''
    from abjad.tools import componenttools
-   from abjad.components import Measure
+   from abjad.tools.measuretools.Measure import Measure
 
    # assert strictly contiguous components in same thread
    assert componenttools.all_are_thread_contiguous_components(components)

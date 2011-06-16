@@ -19,7 +19,7 @@ class _NumberingInterface(_Interface):
    def _update_component(self):
       '''Update number of any one node in score.'''
       from abjad.components._Leaf import _Leaf
-      from abjad.components import Measure
+      from abjad.tools.measuretools.Measure import Measure
       client = self._client
       if isinstance(client, _Leaf):
          self._update_leaf_number( )

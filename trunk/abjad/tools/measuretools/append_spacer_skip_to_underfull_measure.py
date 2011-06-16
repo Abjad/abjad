@@ -1,6 +1,4 @@
-from abjad.components import Measure
-from abjad.tools import contexttools
-from abjad.tools.skiptools.Skip import Skip
+from abjad.tools.measuretools.Measure import Measure
 
 
 def append_spacer_skip_to_underfull_measure(rigid_measure):
@@ -41,6 +39,8 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
       renamed ``measuretools.make_measures_with_full_measure_spacer_skips_underfull_spacer_skip( )`` to
       ``measuretools.append_spacer_skip_to_underfull_measure( )``.
    '''
+   from abjad.tools import contexttools
+   from abjad.tools.skiptools.Skip import Skip
 
    assert isinstance(rigid_measure, Measure)
 

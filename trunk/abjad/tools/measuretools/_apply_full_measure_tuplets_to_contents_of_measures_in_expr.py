@@ -1,5 +1,4 @@
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
-from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 import copy
 
 
@@ -17,6 +16,7 @@ def _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement
       renamed ``measuretools.tupletize( )``
       to ``measuretools._apply_full_measure_tuplets_to_contents_of_measures_in_expr( )``.
    '''
+   from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    for measure in iterate_measures_forward_in_expr(expr):
       target_duration = measure.duration.preprolated

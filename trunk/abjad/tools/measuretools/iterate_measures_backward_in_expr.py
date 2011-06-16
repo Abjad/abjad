@@ -1,4 +1,4 @@
-from abjad.components import Measure
+from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 
 

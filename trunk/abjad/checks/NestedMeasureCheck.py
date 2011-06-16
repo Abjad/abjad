@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.components import Measure
+from abjad.tools.measuretools.Measure import Measure
 
 
 class NestedMeasureCheck(_Check):

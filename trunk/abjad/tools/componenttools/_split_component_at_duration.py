@@ -1,5 +1,4 @@
 from abjad.components import Container
-from abjad.components import Measure
 from abjad.components._Leaf import _Leaf
 from abjad.exceptions import ContainmentError
 from abjad.tools import durtools
@@ -24,6 +23,7 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
    from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duration
    from abjad.tools.leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian \
       import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
+   from abjad.tools.measuretools.Measure import Measure
 
    duration = durtools.Duration(duration)
    assert 0 <= duration

@@ -1,6 +1,6 @@
 def _get_context_mark_format_contributions_for_slot(component, slot):
    from abjad.components._Leaf import _Leaf
-   from abjad.components import Measure
+   from abjad.tools.measuretools.Measure import Measure
    from abjad.tools import componenttools
    from abjad.tools import contexttools
    from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark

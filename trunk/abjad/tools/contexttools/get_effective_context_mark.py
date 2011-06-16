@@ -29,7 +29,7 @@ def get_effective_context_mark(component, klass):
 
    Return context mark or none.
    '''
-   from abjad.components import Measure
+   from abjad.tools.measuretools.Measure import Measure
    from abjad.tools import componenttools
    from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
 

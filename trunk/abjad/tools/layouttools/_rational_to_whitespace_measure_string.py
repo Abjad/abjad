@@ -1,4 +1,4 @@
-from abjad.components import Measure
+from abjad.tools.measuretools.Measure import Measure
 from abjad.tools import measuretools
 from abjad.tools.skiptools.Skip import Skip
 

@@ -35,7 +35,7 @@ def set_container_multiplier(container, multiplier):
       renamed ``containertools.multiplier_set( )`` to
       ``containertools.set_container_multiplier( )``.
    '''
-   from abjad.components import Measure
+   from abjad.tools.measuretools.Measure import Measure
    from abjad.components import Tuplet
    from abjad.tools import tuplettools
 

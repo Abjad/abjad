@@ -1,4 +1,3 @@
-from abjad.tools.notetools.Note import Note
 from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
 from abjad.tools import durtools
@@ -6,7 +5,6 @@ from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
-from abjad.tools import durtools
 
 
 def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
@@ -16,6 +14,7 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
 
    .. todo:: move to tuplettools.
    '''
+   from abjad.tools.notetools.Note import Note
    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    # find target duration of fixed-duration tuplet

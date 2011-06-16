@@ -1,4 +1,3 @@
-#from abjad.tools.divide._tie_chain_arbitrarily import _tie_chain_arbitrarily
 from abjad.tools.tietools._tie_chain_to_tuplet import _tie_chain_to_tuplet
 
 

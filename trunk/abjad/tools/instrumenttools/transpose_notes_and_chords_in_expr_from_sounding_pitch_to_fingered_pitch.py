@@ -1,6 +1,3 @@
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.notetools.Note import Note
-from abjad.tools import leaftools
 from abjad.tools import pitchtools
 from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
@@ -44,6 +41,9 @@ def transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(exp
 
    Return none.
    '''
+   from abjad.tools.chordtools.Chord import Chord
+   from abjad.tools.notetools.Note import Note
+   from abjad.tools import leaftools
 
    for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
       if not note_or_chord.written_pitch_indication_is_at_sounding_pitch:

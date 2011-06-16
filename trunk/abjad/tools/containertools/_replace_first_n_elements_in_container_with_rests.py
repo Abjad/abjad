@@ -1,4 +1,3 @@
-from abjad.tools import resttools
 from abjad.tools import durtools
 
 
@@ -91,6 +90,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
    .. todo: replace 'left' and 'right' with positive and negative
       values of `i`.
    '''
+   from abjad.tools import resttools
 
    ## assert keyword values
    assert rested_half in ('left', 'right')
