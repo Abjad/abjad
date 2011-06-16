@@ -11,7 +11,6 @@ Abjad score components
 
    components/Container/Container
    components/Measure/Measure
-   components/Note/Note
    components/Score/Score
    components/Staff/Staff
    components/Tuplet/Tuplet
@@ -626,6 +625,7 @@ notetools
    :maxdepth: 1
 
    tools/notetools/NaturalHarmonic/NaturalHarmonic
+   tools/notetools/Note/Note
    tools/notetools/NoteHead/NoteHead
    tools/notetools/add_artificial_harmonic_to_note
    tools/notetools/color_note_head_by_numbered_chromatic_pitch_class_color_map

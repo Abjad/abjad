@@ -1,7 +1,7 @@
-Note
-====
+notetools.Note
+==============
 
-.. autoclass:: abjad.Note
+.. autoclass:: abjad.tools.notetools.Note
    :members:
    :undoc-members:
    :show-inheritance:
