@@ -1,4 +1,3 @@
-from abjad.components import Note
 from abjad.tools import componenttools
 from abjad.tools import seqtools
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
@@ -59,6 +58,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
       renamed ``pitchtools.insert_transposed_pc_subruns( )`` to
       ``pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list( )``.
    '''
+   from abjad.tools.notetools.Note import Note
 
    assert isinstance(notes, list)
    assert all([isinstance(x, Note) for x in notes])
@@ -113,9 +113,10 @@ def _make_index_length_pairs(subrun_indicator):
 
 
 def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
+   from abjad.tools import notetools
    new_notes = [ ]
    for subrun_interval in subrun_intervals:
       new_pc = (abs(anchor_pitch.numbered_chromatic_pitch) + subrun_interval) % 12
-      new_note = Note(new_pc, anchor_written_duration)
+      new_note = notetools.Note(new_pc, anchor_written_duration)
       new_notes.append(new_note)
    return new_notes

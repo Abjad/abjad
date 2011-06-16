@@ -10,7 +10,7 @@ def is_beamable_component(expr):
    '''
    from abjad.components._Leaf import _Leaf
    from abjad.tools.chordtools.Chord import Chord
-   from abjad.components import Note
+   from abjad.tools.notetools.Note import Note
    from abjad.tools import durtools
 
    #if isinstance(expr, _Leaf):

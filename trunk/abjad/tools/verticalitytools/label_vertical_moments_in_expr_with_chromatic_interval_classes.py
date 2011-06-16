@@ -1,4 +1,4 @@
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 from abjad.tools import markuptools
 from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 

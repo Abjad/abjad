@@ -1,4 +1,4 @@
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 from abjad.tools.resttools.Rest import Rest
 from abjad.tools import durtools
 from abjad.tools.leaftools._construct_tied_leaf import _construct_tied_leaf

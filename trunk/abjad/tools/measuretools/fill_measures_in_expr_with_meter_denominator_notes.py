@@ -1,4 +1,4 @@
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr

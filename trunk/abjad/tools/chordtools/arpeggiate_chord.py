@@ -1,5 +1,4 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.components import Note
 
 
 def arpeggiate_chord(chord):
@@ -25,6 +24,7 @@ def arpeggiate_chord(chord):
       renamed ``chordtools.arpeggiate( )`` to
       ``chordtools.arpeggiate_chord( )``.
    '''
+   from abjad.tools.notetools.Note import Note
    
    assert isinstance(chord, Chord)
 

@@ -1,5 +1,5 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 
 
 def _leaf_to_pitch_and_rhythm_skeleton(leaf, include_keyword_attributes = False):

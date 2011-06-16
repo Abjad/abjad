@@ -1,5 +1,5 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 
 
 def yield_groups_of_mixed_notes_and_chords_in_sequence(sequence):

@@ -1,5 +1,4 @@
 from abjad.components import Score
-from abjad.tools.chordtools.divide_chord_by_chromatic_pitch_number import divide_chord_by_chromatic_pitch_number
 from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
 
 
@@ -39,6 +38,7 @@ def make_piano_score_from_leaves(leaves):
 
    Return score, treble staff, bass staff.
    """
+   from abjad.tools.chordtools.divide_chord_by_chromatic_pitch_number import divide_chord_by_chromatic_pitch_number
    from abjad.tools.measuretools import AnonymousMeasure
 
    score, treble_staff, bass_staff = make_empty_piano_score( )

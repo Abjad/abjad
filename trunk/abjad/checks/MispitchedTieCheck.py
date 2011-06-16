@@ -8,7 +8,7 @@ class MispitchedTieCheck(_Check):
       Do not check tied rests or skips.
       Implement chord-checking later.
       '''
-      from abjad.components import Note
+      from abjad.tools.notetools.Note import Note
       from abjad.tools import componenttools
       from abjad.tools import spannertools
       from abjad.tools import tietools

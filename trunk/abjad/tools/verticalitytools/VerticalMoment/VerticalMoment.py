@@ -1,6 +1,6 @@
 from abjad.tools.chordtools.Chord import Chord
 from abjad.components import Measure
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 from abjad.components._Leaf import _Leaf
 from abjad.core import _Immutable
 from abjad.tools import componenttools

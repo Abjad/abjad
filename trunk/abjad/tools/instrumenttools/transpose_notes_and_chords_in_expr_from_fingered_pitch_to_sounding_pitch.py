@@ -1,5 +1,5 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 from abjad.tools import leaftools
 from abjad.tools import pitchtools
 from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument

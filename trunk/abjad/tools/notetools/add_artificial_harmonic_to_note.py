@@ -1,4 +1,3 @@
-from abjad.tools.chordtools.Chord import Chord
 from abjad.tools import pitchtools
 
 
@@ -53,6 +52,7 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fo
       ``notetools.add_artificial_harmonic_to_note( )``.
    '''
    from abjad.tools import componenttools
+   from abjad.tools.chordtools.Chord import Chord
 
    chord = Chord(note)
    chord.append(chord[0].pitch.numbered_chromatic_pitch._chromatic_pitch_number)

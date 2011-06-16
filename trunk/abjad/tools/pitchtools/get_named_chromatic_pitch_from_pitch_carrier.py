@@ -1,5 +1,3 @@
-from abjad.tools.chordtools.Chord import Chord
-from abjad.components import Note
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
@@ -56,6 +54,8 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       renamed ``pitchtools.get_pitch( )`` to
       ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier( )``.
    '''
+   from abjad.tools.chordtools.Chord import Chord
+   from abjad.tools.notetools.Note import Note
    from abjad.tools.notetools.NoteHead import NoteHead
    
    if isinstance(pitch_carrier, NamedChromaticPitch):

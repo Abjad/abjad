@@ -1,4 +1,4 @@
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 from abjad.tools import componenttools
 from abjad.tools.tonalitytools.are_scalar_notes import are_scalar_notes
 from abjad.tools.tonalitytools.are_stepwise_notes import are_stepwise_notes

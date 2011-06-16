@@ -1,4 +1,4 @@
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
 from abjad.tools import durtools

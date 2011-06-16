@@ -1,4 +1,3 @@
-from abjad.components import Note
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.TwelveToneRow import TwelveToneRow
 
@@ -17,6 +16,7 @@ def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
 
    Return list.
    '''
+   from abjad.tools.notetools.Note import Note
 
    if not isinstance(row, TwelveToneRow):
       raise TypeError('must be twelve-tone row.')

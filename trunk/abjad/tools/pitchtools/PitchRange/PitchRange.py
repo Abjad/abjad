@@ -1,6 +1,4 @@
-from abjad.tools.chordtools.Chord import Chord
 from abjad.components import Container
-from abjad.components import Note
 from abjad.core import _Immutable
 import numbers
 
@@ -76,6 +74,8 @@ class PitchRange(_Immutable):
       from abjad.tools import pitchtools
       from abjad.tools import resttools
       from abjad.tools import skiptools
+      from abjad.tools.chordtools.Chord import Chord
+      from abjad.tools.notetools.Note import Note
       if getattr(arg, 'written_pitch_indication_is_nonsemantic', False):
          return True
       elif isinstance(arg, (int, long, float)):

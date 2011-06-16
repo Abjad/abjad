@@ -1,4 +1,4 @@
-from abjad.components import Note
+from abjad.tools.notetools.Note import Note
 
 
 def yield_groups_of_notes_in_sequence(sequence):
