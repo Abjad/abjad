@@ -37,7 +37,7 @@ class TempoMark(ContextMark):
    _format_slot = 'opening'
 
    def __init__(self, *args, **kwargs):
-      from abjad.components import Score
+      from abjad.tools.scoretools.Score import Score
       ContextMark.__init__(self, **kwargs)
       if self.target_context is None:
          self._target_context = Score

@@ -19,7 +19,7 @@ def component_to_parentage_signature(component):
 
    Return parentage signature.
    '''
-   from abjad.components import Score
+   from abjad.tools.scoretools.Score import Score
    from abjad.tools.stafftools.Staff import Staff
    from abjad.tools.voicetools.Voice import Voice
    from abjad.tools import componenttools

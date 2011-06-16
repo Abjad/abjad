@@ -1,4 +1,4 @@
-from abjad.components import Score
+from abjad.tools.scoretools.Score import Score
 from abjad.tools import componenttools
 
 

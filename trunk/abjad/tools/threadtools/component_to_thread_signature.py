@@ -6,7 +6,7 @@ def component_to_thread_signature(component):
    '''Return _ContainmentSignature giving the root and
    first voice, staff and score in parentage of component.
    '''
-   from abjad.components import Score
+   from abjad.tools.scoretools.Score import Score
    from abjad.tools.stafftools.Staff import Staff
    from abjad.tools.voicetools.Voice import Voice
    from abjad.tools import componenttools
