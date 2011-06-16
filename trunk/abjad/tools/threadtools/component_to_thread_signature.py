@@ -8,7 +8,7 @@ def component_to_thread_signature(component):
    '''
    from abjad.components import Score
    from abjad.components import Staff
-   from abjad.components import Voice
+   from abjad.tools.voicetools.Voice import Voice
    from abjad.tools import componenttools
    from abjad.tools.scoretools import StaffGroup
 

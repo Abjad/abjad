@@ -8,6 +8,7 @@ from abjad.tools.iotools import play
 from abjad.tools.iotools import show
 from abjad.tools.notetools import Note
 from abjad.tools.resttools import Rest
+from abjad.tools.voicetools import Voice
 from fractions import Fraction
 import macros
 import os

@@ -1,4 +1,4 @@
-from abjad.components import Voice
+from abjad.tools.voicetools.Voice import Voice
 from abjad.tools import componenttools
 
 

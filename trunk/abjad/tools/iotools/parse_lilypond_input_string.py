@@ -1,5 +1,5 @@
 from abjad.components import Container
-from abjad.components import Voice
+from abjad.tools.voicetools.Voice import Voice
 from abjad.exceptions import MissingSpannerError
 from abjad.tools import contexttools
 from abjad.tools import marktools
