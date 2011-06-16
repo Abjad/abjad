@@ -9,7 +9,6 @@ Abjad score components
 .. toctree::
    :maxdepth: 1
 
-   components/Chord/Chord
    components/Container/Container
    components/Measure/Measure
    components/Note/Note
@@ -32,6 +31,7 @@ chordtools
 .. toctree::
    :maxdepth: 1
 
+   tools/chordtools/Chord/Chord
    tools/chordtools/Cluster/Cluster
    tools/chordtools/arpeggiate_chord
    tools/chordtools/change_defective_chord_to_note_or_rest

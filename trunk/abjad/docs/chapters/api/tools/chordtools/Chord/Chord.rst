@@ -1,7 +1,7 @@
-Chord
-=====
+chordtools.Chord
+================
 
-.. autoclass:: abjad.Chord
+.. autoclass:: abjad.tools.chordtools.Chord
    :members:
    :undoc-members:
    :show-inheritance:
