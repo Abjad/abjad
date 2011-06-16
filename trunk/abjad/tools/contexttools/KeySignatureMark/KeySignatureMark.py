@@ -32,7 +32,7 @@ class KeySignatureMark(ContextMark):
    _format_slot = 'opening'
 
    def __init__(self, tonic, mode, target_context = None):
-      from abjad.components import Staff
+      from abjad.tools.stafftools.Staff import Staff
       from abjad.tools import pitchtools
       from abjad.tools import tonalitytools
       ContextMark.__init__(self, target_context = target_context)

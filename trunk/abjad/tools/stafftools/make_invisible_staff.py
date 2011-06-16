@@ -1,4 +1,4 @@
-from abjad.components import Staff
+from abjad.tools.stafftools.Staff import Staff
 
 
 def make_invisible_staff(music):

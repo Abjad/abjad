@@ -55,7 +55,7 @@ class StaffChangeMark(ContextMark):
    _format_slot = 'opening'
 
    def __init__(self, staff, target_context = None):
-      from abjad.components import Staff
+      from abjad.tools.stafftools.Staff import Staff
       ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff
@@ -120,7 +120,7 @@ class StaffChangeMark(ContextMark):
          '''
          return self._staff
       def fset(self, staff):
-         from abjad.components import Staff
+         from abjad.tools.stafftools.Staff import Staff
          assert isinstance(staff, Staff)
          self._staff = staff
       return property(**locals( ))

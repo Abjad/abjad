@@ -29,7 +29,7 @@ class DynamicMark(ContextMark):
    _format_slot = 'right'
 
    def __init__(self, dynamic_name_string, target_context = None):
-      from abjad.components import Staff
+      from abjad.tools.stafftools.Staff import Staff
       ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff

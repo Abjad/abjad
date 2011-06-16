@@ -31,7 +31,7 @@ class ClefMark(ContextMark):
    #default_target_context = Staff
 
    def __init__(self, arg, target_context = None):
-      from abjad.components import Staff
+      from abjad.tools.stafftools.Staff import Staff
       ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
          self._target_context = Staff

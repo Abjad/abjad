@@ -7,7 +7,7 @@ def component_to_thread_signature(component):
    first voice, staff and score in parentage of component.
    '''
    from abjad.components import Score
-   from abjad.components import Staff
+   from abjad.tools.stafftools.Staff import Staff
    from abjad.tools.voicetools.Voice import Voice
    from abjad.tools import componenttools
    from abjad.tools.scoretools import StaffGroup

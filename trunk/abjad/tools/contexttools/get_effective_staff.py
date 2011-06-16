@@ -32,7 +32,7 @@ def get_effective_staff(component):
 
    Return staff or none.
    '''
-   from abjad.components import Staff
+   from abjad.tools.stafftools.Staff import Staff
    from abjad.tools import componenttools
    
    staff_change_mark = get_effective_context_mark(component, StaffChangeMark)

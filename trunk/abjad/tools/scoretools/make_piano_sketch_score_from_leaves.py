@@ -1,4 +1,4 @@
-from abjad.components import Staff
+from abjad.tools.stafftools.Staff import Staff
 from abjad.tools import contexttools
 from abjad.tools import lilyfiletools
 from abjad.tools import markuptools

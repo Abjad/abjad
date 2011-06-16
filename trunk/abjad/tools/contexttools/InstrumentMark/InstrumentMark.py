@@ -31,7 +31,7 @@ class InstrumentMark(ContextMark):
    _format_slot = 'opening'
 
    def __init__(self, instrument_name, short_instrument_name, target_context = None):
-      from abjad.components import Staff
+      from abjad.tools.stafftools.Staff import Staff
       from abjad.tools.markuptools import Markup
       ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:

@@ -1,5 +1,5 @@
 from abjad.components import Score
-from abjad.components import Staff
+from abjad.tools.stafftools.Staff import Staff
 from abjad.tools import contexttools
 from abjad.tools.scoretools.PianoStaff import PianoStaff
 

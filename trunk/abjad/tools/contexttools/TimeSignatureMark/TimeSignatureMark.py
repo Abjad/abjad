@@ -45,7 +45,7 @@ class TimeSignatureMark(ContextMark):
    #   '_is_nonbinary', '_numerator', '_partial', )
 
    def __init__(self, *args, **kwargs):
-      from abjad.components import Staff
+      from abjad.tools.stafftools.Staff import Staff
       target_context = kwargs.get('target_context', None)
       ContextMark.__init__(self, target_context = target_context)
       if self.target_context is None:
