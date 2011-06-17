@@ -27,7 +27,7 @@ def component_to_tuplet_depth(component):
 
    Return nonnegative integer.
    '''
-   from abjad.components import Tuplet
+   from abjad.tools.tuplettools.Tuplet import Tuplet
 
    result = 0
    for parent in get_proper_parentage_of_component(component):

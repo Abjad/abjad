@@ -1,9 +1,6 @@
-from abjad.tools import componenttools
-from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
-from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools import durtools
 
 
@@ -22,8 +19,11 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
       renamed ``measuretools.project( )`` to
       ``measuretools.move_measure_prolation_to_full_measure_tuplet( )``.
    '''
-
+   from abjad.tools import componenttools
+   from abjad.tools import contexttools
    from abjad.tools import containertools
+   from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
+
    for measure in iterate_measures_forward_in_expr(expr):
       if contexttools.get_effective_time_signature(measure).is_nonbinary:
 

@@ -20,4 +20,5 @@ from abjad.tools import spannertools
 from abjad.tools import stafftools
 from abjad.tools import tietools
 from abjad.tools import tonalitytools
+from abjad.tools import tuplettools
 from abjad.tools import voicetools

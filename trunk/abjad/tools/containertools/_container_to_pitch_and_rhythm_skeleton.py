@@ -1,5 +1,5 @@
 from abjad.tools.measuretools.Measure import Measure
-from abjad.components import Tuplet
+from abjad.tools.tuplettools.Tuplet import Tuplet
 from abjad.tools import contexttools
 
 

@@ -1,4 +1,4 @@
-from abjad.components import Tuplet
+from abjad.tools.tuplettools.Tuplet import Tuplet
 from abjad.components._Leaf import _Leaf
 from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools

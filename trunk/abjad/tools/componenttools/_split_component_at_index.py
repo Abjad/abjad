@@ -1,5 +1,4 @@
 from abjad.components import Container
-from abjad.components import Tuplet
 from abjad.components._Leaf import _Leaf
 from abjad.tools import contexttools
 from abjad.tools import durtools
@@ -19,6 +18,7 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
    from abjad.tools import measuretools
    from abjad.tools.containertools.set_container_multiplier import set_container_multiplier
    from abjad.tools.measuretools.Measure import Measure
+   from abjad.tools.tuplettools.Tuplet import Tuplet
    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    ## convenience leaf index split definition

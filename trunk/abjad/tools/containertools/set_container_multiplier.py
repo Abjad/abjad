@@ -36,7 +36,7 @@ def set_container_multiplier(container, multiplier):
       ``containertools.set_container_multiplier( )``.
    '''
    from abjad.tools.measuretools.Measure import Measure
-   from abjad.components import Tuplet
+   from abjad.tools.tuplettools.Tuplet import Tuplet
    from abjad.tools import tuplettools
 
    if isinstance(container, tuplettools.FixedDurationTuplet):

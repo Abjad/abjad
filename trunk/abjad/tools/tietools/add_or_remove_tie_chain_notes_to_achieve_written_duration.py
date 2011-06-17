@@ -1,4 +1,3 @@
-from abjad.components import Tuplet
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import spannertools
@@ -25,6 +24,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
       renamed ``tietools.duration_change( )`` to
       ``tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( )``.
    '''
+   from abjad.tools.tuplettools.Tuplet import Tuplet
    from abjad.tools import notetools
 
    assert is_tie_chain(tie_chain)

@@ -1,5 +1,4 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools import componenttools
 
 
 def iterate_chords_backward_in_expr(expr, start = 0, stop = None):
@@ -31,6 +30,7 @@ def iterate_chords_backward_in_expr(expr, start = 0, stop = None):
 
    Return generator.
    '''
+   from abjad.tools import componenttools
    
    return componenttools.iterate_components_backward_in_expr(
       expr, Chord, start = start, stop = stop)

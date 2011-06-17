@@ -1,6 +1,4 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.components._Leaf import _Leaf
-from abjad.tools import componenttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change_defective_chord_to_note_or_rest
@@ -12,6 +10,8 @@ def _divide_chord(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_c
 
    Return pair of newly created leaves.
    '''
+   from abjad.components._Leaf import _Leaf
+   from abjad.tools import componenttools
    from abjad.tools import resttools
    from abjad.tools.notetools.Note import Note
 

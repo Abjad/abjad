@@ -1,6 +1,3 @@
-from abjad.components import Tuplet
-from abjad.tools import componenttools
-from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 from abjad.tools.metertools import Meter
@@ -31,8 +28,11 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
       renamed ``measuretools.subsume( )`` to
       ``measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure( )``.
    '''
-
+   from abjad.tools.tuplettools.Tuplet import Tuplet
+   from abjad.tools import componenttools
+   from abjad.tools import contexttools
    from abjad.tools import containertools
+
    for measure in iterate_measures_forward_in_expr(expr):
       if len(measure) == 1:
          if isinstance(measure[0], Tuplet):

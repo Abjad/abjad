@@ -1,4 +1,3 @@
-from abjad.components import Tuplet
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
@@ -49,6 +48,7 @@ def make_notes(pitches, durations, direction='big-endian'):
       ``notetools.make_notes( )``.
    '''
    from abjad.tools.leaftools._construct_unprolated_notes import _construct_unprolated_notes
+   from abjad.tools.tuplettools.Tuplet import Tuplet
 
    if pitchtools.is_named_chromatic_pitch_token(pitches):
       pitches = [pitches]

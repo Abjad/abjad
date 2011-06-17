@@ -1,5 +1,5 @@
 from __future__ import division
-from abjad.components import Tuplet
+from abjad.tools.tuplettools.Tuplet import Tuplet
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools

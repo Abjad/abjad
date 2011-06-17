@@ -1,4 +1,3 @@
-from abjad.tools import componenttools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools._Pitch import _Pitch
@@ -19,6 +18,7 @@ def _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic
 
    Return named chromatic pitch.
    '''
+   from abjad.tools import componenttools
    from abjad.tools.chordtools.Chord import Chord
    from abjad.tools.notetools.Note import Note
 

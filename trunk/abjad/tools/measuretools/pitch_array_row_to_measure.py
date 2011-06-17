@@ -1,5 +1,4 @@
 from abjad.tools.measuretools.Measure import Measure
-from abjad.tools import leaftools
 from abjad.tools.metertools import Meter
 from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
 from abjad.tools import durtools
@@ -32,6 +31,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
 
    Return measure.
    '''
+   from abjad.tools import leaftools
 
    if not isinstance(pitch_array_row, PitchArrayRow):
       raise TypeError('must be pitch array row.')

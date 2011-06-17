@@ -1,4 +1,4 @@
-from abjad.components import Tuplet
+from abjad.tools.tuplettools.Tuplet import Tuplet
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 
 

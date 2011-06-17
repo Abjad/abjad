@@ -1,7 +1,6 @@
 from abjad.tools.measuretools.Measure import Measure
 from abjad.tools import metertools
 from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_skips import fill_measures_in_expr_with_full_measure_spacer_skips
-from abjad.tools.skiptools.Skip import Skip
 
 
 def make_measures_with_full_measure_spacer_skips(meters):
@@ -38,6 +37,7 @@ def make_measures_with_full_measure_spacer_skips(meters):
       renamed ``measuretools.make_rigid_measures_with_full_measure_spacer_skips( )`` to
       ``measuretools.make_measures_with_full_measure_spacer_skips( )``.
    '''
+   from abjad.tools.skiptools.Skip import Skip
 
    ## check input
    if not all([metertools.is_meter_token(meter) for meter in meters]):

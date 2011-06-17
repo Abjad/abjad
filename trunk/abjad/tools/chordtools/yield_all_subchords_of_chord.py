@@ -1,4 +1,3 @@
-from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change_defective_chord_to_note_or_rest
 
@@ -40,6 +39,7 @@ def yield_all_subchords_of_chord(chord):
       renamed ``chordtools.subchords( )`` to
       ``chordtools.yield_all_subchords_of_chord( )``.
    '''
+   from abjad.tools import componenttools
 
    len_chord = len(chord)
    for i in range(2 ** len_chord):

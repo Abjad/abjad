@@ -1,5 +1,5 @@
 from abjad.components.Container._ContainerFormatter import _ContainerFormatter
-from abjad.components.Tuplet._TupletFormatterSlotsInterface import _TupletFormatterSlotsInterface
+from abjad.tools.tuplettools.Tuplet._TupletFormatterSlotsInterface import _TupletFormatterSlotsInterface
 
 
 class _TupletFormatter(_ContainerFormatter):

@@ -1,5 +1,4 @@
 from abjad.components import Container
-from abjad.components import Tuplet
 from abjad.tools import componenttools
 
 
@@ -50,6 +49,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
       ``containertools.fuse_like_named_contiguous_containers_in_expr( )``.
    '''
    from abjad.tools import containertools
+   from abjad.tools.tuplettools.Tuplet import Tuplet
 
    merged = False
    if not isinstance(expr, list):

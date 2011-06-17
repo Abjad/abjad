@@ -1,4 +1,4 @@
-from abjad.components.Tuplet._TupletDurationInterface import _TupletDurationInterface
+from abjad.tools.tuplettools.Tuplet._TupletDurationInterface import _TupletDurationInterface
 from abjad.tools import durtools
 
 
