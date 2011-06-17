@@ -1,7 +1,7 @@
-Score
-=====
+scoretools.Score
+================
 
-.. autoclass:: abjad.Score
+.. autoclass:: abjad.tools.scoretools.Score
    :members:
    :undoc-members:
    :show-inheritance:

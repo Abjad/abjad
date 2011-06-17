@@ -1,7 +1,7 @@
-Tuplet
-======
+tuplettools.Tuplet
+==================
 
-.. autoclass:: abjad.Tuplet
+.. autoclass:: abjad.tools.tuplettools.Tuplet
    :members:
    :undoc-members:
    :show-inheritance:

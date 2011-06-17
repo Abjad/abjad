@@ -1,7 +1,7 @@
-Staff
-=====
+stafftools.Staff
+================
 
-.. autoclass:: abjad.Staff
+.. autoclass:: abjad.tools.stafftools.Staff
    :members:
    :undoc-members:
    :show-inheritance:

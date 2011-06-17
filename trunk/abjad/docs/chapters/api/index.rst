@@ -10,11 +10,6 @@ Abjad score components
    :maxdepth: 1
 
    components/Container/Container
-   components/Measure/Measure
-   components/Score/Score
-   components/Staff/Staff
-   components/Tuplet/Tuplet
-   components/Voice/Voice
 
 
 Abjad composition packages
@@ -560,6 +555,7 @@ measuretools
 
    tools/measuretools/AnonymousMeasure/AnonymousMeasure
    tools/measuretools/DynamicMeasure/DynamicMeasure
+   tools/measuretools/Measure/Measure
    tools/measuretools/append_spacer_skip_to_underfull_measure
    tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
    tools/measuretools/apply_beam_spanner_to_measure
@@ -860,6 +856,7 @@ scoretools
 
    tools/scoretools/GrandStaff/GrandStaff
    tools/scoretools/PianoStaff/PianoStaff
+   tools/scoretools/Score/Score
    tools/scoretools/StaffGroup/StaffGroup
    tools/scoretools/add_double_bar_to_end_of_score
    tools/scoretools/add_markup_to_end_of_score
@@ -1084,6 +1081,7 @@ stafftools
    :maxdepth: 1
 
    tools/stafftools/RhythmicStaff/RhythmicStaff
+   tools/stafftools/Staff/Staff
    tools/stafftools/get_first_staff_in_improper_parentage_of_component
    tools/stafftools/get_first_staff_in_proper_parentage_of_component
    tools/stafftools/iterate_staves_backward_in_expr
@@ -1133,6 +1131,7 @@ tuplettools
    :maxdepth: 1
 
    tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
+   tools/tuplettools/Tuplet/Tuplet
    tools/tuplettools/beam_bottommost_tuplets_in_expr
    tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
@@ -1159,6 +1158,7 @@ voicetools
 .. toctree::
    :maxdepth: 1
 
+   tools/voicetools/Voice/Voice
    tools/voicetools/get_first_voice_in_improper_parentage_of_component
    tools/voicetools/get_first_voice_in_proper_parentage_of_component
    tools/voicetools/iterate_semantic_voices_backward_in_expr
