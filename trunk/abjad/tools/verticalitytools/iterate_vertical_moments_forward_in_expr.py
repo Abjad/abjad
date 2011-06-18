@@ -1,4 +1,4 @@
-from abjad.components._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import _yield_vertical_moments_forward_in_expr
 from abjad.tools import durtools
 

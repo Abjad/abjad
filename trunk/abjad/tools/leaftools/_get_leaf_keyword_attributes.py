@@ -1,4 +1,4 @@
-from abjad.components._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 from abjad.exceptions import MissingSpannerError
 from abjad.exceptions import MissingTempoError
 from abjad.interfaces._Interface import _Interface

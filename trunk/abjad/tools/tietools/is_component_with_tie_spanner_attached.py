@@ -1,4 +1,4 @@
-from abjad.components._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
 

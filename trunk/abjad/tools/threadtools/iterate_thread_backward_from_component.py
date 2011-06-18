@@ -1,4 +1,4 @@
-from abjad.components._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
 from abjad.tools.threadtools.component_to_thread_signature import component_to_thread_signature
 

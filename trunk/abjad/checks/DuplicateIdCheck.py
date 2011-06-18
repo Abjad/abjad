@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.components._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 from abjad.tools import seqtools
 
 

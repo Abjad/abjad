@@ -1,4 +1,4 @@
-from abjad.components._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 
 
 def _report_component_format_contributions(component, verbose = False, output = 'screen'):

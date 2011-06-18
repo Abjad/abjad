@@ -1,4 +1,4 @@
-from abjad.components._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 

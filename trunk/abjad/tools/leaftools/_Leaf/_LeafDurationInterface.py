@@ -1,4 +1,4 @@
-from abjad.components._Component._ComponentDurationInterface import _ComponentDurationInterface
+from abjad.tools.componenttools._Component._ComponentDurationInterface import _ComponentDurationInterface
 from abjad.exceptions import AssignabilityError
 from abjad.exceptions import MissingTempoError
 from abjad.interfaces._Interface import _Interface

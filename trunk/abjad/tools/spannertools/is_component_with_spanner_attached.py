@@ -28,7 +28,7 @@ def is_component_with_spanner_attached(expr, klass = None):
 
    Return true or false.
    '''
-   from abjad.components._Component import _Component
+   from abjad.tools.componenttools._Component import _Component
 
    if isinstance(expr, _Component):
       if klass is None:

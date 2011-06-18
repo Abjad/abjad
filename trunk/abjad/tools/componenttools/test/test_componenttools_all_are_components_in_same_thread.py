@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.components._Component._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 import py.test
 
 

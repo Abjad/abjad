@@ -24,7 +24,7 @@ def is_component_with_lilypond_command_mark_attached(expr, command_name_string =
 
    Return boolean.
    '''
-   from abjad.components._Component import _Component
+   from abjad.tools.componenttools._Component import _Component
 
    if isinstance(expr, _Component):
       for mark in get_lilypond_command_marks_attached_to_component(expr):

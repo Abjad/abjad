@@ -135,7 +135,7 @@ class Spanner(_StrictComparator):
       return [(self, spanner, result)]
   
    def _initialize_components(self, components):
-      from abjad.components._Component import _Component
+      from abjad.tools.componenttools._Component import _Component
       from abjad.tools import componenttools
       from abjad.tools import leaftools
       components = components or [ ]

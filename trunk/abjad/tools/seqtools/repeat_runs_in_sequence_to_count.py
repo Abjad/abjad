@@ -1,4 +1,4 @@
-from abjad.components._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 
 
 def repeat_runs_in_sequence_to_count(sequence, indicators):

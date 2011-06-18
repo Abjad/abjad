@@ -1,4 +1,4 @@
-from abjad.components._Component._Component import _Component
+from abjad.tools.componenttools._Component import _Component
 
 
 def is_well_formed_component(expr, allow_empty_containers = True):
