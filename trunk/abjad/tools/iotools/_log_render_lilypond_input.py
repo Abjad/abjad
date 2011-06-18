@@ -1,5 +1,5 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.components._Context import _Context
+from abjad.tools.contexttools._Context import _Context
 from abjad.tools import lilyfiletools
 from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_lily_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond

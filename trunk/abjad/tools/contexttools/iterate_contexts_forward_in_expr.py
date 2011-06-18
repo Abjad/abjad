@@ -1,4 +1,4 @@
-from abjad.components._Context._Context import _Context
+from abjad.tools.contexttools._Context._Context import _Context
 
 
 def iterate_contexts_forward_in_expr(expr, start = 0, stop = None):

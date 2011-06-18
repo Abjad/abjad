@@ -225,7 +225,7 @@ class Container(_Component):
          '''
          return self._parallel
       def fset(self, expr):
-         from abjad.components._Context import _Context
+         from abjad.tools.contexttools._Context import _Context
          from abjad.tools import componenttools
          #assert isinstance(expr, (bool, type(None)))
          assert isinstance(expr, type(True))
