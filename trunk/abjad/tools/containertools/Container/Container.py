@@ -1,5 +1,5 @@
-from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
-from abjad.components.Container._ContainerFormatter import _ContainerFormatter
+from abjad.tools.containertools.Container._ContainerDurationInterface import _ContainerDurationInterface
+from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
 from abjad.components._Component._Component import _Component
 
 

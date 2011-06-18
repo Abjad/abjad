@@ -1,4 +1,4 @@
-from abjad.components.Container._ContainerDurationInterface import _ContainerDurationInterface
+from abjad.tools.containertools.Container._ContainerDurationInterface import _ContainerDurationInterface
 from abjad.tools import durtools
 
 

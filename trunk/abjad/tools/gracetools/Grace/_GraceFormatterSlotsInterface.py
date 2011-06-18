@@ -1,4 +1,4 @@
-from abjad.components.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
+from abjad.tools.containertools.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
 
 
 class _GraceFormatterSlotsInterface(_ContainerFormatterSlotsInterface):

@@ -1,4 +1,4 @@
-from abjad.components import Container
+from abjad.tools.containertools.Container import Container
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 
 

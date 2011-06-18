@@ -27,7 +27,7 @@ class _NavigationInterface(_Interface):
       '''Return a list of all components in the contents of client
       starting at the same moment as client, including client.
       '''
-      from abjad.components import Container
+      from abjad.tools.containertools.Container import Container
       result = [ ]
       client = self._client
       result.append(client)
@@ -72,7 +72,7 @@ class _NavigationInterface(_Interface):
       '''Return a list of all components in the contents of client
       stopping at the same moment as client, including client.
       '''
-      from abjad.components import Container
+      from abjad.tools.containertools.Container import Container
       result = [ ]
       client = self._client
       result.append(client)
@@ -111,7 +111,7 @@ class _NavigationInterface(_Interface):
       '''Returns the first (leftmost) leaf or leaves 
       (in case there's a parallel structure) in a tree.
       '''
-      from abjad.components import Container
+      from abjad.tools.containertools.Container import Container
       from abjad.components._Leaf import _Leaf
       client = self._client
       if isinstance(client, _Leaf):
@@ -132,7 +132,7 @@ class _NavigationInterface(_Interface):
       '''Returns the last (rightmost) leaf or leaves
       (in case there's a parallel structure) in a tree.
       '''
-      from abjad.components import Container
+      from abjad.tools.containertools.Container import Container
       from abjad.components._Leaf import _Leaf
       client = self._client
       if isinstance(client, _Leaf):
@@ -228,7 +228,7 @@ class _NavigationInterface(_Interface):
    def _next_thread(self):
       '''Returns the next threadable Container.
       '''
-      from abjad.components import Container
+      from abjad.tools.containertools.Container import Container
       from abjad.components._Leaf import _Leaf
       if not isinstance(self._client, Container):
          return None

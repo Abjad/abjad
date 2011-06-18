@@ -1,4 +1,4 @@
-from abjad.components import Container
+from abjad.tools.containertools.Container import Container
 from abjad.tools.notetools.Note import Note
 from abjad.tools.resttools.Rest import Rest
 from abjad.exceptions import AssignabilityError

@@ -1,4 +1,4 @@
-from abjad.components.Container._MultipliedContainerDurationInterface import _MultipliedContainerDurationInterface
+from abjad.tools.containertools.Container._MultipliedContainerDurationInterface import _MultipliedContainerDurationInterface
 from abjad.tools import mathtools
 from abjad.tools import durtools
 import fractions

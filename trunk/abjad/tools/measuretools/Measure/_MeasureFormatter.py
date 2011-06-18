@@ -1,4 +1,4 @@
-from abjad.components.Container._ContainerFormatter import _ContainerFormatter
+from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
 from abjad.tools.measuretools.Measure._MeasureFormatterNumberInterface import _MeasureFormatterNumberInterface
 from abjad.tools.measuretools.Measure._MeasureFormatterSlotsInterface import _MeasureFormatterSlotsInterface
 from abjad.exceptions import NonbinaryMeterSuppressionError

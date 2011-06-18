@@ -1,4 +1,4 @@
-from abjad.components import Container
+from abjad.tools.containertools.Container import Container
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools.measuretools.fuse_measures import fuse_measures

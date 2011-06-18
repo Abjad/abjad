@@ -1,4 +1,4 @@
-from abjad.components.Container._ContainerFormatter import _ContainerFormatter
+from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
 from abjad.tools.chordtools.Cluster._ClusterFormatterSlotsInterface import _ClusterFormatterSlotsInterface
 
 

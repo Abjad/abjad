@@ -14,7 +14,7 @@ def get_spanners_that_dominate_container_components_from_to(container, start, st
       ``spannertools.get_spanners_that_dominate_container_components_from_to( )``.
    '''
 
-   from abjad.components import Container
+   from abjad.tools.containertools.Container import Container
    if not isinstance(container, Container):
       raise TypeError('Must be Abjad container.')
 
