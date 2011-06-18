@@ -2,8 +2,8 @@ def _report_container_modifications(container, output):
    r'''Read-only string representation of all parts of container format except container contents.
    '''
 
-   from abjad.components.Container.Container import Container
-   assert isinstance(container, Container)
+   from abjad.tools import containertools
+   assert isinstance(container, containertools.Container)
    assert output in ('screen', 'string')
 
    result = [ ]
