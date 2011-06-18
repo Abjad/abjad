@@ -1,7 +1,7 @@
-Container
-=========
+containertools.Container
+========================
 
-.. autoclass:: abjad.Container
+.. autoclass:: abjad.tools.containertools.Container
    :members:
    :undoc-members:
    :show-inheritance:

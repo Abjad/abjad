@@ -9,7 +9,6 @@ Abjad score components
 .. toctree::
    :maxdepth: 1
 
-   components/Container/Container
 
 
 Abjad composition packages
@@ -159,6 +158,7 @@ containertools
 .. toctree::
    :maxdepth: 1
 
+   tools/containertools/Container/Container
    tools/containertools/color_contents_of_container
    tools/containertools/delete_contents_of_container
    tools/containertools/delete_contents_of_container_starting_at_or_after_prolated_offset
