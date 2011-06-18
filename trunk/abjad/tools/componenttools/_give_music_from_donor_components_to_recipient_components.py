@@ -1,5 +1,3 @@
-from abjad.tools.containertools.Container import Container
-from abjad.components._Leaf import _Leaf
 from abjad.exceptions import MusicContentsError
 from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 
@@ -18,6 +16,8 @@ def _give_music_from_donor_components_to_recipient_components(donors, recipient)
 
    Helper is not composer-safe and may cause discontiguous spanners.
    '''
+   from abjad.tools.containertools.Container import Container
+   from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools import componenttools
 
    assert componenttools.all_are_contiguous_components_in_same_parent(donors)

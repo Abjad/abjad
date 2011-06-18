@@ -1,4 +1,4 @@
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 
 
 def get_nth_leaf_in_thread_from_leaf(leaf, n = 0):

@@ -321,7 +321,7 @@ class Spanner(_StrictComparator):
          specific iteration tools.
       '''
 
-      from abjad.components._Leaf import _Leaf
+      from abjad.tools.leaftools._Leaf import _Leaf
       from abjad.tools import componenttools
       result = [ ]
       for component in self._components:

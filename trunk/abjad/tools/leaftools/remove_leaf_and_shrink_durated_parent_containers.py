@@ -1,10 +1,7 @@
-from abjad.tools.measuretools.Measure import Measure
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
 from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
-from abjad.tools.metertools import Meter
-from abjad.tools import durtools
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
@@ -55,6 +52,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
    Return none.
    '''
+   from abjad.tools.metertools import Meter
+   from abjad.tools.measuretools.Measure import Measure
    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    prolated_leaf_duration = leaf.duration.prolated

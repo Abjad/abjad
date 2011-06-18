@@ -1,5 +1,4 @@
 from abjad.tools.iotools.show import show
-from abjad.tools.scoretools.make_piano_sketch_score_from_leaves import make_piano_sketch_score_from_leaves
 
 
 def show_leaves(leaves, template = None, suppress_pdf = False):
@@ -32,6 +31,7 @@ def show_leaves(leaves, template = None, suppress_pdf = False):
 
    Return temporary piano staff score.
    """
+   from abjad.tools.scoretools.make_piano_sketch_score_from_leaves import make_piano_sketch_score_from_leaves
 
    score, treble, bass = make_piano_sketch_score_from_leaves(leaves)
    show(score, template = template, suppress_pdf = suppress_pdf)

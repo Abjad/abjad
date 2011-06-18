@@ -1,9 +1,8 @@
-from abjad.components._Leaf import _Leaf
 from abjad.tools.componenttools.component_to_score_root import component_to_score_root
 from abjad.tools.componenttools.iterate_timeline_forward_in_expr import iterate_timeline_forward_in_expr
 
 
-def iterate_timeline_forward_from_component(expr, klass = _Leaf):
+def iterate_timeline_forward_from_component(expr, klass = None):
    r'''.. versionadded:: 1.1.2
 
    Iterate timeline forward from `component`::
@@ -35,8 +34,14 @@ def iterate_timeline_forward_from_component(expr, klass = _Leaf):
       Note("e'4")
       Note("f'4")
 
+   Iterate leaves when `klass` is none.
+
    .. todo:: optimize to avoid behind-the-scenes full-score traversal.
    '''
+   from abjad.tools.leaftools._Leaf import _Leaf
+
+   if klass is None:
+      klass = _Leaf
 
    root = component_to_score_root(expr)
    component_generator = iterate_timeline_forward_in_expr(root, klass = klass)

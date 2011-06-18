@@ -1,6 +1,6 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.measuretools.Measure import Measure
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.exceptions import MeasureContiguityError
 from abjad.exceptions import MissingMeasureError
 from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component

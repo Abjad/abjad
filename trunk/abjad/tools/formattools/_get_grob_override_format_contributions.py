@@ -1,7 +1,7 @@
 def _get_grob_override_format_contributions(component):
    '''Alphabetized list of LilyPond grob overrides.
    '''
-   from abjad.components._Leaf import _Leaf
+   from abjad.tools.leaftools._Leaf import _Leaf
 
    result = [ ]
    if isinstance(component, _Leaf):

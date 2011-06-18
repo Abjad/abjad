@@ -1,4 +1,3 @@
-from abjad.tools.resttools.Rest import Rest
 from abjad.tools.durtools import Duration
 
 
@@ -42,7 +41,7 @@ def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration)
       renamed ``leaftools.shorten( )`` to
       ``leaftools.split_leaf_at_prolated_duration_and_rest_right_half( )``.
    '''
-
+   from abjad.tools.resttools.Rest import Rest
    from abjad.tools.componenttools.move_parentage_and_spanners_from_components_to_components import move_parentage_and_spanners_from_components_to_components
    from abjad.tools.componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners import split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
 

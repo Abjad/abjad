@@ -1,8 +1,3 @@
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.notetools.Note import Note
-from abjad.tools.resttools.Rest import Rest
-
-
 def color_leaf(leaf, color):
    r'''.. versionadded:: 1.1.2
 
@@ -58,6 +53,9 @@ def color_leaf(leaf, color):
 
    Return `leaf`.
    '''
+   from abjad.tools.chordtools.Chord import Chord
+   from abjad.tools.notetools.Note import Note
+   from abjad.tools.resttools.Rest import Rest
 
    ## color leaf
    if isinstance(leaf, (Note, Chord)):

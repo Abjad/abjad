@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-from abjad.components._Leaf import _Leaf
 
 
 def component_to_pitch_and_rhythm_skeleton(component):
@@ -76,6 +75,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
    Return string.
    '''
+   from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools.containertools._container_to_pitch_and_rhythm_skeleton import _container_to_pitch_and_rhythm_skeleton
    from abjad.tools.leaftools._leaf_to_pitch_and_rhythm_skeleton import _leaf_to_pitch_and_rhythm_skeleton
    

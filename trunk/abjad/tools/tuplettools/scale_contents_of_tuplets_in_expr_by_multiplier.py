@@ -1,4 +1,4 @@
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet

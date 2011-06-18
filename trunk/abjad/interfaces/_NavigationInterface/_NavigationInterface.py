@@ -112,7 +112,7 @@ class _NavigationInterface(_Interface):
       (in case there's a parallel structure) in a tree.
       '''
       from abjad.tools.containertools.Container import Container
-      from abjad.components._Leaf import _Leaf
+      from abjad.tools.leaftools._Leaf import _Leaf
       client = self._client
       if isinstance(client, _Leaf):
          return [client]
@@ -133,7 +133,7 @@ class _NavigationInterface(_Interface):
       (in case there's a parallel structure) in a tree.
       '''
       from abjad.tools.containertools.Container import Container
-      from abjad.components._Leaf import _Leaf
+      from abjad.tools.leaftools._Leaf import _Leaf
       client = self._client
       if isinstance(client, _Leaf):
          return [client]
@@ -169,7 +169,7 @@ class _NavigationInterface(_Interface):
       moving forward.
       This will only return if called on a Leaf.
       '''
-      from abjad.components._Leaf import _Leaf
+      from abjad.tools.leaftools._Leaf import _Leaf
       if not isinstance(self._client, _Leaf):
          return None
       next = self._next
@@ -229,7 +229,7 @@ class _NavigationInterface(_Interface):
       '''Returns the next threadable Container.
       '''
       from abjad.tools.containertools.Container import Container
-      from abjad.components._Leaf import _Leaf
+      from abjad.tools.leaftools._Leaf import _Leaf
       if not isinstance(self._client, Container):
          return None
       next = self._next
@@ -260,7 +260,7 @@ class _NavigationInterface(_Interface):
       This method will search the whole (parentage) structure moving back.
       This will only return if called on a Leaf.
       '''
-      from abjad.components._Leaf import _Leaf
+      from abjad.tools.leaftools._Leaf import _Leaf
       if not isinstance(self._client, _Leaf):
          return None
       prev = self._prev

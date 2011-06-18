@@ -1,5 +1,3 @@
-from abjad.tools.notetools.Note import Note
-from abjad.tools.resttools.Rest import Rest
 from abjad.tools.leaftools.make_leaves import make_leaves
 from abjad.tools import durtools
 
@@ -33,6 +31,8 @@ def make_leaves_from_note_value_signal(
 
    Return list of notes and / or rests.
    '''
+   from abjad.tools.notetools.Note import Note
+   from abjad.tools.resttools.Rest import Rest
 
    result = [ ]
 

@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 import py
 py.test.skip('skipping until clean way to pass multiline format contributions.')
 

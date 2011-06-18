@@ -1,4 +1,3 @@
-from abjad.tools.notetools.Note import Note
 from abjad.tools import componenttools
 from abjad.tools import durtools
 
@@ -7,6 +6,7 @@ def _leaf_to_tuplet_with_n_notes_of_equal_written_duration(l, divisions, prolati
    '''Divide written duration of `l` according to `divisions`
    and `prolation`.
    '''
+   from abjad.tools.notetools.Note import Note
    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    # find target duration of fixed-duration tuplet

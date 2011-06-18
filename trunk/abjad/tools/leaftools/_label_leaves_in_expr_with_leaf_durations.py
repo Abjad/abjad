@@ -1,5 +1,3 @@
-from abjad.tools import markuptools
-from abjad.tools import spannertools
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
@@ -12,6 +10,8 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down',
       renamed ``label.leaf_durations( )`` to
       ``leaftools.label_leaves_in_expr_with_leaf_duration( )``.
    '''
+   from abjad.tools import markuptools
+   from abjad.tools import spannertools
    from abjad.tools import tietools
    
    for leaf in iterate_leaves_forward_in_expr(expr):

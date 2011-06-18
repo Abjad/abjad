@@ -1,11 +1,5 @@
-from abjad.tools.containertools.Container import Container
-from abjad.components._Leaf import _Leaf
-from abjad.tools import contexttools
 from abjad.tools import durtools
-from abjad.tools import metertools
-from abjad.tools import spannertools
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
-from abjad.tools.metertools import Meter
 
 
 def _split_component_at_index(component, i, spanners = 'unfractured'):
@@ -15,6 +9,12 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
    Use containertools.split_container_at_index_and_fracture_crossing_spanners( ) to fracture spanners.
    Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners( ) to leave spanners unchanged.
    '''
+   from abjad.tools.metertools import Meter
+   from abjad.tools import metertools
+   from abjad.tools import spannertools
+   from abjad.tools import contexttools
+   from abjad.tools.containertools.Container import Container
+   from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools import measuretools
    from abjad.tools.containertools.set_container_multiplier import set_container_multiplier
    from abjad.tools.measuretools.Measure import Measure

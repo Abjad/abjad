@@ -1,4 +1,3 @@
-from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
@@ -24,6 +23,7 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
       renamed ``label.leaf_pitch_numbers( )`` to
       ``leaftools.label_leaves_in_expr_with_pitch_numbers( )``.
    '''
+   from abjad.tools import markuptools
 
    for leaf in iterate_leaves_forward_in_expr(expr):
       for pitch in reversed(pitchtools.list_named_chromatic_pitches_in_expr(leaf)):

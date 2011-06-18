@@ -1,4 +1,4 @@
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools import durtools

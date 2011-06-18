@@ -1,8 +1,6 @@
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.notetools.Note import Note
-
-
 def _leaf_to_pitch_and_rhythm_skeleton(leaf, include_keyword_attributes = False):
+   from abjad.tools.chordtools.Chord import Chord
+   from abjad.tools.notetools.Note import Note
    from abjad.tools.leaftools._get_leaf_keyword_attributes import _get_leaf_keyword_attributes
    class_name = leaf.__class__.__name__
    duration = repr(leaf.duration.written)

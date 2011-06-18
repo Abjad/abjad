@@ -1,5 +1,4 @@
 from abjad.tools import componenttools
-from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = False, 
@@ -44,6 +43,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
 
    Return none.
    '''
+   from abjad.tools import markuptools
    from abjad.tools import notetools
    from abjad.tools.notetools.Note import Note
 

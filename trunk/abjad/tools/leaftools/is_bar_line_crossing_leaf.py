@@ -1,4 +1,3 @@
-from abjad.tools import contexttools
 from abjad.tools import durtools
 
 
@@ -30,6 +29,7 @@ def is_bar_line_crossing_leaf(leaf):
 
    Return boolean.
    '''
+   from abjad.tools import contexttools
 
    meter = contexttools.get_effective_time_signature(leaf)
    partial = meter.partial

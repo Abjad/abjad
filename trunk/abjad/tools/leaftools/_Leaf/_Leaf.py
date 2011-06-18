@@ -1,5 +1,5 @@
 from abjad.components._Component._Component import _Component
-from abjad.components._Leaf._LeafDurationInterface import _LeafDurationInterface
+from abjad.tools.leaftools._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.core._StrictComparator import _StrictComparator
 import copy
 import operator

@@ -1,7 +1,5 @@
-from abjad.tools import contexttools
 from abjad.tools import durtools
 from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
-from abjad.tools.metertools import Meter
 
 
 def clone_components_and_immediate_parent_of_first_component(components):
@@ -75,6 +73,8 @@ def clone_components_and_immediate_parent_of_first_component(components):
       renamed ``clonewp.with_parent( )`` to
       ``componenttools.clone_components_and_immediate_parent_of_first_component( )``.
    '''
+   from abjad.tools.metertools import Meter
+   from abjad.tools import contexttools
    from abjad.tools import componenttools
    from abjad.tools.measuretools.Measure import Measure
 

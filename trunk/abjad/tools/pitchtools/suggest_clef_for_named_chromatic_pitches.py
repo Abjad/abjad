@@ -1,4 +1,3 @@
-from abjad.tools import contexttools
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
@@ -21,6 +20,7 @@ def suggest_clef_for_named_chromatic_pitches(pitches, clefs = ['treble', 'bass']
       renamed ``pitchtools.suggest_clef( )`` to
       ``pitchtools.suggest_clef_for_named_chromatic_pitches( )``.
    '''
+   from abjad.tools import contexttools
 
    pitches = list_named_chromatic_pitches_in_expr(pitches)
 

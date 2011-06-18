@@ -1,7 +1,6 @@
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
-from abjad.tools.spannertools import Spanner
 
 
 def list_named_chromatic_pitches_in_expr(expr):
@@ -16,6 +15,7 @@ def list_named_chromatic_pitches_in_expr(expr):
 
    Return tuple.
    '''
+   from abjad.tools.spannertools import Spanner
    from abjad.tools.resttools.Rest import Rest
    from abjad.tools import leaftools
    from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet

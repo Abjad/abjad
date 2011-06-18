@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-from abjad.tools.spannertools import Spanner
 
 
 def _report_component_format_contributions(component, verbose = False, output = 'screen'):
@@ -11,6 +10,7 @@ def _report_component_format_contributions(component, verbose = False, output = 
    
    Set `output` to 'screen' or 'string'.
    '''
+   from abjad.tools.spannertools import Spanner
 
    if isinstance(component, _Component): 
       return component._formatter.report(verbose = verbose, output = output)

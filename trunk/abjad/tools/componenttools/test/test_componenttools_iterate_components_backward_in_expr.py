@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 
 
 def test_componenttools_iterate_components_backward_in_expr_01( ):
@@ -33,7 +33,7 @@ def test_componenttools_iterate_components_backward_in_expr_04( ):
 def test_componenttools_iterate_components_backward_in_expr_05( ):
    '''Yield leaves based on names higher in inheritence hierarchy.'''
    t = Staff(tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   from abjad.components._Leaf import _Leaf
+   from abjad.tools.leaftools._Leaf import _Leaf
    iter = componenttools.iterate_components_backward_in_expr(t, _Leaf)
    assert len(list(iter)) == 9
 

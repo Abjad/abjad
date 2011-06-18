@@ -1,16 +1,16 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.notetools.Note import Note
-from abjad.tools.resttools.Rest import Rest
-
-
-def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = Note, 
-   direction = 'big-endian'):
+def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = None, direction = 'big-endian'):
    '''Fuse leaves in `container` once by `counts` into `direction`-oriented
    instances of `target_type`.
    '''
+   from abjad.tools.containertools.Container import Container
+   from abjad.tools.notetools.Note import Note
+   from abjad.tools.resttools.Rest import Rest
    from abjad.tools import componenttools
    from abjad.tools import notetools
    from abjad.tools import resttools
+
+   if target_type is None:
+      target_type = Note
 
    ## assert input types
    assert isinstance(container, Container)

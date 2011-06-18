@@ -1,4 +1,4 @@
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.exceptions import MissingSpannerError
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner

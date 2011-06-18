@@ -1,9 +1,6 @@
-from abjad.tools.notetools.Note import Note
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools import componenttools
-from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools import threadtools
 
 
 def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(
@@ -30,6 +27,9 @@ def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(
 
    Return none.
    """
+   from abjad.tools import threadtools
+   from abjad.tools import markuptools
+   from abjad.tools.notetools.Note import Note
 
    for note in componenttools.iterate_components_forward_in_expr(expr, Note):
       thread_iterator = threadtools.iterate_thread_forward_from_component(note, _Leaf)

@@ -1,5 +1,4 @@
 from abjad.tools import durtools
-from abjad.tools.tietools import TieSpanner
 
 
 def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None, tied=True):
@@ -20,6 +19,7 @@ def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None, tied=T
    `tied`
       True to return tied leaves, False otherwise. Defaults to True.
    '''
+   from abjad.tools.tietools import TieSpanner
 
    result = [ ]
    for wd in durtools.duration_token_to_big_endian_list_of_assignable_duration_pairs(dur):

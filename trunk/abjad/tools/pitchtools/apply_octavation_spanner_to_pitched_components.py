@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
-from abjad.tools.spannertools import OctavationSpanner
 
 
 ## TODO: rename to apply_octavation_spanner_to_pitched_components_in_expr
@@ -31,6 +30,7 @@ def apply_octavation_spanner_to_pitched_components(expr,
 
    Return octavation spanner.
    """
+   from abjad.tools.spannertools import OctavationSpanner
 
    pitches = list_named_chromatic_pitches_in_expr(expr)
    max_pitch = max(pitches)

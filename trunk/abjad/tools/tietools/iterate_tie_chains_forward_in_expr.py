@@ -44,7 +44,7 @@ def iterate_tie_chains_forward_in_expr(expr):
       renamed ``iterate.tie_chains_forward_in_expr( )`` to
       ``tietools.iterate_tie_chains_forward_in_expr( )``.
    '''
-   from abjad.components._Leaf import _Leaf
+   from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
    for leaf in iterate_leaves_forward_in_expr(expr):

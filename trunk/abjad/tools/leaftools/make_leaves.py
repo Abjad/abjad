@@ -1,5 +1,4 @@
 from __future__ import division
-from abjad.tools.tuplettools.Tuplet import Tuplet
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
@@ -97,6 +96,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
       renamed ``construct.leaves( )`` to
       ``leaftools.make_leaves( )``.
    '''
+   from abjad.tools.tuplettools.Tuplet import Tuplet
 
    def _make_leaf_on_pitch(pch, ds, direction):
       if isinstance(pch, (int, long, float, NamedChromaticPitch)):

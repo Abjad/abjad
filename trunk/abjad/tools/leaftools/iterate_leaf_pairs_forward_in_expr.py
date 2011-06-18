@@ -1,5 +1,4 @@
 from abjad.tools import seqtools
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 
 
 def iterate_leaf_pairs_forward_in_expr(expr):
@@ -58,6 +57,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
 
    Return generator.
    '''
+   from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 
    vertical_moments = iterate_vertical_moments_forward_in_expr(expr)
    for moment_1, moment_2 in seqtools.iterate_sequence_pairwise_strict(vertical_moments):

@@ -1,13 +1,3 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.voicetools.Voice import Voice
-from abjad.exceptions import MissingSpannerError
-from abjad.tools import contexttools
-from abjad.tools import marktools
-from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
-from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
-from abjad.tools.spannertools import BeamSpanner
-from abjad.tools.spannertools import SlurSpanner
-from abjad.tools.tietools import TieSpanner
 import re
 
 
@@ -26,6 +16,16 @@ def parse_lilypond_input_string(note_entry_string):
 
    Do not parse tuplets, measures or other complex LilyPond input.
    '''
+   from abjad.tools.containertools.Container import Container
+   from abjad.tools.voicetools.Voice import Voice
+   from abjad.exceptions import MissingSpannerError
+   from abjad.tools import contexttools
+   from abjad.tools import marktools
+   from abjad.tools.lilyfiletools._parse_chord_entry_token import _parse_chord_entry_token
+   from abjad.tools.lilyfiletools._parse_note_entry_token import _parse_note_entry_token
+   from abjad.tools.spannertools import BeamSpanner
+   from abjad.tools.spannertools import SlurSpanner
+   from abjad.tools.tietools import TieSpanner
    from abjad.tools import componenttools
    from abjad.tools import leaftools
    from abjad.tools import spannertools

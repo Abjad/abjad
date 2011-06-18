@@ -1,4 +1,3 @@
-from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.leaftools._construct_tied_leaf import _construct_tied_leaf
 
 
@@ -7,4 +6,5 @@ def _construct_tied_chord(pitches, dur, direction='big-endian'):
       Chords returned are Tie spanned.
    '''
 
+   from abjad.tools.chordtools.Chord import Chord
    return _construct_tied_leaf(Chord, dur, direction, pitches)

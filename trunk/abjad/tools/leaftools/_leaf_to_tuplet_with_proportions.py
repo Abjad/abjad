@@ -1,16 +1,15 @@
-from abjad.tools.notetools.Note import Note
 from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.tools.notetools.make_notes import make_notes
-from abjad.tools import durtools
 
 
 def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
    '''Divide written duration of `l` according to `divisions`
    and `prolation`.
    '''
+   from abjad.tools.notetools.make_notes import make_notes
+   from abjad.tools.notetools.Note import Note
    from abjad.tools.tuplettools import FixedDurationTuplet
    from abjad.tools import tuplettools
 

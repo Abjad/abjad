@@ -1,6 +1,4 @@
-from abjad.components._Leaf import _Leaf
-from abjad.tools import contexttools
-from abjad.tools.tietools import TieSpanner
+from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools import durtools
 
 
@@ -11,6 +9,8 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
    Interpret boolean tie_after keyword as 'add tie after split'.
    Return value is always uniformly a pair of lists.
    '''
+   from abjad.tools import contexttools
+   from abjad.tools.tietools import TieSpanner
    from abjad.tools import componenttools
    from abjad.tools import spannertools
    from abjad.tools import tietools

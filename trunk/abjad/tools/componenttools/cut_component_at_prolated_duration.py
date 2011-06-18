@@ -1,5 +1,4 @@
 from abjad.components._Component import _Component
-from abjad.components._Leaf import _Leaf
 from abjad.exceptions import NegativeDurationError
 from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most import list_leftmost_components_with_prolated_duration_at_most
 from abjad.tools import durtools
@@ -58,6 +57,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
 
    Return none.
    '''
+   from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools import leaftools
 
    assert isinstance(component, _Component)

@@ -1,5 +1,3 @@
-from abjad.tools.containertools.Container import Container
-from abjad.components._Leaf import _Leaf
 from abjad.exceptions import ContiguityError
 
 
@@ -59,6 +57,8 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
       renamed ``clonewp.by_leaf_range_with_parentage( )`` to
       ``componenttools.clone_governed_component_subtree_by_leaf_range( )``.
    '''
+   from abjad.tools.containertools.Container import Container
+   from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools import leaftools
    from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
 

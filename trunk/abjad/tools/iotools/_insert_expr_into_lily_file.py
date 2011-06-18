@@ -1,10 +1,10 @@
-from abjad.tools.contexttools._Context import _Context
 from abjad.tools import lilyfiletools
 from abjad.tools import markuptools
 from abjad.tools.iotools._template_name_to_template_path import _template_name_to_template_path
 
 
 def _insert_expr_into_lily_file(expr, template = None, tagline = False):
+   from abjad.tools.contexttools._Context import _Context
 
    if isinstance(expr, lilyfiletools.LilyFile):
       lily_file = expr

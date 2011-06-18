@@ -1,7 +1,3 @@
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.notetools.Note import Note
-
-
 def yield_groups_of_mixed_notes_and_chords_in_sequence(sequence):
    r'''.. versionadded:: 1.1.2
 
@@ -38,6 +34,8 @@ def yield_groups_of_mixed_notes_and_chords_in_sequence(sequence):
 
    Return generator.
    '''
+   from abjad.tools.chordtools.Chord import Chord
+   from abjad.tools.notetools.Note import Note
    from abjad.tools import componenttools
 
    return componenttools.yield_groups_of_mixed_klasses_in_sequence(sequence, (Note, Chord))

@@ -1,6 +1,3 @@
-from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners import _withdraw_components_in_expr_from_attached_spanners
-
-
 def remove_component_subtree_from_score_and_spanners(components):
    r'''.. versionadded:: 1.1.1
 
@@ -100,6 +97,7 @@ def remove_component_subtree_from_score_and_spanners(components):
       renamed ``componenttools.detach( )`` to
       ``componenttools.remove_component_subtree_from_score_and_spanners( )``.
    '''
+   from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners import _withdraw_components_in_expr_from_attached_spanners
    from abjad.tools import componenttools
 
    assert componenttools.all_are_components(components)

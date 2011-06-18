@@ -1,5 +1,3 @@
-from abjad.tools.containertools.Container import Container
-from abjad.components._Leaf import _Leaf
 from abjad.exceptions import ContainmentError
 from abjad.tools import durtools
 from abjad.tools import mathtools
@@ -13,7 +11,8 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
    Works on leaves, tuplets, measures, context and unqualified containers.
    Keyword controls spanner behavior at split-time.
    '''
-
+   from abjad.tools.containertools.Container import Container
+   from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools import leaftools
    from abjad.tools import measuretools
    from abjad.tools import spannertools

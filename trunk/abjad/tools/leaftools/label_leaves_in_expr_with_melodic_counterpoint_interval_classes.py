@@ -1,8 +1,5 @@
-from abjad.tools.notetools.Note import Note
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools import componenttools
-from abjad.tools import markuptools
-from abjad.tools import threadtools
 
 
 def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup_direction = 'up'):
@@ -28,6 +25,9 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup
 
    Return none.
    """
+   from abjad.tools import markuptools
+   from abjad.tools import threadtools
+   from abjad.tools.notetools.Note import Note
    from abjad.tools import pitchtools
    
    for note in componenttools.iterate_components_forward_in_expr(expr, Note):

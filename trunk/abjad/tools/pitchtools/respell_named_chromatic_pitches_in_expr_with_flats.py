@@ -1,4 +1,3 @@
-from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
 from abjad.tools.pitchtools.chromatic_pitch_number_to_octave_number import chromatic_pitch_number_to_octave_number
@@ -46,6 +45,7 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
       renamed ``pitchtools.make_flat( )`` to
       ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( )``.
    '''
+   from abjad.tools.chordtools.Chord import Chord
    from abjad.tools import leaftools
 
 

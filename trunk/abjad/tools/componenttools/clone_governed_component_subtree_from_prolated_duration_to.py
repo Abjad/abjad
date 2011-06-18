@@ -1,7 +1,4 @@
-from abjad.tools.containertools.Container import Container
 from abjad.components._Component import _Component
-from abjad.components._Leaf import _Leaf
-from abjad.tools import durtools
 from abjad.tools import durtools
 
 
@@ -97,6 +94,8 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
 
    Return (untrimmed_copy, first_dif, second_dif).
    '''
+   from abjad.tools.leaftools._Leaf import _Leaf
+   from abjad.tools.containertools.Container import Container
    assert isinstance(component, _Component)
    start = durtools.Duration(*durtools.duration_token_to_duration_pair(start))
    if start < 0:

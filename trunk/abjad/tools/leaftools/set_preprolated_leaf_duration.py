@@ -1,10 +1,6 @@
-from abjad.tools.tuplettools.Tuplet import Tuplet
-from abjad.components._Leaf import _Leaf
+from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
-from abjad.tools import spannertools
-from abjad.tools import tietools
-from abjad.tools.notetools.make_notes import make_notes
 from abjad.tools import durtools
 
    
@@ -92,6 +88,10 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
       renamed ``leaftools.change_leaf_preprolated_duration( )`` to
       ``leaftools.set_preprolated_leaf_duration( )``.
    '''
+   from abjad.tools import tietools
+   from abjad.tools.notetools.make_notes import make_notes
+   from abjad.tools import spannertools
+   from abjad.tools.tuplettools.Tuplet import Tuplet
    from abjad.tools import componenttools
 
    assert isinstance(leaf, _Leaf)

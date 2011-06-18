@@ -1,5 +1,4 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.tools.contexttools._Context import _Context
 from abjad.tools import lilyfiletools
 from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_lily_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
@@ -21,6 +20,7 @@ def _log_render_lilypond_input(expr, template = None):
       Returns triple of name of file created, Abjad format time,
       LilyPond render time.
    '''
+   from abjad.tools.contexttools._Context import _Context
 
    lily_time = 10
    format_time = 10

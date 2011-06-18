@@ -1,6 +1,3 @@
-from abjad.tools.resttools.Rest import Rest
-
-
 def remove_terminal_rests_from_sequence(sequence):
    r'''.. versionadded:: 1.1.2
 
@@ -39,6 +36,7 @@ def remove_terminal_rests_from_sequence(sequence):
 
    Return list.
    '''
+   from abjad.tools.resttools.Rest import Rest
 
    result = [ ]
    found_nonrest = False
