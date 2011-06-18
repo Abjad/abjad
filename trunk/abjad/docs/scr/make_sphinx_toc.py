@@ -44,18 +44,18 @@ def make_sphinx_toc( ):
    result += '.. toctree::'
    result += '\n\n'
 
-   section_title = 'Abjad score components'
-   result += '%s\n' % section_title
-   result += '-' * (len(section_title))
-   result += '\n\n'
-   result += '.. toctree::\n'
-   result += '   :maxdepth: 1\n'
-   result += '\n'
-   for name in klasses:
-      if not name['name'].startswith('_'):
-         doc_path = _module_path_to_doc_path(name['module'])
-         result += '   %s\n' % doc_path
-   result += '\n\n'
+#   section_title = 'Abjad score components'
+#   result += '%s\n' % section_title
+#   result += '-' * (len(section_title))
+#   result += '\n\n'
+#   result += '.. toctree::\n'
+#   result += '   :maxdepth: 1\n'
+#   result += '\n'
+#   for name in klasses:
+#      if not name['name'].startswith('_'):
+#         doc_path = _module_path_to_doc_path(name['module'])
+#         result += '   %s\n' % doc_path
+#   result += '\n\n'
   
    ## separate autoloading tools packages from manually loading tools packages
    tools.sort(lambda x, y: cmp(x['module'], y['module']))

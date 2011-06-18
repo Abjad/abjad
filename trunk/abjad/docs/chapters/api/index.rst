@@ -3,14 +3,6 @@ Abjad API
 
 .. toctree::
 
-Abjad score components
-----------------------
-
-.. toctree::
-   :maxdepth: 1
-
-
-
 Abjad composition packages
 --------------------------
 
