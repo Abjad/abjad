@@ -14,7 +14,6 @@ from abjad.tools.stafftools import Staff
 from abjad.tools.tuplettools import Tuplet
 from abjad.tools.voicetools import Voice
 from fractions import Fraction
-import macros
 import os
 import sys
 
