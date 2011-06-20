@@ -5,7 +5,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
    '''Excise leaf from tuplet and rigid measure.'''
 
    t = Measure((4, 4), tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -50,7 +50,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02( ):
    '''Excise leaf from tuplet and measure.'''
 
    t = Measure((4, 4), tuplettools.FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -107,7 +107,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03( ):
       tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
    
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -667,7 +667,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21( ):
       tuplettools.FixedDurationTuplet((1, 4), [
          tuplettools.FixedDurationTuplet((1, 4), [Note(0, (1, 4))])])])
 
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \times 2/3 {
@@ -703,7 +703,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
       tuplettools.FixedDurationTuplet((1, 4), [
          tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 2)])])
 
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \times 2/3 {

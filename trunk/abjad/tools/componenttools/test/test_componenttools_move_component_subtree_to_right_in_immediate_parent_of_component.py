@@ -172,7 +172,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
    '''Donate from note to rest.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t.leaves)   
 
    r'''
@@ -222,7 +222,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
    '''Donate from note to tuplet.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.GlissandoSpanner(t[:])
    spannertools.BeamSpanner(t.leaves)   
 

@@ -6,7 +6,7 @@ def component_to_score_index(component):
       abjad> staff_1 = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> staff_2 = Staff([tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))])
       abjad> score = Score([staff_1, staff_2])
-      abjad> macros.diatonicize(score)      
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)      
       abjad> f(score)
       \new Score <<
               \new Staff {

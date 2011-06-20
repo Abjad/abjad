@@ -6,7 +6,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split leaf in score and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -56,7 +56,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split measure in score and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -108,7 +108,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split staff outside of score and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -169,7 +169,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Test comes from a bug fix.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -217,7 +217,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Test results from bug fix.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -266,7 +266,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    '''Duration split container between leaves and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -335,7 +335,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Tie leaves after split.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -387,7 +387,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Tie leaves after split.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -442,7 +442,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    py.test.skip('fix broken split test.')
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -500,7 +500,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    py.test.skip('fix broken split test.')
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -664,7 +664,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Leaves remain unaltered.'''
 
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
@@ -717,7 +717,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Leaf written durations stay the same but multipliers change.'''
 
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
@@ -773,7 +773,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    py.test.skip('infinite loop?')
 
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
@@ -874,7 +874,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
    t = Staff([Measure((15, 80), notetools.make_notes(
       0, [Duration(1, 32)] * 7 + [Duration(1, 64)]))])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.SlurSpanner(t.leaves)
 

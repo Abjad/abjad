@@ -5,7 +5,7 @@ def test_Spanner___getitem___01( ):
    '''Get at nonnegative index in spanner.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''
@@ -32,7 +32,7 @@ def test_Spanner___getitem___02( ):
    '''Get at negative index in spanner.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''
@@ -59,7 +59,7 @@ def test_Spanner___getitem___03( ):
    '''Get slice from spanner.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''
@@ -87,7 +87,7 @@ def test_Spanner___getitem___04( ):
       Equivalent to p.clear( ).'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''

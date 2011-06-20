@@ -7,7 +7,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
    t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
    tuplet = t[1]
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[:])
 
    r'''
@@ -57,7 +57,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
    spannertools.BeamSpanner(t[:])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {
@@ -111,7 +111,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
    m = t[1]
    spannertools.BeamSpanner(t[:])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {
@@ -278,7 +278,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    '''Index split measure in score and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) 
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    slur = spannertools.SlurSpanner(t.leaves)
@@ -326,7 +326,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    '''Index split left of leaf in score and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) 
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    slur = spannertools.SlurSpanner(t.leaves)
@@ -374,7 +374,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    '''Index split right of leaf in score and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) 
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    slur = spannertools.SlurSpanner(t.leaves)

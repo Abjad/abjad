@@ -11,7 +11,7 @@ def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_01( ):
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    contexttools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
-   macros.diatonicize(list(reversed(score.leaves)))   
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))   
 
    r'''
    \new Score <<
@@ -67,7 +67,7 @@ def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_02( ):
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    contexttools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
-   macros.diatonicize(list(reversed(score.leaves)))   
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))   
 
    r'''
    \new Score <<

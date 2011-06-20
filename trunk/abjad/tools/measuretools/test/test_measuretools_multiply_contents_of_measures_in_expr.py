@@ -30,7 +30,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_02( ):
    '''Spin multiples measures out twice each.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    
    r'''
    \new Staff {

@@ -7,7 +7,7 @@ def test_measuretools_apply_durated_complex_beam_spanner_to_measures_01( ):
    '''
 
    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(staff)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    r'''
    \new Staff {

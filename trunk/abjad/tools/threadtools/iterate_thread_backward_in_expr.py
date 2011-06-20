@@ -15,7 +15,7 @@ def iterate_thread_backward_in_expr(expr, klass, thread_signature):
       abjad> container[0].name = 'voice 1'
       abjad> container[1].name = 'vocie 2'
       abjad> staff = Staff(container * 2)
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {
               <<

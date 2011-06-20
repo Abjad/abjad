@@ -14,7 +14,7 @@ def all_are_thread_contiguous_components(expr, klasses = None, allow_orphans = T
       t.insert(2, Voice(notetools.make_repeated_notes(2)))
       Container(t[:2])
       Container(t[-2:])
-      macros.diatonicize(t)
+      pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
       \new Voice {
          {

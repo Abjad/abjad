@@ -10,7 +10,7 @@ def test_Measure_bar_line_override_01( ):
    '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t._formatter.number.measures = 'comment'
    t[0].bar_line.kind = '||'
    t[0].override.staff.bar_line.color = 'red'

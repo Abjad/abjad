@@ -10,7 +10,7 @@ def test_threadtools_iterate_thread_backward_from_component_01( ):
    container[0].name = 'voice 1'
    container[1].name = 'vocie 2'
    staff = Staff(container * 2)
-   macros.diatonicize(staff)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    r'''
    \new Staff {
@@ -57,7 +57,7 @@ def test_threadtools_iterate_thread_backward_from_component_02( ):
    container[0].name = 'voice 1'
    container[1].name = 'vocie 2'
    staff = Staff(container * 2)
-   macros.diatonicize(staff)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    r'''
    \new Staff {

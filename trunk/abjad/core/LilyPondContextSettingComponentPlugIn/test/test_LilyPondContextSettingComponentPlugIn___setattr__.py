@@ -70,7 +70,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___04( ):
    '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].set.score.current_bar_number = 12
 
    r'''

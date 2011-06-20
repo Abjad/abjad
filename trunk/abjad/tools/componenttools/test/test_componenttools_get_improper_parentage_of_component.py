@@ -7,7 +7,7 @@ def test_componenttools_get_improper_parentage_of_component_01( ):
    '''
 
    t = Score([Staff(Container(notetools.make_repeated_notes(2)) * 2)])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Score <<
@@ -40,7 +40,7 @@ def test_componenttools_get_improper_parentage_of_component_02( ):
       in the parentage of container t, including t.'''
 
    t = Score([Staff(Container(notetools.make_repeated_notes(2)) * 2)])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Score <<

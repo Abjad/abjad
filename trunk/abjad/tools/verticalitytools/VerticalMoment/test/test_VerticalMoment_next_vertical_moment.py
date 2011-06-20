@@ -11,7 +11,7 @@ def test_VerticalMoment_next_vertical_moment_01( ):
    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
    contexttools.ClefMark('bass')(piano_staff[1])
    score.append(piano_staff)
-   macros.diatonicize(list(reversed(score.leaves)))
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
 
    r'''
    \new Score <<

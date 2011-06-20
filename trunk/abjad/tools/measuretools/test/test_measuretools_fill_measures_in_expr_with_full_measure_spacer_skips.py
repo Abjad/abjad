@@ -25,7 +25,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02( )
       Iteration control tests index of iteration.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

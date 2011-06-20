@@ -8,7 +8,7 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
    Partition `components` cyclically by prolated `durations` and fracture spanners::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> spannertools.BeamSpanner(staff[0])
       BeamSpanner(|2/8(2)|)
       abjad> spannertools.BeamSpanner(staff[1])

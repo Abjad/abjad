@@ -7,7 +7,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -58,7 +58,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -110,7 +110,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -167,7 +167,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -269,7 +269,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
    measures = Measure((2, 8), notetools.make_repeated_notes(2)) * 2
    spannertools.BeamSpanner(measures[0])
    spannertools.BeamSpanner(measures[1])
-   macros.diatonicize(measures)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(measures)
 
    durations = [Duration(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(measures, durations)
@@ -324,7 +324,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners. Do add tie after each split.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -377,7 +377,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners. Do add tie after each leaf split.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -431,7 +431,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners. Do add tie after each leaf split.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -493,7 +493,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
       Do not fracture spanners. Do add tie after each leaf split.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)

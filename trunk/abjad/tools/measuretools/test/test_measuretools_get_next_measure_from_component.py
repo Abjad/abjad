@@ -6,7 +6,7 @@ def test_measuretools_get_next_measure_from_component_01( ):
    
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    Container(t[:2])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

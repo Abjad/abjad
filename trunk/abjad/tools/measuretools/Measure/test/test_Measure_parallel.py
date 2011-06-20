@@ -14,7 +14,7 @@ def test_Measure_parallel_01( ):
    marktools.LilyPondCommandMark('voiceTwo')(measure[1])
      
    t = Staff([measure])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

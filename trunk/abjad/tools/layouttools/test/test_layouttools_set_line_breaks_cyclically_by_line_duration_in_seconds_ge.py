@@ -8,7 +8,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
    Add line break after every total less than or equal to line_duration.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    contexttools.TempoMark(Duration(1, 8), 44)(t)
 
    r'''

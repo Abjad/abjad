@@ -7,7 +7,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_01( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[0][:])
    slur = spannertools.SlurSpanner(t[1][:])
    trill = spannertools.TrillSpanner(t.leaves)
@@ -42,7 +42,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_02( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[0][:])
    slur = spannertools.SlurSpanner(t[1][:])
    trill = spannertools.TrillSpanner(t.leaves)
@@ -91,7 +91,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[0][:])
    slur = spannertools.SlurSpanner(t[1][:])
    trill = spannertools.TrillSpanner(t.leaves)

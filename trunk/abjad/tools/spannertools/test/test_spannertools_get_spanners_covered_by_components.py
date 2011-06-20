@@ -7,7 +7,7 @@ def test_spannertools_get_spanners_covered_by_components_01( ):
       by the time bounds of thread-contiguous components.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[0][:])
    slur = spannertools.SlurSpanner(t[1][:])
    trill = spannertools.TrillSpanner(t.leaves)

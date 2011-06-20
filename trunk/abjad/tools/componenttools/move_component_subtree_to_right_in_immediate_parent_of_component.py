@@ -42,7 +42,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
       abjad> voice = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> spannertools.BeamSpanner(voice.leaves[:4])
       BeamSpanner(c'8, c'8, c'8, c'8)
-      abjad> macros.diatonicize(voice)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       abjad> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[0])
       abjad> f(voice)
       \new Voice {

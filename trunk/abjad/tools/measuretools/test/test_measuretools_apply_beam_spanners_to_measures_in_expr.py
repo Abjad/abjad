@@ -5,7 +5,7 @@ def test_measuretools_apply_beam_spanners_to_measures_in_expr_01( ):
    '''Beam all measures in expr with plain old Beam spanner.'''
 
    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(staff)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    r'''
    \new Staff {

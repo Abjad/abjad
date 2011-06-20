@@ -9,7 +9,7 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
    Set ascending named diatonic pitches on nontied pitched components in `expr`::
 
       abjad> staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    ::
 

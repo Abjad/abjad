@@ -10,7 +10,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
       abjad> measure = Measure((6, 16), [tuplet])   
       abjad> staff = Staff([measure])   
       abjad> score = Score(staff * 2)   
-      abjad> macros.diatonicize(score)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
 
    ::
 

@@ -10,7 +10,7 @@ def test_componenttools_clone_components_and_covered_spanners_01( ):
    '''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t.leaves[:4])
    slur = spannertools.SlurSpanner(t[-2:])
 
@@ -63,7 +63,7 @@ def test_componenttools_clone_components_and_covered_spanners_01( ):
 def test_componenttools_clone_components_and_covered_spanners_02( ):
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t.leaves[:4])
    slur = spannertools.SlurSpanner(t[-2:])
 
@@ -124,7 +124,7 @@ def test_componenttools_clone_components_and_covered_spanners_03( ):
    '''With optional 'n' argument for multiple copies.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t.leaves[:4])
    slur = spannertools.SlurSpanner(t[-2:])
 

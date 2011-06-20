@@ -9,7 +9,7 @@ def iterate_tie_chains_backward_in_expr(expr):
       abjad> notes = notetools.make_notes([0], [(5, 16), (1, 8), (1, 8), (5, 16)])
       abjad> staff = Staff(notes)
       abjad> tuplet = tuplettools.FixedDurationTuplet((2, 16), staff[1:3])
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> print staff.format
       \new Staff {
               c'4 ~

@@ -44,7 +44,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
       abjad> measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
       abjad> measure.is_parallel = True
       abjad> t = Staff(measure * 2)
-      abjad> macros.diatonicize(t)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64)) # doctest: +SKIP
 
    ::

@@ -5,7 +5,7 @@ import py.test
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_01( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -53,7 +53,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_02( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -104,7 +104,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_03( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -164,7 +164,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
       Do not fracture spanners. But do tie after split.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -215,7 +215,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
       Do not fracture spanners. But do add tie after split.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -270,7 +270,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    py.test.skip('fix this instance of splitting.')
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -329,7 +329,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    py.test.skip('fix this broken split test.')
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)

@@ -13,7 +13,7 @@ class FixedStaffPositioning(_StrictComparator, _Immutable):
    ::
 
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-      abjad> macros.diatonicize(t)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))      
 
       \new Staff {

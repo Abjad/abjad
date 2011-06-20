@@ -13,7 +13,7 @@ def fuse_measures(measures):
 
       abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
       abjad> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Duration(1, 16))
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> spannertools.BeamSpanner(staff.leaves)
       BeamSpanner(c'16, d'16, e'16, f'16)
       abjad> f(staff)

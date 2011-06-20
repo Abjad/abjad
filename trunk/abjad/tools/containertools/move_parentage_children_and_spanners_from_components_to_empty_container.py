@@ -9,7 +9,7 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(dono
    r'''Move parentage, children and spanners from `components` to empty `container`::
 
       abjad> voice = Voice(Container("c'8 c'8") * 3)
-      abjad> macros.diatonicize(voice)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       abjad> spannertools.BeamSpanner(voice.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
 

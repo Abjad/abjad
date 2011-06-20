@@ -6,7 +6,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    '''Move parentage, children and spanners from multiple containers to empty tuplet.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t.leaves)
 
    r'''
@@ -53,7 +53,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
    t.name = 'foo'
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.GlissandoSpanner(t[:])
    spannertools.BeamSpanner(t.leaves)
    
@@ -103,7 +103,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    '''Move parentage, children and spanners from container to empty tuplet.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.GlissandoSpanner(t[:])
    spannertools.BeamSpanner(t.leaves)
    
@@ -154,7 +154,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    spannertools.BeamSpanner(t[:])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    assert py.test.raises(TypeError, 
       'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], Note(4, (1, 4)))')
@@ -166,7 +166,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
    spannertools.BeamSpanner(t[:])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
    assert py.test.raises(MusicContentsError, 
@@ -178,7 +178,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    raises exception.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t.leaves)
 
    r'''

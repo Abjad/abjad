@@ -12,7 +12,7 @@ def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
    Return split parts::
 
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-      abjad> macros.diatonicize(t)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> spannertools.BeamSpanner(t[0])
       BeamSpanner(|2/8(2)|)
       abjad> spannertools.BeamSpanner(t[1])

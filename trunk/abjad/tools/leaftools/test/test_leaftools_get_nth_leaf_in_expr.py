@@ -5,7 +5,7 @@ def test_leaftools_get_nth_leaf_in_expr_01( ):
    '''Read forwards for positive n.'''
 
    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(staff)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    r'''
    \new Staff {
@@ -39,7 +39,7 @@ def test_leaftools_get_nth_leaf_in_expr_02( ):
    '''Read backwards for negative n.'''
 
    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(staff)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
    r'''
    \new Staff {

@@ -111,7 +111,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
    notes = notetools.make_repeated_notes(2)
    outer = tuplettools.FixedDurationTuplet((2, 8), [inner] + notes)
    t = Measure((2, 8), [outer])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {

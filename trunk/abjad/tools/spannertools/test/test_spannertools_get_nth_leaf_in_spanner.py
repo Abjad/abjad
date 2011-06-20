@@ -5,7 +5,7 @@ import py.test
 def test_spannertools_get_nth_leaf_in_spanner_01( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''

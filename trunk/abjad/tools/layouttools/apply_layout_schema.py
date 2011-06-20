@@ -24,7 +24,7 @@ def apply_layout_schema(expr, layout_schema,
    ::
 
       abjad> score = Score(2 * Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4))
-      abjad> macros.diatonicize(score)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
       abjad> schema = layouttools.LayoutSchema(Duration(4, 8), (40, 5, 1), (15, ))
       abjad> layouttools.apply_layout_schema(score[0], schema)
       abjad> f(score)

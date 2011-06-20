@@ -7,7 +7,7 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
 
       abjad> voice = Voice(tuplettools.FixedDurationTuplet((2, 8), "c'8 c'8 c'8") * 2)
       abjad> tuplet = voice[1]
-      abjad> macros.diatonicize(voice)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       abjad> beam = spannertools.BeamSpanner(voice[:])
 
    ::

@@ -36,7 +36,7 @@ def test_componenttools_all_are_contiguous_components_in_same_score_02( ):
       True across container boundaries.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {

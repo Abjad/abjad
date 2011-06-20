@@ -30,7 +30,7 @@ def test_FixedDurationTuplet_color_02( ):
    tuplettools.FixedDurationTuplet.color = True
    t = tuplettools.FixedDurationTuplet((3, 8), tuplettools.FixedDurationTuplet((2, 8), 
       "c'8 d'8") * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \fraction \times 3/4 {

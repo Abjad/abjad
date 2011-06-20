@@ -9,7 +9,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
    List improper contents of `component` that cross `prolated_offset`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {
          {

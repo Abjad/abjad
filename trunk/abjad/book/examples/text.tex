@@ -7,7 +7,7 @@
 This is a line of text. \textbf{Abjad} code follows:
 
 <abjad>
-v = Voice(notetools.make_repeated_notes(8))
+v = Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 print v
 f(v)
 </abjad>
@@ -23,7 +23,6 @@ write_ly(v, 'example1', 'oedo') <hide
 Here is paragraph 3, and more \textbf{Abjad} code.
 
 <abjad>
-macros.diatonicize(v)
 for leaf in v: print leaf
 spannertools.TrillSpanner(v[2:])
 show(v)

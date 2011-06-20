@@ -13,7 +13,7 @@ def test_HiddenStaffSpanner___init___02( ):
    '''Hide staff around one measure.'''
 
    t = Staff(Measure((2, 8), "c'8 d'8") * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

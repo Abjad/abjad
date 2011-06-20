@@ -20,7 +20,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
       abjad> contexttools.ClefMark('bass')(piano_staff[1])
       ClefMark('bass')(Staff{4})
       abjad> score.append(piano_staff)
-      abjad> macros.diatonicize(list(reversed(score.leaves)))  
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))  
       abjad> f(score)
       \new Score <<
               \new Staff {

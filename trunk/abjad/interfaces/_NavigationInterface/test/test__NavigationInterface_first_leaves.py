@@ -17,7 +17,7 @@ def test__NavigationInterface_first_leaves_02( ):
 
    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
    t.is_parallel = True
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    leaves = t._navigator._first_leaves
 
    r'''

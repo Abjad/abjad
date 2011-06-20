@@ -15,7 +15,7 @@ def sum_preprolated_duration_of_components(components):
    Raise contiguity error on nonparent-contiguous `components`::
 
       abjad> t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-      abjad> macros.diatonicize(t)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> f(t)
       \new Voice {
          \times 2/3 {

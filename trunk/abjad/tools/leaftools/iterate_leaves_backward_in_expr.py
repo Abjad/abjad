@@ -8,7 +8,7 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
    Iterate leaves backward in `expr`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {
               {

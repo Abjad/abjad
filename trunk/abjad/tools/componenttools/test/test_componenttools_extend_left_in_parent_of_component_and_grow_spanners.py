@@ -79,7 +79,7 @@ def test_componenttools_extend_left_in_parent_of_component_and_grow_spanners_04(
    '''Splice left of container with underspanners.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t.leaves)
    result = componenttools.extend_left_in_parent_of_component_and_grow_spanners(
       t[1], [Note(2.5, (1, 8))])

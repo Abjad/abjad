@@ -8,7 +8,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_01( ):
       Return unspanned copy.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
@@ -77,7 +77,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_02( ):
       Return unspanned copy.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
@@ -141,7 +141,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_03( ):
       Return unspanned copy.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
@@ -196,7 +196,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_04( ):
       Return unspanned copy.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 
@@ -256,7 +256,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_05( ):
       Use optional 'n' argument for multiple copies.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
 

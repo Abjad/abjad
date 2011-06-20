@@ -45,7 +45,7 @@ class ParentageInterface(_Interface):
 
          abjad> t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
          abjad> t[0].is_parallel = True
-         abjad> macros.diatonicize(t)
+         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
          abjad> t[0][0].name = 'voice 1'
          abjad> t[0][1].name = 'voice 2'
 

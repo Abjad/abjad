@@ -69,7 +69,7 @@ def test_leaftools__split_leaf_at_duration_03( ):
       This test comes from a container-crossing spanner bug.'''
 
    t = Voice(notetools.make_repeated_notes(1) + [tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3))])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t.leaves)
 
    r'''

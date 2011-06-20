@@ -5,7 +5,7 @@ def test_Spanner_extend_left_01( ):
    '''Extend spanner to the left.'''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[1])
 
    r'''
@@ -52,7 +52,7 @@ def test_Spanner_extend_left_02( ):
    '''Extend spanner to the left.'''
    
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[1])
 
    r'''

@@ -15,7 +15,7 @@ def clone_and_partition_governed_component_subtree_by_leaf_counts(container, lea
       BeamSpanner(c'8, c'8, c'8)
       abjad> spannertools.BeamSpanner(voice[1].leaves)
       BeamSpanner(c'8, c'8, c'8)
-      abjad> macros.diatonicize(voice)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       abjad> f(voice)
       \new Voice {
         \times 2/3 {

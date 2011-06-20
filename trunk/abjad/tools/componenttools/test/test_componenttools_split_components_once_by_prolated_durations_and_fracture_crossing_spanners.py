@@ -6,7 +6,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''Duration partition one container in score, and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -62,7 +62,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
       and fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -123,7 +123,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
       Spanners do not apply outside of score.'''
 
    t = Container(notetools.make_repeated_notes(2)) * 2
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    "[{c'8, d'8}, {e'8, f'8}]"
 

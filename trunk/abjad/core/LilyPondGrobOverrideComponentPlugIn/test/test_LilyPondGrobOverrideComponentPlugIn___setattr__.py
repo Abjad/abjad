@@ -748,7 +748,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36( ):
    '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.Spanner(t[:])
    p.override.score.spacing_spanner.strict_grace_spacing = True
    p.override.score.spacing_spanner.strict_note_spacing = True

@@ -44,7 +44,7 @@ def test_Container_pop_02( ):
       Popped containers detach from both parent and spanners.'''
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''

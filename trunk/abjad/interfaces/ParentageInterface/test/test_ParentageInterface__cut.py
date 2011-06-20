@@ -70,7 +70,7 @@ def test_ParentageInterface__cut_03( ):
    '''Unspanned containers can parent-cut.'''
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    sequential = t[1]
 
    r'''

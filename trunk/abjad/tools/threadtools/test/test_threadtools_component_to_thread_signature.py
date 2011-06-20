@@ -46,7 +46,7 @@ def test_threadtools_component_to_thread_signature_04( ):
    t = Voice(notetools.make_repeated_notes(4))
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].is_parallel = True
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.override.note_head.color = 'red'
 
    r'''
@@ -91,7 +91,7 @@ def test_threadtools_component_to_thread_signature_05( ):
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].is_parallel = True
    t[2][0].name = 'foo'
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.override.note_head.color = 'red'
 
    r'''
@@ -143,7 +143,7 @@ def test_threadtools_component_to_thread_signature_06( ):
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    assert py.test.raises(AssertionError, 'spannertools.BeamSpanner(t.leaves)')
    spannertools.BeamSpanner(t.leaves[:2])
    spannertools.BeamSpanner(t.leaves[2:])
@@ -187,7 +187,7 @@ def test_threadtools_component_to_thread_signature_07( ):
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'
    t[2][1].name = 'soprano'
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
    t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")
@@ -270,7 +270,7 @@ def test_threadtools_component_to_thread_signature_10( ):
    '''
 
    t = Staff([measuretools.DynamicMeasure("c'8 d'8")] + notetools.make_repeated_notes(2))
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Staff {

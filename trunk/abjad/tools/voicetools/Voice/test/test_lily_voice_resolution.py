@@ -12,7 +12,7 @@ def test_lily_voice_resolution_01( ):
    t = Voice(notetools.make_repeated_notes(4))
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].is_parallel = True
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.override.note_head.color = 'red'
 
    r'''
@@ -55,7 +55,7 @@ def test_lily_voice_resolution_02( ):
    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
    t[2].is_parallel = True
    t[2][0].name = 'foo'
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    t.override.note_head.color = 'red'
 
    r'''
@@ -92,7 +92,7 @@ def test_lily_voice_resolution_03( ):
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    py.test.raises(AssertionError, 'spannertools.BeamSpanner(t.leaves)')
 
    '''LilyPond gives unterminated beam warnings.
@@ -115,7 +115,7 @@ def test_lily_voice_resolution_04( ):
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'
    t[2][1].name = 'soprano'
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
    t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")

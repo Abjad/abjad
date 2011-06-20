@@ -5,7 +5,7 @@ def test_containertools_repeat_last_n_elements_of_container_01( ):
    '''Cyclic extend measures in voice.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {
@@ -62,7 +62,7 @@ def test_containertools_repeat_last_n_elements_of_container_02( ):
    '''Cyclic extend tuplets in voice.'''
    
    t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {

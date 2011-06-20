@@ -11,7 +11,7 @@ def test_Spanner__remove_01( ):
    '''
 
    t = Voice("c'8 d'8 e'8 f'8")
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
    
    r'''
@@ -50,7 +50,7 @@ def test_Spanner__remove_02( ):
    '''
 
    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
    
    r'''

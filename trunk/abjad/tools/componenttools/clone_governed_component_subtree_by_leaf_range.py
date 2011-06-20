@@ -12,7 +12,7 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
    to `stop` leaf index::
 
       abjad> t = Staff([Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)])
-      abjad> macros.diatonicize(t)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> f(t)
       \new Staff {
          \new Voice {

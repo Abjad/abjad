@@ -10,7 +10,7 @@ def get_nth_leaf_in_expr(expr, n = 0):
    Get `n` th leaf in `expr`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {
               {

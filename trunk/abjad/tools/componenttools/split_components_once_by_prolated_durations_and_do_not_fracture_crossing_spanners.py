@@ -8,7 +8,7 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
    Split `components` once by prolated `durations` and do not fracture crossing spanners::
 
       abjad> t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-      abjad> macros.diatonicize(t)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> spannertools.BeamSpanner(t[0])
       BeamSpanner({c'8, d'8})
       abjad> spannertools.BeamSpanner(t[1])

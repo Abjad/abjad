@@ -6,7 +6,7 @@ py.test.skip('possibly deprecated. decide later.')
 def test_layouttools_apply_fixed_staff_positioning_01( ):
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))      
 
    r'''
@@ -84,7 +84,7 @@ def test_layouttools_apply_fixed_staff_positioning_02( ):
    staff alignment offsets.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))      
 
    r'''

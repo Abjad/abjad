@@ -10,7 +10,7 @@ def iterate_namesakes_forward_from_component(component, start = 0, stop = None):
       abjad> score = Score([ ])
       abjad> score.is_parallel = False
       abjad> score.extend(container * 2)
-      abjad> macros.diatonicize(score)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
       abjad> print score.format
       \new Score {
               <<

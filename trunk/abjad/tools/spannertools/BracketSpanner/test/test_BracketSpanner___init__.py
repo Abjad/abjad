@@ -15,7 +15,7 @@ def test_BracketSpanner___init___02( ):
    '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BracketSpanner(t[1])
 
    r'''

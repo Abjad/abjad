@@ -9,7 +9,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_01( ):
    '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    measuretools.comment_measures_in_container_with_measure_numbers(t, 'comment')
 
    r'''
@@ -45,7 +45,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_02( ):
    '''Turn measure number labelling off with None.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    measuretools.comment_measures_in_container_with_measure_numbers(t, 'comment')
    measuretools.comment_measures_in_container_with_measure_numbers(t, None)
 
@@ -76,7 +76,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_03( ):
    '''Works on measures, too, in addition to contexts.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    measuretools.comment_measures_in_container_with_measure_numbers(t[1], 'comment')
 
    r'''

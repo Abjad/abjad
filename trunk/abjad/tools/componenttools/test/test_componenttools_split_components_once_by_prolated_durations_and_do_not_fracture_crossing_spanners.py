@@ -6,7 +6,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
       Do no fracture spanners.'''
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -56,7 +56,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
       Do not fracture spanners.'''
 
    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)

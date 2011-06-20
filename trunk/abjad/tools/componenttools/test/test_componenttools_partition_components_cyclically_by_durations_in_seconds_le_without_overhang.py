@@ -8,7 +8,7 @@ def test_componenttools_partition_components_cyclically_by_durations_in_seconds_
    '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    contexttools.TempoMark(Duration(1, 4), 60, target_context = Staff)(t)
 
    r'''

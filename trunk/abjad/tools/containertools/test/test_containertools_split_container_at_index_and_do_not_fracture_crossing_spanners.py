@@ -6,7 +6,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
    '''Index split tuplet in score and do not fracture spanners.'''
 
    t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''
@@ -51,7 +51,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
    '''Index split binary measure in score and do not fracture spanners.'''
 
    t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''
@@ -102,7 +102,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
    '''Index split nonbinary measure in score and do not frature spanners.'''
 
    t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
    r'''
@@ -308,7 +308,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
    '''Index split left of leaf in score and do not fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) 
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    slur = spannertools.SlurSpanner(t.leaves)
@@ -358,7 +358,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
    '''Index split right of leaf in score and do not fracture spanners.'''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) 
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    slur = spannertools.SlurSpanner(t.leaves)

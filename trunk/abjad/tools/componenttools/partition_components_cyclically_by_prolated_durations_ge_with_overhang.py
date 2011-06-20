@@ -9,7 +9,7 @@ def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
    or equal, with overhang::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-      abjad> macros.diatonicize(staff)
+      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {
          {

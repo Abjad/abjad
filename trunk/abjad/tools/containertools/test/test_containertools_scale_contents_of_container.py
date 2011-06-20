@@ -108,7 +108,7 @@ def test_containertools_scale_contents_of_container_05( ):
 
    t = Voice([Note(0, (3, 16)),
       tuplettools.FixedDurationTuplet((3, 8), notetools.make_repeated_notes(4))])
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {
@@ -180,7 +180,7 @@ def test_containertools_scale_contents_of_container_07( ):
    '''Double all contents, including measure.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {
@@ -222,7 +222,7 @@ def test_containertools_scale_contents_of_container_08( ):
    '''Multiply all contents by 5/4, including measure.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-   macros.diatonicize(t)
+   pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {
