@@ -5,7 +5,7 @@ def test_Spanner_fracture_01( ):
    '''Fracture container spanner to the right of index 1.'''
 
    t = Staff(Container(notetools.make_repeated_notes(4)) * 3)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
    original, left, right = p.fracture(1, 'right')
 

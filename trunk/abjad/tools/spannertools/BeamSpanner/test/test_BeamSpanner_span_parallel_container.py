@@ -20,7 +20,7 @@ def test_BeamSpanner_span_parallel_container_02( ):
 
    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
    t.is_parallel = True
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
 
@@ -51,7 +51,7 @@ def test_BeamSpanner_span_parallel_container_03( ):
 
    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
    t.is_parallel = True
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[0])
 
    assert len(p.components) == 1
@@ -82,7 +82,7 @@ def test_BeamSpanner_span_parallel_container_04( ):
    new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
    new.is_parallel = True
    t.insert(2, new)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
 
@@ -95,7 +95,7 @@ def test_BeamSpanner_span_parallel_container_05( ):
    new = Container([ ])
    new.is_parallel = True
    t.insert(2, new)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t)
 
    assert len(p.components) == 1
@@ -125,7 +125,7 @@ def test_BeamSpanner_span_parallel_container_06( ):
    t.insert(1, new)
    t[1][0].name = 'foo'
    t[1][1].name = 'bar'
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner([t[0], t[1][0], t[2]])
 
    assert len(p.components) == 3

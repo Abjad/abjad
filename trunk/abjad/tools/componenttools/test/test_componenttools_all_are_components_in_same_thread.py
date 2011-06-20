@@ -321,7 +321,7 @@ def test_componenttools_all_are_components_in_same_thread_15( ):
       Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Staff(Note(0, (1, 8)) * 4) * 2)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].name = 'foo'
    t[1].name = 'foo'
 
@@ -492,7 +492,7 @@ def test_componenttools_all_are_components_in_same_thread_21( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -520,7 +520,7 @@ def test_componenttools_all_are_components_in_same_thread_22( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -546,7 +546,7 @@ def test_componenttools_all_are_components_in_same_thread_23( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
 
    r'''
@@ -574,7 +574,7 @@ def test_componenttools_all_are_components_in_same_thread_24( ):
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
    t[4].name = 'foo'
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -603,7 +603,7 @@ def test_componenttools_all_are_components_in_same_thread_25( ):
       Abjad does not.'''
 
    t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    t[0].name = 'foo'
 
    r'''
@@ -630,7 +630,7 @@ def test_componenttools_all_are_components_in_same_thread_26( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -845,7 +845,7 @@ def test_componenttools_all_are_components_in_same_thread_33( ):
    t = Container(
       [Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
    t[0].is_parallel = True
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -882,7 +882,7 @@ def test_componenttools_all_are_components_in_same_thread_34( ):
    a, b = Voice(Note(0, (1, 8)) * 4) * 2
    a.insert(2, b)
    t.insert(2, a)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    outer = (0, 1, 10, 11)
    middle = (2, 3, 8, 9)
@@ -923,7 +923,7 @@ def test_componenttools_all_are_components_in_same_thread_35( ):
    a, b = t * 2
    a.insert(2, b)
    t.insert(2, a)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    outer = (0, 1, 10, 11)
    middle = (2, 3, 8, 9)
@@ -962,7 +962,7 @@ def test_componenttools_all_are_components_in_same_thread_36( ):
    a, b, t = Container(Note(0, (1, 8)) * 4) * 3
    a.insert(2, b)
    t.insert(2, a)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -996,7 +996,7 @@ def test_componenttools_all_are_components_in_same_thread_37( ):
    t.insert(2, b)
    b.duration.target = Duration(6, 8)
    t.duration.target = Duration(9, 8)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \fraction \times 9/10 {
@@ -1028,7 +1028,7 @@ def test_componenttools_all_are_components_in_same_thread_38( ):
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(2, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
    t[2][0][0].name = 'foo'
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -1063,7 +1063,7 @@ def test_componenttools_all_are_components_in_same_thread_39( ):
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(0, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
    t[0][0][0].name = 'foo'
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -1097,7 +1097,7 @@ def test_componenttools_all_are_components_in_same_thread_40( ):
    t = Container([t])
    t = Container([t])
    t = Voice([t])
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {
@@ -1140,7 +1140,7 @@ def test_componenttools_all_are_components_in_same_thread_41( ):
    t = Voice(Note(0, (1, 8)) * 4)
    t.insert(2, qq)
    t.name = 'foo'
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \context Voice = "foo" {
@@ -1182,7 +1182,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 
    t = Container(notetools.make_repeated_notes(4))
    t[0:0] = Voice(notetools.make_repeated_notes(4)) * 2
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {
@@ -1256,7 +1256,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #   p = Container(Note(0, (1, 8)) * 4)
 #   p.is_parallel = True
 #   t.insert(2, p)
-#   macros.chromaticize(t)
+#   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 #
 #   r'''{
 #      c'8
@@ -1282,7 +1282,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #   p = Container(Note(0, (1, 8)) * 4)
 #   p.is_parallel = True
 #   t.insert(2, p)
-#   macros.chromaticize(t)
+#   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 #
 #   r'''\new Voice {
 #      c'8
@@ -1308,7 +1308,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #
 #   t = Container(Container(Note(0, (1, 8)) * 4) * 2)
 #   t.is_parallel = True
-#   macros.chromaticize(t)
+#   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 #
 #   r'''<<
 #      {
@@ -1334,7 +1334,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #   p.is_parallel = True
 #   t = Container(Note(0, (1, 8)) * 4)
 #   t.insert(2, p)
-#   macros.chromaticize(t)
+#   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 #
 #   r'''{
 #      c'8
@@ -1367,7 +1367,7 @@ def test_componenttools_all_are_components_in_same_thread_49( ):
    p.is_parallel = True
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(2, p)
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    {

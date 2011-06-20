@@ -5,7 +5,7 @@ def test_pitchtools_set_ascending_named_chromatic_pitches_on_nontied_pitched_com
    '''Appictation works on tie chains.'''
 
    t = Voice(notetools.make_notes(0, [(5, 32)] * 4))
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \new Voice {

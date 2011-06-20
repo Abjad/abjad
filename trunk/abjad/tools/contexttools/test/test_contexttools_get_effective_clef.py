@@ -64,7 +64,7 @@ def test_contexttools_get_effective_clef_06( ):
    '''Redudant clefs are allowed.'''
 
    t = Staff(notetools.make_repeated_notes(8))
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    contexttools.ClefMark('treble')(t[0])
    contexttools.ClefMark('treble')(t[4])
 
@@ -91,7 +91,7 @@ def test_contexttools_get_effective_clef_07( ):
    '''Clefs with transposition are allowed and work as expected.'''
 
    t = Staff(notetools.make_repeated_notes(8))
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    contexttools.ClefMark('treble_8')(t[0])
    contexttools.ClefMark('treble')(t[4])
 

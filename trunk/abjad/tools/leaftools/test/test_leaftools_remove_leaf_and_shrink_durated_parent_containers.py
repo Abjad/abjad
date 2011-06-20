@@ -171,7 +171,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
       tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
 
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \time 5/6
@@ -247,7 +247,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
    t = Measure((5, 6), 
       [tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
          notetools.make_repeated_notes(3, (1, 4)))
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \time 5/6
@@ -321,7 +321,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
    t = Measure((5, 6), 
       [tuplettools.FixedDurationTuplet((4, 8), notetools.make_repeated_notes(7))] + 
          notetools.make_repeated_notes(3, (1, 4)))
-   macros.chromaticize(t)
+   pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
    \time 5/6
