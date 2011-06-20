@@ -32,10 +32,10 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_03( ):
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_04( ):
    '''Do not fuse tuplets.'''
 
-   #t = Voice([Tuplet((2, 3), notetools.make_repeated_notes(3)), 
-   #           Tuplet((2, 3), notetools.make_repeated_notes(3))])
-   t = Voice([Tuplet((2, 3), notetools.make_repeated_notes(3)), 
-              Tuplet((2, 3), notetools.make_repeated_notes(3))])
+   #t = Voice([Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3)), 
+   #           Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3))])
+   t = Voice([Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3)), 
+              Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3))])
    result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
    assert result is None
    assert len(t) == 2

@@ -4,9 +4,9 @@ from abjad import *
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
    '''Project 3/12 meter onto measure contents.'''
 
-   inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
+   inner = tuplettools.FixedDurationTuplet(Duration(2, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
    notes = notetools.make_repeated_notes(2)
-   outer = tuplettools.FixedDurationTuplet((2, 8), [inner] + notes)
+   outer = tuplettools.FixedDurationTuplet(Duration(2, 8), [inner] + notes)
    t = Measure((2, 8), [outer])
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
@@ -53,7 +53,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
 
-   t = Measure((5, 8), [tuplettools.FixedDurationTuplet((5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
+   t = Measure((5, 8), [tuplettools.FixedDurationTuplet(Duration(5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''

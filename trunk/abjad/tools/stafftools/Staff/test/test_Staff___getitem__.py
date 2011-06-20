@@ -6,7 +6,7 @@ def test_Staff___getitem___01( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    assert isinstance(t[0], Note)
@@ -26,7 +26,7 @@ def test_Staff___getitem___02( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[0:0]
@@ -39,7 +39,7 @@ def test_Staff___getitem___03( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[0:1]
@@ -55,7 +55,7 @@ def test_Staff___getitem___04( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[-1:]
@@ -71,7 +71,7 @@ def test_Staff___getitem___05( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[1:-1]
@@ -89,7 +89,7 @@ def test_Staff___getitem___06( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[2:]
@@ -107,7 +107,7 @@ def test_Staff___getitem___07( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[:-2]
@@ -125,7 +125,7 @@ def test_Staff___getitem___08( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    slice = t[:]

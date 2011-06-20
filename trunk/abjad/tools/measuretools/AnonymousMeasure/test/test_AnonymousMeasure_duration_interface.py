@@ -29,7 +29,7 @@ def test_AnonymousMeasure_duration_interface_01( ):
 def test_AnonymousMeasure_duration_interface_02( ):
    '''Works with binary tuplet as contents.'''
 
-   t = measuretools.AnonymousMeasure([tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
+   t = measuretools.AnonymousMeasure([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
 
    r'''
    {
@@ -55,7 +55,7 @@ def test_AnonymousMeasure_duration_interface_02( ):
 def test_AnonymousMeasure_duration_interface_03( ):
    '''Works with nonbinary tuplet.'''
 
-   t = measuretools.AnonymousMeasure([Tuplet((2, 3), "c'8 d'8 e'8 f'8")])
+   t = measuretools.AnonymousMeasure([Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8")])
    t.denominator = 12
 
    r'''

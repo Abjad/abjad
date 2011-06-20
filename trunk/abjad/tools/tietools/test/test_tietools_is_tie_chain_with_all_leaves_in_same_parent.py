@@ -47,7 +47,7 @@ def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_03( ):
 def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_04( ):
    '''False for tuplet-crossing tie chain.'''
 
-   t = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
    tietools.TieSpanner(t.leaves[2:4])
 
    r'''

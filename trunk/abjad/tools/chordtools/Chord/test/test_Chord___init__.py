@@ -75,7 +75,7 @@ def test_Chord___init___09( ):
    '''Init chord from skip.
    '''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), skiptools.Skip((1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
    d = t[0].duration.written
    chord = Chord(t[0])
    assert isinstance(t[0], skiptools.Skip)
@@ -129,7 +129,7 @@ def test_Chord___init___13( ):
    '''Init chord from tupletized rest.
    '''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), Rest((1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
    d = t[0].duration.written
    chord = Chord(t[0])
    assert isinstance(t[0], Rest)
@@ -173,7 +173,7 @@ def test_Chord___init___16( ):
    '''Init chord from tupletized note.
    '''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
    h, p, d = t[0].note_head, t[0].pitch, t[0].duration.written
    chord = Chord(t[0])
    assert isinstance(t[0], Note)

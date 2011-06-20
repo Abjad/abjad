@@ -3,7 +3,7 @@ def sum_preprolated_duration_of_components(components):
 
    Sum preprolated duration of `components`::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+      abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
       abjad> componenttools.sum_preprolated_duration_of_components(tuplet[:])
       Duration(3, 8)
 
@@ -14,7 +14,7 @@ def sum_preprolated_duration_of_components(components):
 
    Raise contiguity error on nonparent-contiguous `components`::
 
-      abjad> t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+      abjad> t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
       abjad> f(t)
       \new Voice {

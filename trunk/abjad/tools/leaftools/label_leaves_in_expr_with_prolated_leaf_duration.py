@@ -6,7 +6,7 @@ def label_leaves_in_expr_with_prolated_leaf_duration(expr, markup_direction = 'd
 
    Label leaves in `expr` with prolated leaf duration::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+      abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
       abjad> leaftools.label_leaves_in_expr_with_prolated_leaf_duration(tuplet)
       abjad> f(tuplet)
       \times 2/3 {

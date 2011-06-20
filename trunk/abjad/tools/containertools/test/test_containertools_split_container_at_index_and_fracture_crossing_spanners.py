@@ -5,7 +5,7 @@ import py.test
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_01( ):
    '''Index split triplet, and fracture spanners.'''
 
-   t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
    tuplet = t[1]
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    spannertools.BeamSpanner(t[:])

@@ -66,7 +66,7 @@ def test_MetricGridSpanner_split_on_bar_03( ):
    '''MetricGrid split works with tuplets.'''
    py.test.skip('something weird with grace notes.')
 
-   t = Voice([Tuplet((2,3), Note(0, (1,8)) * 6)])
+   t = Voice([Tuplet(Fraction(2,3), Note(0, (1,8)) * 6)])
    m = spannertools.MetricGridSpanner(t.leaves, [(1, 8)])
    m.split_on_bar( )
 
@@ -94,8 +94,8 @@ def test_MetricGridSpanner_split_on_bar_04( ):
    '''MetricGrid split works with nested tuplets.'''
    py.test.skip('something weird with grace notes.')
 
-   t = Voice([Tuplet((2,3), [Note(0, (1,8)), 
-         Tuplet((3,2), Note(0, (1,8)) *4)])])
+   t = Voice([Tuplet(Fraction(2,3), [Note(0, (1,8)), 
+         Tuplet(Fraction(3,2), Note(0, (1,8)) *4)])])
    m = spannertools.MetricGridSpanner(t.leaves, [(1, 8)])
    m.split_on_bar( )
 

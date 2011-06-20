@@ -46,13 +46,13 @@ def test_componenttools_get_component_start_offset_06( ):
 
 
 def test_componenttools_get_component_start_offset_07( ):
-   t = tuplettools.FixedDurationTuplet((1,4), notetools.make_repeated_notes(3))
+   t = tuplettools.FixedDurationTuplet(Duration(1,4), notetools.make_repeated_notes(3))
    for i, x in enumerate(t):
       assert componenttools.get_component_start_offset(x) == i * Duration(1, 12)
 
 
 def test_componenttools_get_component_start_offset_08( ):
-   tp = tuplettools.FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3))
+   tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
    t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
    offset = 0
    for x, d in zip(t.leaves, [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]):
@@ -63,8 +63,8 @@ def test_componenttools_get_component_start_offset_08( ):
 def test_componenttools_get_component_start_offset_09( ):
    '''Offset works on nested tuplets.'''
 
-   tp = tuplettools.FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3))
-   t = tuplettools.FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
+   tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
+   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
    offset = 0
    for x, d in zip(t.leaves, [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
       assert componenttools.get_component_start_offset(x) == offset
@@ -175,7 +175,7 @@ def test_componenttools_get_component_start_offset_18( ):
 def test_componenttools_get_component_start_offset_19( ):
    '''Prolated offsets works on sequential tuplets.'''
 
-   t = Voice(tuplettools.FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3)) * 3)
+   t = Voice(tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3)) * 3)
    assert componenttools.get_component_start_offset(t[0]) == 0 * Duration(1, 4)
    assert componenttools.get_component_start_offset(t[1]) == 1 * Duration(1, 4)
    assert componenttools.get_component_start_offset(t[2]) == 2 * Duration(1, 4)
@@ -184,7 +184,7 @@ def test_componenttools_get_component_start_offset_19( ):
 def test_componenttools_get_component_start_offset_20( ):
    '''Prolated offsets work on tuplets between notes.'''
 
-   tp = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   tp = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
    t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
    assert componenttools.get_component_start_offset(t[0]) == 0 * Duration(1, 8)
    assert componenttools.get_component_start_offset(t[1]) == 1 * Duration(1, 8)
@@ -194,8 +194,8 @@ def test_componenttools_get_component_start_offset_20( ):
 def test_componenttools_get_component_start_offset_21( ):
    '''Prolated offsets work on nested tuplets.'''
 
-   tp = tuplettools.FixedDurationTuplet((1, 4), notetools.make_repeated_notes(3))
-   t = tuplettools.FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
+   tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
+   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
    assert componenttools.get_component_start_offset(t[0]) == 0 * Duration(1, 6)
    assert componenttools.get_component_start_offset(t[1]) == 1 * Duration(1, 6)
    assert componenttools.get_component_start_offset(t[2]) == 2 * Duration(1, 6)

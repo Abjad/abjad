@@ -100,7 +100,7 @@ class ParentageInterface(_Interface):
    
       ::
 
-         abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+         abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note._parentage.parent

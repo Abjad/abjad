@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplettools_beam_bottommost_tuplets_in_expr_01( ):
    '''Beam nonnested tuplets.'''
 
-   t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    tuplettools.beam_bottommost_tuplets_in_expr(t)
 
@@ -31,8 +31,8 @@ def test_tuplettools_beam_bottommost_tuplets_in_expr_02( ):
    '''Beam bottommost nested tuplets.'''
 
 
-   inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))
-   outer = tuplettools.FixedDurationTuplet((3, 16), inner * 2)
+   inner = tuplettools.FixedDurationTuplet(Duration(2, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))
+   outer = tuplettools.FixedDurationTuplet(Duration(3, 16), inner * 2)
    t = Voice(outer * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    

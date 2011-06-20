@@ -5,7 +5,7 @@ import py.test
 def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_01( ):
    '''Index split tuplet in score and do not fracture spanners.'''
 
-   t = Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    p = spannertools.BeamSpanner(t[:])
 
@@ -273,8 +273,8 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_09( ):
    '''Index split tuplet in score and do not fracture spanners.'''
 
-   #t = Staff([Voice([Tuplet((4, 5), notetools.make_repeated_notes(5))])])
-   t = Staff([Voice([Tuplet((4, 5), notetools.make_repeated_notes(5))])])
+   #t = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
+   t = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
    v = t[0]
    tuplet = v[0]
    spannertools.BeamSpanner(tuplet)

@@ -48,7 +48,7 @@ def test_containertools_report_container_modifications_as_string_01( ):
 def test_containertools_report_container_modifications_as_string_02( ):
    '''Tuplet formatter report_container_modifications_as_string.'''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+   t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
    t.comments.before.append('Example tuplet')
    t.override.note_head.color = 'red'
    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)

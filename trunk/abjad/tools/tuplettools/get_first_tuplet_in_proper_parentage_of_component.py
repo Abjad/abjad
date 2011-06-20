@@ -8,7 +8,7 @@ def get_first_tuplet_in_proper_parentage_of_component(component):
    Get first tuplet in proper parentage of `component`::
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
-      abjad> Tuplet((2, 3), staff[:3])
+      abjad> Tuplet(Fraction(2, 3), staff[:3])
       Tuplet(2/3, [c'8, d'8, e'8])
 
    ::

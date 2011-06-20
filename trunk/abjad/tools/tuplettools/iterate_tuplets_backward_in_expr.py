@@ -8,9 +8,9 @@ def iterate_tuplets_backward_in_expr(expr, start = 0, stop = None):
    Iterate tuplets backward in `expr`::
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-      abjad> Tuplet((2, 3), staff[:3])
+      abjad> Tuplet(Fraction(2, 3), staff[:3])
       Tuplet(2/3, [c'8, d'8, e'8])
-      abjad> Tuplet((2, 3), staff[-3:])
+      abjad> Tuplet(Fraction(2, 3), staff[-3:])
       Tuplet(2/3, [a'8, b'8, c''8])
 
       abjad> f(staff)

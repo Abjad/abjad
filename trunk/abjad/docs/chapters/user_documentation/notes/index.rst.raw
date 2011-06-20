@@ -82,7 +82,7 @@ print repr(note.duration.prolated) <hide
 Except for notes inside a tuplet:
 
 <abjad>
-tuplet = Tuplet((2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
+tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
 </abjad>
 
 <abjad>

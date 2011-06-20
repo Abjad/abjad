@@ -4,7 +4,7 @@ Working with component parentage
 Many score objects contain other score objects.
 
 <abjad>
-tuplet = Tuplet((2, 3), macros.scale(3, (1, 4)))
+tuplet = Tuplet(Fraction(2, 3), macros.scale(3, (1, 4)))
 staff = Staff(2 * tuplet)
 score = Score([staff])
 show(score)

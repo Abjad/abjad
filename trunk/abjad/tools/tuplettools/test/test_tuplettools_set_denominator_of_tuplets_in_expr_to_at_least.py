@@ -3,7 +3,7 @@ from abjad import *
 
 def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_01( ):
 
-   tuplet = Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
+   tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
    tuplettools.set_denominator_of_tuplets_in_expr_to_at_least(tuplet, 8)
 
    r'''
@@ -21,7 +21,7 @@ def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_01( ):
 
 def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_02( ):
 
-   tuplet = Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
+   tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
    tuplettools.set_denominator_of_tuplets_in_expr_to_at_least(tuplet, 16)
 
    r'''
@@ -39,7 +39,7 @@ def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_02( ):
 
 def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_03( ):
 
-   tuplet = Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
+   tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
    tuplettools.set_denominator_of_tuplets_in_expr_to_at_least(tuplet, 2)
 
    r'''

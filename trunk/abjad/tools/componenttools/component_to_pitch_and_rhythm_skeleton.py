@@ -6,7 +6,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
    Change `component` to pitch and rhythm skeleton::
 
-      abjad> tuplet = Tuplet((3, 4), "c'8 d'8 e'8 f'8")
+      abjad> tuplet = Tuplet(Fraction(3, 4), "c'8 d'8 e'8 f'8")
       abjad> measure = Measure((6, 16), [tuplet])   
       abjad> staff = Staff([measure])   
       abjad> score = Score(staff * 2)   

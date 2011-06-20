@@ -7,7 +7,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
       This means that the original structure remains unchanged.
       Also that resulting parts cut all the way up into voice.'''
 
-   t = Voice([tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
+   t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
    spannertools.BeamSpanner(t[0][:])
    left, right = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t[0], [1, 2])
 

@@ -7,7 +7,7 @@ def test_Staff___delitem___01( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
@@ -41,7 +41,7 @@ def test_Staff___delitem___02( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
@@ -75,7 +75,7 @@ def test_Staff___delitem___03( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)

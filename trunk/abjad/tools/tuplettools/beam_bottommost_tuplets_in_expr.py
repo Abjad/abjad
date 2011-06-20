@@ -7,7 +7,7 @@ from abjad.tools.tuplettools.Tuplet import Tuplet
 def beam_bottommost_tuplets_in_expr(expr):
    r'''Beam bottommost tuplets in `expr`::
 
-      abjad> staff = Staff(3 * Tuplet((2, 3), "c'8 d'8 e'8"))
+      abjad> staff = Staff(3 * Tuplet(Fraction(2, 3), "c'8 d'8 e'8"))
 
    ::
 

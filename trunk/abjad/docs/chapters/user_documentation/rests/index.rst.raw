@@ -60,7 +60,7 @@ print repr(rest.duration.prolated) <hide
 Except for rests inside a tuplet:
 
 <abjad>
-tuplet = Tuplet((2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
+tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
 </abjad>
 
 <abjad>

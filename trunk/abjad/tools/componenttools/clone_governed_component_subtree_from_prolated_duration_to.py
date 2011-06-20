@@ -11,7 +11,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
    Governed subtree refers to `component` together with the children of `component`::
 
       abjad> voice = Voice(notetools.make_repeated_notes(2))
-      abjad> voice.append(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)))
+      abjad> voice.append(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)))
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
       abjad> f(voice)
       \new Voice {

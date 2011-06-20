@@ -5,7 +5,7 @@ from abjad.tools.metertools import Meter
 def set_container_multiplier(container, multiplier):
    r'''Set `container` `multiplier`::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+      abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
    ::
 

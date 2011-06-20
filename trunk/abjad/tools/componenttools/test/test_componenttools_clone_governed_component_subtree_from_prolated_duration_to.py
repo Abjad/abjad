@@ -56,7 +56,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_04( ):
    '''Fixed duration tuplet.'''
 
-   t = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+   t = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
    r'''
@@ -72,7 +72,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_05( ):
    '''Fixed multiplier tuplet.'''
 
-   t = Tuplet((2, 3), "c'8 d'8 e'8")
+   t = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
    r'''

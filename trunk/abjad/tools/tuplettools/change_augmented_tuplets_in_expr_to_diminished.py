@@ -7,7 +7,7 @@ def change_augmented_tuplets_in_expr_to_diminished(tuplet):
    Multiply the written duration of the leaves in `tuplet` 
    by the least power of 2 necessary to diminshed `tuplet`. ::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 4), "c'8 d'8 e'8")
+      abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
       abjad> tuplet
       FixedDurationTuplet(1/2, [c'8, d'8, e'8])
       abjad> tuplettools.change_augmented_tuplets_in_expr_to_diminished(tuplet)

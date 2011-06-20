@@ -50,7 +50,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_02( ):
 
 def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
 
-   tuplet = tuplettools.FixedDurationTuplet((3, 8), "c'8 d'8 e'8 f'8")
+   tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 f'8")
    measure = Measure((6, 16), [tuplet])
    staff = Staff([measure])
    score = Score(staff * 2)

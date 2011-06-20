@@ -18,7 +18,7 @@ iotools.write_expr_to_ly(staff, 'example1', 'oedo') <hide
 Tuplets, measures, voices, staves and the other containers carry duration attributes, too:
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
+tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), Note(0, (1, 16)) * 5)
 measure = Measure((3, 16), [tuplet])
 staff = stafftools.RhythmicStaff([measure])
 tuplet.duration.multiplier

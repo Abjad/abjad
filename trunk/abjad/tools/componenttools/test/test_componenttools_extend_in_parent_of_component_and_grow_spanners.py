@@ -50,10 +50,10 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_02( ):
 def test_componenttools_extend_in_parent_of_component_and_grow_spanners_03( ):
    '''Splice tuplet after tuplet.'''
 
-   t = Voice([tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
+   t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
    spannertools.BeamSpanner(t[0])
    result = componenttools.extend_in_parent_of_component_and_grow_spanners(
-      t[-1], [tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
+      t[-1], [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
 
    r'''
    \new Voice {

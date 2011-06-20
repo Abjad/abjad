@@ -37,7 +37,7 @@ def test_Skip___init___04( ):
    '''Init skip from tupletized note.
    '''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+   t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration.written
    skip = skiptools.Skip(t[0])
    assert isinstance(t[0], Chord)
@@ -74,7 +74,7 @@ def test_Skip___init___06( ):
 
 
 def test_Skip___init___07( ):
-   t = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
    d = t[0].duration.written
    skip = skiptools.Skip(t[0])
    assert isinstance(t[0], Note)
@@ -114,7 +114,7 @@ def test_Skip___init___10( ):
    '''Init skip from tupletized rest.
    '''
 
-   t = tuplettools.FixedDurationTuplet((2, 8), Rest((1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
    d = t[0].duration.written
    skip = skiptools.Skip(t[0])
    assert isinstance(skip, skiptools.Skip)

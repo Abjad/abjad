@@ -42,7 +42,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
    '''Copy notes from tuplet and adjust tuplet target duration
    in order to preserve tuplet multiplier.'''
 
-   t = tuplettools.FixedDurationTuplet((4, 8), "c'8 d'8 e'8 f'8 g'8")
+   t = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[:3])
 
    r'''
@@ -63,7 +63,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
 def test_componenttools_clone_components_and_immediate_parent_of_first_component_04( ):
    '''Copy adjacent, whole tuplets from staff.'''
 
-   t = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 3)
+   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[1:])
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_01( ):
    '''Subsume complete binary tuplet.'''
 
-   t = Measure((2, 8), [tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
+   t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''
@@ -26,7 +26,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
    '''Subsume complete nonbinary tuplet.'''
 
    t = Measure((3, 16), [
-      tuplettools.FixedDurationTuplet((3, 16), "c'16 d'16 e'16 f'16 g'16")])
+      tuplettools.FixedDurationTuplet(Duration(3, 16), "c'16 d'16 e'16 f'16 g'16")])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''
@@ -50,7 +50,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
    '''Subsume 7:6 tuplet.'''
 
    t = Measure((6, 8), [
-      tuplettools.FixedDurationTuplet((6, 8), "c'8 d'8 e'8 f'8 g'8 a'8 b'8")])
+      tuplettools.FixedDurationTuplet(Duration(6, 8), "c'8 d'8 e'8 f'8 g'8 a'8 b'8")])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''
@@ -76,7 +76,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
    '''Subsume tuplet in nonassignable measure.'''
 
    t = Measure((5, 8), [
-      tuplettools.FixedDurationTuplet((5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
+      tuplettools.FixedDurationTuplet(Duration(5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
 
    r'''
@@ -107,9 +107,9 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_05( ):
    '''Subsume nested tuplet.'''
 
-   inner = tuplettools.FixedDurationTuplet((2, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
+   inner = tuplettools.FixedDurationTuplet(Duration(2, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
    notes = notetools.make_repeated_notes(2)
-   outer = tuplettools.FixedDurationTuplet((2, 8), [inner] + notes)
+   outer = tuplettools.FixedDurationTuplet(Duration(2, 8), [inner] + notes)
    t = Measure((2, 8), [outer])
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -152,7 +152,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_06( ):
    '''Submsume 6:5. Meter should go from 5/16 to 15/48.'''
 
-   tuplet = tuplettools.FixedDurationTuplet((5, 16), "c'8 d'8 e'8")
+   tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'8 d'8 e'8")
    t = Measure((5, 16), [tuplet])
 
    r'''

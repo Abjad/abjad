@@ -394,8 +394,8 @@ def test_BeamSpanner_span_anonymous_12( ):
 def test_BeamSpanner_span_anonymous_13( ):
    '''Alternating sequences of tuplets and notes span correctly.'''
 
-   t1 = tuplettools.FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(3)])
-   t2 = tuplettools.FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(4,7)])
+   t1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
+   t2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(4,7)])
    v = Voice([t1, Note(3, (1,8)), t2])
 
    r'''
@@ -428,8 +428,8 @@ def test_BeamSpanner_span_anonymous_13( ):
 def test_BeamSpanner_span_anonymous_14( ):
    '''Asymmetrically nested tuplets span correctly.'''
 
-   tinner = tuplettools.FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-   t = tuplettools.FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
+   tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
+   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
 
    r'''
    \times 2/3 {

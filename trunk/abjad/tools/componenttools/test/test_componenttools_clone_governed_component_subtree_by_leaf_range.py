@@ -5,7 +5,7 @@ import py.test
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_01( ):
    '''Copy consecutive notes across tuplet boundary, in staff.'''
 
-   t = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -46,7 +46,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_01( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_02( ):
    '''Copy consecutive notes across tuplet boundary, in voice and staff.'''
 
-   t = Staff([Voice(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)])
+   t = Staff([Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)])
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -178,7 +178,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_07( ):
    '''Copy consecutive leaves from tuplet in binary measure;
       nonbinary measure results.'''
 
-   t = Measure((4, 8), [tuplettools.FixedDurationTuplet((4, 8), "c'8 d'8 e'8 f'8 g'8")])
+   t = Measure((4, 8), [tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")])
 
    r'''
    {
@@ -218,7 +218,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
    nonbinary measure results.'''
 
    t = Voice([Measure((4, 8), 
-      [tuplettools.FixedDurationTuplet((4, 8), "c'8 d'8 e'8 f'8 g'8")])])
+      [tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")])])
   
    r'''
    \new Voice {
@@ -261,7 +261,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
    '''Measures shrink down when we copy a partial tuplet.'''
 
    t = Measure((4, 8), 
-      tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+      tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -351,7 +351,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_11( ):
    '''Copy consecutive leaves from tuplet in staff;
       pass start and stop indices local to tuplet.'''
 
-   t = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

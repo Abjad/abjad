@@ -9,7 +9,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
    Remove `leaf` and shrink durated parent containers::
 
-      abjad> measure = Measure((4, 8), tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+      abjad> measure = Measure((4, 8), tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(measure)
       abjad> spannertools.BeamSpanner(measure.leaves)
       BeamSpanner(c'8, d'8, e'8, f'8, g'8, a'8)

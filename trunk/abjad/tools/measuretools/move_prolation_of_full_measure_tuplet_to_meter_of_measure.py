@@ -12,7 +12,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
 
    Example::
 
-      abjad> t = Measure((2, 8), [tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")])
+      abjad> t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
       abjad> measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
       abjad> f(t)
       {

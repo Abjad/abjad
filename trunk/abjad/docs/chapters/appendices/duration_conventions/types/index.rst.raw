@@ -26,7 +26,7 @@ iotools.write_expr_to_ly(staff, 'written_dur1', 'oedo') <hide
 These sixteenth notes are worth more than a sixteenth of a whole note:
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)
+tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)
 spannertools.BeamSpanner(tuplet)
 measure = Measure((5, 16), [tuplet])
 staff = stafftools.RhythmicStaff([measure])
@@ -76,7 +76,7 @@ These elements carry preprolated durations equal to 1/8, 1/8 and 2/8, respective
 <abjad>
 notes = Note(0, (1, 8)) * 2
 spannertools.BeamSpanner(notes)
-tuplet = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
 spannertools.BeamSpanner(tuplet)
 measure = Measure((4, 8), notes + [tuplet]) 
 staff = stafftools.RhythmicStaff([measure])
@@ -97,7 +97,7 @@ composer-settable duration to which the tuplet prolates its contents.
 This fixed-duration tuplet carries a target duration equal to 4/8:
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
+tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 5)
 spannertools.BeamSpanner(tuplet)
 measure = Measure((4, 8), [tuplet]) 
 staff = stafftools.RhythmicStaff([measure])

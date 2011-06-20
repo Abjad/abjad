@@ -7,7 +7,7 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction = 'down'):
    Label leaves in `expr` with tuplet depth::
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8")
-      abjad> tuplettools.FixedDurationTuplet((2, 8), staff[-3:])
+      abjad> tuplettools.FixedDurationTuplet(Duration(2, 8), staff[-3:])
       FixedDurationTuplet(1/4, [e'8, f'8, g'8])
       abjad> leaftools.label_leaves_in_expr_with_tuplet_depth(staff)
       abjad> f(staff)

@@ -40,7 +40,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       '''True when multiplier is greater than 1.
       Otherwise false::
 
-         abjad> t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+         abjad> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
          abjad> t.duration.is_augmentation
          False
 
@@ -65,7 +65,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
       '''True when multiplier is less than 1.
       Otherwise false::
 
-         abjad> t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+         abjad> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
          abjad> t.duration.is_diminution
          True
    
@@ -125,7 +125,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
       ::
 
-         abjad> t = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+         abjad> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
          abjad> t.duration.preprolated
          Duration(1, 4)
 

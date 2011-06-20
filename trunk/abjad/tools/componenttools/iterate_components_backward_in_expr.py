@@ -6,7 +6,7 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
 
    Iterate components backward in `expr`::
 
-      abjad> staff = Staff(tuplettools.FixedDurationTuplet((2, 8), notetools.make_repeated_notes(3)) * 2)
+      abjad> staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
       abjad> f(staff)
       \new Staff {

@@ -7,7 +7,7 @@ def test_Staff___setitem___01( ):
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
-         tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
+         tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    assert isinstance(t[0], Note)
@@ -31,7 +31,7 @@ def test_Staff___setitem___01( ):
    assert isinstance(t[2], Chord)
    assert isinstance(t[3], skiptools.Skip)
    assert isinstance(t[4], tuplettools.FixedDurationTuplet)
-   t[-2] = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+   t[-2] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
    assert len(t) == 5
    assert componenttools.is_well_formed_component(t)
    assert isinstance(t[0], Rest)
@@ -120,7 +120,7 @@ def test_Staff___setitem___08( ):
 def test_Staff___setitem___09( ):
    '''Slice-assign tuplets.'''
    t = Staff(Note(0, (1, 8)) * 8)
-   t[0:4] = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2
+   t[0:4] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 2
    assert len(t) == 6
    for i, x in enumerate(t):
       if i in [0, 1]:

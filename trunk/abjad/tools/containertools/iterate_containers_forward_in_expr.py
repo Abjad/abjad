@@ -8,7 +8,7 @@ def iterate_containers_forward_in_expr(expr, start = 0, stop = None):
    Iterate containers forward in `expr`::
 
       abjad> staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
-      abjad> Tuplet((2, 3), staff[1][:])
+      abjad> Tuplet(Fraction(2, 3), staff[1][:])
       Tuplet(2/3, [e'8, f'8, g'8])
       abjad> staff.is_parallel = True
 

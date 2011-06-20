@@ -12,7 +12,7 @@ def fix_contents_of_tuplets_in_expr(tuplet):
    if tuplet multiplier less than 1/2 or greater than 2.
    Return tuplet. ::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'4 d'4 e'4")
+      abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'4 d'4 e'4")
       abjad> tuplet   
       FixedDurationTuplet(1/4, [c'4, d'4, e'4])
       abjad> tuplettools.fix_contents_of_tuplets_in_expr(tuplet)

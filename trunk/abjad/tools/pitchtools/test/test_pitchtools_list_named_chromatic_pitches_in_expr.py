@@ -5,7 +5,7 @@ from abjad.tools import pitcharraytools
 def test_pitchtools_list_named_chromatic_pitches_in_expr_01( ):
    '''Works with containers.'''
 
-   tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+   tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
    t = pitchtools.list_named_chromatic_pitches_in_expr(tuplet)
 
    assert t == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4))
