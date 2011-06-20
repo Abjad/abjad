@@ -12,6 +12,10 @@ class Meter(_StrictComparator, _Immutable):
 
    Abjad model of time signature::
 
+      abjad> from abjad.tools import metertools
+
+   ::
+
       abjad> metertools.Meter((5, 32))
       Meter(5, 32)
 

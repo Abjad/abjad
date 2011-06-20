@@ -3,6 +3,10 @@ def truncate_sequence_to_sum(sequence, sum):
 
    Truncate `sequence` to `sum`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> for n in range(10):
       ...     print n, seqtools.truncate_sequence_to_sum([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10], n)
       ... 

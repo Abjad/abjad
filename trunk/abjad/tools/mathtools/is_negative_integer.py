@@ -6,6 +6,10 @@ def is_negative_integer(expr):
 
    True when `expr` equals a negative integer::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.is_negative_integer(-1)
       True
 

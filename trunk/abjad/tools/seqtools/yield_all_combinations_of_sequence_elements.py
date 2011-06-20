@@ -7,6 +7,10 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length = None, max
 
    Yield all combinations of `sequence` in binary string order::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> list(seqtools.yield_all_combinations_of_sequence_elements([1, 2, 3, 4]))
       [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], 
       [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]

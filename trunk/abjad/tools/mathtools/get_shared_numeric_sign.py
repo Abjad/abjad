@@ -1,6 +1,10 @@
 def get_shared_numeric_sign(sequence):
    '''Return ``1`` when all `sequence` elements are positive::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.get_shared_numeric_sign([1, 2, 3])
       1
    

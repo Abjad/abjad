@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_yield_outer_product_of_sequences_01( ):

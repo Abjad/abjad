@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_resttools_make_repeated_rests_from_time_signatures_01( ):

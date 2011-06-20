@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_CyclicTuple___getitem___01( ):

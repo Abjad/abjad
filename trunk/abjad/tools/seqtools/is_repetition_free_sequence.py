@@ -6,6 +6,10 @@ def is_repetition_free_sequence(expr):
 
    True when `expr` is a sequence and `expr` is repetition free::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.is_repetition_free_sequence([0, 1, 2, 6, 7, 8])
       True
    

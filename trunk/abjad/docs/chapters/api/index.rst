@@ -228,55 +228,6 @@ contexttools
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
 
-durtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/durtools/Duration/Duration
-   tools/durtools/assignable_rational_to_dot_count
-   tools/durtools/assignable_rational_to_lilypond_duration_string
-   tools/durtools/duration_pair_to_prolation_string
-   tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
-   tools/durtools/duration_token_to_duration_pair
-   tools/durtools/duration_token_to_rational
-   tools/durtools/duration_tokens_to_duration_pairs
-   tools/durtools/duration_tokens_to_duration_pairs_with_least_common_denominator
-   tools/durtools/duration_tokens_to_least_common_denominator
-   tools/durtools/duration_tokens_to_rationals
-   tools/durtools/group_duration_tokens_by_implied_prolation
-   tools/durtools/is_assignable_rational
-   tools/durtools/is_binary_rational
-   tools/durtools/is_duration_pair
-   tools/durtools/is_duration_token
-   tools/durtools/is_lilypond_duration_name
-   tools/durtools/is_lilypond_duration_string
-   tools/durtools/lilypond_duration_string_to_rational
-   tools/durtools/lilypond_duration_string_to_rational_list
-   tools/durtools/multiply_duration_pair
-   tools/durtools/multiply_duration_pair_and_reduce_factors
-   tools/durtools/multiply_duration_pair_and_try_to_preserve_numerator
-   tools/durtools/numeric_seconds_to_clock_string
-   tools/durtools/numeric_seconds_to_escaped_clock_string
-   tools/durtools/positive_integer_to_implied_prolation_multipler
-   tools/durtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
-   tools/durtools/rational_to_duration_pair_with_specified_integer_denominator
-   tools/durtools/rational_to_equal_or_greater_assignable_rational
-   tools/durtools/rational_to_equal_or_greater_binary_rational
-   tools/durtools/rational_to_equal_or_lesser_assignable_rational
-   tools/durtools/rational_to_equal_or_lesser_binary_rational
-   tools/durtools/rational_to_flag_count
-   tools/durtools/rational_to_fraction_string
-   tools/durtools/rational_to_prolation_string
-   tools/durtools/rational_to_proper_fraction
-   tools/durtools/rewrite_rational_under_new_tempo
-   tools/durtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
-   tools/durtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
-   tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order
-   tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
-   tools/durtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
-
-
 gracetools
 
 .. toctree::
@@ -327,35 +278,6 @@ instrumenttools
    tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch
-
-
-iotools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/iotools/clear_terminal
-   tools/iotools/f
-   tools/iotools/format_input_lines_as_doc_string
-   tools/iotools/format_input_lines_as_regression_test
-   tools/iotools/get_last_output_file_name
-   tools/iotools/get_next_output_file_name
-   tools/iotools/log
-   tools/iotools/ly
-   tools/iotools/parse_lilypond_input_string
-   tools/iotools/pdf
-   tools/iotools/play
-   tools/iotools/profile_expr
-   tools/iotools/redo
-   tools/iotools/remove_abjad_pyc_files
-   tools/iotools/save_last_ly_as
-   tools/iotools/save_last_pdf_as
-   tools/iotools/show
-   tools/iotools/underscore_delimited_lowercase_to_lowercamelcase
-   tools/iotools/underscore_delimited_lowercase_to_uppercamelcase
-   tools/iotools/write_expr_to_ly
-   tools/iotools/write_expr_to_ly_and_to_pdf_and_show
-   tools/iotools/write_expr_to_pdf
 
 
 leaftools
@@ -487,59 +409,6 @@ markuptools
    tools/markuptools/remove_markup_from_leaves_in_expr
 
 
-mathtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/mathtools/arithmetic_mean
-   tools/mathtools/binomial_coefficient
-   tools/mathtools/cumulative_products
-   tools/mathtools/cumulative_signed_weights
-   tools/mathtools/cumulative_sums
-   tools/mathtools/cumulative_sums_zero
-   tools/mathtools/cumulative_sums_zero_pairwise
-   tools/mathtools/difference_series
-   tools/mathtools/divide_number_by_ratio
-   tools/mathtools/divisors
-   tools/mathtools/factors
-   tools/mathtools/get_shared_numeric_sign
-   tools/mathtools/greatest_common_divisor
-   tools/mathtools/greatest_multiple_less_equal
-   tools/mathtools/greatest_power_of_two_less_equal
-   tools/mathtools/integer_equivalent_number_to_integer
-   tools/mathtools/integer_to_base_k_tuple
-   tools/mathtools/integer_to_binary_string
-   tools/mathtools/interpolate_cosine
-   tools/mathtools/interpolate_divide
-   tools/mathtools/interpolate_divide_multiple
-   tools/mathtools/interpolate_exponential
-   tools/mathtools/interpolate_linear
-   tools/mathtools/is_assignable_integer
-   tools/mathtools/is_dotted_integer
-   tools/mathtools/is_integer_equivalent_number
-   tools/mathtools/is_negative_integer
-   tools/mathtools/is_nonnegative_integer
-   tools/mathtools/is_nonnegative_integer_equivalent_number
-   tools/mathtools/is_nonnegative_integer_power_of_two
-   tools/mathtools/is_positive_integer
-   tools/mathtools/is_positive_integer_equivalent_number
-   tools/mathtools/least_common_multiple
-   tools/mathtools/least_multiple_greater_equal
-   tools/mathtools/least_power_of_two_greater_equal
-   tools/mathtools/next_integer_partition
-   tools/mathtools/partition_integer_by_ratio
-   tools/mathtools/partition_integer_into_canonic_parts
-   tools/mathtools/partition_integer_into_halves
-   tools/mathtools/partition_integer_into_thirds
-   tools/mathtools/partition_integer_into_units
-   tools/mathtools/remove_powers_of_two
-   tools/mathtools/sign
-   tools/mathtools/weight
-   tools/mathtools/yield_all_compositions_of_integer
-   tools/mathtools/yield_all_partitions_of_integer
-
-
 measuretools
 
 .. toctree::
@@ -591,20 +460,6 @@ measuretools
    tools/measuretools/scale_measure_by_multiplier_and_adjust_meter
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
    tools/measuretools/set_measure_denominator_and_adjust_numerator
-
-
-metertools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/metertools/Meter/Meter
-   tools/metertools/duration_and_possible_denominators_to_meter
-   tools/metertools/get_nonbinary_factor_from_meter_denominator
-   tools/metertools/is_meter_token
-   tools/metertools/is_meter_with_equivalent_binary_representation
-   tools/metertools/list_meters_of_measures_in_expr
-   tools/metertools/meter_to_binary_meter
 
 
 notetools
@@ -862,133 +717,6 @@ scoretools
    tools/scoretools/make_pitch_array_score_from_pitch_arrays
 
 
-seqtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/seqtools/CyclicList/CyclicList
-   tools/seqtools/CyclicMatrix/CyclicMatrix
-   tools/seqtools/CyclicTuple/CyclicTuple
-   tools/seqtools/Matrix/Matrix
-   tools/seqtools/all_are_assignable_integers
-   tools/seqtools/all_are_equal
-   tools/seqtools/all_are_integer_equivalent_numbers
-   tools/seqtools/all_are_nonnegative_integer_equivalent_numbers
-   tools/seqtools/all_are_nonnegative_integer_powers_of_two
-   tools/seqtools/all_are_nonnegative_integers
-   tools/seqtools/all_are_numbers
-   tools/seqtools/all_are_positive_integer_equivalent_numbers
-   tools/seqtools/all_are_positive_integers
-   tools/seqtools/all_are_unequal
-   tools/seqtools/count_length_two_runs_in_sequence
-   tools/seqtools/divide_sequence_elements_by_greatest_common_divisor
-   tools/seqtools/flatten_sequence
-   tools/seqtools/flatten_sequence_at_indices
-   tools/seqtools/get_indices_of_sequence_elements_equal_to_true
-   tools/seqtools/get_sequence_degree_of_rotational_symmetry
-   tools/seqtools/get_sequence_element_at_cyclic_index
-   tools/seqtools/get_sequence_elements_at_indices
-   tools/seqtools/get_sequence_elements_frequency_distribution
-   tools/seqtools/get_sequence_period_of_rotation
-   tools/seqtools/increase_sequence_elements_at_indices_by_addenda
-   tools/seqtools/increase_sequence_elements_cyclically_by_addenda
-   tools/seqtools/interlace_sequences
-   tools/seqtools/is_monotonically_decreasing_sequence
-   tools/seqtools/is_monotonically_increasing_sequence
-   tools/seqtools/is_permutation
-   tools/seqtools/is_repetition_free_sequence
-   tools/seqtools/is_restricted_growth_function
-   tools/seqtools/is_strictly_decreasing_sequence
-   tools/seqtools/is_strictly_increasing_sequence
-   tools/seqtools/iterate_sequence_cyclically
-   tools/seqtools/iterate_sequence_cyclically_from_start_to_stop
-   tools/seqtools/iterate_sequence_forward_and_backward_nonoverlapping
-   tools/seqtools/iterate_sequence_forward_and_backward_overlapping
-   tools/seqtools/iterate_sequence_nwise_cyclic
-   tools/seqtools/iterate_sequence_nwise_strict
-   tools/seqtools/iterate_sequence_nwise_wrapped
-   tools/seqtools/iterate_sequence_pairwise_cyclic
-   tools/seqtools/iterate_sequence_pairwise_strict
-   tools/seqtools/iterate_sequence_pairwise_wrapped
-   tools/seqtools/join_subsequences_by_sign_of_subsequence_elements
-   tools/seqtools/map_sequence_elements_to_canonic_tuples
-   tools/seqtools/map_sequence_elements_to_numbered_sublists
-   tools/seqtools/negate_absolute_value_of_sequence_elements_at_indices
-   tools/seqtools/negate_absolute_value_of_sequence_elements_cyclically
-   tools/seqtools/negate_sequence_elements_at_indices
-   tools/seqtools/negate_sequence_elements_cyclically
-   tools/seqtools/overwrite_sequence_elements_at_indices
-   tools/seqtools/partition_sequence_by_ratio_of_lengths
-   tools/seqtools/partition_sequence_by_ratio_of_weights
-   tools/seqtools/partition_sequence_by_restricted_growth_function
-   tools/seqtools/partition_sequence_by_sign_of_elements
-   tools/seqtools/partition_sequence_by_value_of_elements
-   tools/seqtools/partition_sequence_cyclically_by_counts_with_overhang
-   tools/seqtools/partition_sequence_cyclically_by_counts_without_overhang
-   tools/seqtools/partition_sequence_cyclically_by_weights_at_least_with_overhang
-   tools/seqtools/partition_sequence_cyclically_by_weights_at_least_without_overhang
-   tools/seqtools/partition_sequence_cyclically_by_weights_at_most_with_overhang
-   tools/seqtools/partition_sequence_cyclically_by_weights_at_most_without_overhang
-   tools/seqtools/partition_sequence_cyclically_by_weights_exactly_with_overhang
-   tools/seqtools/partition_sequence_cyclically_by_weights_exactly_without_overhang
-   tools/seqtools/partition_sequence_extended_to_counts_with_overhang
-   tools/seqtools/partition_sequence_extended_to_counts_without_overhang
-   tools/seqtools/partition_sequence_once_by_counts_with_overhang
-   tools/seqtools/partition_sequence_once_by_counts_without_overhang
-   tools/seqtools/partition_sequence_once_by_weights_at_least_with_overhang
-   tools/seqtools/partition_sequence_once_by_weights_at_least_without_overhang
-   tools/seqtools/partition_sequence_once_by_weights_at_most_with_overhang
-   tools/seqtools/partition_sequence_once_by_weights_at_most_without_overhang
-   tools/seqtools/partition_sequence_once_by_weights_exactly_with_overhang
-   tools/seqtools/partition_sequence_once_by_weights_exactly_without_overhang
-   tools/seqtools/permute_sequence
-   tools/seqtools/remove_sequence_elements_at_indices
-   tools/seqtools/remove_sequence_elements_at_indices_cyclically
-   tools/seqtools/remove_subsequence_of_weight_at_index
-   tools/seqtools/repeat_runs_in_sequence_to_count
-   tools/seqtools/repeat_sequence_elements_at_indices
-   tools/seqtools/repeat_sequence_elements_at_indices_cyclically
-   tools/seqtools/repeat_sequence_elements_n_times_each
-   tools/seqtools/repeat_sequence_n_times
-   tools/seqtools/repeat_sequence_to_length
-   tools/seqtools/repeat_sequence_to_weight_at_least
-   tools/seqtools/repeat_sequence_to_weight_at_most
-   tools/seqtools/repeat_sequence_to_weight_exactly
-   tools/seqtools/replace_sequence_elements_cyclically_with_new_material
-   tools/seqtools/retain_sequence_elements_at_indices
-   tools/seqtools/retain_sequence_elements_at_indices_cyclically
-   tools/seqtools/reverse_sequence
-   tools/seqtools/reverse_sequence_elements
-   tools/seqtools/rotate_sequence
-   tools/seqtools/splice_new_elements_between_sequence_elements
-   tools/seqtools/split_sequence_cyclically_by_weights_with_overhang
-   tools/seqtools/split_sequence_cyclically_by_weights_without_overhang
-   tools/seqtools/split_sequence_extended_to_weights_with_overhang
-   tools/seqtools/split_sequence_extended_to_weights_without_overhang
-   tools/seqtools/split_sequence_once_by_weights_with_overhang
-   tools/seqtools/split_sequence_once_by_weights_without_overhang
-   tools/seqtools/sum_consecutive_sequence_elements_by_sign
-   tools/seqtools/sum_sequence_elements_at_indices
-   tools/seqtools/truncate_runs_in_sequence
-   tools/seqtools/truncate_sequence_to_sum
-   tools/seqtools/truncate_sequence_to_weight
-   tools/seqtools/yield_all_combinations_of_sequence_elements
-   tools/seqtools/yield_all_k_ary_sequences_of_length
-   tools/seqtools/yield_all_pairs_between_sequences
-   tools/seqtools/yield_all_partitions_of_sequence
-   tools/seqtools/yield_all_permutations_of_sequence
-   tools/seqtools/yield_all_permutations_of_sequence_in_orbit
-   tools/seqtools/yield_all_restricted_growth_functions_of_length
-   tools/seqtools/yield_all_rotations_of_sequence
-   tools/seqtools/yield_all_set_partitions_of_sequence
-   tools/seqtools/yield_all_subsequences_of_sequence
-   tools/seqtools/yield_all_unordered_pairs_of_sequence
-   tools/seqtools/yield_outer_product_of_sequences
-   tools/seqtools/zip_sequences_cyclically
-   tools/seqtools/zip_sequences_without_truncation
-
-
 skiptools
 
 .. toctree::
@@ -1181,6 +909,84 @@ cfgtools
    tools/cfgtools/set_default_accidental_spelling
 
 
+durtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/durtools/Duration/Duration
+   tools/durtools/assignable_rational_to_dot_count
+   tools/durtools/assignable_rational_to_lilypond_duration_string
+   tools/durtools/duration_pair_to_prolation_string
+   tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
+   tools/durtools/duration_token_to_duration_pair
+   tools/durtools/duration_token_to_rational
+   tools/durtools/duration_tokens_to_duration_pairs
+   tools/durtools/duration_tokens_to_duration_pairs_with_least_common_denominator
+   tools/durtools/duration_tokens_to_least_common_denominator
+   tools/durtools/duration_tokens_to_rationals
+   tools/durtools/group_duration_tokens_by_implied_prolation
+   tools/durtools/is_assignable_rational
+   tools/durtools/is_binary_rational
+   tools/durtools/is_duration_pair
+   tools/durtools/is_duration_token
+   tools/durtools/is_lilypond_duration_name
+   tools/durtools/is_lilypond_duration_string
+   tools/durtools/lilypond_duration_string_to_rational
+   tools/durtools/lilypond_duration_string_to_rational_list
+   tools/durtools/multiply_duration_pair
+   tools/durtools/multiply_duration_pair_and_reduce_factors
+   tools/durtools/multiply_duration_pair_and_try_to_preserve_numerator
+   tools/durtools/numeric_seconds_to_clock_string
+   tools/durtools/numeric_seconds_to_escaped_clock_string
+   tools/durtools/positive_integer_to_implied_prolation_multipler
+   tools/durtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
+   tools/durtools/rational_to_duration_pair_with_specified_integer_denominator
+   tools/durtools/rational_to_equal_or_greater_assignable_rational
+   tools/durtools/rational_to_equal_or_greater_binary_rational
+   tools/durtools/rational_to_equal_or_lesser_assignable_rational
+   tools/durtools/rational_to_equal_or_lesser_binary_rational
+   tools/durtools/rational_to_flag_count
+   tools/durtools/rational_to_fraction_string
+   tools/durtools/rational_to_prolation_string
+   tools/durtools/rational_to_proper_fraction
+   tools/durtools/rewrite_rational_under_new_tempo
+   tools/durtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
+   tools/durtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
+   tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order
+   tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
+   tools/durtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
+
+
+iotools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/iotools/clear_terminal
+   tools/iotools/f
+   tools/iotools/format_input_lines_as_doc_string
+   tools/iotools/format_input_lines_as_regression_test
+   tools/iotools/get_last_output_file_name
+   tools/iotools/get_next_output_file_name
+   tools/iotools/log
+   tools/iotools/ly
+   tools/iotools/parse_lilypond_input_string
+   tools/iotools/pdf
+   tools/iotools/play
+   tools/iotools/profile_expr
+   tools/iotools/redo
+   tools/iotools/remove_abjad_pyc_files
+   tools/iotools/save_last_ly_as
+   tools/iotools/save_last_pdf_as
+   tools/iotools/show
+   tools/iotools/underscore_delimited_lowercase_to_lowercamelcase
+   tools/iotools/underscore_delimited_lowercase_to_uppercamelcase
+   tools/iotools/write_expr_to_ly
+   tools/iotools/write_expr_to_ly_and_to_pdf_and_show
+   tools/iotools/write_expr_to_pdf
+
+
 layouttools
 
 .. toctree::
@@ -1198,6 +1004,73 @@ layouttools
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
 
+mathtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/mathtools/arithmetic_mean
+   tools/mathtools/binomial_coefficient
+   tools/mathtools/cumulative_products
+   tools/mathtools/cumulative_signed_weights
+   tools/mathtools/cumulative_sums
+   tools/mathtools/cumulative_sums_zero
+   tools/mathtools/cumulative_sums_zero_pairwise
+   tools/mathtools/difference_series
+   tools/mathtools/divide_number_by_ratio
+   tools/mathtools/divisors
+   tools/mathtools/factors
+   tools/mathtools/get_shared_numeric_sign
+   tools/mathtools/greatest_common_divisor
+   tools/mathtools/greatest_multiple_less_equal
+   tools/mathtools/greatest_power_of_two_less_equal
+   tools/mathtools/integer_equivalent_number_to_integer
+   tools/mathtools/integer_to_base_k_tuple
+   tools/mathtools/integer_to_binary_string
+   tools/mathtools/interpolate_cosine
+   tools/mathtools/interpolate_divide
+   tools/mathtools/interpolate_divide_multiple
+   tools/mathtools/interpolate_exponential
+   tools/mathtools/interpolate_linear
+   tools/mathtools/is_assignable_integer
+   tools/mathtools/is_dotted_integer
+   tools/mathtools/is_integer_equivalent_number
+   tools/mathtools/is_negative_integer
+   tools/mathtools/is_nonnegative_integer
+   tools/mathtools/is_nonnegative_integer_equivalent_number
+   tools/mathtools/is_nonnegative_integer_power_of_two
+   tools/mathtools/is_positive_integer
+   tools/mathtools/is_positive_integer_equivalent_number
+   tools/mathtools/least_common_multiple
+   tools/mathtools/least_multiple_greater_equal
+   tools/mathtools/least_power_of_two_greater_equal
+   tools/mathtools/next_integer_partition
+   tools/mathtools/partition_integer_by_ratio
+   tools/mathtools/partition_integer_into_canonic_parts
+   tools/mathtools/partition_integer_into_halves
+   tools/mathtools/partition_integer_into_thirds
+   tools/mathtools/partition_integer_into_units
+   tools/mathtools/remove_powers_of_two
+   tools/mathtools/sign
+   tools/mathtools/weight
+   tools/mathtools/yield_all_compositions_of_integer
+   tools/mathtools/yield_all_partitions_of_integer
+
+
+metertools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/metertools/Meter/Meter
+   tools/metertools/duration_and_possible_denominators_to_meter
+   tools/metertools/get_nonbinary_factor_from_meter_denominator
+   tools/metertools/is_meter_token
+   tools/metertools/is_meter_with_equivalent_binary_representation
+   tools/metertools/list_meters_of_measures_in_expr
+   tools/metertools/meter_to_binary_meter
+
+
 pitcharraytools
 
 .. toctree::
@@ -1211,6 +1084,133 @@ pitcharraytools
    tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
    tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
    tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
+
+
+seqtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/seqtools/CyclicList/CyclicList
+   tools/seqtools/CyclicMatrix/CyclicMatrix
+   tools/seqtools/CyclicTuple/CyclicTuple
+   tools/seqtools/Matrix/Matrix
+   tools/seqtools/all_are_assignable_integers
+   tools/seqtools/all_are_equal
+   tools/seqtools/all_are_integer_equivalent_numbers
+   tools/seqtools/all_are_nonnegative_integer_equivalent_numbers
+   tools/seqtools/all_are_nonnegative_integer_powers_of_two
+   tools/seqtools/all_are_nonnegative_integers
+   tools/seqtools/all_are_numbers
+   tools/seqtools/all_are_positive_integer_equivalent_numbers
+   tools/seqtools/all_are_positive_integers
+   tools/seqtools/all_are_unequal
+   tools/seqtools/count_length_two_runs_in_sequence
+   tools/seqtools/divide_sequence_elements_by_greatest_common_divisor
+   tools/seqtools/flatten_sequence
+   tools/seqtools/flatten_sequence_at_indices
+   tools/seqtools/get_indices_of_sequence_elements_equal_to_true
+   tools/seqtools/get_sequence_degree_of_rotational_symmetry
+   tools/seqtools/get_sequence_element_at_cyclic_index
+   tools/seqtools/get_sequence_elements_at_indices
+   tools/seqtools/get_sequence_elements_frequency_distribution
+   tools/seqtools/get_sequence_period_of_rotation
+   tools/seqtools/increase_sequence_elements_at_indices_by_addenda
+   tools/seqtools/increase_sequence_elements_cyclically_by_addenda
+   tools/seqtools/interlace_sequences
+   tools/seqtools/is_monotonically_decreasing_sequence
+   tools/seqtools/is_monotonically_increasing_sequence
+   tools/seqtools/is_permutation
+   tools/seqtools/is_repetition_free_sequence
+   tools/seqtools/is_restricted_growth_function
+   tools/seqtools/is_strictly_decreasing_sequence
+   tools/seqtools/is_strictly_increasing_sequence
+   tools/seqtools/iterate_sequence_cyclically
+   tools/seqtools/iterate_sequence_cyclically_from_start_to_stop
+   tools/seqtools/iterate_sequence_forward_and_backward_nonoverlapping
+   tools/seqtools/iterate_sequence_forward_and_backward_overlapping
+   tools/seqtools/iterate_sequence_nwise_cyclic
+   tools/seqtools/iterate_sequence_nwise_strict
+   tools/seqtools/iterate_sequence_nwise_wrapped
+   tools/seqtools/iterate_sequence_pairwise_cyclic
+   tools/seqtools/iterate_sequence_pairwise_strict
+   tools/seqtools/iterate_sequence_pairwise_wrapped
+   tools/seqtools/join_subsequences_by_sign_of_subsequence_elements
+   tools/seqtools/map_sequence_elements_to_canonic_tuples
+   tools/seqtools/map_sequence_elements_to_numbered_sublists
+   tools/seqtools/negate_absolute_value_of_sequence_elements_at_indices
+   tools/seqtools/negate_absolute_value_of_sequence_elements_cyclically
+   tools/seqtools/negate_sequence_elements_at_indices
+   tools/seqtools/negate_sequence_elements_cyclically
+   tools/seqtools/overwrite_sequence_elements_at_indices
+   tools/seqtools/partition_sequence_by_ratio_of_lengths
+   tools/seqtools/partition_sequence_by_ratio_of_weights
+   tools/seqtools/partition_sequence_by_restricted_growth_function
+   tools/seqtools/partition_sequence_by_sign_of_elements
+   tools/seqtools/partition_sequence_by_value_of_elements
+   tools/seqtools/partition_sequence_cyclically_by_counts_with_overhang
+   tools/seqtools/partition_sequence_cyclically_by_counts_without_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_at_least_with_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_at_least_without_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_at_most_with_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_at_most_without_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_exactly_with_overhang
+   tools/seqtools/partition_sequence_cyclically_by_weights_exactly_without_overhang
+   tools/seqtools/partition_sequence_extended_to_counts_with_overhang
+   tools/seqtools/partition_sequence_extended_to_counts_without_overhang
+   tools/seqtools/partition_sequence_once_by_counts_with_overhang
+   tools/seqtools/partition_sequence_once_by_counts_without_overhang
+   tools/seqtools/partition_sequence_once_by_weights_at_least_with_overhang
+   tools/seqtools/partition_sequence_once_by_weights_at_least_without_overhang
+   tools/seqtools/partition_sequence_once_by_weights_at_most_with_overhang
+   tools/seqtools/partition_sequence_once_by_weights_at_most_without_overhang
+   tools/seqtools/partition_sequence_once_by_weights_exactly_with_overhang
+   tools/seqtools/partition_sequence_once_by_weights_exactly_without_overhang
+   tools/seqtools/permute_sequence
+   tools/seqtools/remove_sequence_elements_at_indices
+   tools/seqtools/remove_sequence_elements_at_indices_cyclically
+   tools/seqtools/remove_subsequence_of_weight_at_index
+   tools/seqtools/repeat_runs_in_sequence_to_count
+   tools/seqtools/repeat_sequence_elements_at_indices
+   tools/seqtools/repeat_sequence_elements_at_indices_cyclically
+   tools/seqtools/repeat_sequence_elements_n_times_each
+   tools/seqtools/repeat_sequence_n_times
+   tools/seqtools/repeat_sequence_to_length
+   tools/seqtools/repeat_sequence_to_weight_at_least
+   tools/seqtools/repeat_sequence_to_weight_at_most
+   tools/seqtools/repeat_sequence_to_weight_exactly
+   tools/seqtools/replace_sequence_elements_cyclically_with_new_material
+   tools/seqtools/retain_sequence_elements_at_indices
+   tools/seqtools/retain_sequence_elements_at_indices_cyclically
+   tools/seqtools/reverse_sequence
+   tools/seqtools/reverse_sequence_elements
+   tools/seqtools/rotate_sequence
+   tools/seqtools/splice_new_elements_between_sequence_elements
+   tools/seqtools/split_sequence_cyclically_by_weights_with_overhang
+   tools/seqtools/split_sequence_cyclically_by_weights_without_overhang
+   tools/seqtools/split_sequence_extended_to_weights_with_overhang
+   tools/seqtools/split_sequence_extended_to_weights_without_overhang
+   tools/seqtools/split_sequence_once_by_weights_with_overhang
+   tools/seqtools/split_sequence_once_by_weights_without_overhang
+   tools/seqtools/sum_consecutive_sequence_elements_by_sign
+   tools/seqtools/sum_sequence_elements_at_indices
+   tools/seqtools/truncate_runs_in_sequence
+   tools/seqtools/truncate_sequence_to_sum
+   tools/seqtools/truncate_sequence_to_weight
+   tools/seqtools/yield_all_combinations_of_sequence_elements
+   tools/seqtools/yield_all_k_ary_sequences_of_length
+   tools/seqtools/yield_all_pairs_between_sequences
+   tools/seqtools/yield_all_partitions_of_sequence
+   tools/seqtools/yield_all_permutations_of_sequence
+   tools/seqtools/yield_all_permutations_of_sequence_in_orbit
+   tools/seqtools/yield_all_restricted_growth_functions_of_length
+   tools/seqtools/yield_all_rotations_of_sequence
+   tools/seqtools/yield_all_set_partitions_of_sequence
+   tools/seqtools/yield_all_subsequences_of_sequence
+   tools/seqtools/yield_all_unordered_pairs_of_sequence
+   tools/seqtools/yield_outer_product_of_sequences
+   tools/seqtools/zip_sequences_cyclically
+   tools/seqtools/zip_sequences_without_truncation
 
 
 sievetools

@@ -3,6 +3,10 @@ def yield_outer_product_of_sequences(sequences):
 
    Yield outer product of `sequences`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> list(seqtools.yield_outer_product_of_sequences([[1, 2, 3], ['a', 'b']]))
       [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b'], [3, 'a'], [3, 'b']]
 

@@ -1,6 +1,10 @@
 def sign(n):
    '''Return ``-1`` on negative `n`::
    
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.sign(-96.2)
       -1
 

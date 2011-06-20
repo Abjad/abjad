@@ -6,6 +6,10 @@ from abjad.tools.metertools.Meter import Meter
 def duration_and_possible_denominators_to_meter(duration, denominators = None, factor = None):
    '''Make new meter equal to `duration`::
 
+      abjad> from abjad.tools import metertools
+
+   ::
+
       abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2))
       Meter(3, 2)
 

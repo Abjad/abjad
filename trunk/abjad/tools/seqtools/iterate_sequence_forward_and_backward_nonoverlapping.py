@@ -3,6 +3,10 @@ def iterate_sequence_forward_and_backward_nonoverlapping(sequence):
 
    Iterate `sequence` first forward and then backward, with first and last elements repeated::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> list(seqtools.iterate_sequence_forward_and_backward_nonoverlapping([1, 2, 3, 4, 5]))
       [1, 2, 3, 4, 5, 5, 4, 3, 2, 1]
 

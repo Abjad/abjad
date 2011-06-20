@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_componenttools_get_nth_component_in_expr_01( ):

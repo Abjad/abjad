@@ -6,6 +6,10 @@ def repeat_sequence_to_weight_at_most(sequence, weight):
 
    Repeat `sequence` to `weight` at most::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.repeat_sequence_to_weight_at_most((5, -5, -5), 23)
       (5, -5, -5, 5)
 

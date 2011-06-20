@@ -3,6 +3,10 @@ def iterate_sequence_nwise_strict(sequence, n):
 
    Iterate elements in `sequence` `n` at a time::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> list(seqtools.iterate_sequence_nwise_strict(range(10), 4))
       [(0, 1, 2, 3), (1, 2, 3, 4), (2, 3, 4, 5), (3, 4, 5, 6), (4, 5, 6, 7), (5, 6, 7, 8), (6, 7, 8, 9)]
 

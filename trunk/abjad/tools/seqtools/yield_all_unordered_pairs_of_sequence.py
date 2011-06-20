@@ -4,6 +4,10 @@ def yield_all_unordered_pairs_of_sequence(sequence):
 
    Yield all unordered pairs of `sequence`::
    
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1, 2, 3, 4]))
       [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
 

@@ -7,6 +7,10 @@ def duration_token_to_duration_pair(duration_token):
 
    Change `duration_token` to duration pair::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.duration_token_to_duration_pair(Fraction(2, 4))
       (1, 2)
 

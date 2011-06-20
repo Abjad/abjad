@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_get_sequence_element_at_cyclic_index_01( ):

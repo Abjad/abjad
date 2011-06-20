@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 import py.test
 py.test.skip('remove or replace with more specific function calls.')
 

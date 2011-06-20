@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_partition_sequence_by_restricted_growth_function_01( ):

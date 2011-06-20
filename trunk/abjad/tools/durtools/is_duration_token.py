@@ -7,6 +7,10 @@ def is_duration_token(expr):
 
    True when `expr` has the form of an Abjad duration pair::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.is_duration_token('8.')
       True
 

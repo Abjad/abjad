@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_partition_sequence_cyclically_by_weights_at_most_without_overhang_01( ):

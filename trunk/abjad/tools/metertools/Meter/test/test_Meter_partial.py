@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import metertools
 
 
 def test_Meter_partial_01( ):

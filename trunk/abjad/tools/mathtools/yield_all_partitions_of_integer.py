@@ -6,6 +6,10 @@ def yield_all_partitions_of_integer(n):
 
    Yield all partitions of positive integer `n` in descending lex order::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> for partition in mathtools.yield_all_partitions_of_integer(7):
       ...     partition
       ... 

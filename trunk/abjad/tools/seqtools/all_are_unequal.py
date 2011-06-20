@@ -3,6 +3,10 @@ def all_are_unequal(expr):
 
    True when `expr` is a sequence all elements in `expr` are unequal::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.all_are_unequal([1, 2, 3, 4, 9])
       True
 

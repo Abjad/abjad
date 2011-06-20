@@ -6,6 +6,10 @@ def is_nonnegative_integer(expr):
 
    True when `expr` equals a nonnegative integer::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.is_nonnegative_integer(99)
       True
 

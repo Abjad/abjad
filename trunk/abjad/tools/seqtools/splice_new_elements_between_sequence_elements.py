@@ -3,6 +3,10 @@ def splice_new_elements_between_sequence_elements(sequence, new_elements, overha
 
    Splice copies of `new_elements` between each of the elements of `sequence`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> sequence = [0, 1, 2, 3, 4]
       abjad> new_elements = ['A', 'B']
 

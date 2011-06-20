@@ -3,6 +3,10 @@ def duration_pair_to_prolation_string(pair):
 
    Change positive integer duration `pair` to colon-separated prolation string::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.duration_pair_to_prolation_string((2, 3))
       '3:2'
 

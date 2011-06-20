@@ -3,6 +3,10 @@ def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield =
 
    Increase `sequence` cyclically by `addenda`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.increase_sequence_elements_cyclically_by_addenda(range(10), [10, -10], shield = False)
       [10, -9, 12, -7, 14, -5, 16, -3, 18, -1]
 

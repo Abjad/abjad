@@ -6,6 +6,10 @@ def yield_all_k_ary_sequences_of_length(k, length):
 
    Generate all `k`-ary sequences of `length`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> for sequence in seqtools.yield_all_k_ary_sequences_of_length(2, 3):
       ...     sequence
       ... 

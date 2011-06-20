@@ -7,6 +7,10 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
 
    Return all parts positive on positive `n`::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> for n in range(1, 11):
       ...     print n, mathtools.partition_integer_into_canonic_parts(n)
       ... 

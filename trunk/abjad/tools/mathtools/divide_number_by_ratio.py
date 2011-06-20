@@ -6,6 +6,10 @@ from numbers import Number
 def divide_number_by_ratio(number, ratio):
    '''Divide integer by `ratio`::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.divide_number_by_ratio(1, [1, 1, 3])
       [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
 

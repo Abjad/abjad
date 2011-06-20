@@ -6,6 +6,10 @@ def partition_sequence_cyclically_by_weights_exactly_without_overhang(sequence, 
 
    Partition `sequence` elements cyclically by `weights` exactly without overhang::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5]
       abjad> seqtools.partition_sequence_cyclically_by_weights_exactly_without_overhang(sequence, [12])
       [[3, 3, 3, 3], [4, 4, 4]]

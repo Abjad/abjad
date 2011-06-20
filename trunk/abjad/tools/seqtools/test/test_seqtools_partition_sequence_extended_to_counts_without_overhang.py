@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_partition_sequence_extended_to_counts_without_overhang_01( ):

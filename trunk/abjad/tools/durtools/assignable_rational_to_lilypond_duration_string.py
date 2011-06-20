@@ -10,6 +10,10 @@ def assignable_rational_to_lilypond_duration_string(rational):
 
    Change assignable `rational` to LilyPond duration string::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
       '8.'
 

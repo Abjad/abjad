@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_notetools_make_repeated_notes_from_time_signatures_01( ):

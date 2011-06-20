@@ -3,6 +3,10 @@ def all_are_equal(expr):
 
    True when `expr` is a sequence and all elements in `expr` are equal::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.all_are_equal([99, 99, 99, 99, 99, 99])
       True
 

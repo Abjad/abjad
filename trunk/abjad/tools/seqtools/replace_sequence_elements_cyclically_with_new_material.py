@@ -7,6 +7,10 @@ def replace_sequence_elements_cyclically_with_new_material(sequence, indices, ne
 
    Replace `sequence` elements cyclically at `indices` with `new_material`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0], 2), (['A', 'B'], 3))
       ['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15, 16, 17, 'A', 19]
 

@@ -7,6 +7,10 @@ def least_multiple_greater_equal(m, n):
 
    ::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.least_multiple_greater_equal(10, 47)
       50
 

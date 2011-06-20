@@ -7,6 +7,10 @@ def multiply_duration_pair_and_reduce_factors(pair, multiplier):
 
    Multiply `pair` by rational `multiplier` and reduce factors::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.multiply_duration_pair_and_reduce_factors((4, 8), Fraction(2, 3))
       (4, 12)
 

@@ -6,6 +6,10 @@ def rational_to_fraction_string(rational):
 
    Change `rational` to fraction string::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.rational_to_fraction_string(Fraction(2, 4))
       '1/2'
 

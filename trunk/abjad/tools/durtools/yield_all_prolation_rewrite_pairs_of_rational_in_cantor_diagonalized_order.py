@@ -12,6 +12,10 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
 
    The different ways to notate a prolated duration of ``1/8``::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> pairs = durtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(1, 8))
       abjad> for pair in pairs: pair
       ... 

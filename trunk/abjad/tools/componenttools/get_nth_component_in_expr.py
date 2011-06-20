@@ -11,6 +11,7 @@ def get_nth_component_in_expr(expr, klasses, n = 0):
       abjad> durations = [Duration(n, 16) for n in range(1, 5)]
       abjad> notes = notetools.make_notes([0, 2, 4, 5], durations)
       abjad> rests = resttools.make_rests(durations)
+      abjad> from abjad.tools import seqtools
       abjad> leaves = seqtools.interlace_sequences(notes, rests)
       abjad> staff.extend(leaves)
 

@@ -3,6 +3,10 @@ def is_permutation(expr, length = None):
 
    True when `expr` is a permutation::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.is_permutation([4, 5, 0, 3, 2, 1])
       True
 

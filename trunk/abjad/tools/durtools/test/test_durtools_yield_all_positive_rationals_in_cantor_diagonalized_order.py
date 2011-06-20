@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import durtools
 
 
 def test_durtools_yield_all_positive_rationals_in_cantor_diagonalized_order_01( ):

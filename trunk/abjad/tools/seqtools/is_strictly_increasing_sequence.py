@@ -3,6 +3,10 @@ def is_strictly_increasing_sequence(expr):
 
    True when `expr` is a sequence and the elements in `expr` increase strictly::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> expr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
       abjad> seqtools.is_strictly_increasing_sequence(expr)
       True

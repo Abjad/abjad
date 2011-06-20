@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_skiptools_make_repeated_skips_from_time_signatures_01( ):

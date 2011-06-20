@@ -7,6 +7,10 @@ def duration_token_to_rational(duration_token):
 
    Change `duration_token` to rational::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.duration_token_to_rational((4, 16))
       Fraction(1, 4)
 

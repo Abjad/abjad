@@ -10,6 +10,10 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
 
    Partition `sequence` by ratio of `weights`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
 
       abjad> seqtools.partition_sequence_by_ratio_of_weights([1] * 10, [1, 1, 1])
       [[1, 1, 1], [1, 1, 1, 1], [1, 1, 1]]

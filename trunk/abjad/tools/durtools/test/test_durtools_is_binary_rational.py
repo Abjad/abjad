@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import durtools
 
 
 def test_durtools_is_binary_rational_01( ):

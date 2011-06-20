@@ -4,6 +4,10 @@ from abjad.tools.mathtools.is_positive_integer import is_positive_integer
 def factors(n):
    '''Integer factors of positive integer `n` in increasing order::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.factors(84)
       [1, 2, 2, 3, 7]
 

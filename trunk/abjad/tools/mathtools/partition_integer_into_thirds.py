@@ -3,6 +3,10 @@ def partition_integer_into_thirds(n, smallest = 'middle', biggest = 'middle'):
 
    When ``n % 3 == 0``, ``left == middle == right``::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.partition_integer_into_thirds(9)
       (3, 3, 3)
 

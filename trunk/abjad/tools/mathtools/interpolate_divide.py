@@ -6,6 +6,10 @@ def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
    '''Divide `total` into segments of sizes computed from interpolating 
    between `start_frac` and `stop_frac`::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.interpolate_divide(10, 1, 1, exp=1)
       [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
       abjad> sum(_)

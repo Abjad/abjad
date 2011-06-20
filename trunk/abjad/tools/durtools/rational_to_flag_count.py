@@ -6,6 +6,10 @@ def rational_to_flag_count(rational):
 
    Change `rational` to number of flags required to notate::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.rational_to_flag_count(Fraction(1, 32))
       3
 

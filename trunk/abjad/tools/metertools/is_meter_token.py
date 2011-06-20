@@ -5,6 +5,10 @@ from abjad.tools import durtools
 
 def is_meter_token(expr):
    '''True when `expr` has the form of an Abjad meter token::
+
+      abjad> from abjad.tools import metertools
+
+   ::
    
       abjad> metertools.is_meter_token(metertools.Meter(3, 8))
       True

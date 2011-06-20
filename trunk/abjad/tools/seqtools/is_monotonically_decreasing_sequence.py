@@ -3,6 +3,10 @@ def is_monotonically_decreasing_sequence(expr):
 
    True when `expr` is a sequence and the elements in `expr` decrease monotonically::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> expr = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
       abjad> seqtools.is_monotonically_decreasing_sequence(expr)
       True

@@ -9,6 +9,10 @@ import fractions
 def meter_to_binary_meter(nonbinary_meter, contents_multiplier = fractions.Fraction(1)):
    '''Change nonbinary `meter` to binary meter::
 
+      abjad> from abjad.tools import metertools
+
+   ::
+
       abjad> metertools.meter_to_binary_meter(metertools.Meter(3, 12))
       Meter(2, 8)
 

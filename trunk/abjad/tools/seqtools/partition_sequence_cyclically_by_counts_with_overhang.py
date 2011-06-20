@@ -6,6 +6,10 @@ def partition_sequence_cyclically_by_counts_with_overhang(sequence, counts):
 
    Partition `sequence` cyclically by `counts` with overhang::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.partition_sequence_cyclically_by_counts_with_overhang(range(16), [4, 6]) 
       [[0, 1, 2, 3], [4, 5, 6, 7, 8, 9], [10, 11, 12, 13], [14, 15]]
 

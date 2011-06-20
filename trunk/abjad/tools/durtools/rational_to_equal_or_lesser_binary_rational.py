@@ -7,6 +7,10 @@ def rational_to_equal_or_lesser_binary_rational(rational):
 
    Change `rational` to equal or lesser binary rational::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> for n in range(1, 17): # doctest: +SKIP
       ...     rational = Fraction(n, 16)
       ...     written_duration = durtools.rational_to_equal_or_lesser_binary_rational(rational)

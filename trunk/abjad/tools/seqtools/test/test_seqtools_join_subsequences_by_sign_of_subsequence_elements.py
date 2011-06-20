@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_join_subsequences_by_sign_of_subsequence_elements_01( ):

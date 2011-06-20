@@ -36,6 +36,10 @@ def is_lilypond_duration_string(expr):
 
    True when `expr` is a LilyPond duration string::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.is_lilypond_duration_string('4.. * 1/2')
       True
 

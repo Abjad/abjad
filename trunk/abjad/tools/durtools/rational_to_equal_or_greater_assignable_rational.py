@@ -10,6 +10,10 @@ def rational_to_equal_or_greater_assignable_rational(rational):
 
    Change `rational` to equal or greater assignable rational::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> for n in range(1, 17): # doctest: +SKIP
       ...     prolated = Fraction(n, 16)
       ...     written = durtools.rational_to_equal_or_greater_assignable_rational(prolated)

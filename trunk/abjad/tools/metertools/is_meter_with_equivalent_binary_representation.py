@@ -6,6 +6,10 @@ from abjad.tools import durtools
 def is_meter_with_equivalent_binary_representation(expr):
    '''True when `expr` is a meter with binary-valued duration::
 
+      abjad> from abjad.tools import metertools
+
+   ::
+
       abjad> metertools.is_meter_with_equivalent_binary_representation(metertools.Meter(3, 12))
       True
 

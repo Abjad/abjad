@@ -1,6 +1,10 @@
 def list_meters_of_measures_in_expr(components):
    r'''List meters of measures in `expr`::
 
+      abjad> from abjad.tools import metertools
+
+   ::
+
       abjad> staff = Staff([Measure((2, 8), "c8 d8"), Measure((3, 8), "c8 d8 e8"), Measure((4, 8), "c8 d8 e8 f8")])
 
    ::

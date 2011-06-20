@@ -7,6 +7,10 @@ def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = 
 
    Sum `sequence` elements at indices according to `pairs`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.sum_sequence_elements_at_indices(range(10), [(0, 3)])
       [3, 3, 4, 5, 6, 7, 8, 9]
 

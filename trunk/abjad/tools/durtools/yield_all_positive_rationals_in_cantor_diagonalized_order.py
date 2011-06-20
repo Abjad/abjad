@@ -7,6 +7,10 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order( ):
 
    Yield all positive rationals in Cantor diagonalized order::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> generator = durtools.yield_all_positive_rationals_in_cantor_diagonalized_order( )
       abjad> for n in range(16):
       ...     generator.next( )

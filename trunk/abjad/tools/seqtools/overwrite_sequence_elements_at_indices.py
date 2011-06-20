@@ -5,7 +5,11 @@ def overwrite_sequence_elements_at_indices(sequence, pairs):
 
    Overwrite `sequence` elements at indices according to `pairs`::
 
-      seqtools.overwrite_sequence_elements_at_indices(range(10), [(0, 3), (5, 3)])
+      abjad> from abjad.tools import seqtools
+
+   ::
+
+      abjad> seqtools.overwrite_sequence_elements_at_indices(range(10), [(0, 3), (5, 3)])
       [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]
 
    Set `pairs` to a list of ``(anchor_index, length)`` pairs.

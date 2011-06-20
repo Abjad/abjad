@@ -6,6 +6,10 @@ def truncate_runs_in_sequence(sequence):
 
    Truncate subruns of like elements in `sequence` to length ``1``::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.truncate_runs_in_sequence([1, 1, 2, 3, 3, 3, 9, 4, 4, 4])
       [1, 2, 3, 9, 4]
 

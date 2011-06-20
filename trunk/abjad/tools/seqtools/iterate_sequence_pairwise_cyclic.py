@@ -3,6 +3,10 @@ def iterate_sequence_pairwise_cyclic(sequence):
 
    Iterate `sequence` pairwise cyclic::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> generator = seqtools.iterate_sequence_pairwise_cyclic(range(6))
 
    ::

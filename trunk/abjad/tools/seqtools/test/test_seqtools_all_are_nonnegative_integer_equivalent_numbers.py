@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_all_are_nonnegative_integer_equivalent_numbers_01( ):

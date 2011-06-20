@@ -1,3 +1,4 @@
+from abjad.tools import seqtools
 from abjad import *
 
 

@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import seqtools
 
 
 def test_seqtools_yield_all_k_ary_sequences_of_length_01( ):

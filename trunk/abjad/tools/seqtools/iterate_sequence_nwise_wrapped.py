@@ -3,6 +3,10 @@ def iterate_sequence_nwise_wrapped(sequence, n):
 
    Iterate elements in `sequence` `n` at a time wrapped to beginning::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> list(seqtools.iterate_sequence_nwise_wrapped(range(6), 3))
       [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 0), (5, 0, 1)]
 

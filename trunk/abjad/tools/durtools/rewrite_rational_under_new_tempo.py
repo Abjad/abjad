@@ -8,6 +8,10 @@ def rewrite_rational_under_new_tempo(prolated_duration_1, tempo_mark_1, tempo_ma
 
    Consider the two tempo indications below. ::
    
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> tempo_mark_1 = contexttools.TempoMark(Duration(1, 4), 60)
       abjad> tempo_mark_2 = contexttools.TempoMark(Duration(1, 4), 90)
 

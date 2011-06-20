@@ -8,6 +8,10 @@ def assignable_rational_to_dot_count(rational):
 
    Change assignable `rational` to dot count::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> for n in range(1, 9):
       ...     try:
       ...             rational = Fraction(n, 16)

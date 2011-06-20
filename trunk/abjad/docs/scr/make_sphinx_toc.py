@@ -62,9 +62,14 @@ def make_sphinx_toc( ):
    manual_loading_tools = [ ]
    manual_loading_tools_names = (
       'cfgtools',
+      'durtools',
+      'iotools',
       'layouttools',
+      'mathtools',
+      'metertools',
       'musicxmltools', 
       'pitcharraytools', 
+      'seqtools',
       'sievetools', 
       'tempotools',
       'threadtools',

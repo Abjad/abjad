@@ -3,6 +3,10 @@ def iterate_sequence_nwise_cyclic(sequence, n):
 
    Iterate elements in `sequence` cyclically `n` at a time::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> g = seqtools.iterate_sequence_nwise_cyclic(range(6), 3)
       abjad> for n in range(10):
       ...   print g.next( )

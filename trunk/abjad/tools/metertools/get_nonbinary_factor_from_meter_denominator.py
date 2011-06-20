@@ -5,6 +5,10 @@ from abjad.tools.metertools.Meter import Meter
 def get_nonbinary_factor_from_meter_denominator(meter):
    '''Get nonbinary factor from nonbinary `meter` denominator::
 
+      abjad> from abjad.tools import metertools
+
+   ::
+
       abjad> metertools.get_nonbinary_factor_from_meter_denominator(metertools.Meter(3, 12))
       3
 

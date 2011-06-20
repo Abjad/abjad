@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import mathtools
 
 
 def test_mathtools_next_integer_partition_01( ):

@@ -6,6 +6,10 @@ def divide_sequence_elements_by_greatest_common_divisor(sequence):
 
    Divide `sequence` elements by greatest common divisor::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.divide_sequence_elements_by_greatest_common_divisor([2, 2, -8, -16])
       [1, 1, -4, -8]
 

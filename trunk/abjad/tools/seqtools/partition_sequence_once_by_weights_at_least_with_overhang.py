@@ -6,6 +6,10 @@ def partition_sequence_once_by_weights_at_least_with_overhang(sequence, weights)
 
    Partition `sequence` elements once by `weights` at least with overhang::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
       abjad> seqtools.partition_sequence_once_by_weights_at_least_with_overhang(sequence, [10, 4])
       [[3, 3, 3, 3], [4], [4, 4, 4, 5, 5]]

@@ -4,6 +4,10 @@ from abjad.tools.mathtools.sign import sign
 def cumulative_signed_weights(sequence):
    '''Cumulative signed weights of `sequence`::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> l = [1, -2, -3, 4, -5, -6, 7, -8, -9, 10]
       abjad> mathtools.cumulative_signed_weights(l)
       [1, -3, -6, 10, -15, -21, 28, -36, -45, 55]

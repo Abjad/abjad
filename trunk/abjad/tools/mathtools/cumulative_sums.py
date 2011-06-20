@@ -1,6 +1,10 @@
 def cumulative_sums(sequence):
    '''Cumulative sums of `sequence`::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8])
       [1, 3, 6, 10, 15, 21, 28, 36]
 

@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import metertools
 
 
 def test_metertools_is_meter_with_equivalent_binary_representation_01( ):

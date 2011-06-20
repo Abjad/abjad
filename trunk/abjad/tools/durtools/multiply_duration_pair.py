@@ -6,6 +6,10 @@ def multiply_duration_pair(pair, multiplier):
 
    Multiply duration `pair` by rational `multiplier`::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.multiply_duration_pair((4, 8), Fraction(4, 5))
       (16, 40)
 

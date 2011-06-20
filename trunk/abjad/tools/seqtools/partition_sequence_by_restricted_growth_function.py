@@ -6,6 +6,10 @@ def partition_sequence_by_restricted_growth_function(sequence, restricted_growth
 
    Partition `sequence` by `restricted_growth_function`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> l = range(10)
       abjad> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
       abjad> seqtools.partition_sequence_by_restricted_growth_function(l, rgf)

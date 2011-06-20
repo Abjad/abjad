@@ -7,6 +7,10 @@ def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
 
    Yield all permutations of `sequence` in orbit of `permutation` in lex order::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> list(seqtools.yield_all_permutations_of_sequence_in_orbit((1, 2, 3, 4), [1, 2, 3, 0]))
       [(1, 2, 3, 4), (2, 3, 4, 1), (3, 4, 1, 2), (4, 1, 2, 3)]
 

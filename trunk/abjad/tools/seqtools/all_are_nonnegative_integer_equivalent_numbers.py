@@ -7,6 +7,10 @@ def all_are_nonnegative_integer_equivalent_numbers(expr):
    True `expr` is a sequence and when all elements in `expr` are nonnegative
    integer-equivalent numbers. Otherwise false::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.all_are_nonnegative_integer_equivalent_numbers([0, 0.0, Fraction(0), 2, 2.0, Fraction(2)])
       True
 

@@ -1,4 +1,5 @@
 from abjad.tools import mathtools
+from abjad.tools import mathtools
 import py.test
 
 

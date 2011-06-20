@@ -7,6 +7,10 @@ def is_assignable_rational(expr):
 
    True when `expr` is assignable rational. Otherwise false::
 
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> for numerator in range(0, 16 + 1):
       ...     duration = Fraction(numerator, 16)
       ...     print '%s\t%s' % (duration, durtools.is_assignable_rational(duration))

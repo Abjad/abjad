@@ -6,6 +6,10 @@ def group_duration_tokens_by_implied_prolation(durations):
 
    Group `durations` by implied prolation::
    
+      abjad> from abjad.tools import durtools
+
+   ::
+
       abjad> durtools.group_duration_tokens_by_implied_prolation([(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)])
       [[(1, 4), (1, 8)], [(1, 3), (1, 6)], [(1, 4)]]
 

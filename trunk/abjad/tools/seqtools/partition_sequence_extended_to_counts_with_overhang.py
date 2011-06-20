@@ -6,6 +6,10 @@ def partition_sequence_extended_to_counts_with_overhang(sequence, counts):
 
    Partition `sequence` extended to `counts` with overhang::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.partition_sequence_extended_to_counts_with_overhang([1, 2, 3, 4], [6, 6, 6])
       [[1, 2, 3, 4, 1, 2], [3, 4, 1, 2, 3, 4], [1, 2, 3, 4, 1, 2], [3, 4]]
 

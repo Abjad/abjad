@@ -5,6 +5,10 @@ import math
 def greatest_power_of_two_less_equal(n, i = 0):
    r'''Greatest integer power of two less than or equal to positive `n`::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> for n in range(10, 20):
       ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n))
       ... 

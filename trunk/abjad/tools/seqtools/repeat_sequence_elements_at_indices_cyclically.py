@@ -3,6 +3,10 @@ def repeat_sequence_elements_at_indices_cyclically(sequence, cycle_token, total)
 
    Repeat `sequence` elements at indices specified by `cycle_token` to `total` length::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.repeat_sequence_elements_at_indices_cyclically(range(10), (5, [1, 2]), 3)
       [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]
 

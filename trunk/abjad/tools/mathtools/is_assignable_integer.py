@@ -7,6 +7,10 @@ def is_assignable_integer(expr):
    True when `expr` is equivalent to an integer and 
    can be written without recourse to ties::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> for n in range(0, 16 + 1):
       ...     print '%s\t%s' % (n, mathtools.is_assignable_integer(n))
       ... 

@@ -7,6 +7,10 @@ def integer_equivalent_number_to_integer(number):
    
    Integer-equivalent `number` to integer::
 
+      abjad> from abjad.tools import mathtools
+
+   ::
+
       abjad> mathtools.integer_equivalent_number_to_integer(17.0)
       17
 

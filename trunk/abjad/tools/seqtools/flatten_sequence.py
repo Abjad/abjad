@@ -3,6 +3,10 @@ def flatten_sequence(sequence, klasses = None, depth = -1):
 
    Flatten `sequence`::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
       [1, 2, 3, 4, 5, 6, 7, 8]
 

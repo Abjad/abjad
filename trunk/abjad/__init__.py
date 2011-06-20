@@ -27,12 +27,17 @@ sys.ps1 = 'abjad> '
 del cfg
 del cfgtools
 del core
+del durtools
 del exceptions
 del formattools
 del importtools
 del interfaces
+del iotools
+del mathtools
+del metertools
 del os
 del pitcharraytools
+del seqtools
 del sievetools
 del sys
 del threadtools

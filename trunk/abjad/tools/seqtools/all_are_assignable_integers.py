@@ -6,6 +6,10 @@ def all_are_assignable_integers(expr):
 
    True when `expr` is a sequence and all elements in `expr` are notehead-assignable integers::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.all_are_assignable_integers([1, 2, 3, 4, 6, 7, 8, 12, 14, 15, 16])
       True
 

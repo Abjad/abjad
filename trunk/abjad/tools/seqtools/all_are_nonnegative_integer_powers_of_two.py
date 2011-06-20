@@ -6,6 +6,10 @@ def all_are_nonnegative_integer_powers_of_two(expr):
 
    True when `expr` is a sequence and all elements in `expr` are nonnegative integer powers of two::
 
+      abjad> from abjad.tools import seqtools
+
+   ::
+
       abjad> seqtools.all_are_nonnegative_integer_powers_of_two([0, 1, 1, 1, 2, 4, 32, 32])
       True
 
