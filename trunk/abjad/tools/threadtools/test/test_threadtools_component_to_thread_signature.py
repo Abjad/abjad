@@ -1,33 +1,34 @@
 from abjad import *
-from abjad.tools.componenttools._Component import _Component
 from abjad.tools import threadtools
 import py.test
 
 
 def test_threadtools_component_to_thread_signature_01( ):
-   '''An anonymous  Staff and it's contained unvoiced leaves share the 
-   same signature.'''
+   '''An anonymous  Staff and it's contained unvoiced leaves share the same signature.
+   '''
+
    t = Staff("c'8 d'8 e'8 f'8")
 
    containment = threadtools.component_to_thread_signature(t)
-   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
+   for component in componenttools.iterate_components_forward_in_expr(t):
       assert threadtools.component_to_thread_signature(component) == containment
 
 
 def test_threadtools_component_to_thread_signature_02( ):
-   '''A named Staff and it's contained unvoiced leaves share the 
-   same signature.'''
+   '''A named Staff and it's contained unvoiced leaves share the same signature.
+   '''
 
    t = Staff("c'8 d'8 e'8 f'8")
    t.name = 'foo'
 
    containment = threadtools.component_to_thread_signature(t) 
-   for component in componenttools.iterate_components_forward_in_expr(t, _Component):
+   for component in componenttools.iterate_components_forward_in_expr(t):
       assert threadtools.component_to_thread_signature(component) == containment
 
 def test_threadtools_component_to_thread_signature_03( ):
    '''Leaves inside equally named sequential voices inside a Staff 
-   share the same signature.'''
+   share the same signature.
+   '''
 
    t = Staff(Voice("c'8 d'8 e'8 f'8") * 2)
    t[0].name = 'foo'
@@ -178,7 +179,7 @@ def test_threadtools_component_to_thread_signature_07( ):
    '''Return _ContainmentSignature giving the root and
    first voice, staff and score in parentage of component.
    '''
-   py.test.skip('remove directives reference.')
+   #py.test.skip('remove directives reference.')
 
    t = Container(notetools.make_repeated_notes(2))
    t[1:1] = Container(Voice(notetools.make_repeated_notes(1)) * 2) * 2
@@ -189,8 +190,8 @@ def test_threadtools_component_to_thread_signature_07( ):
    t[2][1].name = 'soprano'
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
-   t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
-   t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")
+   t[1][1].override.note_head.color = 'red'
+   t[2][1].override.note_head.color = 'red'
 
    r'''
    {
@@ -244,7 +245,8 @@ def test_threadtools_component_to_thread_signature_08( ):
    t1 = Note(0, (1, 8))
    t2 = Note(0, (1, 8))
   
-   assert threadtools.component_to_thread_signature(t1) != threadtools.component_to_thread_signature(t2)
+   assert threadtools.component_to_thread_signature(t1) != \
+      threadtools.component_to_thread_signature(t2)
 
 
 def test_threadtools_component_to_thread_signature_09( ):

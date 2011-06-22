@@ -1,9 +1,7 @@
 from abjad import *
-import py.test
 
 
 def test_tietools_label_tie_chains_in_expr_with_tie_chain_durations_01( ):
-   py.test.skip('appears to work.')
 
    staff = Staff(notetools.make_repeated_notes(4))
    tuplettools.FixedDurationTuplet(Duration(2, 8), staff[:3])

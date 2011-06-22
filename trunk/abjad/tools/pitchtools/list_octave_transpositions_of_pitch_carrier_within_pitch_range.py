@@ -2,42 +2,42 @@ from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInte
 from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
 from abjad.tools.pitchtools.PitchRange import PitchRange
 from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_interval import transpose_pitch_carrier_by_melodic_interval
+import copy
 
 
 ## TODO: Reimplement pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range( ) to work on Abjad PitchSet, Note and Chord objects only. ##
 
 ## TODO: Reimplement pitchtools.octave_transposition( ) with diatonic transposition. ##
 
-## FIXME: currently broken now that chords correctly copy tweaked noteheads;
-##        make this function work with tweaked chords
-def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitches, pitch_range):
+def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier, pitch_range):
    r""".. versionadded:: 1.1.1
 
-   List octave transpositions of `pitches` in `pitch_range`::
+   List octave transpositions of `pitch_carrier` in `pitch_range`::
       
       abjad> chord = Chord([0, 2, 4], (1, 4))
       abjad> pitch_range = pitchtools.PitchRange(0, 48)
-      abjad> pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range(chord, pitch_range) # doctest: +SKIP
-      [Chord(c' d' e', 4), Chord(c'' d'' e'', 4), Chord(c''' d''' e''', 4), Chord(c'''' d'''' e'''', 4)]
+      abjad> pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range(chord, pitch_range)
+      [Chord("<c' d' e'>4"), Chord("<c'' d'' e''>4"), Chord("<c''' d''' e'''>4"), Chord("<c'''' d'''' e''''>4")]
 
-   Return list.
+   Return list of newly created `pitch_carrier` objects.
    """
    from abjad.tools.chordtools.Chord import Chord
 
    if not isinstance(pitch_range, PitchRange):
       raise TypeError('must be pitch range.')
 
-   if all([isinstance(x, (int, long, float)) for x in pitches]):
-      return _pitch_number_list_octave_transpositions(pitches, pitch_range)
+   if all([isinstance(x, (int, long, float)) for x in pitch_carrier]):
+      return _pitch_number_list_octave_transpositions(pitch_carrier, pitch_range)
 
-   if not isinstance(pitches, (Chord, NamedChromaticPitchSet)):
-      raise TypeError('must be pitches or pitch set.')
+   if not isinstance(pitch_carrier, (Chord, NamedChromaticPitchSet)):
+      raise TypeError('must be chord or named chromatic pitch set.')
 
    result = [ ]
 
    interval = MelodicChromaticInterval(-12)
    while True:
-      candidate = transpose_pitch_carrier_by_melodic_interval(pitches, interval)
+      pitch_carrier_copy = copy.copy(pitch_carrier)
+      candidate = transpose_pitch_carrier_by_melodic_interval(pitch_carrier_copy, interval)
       if candidate in pitch_range:
          result.append(candidate)
          interval -= MelodicChromaticInterval(12) 
@@ -48,7 +48,8 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitches, pitc
 
    interval = MelodicChromaticInterval(0)
    while True:
-      candidate = transpose_pitch_carrier_by_melodic_interval(pitches, interval)
+      pitch_carrier_copy = copy.copy(pitch_carrier)
+      candidate = transpose_pitch_carrier_by_melodic_interval(pitch_carrier_copy, interval)
       if candidate in pitch_range:
          result.append(candidate)
          interval += MelodicChromaticInterval(12) 

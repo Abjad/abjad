@@ -16,14 +16,20 @@ def yield_all_rotations_of_sequence(sequence, n = 1):
    Return generator of `sequence` objects.
    '''
 
+   len_sequence = len(sequence)
+   total_rotations_yielded = 0
+
    yield rotate_sequence(sequence, 0)
+   total_rotations_yielded += 1
 
    index = n
    while True:
       rotation = rotate_sequence(sequence, index)
-      ## this line loops infinitely on sequence of note objects
-      if rotation == sequence:
+      if len_sequence <= total_rotations_yielded:
+         break
+      elif rotation == sequence:
          break
       else:
          yield rotation
+         total_rotations_yielded += 1
       index += n

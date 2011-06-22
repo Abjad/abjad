@@ -1,10 +1,8 @@
 from abjad import *
-import py.test
 
 
 def test_scoretools_make_empty_piano_score_01( ):
 
-   py.test.skip('figure out how to make mark format contributions appear with no leaves.')
    score, treble, bass = scoretools.make_empty_piano_score( )
 
    r'''
