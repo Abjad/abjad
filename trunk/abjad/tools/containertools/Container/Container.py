@@ -1,6 +1,7 @@
 from abjad.tools.containertools.Container._ContainerDurationInterface import _ContainerDurationInterface
 from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
 from abjad.tools.componenttools._Component import _Component
+import copy
 
 
 class Container(_Component):
@@ -53,6 +54,16 @@ class Container(_Component):
             return True
       else:
          return False
+
+   ## TODO: this basically works; 
+   ##       what remains to be done is to copy context marks
+   ##       and debug what happens when this is uncommented.
+   #def __deepcopy__(self, memo):
+   #   new = self.__copy__( )
+   #   for component in self.music:
+   #      new_component = copy.deepcopy(component)
+   #      new.append(new_component)
+   #   return new
 
    def __delitem__(self, i):
       '''Find component(s) at index or slice 'i' in container.

@@ -64,6 +64,12 @@ class Measure(Container):
       except (AttributeError, UnboundLocalError):
          pass
 
+   def __getnewargs__(self):
+      from abjad.tools import contexttools
+      time_signature = contexttools.get_effective_time_signature(self)
+      pair = (time_signature.numerator, time_signature.denominator)
+      return (pair, )
+
    def __repr__(self):
       '''String form of measure with parentheses for interpreter display.
       '''

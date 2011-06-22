@@ -25,7 +25,8 @@ class _Leaf(_Component, _StrictComparator):
    def __and__(self, arg):
       return self._operate(arg, operator.__and__)
 
-   #__deepcopy__ = __copy__
+   ## TODO: this can be uncommented when Container.__deepcopy__( ) works explicitly.
+   #__deepcopy__ = _Component.__copy__
 
    def __getnewargs__(self):
       result = [ ]
