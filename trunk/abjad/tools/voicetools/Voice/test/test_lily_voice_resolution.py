@@ -106,7 +106,6 @@ def test_lily_voice_resolution_04( ):
    '''Container containing a run of leaves.
    Two like-structured parallels in the middle of the run.
    '''
-   py.test.skip('remove directives reference.')
 
    t = Container(notetools.make_repeated_notes(2))
    t[1:1] = Container(Voice(notetools.make_repeated_notes(2)) * 2) * 2
@@ -117,8 +116,8 @@ def test_lily_voice_resolution_04( ):
    t[2][1].name = 'soprano'
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
-   t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
-   t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")
+   t[1][1].override.note_head.color = 'red'
+   t[2][1].override.note_head.color = 'red'
 
    r'''
    {
@@ -128,8 +127,9 @@ def test_lily_voice_resolution_04( ):
                            d'8
                            e'8
                    }
-                   \context Voice = "soprano" {
+                   \context Voice = "soprano" \with {
                            \override NoteHead #'color = #red
+                   } {
                            f'8
                            g'8
                    }
@@ -139,10 +139,11 @@ def test_lily_voice_resolution_04( ):
                            a'8
                            b'8
                    }
-                   \context Voice = "soprano" {
+                   \context Voice = "soprano" \with {
+                           \override NoteHead #'color = #red
+                   } {
                            c''8
                            d''8
-                           \revert NoteHead #'color
                    }
            >>
            e''8
