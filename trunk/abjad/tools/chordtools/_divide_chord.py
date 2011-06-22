@@ -4,13 +4,13 @@ from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change
 import copy
 
 
-def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3), attr = 'numbered_chromatic_pitch'):
+def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3), 
+   attr = 'numbered_chromatic_pitch'):
    r'''Divide `chord` according to chromatic or diatonic pitch number of `pitch`.
 
    Return pair of newly created leaves.
    '''
    from abjad.tools.leaftools._Leaf import _Leaf
-   from abjad.tools import componenttools
    from abjad.tools import markuptools
    from abjad.tools import notetools
    from abjad.tools import resttools
@@ -18,16 +18,15 @@ def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3), attr = 
    if not isinstance(chord, _Leaf):
       raise TypeError('%s is not a note, rest or chord.' % str(chord))
 
-   assert pitchtools.is_named_chromatic_pitch_token(pitch)
+   pitch = pitchtools.NamedChromaticPitch(pitch)
    assert attr in ('numbered_chromatic_pitch', 'numbered_diatonic_pitch')
 
-   pitch = pitchtools.NamedChromaticPitch(pitch)
-   treble = componenttools.clone_components_and_remove_all_spanners([chord])[0]
-   bass = componenttools.clone_components_and_remove_all_spanners([chord])[0]
+   treble = copy.copy(chord)
+   bass = copy.copy(chord)
 
    markuptools.remove_markup_attached_to_component(treble)
    markuptools.remove_markup_attached_to_component(bass)
-   
+
    if isinstance(treble, notetools.Note):
       if getattr(treble.pitch, attr) < getattr(pitch, attr):
          treble = resttools.Rest(treble)

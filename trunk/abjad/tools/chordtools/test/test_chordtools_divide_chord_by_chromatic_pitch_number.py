@@ -149,7 +149,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_09( ):
 def test_chordtools_divide_chord_by_chromatic_pitch_number_10( ):
    '''Split copies over note head coloring.
    '''
-   py.test.skip('make split copy over note head coloring.')
+   #py.test.skip('make split copy over note head coloring.')
 
    t = Chord([0, 1, 2, 3], (1, 4))
    t[0].tweak.color = 'red'

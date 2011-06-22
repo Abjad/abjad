@@ -51,11 +51,15 @@ class Chord(_Leaf):
       note_head = NoteHead(arg)
       return note_head in self.note_heads
 
-   #__deepcopy__ = __copy__
-   def __deepcopy__(self, memo):
-      new = copy.copy(self)
-      new.note_heads = self.note_heads
+   def __copy__(self, *args):
+      new = _Leaf.__copy__(self)
+      new.clear( )
+      for note_head in self.note_heads:
+         new_note_head = copy.copy(note_head)
+         new.append(new_note_head)
       return new
+
+   __deepcopy__ = __copy__
 
    def __delitem__(self, i):
       del(self._note_heads[i])
@@ -246,6 +250,23 @@ class Chord(_Leaf):
       note_head._client = self
       self._note_heads.append(note_head)
       self._note_heads.sort( )
+
+   def clear(self):
+      '''Clear chord::
+
+         abjad> chord = Chord("<e' cs'' f''>4")
+         abjad> chord
+         Chord("<e' cs'' f''>4")
+
+      ::
+
+         abjad> chord.clear( )
+         abjad> chord
+         Chord('<>4')
+
+      Return none.
+      '''
+      del(self[:])
 
    def extend(self, note_head_tokens):
       '''Extend chord with `note_head_tokens`::
