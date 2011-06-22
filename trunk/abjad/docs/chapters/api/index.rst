@@ -403,7 +403,9 @@ markuptools
 
    tools/markuptools/Markup/Markup
    tools/markuptools/MarkupCommand/MarkupCommand
+   tools/markuptools/get_down_markup_attached_to_component
    tools/markuptools/get_markup_attached_to_component
+   tools/markuptools/get_up_markup_attached_to_component
    tools/markuptools/make_big_centered_page_number_markup
    tools/markuptools/remove_markup_attached_to_component
    tools/markuptools/remove_markup_from_leaves_in_expr

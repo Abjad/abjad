@@ -1,34 +1,34 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change_defective_chord_to_note_or_rest
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
+import copy
 
 
-def _divide_chord(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_chromatic_pitch'):
+def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3), attr = 'numbered_chromatic_pitch'):
    r'''Divide `chord` according to chromatic or diatonic pitch number of `pitch`.
 
    Return pair of newly created leaves.
    '''
    from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools import componenttools
+   from abjad.tools import markuptools
+   from abjad.tools import notetools
    from abjad.tools import resttools
-   from abjad.tools.notetools.Note import Note
 
    if not isinstance(chord, _Leaf):
-      raise TypeError('%s is not a chord.' % str(chord))
+      raise TypeError('%s is not a note, rest or chord.' % str(chord))
 
    assert pitchtools.is_named_chromatic_pitch_token(pitch)
    assert attr in ('numbered_chromatic_pitch', 'numbered_diatonic_pitch')
 
-   pitch = NamedChromaticPitch(pitch)
+   pitch = pitchtools.NamedChromaticPitch(pitch)
    treble = componenttools.clone_components_and_remove_all_spanners([chord])[0]
    bass = componenttools.clone_components_and_remove_all_spanners([chord])[0]
 
    markuptools.remove_markup_attached_to_component(treble)
    markuptools.remove_markup_attached_to_component(bass)
    
-   if isinstance(treble, Note):
+   if isinstance(treble, notetools.Note):
       if getattr(treble.pitch, attr) < getattr(pitch, attr):
          treble = resttools.Rest(treble)
    elif isinstance(treble, resttools.Rest):
@@ -40,7 +40,7 @@ def _divide_chord(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_c
    else:
       raise ValueError('must be note, rest or chord.')
 
-   if isinstance(bass, Note):
+   if isinstance(bass, notetools.Note):
       if getattr(pitch, attr) <= getattr(bass.pitch, attr):
          bass = resttools.Rest(bass)
    elif isinstance(bass, resttools.Rest):
@@ -54,5 +54,17 @@ def _divide_chord(chord, pitch = NamedChromaticPitch('b', 3), attr = 'numbered_c
 
    treble = change_defective_chord_to_note_or_rest(treble)
    bass = change_defective_chord_to_note_or_rest(bass)
+
+   up_markup = markuptools.get_up_markup_attached_to_component(chord)
+   up_markup = [copy.copy(markup) for markup in up_markup]
+
+   down_markup = markuptools.get_down_markup_attached_to_component(chord)
+   down_markup = [copy.copy(markup) for markup in down_markup]
+
+   for markup in up_markup:
+      markup(treble)
+
+   for markup in down_markup:
+      markup(bass)
 
    return treble, bass

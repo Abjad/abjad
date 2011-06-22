@@ -200,7 +200,6 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_10( ):
 def test_chordtools_divide_chord_by_chromatic_pitch_number_11( ):
    '''Copy up-markup to treble and down-markup to bass.
    '''
-   py.test.skip('make split copy makup.')
 
    t = Chord([-11, 2, 5], (1, 4))
    markuptools.Markup('UP', 'up')(t)

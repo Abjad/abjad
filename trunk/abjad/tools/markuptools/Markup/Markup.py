@@ -2,6 +2,8 @@ from abjad.tools.componenttools._Component import _Component
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
+## TODO: Make Markup.direction_string public and read / write.
+
 class Markup(ContextMark):
    r'''Abjad model of backslash-style LilyPond markup or Scheme-style LilyPond markup.
 
