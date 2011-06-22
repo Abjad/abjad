@@ -1,128 +1,155 @@
 from abjad import *
 import py.test
-py.test.skip('fixme later.')
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_01( ):
-   '''Chord split by number only; empty bass.'''
-   t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
-   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitchtools.NamedChromaticPitch('d', 4))
+   '''Chord split by number only; empty bass.
+   '''
+
+   chord = Chord("<d' ef' e'>4")
+   pitch = pitchtools.NamedChromaticPitch('d', 4)
+   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(chord, pitch)
    assert isinstance(treble, Chord)
-   assert treble == Chord([2, 3, 4], (1, 4))
+   assert treble.format == "<d' ef' e'>4"
    assert isinstance(bass, Rest)
-   assert bass == Rest((1, 4))
-   assert t is not treble
-   assert t is not bass
+   assert bass.format == 'r4'
+   assert chord is not treble
+   assert chord is not bass
    assert treble is not bass
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_02( ):
-   '''Chord split by number only; one-note bass.'''
+   '''Chord split by number only; one-note bass.
+   '''
+
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
-   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitchtools.NamedChromaticPitch('ef', 4))
+   pitch = pitchtools.NamedChromaticPitch('ef', 4)
+   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
    assert isinstance(treble, Chord)
-   assert treble == Chord([3, 4], (1, 4))
+   assert treble.format == Chord([3, 4], (1, 4)).format
    assert isinstance(bass, Note)
-   assert bass == Note(2, (1, 4))
+   assert bass.format == Note(2, (1, 4)).format
    assert t is not treble
    assert t is not bass
    assert treble is not bass
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_03( ):
-   '''Chord split by number only; one-note treble.'''
+   '''Chord split by number only; one-note treble.
+   '''
+
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
-   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitchtools.NamedChromaticPitch('e', 4))
+   pitch = pitchtools.NamedChromaticPitch('e', 4)
+   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
    assert isinstance(treble, Note)
-   assert treble == Note(4, (1, 4))
+   assert treble.format == Note(4, (1, 4)).format
    assert isinstance(bass, Chord)
-   assert bass == Chord([2, 3], (1, 4))
+   assert bass.format == Chord([2, 3], (1, 4)).format
    assert t is not treble
    assert t is not bass
    assert treble is not bass
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_04( ):
-   '''Chord split by number only; empty treble.'''
+   '''Chord split by number only; empty treble.
+   '''
+
    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
-   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitchtools.NamedChromaticPitch('f', 4))
+   pitch = pitchtools.NamedChromaticPitch('f', 4)
+   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
    assert isinstance(treble, Rest)
-   assert treble == Rest((1, 4))
+   assert treble.format == Rest((1, 4)).format
    assert isinstance(bass, Chord)
-   assert bass == Chord([2, 3, 4], (1, 4))
+   assert bass.format == Chord([2, 3, 4], (1, 4)).format
    assert t is not treble
    assert t is not bass
    assert treble is not bass
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_05( ):
-   '''Typographically crossed split by number only.'''
+   '''Typographically crossed split by number only.
+   '''
+
    t = Chord([('d', 4), ('es', 4), ('ff', 4), ('g', 4)], (1, 4))
-   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitchtools.NamedChromaticPitch('f', 4))
+   pitch = pitchtools.NamedChromaticPitch('f', 4)
+   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
    assert isinstance(treble, Chord)
-   assert treble == Chord([('es', 4), 7], (1, 4))
-   assert treble == Chord([('es', 4), ('g', 4)], (1, 4))
+   assert treble.format == Chord([('es', 4), 7], (1, 4)).format
+   assert treble.format == Chord([('es', 4), ('g', 4)], (1, 4)).format
    assert isinstance(bass, Chord)
-   assert bass == Chord([('d', 4), ('ff', 4)], (1, 4))
+   assert bass.format == Chord([('d', 4), ('ff', 4)], (1, 4)).format
    assert t is not treble
    assert t is not bass
    assert treble is not bass
    
    
 def test_chordtools_divide_chord_by_chromatic_pitch_number_06( ):
-   '''Single note below pitch number split point.'''
+   '''Single note below pitch number split point.
+   '''
+
    note = Note(0, (1, 4))
-   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitchtools.NamedChromaticPitch('f', 4))
+   pitch = pitchtools.NamedChromaticPitch('f', 4)
+   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
    assert isinstance(treble, Rest)
-   assert treble == Rest((1, 4))
+   assert treble.format == Rest((1, 4)).format
    assert isinstance(bass, Note)
-   assert bass == Note(0, (1, 4))
+   assert bass.format == Note(0, (1, 4)).format
    assert note is not treble
    assert note is not bass
    assert treble is not bass
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_07( ):
-   '''Single note at pitch number split point.'''
+   '''Single note at pitch number split point.
+   '''
+
    note = Note(0, (1, 4))
-   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitchtools.NamedChromaticPitch('c', 4))
+   pitch = pitchtools.NamedChromaticPitch('c', 4)
+   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
    assert isinstance(treble, Note)
-   assert treble == Note(0, (1, 4))
+   assert treble.format == Note(0, (1, 4)).format
    assert isinstance(bass, Rest)
-   assert bass == Rest((1, 4))
+   assert bass.format == Rest((1, 4)).format
    assert note is not treble
    assert note is not bass
    assert treble is not bass
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_08( ):
-   '''Single note above pitch number split point.'''
+   '''Single note above pitch number split point.
+   '''
+
    note = Note(0, (1, 4))
-   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitchtools.NamedChromaticPitch('f', 3))
+   pitch = pitchtools.NamedChromaticPitch('f', 3)
+   treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
    assert isinstance(treble, Note)
-   assert treble == Note(0, (1, 4))
+   assert treble.format == Note(0, (1, 4)).format
    assert isinstance(bass, Rest)
-   assert bass == Rest((1, 4))
+   assert bass.format == Rest((1, 4)).format
    assert note is not treble
    assert note is not bass
    assert treble is not bass
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_09( ):
-   '''Rest splits into two new rests.'''
+   '''Rest splits into two new rests.
+   '''
+
    t = Rest((1, 4))
    treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t)
    assert isinstance(treble, Rest)
-   assert treble == Rest((1, 4))
+   assert treble.format == Rest((1, 4)).format
    assert isinstance(bass, Rest)
-   assert bass == Rest((1, 4))
+   assert bass.format == Rest((1, 4)).format
    assert t is not treble
    assert t is not bass
    assert treble is not bass
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_10( ):
-   '''Split copies over note_head coloring.'''
+   '''Split copies over note head coloring.
+   '''
+   py.test.skip('make split copy over note head coloring.')
 
    t = Chord([0, 1, 2, 3], (1, 4))
    t[0].tweak.color = 'red'
@@ -171,7 +198,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_10( ):
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_11( ):
-   '''Copy up-markup to treble and down-markup to bass.'''
+   '''Copy up-markup to treble and down-markup to bass.
+   '''
+   py.test.skip('make split copy makup.')
 
    t = Chord([-11, 2, 5], (1, 4))
    markuptools.Markup('UP', 'up')(t)

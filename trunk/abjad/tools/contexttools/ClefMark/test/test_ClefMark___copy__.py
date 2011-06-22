@@ -1,11 +1,10 @@
 from abjad import *
-import py.test
 
 
 def test_ClefMark___copy___01( ):
-   '''Forced clefs copy.'''
+   '''Forced clefs copy.
+   '''
 
-   py.test.skip('extend function to copy clef marks.')
    t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    contexttools.ClefMark('treble')(t[0])
@@ -46,7 +45,8 @@ def test_ClefMark___copy___01( ):
 
 
 def test_ClefMark___copy___02( ):
-   '''Implicit clefs do not copy.'''
+   '''Implicit clefs do not copy.
+   '''
 
    t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)

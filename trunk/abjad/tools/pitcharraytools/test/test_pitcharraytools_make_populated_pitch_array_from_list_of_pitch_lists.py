@@ -1,7 +1,5 @@
 from abjad import *
 from abjad.tools import pitcharraytools
-import py.test
-py.test.skip('fix me: partitioning function somewhere not working as expected.')
 
 
 def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_01( ):

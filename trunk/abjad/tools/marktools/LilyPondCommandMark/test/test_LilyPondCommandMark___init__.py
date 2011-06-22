@@ -1,6 +1,5 @@
 from abjad import *
 import py.test
-py.test.skip('foo')
 
 
 def test_LilyPondCommandMark___init___01( ):
