@@ -3,10 +3,6 @@ import os
 
 
 _config_file_dict = {
-   'DEBUG': {
-      'comment': "# Live debugging. Set for live debugging during development.",
-      'value': False,
-   },
    'abjad_output': {
       'comment': "# Set to the one directory you wish all Abjad generate files\n" + \
                  "# (such as PDFs, LilyPond, MIDI or log files) to be saved.",
