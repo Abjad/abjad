@@ -14,7 +14,7 @@ class FixedDurationTuplet(Tuplet):
    Return fixed-duration tuplet.
    '''
 
-   def __init__(self, duration, music, **kwargs):
+   def __init__(self, duration, music = None, **kwargs):
       ## new ##
       dummy_multiplier = 1
       Tuplet.__init__(self, dummy_multiplier, music)
@@ -25,6 +25,9 @@ class FixedDurationTuplet(Tuplet):
 
    ## OVERLOADS ##
  
+   def __getnewargs__(self):
+      return (self.duration.target, )
+
    def __repr__(self):
       return '%s(%s, [%s])' % (
          self.__class__.__name__, self.duration.target, self._summary)

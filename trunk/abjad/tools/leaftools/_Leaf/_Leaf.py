@@ -25,26 +25,13 @@ class _Leaf(_Component, _StrictComparator):
    def __and__(self, arg):
       return self._operate(arg, operator.__and__)
 
-   def __copy__(self, *args):
-      from abjad.tools import marktools
-      from abjad.tools import markuptools
-      new = type(self)(*self.__getnewargs__( ))
-      if getattr(self, '_override', None) is not None:
-         new._override = copy.copy(self.override)
-      if getattr(self, '_set', None) is not None:
-         new._set = copy.copy(self.set)
-      for mark in marktools.get_marks_attached_to_component(self):
-         new_mark = copy.copy(mark)
-         new_mark.attach_mark(new)
-      return new
-
    #__deepcopy__ = __copy__
 
    def __getnewargs__(self):
       result = [ ]
       result.append(self.duration.written)
       if self.duration.multiplier is not None:
-         result.append(self.duration.multiplier)
+        result.append(self.duration.multiplier)
       return tuple(result)
 
    def __or__(self, arg):

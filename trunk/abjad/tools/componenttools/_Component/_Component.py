@@ -5,6 +5,7 @@ from abjad.interfaces import ParentageInterface
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface
 from abjad.tools import durtools
+import copy
 
 
 class _Component(_StrictComparator):
@@ -28,6 +29,22 @@ class _Component(_StrictComparator):
       self._spanners = set([ ])
 
    ## OVERLOADS ##
+
+   def __copy__(self, *args):
+      from abjad.tools import marktools
+      from abjad.tools import markuptools
+      new = type(self)(*self.__getnewargs__( ))
+      if getattr(self, '_override', None) is not None:
+         new._override = copy.copy(self.override)
+      if getattr(self, '_set', None) is not None:
+         new._set = copy.copy(self.set)
+      for mark in marktools.get_marks_attached_to_component(self):
+         new_mark = copy.copy(mark)
+         new_mark.attach_mark(new)
+      return new
+
+   def __getnewargs__(self):
+      return ( )
 
    def __mul__(self, n):
       from abjad.tools import componenttools

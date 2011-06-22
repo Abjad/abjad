@@ -39,6 +39,9 @@ class Tuplet(Container):
       assert isinstance(arg, type(self))
       new = tuplettools.fuse_tuplets([self, arg])
       return new
+
+   def __getnewargs__(self):
+      return (self.duration.multiplier, )
       
    def __repr__(self):
       return '%s(%s, [%s])' % (
