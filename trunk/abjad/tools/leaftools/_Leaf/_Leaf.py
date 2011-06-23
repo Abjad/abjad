@@ -25,6 +25,14 @@ class _Leaf(_Component, _StrictComparator):
    def __and__(self, arg):
       return self._operate(arg, operator.__and__)
 
+   def __copy__(self, *args):
+      from abjad.tools import gracetools
+      new = _Component.__copy__(self, *args)
+      for grace_container in gracetools.get_grace_containers_attached_to_leaf(self):
+         new_grace_container = copy.deepcopy(grace_container)
+         new_grace_container(new)
+      return new
+
    ## TODO: this can be uncommented when Container.__deepcopy__( ) works explicitly.
    #__deepcopy__ = _Component.__copy__
 

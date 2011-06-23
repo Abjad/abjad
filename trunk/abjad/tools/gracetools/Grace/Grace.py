@@ -97,6 +97,11 @@ class Grace(Container):
       self._carrier = arg
       return arg
 
+   def __copy__(self, *args):
+      new = Container.__copy__(self, *args)
+      new.kind = self.kind
+      return new
+
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._summary)
 
