@@ -1095,10 +1095,9 @@ quantizationtools
 .. toctree::
    :maxdepth: 1
 
-   tools/quantizationtools/NaiveQGridQuantizer/NaiveQGridQuantizer
-   tools/quantizationtools/ParallelQGridQuantizer/ParallelQGridQuantizer
    tools/quantizationtools/QGrid/QGrid
    tools/quantizationtools/QGridDeletionTree/QGridDeletionTree
+   tools/quantizationtools/QGridQuantizer/QGridQuantizer
    tools/quantizationtools/QGridRhythmTree/QGridRhythmTree
    tools/quantizationtools/QGridSearchTree/QGridSearchTree
    tools/quantizationtools/compare_timepoints_to_q_grid

@@ -5,9 +5,6 @@ class _Quantizer(_Immutable):
 
    ## OVERRIDES ##
 
-   def __call__(self, timepoints):
-      return self.quantize_timepoints(timepoints)
-
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
@@ -19,8 +16,8 @@ class _Quantizer(_Immutable):
 
    ## PUBLIC METHODS ##
 
-   def quantize_ms_to_tempo(self, timepoints):
+   def quantize_milliseconds(self, durations):
       raise Exception('Not implemented in %s' % (self.__class__.__name__))
 
-   def quantize_tempo_to_tempo(self, timepoints, tempo):
+   def quantize_rationals(self, durations, tempo):
       raise Exception('Not implemented in %s' % (self.__class__.__name__))
