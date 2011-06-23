@@ -1100,6 +1100,7 @@ quantizationtools
    tools/quantizationtools/QGridDeletionTree/QGridDeletionTree
    tools/quantizationtools/QGridRhythmTree/QGridRhythmTree
    tools/quantizationtools/QGridSearchTree/QGridSearchTree
+   tools/quantizationtools/compare_timepoints_to_q_grid
    tools/quantizationtools/group_timepoints_by_beatspan
    tools/quantizationtools/sort_rhythm_trees_by_error_relative_timepoint_group
    tools/quantizationtools/tempo_scaled_rational_to_milliseconds

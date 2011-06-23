@@ -10,7 +10,6 @@ def group_timepoints_by_beatspan(timepoints, beatspan, subscript = None):
    assert isinstance(timepoints, Iterable) and len(timepoints) 
    assert isinstance(beatspan, Number)
 
-
    if subscript is None:
       timepoints = sorted(timepoints)
       g = groupby(timepoints, lambda x: divmod(x, beatspan)[0])

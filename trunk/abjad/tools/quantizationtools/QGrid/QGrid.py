@@ -4,13 +4,29 @@ from abjad.core import _Immutable
 
 
 class QGrid(_Immutable):
+   '''A model of a Q-grid: an ordered set of rationals.
+
+   While Q-grids are generally bounded by 0 and 1, this implementation
+   allows for multiplication by ints and Fractions for easy scaling
+   against beatspans.
+
+   ::
+
+      abjad> from abjad import Fraction
+      abjad> from abjad.tools.quantizationtools import QGrid
+      abjad> q_grid = QGrid([0, Fraction(1, 5), 1])
+      abjad> q_grid
+      QGrid((0, Fraction(1, 5), 1))
+      abjad> q_grid * Fraction(1, 2)
+      QGrid((Fraction(0, 1), Fraction(1, 10), Fraction(1, 2)))
+   '''
 
    __slots__ = ('_values',)
 
    def __init__(self, arg):
       assert isinstance(arg, Iterable)
       assert all([isinstance(x, (int, Fraction)) for x in arg])
-      object.__setattr__(self, '_values', tuple(sorted(list(arg))))
+      object.__setattr__(self, '_values', tuple(sorted(set(arg))))
 
    ## OVERRIDES ##
 
