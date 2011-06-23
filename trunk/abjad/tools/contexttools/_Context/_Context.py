@@ -1,5 +1,6 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.contexttools._Context._ContextFormatter import _ContextFormatter
+import copy
 
 
 class _Context(Container):
@@ -19,6 +20,14 @@ class _Context(Container):
       self.is_nonsemantic = False
 
    ## OVERLOADS ##
+
+   def __copy__(self, *args):
+      new = Container.__copy__(self, *args)
+      new._engraver_consists = copy.copy(self.engraver_consists)
+      new._engraver_removals = copy.copy(self.engraver_removals)
+      new.name = copy.copy(self.name)
+      new.is_nonsemantic = copy.copy(self.is_nonsemantic)
+      return new
 
    def __repr__(self):
       '''.. versionchanged:: 1.1.2

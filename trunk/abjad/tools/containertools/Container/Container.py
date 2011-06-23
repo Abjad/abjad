@@ -55,6 +55,11 @@ class Container(_Component):
       else:
          return False
 
+   def __copy__(self, *args):
+      new = _Component.__copy__(self, *args)
+      new.is_parallel = self.is_parallel
+      return new
+
    ## TODO: this basically works; 
    ##       what remains to be done is to copy context marks
    ##       and debug what happens when this is uncommented.
