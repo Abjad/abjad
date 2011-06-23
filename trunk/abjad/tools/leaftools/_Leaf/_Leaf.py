@@ -34,7 +34,7 @@ class _Leaf(_Component, _StrictComparator):
       return new
 
    ## TODO: this can be uncommented when Container.__deepcopy__( ) works explicitly.
-   #__deepcopy__ = _Component.__copy__
+   __deepcopy__ = __copy__
 
    def __getnewargs__(self):
       result = [ ]

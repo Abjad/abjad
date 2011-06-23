@@ -1,11 +1,12 @@
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import _StrictComparator
+from abjad.tools import durtools
 from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
-from copy import deepcopy
-from abjad.tools import durtools
+#from copy import deepcopy
+import copy
 
 
 class Spanner(_StrictComparator):
@@ -475,7 +476,7 @@ class Spanner(_StrictComparator):
 
       my_components = self._components[:]
       self._components = [ ]
-      result = deepcopy(self)
+      result = copy.deepcopy(self)
       self._components = my_components
 
 ##      if stop is not None:

@@ -787,9 +787,11 @@ spannertools
    tools/spannertools/is_component_with_spanner_attached
    tools/spannertools/iterate_components_backward_in_spanner
    tools/spannertools/iterate_components_forward_in_spanner
+   tools/spannertools/make_covered_spanner_schema
    tools/spannertools/make_dynamic_spanner_below_with_nib_at_right
    tools/spannertools/make_solid_text_spanner_above_with_nib_at_right
    tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
+   tools/spannertools/make_spanner_schema
    tools/spannertools/move_spanners_from_component_to_children_of_component
    tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_component
    tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component

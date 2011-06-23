@@ -90,32 +90,32 @@ def clone_components_and_remove_all_spanners(components, n = 1):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   spanners = spannertools.get_spanners_contained_by_components(components) 
-   for spanner in spanners:
-      spanner._block_all_components( )
-
-   receipt = _ignore_parentage_of_components(components)
-
-   result = copy.deepcopy(components)
-   for component in result:
-      #component._update._mark_all_improper_parents_for_update( )
-      component._mark_entire_score_tree_for_later_update('prolated')
-
-   _restore_parentage_to_components_by_receipt(receipt)
-
-   for spanner in spanners:
-      spanner._unblock_all_components( )
-
-   for i in range(n - 1):
-      result += clone_components_and_remove_all_spanners(components)
-
-   _reattach_blinded_marks_to_components_in_expr(result)
-
-   ## TODO: function can be rewritten as only the following two statements
-   ##       once the other parts of the copy regime are implemented.
+#   spanners = spannertools.get_spanners_contained_by_components(components) 
+#   for spanner in spanners:
+#      spanner._block_all_components( )
+#
+#   receipt = _ignore_parentage_of_components(components)
+#
 #   result = copy.deepcopy(components)
+#   for component in result:
+#      #component._update._mark_all_improper_parents_for_update( )
+#      component._mark_entire_score_tree_for_later_update('prolated')
+#
+#   _restore_parentage_to_components_by_receipt(receipt)
+#
+#   for spanner in spanners:
+#      spanner._unblock_all_components( )
 #
 #   for i in range(n - 1):
 #      result += clone_components_and_remove_all_spanners(components)
+#
+#   _reattach_blinded_marks_to_components_in_expr(result)
+
+   ## TODO: function can be rewritten as only the following two statements
+   ##       once the other parts of the copy regime are implemented.
+   result = copy.deepcopy(components)
+
+   for i in range(n - 1):
+      result += clone_components_and_remove_all_spanners(components)
       
    return result

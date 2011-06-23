@@ -63,12 +63,12 @@ class Container(_Component):
    ## TODO: this basically works; 
    ##       what remains to be done is to copy context marks
    ##       and debug what happens when this is uncommented.
-   #def __deepcopy__(self, memo):
-   #   new = self.__copy__( )
-   #   for component in self.music:
-   #      new_component = copy.deepcopy(component)
-   #      new.append(new_component)
-   #   return new
+   def __deepcopy__(self, memo):
+      new = self.__copy__( )
+      for component in self.music:
+         new_component = copy.deepcopy(component)
+         new.append(new_component)
+      return new
 
    def __delitem__(self, i):
       '''Find component(s) at index or slice 'i' in container.

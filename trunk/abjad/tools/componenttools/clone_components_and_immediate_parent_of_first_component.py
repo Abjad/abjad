@@ -73,10 +73,9 @@ def clone_components_and_immediate_parent_of_first_component(components):
       renamed ``clonewp.with_parent( )`` to
       ``componenttools.clone_components_and_immediate_parent_of_first_component( )``.
    '''
-   from abjad.tools.metertools import Meter
    from abjad.tools import contexttools
    from abjad.tools import componenttools
-   from abjad.tools.measuretools.Measure import Measure
+   from abjad.tools import measuretools
 
    # assert strictly contiguous components in same thread
    assert componenttools.all_are_thread_contiguous_components(components)
@@ -88,7 +87,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    parent_multiplier = getattr(parent.duration, 'multiplier', 1)
 
    # new: remember parent denominator, if any
-   if isinstance(parent, Measure):
+   if isinstance(parent, measuretools.Measure):
       parent_denominator = contexttools.get_effective_time_signature(parent).denominator
    else:
       parent_denominator = None
@@ -105,15 +104,19 @@ def clone_components_and_immediate_parent_of_first_component(components):
    # give music back to parent
    parent._music = parents_music
 
-   # populate result with references to input list
-   result._music.extend(components)
+#   # populate result with references to input list
+#   result._music.extend(components)
+#
+#   # populate result with deepcopy of input list and fracture spanners
+#   result = clone_components_and_fracture_crossing_spanners([result])[0]
+#
+#   # point elements in result to result as new parent
+#   for element in result:
+#      element._parentage._switch(result)
 
-   # populate result with deepcopy of input list and fracture spanners
-   result = clone_components_and_fracture_crossing_spanners([result])[0]
-
-   # point elements in result to result as new parent
-   for element in result:
-      element._parentage._switch(result)
+   new_components = clone_components_and_fracture_crossing_spanners(components)
+   
+   result.extend(new_components)
 
    ## TODO: change hard-coded class name testing to isinstance testing instead
    # new: resize result to match parent_multiplier, if resizable

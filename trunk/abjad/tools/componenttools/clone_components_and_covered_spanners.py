@@ -97,25 +97,63 @@ def clone_components_and_covered_spanners(components, n = 1):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   spanners = spannertools.get_spanners_that_cross_components(components) 
-   for spanner in spanners:
-      spanner._block_all_components( )
+#   spanners = spannertools.get_spanners_that_cross_components(components) 
+#   for spanner in spanners:
+#      spanner._block_all_components( )
+#
+#   receipt = _ignore_parentage_of_components(components)
+#
+#   result = copy.deepcopy(components)
+#   for component in result:
+#      #component._update._mark_all_improper_parents_for_update( )
+#      component._mark_entire_score_tree_for_later_update('prolated')
+#
+#   _restore_parentage_to_components_by_receipt(receipt)
+#
+#   for spanner in spanners:
+#      spanner._unblock_all_components( )
+#
+#   for i in range(n - 1):
+#      result += clone_components_and_covered_spanners(components)
+#
+#   _reattach_blinded_marks_to_components_in_expr(result)
+#
+#   return result
 
-   receipt = _ignore_parentage_of_components(components)
+   ## deep copy components
+   new_components = copy.deepcopy(components)
 
-   result = copy.deepcopy(components)
-   for component in result:
-      #component._update._mark_all_improper_parents_for_update( )
-      component._mark_entire_score_tree_for_later_update('prolated')
+   ## make schema of spanners covered by components
+   schema = spannertools.make_covered_spanner_schema(components)
 
-   _restore_parentage_to_components_by_receipt(receipt)
+   ## copy spanners covered by components
+   for covered_spanner, component_indices in schema.items( ):
+      new_covered_spanner = copy.copy(covered_spanner)
+      del(schema[covered_spanner])
+      schema[new_covered_spanner] = component_indices
 
-   for spanner in spanners:
-      spanner._unblock_all_components( )
+   ## reverse schema
+   reversed_schema = { }
+   for new_covered_spanner, component_indices in schema.items( ):
+      for component_index in component_indices:
+         try:
+            reversed_schema[component_index].append(new_covered_spanner)
+         except KeyError:
+            reversed_schema[component_index] = [new_covered_spanner]
 
+   ## iterate components and add new components to new spanners
+   for component_index, new_component in enumerate(
+      componenttools.iterate_components_forward_in_expr(new_components)):
+      try:
+         new_covered_spanners = reversed_schema[component_index]
+         for new_covered_spanner in new_covered_spanners:
+            new_covered_spanner.append(new_component)
+      except KeyError:
+         pass
+
+   ## repeat as specified by input
    for i in range(n - 1):
-      result += clone_components_and_covered_spanners(components)
+      new_components += clone_components_and_covered_spanners(components)
 
-   _reattach_blinded_marks_to_components_in_expr(result)
-      
-   return result
+   ## return new components
+   return new_components

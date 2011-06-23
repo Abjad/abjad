@@ -1,4 +1,3 @@
-from abjad.tools.componenttools._Component import _Component
 from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
 from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import _restore_parentage_to_components_by_receipt
 from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import _reattach_blinded_marks_to_components_in_expr
@@ -91,35 +90,71 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   selection_components = set(componenttools.iterate_components_forward_in_expr(
-      components, _Component))
+#   selection_components = set(componenttools.iterate_components_forward_in_expr(components))
+#
+#   spanners = spannertools.get_spanners_that_cross_components(components) 
+#
+#   spanner_map = set([ ])
+#   for spanner in spanners:
+#      spanner_map.add((spanner, tuple(spanner[:])))
+#      for component in spanner[:]:
+#         if component not in selection_components:
+#            spanner._remove_component(component)
+#
+#   receipt = _ignore_parentage_of_components(components)
+#   
+#   result = copy.deepcopy(components)
+#
+#   for component in result:
+#      #component._update._mark_all_improper_parents_for_update( )
+#      component._mark_entire_score_tree_for_later_update('prolated')
+#
+#   _restore_parentage_to_components_by_receipt(receipt)
+#
+#   for spanner, contents in spanner_map:
+#      spanner.clear( )
+#      spanner.extend(list(contents))
+#
+#   for i in range(n - 1):
+#      result += clone_components_and_fracture_crossing_spanners(components)
+#
+#   _reattach_blinded_marks_to_components_in_expr(result) 
+#
+#   result
 
-   spanners = spannertools.get_spanners_that_cross_components(components) 
+   new_components = copy.deepcopy(components)
 
-   spanner_map = set([ ])
-   for spanner in spanners:
-      spanner_map.add((spanner, tuple(spanner[:])))
-      for component in spanner[:]:
-         if component not in selection_components:
-            spanner._remove_component(component)
+   ## make schema of spanners contained by components
+   schema = spannertools.make_spanner_schema(components)
 
-   receipt = _ignore_parentage_of_components(components)
-   
-   result = copy.deepcopy(components)
+   ## copy spanners covered by components
+   for covered_spanner, component_indices in schema.items( ):
+      new_covered_spanner = copy.copy(covered_spanner)
+      del(schema[covered_spanner])
+      schema[new_covered_spanner] = component_indices
 
-   for component in result:
-      #component._update._mark_all_improper_parents_for_update( )
-      component._mark_entire_score_tree_for_later_update('prolated')
+   ## reverse schema
+   reversed_schema = { }
+   for new_covered_spanner, component_indices in schema.items( ):
+      for component_index in component_indices:
+         try:
+            reversed_schema[component_index].append(new_covered_spanner)
+         except KeyError:
+            reversed_schema[component_index] = [new_covered_spanner]
 
-   _restore_parentage_to_components_by_receipt(receipt)
+   ## iterate components and add new components to new spanners
+   for component_index, new_component in enumerate(
+      componenttools.iterate_components_forward_in_expr(new_components)):
+      try:
+         new_covered_spanners = reversed_schema[component_index]
+         for new_covered_spanner in new_covered_spanners:
+            new_covered_spanner.append(new_component)
+      except KeyError:
+         pass
 
-   for spanner, contents in spanner_map:
-      spanner.clear( )
-      spanner.extend(list(contents))
-
+   ## repeat as specified by input
    for i in range(n - 1):
-      result += clone_components_and_fracture_crossing_spanners(components)
+      new_components += clone_components_and_fracture_crossing_spanners(components)
 
-   _reattach_blinded_marks_to_components_in_expr(result) 
-
-   return result
+   ## return new components
+   return new_components
