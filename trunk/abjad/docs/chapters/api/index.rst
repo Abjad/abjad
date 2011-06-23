@@ -391,6 +391,7 @@ marktools
    tools/marktools/get_comments_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
    tools/marktools/get_marks_attached_to_component
+   tools/marktools/get_noncontext_marks_attached_to_component
    tools/marktools/get_stem_tremolos_attached_to_component
    tools/marktools/get_value_of_annotation_attached_to_component
    tools/marktools/is_component_with_lilypond_command_mark_attached
