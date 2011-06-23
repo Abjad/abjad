@@ -1,10 +1,12 @@
-from abjad.tools.componenttools._Component import _Component
-from abjad.tools.contexttools.ContextMark import ContextMark
+#from abjad.tools.componenttools._Component import _Component
+#from abjad.tools.contexttools.ContextMark import ContextMark
+from abjad.tools.marktools.Mark import Mark
 
 
 ## TODO: Make Markup.direction_string public and read / write.
 
-class Markup(ContextMark):
+#class Markup(ContextMark):
+class Markup(Mark):
    r'''Abjad model of backslash-style LilyPond markup or Scheme-style LilyPond markup.
 
    Initialize backslash-style markup from string::
@@ -78,7 +80,8 @@ class Markup(ContextMark):
    __slots__ = ('_contents_string', '_direction_string', '_format_slot', '_style_string')
 
    def __init__(self, arg, direction_string = None, style_string = 'backslash'):
-      ContextMark.__init__(self, target_context = _Component)
+      #ContextMark.__init__(self, target_context = _Component)
+      Mark.__init__(self)
       if isinstance(arg, str):
          contents_string = arg
          style_string = style_string
