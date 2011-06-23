@@ -56,8 +56,22 @@ class Spanner(_StrictComparator):
       else:
          return False
 
+   def __copy__(self, *args):
+      new = type(self)(*self.__getnewargs__( ))
+      if getattr(self, '_override', None) is not None:
+         new._override = copy.copy(self.override)
+      if getattr(self, '_set', None) is not None:
+         new._set = copy.copy(self.set)
+      return new
+
+   ## TODO: uncomment when copy regime is finished
+   #__deepcopy__ = __copy__
+
    def __getitem__(self, expr):
       return self._components.__getitem__(expr)
+
+   def __getnewargs__(self):
+      return ( )
 
    def __len__(self):
       return self._components.__len__( )
