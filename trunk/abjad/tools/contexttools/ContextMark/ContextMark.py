@@ -1,3 +1,4 @@
+from abjad.exceptions import ExtraMarkError
 from abjad.tools.contexttools._Context import _Context
 from abjad.tools.marktools.Mark import Mark
 
@@ -140,6 +141,16 @@ class ContextMark(Mark):
       return self._target_context
 
    ## PUBLIC METHODS ##
+
+   ## TODO: make this work.
+#   def attach_mark(self, start_component):
+#      '''Make sure no context mark of same type is already attached to start component.
+#      '''
+#      from abjad.tools import contexttools
+#      klasses = (type(self), )
+#      if contexttools.is_component_with_context_mark_attached(start_component, klasses):
+#         raise ExtraMarkError('component already has context mark attached.')
+#      return Mark.attach_mark(self, start_component)
 
    def detach_mark(self):
       '''Detach mark:
