@@ -8,7 +8,6 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
 
    @property
    def _duration(self):
-      #forced_meter = self._client._explicit_meter
       if contexttools.is_component_with_time_signature_attached(self._client):
          forced_meter = contexttools.get_time_signature_mark_attached_to_component(self._client)
       else:

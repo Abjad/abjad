@@ -48,11 +48,6 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
    if isinstance(measure, Measure):
       ## to allow iteration inside zero-update loop
-#      forced_meter = measure._explicit_meter
-#      if forced_meter is not None:
-#         old_meter = forced_meter
-#      else:
-#         old_meter = contexttools.get_effective_time_signature(measure)
       old_meter = contexttools.get_effective_time_signature(measure)
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(

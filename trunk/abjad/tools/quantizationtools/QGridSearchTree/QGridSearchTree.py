@@ -28,6 +28,8 @@ class QGridSearchTree(_Immutable):
       abjad> tree = QGridSearchTree(definition)
       abjad> tree
       QGridSearchTree( )
+
+   Return newly constructed QGridSearchTree.
    '''
 
    __slots__ = ('_definition', '_offsets', '_rhythm_trees',)
@@ -229,6 +231,8 @@ class QGridSearchTree(_Immutable):
          Fraction(4, 5)
          Fraction(5, 6)
          Fraction(1, 1)
+
+      Return tuple.
       '''
 
       def recurse(n, prev_div, prev_offset):

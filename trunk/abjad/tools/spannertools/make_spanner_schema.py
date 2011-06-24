@@ -41,8 +41,8 @@ def make_spanner_schema(components):
 
    ::
 
-      abjad> spannertools.make_covered_spanner_schema([voice.leaves[2:4]])
-      {TrillSpanner(c'8, d'8, e'8, f'8, g'8, a'8): [0, 1]}
+      abjad> spannertools.make_spanner_schema(voice.leaves[2:4])
+      {BeamSpanner(c'8, d'8, e'8, f'8): [0, 1]}
 
    Return dictionary.
    '''

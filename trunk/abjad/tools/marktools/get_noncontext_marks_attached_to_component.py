@@ -8,7 +8,9 @@ def get_noncontext_marks_attached_to_component(component):
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
       abjad> contexttools.TimeSignatureMark((2, 4))(staff[0])
+      TimeSignatureMark(2, 4)(c'8)
       abjad> marktools.Articulation('staccato')(staff[0])
+      Articulation('staccato', '-')(c'8)
 
    ::
 

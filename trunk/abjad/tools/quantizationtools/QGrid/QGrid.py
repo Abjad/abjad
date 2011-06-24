@@ -19,6 +19,8 @@ class QGrid(_Immutable):
       QGrid((0, Fraction(1, 5), 1))
       abjad> q_grid * Fraction(1, 2)
       QGrid((Fraction(0, 1), Fraction(1, 10), Fraction(1, 2)))
+
+   Return QGrid.
    '''
 
    __slots__ = ('_values',)

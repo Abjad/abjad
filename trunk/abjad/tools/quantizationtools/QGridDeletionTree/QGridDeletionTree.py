@@ -29,12 +29,14 @@ class QGridDeletionTree(_Immutable):
       abjad> tree[1] = 1
       abjad> tree[-1] = 0
       abjad> tree
-      QGridDeletionTree([1, [1, 0], [1, 0, 0]])
+      QGridDeletionTree([0, [1, 0], [1, 0, 0]])
 
    ::
 
       abjad> tree.format_for_beatspan(Fraction(1, 4))
-      Tuplet(2/3, [c'8, {c'16, r16}, {* 3:2 c'16, r16, r16 *}])
+      Tuplet(2/3, [r8, {c'16, r16}, {* 3:2 c'16, r16, r16 *}])
+
+   Return newly constructed QGridDeletionTree.
    '''
 
    __slots__ = ('_definition',)
@@ -136,6 +138,8 @@ class QGridDeletionTree(_Immutable):
          abjad> tree = QGridDeletionTree([0, [1, 0], [1, 0, 1]])
          abjad> tree.format_for_beatspan( )
          Tuplet(2/3, [r8, {c'16, r16}, {* 3:2 c'16, r16, c'16 *}])
+
+      Return newly constructed tuplet or container.
       '''
       
       assert is_binary_rational(beatspan)
@@ -163,4 +167,3 @@ class QGridDeletionTree(_Immutable):
          return c
 
       return recurse(self.definition, beatspan)
-

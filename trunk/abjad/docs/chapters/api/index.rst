@@ -226,6 +226,7 @@ contexttools
    tools/contexttools/get_effective_time_signature
    tools/contexttools/get_time_signature_mark_attached_to_component
    tools/contexttools/is_component_with_context_mark_attached
+   tools/contexttools/is_component_with_time_signature_mark_attached
    tools/contexttools/iterate_contexts_backward_in_expr
    tools/contexttools/iterate_contexts_forward_in_expr
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr

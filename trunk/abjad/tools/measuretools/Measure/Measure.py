@@ -33,13 +33,11 @@ class Measure(Container):
    Return measure object.
    '''
 
-   #__slots__ = ('_explicit_meter', )
    __slots__ = ( )
 
    def __init__(self, meter, music = None, **kwargs):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
-      #self._explicit_meter = None
       self._formatter = _MeasureFormatter(self)
       meter = metertools.Meter(meter)
       numerator, denominator = meter.numerator, meter.denominator
@@ -84,7 +82,6 @@ class Measure(Container):
          old_denominator = contexttools.get_effective_time_signature(self).denominator
       except AttributeError:
          pass
-      #_Measure.__delitem__(self, i)
       Container.__delitem__(self, i)
       try:
          naive_meter = self.duration.preprolated
@@ -105,7 +102,6 @@ class Measure(Container):
       '''
       from abjad.tools import contexttools
       class_name = self.__class__.__name__
-      #forced_meter = self._explicit_meter
       forced_meter = contexttools.get_time_signature_mark_attached_to_component(self)
       summary = self._summary
       length = len(self)
@@ -151,18 +147,10 @@ class Measure(Container):
       partial = kwargs.get('partial', None)
       if partial is not None:
          raise NotImplementedError('partial meter not yet implemented.')
-
-#      if self._explicit_meter is not None:
-#         #print 'detaching old explicit meter ...'
-#         self._explicit_meter.detach_mark( )
-
       if contexttools.is_component_with_time_signature_mark_attached(self):
          old_explicit_meter = contexttools.get_time_signature_mark_attached_to_component(self)
          old_explicit_meter.detach_mark( )
-
       new_explicit_meter(self)
-      #self._explicit_meter = new_explicit_meter
-      #self._mark_entire_score_tree_for_later_update('marks')
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -194,5 +182,7 @@ class Measure(Container):
 
          abjad> measure.is_full
          False
+
+      Return boolean.
       '''
       return contexttools.get_effective_time_signature(self).duration == self.duration.preprolated

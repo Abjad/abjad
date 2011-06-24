@@ -25,6 +25,8 @@ def is_component_with_context_mark_attached(component, klasses = (ContextMark, )
 
       abjad> contexttools.is_component_with_context_mark_attached(staff)
       False
+
+   Return boolean.
    '''
 
    context_marks_attached = get_context_marks_attached_to_component(component, klasses = klasses)
