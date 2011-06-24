@@ -1,9 +1,8 @@
 from abjad.tools import contexttools
+from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
-from abjad.tools.metertools import Meter
-from abjad.tools import durtools
 
 
 def scale_contents_of_measures_in_expr(expr, multiplier = 1):
@@ -37,7 +36,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = 1):
          old_numerator = contexttools.get_effective_time_signature(measure).numerator
          old_denominator = contexttools.get_effective_time_signature(measure).denominator
          new_denominator = old_denominator / multiplier.numerator
-         new_meter = metertools.Meter(old_numerator, new_denominator)
+         new_meter = contexttools.TimeSignatureMark(old_numerator, new_denominator)
       else:
          old_meter = contexttools.get_effective_time_signature(measure)
          old_denominator = old_meter.denominator

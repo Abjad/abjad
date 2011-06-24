@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_AnonymousMeasure_meter_change_01( ):
-   '''Meter sequence: 1/4, 3/8, 1/4.
+   '''Time signature sequence: 1/4, 3/8, 1/4.
    Important that last measure format *only* meter 1/4.
    If last measure formats *both* meter 1/4 and meter 3/8, there's contention.
    Contention between leaf and measure as to who should format meter.'''

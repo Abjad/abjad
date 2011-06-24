@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_denominators_01( ):
    '''Concentrate one measure three times.
-      Meter 3/8 goes to 9/24.
+      Time signature 3/8 goes to 9/24.
       Numerator and denominator both triple.'''
 
    t = Measure((3, 8), "c'8 d'8 e'8")
@@ -33,7 +33,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
 
 def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_denominators_02( ):
    '''Concentrate one measure four times over five.
-   Meter 3/16 goes to 12/80.
+   Time signature 3/16 goes to 12/80.
    Numerator quadruples and denominator quintuples.
    '''
 
@@ -67,7 +67,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
 
 def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_denominators_03( ):
    '''Concentrate one measure four times over four.
-      Meter 3/16 goes to 12/64.
+      Time signature 3/16 goes to 12/64.
       Numerator and denominator both quadruple.'''
 
    t = Measure((3, 16), "c'16 d'16 e'16")
@@ -96,10 +96,10 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
    assert t.format == "{\n\t\\time 12/64\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n}"
 
 
-   def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_denominators_04( ):
-      '''Concentrate one measure two times over four.
-         Meter 3/16 goes to 6/64.
-         Numerator doubles and denominator quadruples.'''
+def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_denominators_04( ):
+   '''Concentrate one measure two times over four.
+      Time signature 3/16 goes to 6/64.
+      Numerator doubles and denominator quadruples.'''
 
    t = Measure((3, 16), "c'16 d'16 e'16")
    spannertools.BeamSpanner(t[:])

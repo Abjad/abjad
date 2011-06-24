@@ -21,7 +21,7 @@ def get_component_start_offset_in_seconds(component):
    ::
 
       abjad> componenttools.get_component_start_offset_in_seconds(score.leaves[1])
-      Duration(15, 26)
+      Offset(15, 26)
 
    Return nonnegative fraction.
    '''

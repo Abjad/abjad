@@ -179,7 +179,6 @@ def test_threadtools_component_to_thread_signature_07( ):
    '''Return _ContainmentSignature giving the root and
    first voice, staff and score in parentage of component.
    '''
-   #py.test.skip('remove directives reference.')
 
    t = Container(notetools.make_repeated_notes(2))
    t[1:1] = Container(Voice(notetools.make_repeated_notes(1)) * 2) * 2

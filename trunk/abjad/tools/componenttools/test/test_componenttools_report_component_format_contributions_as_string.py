@@ -1,21 +1,26 @@
 from abjad import *
 import py.test
-py.test.skip('temp skip')
+py.test.skip('decide how to reimplement with leaf formatter now removed.')
 
 
 def test_componenttools_report_component_format_contributions_as_string_01( ):
    '''You can report_component_format_contributions_as_string on a heavily tweaked leaf.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.note_head.style = 'cross'
    t.override.note_head.color = 'red'
    t.override.stem.color = 'red'
-   t.articulations.append('staccato')
-   t.articulations.append('tenuto')
-   t.markup.down.append(r'\italic { ben. marcato }')
-   t.comments.before.append('textual information before')
-   t.comments.after.append('textual information after')
-
+   #t.articulations.append('staccato')
+   #t.articulations.append('tenuto')
+   #t.markup.down.append(r'\italic { ben. marcato }')
+   #t.comments.before.append('textual information before')
+   #t.comments.after.append('textual information after')
+   marktools.Articulation('staccato')(t)
+   marktools.Articulation('tenuto')(t)
+   markuptools.Markup(r'\italic { ben. marcato }', 'down')(t)
+   marktools.Comment('textual information before', 'before')(t)
+   marktools.Comment('textual information after', 'after')(t)
+   
    assert componenttools.report_component_format_contributions_as_string(t) == "slot_1\n\tCommentsInterface.before\n\t\t% textual information before\n\toverrides.overrides\n\t\t\\once \\override NoteHead #'color = #red\n\t\t\\once \\override NoteHead #'style = #'cross\n\t\t\\once \\override Stem #'color = #red\nslot_2\nslot_3\nslot_4\n\t_LeafFormatter._leaf_body\n\t\tc'4 -\\staccato -\\tenuto _ \\markup { \\italic { ben. marcato } }\nslot_5\nslot_6\nslot_7\n\tCommentsInterface.after\n\t\t% textual information after\n"
 
 

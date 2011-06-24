@@ -53,7 +53,6 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
    Return none.
    '''
    from abjad.tools import contexttools
-   from abjad.tools.metertools import Meter
    from abjad.tools.measuretools.Measure import Measure
    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 

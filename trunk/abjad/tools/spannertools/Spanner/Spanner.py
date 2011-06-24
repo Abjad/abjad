@@ -5,7 +5,6 @@ from abjad.tools import durtools
 from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
-#from copy import deepcopy
 import copy
 
 
@@ -363,12 +362,12 @@ class Spanner(_StrictComparator):
       ::
 
          abjad> spanner._offset.start
-         Duration(1, 4)
+         Offset(1, 4)
 
       ::
 
          abjad> spanner._offset.stop
-         Duration(1, 2)
+         Offset(1, 2)
 
       Return duration.
       '''

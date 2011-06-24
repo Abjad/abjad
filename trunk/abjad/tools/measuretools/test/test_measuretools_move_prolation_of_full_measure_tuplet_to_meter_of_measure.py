@@ -150,7 +150,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 
 
 def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_06( ):
-   '''Submsume 6:5. Meter should go from 5/16 to 15/48.'''
+   '''Submsume 6:5. Time signature should go from 5/16 to 15/48.'''
 
    tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'8 d'8 e'8")
    t = Measure((5, 16), [tuplet])

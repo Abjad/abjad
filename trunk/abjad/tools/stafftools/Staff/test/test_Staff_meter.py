@@ -35,7 +35,6 @@ def test_Staff_meter_02( ):
    }
    '''
 
-   py.test.skip('fix and print meter on empty staff.')
    assert t.format == '\\new Staff {\n\t\\time 2/4\n}'
 
 

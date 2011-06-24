@@ -54,7 +54,7 @@ class MissingMeasureError(MeasureError):
    pass
 
 class ImproperlyFilledMeasureError(MeasureError):
-   '''Measure contents duration does not equal measure meter duration.
+   '''Measure contents duration does not equal measure time signature duration.
    '''
    pass
 
@@ -99,13 +99,13 @@ class LineBreakError(Exception):
    '''
    pass
 
-class MeterError(Exception):
-   '''Any meter error.
+class TimeSignatureError(Exception):
+   '''Any time signature error.
    '''
    pass
 
-class MeterAssignmentError(MeterError):
-   '''Can not assign meter to DynamicMeasure.
+class TimeSignatureAssignmentError(TimeSignatureError):
+   '''Can not assign time signature to DynamicMeasure.
    '''
    pass
 
@@ -125,13 +125,13 @@ class NegativeDurationError(DurationError):
    '''
    pass
 
-class NonbinaryMeterConversionError(Exception):
-   '''Nonbinary meter has no binary equivalent.
+class NonbinaryTimeSignatureConversionError(Exception):
+   '''Nonbinary time signature has no binary equivalent.
    '''
    pass
 
-class NonbinaryMeterSuppressionError(Exception):
-   '''Trying to suppress nonbinary meter; 
+class NonbinaryTimeSignatureSuppressionError(Exception):
+   '''Trying to suppress nonbinary time signature; 
    this will cause prolated duration of measure contents to calculate incorrectly.
    '''
    pass
@@ -154,7 +154,7 @@ class MissingNoteHeadError(Exception):
    pass
 
 class OverfullMeasureError(ImproperlyFilledMeasureError):
-   '''Measure contents duration is greater than measure meter duration.
+   '''Measure contents duration is greater than measure time signature duration.
    '''
    pass
 
@@ -251,7 +251,7 @@ class MissingTempoError(TempoError):
    pass
 
 class UnderfullMeasureError(ImproperlyFilledMeasureError):
-   '''Measure contents duration is less than measure meter duration.
+   '''Measure contents duration is less than measure time signature duration.
    '''
    pass
 

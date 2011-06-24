@@ -27,7 +27,7 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
                  }
          >>
       abjad> leaftools.get_composite_offset_series_from_leaves_in_expr(score)
-      [Duration(0, 1), Duration(1, 8), Duration(1, 6), Duration(1, 4), Duration(1, 3), Duration(3, 8), Duration(1, 2)]
+      [Offset(0, 1), Offset(1, 8), Offset(1, 6), Offset(1, 4), Offset(1, 3), Offset(3, 8), Offset(1, 2)]
 
    Equal to list of unique start and stop offsets of leaves in `expr`.
 

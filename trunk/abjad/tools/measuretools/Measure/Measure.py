@@ -39,7 +39,11 @@ class Measure(Container):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self._formatter = _MeasureFormatter(self)
-      meter = metertools.Meter(meter)
+      #meter = metertools.Meter(meter)
+      if isinstance(meter, metertools.Meter):
+         meter = contexttools.TimeSignatureMark(meter.numerator, meter.denominator)
+      else:
+         meter = contexttools.TimeSignatureMark(meter)
       numerator, denominator = meter.numerator, meter.denominator
       self._attach_explicit_meter(numerator, denominator)
       self._initialize_keyword_values(**kwargs)

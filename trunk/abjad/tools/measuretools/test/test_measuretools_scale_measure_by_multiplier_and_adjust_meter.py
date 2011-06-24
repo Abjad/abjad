@@ -136,7 +136,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_06( ):
 def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_07( ):
    '''Scale binary meter by one half.
       Noteheads rewrite with half duration.
-      Meter rewrites with double denominator.'''
+      Time signature rewrites with double denominator.'''
 
    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(1, 2))
@@ -160,7 +160,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_07( ):
 def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_08( ):
    '''Scale binary meter by one quarter.
       Noteheads rewrite with quarter duration.
-      Meter rewrites with quadruple denominator.'''
+      Time signature rewrites with quadruple denominator.'''
 
    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(1, 4))
@@ -184,7 +184,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_08( ):
 def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_09( ):
    '''Scale binary meter by two.
       Noteheads rewrite with double duration.
-      Meter rewrites with half denominator.'''
+      Time signature rewrites with half denominator.'''
 
    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2))
@@ -208,7 +208,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_09( ):
 def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_10( ):
    '''Scale binary meter by four.
       Noteheads rewrite with quadruple duration.
-      Meter rewrites with quarter denominator.'''
+      Time signature rewrites with quarter denominator.'''
 
    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
    measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(4))

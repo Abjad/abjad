@@ -53,10 +53,6 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
    .. versionchanged:: 1.1.2
       renamed ``iterate.get_vertical_moment_at_prolated_offset_in( )`` to
       ``verticalitytools.get_vertical_moment_at_prolated_offset_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_vertical_moment_at_prolated_offset_in_expr( )`` to
-      ``verticalitytools.get_vertical_moment_at_prolated_offset_in_expr( )``.
    '''
    from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 

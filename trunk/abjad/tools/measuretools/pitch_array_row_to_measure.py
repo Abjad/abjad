@@ -1,7 +1,7 @@
-from abjad.tools.measuretools.Measure import Measure
-from abjad.tools.metertools import Meter
-from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
+from abjad.tools import contexttools
 from abjad.tools import durtools
+from abjad.tools.measuretools.Measure import Measure
+from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
 
 
 def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
@@ -36,7 +36,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
    if not isinstance(pitch_array_row, PitchArrayRow):
       raise TypeError('must be pitch array row.')
 
-   meter = Meter(pitch_array_row.width, cell_duration_denominator)
+   meter = contexttools.TimeSignatureMark(pitch_array_row.width, cell_duration_denominator)
    measure = Measure(meter, [ ])
    basic_cell_duration = durtools.Duration(1, cell_duration_denominator)
    measure_pitches, measure_durations = [ ], [ ]

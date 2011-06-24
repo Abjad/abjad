@@ -1,5 +1,4 @@
 from abjad import *
-import py.test
 
 
 def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_01( ):
@@ -439,7 +438,6 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_10( ):
    '''Duration split binary measure in score at nonbinary split point.
       Do fracture spanners but do not tie leaves after split.'''
-   py.test.skip('fix broken split test.')
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -497,7 +495,6 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_11( ):
    '''Duration split binary measure in score at nonbinary split point.
       Do fracture spanners and do tie leaves after split.'''
-   py.test.skip('fix broken split test.')
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -558,7 +555,6 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    This test results from a fix.
    What's being tested here is contents rederivation.
    '''
-   py.test.skip('fix broken split test.')
 
    t = Staff(Measure((3, 8), "c'8 d'8 e'8") * 2)
    spannertools.BeamSpanner(t[0])
@@ -770,7 +766,6 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Split at nonbinary split point through leaves.
       Leaf written durations adjust for binary-to-nonbinary change.
       Leaf multipliers also change.'''
-   py.test.skip('infinite loop?')
 
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -827,11 +822,10 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
 def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_18( ):
    '''Duration split binary measure with multiplied leaves.
-      Meter carries numerator that necessitates ties.
+      Time signature carries numerator that necessitates ties.
       Split at nonbinary split point through leaves.'''
-   py.test.skip('infinite loop?')
 
-   t = Staff([Measure((5, 16), [Skip((1, 1))])])
+   t = Staff([Measure((5, 16), [skiptools.Skip((1, 1))])])
    t.leaves[0].duration.multiplier = Duration(5, 16)
 
    r'''

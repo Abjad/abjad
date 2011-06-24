@@ -1,7 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
-from abjad.tools.metertools import Meter
 from abjad.tools import durtools
 
 

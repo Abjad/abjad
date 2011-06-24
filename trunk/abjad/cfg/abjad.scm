@@ -77,7 +77,7 @@ centerText = \applyOutput #'Voice #centerTextFn
 
 
 %% TODO: Parameterize x-value extra offset or take from global staff size %%
-adjustEOLMeterBarlineExtraOffset = #(define-music-function (parser location) ( )
+adjustEOLTimeSignatureBarlineExtraOffset = #(define-music-function (parser location) ( )
    #{ 
       #(define (foo grob)
          (if (<= (ly:item-break-dir grob) 0)

@@ -66,8 +66,6 @@ class TimeSignatureMark(ContextMark):
          numerator, denominator = args[0], args[1]
       else:
          raise TypeError('invalid %s meter initialization.' % str(args))
-      #object.__setattr__(self, '_numerator', numerator)
-      #object.__setattr__(self, '_denominator', denominator)
       self._numerator = numerator
       self._denominator = denominator
 
@@ -75,7 +73,6 @@ class TimeSignatureMark(ContextMark):
       partial = kwargs.get('partial', None)
       if not isinstance(partial, (type(None), durtools.Duration)):
          raise TypeError
-      #object.__setattr__(self, '_partial', partial)
       self._partial = partial
       if partial is not None:
          self._partial_repr_string = ', partial = %s' % repr(self._partial)
@@ -89,15 +86,9 @@ class TimeSignatureMark(ContextMark):
       self.suppress = suppress
 
       ## initialize derived attributes
-      #object.__setattr__(self, '_duration', durtools.Duration(numerator, denominator))
       _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
-      #object.__setattr__(self, '_multiplier', _multiplier)
-      #object.__setattr__(self, '_is_nonbinary', not mathtools.is_nonnegative_integer_power_of_two(self.denominator))
-      #self._duration = durtools.Duration(numerator, denominator)
       self._multiplier = _multiplier
       self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
-
-      #self._contents_repr_string = '%s/%s' % (self.numerator, self.denominator)
 
    ## OVERLOADS ##
 

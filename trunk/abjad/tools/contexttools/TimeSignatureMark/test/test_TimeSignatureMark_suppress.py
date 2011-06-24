@@ -29,4 +29,4 @@ def test_TimeSignatureMark_suppress_02( ):
    t = Measure((8, 9), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    contexttools.get_effective_time_signature(t).suppress = True
 
-   assert py.test.raises(NonbinaryMeterSuppressionError, 't.format')
+   assert py.test.raises(NonbinaryTimeSignatureSuppressionError, 't.format')

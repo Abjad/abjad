@@ -1,17 +1,17 @@
 from abjad import *
 import py.test
-py.test.skip('temporary skip.')
 
 
 def test_containertools_report_container_modifications_as_string_01( ):
-   '''Context formatter report_container_modifications_as_string.'''
+   '''Context formatter report_container_modifications_as_string.
+   '''
 
    t = Voice("c'8 d'8 e'8 f'8")
-   t.comments.before.append('Example voice')
+   marktools.Comment('Example voice', 'before')(t)
    t.override.note_head.color = 'red'
    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
    beam = spannertools.BeamSpanner(t[:])
-   beam.thickness = 3
+   beam.override.beam.thickness = 3
 
    r'''
    % Example voice
@@ -46,14 +46,15 @@ def test_containertools_report_container_modifications_as_string_01( ):
 
 
 def test_containertools_report_container_modifications_as_string_02( ):
-   '''Tuplet formatter report_container_modifications_as_string.'''
+   '''Tuplet formatter report_container_modifications_as_string.
+   '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-   t.comments.before.append('Example tuplet')
+   marktools.Comment('Example tuplet', 'before')(t)
    t.override.note_head.color = 'red'
    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
    beam = spannertools.BeamSpanner(t[:])
-   beam.thickness = 3
+   beam.override.beam.thickness = 3
 
    r'''
    % Example tuplet

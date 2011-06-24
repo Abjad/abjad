@@ -8,19 +8,19 @@ def iterate_semantic_voices_backward_in_expr(expr):
    Iterate semantic voices backward in `expr`::
 
       abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
-      abjad> meter_voice = Voice(measures)
-      abjad> meter_voice.name = 'MeterVoice'
-      abjad> meter_voice.is_nonsemantic = True
+      abjad> time_signature_voice = Voice(measures)
+      abjad> time_signature_voice.name = 'TimeSignatureVoice'
+      abjad> time_signature_voice.is_nonsemantic = True
       abjad> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
       abjad> music_voice.name = 'MusicVoice'
-      abjad> staff = Staff([meter_voice, music_voice])
+      abjad> staff = Staff([time_signature_voice, music_voice])
       abjad> staff.is_parallel = True
 
    ::
 
       abjad> f(staff)
       \new Staff <<
-         \context Voice = "MeterVoice" {
+         \context Voice = "TimeSignatureVoice" {
             {
                \time 3/8
                s1 * 3/8

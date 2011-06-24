@@ -28,7 +28,7 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
                  }
          >>
       abjad> leaftools.get_composite_offset_difference_series_from_leaves_in_expr(score)
-      [Duration(1, 8), Duration(1, 24), Duration(1, 12), Duration(1, 12), Duration(1, 24), Duration(1, 8)]
+      [Offset(1, 8), Offset(1, 24), Offset(1, 12), Offset(1, 12), Offset(1, 24), Offset(1, 8)]
 
    Composite offset difference series defined equal to time intervals between
    unique start and stop offsets of leaves in `expr`.

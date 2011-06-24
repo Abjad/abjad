@@ -1,7 +1,7 @@
 from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
 from abjad.tools.measuretools.Measure._MeasureFormatterNumberInterface import _MeasureFormatterNumberInterface
 from abjad.tools.measuretools.Measure._MeasureFormatterSlotsInterface import _MeasureFormatterSlotsInterface
-from abjad.exceptions import NonbinaryMeterSuppressionError
+from abjad.exceptions import NonbinaryTimeSignatureSuppressionError
 from abjad.exceptions import OverfullMeasureError
 from abjad.exceptions import UnderfullMeasureError
 
@@ -40,7 +40,7 @@ class _MeasureFormatter(_ContainerFormatter):
       client = self._client
       effective_meter = contexttools.get_effective_time_signature(self._client)
       if effective_meter.is_nonbinary and effective_meter.suppress:
-         raise NonbinaryMeterSuppressionError
+         raise NonbinaryTimeSignatureSuppressionError
       if effective_meter.duration < client.duration.preprolated:
          raise OverfullMeasureError
       if client.duration.preprolated < effective_meter.duration:

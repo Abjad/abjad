@@ -1,7 +1,6 @@
-from abjad.tools.measuretools.Measure import Measure
 from abjad.tools import contexttools
 from abjad.tools import durtools
-from abjad.tools.metertools import Meter
+from abjad.tools.measuretools.Measure import Measure
 
 
 def set_measure_denominator_and_adjust_numerator(measure, denominator):

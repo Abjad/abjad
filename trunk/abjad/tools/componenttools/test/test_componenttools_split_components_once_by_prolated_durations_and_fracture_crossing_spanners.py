@@ -1,9 +1,9 @@
 from abjad import *
-import py.test
 
 
 def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_01( ):
-   '''Duration partition one container in score, and fracture spanners.'''
+   '''Duration partition one container in score, and fracture spanners.
+   '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -27,7 +27,8 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''
 
    durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:1], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
+      t[:1], durations)
 
    r'''
    \new Staff {
@@ -53,13 +54,12 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
    assert componenttools.is_well_formed_component(t)
    assert len(parts) == 3
-   py.test.skip('easy format fix.')
-   #assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_02( ):
-   '''Duration partition multiple containers in score, 
-      and fracture spanners.'''
+   '''Duration partition multiple containers in score, and fracture spanners.
+   '''
 
    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -83,7 +83,8 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''
 
    durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
+      t[:], durations)
 
    r'''
    \new Staff {
@@ -113,14 +114,14 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
    assert componenttools.is_well_formed_component(t)
    assert len(parts) == 4
-   py.test.skip('easy format fix.')
-   #assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_03( ):
    '''Duration partition container outside of score.
-      This example includes no spanners.
-      Spanners do not apply outside of score.'''
+   This example includes no spanners.
+   Spanners do not apply outside of score.
+   '''
 
    t = Container(notetools.make_repeated_notes(2)) * 2
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -136,14 +137,16 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
 
 def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_04( ):
-   '''Duration partition one leaf outside of score.'''
+   '''Duration partition one leaf outside of score.
+   '''
 
    t = Note(0, (1, 4))
 
    "c'4"
 
    durations = [Duration(1, 32), Duration(5, 32)]
-   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners([t], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
+      [t], durations)
 
    "[[Note(c', 32)], [Note(c', 8), Note(c', 32)], [Note(c', 16)]]"
 
@@ -151,7 +154,8 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
 
 def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_05( ):
-   '''Duration partition leaf in score and fracture spanners.'''
+   '''Duration partition leaf in score and fracture spanners.
+   '''
 
    t = Staff([Note(0, (1, 8))])
    spannertools.BeamSpanner(t[0])
@@ -163,7 +167,8 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''
 
    durations = [Duration(1, 64), Duration(5, 64)]
-   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
+      t[:], durations)
 
    r'''
    \new Staff {

@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_scale_contents_of_measures_in_expr_01( ):
    '''Quadruple binary meter.
-      Meter denominator adjust appropriately.'''
+   Time siganture denominator adjust appropriately.'''
 
    t = Measure((3, 32), "c'32 d'32 e'32")
    spannertools.BeamSpanner(t[:])

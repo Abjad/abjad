@@ -1,11 +1,9 @@
 from abjad import *
-import py.test
 
 
 def test_ClefMark___copy___01( ):
-   '''Forced clefs copy.
+   '''Clef marks copy.
    '''
-   py.test.skip('fix me: handle context mark copying in explicit copy and deepcopy.')
 
    t = Staff(notetools.make_repeated_notes(8))
    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)

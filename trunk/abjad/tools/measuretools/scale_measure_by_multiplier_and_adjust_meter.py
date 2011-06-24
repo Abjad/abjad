@@ -2,8 +2,6 @@ from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.tools.metertools import Meter
-from abjad.tools import durtools
 
 
 def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
@@ -51,7 +49,7 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
    if reduced_pair != multiplied_pair:
       new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
          old_pair, multiplier)      
-      new_meter = Meter(new_pair)
+      new_meter = contexttools.TimeSignatureMark(new_pair)
       measure._attach_explicit_meter(new_meter)
       remaining_multiplier = durtools.Duration(*reduced_pair)
       if remaining_multiplier != durtools.Duration(1):
@@ -69,12 +67,12 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
             old_pair, multiplier)
       elif multiplier == durtools.Duration(0):
          raise ZeroDivisionError
-      new_meter = Meter(new_pair)
+      new_meter = contexttools.TimeSignatureMark(new_pair)
       measure._attach_explicit_meter(new_meter)
    else:
       new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
          old_pair, multiplier)
-      new_meter = Meter(new_pair)
+      new_meter = contexttools.TimeSignatureMark(new_pair)
       measure._attach_explicit_meter(new_meter)
       remaining_multiplier = multiplier / new_meter.multiplier
       if remaining_multiplier != durtools.Duration(1):

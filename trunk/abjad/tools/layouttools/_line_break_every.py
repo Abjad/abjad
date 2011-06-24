@@ -31,7 +31,7 @@ def _line_break_every(expr, line_duration, klass = Measure,
          if adjust_eol:
             #cur.breaks.eol_adjustment = True
             marktools.LilyPondCommandMark(
-               'adjustEOLMeterBarlineExtraOffset', format_slot = 'closing')(cur)
+               'adjustEOLTimeSignatureBarlineExtraOffset', format_slot = 'closing')(cur)
          if add_empty_bars:
             if cur.bar_line.kind is None:
                cur.bar_line.kind = ''
@@ -43,7 +43,7 @@ def _line_break_every(expr, line_duration, klass = Measure,
             if adjust_eol:
                #prev.breaks.eol_adjustment = True
                marktools.LilyPondCommandMark(
-                  'adjustEOLMeterBarlineExtraOffset', format_slot = 'closing')(prev)
+                  'adjustEOLTimeSignatureBarlineExtraOffset', format_slot = 'closing')(prev)
             if add_empty_bars:
                if cur.bar_line.kind is None:
                   cur.bar_line.kind = ''

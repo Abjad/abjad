@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import durtools
 from abjad.tools import verticalitytools
 
 
@@ -39,7 +40,7 @@ def test_VerticalMoment_notes_01( ):
    '''
 
    vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(
-      score, Duration(1, 8))
+      score, durtools.Offset(1, 8))
    "(Note(d'', 8), Note(a', 4), Note(e', 8))"
    assert vertical_moment.notes == (
       score[0][0][0], piano_staff[0][0], piano_staff[1][1])
