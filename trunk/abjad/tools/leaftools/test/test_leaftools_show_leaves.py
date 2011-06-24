@@ -1,6 +1,4 @@
 from abjad import *
-#import py
-#py.test.skip('skipping until lilypond_path stuff is cleared up.')
 
 
 def test_leaftools_show_leaves_01( ):

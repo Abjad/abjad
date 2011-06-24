@@ -212,6 +212,7 @@ contexttools
    tools/contexttools/TempoMark/TempoMark
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
    tools/contexttools/detach_all_context_marks_attached_to_component
+   tools/contexttools/detach_time_signature_mark_attached_to_component
    tools/contexttools/get_context_marks_attached_to_any_improper_parent_of_component
    tools/contexttools/get_context_marks_attached_to_component
    tools/contexttools/get_dynamic_marks_attached_to_component
@@ -223,6 +224,7 @@ contexttools
    tools/contexttools/get_effective_staff
    tools/contexttools/get_effective_tempo
    tools/contexttools/get_effective_time_signature
+   tools/contexttools/get_time_signature_mark_attached_to_component
    tools/contexttools/iterate_contexts_backward_in_expr
    tools/contexttools/iterate_contexts_forward_in_expr
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
