@@ -2,11 +2,14 @@ from abjad.tools.measuretools.DynamicMeasure.DynamicMeasure import DynamicMeasur
 
 
 class AnonymousMeasure(DynamicMeasure):
-   r'''Dynamic measure with no time signature:
-   
-   ::
+   r'''.. versionadded:: 1.1.1
+
+   Dynamic measure with no time signature::
 
       abjad> measure = measuretools.AnonymousMeasure("c'8 d'8 e'8 f'8")
+
+   ::
+
       abjad> f(measure)
       {
          \override Staff.TimeSignature #'stencil = ##f
@@ -22,6 +25,9 @@ class AnonymousMeasure(DynamicMeasure):
       
       abjad> notes = [Note("c'8"), Note("d'8")]
       abjad> measure.extend(notes)
+
+   ::
+
       abjad> f(measure)
       {
          \override Staff.TimeSignature #'stencil = ##f
@@ -41,8 +47,5 @@ class AnonymousMeasure(DynamicMeasure):
    __slots__ = ( )
 
    def __init__(self, music = None, **kwargs):
-      '''Initialize music and hide TimeSignature stencil.
-      '''
-
       DynamicMeasure.__init__(self, music = music, **kwargs)
       self.override.staff.time_signature.stencil = False

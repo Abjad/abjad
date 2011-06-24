@@ -1,17 +1,25 @@
+from abjad.tools import contexttools
+from abjad.tools import durtools
+from abjad.tools import metertools
 from abjad.tools.containertools.Container import Container
 from abjad.tools.measuretools.Measure._MeasureDurationInterface import _MeasureDurationInterface
 from abjad.tools.measuretools.Measure._MeasureFormatter import _MeasureFormatter
-from abjad.tools import contexttools
-from abjad.tools import durtools
-from abjad.tools.metertools import Meter
 
 
 class Measure(Container):
-   r'''Abjad model of a measure:
+   r'''.. versionadded:: 1.1.1
+
+   Abjad model of a measure::
+
+      abjad> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+   
+   ::
+
+      abjad> measure
+      Measure(4/8, [c'8, d'8, e'8, f'8])
 
    ::
 
-      abjad> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
       abjad> f(measure)
       {
          \time 4/8
@@ -31,7 +39,7 @@ class Measure(Container):
       self._duration = _MeasureDurationInterface(self)
       self._explicit_meter = None
       self._formatter = _MeasureFormatter(self)
-      meter = Meter(meter)
+      meter = metertools.Meter(meter)
       numerator, denominator = meter.numerator, meter.denominator
       self._attach_explicit_meter(numerator, denominator)
       self._initialize_keyword_values(**kwargs)
@@ -105,8 +113,6 @@ class Measure(Container):
 
    def _attach_explicit_meter(self, *args, **kwargs):
       #print 'attaching explicit meter ...'
-      from abjad.tools import contexttools
-      from abjad.tools import metertools
       if len(args) == 1 and isinstance(args[0], contexttools.TimeSignatureMark):
          new_explicit_meter = args[0]
       elif len(args) == 1 and isinstance(args[0], metertools.Meter):
@@ -140,6 +146,22 @@ class Measure(Container):
 
    @property
    def is_full(self):
-      '''True if preprolated duration matches effective meter duration.
+      '''True when meter matches duration of measure::
+
+         abjad> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+
+      ::
+
+         abjad> measure.is_full
+         True
+
+      False otherwise::
+
+         abjad> measure = Measure((4, 8), "c'8 d'8 e'8")
+
+      ::
+
+         abjad> measure.is_full
+         False
       '''
       return contexttools.get_effective_time_signature(self).duration == self.duration.preprolated

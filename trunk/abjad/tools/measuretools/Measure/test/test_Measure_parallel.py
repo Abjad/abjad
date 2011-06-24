@@ -1,15 +1,12 @@
 from abjad import *
-import py.test
 
 
 def test_Measure_parallel_01( ):
-   '''Rigid measures may be hold parallel contents.'''
+   '''Rigid measures may be hold parallel contents.
+   '''
 
-   py.test.skip('fix minor format positioning of time signatures.')
    measure = Measure((2, 8), Voice(notetools.make_repeated_notes(2)) * 2)
    measure.is_parallel = True
-   #measure[0].voice.number = 1
-   #measure[1].voice.number = 2
    marktools.LilyPondCommandMark('voiceOne')(measure[0])
    marktools.LilyPondCommandMark('voiceTwo')(measure[1])
      
