@@ -5,6 +5,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01( ):
    '''Handles measure prolation from nonbinary meter.'''
 
    t = Measure((4, 12), "c'8 d'8 e'8 f'8")
+   contexttools.detach_time_signature_mark_attached_to_component(t)
    contexttools.TimeSignatureMark(5, 12)(t)
    assert t.duration.is_underfull
 
@@ -32,6 +33,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02( ):
    '''Handles regular measure with no meter prolation.'''
 
    t = Measure((4, 8), "c'8 d'8 e'8 f'8")
+   contexttools.detach_time_signature_mark_attached_to_component(t)
    contexttools.TimeSignatureMark(5, 8)(t)
    assert t.duration.is_underfull
 

@@ -17,6 +17,7 @@ def test_Measure_meter_assignment_01( ):
    '''
 
    t.pop( )
+   contexttools.detach_time_signature_mark_attached_to_component(t)
    contexttools.TimeSignatureMark(3, 8)(t)
 
    r'''
