@@ -57,25 +57,25 @@ class Measure(Container):
       new = measuretools.fuse_measures([self, arg])
       return new
 
-   ## TODO: make this work.
-#   ## essentially the same as Container.__copy__.
-#   ## the definition given here adds one line to remove
-#   ## time signature immediately after instantiation.
-#   def __copy__(self, *args):
-#      from abjad.tools import contexttools
-#      from abjad.tools import marktools
-#      from abjad.tools import markuptools
-#      new = type(self)(*self.__getnewargs__( ))
-#      ## only this line differs from Container.__copy__
-#      contexttools.detach_time_signature_mark_attached_to_component(new)
-#      if getattr(self, '_override', None) is not None:
-#         new._override = copy.copy(self.override)
-#      if getattr(self, '_set', None) is not None:
-#         new._set = copy.copy(self.set)
-#      for mark in marktools.get_marks_attached_to_component(self):
-#         new_mark = copy.copy(mark)
-#         new_mark.attach_mark(new)
-#      return new
+   ## essentially the same as Container.__copy__.
+   ## the definition given here adds one line to remove
+   ## time signature immediately after instantiation
+   ## because the mark-copying code will then provide time signature.
+   def __copy__(self, *args):
+      from abjad.tools import contexttools
+      from abjad.tools import marktools
+      from abjad.tools import markuptools
+      new = type(self)(*self.__getnewargs__( ))
+      ## only this line differs from Container.__copy__
+      contexttools.detach_time_signature_mark_attached_to_component(new)
+      if getattr(self, '_override', None) is not None:
+         new._override = copy.copy(self.override)
+      if getattr(self, '_set', None) is not None:
+         new._set = copy.copy(self.set)
+      for mark in marktools.get_marks_attached_to_component(self):
+         new_mark = copy.copy(mark)
+         new_mark.attach_mark(new)
+      return new
 
    def __delitem__(self, i):
       '''Container deletion with meter adjustment.

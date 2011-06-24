@@ -39,6 +39,11 @@ class DynamicMeasure(Measure):
       self._suppress_meter = False
       self._update_explicit_meter( )
 
+   ## OVERLOADS ##
+
+   def __getnewargs__(self):
+      return ( )
+
    ## PRIVATE METHODS ##
 
    def _update_explicit_meter(self):
