@@ -52,6 +52,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
    Return none.
    '''
+   from abjad.tools import contexttools
    from abjad.tools.metertools import Meter
    from abjad.tools.measuretools.Measure import Measure
    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
@@ -68,12 +69,17 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
          if durtools.Duration(0) < candidate_new_parent_dur:
             parent.duration.target = candidate_new_parent_dur
       elif isinstance(parent, Measure):
-         old_denominator = parent._explicit_meter.denominator
-         naive_meter = parent._explicit_meter.duration - prolated_leaf_duration
+         #old_denominator = parent._explicit_meter.denominator
+         #naive_meter = parent._explicit_meter.duration - prolated_leaf_duration
+         parent_explicit_meter = contexttools.get_time_signature_mark_attached_to_component(parent)
+         old_denominator = parent_explicit_meter.denominator
+         naive_meter = parent_explicit_meter.duration - prolated_leaf_duration
          better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             naive_meter, old_denominator)
          parent._attach_explicit_meter(*better_meter)
-         new_denominator = parent._explicit_meter.denominator
+         #new_denominator = parent._explicit_meter.denominator
+         parent_explicit_meter = contexttools.get_time_signature_mark_attached_to_component(parent)
+         new_denominator = parent_explicit_meter.denominator
 
          old_prolation = durtools.positive_integer_to_implied_prolation_multipler(old_denominator)
          new_prolation = durtools.positive_integer_to_implied_prolation_multipler(new_denominator)

@@ -101,14 +101,15 @@ class TimeSignatureMark(ContextMark):
 
    ## OVERLOADS ##
 
-   def __call__(self, *args):
-      from abjad.tools.measuretools.Measure import Measure
-      ContextMark.__call__(self, *args)
-      if isinstance(self._start_component, Measure):
-         if self._start_component._explicit_meter is not None:
-            self._start_component._explicit_meter.detach_mark( )
-         self._start_component._explicit_meter = self
-      return self
+   ## TODO: remove this
+#   def __call__(self, *args):
+#      from abjad.tools.measuretools.Measure import Measure
+#      ContextMark.__call__(self, *args)
+#      if isinstance(self._start_component, Measure):
+#         if self._start_component._explicit_meter is not None:
+#            self._start_component._explicit_meter.detach_mark( )
+#         self._start_component._explicit_meter = self
+#      return self
 
    def __copy__(self, *args):
       return type(self)(self.numerator, self.denominator, 
