@@ -1,6 +1,5 @@
 from abjad import *
 import py.test
-py.test.skip('fix layout tools after update reimplementation.')
 
 
 def test_measuretools_pad_measures_in_expr_with_skips_01( ):
@@ -56,7 +55,8 @@ def test_measuretools_pad_measures_in_expr_with_skips_01( ):
 
 
 def test_measuretools_pad_measures_in_expr_with_skips_02( ):
-   '''Works when measures contain stacked voices.'''
+   '''Works when measures contain stacked voices.
+   '''
 
    measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
    measure.is_parallel = True
@@ -128,21 +128,18 @@ def test_measuretools_pad_measures_in_expr_with_skips_02( ):
    '''
 
    assert componenttools.is_well_formed_component(t)
-   #assert t.format == "\\new Staff {\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tc'8\n\t\t\td'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\te'8\n\t\t\tf'8\n\t\t\ts64\n\t\t}\n\t>>\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tg'8\n\t\t\ta'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tb'8\n\t\t\tc''8\n\t\t\ts64\n\t\t}\n\t>>\n}"
-   assert t.format == "\\new Staff {\n\t<<\n\t\t\\new Voice {\n\t\t\t\\time 19/64\n\t\t\ts32\n\t\t\tc'8\n\t\t\td'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\t\\time 19/64\n\t\t\ts32\n\t\t\te'8\n\t\t\tf'8\n\t\t\ts64\n\t\t}\n\t>>\n\t<<\n\t\t\\new Voice {\n\t\t\t\\time 19/64\n\t\t\ts32\n\t\t\tg'8\n\t\t\ta'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\t\\time 19/64\n\t\t\ts32\n\t\t\tb'8\n\t\t\tc''8\n\t\t\ts64\n\t\t}\n\t>>\n}"
+   assert t.format == "\\new Staff {\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tc'8\n\t\t\td'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\te'8\n\t\t\tf'8\n\t\t\ts64\n\t\t}\n\t>>\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tg'8\n\t\t\ta'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tb'8\n\t\t\tc''8\n\t\t\ts64\n\t\t}\n\t>>\n}"
 
 
 def test_measuretools_pad_measures_in_expr_with_skips_03( ):
-   '''Set splice = True to extend edge spanners over newly insert rests.'''
+   '''Set splice = True to extend edge spanners over newly insert rests.
+   '''
 
    t = measuretools.DynamicMeasure("c'8 d'8")
    spannertools.BeamSpanner(t[:])
-   measuretools.comment_measures_in_container_with_measure_numbers(t)
-   measuretools.pad_measures_in_expr_with_skips(
-      t, Duration(1, 32), Duration(1, 64), splice = True)
+   measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64), splice = True)
 
    r'''
-   % start measure 1
    {
            \time 19/64
            s32 [
@@ -150,8 +147,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_03( ):
            d'8
            s64 ]
    }
-   % stop measure 1
    '''
 
    assert componenttools.is_well_formed_component(t)
-   assert t.format == "% start measure 1\n{\n\t\\time 19/64\n\ts32 [\n\tc'8\n\td'8\n\ts64 ]\n}\n% stop measure 1"
+   assert t.format == "{\n\t\\time 19/64\n\ts32 [\n\tc'8\n\td'8\n\ts64 ]\n}"

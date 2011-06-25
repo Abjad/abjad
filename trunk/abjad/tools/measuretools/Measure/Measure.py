@@ -70,6 +70,7 @@ class Measure(Container):
       for mark in marktools.get_marks_attached_to_component(self):
          new_mark = copy.copy(mark)
          new_mark.attach_mark(new)
+      new.is_parallel = self.is_parallel
       return new
 
    def __delitem__(self, i):

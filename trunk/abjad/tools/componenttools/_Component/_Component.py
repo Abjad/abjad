@@ -225,9 +225,14 @@ class _Component(_StrictComparator):
          elif value == 'marks':
             component._marks_are_current = False
          elif value == 'seconds':
-            component._offset_values_of_in_seconds_are_current = False
+            component._offset_values_in_seconds_are_current = False
          else:
             raise ValueError('unknown value: "%s"' % value)
+         ## for DynamicMeasures
+         try:
+            component._time_signature_is_current = False
+         except AttributeError:
+            pass
 
    def _forbid_component_update(self):
       self._is_forbidden_to_update = True

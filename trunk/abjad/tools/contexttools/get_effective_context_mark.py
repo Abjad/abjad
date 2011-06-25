@@ -34,8 +34,10 @@ def get_effective_context_mark(component, klass):
    from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
    from abjad.tools.measuretools.Measure import Measure
 
-   if isinstance(component, Measure):
-      if klass == TimeSignatureMark:
+   if klass == TimeSignatureMark:
+      if isinstance(component, Measure):
+         if not getattr(component, '_time_signature_is_current', True):
+            component._update_time_signature( )
          if contexttools.is_component_with_time_signature_mark_attached(component):
             return contexttools.get_time_signature_mark_attached_to_component(component)
 

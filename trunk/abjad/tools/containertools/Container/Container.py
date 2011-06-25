@@ -60,9 +60,6 @@ class Container(_Component):
       new.is_parallel = self.is_parallel
       return new
 
-   ## TODO: this basically works; 
-   ##       what remains to be done is to copy context marks
-   ##       and debug what happens when this is uncommented.
    def __deepcopy__(self, memo):
       new = self.__copy__( )
       for component in self.music:
@@ -248,6 +245,7 @@ class Container(_Component):
          if expr == True:
             assert componenttools.all_are_components(self._music, klasses = (_Context, ))
          self._parallel = expr
+         self._mark_entire_score_tree_for_later_update('prolated')
       return property(**locals( ))
 
    @property

@@ -20,8 +20,8 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
 
       abjad> t = Staff(measuretools.AnonymousMeasure("c'8 d'8") * 2)
       abjad> front, back = Duration(1, 32), Duration(1, 64)
-      abjad> measuretools.pad_measures_in_expr_with_skips(t, front, back) # doctest: +SKIP
-      abjad> f(t) # doctest: +SKIP
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, front, back)
+      abjad> f(t)
       \new Staff {
                       \override Staff.TimeSignature #'stencil = ##f
                       \time 19/64
@@ -45,12 +45,13 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
       abjad> measure.is_parallel = True
       abjad> t = Staff(measure * 2)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-      abjad> measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64)) # doctest: +SKIP
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64))
 
    ::
 
-      abjad> f(t) # doctest: +SKIP
+      abjad> f(t)
       \new Staff {
+         <<
             \time 19/64
             \new Voice {
                s32
@@ -64,6 +65,8 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
                f'8
                s64
             }
+         >>
+         <<
             \time 19/64
             \new Voice {
                s32
@@ -77,27 +80,27 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
                c''8
                s64
             }
+         >>
       }
 
    Set the optional `splice` keyword to ``True`` to extend edge
-   spanners over newly inserted skips. ::
+   spanners over newly inserted skips::
 
       abjad> t = measuretools.DynamicMeasure("c'8 d'8")
       abjad> spannertools.BeamSpanner(t[:])
       BeamSpanner(c'8, d'8)
-      abjad> t.formatter.number.self = 'comment' # doctest: +SKIP
-      abjad> measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64), splice = True) # doctest: +SKIP
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64), splice = True)
 
    ::
 
-      abjad> f(t) # doctest: +SKIP
-      % start measure 1
+      abjad> f(t)
+      {
          \time 19/64
          s32 [
          c'8
          d'8
          s64 ]
-      % stop measure 1
+      }
 
    Raise value error when `front` is neither a positive rational nor none.
 
