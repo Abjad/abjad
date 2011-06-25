@@ -16,7 +16,7 @@ m3 = Measure((2, 4), [ ])
 m4 = Measure((2, 4), [ ])
 m5 = Measure((2, 4), [ ])
 upper_measures = [m1, m2, m3, m4, m5]
-lower_measures = componenttools.clone_components_and_covered_spanners(upper_measures)
+lower_measures = componenttools.copy_components_and_covered_spanners(upper_measures)
 
 upper_staff.extend(upper_measures)
 lower_staff.extend(lower_measures)

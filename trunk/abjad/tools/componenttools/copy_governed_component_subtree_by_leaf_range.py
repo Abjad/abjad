@@ -1,7 +1,7 @@
 from abjad.exceptions import ContiguityError
 
 
-def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = None):
+def copy_governed_component_subtree_by_leaf_range(component, start = 0, stop = None):
    r'''.. versionadded:: 1.1.1
 
    Clone governed `component` subtree by leaf range.
@@ -31,7 +31,7 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
       
    ::
       
-      abjad> u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 5)
+      abjad> u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 5)
       abjad> f(u)
       \new Staff {
          \new Voice {
@@ -55,16 +55,20 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
 
    .. versionchanged:: 1.1.2
       renamed ``clonewp.by_leaf_range_with_parentage( )`` to
-      ``componenttools.clone_governed_component_subtree_by_leaf_range( )``.
+      ``componenttools.copy_governed_component_subtree_by_leaf_range( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.clone_governed_component_subtree_by_leaf_range( )`` to
+      ``componenttools.copy_governed_component_subtree_by_leaf_range( )``.
    '''
    from abjad.tools.containertools.Container import Container
    from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools import leaftools
-   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
+   from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners
 
    # trivial leaf lcopy
    if isinstance(component, _Leaf):
-      return clone_components_and_fracture_crossing_spanners([component])[0]
+      return copy_components_and_fracture_crossing_spanners([component])[0]
 
    # copy leaves from sequential containers only.
    if component.is_parallel:
@@ -96,7 +100,7 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
          stop_index_in_governor = i
 
    # copy governor
-   governor_copy = clone_components_and_fracture_crossing_spanners([governor])[0]
+   governor_copy = copy_components_and_fracture_crossing_spanners([governor])[0]
    copy_leaves = governor_copy.leaves
 
    # new: find start and stop leaves in copy of governor

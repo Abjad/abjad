@@ -2,7 +2,7 @@ from abjad.tools.componenttools._Component import _Component
 from abjad.tools import durtools
 
 
-def clone_governed_component_subtree_from_prolated_duration_to(component, start = 0, stop = None):
+def copy_governed_component_subtree_from_prolated_offset_to(component, start = 0, stop = None):
    r'''.. versionadded:: 1.1.1
 
    Clone governed `component` subtree from `start` prolated duration
@@ -26,7 +26,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
       
    ::
       
-      abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, (0, 8), (3, 8))
+      abjad> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (0, 8), (3, 8))
       abjad> f(new)
       \new Voice {
         c'8
@@ -57,7 +57,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
 
    But note that cases with ``0 = start`` work correctly::
 
-      abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, (0, 8), (1, 8))
+      abjad> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (0, 8), (1, 8))
       abjad> f(new)
       \new Voice {
         c'8
@@ -65,7 +65,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
       
    Cases with ``0 < start`` do not work correctly::
       
-      abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, (1, 8), (2, 8))
+      abjad> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (1, 8), (2, 8))
       abjad> f(new)
       \new Voice {
         c'8
@@ -75,7 +75,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
    Create ad hoc tuplets as required::
 
       abjad> voice = Voice([Note("c'4")])
-      abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, 0, (1, 12))
+      abjad> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, 0, (1, 12))
       abjad> f(new)
       \new Voice {
         \times 2/3 {
@@ -86,13 +86,17 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
    Function does NOT clone parentage of `component` when `component` is a leaf::
 
       abjad> voice = Voice([Note("c'4")])
-      abjad> new_leaf = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice[0], 0, (1, 8))
+      abjad> new_leaf = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice[0], 0, (1, 8))
       abjad> f(new_leaf)
       c'8
       abjad> new_leaf._parentage.parent is None 
       True
 
    Return (untrimmed_copy, first_dif, second_dif).
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.clone_governed_component_subtree_from_prolated_duration_to( )`` to
+      ``componenttools.copy_governed_component_subtree_from_prolated_offset_to( )``.
    '''
    from abjad.tools.leaftools._Leaf import _Leaf
    from abjad.tools.containertools.Container import Container
@@ -115,7 +119,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
 
 def _scopy_leaf(leaf, start, stop):
    from abjad.tools import leaftools
-   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
+   from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners
    if leaf.duration.prolated <= start:
       return None
    if leaf.duration.prolated < stop:
@@ -123,7 +127,7 @@ def _scopy_leaf(leaf, start, stop):
    total = stop - start
    if total == 0:
       return None
-   new = clone_components_and_fracture_crossing_spanners([leaf])[0]
+   new = copy_components_and_fracture_crossing_spanners([leaf])[0]
    leaftools.set_preprolated_leaf_duration(new, total)
    return new
 
@@ -149,7 +153,7 @@ def _scopy_container(container, start, stop):
 
 
 def _get_lcopy(container, start, stop):
-   from abjad.tools.componenttools.clone_governed_component_subtree_by_leaf_range import clone_governed_component_subtree_by_leaf_range
+   from abjad.tools.componenttools.copy_governed_component_subtree_by_leaf_range import copy_governed_component_subtree_by_leaf_range
    from abjad.tools import leaftools
    total_dur = durtools.Duration(0)
    start_leaf, stop_leaf = None, None
@@ -173,6 +177,6 @@ def _get_lcopy(container, start, stop):
          #print 'breaking after stop'
          break
    #print start_leaf, stop_leaf
-   untrimmed_copy = clone_governed_component_subtree_by_leaf_range(
+   untrimmed_copy = copy_governed_component_subtree_by_leaf_range(
       container, start_leaf, stop_leaf)
    return untrimmed_copy, first_dif, second_dif

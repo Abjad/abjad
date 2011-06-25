@@ -27,7 +27,7 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
    if leaf_multiplied_duration <= unprolated_split_dur:
       return ([leaf], [ ])
 
-   new_leaf = componenttools.clone_components_and_remove_all_spanners([leaf])[0]
+   new_leaf = componenttools.copy_components_and_remove_all_spanners([leaf])[0]
    componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, [new_leaf])
    ##new_leaf.grace[:] = [ ]
    if hasattr(new_leaf, 'grace'):

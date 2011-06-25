@@ -1,4 +1,4 @@
-from abjad.tools.componenttools.clone_components_and_immediate_parent_of_first_component import clone_components_and_immediate_parent_of_first_component
+from abjad.tools.componenttools.copy_components_and_immediate_parent_of_first_component import copy_components_and_immediate_parent_of_first_component
 
 
 def repeat_last_n_elements_of_container(container, n = 1, total = 2):
@@ -54,7 +54,7 @@ def repeat_last_n_elements_of_container(container, n = 1, total = 2):
    for x in range(total - 1):
 
       # copy last n elements of container
-      addendum = clone_components_and_immediate_parent_of_first_component(container[start:stop])
+      addendum = copy_components_and_immediate_parent_of_first_component(container[start:stop])
 
       # extend container with addendum
       container.extend(addendum)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_clone_components_and_covered_spanners_01( ):
+def test_componenttools_copy_components_and_covered_spanners_01( ):
    '''Withdraw components in 'components' from crossing spanners.
    Preserve spanners covered by 'components'.
    Deep copy 'components'.
@@ -39,7 +39,7 @@ def test_componenttools_clone_components_and_covered_spanners_01( ):
    }
    '''
 
-   result = componenttools.clone_components_and_covered_spanners(t.leaves)
+   result = componenttools.copy_components_and_covered_spanners(t.leaves)
    new = Voice(result)
 
    r'''
@@ -60,7 +60,7 @@ def test_componenttools_clone_components_and_covered_spanners_01( ):
    assert new.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tg'8\n\ta'8\n\tb'8\n\tc''8\n}"
 
 
-def test_componenttools_clone_components_and_covered_spanners_02( ):
+def test_componenttools_copy_components_and_covered_spanners_02( ):
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -92,7 +92,7 @@ def test_componenttools_clone_components_and_covered_spanners_02( ):
    }
    '''
 
-   result = componenttools.clone_components_and_covered_spanners(t[-3:])
+   result = componenttools.copy_components_and_covered_spanners(t[-3:])
    new = Voice(result)
 
    r'''
@@ -120,7 +120,7 @@ def test_componenttools_clone_components_and_covered_spanners_02( ):
    assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 (\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8 )\n\t}\n}"
 
 
-def test_componenttools_clone_components_and_covered_spanners_03( ):
+def test_componenttools_copy_components_and_covered_spanners_03( ):
    '''With optional 'n' argument for multiple copies.'''
 
    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
@@ -153,7 +153,7 @@ def test_componenttools_clone_components_and_covered_spanners_03( ):
    }
    '''
 
-   result = componenttools.clone_components_and_covered_spanners(t[-3:], 2)
+   result = componenttools.copy_components_and_covered_spanners(t[-3:], 2)
    new = Voice(result)
 
    r'''

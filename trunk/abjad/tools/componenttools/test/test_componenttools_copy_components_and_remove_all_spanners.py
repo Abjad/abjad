@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_clone_components_and_remove_all_spanners_01( ):
+def test_componenttools_copy_components_and_remove_all_spanners_01( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -37,7 +37,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_01( ):
    }
    '''
 
-   result = componenttools.clone_components_and_remove_all_spanners([t])
+   result = componenttools.copy_components_and_remove_all_spanners([t])
    voice = result[0]
 
    r'''
@@ -70,7 +70,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_01( ):
    assert voice.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t}\n}"
    
 
-def test_componenttools_clone_components_and_remove_all_spanners_02( ):
+def test_componenttools_copy_components_and_remove_all_spanners_02( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -106,7 +106,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_02( ):
    }
    '''
 
-   result = componenttools.clone_components_and_remove_all_spanners(t[1:])
+   result = componenttools.copy_components_and_remove_all_spanners(t[1:])
    new = Voice(result)
 
    r'''
@@ -134,7 +134,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_02( ):
    assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t}\n}"
 
 
-def test_componenttools_clone_components_and_remove_all_spanners_03( ):
+def test_componenttools_copy_components_and_remove_all_spanners_03( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -170,7 +170,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_03( ):
    }
    '''
 
-   result = componenttools.clone_components_and_remove_all_spanners(t.leaves[:6])
+   result = componenttools.copy_components_and_remove_all_spanners(t.leaves[:6])
    new = Voice(result)
 
    r'''
@@ -189,7 +189,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_03( ):
    assert new.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
 
 
-def test_componenttools_clone_components_and_remove_all_spanners_04( ):
+def test_componenttools_copy_components_and_remove_all_spanners_04( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -225,7 +225,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_04( ):
    }
    '''
 
-   result = componenttools.clone_components_and_remove_all_spanners(t[-2:])
+   result = componenttools.copy_components_and_remove_all_spanners(t[-2:])
    new = Voice(result)
 
    r'''
@@ -248,7 +248,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_04( ):
    assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t}\n}"
 
 
-def test_componenttools_clone_components_and_remove_all_spanners_05( ):
+def test_componenttools_copy_components_and_remove_all_spanners_05( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -285,7 +285,7 @@ def test_componenttools_clone_components_and_remove_all_spanners_05( ):
    }
    '''
 
-   result = componenttools.clone_components_and_remove_all_spanners(t[-2:], 3)
+   result = componenttools.copy_components_and_remove_all_spanners(t[-2:], 3)
    new = Voice(result)
 
    r'''

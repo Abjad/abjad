@@ -47,13 +47,6 @@ componenttools
    tools/componenttools/all_are_contiguous_components_in_same_thread
    tools/componenttools/all_are_orphan_components
    tools/componenttools/all_are_thread_contiguous_components
-   tools/componenttools/clone_and_partition_governed_component_subtree_by_leaf_counts
-   tools/componenttools/clone_components_and_covered_spanners
-   tools/componenttools/clone_components_and_fracture_crossing_spanners
-   tools/componenttools/clone_components_and_immediate_parent_of_first_component
-   tools/componenttools/clone_components_and_remove_all_spanners
-   tools/componenttools/clone_governed_component_subtree_by_leaf_range
-   tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
    tools/componenttools/component_to_parentage_signature
    tools/componenttools/component_to_pitch_and_rhythm_skeleton
    tools/componenttools/component_to_pitch_and_rhythm_skeleton_with_interface_attributes
@@ -61,6 +54,13 @@ componenttools
    tools/componenttools/component_to_score_index
    tools/componenttools/component_to_score_root
    tools/componenttools/component_to_tuplet_depth
+   tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
+   tools/componenttools/copy_components_and_covered_spanners
+   tools/componenttools/copy_components_and_fracture_crossing_spanners
+   tools/componenttools/copy_components_and_immediate_parent_of_first_component
+   tools/componenttools/copy_components_and_remove_all_spanners
+   tools/componenttools/copy_governed_component_subtree_by_leaf_range
+   tools/componenttools/copy_governed_component_subtree_from_prolated_offset_to
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/extend_in_parent_of_component_and_do_not_grow_spanners
    tools/componenttools/extend_in_parent_of_component_and_grow_spanners

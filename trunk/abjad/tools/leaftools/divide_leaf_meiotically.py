@@ -59,7 +59,7 @@ def divide_leaf_meiotically(leaf, n = 2):
    assert mathtools.is_nonnegative_integer_power_of_two(n)
    assert 0 < n
 
-   new_leaves = componenttools.clone_components_and_remove_all_spanners([leaf], n - 1)
+   new_leaves = componenttools.copy_components_and_remove_all_spanners([leaf], n - 1)
    componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, new_leaves)
    adjustment_multiplier = durtools.Duration(1, n)
    leaf.duration.written *= adjustment_multiplier

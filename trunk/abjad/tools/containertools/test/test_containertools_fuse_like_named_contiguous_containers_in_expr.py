@@ -145,15 +145,15 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09( ):
    t1 = Staff([v1, v2, v3])
    t1.is_parallel = True
    t1.name = 'staff1'
-   t2 = componenttools.clone_components_and_fracture_crossing_spanners([t1])[0]
+   t2 = componenttools.copy_components_and_fracture_crossing_spanners([t1])[0]
    t2.is_parallel = True
    t2.name = 'staff2'
-   t3 = componenttools.clone_components_and_fracture_crossing_spanners([t1])[0]
+   t3 = componenttools.copy_components_and_fracture_crossing_spanners([t1])[0]
    t3.is_parallel = True
    t3.name = 'staff3'
    s1 = scoretools.StaffGroup([t1, t2, t3])
    s1.name = 'sg'
-   s2 = componenttools.clone_components_and_fracture_crossing_spanners([s1])[0]
+   s2 = componenttools.copy_components_and_fracture_crossing_spanners([s1])[0]
    s2.name = 'sg'
    s = Container([s1, s2])
 
@@ -246,11 +246,11 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_10( ):
 
    sg1 = scoretools.StaffGroup([s1, s2])
    sg1.name ='groupOne'
-   sg2 = componenttools.clone_components_and_fracture_crossing_spanners([sg1])[0]
+   sg2 = componenttools.copy_components_and_fracture_crossing_spanners([sg1])[0]
    sg2.name ='groupTwo'
    sg_g = scoretools.StaffGroup([sg1, sg2])
    sg_g.name = 'topGroup'
-   seq = containertools.fuse_like_named_contiguous_containers_in_expr([sg_g, componenttools.clone_components_and_fracture_crossing_spanners([sg_g])[0]])
+   seq = containertools.fuse_like_named_contiguous_containers_in_expr([sg_g, componenttools.copy_components_and_fracture_crossing_spanners([sg_g])[0]])
 
    assert seq.format == '\\context StaffGroup = "topGroup" <<\n\t\\context StaffGroup = "groupOne" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n\t\\context StaffGroup = "groupTwo" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n>>'
 

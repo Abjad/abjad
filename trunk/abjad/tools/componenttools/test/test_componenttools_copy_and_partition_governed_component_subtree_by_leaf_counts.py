@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_counts_01( ):
+def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_counts_01( ):
    '''Partition tuplet in voice.
       The helper wraps lcopy( ).
       This means that the original structure remains unchanged.
@@ -9,7 +9,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
 
    t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
    spannertools.BeamSpanner(t[0][:])
-   left, right = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t[0], [1, 2])
+   left, right = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(t[0], [1, 2])
 
    r'''
    \new Voice {
@@ -35,12 +35,12 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
    assert right.format == "\\new Voice {\n\t\\times 2/3 {\n\t\td'8 [\n\t\te'8 ]\n\t}\n}"
 
 
-def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_counts_02( ):
+def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_counts_02( ):
    '''Partition voice.'''
 
    t = Voice("c'8 d'8 e'8")
    spannertools.BeamSpanner(t[:])
-   result = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t, [1, 2])
+   result = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(t, [1, 2])
 
    r'''
    \new Voice {

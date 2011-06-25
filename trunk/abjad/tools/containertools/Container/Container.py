@@ -43,8 +43,8 @@ class Container(_Component):
       '''
       from abjad.tools import componenttools
       from abjad.tools import containertools
-      left = componenttools.clone_components_and_fracture_crossing_spanners([self])[0]
-      right = componenttools.clone_components_and_fracture_crossing_spanners([expr])[0]
+      left = componenttools.copy_components_and_fracture_crossing_spanners([self])[0]
+      right = componenttools.copy_components_and_fracture_crossing_spanners([expr])[0]
       return containertools.fuse_like_named_contiguous_containers_in_expr([left, right])
 
    def __contains__(self, expr):
@@ -97,7 +97,7 @@ class Container(_Component):
       from abjad.tools import componenttools
       from abjad.tools import containertools
       return containertools.fuse_like_named_contiguous_containers_in_expr([self, 
-         componenttools.clone_components_and_fracture_crossing_spanners([expr])[0]])
+         componenttools.copy_components_and_fracture_crossing_spanners([expr])[0]])
 
    def __imul__(self, total):
       '''Multiply contents of container 'total' times.

@@ -9,7 +9,7 @@ def test_ClefMark___copy___01( ):
    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    contexttools.ClefMark('treble')(t[0])
    contexttools.ClefMark('bass')(t[4])
-   t.extend(componenttools.clone_components_and_immediate_parent_of_first_component(t[:2]))
+   t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[:2]))
 
    r'''
    \new Staff {
@@ -52,7 +52,7 @@ def test_ClefMark___copy___02( ):
    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
    contexttools.ClefMark('treble')(t[0])
    contexttools.ClefMark('bass')(t[4])
-   t.extend(componenttools.clone_components_and_immediate_parent_of_first_component(t[2:4]))
+   t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[2:4]))
 
    assert componenttools.is_well_formed_component(t)
    assert contexttools.get_effective_clef(t[0]) == contexttools.ClefMark('treble')

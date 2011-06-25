@@ -1,8 +1,8 @@
 from abjad.tools import durtools
-from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
+from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners
 
 
-def clone_components_and_immediate_parent_of_first_component(components):
+def copy_components_and_immediate_parent_of_first_component(components):
    r'''.. versionadded:: 1.1.1
 
    Clone `components` and immediate parent of first component.
@@ -38,7 +38,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
                       d''8
               }
       }
-      abjad> new_tuplet = componenttools.clone_components_and_immediate_parent_of_first_component(voice.leaves[:2])
+      abjad> new_tuplet = componenttools.copy_components_and_immediate_parent_of_first_component(voice.leaves[:2])
       abjad> new_tuplet
       FixedDurationTuplet(1/6, [c'8, d'8])
       abjad> f(new_tuplet)
@@ -50,7 +50,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    Parent-contiguity is not required.
    Thread-contiguous `components` suffice. ::
    
-      abjad> new_tuplet = componenttools.clone_components_and_immediate_parent_of_first_component(voice.leaves[:5])
+      abjad> new_tuplet = componenttools.copy_components_and_immediate_parent_of_first_component(voice.leaves[:5])
       abjad> new_tuplet
       FixedDurationTuplet(5/12, [c'8, d'8, e'8, f'8, g'8])
       abjad> f(new_tuplet)
@@ -71,7 +71,11 @@ def clone_components_and_immediate_parent_of_first_component(components):
 
    .. versionchanged:: 1.1.2
       renamed ``clonewp.with_parent( )`` to
-      ``componenttools.clone_components_and_immediate_parent_of_first_component( )``.
+      ``componenttools.copy_components_and_immediate_parent_of_first_component( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.clone_components_and_immediate_parent_of_first_component( )`` to
+      ``componenttools.copy_components_and_immediate_parent_of_first_component( )``.
    '''
    from abjad.tools import contexttools
    from abjad.tools import componenttools
@@ -99,7 +103,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    parent._music = [ ]
 
    # copy parent without music
-   result = clone_components_and_fracture_crossing_spanners([parent])[0]
+   result = copy_components_and_fracture_crossing_spanners([parent])[0]
 
    # give music back to parent
    parent._music = parents_music
@@ -108,13 +112,13 @@ def clone_components_and_immediate_parent_of_first_component(components):
 #   result._music.extend(components)
 #
 #   # populate result with deepcopy of input list and fracture spanners
-#   result = clone_components_and_fracture_crossing_spanners([result])[0]
+#   result = copy_components_and_fracture_crossing_spanners([result])[0]
 #
 #   # point elements in result to result as new parent
 #   for element in result:
 #      element._parentage._switch(result)
 
-   new_components = clone_components_and_fracture_crossing_spanners(components)
+   new_components = copy_components_and_fracture_crossing_spanners(components)
    
    result.extend(new_components)
 

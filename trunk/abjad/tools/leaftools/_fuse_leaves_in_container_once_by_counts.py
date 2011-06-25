@@ -20,7 +20,7 @@ def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = No
       raise ValueError('sum of counts must equal length of container.')
 
    ## find preprolated durations of glommed parts of container
-   tokens = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(
+   tokens = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(
       container, counts)
    durations = [sum([x.duration.preprolated for x in part]) for part in tokens]
 

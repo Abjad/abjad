@@ -4,7 +4,7 @@ from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import 
 import copy
 
 
-def clone_components_and_fracture_crossing_spanners(components, n = 1):
+def copy_components_and_fracture_crossing_spanners(components, n = 1):
    r'''.. versionadded:: 1.1.1
 
    Clone `components` and fracture crossing spanners.
@@ -41,7 +41,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    ::
 
-      abjad> result = componenttools.clone_components_and_fracture_crossing_spanners(voice.leaves[2:4])
+      abjad> result = componenttools.copy_components_and_fracture_crossing_spanners(voice.leaves[2:4])
       abjad> result
       (Note("e'8"), Note("f'8"))
 
@@ -61,7 +61,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    Clone `components` a total of `n` times. ::
 
-      abjad> result = componenttools.clone_components_and_fracture_crossing_spanners(voice.leaves[2:4], n = 3)
+      abjad> result = componenttools.copy_components_and_fracture_crossing_spanners(voice.leaves[2:4], n = 3)
       abjad> result
       (Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"))
 
@@ -80,7 +80,11 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    .. versionchanged:: 1.1.2
       renamed ``clone.fracture( )`` to
-      ``componenttools.clone_components_and_fracture_crossing_spanners( )``.
+      ``componenttools.copy_components_and_fracture_crossing_spanners( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.clone_components_and_fracture_crossing_spanners( )`` to
+      ``componenttools.copy_components_and_fracture_crossing_spanners( )``.
    '''
    from abjad.tools import spannertools
    from abjad.tools import componenttools
@@ -116,7 +120,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 #      spanner.extend(list(contents))
 #
 #   for i in range(n - 1):
-#      result += clone_components_and_fracture_crossing_spanners(components)
+#      result += copy_components_and_fracture_crossing_spanners(components)
 #
 #   _reattach_blinded_marks_to_components_in_expr(result) 
 #
@@ -154,7 +158,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    ## repeat as specified by input
    for i in range(n - 1):
-      new_components += clone_components_and_fracture_crossing_spanners(components)
+      new_components += copy_components_and_fracture_crossing_spanners(components)
 
    ## return new components
    return new_components
