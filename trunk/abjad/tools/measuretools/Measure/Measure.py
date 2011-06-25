@@ -84,7 +84,9 @@ class Measure(Container):
          naive_meter = self.duration.preprolated
          better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             naive_meter, old_denominator)
-         self._attach_time_signature(*better_meter)
+         better_meter = contexttools.TimeSignatureMark(better_meter)
+         contexttools.detach_time_signature_mark_attached_to_component(self)
+         better_meter.attach_mark(self)
       except (AttributeError, UnboundLocalError):
          pass
 
@@ -123,13 +125,6 @@ class Measure(Container):
          return '|%s|' % summary
       else:
          return '| |'
-
-   ## PRIVATE METHODS ##
-
-   def _attach_time_signature(self, *args):
-      new_time_signature = contexttools.TimeSignatureMark(*args)
-      contexttools.detach_time_signature_mark_attached_to_component(self)
-      new_time_signature.attach_mark(self)
 
    ## PRIVATE ATTRIBUTES ##
 

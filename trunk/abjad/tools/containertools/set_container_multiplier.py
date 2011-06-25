@@ -32,14 +32,16 @@ def set_container_multiplier(container, multiplier):
       renamed ``containertools.multiplier_set( )`` to
       ``containertools.set_container_multiplier( )``.
    '''
-   from abjad.tools.measuretools.Measure import Measure
-   from abjad.tools.tuplettools.Tuplet import Tuplet
+   from abjad.tools import contexttools
    from abjad.tools import tuplettools
+   from abjad.tools import measuretools
 
    if isinstance(container, tuplettools.FixedDurationTuplet):
       container.duration.target = multiplier * container.duration.contents
-   elif isinstance(container, Tuplet):
+   elif isinstance(container, tuplettools.Tuplet):
       container.duration.multiplier = multiplier
-   elif isinstance(container, Measure):
+   elif isinstance(container, measuretools.Measure):
       new_duration = multiplier * container.duration.contents
-      container._attach_time_signature(new_duration.numerator, new_duration.denominator)
+      new_time_signature = contexttools.TimeSignatureMark(new_duration)
+      contexttools.detach_time_signature_mark_attached_to_component(container)
+      new_time_signature.attach_mark(container)

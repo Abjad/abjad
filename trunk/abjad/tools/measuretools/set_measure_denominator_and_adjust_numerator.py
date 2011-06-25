@@ -51,6 +51,8 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
          old_meter_pair, denominator)
-      measure._attach_time_signature(*new_meter)
+      new_meter = contexttools.TimeSignatureMark(new_meter)
+      contexttools.detach_time_signature_mark_attached_to_component(measure)
+      new_meter.attach_mark(measure)
 
    return measure

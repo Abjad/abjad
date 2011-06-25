@@ -73,7 +73,9 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
          naive_meter = parent_time_signature.duration - prolated_leaf_duration
          better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             naive_meter, old_denominator)
-         parent._attach_time_signature(*better_meter)
+         better_meter = contexttools.TimeSignatureMark(better_meter)
+         contexttools.detach_time_signature_mark_attached_to_component(parent)
+         better_meter.attach_mark(parent)
          parent_time_signature = contexttools.get_time_signature_mark_attached_to_component(parent)
          new_denominator = parent_time_signature.denominator
 
