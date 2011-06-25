@@ -9,7 +9,7 @@ def iterate_semantic_voices_forward_in_expr(expr):
 
       abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
       abjad> meter_voice = Voice(measures)
-      abjad> meter_voice.name = 'MeterVoice'
+      abjad> meter_voice.name = 'TimeSignatuerVoice'
       abjad> meter_voice.is_nonsemantic = True
       abjad> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
       abjad> music_voice.name = 'MusicVoice'
@@ -20,7 +20,7 @@ def iterate_semantic_voices_forward_in_expr(expr):
 
       abjad> f(staff)
       \new Staff <<
-         \context Voice = "MeterVoice" {
+         \context Voice = "TimeSignatuerVoice" {
             {
                \time 3/8
                s1 * 3/8

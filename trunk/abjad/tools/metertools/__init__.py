@@ -1,10 +1,9 @@
-'''Meter manipulation tools.
+'''Time signature manipulation tools.
 
-   Modules in this package may freely import the following:
+   Modules in this package depend on, may freely import from, the following:
 
       from abjad.tools import durtools
       from abjad.tools import mathtools
-      from abjad.tools import durtools
 '''
 
 from abjad.tools.importtools._import_structured_package import _import_structured_package

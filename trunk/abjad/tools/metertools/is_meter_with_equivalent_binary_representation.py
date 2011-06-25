@@ -1,6 +1,5 @@
-from abjad.tools import mathtools
-from abjad.tools.metertools.Meter import Meter
 from abjad.tools import durtools
+from abjad.tools import mathtools
 
 
 def is_meter_with_equivalent_binary_representation(expr):
@@ -10,12 +9,12 @@ def is_meter_with_equivalent_binary_representation(expr):
 
    ::
 
-      abjad> metertools.is_meter_with_equivalent_binary_representation(metertools.Meter(3, 12))
+      abjad> metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark(3, 12))
       True
 
    Otherwise false::
 
-      abjad> metertools.is_meter_with_equivalent_binary_representation(metertools.Meter(4, 12))
+      abjad> metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark(4, 12))
       False
 
    ::
@@ -25,9 +24,10 @@ def is_meter_with_equivalent_binary_representation(expr):
 
    Return boolean.
    '''
+   from abjad.tools import contexttools
    
    # check input
-   if not isinstance(expr, Meter):
+   if not isinstance(expr, contexttools.TimeSignatureMark):
       return False
 
    # express meter as rational and reduce to relatively prime terms

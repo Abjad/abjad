@@ -6,21 +6,21 @@ def test_metertools_duration_and_possible_denominators_to_meter_01( ):
    '''Find only feasible denominator in denominators list.'''
 
    t = metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), [5, 6, 7, 8, 9])
-   assert t == metertools.Meter(9, 6)
+   assert t == contexttools.TimeSignatureMark(9, 6)
 
 
 def test_metertools_duration_and_possible_denominators_to_meter_02( ):
    '''Use least feasible denominator in denominators list.'''
 
    t = metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), [4, 8, 16, 32])
-   assert t == metertools.Meter(6, 4)
+   assert t == contexttools.TimeSignatureMark(6, 4)
 
 
 def test_metertools_duration_and_possible_denominators_to_meter_03( ):
    '''Make meter literally from duration.'''
 
    t = metertools.duration_and_possible_denominators_to_meter(Duration(3, 2))
-   assert t == metertools.Meter(3, 2)
+   assert t == contexttools.TimeSignatureMark(3, 2)
 
 
 def test_metertools_duration_and_possible_denominators_to_meter_04( ):
@@ -28,4 +28,4 @@ def test_metertools_duration_and_possible_denominators_to_meter_04( ):
       because no feasible denomiantors in denominators list.'''
 
    t = metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), [7, 11, 13, 19])
-   assert t == metertools.Meter(3, 2)
+   assert t == contexttools.TimeSignatureMark(3, 2)

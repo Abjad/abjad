@@ -4,7 +4,7 @@ from abjad.tools import metertools
 
 def test_metertools_is_meter_token_01( ):
 
-   assert metertools.is_meter_token(metertools.Meter(3, 8))
+   assert metertools.is_meter_token(contexttools.TimeSignatureMark(3, 8))
    assert metertools.is_meter_token(Duration(3, 8))
    assert metertools.is_meter_token((3, 8))
 

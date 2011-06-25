@@ -1,6 +1,5 @@
 from abjad.tools import contexttools
 from abjad.tools import durtools
-from abjad.tools import metertools
 from abjad.tools.containertools.Container import Container
 from abjad.tools.measuretools.Measure._MeasureDurationInterface import _MeasureDurationInterface
 from abjad.tools.measuretools.Measure._MeasureFormatter import _MeasureFormatter
@@ -39,11 +38,7 @@ class Measure(Container):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self._formatter = _MeasureFormatter(self)
-      #meter = metertools.Meter(meter)
-      if isinstance(meter, metertools.Meter):
-         meter = contexttools.TimeSignatureMark(meter.numerator, meter.denominator)
-      else:
-         meter = contexttools.TimeSignatureMark(meter)
+      meter = contexttools.TimeSignatureMark(meter)
       numerator, denominator = meter.numerator, meter.denominator
       self._attach_explicit_meter(numerator, denominator)
       self._initialize_keyword_values(**kwargs)
@@ -140,9 +135,6 @@ class Measure(Container):
       from abjad.tools import contexttools
       if len(args) == 1 and isinstance(args[0], contexttools.TimeSignatureMark):
          new_explicit_meter = args[0]
-      elif len(args) == 1 and isinstance(args[0], metertools.Meter):
-         numerator, denominator = args[0].numerator, args[0].denominator
-         new_explicit_meter = contexttools.TimeSignatureMark(numerator, denominator)
       elif len(args) == 2:
          numerator, denominator = args
          new_explicit_meter = contexttools.TimeSignatureMark(numerator, denominator)

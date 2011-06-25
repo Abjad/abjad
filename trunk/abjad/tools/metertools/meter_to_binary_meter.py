@@ -1,8 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.tools.metertools.Meter import Meter
-from abjad.tools import durtools
 import fractions
 
 
@@ -13,13 +11,13 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = fractions.Fract
 
    ::
 
-      abjad> metertools.meter_to_binary_meter(metertools.Meter(3, 12))
-      Meter(2, 8)
+      abjad> metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(3, 12))
+      TimeSignatureMark(2, 8)
 
    Preserve binary `meter`::
 
-      abjad> metertools.meter_to_binary_meter(metertools.Meter(2, 8))
-      Meter(2, 8)
+      abjad> metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(2, 8))
+      TimeSignatureMark(2, 8)
 
    Return newly constructed meter.
 
@@ -29,7 +27,7 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = fractions.Fract
    '''
    
    ## check input
-   assert isinstance(nonbinary_meter, (Meter, contexttools.TimeSignatureMark))
+   assert isinstance(nonbinary_meter, contexttools.TimeSignatureMark)
    assert isinstance(contents_multiplier, fractions.Fraction)
 
    ## save nonbinary meter and denominator
@@ -47,4 +45,4 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = fractions.Fract
       nonbinary_pair, binary_denominator)
 
    ## return new binary meter
-   return Meter(*binary_pair)
+   return contexttools.TimeSignatureMark(*binary_pair)

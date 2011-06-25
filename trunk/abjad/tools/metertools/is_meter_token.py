@@ -1,6 +1,4 @@
 from abjad.tools import durtools
-from abjad.tools.metertools.Meter import Meter
-from abjad.tools import durtools
 
 
 def is_meter_token(expr):
@@ -10,7 +8,7 @@ def is_meter_token(expr):
 
    ::
    
-      abjad> metertools.is_meter_token(metertools.Meter(3, 8))
+      abjad> metertools.is_meter_token(contexttools.TimeSignatureMark(3, 8))
       True
 
    ::
@@ -30,8 +28,9 @@ def is_meter_token(expr):
 
    Return boolean.
    '''
+   from abjad.tools import contexttools
 
-   if isinstance(expr, Meter):
+   if isinstance(expr, contexttools.TimeSignatureMark):
       return True
    elif isinstance(expr, durtools.Duration):
       return True
