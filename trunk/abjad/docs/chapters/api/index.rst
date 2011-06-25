@@ -451,6 +451,7 @@ measuretools
    tools/measuretools/get_prev_measure_from_component
    tools/measuretools/iterate_measures_backward_in_expr
    tools/measuretools/iterate_measures_forward_in_expr
+   tools/measuretools/list_time_signatures_of_mesures_in_expr
    tools/measuretools/make_measures_with_full_measure_spacer_skips
    tools/measuretools/move_measure_prolation_to_full_measure_tuplet
    tools/measuretools/move_prolation_of_full_measure_tuplet_to_meter_of_measure
@@ -1074,9 +1075,7 @@ metertools
 
    tools/metertools/duration_and_possible_denominators_to_meter
    tools/metertools/get_nonbinary_factor_from_meter_denominator
-   tools/metertools/is_meter_token
    tools/metertools/is_meter_with_equivalent_binary_representation
-   tools/metertools/list_meters_of_measures_in_expr
    tools/metertools/meter_to_binary_meter
 
 

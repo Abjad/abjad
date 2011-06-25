@@ -1,4 +1,4 @@
-def list_meters_of_measures_in_expr(components):
+def list_time_signatures_of_mesures_in_expr(components):
    r'''List meters of measures in `expr`::
 
       abjad> from abjad.tools import metertools
@@ -33,17 +33,21 @@ def list_meters_of_measures_in_expr(components):
 
    ::
 
-      abjad> metertools.list_meters_of_measures_in_expr(staff)
+      abjad> measuretools.list_time_signatures_of_mesures_in_expr(staff)
       [TimeSignatureMark(2, 8)(|2/8, c8, d8|), TimeSignatureMark(3, 8)(|3/8, c8, d8, e8|), TimeSignatureMark(4, 8)(|4/8, c8, d8, e8, f8|)]
 
    Return list of zero or more time signatures.
 
    .. versionchanged:: 1.1.2
       renamed ``metertools.extract_meter_list( )`` to
-      ``metertools.list_meters_of_measures_in_expr( )``.
+      ``measuretools.list_time_signatures_of_mesures_in_expr( )``.
 
    .. versionchanged:: 1.1.2
       now returns list of meters instead of list of integer pairs.
+
+   .. versionchanged:: 1.1.2
+      renamed ``metertools.list_meters_of_measures_in_expr( )`` to
+      ``measuretools.list_time_signatures_of_mesures_in_expr( )``.
    '''
    from abjad.tools import componenttools
    from abjad.tools import contexttools

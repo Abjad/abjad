@@ -1,5 +1,5 @@
+from abjad.tools import contexttools
 from abjad.tools.measuretools.Measure import Measure
-from abjad.tools import metertools
 from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_skips import fill_measures_in_expr_with_full_measure_spacer_skips
 
 
@@ -40,8 +40,7 @@ def make_measures_with_full_measure_spacer_skips(meters):
    from abjad.tools.skiptools.Skip import Skip
 
    ## check input
-   if not all([metertools.is_meter_token(meter) for meter in meters]):
-      raise ValueError('meters must all be Abjad meter tokens.')
+   meters = [contexttools.TimeSignatureMark(meter) for meter in meters]
 
    ## make measures
    measures = [Measure(meter, [ ]) for meter in meters]
