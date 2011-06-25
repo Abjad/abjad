@@ -1,4 +1,4 @@
-from abjad.tools.containertools.Container import Container
+from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools.measuretools.fuse_measures import fuse_measures
@@ -42,11 +42,11 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
    ::
       
       abjad> counts = (2, 1)
-      abjad> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, counts) # doctest: +SKIP
+      abjad> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, counts) 
       
    ::
       
-      abjad> f(staff) # doctest: +SKIP
+      abjad> f(staff)
       \new Staff {
          {
             \time 4/8
@@ -78,21 +78,17 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
       ``measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts( )``.
    '''
 
-   assert isinstance(container, Container)
+   assert isinstance(container, containertools.Container)
    assert isinstance(counts, (tuple, list))
 
    try:
-      if not container._update._current:
-         #container._update._update_observer_interfaces_attached_to_all_score_components( )
-         container._update._update_prolated_offset_values_of_all_score_components( )
-         container._update._update_observer_interfaces_of_all_score_components( )
-      container._update._forbid_component_update( )
+      container._update_marks_of_entire_score_tree_if_necessary( )
+      container._forbid_component_update( )
       len_parts = len(counts)
       part_index = 0
       cur_measure = get_next_measure_from_component(container)
       while True:
          part_count = counts[part_index % len_parts]
-         #print cur_measure, part_count
          if 1 < part_count:
             measures_to_fuse = [ ]
             measure_to_fuse = cur_measure
@@ -113,4 +109,4 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
             break
          part_index += 1 
    finally:
-      container._update._allow_component_update( )
+      container._allow_component_update( )

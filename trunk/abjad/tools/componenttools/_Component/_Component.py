@@ -10,7 +10,7 @@ import copy
 
 class _Component(_StrictComparator):
 
-   __slots__ = ('_duration', '_marks_are_current', 
+   __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current', 
       '_marks_for_which_component_functions_as_effective_context',
       '_marks_for_which_component_functions_as_start_component', '_navigator', 
       '_offset', '_offset_values_in_seconds_are_current', '_override', '_parentage', 
@@ -18,6 +18,7 @@ class _Component(_StrictComparator):
       'lily_file', )
 
    def __init__(self):
+      self._is_forbidden_to_update = False
       self._marks_are_current = False
       self._marks_for_which_component_functions_as_effective_context = list( )
       self._marks_for_which_component_functions_as_start_component = list( )
@@ -210,6 +211,9 @@ class _Component(_StrictComparator):
 
    ## PRIVATE UPDATE METHODS ##
 
+   def _allow_component_update(self):
+      self._is_forbidden_to_update = False
+
    def _mark_entire_score_tree_for_later_update(self, value):
       '''Call immediately AFTER MODIFYING score tree.
       '''
@@ -224,6 +228,9 @@ class _Component(_StrictComparator):
             component._offset_values_of_in_seconds_are_current = False
          else:
             raise ValueError('unknown value: "%s"' % value)
+
+   def _forbid_component_update(self):
+      self._is_forbidden_to_update = True
 
    def _get_score_tree_state_flags(self):
       from abjad.tools import componenttools
@@ -248,6 +255,8 @@ class _Component(_StrictComparator):
       '''
       from abjad.tools import componenttools
       #print 'updating marks of entire score tree IF NECESSARY ...'
+      if self._is_forbidden_to_update:
+         return
       state_flags = self._get_score_tree_state_flags( )
       #print state_flags
       marks_are_current = state_flags[1]
@@ -266,6 +275,8 @@ class _Component(_StrictComparator):
 
    def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
       #print 'updating prolated offset values of entire score tree IF NECESSARY...'
+      if self._is_forbidden_to_update:
+         return
       state_flags = self._get_score_tree_state_flags( )
       prolated_offset_values, marks, offset_values_in_seconds = state_flags
       ## score tree structure change entails prolated offset update

@@ -1,6 +1,4 @@
 from abjad import *
-import py.test
-py.test.skip('fix measure fusion after update reimplementation.')
 
 
 def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts_01( ):
