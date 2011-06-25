@@ -35,8 +35,4 @@ def get_effective_time_signature(component):
    Return time signature mark or none.
    '''
 
-   explicit_meter = getattr(component, '_explicit_meter', None)
-   if explicit_meter is not None:
-      return explicit_meter
-   else:
-      return get_effective_context_mark(component, TimeSignatureMark)
+   return get_effective_context_mark(component, TimeSignatureMark)
