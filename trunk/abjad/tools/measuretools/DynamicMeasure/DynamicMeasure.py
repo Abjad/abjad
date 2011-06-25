@@ -29,15 +29,15 @@ class DynamicMeasure(Measure):
    Return dynamic measure.
    '''
 
-   __slots__ = ('_denominator', '_explicit_meter_is_current', '_suppress_meter', )
+   __slots__ = ('_denominator', '_time_signature_is_current', '_suppress_meter', )
 
    def __init__(self, music = None, **kwargs):
       Measure.__init__(self, meter = (99, 99), music = music, **kwargs)
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
-      self._explicit_meter_is_current = False
+      self._time_signature_is_current = False
       self._suppress_meter = False
-      self._update_explicit_meter( )
+      self._update_time_signature( )
 
    ## OVERLOADS ##
 
@@ -46,7 +46,7 @@ class DynamicMeasure(Measure):
 
    ## PRIVATE METHODS ##
 
-   def _update_explicit_meter(self):
+   def _update_time_signature(self):
       if self.denominator:
          meter_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             self.duration.contents, self.denominator)
@@ -56,7 +56,7 @@ class DynamicMeasure(Measure):
       self._attach_time_signature(meter)
       if self.suppress_meter:
          contexttools.get_time_signature_mark_attached_to_component(self).suppress = True
-      self._explicit_meter_is_current = True
+      self._time_signature_is_current = True
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -93,7 +93,7 @@ class DynamicMeasure(Measure):
       def fset(self, arg):
          assert isinstance(arg, (int, long, type(None)))
          self._denominator = arg
-         self._update_explicit_meter( )
+         self._update_time_signature( )
       return property(**locals( ))
 
    @apply
@@ -144,7 +144,7 @@ class DynamicMeasure(Measure):
       def fset(self, arg):
          assert isinstance(arg, (type(True), type(None)))
          self._suppress_meter = arg
-         self._update_explicit_meter( )
+         self._update_time_signature( )
       return property(**locals( ))
 
    ## PUBLIC METHODS ##
@@ -183,4 +183,4 @@ class DynamicMeasure(Measure):
       Return none.
       '''
       Measure.extend(self, expr)
-      self._update_explicit_meter( )
+      self._update_time_signature( )
