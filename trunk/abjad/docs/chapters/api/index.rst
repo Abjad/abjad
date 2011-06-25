@@ -1072,7 +1072,6 @@ metertools
 .. toctree::
    :maxdepth: 1
 
-   tools/metertools/Meter/Meter
    tools/metertools/duration_and_possible_denominators_to_meter
    tools/metertools/get_nonbinary_factor_from_meter_denominator
    tools/metertools/is_meter_token
