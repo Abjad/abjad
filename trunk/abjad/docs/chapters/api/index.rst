@@ -1008,8 +1008,6 @@ layouttools
    tools/layouttools/SpacingIndication/SpacingIndication
    tools/layouttools/StaffAlignmentDistances/StaffAlignmentDistances
    tools/layouttools/SystemYOffsets/SystemYOffsets
-   tools/layouttools/apply_fixed_staff_positioning
-   tools/layouttools/apply_layout_schema
    tools/layouttools/make_spacing_vector
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
