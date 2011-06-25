@@ -158,22 +158,6 @@ class _Component(_StrictComparator):
 
    ## MANGLED METHODS ##
 
-   def __update_explicit_meters_of_entire_score_tree(self):
-      from abjad.tools import componenttools
-      from abjad.tools import measuretools
-      #print 'updating explicit meters of entire score tree (from %s) ...' % str(self.__class__.__name__)
-      total_components_iterated = 0
-      score = componenttools.component_to_score_root(self)
-      components = componenttools.iterate_components_depth_first(score, 
-         capped = True, unique = True, forbid = None, direction = 'left')
-      for component in components:
-         if isinstance(component, measuretools.DynamicMeasure):
-            #print '\tnow updating %s explicit meter ...' % str(component.__class__.__name__)
-            component._update_explicit_meter( )
-         total_components_iterated += 1
-      #print  '... done updating all explicit meters in score (from %s).' % str(
-      #   self.__class__.__name__)
-
    def __update_marks_of_entire_score_tree(self):
       '''Updating marks does not cause prolated offset values to update.
       On the other hand, getting effective mark causes prolated offset values
@@ -288,7 +272,6 @@ class _Component(_StrictComparator):
       ## score tree structure change entail dynamic measure meter recalculation
       if not prolated_offset_values:
          self.__update_prolated_offset_values_of_entire_score_tree( )
-         self.__update_explicit_meters_of_entire_score_tree( )
       else:
          #print 'no need.'
          pass

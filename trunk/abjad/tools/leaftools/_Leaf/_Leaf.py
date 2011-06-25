@@ -33,7 +33,6 @@ class _Leaf(_Component, _StrictComparator):
          new_grace_container(new)
       return new
 
-   ## TODO: this can be uncommented when Container.__deepcopy__( ) works explicitly.
    __deepcopy__ = __copy__
 
    def __getnewargs__(self):
