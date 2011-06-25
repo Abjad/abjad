@@ -52,8 +52,10 @@ class DynamicMeasure(Measure):
             self.duration.contents, self.denominator)
       else:
          meter_pair = (self.duration.contents.numerator, self.duration.contents.denominator)
-      meter = contexttools.TimeSignatureMark(*meter_pair, suppress = self.suppress_meter)
+      meter = contexttools.TimeSignatureMark(meter_pair)
       self._attach_explicit_meter(meter)
+      if self.suppress_meter:
+         contexttools.get_time_signature_mark_attached_to_component(self).suppress = True
       self._explicit_meter_is_current = True
 
    ## PUBLIC ATTRIBUTES ##

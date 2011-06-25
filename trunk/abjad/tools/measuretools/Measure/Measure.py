@@ -130,19 +130,9 @@ class Measure(Container):
 
    ## PRIVATE METHODS ##
 
-   def _attach_explicit_meter(self, *args, **kwargs):
-      #print 'attaching explicit meter ...'
+   def _attach_explicit_meter(self, *args):
       from abjad.tools import contexttools
-      if len(args) == 1 and isinstance(args[0], contexttools.TimeSignatureMark):
-         new_explicit_meter = args[0]
-      elif len(args) == 2:
-         numerator, denominator = args
-         new_explicit_meter = contexttools.TimeSignatureMark(numerator, denominator)
-      else:
-         raise ValueError('args not understood: "%s".' % str(args))
-      partial = kwargs.get('partial', None)
-      if partial is not None:
-         raise NotImplementedError('partial meter not yet implemented.')
+      new_explicit_meter = contexttools.TimeSignatureMark(*args)
       if contexttools.is_component_with_time_signature_mark_attached(self):
          old_explicit_meter = contexttools.get_time_signature_mark_attached_to_component(self)
          old_explicit_meter.detach_mark( )
