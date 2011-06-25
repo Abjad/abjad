@@ -61,6 +61,8 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       measure = self.formatter.container
       result.append(self._wrap_bar_line_interface_overrides( ))
       result.append(self._wrap_measure_interface_reverts( ))
+      result.append([('lilypond_command_marks', 'lilypond_command_marks'),
+         _get_lilypond_command_mark_format_contributions_for_slot(measure, 'closing')])
       result.append([('context_marks', 'context_marks'),
          _get_context_mark_format_contributions_for_slot(measure, 'closing')])
       result.append([('comment_marks', ''),

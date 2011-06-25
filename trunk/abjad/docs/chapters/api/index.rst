@@ -49,7 +49,6 @@ componenttools
    tools/componenttools/all_are_thread_contiguous_components
    tools/componenttools/component_to_parentage_signature
    tools/componenttools/component_to_pitch_and_rhythm_skeleton
-   tools/componenttools/component_to_pitch_and_rhythm_skeleton_with_interface_attributes
    tools/componenttools/component_to_score_depth
    tools/componenttools/component_to_score_index
    tools/componenttools/component_to_score_root

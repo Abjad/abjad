@@ -1,7 +1,6 @@
 from abjad import *
+from abjad.tools import layouttools
 from abjad.tools.leaftools._Leaf import _Leaf
-import py
-py.test.skip('skipping until clean way to pass multiline format contributions.')
 
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01( ):
@@ -86,42 +85,3 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02( ):
 
    assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\t\\break\n\t\td'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\t\\break\n\t\tf'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\t\\break\n\t\ta'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\t\\break\n\t\tc''8\n\t\t\\break\n\t}\n}"
-
-
-def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_03( ):
-   '''With add_empty_bars keyword.'''
-
-   t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-   schema = layouttools.LayoutSchema(Duration(3, 8), (40, 5, 0), (0, ))
-   layouttools.apply_layout_schema(t, schema, klass = Note, add_empty_bars = True)
-
-   r'''
-   \new Staff {
-      \overrideProperty #"Score.NonMusicalPaperColumn"
-      #'line-break-system-details
-      #'((Y-offset . 0) (alignment-distances . (0)))
-      c'8
-      d'8
-      e'8
-      \bar ""
-      \break
-      \noPageBreak
-      \overrideProperty #"Score.NonMusicalPaperColumn"
-      #'line-break-system-details
-      #'((Y-offset . 40) (alignment-distances . (0)))
-      f'8
-      g'8
-      a'8
-      \bar ""
-      \break
-      \noPageBreak
-      \overrideProperty #"Score.NonMusicalPaperColumn"
-      #'line-break-system-details
-      #'((Y-offset . 80) (alignment-distances . (0)))
-      b'8
-      c''8
-   }
-   '''
-
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == '\\new Staff {\n\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t#\'line-break-system-details\n\t#\'((Y-offset . 0) (alignment-distances . (0)))\n\tc\'8\n\td\'8\n\te\'8\n\t\\bar ""\n\t\\break\n\t\\noPageBreak\n\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t#\'line-break-system-details\n\t#\'((Y-offset . 40) (alignment-distances . (0)))\n\tf\'8\n\tg\'8\n\ta\'8\n\t\\bar ""\n\t\\break\n\t\\noPageBreak\n\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t#\'line-break-system-details\n\t#\'((Y-offset . 80) (alignment-distances . (0)))\n\tb\'8\n\tc\'\'8\n}'

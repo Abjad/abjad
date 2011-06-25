@@ -13,7 +13,7 @@ def set_line_breaks_cyclically_by_line_duration_ge(expr, line_duration, klass = 
 
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-      abjad> print t.format
+      abjad> f(t)
       \new Staff {
          {
             \time 2/8
@@ -40,22 +40,29 @@ def set_line_breaks_cyclically_by_line_duration_ge(expr, line_duration, klass = 
    ::
 
       abjad> layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))      
-      abjad> print t.format # doctest: +SKIP
+      abjad> f(t)
       \new Staff {
-                      \time 2/8
-                      c'8
-                      d'8
-                      \time 2/8
-                      e'8
-                      f'8
-                      \break
-                      \time 2/8
-                      g'8
-                      a'8
-                      \time 2/8
-                      b'8
-                      c''8
-                      \break
+         {
+            \time 2/8
+            c'8
+            d'8
+         }
+         {
+            \time 2/8
+            e'8
+            f'8
+            \break
+         }
+         {
+            \time 2/8
+            g'8
+            a'8
+         }
+         {
+            \time 2/8
+            b'8
+            c''8
+         }
       }
 
    Set `adjust_eol` to ``True`` to include a magic Scheme incantation

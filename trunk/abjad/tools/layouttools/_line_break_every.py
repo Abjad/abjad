@@ -1,7 +1,7 @@
-from abjad.tools.measuretools.Measure import Measure
 from abjad.tools import componenttools
-from abjad.tools import marktools
 from abjad.tools import durtools
+from abjad.tools import marktools
+from abjad.tools.measuretools.Measure import Measure
 
 
 def _line_break_every(expr, line_duration, klass = Measure, 
@@ -26,24 +26,20 @@ def _line_break_every(expr, line_duration, klass = Measure,
       if candidate_duration < line_duration:
          cum_duration += cur_duration
       elif candidate_duration == line_duration:
-         #cur.breaks.line = True
          marktools.LilyPondCommandMark('break', format_slot = 'closing')(cur)
          if adjust_eol:
-            #cur.breaks.eol_adjustment = True
-            marktools.LilyPondCommandMark(
-               'adjustEOLTimeSignatureBarlineExtraOffset', format_slot = 'closing')(cur)
+            marktools.LilyPondCommandMark('adjustEOLTimeSignatureBarlineExtraOffset', 
+               format_slot = 'closing')(cur)
          if add_empty_bars:
             if cur.bar_line.kind is None:
                cur.bar_line.kind = ''
          cum_duration = durtools.Duration(0)
       else:
          if prev is not None:
-            #prev.breaks.line = True
             marktools.LilyPondCommandMark('break', format_slot = 'closing')(prev)
             if adjust_eol:
-               #prev.breaks.eol_adjustment = True
-               marktools.LilyPondCommandMark(
-                  'adjustEOLTimeSignatureBarlineExtraOffset', format_slot = 'closing')(prev)
+               marktools.LilyPondCommandMark('adjustEOLTimeSignatureBarlineExtraOffset', 
+                  format_slot = 'closing')(prev)
             if add_empty_bars:
                if cur.bar_line.kind is None:
                   cur.bar_line.kind = ''
