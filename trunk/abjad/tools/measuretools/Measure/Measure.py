@@ -38,9 +38,8 @@ class Measure(Container):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self._formatter = _MeasureFormatter(self)
-      meter = contexttools.TimeSignatureMark(meter)
-      numerator, denominator = meter.numerator, meter.denominator
-      self._attach_time_signature(numerator, denominator)
+      time_signature = contexttools.TimeSignatureMark(meter)
+      time_signature.attach_mark(self)
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
@@ -129,9 +128,7 @@ class Measure(Container):
 
    def _attach_time_signature(self, *args):
       new_time_signature = contexttools.TimeSignatureMark(*args)
-      if contexttools.is_component_with_time_signature_mark_attached(self):
-         old_time_signature = contexttools.get_time_signature_mark_attached_to_component(self)
-         old_time_signature.detach_mark( )
+      contexttools.detach_time_signature_mark_attached_to_component(self)
       new_time_signature.attach_mark(self)
 
    ## PRIVATE ATTRIBUTES ##
