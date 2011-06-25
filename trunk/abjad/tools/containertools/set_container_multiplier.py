@@ -42,4 +42,4 @@ def set_container_multiplier(container, multiplier):
       container.duration.multiplier = multiplier
    elif isinstance(container, Measure):
       new_duration = multiplier * container.duration.contents
-      container._attach_explicit_meter(new_duration.numerator, new_duration.denominator)
+      container._attach_time_signature(new_duration.numerator, new_duration.denominator)

@@ -34,7 +34,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
          ## update nonbinary meter to binary
          binary_meter = metertools.meter_to_binary_meter(
             contexttools.get_effective_time_signature(measure), contents_multiplier)
-         measure._attach_explicit_meter(binary_meter)
+         measure._attach_time_signature(binary_meter)
 
          ## find target duration and create tuplet
          target_duration = meter_multiplier * measure.duration.contents

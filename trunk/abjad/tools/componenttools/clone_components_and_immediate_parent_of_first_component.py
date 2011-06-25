@@ -124,7 +124,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
       result.duration.target = parent_multiplier * result.duration.contents
    elif result.__class__.__name__ == 'Measure':
       new_duration = parent_multiplier * result.duration.contents
-      result._attach_explicit_meter(new_duration.numerator, new_duration.denominator)
+      result._attach_time_signature(new_duration.numerator, new_duration.denominator)
 
    # new: rewrite result denominator, if available
    if parent_denominator is not None:
@@ -132,7 +132,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
          old_meter_pair, parent_denominator)
-      result._attach_explicit_meter(*new_meter)
+      result._attach_time_signature(*new_meter)
 
    # return copy
    return result

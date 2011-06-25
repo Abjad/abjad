@@ -43,7 +43,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
             meter_rational = durtools.Duration(meter.numerator, meter.denominator)
             numerator = meter_rational.numerator * reduced_denominator
             denominator = meter_rational.denominator * reduced_denominator
-            measure._attach_explicit_meter(numerator, denominator)
+            measure._attach_time_signature(numerator, denominator)
             meter_multiplier = contexttools.get_effective_time_signature(measure).multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
             componenttools.move_parentage_and_spanners_from_components_to_components(

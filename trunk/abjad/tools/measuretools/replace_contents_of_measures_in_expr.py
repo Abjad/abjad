@@ -87,7 +87,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
       ## otherwise restore currene measure and advance to next measure
       else:
-         cur_measure._attach_explicit_meter(cur_meter)
+         cur_measure._attach_time_signature(cur_meter)
          append_spacer_skips_to_underfull_measures_in_expr([cur_measure])
          cur_measure = get_next_measure_from_component(cur_measure)
          if cur_measure is None:
@@ -97,7 +97,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
          del(cur_measure[:])
 
    ## restore last iterated measure
-   cur_measure._attach_explicit_meter(cur_meter)
+   cur_measure._attach_time_signature(cur_meter)
    append_spacer_skips_to_underfull_measures_in_expr(cur_measure)
 
    ## return iterated measures

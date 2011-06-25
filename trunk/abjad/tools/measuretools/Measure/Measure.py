@@ -40,7 +40,7 @@ class Measure(Container):
       self._formatter = _MeasureFormatter(self)
       meter = contexttools.TimeSignatureMark(meter)
       numerator, denominator = meter.numerator, meter.denominator
-      self._attach_explicit_meter(numerator, denominator)
+      self._attach_time_signature(numerator, denominator)
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
@@ -59,7 +59,6 @@ class Measure(Container):
    ## time signature immediately after instantiation
    ## because the mark-copying code will then provide time signature.
    def __copy__(self, *args):
-      from abjad.tools import contexttools
       from abjad.tools import marktools
       from abjad.tools import markuptools
       new = type(self)(*self.__getnewargs__( ))
@@ -86,12 +85,11 @@ class Measure(Container):
          naive_meter = self.duration.preprolated
          better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             naive_meter, old_denominator)
-         self._attach_explicit_meter(*better_meter)
+         self._attach_time_signature(*better_meter)
       except (AttributeError, UnboundLocalError):
          pass
 
    def __getnewargs__(self):
-      from abjad.tools import contexttools
       time_signature = contexttools.get_effective_time_signature(self)
       pair = (time_signature.numerator, time_signature.denominator)
       return (pair, )
@@ -99,7 +97,6 @@ class Measure(Container):
    def __repr__(self):
       '''String form of measure with parentheses for interpreter display.
       '''
-      from abjad.tools import contexttools
       class_name = self.__class__.__name__
       forced_meter = contexttools.get_time_signature_mark_attached_to_component(self)
       summary = self._summary
@@ -130,13 +127,12 @@ class Measure(Container):
 
    ## PRIVATE METHODS ##
 
-   def _attach_explicit_meter(self, *args):
-      from abjad.tools import contexttools
-      new_explicit_meter = contexttools.TimeSignatureMark(*args)
+   def _attach_time_signature(self, *args):
+      new_time_signature = contexttools.TimeSignatureMark(*args)
       if contexttools.is_component_with_time_signature_mark_attached(self):
-         old_explicit_meter = contexttools.get_time_signature_mark_attached_to_component(self)
-         old_explicit_meter.detach_mark( )
-      new_explicit_meter(self)
+         old_time_signature = contexttools.get_time_signature_mark_attached_to_component(self)
+         old_time_signature.detach_mark( )
+      new_time_signature.attach_mark(self)
 
    ## PRIVATE ATTRIBUTES ##
 
