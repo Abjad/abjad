@@ -120,7 +120,34 @@ Avoiding name conflicts
    the two tests rename to ``test_accidental_grob_handling_01( )`` and
    ``test_notehead_grob_handling_01( )``.
 
+Running ``doctest`` on the ``tools`` directory
+----------------------------------------------
+
+The Python standard library includes the ``doctest`` module as way of checking
+the correctness of examples included in Python docstrings.
+The module searches for instances of the Python interpreter prompt ``'>>>'`` and
+executes any code that follows.
+Abjad docs display the Abjad prompt ``'abjad>'`` instead of the Python prompt.
+This means that all instances of the Abjad prompt must be changed to Python
+prompts before running ``doctest`` on the Abjad codebase.
+Three scripts in ``abjad/scr/devel`` help do this.
+
+First change to the subdirectory of the Abjad source tree on which you'd like
+to run ``doctest``. Then run these scripts::
+
+   replace-abjad-prompts-with-python-prompts
+
+::
+
+   run-doctest-on-all-modules-in-tree
+
+::
+
+   replace-python-prompts-with-abjad-prompts
+
+After running ``run-doctest-on-all-modules-in-tree`` you can inspect the results 
+that come back from ``doctest`` and make any fixes as required.
 
 .. rubric:: Footnotes
 
-.. [#] Abjad r2371 includes 2165 tests.
+.. [#] Abjad r4513 includes 4384 tests.
