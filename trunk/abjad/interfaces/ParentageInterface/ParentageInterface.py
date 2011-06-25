@@ -74,7 +74,7 @@ class ParentageInterface(_Interface):
       In the case that no such container exists
       in the parentage of `component`, return ``None``. ::
 
-         abjad> note = Note(0, (1, 4))
+         abjad> note = Note("c'4")
          abjad> note._parentage.governor is None
          True
 

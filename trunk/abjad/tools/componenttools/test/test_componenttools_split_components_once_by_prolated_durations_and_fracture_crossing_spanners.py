@@ -140,7 +140,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
    '''Duration partition one leaf outside of score.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
 
    "c'4"
 

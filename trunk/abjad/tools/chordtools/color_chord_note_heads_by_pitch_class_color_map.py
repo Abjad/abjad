@@ -38,7 +38,7 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
 
    Also works on notes::
 
-      abjad> note = Note(0, (1, 4))
+      abjad> note = Note("c'4")
 
    ::
 

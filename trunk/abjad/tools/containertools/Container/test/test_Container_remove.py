@@ -101,7 +101,7 @@ def test_Container_remove_03( ):
    '''Container remove works on identity and not equality.
    '''
 
-   note = Note(0, (1, 4))
-   container = Container([Note(0, (1, 4))])
+   note = Note("c'4")
+   container = Container([Note("c'4")])
 
    assert py.test.raises(Exception, 'container.remove(note)')

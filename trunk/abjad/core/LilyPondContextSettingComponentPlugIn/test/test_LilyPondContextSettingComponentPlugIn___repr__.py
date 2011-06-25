@@ -6,7 +6,7 @@ def test_LilyPondContextSettingComponentPlugIn___repr___01( ):
    '''LilyPond context setting component plug-in repr is evaluable.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.set.staff.tuplet_full_length = True
 
    context_setting_component_plug_in_1 = note.set
@@ -20,7 +20,7 @@ def test_LilyPondContextSettingComponentPlugIn___repr___02( ):
    '''LilyPond context setting component plug-in looks like this.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.set.staff.tuplet_full_length = True
 
    assert repr(note.set) == \

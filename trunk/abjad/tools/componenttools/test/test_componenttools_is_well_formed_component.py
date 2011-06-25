@@ -3,7 +3,7 @@ from abjad import *
 
 def test_componenttools_is_well_formed_component_01( ):
    '''Well-formedness checking runs correctly against leaves.'''
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    assert componenttools.is_well_formed_component(t)
 
 

@@ -5,7 +5,7 @@ def test_Note_grace_01( ):
    '''Attach one grace note.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    gracetools.Grace([Note(2, (1, 16))])(note)
 
    '''
@@ -22,7 +22,7 @@ def test_Note_grace_02( ):
    '''Attach several grace notes.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    gracetools.Grace([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])(note)
 
    '''
@@ -41,7 +41,7 @@ def test_Note_grace_03( ):
    '''Attach one appoggiatura.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    gracetools.Grace([Note(2, (1, 16))], kind = 'appoggiatura')(note)
 
    r'''
@@ -58,7 +58,7 @@ def test_Note_grace_04( ):
    '''Attach one acciaccatura.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    gracetools.Grace([Note(2, (1, 16))], kind = 'acciaccatura')(note)
 
    r'''
@@ -75,7 +75,7 @@ def test_Note_grace_05( ):
    '''Attach one after grace note.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    gracetools.Grace([Note(2, (1, 16))], kind = 'after')(note)
 
    r'''
@@ -93,7 +93,7 @@ def test_Note_grace_06( ):
    '''Attach several after grace notes.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    gracetools.Grace([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind = 'after')(note)
     
    r'''

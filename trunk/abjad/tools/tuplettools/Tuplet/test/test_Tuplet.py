@@ -30,8 +30,8 @@ def test_Tuplet_03( ):
 
    u = Tuplet(Fraction(2, 3), [
       Tuplet(Fraction(4, 5), Note(0, (1, 16)) * 5),
-      Note(0, (1, 4)),
-      Note(0, (1, 4))])
+      Note("c'4"),
+      Note("c'4")])
    assert repr(u) == "Tuplet(2/3, [{* 5:4 c'16, c'16, c'16, c'16, c'16 *}, c'4, c'4])"
    assert str(u) == "{* 3:2 {* 5:4 c'16, c'16, c'16, c'16, c'16 *}, c'4, c'4 *}"
    assert len(u) == 3
@@ -51,8 +51,8 @@ def test_Tuplet_04( ):
 
    u = Tuplet(Fraction(2, 3), [
       Tuplet(Fraction(4, 5), [ ]),
-      Note(0, (1, 4)),
-      Note(0, (1, 4))])
+      Note("c'4"),
+      Note("c'4")])
    assert repr(u) == "Tuplet(2/3, [{* 4/5 *}, c'4, c'4])"
    assert str(u) == "{* 3:2 {* 4/5 *}, c'4, c'4 *}"
    assert len(u) == 3

@@ -164,8 +164,8 @@ def test_tuplettools_fuse_tuplets_06( ):
 
    t = Voice([
       tuplettools.FixedDurationTuplet(Duration(1, 12), [Note(0, (1, 8))]),
-      tuplettools.FixedDurationTuplet(Duration(1, 6), [Note(0, (1, 4))]),
-      Note(0, (1, 4))])
+      tuplettools.FixedDurationTuplet(Duration(1, 6), [Note("c'4")]),
+      Note("c'4")])
    spannertools.SlurSpanner(t.leaves)
       
    r'''

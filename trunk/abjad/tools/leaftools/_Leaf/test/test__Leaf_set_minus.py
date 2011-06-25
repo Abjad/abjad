@@ -18,7 +18,7 @@ def test__Leaf_set_minus_02( ):
    u = Chord([1, 2, 3], (1, 4))
    v = t - u
    assert isinstance(v, Note)
-   #assert v == Note(0, (1, 4))
+   #assert v == Note("c'4")
    assert v.pitch == 0
    assert t is not u is not v
 
@@ -84,7 +84,7 @@ def test__Leaf_set_minus_07( ):
 def test__Leaf_set_minus_08( ):
    '''Note from rest produces rest.'''
    t = Rest((1, 4))
-   u = Note(0, (1, 4))
+   u = Note("c'4")
    v = t - u
    assert isinstance(v, Rest)
    #assert v == Rest((1, 4))
@@ -94,8 +94,8 @@ def test__Leaf_set_minus_08( ):
 
 def test__Leaf_set_minus_09( ):
    '''Note from like pitched note produces rest.'''
-   t = Note(0, (1, 4))
-   u = Note(0, (1, 4))
+   t = Note("c'4")
+   u = Note("c'4")
    v = t - u
    assert isinstance(v, Rest)
    #assert v == Rest((1, 4))
@@ -105,11 +105,11 @@ def test__Leaf_set_minus_09( ):
 
 def test__Leaf_set_minus_10( ):
    '''Note from differently pitched note produces note.'''
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    u = Note(2, (1, 4))
    v = t - u
    assert isinstance(v, Note)
-   #assert v == Note(0, (1, 4))
+   #assert v == Note("c'4")
    assert v.pitch == 0
    assert t is not u is not v
 
@@ -128,7 +128,7 @@ def test__Leaf_set_minus_11( ):
 def test__Leaf_set_minus_12( ):
    '''Like pitched note from chord removes pitch.'''
    t = Chord([0, 2], (1, 4))
-   u = Note(0, (1, 4))
+   u = Note("c'4")
    v = t - u
    assert isinstance(v, Note)
    #assert v == Note(2, (1, 4))

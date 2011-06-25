@@ -160,7 +160,7 @@ def test_Chord___init___15( ):
    h, p, d = n.note_head, n.pitch, n.duration.written
    c = Chord(n)
    assert isinstance(c, Chord)
-   assert dir(n) == dir(Note(0, (1, 4)))
+   assert dir(n) == dir(Note("c'4"))
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert c.format == "<d'>8"
    assert c._parentage.parent is None

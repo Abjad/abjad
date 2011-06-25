@@ -41,7 +41,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
    '''Return first explicit Abjad staff in parentage of client.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
 
    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
       t, Staff) is None
@@ -142,7 +142,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
    Otherwise ``None``.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    
    #assert t.voice.explicit is None
    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(

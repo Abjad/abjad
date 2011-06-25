@@ -83,28 +83,28 @@ def test__Leaf___or___07( ):
 def test__Leaf___or___08( ):
    '''Rest in union with note produces note.'''
    t = Rest((1, 4))
-   u = Note(0, (1, 4))
+   u = Note("c'4")
    v = t | u
    assert isinstance(v, Note)
-   #assert v == Note(0, (1, 4))
+   #assert v == Note("c'4")
    assert v.pitch == 0
    assert t is not u is not v
 
 
 def test__Leaf___or___09( ):
    '''Note in union with like pitched note produces note.'''
-   t = Note(0, (1, 4))
-   u = Note(0, (1, 4))
+   t = Note("c'4")
+   u = Note("c'4")
    v = t | u
    assert isinstance(v, Note)
-   #assert v == Note(0, (1, 4))
+   #assert v == Note("c'4")
    assert v.pitch == 0
    assert t is not u is not v
 
 
 def test__Leaf___or___10( ):
    '''Note in union with differently pitched note produces chord.'''
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    u = Note(2, (1, 4))
    v = t | u
    assert isinstance(v, Chord)
@@ -127,7 +127,7 @@ def test__Leaf___or___11( ):
 def test__Leaf___or___12( ):
    '''Chord in union with like pitched note produces chord.'''
    t = Chord([0, 2], (1, 4))
-   u = Note(0, (1, 4))
+   u = Note("c'4")
    v = t | u
    assert isinstance(v, Chord)
    #assert v == Chord([0, 2], (1, 4))

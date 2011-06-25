@@ -7,7 +7,7 @@ def test_componenttools_is_beamable_component_01( ):
    '''
 
    assert componenttools.is_beamable_component(Note(0, (1, 8)))
-   assert not componenttools.is_beamable_component(Note(0, (1, 4)))
+   assert not componenttools.is_beamable_component(Note("c'4"))
 
 
 def test_componenttools_is_beamable_component_02( ):

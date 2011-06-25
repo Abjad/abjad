@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
    '''Excise leaf from tuplet and rigid measure.'''
 
-   t = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''
@@ -103,7 +103,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03( ):
    '''Excise leaf from tuplet and measure.'''
 
    t = Measure((5, 6), [
-      tuplettools.FixedDurationTuplet(Duration(3, 4), Note(0, (1, 4)) * 5),
+      tuplettools.FixedDurationTuplet(Duration(3, 4), Note("c'4") * 5),
       tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 7),
       ])
    
@@ -167,7 +167,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
       change meter denominator and reset tuplet target durations.'''
 
    t = Measure((5, 6), [
-      tuplettools.FixedDurationTuplet(Duration(3, 4), Note(0, (1, 4)) * 5),
+      tuplettools.FixedDurationTuplet(Duration(3, 4), Note("c'4") * 5),
       tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 7),
       ])
 
@@ -441,7 +441,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08( ):
    '''Exicse plain vanilla container.'''
 
-   t = Container(Note(0, (1, 4)) * 6)
+   t = Container(Note("c'4") * 6)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 5
@@ -455,7 +455,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08( ):
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09( ):
    '''Container container.'''
-   t = Container(Note(0, (1, 4)) * 6)
+   t = Container(Note("c'4") * 6)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 5
@@ -470,7 +470,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10( ):
    '''Excise voice.'''
 
-   t = Voice(Note(0, (1, 4)) * 6)
+   t = Voice(Note("c'4") * 6)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Voice)
    assert len(t) == 5
@@ -484,7 +484,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10( ):
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11( ):
    '''Staff.'''
-   t = Staff(Note(0, (1, 4)) * 6)
+   t = Staff(Note("c'4") * 6)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 5
@@ -499,7 +499,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12( ):
    '''Container.'''
 
-   t = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Container)
    assert len(t) == 1
@@ -517,7 +517,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13( ):
    '''Container.'''
 
-   t = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Container)
    assert len(t) == 1
@@ -535,7 +535,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14( ):
    '''Excise voice.'''
 
-   t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Voice)
    assert len(t) == 1
@@ -553,7 +553,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15( ):
    '''Excise staff.'''
 
-   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Staff)
    assert len(t) == 1
@@ -571,7 +571,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16( ):
    '''Excise container.'''
 
-   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 2
@@ -589,7 +589,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17( ):
    '''Excise container.'''
 
-   t = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 2
@@ -607,7 +607,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18( ):
    '''Excise voice.'''
 
-   t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Voice)
    assert len(t) == 2
@@ -625,7 +625,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19( ):
    '''Excise staff.'''
 
-   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 2
@@ -644,9 +644,9 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20( ):
    '''Excise singly-nested singleton.'''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
-      Note(0, (1, 4)),
-      Note(0, (1, 4)),
-      tuplettools.FixedDurationTuplet(Duration(1, 4), [Note(0, (1, 4))])])
+      Note("c'4"),
+      Note("c'4"),
+      tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])
    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
    assert isinstance(t, tuplettools.FixedDurationTuplet)
    assert len(t) == 2
@@ -662,10 +662,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21( ):
    '''Excise doubly-nested singleton.'''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
-      Note(0, (1, 4)),
-      Note(0, (1, 4)),
+      Note("c'4"),
+      Note("c'4"),
       tuplettools.FixedDurationTuplet(Duration(1, 4), [
-         tuplettools.FixedDurationTuplet(Duration(1, 4), [Note(0, (1, 4))])])])
+         tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])])
 
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -698,8 +698,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
    '''Excise doubly-nested singleton leaf.'''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
-      Note(0, (1, 4)),
-      Note(0, (1, 4)),
+      Note("c'4"),
+      Note("c'4"),
       tuplettools.FixedDurationTuplet(Duration(1, 4), [
          tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 2)])])
 

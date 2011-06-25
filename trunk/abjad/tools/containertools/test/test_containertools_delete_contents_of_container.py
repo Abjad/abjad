@@ -28,5 +28,4 @@ def test_containertools_delete_contents_of_container_02( ):
 def test_containertools_delete_contents_of_container_03( ):
    '''Raise type error on noncontainer.'''
 
-   assert py.test.raises(TypeError, 
-      'containertools.delete_contents_of_container(Note(0, (1, 4)))')
+   assert py.test.raises(TypeError, '''containertools.delete_contents_of_container(Note("c'4"))''')

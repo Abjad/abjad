@@ -12,7 +12,7 @@ Abjad implements LilyPond multpliers as the settable `duration.multiplier`
 attribute of notes, rests and chords.
 
 <abjad>
-note = Note(0, (1, 4))
+note = Note("c'4")
 note.duration.multiplier = Fraction(1, 2)
 note.duration.multiplier
 print repr(note.duration.multiplier) <hide
@@ -33,7 +33,7 @@ print repr(note.duration.multiplied) <hide
 LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
 
 <abjad>    
-notes = Note(0, (1, 4)) * 4
+notes = Note("c'4") * 4
 multiplied_note = Note(0, (1, 2))
 multiplied_note.duration.multiplier = Fraction(1, 2)
 multiplied_notes = multiplied_note * 4

@@ -51,7 +51,7 @@ def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_02( ):
 def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_03( ):
    '''Group leaves in tie chain by immediate parent.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    
    parts = tietools.group_leaves_in_tie_chain_by_immediate_parents(tietools.get_tie_chain(t))
    

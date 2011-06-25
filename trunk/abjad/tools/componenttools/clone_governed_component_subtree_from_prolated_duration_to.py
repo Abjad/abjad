@@ -74,7 +74,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
 
    Create ad hoc tuplets as required::
 
-      abjad> voice = Voice([Note(0, (1, 4))])
+      abjad> voice = Voice([Note("c'4")])
       abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, 0, (1, 12))
       abjad> f(new)
       \new Voice {
@@ -85,7 +85,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
 
    Function does NOT clone parentage of `component` when `component` is a leaf::
 
-      abjad> voice = Voice([Note(0, (1, 4))])
+      abjad> voice = Voice([Note("c'4")])
       abjad> new_leaf = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice[0], 0, (1, 8))
       abjad> f(new_leaf)
       c'8

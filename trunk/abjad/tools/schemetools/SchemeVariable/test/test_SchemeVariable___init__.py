@@ -3,7 +3,7 @@ from abjad import *
 
 def test_SchemeVariable___init___01( ):
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.stem.direction = schemetools.SchemeVariable('DOWN')
 
    r'''

@@ -7,7 +7,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
 
    Change `leaf` written duration to `written_duration` and preserve preprolated `leaf` duration::
 
-      abjad> note = Note(0, (1, 4))
+      abjad> note = Note("c'4")
       abjad> note.duration.written 
       Duration(1, 4)
       abjad> note.duration.preprolated 

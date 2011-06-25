@@ -7,17 +7,17 @@ import os
 def show(expr, template = None, return_timing = False, suppress_pdf = False):
    '''Show `expr`::
 
-      abjad> note = Note(0, (1, 4))
+      abjad> note = Note("c'4")
       abjad> show(note) # doctest: +SKIP
 
    Show `expr` with `template`::
 
-      abjad> note = Note(0, (1, 4))
+      abjad> note = Note("c'4")
       abjad> show(note, template = 'tangiers') # doctest: +SKIP
 
    Show `expr` and return both Abjad and LilyPond processing time in seconds::
 
-      abjad> staff = Staff(Note(0, (1, 4)) * 200)
+      abjad> staff = Staff(Note("c'4") * 200)
       abjad> show(note, return_timing = True) # doctest: +SKIP
       (0, 3)
 

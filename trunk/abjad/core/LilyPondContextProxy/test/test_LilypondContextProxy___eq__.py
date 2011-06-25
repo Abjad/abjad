@@ -4,15 +4,15 @@ import copy
 
 def test_LilypondContextProxy___eq___01( ):
 
-   note_1 = Note(0, (1, 4))
+   note_1 = Note("c'4")
    note_1.set.voice.auto_beaming = False
    note_1.set.voice.tuplet_full_length = True
 
-   note_2 = Note(0, (1, 4))
+   note_2 = Note("c'4")
    note_2.set.voice.auto_beaming = False
    note_2.set.voice.tuplet_full_length = True
 
-   note_3 = Note(0, (1, 4))
+   note_3 = Note("c'4")
    note_3.set.voice.auto_beaming = True
 
    context_proxy_1 = note_1.set.voice

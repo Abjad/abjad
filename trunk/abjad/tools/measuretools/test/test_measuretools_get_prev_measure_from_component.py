@@ -47,6 +47,6 @@ def test_measuretools_get_prev_measure_from_component_01( ):
 def test_measuretools_get_prev_measure_from_component_02( ):
    '''Can retrieve last measure in a Python list.'''
 
-   t = [Measure((2, 8), "c'8 d'8"), Note(0, (1, 4))]
+   t = [Measure((2, 8), "c'8 d'8"), Note("c'4")]
 
    assert measuretools.get_prev_measure_from_component(t) is t[0]

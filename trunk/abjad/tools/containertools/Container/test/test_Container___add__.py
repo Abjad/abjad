@@ -4,24 +4,24 @@ import py.test
 
 def test_Container___add___01( ):
    '''Addition DOES NOT works on unnamed voices.'''
-   t1 = Voice(Note(0, (1, 4))*2)
-   t2 = Voice(Note(0, (1, 4))*2)
+   t1 = Voice(Note("c'4")*2)
+   t2 = Voice(Note("c'4")*2)
    tadd = t1 + t2
    assert tadd is None
 
 
 def test_Container___add___02( ):
    '''Addition DOES NOT work on unnamed Staves.'''
-   t1 = Staff(Note(0, (1, 4))*2)
-   t2 = Staff(Note(0, (1, 4))*2)
+   t1 = Staff(Note("c'4")*2)
+   t2 = Staff(Note("c'4")*2)
    tadd = t1 + t2
    assert tadd is None
 
 
 def test_Container___add___03( ):
    '''Addition works on simple Containers.'''
-   t1 = Container(Note(0, (1, 4))*2)
-   t2 = Container(Note(0, (1, 4))*2)
+   t1 = Container(Note("c'4")*2)
+   t2 = Container(Note("c'4")*2)
    tadd = t1 + t2
    assert len(tadd) == len(t1) + len(t2)
    assert tadd.format == "{\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
@@ -30,9 +30,9 @@ def test_Container___add___03( ):
 
 def test_Container___add___04( ):
    '''Addition works on equally named voices.'''
-   t1 = Voice(Note(0, (1, 4))*2)
+   t1 = Voice(Note("c'4")*2)
    t1.name = '1'
-   t2 = Voice(Note(0, (1, 4))*2)
+   t2 = Voice(Note("c'4")*2)
    t2.name = '1'
    tadd = t1 + t2
    assert len(tadd) == len(t1) + len(t2)
@@ -42,9 +42,9 @@ def test_Container___add___04( ):
 
 def test_Container___add___05( ):
    '''Addition raises exception on differently named voices.'''
-   t1 = Voice(Note(0, (1, 4))*2)
+   t1 = Voice(Note("c'4")*2)
    t1.name = '1'
-   t2 = Voice(Note(0, (1, 4))*2)
+   t2 = Voice(Note("c'4")*2)
    t2.name = '2'
    assert t1 + t2 is None
 
@@ -53,8 +53,8 @@ def test_Container___add___06( ):
    '''Addition works on sequentially nested equally named containers.'''
 
 
-   t1 = Staff([Voice(Note(0, (1, 4))*2)])
-   t2 = Staff([Voice(Note(0, (1, 4))*2)])
+   t1 = Staff([Voice(Note("c'4")*2)])
+   t2 = Staff([Voice(Note("c'4")*2)])
    t1[0].name = t2[0].name = 'voiceOne'
    t1.name = t2.name = 'staffOne'
    tadd = t1 + t2
@@ -81,9 +81,9 @@ def test_Container___add___06( ):
 ## NONSTRUCTURAL in new parallel --> context model.
 #def test_Container___add___07( ):
 #   '''Addition raises exception on parallels of notes.'''
-#   t1 = Container(Note(0, (1, 4))*2)
+#   t1 = Container(Note("c'4")*2)
 #   t1.is_parallel = True
-#   t2 = Container(Note(0, (1, 4))*2)
+#   t2 = Container(Note("c'4")*2)
 #   t2.is_parallel = True
 #   assert t1 + t2 is None
     
@@ -91,9 +91,9 @@ def test_Container___add___06( ):
 def test_Container___add___08( ):
    '''Addition works on two matching parallel containers each with 
    a single threadable Voice child.'''
-   t1 = Container([Voice(Note(0, (1, 4))*2)])
+   t1 = Container([Voice(Note("c'4")*2)])
    t1.is_parallel = True
-   t2 = Container([Voice(Note(0, (1, 4))*2)])
+   t2 = Container([Voice(Note("c'4")*2)])
    t2.is_parallel = True
    t1[0].name = t2[0].name = 'voiceOne'
    tadd = t1 + t2
@@ -111,11 +111,11 @@ def test_Container___add___09( ):
    '''Addition works on matching parallel containers each 
    with two named threadable Voice children.'''
 
-   v1 = Voice(Note(0, (1, 4))*2)
+   v1 = Voice(Note("c'4")*2)
    v1.name = '1'
    v2 = Voice(Note(1, (1, 4))*2)
    v2.name = '2'
-   v3 = Voice(Note(0, (1, 4))*2)
+   v3 = Voice(Note("c'4")*2)
    v3.name = '1'
    v4 = Voice(Note(1, (1, 4))*2)
    v4.name = '2'

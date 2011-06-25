@@ -7,12 +7,12 @@ import shutil
 def write_expr_to_pdf(expr, file_name, template = None):
    '''Write `expr` to pdf `file_name`::
 
-      abjad> note = Note(0, (1, 4))
+      abjad> note = Note("c'4")
       abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf') # doctest: +SKIP
 
    Write `expr` to pdf `file_name` with `template`::
 
-      abjad> note = Note(0, (1, 4))
+      abjad> note = Note("c'4")
       abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf', 'paris') # doctest: +SKIP
 
    Return none.

@@ -3,14 +3,14 @@ from abjad import *
 
 def test_leaftools_scale_preprolated_leaf_duration_01( ):
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    leaftools.scale_preprolated_leaf_duration(t, Duration(1, 2))
    assert t.format == "c'8"
 
 
 def test_leaftools_scale_preprolated_leaf_duration_02( ):
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    leaftools.scale_preprolated_leaf_duration(t, Duration(2))
    assert t.format == "c'2"
 

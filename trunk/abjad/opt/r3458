@@ -1,6 +1,6 @@
 r3458:
 
-#1 timer = timeit.Timer('Note(0, (1, 4))', 'from __main__ import Note')
+#1 timer = timeit.Timer('Note("c'4")', 'from __main__ import Note')
    print timer.timeit(10)
    print timer.timeit(100)
    print timer.timeit(1000)
@@ -8,7 +8,7 @@ r3458:
    0.544013023376
    5.43860316277
 
-#2 note = Note(0, (1, 4))
+#2 note = Note("c'4")
    timer = timeit.Timer('note.format', 'from __main__ import note')
    print timer.timeit(10)
    print timer.timeit(100)
@@ -17,10 +17,10 @@ r3458:
    0.195698022842
    1.93302893639
 
-#3 iotools.profile_expr('Note(0, (1, 4))')
+#3 iotools.profile_expr('Note("c'4")')
    2998 function calls (2971 primitive calls) in 0.011 CPU seconds
 
-#4 note = Note(0, (1, 4))
+#4 note = Note("c'4")
    iotools.profile_expr('note.format')
    2336 function calls (1926 primitive calls) in 0.004 CPU seconds
 
@@ -30,13 +30,13 @@ r3458:
    ## conclusion: toy classes are extremely thin
    ## conclusion: the heaviness of custom classes matters
 
-#6 notes = [Note(0, (1, 4)) for x in range(1)]
+#6 notes = [Note("c'4") for x in range(1)]
    Partition of a set of 921 objects. Total size = 91028 bytes.
-   notes = [Note(0, (1, 4)) for x in range(10)]
+   notes = [Note("c'4") for x in range(10)]
    Partition of a set of 8185 objects. Total size = 854628 bytes.
-   notes = [Note(0, (1, 4)) for x in range(100)]
+   notes = [Note("c'4") for x in range(100)]
    Partition of a set of 80815 objects. Total size = 8489860 bytes.
-   notes = [Note(0, (1, 4)) for x in range(1000)]
+   notes = [Note("c'4") for x in range(1000)]
    Partition of a set of 807116 objects. Total size = 84842352 bytes.
    ## conclusion: 85k memory per Note object
    ## conclusion: way too much memory usage for Note objects

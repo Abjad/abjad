@@ -25,7 +25,7 @@ __doc__ = '''All Abjad objects should evaluate to True
 
 def test__StrictComparator___bool___01( ):
    '''Leaves evaluate to True.'''
-   assert bool(Note(0, (1, 4)))
+   assert bool(Note("c'4"))
    assert bool(Rest((1, 4)))
    assert bool(Chord([0, 2, 10], (1, 4)))
    assert bool(skiptools.Skip((1, 4)))
@@ -40,12 +40,12 @@ def test__StrictComparator___bool___02( ):
 
 def test__StrictComparator___bool___03( ):
    '''Nonempty containers evaluate to True.'''
-   assert bool(Staff(Note(0, (1, 4)) * 4))
-   assert bool(Voice(Note(0, (1, 4)) * 4))
-   assert bool(Container(Note(0, (1, 4)) * 4))
-   assert bool(tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 4)) * 3))
-   #assert bool(Tuplet(Fraction(2, 3), Note(0, (1, 4)) * 3))
-   assert bool(Tuplet(Fraction(2, 3), Note(0, (1, 4)) * 3))
+   assert bool(Staff(Note("c'4") * 4))
+   assert bool(Voice(Note("c'4") * 4))
+   assert bool(Container(Note("c'4") * 4))
+   assert bool(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3))
+   #assert bool(Tuplet(Fraction(2, 3), Note("c'4") * 3))
+   assert bool(Tuplet(Fraction(2, 3), Note("c'4") * 3))
 
 
 def test__StrictComparator___bool___04( ):

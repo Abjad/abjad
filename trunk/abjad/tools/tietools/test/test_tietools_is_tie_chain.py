@@ -6,7 +6,7 @@ def test_tietools_is_tie_chain_01( ):
 
 
 def test_tietools_is_tie_chain_02( ):
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    assert tietools.is_tie_chain(tietools.get_tie_chain(t))
 
 

@@ -6,7 +6,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___repr___01( ):
    '''LilyPond grob override component plug-in repr is evaluable.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.override.note_head.color = 'red'
 
    grob_override_component_plug_in_1 = note.override

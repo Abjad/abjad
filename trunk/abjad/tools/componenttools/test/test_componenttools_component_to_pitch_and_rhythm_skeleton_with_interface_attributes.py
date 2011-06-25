@@ -7,7 +7,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_with_interface_at
    '''Pitch and rhythm skeleton preserves grob overrides.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.override.beam.thickness = 2
    note.override.note_head.color = 'red'
    note.override.note_head.size = 3
@@ -41,7 +41,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_with_interface_at
    '''Pitch and rhythm skeleton preserves context settings.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.set.auto_beaming = False
    note.set.tuplet_full_length = True
    note.set.staff.instrument_name = 'Foo Bar'

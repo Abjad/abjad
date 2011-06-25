@@ -50,7 +50,7 @@ def test_contexttools_get_effective_tempo_02( ):
 def test_contexttools_get_effective_tempo_03( ):
    '''Tempo interface accepts durations.'''
 
-   staff = Staff([Note(0, (1, 4))])
+   staff = Staff([Note("c'4")])
    contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff[0])
 
    r'''
@@ -67,7 +67,7 @@ def test_contexttools_get_effective_tempo_04( ):
    '''Detach tempo mark.
    '''
 
-   staff = Staff([Note(0, (1, 4))])
+   staff = Staff([Note("c'4")])
    tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff[0])
    tempo.detach_mark( )
    

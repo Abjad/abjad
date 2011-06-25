@@ -31,7 +31,7 @@ measure = measuretools.AnonymousMeasure([note]) <hide
 iotools.write_expr_to_ly(measure, 'example-2', 'oedo.ly') <hide
 </abjad>
 
-(You even use ``Note(0, (1, 4))`` to create notes with numbers alone.)
+(You even use ``Note("c'4")`` to create notes with numbers alone.)
 
 Getting the written pitch of notes
 ----------------------------------

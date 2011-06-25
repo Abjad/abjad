@@ -64,7 +64,7 @@ def test_componenttools_get_component_start_offset_09( ):
    '''Offset works on nested tuplets.'''
 
    tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
-   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
+   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
    offset = 0
    for x, d in zip(t.leaves, [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
       assert componenttools.get_component_start_offset(x) == offset
@@ -195,7 +195,7 @@ def test_componenttools_get_component_start_offset_21( ):
    '''Prolated offsets work on nested tuplets.'''
 
    tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
-   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
+   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
    assert componenttools.get_component_start_offset(t[0]) == 0 * Duration(1, 6)
    assert componenttools.get_component_start_offset(t[1]) == 1 * Duration(1, 6)
    assert componenttools.get_component_start_offset(t[2]) == 2 * Duration(1, 6)

@@ -69,7 +69,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02( )
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_03( ):
    '''Fuse leaves in tie chain with same immediate parent.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
       tietools.get_tie_chain(t))
    assert len(result) == 1

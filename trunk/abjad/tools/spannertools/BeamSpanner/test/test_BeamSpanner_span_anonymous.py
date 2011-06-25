@@ -429,7 +429,7 @@ def test_BeamSpanner_span_anonymous_14( ):
    '''Asymmetrically nested tuplets span correctly.'''
 
    tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
-   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
+   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
 
    r'''
    \times 2/3 {

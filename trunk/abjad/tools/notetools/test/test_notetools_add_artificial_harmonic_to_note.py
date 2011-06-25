@@ -4,7 +4,7 @@ from abjad import *
 def test_notetools_add_artificial_harmonic_to_note_01( ):
    '''Adds a perfect fourth by default.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t = notetools.add_artificial_harmonic_to_note(t)
    assert t.format == "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tf'\n>4"
 
@@ -20,7 +20,7 @@ def test_notetools_add_artificial_harmonic_to_note_01( ):
 def test_notetools_add_artificial_harmonic_to_note_02( ):
    '''Specify other diatonic intervals explicitly.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    diatonic_interval = pitchtools.MelodicDiatonicInterval('minor', 3)
    t = notetools.add_artificial_harmonic_to_note(t, diatonic_interval)
    assert t.format == "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tef'\n>4"

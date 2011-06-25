@@ -97,7 +97,7 @@ def test_Spanner__remove_03( ):
    '''Remove works only on references and not on equality.
    '''
 
-   note = Note(0, (1, 4))
-   spanner = spannertools.Spanner([Note(0, (1, 4))])
+   note = Note("c'4")
+   spanner = spannertools.Spanner([Note("c'4")])
 
    assert py.test.raises(Exception, 'spanner._remove(note)') 

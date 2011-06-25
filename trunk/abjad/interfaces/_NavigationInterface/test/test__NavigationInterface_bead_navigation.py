@@ -570,7 +570,7 @@ def test__NavigationInterface_bead_navigation_17( ):
 def test__NavigationInterface_bead_navigation_18( ):
    '''next_bead and prev_bead  work on asymmetrically nested tuplets.'''
    tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
-   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
+   t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
    assert t[0]._navigator._next_bead is tinner[0]
    assert tinner[-1]._navigator._next_bead is t[-1]
    assert t[-1]._navigator._prev_bead is tinner[-1]

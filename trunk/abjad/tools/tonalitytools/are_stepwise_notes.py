@@ -19,7 +19,7 @@ def are_stepwise_notes(*expr):
 
    Otherwise false. ::
 
-      abjad> tonalitytools.are_stepwise_notes(Note(0, (1, 4)), Note(0, (1, 4)))
+      abjad> tonalitytools.are_stepwise_notes(Note("c'4"), Note("c'4"))
       False
 
    .. versionchanged:: 1.1.2

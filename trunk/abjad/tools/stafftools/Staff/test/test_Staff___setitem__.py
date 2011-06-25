@@ -3,7 +3,7 @@ from py.test import raises
 
 
 def test_Staff___setitem___01( ):
-   t = Staff([Note(0, (1, 4)),
+   t = Staff([Note("c'4"),
          Rest((1, 4)),
          Chord([2, 3, 4], (1, 4)),
          skiptools.Skip((1, 4)),
@@ -59,7 +59,7 @@ def test_Staff___setitem___01( ):
 
 def test_Staff___setitem___02( ):
    '''Reassign the *entire* contents of t.'''
-   t = Staff(Note(0, (1, 4)) * 4)
+   t = Staff(Note("c'4") * 4)
    assert t.duration.contents == Duration(4, 4)
    t[:] = Note(0, (1, 8)) * 4
    assert t.duration.contents == Duration(4, 8)
@@ -67,20 +67,20 @@ def test_Staff___setitem___02( ):
 
 def test_Staff___setitem___03( ):
    '''Item-assign an empty container to t.'''
-   t = Staff(Note(0, (1, 4)) * 4)
+   t = Staff(Note("c'4") * 4)
    t[0] = Voice([ ])
 
 
 def test_Staff___setitem___04( ):
    '''Slice-assign empty containers to t.'''
-   t = Staff(Note(0, (1, 4)) * 4)
+   t = Staff(Note("c'4") * 4)
    t[0:2] = [Voice([ ]), Voice([ ])]
 
 
 def test_Staff___setitem___05( ):
    '''Bark when user assigns a slice to an item.'''
 
-   t = Staff(Note(0, (1, 4)) * 4)
+   t = Staff(Note("c'4") * 4)
 
    assert raises(AssertionError, 't[0] = [Note(2, (1, 4)), Note(2, (1, 4))]')
 
@@ -88,7 +88,7 @@ def test_Staff___setitem___05( ):
 def test_Staff___setitem___06( ):
    '''Bark when user assigns an item to a slice.'''
 
-   t = Staff(Note(0, (1, 4)) * 4)
+   t = Staff(Note("c'4") * 4)
 
    assert raises(Exception, 't[0:2] = Note(2, (1, 4))')
 

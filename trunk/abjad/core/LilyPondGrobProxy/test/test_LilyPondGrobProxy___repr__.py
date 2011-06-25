@@ -6,7 +6,7 @@ def test_LilyPondGrobProxy___repr___01( ):
    '''LilyPond grob proxy repr is evaluable.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.override.note_head.color = 'red'
 
    grob_proxy_1 = note.override.note_head

@@ -6,7 +6,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
    '''Pitch and rhythm skeleton preserves pitch, written duration and multiplier.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.duration.multiplier = Fraction(1, 2)
    skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(note)
    assert skeleton == "Note(('c', 4), Duration(1, 4), duration__multiplier = Fraction(1, 2))"

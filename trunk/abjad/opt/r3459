@@ -1,38 +1,38 @@
 r3459
 
-   timer = timeit.Timer('Note(0, (1, 4))', 'from __main__ import Note')
+   timer = timeit.Timer('Note("c'4")', 'from __main__ import Note')
    print timer.timeit(1000)
    5.57 (sec)
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    timer = timeit.Timer('note.format', 'from __main__ import note')
    print timer.timeit(1000)
    2.02 (sec)
 
-   iotools.profile_expr('Note(0, (1, 4))')
+   iotools.profile_expr('Note("c'4")')
    3045 function calls (3026 primitive calls) in 0.008 CPU seconds
 
    iotools.profile_expr('note.format')
    2053 function calls (1636 primitive calls) in 0.004 CPU seconds
 
-   notes = [Note(0, (1, 4)) for x in range(1000)]
+   notes = [Note("c'4") for x in range(1000)]
    Partition of a set of 788120 objects. Total size = 82328504 bytes.
 
 
 r3459 + remove _Parser
 
-   timer = timeit.Timer('Note(0, (1, 4))', 'from __main__ import Note')
+   timer = timeit.Timer('Note("c'4")', 'from __main__ import Note')
    print timer.timeit(1000)
    5.57 sec
    5.12 sec (with opt) 
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    timer = timeit.Timer('note.format', 'from __main__ import note')
    print timer.timeit(1000)
    2.02 sec
    2.56 sec (with opt)
 
-   iotools.profile_expr('Note(0, (1, 4))')
+   iotools.profile_expr('Note("c'4")')
    3045 function calls (3026 primitive calls) in 0.008 CPU seconds
    2797 function calls (2778 primitive calls) in 0.008 CPU seconds (with opt)
 
@@ -40,6 +40,6 @@ r3459 + remove _Parser
    2053 function calls (1636 primitive calls) in 0.004 CPU seconds
    2011 function calls (1594 primitive calls) in 0.004 CPU seconds (with opt)
 
-   notes = [Note(0, (1, 4)) for x in range(1000)]
+   notes = [Note("c'4") for x in range(1000)]
    Partition of a set of 788120 objects. Total size = 82328504 bytes.
    Partition of a set of 664003 objects. Total size = 74904504 bytes. (with opt)

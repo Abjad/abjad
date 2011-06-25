@@ -129,7 +129,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_08( ):
    '''Start-to-mid clean cut.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
    assert new.format == "c'8"
 
@@ -137,7 +137,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_09( ):
    '''Start-to-mid jagged cut.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 12))
    parent = new._parentage.parent
 
@@ -153,7 +153,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_10( ):
    '''Mid-mid jagged cut.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, (1, 12), (2, 12)) 
    parent = new._parentage.parent
 
@@ -169,7 +169,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_11( ):
    '''Mid-to-stop jagged cut.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, (1, 6), (1, 4))
    parent = new._parentage.parent
 
@@ -184,7 +184,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_12( ):
    '''Start-to-after clean cut.'''
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 2))
    assert new.format == "c'4"
 
@@ -192,7 +192,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_13( ):
    '''Mid-to-after clean cut.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, (1, 8), (1, 2))
    assert new.format == "c'8"
 
@@ -200,7 +200,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_14( ):
    '''Mid-to-after jagged cut.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, (2, 12), (1, 2))
    parent = new._parentage.parent
 
@@ -216,7 +216,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_15( ):
    '''Before-to-after.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, (-1, 4), (1, 2))
    assert new.format == "c'4"
 
@@ -224,7 +224,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_16( ):
    '''Start-to-mid jagged.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (5, 24))
    parent = new._parentage.parent
 
@@ -241,7 +241,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_17( ):
    '''Start-to-mid jagged. '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 5))
    parent = new._parentage.parent
 

@@ -51,7 +51,7 @@ def test_Note___init___06( ):
    assert isinstance(n, Note)
    # check that attributes have not been removed or added.
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-   assert dir(n) == dir(Note(0, (1, 4)))
+   assert dir(n) == dir(Note("c'4"))
    assert n._parentage.parent is None
    assert n.duration.written == duration
 
@@ -91,7 +91,7 @@ def test_Note___init___09( ):
    assert isinstance(n, Note)
    # check that attributes have not been removed or added.
    assert dir(r) == dir(Rest((1, 4)))
-   assert dir(n) == dir(Note(0, (1, 4)))
+   assert dir(n) == dir(Note("c'4"))
    assert n._parentage.parent is None
    assert n.duration.written == d
    assert isinstance(r, Rest)
@@ -131,7 +131,7 @@ def test_Note___init___12( ):
    n = Note(s)
    assert isinstance(n, Note)
    assert dir(s) == dir(skiptools.Skip((1, 4)))
-   assert dir(n) == dir(Note(0, (1, 4)))
+   assert dir(n) == dir(Note("c'4"))
    assert n._parentage.parent is None
    assert n.duration.written == d
 

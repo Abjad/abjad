@@ -11,5 +11,5 @@ def test_tietools_get_leaves_in_tie_chain_01( ):
 def test_tietools_get_leaves_in_tie_chain_02( ):
    '''Leaves from trivial tie chain.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    assert tietools.get_leaves_in_tie_chain(tietools.get_tie_chain(t)) == (t, )

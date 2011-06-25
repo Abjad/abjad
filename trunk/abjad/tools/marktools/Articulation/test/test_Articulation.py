@@ -18,7 +18,7 @@ def test_Articulation_01( ):
 def test_Articulation_02( ):
    '''Articulations have string and direction.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    a = marktools.Articulation('staccato')(t)
    assert a.name_string == 'staccato'
    assert a.direction_string == '-'
@@ -27,7 +27,7 @@ def test_Articulation_02( ):
 def test_Articulation_03( ):
    '''String can be set to None'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    a = marktools.Articulation( )(t)
    assert a.name_string is None
    assert str(a) == ''
@@ -36,7 +36,7 @@ def test_Articulation_03( ):
 def test_Articulation_04( ):
    '''Direction can be set to None.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    a = marktools.Articulation('staccato', None)(t)
    assert a.direction_string == '-'
    assert str(a) == r'-\staccato'
@@ -45,7 +45,7 @@ def test_Articulation_04( ):
 def test_Articulation_05( ):
    '''Direction can be set to up.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    a = marktools.Articulation('staccato', 'up')(t)
    assert a.direction_string == '^'
    assert str(a) == r'^\staccato'
@@ -58,7 +58,7 @@ def test_Articulation_05( ):
 def test_Articulation_06( ):
    '''Direction can be set to down.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    a = marktools.Articulation('staccato', 'down')(t)
    assert a.direction_string == '_'
    assert str(a) == r'_\staccato'
@@ -71,7 +71,7 @@ def test_Articulation_06( ):
 def test_Articulation_07( ):
    '''Direction can be set to default.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    a = marktools.Articulation('staccato')
    assert a.direction_string == '-'
    assert str(a) == r'-\staccato'
@@ -85,7 +85,7 @@ def test_Articulation_07( ):
 def test_Articulation_08( ):
    '''Shortcut strings are replaced with full word.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    a = marktools.Articulation('.')(t)
    assert a.name_string == '.'
    assert str(a) == r'-\staccato'

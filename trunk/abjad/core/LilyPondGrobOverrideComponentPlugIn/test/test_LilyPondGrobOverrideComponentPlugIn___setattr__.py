@@ -119,7 +119,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___06( ):
    '''Override LilyPond Clef grob.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.clef.color = 'red'
 
    r'''
@@ -134,7 +134,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___07( ):
    '''Override LilyPond Clef grob.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.staff.clef.color = 'red'
 
    assert t.format == "\\once \\override Staff.Clef #'color = #red\nc'4"
@@ -417,7 +417,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___19( ):
    '''Override LilyPond MultiMeasureRestGrob.
    '''
 
-   staff = Staff([Note(0, (1, 4))])
+   staff = Staff([Note("c'4")])
    staff.override.multi_measure_rest.expand_limit = 12
 
    r'''
@@ -461,7 +461,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___21( ):
    '''Override LilyPond NoteColumn grob.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.note_column.ignore_collision = True
 
    r'''
@@ -676,7 +676,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___33( ):
    '''Override LilyPond Script grob.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    marktools.Articulation('staccato')(t)
    t.override.script.color = 'red'
 
@@ -1022,7 +1022,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___47( ):
    '''Override LilyPond Tie grob.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.tie.color = 'red'
    assert t.format == "\\once \\override Tie #'color = #red\nc'4"
 

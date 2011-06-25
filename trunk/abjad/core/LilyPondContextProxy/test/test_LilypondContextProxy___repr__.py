@@ -6,7 +6,7 @@ def test_LilypondContextProxy___repr___01( ):
    '''LilyPond component proxy repr is evaluable.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.set.staff.tuplet_full_length = True
 
    context_proxy_1 = note.set.staff

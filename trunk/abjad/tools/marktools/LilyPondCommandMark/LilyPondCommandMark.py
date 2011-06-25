@@ -82,7 +82,7 @@ class LilyPondCommandMark(Mark):
    def format(self):
       '''Read-only LilyPond input format of LilyPond command mark::
 
-         abjad> note = Note(0, (1, 4))
+         abjad> note = Note("c'4")
          abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
          abjad> lilypond_command.format
          '\\slurDotted'

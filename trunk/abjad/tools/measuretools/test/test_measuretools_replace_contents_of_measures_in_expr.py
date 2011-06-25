@@ -107,7 +107,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_03( ):
    '''Raise MissingMeasureError when input expression 
    contains no measures.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    notes = [Note("c'8"), Note("d'8")]
 
    assert py.test.raises(MissingMeasureError, 'measuretools.replace_contents_of_measures_in_expr(t, notes)')

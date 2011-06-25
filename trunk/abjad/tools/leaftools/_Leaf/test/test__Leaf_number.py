@@ -38,7 +38,7 @@ def test__Leaf_number_03( ):
 def test__Leaf_number_04( ):
    '''Orphan leaves number correctly.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    assert t.number == 0
 
 

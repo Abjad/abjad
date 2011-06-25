@@ -3,7 +3,7 @@ from abjad import *
 
 def test_LilyPondGrobOverrideComponentPlugIn___delattr___01( ):
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    note.override.accidental.color = 'red'
    note.override.beam.positions = (-6, -6)
    note.override.dots.thicknes = 2
@@ -50,7 +50,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___03( ):
    '''Delete LilyPond TimeSignature grob override.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.time_signature.color = 'red'
    t.override.time_signature.transparent = True
    del(t.override.time_signature)

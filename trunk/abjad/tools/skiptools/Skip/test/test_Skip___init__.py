@@ -66,7 +66,7 @@ def test_Skip___init___06( ):
    s = skiptools.Skip(n)
    assert isinstance(s, skiptools.Skip)
    # check that attributes have not been removed or added.
-   assert dir(n) == dir(Note(0, (1, 4)))
+   assert dir(n) == dir(Note("c'4"))
    assert dir(s) == dir(skiptools.Skip((1, 4)))
    assert s.format == 's8'
    assert s._parentage.parent is None

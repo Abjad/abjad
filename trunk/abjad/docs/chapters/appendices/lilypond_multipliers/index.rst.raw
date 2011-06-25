@@ -7,7 +7,7 @@ against notes, rests, chords and skips.
 You can assign LilyPond multipliers in Abjad:
 
 <abjad>
-note = Note(0, (1, 4))
+note = Note("c'4")
 note.duration.multiplier = Fraction(1, 6)
 </abjad>
 

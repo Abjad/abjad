@@ -5,7 +5,7 @@ def test_SchemeColor___init___01( ):
    '''Init scheme color with string.
    '''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.note_head.color = schemetools.SchemeColor('ForestGreen')
 
    r'''
@@ -19,7 +19,7 @@ def test_SchemeColor___init___01( ):
 def test_SchemeColor___init___02( ):
    '''Normal (non-X11) color names specify with a string.'''
    
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    t.override.note_head.color = 'grey'
 
    r'''

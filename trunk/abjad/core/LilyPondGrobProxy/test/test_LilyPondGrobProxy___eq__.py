@@ -4,15 +4,15 @@ import copy
 
 def test_LilyPondGrobProxy___eq___01( ):
 
-   note_1 = Note(0, (1, 4))
+   note_1 = Note("c'4")
    note_1.override.note_head.color = 'red'
    note_1.override.note_head.thickness = 2
 
-   note_2 = Note(0, (1, 4))
+   note_2 = Note("c'4")
    note_2.override.note_head.color = 'red'
    note_2.override.note_head.thickness = 2
 
-   note_3 = Note(0, (1, 4))
+   note_3 = Note("c'4")
    note_3.override.note_head.color = 'blue'
 
    grob_proxy_1 = note_1.override.note_head

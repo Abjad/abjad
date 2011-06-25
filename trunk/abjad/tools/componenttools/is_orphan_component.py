@@ -6,7 +6,7 @@ def is_orphan_component(component):
 
    True when `component` has no parent. Otherwise false::
 
-      abjad> note = Note(0, (1, 4))
+      abjad> note = Note("c'4")
       abjad> componenttools.is_orphan_component(note)
       True
    

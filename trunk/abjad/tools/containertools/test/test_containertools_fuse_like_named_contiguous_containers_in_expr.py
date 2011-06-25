@@ -136,7 +136,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09( ):
    staff groups within a single container.
    '''
 
-   v1 = Voice(Note(0, (1, 4))*2)
+   v1 = Voice(Note("c'4")*2)
    v1.name = '1'
    v2 = Voice(Note(2, (1, 4))*2)
    v2.name = '2'

@@ -10,14 +10,14 @@ def test_leaftools_fuse_leaves_big_endian_01( ):
 
 def test_leaftools_fuse_leaves_big_endian_02( ):
    '''Works with Leaf component.'''
-   fused = leaftools.fuse_leaves_big_endian([Note(0, (1, 4))])
+   fused = leaftools.fuse_leaves_big_endian([Note("c'4")])
    assert len(fused) == 1 
    assert fused[0].duration.written == Duration(1, 4) 
 
 
 def test_leaftools_fuse_leaves_big_endian_03( ):
    '''Works with containers.'''
-   t = Voice(Note(0, (1, 4)) * 8)
+   t = Voice(Note("c'4") * 8)
    fused = leaftools.fuse_leaves_big_endian(t[:])
    assert len(fused) == 1 
    assert fused[0].duration.written == 2 

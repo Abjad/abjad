@@ -5,7 +5,7 @@ def test_Container_index_01( ):
    '''Elements that compare equal return different indices in container.
    '''
 
-   container = Container(4 * Note(0, (1, 4)))
+   container = Container(4 * Note("c'4"))
    
    assert container.index(container[0]) == 0
    assert container.index(container[1]) == 1

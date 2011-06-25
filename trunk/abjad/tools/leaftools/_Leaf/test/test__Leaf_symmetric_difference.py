@@ -86,10 +86,10 @@ def test__Leaf_symmetric_difference_07( ):
 def test__Leaf_symmetric_difference_08( ):
    '''Rest in symmetric difference with note produces note.'''
    t = Rest((1, 4))
-   u = Note(0, (1, 4))
+   u = Note("c'4")
    v = t ^ u
    assert isinstance(v, Note)
-   #assert v == Note(0, (1, 4))
+   #assert v == Note("c'4")
    assert v.pitch == 0
    assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
@@ -97,8 +97,8 @@ def test__Leaf_symmetric_difference_08( ):
 
 def test__Leaf_symmetric_difference_09( ):
    '''Note in symmetric difference with like pitched note produces rest.'''
-   t = Note(0, (1, 4))
-   u = Note(0, (1, 4))
+   t = Note("c'4")
+   u = Note("c'4")
    v = t ^ u
    assert isinstance(v, Rest)
    #assert v == Rest((1, 4))
@@ -108,7 +108,7 @@ def test__Leaf_symmetric_difference_09( ):
 
 def test__Leaf_symmetric_difference_10( ):
    '''Note in symmetric difference with differently pitched note produces chord.'''
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    u = Note(2, (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
@@ -133,7 +133,7 @@ def test__Leaf_symmetric_difference_11( ):
 def test__Leaf_symmetric_difference_12( ):
    '''Chord in symmetric difference with like pitched note removes shared note.'''
    t = Chord([0, 2], (1, 4))
-   u = Note(0, (1, 4))
+   u = Note("c'4")
    v = t ^ u
    assert isinstance(v, Note)
    #assert v == Note(2, (1, 4))

@@ -104,7 +104,7 @@ def test_leaftools__split_leaf_at_duration_03( ):
 def test_leaftools__split_leaf_at_duration_04( ):
    '''Split duration equal to zero produces no change.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
 
    halves = _split_leaf_at_duration(t, Duration(0))
    left, right = halves
@@ -119,7 +119,7 @@ def test_leaftools__split_leaf_at_duration_04( ):
 def test_leaftools__split_leaf_at_duration_05( ):
    '''Leaf duration less than split duration produces no change.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
 
    halves = _split_leaf_at_duration(t, Duration(3, 4))
    left, right = halves
@@ -134,7 +134,7 @@ def test_leaftools__split_leaf_at_duration_05( ):
 def test_leaftools__split_leaf_at_duration_06( ):
    '''Split returns two lists of zero or more leaves.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    halves = _split_leaf_at_duration(t, Duration(1, 8))
 
    assert isinstance(halves, tuple)
@@ -154,7 +154,7 @@ def test_leaftools__split_leaf_at_duration_06( ):
 def test_leaftools__split_leaf_at_duration_07( ):
    '''Split returns two lists of zero or more.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    halves = _split_leaf_at_duration(t, Duration(1, 16))
 
    assert isinstance(halves, tuple)
@@ -172,7 +172,7 @@ def test_leaftools__split_leaf_at_duration_08( ):
       Left list contains two notes tied together.
       Right list contains only one note.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    halves = _split_leaf_at_duration(t, Duration(5, 32))
 
    assert isinstance(halves, tuple)
@@ -197,7 +197,7 @@ def test_leaftools__split_leaf_at_duration_08( ):
 def test_leaftools__split_leaf_at_duration_09( ):
    '''Lone spanned Leaf results in two spanned leaves.'''
 
-   t = Staff([Note(0, (1, 4))])
+   t = Staff([Note("c'4")])
    s = tietools.TieSpanner(t.leaves)
    halves = _split_leaf_at_duration(t[0], Duration(1, 8))
 
@@ -227,7 +227,7 @@ def test_leaftools__split_leaf_at_duration_11( ):
    '''Split returns three leaves, two are tied.
       Spanner is shared by all 3 leaves.'''
 
-   t = Staff([Note(0, (1, 4))])
+   t = Staff([Note("c'4")])
    s = tietools.TieSpanner(t.leaves)
    halves = _split_leaf_at_duration(t[0], Duration(5, 32))
 
@@ -276,7 +276,7 @@ def test_leaftools__split_leaf_at_duration_13( ):
 def test_leaftools__split_leaf_at_duration_14( ):
    '''After grace notes are removed from first leaf in bipartition.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    gracetools.Grace([Note(0, (1, 32))], kind = 'after')(t)
    halves = _split_leaf_at_duration(t, Duration(1, 8))
 
@@ -287,7 +287,7 @@ def test_leaftools__split_leaf_at_duration_14( ):
 def test_leaftools__split_leaf_at_duration_15( ):
    '''After grace notes are removed from first tied leaves in bipartition.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    gracetools.Grace([Note(0, (1, 32))], kind = 'after')(t)
    halves = _split_leaf_at_duration(t, Duration(5, 32))
 
@@ -301,7 +301,7 @@ def test_leaftools__split_leaf_at_duration_15( ):
 def test_leaftools__split_leaf_at_duration_16( ):
    '''Grace notes are removed from second leaf in bipartition.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    gracetools.Grace([Note(0, (1, 32))])(t)
    halves = _split_leaf_at_duration(t, Duration(1, 16))
 

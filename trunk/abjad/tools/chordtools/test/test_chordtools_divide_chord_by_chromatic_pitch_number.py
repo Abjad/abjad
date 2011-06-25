@@ -86,13 +86,13 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_06( ):
    '''Single note below pitch number split point.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    pitch = pitchtools.NamedChromaticPitch('f', 4)
    treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
    assert isinstance(treble, Rest)
    assert treble.format == Rest((1, 4)).format
    assert isinstance(bass, Note)
-   assert bass.format == Note(0, (1, 4)).format
+   assert bass.format == Note("c'4").format
    assert note is not treble
    assert note is not bass
    assert treble is not bass
@@ -102,11 +102,11 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_07( ):
    '''Single note at pitch number split point.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    pitch = pitchtools.NamedChromaticPitch('c', 4)
    treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
    assert isinstance(treble, Note)
-   assert treble.format == Note(0, (1, 4)).format
+   assert treble.format == Note("c'4").format
    assert isinstance(bass, Rest)
    assert bass.format == Rest((1, 4)).format
    assert note is not treble
@@ -118,11 +118,11 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_08( ):
    '''Single note above pitch number split point.
    '''
 
-   note = Note(0, (1, 4))
+   note = Note("c'4")
    pitch = pitchtools.NamedChromaticPitch('f', 3)
    treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
    assert isinstance(treble, Note)
-   assert treble.format == Note(0, (1, 4)).format
+   assert treble.format == Note("c'4").format
    assert isinstance(bass, Rest)
    assert bass.format == Rest((1, 4)).format
    assert note is not treble

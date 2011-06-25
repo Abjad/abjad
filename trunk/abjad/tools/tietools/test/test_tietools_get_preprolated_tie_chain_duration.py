@@ -12,5 +12,5 @@ def test_tietools_get_preprolated_tie_chain_duration_01( ):
 def test_tietools_get_preprolated_tie_chain_duration_02( ):
    '''Works on trivial tie chains.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    assert tietools.get_preprolated_tie_chain_duration(tietools.get_tie_chain(t)) == Duration(1, 4)

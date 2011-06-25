@@ -44,7 +44,7 @@ def test_LilyPondCommandMark_format_02( ):
 def test_LilyPondCommandMark_format_03( ):
    '''Barline after leaf.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    marktools.LilyPondCommandMark(r'bar "|."', 'after')(t)
 
    r'''
@@ -93,7 +93,7 @@ def test_LilyPondCommandMark_format_05( ):
 def test_LilyPondCommandMark_format_06( ):
    '''Add a natural harmonic.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    marktools.LilyPondCommandMark('flageolet', 'right')(t)
    assert t.format == "c'4 \\flageolet"
 
@@ -101,7 +101,7 @@ def test_LilyPondCommandMark_format_06( ):
 def test_LilyPondCommandMark_format_07( ):
    '''Add and then remove natural harmonic.'''
 
-   t = Note(0, (1, 4))
+   t = Note("c'4")
    marktools.LilyPondCommandMark('flageolet', 'right')(t)
    marktools.detach_lilypond_command_marks_attached_to_component(t, 'flageolet')
    assert t.format == "c'4"
@@ -109,7 +109,7 @@ def test_LilyPondCommandMark_format_07( ):
 
 def test_LilyPondCommandMark_format_08( ):
 
-   staff = Staff([Note(0, (1, 4))])
+   staff = Staff([Note("c'4")])
    marktools.LilyPondCommandMark('compressFullBarRests')(staff[0])
 
    r'''
@@ -124,7 +124,7 @@ def test_LilyPondCommandMark_format_08( ):
 
 def test_LilyPondCommandMark_format_09( ):
 
-   staff = Staff([Note(0, (1, 4))])
+   staff = Staff([Note("c'4")])
    marktools.LilyPondCommandMark('expandFullBarRests')(staff[0])
 
    r'''
