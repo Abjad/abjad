@@ -1059,11 +1059,7 @@ layouttools
 .. toctree::
    :maxdepth: 1
 
-   tools/layouttools/FixedStaffPositioning/FixedStaffPositioning
-   tools/layouttools/LayoutSchema/LayoutSchema
    tools/layouttools/SpacingIndication/SpacingIndication
-   tools/layouttools/StaffAlignmentDistances/StaffAlignmentDistances
-   tools/layouttools/SystemYOffsets/SystemYOffsets
    tools/layouttools/make_spacing_vector
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
