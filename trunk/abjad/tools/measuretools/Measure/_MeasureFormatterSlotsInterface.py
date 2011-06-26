@@ -14,22 +14,16 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def slot_2(self):
-      '''Optional start-of-measure numbering indicator. Open bracket.
-      '''
-      result = [ ]
-      formatter = self._client
-      measure = formatter._client
-## FIXME ##
-#      contribution = formatter.number._measure_contribution
-#      if contribution == 'comment':
-#         contributor = (formatter.number, '_measure_contribution')
-#         contributions = ['%% start measure %s' % measure.number]
-#         result.append([contributor, contributions])
-      brackets = _ContainerFormatterSlotsInterface.slot_2.fget(self) 
-      result.extend(brackets)
-      return tuple(result)
+#   @property
+#   def slot_2(self):
+#      '''Optional start-of-measure numbering indicator. Open bracket.
+#      '''
+#      result = [ ]
+#      formatter = self._client
+#      measure = formatter._client
+#      brackets = _ContainerFormatterSlotsInterface.slot_2.fget(self) 
+#      result.extend(brackets)
+#      return tuple(result)
 
    @property
    def slot_3(self):
@@ -59,7 +53,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       '''
       result = [ ]
       measure = self.formatter.container
-      result.append(self._wrap_bar_line_interface_overrides( ))
+      #result.append(self._wrap_bar_line_interface_overrides( ))
       result.append(self._wrap_measure_interface_reverts( ))
       result.append([('lilypond_command_marks', 'lilypond_command_marks'),
          _get_lilypond_command_mark_format_contributions_for_slot(measure, 'closing')])
@@ -70,41 +64,35 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       self._indent_slot_contributions(result)
       return tuple(result)
 
-   @property
-   def slot_6(self):
-      '''Close bracket. Optional end-of-measure numbering indicator.
-      '''
-      result = [ ]
-      formatter = self._client
-      measure = formatter._client
-      brackets = _ContainerFormatterSlotsInterface.slot_6.fget(self)
-      result.extend(brackets)
-## FIXME ##
-#      contribution = formatter.number._measure_contribution
-#      if contribution == 'comment':
-#         contributor = (formatter.number, '_measure_contribution')
-#         contributions = ['%% stop measure %s' % measure.number]
-#         result.append([contributor, contributions])
-      return tuple(result)
+#   @property
+#   def slot_6(self):
+#      '''Close bracket. Optional end-of-measure numbering indicator.
+#      '''
+#      result = [ ]
+#      formatter = self._client
+#      measure = formatter._client
+#      brackets = _ContainerFormatterSlotsInterface.slot_6.fget(self)
+#      result.extend(brackets)
+#      return tuple(result)
 
    ## PRIVATE METHODS ##
 
-   ## FIXME: make work with new grob override pattern ##
-   def _wrap_bar_line_interface_overrides(self):
-      measure = self.formatter.container
-      bar_line_overrides = [ ]
-      ## FIXME ##
-      #bar_line_overrides.extend(measure.override.bar_line._overrides)
-      #bar_line_overrides.extend(measure.override.span_bar._overrides)
-      return [('BarLine / SpanBar', 'overrides'), bar_line_overrides]
+#   ## FIXME: make work with new grob override pattern ##
+#   def _wrap_bar_line_interface_overrides(self):
+#      measure = self.formatter.container
+#      bar_line_overrides = [ ]
+#      ## FIXME ##
+#      #bar_line_overrides.extend(measure.override.bar_line._overrides)
+#      #bar_line_overrides.extend(measure.override.span_bar._overrides)
+#      return [('BarLine / SpanBar', 'overrides'), bar_line_overrides]
       
    def _wrap_measure_interface_overrides(self):
       '''To allow filtering out of BarLine overrides.'''
       result = [('overrides', 'overrides'),
          _get_grob_override_format_contributions(self._client._client)]
-      override_list = result[-1]
-      override_list = [x for x in override_list if 'BarLine' not in x and 'SpanBar' not in x]
-      result[-1] = override_list
+#      override_list = result[-1]
+#      override_list = [x for x in override_list if 'BarLine' not in x and 'SpanBar' not in x]
+#      result[-1] = override_list
       return result
 
    def _wrap_measure_interface_reverts(self):
@@ -112,7 +100,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       '''
       result = [('reverts', 'reverts'),
          _get_grob_revert_format_contributions(self._client._client)]
-      override_list = result[-1]
-      override_list = [x for x in override_list if 'BarLine' not in x and 'SpanBar' not in x]
-      result[-1] = override_list
+#      override_list = result[-1]
+#      override_list = [x for x in override_list if 'BarLine' not in x and 'SpanBar' not in x]
+#      result[-1] = override_list
       return result
