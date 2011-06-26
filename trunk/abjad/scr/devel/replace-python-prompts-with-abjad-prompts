@@ -1,1 +1,1 @@
-replace-in-files . ' abjad> ' ' abjad> ' false
+replace-in-files . ' >>> ' ' abjad> ' false
