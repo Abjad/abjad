@@ -1,10 +1,10 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_intervals import _make_test_intervals
 
 
 def test_IntervalTree_high_max_01( ):
    '''high_max returns maximum high value of all intervals in tree.'''
-   blocks = _make_test_blocks( )
+   blocks = _make_test_intervals( )
    for i in range(len(blocks)):
       blocks.append(blocks.pop(0))
       tree = IntervalTree(blocks)

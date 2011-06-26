@@ -1,9 +1,9 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_intervals import _make_test_intervals
 
 
 def test_treetools_explode_intervals_into_n_trees_heuristically_01( ):
-   tree = IntervalTree(_make_test_blocks( ))
+   tree = IntervalTree(_make_test_intervals( ))
    n = 1
    result = explode_intervals_into_n_trees_heuristically(tree, n)
    assert result == \
@@ -25,7 +25,7 @@ def test_treetools_explode_intervals_into_n_trees_heuristically_01( ):
       assert all([all_intervals_are_nonoverlapping(x) for x in result])
 
 def test_treetools_explode_intervals_into_n_trees_heuristically_02( ):
-   tree = IntervalTree(_make_test_blocks( ))
+   tree = IntervalTree(_make_test_intervals( ))
    n = 2
    result = explode_intervals_into_n_trees_heuristically(tree, n)
    assert result == \
@@ -49,7 +49,7 @@ def test_treetools_explode_intervals_into_n_trees_heuristically_02( ):
 
 
 def test_treetools_explode_intervals_into_n_trees_heuristically_03( ):
-   tree = IntervalTree(_make_test_blocks( ))
+   tree = IntervalTree(_make_test_intervals( ))
    n = 3
    result = explode_intervals_into_n_trees_heuristically(tree, n)
    assert result == \

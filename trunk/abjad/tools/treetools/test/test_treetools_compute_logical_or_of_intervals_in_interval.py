@@ -1,9 +1,7 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_intervals import _make_test_intervals
 import py.test
 
-
-py.test.skip('Being re-implemented.')
 
 def test_treetools_compute_logical_or_of_intervals_in_interval_01( ):
    a = BoundedInterval(0, 3)
@@ -12,7 +10,7 @@ def test_treetools_compute_logical_or_of_intervals_in_interval_01( ):
    tree = IntervalTree([a, b, c])
    d = BoundedInterval(1, 14)
    logic = compute_logical_or_of_intervals_in_interval(tree, d)
-   assert [x.signature for x in logic] == [(1, 3), (6, 14)]
+   assert [x.signature for x in logic] == [(1, 3), (6, 9), (9, 12), (12, 14)]
 
 def test_treetools_compute_logical_or_of_intervals_in_interval_02( ):
    a = BoundedInterval(0, 3)
@@ -21,7 +19,7 @@ def test_treetools_compute_logical_or_of_intervals_in_interval_02( ):
    tree = IntervalTree([a, b, c])
    d = BoundedInterval(-1, 16)
    logic = compute_logical_or_of_intervals_in_interval(tree, d)
-   assert [x.signature for x in logic] == [(0, 3), (6, 15)]
+   assert [x.signature for x in logic] == [(0, 3), (6, 9), (9, 12), (12, 15)]
 
 def test_treetools_compute_logical_or_of_intervals_in_interval_03( ):
    a = BoundedInterval(0, 3)

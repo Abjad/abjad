@@ -1,16 +1,16 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_intervals import _make_test_intervals
 
 
 def test_IntervalTree___eq___01( ):
-   a = IntervalTree(_make_test_blocks( ))
-   b = IntervalTree(_make_test_blocks( ))
+   a = IntervalTree(_make_test_intervals( ))
+   b = IntervalTree(_make_test_intervals( ))
    assert a == b
 
 
 def test_IntervalTree___eq___02( ):
-   a = IntervalTree(_make_test_blocks( ))
-   b = IntervalTree(_make_test_blocks( )[:-1])
+   a = IntervalTree(_make_test_intervals( ))
+   b = IntervalTree(_make_test_intervals( )[:-1])
    assert a != b
 
 

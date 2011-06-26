@@ -1,5 +1,5 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_intervals import _make_test_intervals
 
 
 def test_treetools_compute_depth_of_intervals_in_interval_01( ):

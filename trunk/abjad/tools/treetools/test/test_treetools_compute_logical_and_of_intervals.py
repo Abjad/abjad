@@ -1,14 +1,13 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_intervals import _make_test_intervals
 import py.test
 
 
-py.test.skip('Being re-implemented.')
-
 def test_treetools_compute_logical_and_of_intervals_01( ):
-   tree = IntervalTree(_make_test_blocks( ))
+   tree = IntervalTree(_make_test_intervals( ))
    logical_and = compute_logical_and_of_intervals(tree)
-   target_signatures = [(6, 10), (16, 21), (26, 29)]
+   target_signatures = [(6, 8), (8, 9), (9, 10), (16, 17), 
+      (17, 19), (19, 20), (20, 21), (26, 29)]
    actual_signatures = [interval.signature for interval in logical_and]
    assert actual_signatures == target_signatures
 

@@ -1,10 +1,10 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_intervals import _make_test_intervals
 import py.test
 
 
 def test_treetools_group_overlapping_intervals_and_yield_groups_01( ):
-   tree = IntervalTree(_make_test_blocks( ))
+   tree = IntervalTree(_make_test_intervals( ))
 
    target_signatures = [ 
       [(0, 3)],

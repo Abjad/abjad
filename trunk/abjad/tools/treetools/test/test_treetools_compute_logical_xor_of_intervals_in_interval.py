@@ -1,9 +1,7 @@
 from abjad.tools.treetools import *
-from abjad.tools.treetools._make_test_blocks import _make_test_blocks
+from abjad.tools.treetools._make_test_intervals import _make_test_intervals
 import py.test
 
-
-py.test.skip('Being re-implemented.')
 
 def test_treetools_compute_logical_xor_of_intervals_in_interval_01( ):
    a = BoundedInterval(0, 3)

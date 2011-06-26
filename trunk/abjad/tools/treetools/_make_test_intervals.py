@@ -1,7 +1,7 @@
 from abjad.tools.treetools import BoundedInterval
 
 
-def _make_test_blocks( ):
+def _make_test_intervals( ):
 
    return [
       BoundedInterval(0, 3,   {'a': 1}),
