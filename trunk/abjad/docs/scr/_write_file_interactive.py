@@ -6,6 +6,17 @@ def _write_file_interactive(content, file, interactive):
       input = 'Y'
    if input.lower( ) in ('y', ''):
       #print 'Writing file %s ...' % file
-      listing_file = open(file, 'w')
-      listing_file.write(content)
-      listing_file.close( )
+      # if file already exists,
+      # do not overwrite unless content has changed.
+      try:
+         prev_file = open(file, 'r')
+         prev_content = prev_file.read( )
+         prev_file.close( )
+         if content != prev_content:
+            listing_file = open(file, 'w')
+            listing_file.write(content)
+            listing_file.close( )
+      except:
+         listing_file = open(file, 'w')
+         listing_file.write(content)
+         listing_file.close( )

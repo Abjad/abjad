@@ -63,6 +63,7 @@ def make_sphinx_toc( ):
    manual_loading_tools_names = (
       'cfgtools',
       'durtools',
+      'intervaltreetools', 
       'iotools',
       'layouttools',
       'mathtools',
@@ -75,7 +76,6 @@ def make_sphinx_toc( ):
       'tempotools',
       'threadtools',
       'tonalitytools', 
-      'treetools', 
       'verticalitytools',
       )
    for dictionary in tools[:]:

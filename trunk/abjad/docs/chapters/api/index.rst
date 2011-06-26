@@ -968,6 +968,63 @@ durtools
    tools/durtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
 
 
+intervaltreetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/intervaltreetools/BoundedInterval/BoundedInterval
+   tools/intervaltreetools/IntervalTree/IntervalTree
+   tools/intervaltreetools/all_are_intervals_or_trees_or_empty
+   tools/intervaltreetools/all_intervals_are_contiguous
+   tools/intervaltreetools/all_intervals_are_nonoverlapping
+   tools/intervaltreetools/calculate_density_of_attacks_in_interval
+   tools/intervaltreetools/calculate_density_of_releases_in_interval
+   tools/intervaltreetools/calculate_depth_centroid_of_intervals
+   tools/intervaltreetools/calculate_depth_centroid_of_intervals_in_interval
+   tools/intervaltreetools/calculate_depth_density_of_intervals
+   tools/intervaltreetools/calculate_depth_density_of_intervals_in_interval
+   tools/intervaltreetools/calculate_mean_attack_of_intervals
+   tools/intervaltreetools/calculate_mean_release_of_intervals
+   tools/intervaltreetools/calculate_min_mean_and_max_depth_of_intervals
+   tools/intervaltreetools/calculate_min_mean_and_max_magnitude_of_intervals
+   tools/intervaltreetools/calculate_sustain_centroid_of_intervals
+   tools/intervaltreetools/clip_interval_magnitudes_to_range
+   tools/intervaltreetools/compute_depth_of_intervals
+   tools/intervaltreetools/compute_depth_of_intervals_in_interval
+   tools/intervaltreetools/compute_logical_and_of_intervals
+   tools/intervaltreetools/compute_logical_and_of_intervals_in_interval
+   tools/intervaltreetools/compute_logical_not_of_intervals
+   tools/intervaltreetools/compute_logical_not_of_intervals_in_interval
+   tools/intervaltreetools/compute_logical_or_of_intervals
+   tools/intervaltreetools/compute_logical_or_of_intervals_in_interval
+   tools/intervaltreetools/compute_logical_xor_of_intervals
+   tools/intervaltreetools/compute_logical_xor_of_intervals_in_interval
+   tools/intervaltreetools/concatenate_trees
+   tools/intervaltreetools/explode_intervals_compactly
+   tools/intervaltreetools/explode_intervals_into_n_trees_heuristically
+   tools/intervaltreetools/explode_intervals_uncompactly
+   tools/intervaltreetools/fuse_overlapping_intervals
+   tools/intervaltreetools/fuse_tangent_or_overlapping_intervals
+   tools/intervaltreetools/get_all_unique_bounds_in_intervals
+   tools/intervaltreetools/group_overlapping_intervals_and_yield_groups
+   tools/intervaltreetools/group_tangent_or_overlapping_intervals_and_yield_groups
+   tools/intervaltreetools/make_monophonic_percussion_score_from_nonoverlapping_intervals
+   tools/intervaltreetools/make_polyphonic_percussion_score_from_nonoverlapping_trees
+   tools/intervaltreetools/mask_intervals_with_intervals
+   tools/intervaltreetools/resolve_overlaps_between_nonoverlapping_trees
+   tools/intervaltreetools/resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational
+   tools/intervaltreetools/round_interval_bounds_to_nearest_multiple_of_rational
+   tools/intervaltreetools/scale_aggregate_magnitude_by_rational
+   tools/intervaltreetools/scale_aggregate_magnitude_to_rational
+   tools/intervaltreetools/scale_interval_magnitudes_by_rational
+   tools/intervaltreetools/scale_interval_magnitudes_to_rational
+   tools/intervaltreetools/scale_interval_offsets_by_rational
+   tools/intervaltreetools/shift_aggregate_offset_by_rational
+   tools/intervaltreetools/shift_aggregate_offset_to_rational
+   tools/intervaltreetools/split_intervals_at_rationals
+
+
 iotools
 
 .. toctree::
@@ -1299,63 +1356,6 @@ tonalitytools
    tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
    tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
    tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
-
-
-treetools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/treetools/BoundedInterval/BoundedInterval
-   tools/treetools/IntervalTree/IntervalTree
-   tools/treetools/all_are_intervals_or_trees_or_empty
-   tools/treetools/all_intervals_are_contiguous
-   tools/treetools/all_intervals_are_nonoverlapping
-   tools/treetools/calculate_density_of_attacks_in_interval
-   tools/treetools/calculate_density_of_releases_in_interval
-   tools/treetools/calculate_depth_centroid_of_intervals
-   tools/treetools/calculate_depth_centroid_of_intervals_in_interval
-   tools/treetools/calculate_depth_density_of_intervals
-   tools/treetools/calculate_depth_density_of_intervals_in_interval
-   tools/treetools/calculate_mean_attack_of_intervals
-   tools/treetools/calculate_mean_release_of_intervals
-   tools/treetools/calculate_min_mean_and_max_depth_of_intervals
-   tools/treetools/calculate_min_mean_and_max_magnitude_of_intervals
-   tools/treetools/calculate_sustain_centroid_of_intervals
-   tools/treetools/clip_interval_magnitudes_to_range
-   tools/treetools/compute_depth_of_intervals
-   tools/treetools/compute_depth_of_intervals_in_interval
-   tools/treetools/compute_logical_and_of_intervals
-   tools/treetools/compute_logical_and_of_intervals_in_interval
-   tools/treetools/compute_logical_not_of_intervals
-   tools/treetools/compute_logical_not_of_intervals_in_interval
-   tools/treetools/compute_logical_or_of_intervals
-   tools/treetools/compute_logical_or_of_intervals_in_interval
-   tools/treetools/compute_logical_xor_of_intervals
-   tools/treetools/compute_logical_xor_of_intervals_in_interval
-   tools/treetools/concatenate_trees
-   tools/treetools/explode_intervals_compactly
-   tools/treetools/explode_intervals_into_n_trees_heuristically
-   tools/treetools/explode_intervals_uncompactly
-   tools/treetools/fuse_overlapping_intervals
-   tools/treetools/fuse_tangent_or_overlapping_intervals
-   tools/treetools/get_all_unique_bounds_in_intervals
-   tools/treetools/group_overlapping_intervals_and_yield_groups
-   tools/treetools/group_tangent_or_overlapping_intervals_and_yield_groups
-   tools/treetools/make_monophonic_percussion_score_from_nonoverlapping_intervals
-   tools/treetools/make_polyphonic_percussion_score_from_nonoverlapping_trees
-   tools/treetools/mask_intervals_with_intervals
-   tools/treetools/resolve_overlaps_between_nonoverlapping_trees
-   tools/treetools/resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational
-   tools/treetools/round_interval_bounds_to_nearest_multiple_of_rational
-   tools/treetools/scale_aggregate_magnitude_by_rational
-   tools/treetools/scale_aggregate_magnitude_to_rational
-   tools/treetools/scale_interval_magnitudes_by_rational
-   tools/treetools/scale_interval_magnitudes_to_rational
-   tools/treetools/scale_interval_offsets_by_rational
-   tools/treetools/shift_aggregate_offset_by_rational
-   tools/treetools/shift_aggregate_offset_to_rational
-   tools/treetools/split_intervals_at_rationals
 
 
 verticalitytools
