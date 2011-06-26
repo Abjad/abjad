@@ -154,6 +154,32 @@ class _Component(_StrictComparator):
 
    ## MANGLED METHODS ##
 
+   def __update_leaf_indices_and_measure_numbers_in_score_tree(self):
+      '''Called only when updating prolated offset of score compoennts.
+      No separate state flags for leaf indices or measure numbers.
+      '''
+      from abjad.tools import componenttools
+      from abjad.tools import contexttools
+      from abjad.tools import leaftools
+      from abjad.tools import measuretools
+      from abjad.tools.contexttools._Context import _Context
+      score_root = componenttools.component_to_score_root(self)
+      if isinstance(score_root, _Context):
+         for context in contexttools.iterate_contexts_forward_in_expr(score_root):
+            for leaf_index, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(context)):
+               leaf._leaf_index = leaf_index
+            for measure_index, measure in enumerate(
+               measuretools.iterate_measures_forward_in_expr(context)):
+               measure_number = measure_index + 1
+               measure._measure_number = measure_number
+      else:
+         for leaf_index, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(score_root)):
+            leaf._leaf_index = leaf_index
+         for measure_index, measure in enumerate(
+            measuretools.iterate_measures_forward_in_expr(score_root)):
+            measure_number = measure_index + 1
+            measure._measure_number = measure_number
+
    def __update_marks_of_entire_score_tree(self):
       '''Updating marks does not cause prolated offset values to update.
       On the other hand, getting effective mark causes prolated offset values
@@ -186,6 +212,27 @@ class _Component(_StrictComparator):
    def _allow_component_update(self):
       self._is_forbidden_to_update = False
 
+   def _forbid_component_update(self):
+      self._is_forbidden_to_update = True
+
+   def _get_score_tree_state_flags(self):
+      from abjad.tools import componenttools
+      prolated_offset_values_are_current = True
+      marks_are_current = True
+      offset_values_in_seconds_are_current = True
+      for component in componenttools.get_improper_parentage_of_component(self):
+         if prolated_offset_values_are_current:
+            if not component._prolated_offset_values_are_current:
+               prolated_offset_values_are_current = False
+         if marks_are_current:
+            if not component._marks_are_current:
+               marks_are_current = False
+         if offset_values_in_seconds_are_current:
+            if not component._offset_values_in_seconds_are_current:
+               offset_values_in_seconds_are_current = False
+      return (prolated_offset_values_are_current, marks_are_current,
+         offset_values_in_seconds_are_current)
+
    def _iterate_score_components_depth_first(self):
       from abjad.tools import componenttools
       score_root = componenttools.component_to_score_root(self)
@@ -211,27 +258,6 @@ class _Component(_StrictComparator):
          if hasattr(component, '_time_signature_is_current'):
             component._time_signature_is_current = False
 
-   def _forbid_component_update(self):
-      self._is_forbidden_to_update = True
-
-   def _get_score_tree_state_flags(self):
-      from abjad.tools import componenttools
-      prolated_offset_values_are_current = True
-      marks_are_current = True
-      offset_values_in_seconds_are_current = True
-      for component in componenttools.get_improper_parentage_of_component(self):
-         if prolated_offset_values_are_current:
-            if not component._prolated_offset_values_are_current:
-               prolated_offset_values_are_current = False
-         if marks_are_current:
-            if not component._marks_are_current:
-               marks_are_current = False
-         if offset_values_in_seconds_are_current:
-            if not component._offset_values_in_seconds_are_current:
-               offset_values_in_seconds_are_current = False
-      return (prolated_offset_values_are_current, marks_are_current,
-         offset_values_in_seconds_are_current)
-
    def _update_marks_of_entire_score_tree_if_necessary(self):
       '''Call immediately BEFORE READING effective mark.
       '''
@@ -250,3 +276,4 @@ class _Component(_StrictComparator):
       prolated_offset_values_are_current = state_flags[0]
       if not prolated_offset_values_are_current:
          self.__update_prolated_offset_values_of_entire_score_tree( )
+         self.__update_leaf_indices_and_measure_numbers_in_score_tree( )

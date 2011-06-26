@@ -32,12 +32,13 @@ class Measure(Container):
    Return measure object.
    '''
 
-   __slots__ = ( )
+   __slots__ = ('_measure_number', )
 
    def __init__(self, meter, music = None, **kwargs):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self._formatter = _MeasureFormatter(self)
+      self._measure_number = None
       time_signature = contexttools.TimeSignatureMark(meter)
       time_signature.attach_mark(self)
       self._initialize_keyword_values(**kwargs)
@@ -161,3 +162,8 @@ class Measure(Container):
       Return boolean.
       '''
       return contexttools.get_effective_time_signature(self).duration == self.duration.preprolated
+
+   @property
+   def measure_number(self):
+      self._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
+      return self._measure_number
