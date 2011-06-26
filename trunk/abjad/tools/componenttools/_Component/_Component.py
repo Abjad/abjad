@@ -159,10 +159,7 @@ class _Component(_StrictComparator):
       On the other hand, getting effective mark causes prolated offset values
       to update when at least one mark of appropriate type attaches to score.
       '''
-      from abjad.tools import componenttools
-      score_root = componenttools.component_to_score_root(self)
-      components = componenttools.iterate_components_depth_first(score_root, 
-         capped = True, unique = True, forbid = None, direction = 'left')
+      components = self._iterate_score_components_depth_first( )
       for component in components:
          for mark in component._marks_for_which_component_functions_as_start_component:
             if hasattr(mark, '_update_effective_context'):
@@ -170,10 +167,7 @@ class _Component(_StrictComparator):
          component._marks_are_current = True
    
    def __update_offset_values_in_seconds_of_entire_score_tree(self):
-      from abjad.tools import componenttools
-      score_root = componenttools.component_to_score_root(self)
-      components = componenttools.iterate_components_depth_first(score_root, 
-         capped = True, unique = True, forbid = None, direction = 'left')
+      components = self._iterate_score_components_depth_first( )
       for component in components:
          component._offset._update_offset_values_of_component_in_seconds( )
          component._offset_values_in_seconds_are_current = True
@@ -182,10 +176,7 @@ class _Component(_StrictComparator):
       '''Updating prolated offset values does NOT update marks.
       Updating prolated offset values does NOT update offset values in seconds.
       '''
-      from abjad.tools import componenttools
-      score_root = componenttools.component_to_score_root(self)
-      components = componenttools.iterate_components_depth_first(score_root, 
-         capped = True, unique = True, forbid = None, direction = 'left')
+      components = self._iterate_score_components_depth_first( )
       for component in components:
          component._offset._update_prolated_offset_values_of_component( )
          component._prolated_offset_values_are_current = True
@@ -194,6 +185,13 @@ class _Component(_StrictComparator):
 
    def _allow_component_update(self):
       self._is_forbidden_to_update = False
+
+   def _iterate_score_components_depth_first(self):
+      from abjad.tools import componenttools
+      score_root = componenttools.component_to_score_root(self)
+      kwargs = {'capped': True, 'unique': True, 'forbid': None, 'direction': 'left'}
+      components = componenttools.iterate_components_depth_first(score_root, **kwargs)
+      return components
 
    def _mark_entire_score_tree_for_later_update(self, value):
       '''Call immediately AFTER MODIFYING score tree.
