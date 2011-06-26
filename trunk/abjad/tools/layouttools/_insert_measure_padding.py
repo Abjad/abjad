@@ -36,7 +36,6 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    for measure in measuretools.iterate_measures_forward_in_expr(expr):
       if front is not None:
          start_components = measure._navigator._contemporaneous_start_contents
-         print start_components
          start_leaves = [x for x in start_components if isinstance(x, _Leaf)]
          for start_leaf in start_leaves:
             if splice:

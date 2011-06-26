@@ -23,20 +23,24 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
       abjad> measuretools.pad_measures_in_expr_with_skips(t, front, back)
       abjad> f(t)
       \new Staff {
-                      \override Staff.TimeSignature #'stencil = ##f
-                      \time 19/64
-                      s32
-                      c'8
-                      d'8
-                      s64
-                      \revert Staff.TimeSignature #'stencil
-                      \override Staff.TimeSignature #'stencil = ##f
-                      \time 19/64
-                      s32
-                      c'8
-                      d'8
-                      s64
-                      \revert Staff.TimeSignature #'stencil
+         {
+             \override Staff.TimeSignature #'stencil = ##f
+             \time 19/64
+             s32
+             c'8
+             d'8
+             s64
+             \revert Staff.TimeSignature #'stencil
+         }
+         {
+             \override Staff.TimeSignature #'stencil = ##f
+             \time 19/64
+             s32
+             c'8
+             d'8
+             s64
+             \revert Staff.TimeSignature #'stencil
+         }
       }
 
    Works when measures contain stacked voices. ::

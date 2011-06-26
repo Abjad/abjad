@@ -62,6 +62,7 @@ def set_line_breaks_cyclically_by_line_duration_ge(expr, line_duration, klass = 
             \time 2/8
             b'8
             c''8
+            \break
          }
       }
 

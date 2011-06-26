@@ -1,1 +1,10 @@
-replace-in-files . ' abjad> ' ' abjad> ' false
+#! /usr/bin/env python
+import os
+
+
+abjad_prompt = 'abjad' + '>'
+python_prompt = 3 * '>'
+
+command = "replace-in-files . ' %s ' ' %s ' false" % (abjad_prompt, python_prompt)
+
+os.system(command)

@@ -36,8 +36,7 @@ class FixedStaffPositioning(_StrictComparator, _Immutable):
       abjad> systems = layouttools.SystemYOffsets(40, 5)
       abjad> staves = layouttools.StaffAlignmentDistances(0, 15)
       abjad> positioning = layouttools.FixedStaffPositioning(systems, staves)
-      abjad> layouttools.apply_fixed_staff_positioning(t, positioning)
-
+      abjad> layouttools.apply_fixed_staff_positioning(t, positioning) # doctest: +SKIP
       \new Staff {
                       \overrideProperty #"Score.NonMusicalPaperColumn"
                       #'line-break-system-details
