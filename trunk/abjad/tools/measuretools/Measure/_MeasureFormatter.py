@@ -1,16 +1,14 @@
-from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
-from abjad.tools.measuretools.Measure._MeasureFormatterNumberInterface import _MeasureFormatterNumberInterface
-from abjad.tools.measuretools.Measure._MeasureFormatterSlotsInterface import _MeasureFormatterSlotsInterface
 from abjad.exceptions import NonbinaryTimeSignatureSuppressionError
 from abjad.exceptions import OverfullMeasureError
 from abjad.exceptions import UnderfullMeasureError
+from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
+from abjad.tools.measuretools.Measure._MeasureFormatterSlotsInterface import _MeasureFormatterSlotsInterface
 
 
 class _MeasureFormatter(_ContainerFormatter):
 
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)
-      self._number = _MeasureFormatterNumberInterface(self)
       self._slots = _MeasureFormatterSlotsInterface(self)
 
    ## PRIVATE ATTRIBUTES ##

@@ -1,4 +1,3 @@
-from abjad.tools.containertools.Container._ContainerFormatterNumberInterface import _ContainerFormatterNumberInterface
 from abjad.tools.containertools.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
 from abjad.tools.componenttools._Component._ComponentFormatter import _ComponentFormatter
 
@@ -7,7 +6,6 @@ class _ContainerFormatter(_ComponentFormatter):
 
    def __init__(self, client):
       _ComponentFormatter.__init__(self, client)
-      self._number = _ContainerFormatterNumberInterface(self)
       self._slots = _ContainerFormatterSlotsInterface(self)
 
    ## PRIVATE ATTRIBUTES ##
@@ -27,10 +25,6 @@ class _ContainerFormatter(_ComponentFormatter):
    @property
    def container(self):
       return self._client
-
-   @property
-   def number(self):
-      return self._number
 
    @property
    def slots(self):

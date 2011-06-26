@@ -64,7 +64,6 @@ def comment_measures_in_container_with_measure_numbers(container, style = 'comme
       ``measuretools.comment_measures_in_container_with_measure_numbers( )``.
    '''
 
-   ## functionality implemented on _ContainerFormatterNumberInterface
    if isinstance(container, Measure):
       container._formatter.number.self = style
    else:
