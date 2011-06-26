@@ -73,18 +73,20 @@ class _Component(_StrictComparator):
 
    @property
    def duration(self):
-      '''Read-only reference to class-specific duration interface.'''
+      '''Read-only duration interface of component.
+      '''
       return self._duration
 
    @property
    def format(self):
-      '''Read-only version of `self` as LilyPond input code.'''
+      '''Read-only LilyPond input format of component.
+      '''
       self._update_marks_of_entire_score_tree_if_necessary( )
       return self._formatter.format
 
    @property
    def marks(self):
-      '''Read-only reference to ordered list of marks attached to component.
+      '''Read-only tuple of marks attached to component.
       '''
       return tuple(set(
          self._marks_for_which_component_functions_as_start_component +
@@ -119,13 +121,6 @@ class _Component(_StrictComparator):
          self._set_keyword_value(key, value)
 
    def _set_keyword_value(self, key, value):
-#      attribute_chain = key.split('__')
-#      most_attributes = attribute_chain[:-1]
-#      last_attribute = attribute_chain[-1]
-#      target_object = self
-#      for attribute in most_attributes:
-#         target_object = getattr(target_object, attribute)
-#      setattr(target_object, last_attribute, value)
       from fractions import Fraction
       attribute_chain = key.split('__')
       plug_in_name = attribute_chain[0]
@@ -165,49 +160,35 @@ class _Component(_StrictComparator):
       to update when at least one mark of appropriate type attaches to score.
       '''
       from abjad.tools import componenttools
-      #print 'updating marks of entire score tree (from %s) ...' % str(self.__class__.__name__)
-      total_components_iterated = 0
-      score = componenttools.component_to_score_root(self)
-      components = componenttools.iterate_components_depth_first(score, 
+      score_root = componenttools.component_to_score_root(self)
+      components = componenttools.iterate_components_depth_first(score_root, 
          capped = True, unique = True, forbid = None, direction = 'left')
       for component in components:
-         #print '\tupdating effective context of %s marks ...' % str(component.__class__.__name__)
          for mark in component._marks_for_which_component_functions_as_start_component:
             if hasattr(mark, '_update_effective_context'):
                mark._update_effective_context( )
          component._marks_are_current = True
-         total_components_iterated += 1
-      #print '... done updating marks of entrie score tree (from %s).' % str(self.__class__.__name__)
    
    def __update_offset_values_in_seconds_of_entire_score_tree(self):
       from abjad.tools import componenttools
-      #print 'updating offset values in seconds of entire score tree ...'
-      total_components_iterated = 0
-      score = componenttools.component_to_score_root(self)
-      components = componenttools.iterate_components_depth_first(score, 
+      score_root = componenttools.component_to_score_root(self)
+      components = componenttools.iterate_components_depth_first(score_root, 
          capped = True, unique = True, forbid = None, direction = 'left')
       for component in components:
-         #print '\tupdating offset values in seconds of %s ...' % str(component.__class__.__name__)
          component._offset._update_offset_values_of_component_in_seconds( )
          component._offset_values_in_seconds_are_current = True
-         total_components_iterated += 1
-      #print '... done updating offset values in seconds of entire score tree.'
 
    def __update_prolated_offset_values_of_entire_score_tree(self):
       '''Updating prolated offset values does NOT update marks.
       Updating prolated offset values does NOT update offset values in seconds.
       '''
       from abjad.tools import componenttools
-      #print 'updating prolated offset values of entire score tree...'
-      total_components_iterated = 0
-      score = componenttools.component_to_score_root(self)
-      components = componenttools.iterate_components_depth_first(score, 
+      score_root = componenttools.component_to_score_root(self)
+      components = componenttools.iterate_components_depth_first(score_root, 
          capped = True, unique = True, forbid = None, direction = 'left')
       for component in components:
          component._offset._update_prolated_offset_values_of_component( )
          component._prolated_offset_values_are_current = True
-         total_components_iterated += 1
-      #print total_components_iterated, '... prolated offset values updated.'
 
    ## PRIVATE UPDATE METHODS ##
 
@@ -216,6 +197,7 @@ class _Component(_StrictComparator):
 
    def _mark_entire_score_tree_for_later_update(self, value):
       '''Call immediately AFTER MODIFYING score tree.
+      Only dynamic measures mark time signature for udpate.
       '''
       from abjad.tools import componenttools
       assert value in ('prolated', 'marks', 'seconds')
@@ -228,11 +210,8 @@ class _Component(_StrictComparator):
             component._offset_values_in_seconds_are_current = False
          else:
             raise ValueError('unknown value: "%s"' % value)
-         ## for DynamicMeasures
-         try:
+         if hasattr(component, '_time_signature_is_current'):
             component._time_signature_is_current = False
-         except AttributeError:
-            pass
 
    def _forbid_component_update(self):
       self._is_forbidden_to_update = True
@@ -258,36 +237,18 @@ class _Component(_StrictComparator):
    def _update_marks_of_entire_score_tree_if_necessary(self):
       '''Call immediately BEFORE READING effective mark.
       '''
-      from abjad.tools import componenttools
-      #print 'updating marks of entire score tree IF NECESSARY ...'
       if self._is_forbidden_to_update:
          return
       state_flags = self._get_score_tree_state_flags( )
-      #print state_flags
       marks_are_current = state_flags[1]
       if not marks_are_current:
-         ## updating marks INHERENTLY UPDATES prolated offset values
          self.__update_marks_of_entire_score_tree( )
-         ## why is the following line necessary here?
-         ## testing shows it necessary for _OffsetInterface ... but why?
          self.__update_offset_values_in_seconds_of_entire_score_tree( )
-      else:
-         #print 'no need.'
-         pass
-      ## following line for debug only:
-      state_flags = self._get_score_tree_state_flags( )
-      #print '... done updating marks of entire score tree IF NECESSARY with %s.' % str(state_flags)
 
    def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
-      #print 'updating prolated offset values of entire score tree IF NECESSARY...'
       if self._is_forbidden_to_update:
          return
       state_flags = self._get_score_tree_state_flags( )
-      prolated_offset_values, marks, offset_values_in_seconds = state_flags
-      ## score tree structure change entails prolated offset update
-      ## score tree structure change entail dynamic measure meter recalculation
-      if not prolated_offset_values:
+      prolated_offset_values_are_current = state_flags[0]
+      if not prolated_offset_values_are_current:
          self.__update_prolated_offset_values_of_entire_score_tree( )
-      else:
-         #print 'no need.'
-         pass
