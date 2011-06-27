@@ -7,7 +7,7 @@ import operator
 
 class _Leaf(_Component, _StrictComparator):
 
-   ## TODO: encapsuate grace and tremolo attributes ##
+   ## TODO: see if _grace and _after_grace can be removed ##
    __slots__ = ('_after_grace', '_duration', '_grace', '_leaf_index',
       '_written_pitch_indication_is_nonsemantic',
       '_written_pitch_indication_is_at_sounding_pitch',

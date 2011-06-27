@@ -17,7 +17,6 @@ chordtools
    :maxdepth: 1
 
    tools/chordtools/Chord/Chord
-   tools/chordtools/Cluster/Cluster
    tools/chordtools/arpeggiate_chord
    tools/chordtools/change_defective_chord_to_note_or_rest
    tools/chordtools/color_chord_note_heads_by_pitch_class_color_map
@@ -149,6 +148,7 @@ containertools
 .. toctree::
    :maxdepth: 1
 
+   tools/containertools/Cluster/Cluster
    tools/containertools/Container/Container
    tools/containertools/color_contents_of_container
    tools/containertools/delete_contents_of_container

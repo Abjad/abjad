@@ -169,7 +169,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09( ):
    '''Override LilyPond ClusterSpanner grob.
    '''
 
-   t = chordtools.Cluster(Note(1, (1, 4)) * 4)
+   t = containertools.Cluster(Note(1, (1, 4)) * 4)
    t.override.cluster_spanner.style = 'ramp'
    t.override.cluster_spanner.padding = 0.1
 

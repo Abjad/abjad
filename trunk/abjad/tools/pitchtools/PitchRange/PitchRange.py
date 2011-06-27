@@ -1,4 +1,3 @@
-from abjad.tools.containertools.Container import Container
 from abjad.core import _Immutable
 import numbers
 
@@ -71,6 +70,7 @@ class PitchRange(_Immutable):
    ## OVERLOADS ##
 
    def __contains__(self, arg):
+      from abjad.tools import containertools
       from abjad.tools import pitchtools
       from abjad.tools import resttools
       from abjad.tools import skiptools
@@ -89,7 +89,7 @@ class PitchRange(_Immutable):
          return all([self._contains_pitch(x) for x in arg.sounding_pitches])
       elif isinstance(arg, (resttools.Rest, skiptools.Skip)):
          return True
-      elif isinstance(arg, Container):
+      elif isinstance(arg, containertools.Container):
          return all([x in self for x in arg.leaves])
       else:
          pitches = pitchtools.list_named_chromatic_pitches_in_expr(arg)

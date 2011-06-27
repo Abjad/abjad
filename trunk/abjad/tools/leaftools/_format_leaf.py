@@ -1,29 +1,26 @@
-from abjad.tools.formattools._get_articulation_format_contributions import _get_articulation_format_contributions
-from abjad.tools.formattools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
-from abjad.tools.formattools._get_context_mark_format_contributions_for_slot import _get_context_mark_format_contributions_for_slot
-from abjad.tools.formattools._get_context_setting_format_contributions import _get_context_setting_format_contributions
-from abjad.tools.formattools._get_grob_override_format_contributions import _get_grob_override_format_contributions
-from abjad.tools.formattools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
-from abjad.tools.formattools._get_markup_format_contributions import _get_markup_format_contributions
-from abjad.tools.formattools._get_spanner_format_contributions_for_leaf_slot import _get_spanner_format_contributions_for_leaf_slot
-from abjad.tools.formattools._get_stem_tremolo_format_contributions import _get_stem_tremolo_format_contributions
+from abjad.tools.marktools._get_articulation_format_contributions import _get_articulation_format_contributions
+from abjad.tools.marktools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
+from abjad.tools.contexttools._get_context_mark_format_contributions_for_slot import _get_context_mark_format_contributions_for_slot
+from abjad.tools.contexttools._get_context_setting_format_contributions import _get_context_setting_format_contributions
+from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
+from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
+from abjad.tools.markuptools._get_markup_format_contributions import _get_markup_format_contributions
+from abjad.tools.spannertools._get_spanner_format_contributions_for_leaf_slot import _get_spanner_format_contributions_for_leaf_slot
+from abjad.tools.marktools._get_stem_tremolo_format_contributions import _get_stem_tremolo_format_contributions
 
 
 def _format_leaf(leaf):
    result = [ ]
    result.extend(_get_slot_1(leaf))
-   #result.extend(_get_slot_2(leaf))
    result.extend(_get_slot_3(leaf))
    result.extend(_get_slot_4(leaf))
    result.extend(_get_slot_5(leaf))
-   #result.extend(_get_slot_6(leaf))
    result.extend(_get_slot_7(leaf))
    contributions = [ ]
    for contributor, contribution in result:
       contributions.extend(contribution)
    return '\n'.join(contributions)
    
-
 def _agrace_body(leaf):
    result = [ ]
    if hasattr(leaf, '_after_grace'):
@@ -55,11 +52,9 @@ def _leaf_body(leaf):
    result.extend(_get_stem_tremolo_format_contributions(leaf))
    result.extend(_get_articulation_format_contributions(leaf))
    result.extend(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'right'))
-   ## remove next line ##
    result.extend(_get_context_mark_format_contributions_for_slot(leaf, 'right'))
    result.extend(_get_markup_format_contributions(client))
    result.extend(_get_spanner_format_contributions_for_leaf_slot(client, 'right'))
-   #result.extend(_number_contribution(leaf))
    result.extend(_get_comment_format_contributions_for_slot(client, 'right'))
    return [' '.join(result)]
 
@@ -71,7 +66,6 @@ def _nucleus(leaf):
    chord = leaf
    note_heads = chord.note_heads
    if any(['\n' in x.format for x in note_heads]):
-      #print 'overrides!'
       for note_head in note_heads:
          format = note_head.format
          format_list = format.split('\n')
@@ -82,80 +76,48 @@ def _nucleus(leaf):
       result = '\n'.join(result)
       result += str(chord.duration)
    else:
-      #print 'no overrides'
       result.extend([x.format for x in note_heads])
       result = '<%s>%s' % (
          ' '.join(result), chord.duration)
    ## single string, but wrapped in list bc contribution
    return [result]
 
-#def _number_contribution(leaf):
-#   result = [ ]
-#   leaf = leaf
-#      contribution = leaf.number._leaf_contribution
-#      if contribution == 'markup':
-#         result.append(r'^ \markup { %s }' % leaf.number)
-#      elif contribution == 'comment':
-#         result.append(r'%% leaf %s' % leaf.number)
-#   return result
-
 def _get_slot_1(leaf):
    result = [ ]
    result.append([('grace body', ''), _grace_body(leaf)])
-   result.append([('comments', ''), 
-      _get_comment_format_contributions_for_slot(leaf, 'before')])
-   result.append([('lilypond command marks', ''), 
-      _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'before')])
-   ## remove next two lines ##
-   result.append([('context marks', ''),
-      _get_context_mark_format_contributions_for_slot(leaf, 'before')])
-   result.append([('grob overrides', ''),
-      _get_grob_override_format_contributions(leaf)])
-   result.append([('context settings', ''),
-      _get_context_setting_format_contributions(leaf)])
-   result.append([('spanners', ''),
-      _get_spanner_format_contributions_for_leaf_slot(leaf, 'before')])
+   result.append([('comments', ''), _get_comment_format_contributions_for_slot(leaf, 'before')])
+   result.append([('lilypond command marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'before')])
+   result.append([('context marks', ''), _get_context_mark_format_contributions_for_slot(leaf, 'before')])
+   result.append([('grob overrides', ''), _get_grob_override_format_contributions(leaf)])
+   result.append([('context settings', ''), _get_context_setting_format_contributions(leaf)])
+   result.append([('spanners', ''), _get_spanner_format_contributions_for_leaf_slot(leaf, 'before')])
    return result
 
 def _get_slot_3(leaf):
    result = [ ]
-   result.append([('comments', ''), 
-      _get_comment_format_contributions_for_slot(leaf, 'opening')])
-   result.append([('lilypond command marks', ''), 
-      _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening')])
-   ## remove next two lines ##
-   result.append([('context marks', ''),
-      _get_context_mark_format_contributions_for_slot(leaf, 'opening')])
+   result.append([('comments', ''), _get_comment_format_contributions_for_slot(leaf, 'opening')])
+   result.append([('lilypond command marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening')])
+   result.append([('context marks', ''), _get_context_mark_format_contributions_for_slot(leaf, 'opening')])
    result.append([('agrace opening', ''), _agrace_opening(leaf)])
    return result
 
 def _get_slot_4(leaf):
    result = [ ]
-   result.append([('leaf body', ''),
-      _leaf_body(leaf)]),
+   result.append([('leaf body', ''), _leaf_body(leaf)]),
    return result
 
 def _get_slot_5(leaf):
    result = [ ]
    result.append([('agrace body', ''), _agrace_body(leaf)])
-   result.append([('lilypond command marks', ''), 
-      _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing')])
-   ## remove next two lines ##
-   result.append([('context marks', ''),
-      _get_context_mark_format_contributions_for_slot(leaf, 'closing')])
-   result.append([('comments', ''), 
-      _get_comment_format_contributions_for_slot(leaf, 'closing')])
+   result.append([('lilypond command marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing')])
+   result.append([('context marks', ''), _get_context_mark_format_contributions_for_slot(leaf, 'closing')])
+   result.append([('comments', ''), _get_comment_format_contributions_for_slot(leaf, 'closing')])
    return result
 
 def _get_slot_7(leaf):
    result = [ ]
-   result.append([('spanners', ''), 
-      _get_spanner_format_contributions_for_leaf_slot(leaf, 'after')])
-   ## remove next two lines ##
-   result.append([('context marks', ''),
-      _get_context_mark_format_contributions_for_slot(leaf, 'after')])
-   result.append([('lilypond command marks', ''), 
-      _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after')])
-   result.append([('comments', ''), 
-      _get_comment_format_contributions_for_slot(leaf, 'after')])
+   result.append([('spanners', ''), _get_spanner_format_contributions_for_leaf_slot(leaf, 'after')])
+   result.append([('context marks', ''), _get_context_mark_format_contributions_for_slot(leaf, 'after')])
+   result.append([('lilypond command marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after')])
+   result.append([('comments', ''), _get_comment_format_contributions_for_slot(leaf, 'after')])
    return result

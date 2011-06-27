@@ -28,7 +28,6 @@ del cfgtools
 del core
 del durtools
 del exceptions
-del formattools
 del importtools
 del interfaces
 del iotools

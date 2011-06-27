@@ -1,5 +1,5 @@
 from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
-from abjad.tools.chordtools.Cluster._ClusterFormatterSlotsInterface import _ClusterFormatterSlotsInterface
+from abjad.tools.containertools.Cluster._ClusterFormatterSlotsInterface import _ClusterFormatterSlotsInterface
 
 
 class _ClusterFormatter(_ContainerFormatter):
