@@ -184,7 +184,6 @@ containertools
    tools/containertools/replace_smaller_right_half_of_elements_in_container_with_big_endian_rests
    tools/containertools/replace_smaller_right_half_of_elements_in_container_with_little_endian_rests
    tools/containertools/report_container_modifications_as_string
-   tools/containertools/report_container_modifications_to_screen
    tools/containertools/reverse_contents_of_container
    tools/containertools/scale_contents_of_container
    tools/containertools/set_container_multiplier
@@ -461,7 +460,6 @@ measuretools
    tools/measuretools/pitch_array_to_measures
    tools/measuretools/replace_contents_of_measures_in_expr
    tools/measuretools/report_meter_distribution_as_string
-   tools/measuretools/report_meter_distribution_to_screen
    tools/measuretools/scale_contents_of_measures_in_expr
    tools/measuretools/scale_measure_by_multiplier_and_adjust_meter
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
@@ -798,8 +796,6 @@ spannertools
    tools/spannertools/move_spanners_from_component_to_children_of_component
    tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_component
    tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component
-   tools/spannertools/report_to_screen_format_contributions_of_all_spanners_attached_to_component
-   tools/spannertools/report_to_screen_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component
    tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
 
