@@ -1,6 +1,6 @@
+from abjad.tools.durtools import Offset
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad import Fraction
 
 
 def calculate_mean_release_of_intervals(intervals):
@@ -13,4 +13,4 @@ def calculate_mean_release_of_intervals(intervals):
       tree = IntervalTree(intervals)
    if not tree:
       return None
-   return Fraction(sum([i.high for i in tree])) / len(tree)
+   return Offset(sum([i.high for i in tree])) / len(tree)

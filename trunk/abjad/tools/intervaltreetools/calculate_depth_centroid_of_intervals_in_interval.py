@@ -1,8 +1,8 @@
+from abjad.tools.durtools import Offset
 from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.compute_depth_of_intervals_in_interval import compute_depth_of_intervals_in_interval
-from abjad import Fraction
 
 
 def calculate_depth_centroid_of_intervals_in_interval(intervals, interval):
@@ -22,4 +22,4 @@ def calculate_depth_centroid_of_intervals_in_interval(intervals, interval):
    sum_of_weights = sum([x['depth'] for x in depth])
    if not sum_of_weights:
       return None
-   return Fraction(weighted_centroids) / sum_of_weights
+   return Offset(weighted_centroids) / sum_of_weights

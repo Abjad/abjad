@@ -1,6 +1,7 @@
-from abjad.core import _Immutable
 from abjad import Fraction
-
+from abjad.core import _Immutable
+from abjad.tools.durtools import Duration
+from abjad.tools.durtools import Offset
 
 class BoundedInterval(dict, _Immutable):
    '''A low / high pair, carrying some metadata.'''
@@ -19,8 +20,8 @@ class BoundedInterval(dict, _Immutable):
       assert isinstance(high, (int, Fraction))
       assert low < high
       assert isinstance(data, dict)
-      object.__setattr__(self, '_low', low)
-      object.__setattr__(self, '_high', high)
+      object.__setattr__(self, '_low', Offset(low))
+      object.__setattr__(self, '_high', Offset(high))
       self.update(data)
 
    ## OVERLOADS ##
@@ -51,7 +52,7 @@ class BoundedInterval(dict, _Immutable):
    @property
    def centroid(self):
       '''Center point of low and high bounds.'''
-      return Fraction(self.high + self.low) / 2
+      return Offset(self.high + self.low) / 2
 
    @property
    def high(self):
@@ -66,7 +67,7 @@ class BoundedInterval(dict, _Immutable):
    @property
    def magnitude(self):
       '''High bound minus low bound.'''
-      return self.high - self.low
+      return Duration(self.high - self.low)
 
    @property
    def signature(self):

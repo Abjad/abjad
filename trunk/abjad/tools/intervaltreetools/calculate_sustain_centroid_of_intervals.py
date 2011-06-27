@@ -1,6 +1,6 @@
+from abjad.tools.durtools import Offset
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad import Fraction
 
 
 def calculate_sustain_centroid_of_intervals(intervals):
@@ -17,4 +17,4 @@ def calculate_sustain_centroid_of_intervals(intervals):
       return None
    weighted_centroids = sum([(x.centroid * x.magnitude) for x in tree])
    sum_of_weights = sum([x.magnitude for x in tree])
-   return Fraction(weighted_centroids) / sum_of_weights
+   return Offset(weighted_centroids) / sum_of_weights

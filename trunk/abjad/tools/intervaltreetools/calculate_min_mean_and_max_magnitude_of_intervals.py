@@ -1,6 +1,6 @@
+from abjad.tools.durtools import Duration
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad import Fraction
 
 
 def calculate_min_mean_and_max_magnitude_of_intervals(intervals):
@@ -17,4 +17,4 @@ def calculate_min_mean_and_max_magnitude_of_intervals(intervals):
       return None
 
    magnitudes = [x.magnitude for x in tree]
-   return (min(magnitudes), Fraction(sum(magnitudes), len(magnitudes)), max(magnitudes))
+   return (min(magnitudes), Duration(sum(magnitudes), len(magnitudes)), max(magnitudes))

@@ -1,9 +1,11 @@
+import copy
+from collections import Iterable
+from abjad import Fraction
+from abjad.tools.durtools import Duration
+from abjad.tools.durtools import Offset
 from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
 from abjad.tools.intervaltreetools._IntervalNode import _IntervalNode
 from abjad.tools.intervaltreetools._RedBlackTree import _RedBlackTree
-from collections import Iterable
-from abjad import Fraction
-import copy
 
 
 class IntervalTree(_RedBlackTree):
@@ -130,14 +132,14 @@ class IntervalTree(_RedBlackTree):
    @property
    def high_max(self):
       if self:
-         return self._root.high_max
+         return Offset(self._root.high_max)
       else:
          return None
 
    @property
    def high_min(self):
       if self:
-         return self._root.high_min
+         return Offset(self._root.high_min)
       else:
          return None
 
@@ -148,23 +150,23 @@ class IntervalTree(_RedBlackTree):
    @property
    def low_max(self):
       if self:
-         return self._find_maximum(self._root).key
+         return Offset(self._find_maximum(self._root).key)
       else:
          return None
 
    @property
    def low_min(self):
       if self:
-         return self._find_minimum(self._root).key
+         return Offset(self._find_minimum(self._root).key)
       else:
          return None
 
    @property
    def magnitude(self):
       if self:
-         return self.high_max - self.low_min
+         return Duration(self.high_max - self.low_min)
       else:
-         return 0
+         return Duration(0)
 
    ## PRIVATE METHODS ##
 
