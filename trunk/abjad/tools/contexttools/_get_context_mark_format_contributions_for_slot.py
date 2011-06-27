@@ -58,4 +58,4 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
    #print result
    #print ''
    result.sort( )
-   return result   
+   return ['context marks', result]

@@ -1,9 +1,5 @@
 from abjad.tools import durtools
 from abjad.tools.containertools.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
-#from abjad.tools.marktools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
-#from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
-#from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import _get_grob_revert_format_contributions
-#from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
 
 
 class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -51,9 +47,9 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
       result = [ ]
       tuplet = self.formatter.tuplet
-      result.append([('comment_marks', ''), _get_comment_format_contributions_for_slot(tuplet, 'before')])
-      result.append([('lilypond_command_marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'before')])
-      result.append([('overrides', 'overrides'), _get_grob_override_format_contributions(self._client._client)])
+      result.append(_get_comment_format_contributions_for_slot(tuplet, 'before'))
+      result.append(_get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'before'))
+      result.append(_get_grob_override_format_contributions(self._client._client))
       if tuplet.duration.multiplier == 1 and \
          hasattr(tuplet.__class__, 'color'):
          contributor = (tuplet.__class__, 'color')
@@ -157,8 +153,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
       result = [ ]
       tuplet = self.formatter.tuplet
-      result.append([('comment_marks', ''), _get_comment_format_contributions_for_slot(tuplet, 'opening')])
-      result.append([('lilypond_command_marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'opening')])
+      result.append(_get_comment_format_contributions_for_slot(tuplet, 'opening'))
+      result.append(_get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'opening'))
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -173,8 +169,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
       result = [ ]
       tuplet = self.formatter.tuplet
-      result.append([('lilypond_command_marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'closing')])
-      result.append([('comment_marks', ''), _get_comment_format_contributions_for_slot(tuplet, 'closing')])
+      result.append(_get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'closing'))
+      result.append(_get_comment_format_contributions_for_slot(tuplet, 'closing'))
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -201,7 +197,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
       result = [ ]
       tuplet = self.formatter.tuplet
-      result.append([('lilypond_command_marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'after')])
-      result.append([('reverts', 'reverts'), _get_grob_revert_format_contributions(self._client._client)])
-      result.append([('comment_marks', ''), _get_comment_format_contributions_for_slot(tuplet, 'after')])
+      result.append(_get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'after'))
+      result.append(_get_grob_revert_format_contributions(self._client._client))
+      result.append(_get_comment_format_contributions_for_slot(tuplet, 'after'))
       return tuple(result)

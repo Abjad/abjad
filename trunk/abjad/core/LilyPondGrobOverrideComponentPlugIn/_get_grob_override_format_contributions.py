@@ -12,5 +12,5 @@ def _get_grob_override_format_contributions(component):
    for override in result[:]:
       if 'NoteHead' in override and 'pitch' in override:
          result.remove(override)
-   ## guarantee predictable order of override statements
+   result = ['grob overrides', result]
    return result

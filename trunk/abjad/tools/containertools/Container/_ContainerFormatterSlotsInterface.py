@@ -1,9 +1,4 @@
 from abjad.tools.componenttools._Component._ComponentFormatterSlotsInterface import _ComponentFormatterSlotsInterface
-#from abjad.tools.marktools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
-#from abjad.tools.contexttools._get_context_setting_format_contributions import _get_context_setting_format_contributions
-#from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
-#from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import _get_grob_revert_format_contributions
-#from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
 
 
 class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
@@ -27,8 +22,8 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
       result = [ ]
       container = self.formatter.container
-      result.append([('comments', ''), _get_comment_format_contributions_for_slot(container, 'before')])
-      result.append([('lilypond command marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(container, 'before')])
+      result.append(_get_comment_format_contributions_for_slot(container, 'before'))
+      result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'before'))
       return tuple(result)
 
    @property
@@ -49,10 +44,10 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       from abjad.tools.contexttools._get_context_setting_format_contributions import _get_context_setting_format_contributions
       result = [ ]
       container = self.formatter.container
-      result.append([('comments', ''), _get_comment_format_contributions_for_slot(container, 'opening')])
-      result.append([('lilypond command marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(container, 'opening')])
-      result.append([('grob overrides', ''), _get_grob_override_format_contributions(container)])
-      result.append([('context settings', ''), _get_context_setting_format_contributions(container)])
+      result.append(_get_comment_format_contributions_for_slot(container, 'opening'))
+      result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'opening'))
+      result.append(_get_grob_override_format_contributions(container))
+      result.append(_get_context_setting_format_contributions(container))
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -69,9 +64,9 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import _get_grob_revert_format_contributions
       result = [ ]
       container = self.formatter.container
-      result.append([('grob reverts', ''), _get_grob_revert_format_contributions(container)])
-      result.append([('lilypond command marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(container, 'closing')])
-      result.append([('comments', ''), _get_comment_format_contributions_for_slot(container, 'closing')])
+      result.append(_get_grob_revert_format_contributions(container))
+      result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'closing'))
+      result.append(_get_comment_format_contributions_for_slot(container, 'closing'))
       self._indent_slot_contributions(result)
       return tuple(result)
 
@@ -91,8 +86,8 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
       result = [ ]
       container = self.formatter.container
-      result.append([('lilypond command marks', ''), _get_lilypond_command_mark_format_contributions_for_slot(container, 'after')])
-      result.append([('comments', ''), _get_comment_format_contributions_for_slot(container, 'after')])
+      result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'after'))
+      result.append(_get_comment_format_contributions_for_slot(container, 'after'))
       return tuple(result)
 
    ## PUBLIC METHODS ##

@@ -8,4 +8,4 @@ def _get_stem_tremolo_format_contributions(component):
    for stem_tremolo in stem_tremolos:
       result.append(stem_tremolo.format)
    result.sort( )
-   return result
+   return ['stem tremolo', result]

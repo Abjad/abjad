@@ -27,4 +27,4 @@ def _get_markup_format_contributions(component):
          result.append(column)
       else:
          result.append(markup_list[0].format)
-   return result
+   return ['markup', result]
