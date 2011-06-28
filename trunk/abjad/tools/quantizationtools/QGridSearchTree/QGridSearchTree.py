@@ -294,3 +294,16 @@ class QGridSearchTree(_Immutable):
          new_offset = beatspan * offset
          lookup[new_offset] = tempo_scaled_rational_to_milliseconds(new_offset, tempo)
       return lookup
+
+   def find_signature_divisibility(self, signature):
+      assert isinstance(signature, tuple) and \
+         len(signature) and \
+         all([0 < x for x in signature])
+      if signature[0] not in self.definition:
+         return [ ]
+      node = self.definition[signature[0]]
+      for item in signature[1:]:
+         node = node[item]
+         if node is None:
+            return [ ]
+      return node.keys( )

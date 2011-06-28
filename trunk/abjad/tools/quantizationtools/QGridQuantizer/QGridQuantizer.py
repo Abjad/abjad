@@ -171,3 +171,4 @@ class QGridQuantizer(_Quantizer):
             results.append(tuple(quantized_timepoint))
 
       return results
+

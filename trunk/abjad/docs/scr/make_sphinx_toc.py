@@ -59,6 +59,7 @@ def make_sphinx_toc( ):
   
    ## separate autoloading tools packages from manually loading tools packages
    tools.sort(lambda x, y: cmp(x['module'], y['module']))
+
    manual_loading_tools = [ ]
    manual_loading_tools_names = (
       'cfgtools',
@@ -68,9 +69,7 @@ def make_sphinx_toc( ):
       'layouttools',
       'mathtools',
       'metertools',
-      'musicxmltools', 
       'pitcharraytools', 
-      'quantizationtools',
       'seqtools',
       'sievetools', 
       'tempotools',
@@ -78,12 +77,23 @@ def make_sphinx_toc( ):
       'tonalitytools', 
       'verticalitytools',
       )
+
+   unstable_tools = [ ]
+   unstable_tools_names = (
+      'musicxmltools', 
+      'quantizationtools',
+   )
+
    for dictionary in tools[:]:
       for tools_name in manual_loading_tools_names:
          if tools_name in dictionary['module']:
             manual_loading_tools.append(dictionary)
             tools.remove(dictionary)
-   
+      for tools_name in unstable_tools_names:
+         if tools_name in dictionary['module']:
+            unstable_tools.append(dictionary)
+            tools.remove(dictionary)   
+
    section_title = 'Abjad composition packages'
    result += '%s\n' % section_title
    result += '-' * (len(section_title))
@@ -130,6 +140,30 @@ def make_sphinx_toc( ):
             result += '\n'
             last_tools_module = cur_tools_module
          result += '   %s\n' % doc_path
+
+   section_title = 'Unstable Abjad composition packages (load manually)'
+   result += '%s\n' % section_title
+   result += '-' * (len(section_title))
+   result += '\n\n'
+   result += '.. toctree::\n'
+   result += '   :maxdepth: 1\n'
+   result += '\n'
+
+   last_tools_module = ''
+   for name in unstable_tools:
+      if not name['name'].startswith('_'):
+         doc_path = _module_path_to_doc_path(name['module'])
+         cur_tools_module = doc_path.split(os.sep)[1]
+         if not cur_tools_module == last_tools_module:
+            result += '\n\n'
+            result += cur_tools_module
+            result += '\n\n'
+            result += '.. toctree::\n'
+            result += '   :maxdepth: 1\n'
+            result += '\n'
+            last_tools_module = cur_tools_module
+         result += '   %s\n' % doc_path
+
 #   result += '\n\n'
 #
 #   result += 'Exceptions\n'

@@ -1139,22 +1139,6 @@ pitcharraytools
    tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
 
 
-quantizationtools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/quantizationtools/QGrid/QGrid
-   tools/quantizationtools/QGridDeletionTree/QGridDeletionTree
-   tools/quantizationtools/QGridQuantizer/QGridQuantizer
-   tools/quantizationtools/QGridRhythmTree/QGridRhythmTree
-   tools/quantizationtools/QGridSearchTree/QGridSearchTree
-   tools/quantizationtools/compare_timepoints_to_q_grid
-   tools/quantizationtools/group_timepoints_by_beatspan
-   tools/quantizationtools/sort_rhythm_trees_by_error_relative_timepoint_group
-   tools/quantizationtools/tempo_scaled_rational_to_milliseconds
-
-
 seqtools
 
 .. toctree::
@@ -1366,3 +1350,26 @@ verticalitytools
    tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
    tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
+Unstable Abjad composition packages (load manually)
+---------------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+
+
+quantizationtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/quantizationtools/QGrid/QGrid
+   tools/quantizationtools/QGridDeletionTree/QGridDeletionTree
+   tools/quantizationtools/QGridQuantizer/QGridQuantizer
+   tools/quantizationtools/QGridRhythmTree/QGridRhythmTree
+   tools/quantizationtools/QGridSearchTree/QGridSearchTree
+   tools/quantizationtools/Quantizer/Quantizer
+   tools/quantizationtools/compare_timepoints_to_q_grid
+   tools/quantizationtools/group_timepoints_by_beatspan
+   tools/quantizationtools/sort_rhythm_trees_by_error_relative_timepoint_group
+   tools/quantizationtools/tempo_scaled_rational_to_milliseconds
