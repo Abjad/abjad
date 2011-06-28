@@ -89,11 +89,3 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'after'))
       result.append(_get_comment_format_contributions_for_slot(container, 'after'))
       return tuple(result)
-
-   ## PUBLIC METHODS ##
-
-   def contributions(self, attr):
-      result = [ ]
-      for contributor, contributions in getattr(self, attr):
-         result.extend(contributions)
-      return result
