@@ -2,18 +2,20 @@ from abjad.tools import contexttools
 from abjad.tools import durtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.scale_contents_of_measures_in_expr import scale_contents_of_measures_in_expr
-from abjad.tools import durtools
 
 
+## TODO: implement measuretools.change_nonbinary_measure_to_binary( ).
 def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominator_factor):
    r'''.. versionadded:: 1.1.1
 
-   Change binary `measure` to nonbinary measure
-   with `new_denominator_factor`::
+   Change binary `measure` to nonbinary measure with `new_denominator_factor`::
 
       abjad> measure = Measure((2, 8), "c'8 d'8")
       abjad> spannertools.BeamSpanner(measure.leaves)
       BeamSpanner(c'8, d'8)
+
+   ::
+
       abjad> f(measure)
       {
          \time 2/8
@@ -48,8 +50,6 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
    Scale `measure` contents.
 
    Pick best new meter.
-
-   .. todo:: implement ``measuretools.change_nonbinary_measure_to_binary( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.change_binary_measure_to_nonbinary( )`` to

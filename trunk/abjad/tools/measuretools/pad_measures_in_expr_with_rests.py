@@ -1,26 +1,28 @@
 def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
    r'''.. versionadded:: 1.1.1
 
+   Pad measures in `expr` with rests.
+
    Iterate all measures in `expr`. Insert rest with duration equal
    to `front` at beginning of each measure. Insert rest with
    duation aqual to `back` at end of each measure. 
 
    Set `front` to a positive rational or none.
    Set `back` to a positive rational or none.
-   Return none.
 
-   .. note:: This function is designed to
-      help create regularly spaced charts and tables of musical materials.
-      This function makes most sense when used on
-      :class:`~abjad.AnonymousMeasure`
-      and :class:`~abjad.DynamicMeasure`
-      instances.
+   Note that this function is designed to
+   help create regularly spaced charts and tables of musical materials.
+   This function makes most sense when used on anonymous measures or
+   dynamic measures.
 
    ::
 
       abjad> t = Staff(measuretools.AnonymousMeasure("c'8 d'8") * 2)
       abjad> front, back = Duration(1, 32), Duration(1, 64)
       abjad> measuretools.pad_measures_in_expr_with_rests(t, front, back)
+
+   ::
+
       abjad> f(t)
       \new Staff {
          {
@@ -105,6 +107,8 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
          d'8
          r64 ]
       }
+
+   Return none.
 
    Raise value when `front` is neither a positive rational nor none.
 

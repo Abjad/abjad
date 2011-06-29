@@ -2,9 +2,9 @@ from abjad.tools.measuretools._report_meter_distribution import _report_meter_di
 
 
 def report_meter_distribution_as_string(expr):
-   r'''Report meter distribution of `expr` as string.
+   r'''.. versionadded:: 1.1.2
 
-   ::
+   Report meter distribution of `expr` as string::
 
       abjad> measuretools.report_meter_distribution_as_string(t) # doctest: +SKIP
       '\t3/80\t2\n\t2/16\t73\n\t7/40\t1\n\t3/16\t20\n\t16/80\t1\n\t17/80\t1\n

@@ -4,6 +4,8 @@ from abjad.tools.measuretools._get_measure_from_component import _get_measure_fr
 def get_next_measure_from_component(component):
    '''.. versionadded:: 1.1.1
 
+   Get next measure from `component`.
+
    When `component` is voice, staff or other sequential context,
    and when `component` contains a measure, return first measure 
    in `component`. This starts the process of forwards measure iteration. ::

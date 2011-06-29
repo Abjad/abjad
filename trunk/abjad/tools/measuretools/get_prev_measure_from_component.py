@@ -4,6 +4,8 @@ from abjad.tools.measuretools._get_measure_from_component import _get_measure_fr
 def get_prev_measure_from_component(component):
    '''.. versionadded:: 1.1.1
 
+   Get previous measure from `component`.
+
    When `component` is voice, staff or other sequential context,
    and when `component` contains a measure, return last measure 
    in `component`. This starts the process of backwards measure iteration. ::

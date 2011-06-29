@@ -7,6 +7,9 @@ def color_measure(measure, color = 'red'):
    Color `measure` with `color`::
 
       abjad> measure = Measure((2, 8), "c'8 d'8")
+
+   ::
+
       abjad> f(measure)
       {
          \time 2/8

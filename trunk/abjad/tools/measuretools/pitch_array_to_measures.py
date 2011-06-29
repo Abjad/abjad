@@ -6,12 +6,15 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator = 8):
 
    Change `pitch_array` to measures with meters 
    `row.width` over `cell_duration_denominator` for each
-   row in `pitch_array`. ::
+   row in `pitch_array`::
 
       abjad> from abjad.tools import pitcharraytools
       abjad> array = pitcharraytools.PitchArray([
       ...     [1, (2, 1), ([-2, -1.5], 2)],
       ...     [(7, 2), (6, 1), 1]])
+
+   ::
+
       abjad> print array
       [  ] [d'] [bf bqf    ]
       [g'     ] [fs'   ] [ ]

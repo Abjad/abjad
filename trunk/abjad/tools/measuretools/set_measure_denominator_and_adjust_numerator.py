@@ -3,13 +3,18 @@ from abjad.tools import durtools
 from abjad.tools.measuretools.Measure import Measure
 
 
+## TODO: implement measuretools.set_measure_denominator_and_adjust_contents( ).
 def set_measure_denominator_and_adjust_numerator(measure, denominator):
-   r'''Set `measure` meter `denominator` and multiply
-   meter numerator accordingly::
+   r'''.. versionadded:: 1.1.1
+
+   Set `measure` meter `denominator` and multiply meter numerator accordingly::
 
       abjad> measure = Measure((3, 8), "c'8 d'8 e'8")
       abjad> spannertools.BeamSpanner(measure.leaves)
       BeamSpanner(c'8, d'8, e'8)
+
+   ::
+
       abjad> f(measure)
       {
          \time 3/8
@@ -36,9 +41,6 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
    Leave `measure` contents unchanged.
 
    Return `measure`.
-
-   .. todo::
-      implement ``measuretools.set_measure_denominator_and_adjust_contents( )``.
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.set_measure_denominator_and_multiply_numerator( )`` to

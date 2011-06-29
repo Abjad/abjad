@@ -5,10 +5,13 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 def iterate_measures_forward_in_expr(expr, start = 0, stop = None):
    r'''.. versionadded:: 1.1.2
 
-   Yield left-to-right measures in `expr`. ::
+   Iterate measures forward in `expr`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
               {
@@ -54,14 +57,8 @@ def iterate_measures_forward_in_expr(expr, start = 0, stop = None):
       Measure(2/8, [c'8, d'8])
       Measure(2/8, [e'8, f'8])
 
-   .. note:: naive iteration ignores threads.
-
    .. versionchanged:: 1.1.2
       renamed ``iterate.measures_forward_in( )`` to
-      ``measuretools.iterate_measures_forward_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.measures_forward_in_expr( )`` to
       ``measuretools.iterate_measures_forward_in_expr( )``.
    '''
 

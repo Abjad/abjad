@@ -6,23 +6,17 @@ from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_me
 
 
 def scale_contents_of_measures_in_expr(expr, multiplier = 1):
-   '''Iterate expr. For every measure in expr:
+   '''.. versionadded:: 1.1.2
 
-      1. multiply measure's meter by multiplier
-      2. scale measure's contents to fit new meter
+   Scale contents of measures in `expr` by `multiplier`.
+   
+   Iterate expr. For every measure in expr first multiply the measure
+   meter by `multiplier` and then scale measure contents to fit
+   the new meter.
 
-   Extends containertools.scale_contents_of_container( ).
-   Returns None because iterates possibly many measures.
+   Extend ``containertools.scale_contents_of_container( )``.
 
-   This might best be a bound method on Measure.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.scale( )`` to
-      ``measuretools.scale_contents_of_measures_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.scale_measure_contents_in( )`` to
-      ``measuretools.scale_contents_of_measures_in_expr( )``.
+   Return none.
    '''
 
    from abjad.tools import containertools

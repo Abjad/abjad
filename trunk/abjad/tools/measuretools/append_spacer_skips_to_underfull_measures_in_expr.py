@@ -58,10 +58,6 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
    .. versionchanged:: 1.1.2
       renamed ``measuretools.remedy_underfull_measures( )`` to
       ``measuretools.append_spacer_skips_to_underfull_measures_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.append_spacer_skips_to_underfull_measures_in( )`` to
-      ``measuretools.append_spacer_skips_to_underfull_measures_in_expr( )``.
    '''
 
    treated_measures = [ ]

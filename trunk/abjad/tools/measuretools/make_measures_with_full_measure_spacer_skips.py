@@ -4,13 +4,18 @@ from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_ski
 
 
 def make_measures_with_full_measure_spacer_skips(meters):
-   r'''Make rigid measures with full-measure spacer skips from `meters`::
+   r'''.. versionadded:: 1.1.1
+
+   Make measures with full-measure spacer skips from `meters`::
 
       abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
 
    ::
 
       abjad> staff = Staff(measures)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
               {
@@ -31,10 +36,6 @@ def make_measures_with_full_measure_spacer_skips(meters):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.make( )`` to
-      ``measuretools.make_measures_with_full_measure_spacer_skips( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.make_rigid_measures_with_full_measure_spacer_skips( )`` to
       ``measuretools.make_measures_with_full_measure_spacer_skips( )``.
    '''
    from abjad.tools.skiptools.Skip import Skip

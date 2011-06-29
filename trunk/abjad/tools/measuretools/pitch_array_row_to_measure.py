@@ -8,12 +8,15 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
    r'''.. versionadded:: 1.1.2
 
    Change `pitch_array_row` to measure with meter 
-   `pitch_array_row.width` over `cell_duration_denominator`. ::
+   `pitch_array_row.width` over `cell_duration_denominator`::
 
       abjad> from abjad.tools import pitcharraytools
       abjad> array = pitcharraytools.PitchArray([
       ...     [1, (2, 1), ([-2, -1.5], 2)],
       ...     [(7, 2), (6, 1), 1]])
+
+   ::
+
       abjad> print array
       [  ] [d'] [bf bqf    ]
       [g'     ] [fs'   ] [ ]
@@ -21,6 +24,9 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
    ::
 
       abjad> measure = measuretools.pitch_array_row_to_measure(array.rows[0])
+
+   ::
+
       abjad> f(measure)
       {
               \time 4/8

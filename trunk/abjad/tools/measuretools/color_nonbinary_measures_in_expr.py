@@ -11,6 +11,9 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
       abjad> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
       abjad> measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
       Measure(3/12, [c'8., d'8.])
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          {
@@ -63,10 +66,6 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
    Return list of measures colored.
 
    Color names appear in LilyPond Learning Manual appendix B.5.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.color_nonbinary_measures_in( )`` to
-      ``measuretools.color_nonbinary_measures_in_expr( )``.
    '''
 
    ## init measures colored

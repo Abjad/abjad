@@ -1,9 +1,17 @@
 def comment_measures_in_container_with_measure_numbers(container):
-   r'''Comment measures in `container` with measure numbers::
+   r'''.. versionadded:: 1.1.1
+
+   Comment measures in `container` with measure numbers::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+
+   ::
+
       abjad> measuretools.comment_measures_in_container_with_measure_numbers(staff)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
               % start measure 1

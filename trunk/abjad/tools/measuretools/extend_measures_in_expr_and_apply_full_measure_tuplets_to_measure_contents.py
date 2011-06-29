@@ -2,7 +2,9 @@ from abjad.tools.measuretools._apply_full_measure_tuplets_to_contents_of_measure
 
 
 def extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(expr, supplement):
-   r'''Extend measures in `expr` with `supplement` and apply full-measure tuplets to contents 
+   r'''.. versionadded:: 1.1.2
+
+   Extend measures in `expr` with `supplement` and apply full-measure tuplets to contents 
    of measures::
 
       abjad> staff = Staff([Measure((2, 8), "c'8 d'8"), Measure((3, 8), "e'8 f'8 g'8")])

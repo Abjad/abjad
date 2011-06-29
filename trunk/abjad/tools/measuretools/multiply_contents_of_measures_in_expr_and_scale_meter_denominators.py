@@ -5,7 +5,11 @@ from abjad.tools import durtools
 
 
 def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, concentration_pairs):
-   '''Expr may be any Abjad expression.
+   '''.. versionadded:: 1.1.1
+
+   Mutiply contents of measures in `expr` and scale meter denominators.
+
+   Expr may be any Abjad expression.
    Concentration_pairs a Python list of pairs,
    each of the form (spin_count, scalar_denominator).
    Both spin_count and scalar_denominator must be positive integers.
@@ -14,21 +18,19 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
    spin measure by the spin_count element in concentration_pair and
    scale measure by 1/scalar_denominator element in concentration_pair.
 
-   Return Python list of transformed measures.
-
-   Example::
+   Return Python list of transformed measures::
 
       abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])[0])
       |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
-   Example::
+   ::
 
       abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 2)])[0])
       |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
    
-   Example::
+   ::
 
       abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
       abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 1)])[0])
@@ -36,10 +38,6 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.concentrate( )`` to
-      ``measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.multiply_measure_contents_and_scale_meter_denominator_in( )`` to
       ``measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators( )``.
    '''
 

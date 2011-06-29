@@ -3,13 +3,16 @@ from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_me
 
 
 def fill_measures_in_expr_with_meter_denominator_notes(expr, iterctrl = None):
-   r'''Fill measures in `expr` with meter denominator notes::
+   r'''.. versionadded:: 1.1.1
+
+   Fill measures in `expr` with meter denominator notes::
 
       abjad> staff = Staff([Measure((3, 4), [ ]), Measure((3, 16), [ ]), Measure((3, 8), [ ])])
       abjad> measuretools.fill_measures_in_expr_with_meter_denominator_notes(staff)
 
    ::
       
+      abjad> f(staff)
       \new Staff {
          {
             \time 3/4

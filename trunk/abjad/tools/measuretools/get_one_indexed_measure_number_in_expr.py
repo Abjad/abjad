@@ -4,10 +4,13 @@ from abjad.tools.measuretools.get_nth_measure_in_expr import get_nth_measure_in_
 def get_one_indexed_measure_number_in_expr(expr, measure_number):
    r'''.. versionadded:: 1.1.2
 
-   Return `measure_number` in `expr`. ::
+   Get one-indexed `measure_number` in `expr`::
 
       abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+
+   ::
+
       abjad> f(t)
       \new Staff {
          {
@@ -29,15 +32,7 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
       abjad> measuretools.get_one_indexed_measure_number_in_expr(t, 3)
       Measure(2/8, [g'8, a'8])
 
-   .. note:: measures number from 1.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_measure_number( )`` to
-      ``measuretools.get_one_indexed_measure_number_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_measure_number_in_expr( )`` to
-      ``measuretools.get_one_indexed_measure_number_in_expr( )``.
+   Note that measures number from 1.
    '''
 
    if measure_number < 1:

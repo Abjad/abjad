@@ -4,15 +4,17 @@ from abjad.tools import durtools
 
 
 def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
-   r'''Subsume all measures in expr containing only top-level tuplet.
-   Measures usually become nonbinary as as result of subsumption.
+   r'''.. versionadded:: 1.1.1
 
-   Return none.
+   Move prolation of full-measure tuplet to meter of measure.
 
-   Example::
+   Measures usually become nonbinary as as result::
 
       abjad> t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
       abjad> measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
+
+   ::
+
       abjad> f(t)
       {
          \time 3/12
@@ -22,6 +24,8 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
             e'8
          }
       }
+
+   Return none.
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.subsume( )`` to

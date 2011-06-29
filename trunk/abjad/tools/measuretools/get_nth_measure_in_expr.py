@@ -2,13 +2,17 @@ from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.componenttools.get_nth_component_in_expr import get_nth_component_in_expr
 
 
+## TODO: implement measuretools.iterate_measures_forward_in_expr(expr, i = 0, j = None).
 def get_nth_measure_in_expr(expr, n = 0):
    r'''.. versionadded:: 1.1.2
 
-   Return measure `n` in `expr`. ::
+   Get nth measure in `expr`::
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
               {
@@ -46,15 +50,8 @@ def get_nth_measure_in_expr(expr, n = 0):
       Measure(2/8, [e'8, f'8])
       Measure(2/8, [c'8, d'8])
          
-   .. todo:: implement ``measuretools.iterate_measures_forward_in_expr(expr, i = 0, j = None)``
-      as a companion to this function.
-
    .. versionchanged:: 1.1.2
       renamed ``iterate.get_nth_measure( )`` to
-      ``measuretools.get_nth_measure_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_measure_in_expr( )`` to
       ``measuretools.get_nth_measure_in_expr( )``.
    '''
 

@@ -5,12 +5,16 @@ from abjad.tools import durtools
 
 
 def multiply_contents_of_measures_in_expr(expr, n):
-   r'''Multiply contents ``n - 1`` times and adjust meter
-   of every measure in `expr`::
+   r'''.. versionadded:: 1.1.1
+
+   Multiply contents ``n - 1`` times and adjust meter of every measure in `expr`::
 
       abjad> measure = Measure((3, 8), "c'8 d'8 e'8")
       abjad> spannertools.BeamSpanner(measure.leaves)
       BeamSpanner(c'8, d'8, e'8)
+
+   ::
+
       abjad> f(measure)
       {
          \time 3/8
@@ -41,10 +45,6 @@ def multiply_contents_of_measures_in_expr(expr, n):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.spin( )`` to
-      ``measuretools.multiply_contents_of_measures_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.multiply_measure_contents_in( )`` to
       ``measuretools.multiply_contents_of_measures_in_expr( )``.
    '''
 

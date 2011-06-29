@@ -10,6 +10,9 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
       abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+
+   ::
+
       abjad> f(staff)
       \new Staff {
          {
@@ -49,10 +52,6 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
    .. versionchanged:: 1.1.2
       renamed ``measuretools.beam( )`` to
-      ``measuretools.apply_beam_spanners_to_measures_in_expr( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.apply_beam_spanners_to_measures_in( )`` to
       ``measuretools.apply_beam_spanners_to_measures_in_expr( )``.
    '''
 

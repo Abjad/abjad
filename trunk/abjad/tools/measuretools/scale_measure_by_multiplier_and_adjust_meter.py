@@ -5,31 +5,27 @@ from abjad.tools import mathtools
 
 
 def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
-   r'''Multiply the duration of every element in measure by multiplier.
-      Then rewrite the meter of measure as appropriate.
+   r'''.. versionadded:: 1.1.2
 
-      Return treated measure.
+   Scale `measure` by `multiplier` and adjust meter::
 
-      Like magic.
+      abjad> t = Measure((3, 8), "c'8 d'8 e'8")
+      abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
+      Measure(3/12, [c'8, d'8, e'8])
 
-      Example::
+   ::
 
-         abjad> t = Measure((3, 8), "c'8 d'8 e'8")
-         abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
-         Measure(3/12, [c'8, d'8, e'8])
-         abjad> f(t)
-         {
-              \time 3/12
-              \scaleDurations #'(2 . 3) {
-                      c'8
-                      d'8
-                      e'8
-              }
-         }
+      abjad> f(t)
+      {
+           \time 3/12
+           \scaleDurations #'(2 . 3) {
+                   c'8
+                   d'8
+                   e'8
+           }
+      }
 
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.scale_and_remeter( )`` to
-      ``measuretools.scale_measure_by_multiplier_and_adjust_meter( )``.
+   Return `measure`.
    '''
 
    from abjad.tools import containertools

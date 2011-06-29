@@ -6,8 +6,11 @@ from abjad.tools import durtools
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
-   '''Turn nonbinary measures into binary measures 
-   containing a single fixed-duration tuplet.
+   '''.. versionadded:: 1.1.2
+
+   Move measure prolation to full-measure tuplet.
+
+   Turn nonbinary measures into binary measures containing a single fixed-duration tuplet.
 
    This is the inverse of measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure( ).
 
