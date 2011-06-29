@@ -119,7 +119,7 @@ def make_sphinx_toc( ):
    result += '\n\n'
 
    section_title = 'Additional Abjad composition packages (load manually)'
-   result += '%s\n' % section_title
+   result += '\n%s\n' % section_title
    result += '-' * (len(section_title))
    result += '\n\n'
    result += '.. toctree::\n'
@@ -140,6 +140,8 @@ def make_sphinx_toc( ):
             result += '\n'
             last_tools_module = cur_tools_module
          result += '   %s\n' % doc_path
+
+   result += '\n\n\n'
 
    section_title = 'Unstable Abjad composition packages (load manually)'
    result += '%s\n' % section_title

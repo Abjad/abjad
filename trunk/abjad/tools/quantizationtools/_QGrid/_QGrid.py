@@ -1,8 +1,13 @@
+import copy
 from collections import Iterable
-from copy import copy
+from abjad import Container
 from abjad import Fraction
+from abjad import Note
+from abjad import Tuplet
 from abjad.core import _Immutable
+from abjad.tools.durtools import is_binary_rational
 from abjad.tools.mathtools import divisors
+from abjad.tools.mathtools import greatest_power_of_two_less_equal
 from abjad.tools.seqtools import all_are_numbers
 from abjad.tools.seqtools import flatten_sequence
 
@@ -80,7 +85,7 @@ class _QGrid(_Immutable):
          raise ValueError
 
       if item == len(self) - 1:
-         object.__setattr__(self, '_next', item)
+         object.__setattr__(self, '_next', value)
       else:
          recurse(self._definition, item, value, 0)
 
@@ -104,7 +109,7 @@ class _QGrid(_Immutable):
                results.extend(recurse(x, this_div, this_offset))
          return results
       expanded = list(recurse(self._definition, 1, 0))
-      expanded.append(1)
+      expanded.append(Fraction(1))
       return tuple(expanded)
 
    def _is_valid_grid_definition(self, definition):
@@ -126,7 +131,7 @@ class _QGrid(_Immutable):
 
    @property
    def definition(self):
-      return copy(self._definition)
+      return copy.deepcopy(self._definition)
 
    @property
    def next(self):
@@ -182,6 +187,28 @@ class _QGrid(_Immutable):
             indices.append(i)
       return indices
 
+   def format_for_beatspan(self, beatspan = Fraction(1, 4)):
+      assert is_binary_rational(beatspan)
+      if isinstance(beatspan, Fraction): 
+         assert beatspan.numerator == 1
+      def recurse(n, division):
+         pow = greatest_power_of_two_less_equal(len(n))
+         val = Fraction(1, pow) * division
+         if divisors(len(n)) == [1, 2]: # we are in a duple container
+            c = Container([ ])
+         else: # we are in a non-2 prime container, hence tuplet
+            c = Tuplet(Fraction(pow, len(n)), [ ])
+         for x in n:
+            if isinstance(x, int):
+#               if x == 0:
+#                  c.append(Rest(val))
+#               else:
+               c.append(Note(0, val))
+            else:
+               c.append(recurse(x, val))
+         return c
+      return recurse(self.definition, beatspan)
+
    def subdivide_indices(self, pairs):
       '''Given a list of 2-tuples, where for each tuple t,
       t[0] is a valid index into self, and t[1] is a prime integer
@@ -203,6 +230,6 @@ class _QGrid(_Immutable):
                   pairs.pop(pairs.index(pair))
                count += 1
          return count
-      definition = copy(self.definition)
+      definition = copy.deepcopy(self.definition)
       recurse(definition, 0)
       return _QGrid(definition, self.next)
