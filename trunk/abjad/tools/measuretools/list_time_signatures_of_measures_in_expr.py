@@ -1,4 +1,4 @@
-def list_time_signatures_of_mesures_in_expr(components):
+def list_time_signatures_of_measures_in_expr(components):
    r'''.. versionadded:: 1.1.2
 
    List time signatures of measures in `expr`::
@@ -35,10 +35,14 @@ def list_time_signatures_of_mesures_in_expr(components):
 
    ::
 
-      abjad> measuretools.list_time_signatures_of_mesures_in_expr(staff)
+      abjad> measuretools.list_time_signatures_of_measures_in_expr(staff)
       [TimeSignatureMark(2, 8)(|2/8, c8, d8|), TimeSignatureMark(3, 8)(|3/8, c8, d8, e8|), TimeSignatureMark(4, 8)(|4/8, c8, d8, e8, f8|)]
 
    Return list of zero or more time signatures.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.list_time_signatures_of_mesures_in_expr( )`` to
+      ``measuretools.list_time_signatures_of_measures_in_expr( )``.
    '''
    from abjad.tools import componenttools
    from abjad.tools import contexttools
