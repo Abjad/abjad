@@ -218,7 +218,7 @@ class QGridQuantizer(_Quantizer):
 
    ## PUBLIC METHODS ##
 
-   def quantize(self, *args):
+   def quantize(self, *args, **kwargs):
       # validate input
       if len(args) == 1:
          assert all([isinstance(x, int) for x in args[0]])
@@ -228,15 +228,23 @@ class QGridQuantizer(_Quantizer):
          assert isinstance(args[1], TempoMark)
          durations = [tempo_scaled_rational_to_milliseconds(x, args[1])
             for x in args[0]]
+      if 'verbose' in kwargs:
+         verbose = bool(kwargs['verbose'])
+      else:
+         verbose = False
 
       # calculate attack points
       offsets = cumulative_sums_zero([abs(x) for x in durations])[:-1]
       timepoints = zip(offsets, durations)
+      if verbose:
+         print 'TIMEPOINTS: %s' % offsets
 
       # group timepoints
       grouped_timepoints = group_timepoints_by_beatspan(timepoints, self.beatspan_ms, subscript = 0)
 
       # find best Q-grids for each beatspan
+      if verbose:
+         print 'Q-GRIDS:'
       per_beatspan_q_grids = { }
       for beatspan_number in sorted(grouped_timepoints.keys( )):
          mod_timepoints = [Fraction(x[0] % self.beatspan_ms) / self.beatspan_ms \
@@ -253,10 +261,16 @@ class QGridQuantizer(_Quantizer):
             per_beatspan_q_grids[beatspan_number][i] = (error, points, q_grid)
          # sort by error, length of Q-grid (smaller is less complex)
          per_beatspan_q_grids[beatspan_number].sort(key = lambda x: (x[0], len(x[2])))
+         if verbose:
+            print '\t%d: %s' % (beatspan_number, grouped_timepoints[beatspan_number])
+            for q in per_beatspan_q_grids[beatspan_number]:
+               print '\t\t%0.4f %s' % (q[0], q[2])
 
       assert len(per_beatspan_q_grids) == len(grouped_timepoints)
 
       # regroup
+      if verbose:
+         print 'SELECTING:'
       carry = False # carry "next" into following Q-grid
       selected_q_grids = { }
       for beatspan_number in sorted(grouped_timepoints.keys( )):
@@ -271,7 +285,8 @@ class QGridQuantizer(_Quantizer):
             else:
                carry = True
             selected[-1] = 0
-         print beatspan_number, selected_q_grids[beatspan_number]
+         if verbose:
+            print '\t%d %s' % (beatspan_number, selected_q_grids[beatspan_number])
 
       # fill in gaps
       for i in range(sorted(selected_q_grids.keys( ))[-1]):
@@ -297,23 +312,22 @@ class QGridQuantizer(_Quantizer):
       # add tie chains
       tie_chains = [ ]
       for pair in iterate_sequence_pairwise_strict(indices):
-         print pair
          leaves = container.leaves[pair[0]:pair[1]]
          if 1 < len(leaves):
             tie_chains.append(get_tie_chain(TieSpanner(leaves)[0]))
 
+      # rest any trailing, untied leaves
+      last_tie = TieSpanner(container.leaves[indices[-1]:])
+      last_tie_chain = get_tie_chain(last_tie[0])
+      last_tie_chain = fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(last_tie_chain)
+      last_tie.clear( ) # detach
+      for note in flatten_sequence(last_tie_chain):
+         parent = note._parentage.parent
+         parent[parent.index(note)] = Rest(note.duration.written)
+
       # fuse tie chains
       for tie_chain in reversed(tie_chains):
           fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
-
-      # rest any trailing, untied leaves
-      tie = TieSpanner(container.leaves[indices[-1]:])
-      tie_chain = get_tie_chain(tie[0])
-      tie_chain = fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
-      tie.clear( ) # detach
-      for note in flatten_sequence(tie_chain):
-         parent = note._parentage.parent
-         parent[parent.index(note)] = Rest(note.duration.written)
 
       return container
 
