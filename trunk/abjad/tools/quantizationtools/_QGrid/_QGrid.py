@@ -200,9 +200,6 @@ class _QGrid(_Immutable):
             c = Tuplet(Fraction(pow, len(n)), [ ])
          for x in n:
             if isinstance(x, int):
-#               if x == 0:
-#                  c.append(Rest(val))
-#               else:
                c.append(Note(0, val))
             else:
                c.append(recurse(x, val))

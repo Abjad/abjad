@@ -8,6 +8,7 @@ from abjad.tools.contexttools import TempoMark
 from abjad.tools.durtools import is_binary_rational
 from abjad.tools.leaftools import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
 from abjad.tools.mathtools import cumulative_sums_zero
+from abjad.tools.mathtools import divisors
 from abjad.tools.quantizationtools._QGrid import _QGrid
 from abjad.tools.quantizationtools._Quantizer import _Quantizer
 from abjad.tools.quantizationtools.group_timepoints_by_beatspan \
@@ -80,16 +81,6 @@ class QGridQuantizer(_Quantizer):
             results.extend(recurse(results[-1], timepoints))
          return results
       return recurse(grid, timepoints)
-
-   def _find_nearest_q_grid_point_to_timepoint(self, timepoint, q_grid):
-      best_point = q_grid[0]
-      best_error = abs(self.q_grid_tempo_lookup[q_grid[0]] - timepoint)
-      for q in q_grid[1:]:
-         curr_error = abs(self.q_grid_tempo_lookup[q] - timepoint)
-         if curr_error < best_error:
-            best_point = q
-            best_error = curr_error
-      return best_point, best_error
 
    def _find_q_grid_parentage_divisibility(self, parentage):
       node = self.search_tree[parentage[0]]
