@@ -4,7 +4,7 @@ import os
 import shutil
 
 
-def write_expr_to_pdf(expr, file_name, template = None):
+def write_expr_to_pdf(expr, file_name, template = None, print_status = True):
    '''Write `expr` to pdf `file_name`::
 
       abjad> note = Note("c'4")
@@ -32,4 +32,5 @@ def write_expr_to_pdf(expr, file_name, template = None):
    full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
    shutil.move(full_path_pdf_name, file_name)
 
-   print 'PDF written to "%s" ...' % os.path.basename(file_name)
+   if print_status:
+      print 'PDF written to "%s" ...' % os.path.basename(file_name)

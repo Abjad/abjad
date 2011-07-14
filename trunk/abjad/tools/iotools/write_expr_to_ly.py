@@ -3,7 +3,7 @@ from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_li
 import os
 
 
-def write_expr_to_ly(expr, file_name, template = None):
+def write_expr_to_ly(expr, file_name, template = None, print_status = True):
    '''Write `expr` to `file_name`::
 
       abjad> note = Note("c'4")
@@ -35,4 +35,5 @@ def write_expr_to_ly(expr, file_name, template = None):
       if dirname:
          print 'Make sure "%s" exists in your system.' % dirname
 
-   print 'LilyPond input file written to "%s" ...' % os.path.basename(file_name)
+   if print_status:
+      print 'LilyPond input file written to "%s" ...' % os.path.basename(file_name)
