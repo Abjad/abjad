@@ -15,13 +15,13 @@ def test_quantizationtools_QGrid___new___01( ):
    q = QGrid([0, 0.5, Fraction(1, 4)], 0)
 
    # None, QEvent, empty tuple
-   p = QGrid([None, QEvent(0, 1, 0), tuple([ ])], 0)
+   p = QGrid([None, QEvent(0, 0), tuple([ ])], 0)
 
    # nested lists
    r = QGrid([[0, 1], 2], 3)
 
    # tuple of QEvents
-   s = QGrid([(QEvent(0, 1, 0), QEvent(1, 1, 0))], 0)
+   s = QGrid([(QEvent(0, 0), QEvent(1, 0))], 0)
 
    # tuple of Numbers
    t = QGrid([(0, 0.5, Fraction(-1, 4))], 0)

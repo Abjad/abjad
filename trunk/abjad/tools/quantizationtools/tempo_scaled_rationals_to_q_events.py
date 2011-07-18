@@ -21,10 +21,15 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
 
    q_events = [ ]
    for pair in zip(offsets, durations):
-      if pair[1] < 0: # negative duration indicates silence
-         q_event = QEvent(Offset(pair[0]), Duration(abs(pair[1])), None)
-      else:
-         q_event = QEvent(Offset(pair[0]), Duration(pair[1]), 0)
+      offset = Offset(pair[0])
+      duration = pair[1]
+      if duration < 0: # negative duration indicates silence
+         q_event = QEvent(offset, None)
+      else: # otherwise, use middle-C
+         q_event = QEvent(offset, 0)
       q_events.append(q_event)
+
+   # insert terminating silence QEvent
+   q_events.append(QEvent(offsets[-1], None))
 
    return q_events

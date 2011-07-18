@@ -1,6 +1,7 @@
 from collections import Iterable
 from itertools import groupby
 from numbers import Number
+from abjad.tools.durtools import Offset
 from abjad.tools.mathtools import cumulative_sums_zero
 from abjad.tools.quantizationtools.QEvent import QEvent
 
@@ -23,7 +24,7 @@ def millisecond_pitch_pairs_to_q_events(pairs):
    groups = [ ]
    for value, group in g:
       if value:
-         groups.extend(group)
+         groups.extend(list(group))
       else:
          duration = sum([x[0] for x in group])
          groups.append((duration, None))
@@ -34,14 +35,16 @@ def millisecond_pitch_pairs_to_q_events(pairs):
    # build Q-events
    q_events = [ ]
    for pair in zip(offsets, groups):
-      offset = pair[0]
-      duration = abs(pair[1][0])
+      offset = Offset(pair[0])
+      # duration = abs(pair[1][0])
       pitches = pair[1][1]
       if isinstance(pitches, Iterable):
          assert all([isinstance(x, Number) for x in pitches])
       else:
          assert isinstance(pitches, (int, type(None)))
-      q_event = QEvent(offset, duration, pitches)
-      q_events.append(q_event)
+      q_events.append(QEvent(offset, pitches))
+
+   # add terminating silence
+   q_events.append(QEvent(offsets[-1], None))
 
    return q_events

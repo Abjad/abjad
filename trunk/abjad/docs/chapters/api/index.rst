@@ -1370,7 +1370,6 @@ quantizationtools
    tools/quantizationtools/QEvent/QEvent
    tools/quantizationtools/QGrid/QGrid
    tools/quantizationtools/QGridQuantizer/QGridQuantizer
-   tools/quantizationtools/group_timepoints_by_beatspan
    tools/quantizationtools/millisecond_pitch_pairs_to_q_events
    tools/quantizationtools/milliseconds_to_q_events
    tools/quantizationtools/tempo_scaled_leaves_to_q_events

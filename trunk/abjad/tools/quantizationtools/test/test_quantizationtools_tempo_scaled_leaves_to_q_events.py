@@ -37,14 +37,15 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01( ):
    q_events = tempo_scaled_leaves_to_q_events(staff.leaves, tempo)
 
    assert q_events == [
-      QEvent(Offset(0, 1), Duration(12000, 11), 0),
-      QEvent(Offset(12000, 11), Duration(18000, 11), None),
-      QEvent(Offset(30000, 11), Duration(12000, 11), 1),
-      QEvent(Offset(42000, 11), Duration(12000, 11), 2),
-      QEvent(Offset(54000, 11), Duration(6000, 11), 3),
-      QEvent(Offset(60000, 11), Duration(24000, 11), None),
-      QEvent(Offset(84000, 11), Duration(6000, 11), 3),
-      QEvent(Offset(90000, 11), Duration(12000, 11), (0, 1, 4))]
+      QEvent(Offset(0, 1), 0),
+      QEvent(Offset(12000, 11), None),
+      QEvent(Offset(30000, 11), 1),
+      QEvent(Offset(42000, 11), 2),
+      QEvent(Offset(54000, 11), 3),
+      QEvent(Offset(60000, 11), None),
+      QEvent(Offset(84000, 11), 3),
+      QEvent(Offset(90000, 11), (0, 1, 4)),
+      QEvent(Offset(102000, 11), None)]
 
 
 def test_quantizationtools_tempo_scaled_leaves_to_q_events_02( ):
@@ -74,11 +75,12 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_02( ):
    q_events = tempo_scaled_leaves_to_q_events(staff.leaves)
 
    assert q_events == [
-      QEvent(Offset(0, 1), Duration(30000, 29), 0),
-      QEvent(Offset(30000, 29), Duration(45000, 29), None),
-      QEvent(Offset(75000, 29), Duration(30000, 29), 1),
-      QEvent(Offset(105000, 29), Duration(30000, 29), 2),
-      QEvent(Offset(135000, 29), Duration(15000, 29), 3),
-      QEvent(Offset(150000, 29), Duration(4050000, 2233), None),
-      QEvent(Offset(15600000, 2233), Duration(30000, 77), 3),
-      QEvent(Offset(16470000, 2233), Duration(60000, 77), (0, 1, 4))]
+      QEvent(Offset(0, 1), 0),
+      QEvent(Offset(30000, 29), None),
+      QEvent(Offset(75000, 29), 1),
+      QEvent(Offset(105000, 29), 2),
+      QEvent(Offset(135000, 29), 3),
+      QEvent(Offset(150000, 29), None),
+      QEvent(Offset(15600000, 2233), 3),
+      QEvent(Offset(16470000, 2233), (0, 1, 4)),
+      QEvent(Offset(18210000, 2233), None)]

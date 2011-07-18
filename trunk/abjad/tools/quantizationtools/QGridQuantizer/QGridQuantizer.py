@@ -11,8 +11,6 @@ from abjad.tools.mathtools import cumulative_sums_zero
 from abjad.tools.mathtools import divisors
 from abjad.tools.quantizationtools.QGrid import QGrid
 from abjad.tools.quantizationtools._Quantizer import _Quantizer
-from abjad.tools.quantizationtools.group_timepoints_by_beatspan \
-   import group_timepoints_by_beatspan
 from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
    import tempo_scaled_rational_to_milliseconds
 from abjad.tools.seqtools import flatten_sequence
@@ -62,6 +60,33 @@ class QGridQuantizer(_Quantizer):
       object.__setattr__(self, '_threshold', threshold)
 
    ## PRIVATE METHODS ##
+
+   def _compare_q_events_to_q_grid(self, offsets, q_events, q_grid):
+      indices = [ ]
+      error = 0
+
+      for i, offset in enumerate(offsets):
+         q = q_grid.offsets[0]
+         best_index = 0
+         best_error = abs(q - timepoint)
+
+         for j, q in enumerate(q_grid.offsets[1:]):
+            curr_error = abs(q - offset)
+            if curr_error < best_error:
+               best_index = j + 1
+               best_error = curr_error
+
+         best_index_contents = q_grid[best_index]
+         if best_index_contents == 0:
+            q_grid[best_index] = tuple(q_events[i],)
+         elif isinstance(best_index_contents, tuple):
+            new_contents = list(best_index_contents)
+            new_contents.append(q_events[i])
+            q_grid[best_index] = tuple(new_contents)
+            
+         error += best_error
+
+      return error
 
    def _divide_grid(self, grid, timepoints):
       def recurse(grid, timepoints):
@@ -158,6 +183,99 @@ class QGridQuantizer(_Quantizer):
          return new_node
       return recurse(search_tree, beatspan)
 
+   def _quantize(self, q_events, verbose = False):
+
+      # group QEvents
+      g = groupby(q_events, lambda x: divmod(x.offset, beatspan)[0])
+      grouped_q_events = { }
+      for value, group in g:
+         grouped_q_events[value] = list(group)
+
+      # find best Q-grids for each beatspan
+      per_beatspan_q_grids = { }
+      for beatspan_number in sorted(grouped_q_events.keys( )):
+
+         # find modulo offsets
+         mod_offsets = [Fraction(x.offset % self.beatspan_ms) / self.beatspan_ms \
+            for x in grouped_q_events[beatspan_number]]
+
+         # build Q-grid list
+         per_beatspan_q_grids[beatspan_number] = [QGrid([0], 0)]
+         for k in self.search_tree:
+            grid = QGrid([0] * k, 0)
+            per_beatspan_q_grids[beatspan_number].append(grid)
+            per_beatspan_q_grids[beatspan_number].extend(self._divide_grid(grid, mod_offsets))
+
+         # find error
+         for i, q_grid in enumerate(per_beatspan_q_grids[beatspan_number]):
+            error = self._compare_timepoints_to_q_grid( \
+               mod_offsets, grouped_q_events[beatspan_number], q_grid)
+            per_beatspan_q_grids[beatspan_number][i] = (error, q_grid)
+
+         # sort by error, length of Q-grid (smaller is less complex)
+         per_beatspan_q_grids[beatspan_number].sort(key = lambda x: (x[0], len(x[1])))
+
+      assert len(per_beatspan_q_grids) == len(grouped_timepoints)
+
+      # regroup
+      carry = False # carry "next" into following Q-grid
+      selected_q_grids = { }
+      for beatspan_number in sorted(grouped_q_events.keys( )):
+         selected = per_beatspan_q_grids[beatspan_number][0][1]
+         if carry:
+            selected[0] = 1
+            carry = False
+         selected_q_grids[beatspan_number] = selected
+         if selected.next:
+            if beatspan_number + 1 not in grouped_timepoints:
+               selected_q_grids[beatspan_number + 1] = QGrid([1], 0)
+            else:
+               carry = True
+            selected[-1] = 0
+
+      # fill in gaps
+      for i in range(sorted(selected_q_grids.keys( ))[-1]):
+         if i not in selected_q_grids:
+            selected_q_grids[i] = QGrid([0], 0)
+
+      # store indices of tie-chain starts
+      indices = [ ]
+      carry = 0
+      for beatspan_number in sorted(selected_q_grids.keys( )):
+         q_grid = selected_q_grids[beatspan_number]
+         for i, x in enumerate(q_grid):
+            if x == 1:
+               indices.append(i + carry)
+         carry += len(q_grid) - 1 # account of q_grid.next
+
+      # make bare notation
+      container = Container( )
+      for beatspan_number in sorted(selected_q_grids.keys( )):
+         q_grid = selected_q_grids[beatspan_number]
+         container.append(q_grid.format_for_beatspan(self.beatspan))
+
+      # add tie chains
+      tie_chains = [ ]
+      for pair in iterate_sequence_pairwise_strict(indices):
+         leaves = container.leaves[pair[0]:pair[1]]
+         if 1 < len(leaves):
+            tie_chains.append(get_tie_chain(TieSpanner(leaves)[0]))
+
+      # rest any trailing, untied leaves
+      last_tie = TieSpanner(container.leaves[indices[-1]:])
+      last_tie_chain = get_tie_chain(last_tie[0])
+      last_tie_chain = fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(last_tie_chain)
+      last_tie.clear( ) # detach
+      for note in flatten_sequence(last_tie_chain):
+         parent = note._parentage.parent
+         parent[parent.index(note)] = Rest(note.duration.written)
+
+      # fuse tie chains
+      for tie_chain in reversed(tie_chains):
+          fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
+
+      return container
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -206,142 +324,3 @@ class QGridQuantizer(_Quantizer):
    @property
    def threshold(self):
       return self._threshold
-
-   ## PUBLIC METHODS ##
-
-   def quantize(self, *args, **kwargs):
-      # validate input
-      if len(args) == 1:
-         assert all([isinstance(x, int) for x in args[0]])
-         durations = args[0]
-      elif 1 < len(args):
-         assert all([isinstance(x, (int, Fraction)) for x in args[0]])
-         assert isinstance(args[1], TempoMark)
-         durations = [tempo_scaled_rational_to_milliseconds(x, args[1])
-            for x in args[0]]
-      if 'verbose' in kwargs:
-         verbose = bool(kwargs['verbose'])
-      else:
-         verbose = False
-
-      # calculate attack points
-      offsets = cumulative_sums_zero([abs(x) for x in durations])[:-1]
-      timepoints = zip(offsets, durations)
-      if verbose:
-         print 'TIMEPOINTS: %s' % offsets
-
-      # group timepoints
-      grouped_timepoints = group_timepoints_by_beatspan(timepoints, self.beatspan_ms, subscript = 0)
-
-      # find best Q-grids for each beatspan
-      if verbose:
-         print 'Q-GRIDS:'
-      per_beatspan_q_grids = { }
-      for beatspan_number in sorted(grouped_timepoints.keys( )):
-         mod_timepoints = [Fraction(x[0] % self.beatspan_ms) / self.beatspan_ms \
-            for x in grouped_timepoints[beatspan_number]]
-         # build Q-grid list
-         per_beatspan_q_grids[beatspan_number] = [QGrid([0], 0)]
-         for k in self.search_tree:
-            g = QGrid([0] * k, 0)
-            per_beatspan_q_grids[beatspan_number].append(g)
-            per_beatspan_q_grids[beatspan_number].extend(self._divide_grid(g, mod_timepoints))
-         # find error
-         for i, q_grid in enumerate(per_beatspan_q_grids[beatspan_number]):
-            error, points = _compare_timepoints_to_q_grid(mod_timepoints, q_grid)
-            per_beatspan_q_grids[beatspan_number][i] = (error, points, q_grid)
-         # sort by error, length of Q-grid (smaller is less complex)
-         per_beatspan_q_grids[beatspan_number].sort(key = lambda x: (x[0], len(x[2])))
-         if verbose:
-            print '\t%d: %s' % (beatspan_number, grouped_timepoints[beatspan_number])
-            for q in per_beatspan_q_grids[beatspan_number]:
-               print '\t\t%0.4f %s' % (q[0], q[2])
-
-      assert len(per_beatspan_q_grids) == len(grouped_timepoints)
-
-      # regroup
-      if verbose:
-         print 'SELECTING:'
-      carry = False # carry "next" into following Q-grid
-      selected_q_grids = { }
-      for beatspan_number in sorted(grouped_timepoints.keys( )):
-         selected = per_beatspan_q_grids[beatspan_number][0][2]
-         if carry:
-            selected[0] = 1
-            carry = False
-         selected_q_grids[beatspan_number] = selected
-         if selected.next:
-            if beatspan_number + 1 not in grouped_timepoints:
-               selected_q_grids[beatspan_number + 1] = QGrid([1], 0)
-            else:
-               carry = True
-            selected[-1] = 0
-         if verbose:
-            print '\t%d %s' % (beatspan_number, selected_q_grids[beatspan_number])
-
-      # fill in gaps
-      for i in range(sorted(selected_q_grids.keys( ))[-1]):
-         if i not in selected_q_grids:
-            selected_q_grids[i] = QGrid([0], 0)
-
-      # store indices of tie-chain starts
-      indices = [ ]
-      carry = 0
-      for beatspan_number in sorted(selected_q_grids.keys( )):
-         q_grid = selected_q_grids[beatspan_number]
-         for i, x in enumerate(q_grid):
-            if x == 1:
-               indices.append(i + carry)
-         carry += len(q_grid) - 1 # account of q_grid.next
-
-      # make bare notation
-      container = Container( )
-      for beatspan_number in sorted(selected_q_grids.keys( )):
-         q_grid = selected_q_grids[beatspan_number]
-         container.append(q_grid.format_for_beatspan(self.beatspan))
-
-      # add tie chains
-      tie_chains = [ ]
-      for pair in iterate_sequence_pairwise_strict(indices):
-         leaves = container.leaves[pair[0]:pair[1]]
-         if 1 < len(leaves):
-            tie_chains.append(get_tie_chain(TieSpanner(leaves)[0]))
-
-      # rest any trailing, untied leaves
-      last_tie = TieSpanner(container.leaves[indices[-1]:])
-      last_tie_chain = get_tie_chain(last_tie[0])
-      last_tie_chain = fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(last_tie_chain)
-      last_tie.clear( ) # detach
-      for note in flatten_sequence(last_tie_chain):
-         parent = note._parentage.parent
-         parent[parent.index(note)] = Rest(note.duration.written)
-
-      # fuse tie chains
-      for tie_chain in reversed(tie_chains):
-          fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
-
-      return container
-
-def _compare_timepoints_to_q_grid(timepoints, q_grid):
-   # This will need to be rewritten for parallelization:
-   # it should return error & indices, not error & points
-   # and only the offsets should be provided, rather
-   # than the entire Q-grid object itself.
-   indices = [ ]
-   points = [ ]
-   error = 0
-   for timepoint in timepoints:
-      q = q_grid.offsets[0]
-      best_index = 0
-      best_point = q
-      best_error = abs(q - timepoint)
-      for i, q in enumerate(q_grid.offsets[1:]):
-         curr_error = abs(q - timepoint)
-         if curr_error < best_error:
-            best_index = i + 1
-            best_point = q
-            best_error = curr_error
-      q_grid[best_index] = 1
-      points.append(best_point)
-      error += best_error
-   return error, points

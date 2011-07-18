@@ -27,9 +27,9 @@ def test_quantizationtools_QGrid___setitem___02( ):
 
    q[0] = 0.5
    q[1] = None
-   q[2] = QEvent(0, 1, 0)
+   q[2] = QEvent(0, 0)
    q[3] = tuple([ ])
    q[4] = (0.5, 1, 3)
-   q[5] = (QEvent(0, 1, 0), QEvent(1, 2, 1))
+   q[5] = (QEvent(0, 0), QEvent(1, 1))
 
-   assert q == QGrid([0.5, [None, [QEvent(0, 1, 0), tuple([ ])]], (0.5, 1, 3)], (QEvent(0, 1, 0), QEvent(1, 2, 1)))
+   assert q == QGrid([0.5, [None, [QEvent(0, 0), tuple([ ])]], (0.5, 1, 3)], (QEvent(0, 0), QEvent(1, 1)))
