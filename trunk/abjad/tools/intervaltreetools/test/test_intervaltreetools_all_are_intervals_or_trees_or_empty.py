@@ -44,4 +44,6 @@ def test_intervaltreetools_all_are_intervals_or_trees_or_empty_07( ):
    assert all_are_intervals_or_trees_or_empty([ ])
 
 
-
+def test_intervaltreetools_all_are_intervals_or_trees_or_empty_08( ):
+   intervals = _make_test_intervals( )
+   assert all_are_intervals_or_trees_or_empty(intervals)

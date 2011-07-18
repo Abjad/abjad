@@ -9,12 +9,22 @@ from abjad.tools.intervaltreetools._RedBlackTree import _RedBlackTree
 
 
 class IntervalTree(_RedBlackTree):
-   '''An augmented red-black tree for storing and searching
-   for intervals of time.  Allows for the arbitrary placement
-   of blocks of material along a time-line.  While this functionality
-   could be achieved with Python's built-in collections, this
-   class reduces the complexity of the search process, such as
-   locating overlapping intervals.
+   '''An augmented red-black tree for storing and searching for intervals of
+   time (rather than pitch).
+
+   This allows for the arbitrary placement of blocks of material along a 
+   time-line.  While this functionality could be achieved with Python's
+   built-in collections, this class reduces the complexity of the search
+   process, such as locating overlapping intervals.
+
+   IntervalTrees can be instantiated without contents, or from a mixed
+   collection of other IntervalTrees and / or BoundedIntervals.  The input
+   will be parsed recursively ::
+
+      abjad> from abjad.tools.intervaltreetools import IntervalTree
+      abjad> from abjad.tools.intervaltreetools import BoundedInterval
+      abjad> bi = BoundedInterval(0, 10)
+      abjad> tree = IntervalTree([bi])
    '''
 
    __slots__ = ('_root', '_sentinel')
@@ -121,16 +131,21 @@ class IntervalTree(_RedBlackTree):
 
    @property
    def bounds(self):
+      '''The lowest and highest values of the tree returned as a
+      BoundedInterval.'''
       if self:
          return BoundedInterval(self.low, self.high)
       return None
 
    @property
    def high(self):
+      '''The maximum high value of all intervals in the tree.
+      Alias of high_max.'''
       return self.high_max
 
    @property
    def high_max(self):
+      '''The maximum high value of all intervals in the tree.'''
       if self:
          return Offset(self._root.high_max)
       else:
@@ -138,6 +153,7 @@ class IntervalTree(_RedBlackTree):
 
    @property
    def high_min(self):
+      '''The minimum high value of all intervals in the tree.'''
       if self:
          return Offset(self._root.high_min)
       else:
@@ -145,10 +161,13 @@ class IntervalTree(_RedBlackTree):
 
    @property
    def low(self):
+      '''The minimum low value of all intervals in the tree.
+      Alias of low_min.'''
       return self.low_min
 
    @property
    def low_max(self):
+      '''The maximum low value of all intervals in the tree.'''
       if self:
          return Offset(self._find_maximum(self._root).key)
       else:
@@ -156,6 +175,7 @@ class IntervalTree(_RedBlackTree):
 
    @property
    def low_min(self):
+      '''The minimum low value of all intervals in the tree.'''
       if self:
          return Offset(self._find_minimum(self._root).key)
       else:
@@ -163,6 +183,7 @@ class IntervalTree(_RedBlackTree):
 
    @property
    def magnitude(self):
+      '''Absolute difference of the high and low values of the tree.'''
       if self:
          return Duration(self.high_max - self.low_min)
       else:

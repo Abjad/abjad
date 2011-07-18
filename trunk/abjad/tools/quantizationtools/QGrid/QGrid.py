@@ -1,27 +1,48 @@
 import copy
 from collections import Iterable
+from numbers import Number
 from abjad import Container
 from abjad import Fraction
 from abjad import Note
 from abjad import Tuplet
 from abjad.core import _Immutable
+from abjad.tools.durtools import Offset
 from abjad.tools.durtools import is_binary_rational
 from abjad.tools.mathtools import divisors
 from abjad.tools.mathtools import greatest_power_of_two_less_equal
+from abjad.tools.quantizationtools.QEvent import QEvent
 from abjad.tools.seqtools import all_are_numbers
 from abjad.tools.seqtools import flatten_sequence
 
 
-class _QGrid(_Immutable):
+class QGrid(_Immutable):
+   '''Abjad model of a Q-grid, a nesting division structure which
+   assists certain quantization algorithms.
+
+   Q-grids are defined by a list, which must be prime in length, 
+   whose members are either ints or tuples of ints (useful for 
+   representing timepoint or pitch information) or None (representing
+   silence), or other lists which must recursively obey the same rules.
+
+   Q-grids also have a `next` attribute, representing the downbeat of
+   not "this" Q-grid, but the next Q-grid in a list of grids.  This is
+   useful as timepoints must often be quantized not to any internal
+   division of a the "current" beat, but to the next beat.
+
+   ::
+
+      abjad> from abjad.tools.quantizationtools import QGrid
+      abjad> q = QGrid([0, 0, [0, 0]], 0)
+
+   Q-grids are quasi-immutable.
+   '''
 
    __slots__ = ('_definition', '_next', '_offsets')
 
    def __new__(klass, definition, next):
       self = object.__new__(klass)
-      if not self._is_valid_grid_definition(definition):
-         raise ValueError('Invalid _QGrid definition: %s' % repr(definition))
-      if not isinstance(next, int):
-         raise ValueError('"Next" value must be an int, got %s' % repr(next))
+      assert self._is_valid_grid_definition(definition)
+      assert self._is_valid_grid_value(next)
       object.__setattr__(self, '_definition', definition)
       object.__setattr__(self, '_next', next)
       object.__setattr__(self, '_offsets', self._expand_offsets( ))
@@ -81,7 +102,8 @@ class _QGrid(_Immutable):
          item = len(self) + item
       if item < 0 or len(self) <= item:
          raise Exception('Index out of bounds.')
-      if not isinstance(value, int):
+ 
+      if not self._is_valid_grid_value(value):
          raise ValueError
 
       if item == len(self) - 1:
@@ -102,30 +124,43 @@ class _QGrid(_Immutable):
          results = [ ]
          this_div = Fraction(1, len(n)) * prev_div
          for i, x in enumerate(n):
-            this_offset = (i * this_div) + prev_offset
-            if isinstance(x, int):
-               results.append(this_offset)
-            else:
+            this_offset = Offset(i * this_div) + prev_offset
+            if isinstance(x, list):
                results.extend(recurse(x, this_div, this_offset))
+            else:
+               results.append(this_offset)
          return results
       expanded = list(recurse(self._definition, 1, 0))
-      expanded.append(Fraction(1))
+      expanded.append(Offset(1))
       return tuple(expanded)
 
    def _is_valid_grid_definition(self, definition):
       def recurse(n):
          if not isinstance(n, list) or \
-            not all([isinstance(x, (int, list)) for x in n]) or \
+            not all([isinstance(x, list) or \
+               self._is_valid_grid_value(x) for x in n]) or \
             not set(divisors(len(n))) == set([1, len(n)]):
             return [False]
          results = [ ]
          for x in n:
-            if isinstance(x, int):
-               results.append(True)
-            else:
+            if isinstance(x, list):
                results.extend(recurse(x))
+            else:
+               results.append(self._is_valid_grid_value(x))
          return results
       return all(recurse(definition))
+
+   def _is_valid_grid_value(self, value):
+      if isinstance(value, (Number, type(None), QEvent)):
+         return True
+      elif isinstance(value, tuple):
+         if 0 < len(value):
+            if all([isinstance(x, Number) for x in value]) or \
+               all([isinstance(x, QEvent) for x in value]):
+               return True
+         else:
+            return True
+      return False
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -199,17 +234,17 @@ class _QGrid(_Immutable):
          else: # we are in a non-2 prime container, hence tuplet
             c = Tuplet(Fraction(pow, len(n)), [ ])
          for x in n:
-            if isinstance(x, int):
-               c.append(Note(0, val))
-            else:
+            if isinstance(x, list):
                c.append(recurse(x, val))
+            else:
+               c.append(Note(0, val))
          return c
       return recurse(self.definition, beatspan)
 
    def subdivide_indices(self, pairs):
       '''Given a list of 2-tuples, where for each tuple t,
       t[0] is a valid index into self, and t[1] is a prime integer
-      greater than 1, return a new _QGrid with those indices subdivided.'''
+      greater than 1, return a new QGrid with those indices subdivided.'''
       # add some validation here
       assert isinstance(pairs, Iterable) and \
          all([isinstance(x, Iterable) and len(x) == 2 for x in pairs]) and \
@@ -229,4 +264,4 @@ class _QGrid(_Immutable):
          return count
       definition = copy.deepcopy(self.definition)
       recurse(definition, 0)
-      return _QGrid(definition, self.next)
+      return QGrid(definition, self.next)

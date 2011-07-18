@@ -11,7 +11,7 @@ def all_are_intervals_or_trees_or_empty(input):
 
    def recurse(x):
       if isinstance(x, Iterable) and \
-      not isinstance(x, (basestring, IntervalTree)):
+      not isinstance(x, (basestring, IntervalTree, BoundedInterval)):
          return [a for i in x for a in recurse(i)]
       else:
          return [x]

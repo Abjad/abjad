@@ -9,7 +9,7 @@ from abjad.tools.durtools import is_binary_rational
 from abjad.tools.leaftools import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
 from abjad.tools.mathtools import cumulative_sums_zero
 from abjad.tools.mathtools import divisors
-from abjad.tools.quantizationtools._QGrid import _QGrid
+from abjad.tools.quantizationtools.QGrid import QGrid
 from abjad.tools.quantizationtools._Quantizer import _Quantizer
 from abjad.tools.quantizationtools.group_timepoints_by_beatspan \
    import group_timepoints_by_beatspan
@@ -241,9 +241,9 @@ class QGridQuantizer(_Quantizer):
          mod_timepoints = [Fraction(x[0] % self.beatspan_ms) / self.beatspan_ms \
             for x in grouped_timepoints[beatspan_number]]
          # build Q-grid list
-         per_beatspan_q_grids[beatspan_number] = [_QGrid([0], 0)]
+         per_beatspan_q_grids[beatspan_number] = [QGrid([0], 0)]
          for k in self.search_tree:
-            g = _QGrid([0] * k, 0)
+            g = QGrid([0] * k, 0)
             per_beatspan_q_grids[beatspan_number].append(g)
             per_beatspan_q_grids[beatspan_number].extend(self._divide_grid(g, mod_timepoints))
          # find error
@@ -272,7 +272,7 @@ class QGridQuantizer(_Quantizer):
          selected_q_grids[beatspan_number] = selected
          if selected.next:
             if beatspan_number + 1 not in grouped_timepoints:
-               selected_q_grids[beatspan_number + 1] = _QGrid([1], 0)
+               selected_q_grids[beatspan_number + 1] = QGrid([1], 0)
             else:
                carry = True
             selected[-1] = 0
@@ -282,7 +282,7 @@ class QGridQuantizer(_Quantizer):
       # fill in gaps
       for i in range(sorted(selected_q_grids.keys( ))[-1]):
          if i not in selected_q_grids:
-            selected_q_grids[i] = _QGrid([0], 0)
+            selected_q_grids[i] = QGrid([0], 0)
 
       # store indices of tie-chain starts
       indices = [ ]

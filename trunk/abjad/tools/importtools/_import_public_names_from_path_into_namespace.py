@@ -27,7 +27,7 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
             for f in functions:
                namespace[f.__name__] = f
       elif os.path.isdir(os.path.join(path, element)):
-         if not element in ('.svn', 'test'):
+         if not element in ('.svn', 'test', '__pycache__'):
             #exec('from %s import %s' % (module, element))
             submod = '.'.join([module, element])
             namespace[element] = __import__(submod, fromlist =['*'])
