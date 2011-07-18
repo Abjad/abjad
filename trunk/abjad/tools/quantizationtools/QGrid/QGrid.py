@@ -73,7 +73,7 @@ class QGrid(_Immutable):
             return x
 
    def __iter__(self):
-      seq = flatten_sequence(self.definition)
+      seq = flatten_sequence(self._definition, klasses=list)
       seq.append(self._next)
       for x in seq:
          yield x

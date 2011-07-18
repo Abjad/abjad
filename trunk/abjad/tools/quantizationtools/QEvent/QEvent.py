@@ -7,16 +7,25 @@ class QEvent(_Immutable):
 
    __slots__ = ('_offset', '_value')
 
-   def __new__(klass, offset, value):
+   def __new__(klass, *args):
       self = object.__new__(klass)
-      assert isinstance(offset, Number)
-      assert isinstance(value, (Number, Iterable, type(None)))
-      if isinstance(value, Iterable):
-         assert all([isinstance(x, Number) for x in value])
-         object.__setattr__(self, '_value', tuple(sorted(set(value))))
-      else:
-         object.__setattr__(self, '_value', value)
+
+      if len(args) == 2:
+         offset = args[0]
+         value = args[1]
+         assert isinstance(offset, Number)
+         assert isinstance(value, (Number, Iterable, type(None)))
+         if isinstance(value, Iterable):
+            assert all([isinstance(x, Number) for x in value])
+            value = tuple(sorted(set(value)))
+
+      elif len(args) == 1 and isinstance(args[0], type(self)):
+         offset = args[0].offset
+         value = args[0].value
+
+      object.__setattr__(self, '_value', value)
       object.__setattr__(self, '_offset', offset)
+
       return self
 
    def __getnewargs__(self):

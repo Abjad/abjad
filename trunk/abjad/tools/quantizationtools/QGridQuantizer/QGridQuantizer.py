@@ -1,4 +1,3 @@
-from collections import Iterable
 from itertools import groupby
 from abjad import Container
 from abjad import Fraction
@@ -6,7 +5,6 @@ from abjad import Rest
 from abjad.tools.contexttools import TempoMark
 
 from abjad.tools.leaftools import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
-from abjad.tools.mathtools import cumulative_sums_zero
 
 from abjad.tools.quantizationtools.QGrid import QGrid
 from abjad.tools.quantizationtools.QGridSearchTree import QGridSearchTree
@@ -16,9 +14,11 @@ from abjad.tools.quantizationtools._Quantizer import _Quantizer
 from abjad.tools.quantizationtools.is_valid_beatspan import is_valid_beatspan
 from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
    import tempo_scaled_rational_to_milliseconds
+
 from abjad.tools.seqtools import flatten_sequence
 from abjad.tools.seqtools import iterate_sequence_pairwise_strict
 from abjad.tools.seqtools import yield_outer_product_of_sequences
+from abjad.tools.spannertools import BeamSpanner
 from abjad.tools.tietools import TieSpanner
 from abjad.tools.tietools import get_tie_chain
 
@@ -40,7 +40,7 @@ class QGridQuantizer(_Quantizer):
       assert isinstance(tempo, TempoMark)
       if threshold is not None:
          assert 0 < threshold
-         search_tree = search_tree.prunt(beatspan, tempo, threshold)
+         search_tree = search_tree.prune(beatspan, tempo, threshold)
 
       object.__setattr__(self, '_beatspan', beatspan)
       object.__setattr__(self, '_beatspan_ms', 
@@ -59,17 +59,17 @@ class QGridQuantizer(_Quantizer):
       for i, offset in enumerate(offsets):
          q = q_grid.offsets[0]
          best_index = 0
-         best_error = abs(q - timepoint)
+         best_error = abs(q - offset)
 
-         for j, q in enumerate(q_grid.offsets[1:]):
+         for j, q in enumerate(q_grid.offsets[1:], start = 1):
             curr_error = abs(q - offset)
             if curr_error < best_error:
-               best_index = j + 1
+               best_index = j
                best_error = curr_error
 
          best_index_contents = q_grid[best_index]
          if best_index_contents == 0:
-            q_grid[best_index] = tuple(q_events[i],)
+            q_grid[best_index] = (q_events[i],)
          elif isinstance(best_index_contents, tuple):
             new_contents = list(best_index_contents)
             new_contents.append(q_events[i])
@@ -79,11 +79,11 @@ class QGridQuantizer(_Quantizer):
 
       return error
 
-   def _divide_grid(self, grid, timepoints):
-      def recurse(grid, timepoints):
+   def _divide_grid(self, grid, offsets):
+      def recurse(grid, offsets):
          results = [ ]
-         indices = grid.find_divisible_indices(timepoints)
-         divisors = [self._find_q_grid_parentage_divisibility(
+         indices = grid.find_divisible_indices(offsets)
+         divisors = [self.search_tree.find_subtree_divisibility(
             grid.find_parentage_of_index(index))
             for index in indices]
          filtered = filter(lambda x: x[1], zip(indices, divisors))
@@ -94,80 +94,55 @@ class QGridQuantizer(_Quantizer):
          for combination in combinations:
             zipped = zip(indices, combination)
             results.append(grid.subdivide_indices(zipped))
-            results.extend(recurse(results[-1], timepoints))
+            results.extend(recurse(results[-1], offsets))
          return results
-      return recurse(grid, timepoints)
+      return recurse(grid, offsets)
 
-   def _quantize(self, q_events, verbose = False):
+   def _find_best_q_grid_foreach_q_event_group(self, q_event_groups):
+      best_q_grids = { }
 
-      # group QEvents
-      g = groupby(q_events, lambda x: divmod(x.offset, beatspan)[0])
-      grouped_q_events = { }
-      for value, group in g:
-         grouped_q_events[value] = list(group)
+      for beatspan_number, group in q_event_groups.iteritems( ):
 
-      # find best Q-grids for each beatspan
-      per_beatspan_q_grids = { }
-      for beatspan_number in sorted(grouped_q_events.keys( )):
+         errors = [ ]
+         q_grids = [ ]
 
-         # find modulo offsets
-         mod_offsets = [Fraction(x.offset % self.beatspan_ms) / self.beatspan_ms \
-            for x in grouped_q_events[beatspan_number]]
+         mod_offsets = [Fraction(x.offset % self.beatspan_ms) / self.beatspan_ms for x in group]
 
-         # build Q-grid list
-         per_beatspan_q_grids[beatspan_number] = [QGrid([0], 0)]
-         for k in self.search_tree:
-            grid = QGrid([0] * k, 0)
-            per_beatspan_q_grids[beatspan_number].append(grid)
-            per_beatspan_q_grids[beatspan_number].extend(self._divide_grid(grid, mod_offsets))
+         q_grids.append(QGrid([0], 0))
+         for divisor in self.search_tree:
+            q_grid = QGrid([0] * divisor, 0)
+            q_grids.append(q_grid)
+            q_grids.extend(self._divide_grid(q_grid, mod_offsets))
 
-         # find error
-         for i, q_grid in enumerate(per_beatspan_q_grids[beatspan_number]):
-            error = self._compare_timepoints_to_q_grid( \
-               mod_offsets, grouped_q_events[beatspan_number], q_grid)
-            per_beatspan_q_grids[beatspan_number][i] = (error, q_grid)
+         for q_grid in q_grids:
+            errors.append(self._compare_q_events_to_q_grid(mod_offsets, group, q_grid))
+         
+         pairs = zip(errors, q_grids)
+         pairs.sort(key = lambda x: (x[0], len(x[1])))
 
-         # sort by error, length of Q-grid (smaller is less complex)
-         per_beatspan_q_grids[beatspan_number].sort(key = lambda x: (x[0], len(x[1])))
+         best_q_grids[beatspan_number] = pairs[0][1]
 
-      assert len(per_beatspan_q_grids) == len(grouped_timepoints)
+      return best_q_grids
 
-      # regroup
-      carry = False # carry "next" into following Q-grid
-      selected_q_grids = { }
-      for beatspan_number in sorted(grouped_q_events.keys( )):
-         selected = per_beatspan_q_grids[beatspan_number][0][1]
-         if carry:
-            selected[0] = 1
-            carry = False
-         selected_q_grids[beatspan_number] = selected
-         if selected.next:
-            if beatspan_number + 1 not in grouped_timepoints:
-               selected_q_grids[beatspan_number + 1] = QGrid([1], 0)
-            else:
-               carry = True
-            selected[-1] = 0
-
-      # fill in gaps
-      for i in range(sorted(selected_q_grids.keys( ))[-1]):
-         if i not in selected_q_grids:
-            selected_q_grids[i] = QGrid([0], 0)
-
+   def _format_all_q_grids(self, best_q_grids):
       # store indices of tie-chain starts
       indices = [ ]
       carry = 0
-      for beatspan_number in sorted(selected_q_grids.keys( )):
-         q_grid = selected_q_grids[beatspan_number]
+      for beatspan_number in sorted(best_q_grids.keys( )):
+         q_grid = best_q_grids[beatspan_number]
          for i, x in enumerate(q_grid):
-            if x == 1:
+            if isinstance(x, tuple):
                indices.append(i + carry)
          carry += len(q_grid) - 1 # account of q_grid.next
 
       # make bare notation
       container = Container( )
-      for beatspan_number in sorted(selected_q_grids.keys( )):
-         q_grid = selected_q_grids[beatspan_number]
-         container.append(q_grid.format_for_beatspan(self.beatspan))
+      for beatspan_number in sorted(best_q_grids.keys( )):
+         q_grid = best_q_grids[beatspan_number]
+         formatted = q_grid.format_for_beatspan(self.beatspan)
+         if 1 < len(formatted):
+            BeamSpanner(formatted)
+         container.append(formatted)
 
       # add tie chains
       tie_chains = [ ]
@@ -189,6 +164,61 @@ class QGridQuantizer(_Quantizer):
       for tie_chain in reversed(tie_chains):
           fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
 
+      return container
+
+   def _group_q_events_by_beatspan(self, q_events):
+      g = groupby(q_events, lambda x: x.offset // self.beatspan_ms)
+      grouped_q_events = { }
+      for value, group in g:
+         grouped_q_events[value] = list(group)
+      return grouped_q_events
+
+   def _regroup_and_fill_out_best_q_grids(self, best_q_grids):
+      '''Shift events which have been quantized to the last offset
+      of one Q-grid to the first offset of the subsequent grid.
+      '''
+
+      # events to be carried
+      carried = None
+
+      # cache keys, as the dictionary may be modified
+      beatspan_numbers = sorted(best_q_grids.keys( ))
+      for beatspan_number in beatspan_numbers:
+         q_grid = best_q_grids[beatspan_number]
+
+         ## rolling over the carried events
+         if carried:
+            if not q_grid[0]:
+               q_grid[0] = carried
+            else:
+                zero = list(q_grid[0])
+                zero.extend(carried)
+                q_grid[0] = tuple(sorted(zero, key = lambda x: x.offset))
+            carried = None
+
+         # testing if events need to be carried
+         if q_grid.next:
+            # no grid follows, so create one
+            if beatspan_number + 1 not in best_q_grids:
+               best_q_grids[beatspan_number + 1] = QGrid([q_grid.next], 0)
+            # another grid follows, so cache the carried events
+            else:
+               carried = q_grid.next
+            q_grid[-1] = 0
+
+      for i in range(sorted(best_q_grids.keys( ))[-1]):
+         if i not in best_q_grids:
+            best_q_grids[i] = QGrid([0], 0)
+
+      return best_q_grids
+
+   def _quantize(self, q_events, verbose = False):
+
+      grouped_q_events = self._group_q_events_by_beatspan(q_events)
+      best_q_grids = self._find_best_q_grid_foreach_q_event_group(grouped_q_events)
+      best_q_grids = self._regroup_and_fill_out_best_q_grids(best_q_grids)
+      container = self._format_all_q_grids(best_q_grids)
+      
       return container
 
    ## PUBLIC ATTRIBUTES ##
