@@ -48,6 +48,8 @@ class _Quantizer(_Immutable):
          if 'tempo' in kwargs:
             q_events = tempo_scaled_leaves_to_q_events(leaves, kwargs['tempo'])
          else:
+            if get_effective_tempo(leaves[0]) is None:
+               raise ValueError('Input leaves have no native tempo; please provide one.')
             q_events = tempo_scaled_leaves_to_q_events(leaves)
          
       else:

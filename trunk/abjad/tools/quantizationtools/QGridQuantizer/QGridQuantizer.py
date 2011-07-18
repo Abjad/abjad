@@ -125,20 +125,30 @@ class QGridQuantizer(_Quantizer):
       return best_q_grids
 
    def _format_all_q_grids(self, best_q_grids):
+      beatspan_numbers = sorted(best_q_grids.keys( ))
+
       # store indices of tie-chain starts
       indices = [ ]
       carry = 0
-      for beatspan_number in sorted(best_q_grids.keys( )):
+      for beatspan_number in beatspan_numbers:
          q_grid = best_q_grids[beatspan_number]
          for i, x in enumerate(q_grid):
             if isinstance(x, tuple):
                indices.append(i + carry)
          carry += len(q_grid) - 1 # account of q_grid.next
 
+      # remove terminating silence if it is the only event in the last grid
+      final_grid = best_q_grids[beatspan_numbers[-1]]
+      if len(final_grid) == 2:
+         if len(final_grid[0]) == 1:
+            best_q_grids.pop(beatspan_numbers[-1])
+            beatspan_numbers.pop(-1)
+
       # make bare notation
       container = Container( )
-      for beatspan_number in sorted(best_q_grids.keys( )):
+      for beatspan_number in beatspan_numbers:
          q_grid = best_q_grids[beatspan_number]
+         print beatspan_number, q_grid
          formatted = q_grid.format_for_beatspan(self.beatspan)
          if 1 < len(formatted):
             BeamSpanner(formatted)
@@ -152,13 +162,18 @@ class QGridQuantizer(_Quantizer):
             tie_chains.append(get_tie_chain(TieSpanner(leaves)[0]))
 
       # rest any trailing, untied leaves
-      last_tie = TieSpanner(container.leaves[indices[-1]:])
-      last_tie_chain = get_tie_chain(last_tie[0])
-      last_tie_chain = fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(last_tie_chain)
-      last_tie.clear( ) # detach
-      for note in flatten_sequence(last_tie_chain):
-         parent = note._parentage.parent
-         parent[parent.index(note)] = Rest(note.duration.written)
+      trailing = container.leaves[indices[-1]:]
+      if 1 < len(trailing):
+         last_tie = TieSpanner(container.leaves[indices[-1]:])
+         last_tie_chain = get_tie_chain(last_tie[0])
+         last_tie_chain = fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(last_tie_chain)
+         last_tie.clear( ) # detach
+         for note in flatten_sequence(last_tie_chain):
+            parent = note._parentage.parent
+            parent[parent.index(note)] = Rest(note.duration.written)
+      elif len(trailing) == 1:
+         parent = trailing[0]._parentage.parent
+         parent[parent.index(trailing[0])] = Rest(trailing[0].duration.written)
 
       # fuse tie chains
       for tie_chain in reversed(tie_chains):
@@ -209,6 +224,12 @@ class QGridQuantizer(_Quantizer):
       for i in range(sorted(best_q_grids.keys( ))[-1]):
          if i not in best_q_grids:
             best_q_grids[i] = QGrid([0], 0)
+
+#      # if the terminating silence falls on the downbeat of the last Q-grid
+#      # and it is the only Q-event there, remove the final Q-grid
+#      if len(best_q_grids[beatspan_numbers[-1]]) == 2 and \
+#         len(best_q_grids[beatspan_numbers[-1]][0]) == 1:
+#         best_q_grids.pop(beatspan_numbers[-1])
 
       return best_q_grids
 
