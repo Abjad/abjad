@@ -13,6 +13,8 @@ from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
 class QGridTempoLookup(_Immutable, _ImmutableDictionary):
    '''A utility class for matching fractional offsets within a beat
    to their tempo-scaled (real-time) millisecond values.
+
+   `QGridTempoLookup` objects are immutable.
    '''
 
    __slots__ = ('_beatspan', '_tempo',)
@@ -40,8 +42,16 @@ class QGridTempoLookup(_Immutable, _ImmutableDictionary):
 
    @property
    def beatspan(self):
+      '''The duration which the :py:class:`~abjad.tools.durtools.Offset`
+      objects comprising the keys of the `QGridTempoLookup` are offsets into.
+      '''
+
       return self._beatspan
 
    @property
    def tempo(self):
+      '''The :py:class:`~abjad.tools.contexttools.TempoMark` used to
+      generate the lookup.
+      '''
+
       return self._tempo

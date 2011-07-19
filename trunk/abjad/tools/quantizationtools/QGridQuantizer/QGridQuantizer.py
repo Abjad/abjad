@@ -103,7 +103,7 @@ class QGridQuantizer(_Quantizer):
       abjad> result = q(pairs)
 
    .. todo :: Write a documentation chapter on quantization.
-   .. todo :: Implement multiprocessing-based Q-grid comparison
+   .. todo :: Implement multiprocessing-based QGrid comparison
    '''
 
    __slots__ = ('_beatspan', '_beatspan_ms', '_search_tree', '_tempo', '_tempo_lookup', '_threshold')
@@ -296,7 +296,7 @@ class QGridQuantizer(_Quantizer):
 
    def _regroup_and_fill_out_best_q_grids(self, best_q_grids):
       '''Shift events which have been quantized to the last offset
-      of one Q-grid to the first offset of the subsequent grid.
+      of one `QGrid` to the first offset of the subsequent grid.
       '''
 
       # events to be carried
@@ -362,20 +362,24 @@ class QGridQuantizer(_Quantizer):
 
    @property
    def search_tree(self):
-      '''Reference to a `QGridSearchTree` object, which defines the permissible
-      divisions for each `QGrid` comprising a quantization attempt.
+      '''Reference to a :py:class:`~abjad.tools.quantizationtools.QGridSearchTree`
+      object, which defines the permissible divisions for each
+      :py:class:`~abjad.tools.quantizationtools.QGrid` comprising a quantization
+      attempt.
 
-      Read-only, defaults to `QGridSearchTree`.
+      Read-only, defaults to `QGridSearchTree( )`.
 
-      Please consult the documentation for `QGrid` and `QGridSearchTree` for
-      more information.
+      Please consult the documentation for
+      :py:class:`~abjad.tools.quantizationtools.QGrid` and
+      :py:class:`~abjad.tools.quantizationtools.QGridSearchTree` for more
+      information.
       '''
       return self._search_tree
 
    @property
    def tempo(self):
-      '''Reference to a `TempoMark`, defining the target tempo for all
-      quantization results.
+      '''Reference to a :py:class:`~abjad.tools.contexttools.TempoMark`,
+      defining the target tempo for all quantization results.
 
       Read-only, defaults to `TempoMark((1, 4), 60)`.
       '''
@@ -383,8 +387,9 @@ class QGridQuantizer(_Quantizer):
 
    @property
    def tempo_lookup(self):
-      '''Reference to a `QGridTempoLookup` object, a utility class for mapping
-      rational divisions of a beat into milliseconds.
+      '''Reference to a :py:class:`~abjad.tools.quantizationtools.QGridTempoLookup`
+      object, a utility class for mapping rational divisions of a beat into
+      milliseconds.
 
       Read-only.
       '''
@@ -393,9 +398,13 @@ class QGridQuantizer(_Quantizer):
    @property
    def threshold(self):
       '''Millisecond duration, which if specified at instantiation will be used
-      to call the quantizer's `prune( )` function.
+      to call the quantizer's :py:class:`~abjad.tools.quantizationtools.QGridSearchTree`'s
+      :py:meth:`~abjad.tools.quantizationtools.QGridSearchTree.prune`
+      method, in order to generate a pruned search tree for the quantizer, instead of either
+      the user-provided or default search trees.
 
-      Read-only, defaults to None.  See the documentation for `QGridSearchTree`
-      for more information on pruning.
+      Read-only, defaults to None.  See the documentation for
+      :py:class:`~abjad.tools.quantizationtools.QGridSearchTree` for more
+      information on pruning.
       '''
       return self._threshold

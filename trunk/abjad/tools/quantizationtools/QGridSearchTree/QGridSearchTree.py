@@ -11,7 +11,8 @@ from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
 
 
 class QGridSearchTree(_Immutable, _ImmutableDictionary):
-   '''A utility class for defining the permissible divisions of a set of Q-grids.
+   '''A utility class for defining the permissible divisions of a collection
+   of :py:class:`~abjad.tools.quantizationtools.QGrid` objects.
 
    The search tree is defined by a nested dictionary structure, whose keys
    must be prime integers, and whose values must be None (indicating no further
@@ -22,7 +23,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
       abjad> from abjad.tools.quantizationtools import QGridSearchTree
       abjad> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
        
-   Return a new QGridSearchTree
+   Return a new `QGridSearchTree`.
    '''
 
    __slots__ = ('_offsets')
@@ -120,21 +121,76 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
 
    @property
    def offsets(self):
+      '''An ordered tuple of all :py:class:`~abjad.tools.durtools.Offset`
+      objects which those :py:class:`~abjad.tools.quantizationtools.QGrid`
+      objects governed by a specific `QGridSearchTree` can contain.
+
+      ::
+
+         abjad> from abjad.tools.quantizationtools import QGridSearchTree
+         abjad> qst = QGridSearchTree({2: {3: None}})
+         abjad> qst.offsets
+         (Offset(0, 1), Offset(1, 6), Offset(1, 3), Offset(1, 2), Offset(2, 3), Offset(5, 6), Offset(1, 1))
+
+      Returns a tuple.
+      '''
+
       return self._offsets
 
    ## PUBLIC METHODS ##
 
    def find_subtree_divisibility(self, parentage):
+      '''Given a parentage signature, defining some subtree of a `QGridSearchTree`,
+      return a tuple of permitted divisions of that subtree.
+
+      ::
+
+         abjad> from abjad.tools.quantizationtools import QGridSearchTree
+         abjad> qst = QGridSearchTree({2: {2: None, 3: {7: None, 11: None}}, 5: None})
+         abjad> qst.find_subtree_divisibility((2,))
+         (2, 3)
+         abjad> qst.find_subtree_divisibility((2, 2))
+         ()
+         abjad> qst.find_subtree_divisibility((2, 3))
+         (7, 11)
+         abjad> qst.find_subtree_divisibility((2, 3, 7))
+         ()
+      
+      Returns a tuple.
+      '''
+
       node = self[parentage[0]]
       for item in parentage[1:]:
          node = node[item]
          if node is None:
-            return [ ]
+            return tuple([ ])
       if node is None:
-         return [ ]
-      return node.keys( )
+         return tuple([ ])
+      return tuple(sorted(node.keys( )))
 
    def prune(self, beatspan, tempo, threshold):
+      '''Prune those subtrees of a `QGridSearchTree` whose divisions in milliseconds,
+      given `beatspan` and `tempo`, would be less than `threshold`.
+
+      This allows a composer to specify the maximum speed any quantization
+      operation will permit.
+
+      ::
+
+         abjad> from abjad.tools.quantizationtools import QGridSearchTree
+         abjad> qst = QGridSearchTree({2: {2: {2: {2: None}}}})
+         abjad> beatspan = Fraction(1, 4)
+         abjad> tempo = contexttools.TempoMark((1, 4), 60)
+         abjad> qst.prune(beatspan, tempo, 100)
+         {2: {2: {2: None}}}
+         abjad> qst.prune(beatspan, tempo, 200)
+         {2: {2: None}}
+         abjad> qst.prune(beatspan, tempo, 400)
+         {2: None}
+
+      Returns a new `QGridSearchTree`.
+      '''
+
       assert is_valid_beatspan(beatspan)
       assert isinstance(tempo, TempoMark)
       assert 0 < threshold
