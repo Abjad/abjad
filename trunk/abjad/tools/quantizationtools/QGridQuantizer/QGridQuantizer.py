@@ -4,21 +4,17 @@ from abjad import Container
 from abjad import Fraction
 from abjad import Rest
 from abjad.tools.contexttools import TempoMark
-
 from abjad.tools.leaftools import fuse_leaves_big_endian
 from abjad.tools.leaftools import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
 from abjad.tools.marktools import Annotation
 from abjad.tools.resttools import yield_groups_of_rests_in_sequence
-
 from abjad.tools.quantizationtools.QGrid import QGrid
 from abjad.tools.quantizationtools.QGridSearchTree import QGridSearchTree
 from abjad.tools.quantizationtools.QGridTempoLookup import QGridTempoLookup
 from abjad.tools.quantizationtools._Quantizer import _Quantizer
-
 from abjad.tools.quantizationtools.is_valid_beatspan import is_valid_beatspan
 from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
    import tempo_scaled_rational_to_milliseconds
-
 from abjad.tools.seqtools import flatten_sequence
 from abjad.tools.seqtools import iterate_sequence_pairwise_strict
 from abjad.tools.seqtools import yield_outer_product_of_sequences
@@ -30,6 +26,85 @@ from abjad.tools.tietools import remove_tie_spanners_from_components_in_expr
 
 
 class QGridQuantizer(_Quantizer):
+   '''An Abjad implementation of Paul Nauert's Q-grid quantization algorithm.
+
+   Input is converted into timepoints, which are grouped according to which
+   beat - or `beatspan` - they fall in, given a target tempo.  Each beatspan
+   is then divided into grids called Q-grids, which are based upon a nesting
+   division structure (similar to nested tuplets).  The Q-grids generated for 
+   each beatspan are then tested against the timepoints falling within that
+   beatspan, and the grid with least deviation is chosen to represent the 
+   rhythmic skeleton for that beat.
+
+   ::
+
+      abjad> from abjad.tools.quantizationtools import QGridQuantizer
+      abjad> q = QGridQuantizer( )
+
+   `QGridQuantizer` is immutable, but cheap to instantiate.  Various attributes
+   can be defined on instantiation.  Please consult the documentation for each
+   attribute respectively, for proper usage.
+
+   ::
+
+      abjad> from abjad.tools.quantizationtools import QGridSearchTree
+      abjad> target_tempo = contexttools.TempoMark((1, 8), 73)
+      abjad> beatspan = Fraction(1, 4)
+      abjad> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
+      abjad> threshold = 250
+      abjad> q = QGridQuantizer(tempo = target_tempo, beatspan = beatspan, search_tree = search_tree, threshold = threshold)
+
+   `QGridQuantizer` can quantize lists of leaves.  If the source leaves have no effective tempo,
+   one must be provided with the `tempo` keyword.
+
+   ::
+
+      abjad> q = QGridQuantizer( )
+      abjad> source = Staff("c'4 d'4 e'4. r'8 <c' e' g'>2. <d' g' b'>4")
+      abjad> source_tempo = contexttools.TempoMark((1, 4), 54)
+      abjad> result = q(source[:], tempo = source_tempo)
+
+   ::
+
+      abjad> q = QGridQuantizer( )
+      abjad> source = Staff("c'4 d'4 e'4. r'8 <c' e' g'>2. <d' g' b'>4")
+      abjad> t = contexttools.TempoMark((1, 8), 34, target_context = Staff)(source)
+      abjad> t = contexttools.TempoMark((1, 4), 135, target_context = Staff)(source[3])
+      abjad> result = q(source[:])
+
+   `QGridQuantizer` can quantize lists of millisecond durations.  Negative values can be used
+   to indicate silences.
+
+   ::
+
+      abjad> q = QGridQuantizer( )
+      abjad> milliseconds = [100, 120, -133, 500, -1003, 125]
+      abjad> result = q(milliseconds)
+
+   `QGridQuantizer` can also quantize lists of rationals, if a tempo is provided.  As with
+   quantizing millisecond durations, negative values can be used to indicate silences.
+
+   ::
+
+      abjad> q = QGridQuantizer( )
+      abjad> rationals = [1, Fraction(1, 2), Fraction(-1, 4), 3, Fraction(-1, 3), 2]
+      abjad> tempo = contexttools.TempoMark((1, 4), 45)
+      abjad> result = q(rationals, tempo = tempo)
+
+   Lastly, `QGridQuantizer` can quantize lists of pairs, where the first value in each pair
+   is a millisecond duration, and the second value is an int or float - indicating a single pitch -,
+   None - indicating silence, or a list of ints or floats - indicating a chord.  This is
+   probably most useful for assisting in the importation of audio analyses from other tools.
+
+   ::
+
+      abjad> q = QGridQuantizer( )
+      abjad> pairs = [(130, 0), (250, 2), (500, None), (1303, [0, 1, 4])]
+      abjad> result = q(pairs)
+
+   .. todo :: Write a documentation chapter on quantization.
+   .. todo :: Implement multiprocessing-based Q-grid comparison
+   '''
 
    __slots__ = ('_beatspan', '_beatspan_ms', '_search_tree', '_tempo', '_tempo_lookup', '_threshold')
 
@@ -256,12 +331,6 @@ class QGridQuantizer(_Quantizer):
          if i not in best_q_grids:
             best_q_grids[i] = QGrid([0], 0)
 
-#      # if the terminating silence falls on the downbeat of the last Q-grid
-#      # and it is the only Q-event there, remove the final Q-grid
-#      if len(best_q_grids[beatspan_numbers[-1]]) == 2 and \
-#         len(best_q_grids[beatspan_numbers[-1]][0]) == 1:
-#         best_q_grids.pop(beatspan_numbers[-1])
-
       return best_q_grids
 
    def _quantize(self, q_events, verbose = False):
@@ -277,24 +346,56 @@ class QGridQuantizer(_Quantizer):
 
    @property
    def beatspan(self):
+      '''The basic division of the beat for quantization.
+
+      Read-only, defaults to `Duration(1, 4)`.
+      '''
       return self._beatspan
 
    @property
    def beatspan_ms(self):
+      '''The duration of `beatspan` in milliseconds, as determined by `tempo`.
+
+      Read-only, defaults to `Duration(1000)`.
+      '''
       return self._beatspan_ms
 
    @property
    def search_tree(self):
+      '''Reference to a `QGridSearchTree` object, which defines the permissible
+      divisions for each `QGrid` comprising a quantization attempt.
+
+      Read-only, defaults to `QGridSearchTree`.
+
+      Please consult the documentation for `QGrid` and `QGridSearchTree` for
+      more information.
+      '''
       return self._search_tree
 
    @property
    def tempo(self):
+      '''Reference to a `TempoMark`, defining the target tempo for all
+      quantization results.
+
+      Read-only, defaults to `TempoMark((1, 4), 60)`.
+      '''
       return self._tempo
 
    @property
    def tempo_lookup(self):
+      '''Reference to a `QGridTempoLookup` object, a utility class for mapping
+      rational divisions of a beat into milliseconds.
+
+      Read-only.
+      '''
       return self._tempo_lookup
 
    @property
    def threshold(self):
+      '''Millisecond duration, which if specified at instantiation will be used
+      to call the quantizer's `prune( )` function.
+
+      Read-only, defaults to None.  See the documentation for `QGridSearchTree`
+      for more information on pruning.
+      '''
       return self._threshold

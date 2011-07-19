@@ -4,6 +4,7 @@ from abjad import Fraction
 from abjad.core import _Immutable
 from abjad.tools.containertools import Container
 from abjad.tools.contexttools import TempoMark
+from abjad.tools.contexttools import get_effective_tempo
 from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools.quantizationtools.QEvent import QEvent
 from abjad.tools.quantizationtools.milliseconds_to_q_events import milliseconds_to_q_events
@@ -21,6 +22,12 @@ class _Quantizer(_Immutable):
       if all([isinstance(x, QEvent) for x in args]):
          q_events = list(sorted(args, key = lambda x: (x.offset, x.duration)))
 
+      # tempo-scaled rationals
+      elif all([isinstance(x, (int, Fraction)) for x in args]) and \
+         'tempo' in kwargs and \
+         isinstance(kwargs['tempo'], TempoMark):
+         q_events = tempo_scaled_rationals_to_q_events(args, kwargs['tempo'])
+
       # milliseconds
       elif all([isinstance(x, Number) for x in args]) and \
          'tempo' not in kwargs:
@@ -30,12 +37,6 @@ class _Quantizer(_Immutable):
       elif all([isinstance(x, Iterable) for x in args]) and \
          all([len(x) == 2 for x in args]):
          q_events = millisecond_pitch_pairs_to_q_events(args)
-
-      # tempo-scaled rationals
-      elif all([isinstance(x, (int, Fraction)) for x in args]) and \
-         'tempo' in kwargs and \
-         isinstance(kwargs['tempo'], TempoMark):
-         q_events = tempo_scaled_rationals_to_q_events(args)
 
       # tempo-scaled leaves
       elif all([isinstance(x, _Leaf) for x in args]):
