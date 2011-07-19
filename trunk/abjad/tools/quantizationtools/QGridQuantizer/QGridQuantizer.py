@@ -5,8 +5,10 @@ from abjad import Fraction
 from abjad import Rest
 from abjad.tools.contexttools import TempoMark
 
+from abjad.tools.leaftools import fuse_leaves_big_endian
 from abjad.tools.leaftools import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
 from abjad.tools.marktools import Annotation
+from abjad.tools.resttools import yield_groups_of_rests_in_sequence
 
 from abjad.tools.quantizationtools.QGrid import QGrid
 from abjad.tools.quantizationtools.QGridSearchTree import QGridSearchTree
@@ -24,6 +26,7 @@ from abjad.tools.spannertools import MultipartBeamSpanner
 from abjad.tools.tietools import TieSpanner
 from abjad.tools.tietools import get_tie_chain
 from abjad.tools.tietools import get_tie_chains_in_expr
+from abjad.tools.tietools import remove_tie_spanners_from_components_in_expr
 
 
 class QGridQuantizer(_Quantizer):
@@ -198,6 +201,14 @@ class QGridQuantizer(_Quantizer):
       for tie_chain in get_tie_chains_in_expr(container.leaves):
          if 1 < len(tie_chain):
             fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
+
+      # fuse rests
+      rest_groups = list(yield_groups_of_rests_in_sequence(container.leaves))
+      for rest_group in rest_groups:
+         g = groupby(rest_group, lambda x: x._parentage.parent)
+         for value, group in g:
+            fused = fuse_leaves_big_endian(list(group))
+            remove_tie_spanners_from_components_in_expr(fused[0])
 
       return container
 
