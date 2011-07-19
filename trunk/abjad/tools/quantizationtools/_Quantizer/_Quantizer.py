@@ -19,31 +19,26 @@ class _Quantizer(_Immutable):
    def __call__(self, args, **kwargs):
       # Q-events
       if all([isinstance(x, QEvent) for x in args]):
-         print "Q-events"
          q_events = list(sorted(args, key = lambda x: (x.offset, x.duration)))
 
       # milliseconds
       elif all([isinstance(x, Number) for x in args]) and \
          'tempo' not in kwargs:
-         print "milliseconds"
          q_events = milliseconds_to_q_events(args)
 
       # millisecond-pitch pairs
       elif all([isinstance(x, Iterable) for x in args]) and \
          all([len(x) == 2 for x in args]):
-         print "millisecond-pitch pairs"
          q_events = millisecond_pitch_pairs_to_q_events(args)
 
       # tempo-scaled rationals
       elif all([isinstance(x, (int, Fraction)) for x in args]) and \
          'tempo' in kwargs and \
          isinstance(kwargs['tempo'], TempoMark):
-         print "tempo-scaled rationals"
          q_events = tempo_scaled_rationals_to_q_events(args)
 
       # tempo-scaled leaves
       elif all([isinstance(x, _Leaf) for x in args]):
-         print "tempo-scaled leaves"
          leaves = args
          if 'tempo' in kwargs:
             q_events = tempo_scaled_leaves_to_q_events(leaves, kwargs['tempo'])

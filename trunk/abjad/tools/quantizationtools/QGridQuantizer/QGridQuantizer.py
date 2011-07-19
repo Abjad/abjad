@@ -1,10 +1,12 @@
 from itertools import groupby
+from abjad import Chord
 from abjad import Container
 from abjad import Fraction
 from abjad import Rest
 from abjad.tools.contexttools import TempoMark
 
 from abjad.tools.leaftools import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
+from abjad.tools.marktools import Annotation
 
 from abjad.tools.quantizationtools.QGrid import QGrid
 from abjad.tools.quantizationtools.QGridSearchTree import QGridSearchTree
@@ -18,9 +20,10 @@ from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
 from abjad.tools.seqtools import flatten_sequence
 from abjad.tools.seqtools import iterate_sequence_pairwise_strict
 from abjad.tools.seqtools import yield_outer_product_of_sequences
-from abjad.tools.spannertools import BeamSpanner
+from abjad.tools.spannertools import MultipartBeamSpanner
 from abjad.tools.tietools import TieSpanner
 from abjad.tools.tietools import get_tie_chain
+from abjad.tools.tietools import get_tie_chains_in_expr
 
 
 class QGridQuantizer(_Quantizer):
@@ -129,12 +132,17 @@ class QGridQuantizer(_Quantizer):
 
       # store indices of tie-chain starts
       indices = [ ]
+      pitches = [ ]
       carry = 0
       for beatspan_number in beatspan_numbers:
          q_grid = best_q_grids[beatspan_number]
          for i, x in enumerate(q_grid):
             if isinstance(x, tuple):
                indices.append(i + carry)
+               pcs = filter(lambda z: z is not None, flatten_sequence([y.value for y in x]))
+               if len(pcs) == 0:
+                  pcs = [None]
+               pitches.append(pcs)
          carry += len(q_grid) - 1 # account of q_grid.next
 
       # remove terminating silence if it is the only event in the last grid
@@ -148,18 +156,29 @@ class QGridQuantizer(_Quantizer):
       container = Container( )
       for beatspan_number in beatspan_numbers:
          q_grid = best_q_grids[beatspan_number]
-         print beatspan_number, q_grid
          formatted = q_grid.format_for_beatspan(self.beatspan)
          if 1 < len(formatted):
-            BeamSpanner(formatted)
+            MultipartBeamSpanner(formatted)
          container.append(formatted)
 
       # add tie chains
       tie_chains = [ ]
-      for pair in iterate_sequence_pairwise_strict(indices):
+      for i, pair in enumerate(iterate_sequence_pairwise_strict(indices)):
          leaves = container.leaves[pair[0]:pair[1]]
-         if 1 < len(leaves):
+         pitch = pitches[i]
+         if 1 < len(leaves) and pitch[0] is not None:
             tie_chains.append(get_tie_chain(TieSpanner(leaves)[0]))
+         for leaf in leaves:
+            parent = leaf._parentage.parent
+            idx = parent.index(leaf)
+            if len(pitch) == 1:
+               if pitch[0] is None:
+                  parent[idx] = Rest(leaf)
+               else:
+                  leaf.pitch = pitch[0]
+            else:
+               parent[idx] = Chord(leaf)
+               parent[idx].pitches = pitch
 
       # rest any trailing, untied leaves
       trailing = container.leaves[indices[-1]:]
@@ -176,8 +195,9 @@ class QGridQuantizer(_Quantizer):
          parent[parent.index(trailing[0])] = Rest(trailing[0].duration.written)
 
       # fuse tie chains
-      for tie_chain in reversed(tie_chains):
-          fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
+      for tie_chain in get_tie_chains_in_expr(container.leaves):
+         if 1 < len(tie_chain):
+            fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
 
       return container
 
