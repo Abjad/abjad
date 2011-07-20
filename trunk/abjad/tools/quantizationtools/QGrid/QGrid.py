@@ -313,7 +313,7 @@ class QGrid(_Immutable):
          abjad> from abjad.tools.quantizationtools import QGrid
          abjad> q = QGrid([0, [0, 0], 0], 0)
          abjad> q.format_for_beatspan( )
-         Tuplet(2/3, [c'8, {c'16, c'16}, c'8])
+         Tuplet(2/3, [c'8, c'16, c'16, c'8])
 
       Returns a :py:class:`~abjad.tools.tuplettools.Tuplet` or
       :py:class:`~abjad.tools.containertools.Container`, depending on

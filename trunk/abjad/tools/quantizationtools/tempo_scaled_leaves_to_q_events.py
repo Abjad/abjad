@@ -15,6 +15,21 @@ from abjad.tools.tietools import get_tie_chain
 
 
 def tempo_scaled_leaves_to_q_events(leaves, tempo = None):
+   '''Convert `leaves` to a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
+   If the leaves have no effective tempo, `tempo` must be a 
+   :py:class:`~abjad.tools.contexttools.TempoMark`.
+
+   ::
+
+      abjad> from abjad.tools.quantizationtools import tempo_scaled_leaves_to_q_events
+      abjad> source = Staff("c'4 r'4. e'8 <g' b' d'' fs''>2")
+      abjad> source_tempo = contexttools.TempoMark((1, 4), 55)
+      abjad> tempo_scaled_leaves_to_q_events(source[:], tempo = source_tempo)
+      [QEvent(Offset(0, 1), 0), QEvent(Offset(12000, 11), None), QEvent(Offset(30000, 11), 4), QEvent(Offset(36000, 11), (7, 11, 14, 18)), QEvent(Offset(60000, 11), None)]
+
+   Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
+   '''
+
    assert all_are_contiguous_components_in_same_thread(leaves) and len(leaves)
    if tempo is None:
       assert get_effective_tempo(leaves[0]) is not None
