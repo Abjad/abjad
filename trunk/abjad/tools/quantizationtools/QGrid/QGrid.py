@@ -7,10 +7,10 @@ from abjad import Note
 from abjad import Tuplet
 from abjad.core import _Immutable
 from abjad.tools.durtools import Offset
-from abjad.tools.durtools import is_binary_rational
 from abjad.tools.mathtools import divisors
 from abjad.tools.mathtools import greatest_power_of_two_less_equal
 from abjad.tools.quantizationtools.QEvent import QEvent
+from abjad.tools.quantizationtools.is_valid_beatspan import is_valid_beatspan
 from abjad.tools.seqtools import all_are_numbers
 from abjad.tools.seqtools import flatten_sequence
 
@@ -320,19 +320,21 @@ class QGrid(_Immutable):
       structure.
       '''
 
-      assert is_binary_rational(beatspan)
-      if isinstance(beatspan, Fraction): 
-         assert beatspan.numerator == 1
+      assert is_valid_beatspan(beatspan)
+
       def recurse(n, division):
          pow = greatest_power_of_two_less_equal(len(n))
          val = Fraction(1, pow) * division
-         if divisors(len(n)) == [1, 2]: # we are in a duple container
+         if divisors(len(n)) in [[1], [1, 2]]:
             c = Container([ ])
          else: # we are in a non-2 prime container, hence tuplet
             c = Tuplet(Fraction(pow, len(n)), [ ])
          for x in n:
             if isinstance(x, list):
-               c.append(recurse(x, val))
+               if len(x) in [1, 2]:
+                  c.extend(recurse(x, val))
+               else:
+                  c.append(recurse(x, val))
             else:
                c.append(Note(0, val))
          return c

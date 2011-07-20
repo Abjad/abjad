@@ -21,8 +21,14 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
    ::
 
       abjad> from abjad.tools.quantizationtools import QGridSearchTree
+
+   For example, In the following tree, the beat may be divided into 2 or into 5.
+   If divided into 2, it may be divided again into 2 or into 3.
+
+   ::
+
       abjad> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
-       
+
    Return a new `QGridSearchTree`.
    '''
 
@@ -213,4 +219,3 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
       if result:
          return QGridSearchTree(recurse(self, beatspan))
       return result
-
