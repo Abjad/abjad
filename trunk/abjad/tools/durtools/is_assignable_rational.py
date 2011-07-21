@@ -45,6 +45,9 @@ def is_assignable_rational(expr):
    except (TypeError, ValueError):
       return False
 
+   if isinstance(expr, float):
+      return False
+
    if 0 < duration < 16:
       if mathtools.is_nonnegative_integer_power_of_two(duration.denominator):
          if mathtools.is_assignable_integer(duration.numerator):
