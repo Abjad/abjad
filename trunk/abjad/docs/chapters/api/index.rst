@@ -155,6 +155,7 @@ containertools
    tools/containertools/delete_contents_of_container_starting_before_or_at_prolated_offset
    tools/containertools/delete_contents_of_container_starting_strictly_after_prolated_offset
    tools/containertools/delete_contents_of_container_starting_strictly_before_prolated_offset
+   tools/containertools/eject_contents_of_container
    tools/containertools/fuse_like_named_contiguous_containers_in_expr
    tools/containertools/get_element_starting_at_exactly_prolated_offset
    tools/containertools/get_first_container_in_improper_parentage_of_component
