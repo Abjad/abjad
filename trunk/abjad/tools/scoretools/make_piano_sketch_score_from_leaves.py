@@ -1,11 +1,11 @@
-from abjad.tools.stafftools.Staff import Staff
 from abjad.tools import contexttools
 from abjad.tools import lilyfiletools
 from abjad.tools import markuptools
+from abjad.tools.pitchtools import NamedChromaticPitch
 from abjad.tools.scoretools.make_piano_score_from_leaves import make_piano_score_from_leaves
 
 
-def make_piano_sketch_score_from_leaves(leaves):
+def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChromaticPitch('b')):
    r'''.. versionadded:: 1.1.2
 
    Make piano sketch score from `leaves`::
@@ -64,7 +64,7 @@ def make_piano_sketch_score_from_leaves(leaves):
    '''
 
    ## make and configure score
-   score, treble_staff, bass_staff = make_piano_score_from_leaves(leaves)
+   score, treble_staff, bass_staff = make_piano_score_from_leaves(leaves, lowest_treble_pitch)
    score.override.time_signature.transparent = True
    score.override.bar_number.transparent = True
    score.override.bar_line.stencil = False

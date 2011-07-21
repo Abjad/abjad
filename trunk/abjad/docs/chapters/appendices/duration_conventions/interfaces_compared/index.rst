@@ -24,6 +24,3 @@ nest an entire voice within a fixed-duration tuplet.
 
 .. note::
    Leaf multipliers and tuplet multipliers differ.
-
-.. note::
-   :class:`_MeasureDurationInterface <abjad.measure.duration._MeasureDurationInterface>` implements `nonbinary` attributes not shown above.  

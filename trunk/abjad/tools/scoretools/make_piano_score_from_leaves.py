@@ -1,8 +1,9 @@
+from abjad.tools.pitchtools import NamedChromaticPitch
 from abjad.tools.scoretools.Score import Score
 from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
 
 
-def make_piano_score_from_leaves(leaves):
+def make_piano_score_from_leaves(leaves, lowest_treble_pitch = NamedChromaticPitch('b')):
    r""".. versionadded:: 1.1.2
 
    Make piano score from `leaves`::
@@ -43,7 +44,8 @@ def make_piano_score_from_leaves(leaves):
 
    score, treble_staff, bass_staff = make_empty_piano_score( )
    for leaf in leaves:
-      treble_chord, bass_chord = divide_chord_by_chromatic_pitch_number(leaf, -1)
+      #treble_chord, bass_chord = divide_chord_by_chromatic_pitch_number(leaf, -1)
+      treble_chord, bass_chord = divide_chord_by_chromatic_pitch_number(leaf, lowest_treble_pitch)
       treble_staff.append(treble_chord)
       bass_staff.append(bass_chord)
 
