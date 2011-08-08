@@ -34,7 +34,7 @@ def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3),
       pass
    elif isinstance(treble, Chord):
       for note_head in treble.note_heads:
-         if getattr(note_head.pitch, attr) < getattr(pitch, attr):
+         if getattr(note_head.written_pitch, attr) < getattr(pitch, attr):
             treble.remove(note_head)
    else:
       raise ValueError('must be note, rest or chord.')
@@ -46,7 +46,7 @@ def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3),
       pass
    elif isinstance(bass, Chord):
       for note_head in bass.note_heads:
-         if getattr(pitch, attr) <= getattr(note_head.pitch, attr):
+         if getattr(pitch, attr) <= getattr(note_head.written_pitch, attr):
             bass.remove(note_head)
    else:
       raise ValueError('must be note, rest or chord.')

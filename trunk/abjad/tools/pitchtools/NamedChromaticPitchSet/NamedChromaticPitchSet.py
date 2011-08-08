@@ -18,7 +18,7 @@ class NamedChromaticPitchSet(_PitchSet):
       pitches = [ ]
       for token in pitch_tokens:
          if isinstance(token, notetools.NoteHead):
-            pitch = pitchtools.NamedChromaticPitch(token.pitch)
+            pitch = pitchtools.NamedChromaticPitch(token.written_pitch)
             pitches.append(pitch)
          else:
             pitch = pitchtools.NamedChromaticPitch(token)

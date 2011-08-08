@@ -157,8 +157,8 @@ class Note(_Leaf):
             Note("d''8.")
 
          '''
-         if self.note_head is not None and hasattr(self.note_head, 'pitch'):
-            return self._note_head.pitch
+         if self.note_head is not None and hasattr(self.note_head, 'written_pitch'):
+            return self._note_head.written_pitch
          else:
             return None
       def fset(self, arg):
@@ -166,13 +166,13 @@ class Note(_Leaf):
          from abjad.tools.notetools.NoteHead import NoteHead
          if arg is None:
             if self.note_head is not None:
-               self.note_head.pitch = None
+               self.note_head.written_pitch = None
          else:
             if self.note_head is None:
-               self.note_head = NoteHead(self, pitch = None)
+               self.note_head = NoteHead(self, written_pitch = None)
             else:
                pitch = pitchtools.NamedChromaticPitch(arg)
-               self.note_head.pitch = pitch
+               self.note_head.written_pitch = pitch
       return property(**locals( ))
 
    @property

@@ -38,11 +38,11 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
    
    if isinstance(pitch, NamedChromaticPitch):
       for note_head in chord.note_heads:
-         if note_head.pitch == pitch:
+         if note_head.written_pitch == pitch:
             result.append(note_head)
    else:
       for note_head in chord.note_heads:
-         if note_head.pitch.numbered_chromatic_pitch._chromatic_pitch_number == pitch:
+         if note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == pitch:
             result.append(note_head)
 
    count = len(result)

@@ -69,7 +69,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       else:
          raise MissingPitchError
    elif isinstance(pitch_carrier, NoteHead):
-      pitch = pitch_carrier.pitch
+      pitch = pitch_carrier.written_pitch
       if pitch is not None:
          return get_named_chromatic_pitch_from_pitch_carrier(pitch)
       else:

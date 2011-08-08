@@ -4,7 +4,7 @@ def _format_note_head(note_head):
    from abjad.tools.chordtools.Chord import Chord
 
    ## make sure note head has pitch
-   assert note_head.pitch
+   assert note_head.written_pitch
    result = [ ]
 
    ## format chord note head with optional tweaks
@@ -16,7 +16,7 @@ def _format_note_head(note_head):
                _format_lilypond_value(value)))
 
    ## format note head pitch
-   result.append(note_head.pitch.format)
+   result.append(note_head.written_pitch.format)
    result = '\n'.join(result)
 
    ## return formatted note head

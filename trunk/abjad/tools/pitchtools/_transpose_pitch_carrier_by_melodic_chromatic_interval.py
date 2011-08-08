@@ -45,8 +45,8 @@ def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodi
       new_chord = componenttools.copy_components_and_remove_all_spanners([pitch_carrier])[0]
       for new_nh, old_nh in zip(new_chord.note_heads, pitch_carrier.note_heads):
          new_pitch = NamedChromaticPitch(
-            abs(old_nh.pitch.numbered_chromatic_pitch) + mci.number)
-         new_nh.pitch = new_pitch
+            abs(old_nh.written_pitch.numbered_chromatic_pitch) + mci.number)
+         new_nh.written_pitch = new_pitch
       return new_chord
    else:
       #raise TypeError('must be Abjad pitch, note or chord.')

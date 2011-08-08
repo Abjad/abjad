@@ -65,7 +65,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo = None):
       elif isinstance(group[0], Note):
          pitch = group[0].pitch.chromatic_pitch_number
       else: # chord
-         pitch = [x.pitch.chromatic_pitch_number for x in group[0].note_heads]
+         pitch = [x.written_pitch.chromatic_pitch_number for x in group[0].note_heads]
       pitches.append(pitch)
 
    # convert durations and pitches to QEvents and return

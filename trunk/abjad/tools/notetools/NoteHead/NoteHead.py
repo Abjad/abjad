@@ -13,7 +13,7 @@ class NoteHead(_UnaryComparator):
    Note heads are immutable.
    '''
 
-   __slots__ = ('_client', '_pitch', '_tweak')
+   __slots__ = ('_client', '_written_pitch', '_tweak')
 
    def __init__(self, *args):
       primary_args = [ ]
@@ -27,15 +27,15 @@ class NoteHead(_UnaryComparator):
       args = primary_args
       if len(args) == 1:
          _client = None
-         pitch = args[0]
+         written_pitch = args[0]
       elif len(args) == 2:
-         _client, pitch = args
+         _client, written_pitch = args
       else:
          raise ValueError('\n\tCan not initialize note head from args "%s".' % str(args))
       self._client = _client
-      self.pitch = pitch
-      ## must assign comparison attribute after pitch initialization ##
-      self._comparison_attribute = self.pitch
+      self.written_pitch = written_pitch
+      ## must assign comparison attribute after written pitch initialization ##
+      self._comparison_attribute = self.written_pitch
       for tweak_pair in tweak_pairs:
          key, value = tweak_pair
          setattr(self.tweak, key, value)
@@ -48,7 +48,7 @@ class NoteHead(_UnaryComparator):
    __deepcopy__ = __copy__
       
    def __getnewargs__(self):
-      args = [self.pitch]
+      args = [self.written_pitch]
       args.extend(self.tweak._get_attribute_pairs( ))
       return args
 
@@ -59,8 +59,8 @@ class NoteHead(_UnaryComparator):
       return '%s(%s)' % (self.__class__.__name__, args)
 
    def __str__(self):
-      if self.pitch:
-         return str(self.pitch)
+      if self.written_pitch:
+         return str(self.written_pitch)
       else:
          return ''
 
@@ -68,8 +68,8 @@ class NoteHead(_UnaryComparator):
 
    @property
    def _format_string(self):
-      if self.pitch:
-         return str(self.pitch)
+      if self.written_pitch:
+         return str(self.written_pitch)
       return ' '
 
    ## PUBLIC ATTRIBUTES ##
@@ -97,32 +97,31 @@ class NoteHead(_UnaryComparator):
 
       Return named chromatic pitch.
       '''
-      return self.pitch
+      return self.written_pitch
 
-   ## TODO: rename pitch as named pitch ##
    @apply
-   def pitch( ):
+   def written_pitch( ):
       def fget(self):
          '''Get named pitch of note head::
 
             abjad> note_head = notetools.NoteHead("cs''")
-            abjad> note_head.pitch
+            abjad> note_head.written_pitch
             NamedChromaticPitch("cs''")
 
          Set named pitch of note head::
 
             abjad> note_head = notetools.NoteHead("cs''")
-            abjad> note_head.pitch = "d''"
-            abjad> note_head.pitch
+            abjad> note_head.written_pitch = "d''"
+            abjad> note_head.written_pitch
             NamedChromaticPitch("d''")
 
          Set pitch token.
          '''
-         return self._pitch
+         return self._written_pitch
       def fset(self, arg):
          from abjad.tools import pitchtools
-         pitch = pitchtools.NamedChromaticPitch(arg)
-         self._pitch = pitch
+         written_pitch = pitchtools.NamedChromaticPitch(arg)
+         self._written_pitch = written_pitch
       return property(**locals( ))
 
    @property
@@ -138,11 +137,3 @@ class NoteHead(_UnaryComparator):
       if not hasattr(self, '_tweak'):
          self._tweak = LilyPondTweakReservoir( )
       return self._tweak
-
-   @apply
-   def written_pitch( ):
-      def fget(self):
-         return self.pitch
-      def fset(self, arg): 
-         self.pitch = arg
-      return property(**locals( ))

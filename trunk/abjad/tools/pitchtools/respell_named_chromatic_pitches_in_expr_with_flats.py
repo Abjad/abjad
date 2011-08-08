@@ -55,7 +55,7 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
       for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
          if isinstance(leaf, Chord):
             for note_head in leaf.note_heads:
-               note_head.pitch = _new_pitch_with_flats(note_head.pitch)
+               note_head.written_pitch = _new_pitch_with_flats(note_head.written_pitch)
          elif hasattr(leaf, 'pitch'):
             leaf.pitch = _new_pitch_with_flats(leaf.pitch)           
 

@@ -93,10 +93,10 @@ def _handle_read_write_property(property_host_name, property_host, property_name
    ## ignore _Leaf.duration.written
    if property_name == 'written':
       return result
-   ## ignore Note.pitch and Note.note_head.pitch
+   ## ignore Note.pitch and Note.note_head.written_pitch
    if property_host_name is None and property_name == 'pitch':
       return result
-   if property_host_name == 'note_head' and property_name == 'pitch':
+   if property_host_name == 'note_head' and property_name == 'written_pitch':
       return result
    if property_host_name == 'duration' and property_name == 'target':
       return result

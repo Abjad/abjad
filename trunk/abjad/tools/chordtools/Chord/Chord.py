@@ -182,7 +182,7 @@ class Chord(_Leaf):
             Chord("<c' d' fs'>4")
 
          '''
-         return tuple([note_head.pitch for note_head in self])
+         return tuple([note_head.written_pitch for note_head in self])
       def fset(self, pitch_tokens):
          self.note_heads = pitch_tokens
       return property(**locals( ))
