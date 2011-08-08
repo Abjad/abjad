@@ -28,7 +28,7 @@ def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3),
    markuptools.remove_markup_attached_to_component(bass)
 
    if isinstance(treble, notetools.Note):
-      if getattr(treble.pitch, attr) < getattr(pitch, attr):
+      if getattr(treble.written_pitch, attr) < getattr(pitch, attr):
          treble = resttools.Rest(treble)
    elif isinstance(treble, resttools.Rest):
       pass
@@ -40,7 +40,7 @@ def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3),
       raise ValueError('must be note, rest or chord.')
 
    if isinstance(bass, notetools.Note):
-      if getattr(pitch, attr) <= getattr(bass.pitch, attr):
+      if getattr(pitch, attr) <= getattr(bass.written_pitch, attr):
          bass = resttools.Rest(bass)
    elif isinstance(bass, resttools.Rest):
       pass

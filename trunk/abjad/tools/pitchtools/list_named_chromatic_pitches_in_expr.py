@@ -29,8 +29,8 @@ def list_named_chromatic_pitches_in_expr(expr):
          result.extend(expr.pitches)
       elif isinstance(expr, Spanner):
          for leaf in expr.leaves:
-            if hasattr(leaf, 'pitch') and not isinstance(leaf, Rest):
-               result.append(leaf.pitch)
+            if hasattr(leaf, 'written_pitch') and not isinstance(leaf, Rest):
+               result.append(leaf.written_pitch)
             elif hasattr(leaf, 'pitches'):
                result.extend(leaf.pitches)
       elif isinstance(expr, NamedChromaticPitchSet):
@@ -43,8 +43,8 @@ def list_named_chromatic_pitches_in_expr(expr):
             result.extend(list_named_chromatic_pitches_in_expr(x))
       else:
          for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-            if hasattr(leaf, 'pitch') and not isinstance(leaf, Rest):
-               result.append(leaf.pitch)
+            if hasattr(leaf, 'written_pitch') and not isinstance(leaf, Rest):
+               result.append(leaf.written_pitch)
             elif hasattr(leaf, 'pitches'):
                result.extend(leaf.pitches)
       return tuple(result)

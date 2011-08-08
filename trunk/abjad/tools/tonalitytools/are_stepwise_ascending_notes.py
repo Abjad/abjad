@@ -30,7 +30,7 @@ def are_stepwise_ascending_notes(*expr):
    for left, right in seqtools.iterate_sequence_pairwise_strict(
       componenttools.iterate_components_forward_in_expr(expr, Note)):
       try:
-         assert not (left.pitch == right.pitch)
+         assert not (left.written_pitch == right.written_pitch)
          mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(left, right)
          assert mdi.number == 2
       except AssertionError:

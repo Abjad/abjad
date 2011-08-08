@@ -56,8 +56,8 @@ def transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch(exp
          continue
       t_n = instrument.interval_of_transposition
       if isinstance(note_or_chord, Note):
-         note_or_chord.pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(
-            note_or_chord.pitch, t_n)
+         note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(
+            note_or_chord.written_pitch, t_n)
          note_or_chord.written_pitch_indication_is_at_sounding_pitch = True
       elif isinstance(note_or_chord, Chord):
          pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)

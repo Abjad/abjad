@@ -37,7 +37,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_04( ):
    note = Note(12, (1, 4))
    interval = pitchtools.MelodicChromaticInterval(-3)
    new = pitchtools.transpose_pitch_carrier_by_melodic_interval(note, interval)
-   assert new.pitch == pitchtools.NamedChromaticPitch(9)
+   assert new.written_pitch == pitchtools.NamedChromaticPitch(9)
    assert new is not note
 
 

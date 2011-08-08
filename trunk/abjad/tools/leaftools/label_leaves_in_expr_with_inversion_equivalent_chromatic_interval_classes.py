@@ -37,7 +37,7 @@ def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(
          thread_iterator.next( )
          next_leaf = thread_iterator.next( )
          if isinstance(next_leaf, Note):
-            mdi = note.pitch - next_leaf.pitch
+            mdi = note.written_pitch - next_leaf.written_pitch
             iecic = mdi.inversion_equivalent_chromatic_interval_class
             markuptools.Markup(iecic, markup_direction)(note)
       except StopIteration:

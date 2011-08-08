@@ -55,10 +55,10 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
    for i, tie_chain in enumerate(tietools.iterate_tie_chains_forward_in_expr(expr)):
       if isinstance(tie_chain[0], Note):
          for note in tie_chain:
-            note.pitch = pitch
+            note.written_pitch = pitch
       elif isinstance(tie_chain[0], Chord):
          for chord in tie_chain:
-            chord.pitches = [pitch]
+            chord.written_pitches = [pitch]
       else:
          pass
       dic = dicg[i % length]

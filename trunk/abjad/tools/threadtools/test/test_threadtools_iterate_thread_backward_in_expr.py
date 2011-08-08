@@ -68,7 +68,7 @@ def test_threadtools_iterate_thread_backward_in_expr_06( ):
    assert len(iter) == 2
    for e in iter:
       assert isinstance(e, Note)
-      assert e.pitch.numbered_chromatic_pitch == 2
+      assert e.written_pitch.numbered_chromatic_pitch == 2
 
 
 def test_threadtools_iterate_thread_backward_in_expr_07( ):
@@ -86,4 +86,4 @@ def test_threadtools_iterate_thread_backward_in_expr_07( ):
    assert len(iter) == 2
    for e in iter:
       assert isinstance(e, Note)
-      assert e.pitch.numbered_chromatic_pitch == 2
+      assert e.written_pitch.numbered_chromatic_pitch == 2

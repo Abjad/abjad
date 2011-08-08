@@ -157,7 +157,7 @@ def test_Chord___init___15( ):
    '''
 
    n = Note(2, (1, 8))
-   h, p, d = n.note_head, n.pitch, n.duration.written
+   h, p, d = n.note_head, n.written_pitch, n.duration.written
    c = Chord(n)
    assert isinstance(c, Chord)
    assert dir(n) == dir(Note("c'4"))
@@ -174,7 +174,7 @@ def test_Chord___init___16( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-   h, p, d = t[0].note_head, t[0].pitch, t[0].duration.written
+   h, p, d = t[0].note_head, t[0].written_pitch, t[0].duration.written
    chord = Chord(t[0])
    assert isinstance(t[0], Note)
    assert isinstance(chord, Chord)

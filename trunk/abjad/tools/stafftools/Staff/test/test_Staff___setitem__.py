@@ -99,9 +99,9 @@ def test_Staff___setitem___07( ):
    t[0:4] = Note(2, (1, 8)) * 4
    assert len(t) == 8
    for x in t[0:4]:
-      assert x.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
+      assert x.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
    for x in t[4:8]:
-      assert x.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
+      assert x.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
    assert componenttools.is_well_formed_component(t)
 
 

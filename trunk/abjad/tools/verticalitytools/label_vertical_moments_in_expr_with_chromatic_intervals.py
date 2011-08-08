@@ -53,7 +53,8 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(expr, markup_directi
       notes = [leaf for leaf in leaves if isinstance(leaf, Note)]
       if not notes:
          continue
-      notes.sort(lambda x, y: cmp(x.pitch.numbered_chromatic_pitch, y.pitch.numbered_chromatic_pitch))
+      notes.sort(lambda x, y: cmp(x.written_pitch.numbered_chromatic_pitch, 
+         y.written_pitch.numbered_chromatic_pitch))
       notes.reverse( )
       bass_note = notes[-1]
       upper_notes = notes[:-1]

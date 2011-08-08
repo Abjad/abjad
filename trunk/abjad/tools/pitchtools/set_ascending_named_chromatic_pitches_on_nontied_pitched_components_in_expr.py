@@ -36,9 +36,9 @@ def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(
       pitch = i
       if isinstance(x[0], Note):
          for note in x:
-            note.pitch = pitch
+            note.written_pitch = pitch
       elif isinstance(x[0], Chord):
          for chord in x:
-            chord.pitches = [pitch]
+            chord.written_pitches = [pitch]
       else:
          pass

@@ -4,21 +4,25 @@ import py.test
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_01( ):
    '''Pitches can be a list of any length greater than 1.'''
-   t = notetools.make_accelerating_notes_with_lilypond_multipliers([1], Duration(2), Duration(1, 2), Duration(1, 2))
+
+   t = notetools.make_accelerating_notes_with_lilypond_multipliers(
+      [1], Duration(2), Duration(1, 2), Duration(1, 2))
    assert len(t) == 4
    for n in t:
-      assert n.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+      assert n.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02( ):
    '''Pitches can be a list of any length greater than 1.'''
-   t = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 2), Duration(1, 2))
+
+   t = notetools.make_accelerating_notes_with_lilypond_multipliers(
+      [1, 2], Duration(2), Duration(1, 2), Duration(1, 2))
    assert len(t) == 4
    for i, n in enumerate(t):
       if i % 2 == 0:
-         assert n.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+         assert n.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
       else:
-         assert n.pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
+         assert n.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_03( ):

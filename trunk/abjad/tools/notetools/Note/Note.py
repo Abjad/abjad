@@ -21,8 +21,8 @@ class Note(_Leaf):
          leaf = args[0]
          written_duration = leaf.duration.written
          lilypond_multiplier = leaf.duration.multiplier
-         if hasattr(leaf, 'pitch'):
-            pitch = leaf.pitch
+         if hasattr(leaf, 'written_pitch'):
+            pitch = leaf.written_pitch
          elif hasattr(leaf, 'pitches') and 0 < len(leaf.pitches):
             pitch = leaf.pitches[0]
          else:
@@ -51,7 +51,7 @@ class Note(_Leaf):
 
    def __getnewargs__(self):
       result = [ ]
-      result.append(self.pitch)
+      result.append(self.written_pitch)
       result.extend(_Leaf.__getnewargs__(self))
       return tuple(result)
 
@@ -60,8 +60,8 @@ class Note(_Leaf):
    @property
    def _body(self):
       result = ''
-      if self.pitch:
-         result += str(self.pitch)
+      if self.written_pitch:
+         result += str(self.written_pitch)
       result += str(self.duration)
       return [result] 
 
@@ -106,10 +106,10 @@ class Note(_Leaf):
             raise InstrumentError('effective instrument of note can not be determined.')
          t_n = instrument.interval_of_transposition
          t_n *= -1
-         fingered_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.pitch, t_n)
+         fingered_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.written_pitch, t_n)
          return fingered_pitch
       else:
-         return self.pitch
+         return self.written_pitch
 
    @apply
    def note_head( ):
@@ -141,18 +141,18 @@ class Note(_Leaf):
       return property(**locals( ))
 
    @apply
-   def pitch( ):
+   def written_pitch( ):
       def fget(self):
          '''Get named pitch of note::
 
             abjad> note = Note(13, (3, 16))
-            abjad> note.pitch
+            abjad> note.written_pitch
             NamedChromaticPitch("cs''")
 
          Set named pitch of note::
 
             abjad> note = Note(13, (3, 16))
-            abjad> note.pitch = 14
+            abjad> note.written_pitch = 14
             abjad> note
             Note("d''8.")
 
@@ -205,19 +205,32 @@ class Note(_Leaf):
       from abjad.tools import contexttools
       from abjad.tools import pitchtools
       if self.written_pitch_indication_is_at_sounding_pitch:
-         return self.pitch
+         return self.written_pitch
       else:
          instrument = contexttools.get_effective_instrument(self)
          if not instrument:
             raise InstrumentError('effective instrument of note can not be determined.')
          t_n = instrument.interval_of_transposition
-         sounding_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.pitch, t_n)
+         sounding_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.written_pitch, t_n)
          return sounding_pitch
 
-   @apply
-   def written_pitch( ):
-      def fget(self):
-         return self.pitch
-      def fset(self, arg):
-         self.pitch = arg
-      return property(**locals( ))
+#   @apply
+#   def written_pitch( ):
+#      def fget(self):
+#         if self.note_head is not None and hasattr(self.note_head, 'written_pitch'):
+#            return self._note_head.written_pitch
+#         else:
+#            return None
+#      def fset(self, arg):
+#         from abjad.tools import pitchtools
+#         from abjad.tools.notetools.NoteHead import NoteHead
+#         if arg is None:
+#            if self.note_head is not None:
+#               self.note_head.written_pitch = None
+#         else:
+#            if self.note_head is None:
+#               self.note_head = NoteHead(self, written_pitch = None)
+#            else:
+#               pitch = pitchtools.NamedChromaticPitch(arg)
+#               self.note_head.written_pitch = pitch
+#      return property(**locals( ))

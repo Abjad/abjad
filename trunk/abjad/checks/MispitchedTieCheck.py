@@ -22,6 +22,6 @@ class MispitchedTieCheck(_Check):
             spanner = spanners.pop( )
             if not spanner._is_my_last_leaf(leaf):
                if leaf._navigator._next_bead:
-                  if leaf.pitch != leaf._navigator._next_bead.pitch:
+                  if leaf.written_pitch != leaf._navigator._next_bead.written_pitch:
                      violators.append(leaf)
       return violators, total

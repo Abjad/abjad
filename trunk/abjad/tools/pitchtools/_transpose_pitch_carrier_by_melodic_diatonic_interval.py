@@ -31,14 +31,14 @@ def _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic
       return _transpose_pitch_by_melodic_diatonic_interval(pitch_carrier, mdi)
    elif isinstance(pitch_carrier, Note):
       new_note = componenttools.copy_components_and_remove_all_spanners([pitch_carrier])[0]
-      new_pitch = _transpose_pitch_by_melodic_diatonic_interval(pitch_carrier.pitch, mdi)
-      new_note.pitch = new_pitch
+      new_pitch = _transpose_pitch_by_melodic_diatonic_interval(pitch_carrier.written_pitch, mdi)
+      new_note.written_pitch = new_pitch
       return new_note
    elif isinstance(pitch_carrier, Chord):
       new_chord = componenttools.copy_components_and_remove_all_spanners([pitch_carrier])[0]
       for new_nh, old_nh in zip(new_chord.note_heads, pitch_carrier.note_heads):
-         new_pitch = _transpose_pitch_by_melodic_diatonic_interval(old_nh.pitch, mdi)
-         new_nh.pitch = new_pitch
+         new_pitch = _transpose_pitch_by_melodic_diatonic_interval(old_nh.written_pitch, mdi)
+         new_nh.written_pitch = new_pitch
       return new_chord
    else:
       #raise TypeError('must be pitch, note or chord: %s' % str(pitch_carrier))

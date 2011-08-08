@@ -13,7 +13,7 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_02( ):
    '''The pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps( ) helper renotates the pitch of one note.'''
    t = Note(('df', 4), 4)
    pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t)
-   assert t.pitch == pitchtools.NamedChromaticPitch('cs', 4)
+   assert t.written_pitch == pitchtools.NamedChromaticPitch('cs', 4)
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_03( ):

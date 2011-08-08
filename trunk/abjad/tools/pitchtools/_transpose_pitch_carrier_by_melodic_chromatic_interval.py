@@ -38,8 +38,8 @@ def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodi
    elif isinstance(pitch_carrier, Note):
       new_note = componenttools.copy_components_and_remove_all_spanners([pitch_carrier])[0]
       new_pitch = NamedChromaticPitch(
-         abs(pitch_carrier.pitch.numbered_chromatic_pitch) + mci.number)
-      new_note.pitch = new_pitch
+         abs(pitch_carrier.written_pitch.numbered_chromatic_pitch) + mci.number)
+      new_note.written_pitch = new_pitch
       return new_note
    elif isinstance(pitch_carrier, Chord):
       new_chord = componenttools.copy_components_and_remove_all_spanners([pitch_carrier])[0]

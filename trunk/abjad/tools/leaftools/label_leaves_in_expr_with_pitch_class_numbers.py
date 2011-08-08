@@ -49,7 +49,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
 
    for note in componenttools.iterate_components_forward_in_expr(expr, Note):
       if number:
-         label = r'\small %s' % abs(note.pitch.numbered_chromatic_pitch_class)
+         label = r'\small %s' % abs(note.written_pitch.numbered_chromatic_pitch_class)
          markuptools.Markup(label, markup_direction)(note)
       if color:
          notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)

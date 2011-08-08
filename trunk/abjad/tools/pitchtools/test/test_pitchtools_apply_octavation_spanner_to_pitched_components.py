@@ -22,7 +22,7 @@ def test_pitchtools_apply_octavation_spanner_to_pitched_components_01( ):
 def test_pitchtools_apply_octavation_spanner_to_pitched_components_02( ):
 
    t = Voice([Note(31, (1, 4))])
-   assert t[0].pitch.numbered_diatonic_pitch == 18
+   assert t[0].written_pitch.numbered_diatonic_pitch == 18
    pitchtools.apply_octavation_spanner_to_pitched_components(t,
       ottava_numbered_diatonic_pitch = 15, quindecisima_numbered_diatonic_pitch = 19)
 

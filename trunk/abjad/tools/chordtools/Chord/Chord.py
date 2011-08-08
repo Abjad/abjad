@@ -21,8 +21,8 @@ class Chord(_Leaf):
          leaf = args[0]
          written_duration = leaf.duration.written
          lilypond_multiplier = leaf.duration.multiplier
-         if hasattr(leaf, 'pitch'):
-            pitches = [leaf.pitch]
+         if hasattr(leaf, 'written_pitch'):
+            pitches = [leaf.written_pitch]
          elif hasattr(leaf, 'pitches'):
             pitches = leaf.pitches
          else:

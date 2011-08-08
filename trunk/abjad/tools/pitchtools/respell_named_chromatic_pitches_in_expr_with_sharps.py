@@ -55,8 +55,8 @@ def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
          if isinstance(leaf, Chord):
             for note_head in leaf.note_heads:
                note_head.written_pitch = _new_pitch_with_sharps(note_head.written_pitch)
-         elif hasattr(leaf, 'pitch'):
-            leaf.pitch = _new_pitch_with_sharps(leaf.pitch)
+         elif hasattr(leaf, 'written_pitch'):
+            leaf.written_pitch = _new_pitch_with_sharps(leaf.written_pitch)
 
 
 def _new_pitch_with_sharps(pitch):

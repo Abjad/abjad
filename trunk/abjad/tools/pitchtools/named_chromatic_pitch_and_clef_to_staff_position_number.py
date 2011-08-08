@@ -6,9 +6,9 @@ def named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef):
       abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
       abjad> clef = contexttools.ClefMark('treble')
       abjad> for note in staff:
-      ...   pitch = note.pitch
-      ...   number = pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef)
-      ...   print '%s\t%s' % (pitch, number)
+      ...   written_pitch = note.written_pitch
+      ...   number = pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number(written_pitch, clef)
+      ...   print '%s\t%s' % (written_pitch, number)
       c'    -6
       d'    -5
       e'    -4

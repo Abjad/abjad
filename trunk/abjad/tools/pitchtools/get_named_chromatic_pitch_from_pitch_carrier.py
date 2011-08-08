@@ -63,7 +63,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
    elif isinstance(pitch_carrier, numbers.Number):
       return NamedChromaticPitch(pitch_carrier)
    elif isinstance(pitch_carrier, Note):
-      pitch = pitch_carrier.pitch
+      pitch = pitch_carrier.written_pitch
       if pitch is not None:
          return get_named_chromatic_pitch_from_pitch_carrier(pitch)
       else:
