@@ -6,6 +6,7 @@ from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface
 from abjad.tools import durtools
 import copy
+import fractions
 
 
 class _Component(_StrictComparator):
@@ -69,6 +70,16 @@ class _Component(_StrictComparator):
       lhs = self.__class__.__name__
       return '%s-%s' % (lhs, rhs)
 
+   @property
+   def _prolations(self):
+      result = [ ]
+      parent = self._parentage.parent
+      while parent is not None:
+         #result.append(getattr(parent.duration, 'multiplier', fractions.Fraction(1)))
+         result.append(getattr(parent, 'duration_multiplier', fractions.Fraction(1)))
+         parent = parent._parentage.parent
+      return result
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -99,6 +110,16 @@ class _Component(_StrictComparator):
       if not hasattr(self, '_override'):
          self._override = LilyPondGrobOverrideComponentPlugIn( )
       return self._override
+
+   @property
+   def prolated_duration(self):
+      return self.prolation * self.preprolated_duration
+
+   @property
+   def prolation(self):
+      from abjad.tools import mathtools
+      products = mathtools.cumulative_products([fractions.Fraction(1)] + self._prolations)
+      return products[-1]
 
    @property
    def set(self):

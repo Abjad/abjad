@@ -156,7 +156,6 @@ class Chord(_Leaf):
             Chord("<c' d' fs'>4")
 
          '''
-         #return tuple(self)
          return tuple(self._note_heads)
       def fset(self, note_head_tokens):
          self._note_heads = [ ]
@@ -166,7 +165,6 @@ class Chord(_Leaf):
       return property(**locals( ))
 
    @apply
-   #def pitches( ):
    def written_pitches( ):
       def fget(self):
          '''Get read-only tuple of pitches in chord::
@@ -225,14 +223,6 @@ class Chord(_Leaf):
          sounding_pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
             for pitch in self.written_pitches]
          return tuple(sounding_pitches)
-
-#   @apply
-#   def written_pitches( ):
-#      def fget(self):   
-#         return self.pitches
-#      def fset(self, arg):
-#         self.pitches = arg
-#      return property(**locals( ))
 
    ## PUBLIC METHODS ## 
 

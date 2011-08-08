@@ -9,14 +9,16 @@ class _Leaf(_Component, _StrictComparator):
 
    ## TODO: see if _grace and _after_grace can be removed ##
    __slots__ = ('_after_grace', '_duration', '_grace', '_leaf_index',
+      '_duration_multiplier', 
       '_written_pitch_indication_is_nonsemantic',
       '_written_pitch_indication_is_at_sounding_pitch',
       'after_grace', 'grace', )
 
-   def __init__(self, written_duration, lilypond_multiplier = None):
+   def __init__(self, written_duration, duration_multiplier = None):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, written_duration)
-      self._duration.multiplier = lilypond_multiplier
+      self._duration.multiplier = duration_multiplier
+      self._duration_multiplier = duration_multiplier
       self._leaf_index = None
       self.written_pitch_indication_is_nonsemantic = False
       self.written_pitch_indication_is_at_sounding_pitch = True
@@ -92,6 +94,28 @@ class _Leaf(_Component, _StrictComparator):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def duration_in_seconds(self):
+      from abjad.exceptions import MissingTempoError
+      from abjad.tools import contexttools
+      tempo = contexttools.get_effective_tempo(self)
+      if tempo is not None:
+         return self.prolated_duration / tempo.duration / tempo.units_per_minute * 60
+      raise MissingTempoError
+
+   @apply
+   def duration_multiplier( ):
+      def fget(self):
+         return self._duration_multiplier
+      def fset(self, expr):
+         if expr is None:
+            self._duration_multiplier = None
+         else:
+            duration_multiplier = fractions.Fraction(expr)
+            assert 0 <= duration_multiplier
+            self._duration_multiplier = duration_multiplier
+      return property(**locals( ))
+
+   @property
    def format(self):
       from abjad.tools.leaftools._format_leaf import _format_leaf
       return _format_leaf(self)
@@ -100,6 +124,29 @@ class _Leaf(_Component, _StrictComparator):
    def leaf_index(self):
       self._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
       return self._leaf_index
+
+   @property
+   def multiplied_duration(self):
+      from abjad.tools import durtools
+      if self.written_duration:
+         if self.duration_multiplier is not None:
+            return self.written_duration * self.duration_multiplier
+         else:
+            return durtools.Duration(self.written_duration)
+      else:
+         return None
+   
+   @property
+   def preprolated_duration(self):
+      return self.multiplied_duration
+
+   @apply
+   def written_duration( ):
+      def fget(self):
+         return self.duration.written
+      def fset(self, arg):
+         self.duration.written = arg
+      return property(**locals( ))
 
    @apply
    def written_pitch_indication_is_nonsemantic( ):
