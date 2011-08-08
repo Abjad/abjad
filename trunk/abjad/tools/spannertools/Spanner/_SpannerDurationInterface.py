@@ -26,7 +26,7 @@ class _SpannerDurationInterface(_StrictComparator):
       '''Sum of duration of all leaves in spanner, in seconds.'''
       duration = durtools.Duration(0)
       for leaf in self._client.leaves:
-         duration += leaf.duration.seconds
+         duration += leaf.duration_in_seconds
       return duration
 
    ## TODO: Deprecate _SpannerDurationInterface.written in favor of _SpannerDurationInterface.preprolated; this will handle LilyPond multipliers ##

@@ -26,7 +26,7 @@ class _OffsetInterface(_Interface):
 
    def _update_offset_values_of_component_in_seconds(self):
       try:
-         cur_duration_in_seconds = self._client.duration.seconds
+         cur_duration_in_seconds = self._client.duration_in_seconds
          prev = self._client._navigator._prev
          if prev:
             self._start_in_seconds = prev._offset._stop_in_seconds
@@ -74,9 +74,9 @@ class _OffsetInterface(_Interface):
 
    @property
    def stop_in_seconds(self):
-#      return self.start_in_seconds + self._client.duration.seconds
+#      return self.start_in_seconds + self._client.duration_in_seconds
 #      self._component._update_entire_score_tree_if_necessary( )
 #      if self._stop_in_seconds is None:
 #         raise MissingTempoError
 #      return self._stop_in_seconds
-      return self.start_in_seconds + self._client.duration.seconds
+      return self.start_in_seconds + self._client.duration_in_seconds

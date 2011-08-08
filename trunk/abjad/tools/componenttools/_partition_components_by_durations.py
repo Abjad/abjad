@@ -47,7 +47,11 @@ def _partition_components_by_durations(duration_type, components, durations,
          component = components_copy.pop(0)
       except IndexError:
          break
-      component_duration = getattr(component.duration, duration_type)
+      ## collapse these 4 lines to only the 4th line after duration migration
+      if duration_type == 'seconds':
+         component_duration = component.duration_in_seconds
+      else:
+         component_duration = getattr(component.duration, duration_type)
       candidate_duration = cum_duration + component_duration
       if candidate_duration < target_duration:
          #print 'not there yet'
@@ -67,8 +71,11 @@ def _partition_components_by_durations(duration_type, components, durations,
          elif fill == 'less':
             result.append(part)
             part = [component]
-            cum_duration = sum([
-               getattr(x.duration, duration_type) for x in part])
+            ## collapse to 4th line after duration migration
+            if duration_type == 'seconds':
+               cum_duration = sum([x.duration_in_seconds for x in part])
+            else:
+               cum_duration = sum([getattr(x.duration, duration_type) for x in part])
             cur_duration_idx += 1
             target_duration = _get_next(durations, cur_duration_idx, cyclic)
             if target_duration is None:

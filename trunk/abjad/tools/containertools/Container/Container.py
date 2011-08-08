@@ -188,6 +188,17 @@ class Container(_Component):
 
    ## PUBLIC ATTRIBUTES ##
 
+   @property
+   def duration_in_seconds(self):
+      from abjad.tools import durtools
+      if self.is_parallel:
+         return max([durtools.Duration(0)] + [x.duration_in_seconds for x in self])
+      else:
+         duration = durtools.Duration(0)
+         for leaf in self.leaves:
+            duration += leaf.duration_in_seconds
+         return duration
+
    @apply
    def is_parallel( ):
       def fget(self):

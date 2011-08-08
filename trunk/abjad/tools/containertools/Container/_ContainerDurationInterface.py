@@ -33,15 +33,13 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
          return self.contents
       return  property(**locals( ))
 
-   @property
-   def seconds(self):
-      client = self._client
-      if client.is_parallel:
-         return max(
-            [durtools.Duration(0)] + [x.duration.seconds for x in client])
-      else:
-         duration = durtools.Duration(0)
-         for leaf in client.leaves:
-            duration += leaf.duration.seconds
-         return duration
-
+#   @property
+#   def seconds(self):
+#      client = self._client
+#      if client.is_parallel:
+#         return max([durtools.Duration(0)] + [x.duration_in_seconds for x in client])
+#      else:
+#         duration = durtools.Duration(0)
+#         for leaf in client.leaves:
+#            duration += leaf.duration_in_seconds
+#         return duration
