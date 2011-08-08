@@ -28,7 +28,7 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
       multiplied_duration = durtools.Duration(multiplied_duration)
       skip = Skip(written_duration)
       multiplier = multiplied_duration / written_duration
-      skip.duration.multiplier = multiplier
+      skip.duration_multiplier = multiplier
       skips.append(skip)
 
    ## return skips

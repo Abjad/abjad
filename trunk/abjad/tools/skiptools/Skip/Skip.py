@@ -19,7 +19,7 @@ class Skip(_Leaf):
       if len(args) == 1 and isinstance(args[0], _Leaf):
          leaf = args[0]
          written_duration = leaf.duration.written
-         lilypond_multiplier = leaf.duration.multiplier
+         lilypond_multiplier = leaf.duration_multiplier
          self._copy_override_and_set_from_leaf(leaf)
       elif len(args) == 1 and isinstance(args[0], str):
          written_duration = args[0].strip('s')

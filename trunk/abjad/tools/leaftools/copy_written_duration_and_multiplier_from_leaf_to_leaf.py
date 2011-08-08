@@ -8,7 +8,7 @@ def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_l
    Copy written duration and multiplier from `source_leaf` to `target_leaf`::
 
       abjad> note = Note("c'4")
-      abjad> note.duration.multiplier = Duration(1, 2)
+      abjad> note.duration_multiplier = Duration(1, 2)
       abjad> rest = Rest((1, 64))
       abjad> leaftools.copy_written_duration_and_multiplier_from_leaf_to_leaf(note, rest)
       Rest('r4 * 1/2')
@@ -26,11 +26,11 @@ def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_l
 
    ## copy source leaf written duration and multiplier
    written = durtools.Duration(source_leaf.duration.written)
-   multiplier = durtools.Duration(source_leaf.duration.multiplier)
+   multiplier = durtools.Duration(source_leaf.duration_multiplier)
 
    ## set target leaf written duration and multiplier
    target_leaf.duration.written = written
-   target_leaf.duration.multiplier = multiplier
+   target_leaf.duration_multiplier = multiplier
 
    ## return target leaf
    return target_leaf

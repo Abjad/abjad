@@ -150,7 +150,8 @@ class _Component(_StrictComparator):
          attribute_name = names[0]
          command = 'self.%s.%s = %s' % (plug_in_name, attribute_name, repr(value))
          print command
-         exec(command)
+         if 'multiplier' not in command:
+            exec(command)
       elif plug_in_name == 'override':
          if len(names) == 2:
             grob_name, attribute_name = names

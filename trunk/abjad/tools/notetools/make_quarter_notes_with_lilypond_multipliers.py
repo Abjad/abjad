@@ -39,7 +39,7 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
       duration_token = durtools.duration_token_to_duration_pair(duration)
       duration = durtools.Duration(*duration_token)
       multiplier = fractions.Fraction(duration / durtools.Duration(1, 4))
-      quarter_note.duration.multiplier = multiplier
+      quarter_note.duration_multiplier = multiplier
       quarter_notes.append(quarter_note)
 
    return quarter_notes

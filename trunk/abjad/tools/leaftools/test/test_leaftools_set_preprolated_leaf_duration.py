@@ -168,7 +168,7 @@ def test_leaftools_set_preprolated_leaf_duration_06( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Duration(1, 2)
+   t.duration_multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 
@@ -183,7 +183,7 @@ def test_leaftools_set_preprolated_leaf_duration_07( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Duration(1, 2)
+   t.duration_multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 
@@ -198,7 +198,7 @@ def test_leaftools_set_preprolated_leaf_duration_08( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Duration(1, 2)
+   t.duration_multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 
@@ -213,7 +213,7 @@ def test_leaftools_set_preprolated_leaf_duration_09( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Duration(1, 2)
+   t.duration_multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 
@@ -229,7 +229,7 @@ def test_leaftools_set_preprolated_leaf_duration_10( ):
       LilyPond multiplier changes but leaf written duration does not.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Duration(1, 2)
+   t.duration_multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 

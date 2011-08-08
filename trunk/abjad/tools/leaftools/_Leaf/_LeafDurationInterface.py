@@ -12,16 +12,21 @@ class _LeafDurationInterface(_ComponentDurationInterface):
 
    def __init__(self, _client, duration_token):
       _ComponentDurationInterface.__init__(self, _client)
-      self.multiplier = None
+      #self.multiplier = None
+      ## delete this line after migration
+      self._multiplier = None
       self.written = durtools.Duration(durtools.duration_token_to_duration_pair(duration_token))
 
    ## OVERLOADS ##
 
    def __str__(self):
       from abjad.tools import durtools
-      duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.written)
-      if self.multiplier is not None:
-         return '%s * %s' % (duration_string, self.multiplier)
+      #duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.written)
+      duration_string = durtools.assignable_rational_to_lilypond_duration_string(self._client.written_duration)
+      #if self.multiplier is not None:
+      #   return '%s * %s' % (duration_string, self._multiplier)
+      if self._client.duration_multiplier is not None:
+         return '%s * %s' % (duration_string, self._client.duration_multiplier)
       else:
          return duration_string
 
@@ -33,40 +38,41 @@ class _LeafDurationInterface(_ComponentDurationInterface):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def multiplied(self):
-      if self.written:
-         if self.multiplier is not None:
-            return self.written * self.multiplier
-         else:
-            return durtools.Duration(self.written)
-      else:
-         return None
+#   @property
+#   def multiplied(self):
+#      if self.written:
+#         if self.multiplier is not None:
+#            return self.written * self.multiplier
+#         else:
+#            return durtools.Duration(self.written)
+#      else:
+#         return None
 
-   @apply
-   def multiplier( ):
-      def fget(self):
-         return self._multiplier
-      def fset(self, expr):
-         if expr is None:
-            self._multiplier = None
-         else:
-            if isinstance(expr, fractions.Fraction):
-               rational = expr
-            elif isinstance(expr, (int, long)):
-               rational = fractions.Fraction(expr)
-            elif isinstance(expr, tuple):
-               rational = fractions.Fraction(*expr)
-            else:
-               raise TypeError('can not set duration multiplier: "%s".' % str(expr))
-            assert 0 <= rational
-            self._multiplier = rational
-      return property(**locals( ))
+#   @apply
+#   def multiplier( ):
+#      def fget(self):
+#         return self._multiplier
+#      def fset(self, expr):
+#         if expr is None:
+#            self._multiplier = None
+#         else:
+#            if isinstance(expr, fractions.Fraction):
+#               rational = expr
+#            elif isinstance(expr, (int, long)):
+#               rational = fractions.Fraction(expr)
+#            elif isinstance(expr, tuple):
+#               rational = fractions.Fraction(*expr)
+#            else:
+#               raise TypeError('can not set duration multiplier: "%s".' % str(expr))
+#            assert 0 <= rational
+#            self._multiplier = rational
+#      return property(**locals( ))
 
    @apply
    def preprolated( ):
       def fget(self):
-         return self.multiplied
+         #return self.multiplied
+         return self._client.multiplied_duration
       return property(**locals( ))
 
    @property

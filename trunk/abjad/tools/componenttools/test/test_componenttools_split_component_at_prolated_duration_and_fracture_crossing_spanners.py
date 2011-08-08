@@ -619,7 +619,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Halves carry adjusted LilyPond multipliers.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Duration(1, 2)
+   t.duration_multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 
@@ -640,7 +640,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Halves carry adjusted LilyPond multipliers.'''
 
    t = Note(0, (1, 8))
-   t.duration.multiplier = Duration(1, 2)
+   t.duration_multiplier = Duration(1, 2)
 
    "c'8 * 1/2"
 
@@ -662,7 +662,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    for leaf in t.leaves:
-      leaf.duration.multiplier = Duration(1, 2)
+      leaf.duration_multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -715,7 +715,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    for leaf in t.leaves:
-      leaf.duration.multiplier = Duration(1, 2)
+      leaf.duration_multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -770,7 +770,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
    for leaf in t.leaves:
-      leaf.duration.multiplier = Duration(1, 2)
+      leaf.duration_multiplier = Duration(1, 2)
    spannertools.BeamSpanner(t[0])
    spannertools.BeamSpanner(t[1])
    spannertools.SlurSpanner(t.leaves)
@@ -826,7 +826,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       Split at nonbinary split point through leaves.'''
 
    t = Staff([Measure((5, 16), [skiptools.Skip((1, 1))])])
-   t.leaves[0].duration.multiplier = Duration(5, 16)
+   t.leaves[0].duration_multiplier = Duration(5, 16)
 
    r'''
    \new Staff {

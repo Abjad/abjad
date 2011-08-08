@@ -2,6 +2,7 @@ from abjad.tools.componenttools._Component import _Component
 from abjad.tools.leaftools._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.core._StrictComparator import _StrictComparator
 import copy
+import fractions
 import operator
 
 
@@ -17,7 +18,7 @@ class _Leaf(_Component, _StrictComparator):
    def __init__(self, written_duration, duration_multiplier = None):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, written_duration)
-      self._duration.multiplier = duration_multiplier
+      #self._duration.multiplier = duration_multiplier
       self._duration_multiplier = duration_multiplier
       self._leaf_index = None
       self.written_pitch_indication_is_nonsemantic = False
@@ -41,8 +42,8 @@ class _Leaf(_Component, _StrictComparator):
    def __getnewargs__(self):
       result = [ ]
       result.append(self.duration.written)
-      if self.duration.multiplier is not None:
-        result.append(self.duration.multiplier)
+      if self.duration_multiplier is not None:
+        result.append(self.duration_multiplier)
       return tuple(result)
 
    def __or__(self, arg):

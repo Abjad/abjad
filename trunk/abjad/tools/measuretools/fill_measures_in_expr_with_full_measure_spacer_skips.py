@@ -16,6 +16,6 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
          skip = Skip(1)
          ## allow zero-update iteration
          meter = contexttools.get_effective_time_signature(measure)
-         skip.duration.multiplier = meter.duration / meter.multiplier
+         skip.duration_multiplier = meter.duration / meter.multiplier
          measure[:] = [skip]
          _withdraw_component_from_attached_spanners(measure)

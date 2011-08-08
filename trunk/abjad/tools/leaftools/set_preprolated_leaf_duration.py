@@ -76,7 +76,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    Set preprolated `leaf` duration with LilyPond multiplier::
       
       abjad> note = Note(0, (1, 8))
-      abjad> note.duration.multiplier = Duration(1, 2)
+      abjad> note.duration_multiplier = Duration(1, 2)
       abjad> leaftools.set_preprolated_leaf_duration(note, Duration(5, 48))
       [Note("c'8 * 5/6")]
       abjad> f(note)
@@ -99,8 +99,8 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
    new_preprolated_duration = durtools.Duration(new_preprolated_duration)
 
    ## If leaf carries LilyPond multiplier, change only LilyPond multiplier.
-   if leaf.duration.multiplier is not None:
-      leaf.duration.multiplier = new_preprolated_duration / leaf.duration.written
+   if leaf.duration_multiplier is not None:
+      leaf.duration_multiplier = new_preprolated_duration / leaf.duration.written
       return [leaf]
 
    ## If leaf does not carry LilyPond multiplier, change other values.

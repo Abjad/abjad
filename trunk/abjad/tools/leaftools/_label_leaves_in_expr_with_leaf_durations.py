@@ -19,8 +19,8 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down',
          tie_spanners = spannertools.get_spanners_attached_to_component(
             leaf, tietools.TieSpanner)
          if not tie_spanners:
-            if leaf.duration.multiplier is not None:
-               multiplier = '* %s' % str(leaf.duration.multiplier)
+            if leaf.duration_multiplier is not None:
+               multiplier = '* %s' % str(leaf.duration_multiplier)
             else:
                multiplier = ''
             if 'written' in show:

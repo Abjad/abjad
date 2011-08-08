@@ -52,7 +52,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
       skip = Skip((1, 1))
       meter_multiplier = contexttools.get_effective_time_signature(rigid_measure).multiplier
       new_multiplier = (target_duration - prolated_duration) / meter_multiplier
-      skip.duration.multiplier = new_multiplier
+      skip.duration_multiplier = new_multiplier
       rigid_measure.append(skip)
 
    return rigid_measure
