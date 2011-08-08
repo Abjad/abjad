@@ -138,3 +138,11 @@ class NoteHead(_UnaryComparator):
       if not hasattr(self, '_tweak'):
          self._tweak = LilyPondTweakReservoir( )
       return self._tweak
+
+   @apply
+   def written_pitch( ):
+      def fget(self):
+         return self.pitch
+      def fset(self, arg): 
+         self.pitch = arg
+      return property(**locals( ))

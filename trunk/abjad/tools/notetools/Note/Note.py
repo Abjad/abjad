@@ -213,3 +213,11 @@ class Note(_Leaf):
          t_n = instrument.interval_of_transposition
          sounding_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.pitch, t_n)
          return sounding_pitch
+
+   @apply
+   def written_pitch( ):
+      def fget(self):
+         return self.pitch
+      def fset(self, arg):
+         self.pitch = arg
+      return property(**locals( ))

@@ -225,6 +225,14 @@ class Chord(_Leaf):
             for pitch in self.pitches]
          return tuple(sounding_pitches)
 
+   @apply
+   def written_pitches( ):
+      def fget(self):   
+         return self.pitches
+      def fset(self, arg):
+         self.pitches = arg
+      return property(**locals( ))
+
    ## PUBLIC METHODS ## 
 
    def append(self, note_head_token):
