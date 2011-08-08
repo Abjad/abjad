@@ -10,7 +10,7 @@ def test_leaftools_make_leaves_01( ):
    assert isinstance(leaves[1], Chord) 
    assert isinstance(leaves[2], Rest) 
    for l in leaves:
-      assert l.duration.written == Duration(1, 4)
+      assert l.written_duration == Duration(1, 4)
 
 
 def test_leaftools_make_leaves_02( ):
@@ -34,9 +34,9 @@ def test_leaftools_make_leaves_02( ):
    assert tuplet2.duration.multiplier == Duration(4, 5)
    assert isinstance(tuplet2[0], Rest) 
 
-   assert tuplet1[0].duration.written == Duration(2, 8)
-   assert tuplet1[1].duration.written == Duration(1, 16)
-   assert tuplet2[0].duration.written == Duration(1, 4)
+   assert tuplet1[0].written_duration == Duration(2, 8)
+   assert tuplet1[1].written_duration == Duration(1, 16)
+   assert tuplet2[0].written_duration == Duration(1, 4)
 
 
 def test_leaftools_make_leaves_03( ):

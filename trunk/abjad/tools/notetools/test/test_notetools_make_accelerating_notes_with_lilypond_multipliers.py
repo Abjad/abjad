@@ -37,7 +37,7 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_04( ):
    '''
    t = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 2), Duration(1, 2))
    for n in t:
-      assert n.duration.written == Duration(1, 8)
+      assert n.written_duration == Duration(1, 8)
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_05( ):
@@ -47,7 +47,7 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_05( ):
    t = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 2), Duration(1, 2), 
    written=Duration(1))
    for n in t:
-      assert n.duration.written == Duration(1)
+      assert n.written_duration == Duration(1)
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_06( ):

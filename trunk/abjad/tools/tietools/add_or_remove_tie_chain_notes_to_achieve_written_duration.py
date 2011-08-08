@@ -32,12 +32,12 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
    new_written_duration = durtools.Duration(new_written_duration)
 
    if durtools.is_assignable_rational(new_written_duration):
-      tie_chain[0].duration.written = new_written_duration
+      tie_chain[0].written_duration = new_written_duration
       remove_all_leaves_in_tie_chain_except_first(tie_chain)
    elif durtools.is_binary_rational(new_written_duration):
       duration_tokens = notetools.make_notes(0, [new_written_duration])
       for leaf, token in zip(tie_chain, duration_tokens):
-         leaf.duration.written = token.duration.written
+         leaf.written_duration = token.written_duration
       if len(tie_chain) == len(duration_tokens):
          pass
       elif len(duration_tokens) < len(tie_chain):
@@ -51,7 +51,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
          _withdraw_components_from_attached_spanners(extra_leaves)
          extra_tokens = duration_tokens[len(tie_chain):]
          for leaf, token in zip(extra_leaves, extra_tokens):
-            leaf.duration.written = token.duration.written
+            leaf.written_duration = token.written_duration
          if not spannertools.is_component_with_spanner_attached(tie_chain[-1], TieSpanner):
             TieSpanner(list(tie_chain))
          componenttools.extend_in_parent_of_component_and_grow_spanners(tie_chain[-1], extra_leaves)

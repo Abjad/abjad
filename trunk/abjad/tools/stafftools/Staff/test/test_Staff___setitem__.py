@@ -111,9 +111,9 @@ def test_Staff___setitem___08( ):
    t[0:4] = Chord([2, 3, 4], (1, 4)) * 4
    assert len(t) == 8
    for x in t[0:4]:
-      assert x.duration.written == Duration(1, 4)
+      assert x.written_duration == Duration(1, 4)
    for x in t[4:8]:
-      assert x.duration.written == Duration(1, 8)
+      assert x.written_duration == Duration(1, 8)
    assert componenttools.is_well_formed_component(t)
 
 

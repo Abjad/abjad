@@ -67,7 +67,7 @@ def test_leaftools_set_preprolated_leaf_duration_02( ):
 
 def test_leaftools_set_preprolated_leaf_duration_03( ):
    '''Change leaf to nontied duration.
-      Same as t.duration.written = Duration(3, 16).'''
+      Same as t.written_duration = Duration(3, 16).'''
 
    t = Voice("c'8 d'8 e'8 f'8")
    spannertools.BeamSpanner(t[:2])

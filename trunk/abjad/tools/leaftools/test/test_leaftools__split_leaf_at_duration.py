@@ -113,7 +113,7 @@ def test_leaftools__split_leaf_at_duration_04( ):
    assert len(left) == 0
    assert len(right) == 1
    assert isinstance(right[0], Note)
-   assert right[0].duration.written == Duration(1, 4)
+   assert right[0].written_duration == Duration(1, 4)
 
 
 def test_leaftools__split_leaf_at_duration_05( ):
@@ -127,7 +127,7 @@ def test_leaftools__split_leaf_at_duration_05( ):
    assert len(halves) == 2
    assert len(left) == 1
    assert isinstance(left[0], Note)
-   assert left[0].duration.written == Duration(1, 4)
+   assert left[0].written_duration == Duration(1, 4)
    assert len(right) == 0
 
 
@@ -145,8 +145,8 @@ def test_leaftools__split_leaf_at_duration_06( ):
    assert halves[1][0] is not t
    assert isinstance(halves[0][0], Note)
    assert isinstance(halves[1][0], Note)
-   assert halves[0][0].duration.written == Duration(1, 8)
-   assert halves[1][0].duration.written == Duration(1, 8)
+   assert halves[0][0].written_duration == Duration(1, 8)
+   assert halves[1][0].written_duration == Duration(1, 8)
    assert not tietools.is_component_with_tie_spanner_attached(halves[0][0])
    assert not tietools.is_component_with_tie_spanner_attached(halves[1][0])
 
@@ -163,8 +163,8 @@ def test_leaftools__split_leaf_at_duration_07( ):
    assert len(halves[1]) == 1
    assert isinstance(halves[0][0], Note)
    assert isinstance(halves[1][0], Note)
-   assert halves[0][0].duration.written == Duration(1, 16)
-   assert halves[1][0].duration.written == Duration(3, 16)
+   assert halves[0][0].written_duration == Duration(1, 16)
+   assert halves[1][0].written_duration == Duration(3, 16)
 
 
 def test_leaftools__split_leaf_at_duration_08( ):
@@ -182,9 +182,9 @@ def test_leaftools__split_leaf_at_duration_08( ):
    assert isinstance(halves[0][0], Note)
    assert isinstance(halves[0][1], Note)
    assert isinstance(halves[1][0], Note)
-   assert halves[0][0].duration.written == Duration(4, 32)
-   assert halves[0][1].duration.written == Duration(1, 32)
-   assert halves[1][0].duration.written == Duration(3, 32)
+   assert halves[0][0].written_duration == Duration(4, 32)
+   assert halves[0][1].written_duration == Duration(1, 32)
+   assert halves[1][0].written_duration == Duration(3, 32)
    assert tietools.is_component_with_tie_spanner_attached(halves[0][0])
    assert tietools.is_component_with_tie_spanner_attached(halves[0][1])
    assert spannertools.get_the_only_spanner_attached_to_component(

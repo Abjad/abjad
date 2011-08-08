@@ -9,7 +9,7 @@ def test_resttools_make_rests_01( ):
    assert isinstance(t, list)
    assert len(t) == 1
    assert isinstance(t[0], Rest)
-   assert t[0].duration.written == Duration(1, 4)
+   assert t[0].written_duration == Duration(1, 4)
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
 
 
@@ -20,8 +20,8 @@ def test_resttools_make_rests_02( ):
    assert len(t) == 2
    assert isinstance(t[0], Rest)
    assert isinstance(t[1], Rest)
-   assert t[0].duration.written == Duration(4, 8)
-   assert t[1].duration.written == Duration(1, 8)
+   assert t[0].written_duration == Duration(4, 8)
+   assert t[1].written_duration == Duration(1, 8)
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
    assert not tietools.is_component_with_tie_spanner_attached(t[1])
 
@@ -38,7 +38,7 @@ def test_resttools_make_rests_03( ):
 def test_resttools_make_rests_04( ):
    '''resttools.make_rests can take a list of duration tokens.'''
    t = resttools.make_rests([(1, 4), Duration(1, 8)])
-   assert t[0].duration.written == Duration(1, 4)
-   assert t[1].duration.written == Duration(1, 8)
+   assert t[0].written_duration == Duration(1, 4)
+   assert t[1].written_duration == Duration(1, 8)
    assert not tietools.is_component_with_tie_spanner_attached(t[0])
    assert not tietools.is_component_with_tie_spanner_attached(t[1])

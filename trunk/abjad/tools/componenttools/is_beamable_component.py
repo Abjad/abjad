@@ -15,6 +15,6 @@ def is_beamable_component(expr):
 
    #if isinstance(expr, _Leaf):
    if isinstance(expr, (Note, Chord)):
-      if 0 < durtools.rational_to_flag_count(expr.duration.written):
+      if 0 < durtools.rational_to_flag_count(expr.written_duration):
          return True
    return False

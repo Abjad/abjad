@@ -46,14 +46,14 @@ def test_Note___init___06( ):
    '''
 
    c = Chord([2, 3, 4], (1, 4))
-   duration = c.duration.written
+   duration = c.written_duration
    n = Note(c)
    assert isinstance(n, Note)
    # check that attributes have not been removed or added.
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(n) == dir(Note("c'4"))
    assert n._parentage.parent is None
-   assert n.duration.written == duration
+   assert n.written_duration == duration
 
 
 def test_Note___init___07( ):
@@ -61,11 +61,11 @@ def test_Note___init___07( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    note = Note(t[0])
    assert isinstance(t[0], Chord)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert isinstance(note, Note)
 
 
@@ -86,14 +86,14 @@ def test_Note___init___09( ):
    '''
 
    r = Rest((1, 8))
-   d = r.duration.written
+   d = r.written_duration
    n = Note(r)
    assert isinstance(n, Note)
    # check that attributes have not been removed or added.
    assert dir(r) == dir(Rest((1, 4)))
    assert dir(n) == dir(Note("c'4"))
    assert n._parentage.parent is None
-   assert n.duration.written == d
+   assert n.written_duration == d
    assert isinstance(r, Rest)
 
 
@@ -102,12 +102,12 @@ def test_Note___init___10( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    note = Note(t[0])
    assert isinstance(t[0], Rest)
    assert isinstance(note, Note)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert note._parentage.parent is None
 
 
@@ -127,13 +127,13 @@ def test_Note___init___11( ):
 def test_Note___init___12( ):
    '''Cast skip as note.'''
    s = skiptools.Skip((1, 8))
-   d = s.duration.written
+   d = s.written_duration
    n = Note(s)
    assert isinstance(n, Note)
    assert dir(s) == dir(skiptools.Skip((1, 4)))
    assert dir(n) == dir(Note("c'4"))
    assert n._parentage.parent is None
-   assert n.duration.written == d
+   assert n.written_duration == d
 
 
 def test_Note___init___13( ):
@@ -141,12 +141,12 @@ def test_Note___init___13( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    note = Note(t[0])
    assert isinstance(t[0], skiptools.Skip)
    assert isinstance(note, Note)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert note._parentage.parent is None
 
 

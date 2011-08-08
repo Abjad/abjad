@@ -7,7 +7,7 @@ def test_Rest___init___01( ):
 
    rest = Rest('r8.')
    
-   assert rest.duration.written == Duration(3, 16)
+   assert rest.written_duration == Duration(3, 16)
 
 
 def test_Rest___init___02( ):
@@ -38,14 +38,14 @@ def test_Rest___init___04( ):
    '''
 
    c = Chord([2, 3, 4], (1, 4))
-   duration = c.duration.written
+   duration = c.written_duration
    r = Rest(c)
    assert isinstance(r, Rest)
    # check that attributes have not been removed or added.
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(r) == dir(Rest((1, 4)))
    assert r._parentage.parent is None
-   assert r.duration.written == duration
+   assert r.written_duration == duration
 
 
 def test_Rest___init___05( ):
@@ -53,7 +53,7 @@ def test_Rest___init___05( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    rest = Rest(t[0])
    assert isinstance(rest, Rest)
    assert isinstance(t[0], Chord)
@@ -79,13 +79,13 @@ def test_Rest___init___07( ):
    '''
 
    s = skiptools.Skip((1, 8))
-   d = s.duration.written
+   d = s.written_duration
    r = Rest(s)
    assert isinstance(r, Rest)
    assert dir(s) == dir(skiptools.Skip((1, 4)))
    assert dir(r) == dir(Rest((1, 4)))
    assert r._parentage.parent is None
-   assert r.duration.written == d
+   assert r.written_duration == d
 
 
 def test_Rest___init___08( ):
@@ -93,12 +93,12 @@ def test_Rest___init___08( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    rest = Rest(t[0])
    assert isinstance(t[0], skiptools.Skip)
    assert isinstance(rest, Rest)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert rest._parentage.parent is None
 
 
@@ -120,7 +120,7 @@ def test_Rest___init___10( ):
    '''
 
    n = Note(2, (1, 8))
-   d = n.duration.written
+   d = n.written_duration
    r = Rest(n)
    assert isinstance(r, Rest)
    # check that attributes have not been removed or added.
@@ -128,7 +128,7 @@ def test_Rest___init___10( ):
    assert dir(r) == dir(Rest((1, 4)))
    assert r.format == 'r8'
    assert r._parentage.parent is None
-   assert r.duration.written == d
+   assert r.written_duration == d
 
 
 def test_Rest___init___11( ):
@@ -136,12 +136,12 @@ def test_Rest___init___11( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    rest = Rest(t[0])
    assert isinstance(t[0], Note)
    assert isinstance(rest, Rest)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert rest._parentage.parent is None
 
 

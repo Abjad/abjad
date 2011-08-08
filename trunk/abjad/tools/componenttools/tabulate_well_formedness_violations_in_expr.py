@@ -4,7 +4,7 @@ def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = T
    Tabulate well-formedness violations in `expr`::
 
       abjad> staff = Staff("c'8 d'8 e'8 f'8")
-      abjad> staff[1].duration.written = Duration(1, 4)
+      abjad> staff[1].written_duration = Duration(1, 4)
       abjad> spannertools.BeamSpanner(staff[:])
       BeamSpanner(c'8, d'4, e'8, f'8)
       abjad> f(staff)

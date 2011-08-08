@@ -25,6 +25,6 @@ def change_augmented_tuplets_in_expr_to_diminished(tuplet):
 
    while not tuplet.duration.is_diminution:
       for leaf in tuplet.leaves:
-         leaf.duration.written *= 2
+         leaf.written_duration *= 2
 
    return tuplet

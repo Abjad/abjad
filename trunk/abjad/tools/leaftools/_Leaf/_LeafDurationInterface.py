@@ -15,7 +15,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
       #self.multiplier = None
       ## delete this line after migration
       self._multiplier = None
-      self.written = durtools.Duration(durtools.duration_token_to_duration_pair(duration_token))
+      #self.written = durtools.Duration(durtools.duration_token_to_duration_pair(duration_token))
 
    ## OVERLOADS ##
 
@@ -83,19 +83,19 @@ class _LeafDurationInterface(_ComponentDurationInterface):
 #         return self.prolated / tempo.duration / tempo.units_per_minute * 60
 #      raise MissingTempoError
 
-   @apply
-   def written( ):
-      def fget(self):
-         return self._written
-      def fset(self, expr):
-#         if isinstance(expr, Duration):
-#            rational = expr
-#         elif isinstance(expr, (int, long)):
-#            rational = Duration(expr)
-#         else:
-#            raise ValueError('can not set written duration: "%s".' % str(expr))
-         rational = durtools.Duration(expr)
-         if not durtools.is_assignable_rational(rational):
-            raise AssignabilityError('not assignable duration: "%s".' % str(rational))
-         self._written = rational
-      return property(**locals( ))
+#   @apply
+#   def written( ):
+#      def fget(self):
+#         return self._written
+#      def fset(self, expr):
+##         if isinstance(expr, Duration):
+##            rational = expr
+##         elif isinstance(expr, (int, long)):
+##            rational = Duration(expr)
+##         else:
+##            raise ValueError('can not set written duration: "%s".' % str(expr))
+#         rational = durtools.Duration(expr)
+#         if not durtools.is_assignable_rational(rational):
+#            raise AssignabilityError('not assignable duration: "%s".' % str(rational))
+#         self._written = rational
+#      return property(**locals( ))

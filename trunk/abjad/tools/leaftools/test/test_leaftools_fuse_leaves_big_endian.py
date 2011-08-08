@@ -5,14 +5,14 @@ def test_leaftools_fuse_leaves_big_endian_01( ):
    '''Wokrs with list of leaves.'''
    fused = leaftools.fuse_leaves_big_endian(notetools.make_repeated_notes(8, Duration(1, 4)))
    assert len(fused) == 1 
-   assert fused[0].duration.written == Duration(2)
+   assert fused[0].written_duration == Duration(2)
 
 
 def test_leaftools_fuse_leaves_big_endian_02( ):
    '''Works with Leaf component.'''
    fused = leaftools.fuse_leaves_big_endian([Note("c'4")])
    assert len(fused) == 1 
-   assert fused[0].duration.written == Duration(1, 4) 
+   assert fused[0].written_duration == Duration(1, 4) 
 
 
 def test_leaftools_fuse_leaves_big_endian_03( ):
@@ -20,7 +20,7 @@ def test_leaftools_fuse_leaves_big_endian_03( ):
    t = Voice(Note("c'4") * 8)
    fused = leaftools.fuse_leaves_big_endian(t[:])
    assert len(fused) == 1 
-   assert fused[0].duration.written == 2 
+   assert fused[0].written_duration == 2 
    assert t[0] is fused[0]
 
 
@@ -29,8 +29,8 @@ def test_leaftools_fuse_leaves_big_endian_04( ):
    t = Voice([Note(0, (2, 16)), Note(9, (3, 16))])
    fused = leaftools.fuse_leaves_big_endian(t[:])
    assert len(fused) == 2 
-   assert fused[0].duration.written == Duration(1, 4) 
-   assert fused[1].duration.written == Duration(1, 16) 
+   assert fused[0].written_duration == Duration(1, 4) 
+   assert fused[1].written_duration == Duration(1, 16) 
    #assert fused[0].tie.spanner is fused[1].tie.spanner
    assert spannertools.get_the_only_spanner_attached_to_component(
       fused[0], tietools.TieSpanner) is \

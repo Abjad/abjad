@@ -17,7 +17,7 @@ class BeamedQuarterNoteCheck(_Check):
             beam = spannertools.get_beam_spanner_attached_to_component(leaf)
             #if not beam.__class__.__name__ == 'DuratedComplexBeam':
             if not isinstance(beam, spannertools.DuratedComplexBeamSpanner):
-               flag_count = durtools.rational_to_flag_count(leaf.duration.written)
+               flag_count = durtools.rational_to_flag_count(leaf.written_duration)
                if flag_count < 1:
                   violators.append(leaf)
       return violators, total

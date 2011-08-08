@@ -299,7 +299,7 @@ class Spanner(_StrictComparator):
 
       ::
 
-         abjad> spanner.duration.written
+         abjad> spanner.written_duration
          Duration(1, 4)
 
       ::

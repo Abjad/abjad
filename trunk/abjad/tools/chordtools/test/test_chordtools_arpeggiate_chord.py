@@ -11,4 +11,4 @@ def test_chordtools_arpeggiate_chord_01( ):
 
    for note, pitch in zip(notes, t.written_pitches):
       assert note.written_pitch == pitch
-      assert note.duration.written == t.duration.written
+      assert note.written_duration == t.written_duration

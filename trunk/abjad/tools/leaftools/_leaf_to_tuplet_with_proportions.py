@@ -14,7 +14,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
    from abjad.tools import tuplettools
 
    ## find target duration of fixed-duration tuplet
-   target_duration = l.duration.written
+   target_duration = l.written_duration
 
    ## find basic prolated duration of note in tuplet
    basic_prolated_duration = target_duration / sum(divisions)

@@ -18,7 +18,7 @@ class Skip(_Leaf):
    def __init__(self, *args, **kwargs):
       if len(args) == 1 and isinstance(args[0], _Leaf):
          leaf = args[0]
-         written_duration = leaf.duration.written
+         written_duration = leaf.written_duration
          lilypond_multiplier = leaf.duration_multiplier
          self._copy_override_and_set_from_leaf(leaf)
       elif len(args) == 1 and isinstance(args[0], str):

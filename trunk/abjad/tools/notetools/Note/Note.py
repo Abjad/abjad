@@ -19,7 +19,7 @@ class Note(_Leaf):
       from abjad.tools.lilyfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
       if len(args) == 1 and isinstance(args[0], _Leaf):
          leaf = args[0]
-         written_duration = leaf.duration.written
+         written_duration = leaf.written_duration
          lilypond_multiplier = leaf.duration_multiplier
          if hasattr(leaf, 'written_pitch'):
             pitch = leaf.written_pitch

@@ -27,7 +27,7 @@ def test__Leaf_set_minus_03( ):
    u = Chord([0, 1, 2], (1, 4))
    v = t - u
    assert isinstance(v, Rest)
-   assert v.duration.written == Duration(1, 4)
+   assert v.written_duration == Duration(1, 4)
    assert t is not u is not v
    
 
@@ -49,7 +49,7 @@ def test__Leaf_set_minus_05( ):
    v = t - u
    assert isinstance(v, Chord)
    assert v.written_pitches == (0, 1, 2)
-   assert v.duration.written == t.duration.written
+   assert v.written_duration == t.written_duration
    assert t is not u is not v
 
 
@@ -60,7 +60,7 @@ def test__Leaf_set_minus_06( ):
    v = t - u
    assert isinstance(v, Chord)
    assert v.written_pitches == (0, 1, 2)
-   assert v.duration.written == t.duration.written
+   assert v.written_duration == t.written_duration
    assert t is not u is not v
 
 
@@ -70,7 +70,7 @@ def test__Leaf_set_minus_07( ):
    u = Rest((1, 4))
    v = t - u
    assert isinstance(v, Rest)
-   assert v.duration.written == Duration(1, 4)
+   assert v.written_duration == Duration(1, 4)
    assert t is not u is not v
 
 
@@ -80,7 +80,7 @@ def test__Leaf_set_minus_08( ):
    u = Note("c'4")
    v = t - u
    assert isinstance(v, Rest)
-   assert v.duration.written == Duration(1, 4)
+   assert v.written_duration == Duration(1, 4)
    assert t is not u is not v
 
 
@@ -90,7 +90,7 @@ def test__Leaf_set_minus_09( ):
    u = Note("c'4")
    v = t - u
    assert isinstance(v, Rest)
-   assert v.duration.written == Duration(1, 4)
+   assert v.written_duration == Duration(1, 4)
    assert t is not u is not v
 
 

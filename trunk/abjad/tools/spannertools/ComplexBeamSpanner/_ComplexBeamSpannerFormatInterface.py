@@ -18,10 +18,10 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
       # first
       elif spanner._is_my_first_leaf(leaf) or not leaf._navigator._prev_bead:
          left = 0
-         right = durtools.rational_to_flag_count(leaf.duration.written)
+         right = durtools.rational_to_flag_count(leaf.written_duration)
       # last
       elif spanner._is_my_last_leaf(leaf) or not leaf._navigator._next_bead:
-         left = durtools.rational_to_flag_count(leaf.duration.written)
+         left = durtools.rational_to_flag_count(leaf.written_duration)
          right = 0
       else:
          raise ValueError('leaf must be first or last in spanner.')
@@ -33,9 +33,9 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
       Interior leaves may be surrounded by unbeamable leaves.
       Four cases total for beamability of surrounding leaves.'''
       from abjad.tools import componenttools
-      prev_written = leaf._navigator._prev_bead.duration.written
-      cur_written = leaf.duration.written
-      next_written = leaf._navigator._next_bead.duration.written
+      prev_written = leaf._navigator._prev_bead.written_duration
+      cur_written = leaf.written_duration
+      next_written = leaf._navigator._next_bead.written_duration
       prev_flag_count = durtools.rational_to_flag_count(prev_written)
       cur_flag_count = durtools.rational_to_flag_count(cur_written)
       next_flag_count = durtools.rational_to_flag_count(next_written)
@@ -65,7 +65,7 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
    def _get_left_right_for_lone_leaf(self, leaf):
       '''Get left and right flag counts for only leaf in spanner.'''
       spanner = self.spanner
-      cur_flag_count = durtools.rational_to_flag_count(leaf.duration.written)
+      cur_flag_count = durtools.rational_to_flag_count(leaf.written_duration)
       left, right = None, None
       if spanner.lone == 'left':
          left = cur_flag_count

@@ -14,4 +14,4 @@ def get_written_tie_chain_duration(tie_chain):
          tie_chain[0], TieSpanner)
       return tie_spanner.duration.written
    except MissingSpannerError:
-      return tie_chain[0].duration.written
+      return tie_chain[0].written_duration

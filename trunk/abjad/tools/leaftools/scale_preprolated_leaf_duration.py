@@ -78,7 +78,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
    '''
 
    # find new leaf preprolated duration
-   new_preprolated_duration = multiplier * leaf.duration.written
+   new_preprolated_duration = multiplier * leaf.written_duration
 
    # assign new leaf written duration and return structure
    return set_preprolated_leaf_duration(leaf, new_preprolated_duration)

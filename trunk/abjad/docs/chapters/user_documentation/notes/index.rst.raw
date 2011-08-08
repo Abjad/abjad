@@ -61,8 +61,8 @@ Getting the duration attributes of notes
 Get the written duration of notes like this:
 
 <abjad>
-note.duration.written
-print repr(note.duration.written) <hide
+note.written_duration
+print repr(note.written_duration) <hide
 </abjad>
 
 Which is usually the same as preprolated duration:
@@ -98,8 +98,8 @@ note = tuplet[0]
 Tupletted notes carry written duration:
 
 <abjad>
-note.duration.written
-print repr(note.duration.written) <hide
+note.written_duration
+print repr(note.written_duration) <hide
 </abjad>
 
 Prolation:
@@ -122,9 +122,9 @@ Changing the written duration of notes
 You can change the written duration of notes:
 
 <abjad>
-tuplet[0].duration.written = Duration(1, 8)
-tuplet[1].duration.written = Duration(1, 8)
-tuplet[2].duration.written = Duration(1, 8)
+tuplet[0].written_duration = Duration(1, 8)
+tuplet[1].written_duration = Duration(1, 8)
+tuplet[2].written_duration = Duration(1, 8)
 spannertools.BeamSpanner(tuplet) <hide
 </abjad>
 

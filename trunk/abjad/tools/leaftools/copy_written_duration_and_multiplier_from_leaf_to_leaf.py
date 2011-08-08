@@ -25,11 +25,11 @@ def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_l
       raise TypeError('must be leaf.')
 
    ## copy source leaf written duration and multiplier
-   written = durtools.Duration(source_leaf.duration.written)
+   written = durtools.Duration(source_leaf.written_duration)
    multiplier = durtools.Duration(source_leaf.duration_multiplier)
 
    ## set target leaf written duration and multiplier
-   target_leaf.duration.written = written
+   target_leaf.written_duration = written
    target_leaf.duration_multiplier = multiplier
 
    ## return target leaf

@@ -35,4 +35,4 @@ class _SpannerDurationInterface(_StrictComparator):
    def written(self):
       '''Sum of written duration of all components in spanner.'''
       client = self._client
-      return sum([component.duration.written for component in client])
+      return sum([component.written_duration for component in client])

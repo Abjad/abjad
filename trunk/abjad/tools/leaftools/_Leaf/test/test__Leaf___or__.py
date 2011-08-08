@@ -48,7 +48,7 @@ def test__Leaf___or___05( ):
    v = t | u
    assert isinstance(v, Chord)
    assert v.written_pitches == (0, 1, 2, 3, 4, 5)
-   assert v.duration.written == t.duration.written
+   assert v.written_duration == t.written_duration
    assert t is not u is not v
 
 
@@ -58,7 +58,7 @@ def test__Leaf___or___06( ):
    u = Chord([3, 4, 5], (1, 4))
    v = t | u
    assert isinstance(v, Chord)
-   assert v.duration.written == Duration(1, 8)
+   assert v.written_duration == Duration(1, 8)
    assert t is not u is not v
 
 

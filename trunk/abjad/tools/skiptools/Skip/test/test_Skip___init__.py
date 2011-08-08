@@ -23,14 +23,14 @@ def test_Skip___init___03( ):
    '''
 
    c = Chord([2, 3, 4], (1, 4))
-   duration = c.duration.written
+   duration = c.written_duration
    s = skiptools.Skip(c)
    assert isinstance(s, skiptools.Skip)
    # check that attributes have not been removed or added.
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(s) == dir(skiptools.Skip((1, 4)))
    assert s._parentage.parent is None
-   assert s.duration.written == duration
+   assert s.written_duration == duration
 
 
 def test_Skip___init___04( ):
@@ -38,12 +38,12 @@ def test_Skip___init___04( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    skip = skiptools.Skip(t[0])
    assert isinstance(t[0], Chord)
    assert isinstance(skip, skiptools.Skip)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert skip._parentage.parent is None
 
 
@@ -62,7 +62,7 @@ def test_Skip___init___05( ):
 
 def test_Skip___init___06( ):
    n = Note(2, (1, 8))
-   d = n.duration.written
+   d = n.written_duration
    s = skiptools.Skip(n)
    assert isinstance(s, skiptools.Skip)
    # check that attributes have not been removed or added.
@@ -70,17 +70,17 @@ def test_Skip___init___06( ):
    assert dir(s) == dir(skiptools.Skip((1, 4)))
    assert s.format == 's8'
    assert s._parentage.parent is None
-   assert s.duration.written == d
+   assert s.written_duration == d
 
 
 def test_Skip___init___07( ):
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    skip = skiptools.Skip(t[0])
    assert isinstance(t[0], Note)
    assert isinstance(skip, skiptools.Skip)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
 
 
 def test_Skip___init___08( ):
@@ -100,14 +100,14 @@ def test_Skip___init___09( ):
    '''
 
    r = Rest((1, 8))
-   d = r.duration.written
+   d = r.written_duration
    s = skiptools.Skip(r)
    assert isinstance(s, skiptools.Skip)
    # check that attributes have not been removed or added.
    assert dir(r) == dir(Rest((1, 4)))
    assert dir(s) == dir(skiptools.Skip((1, 4)))
    assert s._parentage.parent is None
-   assert s.duration.written == d
+   assert s.written_duration == d
 
 
 def test_Skip___init___10( ):
@@ -115,12 +115,12 @@ def test_Skip___init___10( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    skip = skiptools.Skip(t[0])
    assert isinstance(skip, skiptools.Skip)
    assert isinstance(t[0], Rest)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert skip._parentage.parent is None
 
 

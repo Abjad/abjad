@@ -29,7 +29,7 @@ def arpeggiate_chord(chord):
    assert isinstance(chord, Chord)
 
    result = [ ]
-   chord_written_duration = chord.duration.written
+   chord_written_duration = chord.written_duration
    for pitch in chord.written_pitches:
       result.append(Note(pitch, chord_written_duration))
 

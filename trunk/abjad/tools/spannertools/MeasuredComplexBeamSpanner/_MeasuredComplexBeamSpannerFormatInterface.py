@@ -25,12 +25,12 @@ class _MeasuredComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterf
                assert isinstance(spanner.span, int)
                left = spanner.span
                #right = leaf.duration._flags
-               right = durtools.rational_to_flag_count(leaf.duration.written)
+               right = durtools.rational_to_flag_count(leaf.written_duration)
             # leaf at end of measure
             elif measure._is_one_of_my_last_leaves(leaf):
                assert isinstance(spanner.span, int)
                #left = leaf.duration._flags
-               left = durtools.rational_to_flag_count(leaf.duration.written)
+               left = durtools.rational_to_flag_count(leaf.written_duration)
                right = spanner.span
          else:
             left, right = self._get_left_right_for_interior_leaf(leaf)

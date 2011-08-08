@@ -56,7 +56,7 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
    descending_notes = componenttools.copy_components_and_remove_all_spanners(ascending_notes[:-1])
    descending_notes.reverse( )
    notes = ascending_notes + descending_notes
-   notes[-1].duration.written = durtools.Duration(1, 4)
+   notes[-1].written_duration = durtools.Duration(1, 4)
    staff = Staff(notes)
    contexttools.KeySignatureMark(key_signature.tonic, key_signature.mode)(staff)
    score = Score([staff])

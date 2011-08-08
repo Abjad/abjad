@@ -73,7 +73,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
       for anchor_index, subrun_length in pairs:
          anchor_note = notes[anchor_index % len_notes]
          anchor_pitch = get_named_chromatic_pitch_from_pitch_carrier(anchor_note)
-         anchor_written_duration = anchor_note.duration.written
+         anchor_written_duration = anchor_note.written_duration
          source_start_index = anchor_index + 1
          source_stop_index = source_start_index + subrun_length + 1
          subrun_source = seqtools.iterate_sequence_cyclically_from_start_to_stop(

@@ -10,17 +10,19 @@ class _Leaf(_Component, _StrictComparator):
 
    ## TODO: see if _grace and _after_grace can be removed ##
    __slots__ = ('_after_grace', '_duration', '_grace', '_leaf_index',
-      '_duration_multiplier', 
+      '_duration_multiplier', '_written_duration',
       '_written_pitch_indication_is_nonsemantic',
       '_written_pitch_indication_is_at_sounding_pitch',
       'after_grace', 'grace', )
 
    def __init__(self, written_duration, duration_multiplier = None):
+      from abjad.tools import durtools
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, written_duration)
       #self._duration.multiplier = duration_multiplier
       self._duration_multiplier = duration_multiplier
       self._leaf_index = None
+      self.written_duration = durtools.Duration(durtools.duration_token_to_duration_pair(written_duration))
       self.written_pitch_indication_is_nonsemantic = False
       self.written_pitch_indication_is_at_sounding_pitch = True
 
@@ -41,7 +43,7 @@ class _Leaf(_Component, _StrictComparator):
 
    def __getnewargs__(self):
       result = [ ]
-      result.append(self.duration.written)
+      result.append(self.written_duration)
       if self.duration_multiplier is not None:
         result.append(self.duration_multiplier)
       return tuple(result)
@@ -82,7 +84,7 @@ class _Leaf(_Component, _StrictComparator):
          pairs = list(pairs)
       else:
          pairs = [tuple(pairs)]
-      leaves = leaftools.make_leaves(pairs, self.duration.written)
+      leaves = leaftools.make_leaves(pairs, self.written_duration)
       leaf = leaves[0]
       return leaf
 
@@ -144,9 +146,13 @@ class _Leaf(_Component, _StrictComparator):
    @apply
    def written_duration( ):
       def fget(self):
-         return self.duration.written
-      def fset(self, arg):
-         self.duration.written = arg
+         return self._written_duration
+      def fset(self, expr):
+         from abjad.tools import durtools
+         rational = durtools.Duration(expr)
+         if not durtools.is_assignable_rational(rational):
+            raise AssignabilityError('not assignable duration: "%s".' % str(rational))
+         self._written_duration = rational
       return property(**locals( ))
 
    @apply

@@ -21,6 +21,6 @@ print repr(note.duration.multiplied) <hide
 LilyPond multipliers leave written duration unchanged:
 
 <abjad>
-note.duration.written
-print repr(note.duration.written) <hide
+note.written_duration
+print repr(note.written_duration) <hide
 </abjad>

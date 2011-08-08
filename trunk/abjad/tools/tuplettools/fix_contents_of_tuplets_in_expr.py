@@ -34,7 +34,7 @@ def fix_contents_of_tuplets_in_expr(tuplet):
    # scale leaves in tuplet by power of two
    for component in tuplet[:]:
       if isinstance(component, _Leaf):
-         old_written_duration = component.duration.written
+         old_written_duration = component.written_duration
          new_written_duration = leaf_multiplier * old_written_duration
          leaftools.set_preprolated_leaf_duration(
             component, new_written_duration)

@@ -16,6 +16,6 @@ def list_written_durations_of_leaves_in_expr(expr):
    durations = [ ]
 
    for leaf in iterate_leaves_forward_in_expr(expr):
-      durations.append(leaf.duration.written)
+      durations.append(leaf.written_duration)
 
    return durations

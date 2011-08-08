@@ -7,7 +7,7 @@ def test__Leaf_intersection_01( ):
    u = Chord([3, 4, 5], (1, 4))
    v = t & u
    assert isinstance(v, Rest)
-   assert v.duration.written == Duration(1, 4)
+   assert v.written_duration == Duration(1, 4)
    assert t is not u is not v
 
 
@@ -48,7 +48,7 @@ def test__Leaf_intersection_05( ):
    v = t & u
    assert isinstance(v, Chord)
    assert v.written_pitches == (1, 2)
-   assert v.duration.written == t.duration.written
+   assert v.written_duration == t.written_duration
    assert t is not u is not v
 
 
@@ -59,7 +59,7 @@ def test__Leaf_intersection_06( ):
    v = t & u
    assert isinstance(v, Chord)
    assert v.written_pitches == (1, 2)
-   assert v.duration.written == t.duration.written
+   assert v.written_duration == t.written_duration
    assert t is not u is not v
 
 

@@ -10,7 +10,7 @@ def _leaf_to_tuplet_with_n_notes_of_equal_written_duration(l, divisions, prolati
    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
    # find target duration of fixed-duration tuplet
-   target_duration = l.duration.written
+   target_duration = l.written_duration
 
    # find prolated duration of each note in tuplet
    prolated_duration = target_duration / divisions

@@ -67,8 +67,8 @@ def tet_rigid_measure_trim_06( ):
    '''Trim nonbinary measure, with denominator change.'''
 
    notes = "c'8 d'8 e'8 f'8"
-   notes[0].duration.written = Duration(1, 16)
-   notes[1].duration.written = Duration(1, 16)
+   notes[0].written_duration = Duration(1, 16)
+   notes[1].written_duration = Duration(1, 16)
    t = Measure((3, 9), notes)
 
    r'''

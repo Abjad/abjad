@@ -3,7 +3,7 @@ def _leaf_to_pitch_and_rhythm_skeleton(leaf, include_keyword_attributes = False)
    from abjad.tools.notetools.Note import Note
    from abjad.tools.leaftools._get_leaf_keyword_attributes import _get_leaf_keyword_attributes
    class_name = leaf.__class__.__name__
-   duration = repr(leaf.duration.written)
+   duration = repr(leaf.written_duration)
    if include_keyword_attributes:
       keyword_attributes = _get_leaf_keyword_attributes(leaf)
       # a hack

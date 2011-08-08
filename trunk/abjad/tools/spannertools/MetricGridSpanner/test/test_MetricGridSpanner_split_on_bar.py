@@ -149,8 +149,8 @@ def test_MetricGridSpanner_split_on_bar_05( ):
 
    assert componenttools.is_well_formed_component(v)
    assert len(v) == 5
-   assert v[0].duration.written == v[1].duration.written == Duration(1, 8)
-   assert v[3].duration.written == v[3].duration.written == Duration(1, 8)
-   assert v[2].duration.written == Duration(1, 4)
+   assert v[0].written_duration == v[1].written_duration == Duration(1, 8)
+   assert v[3].written_duration == v[3].written_duration == Duration(1, 8)
+   assert v[2].written_duration == Duration(1, 4)
    ties = spannertools.get_spanners_attached_to_any_improper_child_of_component(v, tietools.TieSpanner)
    assert len(ties) == 2

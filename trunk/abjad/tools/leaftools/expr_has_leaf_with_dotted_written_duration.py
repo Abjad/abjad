@@ -20,6 +20,6 @@ def expr_has_leaf_with_dotted_written_duration(expr):
    '''
 
    for leaf in iterate_leaves_forward_in_expr(expr):
-      if not leaf.duration.written._numerator == 1:
+      if not leaf.written_duration._numerator == 1:
          return True
    return False

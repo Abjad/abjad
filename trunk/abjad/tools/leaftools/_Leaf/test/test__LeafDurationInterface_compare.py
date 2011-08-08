@@ -4,21 +4,21 @@ from abjad import *
 def test__LeafDurationInterface_compare_01( ):
    '''Written Durations can be evaluated for equality with Durations.'''
    t = Note("c'4")
-   assert t.duration.written == Duration(1, 4)
+   assert t.written_duration == Duration(1, 4)
 
 
 def test__LeafDurationInterface_compare_02( ):
    '''Written Durations can be evaluated for equality with integers.'''
    t = Note(0, 1)
-   assert t.duration.written == 1
+   assert t.written_duration == 1
 
 
 def test__LeafDurationInterface_compare_03( ):
    '''Written Durations can NOT be evaluated for equality with tuples.'''
    t = Note("c'4")
-   assert t.duration.written == Duration(1, 4)
-   assert t.duration.written != (1, 4)
-   assert t.duration.written != 'foo'
+   assert t.written_duration == Duration(1, 4)
+   assert t.written_duration != (1, 4)
+   assert t.written_duration != 'foo'
 
 
 def test__LeafDurationInterface_compare_04( ):

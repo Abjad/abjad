@@ -18,8 +18,8 @@ measure = Measure((5, 16), Note(0, (1, 16)) * 5)
 spannertools.BeamSpanner(measure)
 staff = stafftools.RhythmicStaff([measure])
 note = measure[0]
-note.duration.written
-print repr(note.duration.written) <hide
+note.written_duration
+print repr(note.written_duration) <hide
 iotools.write_expr_to_ly(staff, 'written_dur1', 'oedo') <hide
 </abjad>
 
@@ -31,8 +31,8 @@ spannertools.BeamSpanner(tuplet)
 measure = Measure((5, 16), [tuplet])
 staff = stafftools.RhythmicStaff([measure])
 note = tuplet[0]
-note.duration.written
-print repr(note.duration.written) <hide
+note.written_duration
+print repr(note.written_duration) <hide
 iotools.write_expr_to_ly(staff, 'written_dur2', 'oedo') <hide
 </abjad>
 
@@ -126,8 +126,8 @@ measure = Measure((3, 8), notes)
 spannertools.BeamSpanner(measure)
 staff = stafftools.RhythmicStaff([measure])
 note = measure[0]
-note.duration.written
-print repr(note.duration.written) <hide
+note.written_duration
+print repr(note.written_duration) <hide
 iotools.write_expr_to_ly(staff, 'multiplied_dur1', 'oedo') <hide
 </abjad>
 
@@ -137,8 +137,8 @@ print repr(note.duration.multiplier) <hide
 </abjad>
 
 <abjad>
-note.duration.written * note.duration.multiplier
-print repr(note.duration.written * note.duration.multiplier) <hide
+note.written_duration * note.duration.multiplier
+print repr(note.written_duration * note.duration.multiplier) <hide
 note.duration.multiplied
 print repr(note.duration.multiplied) <hide
 </abjad>

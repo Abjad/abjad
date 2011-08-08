@@ -267,10 +267,10 @@ class QGridQuantizer(_Quantizer):
          last_tie.clear( ) # detach
          for note in flatten_sequence(last_tie_chain):
             parent = note._parentage.parent
-            parent[parent.index(note)] = Rest(note.duration.written)
+            parent[parent.index(note)] = Rest(note.written_duration)
       elif len(trailing) == 1:
          parent = trailing[0]._parentage.parent
-         parent[parent.index(trailing[0])] = Rest(trailing[0].duration.written)
+         parent[parent.index(trailing[0])] = Rest(trailing[0].written_duration)
 
       # fuse tie chains
       for tie_chain in get_tie_chains_in_expr(container.leaves):

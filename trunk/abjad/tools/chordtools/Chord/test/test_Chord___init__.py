@@ -62,13 +62,13 @@ def test_Chord___init___08( ):
    '''
 
    s = skiptools.Skip((1, 8))
-   d = s.duration.written
+   d = s.written_duration
    c = Chord(s)
    assert isinstance(c, Chord)
    assert dir(s) == dir(skiptools.Skip((1, 4)))
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert c._parentage.parent is None
-   assert c.duration.written == d
+   assert c.written_duration == d
 
 
 def test_Chord___init___09( ):
@@ -76,12 +76,12 @@ def test_Chord___init___09( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    chord = Chord(t[0])
    assert isinstance(t[0], skiptools.Skip)
    assert isinstance(chord, Chord)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert chord._parentage.parent is None
 
 
@@ -90,12 +90,12 @@ def test_Chord___init___10( ):
    '''
 
    v = Voice(skiptools.Skip((1, 8)) * 3)
-   d = v[0].duration.written
+   d = v[0].written_duration
    chord = Chord(v[0])
    assert isinstance(v[0], skiptools.Skip)
    assert isinstance(chord, Chord)
    assert v[0]._parentage.parent is v
-   assert v[0].duration.written == d
+   assert v[0].written_duration == d
    assert chord._parentage.parent is None
 
 
@@ -116,13 +116,13 @@ def test_Chord___init___12( ):
    '''
 
    r = Rest((1, 8))
-   d = r.duration.written
+   d = r.written_duration
    c = Chord(r)
    assert isinstance(c, Chord)
    assert dir(r) == dir(Rest((1, 4)))
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert c._parentage.parent is None
-   assert c.duration.written == d
+   assert c.written_duration == d
 
 
 def test_Chord___init___13( ):
@@ -130,12 +130,12 @@ def test_Chord___init___13( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
-   d = t[0].duration.written
+   d = t[0].written_duration
    chord = Chord(t[0])
    assert isinstance(t[0], Rest)
    assert isinstance(chord, Chord)
    assert t[0]._parentage.parent is t
-   assert t[0].duration.written == d
+   assert t[0].written_duration == d
    assert chord._parentage.parent is None
 
 
@@ -157,7 +157,7 @@ def test_Chord___init___15( ):
    '''
 
    n = Note(2, (1, 8))
-   h, p, d = n.note_head, n.written_pitch, n.duration.written
+   h, p, d = n.note_head, n.written_pitch, n.written_duration
    c = Chord(n)
    assert isinstance(c, Chord)
    assert dir(n) == dir(Note("c'4"))
@@ -166,7 +166,7 @@ def test_Chord___init___15( ):
    assert c._parentage.parent is None
    assert c.note_heads[0] is not h
    assert c.written_pitches[0] == p
-   assert c.duration.written == d
+   assert c.written_duration == d
 
 
 def test_Chord___init___16( ):
@@ -174,7 +174,7 @@ def test_Chord___init___16( ):
    '''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-   h, p, d = t[0].note_head, t[0].written_pitch, t[0].duration.written
+   h, p, d = t[0].note_head, t[0].written_pitch, t[0].written_duration
    chord = Chord(t[0])
    assert isinstance(t[0], Note)
    assert isinstance(chord, Chord)
@@ -182,7 +182,7 @@ def test_Chord___init___16( ):
    assert t[0]._parentage.parent is t
    assert chord.note_heads[0] is not h
    assert chord.written_pitches[0] == p
-   assert chord.duration.written == d
+   assert chord.written_duration == d
 
 
 def test_Chord___init___17( ):

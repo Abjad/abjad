@@ -100,12 +100,12 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
    ## If leaf carries LilyPond multiplier, change only LilyPond multiplier.
    if leaf.duration_multiplier is not None:
-      leaf.duration_multiplier = new_preprolated_duration / leaf.duration.written
+      leaf.duration_multiplier = new_preprolated_duration / leaf.written_duration
       return [leaf]
 
    ## If leaf does not carry LilyPond multiplier, change other values.
    try:
-      leaf.duration.written = new_preprolated_duration  
+      leaf.written_duration = new_preprolated_duration  
       all_leaves = [leaf]
    except AssignabilityError:
       duration_tokens = make_notes(0, new_preprolated_duration)
@@ -115,7 +115,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             [leaf], num_tied_leaves)
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
-            x.duration.written = token.duration.written
+            x.written_duration = token.written_duration
          componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, tied_leaves)
          if not spannertools.get_spanners_attached_to_any_improper_parent_of_component(
             leaf, tietools.TieSpanner):
@@ -129,7 +129,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             [leaf], num_tied_leaves)
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
-            x.duration.written = token.duration.written
+            x.written_duration = token.written_duration
          componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, tied_leaves)
          if not spannertools.is_component_with_spanner_attached(leaf, tietools.TieSpanner):
             tietools.TieSpanner(all_leaves) 
