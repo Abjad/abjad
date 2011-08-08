@@ -4,7 +4,7 @@ from abjad import *
 def test_pitchtools_named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary_01( ):
 
    chord = Chord([0, 2, 11], (1, 4))
-   vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(chord.pitches)
+   vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(chord.written_pitches)
 
    assert vector == {
       0: 0,

@@ -23,8 +23,8 @@ class Note(_Leaf):
          lilypond_multiplier = leaf.duration.multiplier
          if hasattr(leaf, 'written_pitch'):
             pitch = leaf.written_pitch
-         elif hasattr(leaf, 'pitches') and 0 < len(leaf.pitches):
-            pitch = leaf.pitches[0]
+         elif hasattr(leaf, 'written_pitches') and 0 < len(leaf.written_pitches):
+            pitch = leaf.written_pitches[0]
          else:
             pitch = None
          self._copy_override_and_set_from_leaf(leaf)

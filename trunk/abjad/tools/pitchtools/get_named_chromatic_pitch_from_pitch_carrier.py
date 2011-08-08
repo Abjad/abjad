@@ -75,7 +75,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
       else:
          raise MissingPitchError
    elif isinstance(pitch_carrier, Chord):
-      pitches = pitch_carrier.pitches
+      pitches = pitch_carrier.written_pitches
       if len(pitches) == 0:
          raise MissingPitchError
       elif len(pitches) == 1:

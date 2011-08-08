@@ -30,7 +30,7 @@ def arpeggiate_chord(chord):
 
    result = [ ]
    chord_written_duration = chord.duration.written
-   for pitch in chord.pitches:
+   for pitch in chord.written_pitches:
       result.append(Note(pitch, chord_written_duration))
 
    return result

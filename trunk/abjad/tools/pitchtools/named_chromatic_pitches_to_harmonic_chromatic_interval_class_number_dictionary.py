@@ -8,7 +8,7 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
    Change named chromatic pitches to harmonic chromatic interval-class number dictionary::
 
       abjad> chord = Chord([0, 2, 11], (1, 4))
-      abjad> vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(chord.pitches)
+      abjad> vector = pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary(chord.written_pitches)
       abjad> vector
       {0: 0, 1: 0, 2: 1, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 1, 10: 0, 11: 1}
 

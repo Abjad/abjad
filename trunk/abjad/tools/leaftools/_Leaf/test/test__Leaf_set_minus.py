@@ -7,7 +7,7 @@ def test__Leaf_set_minus_01( ):
    u = Chord([3, 4, 5], (1, 4))
    v = t - u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 1, 2)
+   assert v.written_pitches == (0, 1, 2)
    assert t is not u is not v
 
 
@@ -48,7 +48,7 @@ def test__Leaf_set_minus_05( ):
    u = Chord([3, 4, 5], (1, 8))
    v = t - u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 1, 2)
+   assert v.written_pitches == (0, 1, 2)
    assert v.duration.written == t.duration.written
    assert t is not u is not v
 
@@ -59,7 +59,7 @@ def test__Leaf_set_minus_06( ):
    u = Chord([3, 4, 5], (1, 4))
    v = t - u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 1, 2)
+   assert v.written_pitches == (0, 1, 2)
    assert v.duration.written == t.duration.written
    assert t is not u is not v
 
@@ -110,7 +110,7 @@ def test__Leaf_set_minus_11( ):
    u = Note(4, (1, 4))
    v = t - u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 2)
+   assert v.written_pitches == (0, 2)
    assert t is not u is not v
 
 

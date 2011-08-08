@@ -14,7 +14,7 @@ class Chord(_Leaf):
    Return chord instance.
    '''
 
-   __slots__ = ('_note_heads', '_pitches', )
+   __slots__ = ('_note_heads', '_written_pitches', )
 
    def __init__(self, *args, **kwargs):
       if len(args) == 1 and isinstance(args[0], _Leaf):
@@ -22,26 +22,26 @@ class Chord(_Leaf):
          written_duration = leaf.duration.written
          lilypond_multiplier = leaf.duration.multiplier
          if hasattr(leaf, 'written_pitch'):
-            pitches = [leaf.written_pitch]
-         elif hasattr(leaf, 'pitches'):
-            pitches = leaf.pitches
+            written_pitches = [leaf.written_pitch]
+         elif hasattr(leaf, 'written_pitches'):
+            written_pitches = leaf.written_pitches
          else:
-            pitches = [ ]
+            written_pitches = [ ]
          self._copy_override_and_set_from_leaf(leaf)
       elif len(args) == 1 and isinstance(args[0], str):
          pattern = '^<(.*)>\s*(.+)'
          match = re.match(pattern, args[0])
-         pitches, written_duration = match.groups( )
+         written_pitches, written_duration = match.groups( )
          lilypond_multiplier = None
       elif len(args) == 2:
-         pitches, written_duration = args
+         written_pitches, written_duration = args
          lilypond_multiplier = None
       elif len(args) == 3:
-         pitches, written_duration, lilypond_multiplier = args
+         written_pitches, written_duration, lilypond_multiplier = args
       else:
          raise ValueError('can not initialize chord from "%s".' % str(args))
       _Leaf.__init__(self, written_duration, lilypond_multiplier)
-      self.pitches = pitches
+      self.written_pitches = written_pitches
       self._initialize_keyword_values(**kwargs)
 
    ## OVERLOADS ##
@@ -69,7 +69,7 @@ class Chord(_Leaf):
 
    def __getnewargs__(self):
       result = [ ]
-      result.append(self.pitches)
+      result.append(self.written_pitches)
       result.extend(_Leaf.__getnewargs__(self))
       return tuple(result)
 
@@ -134,10 +134,10 @@ class Chord(_Leaf):
          t_n = instrument.interval_of_transposition
          t_n *= -1
          fingered_pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
-            for pitch in self.pitches]
+            for pitch in self.written_pitches]
          return tuple(fingered_pitches)
       else:
-         return self.pitches
+         return self.written_pitches
 
    @apply
    def note_heads( ):
@@ -166,18 +166,19 @@ class Chord(_Leaf):
       return property(**locals( ))
 
    @apply
-   def pitches( ):
+   #def pitches( ):
+   def written_pitches( ):
       def fget(self):
          '''Get read-only tuple of pitches in chord::
 
             abjad> chord = Chord([7, 12, 16], (1, 4))
-            abjad> chord.pitches
+            abjad> chord.written_pitches
             (NamedChromaticPitch("g'"), NamedChromaticPitch("c''"), NamedChromaticPitch("e''"))
 
          Set chord pitches from any iterable::
 
             abjad> chord = Chord([7, 12, 16], (1, 4))
-            abjad> chord.pitches = [0, 2, 6]
+            abjad> chord.written_pitches = [0, 2, 6]
             abjad> chord
             Chord("<c' d' fs'>4")
 
@@ -215,23 +216,23 @@ class Chord(_Leaf):
       from abjad.tools import contexttools
       from abjad.tools import pitchtools
       if self.written_pitch_indication_is_at_sounding_pitch:
-         return self.pitches
+         return self.written_pitches
       else:
          instrument = contexttools.get_effective_instrument(self)
          if not instrument:
             raise InstrumentError('effective instrument of note can not be determined.')
          t_n = instrument.interval_of_transposition
          sounding_pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
-            for pitch in self.pitches]
+            for pitch in self.written_pitches]
          return tuple(sounding_pitches)
 
-   @apply
-   def written_pitches( ):
-      def fget(self):   
-         return self.pitches
-      def fset(self, arg):
-         self.pitches = arg
-      return property(**locals( ))
+#   @apply
+#   def written_pitches( ):
+#      def fget(self):   
+#         return self.pitches
+#      def fset(self, arg):
+#         self.pitches = arg
+#      return property(**locals( ))
 
    ## PUBLIC METHODS ## 
 

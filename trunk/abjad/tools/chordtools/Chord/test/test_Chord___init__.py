@@ -165,7 +165,7 @@ def test_Chord___init___15( ):
    assert c.format == "<d'>8"
    assert c._parentage.parent is None
    assert c.note_heads[0] is not h
-   assert c.pitches[0] == p
+   assert c.written_pitches[0] == p
    assert c.duration.written == d
 
 
@@ -181,7 +181,7 @@ def test_Chord___init___16( ):
    assert chord.format == "<c'>8"
    assert t[0]._parentage.parent is t
    assert chord.note_heads[0] is not h
-   assert chord.pitches[0] == p
+   assert chord.written_pitches[0] == p
    assert chord.duration.written == d
 
 

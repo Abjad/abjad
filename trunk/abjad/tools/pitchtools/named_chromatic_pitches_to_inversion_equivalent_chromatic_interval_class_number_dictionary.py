@@ -10,7 +10,7 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
    dictionary::
 
       abjad> chord = Chord([0, 2, 11], (1, 4))
-      abjad> vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(chord.pitches)
+      abjad> vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(chord.written_pitches)
       abjad> for i in range(7):
       ...     print '\t%s\t%s' % (i, vector[i])
       ... 

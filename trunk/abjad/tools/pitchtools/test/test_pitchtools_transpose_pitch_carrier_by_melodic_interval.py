@@ -47,7 +47,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_05( ):
    chord = Chord([12, 13, 14], (1, 4))
    interval = pitchtools.MelodicChromaticInterval(-3)
    new = pitchtools.transpose_pitch_carrier_by_melodic_interval(chord, interval)
-   assert new.pitches == tuple([pitchtools.NamedChromaticPitch(x) for x in [9, 10, 11]])
+   assert new.written_pitches == tuple([pitchtools.NamedChromaticPitch(x) for x in [9, 10, 11]])
    assert new is not chord
 
 

@@ -7,7 +7,7 @@ def test__Leaf_symmetric_difference_01( ):
    u = Chord([3, 4, 5], (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 1, 2, 3, 4, 5)
+   assert v.written_pitches == (0, 1, 2, 3, 4, 5)
    assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 
@@ -18,7 +18,7 @@ def test__Leaf_symmetric_difference_02( ):
    u = Chord([1, 2, 3], (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 3)
+   assert v.written_pitches == (0, 3)
    assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 
@@ -39,7 +39,7 @@ def test__Leaf_symmetric_difference_04( ):
    u = Chord([0, ('df', 4), 2], (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v.pitches == (1, "df'")
+   assert v.written_pitches == (1, "df'")
    assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 
@@ -50,7 +50,7 @@ def test__Leaf_symmetric_difference_05( ):
    u = Chord([3, 4, 5], (1, 8))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 1, 2, 3, 4, 5)
+   assert v.written_pitches == (0, 1, 2, 3, 4, 5)
    assert v.duration.written == t.duration.written
    assert t is not u is not v
 
@@ -61,7 +61,7 @@ def test__Leaf_symmetric_difference_06( ):
    u = Chord([3, 4, 5], (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 1, 2, 3, 4, 5)
+   assert v.written_pitches == (0, 1, 2, 3, 4, 5)
    assert v.duration.written == t.duration.written
    assert t is not u is not v
 
@@ -103,7 +103,7 @@ def test__Leaf_symmetric_difference_10( ):
    u = Note(2, (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 2)
+   assert v.written_pitches == (0, 2)
    assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 
@@ -114,7 +114,7 @@ def test__Leaf_symmetric_difference_11( ):
    u = Note(4, (1, 4))
    v = t ^ u
    assert isinstance(v, Chord)
-   assert v.pitches == (0, 2, 4)
+   assert v.written_pitches == (0, 2, 4)
    assert v.duration.written == Duration(1, 4)
    assert t is not u is not v
 

@@ -25,14 +25,17 @@ def list_named_chromatic_pitches_in_expr(expr):
       return (result, )
    except (TypeError, MissingPitchError, ExtraPitchError):
       result = [ ]
-      if hasattr(expr, 'pitches'):
+      if hasattr(expr, 'written_pitches'):
+         result.extend(expr.written_pitches)
+      ## for pitch arrays
+      elif hasattr(expr, 'pitches'):
          result.extend(expr.pitches)
       elif isinstance(expr, Spanner):
          for leaf in expr.leaves:
             if hasattr(leaf, 'written_pitch') and not isinstance(leaf, Rest):
                result.append(leaf.written_pitch)
-            elif hasattr(leaf, 'pitches'):
-               result.extend(leaf.pitches)
+            elif hasattr(leaf, 'written_pitches'):
+               result.extend(leaf.written_pitches)
       elif isinstance(expr, NamedChromaticPitchSet):
          pitches = list(expr)
          pitches.sort( )
@@ -45,6 +48,6 @@ def list_named_chromatic_pitches_in_expr(expr):
          for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
             if hasattr(leaf, 'written_pitch') and not isinstance(leaf, Rest):
                result.append(leaf.written_pitch)
-            elif hasattr(leaf, 'pitches'):
-               result.extend(leaf.pitches)
+            elif hasattr(leaf, 'written_pitches'):
+               result.extend(leaf.written_pitches)
       return tuple(result)
