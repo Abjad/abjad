@@ -4,8 +4,8 @@ import py.test
 
 def test__SpannerDurationInterface_seconds_01( ):
    '''Spanner duration in seconds equals sum of duration
-      of all leaves in spanner, in seconds.'''
-   py.test.skip('unskip after duration migration.')
+   of all leaves in spanner, in seconds.
+   '''
 
    t = Voice([Measure((2, 12), "c'8 d'8"), 
       Measure((2, 8), "c'8 d'8")])

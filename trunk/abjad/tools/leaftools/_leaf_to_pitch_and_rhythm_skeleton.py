@@ -26,7 +26,7 @@ def _leaf_to_pitch_and_rhythm_skeleton(leaf, include_keyword_attributes = False)
    else:
       arguments = [duration]
    if leaf.duration_multiplier is not None:
-      arguments.append('duration__multiplier = %s' % repr(leaf.duration_multiplier))
+      arguments.append(repr(leaf.duration_multiplier))
    arguments = [str(x) for x in arguments]
    arguments.extend(keyword_attributes)
    arguments = ', '.join(arguments)
