@@ -1,6 +1,5 @@
 from abjad.tools import contexttools
 from abjad.tools import durtools
-from abjad.tools.measuretools.DynamicMeasure._DynamicMeasureDurationInterface import _DynamicMeasureDurationInterface
 from abjad.tools.measuretools.Measure.Measure import Measure
 
 
@@ -34,7 +33,6 @@ class DynamicMeasure(Measure):
    def __init__(self, music = None, **kwargs):
       Measure.__init__(self, meter = (99, 99), music = music, **kwargs)
       self._denominator = None
-      self._duration = _DynamicMeasureDurationInterface(self)
       self._time_signature_is_current = False
       self._suppress_meter = False
       self._update_time_signature( )

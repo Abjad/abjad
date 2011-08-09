@@ -1,7 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durtools
 from abjad.tools.containertools.Container import Container
-#from abjad.tools.measuretools.Measure._MeasureDurationInterface import _MeasureDurationInterface
 from abjad.tools.measuretools.Measure._MeasureFormatter import _MeasureFormatter
 import copy
 
@@ -36,7 +35,6 @@ class Measure(Container):
 
    def __init__(self, meter, music = None, **kwargs):
       Container.__init__(self, music)
-      #self._duration = _MeasureDurationInterface(self)
       self._formatter = _MeasureFormatter(self)
       self._measure_number = None
       time_signature = contexttools.TimeSignatureMark(meter)

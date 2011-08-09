@@ -1,7 +1,6 @@
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.containertools.Container import Container
-from abjad.tools.tuplettools.Tuplet._TupletDurationInterface import _TupletDurationInterface
 from abjad.tools.tuplettools.Tuplet._TupletFormatter import _TupletFormatter
 import fractions
 
@@ -27,7 +26,6 @@ class Tuplet(Container):
 
    def __init__(self, multiplier, music = None, **kwargs):
       Container.__init__(self, music)
-      #self._duration = _TupletDurationInterface(self, multiplier)
       self.multiplier = multiplier
       self._force_fraction = None
       self._formatter = _TupletFormatter(self) 
@@ -83,13 +81,6 @@ class Tuplet(Container):
          return ' '
 
    ## PUBLIC ATTRIBUTES ##
-
-#   @property
-#   def duration(self):
-#      '''Tuplet duration interface.
-#      '''
-#      #return self._duration
-#      raise Exception
 
    @apply
    def force_fraction( ):

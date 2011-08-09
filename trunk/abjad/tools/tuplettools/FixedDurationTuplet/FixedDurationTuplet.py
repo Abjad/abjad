@@ -1,5 +1,4 @@
 from abjad.tools.tuplettools.Tuplet.Tuplet import Tuplet
-#from abjad.tools.tuplettools.FixedDurationTuplet._FixedDurationTupletDurationInterface import _FixedDurationTupletDurationInterface
 from abjad.tools import durtools
 
 
@@ -21,7 +20,6 @@ class FixedDurationTuplet(Tuplet):
       dummy_multiplier = 1
       Tuplet.__init__(self, dummy_multiplier, music)
       ## end ##
-      #self._duration = _FixedDurationTupletDurationInterface(self, duration)
       self._signifier = '@'
       self.target_duration = duration
       self._initialize_keyword_values(**kwargs)

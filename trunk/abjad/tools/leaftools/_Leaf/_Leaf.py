@@ -1,5 +1,5 @@
+from abjad.tools import durtools
 from abjad.tools.componenttools._Component import _Component
-#from abjad.tools.leaftools._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.core._StrictComparator import _StrictComparator
 import copy
 import fractions
@@ -16,10 +16,7 @@ class _Leaf(_Component, _StrictComparator):
       'after_grace', 'grace', )
 
    def __init__(self, written_duration, duration_multiplier = None):
-      from abjad.tools import durtools
       _Component.__init__(self)
-      #self._duration = _LeafDurationInterface(self, written_duration)
-      #self._duration.multiplier = duration_multiplier
       self._duration_multiplier = duration_multiplier
       self._leaf_index = None
       self.written_duration = durtools.Duration(durtools.duration_token_to_duration_pair(written_duration))
@@ -71,7 +68,6 @@ class _Leaf(_Component, _StrictComparator):
 
    @property
    def _formatted_duration(self):
-      from abjad.tools import durtools
       duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.written_duration)
       if self.duration_multiplier is not None:
          return '%s * %s' % (duration_string, self.duration_multiplier)
@@ -139,7 +135,6 @@ class _Leaf(_Component, _StrictComparator):
 
    @property
    def multiplied_duration(self):
-      from abjad.tools import durtools
       if self.written_duration:
          if self.duration_multiplier is not None:
             return self.written_duration * self.duration_multiplier
@@ -157,7 +152,6 @@ class _Leaf(_Component, _StrictComparator):
       def fget(self):
          return self._written_duration
       def fset(self, expr):
-         from abjad.tools import durtools
          rational = durtools.Duration(expr)
          if not durtools.is_assignable_rational(rational):
             raise AssignabilityError('not assignable duration: "%s".' % str(rational))

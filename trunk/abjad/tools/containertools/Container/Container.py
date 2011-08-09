@@ -1,4 +1,3 @@
-from abjad.tools.containertools.Container._ContainerDurationInterface import _ContainerDurationInterface
 from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
 from abjad.tools.componenttools._Component import _Component
 import copy
@@ -26,9 +25,7 @@ class Container(_Component):
    def __init__(self, music = None, **kwargs):
       _Component.__init__(self)
       self._initialize_music(music)
-      self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
-      #self._parallel = None
       self._parallel = False
       self._initialize_keyword_values(**kwargs)
 
@@ -73,7 +70,6 @@ class Container(_Component):
       Withdraw component(s) from crossing spanners.
       Preserve spanners that component(s) cover(s).
       '''
-      #from abjad.tools.componenttools._switch import _switch
       from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
       from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
       components = self[i]
