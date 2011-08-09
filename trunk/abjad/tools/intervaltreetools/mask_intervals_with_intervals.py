@@ -23,8 +23,8 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
       abjad> mask = BoundedInterval(4, 11)
       abjad> intervaltreetools.mask_intervals_with_intervals(tree, mask)
       IntervalTree([
-         BoundedInterval(4, 10, {'a': 1}),
-         BoundedInterval(5, 11, {'b': 2})
+         BoundedInterval(Offset(4, 1), Offset(10, 1), {'a': 1}),
+         BoundedInterval(Offset(5, 1), Offset(11, 1), {'b': 2})
       ])
 
    Return interval tree.

@@ -19,9 +19,9 @@ def scale_aggregate_magnitude_to_rational(intervals, rational):
       abjad> tree = IntervalTree([a, b, c])
       abjad> intervaltreetools.scale_aggregate_magnitude_to_rational(tree, Fraction(16, 7))
       IntervalTree([
-         BoundedInterval(-1, Fraction(-55, 119), {}),
-         BoundedInterval(Fraction(-1, 17), Fraction(89, 119), {}),
-         BoundedInterval(Fraction(41, 119), Fraction(9, 7), {})
+         BoundedInterval(Offset(-1, 1), Offset(-55, 119), {}),
+         BoundedInterval(Offset(-1, 17), Offset(89, 119), {}),
+         BoundedInterval(Offset(41, 119), Offset(9, 7), {})
       ])
 
    Return interval tree.

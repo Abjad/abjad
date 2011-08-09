@@ -18,13 +18,13 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
       abjad> d = BoundedInterval(-1, 16)
       abjad> compute_depth_of_intervals_in_interval(tree, d)
       IntervalTree([
-         BoundedInterval(-1, 0, {'depth': 0}),
-         BoundedInterval(0, 3, {'depth': 1}),
-         BoundedInterval(3, 6, {'depth': 0}),
-         BoundedInterval(6, 9, {'depth': 1}),
-         BoundedInterval(9, 12, {'depth': 2}),
-         BoundedInterval(12, 15, {'depth': 1}),
-         BoundedInterval(15, 16, {'depth': 0})
+         BoundedInterval(Offset(-1, 1), Offset(0, 1), {'depth': 0}),
+         BoundedInterval(Offset(0, 1), Offset(3, 1), {'depth': 1}),
+         BoundedInterval(Offset(3, 1), Offset(6, 1), {'depth': 0}),
+         BoundedInterval(Offset(6, 1), Offset(9, 1), {'depth': 1}),
+         BoundedInterval(Offset(9, 1), Offset(12, 1), {'depth': 2}),
+         BoundedInterval(Offset(12, 1), Offset(15, 1), {'depth': 1}),
+         BoundedInterval(Offset(15, 1), Offset(16, 1), {'depth': 0})
       ])
 
    Return interval tree.

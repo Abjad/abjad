@@ -23,8 +23,8 @@ def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than
       abjad> c = IntervalTree(BoundedInterval(Fraction(1, 16), Fraction(17, 16), {'c': 3})) 
       abjad> intervaltreetools.resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational([a, b, c], Fraction(1, 16))
       IntervalTree([
-         BoundedInterval(0, 1, {'a': 1}),
-         BoundedInterval(1, Fraction(17, 16), {'c': 3})
+         BoundedInterval(Offset(0, 1), Offset(1, 1), {'a': 1}),
+         BoundedInterval(Offset(1, 1), Offset(17, 16), {'c': 3})
       ])
    
    Return interval tree.

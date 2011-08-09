@@ -22,9 +22,9 @@ def resolve_overlaps_between_nonoverlapping_trees(trees):
       abjad> d = IntervalTree(BoundedInterval(1, 3, {'d': 4}))
       abjad> intervaltreetools.resolve_overlaps_between_nonoverlapping_trees([a, b, c, d])
       IntervalTree([
-         BoundedInterval(0, 4, {'a': 1}),
-         BoundedInterval(4, 5, {'b': 2}),
-         BoundedInterval(5, 6, {'c': 3})
+         BoundedInterval(Offset(0, 1), Offset(4, 1), {'a': 1}),
+         BoundedInterval(Offset(4, 1), Offset(5, 1), {'b': 2}),
+         BoundedInterval(Offset(5, 1), Offset(6, 1), {'c': 3})
       ])
    
    Return interval tree.

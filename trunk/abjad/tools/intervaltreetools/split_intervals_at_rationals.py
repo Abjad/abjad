@@ -19,12 +19,12 @@ def split_intervals_at_rationals(intervals, rationals):
       abjad> tree = IntervalTree([a, b, c])
       abjad> intervaltreetools.split_intervals_at_rationals(tree, [1, Fraction(19, 2)])
       IntervalTree([
-        BoundedInterval(-1, 1, {}),
-        BoundedInterval(1, 3, {}),
-        BoundedInterval(6, Fraction(19, 2), {}),
-        BoundedInterval(9, Fraction(19, 2), {}),
-        BoundedInterval(Fraction(19, 2), 12, {}),
-        BoundedInterval(Fraction(19, 2), 16, {})
+         BoundedInterval(Offset(-1, 1), Offset(1, 1), {}),
+         BoundedInterval(Offset(1, 1), Offset(3, 1), {}),
+         BoundedInterval(Offset(6, 1), Offset(19, 2), {}),
+         BoundedInterval(Offset(9, 1), Offset(19, 2), {}),
+         BoundedInterval(Offset(19, 2), Offset(12, 1), {}),
+         BoundedInterval(Offset(19, 2), Offset(16, 1), {})
       ])
 
    Return interval tree.

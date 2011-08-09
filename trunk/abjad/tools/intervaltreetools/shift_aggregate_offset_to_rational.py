@@ -18,9 +18,9 @@ def shift_aggregate_offset_to_rational(intervals, rational):
       abjad> tree = IntervalTree([a, b, c])
       abjad> intervaltreetools.shift_aggregate_offset_to_rational(tree, Fraction(10, 7))
       IntervalTree([
-        BoundedInterval(Fraction(10, 7), Fraction(38, 7), {}),
-        BoundedInterval(Fraction(59, 7), Fraction(101, 7), {}),
-        BoundedInterval(Fraction(80, 7), Fraction(129, 7), {})
+         BoundedInterval(Offset(10, 7), Offset(38, 7), {}),
+         BoundedInterval(Offset(59, 7), Offset(101, 7), {}),
+         BoundedInterval(Offset(80, 7), Offset(129, 7), {})
       ])
 
    Return interval tree.

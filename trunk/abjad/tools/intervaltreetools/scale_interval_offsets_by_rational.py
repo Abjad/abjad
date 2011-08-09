@@ -19,9 +19,9 @@ def scale_interval_offsets_by_rational(intervals, rational):
       abjad> tree = IntervalTree([a, b, c])
       abjad> intervaltreetools.scale_interval_offsets_by_rational(tree, Fraction(4, 5))
       IntervalTree([
-         BoundedInterval(-1, 3, {}),
-         BoundedInterval(Fraction(23, 5), Fraction(53, 5), {}),
-         BoundedInterval(Fraction(7, 1), Fraction(14, 1), {})
+         BoundedInterval(Offset(-1, 1), Offset(3, 1), {}),
+         BoundedInterval(Offset(23, 5), Offset(53, 5), {}),
+         BoundedInterval(Offset(7, 1), Offset(14, 1), {})
       ])
 
    Return interval tree.

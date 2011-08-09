@@ -21,13 +21,13 @@ def calculate_depth_density_of_intervals(intervals):
       abjad> b = BoundedInterval(0, 1)
       abjad> c = BoundedInterval(Fraction(1, 2), 1)
       abjad> intervaltreetools.calculate_depth_density_of_intervals(a)
-      Fraction(1, 1)
+      Duration(1, 1)
       abjad> intervaltreetools.calculate_depth_density_of_intervals([a, b])
-      Fraction(2, 1)
+      Duration(2, 1)
       abjad> intervaltreetools.calculate_depth_density_of_intervals([a, c])
-      Fraction(3, 2)
+      Duration(3, 2)
       abjad> intervaltreetools.calculate_depth_density_of_intervals([a, b, c])
-      Fraction(5, 2)
+      Duration(5, 2)
 
    Return fraction.
    '''

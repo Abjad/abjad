@@ -18,7 +18,7 @@ def fuse_tangent_or_overlapping_intervals(intervals):
       abjad> tree = IntervalTree([a, b, c])
       abjad> intervaltreetools.fuse_tangent_or_overlapping_intervals(tree)
       IntervalTree([
-         BoundedInterval(0, 25, {})
+         BoundedInterval(Offset(0, 1), Offset(25, 1), {})
       ])
 
    Return interval tree.
