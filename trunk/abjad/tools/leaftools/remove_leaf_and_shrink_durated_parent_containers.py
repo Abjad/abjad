@@ -56,17 +56,17 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
    from abjad.tools.measuretools.Measure import Measure
    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
-   prolated_leaf_duration = leaf.duration.prolated
-   prolations = leaf.duration._prolations
+   prolated_leaf_duration = leaf.prolated_duration
+   prolations = leaf._prolations
    cur_prolation, i = durtools.Duration(1), 0
    parent = leaf._parentage.parent
 
    while parent is not None and not parent.is_parallel:
       cur_prolation *= prolations[i]
       if isinstance(parent, FixedDurationTuplet):
-         candidate_new_parent_dur = parent.duration.target - cur_prolation * leaf.written_duration
+         candidate_new_parent_dur = parent.target_duration - cur_prolation * leaf.written_duration
          if durtools.Duration(0) < candidate_new_parent_dur:
-            parent.duration.target = candidate_new_parent_dur
+            parent.target_duration = candidate_new_parent_dur
       elif isinstance(parent, Measure):
          parent_time_signature = contexttools.get_time_signature_mark_attached_to_component(parent)
          old_denominator = parent_time_signature.denominator
@@ -84,10 +84,10 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
          adjusted_prolation = old_prolation / new_prolation
          for x in parent:
             if isinstance(x, FixedDurationTuplet):
-               x.duration.target *= adjusted_prolation
+               x.target_duration *= adjusted_prolation
             else:
                if adjusted_prolation != 1:
-                  new_target = x.duration.preprolated * adjusted_prolation
+                  new_target = x.preprolated_duration * adjusted_prolation
                   FixedDurationTuplet(new_target, [x])
       parent = parent._parentage.parent
       i += 1

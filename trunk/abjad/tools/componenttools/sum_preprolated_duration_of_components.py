@@ -38,7 +38,7 @@ def sum_preprolated_duration_of_components(components):
    '''
 
    ## sum preprolated durations
-   result = sum([component.duration.preprolated for component in components])
+   result = sum([component.preprolated_duration for component in components])
 
    ## return sum
    return result

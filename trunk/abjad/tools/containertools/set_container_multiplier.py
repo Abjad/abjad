@@ -37,11 +37,11 @@ def set_container_multiplier(container, multiplier):
    from abjad.tools import measuretools
 
    if isinstance(container, tuplettools.FixedDurationTuplet):
-      container.duration.target = multiplier * container.duration.contents
+      container.target_duration = multiplier * container.contents_duration
    elif isinstance(container, tuplettools.Tuplet):
-      container.duration.multiplier = multiplier
+      container.multiplier = multiplier
    elif isinstance(container, measuretools.Measure):
-      new_duration = multiplier * container.duration.contents
+      new_duration = multiplier * container.contents_duration
       new_time_signature = contexttools.TimeSignatureMark(new_duration)
       contexttools.detach_time_signature_mark_attached_to_component(container)
       new_time_signature.attach_mark(container)

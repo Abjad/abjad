@@ -106,11 +106,10 @@ def _get_nucleus(leaf):
       result.insert(0, '<')
       result.append('>')
       result = '\n'.join(result)
-      result += str(chord.duration)
+      result += str(chord._formatted_duration)
    else:
       result.extend([x.format for x in note_heads])
-      result = '<%s>%s' % (
-         ' '.join(result), chord.duration)
+      result = '<%s>%s' % (' '.join(result), chord._formatted_duration)
    ## single string, but wrapped in list bc contribution
    return ['nucleus', [result]]
 

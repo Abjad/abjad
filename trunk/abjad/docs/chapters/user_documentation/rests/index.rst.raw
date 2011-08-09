@@ -46,15 +46,15 @@ print repr(rest.written_duration) <hide
 Which is usually the same as preprolated duration:
 
 <abjad>
-rest.duration.preprolated
-print repr(rest.duration.preprolated) <hide
+rest.preprolated_duration
+print repr(rest.preprolated_duration) <hide
 </abjad>
 
 And prolated duration:
 
 <abjad>
-rest.duration.prolated
-print repr(rest.duration.prolated) <hide
+rest.prolated_duration
+print repr(rest.prolated_duration) <hide
 </abjad>
 
 Except for rests inside a tuplet:
@@ -90,8 +90,8 @@ print repr(rest.duration.prolation) <hide
 And prolated duration that is the product of the two:
 
 <abjad>
-rest.duration.prolated
-print repr(rest.duration.prolated) <hide
+rest.prolated_duration
+print repr(rest.prolated_duration) <hide
 </abjad>
 
 Changing the written duration of rests

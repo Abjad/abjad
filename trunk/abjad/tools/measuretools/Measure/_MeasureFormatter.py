@@ -18,10 +18,11 @@ class _MeasureFormatter(_ContainerFormatter):
       result = [ ]
       client = self._client
       ## the class name test here is exclude scaleDurations from Anonymous and Dynamic measures
-      if client.duration.is_nonbinary and client.__class__.__name__ == 'Measure':
+      #if client.is_nonbinary and client.__class__.__name__ == 'Measure':
+      if client.is_nonbinary and client.__class__.__name__ == 'Measure':
          result.append("\t\\scaleDurations #'(%s . %s) {" % (
-            client.duration.multiplier.numerator,
-            client.duration.multiplier.denominator))
+            client.multiplier.numerator,
+            client.multiplier.denominator))
          #result.extend( ['\t' + x for x in _MeasureFormatter._contents.fget(self)])
          result.extend( ['\t' + x for x in _ContainerFormatter._contents.fget(self)])
          result.append('\t}')
@@ -39,9 +40,11 @@ class _MeasureFormatter(_ContainerFormatter):
       effective_meter = contexttools.get_effective_time_signature(self._client)
       if effective_meter.is_nonbinary and effective_meter.suppress:
          raise NonbinaryTimeSignatureSuppressionError
-      if effective_meter.duration < client.duration.preprolated:
+      #if effective_meter.duration < client.preprolated_duration:
+      if effective_meter.duration < client.preprolated_duration:
          raise OverfullMeasureError
-      if client.duration.preprolated < effective_meter.duration:
+      #if client.preprolated_duration < effective_meter.duration:
+      if client.preprolated_duration < effective_meter.duration:
          raise UnderfullMeasureError
       return _ContainerFormatter.format.fget(self)
 

@@ -45,7 +45,7 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
    assert isinstance(tuplet, Tuplet)
    from abjad.tools import containertools
    
-   containertools.scale_contents_of_container(tuplet, tuplet.duration.multiplier)
+   containertools.scale_contents_of_container(tuplet, tuplet.multiplier)
    componenttools.move_parentage_and_spanners_from_components_to_components([tuplet], tuplet[:])
 
    return tuplet

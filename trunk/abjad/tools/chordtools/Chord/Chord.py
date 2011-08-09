@@ -90,7 +90,7 @@ class Chord(_Leaf):
 
    @property
    def _compact_representation(self):
-      return '<%s>%s' % (self._summary, self.duration)
+      return '<%s>%s' % (self._summary, self._formatted_duration)
 
    @property
    def _summary(self):

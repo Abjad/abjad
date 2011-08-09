@@ -13,13 +13,13 @@ class _SpannerDurationInterface(_StrictComparator):
    def preprolated(self):
       '''Sum of preprolated duration of all components in spanner.'''
       client = self._client
-      return sum([component.duration.preprolated for component in client])
+      return sum([component.preprolated_duration for component in client])
 
    @property
    def prolated(self):
       '''Sum of prolated duration of all components in spanner.'''
       client = self._client
-      return sum([component.duration.prolated for component in client])
+      return sum([component.prolated_duration for component in client])
 
    @property
    def seconds(self):

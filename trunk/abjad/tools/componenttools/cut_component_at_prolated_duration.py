@@ -63,12 +63,12 @@ def cut_component_at_prolated_duration(component, prolated_duration):
    assert isinstance(component, _Component)
    assert isinstance(prolated_duration, durtools.Duration)
 
-   if component.duration.prolated <= prolated_duration:
+   if component.prolated_duration <= prolated_duration:
       raise NegativeDurationError('component durations must be positive.')
 
    if isinstance(component, _Leaf):
-      new_prolated_duration = component.duration.prolated - prolated_duration
-      prolation = component.duration.prolation
+      new_prolated_duration = component.prolated_duration - prolated_duration
+      prolation = component.prolation
       new_written_duration = new_prolated_duration / prolation
       result = leaftools.set_preprolated_leaf_duration(
          component, new_written_duration)

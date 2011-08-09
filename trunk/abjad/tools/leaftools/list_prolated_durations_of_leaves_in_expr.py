@@ -16,6 +16,6 @@ def list_prolated_durations_of_leaves_in_expr(expr):
    durations = [ ]
 
    for leaf in iterate_leaves_forward_in_expr(expr):
-      durations.append(leaf.duration.prolated)
+      durations.append(leaf.prolated_duration)
 
    return durations

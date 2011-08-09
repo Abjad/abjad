@@ -117,7 +117,7 @@ class Spanner(_StrictComparator):
       leaves = list(self.leaves)
       assert leaf in leaves
       prev = leaves[:leaves.index(leaf)]
-      return sum([leaf.duration.prolated for leaf in prev])
+      return sum([leaf.prolated_duration for leaf in prev])
 
    def _fracture_left(self, i):
       ##left = self.copy(0, i - 1)
@@ -304,12 +304,12 @@ class Spanner(_StrictComparator):
 
       ::
 
-         abjad> spanner.duration.preprolated
+         abjad> spanner.preprolated_duration
          Duration(1, 4)
 
       ::
 
-         abjad> spanner.duration.prolated
+         abjad> spanner.prolated_duration
          Duration(1, 4)
 
       Spanner duration interface also implements ``seconds`` attribute.

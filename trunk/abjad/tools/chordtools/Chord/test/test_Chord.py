@@ -9,7 +9,7 @@ def test_Chord_01( ):
    assert len(t) == 3
    assert len(t.note_heads) == 3
    assert len(t.written_pitches) == 3
-   assert t.written_duration == t.duration.prolated == Duration(1, 4)
+   assert t.written_duration == t.prolated_duration == Duration(1, 4)
 
 
 def test_Chord_02( ):

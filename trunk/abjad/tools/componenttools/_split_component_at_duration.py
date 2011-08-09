@@ -50,8 +50,8 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
       measure = measures[0]
       split_point_in_measure = global_split_point - measure._offset.start
       split_point_denominator = split_point_in_measure.denominator
-      if measure.duration.is_nonbinary:
-         measure_multiplier = measure.duration.multiplier
+      if measure.is_nonbinary:
+         measure_multiplier = measure.multiplier
          split_point_multiplier = durtools.positive_integer_to_implied_prolation_multipler(
             split_point_denominator)
          if not measure_multiplier == split_point_multiplier:

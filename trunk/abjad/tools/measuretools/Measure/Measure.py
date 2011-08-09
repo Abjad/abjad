@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durtools
 from abjad.tools.containertools.Container import Container
-from abjad.tools.measuretools.Measure._MeasureDurationInterface import _MeasureDurationInterface
+#from abjad.tools.measuretools.Measure._MeasureDurationInterface import _MeasureDurationInterface
 from abjad.tools.measuretools.Measure._MeasureFormatter import _MeasureFormatter
 import copy
 
@@ -36,7 +36,7 @@ class Measure(Container):
 
    def __init__(self, meter, music = None, **kwargs):
       Container.__init__(self, music)
-      self._duration = _MeasureDurationInterface(self)
+      #self._duration = _MeasureDurationInterface(self)
       self._formatter = _MeasureFormatter(self)
       self._measure_number = None
       time_signature = contexttools.TimeSignatureMark(meter)
@@ -83,7 +83,7 @@ class Measure(Container):
          pass
       Container.__delitem__(self, i)
       try:
-         naive_meter = self.duration.preprolated
+         naive_meter = self.preprolated_duration
          better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             naive_meter, old_denominator)
          better_meter = contexttools.TimeSignatureMark(better_meter)
@@ -140,6 +140,10 @@ class Measure(Container):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def is_binary(self):
+      return not self.is_nonbinary
+
+   @property
    def is_full(self):
       '''True when meter matches duration of measure::
 
@@ -161,9 +165,41 @@ class Measure(Container):
 
       Return boolean.
       '''
-      return contexttools.get_effective_time_signature(self).duration == self.duration.preprolated
+      return contexttools.get_effective_time_signature(self).duration == self.preprolated_duration
+
+   @property
+   def is_nonbinary(self):
+      return contexttools.get_effective_time_signature(self).is_nonbinary
+
+   @property
+   def is_overfull(self):
+      '''.. versionadded:: 1.1.1
+
+      True when prolated duration is greater than 
+      effective meter duration.
+      '''
+      return contexttools.get_effective_time_signature(self).duration < self.prolated_duration
+
+   @property
+   def is_underfull(self):
+      '''.. versionadded:: 1.1.1
+
+      True when prolated duration is less than 
+      effective meter duration.
+      '''
+      return self.prolated_duration < contexttools.get_effective_time_signature(self).duration
 
    @property
    def measure_number(self):
       self._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
       return self._measure_number
+
+   @property
+   def multiplier(self):
+      return contexttools.get_effective_time_signature(self).multiplier
+
+   @property
+   def preprolated_duration(self):
+      '''Measure contents duration times effective meter multiplier.'''
+      from abjad.tools import contexttools
+      return contexttools.get_effective_time_signature(self).multiplier * self.contents_duration

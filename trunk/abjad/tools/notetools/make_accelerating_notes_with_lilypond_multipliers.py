@@ -15,7 +15,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
    ::
 
       abjad> voice = Voice(_)
-      abjad> voice.duration.prolated
+      abjad> voice.prolated_duration
       Duration(1, 2)
 
    Set note pitches cyclically from `pitches`.

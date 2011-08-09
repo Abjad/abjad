@@ -14,44 +14,37 @@ class _FixedDurationTupletDurationInterface(_TupletDurationInterface):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def multiplied(self):
-      return self.target
-
 #   @property
-#   def multiplier(self):
-#      if 0 < len(self._client):
-#         return self.target / self.contents
-#      else:
-#         return None
+#   def multiplied(self):
+#      return self.target
 
-   @apply
-   def multiplier( ):
-      def fget(self):
-         if 0 < len(self._client):
-            return self.target / self.contents
-         else:
-            return None
-      def fset(self, expr):
-         pass
-      return property(**locals( ))
+#   @apply
+#   def multiplier( ):
+#      def fget(self):
+#         if 0 < len(self._client):
+#            return self.target / self.contents
+#         else:
+#            return None
+#      def fset(self, expr):
+#         pass
+#      return property(**locals( ))
 
-   @apply
-   def target( ):
-      def fget(self):
-         return self._target
-      def fset(self, expr):
-         if isinstance(expr, (int, long)):
-            rational = durtools.Duration(expr)
-         elif isinstance(expr, tuple):
-            rational = durtools.Duration(*expr)
-         elif hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
-            rational = durtools.Duration(expr)
-         else:
-            raise ValueError('Can not set tuplet rational from %s.' % str(expr))
-         if 0 < rational:
-            self._target = rational
-         else:
-            raise ValueError('Tuplet rational %s must be positive.' %
-               rational)
-      return property(**locals( ))
+#   @apply
+#   def target( ):
+#      def fget(self):
+#         return self._target
+#      def fset(self, expr):
+#         if isinstance(expr, (int, long)):
+#            rational = durtools.Duration(expr)
+#         elif isinstance(expr, tuple):
+#            rational = durtools.Duration(*expr)
+#         elif hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
+#            rational = durtools.Duration(expr)
+#         else:
+#            raise ValueError('Can not set tuplet rational from %s.' % str(expr))
+#         if 0 < rational:
+#            self._target = rational
+#         else:
+#            raise ValueError('Tuplet rational %s must be positive.' %
+#               rational)
+#      return property(**locals( ))

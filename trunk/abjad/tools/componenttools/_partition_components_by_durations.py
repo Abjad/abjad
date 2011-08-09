@@ -50,7 +50,12 @@ def _partition_components_by_durations(duration_type, components, durations,
       ## collapse these 4 lines to only the 4th line after duration migration
       if duration_type == 'seconds':
          component_duration = component.duration_in_seconds
+      elif duration_type == 'prolated':
+         component_duration = component.prolated_duration
+      elif duration_type == 'preprolated':
+         component_duration = component.preprolated_duration
       else:
+         #print 'debug %s' % duration_type
          component_duration = getattr(component.duration, duration_type)
       candidate_duration = cum_duration + component_duration
       if candidate_duration < target_duration:
@@ -74,6 +79,10 @@ def _partition_components_by_durations(duration_type, components, durations,
             ## collapse to 4th line after duration migration
             if duration_type == 'seconds':
                cum_duration = sum([x.duration_in_seconds for x in part])
+            elif duration_type == 'preprolated':
+               cum_duration = sum([x.preprolated_duration for x in part])
+            elif duration_type == 'prolated':
+               cum_duration = sum([x.prolated_duration for x in part])
             else:
                cum_duration = sum([getattr(x.duration, duration_type) for x in part])
             cur_duration_idx += 1

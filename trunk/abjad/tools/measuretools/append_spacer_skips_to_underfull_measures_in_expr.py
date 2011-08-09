@@ -17,9 +17,9 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
       TimeSignatureMark(3, 8)
       abjad> contexttools.TimeSignatureMark(5, 8)(staff[2])
       TimeSignatureMark(5, 8)(|5/8, c'8, d'8, e'8|)
-      abjad> staff[1].duration.is_underfull 
+      abjad> staff[1].is_underfull 
       True
-      abjad> staff[2].duration.is_underfull 
+      abjad> staff[2].is_underfull 
       True
       
    ::
@@ -62,7 +62,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
 
    treated_measures = [ ]
    for rigid_measure in componenttools.iterate_components_forward_in_expr(expr, Measure):
-      if rigid_measure.duration.is_underfull:
+      if rigid_measure.is_underfull:
          #spacer_skip = append_spacer_skip_to_underfull_measure(rigid_measure)
          #rigid_measure.append(spacer_skip)
          append_spacer_skip_to_underfull_measure(rigid_measure)

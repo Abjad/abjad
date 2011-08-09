@@ -76,17 +76,17 @@ class _Component(_StrictComparator):
       parent = self._parentage.parent
       while parent is not None:
          #result.append(getattr(parent.duration, 'multiplier', fractions.Fraction(1)))
-         result.append(getattr(parent, 'duration_multiplier', fractions.Fraction(1)))
+         result.append(getattr(parent, 'multiplier', fractions.Fraction(1)))
          parent = parent._parentage.parent
       return result
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def duration(self):
-      '''Read-only duration interface of component.
-      '''
-      return self._duration
+#   @property
+#   def duration(self):
+#      '''Read-only duration interface of component.
+#      '''
+#      return self._duration
 
    @property
    def format(self):

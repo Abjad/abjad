@@ -18,4 +18,4 @@ def sum_prolated_duration_of_components(components):
       ``componenttools.sum_prolated_duration_of_components( )``.
    '''
 
-   return sum([component.duration.prolated for component in components])
+   return sum([component.prolated_duration for component in components])

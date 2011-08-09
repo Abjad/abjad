@@ -105,7 +105,7 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start = 0
    if start < 0:
       start = durtools.Duration(0)
    if stop is None:
-      stop = component.duration.prolated
+      stop = component.prolated_duration
    else:
       stop = durtools.Duration(*durtools.duration_token_to_duration_pair(stop))
    assert start <= stop
@@ -120,10 +120,10 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start = 0
 def _scopy_leaf(leaf, start, stop):
    from abjad.tools import leaftools
    from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners
-   if leaf.duration.prolated <= start:
+   if leaf.prolated_duration <= start:
       return None
-   if leaf.duration.prolated < stop:
-      stop = leaf.duration.prolated
+   if leaf.prolated_duration < stop:
+      stop = leaf.prolated_duration
    total = stop - start
    if total == 0:
       return None
@@ -159,20 +159,20 @@ def _get_lcopy(container, start, stop):
    start_leaf, stop_leaf = None, None
    first_dif = second_dif = 0
    for i, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(container)):
-      total_dur += leaf.duration.prolated
+      total_dur += leaf.prolated_duration
       if total_dur == start and start_leaf is None:
          start_leaf = i
          first_dif = 0
       elif start < total_dur and start_leaf is None:
          start_leaf = i
-         first_dif = leaf.duration.prolated - (total_dur - start)
+         first_dif = leaf.prolated_duration - (total_dur - start)
          #print first_dif
       if stop <= total_dur and stop_leaf is None:
          stop_leaf = i + 1
-         #second_dif = leaf.duration.prolated - (total_dur - stop)
+         #second_dif = leaf.prolated_duration - (total_dur - stop)
          flamingo = total_dur - stop
          if flamingo != 0:
-            second_dif = leaf.duration.prolated - flamingo
+            second_dif = leaf.prolated_duration - flamingo
          #print second_dif
          #print 'breaking after stop'
          break

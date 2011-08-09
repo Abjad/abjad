@@ -33,8 +33,8 @@ print repr(note.duration.prolation) <hide
 </abjad>
 
 <abjad>
-note.duration.prolated
-print repr(note.duration.prolated) <hide
+note.prolated_duration
+print repr(note.prolated_duration) <hide
 </abjad>
 
 Notes here with written duration ``1/8`` carry prolation factor ``5/4`` 
@@ -64,7 +64,7 @@ print repr(note.duration.prolation) <hide
 </abjad>
 
 <abjad>
-note.duration.prolated
+note.prolated_duration
 print repr(note.written_duration) <hide
 </abjad>
 
@@ -74,8 +74,8 @@ print repr(note.duration.prolation) <hide
 </abjad>
 
 <abjad>
-note.duration.prolated
-print repr(note.duration.prolated) <hide
+note.prolated_duration
+print repr(note.prolated_duration) <hide
 </abjad>
 
 Notes here with written duration ``1/8`` carry prolation factor ``4/5``
@@ -111,8 +111,8 @@ print repr(note.duration.prolation) <hide
 </abjad>
 
 <abjad>
-note.duration.prolated
-print repr(note.duration.prolated) <hide
+note.prolated_duration
+print repr(note.prolated_duration) <hide
 </abjad>
 
 Notes here with written duration ``1/16`` carry prolated duration ``2/35``.

@@ -188,6 +188,17 @@ class Container(_Component):
 
    ## PUBLIC ATTRIBUTES ##
 
+   @property 
+   def contents_duration(self):
+      from abjad.tools import durtools
+      if self.is_parallel:
+         return max([durtools.Duration(0)] + [x.preprolated_duration for x in self])
+      else:
+         duration = durtools.Duration(0)
+         for x in self:
+            duration += x.preprolated_duration
+         return duration
+
    @property
    def duration_in_seconds(self):
       from abjad.tools import durtools
@@ -289,6 +300,10 @@ class Container(_Component):
       Return tuple or zero or more components.
       '''
       return tuple(self._music)
+
+   @property
+   def preprolated_duration(self):
+      return self.contents_duration
 
    ## PRIVATE METHODS ##
 

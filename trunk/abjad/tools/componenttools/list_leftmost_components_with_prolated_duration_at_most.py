@@ -37,7 +37,7 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
    total_duration = durtools.Duration(0)
    result = [ ]
    for component in components:
-      cur_duration = component.duration.prolated
+      cur_duration = component.prolated_duration
       if total_duration + cur_duration <= prolated_duration:
          result.append(component)
          total_duration += cur_duration

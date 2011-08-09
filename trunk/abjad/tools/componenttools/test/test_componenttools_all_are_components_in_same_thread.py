@@ -994,8 +994,8 @@ def test_componenttools_all_are_components_in_same_thread_37( ):
    a, b, t = tuplettools.FixedDurationTuplet(Duration(3, 8), Note(0, (1, 8)) * 4) * 3
    b.insert(2, a)
    t.insert(2, b)
-   b.duration.target = Duration(6, 8)
-   t.duration.target = Duration(9, 8)
+   b.target_duration = Duration(6, 8)
+   t.target_duration = Duration(9, 8)
    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
 
    r'''

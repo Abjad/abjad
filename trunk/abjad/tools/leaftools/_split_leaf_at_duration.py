@@ -19,7 +19,7 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
    split_dur = durtools.Duration(split_dur)
 
    leaf_multiplied_duration = leaf.multiplied_duration
-   unprolated_split_dur = split_dur / leaf.duration.prolation
+   unprolated_split_dur = split_dur / leaf.prolation
    
    ## handle split duration boundary cases
    if unprolated_split_dur <= 0:

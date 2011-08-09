@@ -9,9 +9,9 @@ def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01( ):
    contexttools.detach_time_signature_mark_attached_to_component(t[2])
    contexttools.TimeSignatureMark(5, 8)(t[2])
 
-   assert not t[0].duration.is_underfull
-   assert t[1].duration.is_underfull
-   assert t[2].duration.is_underfull
+   assert not t[0].is_underfull
+   assert t[1].is_underfull
+   assert t[2].is_underfull
 
    measuretools.append_spacer_skips_to_underfull_measures_in_expr(t)
 

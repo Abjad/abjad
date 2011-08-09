@@ -78,9 +78,9 @@ class _NavigationInterface(_Interface):
       result.append(client)
       if isinstance(client, Container):
          if client.is_parallel:
-            client_duration = client.duration.preprolated
+            client_duration = client.preprolated_duration
             for x in client:
-               if x.duration.preprolated == client_duration:
+               if x.preprolated_duration == client_duration:
                   result.extend(x._navigator._contemporaneous_stop_contents)
          elif len(client):
             result.extend(client[-1]._navigator._contemporaneous_stop_contents)
@@ -97,7 +97,7 @@ class _NavigationInterface(_Interface):
       prev = client
       for parent in componenttools.get_proper_parentage_of_component(client):
          if parent.is_parallel:
-            if prev.duration.prolated == parent.duration.prolated:
+            if prev.prolated_duration == parent.prolated_duration:
                result.append(parent)
             else:
                break

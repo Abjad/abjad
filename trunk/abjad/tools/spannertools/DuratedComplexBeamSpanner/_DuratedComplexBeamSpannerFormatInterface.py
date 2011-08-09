@@ -17,14 +17,14 @@ class _DuratedComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterfa
             left, right = self._get_left_right_for_exterior_leaf(leaf)
          # just right of span gap
          elif spanner._duration_offset_in_me(leaf) in spanner._span_points and not \
-            (spanner._duration_offset_in_me(leaf) + leaf.duration.prolated in \
+            (spanner._duration_offset_in_me(leaf) + leaf.prolated_duration in \
             spanner._span_points):
             assert isinstance(spanner.span, int)
             left = spanner.span
             #right = leaf.duration._flags
             right = durtools.rational_to_flag_count(leaf.written_duration)
          # just left of span gap
-         elif spanner._duration_offset_in_me(leaf) + leaf.duration.prolated in \
+         elif spanner._duration_offset_in_me(leaf) + leaf.prolated_duration in \
             spanner._span_points and not spanner._duration_offset_in_me(leaf) in \
             spanner._span_points:
             assert isinstance(spanner.span, int)

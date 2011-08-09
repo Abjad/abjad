@@ -5,6 +5,8 @@ class _DynamicMeasureDurationInterface(_MeasureDurationInterface):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def preprolated(self):
-      return self.contents
+#   @property
+#   def preprolated(self):
+#      return self.contents
+
+   pass

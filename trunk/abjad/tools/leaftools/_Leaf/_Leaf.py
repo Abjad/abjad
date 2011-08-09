@@ -1,5 +1,5 @@
 from abjad.tools.componenttools._Component import _Component
-from abjad.tools.leaftools._Leaf._LeafDurationInterface import _LeafDurationInterface
+#from abjad.tools.leaftools._Leaf._LeafDurationInterface import _LeafDurationInterface
 from abjad.core._StrictComparator import _StrictComparator
 import copy
 import fractions
@@ -9,7 +9,7 @@ import operator
 class _Leaf(_Component, _StrictComparator):
 
    ## TODO: see if _grace and _after_grace can be removed ##
-   __slots__ = ('_after_grace', '_duration', '_grace', '_leaf_index',
+   __slots__ = ('_after_grace', '_grace', '_leaf_index',
       '_duration_multiplier', '_written_duration',
       '_written_pitch_indication_is_nonsemantic',
       '_written_pitch_indication_is_at_sounding_pitch',
@@ -18,7 +18,7 @@ class _Leaf(_Component, _StrictComparator):
    def __init__(self, written_duration, duration_multiplier = None):
       from abjad.tools import durtools
       _Component.__init__(self)
-      self._duration = _LeafDurationInterface(self, written_duration)
+      #self._duration = _LeafDurationInterface(self, written_duration)
       #self._duration.multiplier = duration_multiplier
       self._duration_multiplier = duration_multiplier
       self._leaf_index = None
@@ -63,6 +63,21 @@ class _Leaf(_Component, _StrictComparator):
    def __xor__(self, arg):
       return self._operate(arg, operator.__xor__)
 
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _format_pieces(self):
+      return self.format.split('\n')
+
+   @property
+   def _formatted_duration(self):
+      from abjad.tools import durtools
+      duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.written_duration)
+      if self.duration_multiplier is not None:
+         return '%s * %s' % (duration_string, self.duration_multiplier)
+      else:
+         return duration_string
+      
    ## PRIVATE METHODS ##
 
    def _copy_override_and_set_from_leaf(self, leaf):
@@ -87,12 +102,6 @@ class _Leaf(_Component, _StrictComparator):
       leaves = leaftools.make_leaves(pairs, self.written_duration)
       leaf = leaves[0]
       return leaf
-
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _format_pieces(self):
-      return self.format.split('\n')
 
    ## PUBLIC ATTRIBUTES ##
 

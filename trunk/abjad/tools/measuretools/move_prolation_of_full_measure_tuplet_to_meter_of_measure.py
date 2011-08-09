@@ -40,7 +40,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
       if len(measure) == 1:
          if isinstance(measure[0], Tuplet):
             tuplet = measure[0]
-            tuplet_multiplier = tuplet.duration.multiplier
+            tuplet_multiplier = tuplet.multiplier
             tuplet_denominator = tuplet_multiplier.denominator
             reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
             meter = contexttools.get_effective_time_signature(measure)

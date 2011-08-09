@@ -79,9 +79,9 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
       ## find candidate duration of new element plus current measure 
       cur_element = new_contents[0]
       multiplier = cur_meter.multiplier
-      preprolated_duration = cur_element.duration.preprolated
+      preprolated_duration = cur_element.preprolated_duration
       prolated_duration = multiplier * preprolated_duration
-      candidate_duration = cur_measure.duration.prolated + prolated_duration
+      candidate_duration = cur_measure.prolated_duration + prolated_duration
 
       ## if new element fits in current measure
       if candidate_duration <= cur_meter.duration:

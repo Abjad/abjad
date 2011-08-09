@@ -43,9 +43,9 @@ class Skip(_Leaf):
    @property
    def _body(self):
       result = [ ]
-      result.append('s%s' % self.duration)
+      result.append('s%s' % self._formatted_duration)
       return result
 
    @property
    def _compact_representation(self):
-      return 's%s' % self.duration
+      return 's%s' % self._formatted_duration

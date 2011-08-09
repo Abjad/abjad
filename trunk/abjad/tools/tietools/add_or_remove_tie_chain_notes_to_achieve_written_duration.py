@@ -62,7 +62,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
       new_chain_written = get_preprolated_tie_chain_duration(
          get_tie_chain(fmtuplet[0]))
       add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_chain_written)
-      multiplier = fmtuplet.duration.multiplier
+      multiplier = fmtuplet.multiplier
       Tuplet(multiplier, get_leaves_in_tie_chain(tie_chain))
       
    return get_tie_chain(tie_chain[0])

@@ -76,16 +76,16 @@ def fuse_tuplets(tuplets):
       return None
 
    first = tuplets[0]
-   first_multiplier = first.duration.multiplier
+   first_multiplier = first.multiplier
    first_type = type(first)
    for tuplet in tuplets[1:]:
-      if tuplet.duration.multiplier != first_multiplier:
+      if tuplet.multiplier != first_multiplier:
          raise TupletFuseError('tuplets must carry same multiplier.')
       if type(tuplet) != first_type:
          raise TupletFuseError('tuplets must be same type.')
 
    if isinstance(first, FixedDurationTuplet):
-      total_contents_duration = sum([x.duration.contents for x in tuplets])
+      total_contents_duration = sum([x.contents_duration for x in tuplets])
       new_target_duration = first_multiplier * total_contents_duration
       new_tuplet = FixedDurationTuplet(new_target_duration, [ ])
    elif isinstance(first, Tuplet):

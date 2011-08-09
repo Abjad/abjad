@@ -24,6 +24,10 @@ def _line_break_every(expr, line_duration, klass = Measure,
       ## compress these 4 lines to only the 4th line after duration migration
       if kind == 'seconds':
          cur_duration = cur.duration_in_seconds
+      elif kind == 'prolated':
+         cur_duration = cur.prolated_duration
+      elif kind == 'preprolated':
+         cur_duration = cur.preprolated_duration
       else:
          cur_duration = getattr(cur.duration, kind)
       candidate_duration = cum_duration + cur_duration

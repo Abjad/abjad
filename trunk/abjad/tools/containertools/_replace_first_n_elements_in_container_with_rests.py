@@ -115,7 +115,7 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
    if elements_to_replace:
 
       ## find preprolated duration of elements to replace
-      duration = sum([x.duration.preprolated for x in elements_to_replace])
+      duration = sum([x.preprolated_duration for x in elements_to_replace])
 
       ## construct rest chain equal in preprolated duration to replace
       rests = resttools.make_rests(duration, direction)

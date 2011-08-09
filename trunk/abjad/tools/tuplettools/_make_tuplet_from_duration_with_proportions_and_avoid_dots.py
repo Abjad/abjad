@@ -47,12 +47,12 @@ def _make_tuplet_from_duration_with_proportions_and_avoid_dots(
    fix_contents_of_tuplets_in_expr(tuplet)
 
    ## switch prolation if necessary
-   if not tuplet.duration.multiplier == 1:
+   if not tuplet.multiplier == 1:
       if prolation == 'diminution':
-         if not tuplet.duration.is_diminution:
+         if not tuplet.is_diminution:
             change_augmented_tuplets_in_expr_to_diminished(tuplet)
       else:
-         if tuplet.duration.is_diminution:
+         if tuplet.is_diminution:
             change_diminished_tuplets_in_expr_to_augmented(tuplet)
 
 #   ## give leaf position in score structure to tuplet

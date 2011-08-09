@@ -88,7 +88,8 @@ def copy_components_and_immediate_parent_of_first_component(components):
    parent = components[0]._parentage.parent
 
    # new: remember parent multiplier, if any
-   parent_multiplier = getattr(parent.duration, 'multiplier', 1)
+   #parent_multiplier = getattr(parent.duration, 'multiplier', 1)
+   parent_multiplier = getattr(parent, 'multiplier', 1)
 
    # new: remember parent denominator, if any
    if isinstance(parent, measuretools.Measure):
@@ -125,9 +126,9 @@ def copy_components_and_immediate_parent_of_first_component(components):
    ## TODO: change hard-coded class name testing to isinstance testing instead
    # new: resize result to match parent_multiplier, if resizable
    if result.__class__.__name__ == 'FixedDurationTuplet':
-      result.duration.target = parent_multiplier * result.duration.contents
+      result.target_duration = parent_multiplier * result.contents_duration
    elif result.__class__.__name__ == 'Measure':
-      new_duration = parent_multiplier * result.duration.contents
+      new_duration = parent_multiplier * result.contents_duration
       new_time_signature = contexttools.TimeSignatureMark(new_duration)
       contexttools.detach_time_signature_mark_attached_to_component(result)
       new_time_signature.attach_mark(result)

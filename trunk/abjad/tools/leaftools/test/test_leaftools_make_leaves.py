@@ -26,12 +26,12 @@ def test_leaftools_make_leaves_02( ):
    assert isinstance(leaves[1], Tuplet)
    tuplet1 = leaves[0] 
    assert len(tuplet1) == 2
-   assert tuplet1.duration.multiplier == Duration(8, 9)
+   assert tuplet1.multiplier == Duration(8, 9)
    assert isinstance(tuplet1[0], Note) 
    assert isinstance(tuplet1[1], Chord) 
    tuplet2 = leaves[1] 
    assert len(tuplet2) == 1
-   assert tuplet2.duration.multiplier == Duration(4, 5)
+   assert tuplet2.multiplier == Duration(4, 5)
    assert isinstance(tuplet2[0], Rest) 
 
    assert tuplet1[0].written_duration == Duration(2, 8)
@@ -52,11 +52,11 @@ def test_leaftools_make_leaves_03( ):
    assert isinstance(leaves[2], Tuplet)
    tuplet1 = leaves[0] 
    assert len(tuplet1) == 1
-   assert tuplet1.duration.multiplier == Duration(8, 9)
+   assert tuplet1.multiplier == Duration(8, 9)
    assert isinstance(tuplet1[0], Note) 
    tuplet2 = leaves[2] 
    assert len(tuplet2) == 1
-   assert tuplet2.duration.multiplier == Duration(4, 5)
+   assert tuplet2.multiplier == Duration(4, 5)
    assert isinstance(tuplet2[0], Rest) 
 
 

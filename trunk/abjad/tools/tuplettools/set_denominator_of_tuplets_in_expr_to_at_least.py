@@ -42,7 +42,7 @@ def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
    assert mathtools.is_nonnegative_integer_power_of_two(n)
    for tuplet in iterate_tuplets_forward_in_expr(expr):
       tuplet.force_fraction = True
-      durations = [tuplet.duration.contents, tuplet.duration.preprolated, (1, n)]
+      durations = [tuplet.contents_duration, tuplet.preprolated_duration, (1, n)]
       duration_pairs = durtools.duration_tokens_to_duration_pairs_with_least_common_denominator(
          durations)
-      tuplet.duration.preferred_denominator = duration_pairs[1][0]
+      tuplet.preferred_denominator = duration_pairs[1][0]

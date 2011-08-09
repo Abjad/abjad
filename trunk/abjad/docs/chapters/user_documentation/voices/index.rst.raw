@@ -117,15 +117,15 @@ print repr(voice.duration.contents) <hide
 The preprolated duration of a voice is usually equal to the voice's contents duration:
 
 <abjad>
-voice.duration.preprolated
-print repr(voice.duration.preprolated) <hide
+voice.preprolated_duration
+print repr(voice.preprolated_duration) <hide
 </abjad>
 
 The prolated duration of a voice is usually equal to the voice's contents duration, too:
 
 <abjad>
-voice.duration.preprolated
-print repr(voice.duration.preprolated) <hide
+voice.preprolated_duration
+print repr(voice.preprolated_duration) <hide
 </abjad>
 
 Only when you nest a very small voice inside a tuplet will the prolated and

@@ -49,9 +49,9 @@ class DynamicMeasure(Measure):
    def _update_time_signature(self):
       if self.denominator:
          meter_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(
-            self.duration.contents, self.denominator)
+            self.contents_duration, self.denominator)
       else:
-         meter_pair = (self.duration.contents.numerator, self.duration.contents.denominator)
+         meter_pair = (self.contents_duration.numerator, self.contents_duration.denominator)
       meter = contexttools.TimeSignatureMark(meter_pair)
       meter.suppress = self.suppress_meter
       contexttools.detach_time_signature_mark_attached_to_component(self)
@@ -95,6 +95,10 @@ class DynamicMeasure(Measure):
          self._denominator = arg
          self._update_time_signature( )
       return property(**locals( ))
+
+   @property
+   def preprolated_duration(self):
+      return self.contents_duration
 
    @apply
    def suppress_meter( ):

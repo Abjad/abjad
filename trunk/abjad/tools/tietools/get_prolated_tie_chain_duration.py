@@ -19,6 +19,6 @@ def get_prolated_tie_chain_duration(tie_chain):
    assert is_tie_chain(tie_chain)
 
    try:
-      return tie_chain[0].tie.spanner.duration.prolated
+      return tie_chain[0].tie.spanner.prolated_duration
    except MissingSpannerError:
-      return tie_chain[0].duration.prolated
+      return tie_chain[0].prolated_duration

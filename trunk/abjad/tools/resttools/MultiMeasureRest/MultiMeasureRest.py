@@ -19,7 +19,7 @@ class MultiMeasureRest(Rest):
 
    @property
    def _compact_representation(self):
-      return 'R%s' % self.duration
+      return 'R%s' % self._formatted_duration
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -27,5 +27,5 @@ class MultiMeasureRest(Rest):
    def _body(self):
       '''Read-only list of string representation of body of rest.  
       Picked up as format contribution at format-time.'''
-      result = 'R' + str(self.duration)
+      result = 'R' + str(self._formatted_duration)
       return [result]

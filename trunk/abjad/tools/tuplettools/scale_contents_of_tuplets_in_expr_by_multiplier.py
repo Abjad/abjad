@@ -20,11 +20,11 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
    assert isinstance(multiplier, fractions.Fraction)
 
    # find new target duration
-   old_target_duration = tuplet.duration.target
+   old_target_duration = tuplet.target_duration
    new_target_duration = multiplier * old_target_duration
 
    # change tuplet target duration
-   tuplet.duration.target = new_target_duration
+   tuplet.target_duration = new_target_duration
 
    # if multiplier is note head assignable, scale contents graphically
    if durtools.is_assignable_rational(multiplier):
@@ -33,7 +33,7 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
             leaftools.scale_preprolated_leaf_duration(component, multiplier)
 
    # otherwise doctor up tuplet multiplier, if necessary
-   elif not is_proper_tuplet_multiplier(tuplet.duration.multiplier):
+   elif not is_proper_tuplet_multiplier(tuplet.multiplier):
          fix_contents_of_tuplets_in_expr(tuplet)
 
    # return tuplet

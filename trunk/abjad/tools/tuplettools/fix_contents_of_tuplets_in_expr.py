@@ -28,7 +28,7 @@ def fix_contents_of_tuplets_in_expr(tuplet):
       raise TypeError('must be fixed-duration tuplet.')
 
    # find tuplet multiplier
-   integer_exponent = int(math.log(tuplet.duration.multiplier, 2))
+   integer_exponent = int(math.log(tuplet.multiplier, 2))
    leaf_multiplier = fractions.Fraction(2) ** integer_exponent
 
    # scale leaves in tuplet by power of two

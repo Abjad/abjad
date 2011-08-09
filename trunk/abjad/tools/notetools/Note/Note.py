@@ -62,7 +62,8 @@ class Note(_Leaf):
       result = ''
       if self.written_pitch:
          result += str(self.written_pitch)
-      result += str(self.duration)
+      #result += str(self.duration)
+      result += self._formatted_duration
       return [result] 
 
    @property

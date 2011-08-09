@@ -33,7 +33,8 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
          return component, None
 
    ## remember container multiplier, if any
-   container_multiplier = getattr(component.duration, 'multiplier', None)
+   #container_multiplier = getattr(component.duration, 'multiplier', None)
+   container_multiplier = getattr(component, 'multiplier', None)
 
    ## partition music of input container
    left_music = component[:i]
@@ -42,13 +43,13 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
    ## instantiate new left and right containers
    if isinstance(component, Measure):
       meter_denominator = contexttools.get_effective_time_signature(component).denominator
-      left_duration = sum([x.duration.prolated for x in left_music])
+      left_duration = sum([x.prolated_duration for x in left_music])
       left_pair = \
          durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
          left_duration, meter_denominator)
       left_meter = contexttools.TimeSignatureMark(*left_pair)
       left = component.__class__(left_meter, left_music)
-      right_duration = sum([x.duration.prolated for x in right_music])
+      right_duration = sum([x.prolated_duration for x in right_music])
       right_pair = \
          durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
          right_duration, meter_denominator)

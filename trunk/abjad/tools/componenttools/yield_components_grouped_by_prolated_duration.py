@@ -18,8 +18,8 @@ def yield_components_grouped_by_prolated_duration(components):
    for component in components:
       if cur_group:
          prev_component = cur_group[-1]
-         prev_duration = prev_component.duration.prolated
-         cur_duration = component.duration.prolated
+         prev_duration = prev_component.prolated_duration
+         cur_duration = component.prolated_duration
          if cur_duration == prev_duration:
             cur_group.append(component)
          else:

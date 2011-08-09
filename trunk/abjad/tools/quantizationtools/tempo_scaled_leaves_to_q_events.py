@@ -52,10 +52,10 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo = None):
 
       # get millisecond cumulative duration
       if tempo is not None:
-         duration = sum([tempo_scaled_rational_to_milliseconds(x.duration.prolated, tempo)
+         duration = sum([tempo_scaled_rational_to_milliseconds(x.prolated_duration, tempo)
             for x in group])
       else:
-         duration = sum([tempo_scaled_rational_to_milliseconds(x.duration.prolated,
+         duration = sum([tempo_scaled_rational_to_milliseconds(x.prolated_duration,
             get_effective_tempo(x)) for x in group])
       durations.append(duration)
 

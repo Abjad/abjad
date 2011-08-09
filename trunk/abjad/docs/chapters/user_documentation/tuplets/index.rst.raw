@@ -144,7 +144,7 @@ and the tuplet's contents duration:
 
 <abjad>
 tuplet.duration.multiplied
-print repr(tuplet.duration.preprolated) <hide
+print repr(tuplet.preprolated_duration) <hide
 </abjad>
 
 Understanding rhythmic augmentation and diminution

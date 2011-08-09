@@ -9,10 +9,10 @@ class MisduratedMeasureCheck(_Check):
       from abjad.tools import measuretools
       violators = [ ]
       total, bad = 0, 0
-      for t in measuretools.iterate_measures_forward_in_expr(expr):
-         if contexttools.get_effective_time_signature(t) is not None:
-            if t.duration.preprolated != contexttools.get_effective_time_signature(t).duration:
-               violators.append(t)
+      for measure in measuretools.iterate_measures_forward_in_expr(expr):
+         if contexttools.get_effective_time_signature(measure) is not None:
+            if measure.preprolated_duration != contexttools.get_effective_time_signature(measure).duration:
+               violators.append(measure)
                bad += 1
          total += 1
       return violators, total

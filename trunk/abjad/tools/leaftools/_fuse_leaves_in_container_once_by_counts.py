@@ -22,7 +22,7 @@ def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = No
    ## find preprolated durations of glommed parts of container
    tokens = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(
       container, counts)
-   durations = [sum([x.duration.preprolated for x in part]) for part in tokens]
+   durations = [sum([x.preprolated_duration for x in part]) for part in tokens]
 
    ## construct new notes or rests
    if target_type == Note:

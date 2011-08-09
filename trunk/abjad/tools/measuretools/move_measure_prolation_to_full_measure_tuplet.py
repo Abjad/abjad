@@ -41,7 +41,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
          binary_meter.attach_mark(measure)
 
          ## find target duration and create tuplet
-         target_duration = meter_multiplier * measure.duration.contents
+         target_duration = meter_multiplier * measure.contents_duration
          tuplet = FixedDurationTuplet(target_duration, measure[:])
 
          ## scale tuplet contents, if helpful

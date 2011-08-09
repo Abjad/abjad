@@ -10,7 +10,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
       abjad> note = Note("c'4")
       abjad> note.written_duration 
       Duration(1, 4)
-      abjad> note.duration.preprolated 
+      abjad> note.preprolated_duration 
       Duration(1, 4)
       
    ::
@@ -22,7 +22,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
       
       abjad> note.written_duration 
       Duration(3, 16)
-      abjad> note.duration.preprolated 
+      abjad> note.preprolated_duration 
       Duration(1, 4)
 
    Add LilyPond multiplier where necessary.

@@ -59,7 +59,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
 
    result = [ ]
 
-   if component.duration.prolated <= prolated_offset:
+   if component.prolated_duration <= prolated_offset:
       return result
 
    boundary_time = component._offset.start + prolated_offset

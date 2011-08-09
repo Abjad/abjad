@@ -7,12 +7,12 @@ def test_containertools_set_container_multiplier_01( ):
       by adjusting target duration.'''
 
    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-   assert t.duration.target == Duration(2, 8)
-   assert t.duration.multiplier == Duration(2, 3)
+   assert t.target_duration == Duration(2, 8)
+   assert t.multiplier == Duration(2, 3)
 
    containertools.set_container_multiplier(t, Duration(5, 8))
-   assert t.duration.target == Duration(15, 64)
-   assert t.duration.multiplier == Duration(5, 8)
+   assert t.target_duration == Duration(15, 64)
+   assert t.multiplier == Duration(5, 8)
 
 
 def test_containertools_set_container_multiplier_02( ):

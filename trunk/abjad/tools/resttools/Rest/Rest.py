@@ -50,11 +50,13 @@ class Rest(_Leaf):
          result += str(vertical_positioning_pitch)
       else:
          result += 'r'
-      result += str(self.duration)
+      #result += str(self.duration)
+      result += str(self._formatted_duration)
       if vertical_positioning_pitch:
          result += r' \rest'
       return [result]
 
    @property
    def _compact_representation(self):
-      return 'r%s' % self.duration
+      #return 'r%s' % self.duration
+      return 'r%s' % self._formatted_duration

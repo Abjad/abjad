@@ -121,9 +121,9 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 ##   there are five different timepoints relative to the timespan of a note:
 ##     1. 'before', ie a negative number
 ##     2. 'start', ie 0 which is the startpoint of the timespan
-##     3. 'mid', ie some value y such that 0 < y < t.duration.prolated
-##     4. 'stop', ie t.duration.prolated
-##     5. 'after', ie some value z such that t.duration.prolated < z
+##     3. 'mid', ie some value y such that 0 < y < t.prolated_duration
+##     4. 'stop', ie t.prolated_duration
+##     5. 'after', ie some value z such that t.prolated_duration < z
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_08( ):

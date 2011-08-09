@@ -15,23 +15,23 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def contents(self):
-      client = self._client
-      if client.is_parallel: 
-         return max(
-            [durtools.Duration(0)] + [x.duration.preprolated for x in client])
-      else:
-         duration = durtools.Duration(0)
-         for x in client:
-            duration += x.duration.preprolated
-         return duration
+#   @property
+#   def contents(self):
+#      client = self._client
+#      if client.is_parallel: 
+#         return max(
+#            [durtools.Duration(0)] + [x.preprolated_duration for x in client])
+#      else:
+#         duration = durtools.Duration(0)
+#         for x in client:
+#            duration += x.preprolated_duration
+#         return duration
 
-   @apply
-   def preprolated( ):
-      def fget(self):
-         return self.contents
-      return  property(**locals( ))
+#   @apply
+#   def preprolated( ):
+#      def fget(self):
+#         return self.contents
+#      return  property(**locals( ))
 
 #   @property
 #   def seconds(self):

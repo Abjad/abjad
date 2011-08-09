@@ -32,13 +32,13 @@ def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attribute
       meter_pair = (meter.numerator, meter.denominator)
       return '%s(%s, [\n%s\n])' % (class_name, str(meter_pair), contents)
    elif isinstance(container, FixedDurationTuplet):
-      duration = repr(container.duration.target)
+      duration = repr(container.target_duration)
       if keyword_attributes:
          return '%s(%s, [\n%s\n], %s)' % (class_name, duration, contents, keyword_attributes)
       else:
          return '%s(%s, [\n%s\n])' % (class_name, duration, contents)
    elif isinstance(container, Tuplet):
-      multiplier = repr(container.duration.multiplier)
+      multiplier = repr(container.multiplier)
       if keyword_attributes:
          return '%s(%s, [\n%s\n], %s)' % (class_name, multiplier, contents, keyword_attributes)
       else:

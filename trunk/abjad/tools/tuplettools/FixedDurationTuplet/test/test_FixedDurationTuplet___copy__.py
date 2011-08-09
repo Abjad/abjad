@@ -20,4 +20,4 @@ def test_FixedDurationTuplet___copy___01( ):
 
    tuplet_2 = copy.copy(tuplet_1)
 
-   assert tuplet_2.duration.target == tuplet_1.duration.target
+   assert tuplet_2.target_duration == tuplet_1.target_duration

@@ -27,19 +27,19 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       formatter = self.formatter
       tuplet = formatter.tuplet
-      if tuplet.duration.multiplier:
+      if tuplet.multiplier:
          if tuplet.is_invisible:
-            multiplier = tuplet.duration.multiplier
+            multiplier = tuplet.multiplier
             n, d = multiplier.numerator, multiplier.denominator
             contributor = (tuplet, 'is_invisible')
             contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
             result.append([contributor, contributions])
          else:
             contributor = ('tuplet_brackets', 'open')
-            if tuplet.duration.multiplier != 1:
+            if tuplet.multiplier != 1:
                contributions = [r'%s\times %s %s' % (
                   formatter._fraction, 
-                  tuplet.duration._multiplier_fraction_string,
+                  tuplet._multiplier_fraction_string,
                   '{'
                   )]
             else:
@@ -83,7 +83,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       '''
       result = [ ]
       tuplet = self.formatter.tuplet
-      if tuplet.duration.multiplier:
+      if tuplet.multiplier:
          result.append([('tuplet_brackets', 'close'), '}'])
       return tuple(result)
 

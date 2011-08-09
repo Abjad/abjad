@@ -55,7 +55,7 @@ def test_leaftools_fuse_leaves_big_endian_05( ):
    }
    '''
 
-   assert t.duration.prolated == Duration(3, 8)
+   assert t.prolated_duration == Duration(3, 8)
 
    result = leaftools.fuse_leaves_big_endian(t[:])
 
@@ -67,4 +67,4 @@ def test_leaftools_fuse_leaves_big_endian_05( ):
 
    assert componenttools.is_well_formed_component(t)
    assert len(result) == 1
-   assert t.duration.prolated == Duration(3, 8)
+   assert t.prolated_duration == Duration(3, 8)

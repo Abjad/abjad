@@ -25,7 +25,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
 
    With mode = 'skip':
       Populate with exactly one skip, such that
-      skip.duration.prolated == effective_meter.duration.
+      skip.prolated_duration == effective_meter.duration.
       Remove spanners attaching to measure.
 
    When mode is None:

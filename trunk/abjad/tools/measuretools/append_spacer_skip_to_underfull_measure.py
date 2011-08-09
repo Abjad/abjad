@@ -11,7 +11,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
       TimeSignatureMark(4, 12)
       abjad> contexttools.TimeSignatureMark(5, 12)(measure)
       TimeSignatureMark(5, 12)(|5/12, c'8, d'8, e'8, f'8|)
-      abjad> measure.duration.is_underfull 
+      abjad> measure.is_underfull 
       True
       
    ::
@@ -46,9 +46,9 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
 
    assert isinstance(rigid_measure, Measure)
 
-   if rigid_measure.duration.is_underfull:
+   if rigid_measure.is_underfull:
       target_duration = contexttools.get_effective_time_signature(rigid_measure).duration
-      prolated_duration = rigid_measure.duration.prolated
+      prolated_duration = rigid_measure.prolated_duration
       skip = Skip((1, 1))
       meter_multiplier = contexttools.get_effective_time_signature(rigid_measure).multiplier
       new_multiplier = (target_duration - prolated_duration) / meter_multiplier

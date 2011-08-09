@@ -47,7 +47,7 @@ class _OffsetInterface(_Interface):
       else:
          #self._start = durtools.Duration(0)
          self._start = durtools.Offset(0)
-      self._stop = self._start + self._client.duration.prolated
+      self._stop = self._start + self._client.prolated_duration
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -59,10 +59,10 @@ class _OffsetInterface(_Interface):
 
    @property
    def stop(self):
-#      #return self.start + self._client.duration.prolated
+#      #return self.start + self._client.prolated_duration
 #      self._component._update_entire_score_tree_if_necessary( )
 #      return self._stop
-      return self.start + self._client.duration.prolated
+      return self.start + self._client.prolated_duration
 
    @property
    def start_in_seconds(self):

@@ -43,7 +43,7 @@ def _split_components_by_prolated_durations(components, durations,
       except IndexError:
          break
       ## find where end point of current component will position us
-      next_cum_duration = cum_duration + x.duration.prolated
+      next_cum_duration = cum_duration + x.prolated_duration
       #print x, duration_index, cum_duration, next_split_point
       ## if current component fills duration of current part exactly
       if next_cum_duration == next_split_point:
@@ -71,7 +71,7 @@ def _split_components_by_prolated_durations(components, durations,
       else:
          #print 'simple append %s' % x
          part.append(x)
-         cum_duration += x.duration.prolated
+         cum_duration += x.prolated_duration
       #print ''
 
    ## append stub part, if any 

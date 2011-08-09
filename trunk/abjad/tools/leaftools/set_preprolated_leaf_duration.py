@@ -133,7 +133,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
          componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, tied_leaves)
          if not spannertools.is_component_with_spanner_attached(leaf, tietools.TieSpanner):
             tietools.TieSpanner(all_leaves) 
-         tuplet_multiplier = fmtuplet.duration.multiplier
+         tuplet_multiplier = fmtuplet.multiplier
          Tuplet(tuplet_multiplier, all_leaves)
       else:
          raise ValueError('unexpected output from notetools.make_notes.')
