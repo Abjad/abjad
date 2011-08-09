@@ -10,7 +10,7 @@ def get_python_version_string( ):
 
    ::
 
-      abjad> cfgtools.get_python_version_string( )
+      abjad> cfgtools.get_python_version_string( ) # doctest: +SKIP
       '2.6.1'
 
    Return string.

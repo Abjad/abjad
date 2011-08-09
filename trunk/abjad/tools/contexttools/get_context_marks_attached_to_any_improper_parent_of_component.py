@@ -27,7 +27,7 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
 
    ::
 
-      abjad> contexttools.get_context_marks_attached_to_any_improper_parent_of_component(staff[0])
+      abjad> contexttools.get_context_marks_attached_to_any_improper_parent_of_component(staff[0]) # doctest: +SKIP
       set([DynamicMark('f')(c'8), ClefMark('treble')(Staff{4})])
 
    Return unordered set of zero or more context marks.

@@ -17,17 +17,13 @@ def get_spanners_attached_to_any_improper_parent_of_component(component, klass =
       
    ::
       
-      abjad> spannertools.get_spanners_attached_to_any_improper_parent_of_component(staff[0])
+      abjad> spannertools.get_spanners_attached_to_any_improper_parent_of_component(staff[0]) # doctest: +SKIP
       set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8, e'8, f'8), TrillSpanner({c'8, d'8, e'8, f'8})])
 
    Return unordered set of zero or more spanners.
 
    .. versionchanged:: 1.1.2
       renamed ``spannertools.get_all_spanners_attached_to_improper_parentage_of_component( )`` to
-      ``spannertools.get_spanners_attached_to_any_improper_parent_of_component( )``.
-
-   .. versionchanged:: 1.1.2
-      renamed ``spannertools.get_all_spanners_attached_to_any_improper_parent_of_component( )`` to
       ``spannertools.get_spanners_attached_to_any_improper_parent_of_component( )``.
    '''
    from abjad.tools import componenttools

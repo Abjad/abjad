@@ -2,8 +2,7 @@ from abjad.tools import seqtools
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
-def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
-   notes, subrun_indicators):
+def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators):
    '''.. versionadded:: 1.1.1
 
    Insert and transpose nested subruns in `chromatic_pitch_class_number_list` 
@@ -16,9 +15,9 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
       abjad> t = [ ]
       abjad> for x in notes:
       ...   try:
-      ...      t.append(x.pitch.chromatic_pitch_number)
+      ...      t.append(x.written_pitch.chromatic_pitch_number)
       ...   except AttributeError:
-      ...      t.append([y.pitch.chromatic_pitch_number for y in x])
+      ...      t.append([y.written_pitch.chromatic_pitch_number for y in x])
 
       abjad> t
       [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]

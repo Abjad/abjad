@@ -31,4 +31,4 @@ class NaturalHarmonic(Note, _Flageolet):
    ## OVERLOADS ##
 
    def __repr__(self):
-      return '%s(%s, %s)' % (self.__class__.__name__, self.pitch, self.duration)
+      return '%s(%s, %s)' % (self.__class__.__name__, self.written_pitch, self._formatted_duration)

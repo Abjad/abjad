@@ -21,19 +21,19 @@ def get_spanners_attached_to_component(component, klass = None):
 
    ::
 
-      abjad> spannertools.get_spanners_attached_to_component(staff.leaves[0])
+      abjad> spannertools.get_spanners_attached_to_component(staff.leaves[0]) # doctest: +SKIP
       set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), CrescendoSpanner(c'8, d'8, e'8, f'8)])
 
    Get spanners of `klass` attached to `component`::
 
       abjad> klass = spannertools.BeamSpanner
-      abjad> spannertools.get_spanners_attached_to_component(staff.leaves[0], klass)
+      abjad> spannertools.get_spanners_attached_to_component(staff.leaves[0], klass) # doctest: +SKIP
       set([BeamSpanner(c'8, d'8, e'8, f'8)])
 
    Get spanners of any `klass` attached to `component`::
 
       abjad> klasses = (spannertools.BeamSpanner, spannertools.SlurSpanner)
-      abjad> spannertools.get_spanners_attached_to_component(staff.leaves[0], klasses)
+      abjad> spannertools.get_spanners_attached_to_component(staff.leaves[0], klasses) # doctest: +SKIP
       set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8)])
 
    Return unordered set of zero or more spanners.

@@ -41,7 +41,7 @@ def make_covered_spanner_schema(components):
 
    ::
 
-      abjad> spannertools.make_covered_spanner_schema([voice])
+      abjad> spannertools.make_covered_spanner_schema([voice]) # doctest: +SKIP
       {BeamSpanner(c'8, d'8, e'8, f'8): [2, 3, 5, 6], SlurSpanner(|2/8(2)|, |2/8(2)|): [7, 10]}
 
    Return dictionary.

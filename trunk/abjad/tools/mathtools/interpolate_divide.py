@@ -12,15 +12,15 @@ def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
 
       abjad> mathtools.interpolate_divide(10, 1, 1, exp=1)
       [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-      abjad> sum(_)
+      abjad> sum(mathtools.interpolate_divide(10, 1, 1, exp=1))
       10.0
 
    ::
 
-      abjad> mathtools.interpolate_divide(10, 5, 1)
+      abjad> mathtools.interpolate_divide(10, 5, 1) # doctest: +SKIP
       [4.7986734489043181, 2.8792040693425909, 1.3263207210948171, 
       0.99580176065827419]
-      abjad> sum(_)
+      abjad> sum(mathtools.interpolate_divide(10, 5, 1))
       10.0 
 
    Set ``exp='cosine'`` for cosine interpolation.

@@ -25,6 +25,7 @@ class IntervalTree(_RedBlackTree):
       abjad> from abjad.tools.intervaltreetools import BoundedInterval
       abjad> bi = BoundedInterval(0, 10)
       abjad> tree = IntervalTree([bi])
+
    '''
 
    __slots__ = ('_root', '_sentinel')

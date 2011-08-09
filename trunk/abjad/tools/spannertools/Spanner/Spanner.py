@@ -299,17 +299,17 @@ class Spanner(_StrictComparator):
 
       ::
 
-         abjad> spanner.written_duration
+         abjad> spanner.duration.written
          Duration(1, 4)
 
       ::
 
-         abjad> spanner.preprolated_duration
+         abjad> spanner.duration.preprolated
          Duration(1, 4)
 
       ::
 
-         abjad> spanner.prolated_duration
+         abjad> spanner.duration.prolated
          Duration(1, 4)
 
       Spanner duration interface also implements ``seconds`` attribute.

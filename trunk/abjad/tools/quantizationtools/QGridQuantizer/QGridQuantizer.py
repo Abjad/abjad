@@ -253,10 +253,10 @@ class QGridQuantizer(_Quantizer):
                if pitch[0] is None:
                   parent[idx] = Rest(leaf)
                else:
-                  leaf.pitch = pitch[0]
+                  leaf.written_pitch = pitch[0]
             else:
                parent[idx] = Chord(leaf)
-               parent[idx].pitches = pitch
+               parent[idx].written_pitches = pitch
 
       # rest any trailing, untied leaves
       trailing = container.leaves[indices[-1]:]
