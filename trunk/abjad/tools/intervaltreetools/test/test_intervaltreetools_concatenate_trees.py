@@ -30,7 +30,7 @@ def test_intervaltreetools_concatenate_trees_02( ):
     concatenated = concatenate_trees([tree_a, tree_b], padding = Fraction(1, 2))
 
     target_signatures =  [(0, 10), (5, 15), (10, 20), \
-                          (Fraction(41, 2), Fraction(61, 2)), (Fraction(51, 2), 
+                          (Fraction(41, 2), Fraction(61, 2)), (Fraction(51, 2),
                           Fraction(71, 2)), (Fraction(61, 2), Fraction(81, 2))]
     actual_signatures = [interval.signature for interval in concatenated]
 

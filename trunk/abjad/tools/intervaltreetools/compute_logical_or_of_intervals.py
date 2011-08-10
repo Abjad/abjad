@@ -6,20 +6,20 @@ from abjad.tools.intervaltreetools.fuse_tangent_or_overlapping_intervals import 
 
 
 def compute_logical_or_of_intervals(intervals):
-   '''Compute the logical OR of a collection of intervals.'''
+    '''Compute the logical OR of a collection of intervals.'''
 
-   assert all_are_intervals_or_trees_or_empty(intervals)
-   if isinstance(intervals, IntervalTree):
-      tree = intervals
-   else:
-      tree = IntervalTree(intervals)
-   if not tree:
-      return tree
+    assert all_are_intervals_or_trees_or_empty(intervals)
+    if isinstance(intervals, IntervalTree):
+        tree = intervals
+    else:
+        tree = IntervalTree(intervals)
+    if not tree:
+        return tree
 
-   depth_tree = compute_depth_of_intervals(tree)
-   logic_tree = IntervalTree(filter(lambda x: 1 <= x['depth'], depth_tree))
+    depth_tree = compute_depth_of_intervals(tree)
+    logic_tree = IntervalTree(filter(lambda x: 1 <= x['depth'], depth_tree))
 
-   return logic_tree
+    return logic_tree
 
 #   if not logic_tree:
 #      return logic_tree

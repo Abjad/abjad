@@ -5,12 +5,12 @@ from abjad import Fraction
 
 
 def test_intervaltreetools_calculate_min_mean_and_max_magnitude_of_intervals_01( ):
-   tree = IntervalTree([ ])
-   result = calculate_min_mean_and_max_magnitude_of_intervals(tree)
-   assert result is None
+    tree = IntervalTree([ ])
+    result = calculate_min_mean_and_max_magnitude_of_intervals(tree)
+    assert result is None
 
 
 def test_intervaltreetools_calculate_min_mean_and_max_magnitude_of_intervals_02( ):
-   tree = IntervalTree(_make_test_intervals( ))
-   result = calculate_min_mean_and_max_magnitude_of_intervals(tree)
-   assert result == (1, Fraction(15, 4), 8)
+    tree = IntervalTree(_make_test_intervals( ))
+    result = calculate_min_mean_and_max_magnitude_of_intervals(tree)
+    assert result == (1, Fraction(15, 4), 8)

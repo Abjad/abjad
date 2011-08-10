@@ -5,27 +5,27 @@ import py.test
 
 
 def test_intervaltreetools_scale_aggregate_magnitude_to_rational_01( ):
-   a = BoundedInterval(Fraction(-1, 2), 1)
-   b = BoundedInterval(2, Fraction(7, 3))
-   tree = IntervalTree([a, b])
-   rational = 3
-   result = scale_aggregate_magnitude_to_rational(tree, rational)
-   assert result.magnitude == 3
-   assert [x.signature for x in result] == \
-      [(Fraction(-1, 2), Fraction(37, 34)), (Fraction(73, 34), Fraction(5, 2))]
+    a = BoundedInterval(Fraction(-1, 2), 1)
+    b = BoundedInterval(2, Fraction(7, 3))
+    tree = IntervalTree([a, b])
+    rational = 3
+    result = scale_aggregate_magnitude_to_rational(tree, rational)
+    assert result.magnitude == 3
+    assert [x.signature for x in result] == \
+        [(Fraction(-1, 2), Fraction(37, 34)), (Fraction(73, 34), Fraction(5, 2))]
 
 def test_intervaltreetools_scale_aggregate_magnitude_to_rational_02( ):
-   a = BoundedInterval(Fraction(-1, 2), 1)
-   b = BoundedInterval(2, Fraction(7, 3))
-   tree = IntervalTree([a, b])
-   rational = -1
-   py.test.raises(AssertionError,
-      "result = scale_aggregate_magnitude_to_rational(tree, rational)")
+    a = BoundedInterval(Fraction(-1, 2), 1)
+    b = BoundedInterval(2, Fraction(7, 3))
+    tree = IntervalTree([a, b])
+    rational = -1
+    py.test.raises(AssertionError,
+        "result = scale_aggregate_magnitude_to_rational(tree, rational)")
 
 def test_intervaltreetools_scale_aggregate_magnitude_to_rational_03( ):
-   a = BoundedInterval(Fraction(-1, 2), 1)
-   b = BoundedInterval(2, Fraction(7, 3))
-   tree = IntervalTree([a, b])
-   rational = 0
-   py.test.raises(AssertionError,
-      "result = scale_aggregate_magnitude_to_rational(tree, rational)")
+    a = BoundedInterval(Fraction(-1, 2), 1)
+    b = BoundedInterval(2, Fraction(7, 3))
+    tree = IntervalTree([a, b])
+    rational = 0
+    py.test.raises(AssertionError,
+        "result = scale_aggregate_magnitude_to_rational(tree, rational)")

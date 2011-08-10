@@ -4,10 +4,10 @@ from abjad.tools.intervaltreetools._make_test_intervals import _make_test_interv
 
 
 def test_IntervalTree_bounds_01( ):
-   tree = IntervalTree([ ])
-   assert tree.bounds is None
+    tree = IntervalTree([ ])
+    assert tree.bounds is None
 
 
 def test_IntervalTree_bounds_02( ):
-   tree = IntervalTree(_make_test_intervals( ))
-   assert tree.bounds == BoundedInterval(0, 37)
+    tree = IntervalTree(_make_test_intervals( ))
+    assert tree.bounds == BoundedInterval(0, 37)

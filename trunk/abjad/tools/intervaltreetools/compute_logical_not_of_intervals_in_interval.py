@@ -6,22 +6,22 @@ from abjad.tools.intervaltreetools.fuse_tangent_or_overlapping_intervals import 
 
 
 def compute_logical_not_of_intervals_in_interval(intervals, interval):
-   '''Compute the logical NOT of some collection of intervals,   
-   cropped within `interval`.  
-   '''
+    '''Compute the logical NOT of some collection of intervals,
+    cropped within `interval`.
+    '''
 
-   assert all_are_intervals_or_trees_or_empty(intervals)
-   if isinstance(intervals, IntervalTree):
-      tree = intervals
-   else:
-      tree = IntervalTree(intervals)
-   if not tree:
-      return tree
+    assert all_are_intervals_or_trees_or_empty(intervals)
+    if isinstance(intervals, IntervalTree):
+        tree = intervals
+    else:
+        tree = IntervalTree(intervals)
+    if not tree:
+        return tree
 
-   depth_tree = compute_depth_of_intervals_in_interval(tree, interval)
-   logic_tree = IntervalTree(filter(lambda x: 0 == x['depth'], depth_tree))
+    depth_tree = compute_depth_of_intervals_in_interval(tree, interval)
+    logic_tree = IntervalTree(filter(lambda x: 0 == x['depth'], depth_tree))
 
-   return logic_tree
+    return logic_tree
 
 #   if not logic_tree:
 #      return logic_tree
