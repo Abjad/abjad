@@ -3,19 +3,19 @@ import os
 
 
 def remove_abjad_pyc_files( ):
-   '''Remove ``.pyc`` files from Abjad source tree::
+    '''Remove ``.pyc`` files from Abjad source tree::
 
-      abjad> iotools.remove_abjad_pyc_files( ) # doctest: +SKIP
+        abjad> iotools.remove_abjad_pyc_files( ) # doctest: +SKIP
 
-   Return none.
-   '''
+    Return none.
+    '''
 
-   project_root = ABJADPATH.rstrip('abjad')
+    project_root = ABJADPATH.rstrip('abjad')
 
-   for root, dirs, files in os.walk(project_root):
-      if '.svn' in dirs:
-         dirs.remove('.svn')
-      for file in files:
-         if file.endswith('.pyc'):
-            file_full_path = os.path.join(root, file)
-            os.remove(file_full_path)
+    for root, dirs, files in os.walk(project_root):
+        if '.svn' in dirs:
+            dirs.remove('.svn')
+        for file in files:
+            if file.endswith('.pyc'):
+                file_full_path = os.path.join(root, file)
+                os.remove(file_full_path)

@@ -5,32 +5,32 @@ import shutil
 
 
 def write_expr_to_pdf(expr, file_name, template = None, print_status = True):
-   '''Write `expr` to pdf `file_name`::
+    '''Write `expr` to pdf `file_name`::
 
-      abjad> note = Note("c'4")
-      abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf') # doctest: +SKIP
+        abjad> note = Note("c'4")
+        abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf') # doctest: +SKIP
 
-   Write `expr` to pdf `file_name` with `template`::
+    Write `expr` to pdf `file_name` with `template`::
 
-      abjad> note = Note("c'4")
-      abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf', 'paris') # doctest: +SKIP
+        abjad> note = Note("c'4")
+        abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf', 'paris') # doctest: +SKIP
 
-   Return none.
-   '''
+    Return none.
+    '''
 
-   ## massage file_name
-   file_name = os.path.expanduser(file_name)
-   if not file_name.endswith('.pdf'):
-      file_name += '.pdf'
+    ## massage file_name
+    file_name = os.path.expanduser(file_name)
+    if not file_name.endswith('.pdf'):
+        file_name += '.pdf'
 
-   name, actual_format_time, actual_lily_file = _log_render_lilypond_input(
-      expr, template = template)
+    name, actual_format_time, actual_lily_file = _log_render_lilypond_input(
+        expr, template = template)
 
-   ## copy PDF file to file_name
-   pdf_name = name[:-3] + '.pdf'
-   ABJADOUTPUT = _read_config_file( )['abjad_output']
-   full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
-   shutil.move(full_path_pdf_name, file_name)
+    ## copy PDF file to file_name
+    pdf_name = name[:-3] + '.pdf'
+    ABJADOUTPUT = _read_config_file( )['abjad_output']
+    full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
+    shutil.move(full_path_pdf_name, file_name)
 
-   if print_status:
-      print 'PDF written to "%s" ...' % os.path.basename(file_name)
+    if print_status:
+        print 'PDF written to "%s" ...' % os.path.basename(file_name)

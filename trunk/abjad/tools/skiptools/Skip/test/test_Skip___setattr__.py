@@ -3,9 +3,9 @@ import py.test
 
 
 def test_Skip___setattr___01( ):
-   '''Slots constrain skip attributes.
-   '''
+    '''Slots constrain skip attributes.
+    '''
 
-   skip = skiptools.Skip((1, 4))
+    skip = skiptools.Skip((1, 4))
 
-   assert py.test.raises(AttributeError, "skip.foo = 'bar'")
+    assert py.test.raises(AttributeError, "skip.foo = 'bar'")

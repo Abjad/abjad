@@ -6,29 +6,29 @@ from abjad.tools.iotools.write_expr_to_pdf import write_expr_to_pdf
 
 
 def write_expr_to_ly_and_to_pdf_and_show(expr, name, template = None, write = True):
-   '''Write `expr` to named ``.ly`` and to PDF and then open the resulting PDF::
+    '''Write `expr` to named ``.ly`` and to PDF and then open the resulting PDF::
 
-      abjad> iotools.write_expr_to_ly_and_to_pdf_and_show(Note("c'8"), 'file_name_stem') # doctest: +SKIP
+        abjad> iotools.write_expr_to_ly_and_to_pdf_and_show(Note("c'8"), 'file_name_stem') # doctest: +SKIP
 
-   Write `expr` to temporary ``.ly`` and to PDF and then open the resulting PDF::
+    Write `expr` to temporary ``.ly`` and to PDF and then open the resulting PDF::
 
-      abjad> iotools.write_expr_to_ly_and_to_pdf_and_show(Note("c'8"), 'file_name_stem', write = False) # doctest: +SKIP
+        abjad> iotools.write_expr_to_ly_and_to_pdf_and_show(Note("c'8"), 'file_name_stem', write = False) # doctest: +SKIP
 
-   Return none.
+    Return none.
 
-   The purpose of this function is to save named ``.ly`` and PDF output.
+    The purpose of this function is to save named ``.ly`` and PDF output.
 
-   .. versionchanged:: 1.1.2
-      renamed ``io.write_and_show( )`` to
-      ``io.write_expr_to_ly_and_to_pdf_and_show( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``io.write_and_show( )`` to
+        ``io.write_expr_to_ly_and_to_pdf_and_show( )``.
+    '''
 
-   lily_time = 10
+    lily_time = 10
 
-   if write:
-      write_expr_to_ly(expr, name + '.ly', template = template)
-      write_expr_to_pdf(expr, name + '.pdf', template = template)
-      pdf_viewer = _read_config_file( )['pdf_viewer']
-      _open_file(name + '.pdf', pdf_viewer)
-   else:
-      show(expr, template = template)
+    if write:
+        write_expr_to_ly(expr, name + '.ly', template = template)
+        write_expr_to_pdf(expr, name + '.pdf', template = template)
+        pdf_viewer = _read_config_file( )['pdf_viewer']
+        _open_file(name + '.pdf', pdf_viewer)
+    else:
+        show(expr, template = template)
