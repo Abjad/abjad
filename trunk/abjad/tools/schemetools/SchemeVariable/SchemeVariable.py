@@ -3,42 +3,42 @@ from abjad.core import _StrictComparator
 
 
 class SchemeVariable(_StrictComparator, _Immutable):
-   '''Abjad model of Scheme variable::
+    '''Abjad model of Scheme variable::
 
-      abjad> schemetools.SchemeVariable('grace')
-      SchemeVariable('grace')
+        abjad> schemetools.SchemeVariable('grace')
+        SchemeVariable('grace')
 
-   Scheme variables are immutable.
-   '''
+    Scheme variables are immutable.
+    '''
 
-   #def __init__(self, string):
-   #   self._string = string
-   def __new__(klass, string):
-      self = object.__new__(klass)
-      object.__setattr__(self, '_string', string)
-      return self
+    #def __init__(self, string):
+    #    self._string = string
+    def __new__(klass, string):
+        self = object.__new__(klass)
+        object.__setattr__(self, '_string', string)
+        return self
 
-   def __getnewargs__(self):
-      return (self._string, )
+    def __getnewargs__(self):
+        return (self._string, )
 
-   ## OVERLOADS ##
+    ## OVERLOADS ##
 
-   def __repr__(self):
-      return "%s(%s)" % (self.__class__.__name__, repr(self._string))
+    def __repr__(self):
+        return "%s(%s)" % (self.__class__.__name__, repr(self._string))
 
-   def __str__(self):
-      return self.format
+    def __str__(self):
+        return self.format
 
-   ## PUBLIC ATTRIBUTES ##
-   
-   @property
-   def format(self):
-      '''LilyPond input format of Scheme variable:
+    ## PUBLIC ATTRIBUTES ##
 
-         abjad> scheme_variable = schemetools.SchemeVariable('UP')
-         abjad> scheme_variable.format
-         '#UP'
+    @property
+    def format(self):
+        '''LilyPond input format of Scheme variable:
 
-      Return string.
-      '''
-      return '#%s' % self._string
+            abjad> scheme_variable = schemetools.SchemeVariable('UP')
+            abjad> scheme_variable.format
+            '#UP'
+
+        Return string.
+        '''
+        return '#%s' % self._string

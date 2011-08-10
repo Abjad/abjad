@@ -4,96 +4,96 @@ from fractions import Fraction
 
 
 class SchemeMoment(_StrictComparator, _Immutable):
-   '''Abjad model of LilyPond moment::
-   
-      abjad> schemetools.SchemeMoment(1, 68)
-      SchemeMoment(1, 68)
+    '''Abjad model of LilyPond moment::
 
-   Initialize scheme moments with a single fraction, two integers or another scheme moment.
+        abjad> schemetools.SchemeMoment(1, 68)
+        SchemeMoment(1, 68)
 
-   Scheme moments are immutable.
-   '''
+    Initialize scheme moments with a single fraction, two integers or another scheme moment.
 
-   __slots__ = ('_duration')
+    Scheme moments are immutable.
+    '''
 
-   def __new__(klass, *args):
-      self = object.__new__(klass)
-      if len(args) == 1 and isinstance(args[0], (Fraction, int, long)):
-         object.__setattr__(self, '_duration', Fraction(args[0]))
-      elif len(args) == 1 and isinstance(args[0], tuple):
-         object.__setattr__(self, '_duration', Fraction(*args[0]))
-      elif len(args) == 1 and isinstance(args[0], self.__class__):
-         object.__setattr__(self, '_duration', args[0].duration)
-      elif len(args) == 2 and isinstance(args[0], int) and isinstance(args[1], int):
-         object.__setattr__(self, '_duration', Fraction(*args))
-      else:
-         raise TypeError('can not intialize scheme moment from "%s".' % str(args))
-      return self
+    __slots__ = ('_duration')
 
-   def __getnewargs__(self):
-      return (self.duration, )
+    def __new__(klass, *args):
+        self = object.__new__(klass)
+        if len(args) == 1 and isinstance(args[0], (Fraction, int, long)):
+            object.__setattr__(self, '_duration', Fraction(args[0]))
+        elif len(args) == 1 and isinstance(args[0], tuple):
+            object.__setattr__(self, '_duration', Fraction(*args[0]))
+        elif len(args) == 1 and isinstance(args[0], self.__class__):
+            object.__setattr__(self, '_duration', args[0].duration)
+        elif len(args) == 2 and isinstance(args[0], int) and isinstance(args[1], int):
+            object.__setattr__(self, '_duration', Fraction(*args))
+        else:
+            raise TypeError('can not intialize scheme moment from "%s".' % str(args))
+        return self
 
-   ## OVERLOADS ##
+    def __getnewargs__(self):
+        return (self.duration, )
 
-   def __eq__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.duration == arg.duration:
-            return True
-      return False
+    ## OVERLOADS ##
 
-   def __ge__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.duration >= arg.duration:
-            return True
-      return False
+    def __eq__(self, arg):
+        if isinstance(arg, type(self)):
+            if self.duration == arg.duration:
+                return True
+        return False
 
-   def __gt__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.duration > arg.duration:
-            return True
-      return False
+    def __ge__(self, arg):
+        if isinstance(arg, type(self)):
+            if self.duration >= arg.duration:
+                return True
+        return False
 
-   def __le__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.duration <= arg.duration:
-            return True
-      return False
+    def __gt__(self, arg):
+        if isinstance(arg, type(self)):
+            if self.duration > arg.duration:
+                return True
+        return False
 
-   def __lt__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.duration < arg.duration:
-            return True
-      return False
+    def __le__(self, arg):
+        if isinstance(arg, type(self)):
+            if self.duration <= arg.duration:
+                return True
+        return False
 
-   def __ne__(self, arg):
-      return not self == arg
+    def __lt__(self, arg):
+        if isinstance(arg, type(self)):
+            if self.duration < arg.duration:
+                return True
+        return False
 
-   def __repr__(self):
-      return '%s(%s, %s)' % (self.__class__.__name__, self.duration.numerator, self.duration.denominator)
+    def __ne__(self, arg):
+        return not self == arg
 
-   ## PUBLIC ATTRIBUTES ##
+    def __repr__(self):
+        return '%s(%s, %s)' % (self.__class__.__name__, self.duration.numerator, self.duration.denominator)
 
-   @property
-   def duration(self):
-      '''Duration of scheme moment::
+    ## PUBLIC ATTRIBUTES ##
 
-         abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
-         abjad> scheme_moment.duration
-         Fraction(1, 68)
+    @property
+    def duration(self):
+        '''Duration of scheme moment::
 
-      Return duration.
-      '''
-      return self._duration
+            abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
+            abjad> scheme_moment.duration
+            Fraction(1, 68)
 
-   @property
-   def format(self):
-      '''LilyPond input format of scheme moment::
+        Return duration.
+        '''
+        return self._duration
 
-         abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
-         abjad> scheme_moment.format
-         '#(ly:make-moment 1 68)'
+    @property
+    def format(self):
+        '''LilyPond input format of scheme moment::
 
-      Return string.
-      '''
-      numerator, denominator = self.duration.numerator, self.duration.denominator
-      return '#(ly:make-moment %s %s)' % (numerator, denominator)
+            abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
+            abjad> scheme_moment.format
+            '#(ly:make-moment 1 68)'
+
+        Return string.
+        '''
+        numerator, denominator = self.duration.numerator, self.duration.denominator
+        return '#(ly:make-moment %s %s)' % (numerator, denominator)

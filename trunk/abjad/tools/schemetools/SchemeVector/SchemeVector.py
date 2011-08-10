@@ -2,61 +2,61 @@ from abjad.core import _Immutable
 
 
 class SchemeVector(tuple, _Immutable):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Abjad model of Scheme vector::
+    Abjad model of Scheme vector::
 
-      abjad> schemetools.SchemeVector(True, True, False)
-      SchemeVector(True, True, False)
+        abjad> schemetools.SchemeVector(True, True, False)
+        SchemeVector(True, True, False)
 
-   Scheme vectors and Scheme vector constants differ in only their LilyPond input format.
-   
-   Scheme vectors are immutable.
-   '''
+    Scheme vectors and Scheme vector constants differ in only their LilyPond input format.
 
-   def __new__(klass, *args):
-      self = tuple.__new__(klass, args)
-      return self
+    Scheme vectors are immutable.
+    '''
 
-   def __getnewargs__(self):
-      return tuple(self)
+    def __new__(klass, *args):
+        self = tuple.__new__(klass, args)
+        return self
 
-   ## OVERLOADS ##
+    def __getnewargs__(self):
+        return tuple(self)
 
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+    ## OVERLOADS ##
 
-   def __str__(self):
-      return '(%s)' % self._output_string
-   
-   ## PRIVATE ATTRIBUTES ##
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
-   @property
-   def _format_string(self):
-      return ', '.join([str(x) for x in self])
+    def __str__(self):
+        return '(%s)' % self._output_string
 
-   @property
-   def _output_string(self):
-      vals = [ ]
-      for x in self:
-          if isinstance(x, type(True)) and x:
-              vals.append("#t")
-          elif isinstance(x, type(True)):
-              vals.append("#f")
-          else:
-              vals.append(x)
-      return ' '.join([str(x) for x in vals])
+    ## PRIVATE ATTRIBUTES ##
 
-   ## PUBLIC ATTRIBUTES ##
+    @property
+    def _format_string(self):
+        return ', '.join([str(x) for x in self])
 
-   @property
-   def format(self):
-      '''LilyPond input format of Scheme vector::
+    @property
+    def _output_string(self):
+        vals = [ ]
+        for x in self:
+            if isinstance(x, type(True)) and x:
+                vals.append("#t")
+            elif isinstance(x, type(True)):
+                vals.append("#f")
+            else:
+                vals.append(x)
+        return ' '.join([str(x) for x in vals])
 
-         abjad> scheme_vector = schemetools.SchemeVector(True, True, False)
-         abjad> scheme_vector.format
-         "#'(#t #t #f)"
+    ## PUBLIC ATTRIBUTES ##
 
-      Return string.
-      '''
-      return "#'%s" % self.__str__( )
+    @property
+    def format(self):
+        '''LilyPond input format of Scheme vector::
+
+            abjad> scheme_vector = schemetools.SchemeVector(True, True, False)
+            abjad> scheme_vector.format
+            "#'(#t #t #f)"
+
+        Return string.
+        '''
+        return "#'%s" % self.__str__( )

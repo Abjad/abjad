@@ -3,39 +3,39 @@ from abjad.core import _StrictComparator
 
 
 class SchemeString(_StrictComparator, _Immutable):
-   '''Abjad model of Scheme string::
+    '''Abjad model of Scheme string::
 
-      abjad> schemetools.SchemeString('grace')
-      SchemeString('grace')
+        abjad> schemetools.SchemeString('grace')
+        SchemeString('grace')
 
-   Scheme strings are immutable.
-   '''
+    Scheme strings are immutable.
+    '''
 
-   #def __init__(self, string):
-   #   self._string = string
-   def __new__(klass, string):
-      self = object.__new__(klass)
-      object.__setattr__(self, '_string', string)
-      return self
+    #def __init__(self, string):
+    #    self._string = string
+    def __new__(klass, string):
+        self = object.__new__(klass)
+        object.__setattr__(self, '_string', string)
+        return self
 
-   def __getnewargs__(self):
-      return (self._string, )
+    def __getnewargs__(self):
+        return (self._string, )
 
-   ## OVERLOADS ##
+    ## OVERLOADS ##
 
-   def __repr__(self):
-      return "%s(%s)" % (self.__class__.__name__, repr(self._string))
+    def __repr__(self):
+        return "%s(%s)" % (self.__class__.__name__, repr(self._string))
 
-   ## PUBLIC ATTRIBUTES ##
-   
-   @property
-   def format(self):
-      '''LilyPond input format of Scheme string::
+    ## PUBLIC ATTRIBUTES ##
 
-         abjad> scheme_string = schemetools.SchemeString('grace')
-         abjad> scheme_string.format
-         '#"grace"'
+    @property
+    def format(self):
+        '''LilyPond input format of Scheme string::
 
-      Return string.
-      '''
-      return '#"%s"' % self._string
+            abjad> scheme_string = schemetools.SchemeString('grace')
+            abjad> scheme_string.format
+            '#"grace"'
+
+        Return string.
+        '''
+        return '#"%s"' % self._string

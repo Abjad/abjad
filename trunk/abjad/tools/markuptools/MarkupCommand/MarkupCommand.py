@@ -2,168 +2,168 @@ from abjad.core import _Immutable
 
 
 class MarkupCommand(_Immutable):
-   r'''Abjad model of a LilyPond markup command::
+    r'''Abjad model of a LilyPond markup command::
 
-      abjad> circle = markuptools.MarkupCommand('draw-circle', ['#2.5', '#0.1', '##f'], None)
-      abjad> square = markuptools.MarkupCommand('rounded-box', None, ['hello?'])
-      abjad> line = markuptools.MarkupCommand('line', None, [square, 'wow!'])
-      abjad> rotate = markuptools.MarkupCommand('rotate', ['#60'], [line])
-      abjad> combine = markuptools.MarkupCommand('combine', None, [rotate, circle], is_braced = False)
+        abjad> circle = markuptools.MarkupCommand('draw-circle', ['#2.5', '#0.1', '##f'], None)
+        abjad> square = markuptools.MarkupCommand('rounded-box', None, ['hello?'])
+        abjad> line = markuptools.MarkupCommand('line', None, [square, 'wow!'])
+        abjad> rotate = markuptools.MarkupCommand('rotate', ['#60'], [line])
+        abjad> combine = markuptools.MarkupCommand('combine', None, [rotate, circle], is_braced = False)
 
-   ::
+    ::
 
-      abjad> print combine
-      \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f
+        abjad> print combine
+        \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f
 
-   Insert markup command in markup to attach to score components::
+    Insert markup command in markup to attach to score components::
 
-      abjad> note = Note("c'4")
+        abjad> note = Note("c'4")
 
-   ::
+    ::
 
-      abjad> markup = markuptools.Markup(combine)
+        abjad> markup = markuptools.Markup(combine)
 
-   ::
+    ::
 
-      abjad> markup(note)
-      Markup('\\combine \\rotate #60 \\line { \\rounded-box hello? wow! } \\draw-circle #2.5 #0.1 ##f')
+        abjad> markup(note)
+        Markup('\\combine \\rotate #60 \\line { \\rounded-box hello? wow! } \\draw-circle #2.5 #0.1 ##f')
 
-   ::
+    ::
 
-      abjad> f(note) 
-      c'4 \markup { \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f }
+        abjad> f(note)
+        c'4 \markup { \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f }
 
-   Markup commands are immutable.
-   '''
+    Markup commands are immutable.
+    '''
 
-   ## TODO: Implement a multi-line, indented version for human readability. ##
+    ## TODO: Implement a multi-line, indented version for human readability. ##
 
-   __slots__ = ('_args', '_is_braced', '_command', '_markup')
+    __slots__ = ('_args', '_is_braced', '_command', '_markup')
 
-   def __init__(self, command, args, markup, is_braced = True):
-      assert isinstance(command, str) \
-         and len(command) and command.find(' ') == -1
-      assert isinstance(args, type(None)) or \
-         (isinstance(args, (list, tuple)) and len(args))
-      assert isinstance(markup, type(None)) or \
-         (isinstance(markup, (list, tuple)) and len(markup))
-      if markup:
-         assert all([isinstance(x, (MarkupCommand, str)) for x in markup])
-      
-      object.__setattr__(self, '_is_braced', bool(is_braced))
-      object.__setattr__(self, '_command', command)
+    def __init__(self, command, args, markup, is_braced = True):
+        assert isinstance(command, str) \
+            and len(command) and command.find(' ') == -1
+        assert isinstance(args, type(None)) or \
+            (isinstance(args, (list, tuple)) and len(args))
+        assert isinstance(markup, type(None)) or \
+            (isinstance(markup, (list, tuple)) and len(markup))
+        if markup:
+            assert all([isinstance(x, (MarkupCommand, str)) for x in markup])
 
-      if args:
-         object.__setattr__(self, '_args', tuple(args))
-      else:
-         object.__setattr__(self, '_args', args)
+        object.__setattr__(self, '_is_braced', bool(is_braced))
+        object.__setattr__(self, '_command', command)
 
-      if markup:
-         object.__setattr__(self, '_markup', tuple(markup))
-      else:
-         object.__setattr__(self, '_markup', markup)
+        if args:
+            object.__setattr__(self, '_args', tuple(args))
+        else:
+            object.__setattr__(self, '_args', args)
 
-   ## OVERRIDES ##
+        if markup:
+            object.__setattr__(self, '_markup', tuple(markup))
+        else:
+            object.__setattr__(self, '_markup', markup)
 
-   def __eq__(self, arg):
-      if isinstance(arg, type(self)):
-          if self.args == arg.args and \
-             self.is_braced == arg.is_braced and \
-             self.command == arg.command and \
-             self.markup == arg.markup:
-             return True  
-      return False
+    ## OVERRIDES ##
 
-   def __repr__(self):
-      return '%s(%s, %s, %s)' % (self.__class__.__name__, repr(self.command), self.args, self.markup)
+    def __eq__(self, arg):
+        if isinstance(arg, type(self)):
+            if self.args == arg.args and \
+                self.is_braced == arg.is_braced and \
+                self.command == arg.command and \
+                self.markup == arg.markup:
+                return True
+        return False
 
-   def __str__(self):
-      return self.format
+    def __repr__(self):
+        return '%s(%s, %s, %s)' % (self.__class__.__name__, repr(self.command), self.args, self.markup)
 
-   ## PRIVATE ATTRIBUTES ##
+    def __str__(self):
+        return self.format
 
-   @property
-   def _format_pieces(self):
-      indent_delimiter = ''
-      parts = [r'\%s' % self.command]
-      if self.args is not None:
-         for arg in self.args:
-            if 'format' in dir(arg) and not isinstance(arg, str):
-               parts[0] += ' %s' % arg.format
-            else:
-               parts[0] += ' %s' % arg
-      if self.markup is not None:
-         for markup in self.markup:
-            if '_format_pieces' in dir(markup) and not isinstance(markup, str):
-               parts.extend([indent_delimiter + x for x in markup._format_pieces])
-            else:
-               parts.append(indent_delimiter + markup)
-      if self.is_braced and self.markup and 1 < len(self.markup):
-         parts[0] += ' {'
-         parts.append('}')
-      return parts
+    ## PRIVATE ATTRIBUTES ##
 
-   @property
-   def _report_pieces(self):
-      indent_delimiter = '\t'
-      parts = [r'\%s' % self.command]
-      if self.args is not None:
-         for arg in self.args:
-            if 'format' in dir(arg) and not isinstance(arg, str):
-               parts[0] += ' %s' % arg.format
-            else:
-               parts[0] += ' %s' % arg
-      if self.markup is not None:
-         for markup in self.markup:
-            if '_report_pieces' in dir(markup) and not isinstance(markup, str):
-               parts.extend([indent_delimiter + x for x in markup._report_pieces])
-            else:
-               parts.append(indent_delimiter + markup)
-      if self.is_braced and self.markup and 1 < len(self.markup):
-         parts[0] += ' {'
-         parts.append('}')
-      return parts
+    @property
+    def _format_pieces(self):
+        indent_delimiter = ''
+        parts = [r'\%s' % self.command]
+        if self.args is not None:
+            for arg in self.args:
+                if 'format' in dir(arg) and not isinstance(arg, str):
+                    parts[0] += ' %s' % arg.format
+                else:
+                    parts[0] += ' %s' % arg
+        if self.markup is not None:
+            for markup in self.markup:
+                if '_format_pieces' in dir(markup) and not isinstance(markup, str):
+                    parts.extend([indent_delimiter + x for x in markup._format_pieces])
+                else:
+                    parts.append(indent_delimiter + markup)
+        if self.is_braced and self.markup and 1 < len(self.markup):
+            parts[0] += ' {'
+            parts.append('}')
+        return parts
 
-   ## PUBLIC ATTRIBUTES ##
+    @property
+    def _report_pieces(self):
+        indent_delimiter = '\t'
+        parts = [r'\%s' % self.command]
+        if self.args is not None:
+            for arg in self.args:
+                if 'format' in dir(arg) and not isinstance(arg, str):
+                    parts[0] += ' %s' % arg.format
+                else:
+                    parts[0] += ' %s' % arg
+        if self.markup is not None:
+            for markup in self.markup:
+                if '_report_pieces' in dir(markup) and not isinstance(markup, str):
+                    parts.extend([indent_delimiter + x for x in markup._report_pieces])
+                else:
+                    parts.append(indent_delimiter + markup)
+        if self.is_braced and self.markup and 1 < len(self.markup):
+            parts[0] += ' {'
+            parts.append('}')
+        return parts
 
-   @property
-   def args(self):
-      r'''Read-only tuple of markup command arguments.'''
-      return self._args
+    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def command(self):
-      r'''Read-only string of markup command command-name.'''
-      return self._command
+    @property
+    def args(self):
+        r'''Read-only tuple of markup command arguments.'''
+        return self._args
 
-   @property
-   def format(self):
-      r'''Read-only format of markup command::
+    @property
+    def command(self):
+        r'''Read-only string of markup command command-name.'''
+        return self._command
 
-         abjad> markup_command = markuptools.MarkupCommand('draw-circle', ['#2.5', '#0.1', '##f'], None)
-         abjad> markup_command.format
-         '\\draw-circle #2.5 #0.1 ##f'
+    @property
+    def format(self):
+        r'''Read-only format of markup command::
 
-      Return list of strings.
-      '''
+            abjad> markup_command = markuptools.MarkupCommand('draw-circle', ['#2.5', '#0.1', '##f'], None)
+            abjad> markup_command.format
+            '\\draw-circle #2.5 #0.1 ##f'
 
-      return ' '.join(self._format_pieces)
+        Return list of strings.
+        '''
 
-   @property
-   def is_braced(self):
-      r'''Read-only boolean of markup command bracing.'''
-      return self._is_braced
+        return ' '.join(self._format_pieces)
 
-   @property
-   def markup(self):
-      r'''Read-only tuple of markup command's child markup.'''
-      return self._markup
+    @property
+    def is_braced(self):
+        r'''Read-only boolean of markup command bracing.'''
+        return self._is_braced
 
-   ## PUBLIC METHODS ##
+    @property
+    def markup(self):
+        r'''Read-only tuple of markup command's child markup.'''
+        return self._markup
 
-   def report(self, output = 'screen'):
-      '''Report, in an indented human-readable format, the structure of a formatted MarkupCommand.'''
-      if output == 'screen':
-         print '\n'.join(self._report_pieces)
-      else:
-         return '\n'.join(self._report_pieces)         
+    ## PUBLIC METHODS ##
+
+    def report(self, output = 'screen'):
+        '''Report, in an indented human-readable format, the structure of a formatted MarkupCommand.'''
+        if output == 'screen':
+            print '\n'.join(self._report_pieces)
+        else:
+            return '\n'.join(self._report_pieces)
