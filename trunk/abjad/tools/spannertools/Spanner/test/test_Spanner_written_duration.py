@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test__SpannerDurationInterface_prolated_01( ):
+def test_Spanner_written_duration_01( ):
    t = Voice([Measure((2, 12), "c'8 d'8"), 
       Measure((2, 8), "c'8 d'8")])
    beam = spannertools.BeamSpanner(t.leaves)
@@ -21,6 +21,6 @@ def test__SpannerDurationInterface_prolated_01( ):
    }
    '''
 
-   assert beam.prolated_duration == Duration(5, 12)
-   assert crescendo.prolated_duration == Duration(2, 12)
-   assert decrescendo.prolated_duration == Duration(2, 8)
+   assert beam.written_duration == Duration(4, 8)
+   assert crescendo.written_duration == Duration(2, 8)
+   assert decrescendo.written_duration == Duration(2, 8)

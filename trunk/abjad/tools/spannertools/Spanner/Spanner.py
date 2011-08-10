@@ -2,7 +2,6 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import _StrictComparator
 from abjad.tools import durtools
-#from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 import copy
@@ -39,7 +38,6 @@ class Spanner(_StrictComparator):
       '''
       self._components = [ ]
       self._contiguity_constraint = 'thread'
-      #self._duration = _SpannerDurationInterface(self)
       self._format = _SpannerFormatInterface(self)
       self._offset = _SpannerOffsetInterface(self)
       #self._override = LilyPondGrobOverrideComponentPlugIn( )
@@ -284,38 +282,6 @@ class Spanner(_StrictComparator):
          Now returns an (immutable) tuple instead of a (mutable) list.
       '''
       return tuple(self._components[:])
-
-#   @property
-#   def duration(self):
-#      '''Return read-only reference to spanner duration interface.
-#      
-#      Spanner duration interface implements ``written``, 
-#      ``preprolated`` and ``prolated`` attributes. ::
-#
-#         abjad> voice = Voice("c'8 d'8 e'8 f'8")
-#         abjad> spanner = spannertools.Spanner(voice[:2])
-#         abjad> spanner
-#         Spanner(c'8, d'8)
-#
-#      ::
-#
-#         abjad> spanner.duration.written
-#         Duration(1, 4)
-#
-#      ::
-#
-#         abjad> spanner.duration.preprolated
-#         Duration(1, 4)
-#
-#      ::
-#
-#         abjad> spanner.duration.prolated
-#         Duration(1, 4)
-#
-#      Spanner duration interface also implements ``seconds`` attribute.
-#      '''
-#
-#      return self._duration
 
    @property
    def duration_in_seconds(self):
