@@ -2,7 +2,7 @@ from abjad.tools.containertools.delete_contents_of_container import delete_conte
 
 
 def eject_contents_of_container(container):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Eject contents of `container`::
 

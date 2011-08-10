@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_nu
 
 def chromatic_pitch_number_to_chromatic_pitch_name(
    chromatic_pitch_number, accidental_spelling = 'mixed'):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `chromatic_pitch_number` to chromatic pitch name::
 

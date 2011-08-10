@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 
 
 class PitchArray(_StrictComparator):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Two-dimensional array of pitches.
    '''

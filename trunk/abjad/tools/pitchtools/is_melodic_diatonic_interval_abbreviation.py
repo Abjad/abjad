@@ -11,7 +11,7 @@ melodic_diatonic_interval_abbreviation_regex = re.compile(
    '^%s$' % melodic_diatonic_interval_abbreviation_regex_body, re.VERBOSE)
 
 def is_melodic_diatonic_interval_abbreviation(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a melodic diatonic interval abbreviation. Otherwise false::
 

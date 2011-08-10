@@ -1,5 +1,5 @@
 def yield_groups_of_mixed_notes_and_chords_in_sequence(sequence):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield groups of mixed notes and chords in `sequence`::
 

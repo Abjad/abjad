@@ -2,7 +2,7 @@ from abjad.core import _Immutable
 
 
 class _IntervalClass(_Immutable):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Interval-class base class.
    '''

@@ -3,7 +3,7 @@ from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
 
 
 def make_repeated_rests_from_time_signature(time_signature):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make repeated rests from `time_signature`::
 

@@ -3,7 +3,7 @@ from abjad.tools.contexttools.get_effective_context_mark import get_effective_co
 
 
 def get_effective_tempo(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get effective tempo of `component`::
 

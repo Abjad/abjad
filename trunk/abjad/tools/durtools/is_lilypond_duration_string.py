@@ -32,7 +32,7 @@ lilypond_duration_string_regex = re.compile('^%s$' %
    lilypond_duration_string_regex_body, re.VERBOSE)
 
 def is_lilypond_duration_string(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a LilyPond duration string::
 

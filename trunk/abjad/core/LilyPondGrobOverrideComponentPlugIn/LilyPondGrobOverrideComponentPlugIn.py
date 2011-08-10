@@ -4,7 +4,7 @@ from abjad.core._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
 
 
 class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    LilyPond grob override component plug-in.
    '''

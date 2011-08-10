@@ -2,7 +2,7 @@ from abjad.tools.durtools.lilypond_duration_string_to_rational import lilypond_d
 
 
 def lilypond_duration_string_to_rational_list(duration_string):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change LilyPond `duration_string` to rational list::
 

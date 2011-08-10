@@ -3,7 +3,7 @@ from abjad.tools.pitcharraytools.PitchArray import PitchArray
 
 
 def list_nonspanning_subarrays_of_pitch_array(pitch_array):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    List nonspanning subarrays of `pitch_array`::
 

@@ -6,7 +6,7 @@ from abjad.tools.lilyfiletools.ScoreBlock import ScoreBlock
 
 
 def make_basic_lily_file(music = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make basic LilyPond file with `music`::
 

@@ -2,7 +2,7 @@ from abjad.tools.marktools.get_marks_attached_to_component import get_marks_atta
 
 
 def get_noncontext_marks_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get noncontext marks attached to component::
 

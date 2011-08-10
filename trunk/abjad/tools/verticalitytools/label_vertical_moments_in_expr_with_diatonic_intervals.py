@@ -4,7 +4,7 @@ from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr impor
 
 
 def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_direction = 'down'):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Label diatonic intervals of every vertical moment in `expr`::
 

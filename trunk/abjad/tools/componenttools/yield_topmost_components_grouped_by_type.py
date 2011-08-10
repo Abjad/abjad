@@ -2,7 +2,7 @@ import itertools
 
 
 def yield_topmost_components_grouped_by_type(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield topmost components in `expr` grouped by type::
 

@@ -3,7 +3,7 @@ from abjad.tools.contexttools.is_component_with_context_mark_attached import is_
 
 
 def is_component_with_time_signature_mark_attached(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when time signature mark attaches to `component`::
 

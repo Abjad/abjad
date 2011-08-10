@@ -182,7 +182,7 @@ class Tuplet(Container):
    @apply
    def preferred_denominator( ):
       def fget(self):
-         '''.. versionadded:: 1.1.2
+         '''.. versionadded:: 2.0
 
          Integer denominator in terms of which tuplet fraction should format.
          '''

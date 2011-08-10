@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._HarmonicIntervalClass import _HarmonicIntervalClass
 
 
 class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicIntervalClass):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of harmonic counterpoint interval-class::
 

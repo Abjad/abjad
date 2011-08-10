@@ -2,7 +2,7 @@ from abjad.tools import schemetools
 
 
 def make_spacing_vector(basic_distance, minimum_distance, padding, stretchability):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make spacing vector::
 

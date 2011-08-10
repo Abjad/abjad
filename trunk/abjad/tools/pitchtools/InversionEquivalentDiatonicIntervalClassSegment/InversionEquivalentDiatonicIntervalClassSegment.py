@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
 
 
 class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of inversion-equivalent diatonic interval-class segment::
 

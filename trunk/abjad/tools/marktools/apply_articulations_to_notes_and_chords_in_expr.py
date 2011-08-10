@@ -2,7 +2,7 @@ from abjad.tools.marktools.Articulation import Articulation
 
 
 def apply_articulations_to_notes_and_chords_in_expr(expr, articulations):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Apply `articulations` to notes and chords in `expr`::
 

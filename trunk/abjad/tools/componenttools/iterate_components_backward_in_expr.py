@@ -31,7 +31,7 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
       Note("d'8")
       Note("c'8")
 
-   .. versionadded:: 1.1.2
+   .. versionadded:: 2.0
       optional `start` and `stop` keyword parameters.
 
    ::

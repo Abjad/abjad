@@ -2,7 +2,7 @@ from abjad.tools.spannertools.get_spanners_attached_to_component import get_span
 
 
 def get_spanners_attached_to_any_improper_child_of_component(component, klass = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get all spanners attached to any improper children of `component`::
 

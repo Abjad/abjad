@@ -5,7 +5,7 @@ from abjad.tools import mathtools
 
 
 def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Scale `measure` by `multiplier` and adjust meter::
 

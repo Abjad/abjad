@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list
 
 
 class InversionEquivalentDiatonicIntervalClassVector(_Vector):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of inversion-equivalent diatonic interval-class vector::
 

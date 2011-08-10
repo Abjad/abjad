@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 
 
 def divide_sequence_elements_by_greatest_common_divisor(sequence):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Divide `sequence` elements by greatest common divisor::
 

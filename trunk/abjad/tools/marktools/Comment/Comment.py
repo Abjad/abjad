@@ -3,7 +3,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class Comment(Mark):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    User-defined comment::
    

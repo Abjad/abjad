@@ -2,7 +2,7 @@ from abjad.tools.measuretools.get_nth_measure_in_expr import get_nth_measure_in_
 
 
 def get_one_indexed_measure_number_in_expr(expr, measure_number):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get one-indexed `measure_number` in `expr`::
 

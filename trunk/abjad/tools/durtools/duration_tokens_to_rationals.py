@@ -2,7 +2,7 @@ from abjad.tools.durtools.duration_token_to_rational import duration_token_to_ra
 
 
 def duration_tokens_to_rationals(duration_tokens):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `duration_tokens` to rationals::
 

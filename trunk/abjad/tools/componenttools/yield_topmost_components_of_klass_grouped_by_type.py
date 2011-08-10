@@ -2,7 +2,7 @@ from abjad.tools.componenttools.yield_topmost_components_grouped_by_type import 
 
 
 def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield topmost components of `klass` in `expr` grouped by type::
 

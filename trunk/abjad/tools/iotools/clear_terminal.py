@@ -2,7 +2,7 @@ import os
 
 
 def clear_terminal( ):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Run ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
 

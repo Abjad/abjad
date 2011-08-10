@@ -2,7 +2,7 @@
 
 from abjad.cfg.cfg import ABJADPATH
 from abjad.tools import iotools
-ABJADVERSION = '1.1.2'
+ABJADVERSION = '2.0'
 import os
 import pprint
 

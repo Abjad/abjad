@@ -2,7 +2,7 @@ from abjad.tools.mathtools.next_integer_partition import next_integer_partition
 
 
 def yield_all_partitions_of_integer(n):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield all partitions of positive integer `n` in descending lex order::
 

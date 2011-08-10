@@ -1,5 +1,5 @@
 def instantiate_pitch_and_interval_test_collection( ):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Instantiate pitch and interval test collection::
 

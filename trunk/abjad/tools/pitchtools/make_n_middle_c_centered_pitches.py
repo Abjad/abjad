@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_nu
 
 
 def make_n_middle_c_centered_pitches(n):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make `n` middle-c centered pitches, where 0 < `n`::
 

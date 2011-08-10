@@ -12,7 +12,7 @@ def _log_render_lilypond_input(expr, template = None):
    '''Private function that stores both .ly and .pdf files in the
    ``abjad_output`` directory. 
 
-   .. versionadded:: 1.1.2
+   .. versionadded:: 2.0
       New format_time keyword to message conditionally output
       Abjad format time of `expr`.
 

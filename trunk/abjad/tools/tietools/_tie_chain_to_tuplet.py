@@ -8,7 +8,7 @@ from abjad.tools.tietools.get_tie_chain import get_tie_chain
 
 
 def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Generalized tie-chain division function.
 

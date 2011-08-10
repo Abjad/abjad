@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterv
 
 def diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(
    diatonic_interval_number, chromatic_interval_number):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `diatonic_interval_number` and `chromatic_interval_number` 
    to melodic diatonic interval::

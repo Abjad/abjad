@@ -3,7 +3,7 @@ from abjad.tools import pitchtools
 
 
 def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Color `chord` note heads by pitch-class `color_map`::
 

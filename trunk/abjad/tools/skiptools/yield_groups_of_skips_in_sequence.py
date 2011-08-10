@@ -2,7 +2,7 @@ from abjad.tools.skiptools.Skip import Skip
 
 
 def yield_groups_of_skips_in_sequence(sequence):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield groups of skips in `sequence`::
 

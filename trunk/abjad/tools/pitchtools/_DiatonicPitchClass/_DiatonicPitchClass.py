@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._PitchClass import _PitchClass
 
 
 class _DiatonicPitchClass(_PitchClass, _Diatonic):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Diatonic pitch-class base class.
    '''

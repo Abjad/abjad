@@ -3,7 +3,7 @@ from abjad.tools.componenttools.iterate_namesakes_forward_from_component import 
 
 
 def get_nth_namesake_from_component(component, n):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    For positive `n`, return namesake to the right of `component`::
 

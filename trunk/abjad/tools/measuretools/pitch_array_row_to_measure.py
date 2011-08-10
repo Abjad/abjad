@@ -5,7 +5,7 @@ from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRo
 
 
 def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Change `pitch_array_row` to measure with meter 
    `pitch_array_row.width` over `cell_duration_denominator`::

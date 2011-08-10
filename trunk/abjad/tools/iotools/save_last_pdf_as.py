@@ -4,7 +4,7 @@ import os
 
 
 def save_last_pdf_as(file_name):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Save last PDF as `file_name`::
 

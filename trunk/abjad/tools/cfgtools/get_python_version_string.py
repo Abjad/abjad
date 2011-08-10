@@ -2,7 +2,7 @@ import subprocess
 
 
 def get_python_version_string( ):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get Python version string::
 

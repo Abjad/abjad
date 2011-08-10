@@ -6,7 +6,7 @@ from abjad.tools.scoretools.make_piano_score_from_leaves import make_piano_score
 
 
 def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChromaticPitch('b')):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make piano sketch score from `leaves`::
 

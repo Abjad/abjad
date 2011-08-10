@@ -3,7 +3,7 @@ from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change
 
 
 def yield_all_subchords_of_chord(chord):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield all subchords of `chord` in binary string order::
 

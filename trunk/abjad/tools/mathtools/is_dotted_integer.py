@@ -3,7 +3,7 @@ import math
 
 
 def is_dotted_integer(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is equivalent to a positive integer and 
    can be written with zero or more dots::

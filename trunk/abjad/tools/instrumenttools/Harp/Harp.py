@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools._StringInstrument import _StringInstrument
 
 ## TODO: make work at the right context
 class Harp(_StringInstrument):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad model of the harp::
 

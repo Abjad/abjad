@@ -10,7 +10,7 @@ import re
 
 
 def _parse_note_entry_token(note_entry_token):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Parse simple LilyPond `note_entry_token`.
 

@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chrom
 
 def calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
    pitch_carrier_1, pitch_carrier_2):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Calculate melodic counterpoint interval `pitch_carrier_1` to
    `pitch_carrier_2`::

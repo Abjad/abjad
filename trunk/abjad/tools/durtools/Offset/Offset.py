@@ -2,7 +2,7 @@ from abjad.tools.durtools.Duration import Duration
 
 
 class Offset(Duration):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of offset value of musical time::
 

@@ -1,5 +1,5 @@
 class _Diatonic(object):
-   '''..versionadded:: 1.1.2
+   '''..versionadded:: 2.0
 
    Diatonic object base class.
    '''

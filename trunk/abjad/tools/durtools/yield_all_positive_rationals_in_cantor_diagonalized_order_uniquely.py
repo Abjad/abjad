@@ -3,7 +3,7 @@ from fractions import Fraction
 
 
 def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( ):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield all positive rationals in Cantor diagonalized order uniquely::
 

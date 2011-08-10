@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._NumberedPitch import _NumberedPitch
 
 
 class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of a numbered chromatic pitch::
 

@@ -9,7 +9,7 @@ lilypond_duration_name_regex = re.compile('^%s$' %
    lilypond_duration_name_regex_body, re.VERBOSE)
 
 def is_lilypond_duration_name(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when `expr` is a LilyPond duartion name::
 

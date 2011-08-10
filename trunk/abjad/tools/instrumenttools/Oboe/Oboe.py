@@ -4,7 +4,7 @@ from abjad.tools.instrumenttools._DoubleReedInstrument import _DoubleReedInstrum
 
 
 class Oboe(_DoubleReedInstrument):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad model of the oboe::
 

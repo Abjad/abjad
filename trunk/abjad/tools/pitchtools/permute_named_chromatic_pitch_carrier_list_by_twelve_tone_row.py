@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.TwelveToneRow import TwelveToneRow
 
 
 def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
    
    Permute named chromatic pitch carrier list by twelve-tone `row`::
 

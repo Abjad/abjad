@@ -2,7 +2,7 @@ from abjad.tools import durtools
 
 
 def number_is_between_prolated_start_and_stop_offsets_of_component(timepoint, component):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `timepoint` is within the prolated duration of `component`::
    

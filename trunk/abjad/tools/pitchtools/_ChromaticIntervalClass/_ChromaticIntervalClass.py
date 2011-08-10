@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 
 
 class _ChromaticIntervalClass(_IntervalClass, _Chromatic):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Chromatic interval-class base class.
    '''

@@ -4,7 +4,7 @@ import numbers
 
 
 class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of harmonic chromatic interval::
 

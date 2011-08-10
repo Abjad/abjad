@@ -2,7 +2,7 @@ from abjad.tools.seqtools.partition_sequence_by_value_of_elements import partiti
 
 
 def get_sequence_elements_frequency_distribution(sequence):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get `sequence` elements frequency distribution::
 

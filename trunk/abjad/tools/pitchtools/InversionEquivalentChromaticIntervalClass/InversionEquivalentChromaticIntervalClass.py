@@ -3,7 +3,7 @@ import numbers
 
 
 class InversionEquivalentChromaticIntervalClass(_IntervalClass):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of inversion-equivalent chromatic interval-class::
 

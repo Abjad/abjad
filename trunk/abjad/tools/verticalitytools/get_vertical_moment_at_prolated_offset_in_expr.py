@@ -4,7 +4,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 
 
 def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
    
    Get vertical moment at `prolated_offset` in `governor`::
 

@@ -2,7 +2,7 @@ from abjad.tools.measuretools._report_meter_distribution import _report_meter_di
 
 
 def report_meter_distribution_as_string(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Report meter distribution of `expr` as string::
 

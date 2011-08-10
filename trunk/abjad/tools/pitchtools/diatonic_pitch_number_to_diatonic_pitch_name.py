@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_nu
 
 
 def diatonic_pitch_number_to_diatonic_pitch_name(diatonic_pitch_number):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `diatonic_pitch_number` to diatonic pitch name::
 

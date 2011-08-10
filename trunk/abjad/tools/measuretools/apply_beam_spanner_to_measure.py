@@ -3,7 +3,7 @@ from abjad.tools.spannertools import BeamSpanner
 
 
 def apply_beam_spanner_to_measure(measure):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Apply beam spanner to `measure`::
 

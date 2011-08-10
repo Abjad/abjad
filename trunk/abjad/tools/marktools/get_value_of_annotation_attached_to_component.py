@@ -3,7 +3,7 @@ from abjad.tools.marktools.get_annotations_attached_to_component import get_anno
 
 
 def get_value_of_annotation_attached_to_component(component, name, default_value = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get value of annotation with `name` attached to `component`::
 

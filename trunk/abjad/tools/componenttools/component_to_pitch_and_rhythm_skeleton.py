@@ -2,7 +2,7 @@ from abjad.tools.componenttools._Component import _Component
 
 
 def component_to_pitch_and_rhythm_skeleton(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Change `component` to pitch and rhythm skeleton::
 

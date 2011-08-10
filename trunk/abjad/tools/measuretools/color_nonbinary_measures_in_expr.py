@@ -4,7 +4,7 @@ from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_me
 
 
 def color_nonbinary_measures_in_expr(expr, color = 'red'):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Color nonbinary measures in `expr` with `color`::
 

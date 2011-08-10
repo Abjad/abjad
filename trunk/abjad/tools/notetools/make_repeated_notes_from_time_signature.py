@@ -3,7 +3,7 @@ from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
 
 
 def make_repeated_notes_from_time_signature(time_signature, pitch = "c'"):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make repeated notes from `time_signature`::
 

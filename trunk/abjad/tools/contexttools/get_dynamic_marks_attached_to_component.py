@@ -3,7 +3,7 @@ from abjad.tools.contexttools.get_context_marks_attached_to_component import get
 
 
 def get_dynamic_marks_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get dynamic marks attached to `component`::
 

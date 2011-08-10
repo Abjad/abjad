@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 
 
 def iterate_scores_forward_in_expr(expr, start = 0, stop = None):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Iterate scores forward in `expr`::
 

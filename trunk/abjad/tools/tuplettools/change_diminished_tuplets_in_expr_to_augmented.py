@@ -2,7 +2,7 @@ from abjad.tools.tuplettools.Tuplet import Tuplet
 
 
 def change_diminished_tuplets_in_expr_to_augmented(tuplet):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Divide the written duration of the leaves in `tuplet`
    by the least power of 2 necessary to augment `tuplet`. ::

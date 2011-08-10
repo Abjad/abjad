@@ -4,7 +4,7 @@ import re
 
 
 class ScaleDegree(_Immutable):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of diatonic scale degrees 1, 2, 3, 4, 5, 6, 7 and
    also chromatic alterations including flat-2, flat-3, flat-6, etc.

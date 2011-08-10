@@ -4,7 +4,7 @@ from abjad.tools.durtools.rational_to_duration_pair_with_specified_integer_denom
 
 
 def duration_tokens_to_duration_pairs_with_least_common_denominator(duration_tokens):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `duration_tokens` to duration pairs with least common denominator::
 

@@ -2,7 +2,7 @@ from abjad.tools.leaftools.get_nth_leaf_in_expr import get_nth_leaf_in_expr
 
 
 def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get leaf at `leaf_index` in `measure_number` in `expr`::
 

@@ -2,7 +2,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class StaffChangeMark(ContextMark):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad model of a staff change::
 

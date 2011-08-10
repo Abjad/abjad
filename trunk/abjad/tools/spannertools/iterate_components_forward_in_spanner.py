@@ -3,7 +3,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 def iterate_components_forward_in_spanner(spanner, klass = _Component):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield components in `spanner` one at a time from left to right. ::
 

@@ -27,7 +27,7 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
 
    Used primarily in generating test file examples.
 
-   .. versionadded:: 1.1.2
+   .. versionadded:: 2.0
       Optional `key_signature` keyword argument.
 
    Return none.

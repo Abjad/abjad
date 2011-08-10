@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 
 
 def yield_all_restricted_growth_functions_of_length(length):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Generate all restricted growth functions of `length` in lex order::
 

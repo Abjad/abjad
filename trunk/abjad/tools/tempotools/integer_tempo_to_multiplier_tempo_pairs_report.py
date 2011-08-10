@@ -4,7 +4,7 @@ from abjad.tools.tempotools.integer_tempo_to_multiplier_tempo_pairs import integ
 
 def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
    maximum_numerator = None, maximum_denominator = None):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Print all multiplier, tempo pairs possible from `integer_tempo`.
 

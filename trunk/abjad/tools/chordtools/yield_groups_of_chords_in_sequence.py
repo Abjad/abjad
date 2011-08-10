@@ -2,7 +2,7 @@ from abjad.tools.chordtools.Chord import Chord
 
 
 def yield_groups_of_chords_in_sequence(sequence):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield groups of chords in `sequence`::
 

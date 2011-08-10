@@ -3,7 +3,7 @@ from abjad.tools.markuptools.get_markup_attached_to_component import get_markup_
 
 
 def remove_markup_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Remove markup attached to `component`::
 

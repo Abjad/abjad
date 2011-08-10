@@ -2,7 +2,7 @@ from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component impo
 
 
 def detach_lilypond_command_marks_attached_to_component(component, command_name_string = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Detach LilyPond command marks attached to `component`::
 

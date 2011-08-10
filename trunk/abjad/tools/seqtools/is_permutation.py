@@ -1,5 +1,5 @@
 def is_permutation(expr, length = None):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a permutation::
 

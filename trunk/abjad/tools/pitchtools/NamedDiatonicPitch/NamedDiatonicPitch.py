@@ -2,7 +2,7 @@ from abjad.tools.pitchtools._DiatonicPitch import _DiatonicPitch
 
 
 class NamedDiatonicPitch(_DiatonicPitch):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of a named diatonic pitch::
 

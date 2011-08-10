@@ -2,7 +2,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 def detach_all_context_marks_attached_to_component(start_component, klasses = (ContextMark, )):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Detach context marks attached to `start_component`::
 

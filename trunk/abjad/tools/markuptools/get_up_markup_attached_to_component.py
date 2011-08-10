@@ -2,7 +2,7 @@ from abjad.tools.markuptools.get_markup_attached_to_component import get_markup_
 
 
 def get_up_markup_attached_to_component(component):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get up-markup attached to component::
 

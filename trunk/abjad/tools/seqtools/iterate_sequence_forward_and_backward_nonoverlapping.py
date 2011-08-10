@@ -1,5 +1,5 @@
 def iterate_sequence_forward_and_backward_nonoverlapping(sequence):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Iterate `sequence` first forward and then backward, with first and last elements repeated::
 

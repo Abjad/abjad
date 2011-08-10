@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class
 
 
 def diatonic_pitch_number_to_chromatic_pitch_number(diatonic_pitch_number):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `diatonic_pitch_number` to chromatic pitch number::
 

@@ -2,7 +2,7 @@ from abjad.core.LilyPondGrobProxy import LilyPondGrobProxy
 
 
 class LilyPondGrobProxyContextWrapper(object):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Context wrapper for LilyPond grob overrides.
    '''

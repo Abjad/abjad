@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 
 
 def iterate_semantic_voices_forward_in_expr(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Iterate semantic voices forward in `expr`::
 

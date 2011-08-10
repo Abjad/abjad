@@ -2,7 +2,7 @@ from abjad.tools.pitchtools._Set import _Set
 
 
 class _IntervalSet(_Set):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abstract interval set.
    '''

@@ -9,7 +9,7 @@ from abjad.tools.tonalitytools.make_first_n_notes_in_ascending_diatonic_scale im
 
 
 def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Construct one up-down period of scale according to `key_signature`::
 

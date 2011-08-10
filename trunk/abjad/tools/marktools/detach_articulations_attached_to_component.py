@@ -2,7 +2,7 @@ from abjad.tools.marktools.get_articulations_attached_to_component import get_ar
 
 
 def detach_articulations_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
    
    Detach articulations attached to `component`::
 

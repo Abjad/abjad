@@ -2,7 +2,7 @@ from abjad.tools.marktools.get_comments_attached_to_component import get_comment
 
 
 def detach_comments_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
    
    Detach comments attached to `component`::
 

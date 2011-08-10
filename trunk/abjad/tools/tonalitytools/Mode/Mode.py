@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatoni
 
 
 class Mode(_Immutable):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Diatonic mode. Can be extended for nondiatonic mode.
 

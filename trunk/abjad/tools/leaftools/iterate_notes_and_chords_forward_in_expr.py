@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 
 
 def iterate_notes_and_chords_forward_in_expr(expr, start = 0, stop = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Iterate notes and chords forward in `expr`::
 

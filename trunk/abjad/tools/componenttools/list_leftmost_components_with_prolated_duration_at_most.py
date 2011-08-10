@@ -2,7 +2,7 @@ from abjad.tools import durtools
 
 
 def list_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    List leftmost components in `component` with prolated duration at most `prolated_duration`.
 

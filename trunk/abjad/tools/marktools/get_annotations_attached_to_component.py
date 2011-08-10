@@ -2,7 +2,7 @@ from abjad.tools.marktools.Annotation import Annotation
 
 
 def get_annotations_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get annotations attached to `component`::
 

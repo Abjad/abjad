@@ -1,5 +1,5 @@
 def component_to_score_index(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Change `component` to score index::
 

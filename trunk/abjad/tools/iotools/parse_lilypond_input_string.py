@@ -2,7 +2,7 @@ import re
 
 
 def parse_lilypond_input_string(note_entry_string):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Parse LilyPond `note_entry_string`::
 

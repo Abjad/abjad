@@ -4,7 +4,7 @@ from abjad.tools import durtools
 
 def make_leaves_from_note_value_signal(
    note_value_signal, denominator_of_signal, tied_rests = False):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make leaves from `note_value_signal` and `denominator_of_signal`::
 

@@ -2,7 +2,7 @@ import math
 
 
 def binomial_coefficient(n, k):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Binomial coefficient of `n` choose `k`::
 

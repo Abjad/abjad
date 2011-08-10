@@ -3,7 +3,7 @@ from abjad.tools.spannertools.MultipartBeamSpanner._MultipartBeamSpannerFormatIn
 
 
 class MultipartBeamSpanner(BeamSpanner):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad multipart beam spanner::
 

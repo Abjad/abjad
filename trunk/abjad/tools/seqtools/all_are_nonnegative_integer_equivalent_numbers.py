@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 
 
 def all_are_nonnegative_integer_equivalent_numbers(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True `expr` is a sequence and when all elements in `expr` are nonnegative
    integer-equivalent numbers. Otherwise false::

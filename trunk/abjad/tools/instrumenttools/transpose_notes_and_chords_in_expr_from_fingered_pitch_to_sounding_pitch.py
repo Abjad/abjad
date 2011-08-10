@@ -3,7 +3,7 @@ from abjad.tools.contexttools.get_effective_instrument import get_effective_inst
 
 
 def transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Transpose notes and chords in `expr` from sounding pitch to fingered pitch::
 

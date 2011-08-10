@@ -4,7 +4,7 @@ from abjad.tools.cfgtools.get_lilypond_version_string import get_lilypond_versio
 
 
 class LilyPondLanguageToken(_Immutable):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    LilyPond language token::
 

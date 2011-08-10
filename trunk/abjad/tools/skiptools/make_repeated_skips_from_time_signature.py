@@ -3,7 +3,7 @@ from abjad.tools.skiptools.Skip import Skip
 
 
 def make_repeated_skips_from_time_signature(time_signature):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make repeated skips from `time_signature`::
 

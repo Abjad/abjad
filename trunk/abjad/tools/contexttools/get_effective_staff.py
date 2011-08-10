@@ -3,7 +3,7 @@ from abjad.tools.contexttools.get_effective_context_mark import get_effective_co
 
 
 def get_effective_staff(component):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get effective staff of `component`::
 

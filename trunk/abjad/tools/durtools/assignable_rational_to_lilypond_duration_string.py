@@ -6,7 +6,7 @@ from fractions import Fraction
 
 
 def assignable_rational_to_lilypond_duration_string(rational):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change assignable `rational` to LilyPond duration string::
 

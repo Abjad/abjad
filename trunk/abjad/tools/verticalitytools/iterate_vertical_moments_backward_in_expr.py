@@ -5,7 +5,7 @@ from abjad.tools import durtools
 
 
 def iterate_vertical_moments_backward_in_expr(governor):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield vertical moments forward in `governor`::
 

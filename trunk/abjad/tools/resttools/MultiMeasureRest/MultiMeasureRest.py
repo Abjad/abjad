@@ -3,7 +3,7 @@ from abjad.tools.leaftools._Leaf import _Leaf
 
 
 class MultiMeasureRest(Rest):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of a multi-measure rest::
 

@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 
 
 def iterate_containers_forward_in_expr(expr, start = 0, stop = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Iterate containers forward in `expr`::
 

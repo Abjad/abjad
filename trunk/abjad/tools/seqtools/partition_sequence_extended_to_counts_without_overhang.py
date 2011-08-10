@@ -2,7 +2,7 @@ from abjad.tools.seqtools._partition_sequence_extended_to_counts import _partiti
 
 
 def partition_sequence_extended_to_counts_without_overhang(sequence, counts):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Partition `sequence` extended to `counts` without overhang::
 

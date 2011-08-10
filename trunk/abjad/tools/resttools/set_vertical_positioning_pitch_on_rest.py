@@ -2,7 +2,7 @@ from abjad.tools.resttools.Rest import Rest
 
 
 def set_vertical_positioning_pitch_on_rest(rest, pitch):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Set vertical positioning `pitch` on `rest`::
 

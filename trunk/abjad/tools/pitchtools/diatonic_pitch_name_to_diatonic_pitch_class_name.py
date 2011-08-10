@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.is_diatonic_pitch_name import diatonic_pitch_name_re
 
 
 def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `diatonic_pitch_name` to diatonic pitch-class name::
 

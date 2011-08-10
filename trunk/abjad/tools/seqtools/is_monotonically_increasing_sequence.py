@@ -1,5 +1,5 @@
 def is_monotonically_increasing_sequence(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when `expr` is a sequence and the elements in `expr` increase monotonically::
 

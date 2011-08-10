@@ -13,7 +13,7 @@ chromatic_pitch_class_name_regex = re.compile(
    '^%s$' % chromatic_pitch_class_name_regex_body, re.VERBOSE)
 
 def is_chromatic_pitch_class_name(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a chromatic pitch-class name. Otherwise false::
 

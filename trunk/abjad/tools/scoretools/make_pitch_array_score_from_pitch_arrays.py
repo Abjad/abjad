@@ -4,7 +4,7 @@ from abjad.tools.scoretools.StaffGroup.StaffGroup import StaffGroup
 
 
 def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make pitch-array score from `pitch_arrays`::
 

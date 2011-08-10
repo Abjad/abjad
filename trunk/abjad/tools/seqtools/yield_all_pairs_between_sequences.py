@@ -1,5 +1,5 @@
 def yield_all_pairs_between_sequences(l, m):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield all pairs between sequences `l` and `m`::
 

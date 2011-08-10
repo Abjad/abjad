@@ -1,5 +1,5 @@
 def insert_component_and_do_not_fracture_crossing_spanners(container, i, component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Insert `component` into `container` at index `i` and do not fracture crossing spanners::
 

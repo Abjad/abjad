@@ -2,7 +2,7 @@ from abjad.tools.containertools._replace_half_of_elements_in_container_with_rest
 
 
 def replace_larger_right_half_of_elements_in_container_with_little_endian_rests(container):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Replace larger right half of elements in `container` with little-endian rests::
 

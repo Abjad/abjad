@@ -4,7 +4,7 @@ from abjad.tools import durtools
 
 
 def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    List improper contents of `component` that cross `prolated_offset`::
 

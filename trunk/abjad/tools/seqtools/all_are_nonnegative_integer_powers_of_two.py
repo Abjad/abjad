@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 
 
 def all_are_nonnegative_integer_powers_of_two(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a sequence and all elements in `expr` are nonnegative integer powers of two::
 

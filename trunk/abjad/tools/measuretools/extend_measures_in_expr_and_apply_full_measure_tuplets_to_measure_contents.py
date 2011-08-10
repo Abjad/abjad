@@ -2,7 +2,7 @@ from abjad.tools.measuretools._apply_full_measure_tuplets_to_contents_of_measure
 
 
 def extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(expr, supplement):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Extend measures in `expr` with `supplement` and apply full-measure tuplets to contents 
    of measures::

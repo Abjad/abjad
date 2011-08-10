@@ -3,7 +3,7 @@ from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avo
 
 def make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
    duration, proportions, direction = 'big-endian'):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make augmented tuplet from `duration` and `proportions` and avoid dots.
 

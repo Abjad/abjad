@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 
 
 def chromatic_pitch_names_string_to_named_chromatic_pitch_list(chromatic_pitch_names_string):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `chromatic_pitch_names_string` to named chromatic pitch list::
 

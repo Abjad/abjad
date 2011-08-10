@@ -2,7 +2,7 @@ from abjad.tools.mathtools.is_integer_equivalent_number import is_integer_equiva
 
 
 def is_nonnegative_integer_equivalent_number(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a nonnegative integer-equivalent number. Otherwise false::
 

@@ -3,7 +3,7 @@ import numbers
 
 
 class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of inversion-equivalent diatonic interval-class::
 

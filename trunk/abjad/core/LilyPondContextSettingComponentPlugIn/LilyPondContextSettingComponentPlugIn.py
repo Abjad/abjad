@@ -3,7 +3,7 @@ from abjad.core._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
 
 
 class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    LilyPond context setting namespace.
    '''

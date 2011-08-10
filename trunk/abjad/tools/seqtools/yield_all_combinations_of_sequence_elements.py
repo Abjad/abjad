@@ -3,7 +3,7 @@ import copy
 
 
 def yield_all_combinations_of_sequence_elements(sequence, min_length = None, max_length = None):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield all combinations of `sequence` in binary string order::
 

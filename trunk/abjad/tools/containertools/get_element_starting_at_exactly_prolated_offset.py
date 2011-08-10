@@ -2,7 +2,7 @@ from abjad.exceptions import MissingComponentError
 
 
 def get_element_starting_at_exactly_prolated_offset(container, prolated_offset):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get `container` element starting at exactly `prolated_offset`::
 

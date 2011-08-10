@@ -5,7 +5,7 @@ from abjad.tools import iotools
 
 def _make_lilypond_override_string(grob_name, grob_attribute, grob_value, 
    context_name = None, is_once = False):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Does not include once indicator.
    '''

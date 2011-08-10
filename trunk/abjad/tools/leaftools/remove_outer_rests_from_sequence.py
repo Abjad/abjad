@@ -2,7 +2,7 @@ from abjad.tools.leaftools.remove_terminal_rests_from_sequence import remove_ter
 
 
 def remove_outer_rests_from_sequence(sequence):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Remove outer rests from `sequence`::
 

@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 
 
 def list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(expr_1, expr_2):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    List ordered named chromatic pitch pairs from `expr_1` to `expr_2`::
 

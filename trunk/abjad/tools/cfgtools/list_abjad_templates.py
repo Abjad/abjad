@@ -3,7 +3,7 @@ import os
 
 
 def list_abjad_templates( ):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    List Abjad templates::
 

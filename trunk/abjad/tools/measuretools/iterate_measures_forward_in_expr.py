@@ -3,7 +3,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 
 
 def iterate_measures_forward_in_expr(expr, start = 0, stop = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Iterate measures forward in `expr`::
 

@@ -1,5 +1,5 @@
 def list_time_signatures_of_measures_in_expr(components):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    List time signatures of measures in `expr`::
 

@@ -2,7 +2,7 @@ from abjad.tools.seqtools._split_sequence_extended_to_weights import _split_sequ
 
 
 def split_sequence_extended_to_weights_without_overhang(sequence, weights):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Split `sequence` extended to `weights` without overhang::
 

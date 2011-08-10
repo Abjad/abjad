@@ -6,7 +6,7 @@ from fractions import Fraction
 
 
 def partition_sequence_by_ratio_of_weights(sequence, weights):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Partition `sequence` by ratio of `weights`::
 

@@ -5,7 +5,7 @@ from abjad.tools.tonalitytools.analyze_chord import analyze_chord
 
 
 def analyze_tonal_function(expr, key_signature):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Analyze `expr` and return tonal function according to `key_signature`. ::
 

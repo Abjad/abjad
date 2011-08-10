@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 
 
 def list_harmonic_chromatic_intervals_in_expr(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    List harmonic chromatic intervals in `expr`::
 

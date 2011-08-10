@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._NumberedPitchClass import _NumberedPitchClass
 
 
 class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of a numbered diatonic pitch-class::
 

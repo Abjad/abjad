@@ -2,7 +2,7 @@ from fractions import Fraction
 
 
 def numeric_seconds_to_clock_string(seconds):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Change numeric `seconds` to clock string::
 

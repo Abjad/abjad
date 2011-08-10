@@ -4,7 +4,7 @@ from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
 
 
 def get_time_signature_mark_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get time signature mark attached to `component`::
 

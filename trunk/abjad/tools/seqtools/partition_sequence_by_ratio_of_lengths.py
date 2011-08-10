@@ -3,7 +3,7 @@ from abjad.tools.seqtools.partition_sequence_once_by_counts_without_overhang imp
 
 
 def partition_sequence_by_ratio_of_lengths(sequence, lengths):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Partition `sequence` by ratio of `lengths`::
 

@@ -2,7 +2,7 @@ from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_
 
 
 def list_prolated_durations_of_leaves_in_expr(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    List prolated durations of leaves in `expr`::
 

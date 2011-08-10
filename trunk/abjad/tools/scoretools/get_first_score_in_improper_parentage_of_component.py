@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 
 
 def get_first_score_in_improper_parentage_of_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get first score in improper parentage of `component`::
 

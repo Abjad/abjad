@@ -3,7 +3,7 @@ from abjad.tools.leaftools.get_composite_offset_series_from_leaves_in_expr impor
 
 
 def get_composite_offset_difference_series_from_leaves_in_expr(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get composite offset difference series from leaves in `expr`::
 

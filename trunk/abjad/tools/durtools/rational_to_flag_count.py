@@ -2,7 +2,7 @@ import math
 
 
 def rational_to_flag_count(rational):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `rational` to number of flags required to notate::
 

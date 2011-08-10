@@ -3,7 +3,7 @@ from abjad.tools.cfgtools.get_abjad_revision_string import get_abjad_revision_st
 
 
 class AbjadRevisionToken(_Immutable):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad version token::
 

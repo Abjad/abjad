@@ -3,7 +3,7 @@ import numbers
 
 
 def integer_equivalent_number_to_integer(number):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
    
    Integer-equivalent `number` to integer::
 

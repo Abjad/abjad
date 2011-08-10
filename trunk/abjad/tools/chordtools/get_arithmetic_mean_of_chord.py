@@ -1,5 +1,5 @@
 def get_arithmetic_mean_of_chord(chord):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get arithmetic mean of chromatic pitch number of pitches in `chord`::
 

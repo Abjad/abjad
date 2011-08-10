@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.is_diatonic_pitch_number import is_diatonic_pitch_nu
 
 
 def diatonic_pitch_number_to_diatonic_pitch_class_name(diatonic_pitch_number):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `diatonic_pitch_number` to diatonic pitch-class name::
 

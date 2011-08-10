@@ -6,7 +6,7 @@ import numbers
 
 
 def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_chromatic_interval):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Transpose `pitch_carrier` by `melodic_chromatic_interval`::
 

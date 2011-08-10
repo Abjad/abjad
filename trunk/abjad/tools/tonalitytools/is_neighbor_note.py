@@ -5,7 +5,7 @@ from abjad.tools.tonalitytools.are_stepwise_notes import are_stepwise_notes
 
 
 def is_neighbor_note(note):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when `note` is preceeded by a stepwise interval in one direction
    and followed by a stepwise interval in the other direction.

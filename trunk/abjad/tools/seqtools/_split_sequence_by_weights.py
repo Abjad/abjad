@@ -3,7 +3,7 @@ from abjad.tools.seqtools.repeat_sequence_to_weight_at_most import repeat_sequen
 
 
 def _split_sequence_by_weights(sequence, weights, cyclic = False, overhang = False):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Split sequence by weights.
 

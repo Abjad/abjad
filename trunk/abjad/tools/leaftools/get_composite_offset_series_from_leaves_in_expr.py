@@ -2,7 +2,7 @@ from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_
 
 
 def get_composite_offset_series_from_leaves_in_expr(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get composite offset series from leaves in `expr`::
 

@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClassSegment import NumberedCh
 
 
 class TwelveToneRow(NumberedChromaticPitchClassSegment):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of twelve-tone row::
 

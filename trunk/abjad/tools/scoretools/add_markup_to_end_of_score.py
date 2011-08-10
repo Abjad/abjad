@@ -2,7 +2,7 @@ from abjad.tools import markuptools
 
 
 def add_markup_to_end_of_score(score, markup, extra_offset = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Add `markup` to end of `score`::
 

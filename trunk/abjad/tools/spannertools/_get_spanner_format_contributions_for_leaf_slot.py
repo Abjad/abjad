@@ -1,5 +1,5 @@
 def _get_spanner_format_contributions_for_leaf_slot(leaf, slot):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
    '''
    from abjad.tools import spannertools
 

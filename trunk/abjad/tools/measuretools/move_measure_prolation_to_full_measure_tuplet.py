@@ -6,7 +6,7 @@ from abjad.tools import durtools
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Move measure prolation to full-measure tuplet.
 

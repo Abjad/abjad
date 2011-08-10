@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._ChromaticPitch import _ChromaticPitch
 
 
 def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segment):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Transpose chromatic `pitch` by melodic chromatic interval `segment`::
 

@@ -4,7 +4,7 @@ from abjad.tools.instrumenttools._PercussionInstrument import _PercussionInstrum
 
 
 class UntunedPercussion(_PercussionInstrument):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad model of untuned percussion::
 

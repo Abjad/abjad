@@ -1,5 +1,5 @@
 def rational_to_prolation_string(rational):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Change `rational` to prolation string::
 

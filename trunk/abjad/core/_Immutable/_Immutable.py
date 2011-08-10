@@ -1,5 +1,5 @@
 class _Immutable(object):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Base from which immutable custom classes can inherit.
 

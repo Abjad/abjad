@@ -3,7 +3,7 @@ from abjad.tools.skiptools.Skip import Skip
 
 
 def make_skips_with_multiplied_durations(written_duration, multiplied_durations):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make `written_duration` skips with `multiplied_durations`::
    

@@ -3,7 +3,7 @@ from abjad.tools.tietools._tie_chain_to_tuplet import _tie_chain_to_tuplet
 
 
 def tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots(tie_chain, proportions):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Divide `tie_chain` into fixed-duration tuplet according to 
    arbitrary integer `proportions`.

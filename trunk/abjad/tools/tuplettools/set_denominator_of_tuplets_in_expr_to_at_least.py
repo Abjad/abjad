@@ -4,7 +4,7 @@ from abjad.tools.tuplettools.iterate_tuplets_forward_in_expr import iterate_tupl
 
 
 def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Set denominator of tuplets in `expr` to at least `n`::
 

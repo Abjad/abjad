@@ -3,7 +3,7 @@ from abjad.tools import marktools
 
 
 def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Set `accidental_style` for sequential semantic contexts in `expr`::
 

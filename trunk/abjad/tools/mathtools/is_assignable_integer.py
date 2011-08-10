@@ -2,7 +2,7 @@ from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_str
 
 
 def is_assignable_integer(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when `expr` is equivalent to an integer and 
    can be written without recourse to ties::

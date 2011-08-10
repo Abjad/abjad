@@ -4,7 +4,7 @@ import copy
 
 
 class Annotation(Mark):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    User-defined annotation::
 

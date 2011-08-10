@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 
 def calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
    pitch_carrier_1, pitch_carrier_2):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Calculate melodic diatonic interval from `pitch_carrier_1` to 
    `pitch_carrier_2`::

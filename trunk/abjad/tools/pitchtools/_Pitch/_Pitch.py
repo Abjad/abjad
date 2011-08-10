@@ -3,7 +3,7 @@ from abjad.core import _UnaryComparator
 
 
 class _Pitch(_Immutable, _UnaryComparator):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Pitch base class.
    '''

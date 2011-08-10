@@ -2,7 +2,7 @@ from abjad.tools.componenttools.yield_topmost_components_grouped_by_type import 
 
 
 def yield_groups_of_mixed_klasses_in_sequence(sequence, klasses):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield groups of mixed `klasses` in `sequence`::
 

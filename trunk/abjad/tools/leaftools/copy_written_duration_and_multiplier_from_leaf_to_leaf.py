@@ -3,7 +3,7 @@ from abjad.tools import durtools
 
 
 def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_leaf):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Copy written duration and multiplier from `source_leaf` to `target_leaf`::
 

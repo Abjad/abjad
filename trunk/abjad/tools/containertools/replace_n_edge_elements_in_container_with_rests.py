@@ -2,7 +2,7 @@ from abjad.tools.containertools._replace_first_n_elements_in_container_with_rest
 
 
 def replace_n_edge_elements_in_container_with_rests(container, n):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Replace first `n` elements in `container` with big-endian rests::
 

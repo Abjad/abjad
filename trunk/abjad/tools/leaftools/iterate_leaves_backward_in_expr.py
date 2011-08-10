@@ -3,7 +3,7 @@ from abjad.tools.componenttools.iterate_components_backward_in_expr import itera
 
 
 def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Iterate leaves backward in `expr`::
 

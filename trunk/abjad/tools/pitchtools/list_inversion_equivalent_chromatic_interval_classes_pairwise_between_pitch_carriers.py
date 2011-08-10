@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
    pitch_carriers, wrap = False):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    List inversion-equivalent chromatic interval-classes pairwise between `pitch_carriers`::
 

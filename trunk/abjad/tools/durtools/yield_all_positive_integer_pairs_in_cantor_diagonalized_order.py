@@ -1,5 +1,5 @@
 def yield_all_positive_integer_pairs_in_cantor_diagonalized_order( ):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield all positive integer pairs in Cantor diagonalized order::
 

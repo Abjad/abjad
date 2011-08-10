@@ -2,7 +2,7 @@ from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
 
 
 class MelodicDiatonicIntervalSegment(_IntervalSegment):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of melodic diatonic interval segment::
 

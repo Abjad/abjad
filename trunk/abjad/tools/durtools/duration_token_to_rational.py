@@ -3,7 +3,7 @@ from fractions import Fraction
 
 
 def duration_token_to_rational(duration_token):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `duration_token` to rational::
 

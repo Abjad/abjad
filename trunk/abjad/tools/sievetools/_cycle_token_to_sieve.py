@@ -3,7 +3,7 @@ from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
 
 
 def _cycle_token_to_sieve(cycle_token):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make Xenakis sieve from `cycle_token`.
 

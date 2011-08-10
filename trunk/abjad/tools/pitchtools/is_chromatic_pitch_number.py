@@ -1,5 +1,5 @@
 def is_chromatic_pitch_number(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True `expr` is a chromatic pitch number. Otherwise false::
 

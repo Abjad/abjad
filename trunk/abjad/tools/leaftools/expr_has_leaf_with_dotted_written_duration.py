@@ -2,7 +2,7 @@ from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_
 
 
 def expr_has_leaf_with_dotted_written_duration(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` has at least one leaf with dotted writtern duration::
 

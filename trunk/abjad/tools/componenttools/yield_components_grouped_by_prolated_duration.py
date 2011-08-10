@@ -1,5 +1,5 @@
 def yield_components_grouped_by_prolated_duration(components):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield `component` grouped by prolated duration::
 

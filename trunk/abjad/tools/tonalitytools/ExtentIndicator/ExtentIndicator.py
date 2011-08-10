@@ -2,7 +2,7 @@ from abjad.core import _Immutable
 
 
 class ExtentIndicator(_Immutable):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Indicator of chord extent, such as triad, seventh chord, ninth chord,
    etc.

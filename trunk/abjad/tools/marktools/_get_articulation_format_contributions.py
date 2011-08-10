@@ -1,5 +1,5 @@
 def _get_articulation_format_contributions(component):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
    '''
    from abjad.tools import marktools
 

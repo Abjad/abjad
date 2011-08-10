@@ -2,7 +2,7 @@ from abjad.tools.pitchtools._PitchSet import _PitchSet
 
 
 class NamedChromaticPitchSet(_PitchSet):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of a named chromatic pitch set::
 

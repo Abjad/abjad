@@ -1,5 +1,5 @@
 def duration_pair_to_prolation_string(pair):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change positive integer duration `pair` to colon-separated prolation string::
 

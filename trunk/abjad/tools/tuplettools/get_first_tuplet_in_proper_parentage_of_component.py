@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 
 
 def get_first_tuplet_in_proper_parentage_of_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get first tuplet in proper parentage of `component`::
 

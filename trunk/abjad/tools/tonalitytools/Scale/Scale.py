@@ -8,7 +8,7 @@ from abjad.tools.tonalitytools.ScaleDegree import ScaleDegree
 
 
 class Scale(NamedChromaticPitchClassSegment):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of diatonic scale.
    '''

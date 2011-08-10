@@ -10,7 +10,7 @@ octave_tick_regex_body = """
 octave_tick_regex = re.compile('^%s$' % octave_tick_regex_body, re.VERBOSE)
 
 def is_octave_tick_string(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is an octave tick string. Otherwise false::
 

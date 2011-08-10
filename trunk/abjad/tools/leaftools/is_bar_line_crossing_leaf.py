@@ -2,7 +2,7 @@ from abjad.tools import durtools
 
 
 def is_bar_line_crossing_leaf(leaf):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when `leaf` crosses bar line::
 

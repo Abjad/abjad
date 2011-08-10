@@ -1,5 +1,5 @@
 def _get_comment_format_contributions_for_slot(component, slot):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
    '''
    from abjad.tools import marktools
 

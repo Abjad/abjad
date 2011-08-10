@@ -2,7 +2,7 @@ from abjad.tools.pitcharraytools._leaf_iterables_to_pitch_array import _leaf_ite
 
 
 def make_populated_pitch_array_from_list_of_pitch_lists(leaf_iterables):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make populated pitch array from `leaf_iterables`::
 

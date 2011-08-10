@@ -1,5 +1,5 @@
 def color_contents_of_container(container, color):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Color contents of `container`::
 

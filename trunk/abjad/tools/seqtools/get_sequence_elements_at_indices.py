@@ -1,5 +1,5 @@
 def get_sequence_elements_at_indices(sequence, indices):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get `sequence` elements at `indices`::
 

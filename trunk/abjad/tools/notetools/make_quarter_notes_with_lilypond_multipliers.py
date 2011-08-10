@@ -6,7 +6,7 @@ import fractions
 
 
 def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make quarter notes with `pitches` and `multiplied_durations`::
 

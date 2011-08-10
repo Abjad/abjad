@@ -4,7 +4,7 @@ from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
 def get_tie_chain(component):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get tie chain from `component`.
    '''

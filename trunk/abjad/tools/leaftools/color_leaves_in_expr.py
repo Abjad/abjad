@@ -3,7 +3,7 @@ from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_
 
 
 def color_leaves_in_expr(expr, color):
-   r""".. versionadded:: 1.1.2
+   r""".. versionadded:: 2.0
 
    Color leaves in `expr`::
 

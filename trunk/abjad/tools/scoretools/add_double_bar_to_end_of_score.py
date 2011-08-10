@@ -2,7 +2,7 @@ from abjad.tools import marktools
 
 
 def add_double_bar_to_end_of_score(score):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Add double bar to end of `score`::
 

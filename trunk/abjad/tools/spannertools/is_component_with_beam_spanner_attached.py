@@ -1,5 +1,5 @@
 def is_component_with_beam_spanner_attached(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is component with beam spanner attached::
 

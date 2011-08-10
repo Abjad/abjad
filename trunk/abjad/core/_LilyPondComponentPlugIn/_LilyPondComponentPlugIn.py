@@ -1,5 +1,5 @@
 class _LilyPondComponentPlugIn(object):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Shared LilyPond grob proxy and LilyPond context proxy functionality.
    '''

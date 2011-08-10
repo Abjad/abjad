@@ -2,7 +2,7 @@ from abjad.tools.mathtools.divisors import divisors
 
 
 def greatest_common_divisor(*integers):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Greatest common divisor of `integers`::
 

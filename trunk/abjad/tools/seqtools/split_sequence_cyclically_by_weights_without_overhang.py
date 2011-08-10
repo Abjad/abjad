@@ -2,7 +2,7 @@ from abjad.tools.seqtools._split_sequence_by_weights import _split_sequence_by_w
 
 
 def split_sequence_cyclically_by_weights_without_overhang(sequence, weights):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Split `sequence` cyclically by `weights` without overhang::
 

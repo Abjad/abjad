@@ -1,5 +1,5 @@
 def octave_number_to_octave_tick_string(octave_number):
-   r""".. versionadded:: 1.1.2
+   r""".. versionadded:: 2.0
 
    Change `octave_number` to octave tick string::
 

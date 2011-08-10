@@ -14,7 +14,7 @@ def _line_break_every(expr, line_duration, klass = Measure,
       If `adjust_eol` is True, apply rightwards extra-offset to LilyPond
       TimeSignature and LilyPond Barline at end of line with magic Scheme.
 
-   .. versionadded:: 1.1.2
+   .. versionadded:: 2.0
       New `add_empty_bars` keyword.
    '''
 

@@ -2,7 +2,7 @@ from abjad.tools.containertools.get_first_element_starting_before_or_at_prolated
 
 
 def delete_contents_of_container_starting_before_or_at_prolated_offset(container, prolated_offset):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Delete contents of `container` starting before or at `prolated_offset`::
 

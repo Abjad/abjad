@@ -4,7 +4,7 @@ from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArray
 
 
 class PitchArrayColumn(_StrictComparator):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Column in a pitch array::
 

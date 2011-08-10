@@ -2,7 +2,7 @@ from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avo
 
 def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(
    duration, proportions, direction = 'big-endian'):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make diminished tuplet from `duration` and nonzero integer `proportions`.
 

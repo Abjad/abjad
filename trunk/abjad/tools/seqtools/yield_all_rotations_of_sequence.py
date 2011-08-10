@@ -2,7 +2,7 @@ from abjad.tools.seqtools.rotate_sequence import rotate_sequence
 
 
 def yield_all_rotations_of_sequence(sequence, n = 1):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield all `n`-rotations of `sequence` up to identity::
 

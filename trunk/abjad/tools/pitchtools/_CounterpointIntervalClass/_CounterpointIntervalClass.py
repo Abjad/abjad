@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 
 
 class _CounterpointIntervalClass(_IntervalClass, _Counterpoint):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Counterpoint interval-class base class.
    '''

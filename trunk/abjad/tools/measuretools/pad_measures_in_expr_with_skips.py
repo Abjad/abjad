@@ -1,5 +1,5 @@
 def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Pad measures in `expr` with skips.
 

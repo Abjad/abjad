@@ -1,5 +1,5 @@
 def iterate_sequence_nwise_cyclic(sequence, n):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Iterate elements in `sequence` cyclically `n` at a time::
 

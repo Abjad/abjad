@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 
 
 def expr_to_melodic_chromatic_interval_segment(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `expr` to melodic chromatic interval segment::
 

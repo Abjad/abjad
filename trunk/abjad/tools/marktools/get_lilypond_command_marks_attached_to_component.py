@@ -2,7 +2,7 @@ from abjad.tools.marktools.LilyPondCommandMark import LilyPondCommandMark
 
 
 def get_lilypond_command_marks_attached_to_component(component, command_name_string = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get LilyPond command marks attached to `component`::
 

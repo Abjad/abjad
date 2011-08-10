@@ -6,7 +6,7 @@ from abjad.tools import durtools
 ## TODO: Maybe move get_likely_multiplier_of_components( ) from durtools to measuretools? ##
 
 def get_likely_multiplier_of_components(components):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get likely multiplier of `components`::
 

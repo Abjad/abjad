@@ -1,5 +1,5 @@
 def rewrite_rational_under_new_tempo(prolated_duration_1, tempo_mark_1, tempo_mark_2):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Given `prolated_duration_1` governed by `tempo_mark_1`,
    return `prolated_duration_2` governed by `tempo_mark_2`

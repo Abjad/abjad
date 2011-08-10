@@ -5,7 +5,7 @@ import copy
 
 
 class PitchArrayRow(_StrictComparator):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    One row in pitch array. ::
 

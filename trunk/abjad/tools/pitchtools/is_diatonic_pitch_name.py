@@ -12,7 +12,7 @@ diatonic_pitch_name_regex = re.compile(
    '^%s$' % diatonic_pitch_name_regex_body, re.VERBOSE)
 
 def is_diatonic_pitch_name(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a diatonic pitch name. Otherwise false::
 

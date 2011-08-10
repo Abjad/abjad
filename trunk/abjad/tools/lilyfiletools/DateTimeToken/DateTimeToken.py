@@ -3,7 +3,7 @@ import time
 
 
 class DateTimeToken(_Immutable):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Date time token::
 

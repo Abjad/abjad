@@ -2,7 +2,7 @@ from abjad.core import _Immutable
 
 
 class OmissionIndicator(_Immutable):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Indicator of missing chord tones.
 

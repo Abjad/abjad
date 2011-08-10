@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import Inve
 
 
 def inventory_inversion_equivalent_diatonic_interval_classes( ):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Inventory inversion-equivalent diatonic interval-classes::
 

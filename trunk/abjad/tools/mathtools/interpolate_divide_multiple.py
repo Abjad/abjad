@@ -3,7 +3,7 @@ from abjad.tools.mathtools.interpolate_divide import interpolate_divide
 
 ## TODO: fix hyphen chains in API entry so Sphinx doesn't complain.
 def interpolate_divide_multiple(totals, key_values, exp='cosine'):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Interpolate `key_values` such that the sum of the 
    resulting interpolated values equals the given `totals`::

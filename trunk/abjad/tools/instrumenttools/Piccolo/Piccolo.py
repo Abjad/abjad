@@ -3,7 +3,7 @@ from abjad.tools.instrumenttools.Flute import Flute
 
 
 class Piccolo(Flute):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad model of the piccolo::
 

@@ -4,7 +4,7 @@ from abjad.tools import iotools
 
 
 def _make_lilypond_revert_string(grob_name, grob_attribute, context_name = None):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make LilyPond revert string.
    '''

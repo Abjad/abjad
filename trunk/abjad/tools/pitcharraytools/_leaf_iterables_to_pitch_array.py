@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 
 
 def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
    '''
 
    from abjad.tools import leaftools

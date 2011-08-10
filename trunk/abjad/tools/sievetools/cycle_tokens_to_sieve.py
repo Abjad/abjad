@@ -3,7 +3,7 @@ from abjad.tools.sievetools._cycle_token_to_sieve import _cycle_token_to_sieve
 
 
 def cycle_tokens_to_sieve(*cycle_tokens):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make Xenakis sieve from arbitrarily many `cycle_tokens`. ::
 

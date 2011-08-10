@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiato
 
 
 class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Chord quality indicator.
    '''

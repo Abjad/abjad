@@ -3,7 +3,7 @@ import copy
 
 
 def repeat_sequence_n_times(sequence, n):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Repeat `sequence` `n` times::
 

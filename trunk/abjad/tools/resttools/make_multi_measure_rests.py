@@ -3,7 +3,7 @@ from abjad.tools.resttools.MultiMeasureRest import MultiMeasureRest
 
 
 def make_multi_measure_rests(duration_tokens):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Make multi-measure rests from `duration_tokens`::
 

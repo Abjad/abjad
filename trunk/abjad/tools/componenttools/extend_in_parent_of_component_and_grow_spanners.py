@@ -1,5 +1,5 @@
 def extend_in_parent_of_component_and_grow_spanners(component, new_components):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Extend `new_components` in parent of `component` and grow spanners::
 

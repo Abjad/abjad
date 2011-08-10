@@ -1,5 +1,5 @@
 def next_integer_partition(integer_partition):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Next integer partition following `integer_partition` in descending lex order::
 

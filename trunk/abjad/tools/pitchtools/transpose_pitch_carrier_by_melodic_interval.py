@@ -5,7 +5,7 @@ from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_diatonic_interva
 
 
 def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Transpose `pitch_carrier` by diatonic `melodic_interval`::
 

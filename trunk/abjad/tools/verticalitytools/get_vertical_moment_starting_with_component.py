@@ -3,7 +3,7 @@ from abjad.tools.verticalitytools.get_vertical_moment_at_prolated_offset_in_expr
 
 
 def get_vertical_moment_starting_with_component(expr, governor = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    When `governor` is none, get vertical moment at 
    ``expr._offset.start`` in score root of `expr`::

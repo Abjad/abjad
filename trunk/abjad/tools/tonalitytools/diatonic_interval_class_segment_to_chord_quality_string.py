@@ -3,7 +3,7 @@ from abjad.tools import pitchtools
 
 
 def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change diatonic interval-class segment `dic_seg` to chord quality string::
 

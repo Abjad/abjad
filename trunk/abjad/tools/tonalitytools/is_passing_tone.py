@@ -4,7 +4,7 @@ from abjad.tools.tonalitytools.are_scalar_notes import are_scalar_notes
 
 
 def is_passing_tone(note):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when `note` is both preceeded and followed by scalewise
    sibling notes. Otherwise false. ::

@@ -3,7 +3,7 @@ from abjad.tools.durtools.duration_token_to_duration_pair import duration_token_
 
 
 def is_duration_token(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` has the form of an Abjad duration pair::
 

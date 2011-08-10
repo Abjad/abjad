@@ -26,7 +26,7 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = dur
               d'16
       }   
 
-   .. versionadded:: 1.1.2
+   .. versionadded:: 2.0
       Optional `key_signature` keyword parameter.
 
    .. versionchanged:: 1.1.2

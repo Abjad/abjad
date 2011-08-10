@@ -2,7 +2,7 @@ from abjad.tools.contexttools.get_time_signature_mark_attached_to_component impo
 
 
 def detach_time_signature_mark_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Detach time signature mark attached to `component`::
 

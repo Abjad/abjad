@@ -2,7 +2,7 @@ from abjad.tools.measuretools.pitch_array_row_to_measure import pitch_array_row_
 
 
 def pitch_array_to_measures(pitch_array, cell_duration_denominator = 8):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Change `pitch_array` to measures with meters 
    `row.width` over `cell_duration_denominator` for each

@@ -4,7 +4,7 @@ from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
 def is_component_with_tie_spanner_attached(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when `expr` is component with tie spanner attached::
 

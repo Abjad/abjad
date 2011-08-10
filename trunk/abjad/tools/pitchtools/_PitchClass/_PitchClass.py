@@ -3,7 +3,7 @@ from abjad.core import _Immutable
 
 
 class _PitchClass(_Immutable, _FlexEqualityComparator):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Pitch-class base class.
    '''

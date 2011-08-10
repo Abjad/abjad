@@ -2,7 +2,7 @@ from abjad.exceptions import TonalHarmonyError
 
 
 def chord_class_cardinality_to_extent(cardinality):
-   '''..versionadded:: 1.1.2
+   '''..versionadded:: 2.0
 
    Change integer chord class `cardinality` to integer chord class extent::
 

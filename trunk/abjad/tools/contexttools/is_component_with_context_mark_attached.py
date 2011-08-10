@@ -3,7 +3,7 @@ from abjad.tools.contexttools.get_context_marks_attached_to_component import get
 
 
 def is_component_with_context_mark_attached(component, klasses = (ContextMark, )):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    True when context mark of `klasses` attaches to `component`::
 

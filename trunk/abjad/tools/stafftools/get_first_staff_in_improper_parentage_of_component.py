@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 
 
 def get_first_staff_in_improper_parentage_of_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get first staff in improper parentage of `component`::
 

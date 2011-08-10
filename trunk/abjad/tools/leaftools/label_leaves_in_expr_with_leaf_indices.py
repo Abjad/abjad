@@ -2,7 +2,7 @@ from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_
 
 
 def label_leaves_in_expr_with_leaf_indices(expr, markup_direction = 'down'):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Label leaves in `expr` with leaf indices::
 

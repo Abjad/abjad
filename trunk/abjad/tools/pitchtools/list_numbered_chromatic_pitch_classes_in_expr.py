@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 
 
 def list_numbered_chromatic_pitch_classes_in_expr(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    List numbered chromatic pitch-classes in `expr`::
 

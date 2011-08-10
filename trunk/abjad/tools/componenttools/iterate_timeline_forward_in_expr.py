@@ -3,7 +3,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 
 
 def iterate_timeline_forward_in_expr(expr, klass = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Iterate timeline forward in `expr`::
 

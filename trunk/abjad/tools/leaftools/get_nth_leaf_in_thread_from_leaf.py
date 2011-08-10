@@ -2,7 +2,7 @@ from abjad.tools.leaftools._Leaf import _Leaf
 
 
 def get_nth_leaf_in_thread_from_leaf(leaf, n = 0):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get `n` th leaf in thread from `leaf`::
 

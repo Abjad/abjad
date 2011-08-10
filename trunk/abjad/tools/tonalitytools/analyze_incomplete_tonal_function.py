@@ -6,7 +6,7 @@ from abjad.tools.tonalitytools.analyze_incomplete_chord import analyze_incomplet
 
 ## TODO: Write tests ##
 def analyze_incomplete_tonal_function(expr, key_signature):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Analyze tonal function of `expr` according to `key_signature`::
 

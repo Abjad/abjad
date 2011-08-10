@@ -2,7 +2,7 @@ from abjad.tools.seqtools.reverse_sequence import reverse_sequence
 
 
 def reverse_sequence_elements(sequence):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Reverse `sequence` elements::
 

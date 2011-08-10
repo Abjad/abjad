@@ -1,5 +1,5 @@
 class CyclicTuple(tuple):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of cyclic tuple::
 

@@ -13,7 +13,7 @@ diatonic_quality_abbreviation_regex = re.compile(
    '^%s$' % diatonic_quality_abbreviation_regex_body, re.VERBOSE)
 
 def is_diatonic_quality_abbreviation(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a diatonic quality abbreviation. Otherwise false::
 

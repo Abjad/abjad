@@ -4,7 +4,7 @@ from fractions import Fraction
 
 def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
    prolated_duration, minimum_written_duration = Fraction(1, 128)):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield all prolation rewrite pairs of `prolated_duration` in Cantor diagonalized order.
 

@@ -3,7 +3,7 @@ import itertools
 
 
 def yield_all_compositions_of_integer(n):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield all compositions of positive integer `n` in descending lex order::
 

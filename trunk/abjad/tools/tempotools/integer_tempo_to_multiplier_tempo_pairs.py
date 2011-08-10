@@ -5,7 +5,7 @@ import math
 
 def integer_tempo_to_multiplier_tempo_pairs(integer_tempo, 
    maximum_numerator = None, maximum_denominator = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Return all multiplier, tempo pairs possible from `integer_tempo`.
 

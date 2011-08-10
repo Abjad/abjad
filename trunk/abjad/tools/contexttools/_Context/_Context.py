@@ -61,7 +61,7 @@ class _Context(Container):
 
    @property
    def engraver_consists(self):
-      r'''.. versionadded:: 1.1.2
+      r'''.. versionadded:: 2.0
       
       Unordered set of LilyPond engravers to include in context definition.
    
@@ -80,7 +80,7 @@ class _Context(Container):
 
    @property
    def engraver_removals(self):
-      r'''.. versionadded:: 1.1.2
+      r'''.. versionadded:: 2.0
       
       Unordered set of LilyPond engravers to remove from context.
    

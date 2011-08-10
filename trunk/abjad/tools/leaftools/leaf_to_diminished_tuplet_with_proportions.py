@@ -2,7 +2,7 @@ from abjad.tools.leaftools._leaf_to_tuplet_with_proportions import _leaf_to_tupl
 
 
 def leaf_to_diminished_tuplet_with_proportions(leaf, proportions):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `leaf` to diminished tuplet with `proportions`::
 

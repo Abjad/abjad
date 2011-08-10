@@ -4,7 +4,7 @@ import re
 
 
 def lilypond_duration_string_to_rational(duration_string):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change LilyPond `duration_string` to rational::
 

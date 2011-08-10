@@ -3,7 +3,7 @@ from abjad.tools.spannertools.TextSpanner._TextSpannerFormatInterface import _Te
 
 
 class TextSpanner(Spanner):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad text spanner::
 

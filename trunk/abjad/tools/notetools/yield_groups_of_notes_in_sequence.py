@@ -2,7 +2,7 @@ from abjad.tools.notetools.Note import Note
 
 
 def yield_groups_of_notes_in_sequence(sequence):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Yield groups of notes in `sequence`::
 

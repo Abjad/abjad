@@ -3,7 +3,7 @@ from abjad.tools.durtools.duration_tokens_to_duration_pairs import duration_toke
 
 
 def duration_tokens_to_least_common_denominator(duration_tokens):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `duration_tokens` to least common denominator::
 

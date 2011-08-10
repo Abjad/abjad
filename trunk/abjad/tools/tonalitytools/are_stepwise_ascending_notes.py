@@ -5,7 +5,7 @@ from abjad.tools import seqtools
 
 
 def are_stepwise_ascending_notes(*expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when notes in `expr` are stepwise ascneding. ::
 

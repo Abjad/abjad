@@ -4,7 +4,7 @@ from abjad.tools.contexttools.get_effective_instrument import get_effective_inst
 
 
 def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when notes and chords in `expr` are within traditional instrument ranges::
 

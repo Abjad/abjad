@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.list_harmonic_chromatic_intervals_in_expr import lis
 
 
 class HarmonicChromaticIntervalClassVector(_Vector):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of harmonic chromatic interval-class vector::
 

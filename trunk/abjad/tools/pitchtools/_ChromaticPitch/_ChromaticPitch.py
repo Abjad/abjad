@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._Pitch import _Pitch
 
 
 class _ChromaticPitch(_Pitch, _Chromatic):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Chromatic pitch base class.
    '''

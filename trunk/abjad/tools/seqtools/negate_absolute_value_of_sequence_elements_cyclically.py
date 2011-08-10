@@ -1,5 +1,5 @@
 def negate_absolute_value_of_sequence_elements_cyclically(sequence, indices, period):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Negate the absolute value of `sequence` elements at `indices` cyclically
    according to `period`::

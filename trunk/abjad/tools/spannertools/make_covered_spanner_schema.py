@@ -4,7 +4,7 @@ from abjad.tools.spannertools.get_spanners_attached_to_component import get_span
 
 
 def make_covered_spanner_schema(components):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Make schema of spanners covered by `components`::
 

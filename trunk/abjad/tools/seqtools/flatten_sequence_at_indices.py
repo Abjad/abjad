@@ -2,7 +2,7 @@ from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 
 
 def flatten_sequence_at_indices(sequence, indices, klasses = None, depth = -1):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Flatten `sequence` at `indices`::
 

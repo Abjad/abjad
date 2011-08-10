@@ -5,7 +5,7 @@ import re
 
 
 def _parse_chord_entry_token(chord_entry_token):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Parse LilyPond-style `chord_entry_token`.
    '''

@@ -2,7 +2,7 @@ from abjad.cfg.cfg import ABJADVERSIONFILE
 
 
 def get_abjad_revision_string( ):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get Abjad revision string::
 

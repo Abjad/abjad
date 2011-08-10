@@ -2,7 +2,7 @@ from abjad.tools.marktools.get_stem_tremolos_attached_to_component import get_st
 
 
 def detach_stem_tremolos_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
    
    Detach stem tremolos attached to `component`::
 

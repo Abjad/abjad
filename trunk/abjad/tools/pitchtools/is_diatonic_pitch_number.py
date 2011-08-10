@@ -1,5 +1,5 @@
 def is_diatonic_pitch_number(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a diatonic pitch number. Otherwise false::
 

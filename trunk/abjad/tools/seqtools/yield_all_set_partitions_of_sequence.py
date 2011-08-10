@@ -3,7 +3,7 @@ from abjad.tools.seqtools.yield_all_restricted_growth_functions_of_length import
 
 
 def yield_all_set_partitions_of_sequence(sequence):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield all set partitions of `sequence` in restricted growth function order::
 

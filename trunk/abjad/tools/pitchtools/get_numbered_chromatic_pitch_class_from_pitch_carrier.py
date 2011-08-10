@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 
 
 def get_numbered_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get numbered chromatic pitch-class from `pitch_carrier`::
 

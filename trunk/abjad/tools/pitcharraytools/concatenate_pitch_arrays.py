@@ -3,7 +3,7 @@ import copy
 
 
 def concatenate_pitch_arrays(pitch_arrays):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Concatenate `pitch_arrays`::
 

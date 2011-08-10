@@ -5,7 +5,7 @@ import numbers
 
 
 class TempoMark(ContextMark):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad model of a tempo indication::
 

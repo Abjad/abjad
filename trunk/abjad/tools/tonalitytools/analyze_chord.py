@@ -6,7 +6,7 @@ from abjad.tools.tonalitytools.diatonic_interval_class_segment_to_chord_quality_
 
 
 def analyze_chord(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Analyze `expr` and return chord class. ::
 

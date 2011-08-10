@@ -2,7 +2,7 @@ from abjad.tools.marktools.Articulation import Articulation
 
 
 def get_articulations_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get articulations attached to `component`::
 

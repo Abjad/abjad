@@ -6,7 +6,7 @@ from numbers import Number
 
 
 def get_note_head_from_chord_by_pitch(chord, pitch):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Get note head from `chord` by `pitch`::
 

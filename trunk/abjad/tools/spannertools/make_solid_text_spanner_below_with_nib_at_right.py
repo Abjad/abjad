@@ -3,7 +3,7 @@ from abjad.tools.spannertools.TextSpanner import TextSpanner
 
 
 def make_solid_text_spanner_below_with_nib_at_right(left_text, components = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Span `components` with text spanner.
    Position spanner below staff and configure with `left_text`,

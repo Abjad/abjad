@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_nam
 
 
 def expr_has_duplicate_named_chromatic_pitch(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` has duplicate named chromatic pitch.
    Otherwise false::

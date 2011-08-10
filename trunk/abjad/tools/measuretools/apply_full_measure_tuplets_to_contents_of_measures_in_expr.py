@@ -2,7 +2,7 @@ from abjad.tools.measuretools._apply_full_measure_tuplets_to_contents_of_measure
 
 
 def apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Apply full-measure tuplets to contents of measures in `expr`::
 

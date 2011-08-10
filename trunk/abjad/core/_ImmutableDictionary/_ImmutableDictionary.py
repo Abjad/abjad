@@ -1,5 +1,5 @@
 class _ImmutableDictionary(dict):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
    '''
 
    def __delitem__(self, *args):

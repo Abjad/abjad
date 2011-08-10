@@ -2,7 +2,7 @@ from abjad.tools.componenttools.get_proper_parentage_of_component import get_pro
 
 
 def get_first_component_with_name_in_proper_parentage_of_component(component, name):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get first component with `name` in proper parentage of `component`::
 

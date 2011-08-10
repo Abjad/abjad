@@ -3,7 +3,7 @@ import copy
 
 
 def transpose_pitch_expr_into_pitch_range(pitch_expr, pitch_range):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Transpose `pitch_expr` into `pitch_range`::
 

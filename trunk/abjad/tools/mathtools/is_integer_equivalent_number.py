@@ -2,7 +2,7 @@ from numbers import Number
 
 
 def is_integer_equivalent_number(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True `expr` is a number and `expr` is equivalent to an integer::
 

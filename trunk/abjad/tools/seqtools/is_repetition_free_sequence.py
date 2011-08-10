@@ -2,7 +2,7 @@ from abjad.tools.seqtools.iterate_sequence_pairwise_strict import iterate_sequen
 
 
 def is_repetition_free_sequence(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is a sequence and `expr` is repetition free::
 

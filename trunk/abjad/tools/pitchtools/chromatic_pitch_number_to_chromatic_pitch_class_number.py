@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.is_chromatic_pitch_number import is_chromatic_pitch_
 
 
 def chromatic_pitch_number_to_chromatic_pitch_class_number(chromatic_pitch_number):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `chromatic_pitch_number` to chromatic pitch-class number::
 

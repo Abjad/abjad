@@ -2,7 +2,7 @@ from abjad.tools import seqtools
 
 
 def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Iterate left-to-right, top-to-bottom named chromatic pitch pairs in `expr`::
 

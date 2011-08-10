@@ -3,7 +3,7 @@ import copy
 
 
 class NamedChromaticPitchClassSegment(_PitchClassSegment):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Abjad model of named chromatic pitch-class segment::
 

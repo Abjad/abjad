@@ -2,7 +2,7 @@ from abjad.tools.durtools.duration_token_to_duration_pair import duration_token_
 
 
 def duration_tokens_to_duration_pairs(duration_tokens):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `duration_tokens` to duration pairs::
 

@@ -2,7 +2,7 @@ from abjad.tools.leaftools._leaf_to_tuplet_with_n_notes_of_equal_written_duratio
 
 
 def leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change `leaf` to diminished tuplet with `n` notes of equal written duration::
 

@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 
 
 def yield_all_partitions_of_sequence(sequence):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Yield all partitions of `sequence`::
 

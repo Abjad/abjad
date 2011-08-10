@@ -2,7 +2,7 @@ from abjad.core import _Immutable
 
 
 class QualityIndicator(_Immutable):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Indicator of chord quality, such as major, minor, dominant,
    diminished, etc.

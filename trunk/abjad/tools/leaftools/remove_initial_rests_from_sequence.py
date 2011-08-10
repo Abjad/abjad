@@ -1,5 +1,5 @@
 def remove_initial_rests_from_sequence(sequence):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Remove initial rests from `sequence`::
 

@@ -2,7 +2,7 @@ from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 
 
 def move_component_subtree_to_right_in_immediate_parent_of_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Move `component` subtree to right in immediate parent of `component`::
 

@@ -3,7 +3,7 @@ import copy
 
 
 def permute_sequence(sequence, permutation):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Permute `sequence` by `permutation`::
 

@@ -1,5 +1,5 @@
 def iterate_sequence_nwise_wrapped(sequence, n):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Iterate elements in `sequence` `n` at a time wrapped to beginning::
 

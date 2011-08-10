@@ -2,7 +2,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class InstrumentMark(ContextMark):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Abjad model of an instrument change::
 

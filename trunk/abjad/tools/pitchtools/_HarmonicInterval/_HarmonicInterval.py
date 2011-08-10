@@ -3,7 +3,7 @@ from abjad.tools.pitchtools._Interval import _Interval
 
 
 class _HarmonicInterval(_Interval, _Harmonic):
-   '''..versionadded:: 1.1.2
+   '''..versionadded:: 2.0
 
    Harmonic interval base class.
    '''

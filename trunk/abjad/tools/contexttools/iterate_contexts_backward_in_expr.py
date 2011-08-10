@@ -2,7 +2,7 @@ from abjad.tools.contexttools._Context._Context import _Context
 
 
 def iterate_contexts_backward_in_expr(expr, start = 0, stop = None):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Iterate contexts backward in `expr`::
 

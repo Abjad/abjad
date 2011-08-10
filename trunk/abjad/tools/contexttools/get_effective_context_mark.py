@@ -2,7 +2,7 @@ from abjad.exceptions import ExtraMarkError
 
 
 def get_effective_context_mark(component, klass):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get effective context mark of `klass` from `component`::
 

@@ -2,7 +2,7 @@ from abjad.tools.marktools.get_marks_attached_to_component import get_marks_atta
 
 
 def detach_marks_attached_to_component(component):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
    
    Detach marks attached to `component`::
 

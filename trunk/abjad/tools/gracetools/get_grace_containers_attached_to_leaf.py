@@ -1,5 +1,5 @@
 def get_grace_containers_attached_to_leaf(leaf):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 2.0
 
    Get grace containers attached to leaf::
 

@@ -1,5 +1,5 @@
 def chord_class_extent_to_extent_name(extent):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Change integer chord class `extent` to extent name string. ::
 

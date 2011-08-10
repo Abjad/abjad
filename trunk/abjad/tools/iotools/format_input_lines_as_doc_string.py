@@ -1,5 +1,5 @@
 def format_input_lines_as_doc_string(input_lines, tab_width = 3):
-   r""".. versionadded:: 1.1.2
+   r""".. versionadded:: 2.0
 
    Format `input_lines` as doc string.
 

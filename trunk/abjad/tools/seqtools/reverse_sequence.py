@@ -1,5 +1,5 @@
 def reverse_sequence(sequence):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Reverse `sequence`::
 

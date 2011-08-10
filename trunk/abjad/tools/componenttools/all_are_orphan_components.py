@@ -2,7 +2,7 @@ from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 
 
 def all_are_orphan_components(expr):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    True when `expr` is an iterable of zero or more orphan components.
 

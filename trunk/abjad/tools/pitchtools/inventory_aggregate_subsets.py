@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChroma
 
 
 def inventory_aggregate_subsets( ):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 2.0
 
    Inventory aggregate subsets::
 
