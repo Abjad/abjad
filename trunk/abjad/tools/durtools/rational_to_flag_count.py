@@ -2,21 +2,21 @@ import math
 
 
 def rational_to_flag_count(rational):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Change `rational` to number of flags required to notate::
+    Change `rational` to number of flags required to notate::
 
-      abjad> from abjad.tools import durtools
+        abjad> from abjad.tools import durtools
 
-   ::
+    ::
 
-      abjad> durtools.rational_to_flag_count(Fraction(1, 32))
-      3
+        abjad> durtools.rational_to_flag_count(Fraction(1, 32))
+        3
 
-   Return nonnegative integer.
-   '''
+    Return nonnegative integer.
+    '''
 
-   flag_count = max(-int(math.floor(math.log(float(rational.numerator) /
-      rational.denominator, 2))) - 2, 0)
+    flag_count = max(-int(math.floor(math.log(float(rational.numerator) /
+        rational.denominator, 2))) - 2, 0)
 
-   return flag_count
+    return flag_count

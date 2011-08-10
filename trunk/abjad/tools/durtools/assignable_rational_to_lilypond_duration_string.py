@@ -6,39 +6,39 @@ from fractions import Fraction
 
 
 def assignable_rational_to_lilypond_duration_string(rational):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Change assignable `rational` to LilyPond duration string::
+    Change assignable `rational` to LilyPond duration string::
 
-      abjad> from abjad.tools import durtools
+        abjad> from abjad.tools import durtools
 
-   ::
+    ::
 
-      abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
-      '8.'
+        abjad> durtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
+        '8.'
 
-   Raise assignability error when `rational` not assignable.
+    Raise assignability error when `rational` not assignable.
 
-   Return string.
-   '''
+    Return string.
+    '''
 
-   if not is_assignable_rational(rational):
-      raise AssignabilityError
+    if not is_assignable_rational(rational):
+        raise AssignabilityError
 
-   undotted_rational = rational_to_equal_or_lesser_binary_rational(rational)
-   if undotted_rational <= 1:
-      undotted_duration_string = str(undotted_rational.denominator)
-   elif undotted_rational == Fraction(2, 1):
-      undotted_duration_string = r'\breve'
-   elif undotted_rational == Fraction(4, 1):
-      undotted_duration_string = r'\longa'
-   elif undotted_rational == Fraction(8, 1):
-      undotted_duration_string = r'\maxima'
-   else:
-      raise ValueError('can not process undotted rational: %s' % undotted_rational)
+    undotted_rational = rational_to_equal_or_lesser_binary_rational(rational)
+    if undotted_rational <= 1:
+        undotted_duration_string = str(undotted_rational.denominator)
+    elif undotted_rational == Fraction(2, 1):
+        undotted_duration_string = r'\breve'
+    elif undotted_rational == Fraction(4, 1):
+        undotted_duration_string = r'\longa'
+    elif undotted_rational == Fraction(8, 1):
+        undotted_duration_string = r'\maxima'
+    else:
+        raise ValueError('can not process undotted rational: %s' % undotted_rational)
 
-   dot_count = assignable_rational_to_dot_count(rational)
-   dot_string = '.' * dot_count
-   dotted_duration_string = undotted_duration_string + dot_string
+    dot_count = assignable_rational_to_dot_count(rational)
+    dot_string = '.' * dot_count
+    dotted_duration_string = undotted_duration_string + dot_string
 
-   return dotted_duration_string
+    return dotted_duration_string

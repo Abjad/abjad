@@ -3,23 +3,23 @@ from fractions import Fraction
 
 
 def duration_token_to_rational(duration_token):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Change `duration_token` to rational::
+    Change `duration_token` to rational::
 
-      abjad> from abjad.tools import durtools
+        abjad> from abjad.tools import durtools
 
-   ::
+    ::
 
-      abjad> durtools.duration_token_to_rational((4, 16))
-      Fraction(1, 4)
+        abjad> durtools.duration_token_to_rational((4, 16))
+        Fraction(1, 4)
 
-   ::
+    ::
 
-      abjad> durtools.duration_token_to_rational('4.')
-      Fraction(3, 8)
+        abjad> durtools.duration_token_to_rational('4.')
+        Fraction(3, 8)
 
-   Return fraction.
-   '''
+    Return fraction.
+    '''
 
-   return Fraction(*duration_token_to_duration_pair(duration_token))
+    return Fraction(*duration_token_to_duration_pair(duration_token))

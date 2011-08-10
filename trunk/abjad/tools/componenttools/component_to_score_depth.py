@@ -2,16 +2,16 @@ from abjad.tools.componenttools.get_proper_parentage_of_component import get_pro
 
 
 def component_to_score_depth(component):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   Change `component` to score depth::
+    Change `component` to score depth::
 
-      abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-      abjad> staff = Staff([tuplet])
-      abjad> componenttools.component_to_score_depth(staff.leaves[0])
-      2
+        abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+        abjad> staff = Staff([tuplet])
+        abjad> componenttools.component_to_score_depth(staff.leaves[0])
+        2
 
-   Return nonnegative integer.
-   '''
+    Return nonnegative integer.
+    '''
 
-   return len(get_proper_parentage_of_component(component))
+    return len(get_proper_parentage_of_component(component))

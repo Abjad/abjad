@@ -2,37 +2,37 @@ from fractions import Fraction
 
 
 def is_duration_pair(arg):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   True when `arg` has the form of a pair of integers that initialize a positive rational::
+    True when `arg` has the form of a pair of integers that initialize a positive rational::
 
-      abjad> from abjad.tools import durtools
+        abjad> from abjad.tools import durtools
 
-   ::
+    ::
 
-      abjad> durtools.is_duration_pair((5, 16))
-      True
+        abjad> durtools.is_duration_pair((5, 16))
+        True
 
-   Otherwise false::
+    Otherwise false::
 
-      abjad> durtools.is_duration_pair((-5, 16))
-      False
-  
-   Return boolean.
+        abjad> durtools.is_duration_pair((-5, 16))
+        False
 
-   .. versionchanged:: 1.1.2
-      renamed ``durtools.is_pair( )`` to ``durtools.is_duration_pair( )``.
-   '''
+    Return boolean.
 
-   if isinstance(arg, (list, tuple)) and len(arg) != 2:
-      return False
+    .. versionchanged:: 1.1.2
+        renamed ``durtools.is_pair( )`` to ``durtools.is_duration_pair( )``.
+    '''
 
-   try:
-      arg = Fraction(*arg)
-   except:
-      return False
+    if isinstance(arg, (list, tuple)) and len(arg) != 2:
+        return False
 
-   if 0 < arg:
-      return True
-   else:
-      return False
+    try:
+        arg = Fraction(*arg)
+    except:
+        return False
+
+    if 0 < arg:
+        return True
+    else:
+        return False

@@ -4,9 +4,9 @@ import py.test
 
 
 def test_Component___slots___01( ):
-   '''Slots constraint component attributes.
-   '''
+    '''Slots constraint component attributes.
+    '''
 
-   _component = _Component( )
+    _component = _Component( )
 
-   assert py.test.raises(AttributeError, "_component.foo = 'bar'")
+    assert py.test.raises(AttributeError, "_component.foo = 'bar'")

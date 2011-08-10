@@ -3,21 +3,21 @@ from abjad.tools.durtools.duration_tokens_to_duration_pairs import duration_toke
 
 
 def duration_tokens_to_least_common_denominator(duration_tokens):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Change `duration_tokens` to least common denominator::
+    Change `duration_tokens` to least common denominator::
 
-      abjad> from abjad.tools import durtools
+        abjad> from abjad.tools import durtools
 
-   ::
+    ::
 
-      abjad> durtools.duration_tokens_to_least_common_denominator([Fraction(2, 4), 3, '8.', (5, 16)])
-      16
+        abjad> durtools.duration_tokens_to_least_common_denominator([Fraction(2, 4), 3, '8.', (5, 16)])
+        16
 
-   Return positive integer.
-   '''
+    Return positive integer.
+    '''
 
-   duration_pairs = duration_tokens_to_duration_pairs(duration_tokens)
-   denominators = [pair[1] for pair in duration_pairs]
+    duration_pairs = duration_tokens_to_duration_pairs(duration_tokens)
+    denominators = [pair[1] for pair in duration_pairs]
 
-   return mathtools.least_common_multiple(*denominators)
+    return mathtools.least_common_multiple(*denominators)

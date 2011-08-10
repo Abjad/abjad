@@ -2,21 +2,21 @@ from fractions import Fraction
 
 
 def rational_to_fraction_string(rational):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   Change `rational` to fraction string::
+    Change `rational` to fraction string::
 
-      abjad> from abjad.tools import durtools
+        abjad> from abjad.tools import durtools
 
-   ::
+    ::
 
-      abjad> durtools.rational_to_fraction_string(Fraction(2, 4))
-      '1/2'
+        abjad> durtools.rational_to_fraction_string(Fraction(2, 4))
+        '1/2'
 
-   Return string.
-   '''
+    Return string.
+    '''
 
-   if not isinstance(rational, Fraction):
-      raise TypeError('must be rational.')
+    if not isinstance(rational, Fraction):
+        raise TypeError('must be rational.')
 
-   return '%s/%s' % (rational.numerator, rational.denominator)
+    return '%s/%s' % (rational.numerator, rational.denominator)

@@ -2,35 +2,35 @@ import re
 
 
 lilypond_duration_name_regex_body = r'''
-   (\\breve|\\longa|\\maxima)   ## exactly one of three duration names
-   '''
+    (\\breve|\\longa|\\maxima)    ## exactly one of three duration names
+    '''
 
-lilypond_duration_name_regex = re.compile('^%s$' % 
-   lilypond_duration_name_regex_body, re.VERBOSE)
+lilypond_duration_name_regex = re.compile('^%s$' %
+    lilypond_duration_name_regex_body, re.VERBOSE)
 
 def is_lilypond_duration_name(expr):
-   r'''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-   True when `expr` is a LilyPond duartion name::
+    True when `expr` is a LilyPond duartion name::
 
-      abjad> from abjad.tools import durtools
+        abjad> from abjad.tools import durtools
 
-   ::
+    ::
 
-      abjad> durtools.is_lilypond_duration_name('\\breve')
-      True
+        abjad> durtools.is_lilypond_duration_name('\\breve')
+        True
 
-   Otherwise false::
-      
-      abjad> durtools.is_lilypond_duration_name('foo')
-      False
+    Otherwise false::
 
-   The regex ``^(\\breve|\\longa|\\maxima)$`` underlies this predicate.
+        abjad> durtools.is_lilypond_duration_name('foo')
+        False
 
-   Return boolean.
-   '''
+    The regex ``^(\\breve|\\longa|\\maxima)$`` underlies this predicate.
 
-   if not isinstance(expr, str):
-      return False
+    Return boolean.
+    '''
 
-   return bool(lilypond_duration_name_regex.match(expr))
+    if not isinstance(expr, str):
+        return False
+
+    return bool(lilypond_duration_name_regex.match(expr))

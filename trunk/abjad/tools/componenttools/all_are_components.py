@@ -3,39 +3,39 @@ import types
 
 
 def all_are_components(expr, klasses = None):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   True when elements in `expr` are all components::
+    True when elements in `expr` are all components::
 
-      abjad> componenttools.all_are_components(3 * Note("c'4"))
-      True
+        abjad> componenttools.all_are_components(3 * Note("c'4"))
+        True
 
-   Otherwise false::
+    Otherwise false::
 
-      abjad> componenttools.all_are_components(['foo', 'bar'])
-      False
+        abjad> componenttools.all_are_components(['foo', 'bar'])
+        False
 
-   True when elements in `expr` are all `klasses`::
+    True when elements in `expr` are all `klasses`::
 
-      abjad> componenttools.all_are_components(3 * Note("c'4"), klasses = Note)
-      True
+        abjad> componenttools.all_are_components(3 * Note("c'4"), klasses = Note)
+        True
 
-   Otherwise false::
+    Otherwise false::
 
-      abjad> componenttools.all_are_components(['foo', 'bar'], klasses = Note)
-      False
+        abjad> componenttools.all_are_components(['foo', 'bar'], klasses = Note)
+        False
 
-   Return boolean.
-   '''
+    Return boolean.
+    '''
 
-   if not isinstance(expr, (list, tuple, types.GeneratorType)):
-      return False
+    if not isinstance(expr, (list, tuple, types.GeneratorType)):
+        return False
 
-   if klasses is None:
-      klasses = _Component
+    if klasses is None:
+        klasses = _Component
 
-   for element in expr:
-      if not isinstance(element, klasses):
-         return False
+    for element in expr:
+        if not isinstance(element, klasses):
+            return False
 
-   return True
+    return True

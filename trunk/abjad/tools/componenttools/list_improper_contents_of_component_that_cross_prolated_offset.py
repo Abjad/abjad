@@ -4,70 +4,70 @@ from abjad.tools import durtools
 
 
 def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
-   r'''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-   List improper contents of `component` that cross `prolated_offset`::
+    List improper contents of `component` that cross `prolated_offset`::
 
-      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-      abjad> f(staff)
-      \new Staff {
-         {
-            \time 2/8
-            c'8
-            d'8
-         }
-         {
-            \time 2/8
-            e'8
-            f'8
-         }
-      }
+        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        abjad> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+        }
 
-   Examples refer to the score above.
-      
-   No components cross prolated offset ``0``::
-      
-      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 0)
-      []
+    Examples refer to the score above.
 
-   Staff, measure and leaf cross prolated offset ``1/16``::
+    No components cross prolated offset ``0``::
 
-      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 16))
-      [Staff{2}, Measure(2/8, [c'8, d'8]), Note("c'8")]
+        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 0)
+        []
 
-   Staff and measure cross prolated offset ``1/8``::
+    Staff, measure and leaf cross prolated offset ``1/16``::
 
-      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 8))
-      [Staff{2}, Measure(2/8, [c'8, d'8])]
+        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 16))
+        [Staff{2}, Measure(2/8, [c'8, d'8]), Note("c'8")]
 
-   Staff crosses prolated offset ``1/4``::
+    Staff and measure cross prolated offset ``1/8``::
 
-      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 4))
-      [Staff{2}]
+        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 8))
+        [Staff{2}, Measure(2/8, [c'8, d'8])]
 
-   No components cross prolated offset ``99``::
+    Staff crosses prolated offset ``1/4``::
 
-      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
-      []
+        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 4))
+        [Staff{2}]
 
-   Return list.
-   '''
+    No components cross prolated offset ``99``::
 
-   assert isinstance(component, _Component)
-   assert isinstance(prolated_offset, (int, float, durtools.Duration))
+        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
+        []
 
-   result = [ ]
+    Return list.
+    '''
 
-   if component.prolated_duration <= prolated_offset:
-      return result
+    assert isinstance(component, _Component)
+    assert isinstance(prolated_offset, (int, float, durtools.Duration))
 
-   boundary_time = component._offset.start + prolated_offset
+    result = [ ]
 
-   for x in iterate_components_forward_in_expr(component, _Component):
-      x_start = x._offset.start
-      x_stop = x._offset.stop
-      if x_start < boundary_time < x_stop:
-         result.append(x)
+    if component.prolated_duration <= prolated_offset:
+        return result
 
-   return result
+    boundary_time = component._offset.start + prolated_offset
+
+    for x in iterate_components_forward_in_expr(component, _Component):
+        x_start = x._offset.start
+        x_stop = x._offset.stop
+        if x_start < boundary_time < x_stop:
+            result.append(x)
+
+    return result
