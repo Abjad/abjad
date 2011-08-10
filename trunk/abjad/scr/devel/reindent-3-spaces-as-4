@@ -5,7 +5,7 @@ from abjad.tools.mathtools import greatest_common_divisor
 import os
 
 
-def _reindent_4_spaces_as_3( ):
+def _reindent_3_spaces_as_4( ):
    reindented = [ ]
    indented = [ ]
    skipped = [ ]
@@ -16,9 +16,9 @@ def _reindent_4_spaces_as_3( ):
             gcd = _find_indent_gcd(file, path)
             if gcd == 1:
                skipped.append(os.path.join(path, file))
-            elif gcd == 3:
-               indented.append(os.path.join(path, file))
             elif gcd == 4:
+               indented.append(os.path.join(path, file))
+            elif gcd == 3:
                _reindent(file, path)
                reindented.append(os.path.join(path, file))
    _print_results(reindented, indented, skipped)
@@ -58,7 +58,7 @@ def _reindent(file, path):
    f.close( )
    for i, line in enumerate(lines):
       indent = len(line) - len(line.lstrip( ))
-      div, mod = divmod(indent, 4)
+      div, mod = divmod(indent, 3)
       if mod != 0:
           print 'Unexpected indent (%d, %d) in %s:%d' % (div, mod, filepath, mod)
           if 0 < i:
@@ -67,7 +67,7 @@ def _reindent(file, path):
           if line != lines[-1]:
               print '%d:\t"%s"' % (i + 1, lines[i + 1])
           raise Exception( )
-      lines[i] = lines[i].replace('    ' * div, '   ' * div)
+      lines[i] = lines[i].replace('   ' * div, '    ' * div)
    f = open(filepath, 'w')
    f.write('\n'.join(lines))
    f.close( )
@@ -85,6 +85,5 @@ def _print_results(reindented, indented, skipped):
 
 if __name__ == '__main__':
    iotools.clear_terminal( )
-   _reindent_4_spaces_as_3( )
+   _reindent_3_spaces_as_4( )
    print ''
-
