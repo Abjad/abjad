@@ -8,8 +8,8 @@ note = Note("cs''8")
 </abjad>
 
 <abjad>
-note.pitch
-print repr(note.pitch) <hide
+note.written_pitch
+print repr(note.written_pitch) <hide
 </abjad>
 
 Creation

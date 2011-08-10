@@ -19,7 +19,7 @@ These sixteenth notes are worth a sixteenth of a whole note:
 	abjad> spannertools.BeamSpanner(measure)
 	abjad> staff = stafftools.RhythmicStaff([measure])
 	abjad> note = measure[0]
-	abjad> note.duration.written
+	abjad> note.written_duration
 	Duration(1, 16)
 
 .. image:: images/written_dur1.png
@@ -28,12 +28,12 @@ These sixteenth notes are worth more than a sixteenth of a whole note:
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)
+	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)
 	abjad> spannertools.BeamSpanner(tuplet)
 	abjad> measure = Measure((5, 16), [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
 	abjad> note = tuplet[0]
-	abjad> note.duration.written
+	abjad> note.written_duration
 	Duration(1, 16)
 
 .. image:: images/written_dur2.png
@@ -79,11 +79,11 @@ These elements carry preprolated durations equal to 1/8, 1/8 and 2/8, respective
 
 	abjad> notes = Note(0, (1, 8)) * 2
 	abjad> spannertools.BeamSpanner(notes)
-	abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
 	abjad> spannertools.BeamSpanner(tuplet)
 	measure = Measure((4, 8), notes + [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
-	abjad> measure.duration.contents
+	abjad> measure.contents_duration
 	Duration(1, 2)
 
 .. image:: images/contents_dur1.png
@@ -101,13 +101,13 @@ This fixed-duration tuplet carries a target duration equal to 4/8:
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
+	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 5)
 	abjad> spannertools.BeamSpanner(tuplet)
 	measure = Measure((4, 8), [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
-	abjad> print tuplet.duration.contents
+	abjad> print tuplet.contents_duration
 	5/8
-	abjad> tuplet.duration.target
+	abjad> tuplet.target_duration
 	Duration(1, 2)
 
 .. image:: images/target_dur1.png
@@ -126,28 +126,28 @@ The first two notes below carry leaf mulitipliers equal to 2/1:
 ::
 
 	abjad> notes = Note(0, (1, 16)) * 4
-	abjad> notes[0].duration.multiplier = Fraction(2, 1)
-	abjad> notes[1].duration.multiplier = Fraction(2, 1)
+	abjad> notes[0].duration_multiplier = Fraction(2, 1)
+	abjad> notes[1].duration_multiplier = Fraction(2, 1)
 	measure = Measure((3, 8), notes)
 	abjad> spannertools.BeamSpanner(measure)
 	abjad> staff = stafftools.RhythmicStaff([measure])
 	abjad> note = measure[0]
-	abjad> note.duration.written
+	abjad> note.written_duration
 	Duration(1, 16)
 
 .. image:: images/multiplied_dur1.png
 
 ::
 
-	abjad> note.duration.multiplier
+	abjad> note.duration_multiplier
 	Fraction(2, 1)
 
 
 ::
 
-	abjad> note.duration.written * note.duration.multiplier
+	abjad> note.written_duration * note.duration_multiplier
 	Duration(1, 8)
-	abjad> note.duration.multiplied
+	abjad> note.multiplied_duration
 	Duration(1, 8)
 
 

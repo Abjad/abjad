@@ -30,7 +30,6 @@ del durtools
 del exceptions
 del importtools
 del interfaces
-del iotools
 del mathtools
 del metertools
 del os

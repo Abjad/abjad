@@ -10,7 +10,7 @@ Named chromatic pitches are the everyday pitches attached to notes and chords:
 
 ::
 
-	abjad> note.pitch
+	abjad> note.written_pitch
 	NamedChromaticPitch("cs''")
 
 

@@ -46,8 +46,8 @@ Inspecting score duration
 Score contents duration is equal to the duration of the longest component in score:
 
 <abjad>
-score.duration.contents
-print repr(score.duration.contents) <hide
+score.contents_duration
+print repr(score.contents_duration) <hide
 </abjad>
 
 Adding one component to the bottom of a score

@@ -103,6 +103,7 @@ Observe the behavior of the
 iterator on the `staff`::
 
 <abjad>
+from abjad.tools import threadtools
 vA_thread_signature = threadtools.component_to_thread_signature(vA)
 notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 print list(notes)

@@ -42,7 +42,7 @@ Get the written duration of rests like this:
 
 ::
 
-	abjad> rest.duration.written
+	abjad> rest.written_duration
 	Duration(1, 4)
 
 
@@ -50,7 +50,7 @@ Which is usually the same as preprolated duration:
 
 ::
 
-	abjad> rest.duration.preprolated
+	abjad> rest.preprolated_duration
 	Duration(1, 4)
 
 
@@ -58,7 +58,7 @@ And prolated duration:
 
 ::
 
-	abjad> rest.duration.prolated
+	abjad> rest.prolated_duration
 	Duration(1, 4)
 
 
@@ -66,7 +66,7 @@ Except for rests inside a tuplet:
 
 ::
 
-	abjad> tuplet = Tuplet((2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
+	abjad> tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
 
 
 ::
@@ -84,7 +84,7 @@ Tupletted rests carry written duration:
 
 ::
 
-	abjad> rest.duration.written
+	abjad> rest.written_duration
 	Duration(1, 4)
 
 
@@ -92,7 +92,7 @@ Prolation:
 
 ::
 
-	abjad> rest.duration.prolation
+	abjad> rest.prolation
 	Fraction(2, 3)
 
 
@@ -100,7 +100,7 @@ And prolated duration that is the product of the two:
 
 ::
 
-	abjad> rest.duration.prolated
+	abjad> rest.prolated_duration
 	Duration(1, 6)
 
 
@@ -111,9 +111,9 @@ You can change the written duration of notes and rests:
 
 ::
 
-	abjad> tuplet[0].duration.written = Duration(1, 8)
-	abjad> tuplet[1].duration.written = Duration(1, 8)
-	abjad> tuplet[2].duration.written = Duration(1, 8)
+	abjad> tuplet[0].written_duration = Duration(1, 8)
+	abjad> tuplet[1].written_duration = Duration(1, 8)
+	abjad> tuplet[2].written_duration = Duration(1, 8)
 
 
 ::

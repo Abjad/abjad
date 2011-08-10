@@ -83,8 +83,8 @@ print repr(rest.written_duration) <hide
 Prolation:
 
 <abjad>
-rest.duration.prolation
-print repr(rest.duration.prolation) <hide
+rest.prolation
+print repr(rest.prolation) <hide
 </abjad>
 
 And prolated duration that is the product of the two:

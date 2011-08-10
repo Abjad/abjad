@@ -37,8 +37,8 @@ Getting all the written pitches of a chord at once
 You can get all the written pitches of a chord at one time:
 
 <abjad>
-chord.pitches
-print repr(chord.pitches) <hide
+chord.written_pitches
+print repr(chord.written_pitches) <hide
 </abjad>
 
 Abjad returns a read-only tuple of named chromatic pitches.
@@ -49,8 +49,8 @@ Getting the written pitches of a chord one at a time
 You can get the written pitches of a chord one at a time:
 
 <abjad>
-chord.pitches[0]
-print repr(chord.pitches[0]) <hide
+chord.written_pitches[0]
+print repr(chord.written_pitches[0]) <hide
 </abjad>
 
 Chords index the pitch they contain starting from ``0`` (just like tuples and lists).

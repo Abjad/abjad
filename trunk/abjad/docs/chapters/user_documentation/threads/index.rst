@@ -18,7 +18,7 @@ Or they may exist implicitly in certain score constructs in the absence of voice
 
 ::
 
-	abjad> staff = Staff(macros.scale(4))
+	abjad> staff = Staff("c'8 d'8 e'8 f'8")
 
 
 Two contiguous voices must have the same name in order to be part of the same thread. 
@@ -27,8 +27,8 @@ Here a thread does **not** exist between notes in different voices:
 
 ::
 
-	abjad> v_one = Voice(macros.scale(4, (1, 16)))
-	abjad> v_two = Voice(macros.scale(2))
+	abjad> v_one = Voice("c'16 d'16 e'16 f'16")
+	abjad> v_two = Voice("c'8 d'8")
 	abjad> staff = Staff([v_one, v_two])
 	abjad> f(staff)
 	\new Staff {
@@ -133,6 +133,7 @@ iterator on the `staff`::
 
 ::
 
+	abjad> from abjad.tools import threadtools
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 	abjad> print list(notes)
@@ -166,21 +167,21 @@ by printing it:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> vA_thread_signature
-	<      root: Staff-8186656 (8186656) *      score:  * staffgroup:  *      staff: Staff-8186656 *      voice: Voice-8185648 *       self: Voice-8185648 >
+	<      root: Staff-4436596336 (4436596336) *      score:  * staffgroup:  *      staff: Staff-4436596336 *      voice: Voice-4436594768 *       self: Voice-4436594768 >
 
 
 ::
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> vB_thread_signature
-	<      root: Staff-8186656 (8186656) *      score:  * staffgroup:  *      staff: Staff-8186656 *      voice: Voice-8186096 *       self: Voice-8186096 >
+	<      root: Staff-4568561264 (4568561264) *      score:  * staffgroup:  *      staff: Staff-4568561264 *      voice: Voice-4568560816 *       self: Voice-4568560816 >
 
 
 ::
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> vC_thread_signature
-	<      root: Staff-8186656 (8186656) *      score:  * staffgroup:  *      staff: Staff-8186656 *      voice: Voice-8186544 *       self: Voice-8186544 >
+	<      root: Staff-4481406576 (4481406576) *      score:  * staffgroup:  *      staff: Staff-4481406576 *      voice: Voice-4481406352 *       self: Voice-4481406352 >
 
 
 And by comparing them with the binary equality operator:
@@ -219,10 +220,10 @@ Note how the thread signatures have changed:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> print vA_thread_signature
-	      root: Staff-8186656 (8186656)
+	      root: Staff-4384818800 (4384818800)
 	     score:
 	staffgroup:
-	     staff: Staff-8186656
+	     staff: Staff-4384818800
 	     voice: Voice-piccolo
 	      self: Voice-piccolo
 
@@ -231,10 +232,10 @@ Note how the thread signatures have changed:
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> print vB_thread_signature
-	      root: Staff-8186656 (8186656)
+	      root: Staff-4472051312 (4472051312)
 	     score:
 	staffgroup:
-	     staff: Staff-8186656
+	     staff: Staff-4472051312
 	     voice: Voice-piccolo
 	      self: Voice-piccolo
 
@@ -243,12 +244,12 @@ Note how the thread signatures have changed:
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> print vC_thread_signature
-	      root: Staff-8186656 (8186656)
+	      root: Staff-4339893872 (4339893872)
 	     score:
 	staffgroup:
-	     staff: Staff-8186656
-	     voice: Voice-8186544
-	      self: Voice-8186544
+	     staff: Staff-4339893872
+	     voice: Voice-4339893648
+	      self: Voice-4339893648
 
 
 And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns 

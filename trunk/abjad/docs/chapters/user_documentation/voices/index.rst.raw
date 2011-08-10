@@ -110,8 +110,8 @@ Getting the duration attributes of a voice
 The contents durations of a voice equals the sum of durations of the components in the voice:
 
 <abjad>
-voice.duration.contents
-print repr(voice.duration.contents) <hide
+voice.contents_duration
+print repr(voice.contents_duration) <hide
 </abjad>
 
 The preprolated duration of a voice is usually equal to the voice's contents duration:
@@ -134,8 +134,8 @@ preprolated duration of a voice differ.
 Voices that are not nested inside a tuplet carry a prolation of ``1``:
 
 <abjad>
-voice.duration.prolation
-print repr(voice.duration.prolation) <hide
+voice.prolation
+print repr(voice.prolation) <hide
 </abjad>
 
 All voice duration attributes are read-only.

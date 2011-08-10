@@ -46,7 +46,7 @@ Staff contents durations equals the sum of staff components' duration:
 
 ::
 
-	abjad> staff.duration.contents
+	abjad> staff.contents_duration
 	Duration(2, 1)
 
 

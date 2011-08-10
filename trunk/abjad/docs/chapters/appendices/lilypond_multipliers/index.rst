@@ -8,15 +8,15 @@ You can assign LilyPond multipliers in Abjad:
 
 ::
 
-	abjad> note = Note(0, (1, 4))
-	abjad> note.duration.multiplier = Fraction(1, 6)
+	abjad> note = Note("c'4")
+	abjad> note.duration_multiplier = Fraction(1, 6)
 
 
 LilyPond multipliers change the multiplied duration of notes, rests, chords and skips:
 
 ::
 
-	abjad> note.duration.multiplied
+	abjad> note.multiplied_duration
 	Duration(1, 24)
 
 
@@ -24,6 +24,6 @@ LilyPond multipliers leave written duration unchanged:
 
 ::
 
-	abjad> note.duration.written
+	abjad> note.written_duration
 	Duration(1, 4)
 

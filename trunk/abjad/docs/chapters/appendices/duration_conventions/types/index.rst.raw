@@ -80,8 +80,8 @@ tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
 spannertools.BeamSpanner(tuplet)
 measure = Measure((4, 8), notes + [tuplet]) 
 staff = stafftools.RhythmicStaff([measure])
-measure.duration.contents
-print repr(measure.duration.contents) <hide
+measure.contents_duration
+print repr(measure.contents_duration) <hide
 iotools.write_expr_to_ly(staff, 'contents_dur1', 'oedo') <hide
 </abjad>
 
@@ -101,10 +101,10 @@ tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 5)
 spannertools.BeamSpanner(tuplet)
 measure = Measure((4, 8), [tuplet]) 
 staff = stafftools.RhythmicStaff([measure])
-print tuplet.duration.contents
+print tuplet.contents_duration
 iotools.write_expr_to_ly(staff, 'target_dur1', 'oedo') <hide
-tuplet.duration.target
-print repr(tuplet.duration.target) <hide
+tuplet.target_duration
+print repr(tuplet.target_duration) <hide
 </abjad>
 
 The tuplet contents sum to 5/8. But tuplet target duration always equals 4/8.
@@ -120,8 +120,8 @@ The first two notes below carry leaf mulitipliers equal to 2/1:
 
 <abjad>
 notes = Note(0, (1, 16)) * 4
-notes[0].duration.multiplier = Fraction(2, 1)
-notes[1].duration.multiplier = Fraction(2, 1)
+notes[0].duration_multiplier = Fraction(2, 1)
+notes[1].duration_multiplier = Fraction(2, 1)
 measure = Measure((3, 8), notes) 
 spannertools.BeamSpanner(measure)
 staff = stafftools.RhythmicStaff([measure])
@@ -132,15 +132,15 @@ iotools.write_expr_to_ly(staff, 'multiplied_dur1', 'oedo') <hide
 </abjad>
 
 <abjad>
-note.duration.multiplier
-print repr(note.duration.multiplier) <hide
+note.duration_multiplier
+print repr(note.duration_multiplier) <hide
 </abjad>
 
 <abjad>
-note.written_duration * note.duration.multiplier
-print repr(note.written_duration * note.duration.multiplier) <hide
-note.duration.multiplied
-print repr(note.duration.multiplied) <hide
+note.written_duration * note.duration_multiplier
+print repr(note.written_duration * note.duration_multiplier) <hide
+note.multiplied_duration
+print repr(note.multiplied_duration) <hide
 </abjad>
 
 The written duration of these first two notes equals 1/16 and so 

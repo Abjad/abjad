@@ -26,11 +26,11 @@ LilyPond uses a single construct to nest tuplets arbitrarily:
 	abjad> staff = stafftools.RhythmicStaff([Measure((7, 8), [ ])])
 	abjad> measure = staff[0]
 	abjad> measure.append(Note('c8.'))
-	abjad> measure.append(Tuplet((7, 5), 5 * Note('c16')))
+	abjad> measure.append(Tuplet(Fraction(7, 5), 5 * Note('c16')))
 	abjad> spannertools.BeamSpanner(measure[-1])
-	abjad> measure.append(Tuplet((3, 5), 5 * Note('c8')))
+	abjad> measure.append(Tuplet(Fraction(3, 5), 5 * Note('c8')))
 	abjad> spannertools.BeamSpanner(measure[-1])
-	abjad> Tuplet((7, 8), measure.music)
+	abjad> Tuplet(Fraction(7, 8), measure.music)
 	abjad> staff.override.tuplet_bracket.bracket_visibility = True
 	abjad> staff.override.tuplet_bracket.padding = 1.6
 	abjad> show(staff)
@@ -54,9 +54,9 @@ LilyPond engraves tupletted notes interrupted by nontupletted notes correctly:
 
 ::
 
-	abjad> t = Tuplet((4, 7), Note(0, (1, 16)) * 4)
+	abjad> t = Tuplet(Fraction(4, 7), Note(0, (1, 16)) * 4)
 	abjad> notes = Note(0, (1, 8)) * 2
-	abjad> u = Tuplet((4, 7), Note(0, (1, 16)) * 3)
+	abjad> u = Tuplet(Fraction(4, 7), Note(0, (1, 16)) * 3)
 	abjad> spannertools.BeamSpanner(t)
 	abjad> spannertools.BeamSpanner(notes)
 	abjad> spannertools.BeamSpanner(u)

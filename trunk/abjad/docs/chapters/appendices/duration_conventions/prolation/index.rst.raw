@@ -28,8 +28,8 @@ print repr(note.written_duration) <hide
 </abjad>
 
 <abjad>
-note.duration.prolation
-print repr(note.duration.prolation) <hide
+note.prolation
+print repr(note.prolation) <hide
 </abjad>
 
 <abjad>
@@ -59,8 +59,8 @@ iotools.write_expr_to_ly(staff, 'example2', 'oedo') <hide
 
 <abjad>
 note = staff.leaves[0]
-note.duration.prolation
-print repr(note.duration.prolation) <hide
+note.prolation
+print repr(note.prolation) <hide
 </abjad>
 
 <abjad>
@@ -69,8 +69,8 @@ print repr(note.written_duration) <hide
 </abjad>
 
 <abjad>
-note.duration.prolation
-print repr(note.duration.prolation) <hide
+note.prolation
+print repr(note.prolation) <hide
 </abjad>
 
 <abjad>
@@ -100,14 +100,14 @@ iotools.write_expr_to_ly(staff, 'example3', 'oedo') <hide
 </abjad>
 
 <abjad>
-measure.duration.multiplier
-print repr(measure.duration.multiplier) <hide
+measure.multiplier
+print repr(measure.multiplier) <hide
 </abjad>
 
 <abjad>
 note = measure.leaves[0]
-note.duration.prolation
-print repr(note.duration.prolation) <hide
+note.prolation
+print repr(note.prolation) <hide
 </abjad>
 
 <abjad>

@@ -5,7 +5,7 @@ Many score objects contain other score objects.
 
 ::
 
-	abjad> tuplet = Tuplet((2, 3), macros.scale(3, (1, 4)))
+	abjad> tuplet = Tuplet(Fraction(2, 3), "c'4 d'4 e'4")
 	abjad> staff = Staff(2 * tuplet)
 	abjad> score = Score([staff])
 	abjad> show(score)

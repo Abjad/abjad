@@ -16,7 +16,7 @@ Durated classes include notes, rests, chords, skips, tuplets and measures.
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
 	abjad> spannertools.BeamSpanner(tuplet)
 
 .. image:: images/example2.png
@@ -27,7 +27,7 @@ Abjad restricts notes, rests, chords and skips to durations like 3/16 that can b
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
+	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 8), Note(0, (1, 8)) * 4)
 	abjad> spannertools.BeamSpanner(tuplet)
 
 .. image:: images/example3.png

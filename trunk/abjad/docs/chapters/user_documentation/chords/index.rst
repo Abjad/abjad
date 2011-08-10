@@ -40,7 +40,7 @@ You can get all the written pitches of a chord at one time:
 
 ::
 
-	abjad> chord.pitches
+	abjad> chord.written_pitches
 	(NamedChromaticPitch("c'"), NamedChromaticPitch("d'"), NamedChromaticPitch("bf'"))
 
 
@@ -53,7 +53,7 @@ You can get the written pitches of a chord one at a time:
 
 ::
 
-	abjad> chord.pitches[0]
+	abjad> chord.written_pitches[0]
 	NamedChromaticPitch("c'")
 
 

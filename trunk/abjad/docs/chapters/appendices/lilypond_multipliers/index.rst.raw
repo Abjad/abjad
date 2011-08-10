@@ -8,14 +8,14 @@ You can assign LilyPond multipliers in Abjad:
 
 <abjad>
 note = Note("c'4")
-note.duration.multiplier = Fraction(1, 6)
+note.duration_multiplier = Fraction(1, 6)
 </abjad>
 
 LilyPond multipliers change the multiplied duration of notes, rests, chords and skips:
 
 <abjad>
-note.duration.multiplied
-print repr(note.duration.multiplied) <hide
+note.multiplied_duration
+print repr(note.multiplied_duration) <hide
 </abjad>
 
 LilyPond multipliers leave written duration unchanged:

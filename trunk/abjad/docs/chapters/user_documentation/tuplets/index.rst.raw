@@ -128,22 +128,22 @@ Getting the duration attributes of a tuplet
 You set the multiplier of a tuplet at initialization:
 
 <abjad>
-tuplet.duration.multiplier
-print repr(tuplet.duration.multiplier) <hide
+tuplet.multiplier
+print repr(tuplet.multiplier) <hide
 </abjad>
 
 The contents durations of a tuplet equals the sum of written durations of the components in the tuplet:
 
 <abjad>
-tuplet.duration.contents
-print repr(tuplet.duration.contents) <hide
+tuplet.contents_duration
+print repr(tuplet.contents_duration) <hide
 </abjad>
 
 The multiplied duration of a tuplet equals the product of the tuplet's multiplier 
 and the tuplet's contents duration:
 
 <abjad>
-tuplet.duration.multiplied
+tuplet.multiplied_duration
 print repr(tuplet.preprolated_duration) <hide
 </abjad>
 
@@ -153,20 +153,20 @@ Understanding rhythmic augmentation and diminution
 A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic diminution:
 
 <abjad>
-tuplet.duration.multiplier
-print repr(tuplet.duration.multiplier) <hide
+tuplet.multiplier
+print repr(tuplet.multiplier) <hide
 </abjad>
 
 <abjad>
-tuplet.duration.is_diminution
-print repr(tuplet.duration.is_diminution) <hide
+tuplet.is_diminution
+print repr(tuplet.is_diminution) <hide
 </abjad>
 
 A tuplet with a multiplier greater than ``1`` is a type of rhythmic augmentation:
 
 <abjad>
-tuplet.duration.is_augmentation
-print repr(tuplet.duration.is_augmentation) <hide
+tuplet.is_augmentation
+print repr(tuplet.is_augmentation) <hide
 </abjad>
 
 Understanding binary and nonbinary tuplets
@@ -175,20 +175,20 @@ Understanding binary and nonbinary tuplets
 A tuplet is considered binary if the numerator of the tuplet multiplier is an integer power of ``2``:
 
 <abjad>
-tuplet.duration.multiplier
-print repr(tuplet.duration.multiplier) <hide
+tuplet.multiplier
+print repr(tuplet.multiplier) <hide
 </abjad>
 
 <abjad>
-tuplet.duration.is_binary
-print repr(tuplet.duration.is_binary) <hide
+tuplet.is_binary
+print repr(tuplet.is_binary) <hide
 </abjad>
 
 Other tuplets are nonbinary:
 
 <abjad>
-tuplet.duration.is_nonbinary
-print repr(tuplet.duration.is_nonbinary) <hide
+tuplet.is_nonbinary
+print repr(tuplet.is_nonbinary) <hide
 </abjad>
 
 Adding one component to the end of a tuplet

@@ -15,7 +15,7 @@ Tuplets prolate their contents:
 
 ::
 
-	abjad> tuplet = Tuplet((5, 4), 4 * Note("c'8"))
+	abjad> tuplet = Tuplet(Fraction(5, 4), 4 * Note("c'8"))
 	abjad> staff = stafftools.RhythmicStaff([Measure((5, 8), [tuplet])])
 	abjad> spannertools.BeamSpanner(tuplet)
 	abjad> show(staff)
@@ -25,19 +25,19 @@ Tuplets prolate their contents:
 ::
 
 	abjad> note = tuplet[0]
-	abjad> note.duration.written
+	abjad> note.written_duration
 	Duration(1, 8)
 
 
 ::
 
-	abjad> note.duration.prolation
+	abjad> note.prolation
 	Fraction(5, 4)
 
 
 ::
 
-	abjad> note.duration.prolated
+	abjad> note.prolated_duration
 	Duration(5, 32)
 
 
@@ -65,25 +65,25 @@ Such **nonbinary meters** rhythmically diminish the contents of the measures the
 ::
 
 	abjad> note = staff.leaves[0]
-	abjad> note.duration.prolation
+	abjad> note.prolation
 	Fraction(4, 5)
 
 
 ::
 
-	abjad> note.duration.prolated
+	abjad> note.prolated_duration
 	Duration(1, 8)
 
 
 ::
 
-	abjad> note.duration.prolation
+	abjad> note.prolation
 	Fraction(4, 5)
 
 
 ::
 
-	abjad> note.duration.prolated
+	abjad> note.prolated_duration
 	Duration(1, 10)
 
 
@@ -102,7 +102,7 @@ All durated components carry a prolation chain:
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
+	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 16)) * 7)
 	abjad> spannertools.BeamSpanner(tuplet)
 	abjad> measure = Measure((4, 10), [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
@@ -111,20 +111,20 @@ All durated components carry a prolation chain:
 
 ::
 
-	abjad> measure.duration.multiplier
+	abjad> measure.multiplier
 	Fraction(4, 5)
 
 
 ::
 
 	abjad> note = measure.leaves[0]
-	abjad> note.duration.prolation
+	abjad> note.prolation
 	Duration(32, 35)
 
 
 ::
 
-	abjad> note.duration.prolated
+	abjad> note.prolated_duration
 	Duration(2, 35)
 
 

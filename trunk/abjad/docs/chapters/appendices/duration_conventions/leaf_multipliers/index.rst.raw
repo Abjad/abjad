@@ -13,9 +13,9 @@ attribute of notes, rests and chords.
 
 <abjad>
 note = Note("c'4")
-note.duration.multiplier = Fraction(1, 2)
-note.duration.multiplier
-print repr(note.duration.multiplier) <hide
+note.duration_multiplier = Fraction(1, 2)
+note.duration_multiplier
+print repr(note.duration_multiplier) <hide
 </abjad>
 
 <abjad>    
@@ -26,8 +26,8 @@ Abjad also implements a `duration.multiplied` attribute to examine the
 duration of a note, rest or chord as affected by the multiplier.
 
 <abjad>    
-note.duration.multiplied
-print repr(note.duration.multiplied) <hide
+note.multiplied_duration
+print repr(note.multiplied_duration) <hide
 </abjad>    
 
 LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
@@ -35,7 +35,7 @@ LilyPond multipliers give the half notes here multiplied durations equal to a qu
 <abjad>    
 notes = Note("c'4") * 4
 multiplied_note = Note(0, (1, 2))
-multiplied_note.duration.multiplier = Fraction(1, 2)
+multiplied_note.duration_multiplier = Fraction(1, 2)
 multiplied_notes = multiplied_note * 4
 top = stafftools.RhythmicStaff(notes)
 bottom = stafftools.RhythmicStaff(multiplied_notes)

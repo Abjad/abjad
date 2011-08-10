@@ -62,7 +62,7 @@ Create a measure with a meter and music:
 
 ::
 
-	abjad> measure = Measure((3, 8), macros.scale(3))
+	abjad> measure = Measure((3, 8), "c'8 d'8 e'8")
 
 
 ::

@@ -145,7 +145,7 @@ You set the multiplier of a tuplet at initialization:
 
 ::
 
-	abjad> tuplet.duration.multiplier
+	abjad> tuplet.multiplier
 	Fraction(2, 3)
 
 
@@ -153,7 +153,7 @@ The contents durations of a tuplet equals the sum of written durations of the co
 
 ::
 
-	abjad> tuplet.duration.contents
+	abjad> tuplet.contents_duration
 	Duration(3, 8)
 
 
@@ -162,7 +162,7 @@ and the tuplet's contents duration:
 
 ::
 
-	abjad> tuplet.duration.multiplied
+	abjad> tuplet.multiplied_duration
 	Duration(1, 4)
 
 
@@ -173,13 +173,13 @@ A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic diminu
 
 ::
 
-	abjad> tuplet.duration.multiplier
+	abjad> tuplet.multiplier
 	Fraction(2, 3)
 
 
 ::
 
-	abjad> tuplet.duration.is_diminution
+	abjad> tuplet.is_diminution
 	True
 
 
@@ -187,7 +187,7 @@ A tuplet with a multiplier greater than ``1`` is a type of rhythmic augmentation
 
 ::
 
-	abjad> tuplet.duration.is_augmentation
+	abjad> tuplet.is_augmentation
 	False
 
 
@@ -198,13 +198,13 @@ A tuplet is considered binary if the numerator of the tuplet multiplier is an in
 
 ::
 
-	abjad> tuplet.duration.multiplier
+	abjad> tuplet.multiplier
 	Fraction(2, 3)
 
 
 ::
 
-	abjad> tuplet.duration.is_binary
+	abjad> tuplet.is_binary
 	True
 
 
@@ -212,7 +212,7 @@ Other tuplets are nonbinary:
 
 ::
 
-	abjad> tuplet.duration.is_nonbinary
+	abjad> tuplet.is_nonbinary
 	False
 
 

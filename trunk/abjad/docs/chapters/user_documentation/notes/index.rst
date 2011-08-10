@@ -33,7 +33,7 @@ You can also make notes from chromatic pitch number and duration:
 
 .. image:: images/example-2.png
 
-(You even use ``Note(0, (1, 4))`` to create notes with numbers alone.)
+(You even use ``Note("c'4")`` to create notes with numbers alone.)
 
 Getting the written pitch of notes
 ----------------------------------
@@ -42,7 +42,7 @@ You can get the written pitch of notes:
 
 ::
 
-	abjad> note.pitch
+	abjad> note.written_pitch
 	NamedChromaticPitch("c'")
 
 
@@ -53,11 +53,11 @@ And you can change the written pitch of notes:
 
 ::
 
-	abjad> note.pitch = "cs'"
+	abjad> note.written_pitch = "cs'"
 
 .. image:: images/example-3.png
 
-(You can use ``note.pitch = 1`` to change pitch with numbers, too.)
+(You can use ``note.written_pitch = 1`` to change pitch with numbers, too.)
 
 Getting the duration attributes of notes
 ----------------------------------------
@@ -66,7 +66,7 @@ Get the written duration of notes like this:
 
 ::
 
-	abjad> note.duration.written
+	abjad> note.written_duration
 	Duration(1, 4)
 
 
@@ -74,7 +74,7 @@ Which is usually the same as preprolated duration:
 
 ::
 
-	abjad> note.duration.preprolated
+	abjad> note.preprolated_duration
 	Duration(1, 4)
 
 
@@ -82,7 +82,7 @@ And prolated duration:
 
 ::
 
-	abjad> note.duration.prolated
+	abjad> note.prolated_duration
 	Duration(1, 4)
 
 
@@ -90,7 +90,7 @@ Except for notes inside a tuplet:
 
 ::
 
-	abjad> tuplet = Tuplet((2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
+	abjad> tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
 
 
 ::
@@ -108,7 +108,7 @@ Tupletted notes carry written duration:
 
 ::
 
-	abjad> note.duration.written
+	abjad> note.written_duration
 	Duration(1, 4)
 
 
@@ -116,7 +116,7 @@ Prolation:
 
 ::
 
-	abjad> note.duration.prolation
+	abjad> note.prolation
 	Fraction(2, 3)
 
 
@@ -124,7 +124,7 @@ And prolated duration that is the product of the two:
 
 ::
 
-	abjad> note.duration.prolated
+	abjad> note.prolated_duration
 	Duration(1, 6)
 
 
@@ -135,9 +135,9 @@ You can change the written duration of notes:
 
 ::
 
-	abjad> tuplet[0].duration.written = Duration(1, 8)
-	abjad> tuplet[1].duration.written = Duration(1, 8)
-	abjad> tuplet[2].duration.written = Duration(1, 8)
+	abjad> tuplet[0].written_duration = Duration(1, 8)
+	abjad> tuplet[1].written_duration = Duration(1, 8)
+	abjad> tuplet[2].written_duration = Duration(1, 8)
 
 
 ::

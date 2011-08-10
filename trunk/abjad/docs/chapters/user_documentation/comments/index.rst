@@ -33,7 +33,7 @@ You can add comments before, after, in the opening or in the closing of any cont
 
 ::
 
-	abjad> staff = Staff(macros.scale(4))
+	abjad> staff = Staff("c'8 d'8 e'8 f'8")
 	abjad> show(staff)
 
 .. image:: images/staff-ex.png

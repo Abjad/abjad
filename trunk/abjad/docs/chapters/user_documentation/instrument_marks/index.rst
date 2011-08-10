@@ -8,8 +8,8 @@ Use context tools to add instrument marks:
 
 ::
 
-	abjad> flute_staff = Staff(macros.scale(4))
-	abjad> violin_staff = Staff(macros.scale(4))
+	abjad> flute_staff = Staff("c'8 d'8 e'8 f'8")
+	abjad> violin_staff = Staff("c'8 d'8 e'8 f'8")
 	abjad> staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
 	abjad> score = Score([staff_group])
 	abjad> contexttools.InstrumentMark('Flute ', 'Fl. ')(flute_staff)

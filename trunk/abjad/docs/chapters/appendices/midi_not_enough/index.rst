@@ -87,7 +87,7 @@ notated durations:
 
 ::
 
-	abjad> m1 = measuretools.AnonymousMeasure([Note(0, (1, 4))])
+	abjad> m1 = measuretools.AnonymousMeasure([Note("c'4")])
 	abjad> m2 = measuretools.AnonymousMeasure(Note(0, (1, 8)) * 2)
 	abjad> tietools.TieSpanner(m2)
 	abjad> m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)

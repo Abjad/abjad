@@ -39,8 +39,8 @@ Getting the written pitch of notes
 You can get the written pitch of notes:
 
 <abjad>
-note.pitch
-print repr(note.pitch) <hide
+note.written_pitch
+print repr(note.written_pitch) <hide
 </abjad>
 
 Changing the written pitch of notes
@@ -49,11 +49,11 @@ Changing the written pitch of notes
 And you can change the written pitch of notes:
 
 <abjad>
-note.pitch = "cs'"
+note.written_pitch = "cs'"
 iotools.write_expr_to_ly(measure, 'example-3', 'oedo.ly') <hide
 </abjad>
 
-(You can use ``note.pitch = 1`` to change pitch with numbers, too.)
+(You can use ``note.written_pitch = 1`` to change pitch with numbers, too.)
 
 Getting the duration attributes of notes
 ----------------------------------------
@@ -105,8 +105,8 @@ print repr(note.written_duration) <hide
 Prolation:
 
 <abjad>
-note.duration.prolation
-print repr(note.duration.prolation) <hide
+note.prolation
+print repr(note.prolation) <hide
 </abjad>
 
 And prolated duration that is the product of the two:

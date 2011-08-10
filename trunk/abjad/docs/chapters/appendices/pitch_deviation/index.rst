@@ -18,14 +18,14 @@ Use deviation to model the fact that two pitches differ by a fraction of a semit
 
 ::
 
-	abjad> note_2.pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
+	abjad> note_2.written_pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
 
 
 The pitch of the the first note is greater than the pitch of the second:
 
 ::
 
-	abjad> note_1.pitch > note_2.pitch
+	abjad> note_1.written_pitch > note_2.written_pitch
 	True
 
 
@@ -33,6 +33,6 @@ Use markup to include indications of pitch deviation in your score:
 
 ::
 
-	abjad> markuptools.Markup(note_2.pitch.deviation_in_cents, 'up')(note_2)
+	abjad> markuptools.Markup(note_2.written_pitch.deviation_in_cents, 'up')(note_2)
 
 .. image:: images/example-2.png

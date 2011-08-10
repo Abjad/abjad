@@ -39,7 +39,7 @@ Now let's add some measures to the framework:
 	abjad> m4 = Measure((2, 4), [ ])
 	abjad> m5 = Measure((2, 4), [ ])
 	abjad> upper_measures = [m1, m2, m3, m4, m5]
-	abjad> lower_measures = componenttools.clone_components_and_covered_spanners(upper_measures)
+	abjad> lower_measures = componenttools.copy_components_and_covered_spanners(upper_measures)
 	abjad> upper_staff.extend(upper_measures)
 	abjad> lower_staff.extend(lower_measures)
 

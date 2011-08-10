@@ -131,7 +131,7 @@ The contents durations of a voice equals the sum of durations of the components 
 
 ::
 
-	abjad> voice.duration.contents
+	abjad> voice.contents_duration
 	Duration(2, 1)
 
 
@@ -139,7 +139,7 @@ The preprolated duration of a voice is usually equal to the voice's contents dur
 
 ::
 
-	abjad> voice.duration.preprolated
+	abjad> voice.preprolated_duration
 	Duration(2, 1)
 
 
@@ -147,7 +147,7 @@ The prolated duration of a voice is usually equal to the voice's contents durati
 
 ::
 
-	abjad> voice.duration.preprolated
+	abjad> voice.preprolated_duration
 	Duration(2, 1)
 
 
@@ -158,7 +158,7 @@ Voices that are not nested inside a tuplet carry a prolation of ``1``:
 
 ::
 
-	abjad> voice.duration.prolation
+	abjad> voice.prolation
 	Fraction(1, 1)
 
 
