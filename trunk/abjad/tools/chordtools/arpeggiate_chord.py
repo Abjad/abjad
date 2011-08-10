@@ -2,35 +2,35 @@ from abjad.tools.chordtools.Chord import Chord
 
 
 def arpeggiate_chord(chord):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   Arpeggiate `chord`::
+    Arpeggiate `chord`::
 
-      abjad> chord = Chord("<c' d'' ef''>8")
+        abjad> chord = Chord("<c' d'' ef''>8")
 
-   ::
+    ::
 
-      abjad> chordtools.arpeggiate_chord(chord)
-      [Note("c'8"), Note("d''8"), Note("ef''8")]
+        abjad> chordtools.arpeggiate_chord(chord)
+        [Note("c'8"), Note("d''8"), Note("ef''8")]
 
 
-   Arpeggiated notes inherit `chord` written duration.
+    Arpeggiated notes inherit `chord` written duration.
 
-   Arpeggiated notes do not inherit other `chord` attributes.
+    Arpeggiated notes do not inherit other `chord` attributes.
 
-   Return list of newly constructed notes.
+    Return list of newly constructed notes.
 
-   .. versionchanged:: 1.1.2
-      renamed ``chordtools.arpeggiate( )`` to
-      ``chordtools.arpeggiate_chord( )``.
-   '''
-   from abjad.tools.notetools.Note import Note
-   
-   assert isinstance(chord, Chord)
+    .. versionchanged:: 1.1.2
+        renamed ``chordtools.arpeggiate( )`` to
+        ``chordtools.arpeggiate_chord( )``.
+    '''
+    from abjad.tools.notetools.Note import Note
 
-   result = [ ]
-   chord_written_duration = chord.written_duration
-   for pitch in chord.written_pitches:
-      result.append(Note(pitch, chord_written_duration))
+    assert isinstance(chord, Chord)
 
-   return result
+    result = [ ]
+    chord_written_duration = chord.written_duration
+    for pitch in chord.written_pitches:
+        result.append(Note(pitch, chord_written_duration))
+
+    return result

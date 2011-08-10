@@ -4,23 +4,23 @@ import types
 
 
 def list_abjad_environment_variables( ):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   List Abjad environment variables.
+    List Abjad environment variables.
 
-   Return tuple of zero or more environment variable / setting pairs.
+    Return tuple of zero or more environment variable / setting pairs.
 
-   Abjad environment variables are defined in ``abjad/cfg/cfg.py``.
+    Abjad environment variables are defined in ``abjad/cfg/cfg.py``.
 
-   .. versionchanged:: 1.1.2
-      renamed ``cfgtools.list_settings( )`` to
-      ``cfgtools.list_abjad_environment_variables( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``cfgtools.list_settings( )`` to
+        ``cfgtools.list_abjad_environment_variables( )``.
+    '''
 
-   result = [ ]
-   for key, value in sorted(vars(cfg).items( )):
-      if not isinstance(value, types.ModuleType):
-         if not key.startswith('_'):
-            if not key == 'abjad_version_string':
-               result.append((key, value))
-   return tuple(result)
+    result = [ ]
+    for key, value in sorted(vars(cfg).items( )):
+        if not isinstance(value, types.ModuleType):
+            if not key.startswith('_'):
+                if not key == 'abjad_version_string':
+                    result.append((key, value))
+    return tuple(result)

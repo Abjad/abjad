@@ -2,14 +2,14 @@ from abjad.cfg.cfg import ABJADVERSIONFILE
 
 
 def get_abjad_revision_string( ):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Get Abjad revision string::
+    Get Abjad revision string::
 
-      abjad> cfgtools.get_abjad_revision_string( ) # doctest: +SKIP
-      '4392'
+        abjad> cfgtools.get_abjad_revision_string( ) # doctest: +SKIP
+        '4392'
 
-   Return string.
-   '''
+    Return string.
+    '''
 
-   return file(ABJADVERSIONFILE, 'r').read( ).strip( )
+    return file(ABJADVERSIONFILE, 'r').read( ).strip( )
