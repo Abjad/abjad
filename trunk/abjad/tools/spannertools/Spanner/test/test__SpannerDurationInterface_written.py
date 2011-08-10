@@ -21,6 +21,6 @@ def test__SpannerDurationInterface_written_01( ):
    }
    '''
 
-   assert beam.duration.written == Duration(4, 8)
-   assert crescendo.duration.written == Duration(2, 8)
-   assert decrescendo.duration.written == Duration(2, 8)
+   assert beam.written_duration == Duration(4, 8)
+   assert crescendo.written_duration == Duration(2, 8)
+   assert decrescendo.written_duration == Duration(2, 8)

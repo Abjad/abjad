@@ -15,6 +15,6 @@ def get_tie_chain_duration_in_seconds(tie_chain):
    assert is_tie_chain(tie_chain)
 
    try:
-      return tie_chain[0].tie.spanner.duration.seconds
+      return tie_chain[0].tie.spanner.duration_in_seconds
    except MissingSpannerError:
-      return tie_chain[0].duration.seconds
+      return tie_chain[0].duration_in_seconds

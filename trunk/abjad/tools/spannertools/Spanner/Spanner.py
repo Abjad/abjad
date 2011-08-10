@@ -2,7 +2,7 @@ from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import _StrictComparator
 from abjad.tools import durtools
-from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
+#from abjad.tools.spannertools.Spanner._SpannerDurationInterface import _SpannerDurationInterface
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 import copy
@@ -39,7 +39,7 @@ class Spanner(_StrictComparator):
       '''
       self._components = [ ]
       self._contiguity_constraint = 'thread'
-      self._duration = _SpannerDurationInterface(self)
+      #self._duration = _SpannerDurationInterface(self)
       self._format = _SpannerFormatInterface(self)
       self._offset = _SpannerOffsetInterface(self)
       #self._override = LilyPondGrobOverrideComponentPlugIn( )
@@ -285,37 +285,45 @@ class Spanner(_StrictComparator):
       '''
       return tuple(self._components[:])
 
+#   @property
+#   def duration(self):
+#      '''Return read-only reference to spanner duration interface.
+#      
+#      Spanner duration interface implements ``written``, 
+#      ``preprolated`` and ``prolated`` attributes. ::
+#
+#         abjad> voice = Voice("c'8 d'8 e'8 f'8")
+#         abjad> spanner = spannertools.Spanner(voice[:2])
+#         abjad> spanner
+#         Spanner(c'8, d'8)
+#
+#      ::
+#
+#         abjad> spanner.duration.written
+#         Duration(1, 4)
+#
+#      ::
+#
+#         abjad> spanner.duration.preprolated
+#         Duration(1, 4)
+#
+#      ::
+#
+#         abjad> spanner.duration.prolated
+#         Duration(1, 4)
+#
+#      Spanner duration interface also implements ``seconds`` attribute.
+#      '''
+#
+#      return self._duration
+
    @property
-   def duration(self):
-      '''Return read-only reference to spanner duration interface.
-      
-      Spanner duration interface implements ``written``, 
-      ``preprolated`` and ``prolated`` attributes. ::
-
-         abjad> voice = Voice("c'8 d'8 e'8 f'8")
-         abjad> spanner = spannertools.Spanner(voice[:2])
-         abjad> spanner
-         Spanner(c'8, d'8)
-
-      ::
-
-         abjad> spanner.duration.written
-         Duration(1, 4)
-
-      ::
-
-         abjad> spanner.duration.preprolated
-         Duration(1, 4)
-
-      ::
-
-         abjad> spanner.duration.prolated
-         Duration(1, 4)
-
-      Spanner duration interface also implements ``seconds`` attribute.
-      '''
-
-      return self._duration
+   def duration_in_seconds(self):
+      '''Sum of duration of all leaves in spanner, in seconds.'''
+      duration = durtools.Duration(0)
+      for leaf in self.leaves:
+         duration += leaf.duration_in_seconds
+      return duration
    
    @property
    def leaves(self):
@@ -383,12 +391,27 @@ class Spanner(_StrictComparator):
       return self._override
 
    @property
+   def preprolated_duration(self):
+      '''Sum of preprolated duration of all components in spanner.'''
+      return sum([component.preprolated_duration for component in self])
+
+   @property
+   def prolated_duration(self):
+      '''Sum of prolated duration of all components in spanner.'''
+      return sum([component.prolated_duration for component in self])
+      
+   @property
    def set(self):
       '''LilyPond context setting component plug-in.
       '''
       if not hasattr(self, '_set'):
          self._set = LilyPondContextSettingComponentPlugIn( )
       return self._set
+
+   @property
+   def written_duration(self):
+      '''Sum of written duration of all components in spanner.'''
+      return sum([component.written_duration for component in self])
 
    ## PUBLIC METHODS ##
 
