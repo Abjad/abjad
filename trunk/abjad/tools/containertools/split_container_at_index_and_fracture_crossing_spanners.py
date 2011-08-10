@@ -3,62 +3,62 @@ from abjad.tools.componenttools._split_component_at_index import _split_componen
 
 
 def split_container_at_index_and_fracture_crossing_spanners(container, index):
-   r'''Split `container` at `index` and fracture crossing spanners::
+    r'''Split `container` at `index` and fracture crossing spanners::
 
-      abjad> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c'8 c'8") * 2)
-      abjad> tuplet = voice[1]
-      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-      abjad> beam = spannertools.BeamSpanner(voice[:])
+        abjad> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c'8 c'8") * 2)
+        abjad> tuplet = voice[1]
+        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        abjad> beam = spannertools.BeamSpanner(voice[:])
 
-   ::
+    ::
 
-      abjad> f(voice)
-      \new Voice {
-              \times 2/3 {
-                      c'8 [
-                      d'8
-                      e'8
-              }
-              \times 2/3 {
-                      f'8
-                      g'8
-                      a'8 ]
-              }
-      }
+        abjad> f(voice)
+        \new Voice {
+            \times 2/3 {
+                c'8 [
+                d'8
+                e'8
+            }
+            \times 2/3 {
+                f'8
+                g'8
+                a'8 ]
+            }
+        }
 
-   ::
+    ::
 
-      abjad> left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(tuplet, 1)
-   
-   ::
+        abjad> left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(tuplet, 1)
 
-      abjad> f(voice)
-      \new Voice {
-              \times 2/3 {
-                      c'8 [
-                      d'8
-                      e'8
-              }
-              \times 2/3 {
-                      f'8 ]
-              }
-              \times 2/3 {
-                      g'8 [
-                      a'8 ]
-              }
-      }
+    ::
 
-   Leave leaves untouched.
+        abjad> f(voice)
+        \new Voice {
+            \times 2/3 {
+                c'8 [
+                d'8
+                e'8
+            }
+            \times 2/3 {
+                f'8 ]
+            }
+            \times 2/3 {
+                g'8 [
+                a'8 ]
+            }
+        }
 
-   Create two new copies of `container`.
+    Leave leaves untouched.
 
-   Empty `container` of original contents.
+    Create two new copies of `container`.
 
-   Return split parts.
+    Empty `container` of original contents.
 
-   .. versionchanged:: 1.1.2
-      renamed ``split.fractured_at_index( )`` to
-      ``containertools.split_container_at_index_and_fracture_crossing_spanners( )``.
-   '''
+    Return split parts.
 
-   return _split_component_at_index(container, index, spanners = 'fractured')
+    .. versionchanged:: 1.1.2
+        renamed ``split.fractured_at_index( )`` to
+        ``containertools.split_container_at_index_and_fracture_crossing_spanners( )``.
+    '''
+
+    return _split_component_at_index(container, index, spanners = 'fractured')

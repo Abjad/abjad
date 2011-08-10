@@ -4,28 +4,28 @@ from abjad.tools.componenttools._Component._ComponentFormatter import _Component
 
 class _ContainerFormatter(_ComponentFormatter):
 
-   def __init__(self, client):
-      _ComponentFormatter.__init__(self, client)
-      self._slots = _ContainerFormatterSlotsInterface(self)
+    def __init__(self, client):
+        _ComponentFormatter.__init__(self, client)
+        self._slots = _ContainerFormatterSlotsInterface(self)
 
-   ## PRIVATE ATTRIBUTES ##
+    ## PRIVATE ATTRIBUTES ##
 
-   @property
-   def _contents(self):
-      '''Read-only list of tabbed lines of content.
-      '''
-      result = [ ]
-      for m in self._client._music:
-         result.extend(m.format.split('\n'))
-      result = ['\t' + x for x in result]
-      return result
+    @property
+    def _contents(self):
+        '''Read-only list of tabbed lines of content.
+        '''
+        result = [ ]
+        for m in self._client._music:
+            result.extend(m.format.split('\n'))
+        result = ['\t' + x for x in result]
+        return result
 
-   ## PUBLIC ATTRIBUTES ##
+    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def container(self):
-      return self._client
+    @property
+    def container(self):
+        return self._client
 
-   @property
-   def slots(self):
-      return self._slots
+    @property
+    def slots(self):
+        return self._slots

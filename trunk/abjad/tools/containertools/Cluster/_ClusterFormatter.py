@@ -4,16 +4,16 @@ from abjad.tools.containertools.Cluster._ClusterFormatterSlotsInterface import _
 
 class _ClusterFormatter(_ContainerFormatter):
 
-   def __init__(self, client):
-      _ContainerFormatter.__init__(self, client)
-      self._slots = _ClusterFormatterSlotsInterface(self) 
+    def __init__(self, client):
+        _ContainerFormatter.__init__(self, client)
+        self._slots = _ClusterFormatterSlotsInterface(self)
 
-   ## PUBLIC ATTRIBUTES ##
+    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def cluster(self):
-      return self._client
-   
-   @property
-   def slots(self):
-      return self._slots
+    @property
+    def cluster(self):
+        return self._client
+
+    @property
+    def slots(self):
+        return self._slots

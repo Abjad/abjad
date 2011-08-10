@@ -2,48 +2,48 @@ from abjad.tools.containertools._replace_first_n_elements_in_container_with_rest
 
 
 def replace_n_edge_elements_in_container_with_little_endian_rests(container, n):
-   r'''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-   Replace `n` edge elements in `container` with little-endian rests::
+    Replace `n` edge elements in `container` with little-endian rests::
 
-      abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
+        abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
 
-   ::
+    ::
 
-      abjad> f(staff)
-      \new Staff {
-         c'8
-         d'8
-         e'8
-         f'8
-         g'8
-         a'8
-      }
+        abjad> f(staff)
+        \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+            g'8
+            a'8
+        }
 
-   ::
+    ::
 
-      abjad> containertools.replace_n_edge_elements_in_container_with_little_endian_rests(staff, -5)
-      Staff{3}
+        abjad> containertools.replace_n_edge_elements_in_container_with_little_endian_rests(staff, -5)
+        Staff{3}
 
-   ::
+    ::
 
-      abjad> f(staff)
-      \new Staff {
-         c'8
-         r8
-         r2
-      }
+        abjad> f(staff)
+        \new Staff {
+            c'8
+            r8
+            r2
+        }
 
-   Return `container`.
+    Return `container`.
 
-   .. versionchanged:: 1.1.2
-      renamed ``containertools.replace_first_n_elements_in_container_with_little_endian_rests( )`` to
-      ``containertools.replace_n_edge_elements_in_container_with_little_endian_rests( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``containertools.replace_first_n_elements_in_container_with_little_endian_rests( )`` to
+        ``containertools.replace_n_edge_elements_in_container_with_little_endian_rests( )``.
+    '''
 
-   if 0 <= n:
-      rested_half = 'left'
-   else:
-      rested_half = 'right'
+    if 0 <= n:
+        rested_half = 'left'
+    else:
+        rested_half = 'right'
 
-   return _replace_first_n_elements_in_container_with_rests(container, n, rested_half, 'little-endian')
+    return _replace_first_n_elements_in_container_with_rests(container, n, rested_half, 'little-endian')

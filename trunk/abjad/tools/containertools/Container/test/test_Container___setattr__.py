@@ -3,9 +3,9 @@ import py.test
 
 
 def test_Container___setattr___01( ):
-   '''Slots constrain container attributes.
-   '''
+    '''Slots constrain container attributes.
+    '''
 
-   container = Container([ ])
+    container = Container([ ])
 
-   assert py.test.raises(AttributeError, "container.foo = 'bar'")
+    assert py.test.raises(AttributeError, "container.foo = 'bar'")

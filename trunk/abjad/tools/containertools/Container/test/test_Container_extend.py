@@ -3,227 +3,227 @@ import py.test
 
 
 def test_Container_extend_01( ):
-   '''Extend container with list of leaves.'''
+    '''Extend container with list of leaves.'''
 
-   t = Voice("c'8 d'8")
-   spannertools.BeamSpanner(t[:])
+    t = Voice("c'8 d'8")
+    spannertools.BeamSpanner(t[:])
 
-   r'''
-   \new Voice {
-           c'8 [
-           d'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+    }
+    '''
 
-   t.extend([Note("c'8"), Note("d'8")])
+    t.extend([Note("c'8"), Note("d'8")])
 
-   r'''
-   \new Voice {
-           c'8 [
-           d'8 ]
-           c'8
-           d'8
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+        c'8
+        d'8
+    }
+    '''
 
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8\n\td'8\n}"
+    assert componenttools.is_well_formed_component(t)
+    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8\n\td'8\n}"
 
 
 def test_Container_extend_02( ):
-   '''Extend container with contents of other container.'''
+    '''Extend container with contents of other container.'''
 
-   t = Voice("c'8 d'8")
-   spannertools.BeamSpanner(t[:])
+    t = Voice("c'8 d'8")
+    spannertools.BeamSpanner(t[:])
 
-   r'''
-   \new Voice {
-           c'8 [
-           d'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+    }
+    '''
 
-   u = Voice([Note(4, (1, 8)), Note(5, (1, 8))])
-   spannertools.BeamSpanner(u[:])
-   t.extend(u)
+    u = Voice([Note(4, (1, 8)), Note(5, (1, 8))])
+    spannertools.BeamSpanner(u[:])
+    t.extend(u)
 
-   r'''
-   \new Voice {
-           c'8 [
-           d'8 ]
-           e'8 [
-           f'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+        e'8 [
+        f'8 ]
+    }
+    '''
 
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
+    assert componenttools.is_well_formed_component(t)
+    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
 
 
 def test_Container_extend_03( ):
-   '''Extending container with empty list leaves container unchanged.'''
+    '''Extending container with empty list leaves container unchanged.'''
 
-   t = Voice("c'8 d'8")
-   spannertools.BeamSpanner(t[:])
-   t.extend([ ])
+    t = Voice("c'8 d'8")
+    spannertools.BeamSpanner(t[:])
+    t.extend([ ])
 
-   r'''
-   \new Voice {
-           c'8 [
-           d'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+    }
+    '''
 
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+    assert componenttools.is_well_formed_component(t)
+    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
 def test_Container_extend_04( ):
-   '''Extending one container with empty second container 
-      leaves both containers unchanged.'''
+    '''Extending one container with empty second container
+        leaves both containers unchanged.'''
 
-   t = Voice("c'8 d'8")
-   spannertools.BeamSpanner(t[:])
-   t.extend(Voice([ ]))
+    t = Voice("c'8 d'8")
+    spannertools.BeamSpanner(t[:])
+    t.extend(Voice([ ]))
 
-   r'''
-   \new Voice {
-           c'8 [
-           d'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+    }
+    '''
 
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+    assert componenttools.is_well_formed_component(t)
+    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
 def test_Container_extend_05( ):
-   '''Trying to extend container with noncomponent raises TypeError.'''
+    '''Trying to extend container with noncomponent raises TypeError.'''
 
-   t = Voice("c'8 d'8")
-   spannertools.BeamSpanner(t[:])
+    t = Voice("c'8 d'8")
+    spannertools.BeamSpanner(t[:])
 
-   assert py.test.raises(Exception, 't.extend(7)')
-   assert py.test.raises(Exception, "t.extend('foo')")
+    assert py.test.raises(Exception, 't.extend(7)')
+    assert py.test.raises(Exception, "t.extend('foo')")
 
 
 def test_Container_extend_06( ):
-   '''Trying to extend container with noncontainer raises TypeError.'''
+    '''Trying to extend container with noncontainer raises TypeError.'''
 
-   t = Voice("c'8 d'8")
-   spannertools.BeamSpanner(t[:])
+    t = Voice("c'8 d'8")
+    spannertools.BeamSpanner(t[:])
 
-   assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
-   assert py.test.raises(AssertionError, "t.extend(Chord([2, 3, 5], (1, 4)))")
+    assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
+    assert py.test.raises(AssertionError, "t.extend(Chord([2, 3, 5], (1, 4)))")
 
 
 def test_Container_extend_07( ):
-   '''Extend container with partial and 
-      spanned contents of other container.'''
+    '''Extend container with partial and
+        spanned contents of other container.'''
 
-   t = Voice("c'8 d'8")
-   spannertools.BeamSpanner(t[:])
+    t = Voice("c'8 d'8")
+    spannertools.BeamSpanner(t[:])
 
-   r'''
-   \new Voice {
-      c'8 [
-      d'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+    }
+    '''
 
-   u = Voice("c'8 d'8 e'8 f'8")
-   spannertools.BeamSpanner(u[:])
+    u = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(u[:])
 
-   r'''
-   \new Voice {
-      c'8 [
-      d'8
-      e'8
-      f'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8
+        e'8
+        f'8 ]
+    }
+    '''
 
-   t.extend(u[-2:]) 
+    t.extend(u[-2:])
 
-   "Container t is now ..."
+    "Container t is now ..."
 
-   r'''
-   \new Voice {
-      c'8 [
-      d'8 ]
-      e'8
-      f'8
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+        e'8
+        f'8
+    }
+    '''
 
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8\n\tf'8\n}"
+    assert componenttools.is_well_formed_component(t)
+    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8\n\tf'8\n}"
 
-   "Container u is now ..."
+    "Container u is now ..."
 
-   r'''
-   \new Voice {
-      c'8 [
-      d'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+    }
+    '''
 
-   assert componenttools.is_well_formed_component(u)
-   assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+    assert componenttools.is_well_formed_component(u)
+    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
 def test_Container_extend_08( ):
-   '''Extend container with partial and 
-      spanned contents of other container.
-      Covered span comes with components from donor container.'''
+    '''Extend container with partial and
+        spanned contents of other container.
+        Covered span comes with components from donor container.'''
 
-   t = Voice("c'8 d'8")
-   spannertools.BeamSpanner(t[:])
+    t = Voice("c'8 d'8")
+    spannertools.BeamSpanner(t[:])
 
-   r'''
-   \new Voice {
-      c'8 [
-      d'8 ]
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+    }
+    '''
 
-   u = Voice("c'8 d'8 e'8 f'8")
-   spannertools.BeamSpanner(u[:])
-   spannertools.SlurSpanner(u[-2:])
+    u = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(u[:])
+    spannertools.SlurSpanner(u[-2:])
 
-   r'''
-   \new Voice {
-      c'8 [
-      d'8
-      e'8 (
-      f'8 ] )
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8
+        e'8 (
+        f'8 ] )
+    }
+    '''
 
-   t.extend(u[-2:]) 
+    t.extend(u[-2:])
 
-   "Container t is now ..."
+    "Container t is now ..."
 
-   r'''
-   \new Voice {
-      c'8 [
-      d'8 ]
-      e'8 (
-      f'8 )
-   }
-   '''
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+        e'8 (
+        f'8 )
+    }
+    '''
 
-   assert componenttools.is_well_formed_component(t)
-   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 (\n\tf'8 )\n}"
+    assert componenttools.is_well_formed_component(t)
+    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 (\n\tf'8 )\n}"
 
-   "Container u is now ..."
+    "Container u is now ..."
 
-   r'''
-   \new Voice {
-      c'8 [
-      d'8 ]
-   }
-   '''
-  
-   assert componenttools.is_well_formed_component(u)
-   assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+    r'''
+    \new Voice {
+        c'8 [
+        d'8 ]
+    }
+    '''
+
+    assert componenttools.is_well_formed_component(u)
+    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"

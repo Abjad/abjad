@@ -2,61 +2,61 @@ from abjad.tools.componenttools.copy_components_and_immediate_parent_of_first_co
 
 
 def repeat_last_n_elements_of_container(container, n = 1, total = 2):
-   r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1.1
 
-   Repeat last `n` elements of `container`::
+    Repeat last `n` elements of `container`::
 
-      abjad> staff = Staff("c'8 d'8 e'8 f'8")
-      abjad> spannertools.BeamSpanner(staff.leaves)
-      BeamSpanner(c'8, d'8, e'8, f'8)
+        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        abjad> spannertools.BeamSpanner(staff.leaves)
+        BeamSpanner(c'8, d'8, e'8, f'8)
 
-   ::
+    ::
 
-      abjad> f(staff)
-      \new Staff {
-         c'8 [
-         d'8
-         e'8
-         f'8 ]
-      }
-      
-   ::
-      
-      abjad> containertools.repeat_last_n_elements_of_container(staff, n = 2, total = 3)
-      Staff{8}
+        abjad> f(staff)
+        \new Staff {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
 
-   ::
+    ::
 
-      abjad> f(staff)
-      \new Staff {
-         c'8 [
-         d'8
-         e'8
-         f'8 ]
-         e'8 [
-         f'8 ]
-         e'8 [
-         f'8 ]
-      }
+        abjad> containertools.repeat_last_n_elements_of_container(staff, n = 2, total = 3)
+        Staff{8}
 
-   Return `container`.
+    ::
 
-   .. versionchanged:: 1.1.2
-      renamed ``containertools.extend_cyclic( )`` to
-      ``containertools.repeat_last_n_elements_of_container( )``.
-   '''
+        abjad> f(staff)
+        \new Staff {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+            e'8 [
+            f'8 ]
+            e'8 [
+            f'8 ]
+        }
 
-   # get start and stop indices
-   stop = len(container)
-   start = stop - n
+    Return `container`.
 
-   # for the total number of elements less one
-   for x in range(total - 1):
+    .. versionchanged:: 1.1.2
+        renamed ``containertools.extend_cyclic( )`` to
+        ``containertools.repeat_last_n_elements_of_container( )``.
+    '''
 
-      # copy last n elements of container
-      addendum = copy_components_and_immediate_parent_of_first_component(container[start:stop])
+    # get start and stop indices
+    stop = len(container)
+    start = stop - n
 
-      # extend container with addendum
-      container.extend(addendum)
+    # for the total number of elements less one
+    for x in range(total - 1):
 
-   return container
+        # copy last n elements of container
+        addendum = copy_components_and_immediate_parent_of_first_component(container[start:stop])
+
+        # extend container with addendum
+        container.extend(addendum)
+
+    return container
