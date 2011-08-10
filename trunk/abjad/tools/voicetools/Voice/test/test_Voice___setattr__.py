@@ -3,9 +3,9 @@ import py.test
 
 
 def test_Voice___setattr___01( ):
-   '''Slots constrain voice attributes.
-   '''
+    '''Slots constrain voice attributes.
+    '''
 
-   voice = Voice([ ])
+    voice = Voice([ ])
 
-   assert py.test.raises(AttributeError, "voice.foo = 'bar'")
+    assert py.test.raises(AttributeError, "voice.foo = 'bar'")
