@@ -3,32 +3,34 @@ from abjad.tools.notetools._Flageolet._Flageolet import _Flageolet
 
 
 class NaturalHarmonic(Note, _Flageolet):
-   '''Abjad model of natural harmonic.
+    '''Abjad model of natural harmonic.
 
-   Initialize natural harmonic by hand::
+    Initialize natural harmonic by hand::
 
-      abjad> notetools.NaturalHarmonic("cs'8.")
-      NaturalHarmonic(cs', 8.)
+        abjad> notetools.NaturalHarmonic("cs'8.")
+        NaturalHarmonic(cs', 8.)
 
-   Initialize natural harmonic from note::
+    Initialize natural harmonic from note::
 
-      abjad> note = Note("cs'8.")
+        abjad> note = Note("cs'8.")
 
-   ::
+    ::
 
-      abjad> notetools.NaturalHarmonic(note)
-      NaturalHarmonic(cs', 8.)
+        abjad> notetools.NaturalHarmonic(note)
+        NaturalHarmonic(cs', 8.)
 
-   Natural harmonics are immutable.
-   '''
+    Natural harmonics are immutable.
+    '''
 
-   __slots__ = ( )
+    __slots__ = ( )
 
-   def __init__(self, *args):
-      Note.__init__(self, *args)
-      self.override.note_head.style = 'harmonic'
-         
-   ## OVERLOADS ##
+    def __init__(self, *args):
+        Note.__init__(self, *args)
+        self.override.note_head.style = 'harmonic'
 
-   def __repr__(self):
-      return '%s(%s, %s)' % (self.__class__.__name__, self.written_pitch, self._formatted_duration)
+    ## OVERLOADS ##
+
+    def __repr__(self):
+        return '%s(%s, %s)' % (self.__class__.__name__, self.written_pitch, self._formatted_duration)
+
+
