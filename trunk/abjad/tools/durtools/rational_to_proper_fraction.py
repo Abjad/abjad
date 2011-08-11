@@ -23,3 +23,4 @@ def rational_to_proper_fraction(rational):
     residue = rational - quotient
 
     return quotient, residue
+

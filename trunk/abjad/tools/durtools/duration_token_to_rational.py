@@ -23,3 +23,4 @@ def duration_token_to_rational(duration_token):
     '''
 
     return Fraction(*duration_token_to_duration_pair(duration_token))
+

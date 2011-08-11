@@ -58,3 +58,4 @@ def rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
             pair, integer_denominator)
 
     return pair
+

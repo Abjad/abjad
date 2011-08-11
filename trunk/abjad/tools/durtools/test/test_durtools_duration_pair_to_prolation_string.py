@@ -14,3 +14,4 @@ def test_durtools_duration_pair_to_prolation_string_01( ):
     assert durtools.duration_pair_to_prolation_string((2, 4)) == '4:2'
     assert durtools.duration_pair_to_prolation_string((3, 4)) == '4:3'
     assert durtools.duration_pair_to_prolation_string((4, 4)) == '4:4'
+

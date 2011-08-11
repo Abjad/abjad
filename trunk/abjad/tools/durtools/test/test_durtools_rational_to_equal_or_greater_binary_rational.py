@@ -38,3 +38,4 @@ def test_durtools_rational_to_equal_or_greater_binary_rational_02( ):
 
     assert durtools.rational_to_equal_or_greater_binary_rational(
         Fraction(17, 16)) == Fraction(2, 1)
+

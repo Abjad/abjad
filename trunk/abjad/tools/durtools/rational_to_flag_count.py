@@ -20,3 +20,4 @@ def rational_to_flag_count(rational):
         rational.denominator, 2))) - 2, 0)
 
     return flag_count
+

@@ -10,3 +10,4 @@ def test_durtools_multiply_duration_pair_01( ):
 def test_durtools_multiply_duration_pair_02( ):
     t = durtools.multiply_duration_pair((4, 8), Fraction(3, 4))
     assert t == (12, 32)
+

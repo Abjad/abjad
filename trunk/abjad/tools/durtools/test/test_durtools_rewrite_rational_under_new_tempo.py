@@ -22,3 +22,4 @@ def test_durtools_rewrite_rational_under_new_tempo_01( ):
     result = durtools.rewrite_rational_under_new_tempo(
         Fraction(1, 24), tempo_indication_1, tempo_indication_2)
     assert result == Fraction(1, 16)
+

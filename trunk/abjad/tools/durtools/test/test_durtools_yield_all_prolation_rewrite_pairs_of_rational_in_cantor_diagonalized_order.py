@@ -45,3 +45,4 @@ def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagon
         (Fraction(20, 21), Fraction(7, 64)),
         (Fraction(40, 21), Fraction(7, 128)),
         (Fraction(8, 9), Fraction(15, 128)))
+

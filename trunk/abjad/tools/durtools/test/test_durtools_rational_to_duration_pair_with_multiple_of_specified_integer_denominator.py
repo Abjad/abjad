@@ -27,3 +27,4 @@ def test_durtools_rational_to_duration_pair_with_multiple_of_specified_integer_d
     assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 10) == (5, 10)
     assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 20) == (10, 20)
     assert durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, 40) == (20, 40)
+

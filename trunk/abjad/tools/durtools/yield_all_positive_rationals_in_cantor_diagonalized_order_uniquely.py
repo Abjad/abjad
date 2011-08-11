@@ -41,3 +41,4 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( ):
         rational = Fraction(*integer_pair)
         if (rational.numerator, rational.denominator) == integer_pair:
             yield rational
+

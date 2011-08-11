@@ -54,3 +54,4 @@ def multiply_duration_pair_and_reduce_factors(pair, multiplier):
         result_denominator *= factor
 
     return result_numerator, result_denominator
+

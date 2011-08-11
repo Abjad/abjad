@@ -34,3 +34,4 @@ def rational_to_prolation_string(rational):
     '''
 
     return '%s:%s' % (rational.denominator, rational.numerator)
+

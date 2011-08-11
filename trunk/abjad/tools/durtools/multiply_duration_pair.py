@@ -26,3 +26,4 @@ def multiply_duration_pair(pair, multiplier):
     assert isinstance(multiplier, Fraction)
 
     return pair[0] * multiplier.numerator, pair[1] * multiplier.denominator
+

@@ -21,3 +21,4 @@ def duration_tokens_to_least_common_denominator(duration_tokens):
     denominators = [pair[1] for pair in duration_pairs]
 
     return mathtools.least_common_multiple(*denominators)
+

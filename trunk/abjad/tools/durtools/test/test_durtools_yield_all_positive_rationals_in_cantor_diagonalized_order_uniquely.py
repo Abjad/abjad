@@ -22,3 +22,4 @@ def test_durtools_yield_all_positive_rationals_in_cantor_diagonalized_order_uniq
     assert generator.next( ) == Fraction(4, 3)
     assert generator.next( ) == Fraction(3, 4)
     assert generator.next( ) == Fraction(2, 5)
+

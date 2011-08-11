@@ -12,3 +12,4 @@ def test_durtools_rational_to_flag_count_01( ):
     assert durtools.rational_to_flag_count(Fraction(6, 64)) == 2
     assert durtools.rational_to_flag_count(Fraction(7, 64)) == 2
     assert durtools.rational_to_flag_count(Fraction(8, 64)) == 1
+

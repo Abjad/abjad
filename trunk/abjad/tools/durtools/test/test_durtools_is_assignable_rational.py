@@ -31,3 +31,4 @@ def test_durtools_is_assignable_rational_03( ):
 
     assert not durtools.is_assignable_rational(1.0)
     assert not durtools.is_assignable_rational('foo')
+

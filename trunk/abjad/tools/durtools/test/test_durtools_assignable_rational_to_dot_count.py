@@ -19,3 +19,4 @@ def test_durtools_assignable_rational_to_dot_count_02( ):
 
     assert py.test.raises(AssignabilityError,
         'durtools.assignable_rational_to_dot_count(Fraction(5, 16))')
+

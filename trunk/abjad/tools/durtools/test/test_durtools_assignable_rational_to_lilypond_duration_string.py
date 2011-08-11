@@ -15,3 +15,4 @@ def test_durtools_assignable_rational_to_lilypond_duration_string_02( ):
 
     assert py.test.raises(AssignabilityError,
         'durtools.assignable_rational_to_lilypond_duration_string(Fraction(5, 16))')
+

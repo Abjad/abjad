@@ -18,3 +18,4 @@ def test_durtools_yield_all_positive_integer_pairs_in_cantor_diagonalized_order_
     assert generator.next( ) == (1, 4)
     assert generator.next( ) == (1, 5)
     assert generator.next( ) == (2, 4)
+

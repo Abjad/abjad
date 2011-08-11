@@ -15,3 +15,4 @@ def test_durtools_rational_to_proper_fraction_01( ):
     assert durtools.rational_to_proper_fraction(Fraction(12, 5)) == (2, Fraction(2, 5))
     assert durtools.rational_to_proper_fraction(Fraction(13, 5)) == (2, Fraction(3, 5))
     assert durtools.rational_to_proper_fraction(Fraction(14, 5)) == (2, Fraction(4, 5))
+

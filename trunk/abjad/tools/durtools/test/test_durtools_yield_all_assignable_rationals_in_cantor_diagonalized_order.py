@@ -22,3 +22,4 @@ def test_durtools_yield_all_assignable_rationals_in_cantor_diagonalized_order_01
     assert generator.next( ) == Fraction(7, 4)
     assert generator.next( ) == Fraction(3, 8)
     assert generator.next( ) == Fraction(12, 1)
+

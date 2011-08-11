@@ -36,3 +36,4 @@ def group_duration_tokens_by_implied_prolation(durations):
             group = [d]
             result.append(group)
     return result
+

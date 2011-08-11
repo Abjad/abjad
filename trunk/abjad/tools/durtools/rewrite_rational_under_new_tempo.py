@@ -42,3 +42,4 @@ def rewrite_rational_under_new_tempo(prolated_duration_1, tempo_mark_1, tempo_ma
     prolated_duration_2 = tempo_ratio * prolated_duration_1
 
     return prolated_duration_2
+

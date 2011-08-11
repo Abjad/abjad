@@ -14,3 +14,4 @@ def test_durtools_is_lilypond_duration_name_02( ):
     assert not durtools.is_lilypond_duration_name('breve')
     assert not durtools.is_lilypond_duration_name('foo')
     assert not durtools.is_lilypond_duration_name(12)
+

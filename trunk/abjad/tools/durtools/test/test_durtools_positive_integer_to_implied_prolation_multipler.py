@@ -17,3 +17,4 @@ def test_durtools_positive_integer_to_implied_prolation_multipler_01( ):
     assert durtools.positive_integer_to_implied_prolation_multipler(10) == Fraction(4, 5)
     assert durtools.positive_integer_to_implied_prolation_multipler(11) == Fraction(8, 11)
     assert durtools.positive_integer_to_implied_prolation_multipler(12) == Fraction(2, 3)
+

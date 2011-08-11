@@ -25,3 +25,4 @@ def test_durtools_multiply_duration_pair_and_reduce_factors_04( ):
 def test_durtools_multiply_duration_pair_and_reduce_factors_05( ):
     assert durtools.multiply_duration_pair_and_reduce_factors(
         (5, 6), Fraction(6, 5)) == (1, 1)
+

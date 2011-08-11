@@ -22,3 +22,4 @@ def duration_pair_to_prolation_string(pair):
     prolation_string = '%s:%s' % (denominator, numerator)
 
     return prolation_string
+

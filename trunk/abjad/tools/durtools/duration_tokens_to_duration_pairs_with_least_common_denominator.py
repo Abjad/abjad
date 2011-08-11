@@ -25,3 +25,4 @@ def duration_tokens_to_duration_pairs_with_least_common_denominator(duration_tok
         rational_to_duration_pair_with_specified_integer_denominator(x, lcd) for x in rationals]
 
     return type(duration_tokens)(duration_pairs)
+

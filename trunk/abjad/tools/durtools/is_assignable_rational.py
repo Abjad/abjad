@@ -54,3 +54,4 @@ def is_assignable_rational(expr):
                 return True
 
     return False
+

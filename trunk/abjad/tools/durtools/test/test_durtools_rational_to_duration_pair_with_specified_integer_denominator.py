@@ -45,3 +45,4 @@ def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_0
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((9, 12), 8) == (6, 8)
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((10, 12), 8) == (10, 12)
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((11, 12), 8) == (11, 12)
+

@@ -9,3 +9,4 @@ def test_durtools_is_duration_pair_01( ):
     assert not durtools.is_duration_pair(Fraction(1, 4))
     assert not durtools.is_duration_pair([(1, 4)])
     assert not durtools.is_duration_pair([Fraction(1, 4)])
+

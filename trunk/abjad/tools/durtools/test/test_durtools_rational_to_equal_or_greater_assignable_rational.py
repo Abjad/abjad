@@ -35,3 +35,4 @@ def test_durtools_rational_to_equal_or_greater_assignable_rational_01( ):
         Fraction(11, 16)) == Fraction(12, 16)
     assert durtools.rational_to_equal_or_greater_assignable_rational(
         Fraction(12, 16)) == Fraction(12, 16)
+

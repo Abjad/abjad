@@ -17,3 +17,4 @@ class Offset(Duration):
     '''
 
     pass
+

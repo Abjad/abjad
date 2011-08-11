@@ -32,3 +32,4 @@ def test_durtools_is_binary_rational_02( ):
 
     assert not durtools.is_binary_rational(1.0)
     assert not durtools.is_binary_rational('foo')
+

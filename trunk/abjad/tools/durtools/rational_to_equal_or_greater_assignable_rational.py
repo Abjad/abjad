@@ -61,3 +61,4 @@ def rational_to_equal_or_greater_assignable_rational(rational):
         candidate = Fraction(cur_numerator, good_denominator)
 
     return candidate
+

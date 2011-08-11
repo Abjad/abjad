@@ -46,3 +46,4 @@ def test_durtools_rational_to_equal_or_lesser_binary_rational_02( ):
 
     assert durtools.rational_to_equal_or_lesser_binary_rational(Fraction(4, 1)) == Fraction(4, 1)
     assert durtools.rational_to_equal_or_lesser_binary_rational(Fraction(5, 1)) == Fraction(4, 1)
+
