@@ -4,51 +4,53 @@ from abjad.tools.tietools.get_tie_chain import get_tie_chain
 
 
 def iterate_tie_chains_backward_in_expr(expr):
-   r'''Yield right-to-left tie chains in `expr`::
+    r'''Yield right-to-left tie chains in `expr`::
 
-      abjad> notes = notetools.make_notes([0], [(5, 16), (1, 8), (1, 8), (5, 16)])
-      abjad> staff = Staff(notes)
-      abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 16), staff[1:3])
-      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-      abjad> print staff.format
-      \new Staff {
-              c'4 ~
-              \times 2/3 {
-                      c'16
-                      d'8
-              }
-              e'8
-              f'4 ~
-              f'16
-      }
+        abjad> notes = notetools.make_notes([0], [(5, 16), (1, 8), (1, 8), (5, 16)])
+        abjad> staff = Staff(notes)
+        abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 16), staff[1:3])
+        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        abjad> print staff.format
+        \new Staff {
+            c'4 ~
+            \times 2/3 {
+                c'16
+                d'8
+            }
+            e'8
+            f'4 ~
+            f'16
+        }
 
-   ::
+    ::
 
-      abjad> for x in tietools.iterate_tie_chains_backward_in_expr(staff):
-      ...     x
-      ... 
-      (Note("f'4"), Note("f'16"))
-      (Note("e'8"),)
-      (Note("d'8"),)
-      (Note("c'4"), Note("c'16"))
+        abjad> for x in tietools.iterate_tie_chains_backward_in_expr(staff):
+        ...     x
+        ...
+        (Note("f'4"), Note("f'16"))
+        (Note("e'8"),)
+        (Note("d'8"),)
+        (Note("c'4"), Note("c'16"))
 
-   Note that one-note tie chains yield the same as other tie chains.
+    Note that one-note tie chains yield the same as other tie chains.
 
-   Note also that nested structures are no problem.
+    Note also that nested structures are no problem.
 
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.tie_chains_backward_in( )`` to
-      ``tietools.iterate_tie_chains_backward_in_expr( )``.
+    .. versionchanged:: 1.1.2
+        renamed ``iterate.tie_chains_backward_in( )`` to
+        ``tietools.iterate_tie_chains_backward_in_expr( )``.
 
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.tie_chains_backward_in_expr( )`` to
-      ``tietools.iterate_tie_chains_backward_in_expr( )``.
-   '''
-   from abjad.tools.leaftools._Leaf import _Leaf
-   from abjad.tools.leaftools.iterate_leaves_backward_in_expr import iterate_leaves_backward_in_expr
+    .. versionchanged:: 1.1.2
+        renamed ``iterate.tie_chains_backward_in_expr( )`` to
+        ``tietools.iterate_tie_chains_backward_in_expr( )``.
+    '''
+    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.iterate_leaves_backward_in_expr import iterate_leaves_backward_in_expr
 
-   for leaf in iterate_leaves_backward_in_expr(expr):
-      tie_spanners = spannertools.get_spanners_attached_to_component(leaf, TieSpanner)
-      #if not leaf.tie.spanned or leaf.tie.first:
-      if not(tie_spanners) or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
-         yield get_tie_chain(leaf)
+    for leaf in iterate_leaves_backward_in_expr(expr):
+        tie_spanners = spannertools.get_spanners_attached_to_component(leaf, TieSpanner)
+        #if not leaf.tie.spanned or leaf.tie.first:
+        if not(tie_spanners) or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
+            yield get_tie_chain(leaf)
+
+

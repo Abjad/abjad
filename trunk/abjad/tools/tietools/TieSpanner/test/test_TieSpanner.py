@@ -19,3 +19,4 @@ from abjad import *
 #   assert not t[7].tie.spanned
 #
 #   assert t[4].tie.spanner is t[5].tie.spanner
+
