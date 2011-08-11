@@ -1,36 +1,38 @@
 ## TODO: implement leaftools.fuse_leaves_little_endian( )
 def fuse_leaves_big_endian(leaves):
-   r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1.1
 
-   Fuse thread-contiguous `leaves`::
+    Fuse thread-contiguous `leaves`::
 
-      abjad> staff = Staff("c'8 d'8 e'8 f'8")
-      abjad> leaftools.fuse_leaves_big_endian(staff[1:])
-      [Note("d'4.")]
-      abjad> f(staff)
-      \new Staff {
-         c'8
-         d'4.
-      }
-   
-   Rewrite duration of first leaf in `leaves`.
+        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        abjad> leaftools.fuse_leaves_big_endian(staff[1:])
+        [Note("d'4.")]
+        abjad> f(staff)
+        \new Staff {
+            c'8
+            d'4.
+        }
 
-   Detach all leaves in `leaves` other than first leaf from score.
+    Rewrite duration of first leaf in `leaves`.
 
-   Return list of first leaf in `leaves`.
+    Detach all leaves in `leaves` other than first leaf from score.
 
-   .. versionchanged:: 1.1.2
-      renamed ``fuse.leaves_by_reference( )`` to
-      ``leaftools.fuse_leaves_big_endian( )``.
-   '''
-   from abjad.tools import componenttools
-   from abjad.tools import leaftools
+    Return list of first leaf in `leaves`.
 
-   assert componenttools.all_are_thread_contiguous_components(leaves)
+    .. versionchanged:: 1.1.2
+        renamed ``fuse.leaves_by_reference( )`` to
+        ``leaftools.fuse_leaves_big_endian( )``.
+    '''
+    from abjad.tools import componenttools
+    from abjad.tools import leaftools
 
-   if len(leaves) <= 1:
-      return leaves
+    assert componenttools.all_are_thread_contiguous_components(leaves)
 
-   total_preprolated = componenttools.sum_preprolated_duration_of_components(leaves)
-   componenttools.remove_component_subtree_from_score_and_spanners(leaves[1:])
-   return leaftools.set_preprolated_leaf_duration(leaves[0], total_preprolated)
+    if len(leaves) <= 1:
+        return leaves
+
+    total_preprolated = componenttools.sum_preprolated_duration_of_components(leaves)
+    componenttools.remove_component_subtree_from_score_and_spanners(leaves[1:])
+    return leaftools.set_preprolated_leaf_duration(leaves[0], total_preprolated)
+
+

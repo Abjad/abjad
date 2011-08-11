@@ -2,41 +2,43 @@ from abjad.tools import componenttools
 
 
 def iterate_notes_and_chords_backward_in_expr(expr, start = 0, stop = None):
-   r'''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-   Iterate notes and chords backward in `expr`::
+    Iterate notes and chords backward in `expr`::
 
-      abjad> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
+        abjad> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
 
-   ::
+    ::
 
-      abjad> f(staff)
-      \new Staff {
-         <e' g' c''>8
-         a'8
-         r8
-         <d' f' b'>8
-         r2
-      }
+        abjad> f(staff)
+        \new Staff {
+            <e' g' c''>8
+            a'8
+            r8
+            <d' f' b'>8
+            r2
+        }
 
-   ::
+    ::
 
-      abjad> for leaf in leaftools.iterate_notes_and_chords_backward_in_expr(staff):
-      ...   leaf
-      Chord("<d' f' b'>8")
-      Note("a'8")
-      Chord("<e' g' c''>8")
+        abjad> for leaf in leaftools.iterate_notes_and_chords_backward_in_expr(staff):
+        ...   leaf
+        Chord("<d' f' b'>8")
+        Note("a'8")
+        Chord("<e' g' c''>8")
 
-   Ignore threads.
+    Ignore threads.
 
-   Return generator.
+    Return generator.
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.iterate_notes_and_chords_backward_in_expr( )`` to
-      ``leaftools.iterate_notes_and_chords_backward_in_expr( )``.
-   '''
-   from abjad.tools.chordtools.Chord import Chord
-   from abjad.tools.notetools.Note import Note
-   
-   return componenttools.iterate_components_backward_in_expr(
-      expr, (Note, Chord), start = start, stop = stop)
+    .. versionchanged:: 1.1.2
+        renamed ``pitchtools.iterate_notes_and_chords_backward_in_expr( )`` to
+        ``leaftools.iterate_notes_and_chords_backward_in_expr( )``.
+    '''
+    from abjad.tools.chordtools.Chord import Chord
+    from abjad.tools.notetools.Note import Note
+
+    return componenttools.iterate_components_backward_in_expr(
+        expr, (Note, Chord), start = start, stop = stop)
+
+

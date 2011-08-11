@@ -3,49 +3,51 @@ from abjad.tools.leaftools.repeat_leaf_and_extend_spanners import repeat_leaf_an
 
 
 def repeat_leaves_in_expr_and_extend_spanners(expr, total = 1):
-   r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1.1
 
-   Repeat leaves in `expr` and extend spanners::
+    Repeat leaves in `expr` and extend spanners::
 
-      abjad> staff = Staff("c'8 d'8 e'8 f'8")
-      abjad> spannertools.BeamSpanner(staff.leaves)
-      BeamSpanner(c'8, d'8, e'8, f'8)
-      abjad> f(staff)
-      \new Staff {
-         c'8 [
-         d'8
-         e'8
-         f'8 ]
-      }
-      
-   ::
-      
-      abjad> result = leaftools.repeat_leaves_in_expr_and_extend_spanners(staff[2:], total = 3)
-      
-   ::
-      
-      abjad> f(staff)
-      \new Staff {
-         c'8 [
-         d'8
-         e'8
-         e'8
-         e'8
-         f'8
-         f'8
-         f'8 ]
-      }
+        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        abjad> spannertools.BeamSpanner(staff.leaves)
+        BeamSpanner(c'8, d'8, e'8, f'8)
+        abjad> f(staff)
+        \new Staff {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
 
-   Preserve leaf written durations.
+    ::
 
-   Preserve parentage and spanners.
+        abjad> result = leaftools.repeat_leaves_in_expr_and_extend_spanners(staff[2:], total = 3)
 
-   Return none.
+    ::
 
-   .. versionchanged:: 1.1.2
-      renamed ``leaftools.multiply( )`` to
-      ``leaftools.repeat_leaves_in_expr_and_extend_spanners( )``.
-   '''
+        abjad> f(staff)
+        \new Staff {
+            c'8 [
+            d'8
+            e'8
+            e'8
+            e'8
+            f'8
+            f'8
+            f'8 ]
+        }
 
-   for leaf in iterate_leaves_backward_in_expr(expr):
-      repeat_leaf_and_extend_spanners(leaf, total)
+    Preserve leaf written durations.
+
+    Preserve parentage and spanners.
+
+    Return none.
+
+    .. versionchanged:: 1.1.2
+        renamed ``leaftools.multiply( )`` to
+        ``leaftools.repeat_leaves_in_expr_and_extend_spanners( )``.
+    '''
+
+    for leaf in iterate_leaves_backward_in_expr(expr):
+        repeat_leaf_and_extend_spanners(leaf, total)
+
+
