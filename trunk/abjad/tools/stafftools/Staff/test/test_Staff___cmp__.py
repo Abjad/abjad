@@ -3,58 +3,58 @@ import py.test
 
 
 def test_Staff___cmp___01( ):
-   '''Compare container to itself.
-   '''
+    '''Compare container to itself.
+    '''
 
-   container = Container([ ])
+    container = Container([ ])
 
-   assert container == container
-   assert not container != container
+    assert container == container
+    assert not container != container
 
-   comparison_string = 'container <  container'
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = 'container <= container'
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = 'container >  container'
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = 'container >= container'
-   assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = 'container <  container'
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = 'container <= container'
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = 'container >  container'
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = 'container >= container'
+    assert py.test.raises(NotImplementedError, comparison_string)
 
 
 def test_Staff___cmp___02( ):
-   '''Compare containers.
-   '''
+    '''Compare containers.
+    '''
 
-   container_1 = Container([ ])
-   container_2 = Container([ ])
+    container_1 = Container([ ])
+    container_2 = Container([ ])
 
-   assert not container_1 == container_2
-   assert     container_1 != container_2
+    assert not container_1 == container_2
+    assert      container_1 != container_2
 
-   comparison_string = 'container_1 <  container_2'
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = 'container_1 <= container_2'
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = 'container_1 >  container_2'
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = 'container_1 >= container_2'
-   assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = 'container_1 <  container_2'
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = 'container_1 <= container_2'
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = 'container_1 >  container_2'
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = 'container_1 >= container_2'
+    assert py.test.raises(NotImplementedError, comparison_string)
 
 
 def test_Staff___cmp___03( ):
-   '''Compare container to foreign type.
-   '''
+    '''Compare container to foreign type.
+    '''
 
-   container = Container([ ])
+    container = Container([ ])
 
-   assert not container == 'foo'
-   assert     container != 'foo'
+    assert not container == 'foo'
+    assert      container != 'foo'
 
-   comparison_string = "container <  'foo'"
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = "container <= 'foo'"
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = "container >  'foo'"
-   assert py.test.raises(NotImplementedError, comparison_string)
-   comparison_string = "container >= 'foo'"
-   assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = "container <  'foo'"
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = "container <= 'foo'"
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = "container >  'foo'"
+    assert py.test.raises(NotImplementedError, comparison_string)
+    comparison_string = "container >= 'foo'"
+    assert py.test.raises(NotImplementedError, comparison_string)

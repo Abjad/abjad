@@ -3,9 +3,9 @@ import py.test
 
 
 def test_Staff___setattr___01( ):
-   '''Slots constrain staff attributes.
-   '''
+    '''Slots constrain staff attributes.
+    '''
 
-   staff = Staff([ ])
+    staff = Staff([ ])
 
-   assert py.test.raises(AttributeError, "staff.foo = 'bar'")
+    assert py.test.raises(AttributeError, "staff.foo = 'bar'")
