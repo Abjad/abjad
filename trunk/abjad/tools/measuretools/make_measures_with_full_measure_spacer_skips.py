@@ -4,48 +4,51 @@ from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_ski
 
 
 def make_measures_with_full_measure_spacer_skips(meters):
-   r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1.1
 
-   Make measures with full-measure spacer skips from `meters`::
+    Make measures with full-measure spacer skips from `meters`::
 
-      abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
+        abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
 
-   ::
+    ::
 
-      abjad> staff = Staff(measures)
+        abjad> staff = Staff(measures)
 
-   ::
+    ::
 
-      abjad> f(staff)
-      \new Staff {
-              {
-                      \time 1/8
-                      s1 * 1/8
-              }
-              {
-                      \time 5/16
-                      s1 * 5/16
-              }
-              {
-                      \time 5/16
-                      s1 * 5/16
-              }
-      }
+        abjad> f(staff)
+        \new Staff {
+            {
+                \time 1/8
+                s1 * 1/8
+            }
+            {
+                \time 5/16
+                s1 * 5/16
+            }
+            {
+                \time 5/16
+                s1 * 5/16
+            }
+        }
 
-   Return list of rigid measures.
+    Return list of rigid measures.
 
-   .. versionchanged:: 1.1.2
-      renamed ``measuretools.make( )`` to
-      ``measuretools.make_measures_with_full_measure_spacer_skips( )``.
-   '''
-   from abjad.tools.skiptools.Skip import Skip
+    .. versionchanged:: 1.1.2
+        renamed ``measuretools.make( )`` to
+        ``measuretools.make_measures_with_full_measure_spacer_skips( )``.
+    '''
+    from abjad.tools.skiptools.Skip import Skip
 
-   ## check input
-   meters = [contexttools.TimeSignatureMark(meter) for meter in meters]
+    ## check input
+    meters = [contexttools.TimeSignatureMark(meter) for meter in meters]
 
-   ## make measures
-   measures = [Measure(meter, [ ]) for meter in meters]
-   fill_measures_in_expr_with_full_measure_spacer_skips(measures)
-   
-   ## return measures
-   return measures
+    ## make measures
+    measures = [Measure(meter, [ ]) for meter in meters]
+    fill_measures_in_expr_with_full_measure_spacer_skips(measures)
+
+    ## return measures
+    return measures
+
+
+

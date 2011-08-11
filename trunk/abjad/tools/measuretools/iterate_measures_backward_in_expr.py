@@ -3,63 +3,66 @@ from abjad.tools.componenttools.iterate_components_backward_in_expr import itera
 
 
 def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
-   r'''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-   Iterate measures backward in `expr`::
+    Iterate measures backward in `expr`::
 
-      abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-      abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
-   ::
+    ::
 
-      abjad> f(staff)
-      \new Staff {
-              {
-                      \time 2/8
-                      c'8
-                      d'8
-              }
-              {
-                      \time 2/8
-                      e'8
-                      f'8
-              }
-              {
-                      \time 2/8
-                      g'8
-                      a'8
-              }
-      }
+        abjad> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+            {
+                \time 2/8
+                g'8
+                a'8
+            }
+        }
 
-   ::
+    ::
 
-      abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff):
-      ...     measure
-      ... 
-      Measure(2/8, [g'8, a'8])
-      Measure(2/8, [e'8, f'8])
-      Measure(2/8, [c'8, d'8])
+        abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff):
+        ...     measure
+        ...
+        Measure(2/8, [g'8, a'8])
+        Measure(2/8, [e'8, f'8])
+        Measure(2/8, [c'8, d'8])
 
-   Use the optional `start` and `stop` keyword parameters
-   to control indices of iteration. ::
+    Use the optional `start` and `stop` keyword parameters
+    to control indices of iteration. ::
 
-      abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 1):
-      ...     measure
-      ... 
-      Measure(2/8, [e'8, f'8])
-      Measure(2/8, [c'8, d'8])
+        abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 1):
+        ...     measure
+        ...
+        Measure(2/8, [e'8, f'8])
+        Measure(2/8, [c'8, d'8])
 
-   ::
+    ::
 
-      abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 0, stop = 2):
-      ...     measure
-      ... 
-      Measure(2/8, [g'8, a'8])
-      Measure(2/8, [e'8, f'8])
+        abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 0, stop = 2):
+        ...     measure
+        ...
+        Measure(2/8, [g'8, a'8])
+        Measure(2/8, [e'8, f'8])
 
-   .. versionchanged:: 1.1.2
-      renamed ``iterate.measures_backward_in( )`` to
-      ``measuretools.iterate_measures_backward_in_expr( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``iterate.measures_backward_in( )`` to
+        ``measuretools.iterate_measures_backward_in_expr( )``.
+    '''
 
-   return iterate_components_backward_in_expr(expr, Measure, start = start, stop = stop)
+    return iterate_components_backward_in_expr(expr, Measure, start = start, stop = stop)
+
+
+
