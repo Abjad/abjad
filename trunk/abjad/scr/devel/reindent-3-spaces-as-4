@@ -55,7 +55,7 @@ def _find_indent_gcd(file, path):
    if indents:
       return greatest_common_divisor(*indents)
    else:
-      return 1
+      return 4 # nothing indented, so ignore
 
 
 def _find_inconsistent_indents(file, path):

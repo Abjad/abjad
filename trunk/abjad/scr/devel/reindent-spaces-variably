@@ -1,0 +1,79 @@
+#! /usr/bin/env python
+
+import os
+from abjad.tools import iotools
+
+
+def _reindent(leading_tab, old_tab_size, new_tab_size):
+
+    for path, subdirectories, files in os.walk('.'):
+
+        for dir in ['__pycache__', '.svn']:
+            if dir in subdirectories:
+                subdirectories.remove(dir)
+        
+        for file in files:
+            if not file.startswith('__') and file.endswith('.py'):
+
+                fullpath = os.path.join(path, file)
+
+                f = open(fullpath, 'r')
+                lines = f.read( ).split('\n')
+                f.close( )
+
+                dirty = False
+                for i, line in enumerate(lines):
+                    this_tab = len(line) - len(line.lstrip( ))
+                    if leading_tab < this_tab:
+                        div, mod = divmod(this_tab - leading_tab, old_tab_size)
+                        if mod == 0:
+                            if not dirty:
+                                print 'REINDENTING %s' % fullpath
+                                dirty = True
+                            new_line = ' ' * leading_tab
+                            new_line += ' ' * new_tab_size * div
+                            new_line += line.strip( )
+                            print '--- %s' % line
+                            print '+++ %s' % new_line
+                            lines[i] = new_line
+        
+                f = open(fullpath, 'w')
+                for line in lines:
+                    f.write('%s\n' % line)
+                f.close( )
+
+
+def _usage( ):
+    result = [ ]
+    result.append('')
+    result.append('Usage:')
+    result.append('')
+    result.append('reindent-spaces-variably LEADING-TAB OLD-TAB-SIZE NEW-TAB-SIZE')
+    result.append('')
+    result.append('Reindent leading spaces which have length LEADING-TAB + (n * OLD-TAB-SIZE) where n is a positive integer')
+    result.append('with new leading spaces equal to LEADING-TAB + (n * NEW-TAB-SIZE).')
+    result.append('')
+    result.append('This is useful for reindenting score representations in docstrings.')
+    result.append('')
+    result = '\n'.join(['\t' + line for line in result])
+    return result
+
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) < 4:
+        print _usage( )
+        sys.exit(2)
+
+    leading_tab = int(sys.argv[1])
+    old_tab_size = int(sys.argv[2])
+    new_tab_size = int(sys.argv[3])
+
+    assert 0 <= leading_tab
+    assert 0 < old_tab_size
+    assert 0 < new_tab_size
+
+    iotools.clear_terminal( )
+    print 'REINDENTING...'
+    _reindent(leading_tab, old_tab_size, new_tab_size)
+
