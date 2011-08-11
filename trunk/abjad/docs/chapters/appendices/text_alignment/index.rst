@@ -26,8 +26,8 @@ Use ``#'self-alignment-X`` to left-, center- or right-align markup
 relative to the left edge of note head.
 
 .. note:: changes to ``#'self-alignment-X`` do not change the fact
-   that markup positioning is by default relative to the 
-   LEFT edge of note head.
+    that markup positioning is by default relative to the
+    LEFT edge of note head.
 
 ::
 
@@ -51,12 +51,12 @@ relative to the left edge of note head.
 Use ``#'X-offset`` to offset markup by some number of magic units in the horizontal direction.
 
 .. note:: Specify ``#'X-offset`` arguments as numbers like ``#2.5``.
-   Do not specify ``#'X-offset`` arguments as direction contstants 
-   like ``#right``.
+    Do not specify ``#'X-offset`` arguments as direction contstants
+    like ``#right``.
 
 .. note:: changes to ``#'X-offset`` do not change the fact
-   that markup positioning is by default relative to the 
-   LEFT edge of note head.
+    that markup positioning is by default relative to the
+    LEFT edge of note head.
 
 ::
 

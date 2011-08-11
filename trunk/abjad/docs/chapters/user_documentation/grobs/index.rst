@@ -8,15 +8,15 @@ Grobs control typography
 
 LilyPond grobs control the typographic details of the score::
 
-   \new Staff {
-           c'4 (
-           d'4 )
-           e'4 (
-           f'4 )
-           g'4 (
-           a'4 )
-           g'2
-   }
+    \new Staff {
+        c'4 (
+        d'4 )
+        e'4 (
+        f'4 )
+        g'4 (
+        a'4 )
+        g'2
+    }
 
 
 .. image:: images/example-1.png
@@ -31,19 +31,19 @@ Grobs can be overridden
 
 You can change the appearance of LilyPond grobs with grob overrides::
 
-   \new Staff \with {
-           \override NoteHead #'color = #red
-           \override StaffSymbol #'color = #blue
-           \override Stem #'color = #red
-   } {
-           c'4 (
-           d'4 )
-           e'4 (
-           f'4 )
-           g'4 (
-           a'4 )
-           g'2
-   }
+    \new Staff \with {
+        \override NoteHead #'color = #red
+        \override StaffSymbol #'color = #blue
+        \override Stem #'color = #red
+    } {
+        c'4 (
+        d'4 )
+        e'4 (
+        f'4 )
+        g'4 (
+        a'4 )
+        g'2
+    }
 
 .. image:: images/example-2.png
 

@@ -8,7 +8,7 @@ typographic output of their own. However, while independent from the
 typographic output, LilyPond multipliers do factor in in calculations
 of duration and time.
 
-Abjad implements LilyPond multpliers as the settable `duration.multiplier` 
+Abjad implements LilyPond multpliers as the settable `duration.multiplier`
 attribute of notes, rests and chords.
 
 <abjad>
@@ -18,21 +18,21 @@ note.duration_multiplier
 print repr(note.duration_multiplier) <hide
 </abjad>
 
-<abjad>    
+<abjad>
 f(note)
 </abjad>
 
 Abjad also implements a `duration.multiplied` attribute to examine the
 duration of a note, rest or chord as affected by the multiplier.
 
-<abjad>    
+<abjad>
 note.multiplied_duration
 print repr(note.multiplied_duration) <hide
-</abjad>    
+</abjad>
 
 LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
 
-<abjad>    
+<abjad>
 notes = Note("c'4") * 4
 multiplied_note = Note(0, (1, 2))
 multiplied_note.duration_multiplier = Fraction(1, 2)
@@ -45,13 +45,13 @@ iotools.write_expr_to_ly(staves, 'example1', 'oedo') <hide
 
 .. note::
 
-   Abjad models multiplication fundamentally differently than prolation .
-   See the chapter on :doc:`../prolation/index` for more
-   information.
+    Abjad models multiplication fundamentally differently than prolation .
+    See the chapter on :doc:`../prolation/index` for more
+    information.
 
 .. note::
 
-   The LilyPond multiplication `*` operator differs from the Abjad
-   multiplication `*` operator. LilyPond multiplication scales duration
-   of LilyPond notes, rests and chords. Abjad multiplication
-   copies Abjad containers and leaves.
+    The LilyPond multiplication `*` operator differs from the Abjad
+    multiplication `*` operator. LilyPond multiplication scales duration
+    of LilyPond notes, rests and chords. Abjad multiplication
+    copies Abjad containers and leaves.

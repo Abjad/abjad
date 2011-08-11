@@ -135,7 +135,7 @@ Get the length of any Abjad container with ``len( )``:
 	3
 
 
-The length of every Abjad container is defined equal to the number of 
+The length of every Abjad container is defined equal to the number of
 top-level components present in the container.
 
 Getting the duration attributes of a tuplet
@@ -157,7 +157,7 @@ The contents durations of a tuplet equals the sum of written durations of the co
 	Duration(3, 8)
 
 
-The multiplied duration of a tuplet equals the product of the tuplet's multiplier 
+The multiplied duration of a tuplet equals the product of the tuplet's multiplier
 and the tuplet's contents duration:
 
 ::

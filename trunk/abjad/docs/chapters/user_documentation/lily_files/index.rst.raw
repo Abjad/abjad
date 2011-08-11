@@ -13,8 +13,8 @@ lily_file = lilyfiletools.make_basic_lily_file(staff)
 
 ::
 
-   abjad> lily_file
-   LilyFile(Staff{4})
+    abjad> lily_file
+    LilyFile(Staff{4})
 
 Inspecting file output
 ----------------------

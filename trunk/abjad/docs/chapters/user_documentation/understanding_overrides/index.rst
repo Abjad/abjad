@@ -79,5 +79,5 @@ Grob-override plug-ins contain grob proxies:
 Dot-chained override syntax
 ---------------------------
 
-The's dot-chained grob override syntax shown here results from the special way 
+The's dot-chained grob override syntax shown here results from the special way
 that the Abjad grob-override plug-in and grob proxy set and get their attributes.

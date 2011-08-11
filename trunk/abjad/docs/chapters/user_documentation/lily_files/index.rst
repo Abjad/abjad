@@ -14,8 +14,8 @@ Make a basic LilyPond input file with the ``lilyfiletools`` package:
 
 ::
 
-   abjad> lily_file
-   LilyFile(Staff{4})
+    abjad> lily_file
+    LilyFile(Staff{4})
 
 Inspecting file output
 ----------------------
@@ -26,8 +26,8 @@ that appear in file output:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4583
-	% 2011-08-10 11:03
+	% Abjad revision 4621M
+	% 2011-08-11 16:32
 	
 	\version "2.15.8"
 	\include "english.ly"
@@ -56,8 +56,8 @@ Set default LilyPond paper size like this:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4583
-	% 2011-08-10 11:03
+	% Abjad revision 4621M
+	% 2011-08-11 16:32
 	
 	\version "2.15.8"
 	\include "english.ly"
@@ -88,8 +88,8 @@ Set global staff size like this:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4583
-	% 2011-08-10 11:03
+	% Abjad revision 4621M
+	% 2011-08-11 16:32
 	
 	\version "2.15.8"
 	\include "english.ly"

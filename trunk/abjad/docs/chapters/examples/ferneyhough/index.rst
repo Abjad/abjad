@@ -1,17 +1,17 @@
 Ferneyhough: Unsichtbare Farben
 ===============================
 
-Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare Farben` in 
+Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare Farben` in
 `The OM Composer's Book 2`.
 
 Malt details Ferneyhough's use of OpenMusic:
 
-   The composer first created an exhaustive catalogue of rhythmic cells with
-   two characteristics:
-   
-   1. They are subdivided into two pulses, with proportions from ``1/1`` to ``1/11``.
+    The composer first created an exhaustive catalogue of rhythmic cells with
+    two characteristics:
 
-   2. The second pulse is subdivided successively by ``1``, ``2``, ``3``, ``4``, ``5`` and ``6``.
+    1. They are subdivided into two pulses, with proportions from ``1/1`` to ``1/11``.
+
+    2. The second pulse is subdivided successively by ``1``, ``2``, ``3``, ``4``, ``5`` and ``6``.
 
 Here we recreate Malt's results in Abjad.
 
@@ -43,11 +43,11 @@ And create a helper:
 
 ::
 
-   def divide_tuplet(tuplet, n):
-      last_tie_chain = tietools.get_tie_chain(tuplet[-1])
-      proportions = n * [1]
-      new = tie_chain_to_tuplet(last_tie_chain, proportions)
-      return new
+    def divide_tuplet(tuplet, n):
+        last_tie_chain = tietools.get_tie_chain(tuplet[-1])
+        proportions = n * [1]
+        new = tie_chain_to_tuplet(last_tie_chain, proportions)
+        return new
 
 The rhythms
 -----------
@@ -64,13 +64,13 @@ And make the rhythms:
 
 ::
 
-   for proportion in proportions:
-      tuplets = [ ]
-      for n in range(1, 6 + 1):
-         tuplet = make_tuplet(duration, proportion)
-         divide_tuplet(tuplet, n)
-         tuplets.append(tuplet)
-      staff.extend(tuplets)
+    for proportion in proportions:
+        tuplets = [ ]
+        for n in range(1, 6 + 1):
+            tuplet = make_tuplet(duration, proportion)
+            divide_tuplet(tuplet, n)
+            tuplets.append(tuplet)
+        staff.extend(tuplets)
 
 The score
 ---------

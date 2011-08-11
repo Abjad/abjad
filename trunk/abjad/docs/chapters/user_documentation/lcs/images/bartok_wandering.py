@@ -38,15 +38,15 @@ v2[1].dynamics.mark = 'pp'
 v2.name ='v2'
 lower_measures[0].append(v2)
 
-v2 = Voice(notetools.make_notes([-1, -3, -4, 0, -2], 
-   [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)]))
+v2 = Voice(notetools.make_notes([-1, -3, -4, 0, -2],
+    [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)]))
 v2[3].dynamics.mark = 'mp'
-v2.name = 'v2'   
+v2.name = 'v2'
 lower_measures[1].append(v2)
 
-v2 = Voice(notetools.make_notes([-3, -5, -6, -5, -3], 
-   [(1, 8), (1, 8), (1, 8), (1, 16), (1, 16)]))
-v2.name = 'v2'   
+v2 = Voice(notetools.make_notes([-3, -5, -6, -5, -3],
+    [(1, 8), (1, 8), (1, 8), (1, 16), (1, 16)]))
+v2.name = 'v2'
 lower_measures[2].append(v2)
 
 
@@ -91,7 +91,7 @@ DecrescendoSpanner(upper_staff.leaves[-2:])
 tx = Text(upper_staff.leaves[-7:])
 tx.bound_details__left__text = markuptools.Markup('ritard.')
 
-## lower staff 
+## lower staff
 
 lower_staff.clef.forced = stafftools.Clef('bass')
 
@@ -122,7 +122,7 @@ show(piano)
 #m[1].dynamics.mark = 'mp'
 #spannertools.BeamSpanner(m[1:])
 #s.append(m)
-#m = Measure((2, 4), 
+#m = Measure((2, 4),
 #   notetools.make_notes([0,2,4,5,4], [(1, 8), (1, 16), (1, 16), (1, 8), (1, 8)]))
 #spannertools.BeamSpanner(m[0:3])
 #spannertools.BeamSpanner(m[3:])
@@ -148,15 +148,15 @@ show(piano)
 #v2.name ='v2'
 #m = Measure((2, 4), [v2])
 #s.append(m)
-#v2 = Voice(notetools.make_notes([-1, -3, -4, 0, -2], 
+#v2 = Voice(notetools.make_notes([-1, -3, -4, 0, -2],
 #   [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)]))
 #v2[3].dynamics.mark = 'mp'
-#v2.name = 'v2'   
+#v2.name = 'v2'
 #m = Measure((3, 4), [v2])
 #s.append(m)
-#v2 = Voice(notetools.make_notes([-3, -5, -6, -5, -3], 
+#v2 = Voice(notetools.make_notes([-3, -5, -6, -5, -3],
 #   [(1, 8), (1, 8), (1, 8), (1, 16), (1, 16)]))
-#v2.name = 'v2'   
+#v2.name = 'v2'
 #m = Measure((2, 4), [v2])
 #s.append(m)
 #v1a= Voice([Note(-1, (1, 2))])

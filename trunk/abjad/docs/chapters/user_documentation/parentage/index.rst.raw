@@ -39,7 +39,7 @@ print repr(componenttools.get_proper_parentage_of_component(note)) <hide
 </abjad>
 
 .. note:: the length of the improper parentage of any component equals
-   the length of the proper parentage of the component plus ``1``.
+    the length of the proper parentage of the component plus ``1``.
 
 Parentage attributes
 --------------------

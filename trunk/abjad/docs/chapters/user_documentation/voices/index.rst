@@ -51,7 +51,7 @@ The ``repr`` of an Abjad voice contains three parts:
 
 ``Voice`` tells you the voice's class.
 
-``3`` tells you the voice's length (which is the number of 
+``3`` tells you the voice's length (which is the number of
 top-level components the voice contains).
 
 Curly braces ``{`` and ``}`` tell you that the music inside the voice is
@@ -121,7 +121,7 @@ Get voice length with ``len( )``:
 	3
 
 
-The length of a voice is defined equal to the number of 
+The length of a voice is defined equal to the number of
 top-level components the voice contains.
 
 Getting the duration attributes of a voice
@@ -326,5 +326,5 @@ But you can change the context of a voice if you want:
 	}
 
 
-Change the context of a voice when you have defined 
+Change the context of a voice when you have defined
 a new LilyPond context based on a LilyPond voice.

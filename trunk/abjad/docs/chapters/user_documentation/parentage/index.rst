@@ -43,7 +43,7 @@ The proper parentage of the note begins with only the immediate parent of the no
 
 
 .. note:: the length of the improper parentage of any component equals
-   the length of the proper parentage of the component plus ``1``.
+    the length of the proper parentage of the component plus ``1``.
 
 Parentage attributes
 --------------------

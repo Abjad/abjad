@@ -21,7 +21,7 @@ Or they may exist implicitly in certain score constructs in the absence of voice
 	abjad> staff = Staff("c'8 d'8 e'8 f'8")
 
 
-Two contiguous voices must have the same name in order to be part of the same thread. 
+Two contiguous voices must have the same name in order to be part of the same thread.
 
 Here a thread does **not** exist between notes in different voices:
 
@@ -73,12 +73,12 @@ Consider the following situation:
 
 .. image:: images/thread-resolution_1.png
 
-Are the two eighth notes in the second half of the measure the continuation 
-of the ascending line in the first half, or is it the quarter note? 
-Is the very last *C* the continuation of the top melodic line or is it the *A*?  
-The stems might suggest an answer, but for Abjad, stem direction is not structural.  
-What path should Abjad take to traverse this little score from the first note to the last *A*? 
-This same problem appears when trying to apply spanners to parallel structures.  
+Are the two eighth notes in the second half of the measure the continuation
+of the ascending line in the first half, or is it the quarter note?
+Is the very last *C* the continuation of the top melodic line or is it the *A*?
+The stems might suggest an answer, but for Abjad, stem direction is not structural.
+What path should Abjad take to traverse this little score from the first note to the last *A*?
+This same problem appears when trying to apply spanners to parallel structures.
 Thus, threads are important in both score navigation and the application of spanners.
 In fact, threads are a requirement for spanner application.
 
@@ -101,34 +101,34 @@ The musical fragment above is constructed with the following code:
 .. image:: images/thread-resolution_1.png
 
 There's a staff that sequentially contains a voice and a parallel container.
-The container in turn holds two voices running simultaneously. 
+The container in turn holds two voices running simultaneously.
 
-It is now clear from the code that the last *A* belongs with the two descending eighth notes. 
-But there's still no indication about a relationship of continuity between the first voice 
-in the sequence (`vA`) and any of the two following voices. 
-Note that, while the LilyPond voice number commands setting may suggest 
-that vA and vB belong together, this is not the case. 
+It is now clear from the code that the last *A* belongs with the two descending eighth notes.
+But there's still no indication about a relationship of continuity between the first voice
+in the sequence (`vA`) and any of the two following voices.
+Note that, while the LilyPond voice number commands setting may suggest
+that vA and vB belong together, this is not the case.
 The LilyPond voice number commands simply set the direction of stems in printed output.
 
-To see this more clearly, suppose we want to add a slur spanner starting on the 
+To see this more clearly, suppose we want to add a slur spanner starting on the
 first note and ending on one of the last simultaneous notes.
 To attach the slur spanner to the voices we could try either:
 
 ::
 
-   abjad> spannertools.SlurSpanner([vA, vB])
+    abjad> spannertools.SlurSpanner([vA, vB])
 
 or
 
 ::
 
-   abjad> spannertools.SlurSpanner([vA, vC])
+    abjad> spannertools.SlurSpanner([vA, vC])
 
 But both raise a contiguity error.
-Abjad needs to see an explicit connection between either `vA` and `vB` or between `vA` and `vC`. 
+Abjad needs to see an explicit connection between either `vA` and `vB` or between `vA` and `vC`.
 
-Observe the behavior of the 
-:func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr` 
+Observe the behavior of the
+:func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr`
 iterator on the `staff`::
 
 ::
@@ -156,32 +156,32 @@ iterator on the `staff`::
 	[Note("c''4"), Note("c''4")]
 
 
-In each case we are passing a different **thread signature** to the 
+In each case we are passing a different **thread signature** to the
 :func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr`
 iterator, so each case returns a different list of notes.
 
-We can see that the thread signature of each voice is indeed different 
+We can see that the thread signature of each voice is indeed different
 by printing it:
 
 ::
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> vA_thread_signature
-	<      root: Staff-4436596336 (4436596336) *      score:  * staffgroup:  *      staff: Staff-4436596336 *      voice: Voice-4436594768 *       self: Voice-4436594768 >
+	<        root: Staff-4357678704 (4357678704) *      score:  * staffgroup:  *      staff: Staff-4357678704 *      voice: Voice-4357677136 *         self: Voice-4357677136 >
 
 
 ::
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> vB_thread_signature
-	<      root: Staff-4568561264 (4568561264) *      score:  * staffgroup:  *      staff: Staff-4568561264 *      voice: Voice-4568560816 *       self: Voice-4568560816 >
+	<        root: Staff-4542027376 (4542027376) *      score:  * staffgroup:  *      staff: Staff-4542027376 *      voice: Voice-4542026928 *         self: Voice-4542026928 >
 
 
 ::
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> vC_thread_signature
-	<      root: Staff-4481406576 (4481406576) *      score:  * staffgroup:  *      staff: Staff-4481406576 *      voice: Voice-4481406352 *       self: Voice-4481406352 >
+	<        root: Staff-4446664304 (4446664304) *      score:  * staffgroup:  *      staff: Staff-4446664304 *      voice: Voice-4446664080 *         self: Voice-4446664080 >
 
 
 And by comparing them with the binary equality operator:
@@ -196,8 +196,8 @@ And by comparing them with the binary equality operator:
 	False
 
 
-To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging together, 
-we explicitly define a thread between them. 
+To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging together,
+we explicitly define a thread between them.
 To do this  all we need to do is give both voices the same name:
 
 ::
@@ -220,40 +220,40 @@ Note how the thread signatures have changed:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> print vA_thread_signature
-	      root: Staff-4384818800 (4384818800)
+	        root: Staff-4403598960 (4403598960)
 	     score:
 	staffgroup:
-	     staff: Staff-4384818800
+	     staff: Staff-4403598960
 	     voice: Voice-piccolo
-	      self: Voice-piccolo
+	        self: Voice-piccolo
 
 
 ::
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> print vB_thread_signature
-	      root: Staff-4472051312 (4472051312)
+	        root: Staff-4395996784 (4395996784)
 	     score:
 	staffgroup:
-	     staff: Staff-4472051312
+	     staff: Staff-4395996784
 	     voice: Voice-piccolo
-	      self: Voice-piccolo
+	        self: Voice-piccolo
 
 
 ::
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> print vC_thread_signature
-	      root: Staff-4339893872 (4339893872)
+	        root: Staff-4551566960 (4551566960)
 	     score:
 	staffgroup:
-	     staff: Staff-4339893872
-	     voice: Voice-4339893648
-	      self: Voice-4339893648
+	     staff: Staff-4551566960
+	     voice: Voice-4551566736
+	        self: Voice-4551566736
 
 
-And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns 
-all the notes belonging to both `vA` and `vB` when passing it the full staff 
+And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns
+all the notes belonging to both `vA` and `vB` when passing it the full staff
 and the thread signature of `vA`:
 
 ::
@@ -267,9 +267,9 @@ Now the slur spanner can be applied to voices `vA` and `vB`:
 
 ::
 
-   abjad> spannertools.SlurSpanner([vA, vB])
+    abjad> spannertools.SlurSpanner([vA, vB])
 
-or directly to the notes returned by the 
+or directly to the notes returned by the
 :func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr`
 iteration tool, which are the notes belonging to both `vA` and `vB`:
 
@@ -288,7 +288,7 @@ iteration tool, which are the notes belonging to both `vA` and `vB`:
 Coda
 ----
 
-We could have constructed this score in a simpler way with only two voices, 
+We could have constructed this score in a simpler way with only two voices,
 one of them starting with a LilyPond skip:
 
 ::

@@ -56,16 +56,16 @@ And longas.
 
 .. note::
 
-   The restriction that the written durations of notes, rests, chords and skips be expressible with some combination of dots, flags and beams without recourse to ties and brackets generalizes to the condition of note_head assignability. Values `(n, d)` are note_head-assignable when and only when (1) d is a nonnegative integer power of 2; (2) n is either a nonnegative integer power of 2 or is a nonnegative integer power of 2, minus 1; and (3) n/d is less than or equal to 8. Condition (3) captures the fact that LilyPond provides no glyph with greater duration than the maxima (equal to eight whole notes).
+    The restriction that the written durations of notes, rests, chords and skips be expressible with some combination of dots, flags and beams without recourse to ties and brackets generalizes to the condition of note_head assignability. Values `(n, d)` are note_head-assignable when and only when (1) d is a nonnegative integer power of 2; (2) n is either a nonnegative integer power of 2 or is a nonnegative integer power of 2, minus 1; and (3) n/d is less than or equal to 8. Condition (3) captures the fact that LilyPond provides no glyph with greater duration than the maxima (equal to eight whole notes).
 
 
 .. note::
 
-   Integer forms like `4` as a substitute for `(4, 1)` in `Note(0, (4, 1))` are undocumented but allowed.
+    Integer forms like `4` as a substitute for `(4, 1)` in `Note(0, (4, 1))` are undocumented but allowed.
 
 
 .. note::
 
-   Abjad allows maxima note_heads as in `Note(0, (8, 1))`. LilyPond implements a `\maxima` command but does not supply a corresponding glyph for the note_head.
+    Abjad allows maxima note_heads as in `Note(0, (8, 1))`. LilyPond implements a `\maxima` command but does not supply a corresponding glyph for the note_head.
 
 

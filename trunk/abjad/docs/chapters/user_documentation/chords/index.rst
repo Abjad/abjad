@@ -97,7 +97,7 @@ This means you can add pitches to your chord in any order.
 Adding many pitches to a chord at once
 --------------------------------------
 
-Use ``extend( )`` to add many pitches to a chord. 
+Use ``extend( )`` to add many pitches to a chord.
 
 You can use chromatic pitch numbers:
 
@@ -248,10 +248,10 @@ Abjad formats empty chords, too:
 	<>4
 
 
-But if you pass empty chords to ``show( )`` LilyPond will complain 
+But if you pass empty chords to ``show( )`` LilyPond will complain
 because empty chords don't constitute valid LilyPond input.
 
-When you are done working with an empty chord you can add pitches back 
+When you are done working with an empty chord you can add pitches back
 into it chord in any of the ways described above:
 
 ::

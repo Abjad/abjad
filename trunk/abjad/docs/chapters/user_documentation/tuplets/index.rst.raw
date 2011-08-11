@@ -119,7 +119,7 @@ len(tuplet)
 print repr(len(tuplet)) <hide
 </abjad>
 
-The length of every Abjad container is defined equal to the number of 
+The length of every Abjad container is defined equal to the number of
 top-level components present in the container.
 
 Getting the duration attributes of a tuplet
@@ -139,7 +139,7 @@ tuplet.contents_duration
 print repr(tuplet.contents_duration) <hide
 </abjad>
 
-The multiplied duration of a tuplet equals the product of the tuplet's multiplier 
+The multiplied duration of a tuplet equals the product of the tuplet's multiplier
 and the tuplet's contents duration:
 
 <abjad>

@@ -153,7 +153,7 @@ iotools.write_expr_to_ly(container, 'example-7') <hide
 
 .. note::
 
-   ``__getslice__``, ``__setslice__`` and ``__delslice__`` remain to be documented.
+    ``__getslice__``, ``__setslice__`` and ``__delslice__`` remain to be documented.
 
 Naming containers
 -----------------
@@ -195,16 +195,16 @@ Understanding ``{ }`` and ``<< >>`` in LilyPond
 LilyPond uses curly ``{ }`` braces to wrap a stream of musical events
 that are to be engraved one after the other::
 
-   \new Voice {
-      e''4
-      f''4
-      g''4
-      g''4
-      f''4
-      e''4
-      d''4
-      d''4 \fermata
-   }
+    \new Voice {
+        e''4
+        f''4
+        g''4
+        g''4
+        f''4
+        e''4
+        d''4
+        d''4 \fermata
+    }
 
 <abjad>
 staff = Staff(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata") <hide
@@ -214,31 +214,31 @@ iotools.write_expr_to_ly(staff, 'example-9') <hide
 LilyPond uses skeleton ``<< >>`` braces to wrap two or more musical
 expressions that are to be played at the same time::
 
-   \new Staff <<
-      \new Voice {
-         \voiceOne
-         e''4
-         f''4
-         g''4
-         g''4
-         f''4
-         e''4
-         d''4
-         d''4 \fermata
-      }
-      \new Voice {
-         \voiceTwo
-         c''4
-         c''4
-         b'4
-         c''4
-         c''8
-         b'8
-         c''4
-         b'4
-         b'4 \fermata
-      }
-   >>
+    \new Staff <<
+        \new Voice {
+            \voiceOne
+            e''4
+            f''4
+            g''4
+            g''4
+            f''4
+            e''4
+            d''4
+            d''4 \fermata
+        }
+        \new Voice {
+            \voiceTwo
+            c''4
+            c''4
+            b'4
+            c''4
+            c''8
+            b'8
+            c''4
+            b'4
+            b'4 \fermata
+        }
+    >>
 
 <abjad>
 voice_1 = Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata") <hide
@@ -265,15 +265,15 @@ Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container ``is_parallel``
 
 Some containers set ``is_parallel`` to false at initialization::
 
-   staff = Staff([ ])
-   staff.is_parallel
-   False
+    staff = Staff([ ])
+    staff.is_parallel
+    False
 
 Other containers set ``is_parallel`` to true::
 
-   score = Score([ ])
-   score.is_parallel
-   True
+    score = Score([ ])
+    score.is_parallel
+    True
 
 Changing sequential and parallel containers
 -------------------------------------------

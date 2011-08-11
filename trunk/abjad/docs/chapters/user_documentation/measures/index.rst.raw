@@ -8,26 +8,26 @@ In LilyPond you specify time signatures by hand and LilyPond creates measures au
 
 ::
 
-   \new Staff {
-      \time 3/8
-      c'8
-      d'8
-      e'8
-      d'8
-      e'8
-      f'8
-      \time 2/4
-      g'4
-      e'4
-      f'4
-      d'4
-      c'2
-   }
+    \new Staff {
+        \time 3/8
+        c'8
+        d'8
+        e'8
+        d'8
+        e'8
+        f'8
+        \time 2/4
+        g'4
+        e'4
+        f'4
+        d'4
+        c'2
+    }
 
 .. image:: images/example-1.png
 
 Here LilyPond creates five measures from two time signatures.
-This happens because behind-the-scenes LilyPond time-keeping tells the program 
+This happens because behind-the-scenes LilyPond time-keeping tells the program
 when measures start and stop and how to draw the barlines that come between them.
 
 Understanding measures in Abjad
