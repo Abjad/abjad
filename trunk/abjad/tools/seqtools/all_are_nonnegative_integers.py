@@ -2,26 +2,26 @@ from abjad.tools import mathtools
 
 
 def all_are_nonnegative_integers(expr):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   True when `expr` is a sequence and all elements  in `expr` are nonnegative integers::
+    True when `expr` is a sequence and all elements  in `expr` are nonnegative integers::
 
-      abjad> from abjad.tools import seqtools
+        abjad> from abjad.tools import seqtools
 
-   ::
+    ::
 
-      abjad> seqtools.all_are_nonnegative_integers([0, 1, 2, 99])
-      True
+        abjad> seqtools.all_are_nonnegative_integers([0, 1, 2, 99])
+        True
 
-   Otherwise false::
+    Otherwise false::
 
-      abjad> seqtools.all_are_nonnegative_integers([0, 1, 2, -99])
-      False
+        abjad> seqtools.all_are_nonnegative_integers([0, 1, 2, -99])
+        False
 
-   Return boolean.
-   '''
+    Return boolean.
+    '''
 
-   try:
-      return all([mathtools.is_nonnegative_integer(x) for x in expr])
-   except TypeError:
-      return False
+    try:
+        return all([mathtools.is_nonnegative_integer(x) for x in expr])
+    except TypeError:
+        return False

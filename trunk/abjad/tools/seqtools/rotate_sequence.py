@@ -2,38 +2,38 @@ import copy
 
 
 def rotate_sequence(sequence, n):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   Rotate `sequence` to the right::
+    Rotate `sequence` to the right::
 
-      abjad> from abjad.tools import seqtools
+        abjad> from abjad.tools import seqtools
 
-   ::
+    ::
 
-      abjad> seqtools.rotate_sequence(range(10), 4)
-      [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
+        abjad> seqtools.rotate_sequence(range(10), 4)
+        [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
 
-   Rotate `sequence` to the left::
+    Rotate `sequence` to the left::
 
-      abjad> seqtools.rotate_sequence(range(10), -3)
-      [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]
+        abjad> seqtools.rotate_sequence(range(10), -3)
+        [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]
 
-   Rotate `sequence` neither to the right nor the left::
+    Rotate `sequence` neither to the right nor the left::
 
-      abjad> seqtools.rotate_sequence(range(10), 0)
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        abjad> seqtools.rotate_sequence(range(10), 0)
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-   Return newly created `sequence` object.
+    Return newly created `sequence` object.
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.rotate( )`` to
-      ``seqtools.rotate_sequence( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``seqtools.rotate( )`` to
+        ``seqtools.rotate_sequence( )``.
+    '''
 
-   result = [ ]
-   n = n % len(sequence)
+    result = [ ]
+    n = n % len(sequence)
 
-   for element in sequence[-n:len(sequence)] + sequence[:-n]:
-      result.append(copy.deepcopy(element))
+    for element in sequence[-n:len(sequence)] + sequence[:-n]:
+        result.append(copy.deepcopy(element))
 
-   return type(sequence)(result)
+    return type(sequence)(result)

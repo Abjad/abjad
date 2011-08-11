@@ -3,36 +3,36 @@ from abjad.tools.seqtools.yield_all_restricted_growth_functions_of_length import
 
 
 def yield_all_set_partitions_of_sequence(sequence):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Yield all set partitions of `sequence` in restricted growth function order::
+    Yield all set partitions of `sequence` in restricted growth function order::
 
-      abjad> from abjad.tools import seqtools
+        abjad> from abjad.tools import seqtools
 
-   ::
+    ::
 
-      abjad> for set_partition in seqtools.yield_all_set_partitions_of_sequence([21, 22, 23, 24]):
-      ...     set_partition
-      ... 
-      [[21, 22, 23, 24]]
-      [[21, 22, 23], [24]]
-      [[21, 22, 24], [23]]
-      [[21, 22], [23, 24]]
-      [[21, 22], [23], [24]]
-      [[21, 23, 24], [22]]
-      [[21, 23], [22, 24]]
-      [[21, 23], [22], [24]]
-      [[21, 24], [22, 23]]
-      [[21], [22, 23, 24]]
-      [[21], [22, 23], [24]]
-      [[21, 24], [22], [23]]
-      [[21], [22, 24], [23]]
-      [[21], [22], [23, 24]]
-      [[21], [22], [23], [24]]
+        abjad> for set_partition in seqtools.yield_all_set_partitions_of_sequence([21, 22, 23, 24]):
+        ...     set_partition
+        ...
+        [[21, 22, 23, 24]]
+        [[21, 22, 23], [24]]
+        [[21, 22, 24], [23]]
+        [[21, 22], [23, 24]]
+        [[21, 22], [23], [24]]
+        [[21, 23, 24], [22]]
+        [[21, 23], [22, 24]]
+        [[21, 23], [22], [24]]
+        [[21, 24], [22, 23]]
+        [[21], [22, 23, 24]]
+        [[21], [22, 23], [24]]
+        [[21, 24], [22], [23]]
+        [[21], [22, 24], [23]]
+        [[21], [22], [23, 24]]
+        [[21], [22], [23], [24]]
 
-   Return generator of list of lists.
-   '''
+    Return generator of list of lists.
+    '''
 
-   for rgf in yield_all_restricted_growth_functions_of_length(len(sequence)):
-      partition = partition_sequence_by_restricted_growth_function(sequence, rgf)
-      yield partition
+    for rgf in yield_all_restricted_growth_functions_of_length(len(sequence)):
+        partition = partition_sequence_by_restricted_growth_function(sequence, rgf)
+        yield partition

@@ -1,43 +1,43 @@
 ## TODO: make function return a list of two-element multisets.
 def yield_all_unordered_pairs_of_sequence(sequence):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Yield all unordered pairs of `sequence`::
-   
-      abjad> from abjad.tools import seqtools
+    Yield all unordered pairs of `sequence`::
 
-   ::
+        abjad> from abjad.tools import seqtools
 
-      abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1, 2, 3, 4]))
-      [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+    ::
 
-   Yield all unordered pairs of length-``1`` `sequence`::
+        abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1, 2, 3, 4]))
+        [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
 
-      abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1]))
-      []
+    Yield all unordered pairs of length-``1`` `sequence`::
 
-   Yield all unordered pairs of empty `sequence`::
+        abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1]))
+        []
 
-      abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([ ]))
-      []
+    Yield all unordered pairs of empty `sequence`::
 
-   Yield all unordered pairs of `sequence` with duplicate elements::
+        abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([ ]))
+        []
 
-      abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1, 1, 1]))
-      [(1, 1), (1, 1), (1, 1)]
+    Yield all unordered pairs of `sequence` with duplicate elements::
 
-   Pairs are tuples instead of sets to accommodate duplicate `sequence` elements.
+        abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([1, 1, 1]))
+        [(1, 1), (1, 1), (1, 1)]
 
-   Return generator.
-   '''
+    Pairs are tuples instead of sets to accommodate duplicate `sequence` elements.
 
-   #result = [ ]
-   sequence_copy = list(sequence)
+    Return generator.
+    '''
 
-   for i, x in enumerate(sequence_copy):
-      for y in sequence_copy[i+1:]:
-         pair = (x, y)
-         #result.append(pair)
-         yield pair
+    #result = [ ]
+    sequence_copy = list(sequence)
 
-   #return result
+    for i, x in enumerate(sequence_copy):
+        for y in sequence_copy[i+1:]:
+            pair = (x, y)
+            #result.append(pair)
+            yield pair
+
+    #return result

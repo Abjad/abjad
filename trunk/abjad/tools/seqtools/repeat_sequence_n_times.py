@@ -3,30 +3,30 @@ import copy
 
 
 def repeat_sequence_n_times(sequence, n):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Repeat `sequence` `n` times::
+    Repeat `sequence` `n` times::
 
-      abjad> from abjad.tools import seqtools
+        abjad> from abjad.tools import seqtools
 
-   ::
+    ::
 
-      abjad> seqtools.repeat_sequence_n_times((1, 2, 3, 4, 5), 3)
-      (1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5)
+        abjad> seqtools.repeat_sequence_n_times((1, 2, 3, 4, 5), 3)
+        (1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5)
 
-   Repeat `sequence` ``0`` times::
+    Repeat `sequence` ``0`` times::
 
-      abjad> seqtools.repeat_sequence_n_times((1, 2, 3, 4, 5), 0)
-      ()
+        abjad> seqtools.repeat_sequence_n_times((1, 2, 3, 4, 5), 0)
+        ()
 
-   Return newly constructed `sequence` object of copied `sequence` elements.
-   '''
+    Return newly constructed `sequence` object of copied `sequence` elements.
+    '''
 
-   if not mathtools.is_nonnegative_integer(n):
-      raise ValueError('must be nonnegative integer.')
+    if not mathtools.is_nonnegative_integer(n):
+        raise ValueError('must be nonnegative integer.')
 
-   result = [ ]
-   for x in range(n):
-      for element in sequence:
-         result.append(copy.copy(element))
-   return type(sequence)(result)
+    result = [ ]
+    for x in range(n):
+        for element in sequence:
+            result.append(copy.copy(element))
+    return type(sequence)(result)

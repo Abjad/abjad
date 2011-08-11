@@ -3,18 +3,18 @@ from abjad.tools import seqtools
 
 
 def test_seqtools_iterate_sequence_cyclically_from_start_to_stop_01( ):
-   
-   l = range(20)
-   t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 18, 10)
 
-   assert list(t) == [18, 19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    l = range(20)
+    t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 18, 10)
+
+    assert list(t) == [18, 19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
 def test_seqtools_iterate_sequence_cyclically_from_start_to_stop_02( ):
 
-   l = range(20)
-   t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 10, 18)
-   assert list(t) == [10, 11, 12, 13, 14, 15, 16, 17]
+    l = range(20)
+    t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 10, 18)
+    assert list(t) == [10, 11, 12, 13, 14, 15, 16, 17]
 
-   t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 10, 10)
-   assert list(t) == [ ]
+    t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 10, 10)
+    assert list(t) == [ ]

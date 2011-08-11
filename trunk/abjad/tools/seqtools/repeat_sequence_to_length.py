@@ -5,39 +5,39 @@ import math
 
 
 def repeat_sequence_to_length(sequence, length, start = 0):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   Repeat `sequence` to nonnegative integer `length`::
-   
-      abjad> from abjad.tools import seqtools
+    Repeat `sequence` to nonnegative integer `length`::
 
-   ::
+        abjad> from abjad.tools import seqtools
 
-      abjad> seqtools.repeat_sequence_to_length(range(5), 11)
-      [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
+    ::
 
-   Repeat `sequence` to nonnegative integer `length` from `start`::
+        abjad> seqtools.repeat_sequence_to_length(range(5), 11)
+        [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
-      abjad> seqtools.repeat_sequence_to_length(range(5), 11, start = 2)
-      [2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]
+    Repeat `sequence` to nonnegative integer `length` from `start`::
 
-   Return newly constructed `sequence` object.
+        abjad> seqtools.repeat_sequence_to_length(range(5), 11, start = 2)
+        [2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]
 
-   .. versionchanged:: 1.1.2
-      renamed ``listtools.repeat_list_to_length( )`` to
-      ``seqtools.repeat_sequence_to_length( )``.
-   '''
+    Return newly constructed `sequence` object.
 
-   if not mathtools.is_nonnegative_integer(length):
-      raise TypeError
-   if len(sequence) <= 0:
-      raise ValueError
+    .. versionchanged:: 1.1.2
+        renamed ``listtools.repeat_list_to_length( )`` to
+        ``seqtools.repeat_sequence_to_length( )``.
+    '''
 
-   result = [ ]
-   start %= len(sequence)
-   stop_index = start + length
-   repetitions = int(math.ceil(stop_index / len(sequence)))
-   for x in range(repetitions):
-      for element in sequence:
-         result.append(copy.copy(element))
-   return type(sequence)(result[start:stop_index])
+    if not mathtools.is_nonnegative_integer(length):
+        raise TypeError
+    if len(sequence) <= 0:
+        raise ValueError
+
+    result = [ ]
+    start %= len(sequence)
+    stop_index = start + length
+    repetitions = int(math.ceil(stop_index / len(sequence)))
+    for x in range(repetitions):
+        for element in sequence:
+            result.append(copy.copy(element))
+    return type(sequence)(result[start:stop_index])

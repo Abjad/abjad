@@ -2,40 +2,40 @@ from abjad.tools.seqtools.iterate_sequence_pairwise_strict import iterate_sequen
 
 
 def is_repetition_free_sequence(expr):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   True when `expr` is a sequence and `expr` is repetition free::
+    True when `expr` is a sequence and `expr` is repetition free::
 
-      abjad> from abjad.tools import seqtools
+        abjad> from abjad.tools import seqtools
 
-   ::
+    ::
 
-      abjad> seqtools.is_repetition_free_sequence([0, 1, 2, 6, 7, 8])
-      True
-   
-   False when `expr` is a sequence and `expr` is not repetition free::
+        abjad> seqtools.is_repetition_free_sequence([0, 1, 2, 6, 7, 8])
+        True
 
-      abjad> seqtools.is_repetition_free_sequence([0, 1, 2, 2, 7, 8])
-      False
+    False when `expr` is a sequence and `expr` is not repetition free::
 
-   True when `expr` is an empty sequence::
+        abjad> seqtools.is_repetition_free_sequence([0, 1, 2, 2, 7, 8])
+        False
 
-      abjad> seqtools.is_repetition_free_sequence([ ])
-      True
+    True when `expr` is an empty sequence::
 
-   False `expr` is not a sequence::
+        abjad> seqtools.is_repetition_free_sequence([ ])
+        True
 
-      abjad> seqtools.is_repetition_free_sequence(17)
-      False
+    False `expr` is not a sequence::
 
-   Return boolean.
-   '''
+        abjad> seqtools.is_repetition_free_sequence(17)
+        False
 
-   try:
-      for left, right in iterate_sequence_pairwise_strict(expr):
-         if left == right:
-            return False
-      return True
+    Return boolean.
+    '''
 
-   except TypeError:
-      return False
+    try:
+        for left, right in iterate_sequence_pairwise_strict(expr):
+            if left == right:
+                return False
+        return True
+
+    except TypeError:
+        return False

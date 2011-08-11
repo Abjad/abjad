@@ -4,8 +4,8 @@ from abjad.tools import seqtools
 
 def test_seqtools_Matrix___getitem___01( ):
 
-   matrix = seqtools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+    matrix = seqtools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
-   assert matrix[:] == ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
-   assert matrix[2] == (20, 21, 22, 23)
-   assert matrix[2][0] == 20
+    assert matrix[:] == ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
+    assert matrix[2] == (20, 21, 22, 23)
+    assert matrix[2][0] == 20

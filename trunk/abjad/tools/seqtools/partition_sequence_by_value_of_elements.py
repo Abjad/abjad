@@ -2,26 +2,26 @@ import itertools
 
 
 def partition_sequence_by_value_of_elements(sequence):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   Group `sequence` elements by equality::
+    Group `sequence` elements by equality::
 
-      abjad> from abjad.tools import seqtools
+        abjad> from abjad.tools import seqtools
 
-   ::
+    ::
 
-      abjad> seqtools.partition_sequence_by_value_of_elements([0, 0, -1, -1, 2, 3, -5, 1, 1, 5, -5])
-      [(0, 0), (-1, -1), (2,), (3,), (-5,), (1, 1), (5,), (-5,)] 
+        abjad> seqtools.partition_sequence_by_value_of_elements([0, 0, -1, -1, 2, 3, -5, 1, 1, 5, -5])
+        [(0, 0), (-1, -1), (2,), (3,), (-5,), (1, 1), (5,), (-5,)]
 
-   Return list of tuples of `sequence` element references.
+    Return list of tuples of `sequence` element references.
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.group_by_equality( )`` to
-      ``seqtools.partition_sequence_by_value_of_elements( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``seqtools.group_by_equality( )`` to
+        ``seqtools.partition_sequence_by_value_of_elements( )``.
+    '''
 
-   result = [ ]
-   g = itertools.groupby(sequence, lambda x: x)
-   for n, group in g:
-      result.append(tuple(group))
-   return result
+    result = [ ]
+    g = itertools.groupby(sequence, lambda x: x)
+    for n, group in g:
+        result.append(tuple(group))
+    return result

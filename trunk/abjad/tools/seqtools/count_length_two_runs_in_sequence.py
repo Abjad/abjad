@@ -2,27 +2,27 @@ from abjad.tools.seqtools.iterate_sequence_pairwise_strict import iterate_sequen
 
 
 def count_length_two_runs_in_sequence(sequence):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   Count length-``2`` runs in `sequence`::
+    Count length-``2`` runs in `sequence`::
 
-      abjad> from abjad.tools import seqtools
+        abjad> from abjad.tools import seqtools
 
-   ::
+    ::
 
-      abjad> seqtools.count_length_two_runs_in_sequence([0, 0, 1, 1, 1, 2, 3, 4, 5])
-      3
+        abjad> seqtools.count_length_two_runs_in_sequence([0, 0, 1, 1, 1, 2, 3, 4, 5])
+        3
 
-   Return nonnegative integer.
+    Return nonnegative integer.
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.count_repetitions( )`` to
-      ``seqtools.count_length_two_runs_in_sequence( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``seqtools.count_repetitions( )`` to
+        ``seqtools.count_length_two_runs_in_sequence( )``.
+    '''
 
-   total_repetitions = 0
-   for left, right in iterate_sequence_pairwise_strict(sequence):
-      if left == right:
-         total_repetitions += 1
+    total_repetitions = 0
+    for left, right in iterate_sequence_pairwise_strict(sequence):
+        if left == right:
+            total_repetitions += 1
 
-   return total_repetitions
+    return total_repetitions

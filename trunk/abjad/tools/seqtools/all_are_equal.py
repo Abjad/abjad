@@ -1,36 +1,36 @@
 def all_are_equal(expr):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   True when `expr` is a sequence and all elements in `expr` are equal::
+    True when `expr` is a sequence and all elements in `expr` are equal::
 
-      abjad> from abjad.tools import seqtools
+        abjad> from abjad.tools import seqtools
 
-   ::
+    ::
 
-      abjad> seqtools.all_are_equal([99, 99, 99, 99, 99, 99])
-      True
+        abjad> seqtools.all_are_equal([99, 99, 99, 99, 99, 99])
+        True
 
-   True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence::
 
-      abjad> seqtools.all_are_equal([ ])
-      True
+        abjad> seqtools.all_are_equal([ ])
+        True
 
-   False otherwise::
+    False otherwise::
 
-      abjad> seqtools.all_are_equal(17)
-      False
+        abjad> seqtools.all_are_equal(17)
+        False
 
-   Return boolean.
-   '''
+    Return boolean.
+    '''
 
-   try:
-      first_element = None
-      for element in expr:
-         if first_element is None:
-            first_element = element
-         else:
-            if not element == first_element:
-               return False
-      return True
-   except TypeError:
-      return False
+    try:
+        first_element = None
+        for element in expr:
+            if first_element is None:
+                first_element = element
+            else:
+                if not element == first_element:
+                    return False
+        return True
+    except TypeError:
+        return False
