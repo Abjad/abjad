@@ -11,7 +11,7 @@ def _reindent_3_spaces_as_4( ):
    skipped = [ ]
    for path, subdirectories, files in os.walk('.'):
       for file in files:
-         if not file.startswith('__') and file.endswith('.py'):
+         if not file.startswith('__') and (file.endswith('.py') or file.endswith('.rst.raw')):
             _strip_trailing_whitespace(file, path)
             gcd = _find_indent_gcd(file, path)
             if gcd == 1:
