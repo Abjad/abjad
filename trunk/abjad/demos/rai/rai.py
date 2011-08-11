@@ -35,14 +35,14 @@ s = Statement(text, code)
 statements.append(s)
 
 
-#code = ['spannertools.MetricGridSpanner(s, [(4, 4), (4, 4), (4, 4), (11, 16)])', 
+#code = ['spannertools.MetricGridSpanner(s, [(4, 4), (4, 4), (4, 4), (11, 16)])',
 #         's.meter.clear( )', 's.bar_line.clear( )', "show(s, 'tirnaveni')"]
-code = ['spannertools.MetricGridSpanner(s, [(4, 4), (4, 4), (4, 4), (11, 16)])', 
-         del(s.override.time_signature), del(s.override.bar_line), "show(s, 'tirnaveni')"]
+code = ['spannertools.MetricGridSpanner(s, [(4, 4), (4, 4), (4, 4), (11, 16)])',
+            del(s.override.time_signature), del(s.override.bar_line), "show(s, 'tirnaveni')"]
 text = "Let's then apply a MetricGrid spanner on our staff."
 s = Statement(text, code)
 statements.append(s)
-   
+
 
 code = ['meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + \
 [(3, 16)]', 'partition.leaves_cyclic_unfractured_by_durations(s, meters)']
@@ -64,12 +64,12 @@ p.setup.append('from abjad.tools import leaftools')
 
 
 if __name__ == '__main__':
-   import sys
-   if 1 < len(sys.argv):
-      p.run(sys.argv[1])
-   else:
-      p.run( )
+    import sys
+    if 1 < len(sys.argv):
+        p.run(sys.argv[1])
+    else:
+        p.run( )
 else:
-   for expr in p.setup:
-      exec(expr)
+    for expr in p.setup:
+        exec(expr)
 
