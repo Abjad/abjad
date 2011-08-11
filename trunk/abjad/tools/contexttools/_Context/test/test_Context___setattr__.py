@@ -4,9 +4,11 @@ import py.test
 
 
 def test_Context___setattr___01( ):
-   '''Slots constrain context attributes.
-   '''
+    '''Slots constrain context attributes.
+    '''
 
-   context = _Context([ ])
+    context = _Context([ ])
 
-   assert py.test.raises(AttributeError, "context.foo = 'bar'")
+    assert py.test.raises(AttributeError, "context.foo = 'bar'")
+
+

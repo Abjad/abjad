@@ -2,146 +2,148 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class KeySignatureMark(ContextMark):
-   r'''.. versionadded:: 2.0
-   
-   Abjad model of a key signature setting or key signature change::
+    r'''.. versionadded:: 2.0
 
-      abjad> staff = Staff("e'8 fs'8 gs'8 a'8")
+    Abjad model of a key signature setting or key signature change::
 
-   ::
+        abjad> staff = Staff("e'8 fs'8 gs'8 a'8")
 
-      abjad> contexttools.KeySignatureMark('e', 'major')(staff)
-      KeySignatureMark(NamedChromaticPitchClass('e'), Mode(major))(Staff{4})
+    ::
 
-   ::
+        abjad> contexttools.KeySignatureMark('e', 'major')(staff)
+        KeySignatureMark(NamedChromaticPitchClass('e'), Mode(major))(Staff{4})
 
-      abjad> f(staff)
-      \new Staff {
-         \key e \major
-         e'8
-         fs'8
-         gs'8
-         a'8
-      }
+    ::
 
-   Key signature marks target staff context by default.
-   '''
+        abjad> f(staff)
+        \new Staff {
+            \key e \major
+            e'8
+            fs'8
+            gs'8
+            a'8
+        }
 
-   #__slots__ = ('_tonic', '_mode')
+    Key signature marks target staff context by default.
+    '''
 
-   _format_slot = 'opening'
+    #__slots__ = ('_tonic', '_mode')
 
-   def __init__(self, tonic, mode, target_context = None):
-      from abjad.tools.stafftools.Staff import Staff
-      from abjad.tools import pitchtools
-      from abjad.tools import tonalitytools
-      ContextMark.__init__(self, target_context = target_context)
-      if self.target_context is None:
-         self._target_context = Staff
-      tonic = pitchtools.NamedChromaticPitchClass(tonic)
-      mode = tonalitytools.Mode(mode)
-      #object.__setattr__(self, '_tonic', tonic)
-      #object.__setattr__(self, '_mode', mode)
-      self._tonic = tonic
-      self._mode = mode
+    _format_slot = 'opening'
 
-   ## OVERLOADS ##
+    def __init__(self, tonic, mode, target_context = None):
+        from abjad.tools.stafftools.Staff import Staff
+        from abjad.tools import pitchtools
+        from abjad.tools import tonalitytools
+        ContextMark.__init__(self, target_context = target_context)
+        if self.target_context is None:
+            self._target_context = Staff
+        tonic = pitchtools.NamedChromaticPitchClass(tonic)
+        mode = tonalitytools.Mode(mode)
+        #object.__setattr__(self, '_tonic', tonic)
+        #object.__setattr__(self, '_mode', mode)
+        self._tonic = tonic
+        self._mode = mode
 
-   def __eq__(self, arg):
-      if isinstance(arg, type(self)):
-         if self.tonic == arg.tonic:
-            if self.mode == arg.mode:
-               return True
-      return False
+    ## OVERLOADS ##
 
-   def __str__(self):
-      return '%s-%s' % (self.tonic, self.mode)
+    def __eq__(self, arg):
+        if isinstance(arg, type(self)):
+            if self.tonic == arg.tonic:
+                if self.mode == arg.mode:
+                    return True
+        return False
 
-   ## PRIVATE ATTRIBUTES ##
+    def __str__(self):
+        return '%s-%s' % (self.tonic, self.mode)
 
-   @property
-   #def _contents_name_string(self):
-   def _contents_repr_string(self):
-      return "%s, %s" % (repr(self.tonic), repr(self.mode))
+    ## PRIVATE ATTRIBUTES ##
 
-   ## PUBLIC ATTRIBUTES ##
+    @property
+    #def _contents_name_string(self):
+    def _contents_repr_string(self):
+        return "%s, %s" % (repr(self.tonic), repr(self.mode))
 
-   @property
-   def format(self):
-      r'''Read-only LilyPond format of key signature mark:
-      
-      ::
+    ## PUBLIC ATTRIBUTES ##
 
-         abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
-         abjad> key_signature.format
-         '\\key e \\major'
+    @property
+    def format(self):
+        r'''Read-only LilyPond format of key signature mark:
 
-      Return string.
-      '''
-      return r'\key %s \%s' % (self.tonic, self.mode)
-
-   @apply
-   def mode( ):
-      def fget(self):
-         r'''Get mode of key signature::
+        ::
 
             abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
-            abjad> key_signature.mode
-            Mode(major)
+            abjad> key_signature.format
+            '\\key e \\major'
 
-         Set mode of key signature::
+        Return string.
+        '''
+        return r'\key %s \%s' % (self.tonic, self.mode)
 
-            abjad> key_signature.mode = 'minor'
-            abjad> key_signature.mode
-            Mode(minor)
+    @apply
+    def mode( ):
+        def fget(self):
+            r'''Get mode of key signature::
 
-         Return mode.
-         '''
-         return self._mode
-      def fset(self, mode):
-         from abjad.tools import tonalitytools
-         mode = tonalitytools.Mode(mode)
-         self._mode = mode
-      return property(**locals( ))
+                abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
+                abjad> key_signature.mode
+                Mode(major)
 
-   @property
-   def name(self):
-      r'''Read-only name of key signature:
+            Set mode of key signature::
 
-      ::
+                abjad> key_signature.mode = 'minor'
+                abjad> key_signature.mode
+                Mode(minor)
 
-         abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
-         abjad> key_signature.name
-         'E major'
+            Return mode.
+            '''
+            return self._mode
+        def fset(self, mode):
+            from abjad.tools import tonalitytools
+            mode = tonalitytools.Mode(mode)
+            self._mode = mode
+        return property(**locals( ))
 
-      Return string.
-      '''
-      if self.mode.mode_name_string == 'major':
-         tonic = str(self.tonic).upper( )   
-      else:
-         tonic = str(self.tonic)
-      return '%s %s' % (tonic, self.mode.mode_name_string)
+    @property
+    def name(self):
+        r'''Read-only name of key signature:
 
-   @apply
-   def tonic( ):
-      def fget(self):
-         r'''Get tonic of key signature::
+        ::
 
             abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
-            abjad> key_signature.tonic
-            NamedChromaticPitchClass('e')
+            abjad> key_signature.name
+            'E major'
 
-         Set tonic of key signature::
+        Return string.
+        '''
+        if self.mode.mode_name_string == 'major':
+            tonic = str(self.tonic).upper( )
+        else:
+            tonic = str(self.tonic)
+        return '%s %s' % (tonic, self.mode.mode_name_string)
 
-            abjad> key_signature.tonic = 'd'
-            abjad> key_signature.tonic
-            NamedChromaticPitchClass('d')
+    @apply
+    def tonic( ):
+        def fget(self):
+            r'''Get tonic of key signature::
 
-         Return named chromatic pitch.
-         '''
-         return self._tonic
-      def fset(self, tonic):
-         from abjad.tools import pitchtools
-         tonic = pitchtools.NamedChromaticPitchClass(tonic)
-         self._tonic = tonic
-      return property(**locals( ))
+                abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
+                abjad> key_signature.tonic
+                NamedChromaticPitchClass('e')
+
+            Set tonic of key signature::
+
+                abjad> key_signature.tonic = 'd'
+                abjad> key_signature.tonic
+                NamedChromaticPitchClass('d')
+
+            Return named chromatic pitch.
+            '''
+            return self._tonic
+        def fset(self, tonic):
+            from abjad.tools import pitchtools
+            tonic = pitchtools.NamedChromaticPitchClass(tonic)
+            self._tonic = tonic
+        return property(**locals( ))
+
+
