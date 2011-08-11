@@ -1,20 +1,20 @@
 def interpolate_exponential(y1, y2, mu, exp = 1):
-   '''Exponential interpolate `y1` and `y2` with `mu` normalized ``[0, 1]``::
+    '''Exponential interpolate `y1` and `y2` with `mu` normalized ``[0, 1]``::
 
-      abjad> from abjad.tools import mathtools
+        abjad> from abjad.tools import mathtools
 
-   ::
+    ::
 
-      abjad> mathtools.interpolate_exponential(0, 1, 0.5, 4)
-      0.0625
+        abjad> mathtools.interpolate_exponential(0, 1, 0.5, 4)
+        0.0625
 
-   Set `exp` equal to the exponent of interpolation.
+    Set `exp` equal to the exponent of interpolation.
 
-   Return float.
+    Return float.
 
-   .. versionchanged:: 1.1.2
-      renamed ``interpolate.exponential( )`` to
-      ``mathtools.interpolate_exponential( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``interpolate.exponential( )`` to
+        ``mathtools.interpolate_exponential( )``.
+    '''
 
-   return (y1 * (1 - mu ** exp) + y2 * mu ** exp)
+    return (y1 * (1 - mu ** exp) + y2 * mu ** exp)

@@ -1,18 +1,18 @@
 def interpolate_linear(y1, y2, mu):
-   '''Linear interpolate `y1` and `y2` with `mu` normalized ``[0, 1]``::
+    '''Linear interpolate `y1` and `y2` with `mu` normalized ``[0, 1]``::
 
-      abjad> from abjad.tools import mathtools
+        abjad> from abjad.tools import mathtools
 
-   ::
+    ::
 
-      abjad> mathtools.interpolate_linear(0, 1, 0.5)
-      0.5
+        abjad> mathtools.interpolate_linear(0, 1, 0.5)
+        0.5
 
-   Return float.
+    Return float.
 
-   .. versionchanged:: 1.1.2
-      renamed ``interpolate.linear( )`` to
-      ``mathtools.interpolate_linear( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``interpolate.linear( )`` to
+        ``mathtools.interpolate_linear( )``.
+    '''
 
-   return (y1 * (1 - mu) + y2 * mu)
+    return (y1 * (1 - mu) + y2 * mu)

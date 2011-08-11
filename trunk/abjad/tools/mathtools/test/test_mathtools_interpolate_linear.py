@@ -3,5 +3,5 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_interpolate_linear_01( ):
-   x = mathtools.interpolate_linear(0, 1, .5)
-   assert x
+    x = mathtools.interpolate_linear(0, 1, .5)
+    assert x

@@ -1,40 +1,40 @@
 def get_shared_numeric_sign(sequence):
-   '''Return ``1`` when all `sequence` elements are positive::
+    '''Return ``1`` when all `sequence` elements are positive::
 
-      abjad> from abjad.tools import mathtools
+        abjad> from abjad.tools import mathtools
 
-   ::
+    ::
 
-      abjad> mathtools.get_shared_numeric_sign([1, 2, 3])
-      1
-   
-   Return ``-1`` when all `sequence` elements are negative::
+        abjad> mathtools.get_shared_numeric_sign([1, 2, 3])
+        1
 
-      abjad> mathtools.get_shared_numeric_sign([-1, -2, -3])
-      -1
+    Return ``-1`` when all `sequence` elements are negative::
 
-   Return ``0`` on empty `sequence`::
+        abjad> mathtools.get_shared_numeric_sign([-1, -2, -3])
+        -1
 
-      abjad> mathtools.get_shared_numeric_sign([ ])
-      0
+    Return ``0`` on empty `sequence`::
 
-   Otherwise return none::
+        abjad> mathtools.get_shared_numeric_sign([ ])
+        0
 
-      abjad> mathtools.get_shared_numeric_sign([1, 2, -3]) is None
-      True
+    Otherwise return none::
 
-   Return ``1``, ``-1``, ``0`` or none.
+        abjad> mathtools.get_shared_numeric_sign([1, 2, -3]) is None
+        True
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.sign( )`` to 
-      ``mathtools.get_shared_numeric_sign( )``.
-   '''
+    Return ``1``, ``-1``, ``0`` or none.
 
-   if len(sequence) == 0:
-      return 0
-   elif all([0 < x for x in sequence]):
-      return 1
-   elif all([x < 0 for x in sequence]):
-      return -1
-   else:
-      return None
+    .. versionchanged:: 1.1.2
+        renamed ``seqtools.sign( )`` to
+        ``mathtools.get_shared_numeric_sign( )``.
+    '''
+
+    if len(sequence) == 0:
+        return 0
+    elif all([0 < x for x in sequence]):
+        return 1
+    elif all([x < 0 for x in sequence]):
+        return -1
+    else:
+        return None

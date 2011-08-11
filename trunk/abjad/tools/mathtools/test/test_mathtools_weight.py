@@ -3,14 +3,14 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_weight_01( ):
-   '''Weight of nonempty sequence.
-   '''
+    '''Weight of nonempty sequence.
+    '''
 
-   assert mathtools.weight([-1, -2, 3, 4, 5]) == 15
+    assert mathtools.weight([-1, -2, 3, 4, 5]) == 15
 
 
 def test_mathtools_weight_02( ):
-   '''Weight of empty sequence.
-   '''
+    '''Weight of empty sequence.
+    '''
 
-   assert mathtools.weight([ ]) == 0
+    assert mathtools.weight([ ]) == 0

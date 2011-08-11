@@ -1,24 +1,24 @@
 def difference_series(sequence):
-   '''Difference series of `sequence`::
+    '''Difference series of `sequence`::
 
-      abjad> from abjad.tools import mathtools
+        abjad> from abjad.tools import mathtools
 
-   ::
+    ::
 
-      abjad> mathtools.difference_series([1, 1, 2, 3, 5, 5, 6])
-      [0, 1, 1, 2, 0, 1]
+        abjad> mathtools.difference_series([1, 1, 2, 3, 5, 5, 6])
+        [0, 1, 1, 2, 0, 1]
 
-   Return list.
+    Return list.
 
-   .. versionchanged:: 1.1.2
-      renamed ``seqtools.difference_series( )`` to
-      ``mathtools.difference_series( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``seqtools.difference_series( )`` to
+        ``mathtools.difference_series( )``.
+    '''
 
-   result = [ ]
+    result = [ ]
 
-   for i, n in enumerate(sequence[1:]):
-      #yield n - l[i]
-      result.append(n - sequence[i])
+    for i, n in enumerate(sequence[1:]):
+        #yield n - l[i]
+        result.append(n - sequence[i])
 
-   return result
+    return result
