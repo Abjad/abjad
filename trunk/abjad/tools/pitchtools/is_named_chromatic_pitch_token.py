@@ -3,28 +3,29 @@ from abjad.tools.pitchtools.is_chromatic_pitch_class_name_octave_number_pair imp
 
 
 def is_named_chromatic_pitch_token(pitch_token):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   True when `pitch_token` has the form of an Abjad pitch token.
-   Otherwise false::
+    True when `pitch_token` has the form of an Abjad pitch token.
+    Otherwise false::
 
-      abjad> pitchtools.is_named_chromatic_pitch_token(('c', 4))
-      True
+        abjad> pitchtools.is_named_chromatic_pitch_token(('c', 4))
+        True
 
-   Return boolean.
+    Return boolean.
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.is_pitch_token( )`` to
-      ``pitchtools.is_named_chromatic_pitch_token( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``pitchtools.is_pitch_token( )`` to
+        ``pitchtools.is_named_chromatic_pitch_token( )``.
+    '''
 
-   if isinstance(pitch_token, NamedChromaticPitch):
-      return True
-   elif is_chromatic_pitch_class_name_octave_number_pair(pitch_token):
-      return True
-   elif isinstance(pitch_token, (int, long)):
-      return True
-   elif isinstance(pitch_token, float) and pitch_token % 0.5 == 0:
-      return True
-   else:
-      return False
+    if isinstance(pitch_token, NamedChromaticPitch):
+        return True
+    elif is_chromatic_pitch_class_name_octave_number_pair(pitch_token):
+        return True
+    elif isinstance(pitch_token, (int, long)):
+        return True
+    elif isinstance(pitch_token, float) and pitch_token % 0.5 == 0:
+        return True
+    else:
+        return False
+

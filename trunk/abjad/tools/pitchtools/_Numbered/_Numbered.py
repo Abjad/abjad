@@ -1,7 +1,8 @@
 class _Numbered(object):
-   '''..versionadded: 1.1.2
+    '''..versionadded: 1.1.2
 
-   Numbered object base class.
-   '''
+    Numbered object base class.
+    '''
 
-   pass
+    pass
+

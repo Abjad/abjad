@@ -3,129 +3,130 @@ from abjad.tools.pitchtools._NumberedPitch import _NumberedPitch
 
 
 class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Abjad model of a numbered chromatic pitch::
+    Abjad model of a numbered chromatic pitch::
 
-      abjad> pitchtools.NumberedChromaticPitch(13)
-      NumberedChromaticPitch(13)
+        abjad> pitchtools.NumberedChromaticPitch(13)
+        NumberedChromaticPitch(13)
 
-   Numbered chromatic pitches are immutable.
-   '''
+    Numbered chromatic pitches are immutable.
+    '''
 
-   __slots__ = ('_chromatic_pitch_number', )
+    __slots__ = ('_chromatic_pitch_number', )
 
-   def __new__(klass, arg):
-      from abjad.tools import pitchtools
-      self = object.__new__(klass)
-      if hasattr(arg, '_chromatic_pitch_number'):
-         chromatic_pitch_number = arg._chromatic_pitch_number
-      elif pitchtools.is_chromatic_pitch_number(arg):
-         chromatic_pitch_number = arg
-      elif pitchtools.is_chromatic_pitch_name(arg):
-         chromatic_pitch_number = pitchtools.chromatic_pitch_name_to_chromatic_pitch_number(arg)
-      else:
-         raise TypeError('can not initialize numbered chromatic pitch from "%s".' % arg)
-      object.__setattr__(self, '_chromatic_pitch_number', chromatic_pitch_number)
-      object.__setattr__(self, '_comparison_attribute', chromatic_pitch_number)
-      return self
+    def __new__(klass, arg):
+        from abjad.tools import pitchtools
+        self = object.__new__(klass)
+        if hasattr(arg, '_chromatic_pitch_number'):
+            chromatic_pitch_number = arg._chromatic_pitch_number
+        elif pitchtools.is_chromatic_pitch_number(arg):
+            chromatic_pitch_number = arg
+        elif pitchtools.is_chromatic_pitch_name(arg):
+            chromatic_pitch_number = pitchtools.chromatic_pitch_name_to_chromatic_pitch_number(arg)
+        else:
+            raise TypeError('can not initialize numbered chromatic pitch from "%s".' % arg)
+        object.__setattr__(self, '_chromatic_pitch_number', chromatic_pitch_number)
+        object.__setattr__(self, '_comparison_attribute', chromatic_pitch_number)
+        return self
 
-   def __getnewargs__(self):
-      return (self._chromatic_pitch_number, )
+    def __getnewargs__(self):
+        return (self._chromatic_pitch_number, )
 
-   ## OVERLOADS ##
+    ## OVERLOADS ##
 
-   def __abs__(self):
-      return self._chromatic_pitch_number
+    def __abs__(self):
+        return self._chromatic_pitch_number
 
-   def __add__(self, arg):
-      arg = type(self)(arg)
-      semitones = abs(self) + abs(arg)
-      return type(self)(semitones)
+    def __add__(self, arg):
+        arg = type(self)(arg)
+        semitones = abs(self) + abs(arg)
+        return type(self)(semitones)
 
-   def __float__(self):
-      return float(self._chromatic_pitch_number)
-      
-   def __hash__(self):
-      return hash(repr(self))
+    def __float__(self):
+        return float(self._chromatic_pitch_number)
 
-   def __int__(self):
-      return self._chromatic_pitch_number
+    def __hash__(self):
+        return hash(repr(self))
 
-   def __neg__(self):
-      return type(self)(-abs(self))
-   
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, abs(self))
+    def __int__(self):
+        return self._chromatic_pitch_number
 
-   def __str__(self):
-      return '%s' % abs(self)
+    def __neg__(self):
+        return type(self)(-abs(self))
 
-   def __sub__(self, arg):
-      arg = type(self)(arg)
-      semitones = abs(self) - abs(arg)
-      return type(self)(semitones)
-     
-   ## PUBLIC ATTRIBUTES ##
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, abs(self))
 
-   @property
-   def chromatic_pitch_number(self):
-      '''Read-only chromatic pitch-class number::
+    def __str__(self):
+        return '%s' % abs(self)
 
-         abjad> pitchtools.NumberedChromaticPitch(13).chromatic_pitch_number
-         13
+    def __sub__(self, arg):
+        arg = type(self)(arg)
+        semitones = abs(self) - abs(arg)
+        return type(self)(semitones)
 
-      Return integer or float.
-      '''
-      return self._chromatic_pitch_number
+    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def diatonic_pitch_class_number(self):
-      '''Read-only diatonic pitch-class number::
+    @property
+    def chromatic_pitch_number(self):
+        '''Read-only chromatic pitch-class number::
 
-         abjad> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_class_number
-         0
+            abjad> pitchtools.NumberedChromaticPitch(13).chromatic_pitch_number
+            13
 
-      Return integer.
-      '''
-      from abjad.tools import pitchtools
-      return pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_number(
-         self.chromatic_pitch_number)
+        Return integer or float.
+        '''
+        return self._chromatic_pitch_number
 
-   @property
-   def diatonic_pitch_number(self):
-      '''Read-only diatonic pitch-class number::
+    @property
+    def diatonic_pitch_class_number(self):
+        '''Read-only diatonic pitch-class number::
 
-         abjad> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_number
-         7
+            abjad> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_class_number
+            0
 
-      Return integer.
-      '''
-      from abjad.tools import pitchtools
-      return pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(self.chromatic_pitch_number)
+        Return integer.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_number(
+            self.chromatic_pitch_number)
 
-   ## PUBLIC METHODS ##
+    @property
+    def diatonic_pitch_number(self):
+        '''Read-only diatonic pitch-class number::
 
-   def apply_accidental(self, accidental = None):
-      '''Apply `accidental`::
+            abjad> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_number
+            7
 
-         abjad> pitchtools.NumberedChromaticPitch(13).apply_accidental('flat')
-         NumberedChromaticPitch(12)
+        Return integer.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(self.chromatic_pitch_number)
 
-      Return numbered chromatic pitch.
-      '''
-      from abjad.tools.pitchtools.Accidental import Accidental
-      accidental = Accidental(accidental)
-      semitones = abs(self) + accidental.semitones
-      return type(self)(semitones)
+    ## PUBLIC METHODS ##
 
-   def transpose(self, n = 0):
-      '''Tranpose by `n` semitones::
+    def apply_accidental(self, accidental = None):
+        '''Apply `accidental`::
 
-         abjad> pitchtools.NumberedChromaticPitch(13).transpose(1)
-         NumberedChromaticPitch(14)
+            abjad> pitchtools.NumberedChromaticPitch(13).apply_accidental('flat')
+            NumberedChromaticPitch(12)
 
-      Return numbered chromatic pitch.
-      '''
-      semitones = abs(self) + n
-      return type(self)(semitones)
+        Return numbered chromatic pitch.
+        '''
+        from abjad.tools.pitchtools.Accidental import Accidental
+        accidental = Accidental(accidental)
+        semitones = abs(self) + accidental.semitones
+        return type(self)(semitones)
+
+    def transpose(self, n = 0):
+        '''Tranpose by `n` semitones::
+
+            abjad> pitchtools.NumberedChromaticPitch(13).transpose(1)
+            NumberedChromaticPitch(14)
+
+        Return numbered chromatic pitch.
+        '''
+        semitones = abs(self) + n
+        return type(self)(semitones)
+

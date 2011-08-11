@@ -3,9 +3,10 @@ from abjad.tools.pitchtools._Pitch import _Pitch
 
 
 class _NumberedPitch(_Pitch, _Numbered):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Numbered pitch base class from which concrete classes inherit.
-   '''
+    Numbered pitch base class from which concrete classes inherit.
+    '''
 
-   __slots__ = ( )
+    __slots__ = ( )
+

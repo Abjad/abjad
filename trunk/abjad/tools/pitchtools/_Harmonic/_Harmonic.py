@@ -1,7 +1,8 @@
 class _Harmonic(object):
-   '''..versionadded:: 2.0
+    '''..versionadded:: 2.0
 
-   Harmonic object base class.
-   '''
+    Harmonic object base class.
+    '''
 
-   pass
+    pass
+

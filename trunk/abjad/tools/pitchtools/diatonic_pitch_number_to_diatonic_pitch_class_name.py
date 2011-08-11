@@ -3,21 +3,22 @@ from abjad.tools.pitchtools.is_diatonic_pitch_number import is_diatonic_pitch_nu
 
 
 def diatonic_pitch_number_to_diatonic_pitch_class_name(diatonic_pitch_number):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Change `diatonic_pitch_number` to diatonic pitch-class name::
+    Change `diatonic_pitch_number` to diatonic pitch-class name::
 
-      abjad> pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name(7)
-      'c'
+        abjad> pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name(7)
+        'c'
 
-   Return string.
-   '''
+    Return string.
+    '''
 
-   if not is_diatonic_pitch_number(diatonic_pitch_number):
-      raise TypeError
+    if not is_diatonic_pitch_number(diatonic_pitch_number):
+        raise TypeError
 
-   diatonic_pitch_class_number = diatonic_pitch_number % 7
-   diatonic_pitch_class_name = diatonic_pitch_class_number_to_diatonic_pitch_class_name(
-      diatonic_pitch_class_number)
+    diatonic_pitch_class_number = diatonic_pitch_number % 7
+    diatonic_pitch_class_name = diatonic_pitch_class_number_to_diatonic_pitch_class_name(
+        diatonic_pitch_class_number)
 
-   return diatonic_pitch_class_name
+    return diatonic_pitch_class_name
+

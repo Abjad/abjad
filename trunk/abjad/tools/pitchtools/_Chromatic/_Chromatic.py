@@ -1,7 +1,8 @@
 class _Chromatic(object):
-   '''..versionadded:: 2.0
+    '''..versionadded:: 2.0
 
-   Chromatic object base class.
-   '''
+    Chromatic object base class.
+    '''
 
-   pass
+    pass
+

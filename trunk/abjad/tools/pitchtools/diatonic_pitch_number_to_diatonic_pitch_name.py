@@ -4,24 +4,25 @@ from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_nu
 
 
 def diatonic_pitch_number_to_diatonic_pitch_name(diatonic_pitch_number):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Change `diatonic_pitch_number` to diatonic pitch name::
+    Change `diatonic_pitch_number` to diatonic pitch name::
 
-      abjad> pitchtools.diatonic_pitch_number_to_diatonic_pitch_name(7)
-      "c''"
+        abjad> pitchtools.diatonic_pitch_number_to_diatonic_pitch_name(7)
+        "c''"
 
-   Return string.
-   '''
+    Return string.
+    '''
 
-   if not is_diatonic_pitch_number(diatonic_pitch_number):
-      raise TypeError
+    if not is_diatonic_pitch_number(diatonic_pitch_number):
+        raise TypeError
 
-   diatonic_pitch_class_number = diatonic_pitch_number % 7
-   diatonic_pitch_class_name = diatonic_pitch_class_number_to_diatonic_pitch_class_name(
-      diatonic_pitch_class_number)
-   octave_number = 4 + diatonic_pitch_number // 7
-   octave_tick_string = octave_number_to_octave_tick_string(octave_number)
-   diatonic_pitch_name = diatonic_pitch_class_name + octave_tick_string
+    diatonic_pitch_class_number = diatonic_pitch_number % 7
+    diatonic_pitch_class_name = diatonic_pitch_class_number_to_diatonic_pitch_class_name(
+        diatonic_pitch_class_number)
+    octave_number = 4 + diatonic_pitch_number // 7
+    octave_tick_string = octave_number_to_octave_tick_string(octave_number)
+    diatonic_pitch_name = diatonic_pitch_class_name + octave_tick_string
 
-   return diatonic_pitch_name
+    return diatonic_pitch_name
+

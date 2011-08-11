@@ -2,23 +2,24 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 
 
 def is_pitch_carrier(expr):
-   '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1.1
 
-   True when `expr` is an Abjad pitch, note, note-head of chord instance.
-   Otherwise false::
+    True when `expr` is an Abjad pitch, note, note-head of chord instance.
+    Otherwise false::
 
-      abjad> note = Note("c'4")
-      abjad> pitchtools.is_pitch_carrier(note)
-      True
+        abjad> note = Note("c'4")
+        abjad> pitchtools.is_pitch_carrier(note)
+        True
 
-   Return boolean.
+    Return boolean.
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.is_carrier( )`` to
-      ``pitchtools.is_pitch_carrier( )``.
-   '''
-   from abjad.tools.chordtools.Chord import Chord
-   from abjad.tools.notetools.Note import Note
-   from abjad.tools.notetools.NoteHead import NoteHead
+    .. versionchanged:: 1.1.2
+        renamed ``pitchtools.is_carrier( )`` to
+        ``pitchtools.is_pitch_carrier( )``.
+    '''
+    from abjad.tools.chordtools.Chord import Chord
+    from abjad.tools.notetools.Note import Note
+    from abjad.tools.notetools.NoteHead import NoteHead
 
-   return isinstance(expr, (NamedChromaticPitch, Note, NoteHead, Chord))
+    return isinstance(expr, (NamedChromaticPitch, Note, NoteHead, Chord))
+

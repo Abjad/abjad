@@ -3,16 +3,17 @@ from abjad.tools.pitchtools.diatonic_pitch_name_to_chromatic_pitch_name import d
 
 
 def diatonic_pitch_name_to_chromatic_pitch_class_name(diatonic_pitch_name):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Change `diatonic_pitch_name` to chromatic pitch-class name::
+    Change `diatonic_pitch_name` to chromatic pitch-class name::
 
-      abjad> pitchtools.diatonic_pitch_name_to_chromatic_pitch_class_name("c''")
-      'c'
+        abjad> pitchtools.diatonic_pitch_name_to_chromatic_pitch_class_name("c''")
+        'c'
 
-   Return string.
-   '''
+    Return string.
+    '''
 
-   chromatic_pitch_name = diatonic_pitch_name_to_chromatic_pitch_name(diatonic_pitch_name)
+    chromatic_pitch_name = diatonic_pitch_name_to_chromatic_pitch_name(diatonic_pitch_name)
 
-   return chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name)
+    return chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name)
+

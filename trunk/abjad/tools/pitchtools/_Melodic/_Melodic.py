@@ -1,7 +1,8 @@
 class _Melodic(object):
-   '''..versionadded:: 2.0
+    '''..versionadded:: 2.0
 
-   Melodic object base class.
-   '''
+    Melodic object base class.
+    '''
 
-   pass
+    pass
+

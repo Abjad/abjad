@@ -2,19 +2,20 @@ import math
 
 
 def chromatic_pitch_number_and_accidental_semitones_to_octave_number(
-   chromatic_pitch_number, accidental_semitones):
-   '''.. versionadded:: 1.1.1
+    chromatic_pitch_number, accidental_semitones):
+    '''.. versionadded:: 1.1.1
 
-   Change `chromatic_pitch_number` and `accidental_semitones` to octave number::
+    Change `chromatic_pitch_number` and `accidental_semitones` to octave number::
 
-      abjad> pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number(12, -2)
-      5
+        abjad> pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number(12, -2)
+        5
 
-   Return integer.
+    Return integer.
 
-   .. versionchanged:: 1.1.2
-      renamed ``pitchtools.pitch_number_and_accidental_semitones_to_octave( )`` to
-      ``pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``pitchtools.pitch_number_and_accidental_semitones_to_octave( )`` to
+        ``pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number( )``.
+    '''
 
-   return int(math.floor((chromatic_pitch_number - accidental_semitones) / 12)) + 4
+    return int(math.floor((chromatic_pitch_number - accidental_semitones) / 12)) + 4
+
