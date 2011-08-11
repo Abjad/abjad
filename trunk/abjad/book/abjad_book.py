@@ -9,7 +9,7 @@ import sys
 
 def _usage( ):
     usage = '''NAME
-    abjad-book -- preprocess HTML, LaTeX or ReST source with Abjad
+abjad-book -- preprocess HTML, LaTeX or ReST source with Abjad
 
 SYNOPSIS 
     abjad-book [--skip-rendering] INPUT OUTPUT 
@@ -66,8 +66,8 @@ EXAMPLES
    2.  Call `abjad-book` on the file just created:
 
         $ abjad-book file.htm.raw file.html
-   '''
-   return usage
+    '''
+    return usage
 
 
 def _abjad_book( ):
