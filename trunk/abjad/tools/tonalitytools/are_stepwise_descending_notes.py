@@ -5,36 +5,36 @@ from abjad.tools import seqtools
 
 
 def are_stepwise_descending_notes(*expr):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   True when notes in `expr` are stepwise descending::
+    True when notes in `expr` are stepwise descending::
 
-      abjad> from abjad.tools import tonalitytools
+        abjad> from abjad.tools import tonalitytools
 
-   ::
+    ::
 
-      abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-      abjad> t = Staff(list(reversed(notes)))
-      abjad> tonalitytools.are_stepwise_descending_notes(t[:])
-      True
+        abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+        abjad> t = Staff(list(reversed(notes)))
+        abjad> tonalitytools.are_stepwise_descending_notes(t[:])
+        True
 
-   Otherwise false::
+    Otherwise false::
 
-      abjad> tonalitytools.are_stepwise_descending_notes(Note("c'4"), Note("c'4"))
-      False
+        abjad> tonalitytools.are_stepwise_descending_notes(Note("c'4"), Note("c'4"))
+        False
 
-   .. versionchanged:: 1.1.2
-      renamed ``tonalitytools.are_stepwise_descending( )`` to
-      ``tonalitytools.are_stepwise_descending_notes( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``tonalitytools.are_stepwise_descending( )`` to
+        ``tonalitytools.are_stepwise_descending_notes( )``.
+    '''
 
-   for left, right in seqtools.iterate_sequence_pairwise_strict(
-      componenttools.iterate_components_forward_in_expr(expr, Note)):
-      try:
-         assert not (left.written_pitch == right.written_pitch)
-         mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(left, right)
-         assert mdi.number == -2
-      except AssertionError:
-         return False
+    for left, right in seqtools.iterate_sequence_pairwise_strict(
+        componenttools.iterate_components_forward_in_expr(expr, Note)):
+        try:
+            assert not (left.written_pitch == right.written_pitch)
+            mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(left, right)
+            assert mdi.number == -2
+        except AssertionError:
+            return False
 
-   return True
+    return True

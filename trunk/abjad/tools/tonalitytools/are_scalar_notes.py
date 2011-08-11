@@ -5,39 +5,39 @@ from abjad.tools import seqtools
 
 
 def are_scalar_notes(*expr):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   True when notes in `expr` are scalar. ::
+    True when notes in `expr` are scalar. ::
 
-      abjad> from abjad.tools import tonalitytools
+        abjad> from abjad.tools import tonalitytools
 
-   ::
+    ::
 
-      abjad> t = Staff("c'8 d'8 e'8 f'8")
-      abjad> tonalitytools.are_scalar_notes(t[:])
-      True
+        abjad> t = Staff("c'8 d'8 e'8 f'8")
+        abjad> tonalitytools.are_scalar_notes(t[:])
+        True
 
-   Otherwise false. ::
+    Otherwise false. ::
 
-      abjad> tonalitytools.are_scalar_notes(Note("c'4"), Note("c'4"))
-      False
+        abjad> tonalitytools.are_scalar_notes(Note("c'4"), Note("c'4"))
+        False
 
-   .. versionchanged:: 1.1.2
-      renamed ``tonalitytools.are_scalar( )`` to
-      ``tonalitytools.are_scalar_notes( )``.
-   '''
+    .. versionchanged:: 1.1.2
+        renamed ``tonalitytools.are_scalar( )`` to
+        ``tonalitytools.are_scalar_notes( )``.
+    '''
 
-   direction_string = None
-   for left, right in seqtools.iterate_sequence_pairwise_strict(
-      componenttools.iterate_components_forward_in_expr(expr, Note)):
-      try:
-         assert not (left.written_pitch == right.written_pitch)
-         mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(left, right)
-         assert mdi.number <= 2 
-         if direction_string is None:
-            direction_string = mdi.direction_string
-         assert direction_string == mdi.direction_string
-      except AssertionError:
-         return False
+    direction_string = None
+    for left, right in seqtools.iterate_sequence_pairwise_strict(
+        componenttools.iterate_components_forward_in_expr(expr, Note)):
+        try:
+            assert not (left.written_pitch == right.written_pitch)
+            mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(left, right)
+            assert mdi.number <= 2
+            if direction_string is None:
+                direction_string = mdi.direction_string
+            assert direction_string == mdi.direction_string
+        except AssertionError:
+            return False
 
-   return True
+    return True

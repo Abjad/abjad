@@ -6,56 +6,56 @@ from abjad.tools.tonalitytools.diatonic_interval_class_segment_to_chord_quality_
 
 
 def analyze_chord(expr):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Analyze `expr` and return chord class. ::
+    Analyze `expr` and return chord class. ::
 
-      abjad> from abjad.tools import tonalitytools
+        abjad> from abjad.tools import tonalitytools
 
-   ::
-   
-      abjad> chord = Chord([7, 10, 12, 16], (1, 4))
-      abjad> tonalitytools.analyze_chord(chord)
-      CDominantSeventhInSecondInversion
+    ::
 
-   Return none when no tonal chord is understood. ::
+        abjad> chord = Chord([7, 10, 12, 16], (1, 4))
+        abjad> tonalitytools.analyze_chord(chord)
+        CDominantSeventhInSecondInversion
 
-      abjad> chord = Chord(['c', 'cs', 'd'], (1, 4))
-      abjad> tonalitytools.analyze_chord(chord) is None
-      True
+    Return none when no tonal chord is understood. ::
 
-   Raise tonal harmony error when chord can not analyze.
-   '''
+        abjad> chord = Chord(['c', 'cs', 'd'], (1, 4))
+        abjad> tonalitytools.analyze_chord(chord) is None
+        True
 
-   pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
-   npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
+    Raise tonal harmony error when chord can not analyze.
+    '''
 
-   #ordered_npcs = pitchtools.NamedChromaticPitchClassSegment([ ])
-   ordered_npcs = [ ]
-   letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
-   for letter in letters:
-      for npc in npcset:
-         if npc._diatonic_pitch_class_name == letter:
-            ordered_npcs.append(npc)
+    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
+    npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
 
-   ordered_npcs = pitchtools.NamedChromaticPitchClassSegment(ordered_npcs)
-   for x in range(len(ordered_npcs)):
-      ordered_npcs = ordered_npcs.rotate(1)
-      if ordered_npcs.inversion_equivalent_diatonic_interval_class_segment.is_tertian:
-         break
-   else:
-      #raise TonalHarmonyError('expr is not tertian harmony: %s' % str(expr))
-      return None
+    #ordered_npcs = pitchtools.NamedChromaticPitchClassSegment([ ])
+    ordered_npcs = [ ]
+    letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
+    for letter in letters:
+        for npc in npcset:
+            if npc._diatonic_pitch_class_name == letter:
+                ordered_npcs.append(npc)
 
-   try:
-      root = ordered_npcs[0]
-      bass = min(pitches).named_chromatic_pitch_class
-      inversion = ordered_npcs.index(bass)
-      dic_seg =  ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
-      cardinality = len(ordered_npcs)
-      extent = chord_class_cardinality_to_extent(cardinality)
-      quality = diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
-   except TonalHarmonyError:
-      return None
+    ordered_npcs = pitchtools.NamedChromaticPitchClassSegment(ordered_npcs)
+    for x in range(len(ordered_npcs)):
+        ordered_npcs = ordered_npcs.rotate(1)
+        if ordered_npcs.inversion_equivalent_diatonic_interval_class_segment.is_tertian:
+            break
+    else:
+        #raise TonalHarmonyError('expr is not tertian harmony: %s' % str(expr))
+        return None
 
-   return ChordClass(root, quality, extent, inversion)
+    try:
+        root = ordered_npcs[0]
+        bass = min(pitches).named_chromatic_pitch_class
+        inversion = ordered_npcs.index(bass)
+        dic_seg =  ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
+        cardinality = len(ordered_npcs)
+        extent = chord_class_cardinality_to_extent(cardinality)
+        quality = diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
+    except TonalHarmonyError:
+        return None
+
+    return ChordClass(root, quality, extent, inversion)

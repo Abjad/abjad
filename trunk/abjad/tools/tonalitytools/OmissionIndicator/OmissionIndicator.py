@@ -2,12 +2,12 @@ from abjad.core import _Immutable
 
 
 class OmissionIndicator(_Immutable):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Indicator of missing chord tones.
+    Indicator of missing chord tones.
 
-   Value object that can not be chnaged after instantiation.
-   '''
+    Value object that can not be chnaged after instantiation.
+    '''
 
-   def __init__(self):
-      pass
+    def __init__(self):
+        pass

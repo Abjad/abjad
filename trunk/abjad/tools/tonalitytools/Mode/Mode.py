@@ -5,79 +5,79 @@ from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatoni
 
 
 class Mode(_Immutable):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Diatonic mode. Can be extended for nondiatonic mode.
+    Diatonic mode. Can be extended for nondiatonic mode.
 
-   Modes with different ascending and descending forms not yet implemented.
-   '''
+    Modes with different ascending and descending forms not yet implemented.
+    '''
 
-   def __init__(self, arg):
-      if isinstance(arg, str):
-         #self._init_with_mode_name_string(arg)
-         mode_name_string = arg
-      elif isinstance(arg, Mode):
-         #self._init_with_mode_name_string(arg.mode_name_string)
-         mode_name_string = arg.mode_name_string
-      else:
-         raise TypeError('%s must be mode instance or mode name string.' % arg)
-      mdi_segment = self._init_with_mode_name_string(mode_name_string)
-      object.__setattr__(self, '_melodic_diatonic_interval_segment', mdi_segment)
-      object.__setattr__(self, '_mode_name_string', mode_name_string)
-      
-   ## OVERLOADS ##
+    def __init__(self, arg):
+        if isinstance(arg, str):
+            #self._init_with_mode_name_string(arg)
+            mode_name_string = arg
+        elif isinstance(arg, Mode):
+            #self._init_with_mode_name_string(arg.mode_name_string)
+            mode_name_string = arg.mode_name_string
+        else:
+            raise TypeError('%s must be mode instance or mode name string.' % arg)
+        mdi_segment = self._init_with_mode_name_string(mode_name_string)
+        object.__setattr__(self, '_melodic_diatonic_interval_segment', mdi_segment)
+        object.__setattr__(self, '_mode_name_string', mode_name_string)
 
-   def __eq__(self, arg):
-      if not isinstance(arg, type(self)):
-         return False
-      return self.mode_name_string == arg.mode_name_string
+    ## OVERLOADS ##
 
-   def __len__(self):
-      return len(self.melodic_diatonic_interval_segment)
+    def __eq__(self, arg):
+        if not isinstance(arg, type(self)):
+            return False
+        return self.mode_name_string == arg.mode_name_string
 
-   def __ne__(self, arg):
-      return not self == arg
+    def __len__(self):
+        return len(self.melodic_diatonic_interval_segment)
 
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.mode_name_string)
+    def __ne__(self, arg):
+        return not self == arg
 
-   def __str__(self):
-      return self.mode_name_string
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, self.mode_name_string)
 
-   ## PRIVATE METHODS ##
+    def __str__(self):
+        return self.mode_name_string
 
-   def _init_with_mode_name_string(self, mode_name_string):
-      #mdi_segment = MelodicDiatonicIntervalSegment([ ])
-      mdi_segment = [ ]
-      m2 = MelodicDiatonicInterval('minor', 2)
-      M2 = MelodicDiatonicInterval('major', 2)
-      dorian = [M2, m2, M2, M2, M2, m2, M2]
-      if mode_name_string == 'dorian':
-         mdi_segment.extend(seqtools.rotate_sequence(dorian, 0))
-      elif mode_name_string == 'phrygian':
-         mdi_segment.extend(seqtools.rotate_sequence(dorian, -1))
-      elif mode_name_string == 'lydian':
-         mdi_segment.extend(seqtools.rotate_sequence(dorian, -2))
-      elif mode_name_string == 'mixolydian':
-         mdi_segment.extend(seqtools.rotate_sequence(dorian, -3))
-      elif mode_name_string in ('aeolian', 'minor'):
-         mdi_segment.extend(seqtools.rotate_sequence(dorian, -4))
-      elif mode_name_string == 'locrian':
-         mdi_segment.extend(seqtools.rotate_sequence(dorian, -5))
-      elif mode_name_string in ('ionian', 'major'):
-         mdi_segment.extend(seqtools.rotate_sequence(dorian, -6))
-      else:
-         raise ValueError("unknown mode name string '%s'." % mode_name_string)
-      #self._mode_name_string = mode_name_string
-      #self._melodic_diatonic_interval_segment = MelodicDiatonicIntervalSegment(mdi_segment)
-      return MelodicDiatonicIntervalSegment(mdi_segment)
+    ## PRIVATE METHODS ##
 
-   ## PUBLIC ATTRIBUTES ##
+    def _init_with_mode_name_string(self, mode_name_string):
+        #mdi_segment = MelodicDiatonicIntervalSegment([ ])
+        mdi_segment = [ ]
+        m2 = MelodicDiatonicInterval('minor', 2)
+        M2 = MelodicDiatonicInterval('major', 2)
+        dorian = [M2, m2, M2, M2, M2, m2, M2]
+        if mode_name_string == 'dorian':
+            mdi_segment.extend(seqtools.rotate_sequence(dorian, 0))
+        elif mode_name_string == 'phrygian':
+            mdi_segment.extend(seqtools.rotate_sequence(dorian, -1))
+        elif mode_name_string == 'lydian':
+            mdi_segment.extend(seqtools.rotate_sequence(dorian, -2))
+        elif mode_name_string == 'mixolydian':
+            mdi_segment.extend(seqtools.rotate_sequence(dorian, -3))
+        elif mode_name_string in ('aeolian', 'minor'):
+            mdi_segment.extend(seqtools.rotate_sequence(dorian, -4))
+        elif mode_name_string == 'locrian':
+            mdi_segment.extend(seqtools.rotate_sequence(dorian, -5))
+        elif mode_name_string in ('ionian', 'major'):
+            mdi_segment.extend(seqtools.rotate_sequence(dorian, -6))
+        else:
+            raise ValueError("unknown mode name string '%s'." % mode_name_string)
+        #self._mode_name_string = mode_name_string
+        #self._melodic_diatonic_interval_segment = MelodicDiatonicIntervalSegment(mdi_segment)
+        return MelodicDiatonicIntervalSegment(mdi_segment)
 
-   @property
-   def melodic_diatonic_interval_segment(self):
-      return self._melodic_diatonic_interval_segment
+    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def mode_name_string(self):
-      return self._mode_name_string
+    @property
+    def melodic_diatonic_interval_segment(self):
+        return self._melodic_diatonic_interval_segment
+
+    @property
+    def mode_name_string(self):
+        return self._mode_name_string
