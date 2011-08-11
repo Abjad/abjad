@@ -2,39 +2,39 @@ from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avo
 
 
 def make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
-   duration, proportions, direction = 'big-endian'):
-   '''.. versionadded:: 2.0
+    duration, proportions, direction = 'big-endian'):
+    '''.. versionadded:: 2.0
 
-   Make augmented tuplet from `duration` and `proportions` and avoid dots.
+    Make augmented tuplet from `duration` and `proportions` and avoid dots.
 
-   Return tupletted leaves strictly without dots when all `proportions` equal ``1``::
-   
-      abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
-      ... Fraction(3, 16), [1, 1, 1, -1, -1])
-      {@ 5:6 c'32, c'32, c'32, r32, r32 @}
+    Return tupletted leaves strictly without dots when all `proportions` equal ``1``::
 
-   Allow tupletted leaves to return with dots when some `proportions` do not equal ``1``::
+        abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
+        ... Fraction(3, 16), [1, 1, 1, -1, -1])
+        {@ 5:6 c'32, c'32, c'32, r32, r32 @}
 
-      abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
-      ... Fraction(3, 16), [1, -2, -2, 3, 3])
-      {@ 11:12 c'64, r32, r32, c'32., c'32. @}
+    Allow tupletted leaves to return with dots when some `proportions` do not equal ``1``::
 
-   Interpret nonassignable `proportions` according to `direction`::
+        abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
+        ... Fraction(3, 16), [1, -2, -2, 3, 3])
+        {@ 11:12 c'64, r32, r32, c'32., c'32. @}
 
-      abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
-      ... Fraction(3, 16), [5, -1, 5], direction = 'little-endian')
-      {@ 11:12 c'64, c'16, r64, c'64, c'16 @}
+    Interpret nonassignable `proportions` according to `direction`::
 
-   Reduce `proportions` relative to each other.
+        abjad> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
+        ... Fraction(3, 16), [5, -1, 5], direction = 'little-endian')
+        {@ 11:12 c'64, c'16, r64, c'64, c'16 @}
 
-   Interpret negative `proportions` as rests.
+    Reduce `proportions` relative to each other.
 
-   Return fixed-duration tuplet.
+    Interpret negative `proportions` as rests.
 
-   .. versionchanged:: 1.1.2
-      renamed ``divide.duration_into_arbitrary_augmentation_undotted( )`` to
-      ``tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots( )``.
-   '''
+    Return fixed-duration tuplet.
 
-   return _make_tuplet_from_duration_with_proportions_and_avoid_dots(
-       duration, proportions, 'augmentation', direction = direction)
+    .. versionchanged:: 1.1.2
+        renamed ``divide.duration_into_arbitrary_augmentation_undotted( )`` to
+        ``tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots( )``.
+    '''
+
+    return _make_tuplet_from_duration_with_proportions_and_avoid_dots(
+        duration, proportions, 'augmentation', direction = direction)
