@@ -3,5 +3,8 @@ from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFor
 
 class _TextScriptSpannerFormatInterface(_SpannerFormatInterface):
 
-   def __init__(self, spanner):
-      _SpannerFormatInterface.__init__(self, spanner)
+    def __init__(self, spanner):
+        _SpannerFormatInterface.__init__(self, spanner)
+
+
+

@@ -3,5 +3,8 @@ from abjad.tools.spannertools.TextSpanner._TextSpannerFormatInterface import _Te
 
 class _BracketSpannerFormatInterface(_TextSpannerFormatInterface):
 
-   def __init__(self, spanner):
-      _TextSpannerFormatInterface.__init__(self, spanner)
+    def __init__(self, spanner):
+        _TextSpannerFormatInterface.__init__(self, spanner)
+
+
+
