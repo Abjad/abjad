@@ -3,10 +3,11 @@ import py.test
 
 
 def test_Annotation___setattr___01( ):
-   '''Slots constrain annotation attributes.
-   '''
+    '''Slots constrain annotation attributes.
+    '''
 
-   annotation = marktools.Annotation('foo')
+    annotation = marktools.Annotation('foo')
 
-   assert py.test.raises(AttributeError, "annotation.foo = 'bar'")
+    assert py.test.raises(AttributeError, "annotation.foo = 'bar'")
+
 

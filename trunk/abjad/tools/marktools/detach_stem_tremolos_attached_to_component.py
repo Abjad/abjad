@@ -2,45 +2,46 @@ from abjad.tools.marktools.get_stem_tremolos_attached_to_component import get_st
 
 
 def detach_stem_tremolos_attached_to_component(component):
-   r'''.. versionadded:: 2.0
-   
-   Detach stem tremolos attached to `component`::
+    r'''.. versionadded:: 2.0
 
-      abjad> staff = Staff("c'8 d'8 e'8 f'8")
-      abjad> marktools.StemTremolo(16)(staff[0])
-      StemTremolo(16)(c'8)
+    Detach stem tremolos attached to `component`::
 
-   ::
+        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        abjad> marktools.StemTremolo(16)(staff[0])
+        StemTremolo(16)(c'8)
 
-      abjad> f(staff)
-      \new Staff {
-         c'8 :16
-         d'8
-         e'8
-         f'8
-      }
+    ::
 
-   ::
+        abjad> f(staff)
+        \new Staff {
+            c'8 :16
+            d'8
+            e'8
+            f'8
+        }
 
-      abjad> marktools.get_stem_tremolos_attached_to_component(staff[0])
-      (StemTremolo(16)(c'8),)
+    ::
 
-   ::
+        abjad> marktools.get_stem_tremolos_attached_to_component(staff[0])
+        (StemTremolo(16)(c'8),)
 
-      abjad> marktools.detach_stem_tremolos_attached_to_component(staff[0])
-      (StemTremolo(16),)
+    ::
 
-   ::
+        abjad> marktools.detach_stem_tremolos_attached_to_component(staff[0])
+        (StemTremolo(16),)
 
-      abjad> marktools.get_stem_tremolos_attached_to_component(staff[0])
-      ()
-      
-   Return tuple or zero or more stem tremolos detached.
-   '''
+    ::
 
-   stem_tremolos = [ ]
-   for stem_tremolo in get_stem_tremolos_attached_to_component(component):
-      stem_tremolo.detach_mark( )
-      stem_tremolos.append(stem_tremolo)
+        abjad> marktools.get_stem_tremolos_attached_to_component(staff[0])
+        ()
 
-   return tuple(stem_tremolos)
+    Return tuple or zero or more stem tremolos detached.
+    '''
+
+    stem_tremolos = [ ]
+    for stem_tremolo in get_stem_tremolos_attached_to_component(component):
+        stem_tremolo.detach_mark( )
+        stem_tremolos.append(stem_tremolo)
+
+    return tuple(stem_tremolos)
+

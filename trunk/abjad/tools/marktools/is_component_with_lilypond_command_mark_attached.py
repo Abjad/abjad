@@ -2,33 +2,34 @@ from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component impo
 
 
 def is_component_with_lilypond_command_mark_attached(expr, command_name_string = None):
-   '''True when `expr` is component with LilyPond command mark attached::
+    '''True when `expr` is component with LilyPond command mark attached::
 
-      abjad> note = Note("c'4")
-      abjad> marktools.LilyPondCommandMark('stemUp')(note)
-      LilyPondCommandMark('stemUp')(c'4)
+        abjad> note = Note("c'4")
+        abjad> marktools.LilyPondCommandMark('stemUp')(note)
+        LilyPondCommandMark('stemUp')(c'4)
 
-   ::
+    ::
 
-      abjad> marktools.is_component_with_lilypond_command_mark_attached(note)
-      True
+        abjad> marktools.is_component_with_lilypond_command_mark_attached(note)
+        True
 
-   False otherwise::
+    False otherwise::
 
-      abjad> note = Note("c'4")
-   
-   ::
+        abjad> note = Note("c'4")
 
-      abjad> marktools.is_component_with_lilypond_command_mark_attached(note)
-      False
+    ::
 
-   Return boolean.
-   '''
-   from abjad.tools.componenttools._Component import _Component
+        abjad> marktools.is_component_with_lilypond_command_mark_attached(note)
+        False
 
-   if isinstance(expr, _Component):
-      for mark in get_lilypond_command_marks_attached_to_component(expr):
-         if mark.command_name_string == command_name_string or command_name_string is None:
-            return True
-      
-   return False
+    Return boolean.
+    '''
+    from abjad.tools.componenttools._Component import _Component
+
+    if isinstance(expr, _Component):
+        for mark in get_lilypond_command_marks_attached_to_component(expr):
+            if mark.command_name_string == command_name_string or command_name_string is None:
+                return True
+
+    return False
+
