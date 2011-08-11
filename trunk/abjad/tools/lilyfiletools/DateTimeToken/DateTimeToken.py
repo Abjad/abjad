@@ -3,31 +3,31 @@ import time
 
 
 class DateTimeToken(_Immutable):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Date time token::
+    Date time token::
 
-      abjad> lilyfiletools.DateTimeToken( )
-      DateTimeToken(...)
+        abjad> lilyfiletools.DateTimeToken( )
+        DateTimeToken(...)
 
-   Return date / time token.
-   '''
+    Return date / time token.
+    '''
 
-   ## OVERLOADS ##
+    ## OVERLOADS ##
 
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.format)
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, self.format)
 
-   ## PUBLIC ATTRIBUTES ##
+    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def format(self):
-      '''Format contribution of date time token::
+    @property
+    def format(self):
+        '''Format contribution of date time token::
 
-         abjad> lilyfiletools.DateTimeToken( ).format
-         '...'
+            abjad> lilyfiletools.DateTimeToken( ).format
+            '...'
 
-      Return string.
-      '''
-      current_time_string = time.strftime('%Y-%m-%d %H:%M')
-      return current_time_string
+        Return string.
+        '''
+        current_time_string = time.strftime('%Y-%m-%d %H:%M')
+        return current_time_string

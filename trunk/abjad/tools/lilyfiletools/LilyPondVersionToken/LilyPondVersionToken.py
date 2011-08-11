@@ -3,30 +3,30 @@ from abjad.tools.cfgtools.get_lilypond_version_string import get_lilypond_versio
 
 
 class LilyPondVersionToken(_Immutable):
-   r'''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-   LilyPond version token::
+    LilyPond version token::
 
-      abjad> lilyfiletools.LilyPondVersionToken( )
-      LilyPondVersionToken(\version "...")
-   
-   Return LilyPond version token.
-   '''
+        abjad> lilyfiletools.LilyPondVersionToken( )
+        LilyPondVersionToken(\version "...")
 
-   ## OVERLOADS ##
+    Return LilyPond version token.
+    '''
 
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.format)
+    ## OVERLOADS ##
 
-   ## PUBLIC ATTRIBUTES ##
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, self.format)
 
-   @property
-   def format(self):
-      r'''Format contribution of LilyPond version token::
+    ## PUBLIC ATTRIBUTES ##
 
-         abjad> lilyfiletools.LilyPondVersionToken( ).format
-         '\\version "..."'
+    @property
+    def format(self):
+        r'''Format contribution of LilyPond version token::
 
-      Return string.
-      '''
-      return r'\version "%s"' % get_lilypond_version_string( )
+            abjad> lilyfiletools.LilyPondVersionToken( ).format
+            '\\version "..."'
+
+        Return string.
+        '''
+        return r'\version "%s"' % get_lilypond_version_string( )

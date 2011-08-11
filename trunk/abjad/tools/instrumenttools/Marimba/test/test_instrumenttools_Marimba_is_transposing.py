@@ -3,6 +3,6 @@ from abjad import *
 
 def test_instrumenttools_Marimba_is_transposing_01( ):
 
-   marimba = instrumenttools.Marimba( )
+    marimba = instrumenttools.Marimba( )
 
-   assert not marimba.is_transposing
+    assert not marimba.is_transposing

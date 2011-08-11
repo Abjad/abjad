@@ -4,31 +4,31 @@ from abjad.tools.cfgtools.get_lilypond_version_string import get_lilypond_versio
 
 
 class LilyPondLanguageToken(_Immutable):
-   r'''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-   LilyPond language token::
+    LilyPond language token::
 
-      abjad> lilyfiletools.LilyPondLanguageToken( )
-      LilyPondLanguageToken(\include "english.ly")
+        abjad> lilyfiletools.LilyPondLanguageToken( )
+        LilyPondLanguageToken(\include "english.ly")
 
-   Return LilyPond language token.
-   '''
+    Return LilyPond language token.
+    '''
 
-   ## OVERLOADS ##
+    ## OVERLOADS ##
 
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.format)
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, self.format)
 
-   ## PUBLIC ATTRIBUTES ##
+    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def format(self):
-      r'''Format contribution of LilyPond language token::
+    @property
+    def format(self):
+        r'''Format contribution of LilyPond language token::
 
-         abjad> lilyfiletools.LilyPondLanguageToken( ).format
-         '\\include "english.ly"'
+            abjad> lilyfiletools.LilyPondLanguageToken( ).format
+            '\\include "english.ly"'
 
-      Return string.
-      '''
-      lilypond_language = _read_config_file( )['lilypond_lang']
-      return r'\include "%s.ly"' % lilypond_language.lower( )
+        Return string.
+        '''
+        lilypond_language = _read_config_file( )['lilypond_lang']
+        return r'\include "%s.ly"' % lilypond_language.lower( )

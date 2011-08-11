@@ -3,13 +3,13 @@ from abjad import *
 
 def test_PaperBlock_minimal_page_breaking_01( ):
 
-   pb = lilyfiletools.PaperBlock( )
-   pb.minimal_page_breaking = True
+    pb = lilyfiletools.PaperBlock( )
+    pb.minimal_page_breaking = True
 
-   r'''
-   \paper {
-           #(define page-breaking ly:minimal-breaking)
-   }
-   '''
+    r'''
+    \paper {
+        #(define page-breaking ly:minimal-breaking)
+    }
+    '''
 
-   assert pb.format == '\\paper {\n\t#(define page-breaking ly:minimal-breaking)\n}'
+    assert pb.format == '\\paper {\n\t#(define page-breaking ly:minimal-breaking)\n}'

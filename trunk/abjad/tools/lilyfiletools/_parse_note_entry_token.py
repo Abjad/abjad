@@ -10,36 +10,36 @@ import re
 
 
 def _parse_note_entry_token(note_entry_token):
-   '''.. versionadded:: 2.0
+    '''.. versionadded:: 2.0
 
-   Parse simple LilyPond `note_entry_token`.
+    Parse simple LilyPond `note_entry_token`.
 
-   Return leaf.
-   '''
+    Return leaf.
+    '''
 
-   if not isinstance(note_entry_token, str):
-      raise TypeError('LilyPond input token must be string.')
+    if not isinstance(note_entry_token, str):
+        raise TypeError('LilyPond input token must be string.')
 
-   pattern = _lilypond_leaf_regex
-   match = re.match(pattern, note_entry_token)
-   if match is None:
-      ## TODO: make this work; change outer loop. ##
-      #if note_entry_token.startswith('<'):
-      #   chord = _parse_chord_entry_token(note_entry_token)
-      #   return chord
-      message = 'incorrect note entry token: %s.\n' % note_entry_token
-      raise InputSpecificationError(message)
+    pattern = _lilypond_leaf_regex
+    match = re.match(pattern, note_entry_token)
+    if match is None:
+        ## TODO: make this work; change outer loop. ##
+        #if note_entry_token.startswith('<'):
+        #   chord = _parse_chord_entry_token(note_entry_token)
+        #   return chord
+        message = 'incorrect note entry token: %s.\n' % note_entry_token
+        raise InputSpecificationError(message)
 
-   name, ticks, duration_body, dots = match.groups( )
-   duration_string = duration_body + dots
+    name, ticks, duration_body, dots = match.groups( )
+    duration_string = duration_body + dots
 
-   if name == 'r':
-      return Rest(duration_string)
-   elif name == 'R':
-      return MultiMeasureRest(duration_string)
-   elif name == 's':
-      return Skip(duration_string)
-   else:
-      pitch_string = name + ticks
-      pitch = pitchtools.NamedChromaticPitch(pitch_string)
-      return Note(pitch, duration_string)
+    if name == 'r':
+        return Rest(duration_string)
+    elif name == 'R':
+        return MultiMeasureRest(duration_string)
+    elif name == 's':
+        return Skip(duration_string)
+    else:
+        pitch_string = name + ticks
+        pitch = pitchtools.NamedChromaticPitch(pitch_string)
+        return Note(pitch, duration_string)
