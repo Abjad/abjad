@@ -38,7 +38,7 @@ statements.append(s)
 #code = ['spannertools.MetricGridSpanner(s, [(4, 4), (4, 4), (4, 4), (11, 16)])',
 #         's.meter.clear( )', 's.bar_line.clear( )', "show(s, 'tirnaveni')"]
 code = ['spannertools.MetricGridSpanner(s, [(4, 4), (4, 4), (4, 4), (11, 16)])',
-            del(s.override.time_signature), del(s.override.bar_line), "show(s, 'tirnaveni')"]
+            'del(s.override.time_signature)', 'del(s.override.bar_line)', "show(s, 'tirnaveni')"]
 text = "Let's then apply a MetricGrid spanner on our staff."
 s = Statement(text, code)
 statements.append(s)
