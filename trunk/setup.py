@@ -7,7 +7,7 @@ use_setuptools( ) ### this must come before setup import
 from setuptools import setup, find_packages
 
 setup(name = 'Abjad', 
-      version = '1.1.1', 
+      version = '2.0',
       description = 'Abjad is a Python API for Formalized Score Control.',
       long_description = 'Abjad is a Python API for Formalized Score Control.',
       author = 'Victor Adan and Trevor Baca',
@@ -19,7 +19,7 @@ setup(name = 'Abjad',
       #scripts = ['ez_setup.py'],
       include_package_data = True, ### include all file types under abjad.
       entry_points = { 'console_scripts':[
-         'abj = abjad.cfg._run_abjad:_run_abjad',
+         'abj = abjad.tools.iotools._run_abjad:_run_abjad',
          'abjad-book = abjad.book.abjad_book:_abjad_book',
          ] },
       )
