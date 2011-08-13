@@ -18,7 +18,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
         pitch_classes = [pitchtools.NumberedChromaticPitchClass(x) for x in pitch_class_tokens]
         return tuple.__new__(self, pitch_classes)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s([%s])' % (self.__class__.__name__, self._repr_string)
@@ -26,7 +26,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
     def __str__(self):
         return '<%s>' % self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -36,7 +36,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
     def _repr_string(self):
         return self._format_string
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def inversion_equivalent_chromatic_interval_class_segment(self):
@@ -66,7 +66,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
         from abjad.tools import pitchtools
         return pitchtools.NumberedChromaticPitchClassSet(self)
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def alpha(self):
         '''Morris alpha transform of numbered chromatic pitch-class segment::

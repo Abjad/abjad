@@ -45,7 +45,7 @@ class Note(_Leaf):
         self.note_head = pitch
         self._initialize_keyword_values(**kwargs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     #__deepcopy__ = __copy__
 
@@ -55,7 +55,7 @@ class Note(_Leaf):
         result.extend(_Leaf.__getnewargs__(self))
         return tuple(result)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _body(self):
@@ -70,7 +70,7 @@ class Note(_Leaf):
     def _compact_representation(self):
         return self._body[0]
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def fingered_pitch(self):

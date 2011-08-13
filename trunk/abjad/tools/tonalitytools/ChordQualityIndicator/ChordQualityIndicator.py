@@ -29,12 +29,12 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
         tuple.__setattr__(new, '_quality_string', quality_string)
         return new
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self._title_case_name, self._format_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _acceptable_ninth_qualities(self):
@@ -58,7 +58,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
         return '%s%sIn%s' % (self._quality_string.title( ),
             self.extent_name.title( ), self._chord_position_string)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
 #   def _init_ninth(self, quality_string):
 #      if quality_string == 'dominant':
@@ -144,7 +144,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 #      else:
 #         raise ValueError('unknown inversion indicator: %s' % inversion)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def cardinality(self):

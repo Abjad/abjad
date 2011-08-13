@@ -1,7 +1,7 @@
 from abjad.tools.marktools.Mark import Mark
 
 
-## TODO: extend LilyPond command marks to attach to spanners.
+### TODO: extend LilyPond command marks to attach to spanners.
 class LilyPondCommandMark(Mark):
     r'''.. versionadded:: 2.0
 
@@ -35,7 +35,7 @@ class LilyPondCommandMark(Mark):
         self._command_name_string = command_name_string
         self._format_slot = format_slot
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self._command_name_string)
@@ -47,13 +47,13 @@ class LilyPondCommandMark(Mark):
             return self._command_name_string == arg._command_name_string
         return False
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
         return repr(self.command_name_string)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def command_name_string( ):

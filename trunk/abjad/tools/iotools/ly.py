@@ -3,7 +3,7 @@ from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_n
 import os
 
 
-## TODO: Open operating-specific text editor instead of vi. ##
+### TODO: Open operating-specific text editor instead of vi. ###
 
 def ly(target = -1):
     r'''Open the last LilyPond output file in ``vi``::

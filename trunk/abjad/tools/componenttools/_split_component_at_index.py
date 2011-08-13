@@ -20,9 +20,9 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
     from abjad.tools.tuplettools.Tuplet import Tuplet
     from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
-    ## convenience leaf index split definition
+    ### convenience leaf index split definition
     if isinstance(component, _Leaf):
-        #raise Exception ## debug
+        #raise Exception ### debug
         if i <= 0:
             if spanners == 'fractured':
                 spannertools.fracture_all_spanners_attached_to_component(component, direction = 'left')
@@ -32,15 +32,15 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
                 spannertools.fracture_all_spanners_attached_to_component(component, direction = 'right')
             return component, None
 
-    ## remember container multiplier, if any
+    ### remember container multiplier, if any
     #container_multiplier = getattr(component.duration, 'multiplier', None)
     container_multiplier = getattr(component, 'multiplier', None)
 
-    ## partition music of input container
+    ### partition music of input container
     left_music = component[:i]
     right_music = component[i:]
 
-    ## instantiate new left and right containers
+    ### instantiate new left and right containers
     if isinstance(component, Measure):
         meter_denominator = contexttools.get_effective_time_signature(component).denominator
         left_duration = sum([x.prolated_duration for x in left_music])
@@ -69,14 +69,14 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
         set_container_multiplier(left, container_multiplier)
         set_container_multiplier(right, container_multiplier)
 
-    ## save left and right halves together for iteration
+    ### save left and right halves together for iteration
     halves = [left, right]
     nonempty_halves = [half for half in halves if len(half)]
 
-    ## give attached spanners to children
+    ### give attached spanners to children
     spannertools.move_spanners_from_component_to_children_of_component(component)
 
-    ## incorporate left and right parents in score, if possible
+    ### incorporate left and right parents in score, if possible
     parent, start, stop = get_parent_and_start_stop_indices_of_components([component])
     if parent is not None:
         parent._music[start:stop+1] = nonempty_halves
@@ -86,11 +86,11 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
         left._parentage._switch(None)
         right._parentage._switch(None)
 
-    ## fracture spanners, if requested
+    ### fracture spanners, if requested
     if spanners == 'fractured':
         if len(halves) == 2:
             #left.spanners.fracture(direction = 'right')
             spannertools.fracture_all_spanners_attached_to_component(left, direction = 'right')
 
-    ## return new left and right halves
+    ### return new left and right halves
     return left, right

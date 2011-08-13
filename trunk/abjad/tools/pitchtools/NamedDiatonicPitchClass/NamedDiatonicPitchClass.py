@@ -35,7 +35,7 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass):
         object.__setattr__(self, '_format_string', repr(diatonic_pitch_class_name))
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return abs(self.numbered_diatonic_pitch_class)
@@ -52,7 +52,7 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass):
     def __str__(self):
         return self._diatonic_pitch_class_name
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def numbered_diatonic_pitch_class(self):

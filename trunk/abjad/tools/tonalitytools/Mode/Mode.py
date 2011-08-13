@@ -25,7 +25,7 @@ class Mode(_Immutable):
         object.__setattr__(self, '_melodic_diatonic_interval_segment', mdi_segment)
         object.__setattr__(self, '_mode_name_string', mode_name_string)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if not isinstance(arg, type(self)):
@@ -44,7 +44,7 @@ class Mode(_Immutable):
     def __str__(self):
         return self.mode_name_string
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_with_mode_name_string(self, mode_name_string):
         #mdi_segment = MelodicDiatonicIntervalSegment([ ])
@@ -72,7 +72,7 @@ class Mode(_Immutable):
         #self._melodic_diatonic_interval_segment = MelodicDiatonicIntervalSegment(mdi_segment)
         return MelodicDiatonicIntervalSegment(mdi_segment)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def melodic_diatonic_interval_segment(self):

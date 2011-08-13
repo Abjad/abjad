@@ -43,7 +43,7 @@ class ResidueClass(_BaseResidueClass, _Immutable):
         else:
             raise ValueError('unknown init arguments.')
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, exp):
         if isinstance(exp, ResidueClass):
@@ -85,15 +85,15 @@ class ResidueClass(_BaseResidueClass, _Immutable):
     def __repr__(self):
         return '%s(%i, %i)' % (self.__class__.__name__, self.modulo, self.residue)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_by_rc_instance(self, rc):
         if not isinstance(rc, ResidueClass):
             raise TypeError('must be rc instance.')
         #self.modulo = rc.modulo # period
         #self.residue = rc.residue # phase
-        object.__setattr__(self, '_modulo', rc.modulo) ## period
-        object.__setattr__(self, '_residue', rc.residue) ## phase
+        object.__setattr__(self, '_modulo', rc.modulo) ### period
+        object.__setattr__(self, '_residue', rc.residue) ### phase
 
     def _init_by_modulo_and_residue(self, modulo, residue):
         if not 0 < modulo:
@@ -102,10 +102,10 @@ class ResidueClass(_BaseResidueClass, _Immutable):
             raise ValueError('abs(residue) must be < modulo')
         #self.modulo = modulo # period
         #self.residue = residue # phase
-        object.__setattr__(self, '_modulo', modulo) ## period
-        object.__setattr__(self, '_residue', residue) ## phase
+        object.__setattr__(self, '_modulo', modulo) ### period
+        object.__setattr__(self, '_residue', residue) ### phase
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def modulo(self):
@@ -119,7 +119,7 @@ class ResidueClass(_BaseResidueClass, _Immutable):
         '''
         return self._residue
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def get_boolean_train(self, *min_max):
         '''Returns a boolean train with 0s mapped to the integers

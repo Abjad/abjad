@@ -73,6 +73,6 @@ def iterate_vertical_moments_forward_in_expr(governor):
     '''
     from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
-    ## OPTIMIZED DROP-IN REPLACEMENT ##
+    ### OPTIMIZED DROP-IN REPLACEMENT ###
     for x in _yield_vertical_moments_forward_in_expr(governor):
         yield x

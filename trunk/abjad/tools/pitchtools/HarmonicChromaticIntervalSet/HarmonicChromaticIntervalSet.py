@@ -20,7 +20,7 @@ class HarmonicChromaticIntervalSet(_IntervalSet):
             hcis.append(hci)
         return frozenset.__new__(self, hcis)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self)
@@ -31,13 +31,13 @@ class HarmonicChromaticIntervalSet(_IntervalSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return ', '.join([str(x) for x in sorted(self.harmonic_chromatic_intervals)])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     #def intervals(self):

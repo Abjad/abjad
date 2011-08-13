@@ -5,7 +5,7 @@ class _Flageolet(object):
 
     __slots__ = ( )
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def suono_reale(self):

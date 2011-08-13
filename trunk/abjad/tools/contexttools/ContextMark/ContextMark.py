@@ -30,14 +30,14 @@ class ContextMark(Mark):
                 raise TypeError('target context "%s" must be context class.' % target_context)
         self._target_context = target_context
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(target_context = self._target_context)
 
     __deepcopy__ = __copy__
 
-    ## MANGLED METHODS ##
+    ### MANGLED METHODS ###
 
     def __bind_correct_effective_context(self, correct_effective_context):
         self.__unbind_effective_context( )
@@ -61,7 +61,7 @@ class ContextMark(Mark):
                 pass
         self._effective_context = None
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _target_context_name(self):
@@ -70,7 +70,7 @@ class ContextMark(Mark):
         else:
             return type(self._target_context).__name__
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _find_correct_effective_context(self):
         from abjad.tools import componenttools
@@ -100,7 +100,7 @@ class ContextMark(Mark):
         if current_effective_context is not correct_effective_context:
             self.__bind_correct_effective_context(correct_effective_context)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def effective_context(self):
@@ -140,7 +140,7 @@ class ContextMark(Mark):
         '''
         return self._target_context
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def attach_mark(self, start_component):
         '''Make sure no context mark of same type is already attached to start component.

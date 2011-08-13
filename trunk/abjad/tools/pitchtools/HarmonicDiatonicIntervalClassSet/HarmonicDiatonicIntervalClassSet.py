@@ -21,7 +21,7 @@ class HarmonicDiatonicIntervalClassSet(_IntervalClassSet):
         hdics = [pitchtools.HarmonicDiatonicIntervalClass(x) for x in interval_tokens]
         return frozenset.__new__(self, hdics)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self)
@@ -32,13 +32,13 @@ class HarmonicDiatonicIntervalClassSet(_IntervalClassSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return ' '.join([str(x) for x in sorted(self.harmonic_diatonic_interval_classes)])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     #def interval_classes(self):

@@ -42,8 +42,8 @@ def yield_all_compositions_of_integer(n):
 
     from abjad.tools.seqtools.yield_all_permutations_of_sequence import yield_all_permutations_of_sequence
 
-    ## Finds small values of n easily.
-    ## Takes ca. 4 seconds for n = 17.
+    ### Finds small values of n easily.
+    ### Takes ca. 4 seconds for n = 17.
 
     compositions = [ ]
 

@@ -4,9 +4,9 @@ from abjad.interfaces._Interface import _Interface
 
 class _ComponentFormatter(_Interface):
 
-    ## TODO: Implement _ComponentFormattNumberInterface ##
-    ## The 'number' attribute causes only leaf numbering but attaches
-    ## to _ComponentFormatter so that containers can number leaves.
+    ### TODO: Implement _ComponentFormattNumberInterface ###
+    ### The 'number' attribute causes only leaf numbering but attaches
+    ### to _ComponentFormatter so that containers can number leaves.
 
     __slots__ = ('_slots', )
 
@@ -15,7 +15,7 @@ class _ComponentFormatter(_Interface):
         self._slots = _ComponentFormatterSlotsInterface(self)
         #self.number = False
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_pieces(self):
@@ -29,7 +29,7 @@ class _ComponentFormatter(_Interface):
         result.extend(self.slots.contributions('slot_7'))
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):
@@ -39,7 +39,7 @@ class _ComponentFormatter(_Interface):
     def slots(self):
         return self._slots
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def report(self, verbose = False, output = 'screen'):
         '''Report format contributions.'''

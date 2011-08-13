@@ -53,11 +53,11 @@ def partition_integer_by_ratio(n, ratio):
 
     result = result[1:]
 
-    ## adjust signs of output elements
+    ### adjust signs of output elements
     if sign(n) == -1:
         result = [-x for x in result]
     ratio_signs = [sign(x) for x in ratio]
     result = [pair[0] * pair[1] for pair in zip(ratio_signs, result)]
 
-    ## return result
+    ### return result
     return result

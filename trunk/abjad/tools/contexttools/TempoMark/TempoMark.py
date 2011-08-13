@@ -60,7 +60,7 @@ class TempoMark(ContextMark):
         object.__setattr__(self, '_duration', duration)
         object.__setattr__(self, '_units_per_minute', units_per_minute)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __add__(self, expr):
         if isinstance(expr, type(self)):
@@ -106,7 +106,7 @@ class TempoMark(ContextMark):
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
@@ -122,7 +122,7 @@ class TempoMark(ContextMark):
         '''Dotted numeral and units per minute together around equal sign.'''
         return '%s=%s' % (self._dotted, self.units_per_minute)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def duration( ):

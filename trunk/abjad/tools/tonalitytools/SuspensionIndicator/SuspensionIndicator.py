@@ -30,7 +30,7 @@ class SuspensionIndicator(_Immutable):
         object.__setattr__(self, '_start', start)
         object.__setattr__(self, '_stop', stop)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -54,11 +54,11 @@ class SuspensionIndicator(_Immutable):
         else:
             return ''
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _symbolic_string_regex = re.compile(r'([#|b]?\d+)-([#|b]?\d+)')
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_by_pair(self, pair):
         start, stop = pair
@@ -89,7 +89,7 @@ class SuspensionIndicator(_Immutable):
         #self._stop = None
         return None, None
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def chord_name_string(self):

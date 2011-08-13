@@ -27,7 +27,7 @@ def format_input_lines_as_doc_string(input_lines, tab_width = 3):
                 print tab + tab
         elif line.startswith('f('):
             print _replace_line_with_format(tab, most, line)
-        elif line.endswith('##'):
+        elif line.endswith('###'):
             _handle_repr_line(tab, most, line)
             most += line + '\n'
         else:

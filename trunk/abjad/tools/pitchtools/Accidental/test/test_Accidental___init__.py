@@ -41,7 +41,7 @@ def test_Accidental___init___06( ):
 
 def test_Accidental___init___07( ):
     '''Init with symbolic string.'''
-    assert pitchtools.Accidental('##') == pitchtools.Accidental('double sharp')
+    assert pitchtools.Accidental('###') == pitchtools.Accidental('double sharp')
     assert pitchtools.Accidental('#') == pitchtools.Accidental('sharp')
     assert pitchtools.Accidental('b') == pitchtools.Accidental('flat')
     assert pitchtools.Accidental('bb') == pitchtools.Accidental('double flat')

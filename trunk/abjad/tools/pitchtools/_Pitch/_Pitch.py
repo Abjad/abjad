@@ -10,7 +10,7 @@ class _Pitch(_Immutable, _UnaryComparator):
 
     __slots__ = ('_format_string', )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         raise NotImplementedError('TODO: all pitch-related classes must implement abs.')

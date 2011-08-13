@@ -28,7 +28,7 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
         object.__setattr__(self, '_number', _number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return type(self)(abs(self.number))
@@ -57,13 +57,13 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
     def __str__(self):
         return '%s' % self.number
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return self.number
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     #def number(self):

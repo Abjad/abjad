@@ -44,7 +44,7 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_02( ):
 def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_03( ):
     '''Pentatonic scale can be rotated.'''
 
-    ## Interval sequence 3,2,2,3,2
+    ### Interval sequence 3,2,2,3,2
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(0, 1, 1) == 1
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(1, 1, 1) == 4
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(2, 1, 1) == 6
@@ -55,7 +55,7 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_03( ):
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(-1, 1, 1) == -1
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(-2, 1, 1) == -4
 
-    ## Interval sequence 2,2,3,2,3
+    ### Interval sequence 2,2,3,2,3
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(0, 2, 2) == 2
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(1, 2, 2) == 4
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(2, 2, 2) == 6

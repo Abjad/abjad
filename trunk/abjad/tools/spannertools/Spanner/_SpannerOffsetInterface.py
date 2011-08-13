@@ -7,7 +7,7 @@ class _SpannerOffsetInterface(_StrictComparator):
     def __init__(self, client):
         self._client = client
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def start(self):

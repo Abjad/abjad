@@ -36,7 +36,7 @@ class MarkupCommand(_Immutable):
     Markup commands are immutable.
     '''
 
-    ## TODO: Implement a multi-line, indented version for human readability. ##
+    ### TODO: Implement a multi-line, indented version for human readability. ###
 
     __slots__ = ('_args', '_is_braced', '_command', '_markup')
 
@@ -63,7 +63,7 @@ class MarkupCommand(_Immutable):
         else:
             object.__setattr__(self, '_markup', markup)
 
-    ## OVERRIDES ##
+    ### OVERRIDES ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -80,7 +80,7 @@ class MarkupCommand(_Immutable):
     def __str__(self):
         return self.format
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_pieces(self):
@@ -124,7 +124,7 @@ class MarkupCommand(_Immutable):
             parts.append('}')
         return parts
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def args(self):
@@ -159,7 +159,7 @@ class MarkupCommand(_Immutable):
         r'''Read-only tuple of markup command's child markup.'''
         return self._markup
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def report(self, output = 'screen'):
         '''Report, in an indented human-readable format, the structure of a formatted MarkupCommand.'''

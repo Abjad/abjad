@@ -41,7 +41,7 @@ class Measure(Container):
         time_signature.attach_mark(self)
         self._initialize_keyword_values(**kwargs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __add__(self, arg):
         '''Add two measures together in-score or outside-of-score.
@@ -52,15 +52,15 @@ class Measure(Container):
         new = measuretools.fuse_measures([self, arg])
         return new
 
-    ## essentially the same as Container.__copy__.
-    ## the definition given here adds one line to remove
-    ## time signature immediately after instantiation
-    ## because the mark-copying code will then provide time signature.
+    ### essentially the same as Container.__copy__.
+    ### the definition given here adds one line to remove
+    ### time signature immediately after instantiation
+    ### because the mark-copying code will then provide time signature.
     def __copy__(self, *args):
         from abjad.tools import marktools
         from abjad.tools import markuptools
         new = type(self)(*self.__getnewargs__( ))
-        ## only this line differs from Container.__copy__
+        ### only this line differs from Container.__copy__
         contexttools.detach_time_signature_mark_attached_to_component(new)
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
@@ -126,7 +126,7 @@ class Measure(Container):
         else:
             return '| |'
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _compact_representation(self):
@@ -135,7 +135,7 @@ class Measure(Container):
         '''
         return '|%s(%s)|' % (contexttools.get_effective_time_signature(self), len(self))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def is_binary(self):

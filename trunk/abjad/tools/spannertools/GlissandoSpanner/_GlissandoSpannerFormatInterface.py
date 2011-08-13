@@ -8,7 +8,7 @@ class _GlissandoSpannerFormatInterface(_SpannerFormatInterface):
         '''Bind to spanner and initialize as type of spanner format interface.'''
         _SpannerFormatInterface.__init__(self, spanner)
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def _right(self, leaf):
         '''Spanner contribution to right of leaf.'''

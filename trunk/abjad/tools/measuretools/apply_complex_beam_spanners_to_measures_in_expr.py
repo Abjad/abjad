@@ -60,15 +60,15 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
     Return list of beams created.
     '''
 
-    ## init beams created
+    ### init beams created
     beams_created = [ ]
 
-    ## apply complex beam spanners to measures in expr
+    ### apply complex beam spanners to measures in expr
     for measure in iterate_measures_forward_in_expr(expr):
         beam = apply_complex_beam_spanner_to_measure(measure)
         beams_created.append(beam)
 
-    ## return beams created
+    ### return beams created
     return beams_created
 
 

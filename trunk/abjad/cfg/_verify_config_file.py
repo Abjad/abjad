@@ -11,9 +11,9 @@ def _verify_config_file( ):
         f.close( )
         user_dict = _config_file_to_dict( )
 
-        ## TODO: This block overwrites user-specific config file additions like 'foo = 99' ##
-        ##         Fix and allow user-specific config file additions?                                ##
-        ##         Or remove the message about old keys being maintained?                          ##
+        ### TODO: This block overwrites user-specific config file additions like 'foo = 99' ###
+        ###         Fix and allow user-specific config file additions?                                ###
+        ###         Or remove the message about old keys being maintained?                          ###
 
         default_keyset = set(_config_file_dict.keys( ))
         user_keyset = set(user_dict.keys( ))

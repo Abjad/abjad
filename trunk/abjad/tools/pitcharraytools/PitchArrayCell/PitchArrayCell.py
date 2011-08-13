@@ -94,7 +94,7 @@ class PitchArrayCell(_StrictComparator):
         self._pitches.extend(pitches)
         self._width = width
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (
@@ -103,7 +103,7 @@ class PitchArrayCell(_StrictComparator):
     def __str__(self):
         return self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _composite_column_width(self):
@@ -164,7 +164,7 @@ class PitchArrayCell(_StrictComparator):
         else:
             return ''
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _parse_cell_token(self, cell_token):
         if cell_token is None:
@@ -214,7 +214,7 @@ class PitchArrayCell(_StrictComparator):
         parent_row.remove(self)
         return self
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def column_indices(self):
@@ -331,7 +331,7 @@ class PitchArrayCell(_StrictComparator):
     def width(self):
         return self._width
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def matches_cell(self, arg):
         if isinstance(arg, PitchArrayCell):

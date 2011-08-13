@@ -115,8 +115,8 @@ def copy_components_and_remove_all_spanners(components, n = 1):
 #
 #   _reattach_blinded_marks_to_components_in_expr(result)
 
-    ## TODO: function can be rewritten as only the following two statements
-    ##         once the other parts of the copy regime are implemented.
+    ### TODO: function can be rewritten as only the following two statements
+    ###         once the other parts of the copy regime are implemented.
     result = copy.deepcopy(components)
 
     for i in range(n - 1):

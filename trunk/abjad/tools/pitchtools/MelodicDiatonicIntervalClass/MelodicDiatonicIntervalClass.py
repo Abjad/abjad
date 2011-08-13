@@ -53,7 +53,7 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
         object.__setattr__(self, '_quality_string', quality_string)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -73,7 +73,7 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
         return '%s%s%s' % (self.direction_symbol,
             self._quality_abbreviation, abs(self.number))
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _full_name(self):
@@ -83,7 +83,7 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
         strings.extend([self._quality_string, self._interval_string])
         return ' '.join(strings)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def direction_number(self):

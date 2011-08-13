@@ -1,4 +1,4 @@
-## TODO: implement corresponding little-endian function
+### TODO: implement corresponding little-endian function
 def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
     r'''.. versionadded:: 1.1.1
 
@@ -50,21 +50,21 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
     from abjad.tools import tietools
     from abjad.tools.leaftools.fuse_leaves_big_endian import fuse_leaves_big_endian
 
-    ## check input
+    ### check input
     if not tietools.is_tie_chain(tie_chain):
         raise TypeError('must be tie chain.')
 
-    ## init result
+    ### init result
     result = [ ]
 
-    ## group leaves in tie chain by parent
+    ### group leaves in tie chain by parent
     parts = tietools.group_leaves_in_tie_chain_by_immediate_parents(tie_chain)
 
-    ## fuse leaves in each part
+    ### fuse leaves in each part
     for part in parts:
         result.append(fuse_leaves_big_endian(part))
 
-    ## return result
+    ### return result
     return result
 
 

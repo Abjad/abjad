@@ -21,12 +21,12 @@ class NamedChromaticPitchSegment(_PitchSegment):
             pitches = [pitchtools.NamedChromaticPitch(x) for x in args[0]]
         return tuple.__new__(self, pitches)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s("%s")' % (self.__class__.__name__, self._repr_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_string(self):
@@ -36,7 +36,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
     def _repr_string(self):
         return ' '.join([str(x) for x in self])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def harmonic_chromatic_interval_class_segment(self):
@@ -169,7 +169,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
     def named_chromatic_pitches(self):
         return self[:]
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def transpose(self, melodic_interval):
         '''Transpose pitches in pitch segment by melodic interval

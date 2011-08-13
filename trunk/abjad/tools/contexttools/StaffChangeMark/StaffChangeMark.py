@@ -63,7 +63,7 @@ class StaffChangeMark(ContextMark):
             raise TypeError('staff change mark input value "%s" must be staff instance.' % str(staff))
         self._staff = staff
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self.staff, target_context = self.target_context)
@@ -73,13 +73,13 @@ class StaffChangeMark(ContextMark):
             return self.staff is arg.staff
         return False
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
         return repr(self.staff)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

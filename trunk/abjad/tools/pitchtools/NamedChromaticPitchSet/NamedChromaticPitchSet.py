@@ -25,7 +25,7 @@ class NamedChromaticPitchSet(_PitchSet):
                 pitches.append(pitch)
         return frozenset.__new__(self, pitches)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -45,7 +45,7 @@ class NamedChromaticPitchSet(_PitchSet):
     def __str__(self):
         return '{%s}' % ' '.join([str(pitch) for pitch in self.named_chromatic_pitches])
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -55,7 +55,7 @@ class NamedChromaticPitchSet(_PitchSet):
     def _repr_string(self):
         return ', '.join([repr(str(pitch)) for pitch in self.named_chromatic_pitches])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def duplicate_pitch_classes(self):
@@ -94,9 +94,9 @@ class NamedChromaticPitchSet(_PitchSet):
     def named_chromatic_pitches(self):
         return tuple(sorted(self))
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
-    ## TODO: Implement pitch set (axis) inversion. ##
+    ### TODO: Implement pitch set (axis) inversion. ###
 
     #def invert(self):
     #    '''Transpose all pcs in self by n.'''

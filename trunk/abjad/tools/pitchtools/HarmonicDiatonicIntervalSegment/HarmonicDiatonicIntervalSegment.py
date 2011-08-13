@@ -24,7 +24,7 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
             hdis.append(hdi)
         return tuple.__new__(self, hdis)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self.intervals)
@@ -32,7 +32,7 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
     def __repr__(self):
         return "%s('%s')" % (self.__class__.__name__, ' '.join([str(x) for x in self]))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def harmonic_chromatic_interval_segment(self):

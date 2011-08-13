@@ -8,7 +8,7 @@ r3458+Fraction:
    0.0534009933472    0.0542531013489
    0.544013023376     0.549149036407
    5.43860316277      5.4941380024
-   ## Fraction no faster on Note creation
+   ### Fraction no faster on Note creation
 
 
 #2 note = Note("c'4")
@@ -24,7 +24,7 @@ r3458+Fraction:
    0.0206418037415
    0.199695110321
    1.99831104279
-   ## Fraction no faster on Note format
+   ### Fraction no faster on Note format
 
 
 #3 iotools.profile_expr('Note("c'4")')
@@ -54,11 +54,11 @@ r3458+Fraction:
    Partition of a set of 807116 objects. Total size = 84842352 bytes.
    Partition of a set of 788120 objects. Total size = 82334816 bytes. (with opt)
 
-## CONCLUSION:
-## Using built-in Python 2.6 Fraction in place of Abjad Fraction
-## isn't any faster but does save a small but measurable amount of memory.
-## Memory usage goes from 84.8M (r3458) to 82.3M (r3458 + Fraction optimization).
-## This represents a memory savings of about 9.7 %.
+### CONCLUSION:
+### Using built-in Python 2.6 Fraction in place of Abjad Fraction
+### isn't any faster but does save a small but measurable amount of memory.
+### Memory usage goes from 84.8M (r3458) to 82.3M (r3458 + Fraction optimization).
+### This represents a memory savings of about 9.7 %.
 
 
 (TEST NODE OS 10.6.4 2-core Intel iMac 1.85 GHz / 1.5 GB RAM.)

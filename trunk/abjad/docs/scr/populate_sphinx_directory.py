@@ -5,10 +5,10 @@ import os
 
 def populate_sphinx_directory(root_dir, abjad_subdir, files, interactive):
 
-   ## can probably remove modules_visited altogether
+   ### can probably remove modules_visited altogether
    #modules_visited = [ ]
 
-   ## make sphinx listing of modules
+   ### make sphinx listing of modules
    for file in files:
       #print file
 
@@ -17,15 +17,15 @@ def populate_sphinx_directory(root_dir, abjad_subdir, files, interactive):
       listing = make_sphinx_module_listing(components_path, file)
       #print listing
 
-      ## write no API entry when there is no listing
+      ### write no API entry when there is no listing
       if listing is None:
          continue
       
-      ## write listing to file
+      ### write listing to file
       rst_file = file.split('.')[0] + '.rst'
       index = os.path.join(root_dir, rst_file)
       _write_file_interactive(listing, index, interactive)
 
-      ## keep track of modules visited
+      ### keep track of modules visited
       mod = os.path.join(abjad_subdir, file.split('.')[0])
       #modules_visited.append(mod)

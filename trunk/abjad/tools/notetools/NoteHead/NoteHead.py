@@ -34,13 +34,13 @@ class NoteHead(_UnaryComparator):
             raise ValueError('\n\tCan not initialize note head from args "%s".' % str(args))
         self._client = _client
         self.written_pitch = written_pitch
-        ## must assign comparison attribute after written pitch initialization ##
+        ### must assign comparison attribute after written pitch initialization ###
         self._comparison_attribute = self.written_pitch
         for tweak_pair in tweak_pairs:
             key, value = tweak_pair
             setattr(self.tweak, key, value)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(*self.__getnewargs__( ))
@@ -64,7 +64,7 @@ class NoteHead(_UnaryComparator):
         else:
             return ''
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -72,7 +72,7 @@ class NoteHead(_UnaryComparator):
             return str(self.written_pitch)
         return ' '
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

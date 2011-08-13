@@ -23,7 +23,7 @@ def format_lilypond_context_names_with_underscores(lilypond_context_names):
    return context_names_with_underscores
 
 
-## from lilypond 2.13 internals reference on 2010-08-14
+### from lilypond 2.13 internals reference on 2010-08-14
 lilypond_context_names = '''
 2.1.1 ChoirStaff     
 2.1.2 ChordNames     

@@ -73,7 +73,7 @@ def test_verticalitytools_iterate_vertical_moments_backward_in_expr_02( ):
     score.append(piano_staff)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
 
-    ## see above for formatted score ##
+    ### see above for formatted score ###
 
     moment_generator = verticalitytools.iterate_vertical_moments_backward_in_expr(piano_staff)
     moments = list(moment_generator)

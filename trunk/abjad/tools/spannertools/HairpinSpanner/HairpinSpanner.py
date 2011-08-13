@@ -81,11 +81,11 @@ class HairpinSpanner(Spanner):
         self.start_dynamic_string = start_dynamic_string
         self.stop_dynamic_string = stop_dynamic_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _hairpin_shape_strings = ('<', '>')
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _parse_descriptor(self, descriptor):
         '''Example descriptors:
@@ -116,7 +116,7 @@ class HairpinSpanner(Spanner):
         assert shape in ('<', '>')
         return start, shape, stop
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def include_rests( ):
@@ -219,7 +219,7 @@ class HairpinSpanner(Spanner):
             self._stop = arg
         return property(**locals( ))
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     @staticmethod
     def is_hairpin_shape_string(arg):

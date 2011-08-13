@@ -34,11 +34,11 @@ class Skip(_Leaf):
         _Leaf.__init__(self, written_duration, lilypond_multiplier)
         self._initialize_keyword_values(**kwargs)
 
-    ## OVERRIDES ##
+    ### OVERRIDES ###
 
     #__deepcopy__ = __copy__
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _body(self):

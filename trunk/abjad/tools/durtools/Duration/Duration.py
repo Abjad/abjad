@@ -35,7 +35,7 @@ class Duration(Fraction):
                     raise TypeError
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s, %s)' % (self.__class__.__name__, self.numerator, self.denominator)

@@ -8,7 +8,7 @@ class _CounterpointInterval(_Interval, _Counterpoint):
     Counterpoint interval base class.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return type(self)(abs(self._number))
@@ -19,7 +19,7 @@ class _CounterpointInterval(_Interval, _Counterpoint):
     def __int__(self):
         return self._number
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def number(self):

@@ -67,7 +67,7 @@ class PitchRange(_Immutable):
                 stop = (pitch, containment)
             object.__setattr__(self, '_stop', stop)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __contains__(self, arg):
         from abjad.tools import containertools
@@ -155,7 +155,7 @@ class PitchRange(_Immutable):
     def __repr__(self):
         return '%s(%s, %s)' % (self.__class__.__name__, self._start, self._stop)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _contains_pitch(self, pitch):
         from abjad.tools import pitchtools
@@ -188,7 +188,7 @@ class PitchRange(_Immutable):
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def start_pitch(self):

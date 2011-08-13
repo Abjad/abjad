@@ -30,12 +30,12 @@ class Scale(NamedChromaticPitchClassSegment):
         tuple.__setattr__(new, '_key_signature', key_signature)
         return new
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self._capital_name, self._format_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _capital_name(self):
@@ -43,7 +43,7 @@ class Scale(NamedChromaticPitchClassSegment):
         mode = self.key_signature.mode.mode_name_string.title( )
         return '%s%s' % (letter, mode)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def diatonic_interval_class_segment(self):
@@ -88,7 +88,7 @@ class Scale(NamedChromaticPitchClassSegment):
     def tonic(self):
         return self[0]
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def named_chromatic_pitch_class_to_scale_degree(self, *args):
         foreign_pitch_class = NamedChromaticPitchClass(*args)

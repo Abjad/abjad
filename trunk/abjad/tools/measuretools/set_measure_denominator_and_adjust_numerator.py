@@ -3,7 +3,7 @@ from abjad.tools import durtools
 from abjad.tools.measuretools.Measure import Measure
 
 
-## TODO: implement measuretools.set_measure_denominator_and_adjust_contents( ).
+### TODO: implement measuretools.set_measure_denominator_and_adjust_contents( ).
 def set_measure_denominator_and_adjust_numerator(measure, denominator):
     r'''.. versionadded:: 1.1.1
 
@@ -48,7 +48,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
     '''
 
     if isinstance(measure, Measure):
-        ## to allow iteration inside zero-update loop
+        ### to allow iteration inside zero-update loop
         old_meter = contexttools.get_effective_time_signature(measure)
         old_meter_pair = (old_meter.numerator, old_meter.denominator)
         new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(

@@ -12,7 +12,7 @@ class _ContainmentSignature(_StrictComparator):
         self._staffgroup = None
         self._voice = None
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         return isinstance(arg, _ContainmentSignature) and \

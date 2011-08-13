@@ -34,7 +34,7 @@ def analyze_incomplete_chord(expr):
     #print npcset
     #print dicv
 
-    ## TODO: eliminate code duplication ##
+    ### TODO: eliminate code duplication ###
 
     if dicv == _make_dicv('c', 'ef'):
         model_npcs = ['c', 'ef']

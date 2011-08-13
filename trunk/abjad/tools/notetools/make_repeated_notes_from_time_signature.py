@@ -18,14 +18,14 @@ def make_repeated_notes_from_time_signature(time_signature, pitch = "c'"):
     Return list of notes.
     '''
 
-    ## afford basic input polymorphism
+    ### afford basic input polymorphism
     time_signature = TimeSignatureMark(time_signature)
 
-    ## check input
+    ### check input
     if time_signature.is_nonbinary:
         raise NotImplementedError('TODO: extend this function for nonbinary time signatures.')
 
-    ## make and return repeated notes
+    ### make and return repeated notes
     return time_signature.numerator * Note(pitch, (1, time_signature.denominator))
 
 

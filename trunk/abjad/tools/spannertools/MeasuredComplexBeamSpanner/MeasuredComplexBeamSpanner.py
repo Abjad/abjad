@@ -51,7 +51,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         self._format = _MeasuredComplexBeamSpannerFormatInterface(self)
         self.span = span
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def span( ):

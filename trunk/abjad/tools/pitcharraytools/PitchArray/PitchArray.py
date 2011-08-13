@@ -22,7 +22,7 @@ class PitchArray(_StrictComparator):
             if all([isinstance(arg, int) for arg in args]):
                 self._init_by_counts(*args)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __add__(self, arg):
         if not isinstance(arg, PitchArray):
@@ -93,13 +93,13 @@ class PitchArray(_StrictComparator):
     def __str__(self):
         return self._two_by_two_format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _two_by_two_format_string(self):
         return '\n'.join([str(x) for x in self.rows])
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _column_format_width_at_index(self, index):
         columns = self.columns
@@ -130,7 +130,7 @@ class PitchArray(_StrictComparator):
     def _parse_cell_token(self, cell_token):
         return PitchArrayCell(cell_token)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def cell_tokens_by_row(self):
@@ -215,7 +215,7 @@ class PitchArray(_StrictComparator):
         except ValueError:
             return 0
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def append_column(self, column):
         if not isinstance(column, PitchArrayColumn):

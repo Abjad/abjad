@@ -13,7 +13,7 @@ class _RedBlackTree(object):
         self._sentinel.parent = self._sentinel
         self._root = self._sentinel
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s( )' % (self.__class__.__name__)
@@ -51,7 +51,7 @@ class _RedBlackTree(object):
             return lines, pos, width
         return '\n'.join(recurse(self._root) [0])
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _delete_fixup(self, x):
         while x != self._root and not x.red:

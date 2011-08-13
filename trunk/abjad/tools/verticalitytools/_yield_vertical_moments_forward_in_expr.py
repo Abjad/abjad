@@ -45,7 +45,7 @@ def _next_in_parent(component):
     assert start == stop
     if parent is None:
         raise StopIteration
-    ## can not advance within parallel parent
+    ### can not advance within parallel parent
     if parent.is_parallel:
         raise StopIteration
     try:

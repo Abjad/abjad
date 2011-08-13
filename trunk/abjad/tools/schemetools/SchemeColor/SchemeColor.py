@@ -19,12 +19,12 @@ class SchemeColor(_StrictComparator, _Immutable):
     def __getnewargs__(self):
         return (self.color_name, )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, repr(self.color_name))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

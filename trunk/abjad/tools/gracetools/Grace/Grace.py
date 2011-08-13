@@ -75,7 +75,7 @@ class Grace(Container):
     '''
 
     def __init__(self, music = None, kind = 'grace', **kwargs):
-        ## self._carrier is a reference to the Note carrying the Graces.
+        ### self._carrier is a reference to the Note carrying the Graces.
         self._carrier = None
         Container.__init__(self, music)
         self._formatter = _GraceFormatter(self)
@@ -83,7 +83,7 @@ class Grace(Container):
         self.kind = kind
         self._initialize_keyword_values(**kwargs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __call__(self, arg):
         if not isinstance(arg, _Leaf):
@@ -105,7 +105,7 @@ class Grace(Container):
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._summary)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def kind( ):
@@ -141,7 +141,7 @@ class Grace(Container):
             self._kind = arg
         return property(**locals( ))
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def detach(self):
         r'''Detach grace container from leaf::

@@ -40,10 +40,10 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
 
     dts = mathtools.interpolate_divide(total, start, stop, exp)
 
-    ## change floats to rationals
+    ### change floats to rationals
     dts = [fractions.Fraction(int(round(x * 2**10)), 2**10) for x in dts]
 
-    ## make notes
+    ### make notes
     result = [ ]
     for i, dt in enumerate(dts):
         note = Note(pitches[i % len(pitches)], written)

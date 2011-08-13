@@ -16,7 +16,7 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
         'rhythmic_staff', 'score', 'staff', 'staff_group', 'tab_staff',
         'tab_voice', 'vaticana_staff', 'vaticana_voice', 'voice'])
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __getattr__(self, name):
         if name.startswith('_'):
@@ -43,12 +43,12 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
         body_string = ' '
         skeleton_strings = self._get_skeleton_strings( )
         if skeleton_strings:
-            ## remove 'set__'
+            ### remove 'set__'
             skeleton_strings = [x[5:] for x in skeleton_strings]
             body_string = ', '.join(skeleton_strings)
         return '%s(%s)' % (self.__class__.__name__, body_string)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _get_skeleton_strings(self):
         result = [ ]

@@ -21,7 +21,7 @@ class ExtentIndicator(_Immutable):
             number = arg.number
         object.__setattr__(self, '_number', number)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -35,13 +35,13 @@ class ExtentIndicator(_Immutable):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.number)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _acceptable_number = (5, 7, 9)
 
     _extent_number_to_extent_name = {5: 'triad', 7: 'seventh', 9: 'ninth', }
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def name(self):

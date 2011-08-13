@@ -4,7 +4,7 @@ from abjad.tools.spannertools.ComplexBeamSpanner._ComplexBeamSpannerFormatInterf
 
 class _DuratedComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterface):
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def _before(self, leaf):
         '''Spanner format contribution to output before leaf.'''

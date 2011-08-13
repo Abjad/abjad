@@ -49,7 +49,7 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
         object.__setattr__(self, '_number', number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

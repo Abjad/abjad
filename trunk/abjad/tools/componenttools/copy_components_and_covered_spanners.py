@@ -124,19 +124,19 @@ def copy_components_and_covered_spanners(components, n = 1):
 #
 #   return result
 
-    ## deep copy components
+    ### deep copy components
     new_components = copy.deepcopy(components)
 
-    ## make schema of spanners covered by components
+    ### make schema of spanners covered by components
     schema = spannertools.make_covered_spanner_schema(components)
 
-    ## copy spanners covered by components
+    ### copy spanners covered by components
     for covered_spanner, component_indices in schema.items( ):
         new_covered_spanner = copy.copy(covered_spanner)
         del(schema[covered_spanner])
         schema[new_covered_spanner] = component_indices
 
-    ## reverse schema
+    ### reverse schema
     reversed_schema = { }
     for new_covered_spanner, component_indices in schema.items( ):
         for component_index in component_indices:
@@ -145,7 +145,7 @@ def copy_components_and_covered_spanners(components, n = 1):
             except KeyError:
                 reversed_schema[component_index] = [new_covered_spanner]
 
-    ## iterate components and add new components to new spanners
+    ### iterate components and add new components to new spanners
     for component_index, new_component in enumerate(
         componenttools.iterate_components_forward_in_expr(new_components)):
         try:
@@ -155,9 +155,9 @@ def copy_components_and_covered_spanners(components, n = 1):
         except KeyError:
             pass
 
-    ## repeat as specified by input
+    ### repeat as specified by input
     for i in range(n - 1):
         new_components += copy_components_and_covered_spanners(components)
 
-    ## return new components
+    ### return new components
     return new_components

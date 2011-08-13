@@ -20,7 +20,7 @@ class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
             iecics.append(iecic)
         return frozenset.__new__(self, iecics)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self.numbers)
@@ -28,13 +28,13 @@ class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return ', '.join([str(x) for x in sorted(self.inversion_equivalent_chromatic_interval_class_numbers)])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     #def interval_classes(self):

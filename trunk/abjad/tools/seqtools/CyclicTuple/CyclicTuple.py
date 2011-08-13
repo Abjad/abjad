@@ -35,7 +35,7 @@ class CyclicTuple(tuple):
     Cyclic tuples otherwise behave exactly like built-in tuples.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __getitem__(self, expr):
         return tuple.__getitem__(self, expr % len(self))

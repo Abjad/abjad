@@ -90,10 +90,10 @@ def _handle_interface(interface_name, interface):
 def _handle_read_write_property(property_host_name, property_host, property_name):
     result = [ ]
     #print 'handling read-write %s.%s ...' % (property_host_name, property_name)
-    ## ignore _Leaf.written_duration
+    ### ignore _Leaf.written_duration
     if property_name == 'written':
         return result
-    ## ignore Note.pitch and Note.note_head.written_pitch
+    ### ignore Note.pitch and Note.note_head.written_pitch
     if property_host_name is None and property_name == 'pitch':
         return result
     if property_host_name == 'note_head' and property_name == 'written_pitch':

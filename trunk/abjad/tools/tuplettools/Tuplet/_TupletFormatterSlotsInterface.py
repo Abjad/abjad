@@ -7,7 +7,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
     def __init__(self, _client):
         _ContainerFormatterSlotsInterface.__init__(self, _client)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def slot_1(self):

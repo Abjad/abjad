@@ -34,7 +34,7 @@ class Tuplet(Container):
         self._signifier = '*'
         self._initialize_keyword_values(**kwargs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __add__(self, arg):
         '''Add two tuplets of same type and with same multiplier.
@@ -56,7 +56,7 @@ class Tuplet(Container):
         else:
             return '{%s %s %s}' % (self._signifier, self.multiplier, self._signifier)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _is_visible(self):
@@ -80,7 +80,7 @@ class Tuplet(Container):
         else:
             return ' '
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def force_fraction( ):

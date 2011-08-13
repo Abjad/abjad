@@ -33,7 +33,7 @@ def _main( ):
                sorted_header_lines = list(sorted(header_lines))
                if header_lines != sorted_header_lines:
                   total_nonalphabetized_module_headers += 1
-                  print '### NONALPHABETIZED HEADER #####\n'
+                  print '#### NONALPHABETIZED HEADER #######\n'
                   print ''.join(header_lines)
                   print ''.join(sorted_header_lines)
    print 'Total nonalphabetized headers: %s' % total_nonalphabetized_module_headers

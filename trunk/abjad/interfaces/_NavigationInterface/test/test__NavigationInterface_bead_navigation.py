@@ -1,7 +1,7 @@
 from abjad import *
 
 
-## SIMPLE BEAD ##
+### SIMPLE BEAD ###
 
 def test__NavigationInterface_bead_navigation_01( ):
     '''next_bead and prev_bead work on simple Voice.'''
@@ -72,7 +72,7 @@ def test__NavigationInterface_bead_navigation_03( ):
     '''
 
 
-## NONSTRUCTURAL in new parallel --> context model.
+### NONSTRUCTURAL in new parallel --> context model.
 #def test__NavigationInterface_bead_navigation_04( ):
 #   '''NextBead and prev_bead work on simple Parallel.'''
 #   t = Container([Note(i, (1,8)) for i in range(4)])
@@ -117,7 +117,7 @@ def test__NavigationInterface_bead_navigation_05( ):
     '''
 
 
-## LEVEL 1 NESTING ##
+### LEVEL 1 NESTING ###
 
 def test__NavigationInterface_bead_navigation_06( ):
     '''NextBead and prev_bead work on contiguous Containers inside a Voice.'''
@@ -284,7 +284,7 @@ def test__NavigationInterface_bead_navigation_10( ):
     '''
 
 
-## LEVEL 2 NESTING ##
+### LEVEL 2 NESTING ###
 
 def test__NavigationInterface_bead_navigation_11( ):
     '''Beads do NOT connect through equally named staves. '''
@@ -388,8 +388,8 @@ def test__NavigationInterface_bead_navigation_12( ):
 
 
 
-## DEPTH ASYMMETRICAL STRUCTURES ##
-## Parentage asymmetrical structures work IF tautological ##
+### DEPTH ASYMMETRICAL STRUCTURES ###
+### Parentage asymmetrical structures work IF tautological ###
 
 def test__NavigationInterface_bead_navigation_13( ):
     '''next_bead and prev_bead work on symmetrical
@@ -588,7 +588,7 @@ def test__NavigationInterface_bead_navigation_18( ):
     '''
 
 
-## Parentage asymmetrical structures DON'T work if NOT tautological ##
+### Parentage asymmetrical structures DON'T work if NOT tautological ###
 
 def test__NavigationInterface_bead_navigation_19( ):
     '''NextBead returns None in asymmetric thread parentage structures.'''
@@ -620,13 +620,13 @@ def test__NavigationInterface_bead_navigation_19( ):
     '''
 
 
-## NON-CONTIGUOUS / BROKEN THREADS ##
+### NON-CONTIGUOUS / BROKEN THREADS ###
 
 def test__NavigationInterface_bead_navigation_20( ):
     '''Non-contiguous / broken threads do not connect.'''
-    ##
-    ## do we want them to connect? probably not...
-    ##
+    ###
+    ### do we want them to connect? probably not...
+    ###
     v1 = Voice([Note(i , (1,8)) for i in range(3)])
     v1.name = 'myvoice'
     v2 = Voice([Note(i , (1,8)) for i in range(4,8)])
@@ -667,7 +667,7 @@ def test__NavigationInterface_bead_navigation_20( ):
     '''
 
 
-## TAUTOLOGICAL NESTING ##
+### TAUTOLOGICAL NESTING ###
 
 def test__NavigationInterface_bead_navigation_21( ):
     '''

@@ -8,7 +8,7 @@ class _ComponentFormatterSlotsInterface(_Interface):
     def __init__(self, client):
         _Interface.__init__(self, client)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _format_contributor_name(self, contributor):
         '''Formater contributor name.'''
@@ -35,7 +35,7 @@ class _ComponentFormatterSlotsInterface(_Interface):
         else:
             return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def formatter(self):
@@ -76,7 +76,7 @@ class _ComponentFormatterSlotsInterface(_Interface):
         '''Format contributions immediately after close brackets.'''
         return ( )
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def contributions(self, attr):
         result = [ ]

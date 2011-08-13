@@ -8,7 +8,7 @@ class _ChromaticIntervalClass(_IntervalClass, _Chromatic):
     Chromatic interval-class base class.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return type(self)(abs(self._number))

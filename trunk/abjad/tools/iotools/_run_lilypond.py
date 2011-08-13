@@ -10,5 +10,5 @@ def _run_lilypond(lily_file_name, lilypond_path):
     try:
         os.remove(postscript_file_name)
     except OSError:
-        ## No such file...
+        ### No such file...
         pass

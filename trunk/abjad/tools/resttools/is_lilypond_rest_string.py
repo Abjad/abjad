@@ -3,9 +3,9 @@ import re
 
 
 lilypond_rest_string_regex_body = '''
-    (r|R)     ## either r or R followed by
-    \s*        ## zero or more whitespace characters followed by
-    %s         ## a LilyPond duration string
+    (r|R)     ### either r or R followed by
+    \s*        ### zero or more whitespace characters followed by
+    %s         ### a LilyPond duration string
     ''' % (lilypond_duration_string_regex_body, )
 
 

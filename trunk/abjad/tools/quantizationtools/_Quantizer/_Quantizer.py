@@ -15,7 +15,7 @@ from abjad.tools.quantizationtools.tempo_scaled_rationals_to_q_events import tem
 
 class _Quantizer(_Immutable):
 
-    ## OVERRIDES ##
+    ### OVERRIDES ###
 
     def __call__(self, args, **kwargs):
         # Q-events
@@ -59,13 +59,13 @@ class _Quantizer(_Immutable):
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return ' '
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _quantize(self, q_events, verbose = False):
         return q_events, verbose

@@ -22,7 +22,7 @@ def _module_path_to_doc_path(module_path):
          doc_parts.insert(0, part)
    doc_path = os.path.join(*doc_parts)
 
-   ## remove '.py' extension
+   ### remove '.py' extension
    doc_path = doc_path[:-3]
 
    return doc_path

@@ -32,7 +32,7 @@ class Cluster(Container):
         self._formatter = _ClusterFormatter(self)
         self._initialize_keyword_values(**kwargs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._summary)

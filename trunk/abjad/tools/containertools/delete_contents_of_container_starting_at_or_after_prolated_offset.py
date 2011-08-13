@@ -39,14 +39,14 @@ def delete_contents_of_container_starting_at_or_after_prolated_offset(container,
         ``containertools.delete_contents_of_container_starting_at_or_after_prolated_offset( )``.
     '''
 
-    ## get start element
+    ### get start element
     element = get_first_element_starting_at_or_after_prolated_offset(container, prolated_offset)
 
-    ## get start index
+    ### get start index
     index = container.index(element)
 
-    ## delete elements in container starting not before index
+    ### delete elements in container starting not before index
     del(container[index:])
 
-    ## return container minus deleted contents
+    ### return container minus deleted contents
     return container

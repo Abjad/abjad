@@ -13,12 +13,12 @@ def make_repeated_rests_from_time_signature(time_signature):
     Return list of newly constructed rests.
     '''
 
-    ## afford basic input polymorphism
+    ### afford basic input polymorphism
     time_signature = TimeSignatureMark(time_signature)
 
-    ## check input
+    ### check input
     if time_signature.is_nonbinary:
         raise NotImplementedError('TODO: extend this function for nonbinary time signatures.')
 
-    ## make and return repeated rests
+    ### make and return repeated rests
     return time_signature.numerator * Rest((1, time_signature.denominator))

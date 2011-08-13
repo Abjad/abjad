@@ -19,7 +19,7 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
         object.__setattr__(self, '_number', abs(self._number))
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __ge__(self, arg):
         if not isinstance(arg, type(self)):
@@ -41,7 +41,7 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
             raise TypeError('%s must be harmonic chromatic interval.' % arg)
         return self.number < arg.number
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def harmonic_chromatic_interval_class(self):

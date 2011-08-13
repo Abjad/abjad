@@ -60,17 +60,17 @@ def make_notes(pitches, durations, direction='big-endian'):
     # this block is a hack to allow the function to accept a Duration
     # as the duration input parameter; better will be to change
     # the rest of the implementation to allow for Durations directly.
-    ## [VA] We don't want to change to Durations internally because
-    ## Durations reduce fractions to their minimum expression. e.g.
-    ## (3, 3) --> Duration(1, 1), and we sometimes generate duration
-    ## tokens that are not reduced, so we want to preserve the denominator 3.
-    ## [TB] When do we want (3, 3) instead of (1, 1)?
-    ## Durations should always reduce;
-    ## So tokens can represent tuplet multipliers or something
-    ## else that shouldn't reduce?
+    ### [VA] We don't want to change to Durations internally because
+    ### Durations reduce fractions to their minimum expression. e.g.
+    ### (3, 3) --> Duration(1, 1), and we sometimes generate duration
+    ### tokens that are not reduced, so we want to preserve the denominator 3.
+    ### [TB] When do we want (3, 3) instead of (1, 1)?
+    ### Durations should always reduce;
+    ### So tokens can represent tuplet multipliers or something
+    ### else that shouldn't reduce?
     durations = [durtools.duration_token_to_duration_pair(dur) for dur in durations]
 
-    ## set lists of pitches and durations to the same length
+    ### set lists of pitches and durations to the same length
     size = max(len(durations), len(pitches))
     durations = seqtools.repeat_sequence_to_length(durations, size)
     pitches = seqtools.repeat_sequence_to_length(pitches, size)
@@ -79,7 +79,7 @@ def make_notes(pitches, durations, direction='big-endian'):
 
     result = [ ]
     for ds in durations:
-        ## get factors in denominator of duration group ds other than 1, 2.
+        ### get factors in denominator of duration group ds other than 1, 2.
         factors = set(mathtools.factors(ds[0][1]))
         factors.discard(1)
         factors.discard(2)
@@ -88,14 +88,14 @@ def make_notes(pitches, durations, direction='big-endian'):
         if len(factors) == 0:
             result.extend(_construct_unprolated_notes(ps, ds, direction))
         else:
-            ## compute prolation
+            ### compute prolation
             #denominator = reduce(operator.mul, factors)
             denominator = ds[0][1]
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / fractions.Fraction(*multiplier)
             ds = [ratio * durtools.Duration(*d) for d in ds]
-            ## make notes
+            ### make notes
             ns = _construct_unprolated_notes(ps, ds, direction)
             #t = Tuplet(multiplier, ns)
             t = Tuplet(multiplier, ns)

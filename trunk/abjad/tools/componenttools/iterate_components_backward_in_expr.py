@@ -71,16 +71,16 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
 
 
 def _subrange(iter, start = 0, stop = None):
-    ## if start<0, then 'stop-start' gives a funny result
-    ## dont have to check stop>=start, as xrange(stop-start) already handles that
+    ### if start<0, then 'stop-start' gives a funny result
+    ### dont have to check stop>=start, as xrange(stop-start) already handles that
     assert 0 <= start
 
     try:
-        ## Skip the first few elements, up to 'start' of them:
+        ### Skip the first few elements, up to 'start' of them:
         for i in xrange(start):
             iter.next( )  # no 'yield' to swallow the results
 
-        ## Now generate (stop-start) elements (or all elements if stop is None)
+        ### Now generate (stop-start) elements (or all elements if stop is None)
         if stop is None:
             for x in iter:
                 yield x
@@ -88,12 +88,12 @@ def _subrange(iter, start = 0, stop = None):
             for i in xrange(stop-start):
                 yield iter.next( )
     except StopIteration:
-        ## This happens if we exhaust the list before we generate a total of 'stop' elements
+        ### This happens if we exhaust the list before we generate a total of 'stop' elements
         pass
 
 
-## Creates a generator that returns elements of type klass in reverse order,
-## descending into containers
+### Creates a generator that returns elements of type klass in reverse order,
+### descending into containers
 def _backward_generator(expr, klass):
     if isinstance(expr, klass):
         yield expr

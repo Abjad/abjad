@@ -132,7 +132,7 @@ class QGridQuantizer(_Quantizer):
         object.__setattr__(self, '_tempo_lookup', QGridTempoLookup(search_tree, beatspan, tempo))
         object.__setattr__(self, '_threshold', threshold)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _compare_q_events_to_q_grid(self, offsets, q_events, q_grid):
         indices = [ ]
@@ -311,7 +311,7 @@ class QGridQuantizer(_Quantizer):
         for beatspan_number in beatspan_numbers:
             q_grid = best_q_grids[beatspan_number]
 
-            ## rolling over the carried events
+            ### rolling over the carried events
             if carried:
                 if not q_grid[0]:
                     q_grid[0] = carried
@@ -346,7 +346,7 @@ class QGridQuantizer(_Quantizer):
 
         return container
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def beatspan(self):

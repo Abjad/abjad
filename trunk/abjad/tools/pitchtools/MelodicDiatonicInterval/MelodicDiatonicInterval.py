@@ -33,7 +33,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
         object.__setattr__(self, '_number', number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         from abjad.tools import pitchtools
@@ -82,7 +82,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
         return pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
             dummy_pitch, new_pitch)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def direction_number(self):

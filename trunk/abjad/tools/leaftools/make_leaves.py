@@ -11,15 +11,15 @@ from abjad.tools import durtools
 from numbers import Number
 
 
-## TODO: Change leaftools.make_leaves( ) signature to allow ('c', 4) named pairs
-##       This will allow the creation of enharmonic equivalents.
-##       Examples: leaftools.make_leaves([('c', 4), ('cs', 4)], [(1, 4)])
+### TODO: Change leaftools.make_leaves( ) signature to allow ('c', 4) named pairs
+###       This will allow the creation of enharmonic equivalents.
+###       Examples: leaftools.make_leaves([('c', 4), ('cs', 4)], [(1, 4)])
 
-## TODO: Extend leaftools.make_leaves( ) to accept Abjad Pitch instances. Ex:
-##       Example: leaftools.make_leaves([NamedChromaticPitch('cs', 4)], [(1, 4)])
+### TODO: Extend leaftools.make_leaves( ) to accept Abjad Pitch instances. Ex:
+###       Example: leaftools.make_leaves([NamedChromaticPitch('cs', 4)], [(1, 4)])
 
-## TODO: Deprecate construct.engender( ) in favor of leaftools.make_leaves( );
-##       Only possible after the two extensions to leaftools.make_leaves( ), above.
+### TODO: Deprecate construct.engender( ) in favor of leaftools.make_leaves( );
+###       Only possible after the two extensions to leaftools.make_leaves( ), above.
 
 def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     r'''.. versionadded:: 1.1.1
@@ -116,10 +116,10 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     if isinstance(durations, (Number, tuple)):
         durations = [durations]
 
-    ## change Durations to duration tokens.
+    ### change Durations to duration tokens.
     durations = [durtools.duration_token_to_duration_pair(dur) for dur in durations]
 
-    ## set lists of pitches and durations to the same length
+    ### set lists of pitches and durations to the same length
     size = max(len(durations), len(pitches))
     #durations = seqtools.resize(durations, size)
     #pitches = seqtools.resize(pitches, size)
@@ -130,7 +130,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
 
     result = [ ]
     for ds in durations:
-        ## get factors in denominator of duration group ds other than 1, 2.
+        ### get factors in denominator of duration group ds other than 1, 2.
         factors = set(mathtools.factors(ds[0][1]))
         factors.discard(1)
         factors.discard(2)
@@ -141,13 +141,13 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
                 leaves = _make_leaf_on_pitch(pch, dur, direction)
                 result.extend(leaves)
         else:
-            ## compute prolation
+            ### compute prolation
             denominator = ds[0][1]
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / durtools.Duration(*multiplier)
             ds = [ratio * durtools.Duration(*d) for d in ds]
-            ## make leaves
+            ### make leaves
             leaves = [ ]
             for pch, dur in zip(ps, ds):
                 leaves.extend( _make_leaf_on_pitch(pch, dur, direction))

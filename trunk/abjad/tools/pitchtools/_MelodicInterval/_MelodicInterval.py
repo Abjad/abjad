@@ -8,7 +8,7 @@ class _MelodicInterval(_Interval):
     Melodic interval base class.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         from abjad.tools import pitchtools
@@ -27,7 +27,7 @@ class _MelodicInterval(_Interval):
     def __neg__(self):
         pass
 
-    ## PRIVATE ATTRIUBTES ##
+    ### PRIVATE ATTRIUBTES ###
 
     @property
     def _direction_symbol(self):
@@ -40,7 +40,7 @@ class _MelodicInterval(_Interval):
         else:
             raise ValueError
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def direction_number(self):

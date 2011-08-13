@@ -8,7 +8,7 @@ class _PitchClass(_Immutable, _FlexEqualityComparator):
     Pitch-class base class.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __hash__(self):
         return hash(repr(self))

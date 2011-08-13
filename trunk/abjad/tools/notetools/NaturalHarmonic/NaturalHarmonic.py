@@ -28,7 +28,7 @@ class NaturalHarmonic(Note, _Flageolet):
         Note.__init__(self, *args)
         self.override.note_head.style = 'harmonic'
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s, %s)' % (self.__class__.__name__, self.written_pitch, self._formatted_duration)

@@ -11,7 +11,7 @@ class ParentageInterface(_Interface):
         _Interface.__init__(self, _client)
         self.__parent = None
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _cut(self):
         '''Client and parent cut completely.'''
@@ -35,7 +35,7 @@ class ParentageInterface(_Interface):
         #self._client._update._mark_all_improper_parents_for_update( )
         self._client._mark_entire_score_tree_for_later_update('prolated')
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def governor(self):

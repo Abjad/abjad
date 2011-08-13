@@ -44,7 +44,7 @@ class InstrumentMark(ContextMark):
         contents_string = ', '.join([repr(markup._contents_string) for markup in markups])
         return '%s(%s)' % (self.__class__.__name__, contents_string)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self._instrument_name, self._short_instrument_name,
@@ -57,14 +57,14 @@ class InstrumentMark(ContextMark):
                     return True
         return False
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
-    ## will probably need to change definition at some point ##
+    ### will probably need to change definition at some point ###
     @property
     def _target_context_name(self):
         return self.target_context.__name__
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

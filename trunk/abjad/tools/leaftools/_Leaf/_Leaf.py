@@ -8,7 +8,7 @@ import operator
 
 class _Leaf(_Component, _StrictComparator):
 
-    ## TODO: see if _grace and _after_grace can be removed ##
+    ### TODO: see if _grace and _after_grace can be removed ###
     __slots__ = ('_after_grace', '_grace', '_leaf_index',
         '_duration_multiplier', '_written_duration',
         '_written_pitch_indication_is_nonsemantic',
@@ -23,7 +23,7 @@ class _Leaf(_Component, _StrictComparator):
         self.written_pitch_indication_is_nonsemantic = False
         self.written_pitch_indication_is_at_sounding_pitch = True
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __and__(self, arg):
         return self._operate(arg, operator.__and__)
@@ -60,7 +60,7 @@ class _Leaf(_Component, _StrictComparator):
     def __xor__(self, arg):
         return self._operate(arg, operator.__xor__)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_pieces(self):
@@ -74,7 +74,7 @@ class _Leaf(_Component, _StrictComparator):
         else:
             return duration_string
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _copy_override_and_set_from_leaf(self, leaf):
         if getattr(leaf, '_override', None) is not None:
@@ -99,7 +99,7 @@ class _Leaf(_Component, _StrictComparator):
         leaf = leaves[0]
         return leaf
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def duration_in_seconds(self):

@@ -23,7 +23,7 @@ def _parse_note_entry_token(note_entry_token):
     pattern = _lilypond_leaf_regex
     match = re.match(pattern, note_entry_token)
     if match is None:
-        ## TODO: make this work; change outer loop. ##
+        ### TODO: make this work; change outer loop. ###
         #if note_entry_token.startswith('<'):
         #   chord = _parse_chord_entry_token(note_entry_token)
         #   return chord

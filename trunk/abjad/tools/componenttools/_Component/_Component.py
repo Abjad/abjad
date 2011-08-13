@@ -30,7 +30,7 @@ class _Component(_StrictComparator):
         self._prolated_offset_values_are_current = False
         self._spanners = set([ ])
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         from abjad.tools import marktools
@@ -55,7 +55,7 @@ class _Component(_StrictComparator):
     def __rmul__(self, n):
         return self * n
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_pieces(self):
@@ -80,7 +80,7 @@ class _Component(_StrictComparator):
             parent = parent._parentage.parent
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
 #   @property
 #   def duration(self):
@@ -135,7 +135,7 @@ class _Component(_StrictComparator):
         '''
         return set(self._spanners)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _initialize_keyword_values(self, **kwargs):
         for key, value in kwargs.iteritems( ):
@@ -174,7 +174,7 @@ class _Component(_StrictComparator):
         else:
             raise ValueError('\n\t: Unknown keyword argument plug-in name: "%s".' % plug_in_name)
 
-    ## MANGLED METHODS ##
+    ### MANGLED METHODS ###
 
     def __update_leaf_indices_and_measure_numbers_in_score_tree(self):
         '''Called only when updating prolated offset of score compoennts.
@@ -229,7 +229,7 @@ class _Component(_StrictComparator):
             component._offset._update_prolated_offset_values_of_component( )
             component._prolated_offset_values_are_current = True
 
-    ## PRIVATE UPDATE METHODS ##
+    ### PRIVATE UPDATE METHODS ###
 
     def _allow_component_update(self):
         self._is_forbidden_to_update = False

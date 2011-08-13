@@ -258,7 +258,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     assert t.format == "\\new Staff {\n\tc'16.\n\tc'32\n\td'16\n\td'16\n\te'32\n\te'16.\n\tf'16.\n\tf'32\n}"
 
 
-## TODO: Fix cyclic duration partition bug with spanners on outside-of-score measures ##
+### TODO: Fix cyclic duration partition bug with spanners on outside-of-score measures ###
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners_06( ):
     '''Cyclically duration partition list of measures outside of score.  Do not fracture spanners.

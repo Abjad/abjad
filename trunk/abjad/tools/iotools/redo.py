@@ -7,9 +7,9 @@ import os
 import time
 
 
-## TODO: Remove code duplication between this and io.ly and io.show.
+### TODO: Remove code duplication between this and io.ly and io.show.
 
-## TODO: Encapsulate stuff below.
+### TODO: Encapsulate stuff below.
 
 def redo(target = -1, lily_time = 10):
     r'''Rerender the last ``.ly`` file created in Abjad and then show the resulting PDF::
@@ -28,8 +28,8 @@ def redo(target = -1, lily_time = 10):
     _verify_output_directory(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
 
-    ## TODO: Encapsulate as a single function called cfg._find_target( )
-    ## find target
+    ### TODO: Encapsulate as a single function called cfg._find_target( )
+    ### find target
     if isinstance(target, int) and target < 0:
         last_lilypond = get_last_output_file_name( )
         if last_lilypond:
@@ -47,7 +47,7 @@ def redo(target = -1, lily_time = 10):
     else:
         raise ValueError('can not get target LilyPond input from %s.' % target)
 
-    ## render
+    ### render
     start_time = time.time( )
     _run_lilypond(target_ly, _read_config_file( )['lilypond_path'])
     stop_time = time.time( )
@@ -58,8 +58,8 @@ def redo(target = -1, lily_time = 10):
     if lily_time <= actual_lily_time:
         print 'LilyPond processing time equal to %s seconds ...' % actual_lily_time
 
-    ## TODO: Encapsulate as cfg._open_pdf( )
-    ## open pdf
+    ### TODO: Encapsulate as cfg._open_pdf( )
+    ### open pdf
     config = _read_config_file( )
     pdf_viewer = config['pdf_viewer']
     ABJADOUTPUT = config['abjad_output']

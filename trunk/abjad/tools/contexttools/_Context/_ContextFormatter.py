@@ -8,7 +8,7 @@ class _ContextFormatter(_ContainerFormatter):
         _ContainerFormatter.__init__(self, client)
         self._slots = _ContextFormatterSlotsInterface(self)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _formatted_engraver_consists(self):
@@ -32,7 +32,7 @@ class _ContextFormatter(_ContainerFormatter):
         else:
             return r'\new %s' % client.context
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def context(self):

@@ -8,13 +8,13 @@ def desordre_build(pitches):
     assert len(pitches) == 2
     #piano = make_empty_piano_score( )[0]
     piano = scoretools.PianoStaff([ ])
-    ## set tempo indication...
+    ### set tempo indication...
     contexttools.TempoMark(Duration(1, 1), 60)(piano)
-    ## build music...
+    ### build music...
     for hand in pitches:
         seq = staff_build(hand)
         piano.append(seq)
-    ## set clef and key to lower staff...
+    ### set clef and key to lower staff...
     contexttools.ClefMark('bass')(piano[1])
     contexttools.KeySignatureMark('b', 'major')(piano[1])
     return piano
@@ -34,7 +34,7 @@ def measure_build(pitches):
     result = measuretools.DynamicMeasure([ ])
     for seq in pitches:
         result.append(desordre_cell(seq))
-    ## make denominator 8
+    ### make denominator 8
     if contexttools.get_effective_time_signature(result).denominator == 1:
         result.denominator = 8
     return result
@@ -60,7 +60,7 @@ def desordre_cell(pitches):
     marktools.LilyPondCommandMark('voiceOne')(v_higher)
     p = Container([v_lower, v_higher])
     p.is_parallel = True
-    ## make all 1/8 beats breakable
+    ### make all 1/8 beats breakable
     for n in v_lower.leaves[:-1]:
         #n.bar_line.kind = ''
         marktools.LilyPondCommandMark('bar ""', format_slot = 'closing')(n)
@@ -76,7 +76,7 @@ def load_desordre_pitches(file):
     for line in lines:
         if len(line) == 0:
             pass
-        elif line.startswith('##'):
+        elif line.startswith('###'):
             hand = [ ]
             result.append(hand)
         else:

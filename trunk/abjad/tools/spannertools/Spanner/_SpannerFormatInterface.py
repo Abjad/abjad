@@ -6,20 +6,20 @@ class _SpannerFormatInterface(_StrictComparator):
     Model format interface for all Abjad spanners.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __init__(self, spanner):
         '''Bind to spanner client.'''
         self._spanner = spanner
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def spanner(self):
         '''Read-only reference to spanner client.'''
         return self._spanner
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _after(self, leaf):
         '''Spanner format contributions to output after leaf.'''
@@ -47,7 +47,7 @@ class _SpannerFormatInterface(_StrictComparator):
         result = [ ]
         return result
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def report(self, leaves = None, output = 'screen'):
         '''Print spanner format contributions for every leaf in leaves.'''

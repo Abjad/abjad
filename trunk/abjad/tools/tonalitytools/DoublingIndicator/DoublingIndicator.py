@@ -12,7 +12,7 @@ class DoublingIndicator(_Immutable):
     def __init__(self, doublings):
         object.__setattr__(self, '_doublings', doublings)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def doublings(self):

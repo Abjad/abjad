@@ -22,7 +22,7 @@ class InversionIndicator(_Immutable):
             raise ValueError('can not initialize inversion indicator.')
         object.__setattr__(self, '_number', number)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -36,7 +36,7 @@ class InversionIndicator(_Immutable):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.name)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _inversion_name_to_inversion_number = {
         'root': 0, 'root position': 0,
@@ -56,7 +56,7 @@ class InversionIndicator(_Immutable):
         0: '', 1: '6', 2: '6/4',
     }
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def name(self):
@@ -73,7 +73,7 @@ class InversionIndicator(_Immutable):
             return 'RootPosition'
         return '%sInversion' % name.title( )
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def extent_to_figured_bass_string(self, extent):
         if extent == 5:

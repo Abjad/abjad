@@ -7,7 +7,7 @@ class _IntervalClass(_Immutable):
     Interval-class base class.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return type(self)(abs(self._number))
@@ -27,13 +27,13 @@ class _IntervalClass(_Immutable):
     def __str__(self):
         return self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return str(self.number)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def number(self):

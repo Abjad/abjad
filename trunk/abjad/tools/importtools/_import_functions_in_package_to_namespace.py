@@ -25,27 +25,27 @@ def _import_functions_in_package_to_namespace(package, namespace, skip_dirs=['te
     for root, dirs, files in os.walk(package):
         root = root[root.rindex('abjad'):]
 
-        ## remove directories of modules to skip
+        ### remove directories of modules to skip
         for mod in skip_dirs:
             if mod in dirs:
                 dirs.remove(mod)
 
-        ## get functions from module files
+        ### get functions from module files
         for file in files:
             if file.endswith('py') and not file.startswith(('_', '.')):
                 module = os.path.join(root, file[:-3])
                 functions.extend(_get_public_names_in_module(module))
 
-    ## put functions retrieved into namespace
+    ### put functions retrieved into namespace
     for func in functions:
         namespace[func.__name__] = func
 
-    ## remove modules
+    ### remove modules
     _remove_modules_from_namespace(namespace)
 
-    ## remove myself
+    ### remove myself
     try:
         del(namespace['_import_functions_in_package_to_namespace'])
-    ## if we were importing into __builtins__, myself will raise KeyError
+    ### if we were importing into __builtins__, myself will raise KeyError
     except KeyError:
         pass

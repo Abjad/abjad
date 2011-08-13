@@ -4,7 +4,7 @@ from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
 
 
-## TODO: remove ##
+### TODO: remove ###
 _accidental_spelling = _read_config_file( )['accidental_spelling']
 
 class NamedChromaticPitch(_Pitch):
@@ -18,11 +18,11 @@ class NamedChromaticPitch(_Pitch):
     Named chromatic pitches are immutable.
     '''
 
-    ## TODO: remove ##
+    ### TODO: remove ###
     accidental_spelling = _accidental_spelling
 
-    ## calculate accidental_semitones, diatonic_pitch_number at init
-    ## so notehead sorting doesn't take forever later on
+    ### calculate accidental_semitones, diatonic_pitch_number at init
+    ### so notehead sorting doesn't take forever later on
     __slots__ = ('_accidental_semitones', '_chromatic_pitch_name', '_deviation', '_diatonic_pitch_number')
 
     def __new__(klass, *args, **kwargs):
@@ -68,7 +68,7 @@ class NamedChromaticPitch(_Pitch):
     def __getnewargs__(self):
         return (self._chromatic_pitch_name, self._deviation)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return abs(self.numbered_chromatic_pitch)
@@ -188,7 +188,7 @@ class NamedChromaticPitch(_Pitch):
             interval = arg
             return pitchtools.transpose_pitch_carrier_by_melodic_interval(self, -interval)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _accidental(self):
@@ -217,7 +217,7 @@ class NamedChromaticPitch(_Pitch):
         else:
             return None
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_by_chromatic_pitch_class_name_and_octave_number(
         self, chromatic_pitch_class_name, octave_number):
@@ -275,7 +275,7 @@ class NamedChromaticPitch(_Pitch):
         object.__setattr__(self, '_chromatic_pitch_name', named_chromatic_pitch._chromatic_pitch_name)
         object.__setattr__(self, '_deviation', named_chromatic_pitch.deviation_in_cents)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def chromatic_pitch_class_name(self):

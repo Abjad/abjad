@@ -8,7 +8,7 @@ class _ContainerFormatter(_ComponentFormatter):
         _ComponentFormatter.__init__(self, client)
         self._slots = _ContainerFormatterSlotsInterface(self)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents(self):
@@ -20,7 +20,7 @@ class _ContainerFormatter(_ComponentFormatter):
         result = ['\t' + x for x in result]
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def container(self):

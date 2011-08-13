@@ -6,7 +6,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
     def __init__(self, client):
         _ComponentFormatterSlotsInterface.__init__(self, client)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _indent_slot_contributions(self, slot):
         for contributor, contributions in slot:
@@ -14,7 +14,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
                 for i, contribution in enumerate(contributions):
                     contributions[i] = '\t' + contribution
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def slot_1(self):

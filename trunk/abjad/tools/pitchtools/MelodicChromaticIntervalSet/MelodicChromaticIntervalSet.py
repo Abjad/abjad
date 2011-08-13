@@ -17,7 +17,7 @@ class MelodicChromaticIntervalSet(_IntervalSet):
         mcis = [pitchtools.MelodicChromaticInterval(x) for x in interval_tokens]
         return frozenset.__new__(self, mcis)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self)
@@ -28,7 +28,7 @@ class MelodicChromaticIntervalSet(_IntervalSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -36,7 +36,7 @@ class MelodicChromaticIntervalSet(_IntervalSet):
         intervals.sort(lambda x, y: cmp(x.number, y.number))
         return ', '.join([str(x) for x in intervals])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def harmonic_chromatic_interval_set(self):

@@ -27,7 +27,7 @@ class InversionEquivalentDiatonicIntervalClassVector(_Vector):
             #self[dic] += 1
             dict.__setitem__(self, dic, self[dic] + 1)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -44,7 +44,7 @@ class InversionEquivalentDiatonicIntervalClassVector(_Vector):
     def __str__(self):
         return '{%s}' % self._contents_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_string(self):

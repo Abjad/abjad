@@ -21,7 +21,7 @@ def _line_break_every(expr, line_duration, klass = Measure,
     prev = None
     cum_duration = durtools.Duration(0)
     for cur in componenttools.iterate_components_forward_in_expr(expr, klass):
-        ## compress these 4 lines to only the 4th line after duration migration
+        ### compress these 4 lines to only the 4th line after duration migration
         if kind == 'seconds':
             cur_duration = cur.duration_in_seconds
         elif kind == 'prolated':

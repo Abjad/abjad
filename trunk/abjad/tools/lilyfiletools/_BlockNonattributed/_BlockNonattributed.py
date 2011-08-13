@@ -2,7 +2,7 @@ class _BlockNonattributed(list):
     r'''Abjad model of the LilyPond input file blocks with no attributes.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         if not len(self):
@@ -10,7 +10,7 @@ class _BlockNonattributed(list):
         else:
             return '%s(%s)' % (self.__class__.__name__, len(self))
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_pieces(self):
@@ -24,7 +24,7 @@ class _BlockNonattributed(list):
             result.append('}')
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

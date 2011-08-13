@@ -47,7 +47,7 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         'vaticana_ligature', 'vertical_alignment', 'vertical_axis_group', 'voice_follower',
         'volta_bracket', 'volta_bracket_spanner'])
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __getattr__(self, name):
         if name.startswith('_'):
@@ -76,18 +76,18 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         body_string = ' '
         skeleton_strings = self._get_skeleton_strings( )
         if skeleton_strings:
-            ## remove 'override__'
+            ### remove 'override__'
             skeleton_strings = [x[10:] for x in skeleton_strings]
             skeleton_strings.sort( )
             body_string = ', '.join(skeleton_strings)
         return '%s(%s)' % (self.__class__.__name__, body_string)
 
     def __setattr__(self, attr, value):
-        ## make sure attr is valid grob name before setting value ##
+        ### make sure attr is valid grob name before setting value ###
         attr_value = getattr(self, attr)
         object.__setattr__(self, attr, value)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     def _get_attribute_tuples(self):
         result = [ ]
@@ -113,7 +113,7 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
             skeleton_strings.append(skeleton_string)
         return tuple(skeleton_strings)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _list_format_contributions(self, contribution_type, is_once = False):
         from abjad.tools.lilyfiletools._make_lilypond_override_string import _make_lilypond_override_string

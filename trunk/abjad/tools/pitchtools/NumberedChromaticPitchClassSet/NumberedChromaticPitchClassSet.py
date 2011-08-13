@@ -25,25 +25,25 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
     def __new__(self, expr):
         from abjad.tools import pitchtools
         pcs = [ ]
-        ## assume expr is iterable
+        ### assume expr is iterable
         try:
             for x in expr:
                 try:
                     pcs.append(pitchtools.NumberedChromaticPitchClass(x))
                 except TypeError:
                     pcs.extend(get_pitch_classes(x))
-        ## if expr is not iterable
+        ### if expr is not iterable
         except TypeError:
-            ## assume expr can be turned into a single pc
+            ### assume expr can be turned into a single pc
             try:
                 pc = pitchtools.NumberedChromaticPitchClass(expr)
                 pcs.append(pc)
-            ## expr is a Rest or non-PC type
+            ### expr is a Rest or non-PC type
             except TypeError:
                 pcs = [ ]
         return frozenset.__new__(self, pcs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -66,7 +66,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -74,7 +74,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
         result.sort(lambda x, y: cmp(abs(x), abs(y)))
         return ', '.join([str(x) for x in result])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def inversion_equivalent_chromatic_interval_class_set(self):
@@ -131,7 +131,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
         '''To be implemented.'''
         return None
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def invert(self):
         '''Invert numbered chromatic pitch-class set::

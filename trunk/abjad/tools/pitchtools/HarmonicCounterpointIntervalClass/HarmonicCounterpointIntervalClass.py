@@ -35,7 +35,7 @@ class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicInt
         object.__setattr__(self, '_number', _number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

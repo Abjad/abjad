@@ -55,15 +55,15 @@ def apply_beam_spanners_to_measures_in_expr(expr):
         ``measuretools.apply_beam_spanners_to_measures_in_expr( )``.
     '''
 
-    ## init beams created
+    ### init beams created
     beams_created = [ ]
 
-    ## apply beam spanners to measures in expr
+    ### apply beam spanners to measures in expr
     for measure in iterate_measures_forward_in_expr(expr):
         beam = apply_beam_spanner_to_measure(measure)
         beams_created.append(beam)
 
-    ## return beams created
+    ### return beams created
     return beams_created
 
 

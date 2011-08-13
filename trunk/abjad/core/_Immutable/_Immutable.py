@@ -9,7 +9,7 @@ class _Immutable(object):
 
     __slots__ = ( )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self)

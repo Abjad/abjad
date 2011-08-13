@@ -8,7 +8,7 @@ class _ClusterFormatter(_ContainerFormatter):
         _ContainerFormatter.__init__(self, client)
         self._slots = _ClusterFormatterSlotsInterface(self)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def cluster(self):

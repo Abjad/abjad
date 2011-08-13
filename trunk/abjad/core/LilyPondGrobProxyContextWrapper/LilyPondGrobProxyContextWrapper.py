@@ -37,7 +37,7 @@ class LilyPondGrobProxyContextWrapper(object):
         'vaticana_ligature', 'vertical_alignment', 'vertical_axis_group', 'voice_follower',
         'volta_bracket', 'volta_bracket_spanner'])
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __getattr__(self, name):
         try:

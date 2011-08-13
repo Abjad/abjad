@@ -29,7 +29,7 @@ class Container(_Component):
         self._parallel = False
         self._initialize_keyword_values(**kwargs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __add__(self, expr):
         '''Concatenate containers self and expr.
@@ -130,8 +130,8 @@ class Container(_Component):
             assert componenttools.all_are_components([expr])
             old = self[i]
             spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
-            ## must withdraw from spanners before parentage!
-            ## otherwise begin / end assessments don't work!
+            ### must withdraw from spanners before parentage!
+            ### otherwise begin / end assessments don't work!
             _withdraw_components_in_expr_from_crossing_spanners([expr])
             expr._parentage._switch(self)
             self._music.insert(i, expr)
@@ -151,8 +151,8 @@ class Container(_Component):
             spanners_receipt = spannertools.get_spanners_that_dominate_container_components_from_to(
                 self, start, stop)
             componenttools.remove_component_subtree_from_score_and_spanners(old)
-            ## must withdraw before setting in self!
-            ## otherwise circular withdraw ensues!
+            ### must withdraw before setting in self!
+            ### otherwise circular withdraw ensues!
             _withdraw_components_in_expr_from_crossing_spanners(expr)
             self._music[start:start] = expr
             for component in expr:
@@ -162,7 +162,7 @@ class Container(_Component):
                     spanner._insert(index, component)
                     component._spanners.add(spanner)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _compact_representation(self):
@@ -182,7 +182,7 @@ class Container(_Component):
         else:
             return ' '
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def contents_duration(self):
@@ -301,7 +301,7 @@ class Container(_Component):
     def preprolated_duration(self):
         return self.contents_duration
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _initialize_music(self, music):
         from abjad.tools import componenttools
@@ -329,7 +329,7 @@ class Container(_Component):
     def _is_one_of_my_last_leaves(self, leaf):
         return leaf in self._navigator._contemporaneous_stop_contents
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def append(self, component):
         r'''Append `component` to container::

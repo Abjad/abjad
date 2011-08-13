@@ -6,7 +6,7 @@ class _OctavationSpannerFormatInterface(_SpannerFormatInterface):
     def __init__(self, spanner):
         _SpannerFormatInterface.__init__(self, spanner)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _after(self, leaf):
         '''Spanner format contributions after leaf.'''

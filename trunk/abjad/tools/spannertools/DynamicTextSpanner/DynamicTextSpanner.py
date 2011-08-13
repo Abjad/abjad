@@ -32,7 +32,7 @@ class DynamicTextSpanner(Spanner):
         self._format = _DynamicTextSpannerFormatInterface(self)
         self.mark = mark
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def mark( ):

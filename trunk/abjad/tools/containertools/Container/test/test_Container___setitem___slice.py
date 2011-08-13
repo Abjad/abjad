@@ -393,7 +393,7 @@ def test_Container___setitem___slice_13( ):
     }
     '''
 
-    ## set outer container contents to empty
+    ### set outer container contents to empty
     outer[:] = [ ]
 
     r'''
@@ -414,10 +414,10 @@ def test_Container___setitem___slice_13( ):
     }
     '''
 
-    ## inner container leaves DO withdraw from all spanners
+    ### inner container leaves DO withdraw from all spanners
     assert inner.format == "{\n\td'8\n\te'8\n}"
 
-    ## ALTERNATIVE: use containertools.delete_contents_of_container( )
+    ### ALTERNATIVE: use containertools.delete_contents_of_container( )
 
     t = Staff("c'8 d'8 e'8 f'8")
     inner = Container(t[1:3])
@@ -442,5 +442,5 @@ def test_Container___setitem___slice_13( ):
     }
     '''
 
-    ## inner container leaves DO NOT withdraw from spanners
+    ### inner container leaves DO NOT withdraw from spanners
     assert inner.format == "{\n\td'8 [\n\te'8 ]\n}"

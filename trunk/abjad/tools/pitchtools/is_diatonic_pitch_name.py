@@ -4,8 +4,8 @@ import re
 
 
 diatonic_pitch_name_regex_body = """
-    %s                 ## exactly one diatonic pitch-class name string
-    %s                 ## followed by exactly one octave tick string
+    %s                 ### exactly one diatonic pitch-class name string
+    %s                 ### followed by exactly one octave tick string
     """ % (diatonic_pitch_class_name_regex_body, octave_tick_regex_body)
 
 diatonic_pitch_name_regex = re.compile(

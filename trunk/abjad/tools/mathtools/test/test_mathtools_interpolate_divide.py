@@ -32,7 +32,7 @@ def test_mathtools_interpolate_divide_04( ):
 
     t = mathtools.interpolate_divide(Fraction(1, 2), Fraction(1, 8), Fraction(1, 16))
 
-    assert t[0] <= Fraction(1, 8) ## 1/8 is approximated
+    assert t[0] <= Fraction(1, 8) ### 1/8 is approximated
     assert t[-2] < t[0]
 
 
@@ -41,7 +41,7 @@ def test_mathtools_interpolate_divide_05( ):
 
     t = mathtools.interpolate_divide(Fraction(1, 2), Fraction(1, 16), Fraction(1, 8))
 
-    assert t[0] <= Fraction(1, 16) ## 1/8 is approximated
+    assert t[0] <= Fraction(1, 16) ### 1/8 is approximated
     assert t[0] < t[-2]
 
 

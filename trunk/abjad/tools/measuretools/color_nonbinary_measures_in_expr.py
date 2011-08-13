@@ -68,16 +68,16 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
     Color names appear in LilyPond Learning Manual appendix B.5.
     '''
 
-    ## init measures colored
+    ### init measures colored
     measures_colored = [ ]
 
-    ## color nonbinary measures in expr
+    ### color nonbinary measures in expr
     for measure in iterate_measures_forward_in_expr(expr):
         if contexttools.get_effective_time_signature(measure).is_nonbinary:
             color_measure(measure, color)
             measures_colored.append(measure)
 
-    ## return measures colored
+    ### return measures colored
     return measures_colored
 
 

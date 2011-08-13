@@ -17,12 +17,12 @@ class InversionEquivalentChromaticIntervalClassSegment(_IntervalClassSegment):
         interval_classes = [pitchtools.InversionEquivalentChromaticIntervalClass(x) for x in interval_class_tokens]
         return tuple.__new__(self, interval_classes)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):

@@ -40,8 +40,8 @@ def insert_component_and_do_not_fracture_crossing_spanners(container, i, compone
         ``containertools.insert_component_and_do_not_fracture_crossing_spanners( )``.
     '''
 
-    ## insert component into container at index i
+    ### insert component into container at index i
     container[i:i] = [component]
 
-    ## return container
+    ### return container
     return container

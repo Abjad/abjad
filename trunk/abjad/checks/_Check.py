@@ -7,7 +7,7 @@ class _Check(_StrictComparator):
     def __init__(self):
         pass
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _message(self):
@@ -16,7 +16,7 @@ class _Check(_StrictComparator):
         parts = parts[:-1]
         return ' '.join([p.lower( ) for p in parts])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     def check(self, expr):
         return not self.violators(expr)

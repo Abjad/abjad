@@ -2,9 +2,9 @@ import re
 
 
 octave_tick_regex_body = """
-    (,+             ## one or more commas for octaves below the bass clef
-    |'+             ## or one or more apostrophes for the octave of the treble clef
-    |)              ## or empty string for the octave of the bass clef
+    (,+             ### one or more commas for octaves below the bass clef
+    |'+             ### or one or more apostrophes for the octave of the treble clef
+    |)              ### or empty string for the octave of the bass clef
     """
 
 octave_tick_regex = re.compile('^%s$' % octave_tick_regex_body, re.VERBOSE)

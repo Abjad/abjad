@@ -47,7 +47,7 @@ def _partition_components_by_durations(duration_type, components, durations,
             component = components_copy.pop(0)
         except IndexError:
             break
-        ## collapse these 4 lines to only the 4th line after duration migration
+        ### collapse these 4 lines to only the 4th line after duration migration
         if duration_type == 'seconds':
             component_duration = component.duration_in_seconds
         elif duration_type == 'prolated':
@@ -76,7 +76,7 @@ def _partition_components_by_durations(duration_type, components, durations,
             elif fill == 'less':
                 result.append(part)
                 part = [component]
-                ## collapse to 4th line after duration migration
+                ### collapse to 4th line after duration migration
                 if duration_type == 'seconds':
                     cum_duration = sum([x.duration_in_seconds for x in part])
                 elif duration_type == 'preprolated':

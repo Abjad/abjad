@@ -82,7 +82,7 @@ class LilyFile(list):
         self.default_paper_size = None
         self.global_staff_size = None
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
@@ -90,7 +90,7 @@ class LilyFile(list):
         else:
             return '%s( )' % self.__class__.__name__
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_pieces(self):
@@ -181,7 +181,7 @@ class LilyFile(list):
             result = ['\n'.join(result)]
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def default_paper_size( ):
@@ -189,7 +189,7 @@ class LilyFile(list):
             '''LilyPond default paper size.'''
             return self._default_paper_size
         def fset(self, args):
-            ## #(set-default-paper-size "11x17" 'landscape)
+            ### #(set-default-paper-size "11x17" 'landscape)
             assert args is None or len(args) == 2
             self._default_paper_size = args
         return property(**locals( ))

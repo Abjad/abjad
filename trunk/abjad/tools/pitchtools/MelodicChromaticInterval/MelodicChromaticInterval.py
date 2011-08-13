@@ -26,7 +26,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
         object.__setattr__(self, '_number', number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return self.harmonic_chromatic_interval
@@ -75,13 +75,13 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
     def __str__(self):
         return self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return '%s%s' % (self._direction_symbol, abs(self.number))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def chromatic_interval_number(self):

@@ -98,12 +98,12 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
     #assert isinstance(new_preprolated_duration, durtools.Duration)
     new_preprolated_duration = durtools.Duration(new_preprolated_duration)
 
-    ## If leaf carries LilyPond multiplier, change only LilyPond multiplier.
+    ### If leaf carries LilyPond multiplier, change only LilyPond multiplier.
     if leaf.duration_multiplier is not None:
         leaf.duration_multiplier = new_preprolated_duration / leaf.written_duration
         return [leaf]
 
-    ## If leaf does not carry LilyPond multiplier, change other values.
+    ### If leaf does not carry LilyPond multiplier, change other values.
     try:
         leaf.written_duration = new_preprolated_duration
         all_leaves = [leaf]

@@ -50,7 +50,7 @@ class PitchArrayRow(_StrictComparator):
         self._cells = [ ]
         self.extend(cells)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __add__(self, arg):
         if not isinstance(arg, PitchArrayRow):
@@ -133,7 +133,7 @@ class PitchArrayRow(_StrictComparator):
         result = ' '.join(result)
         return result
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _compact_summary(self):
@@ -160,7 +160,7 @@ class PitchArrayRow(_StrictComparator):
         result = ', '.join(result)
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def cell_tokens(self):
@@ -228,7 +228,7 @@ class PitchArrayRow(_StrictComparator):
     def width(self):
         return sum([cell.width for cell in self.cells])
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def append(self, cell_token):
         cell = PitchArrayCell(cell_token)

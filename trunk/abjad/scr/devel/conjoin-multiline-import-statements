@@ -17,11 +17,11 @@ def _conjoin_multiline_import_statements( ):
             within_multiline_import, constituent_lines = False, [ ]
             for line in fp:
                if ('import' in line or line.startswith('from')) and line.endswith('\\\n'):
-                  ## strip only right edge of first line to preserve indentation at left
+                  ### strip only right edge of first line to preserve indentation at left
                   constituent_lines.append(line.rstrip( ))
                   within_multiline_import = True
                elif within_multiline_import:
-                  ## strip both left and right edges of subsequent lines
+                  ### strip both left and right edges of subsequent lines
                   constituent_lines.append(line.strip( ))
                   if not line.endswith('\\\n'):   
                      conjoined_line = ' '.join(constituent_lines) + '\n'

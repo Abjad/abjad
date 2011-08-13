@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
-## TODO: renamed to suggest_clef_for_named_chromatic_pitches_in_expr
+### TODO: renamed to suggest_clef_for_named_chromatic_pitches_in_expr
 def suggest_clef_for_named_chromatic_pitches(pitches, clefs = ['treble', 'bass']):
     '''.. versionadded:: 1.1.1
 

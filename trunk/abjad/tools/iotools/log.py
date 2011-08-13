@@ -2,12 +2,12 @@ from abjad.cfg._read_config_file import _read_config_file
 import os
 
 
-## TODO: Call operating-specific view program instead of vi. ##
+### TODO: Call operating-specific view program instead of vi. ###
 
 def log( ):
     '''Open the LilyPond log file in the ``vi``::
 
-        abjad> iotools.log( ) ## doctest: +SKIP
+        abjad> iotools.log( ) ### doctest: +SKIP
 
     ::
 

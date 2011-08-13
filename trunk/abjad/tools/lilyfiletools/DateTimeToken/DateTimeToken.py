@@ -13,12 +13,12 @@ class DateTimeToken(_Immutable):
     Return date / time token.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self.format)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

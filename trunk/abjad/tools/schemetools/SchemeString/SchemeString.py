@@ -21,12 +21,12 @@ class SchemeString(_StrictComparator, _Immutable):
     def __getnewargs__(self):
         return (self._string, )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return "%s(%s)" % (self.__class__.__name__, repr(self._string))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

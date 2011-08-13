@@ -27,7 +27,7 @@ class ScaleDegree(_Immutable):
         object.__setattr__(self, '_accidental', accidental)
         object.__setattr__(self, '_number', number)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -45,7 +45,7 @@ class ScaleDegree(_Immutable):
     def __str__(self):
         return self._compact_format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _acceptable_numbers(self):
@@ -63,7 +63,7 @@ class ScaleDegree(_Immutable):
         parts.append(str(self.number))
         return ', '.join(parts)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _numeral_to_number_name_string = {
         1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six',
@@ -89,7 +89,7 @@ class ScaleDegree(_Immutable):
     _symbolic_string_regex = re.compile(r'([#|b]*)([i|I|v|V|\d]+)')
 
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_by_accidental_and_number(self, accidental, number):
         accidental = Accidental(accidental)
@@ -125,7 +125,7 @@ class ScaleDegree(_Immutable):
         #self._number = number
         return accidental, number
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def accidental(self):
@@ -164,7 +164,7 @@ class ScaleDegree(_Immutable):
         number = self._numeral_to_number_name_string[self.number]
         return '%s%s' % (accidental.title( ), number.title( ))
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental):
         '''Apply accidental to self and emit new instance.'''

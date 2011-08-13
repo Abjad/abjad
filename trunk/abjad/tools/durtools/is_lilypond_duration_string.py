@@ -5,22 +5,22 @@ numbered_body_strings = '|'.join([str(2 ** n) for n in range(8)])
 named_body_strings = '|'.join([r'\\breve', r'\\longa', r'\\maxima'])
 
 lilypond_duration_string_regex_body = """
-    (                                    ## exactly one body string equal to either
-        %s     ## one numbered body string
-        |                                ## or
-        %s ## one named body string
+    (                                    ### exactly one body string equal to either
+        %s     ### one numbered body string
+        |                                ### or
+        %s ### one named body string
     )
-    \s*                                 ## zero or more whitespace characters
-    (\\.*)                              ## zero or more dots
-    \s*                                 ## zero or more whitespace characters
-    (                                    ## at most one lilypond multiplier string equal to
-        \*                             ## exactly one asterisk
-        \s*                            ## zero or more whitespace characters
-        (                                ## exactly one fraction string equal to
-            \d+                         ## one or more digits
-            (                           ## at most one denominator string equal to
-                /                      ## exactly one forward slash
-                \d+                    ## one or more digits
+    \s*                                 ### zero or more whitespace characters
+    (\\.*)                              ### zero or more dots
+    \s*                                 ### zero or more whitespace characters
+    (                                    ### at most one lilypond multiplier string equal to
+        \*                             ### exactly one asterisk
+        \s*                            ### zero or more whitespace characters
+        (                                ### exactly one fraction string equal to
+            \d+                         ### one or more digits
+            (                           ### at most one denominator string equal to
+                /                      ### exactly one forward slash
+                \d+                    ### one or more digits
             )?
         )
     )?

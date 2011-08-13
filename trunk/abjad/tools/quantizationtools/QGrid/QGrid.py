@@ -65,7 +65,7 @@ class QGrid(_Immutable):
     def __getnewargs__(self):
         return self._definition, self._next
 
-    ## OVERRIDES ##
+    ### OVERRIDES ###
 
     def __eq__(self, other):
         if type(self) == type(other) and \
@@ -125,13 +125,13 @@ class QGrid(_Immutable):
         else:
             recurse(self._definition, item, value, 0)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return '%s, %s' % (self._definition, self._next)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _expand_offsets(self):
         def recurse(n, prev_div, prev_offset):
@@ -176,7 +176,7 @@ class QGrid(_Immutable):
                 return True
         return False
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def definition(self):
@@ -230,7 +230,7 @@ class QGrid(_Immutable):
 
         return self._offsets
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def find_parentage_of_index(self, index):
         '''Return a tuple of the lengths of each container containing `index`,

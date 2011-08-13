@@ -38,7 +38,7 @@ class QGridTempoLookup(_Immutable, _ImmutableDictionary):
     def __getnewargs__(self):
         return tuple(self.keys( )), self.beatspan, self.tempo
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def beatspan(self):

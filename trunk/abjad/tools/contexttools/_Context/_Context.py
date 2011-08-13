@@ -19,7 +19,7 @@ class _Context(Container):
         self._name = None
         self.is_nonsemantic = False
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         new = Container.__copy__(self, *args)
@@ -47,7 +47,7 @@ class _Context(Container):
             name = ''
         return '%s%s%s%s%s' % (self.context, name, open, summary, close)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def context( ):

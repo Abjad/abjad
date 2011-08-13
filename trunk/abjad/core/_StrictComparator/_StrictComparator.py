@@ -7,7 +7,7 @@ class _StrictComparator(object):
 
     __slots__ = ( )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         return id(self) == id(arg)

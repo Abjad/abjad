@@ -7,7 +7,7 @@ class _Interval(_Immutable):
     Interval base class.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         raise NotImplementedError('abs needs to be implemented on %s.' % type(self))
@@ -27,24 +27,24 @@ class _Interval(_Immutable):
     def __str__(self):
         return str(self.number)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return str(self.number)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def cents(self):
         return 100 * self.semitones
 
-    ## TODO: remove
+    ### TODO: remove
     @property
     def interval_class(self):
         pass
 
-    ## TODO: remove
+    ### TODO: remove
     @property
     def number(self):
         return self._number

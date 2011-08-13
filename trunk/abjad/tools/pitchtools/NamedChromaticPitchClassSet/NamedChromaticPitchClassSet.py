@@ -24,26 +24,26 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
     def __new__(self, expr):
         from abjad.tools import pitchtools
         npcs = [ ]
-        ## assume expr is iterable
+        ### assume expr is iterable
         try:
             for x in expr:
                 try:
                     npcs.append(pitchtools.NamedChromaticPitchClass(x))
                 except TypeError:
-                    ## TODO: probably fix next line ##
+                    ### TODO: probably fix next line ###
                     npcs.extend(get_pitch_classes(x))
-        ## if expr is not iterable
+        ### if expr is not iterable
         except TypeError:
-            ## assume expr can be turned into a single pc
+            ### assume expr can be turned into a single pc
             try:
                 npc = pitchtools.NamedChromaticPitchClass(expr)
                 npcs.append(npc)
-            ## expr is a Rest or non-PC type
+            ### expr is a Rest or non-PC type
             except TypeError:
                 npcs = [ ]
         return frozenset.__new__(self, npcs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -66,7 +66,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -76,7 +76,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
     def _repr_string(self):
         return ', '.join([repr(str(x)) for x in self._sort_self( )])
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _sort_self(self):
         def helper(x, y):
@@ -88,7 +88,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
         result.sort(helper)
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def inversion_equivalent_diatonic_interval_class_vector(self):
@@ -114,7 +114,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
         result = list(self)
         return tuple(self._sort_self( ))
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def order_by(self, npc_seg):
         from abjad.tools import pitchtools

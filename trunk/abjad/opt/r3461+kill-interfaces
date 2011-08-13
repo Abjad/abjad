@@ -24,26 +24,26 @@ RESULTS:
    print timer.timeit(1000)
    5.13 sec (r3461)
    3.98 sec (r3461 with opt)
-   ## 22.4 % speed increase
+   ### 22.4 % speed increase
 
    note = Note("c'4")
    timer = timeit.Timer('note.format', 'from __main__ import note')
    print timer.timeit(1000)
    2.60 sec (r3461)
    2.03 sec (r3461 with opt)
-   ## 22.0 % speed increase
+   ### 22.0 % speed increase
 
    iotools.profile_expr('Note("c'4")')
    2797 function calls (2778 primitive calls) in 0.008 CPU seconds (r3461)
    2170 function calls (2151 primitive calls) in 0.006 CPU seconds (r3461 with opt)
-   ## 22.4 % fewer function calls
+   ### 22.4 % fewer function calls
 
    iotools.profile_expr('note.format')
    2053 function calls (1636 primitive calls) in 0.004 CPU seconds (r3461)
    1633 function calls (1336 primitive calls) in 0.004 CPU seconds (r3461 with opt)
-   ## 20.5 % fewer function calls
+   ### 20.5 % fewer function calls
 
    notes = [Note("c'4") for x in range(1000)]
    Partition of a set of 664003 objects. Total size = 74904504 bytes. (r3461)
    Partition of a set of 535003 objects. Total size = 61220504 bytes. (r3461 with opt)
-   ## 18.3 % less memory
+   ### 18.3 % less memory

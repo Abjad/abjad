@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
-## TODO: rename to apply_octavation_spanner_to_pitched_components_in_expr
+### TODO: rename to apply_octavation_spanner_to_pitched_components_in_expr
 def apply_octavation_spanner_to_pitched_components(expr,
     ottava_numbered_diatonic_pitch = None, quindecisima_numbered_diatonic_pitch = None):
     r""".. versionadded:: 1.1.1

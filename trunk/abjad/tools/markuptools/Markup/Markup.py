@@ -3,7 +3,7 @@
 from abjad.tools.marktools.Mark import Mark
 
 
-## TODO: Make Markup.direction_string public and read / write.
+### TODO: Make Markup.direction_string public and read / write.
 
 #class Markup(ContextMark):
 class Markup(Mark):
@@ -95,13 +95,13 @@ class Markup(Mark):
         self._style_string = style_string
         self._format_slot = 'right'
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _direction_string_to_direction_symbol = {'up': '^', 'down': '_', 'neutral': '-', None: '-'}
 
     _style_strings = ('backslash', 'scheme')
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self._contents_string,
@@ -128,7 +128,7 @@ class Markup(Mark):
     def __str__(self):
         return self.format
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
 #   @property
 #   def contents_string(self):

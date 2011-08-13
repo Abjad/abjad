@@ -117,7 +117,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_07( ):
     assert len(result) == 8
 
 
-## TODO this should work.
+### TODO this should work.
 #def test_containertools_fuse_like_named_contiguous_containers_in_expr_08( ):
 #   '''containertools.fuse_like_named_contiguous_containers_in_expr( ) can take a list of parented
 #   Components.'''
@@ -127,7 +127,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_07( ):
 #   assert len(t) == 1
 
 
-## NESTED PARALLEL STRUCTURES ##
+### NESTED PARALLEL STRUCTURES ###
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_09( ):
     '''Fuse parallel voices within parallel staves within parallel

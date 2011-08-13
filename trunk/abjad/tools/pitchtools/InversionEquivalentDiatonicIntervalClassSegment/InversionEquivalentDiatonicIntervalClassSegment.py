@@ -20,12 +20,12 @@ class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):
             dics.append(dic)
         return tuple.__new__(self, dics)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self.intervals)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def is_tertian(self):

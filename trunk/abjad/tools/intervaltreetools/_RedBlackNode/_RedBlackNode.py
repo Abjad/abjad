@@ -10,12 +10,12 @@ class _RedBlackNode(object):
         self.red = True
         self.right = None
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s, %s)' % (self.__class__.__name__, self.key, repr(self.payload))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def grandparent(self):

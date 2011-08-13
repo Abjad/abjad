@@ -60,7 +60,7 @@ class Articulation(Mark):
         object.__setattr__(self, '_direction', direction)
         self._format_slot = 'right'
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self.name_string, self.direction_string)
@@ -83,9 +83,9 @@ class Articulation(Mark):
         else:
             return ''
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
-    ## this causes unnecessary coupling to changeable lilypond codebase and is discouraged
+    ### this causes unnecessary coupling to changeable lilypond codebase and is discouraged
     _articulations_supported = ('accent', 'marcato',
         'staccatissimo',        'espressivo'
         'staccato',             'tenuto'                 'portato'
@@ -103,7 +103,7 @@ class Articulation(Mark):
         '^', '+', '-', '|', '>', '.', '_',
         )
 
-    ## this causes unnecessary coupling to changeable lilypond codebase and is discouraged
+    ### this causes unnecessary coupling to changeable lilypond codebase and is discouraged
     _shortcut_to_word = {
             '^':'marcato', '+':'stopped', '-':'tenuto', '|':'staccatissimo',
             '>':'accent', '.':'staccato', '_':'portato' }
@@ -112,7 +112,7 @@ class Articulation(Mark):
     def _contents_repr_string(self):
         return '%s, %s' % (repr(self.name_string), repr(self.direction_string))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def direction_string( ):

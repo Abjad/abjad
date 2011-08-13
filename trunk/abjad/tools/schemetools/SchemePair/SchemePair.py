@@ -26,7 +26,7 @@ class SchemePair(tuple, _Immutable):
     def __getnewargs__(self):
         return tuple(self)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
@@ -34,7 +34,7 @@ class SchemePair(tuple, _Immutable):
     def __str__(self):
         return '(%s)' % self._output_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -60,7 +60,7 @@ class SchemePair(tuple, _Immutable):
                 vals.append(x)
         return '%s . %s' % (vals[0], vals[1])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

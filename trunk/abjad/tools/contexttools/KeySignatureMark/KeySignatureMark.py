@@ -45,7 +45,7 @@ class KeySignatureMark(ContextMark):
         self._tonic = tonic
         self._mode = mode
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -57,14 +57,14 @@ class KeySignatureMark(ContextMark):
     def __str__(self):
         return '%s-%s' % (self.tonic, self.mode)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     #def _contents_name_string(self):
     def _contents_repr_string(self):
         return "%s, %s" % (repr(self.tonic), repr(self.mode))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

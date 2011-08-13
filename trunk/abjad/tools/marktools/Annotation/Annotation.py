@@ -52,7 +52,7 @@ class Annotation(Mark):
         self._name = copy.copy(name)
         self._value = copy.copy(value)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         #return type(self)(self.contents_string)
@@ -68,7 +68,7 @@ class Annotation(Mark):
                     return True
         return False
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
@@ -77,7 +77,7 @@ class Annotation(Mark):
             return repr(self.name)
         return ', '.join([repr(self.name), repr(self.value)])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
 #   @apply
 #   def contents_string( ):

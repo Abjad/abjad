@@ -32,7 +32,7 @@ class HarmonicChromaticIntervalClassVector(_Vector):
             current_tally = self[interval_number]
             dict.__setitem__(self, interval_number, current_tally + 1)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._contents_string)
@@ -53,7 +53,7 @@ class HarmonicChromaticIntervalClassVector(_Vector):
             return '%s\n%s' % (twelve_tone_string, quartertone_string)
         return twelve_tone_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_string(self):
@@ -72,7 +72,7 @@ class HarmonicChromaticIntervalClassVector(_Vector):
                 return True
         return False
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def has_none_of(self, chromatic_interval_numbers):
         '''True when harmonic chromatic interval-class vector contains none of

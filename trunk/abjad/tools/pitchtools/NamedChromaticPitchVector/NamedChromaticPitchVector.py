@@ -30,12 +30,12 @@ class NamedChromaticPitchVector(_Vector):
             except KeyError:
                 dict.__setitem__(self, str(pitch), 1)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -49,7 +49,7 @@ class NamedChromaticPitchVector(_Vector):
             substrings.append(substring)
         return ', '.join(substrings)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def chromatic_pitch_numbers(self):

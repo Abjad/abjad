@@ -16,15 +16,15 @@ class FixedDurationTuplet(Tuplet):
     __slots__ = ('_target_duration', )
 
     def __init__(self, duration, music = None, **kwargs):
-        ## new ##
+        ### new ###
         dummy_multiplier = 1
         Tuplet.__init__(self, dummy_multiplier, music)
-        ## end ##
+        ### end ###
         self._signifier = '@'
         self.target_duration = duration
         self._initialize_keyword_values(**kwargs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __getnewargs__(self):
         return (self.target_duration, )
@@ -38,7 +38,7 @@ class FixedDurationTuplet(Tuplet):
         else:
             return '{%s %s %s}' % (self._signifier, self.target_duration, self._signifier)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def multiplied_duration(self):
@@ -74,7 +74,7 @@ class FixedDurationTuplet(Tuplet):
                 raise ValueError('Tuplet rational %s must be positive.' % rational)
         return property(**locals( ))
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def trim(self, start, stop = 'unused'):
         '''Trim fixed-duration tuplet elements from `start` to `stop`::

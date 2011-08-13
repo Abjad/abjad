@@ -85,7 +85,7 @@ def fuse_measures(measures):
     if len(measures) == 0:
         return None
 
-    ## TODO: Instantiate a new measure, even length is 1 ##
+    ### TODO: Instantiate a new measure, even length is 1 ###
 
     if len(measures) == 1:
         return measures[0]
@@ -104,7 +104,7 @@ def fuse_measures(measures):
 
     music = [ ]
     for measure in measures:
-        ## scale before reassignment to prevent tie chain scale drama
+        ### scale before reassignment to prevent tie chain scale drama
         multiplier = \
             contexttools.get_effective_time_signature(measure).multiplier / new_meter.multiplier
         containertools.scale_contents_of_container(measure, multiplier)

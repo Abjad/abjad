@@ -93,24 +93,24 @@ def _replace_half_of_elements_in_container_with_rests(container, rested_half, bi
     .. todo:: replace with a family of functions.
     '''
 
-    ## assert input types
+    ### assert input types
     assert rested_half in ('left', 'right')
     assert bigger_half in ('left', 'right')
     assert rest_direction in ('automatic', 'big-endian', 'little-endian')
 
-    ## do nothing to empty containers or containers of length 1
+    ### do nothing to empty containers or containers of length 1
     container_length = len(container)
     if container_length in (0, 1):
         return container
 
-    ## determine split index
+    ### determine split index
     halves = mathtools.partition_integer_into_halves(
         len(container), bigger = bigger_half)
     i = halves[0]
 
-    ## rest container in place at split index
+    ### rest container in place at split index
     _replace_first_n_elements_in_container_with_rests(
         container, i, rested_half, direction = rest_direction)
 
-    ## return rested container
+    ### return rested container
     return container

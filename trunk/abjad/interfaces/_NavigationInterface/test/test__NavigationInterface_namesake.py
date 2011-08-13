@@ -1,7 +1,7 @@
 from abjad import *
 from abjad.tools.componenttools._Component import _Component
 
-## next_namesake ##
+### next_namesake ###
 
 def test__NavigationInterface_namesake_01( ):
     '''Leaves within different anonymous parents have different

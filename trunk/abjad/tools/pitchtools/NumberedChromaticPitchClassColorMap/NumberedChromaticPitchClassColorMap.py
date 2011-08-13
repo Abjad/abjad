@@ -25,7 +25,7 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
         self._init_color_dictionary( )
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __getitem__(self, pc):
         from abjad.tools import pitchtools
@@ -38,7 +38,7 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
         sorted_keys.sort( )
         return '%s(%s, %s)' % (self.__class__.__name__, self._pitch_iterables, self._colors)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_color_dictionary(self):
         from abjad.tools import pitchtools
@@ -50,7 +50,7 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
                     raise KeyError('Duplicated pitch-class %s in color dictionary.' % pc)
                 self._color_dictionary[abs(pc)] = color
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def colors(self):
@@ -76,7 +76,7 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
         pcs = [int(x) if int(x) == x else x for x in pcs]
         return set(pcs).issubset(set(self._color_dictionary.keys( )))
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def get(self, key, alternative = None):
         try:

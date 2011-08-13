@@ -28,7 +28,7 @@ def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodi
     except (TypeError, ValueError):
         raise TypeError('must be melodic chromatic interval.')
 
-    ## works for named & numbered pitches both chromatic & diatonic
+    ### works for named & numbered pitches both chromatic & diatonic
     if isinstance(pitch_carrier, _Pitch):
         return type(pitch_carrier)(pitch_carrier.chromatic_pitch_number + mci.semitones)
     elif isinstance(pitch_carrier, numbers.Number):

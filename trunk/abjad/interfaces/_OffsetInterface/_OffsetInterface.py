@@ -16,13 +16,13 @@ class _OffsetInterface(_Interface):
         self._stop = None
         self._stop_in_seconds = None
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _component(self):
         return self._client
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _update_offset_values_of_component_in_seconds(self):
         try:
@@ -33,7 +33,7 @@ class _OffsetInterface(_Interface):
             else:
                 #self._start_in_seconds = durtools.Duration(0)
                 self._start_in_seconds = durtools.Offset(0)
-            ## this one case is possible for containers only
+            ### this one case is possible for containers only
             if self._start_in_seconds is None:
                 raise MissingTempoError
             self._stop_in_seconds = self._start_in_seconds + cur_duration_in_seconds
@@ -49,7 +49,7 @@ class _OffsetInterface(_Interface):
             self._start = durtools.Offset(0)
         self._stop = self._start + self._client.prolated_duration
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def start(self):

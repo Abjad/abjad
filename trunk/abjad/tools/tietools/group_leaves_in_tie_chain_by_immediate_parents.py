@@ -35,16 +35,16 @@ def group_leaves_in_tie_chain_by_immediate_parents(tie_chain):
         ``tietools.group_leaves_in_tie_chain_by_immediate_parents( )``.
     '''
 
-    ## check input
+    ### check input
     if not is_tie_chain(tie_chain):
         raise TypeError('must be tie chain.')
 
-    ## create partition with itertools
+    ### create partition with itertools
     result = [ ]
     pairs_generator = itertools.groupby(tie_chain, lambda x: id(x._parentage.parent))
     for key, values_generator in pairs_generator:
         result.append(list(values_generator))
 
-    ## return result
+    ### return result
     return result
 

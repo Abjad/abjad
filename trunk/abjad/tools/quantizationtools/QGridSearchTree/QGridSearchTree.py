@@ -47,7 +47,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
     def __getnewargs__(self):
         return self.definition
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_immutable_dictionary_recursively(self, definition):
         def recurse(node, i_node):
@@ -123,7 +123,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
             13: None,            # 1/13
         }
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def offsets(self):
@@ -143,7 +143,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
 
         return self._offsets
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def find_subtree_divisibility(self, parentage):
         '''Given a parentage signature, defining some subtree of a `QGridSearchTree`,

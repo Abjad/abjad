@@ -6,7 +6,7 @@ class _MultipartBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
     def __init__(self, spanner):
         _BeamSpannerFormatInterface.__init__(self, spanner)
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
 #   def _before(self, leaf):
 #      '''Spanner format contribution before leaf.'''

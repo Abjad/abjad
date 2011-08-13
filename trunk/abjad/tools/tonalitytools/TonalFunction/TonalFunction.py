@@ -38,7 +38,7 @@ class TonalFunction(_Immutable):
         object.__setattr__(self, '_inversion', inversion)
         object.__setattr__(self, '_suspension', suspension)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -56,7 +56,7 @@ class TonalFunction(_Immutable):
     def __repr__(self):
         return self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _accidental_name_string(self):
@@ -145,7 +145,7 @@ class TonalFunction(_Immutable):
     _symbolic_string_regex = re.compile(
         r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(.*)')
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_by_reference(self, tonal_function):
         args = (tonal_function.scale_degree, tonal_function.quality,
@@ -231,7 +231,7 @@ class TonalFunction(_Immutable):
         else:
             raise ValueError
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def bass_scale_degree(self):
@@ -282,7 +282,7 @@ class TonalFunction(_Immutable):
     def root_scale_degree(self):
         return self._scale_degree
 
-    ## TODO: deprecate scale_degree in favor of root_scale_degree ##
+    ### TODO: deprecate scale_degree in favor of root_scale_degree ###
     @property
     def scale_degree(self):
         return self._scale_degree

@@ -25,12 +25,12 @@ class SchemeFunction(_StrictComparator, _Immutable):
         newargs.extend(self.args)
         return tuple(newargs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._repr_contents_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _repr_contents_string(self):
@@ -40,7 +40,7 @@ class SchemeFunction(_StrictComparator, _Immutable):
         result = ', '.join(str(x) for x in result)
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):
@@ -61,7 +61,7 @@ class SchemeFunction(_StrictComparator, _Immutable):
                 body = "(%s '%s)" % (self.name, self.args[0])
             else:
                 raise ValueError
-        ## TODO: Generalize for many arguments + parsing ##
+        ### TODO: Generalize for many arguments + parsing ###
         else:
             raise NotImplementedError('multiple scheme arguments not yet implemented.')
         return '#' + body

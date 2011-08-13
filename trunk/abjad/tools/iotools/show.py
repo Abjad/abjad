@@ -33,7 +33,7 @@ def show(expr, template = None, return_timing = False, suppress_pdf = False):
 
     name, actual_format_time, actual_lily_time = _log_render_lilypond_input(expr, template = template)
 
-    ## do not open PDF if we're running py.test regression battery
+    ### do not open PDF if we're running py.test regression battery
     if not suppress_pdf:
         config = _read_config_file( )
         pdf_viewer = config['pdf_viewer']
@@ -41,6 +41,6 @@ def show(expr, template = None, return_timing = False, suppress_pdf = False):
         name = os.path.join(ABJADOUTPUT, name)
         _open_file('%s.pdf' % name[:-3], pdf_viewer)
 
-    ## return timing if requested
+    ### return timing if requested
     if return_timing:
         return actual_format_time, actual_lily_time

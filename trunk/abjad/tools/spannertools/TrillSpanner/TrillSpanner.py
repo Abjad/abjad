@@ -32,7 +32,7 @@ class TrillSpanner(Spanner):
         self._format = _TrillSpannerFormatInterface(self)
         self._pitch = None
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def pitch( ):

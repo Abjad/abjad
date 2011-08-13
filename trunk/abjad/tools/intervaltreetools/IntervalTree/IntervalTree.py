@@ -40,7 +40,7 @@ class IntervalTree(_RedBlackTree):
 #        self._intervals = [ ]
         self._insert(intervals)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __contains__(self, item):
         if item in self._inorder:
@@ -89,7 +89,7 @@ class IntervalTree(_RedBlackTree):
         else:
             return '%s([ ])' % self.__class__.__name__
 
-    ## PRIVATE ATTRIBUTES
+    ### PRIVATE ATTRIBUTES
 
     @property
     def _inorder(self):
@@ -102,7 +102,7 @@ class IntervalTree(_RedBlackTree):
         else:
             return ( )
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _insert(self, args):
         def recurse(x):
@@ -128,7 +128,7 @@ class IntervalTree(_RedBlackTree):
 #            self._intervals.append(interval)
         self._update_high_extrema( )
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def bounds(self):
@@ -190,7 +190,7 @@ class IntervalTree(_RedBlackTree):
         else:
             return Duration(0)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _update_high_extrema(self):
         def recurse(node):
@@ -218,7 +218,7 @@ class IntervalTree(_RedBlackTree):
         if self._root != self._sentinel:
             recurse(self._root)
 
-## PUBLIC METHODS ##
+### PUBLIC METHODS ###
 
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
         def recurse(node, low, high):

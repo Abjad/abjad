@@ -47,8 +47,8 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length = None, max
         sublist = [ ]
         for j, digit in enumerate(reversed(binary_string)):
             if digit == '1':
-                ## copy makes the function work with score components ##
-                ## copy also makes the function twice as slow on lists of built-ins ##
+                ### copy makes the function work with score components ###
+                ### copy also makes the function twice as slow on lists of built-ins ###
                 #sublist.append(sequence[j])
                 sublist.append(copy.copy(sequence[j]))
         yield_sublist = True
@@ -59,7 +59,7 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length = None, max
             if max_length < len(sublist):
                 yield_sublist = False
         if yield_sublist:
-            ## type-checking hack ... but is there a better way? ##
+            ### type-checking hack ... but is there a better way? ###
             if isinstance(sequence, str):
                 yield ''.join(sublist)
             else:

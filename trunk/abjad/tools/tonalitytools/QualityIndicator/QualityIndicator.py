@@ -16,7 +16,7 @@ class QualityIndicator(_Immutable):
         #self._quality_string = quality_string
         object.__setattr__(self, '_quality_string', quality_string)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -30,7 +30,7 @@ class QualityIndicator(_Immutable):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.quality_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _acceptable_quality_strings = (
         'major', 'minor', 'augmented', 'diminished',
@@ -39,7 +39,7 @@ class QualityIndicator(_Immutable):
 
     _uppercase_quality_strings = ('major', 'augmented', 'dominant')
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def is_uppercase(self):

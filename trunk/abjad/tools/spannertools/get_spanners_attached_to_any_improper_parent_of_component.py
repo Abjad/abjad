@@ -28,7 +28,7 @@ def get_spanners_attached_to_any_improper_parent_of_component(component, klass =
     '''
     from abjad.tools import componenttools
 
-    ## externalized version of (old) spanner receptor 'spanners_in_parentage' attribute
+    ### externalized version of (old) spanner receptor 'spanners_in_parentage' attribute
     result = set([ ])
     parentage = componenttools.get_improper_parentage_of_component(component)
     for parent in parentage:

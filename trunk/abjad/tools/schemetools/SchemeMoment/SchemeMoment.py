@@ -33,7 +33,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
     def __getnewargs__(self):
         return (self.duration, )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -71,7 +71,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
     def __repr__(self):
         return '%s(%s, %s)' % (self.__class__.__name__, self.duration.numerator, self.duration.denominator)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def duration(self):

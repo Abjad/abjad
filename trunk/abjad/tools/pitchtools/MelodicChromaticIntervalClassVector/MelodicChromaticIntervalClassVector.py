@@ -28,7 +28,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
             mcic = pitchtools.MelodicChromaticIntervalClass(mcic_token)
             dict.__setitem__(self, mcic.number, self[mcic.number] + 1)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __len__(self):
         total_intervals = 0
@@ -43,7 +43,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
     def __str__(self):
         return '\n'.join(self._format_strings)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_strings(self):

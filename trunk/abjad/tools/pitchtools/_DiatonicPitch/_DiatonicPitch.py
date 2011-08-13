@@ -8,7 +8,7 @@ class _DiatonicPitch(_Pitch, _Diatonic):
     Diatonic pitch base class.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return self._number

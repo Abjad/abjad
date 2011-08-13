@@ -6,7 +6,7 @@ class _SlurSpannerFormatInterface(_SpannerFormatInterface):
     def __init__(self, spanner):
         _SpannerFormatInterface.__init__(self, spanner)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _right(self, leaf):
         '''Spanner format contribution right of leaf.'''

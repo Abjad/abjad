@@ -30,7 +30,7 @@ def next_integer_partition(integer_partition):
 
     left_half, right_half = _split_into_left_and_right_halves(integer_partition)
 
-    ## if input was all 1s like (1, 1, 1, 1) then we're done
+    ### if input was all 1s like (1, 1, 1, 1) then we're done
     if not left_half:
         return None
 

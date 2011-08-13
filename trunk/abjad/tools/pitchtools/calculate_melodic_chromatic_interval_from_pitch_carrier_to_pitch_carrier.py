@@ -16,19 +16,19 @@ def calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
     Return melodic chromatic interval.
     '''
 
-    ## get pitches
+    ### get pitches
     pitch_1 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_1)
     pitch_2 = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_2)
 
-    ## get difference in semitones
+    ### get difference in semitones
     number = abs(pitch_2.numbered_chromatic_pitch) - abs(pitch_1.numbered_chromatic_pitch)
 
-    ## change 1.0, 2.0, ... into 1, 2, ...
+    ### change 1.0, 2.0, ... into 1, 2, ...
     number = mathtools.integer_equivalent_number_to_integer(number)
 
-    ## make melodic chromatic interval
+    ### make melodic chromatic interval
     mci = MelodicChromaticInterval(number)
 
-    ## return melodic chromatic interval
+    ### return melodic chromatic interval
     return mci
 

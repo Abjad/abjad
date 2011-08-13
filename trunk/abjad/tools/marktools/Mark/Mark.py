@@ -23,7 +23,7 @@ class Mark(object):
     def __init__(self):
         self._start_component = None
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __call__(self, *args):
         if len(args) == 0:
@@ -53,7 +53,7 @@ class Mark(object):
         return '%s(%s)%s' % (self.__class__.__name__,
             self._contents_repr_string, self._attachment_repr_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _attachment_repr_string(self):
@@ -69,9 +69,9 @@ class Mark(object):
         else:
             return ' '
 
-    ## MANGLED METHODS ##
+    ### MANGLED METHODS ###
 
-    ## method must NOT be preceeded by __ so that child ContextMark objects can call it
+    ### method must NOT be preceeded by __ so that child ContextMark objects can call it
     def _bind_start_component(self, start_component):
         #print 'binding MARK to start component ...'
         assert isinstance(start_component, _Component)
@@ -88,7 +88,7 @@ class Mark(object):
                 pass
         self._start_component = None
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def start_component(self):
@@ -106,7 +106,7 @@ class Mark(object):
         '''
         return self._start_component
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def attach_mark(self, start_component):
         '''Attach mark to `start_component`::

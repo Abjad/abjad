@@ -35,7 +35,7 @@ class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
         object.__setattr__(self, '_format_string', diatonic_pitch_number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return self._diatonic_pitch_number
@@ -46,7 +46,7 @@ class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
     def __str__(self):
         return str(self._diatonic_pitch_number)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def chromatic_pitch_number(self):

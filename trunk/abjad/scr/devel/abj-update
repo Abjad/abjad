@@ -7,21 +7,21 @@ from abjad.tools.iotools._write_abjad_version_file import _write_abjad_version_f
 import os
 
 
-## find start directory and project root
+### find start directory and project root
 start_directory = os.path.abspath('.')
 project_root = ABJADPATH.rstrip('abjad')
 
-## svn update
+### svn update
 os.chdir(project_root)
 iotools.clear_terminal( )
 os.system('svn update')
 os.chdir(start_directory)
 
-## write version file
+### write version file
 _write_abjad_version_file( )
 
-## update docs release string
+### update docs release string
 _update_docs_release_string( )
 
-## remove Abjad *.pyc files
+### remove Abjad *.pyc files
 iotools.remove_abjad_pyc_files( )

@@ -8,7 +8,7 @@ class _LilyPondObjectProxy(object):
         for key, value in kwargs.iteritems( ):
             setattr(self, key, value)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return eval(repr(self))
@@ -28,7 +28,7 @@ class _LilyPondObjectProxy(object):
             body_string = ', '.join(skeleton_strings)
         return '%s(%s)' % (self.__class__.__name__, body_string)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _get_attribute_pairs(self):
         return tuple(vars(self).iteritems( ))

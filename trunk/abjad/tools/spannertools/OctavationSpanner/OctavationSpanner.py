@@ -26,9 +26,9 @@ class OctavationSpanner(Spanner):
     Return octavation spanner.
     '''
 
-    ## TODO: Remove start and stop from initializer and force set later. ##
+    ### TODO: Remove start and stop from initializer and force set later. ###
 
-    ## TODO: Set start to 1 (and stop to 0) by default. ##
+    ### TODO: Set start to 1 (and stop to 0) by default. ###
 
     def __init__(self, components = None, start = 0, stop = 0):
         Spanner.__init__(self, components)
@@ -36,7 +36,7 @@ class OctavationSpanner(Spanner):
         self.start = start
         self.stop = stop
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def start( ):

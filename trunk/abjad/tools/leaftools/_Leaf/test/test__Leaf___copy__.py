@@ -1,7 +1,7 @@
 from abjad import *
 
 
-## TEST COPY ONE LEAF ##
+### TEST COPY ONE LEAF ###
 
 def test__Leaf___copy___01( ):
     m = Note(0, (1, 8))
@@ -44,7 +44,7 @@ def test__Leaf___copy___05( ):
     assert n._parentage.parent is None
 
 
-## TEST COPY ONE CONTAINER ##
+### TEST COPY ONE CONTAINER ###
 
 def test__Leaf___copy___06( ):
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -54,7 +54,7 @@ def test__Leaf___copy___06( ):
     componenttools.is_well_formed_component(u)
 
 
-## TEST COPY ONE TUPLETIZED NOTE ##
+### TEST COPY ONE TUPLETIZED NOTE ###
 
 def test__Leaf___copy___07( ):
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 3)

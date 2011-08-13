@@ -71,7 +71,7 @@ class VerticalMoment(_Immutable):
         #self._components = tuple(components)
         object.__setattr__(self, '_components', tuple(components))
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, expr):
         if isinstance(expr, VerticalMoment):
@@ -99,13 +99,13 @@ class VerticalMoment(_Immutable):
     def __repr__(self):
         return '%s(%s, <<%s>>)' % (self.__class__.__name__, self.prolated_offset, len(self.leaves))
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return ', '.join([str(x) for x in self.components])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def attack_count(self):

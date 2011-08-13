@@ -37,12 +37,12 @@ class DynamicMeasure(Measure):
         self._suppress_meter = False
         self._update_time_signature( )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __getnewargs__(self):
         return ( )
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _update_time_signature(self):
         if self.denominator:
@@ -56,7 +56,7 @@ class DynamicMeasure(Measure):
         meter.attach_mark(self)
         self._time_signature_is_current = True
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def denominator( ):
@@ -149,7 +149,7 @@ class DynamicMeasure(Measure):
             self._update_time_signature( )
         return property(**locals( ))
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def extend(self, expr):
         r'''Extend dynamic measure::

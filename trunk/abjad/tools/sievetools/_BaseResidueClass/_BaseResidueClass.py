@@ -2,9 +2,9 @@ class _BaseResidueClass(object):
     '''Abstract base class for ResidueClass and ResidueClassExpression.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
-    ## TODO: implement __neg__( ) ##
+    ### TODO: implement __neg__( ) ###
 
     def __and__(self, arg):
         assert isinstance(arg, _BaseResidueClass)
@@ -18,7 +18,7 @@ class _BaseResidueClass(object):
         assert isinstance(arg, _BaseResidueClass)
         return self._operate(arg, 'xor')
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _operate(self, arg, op):
         from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression

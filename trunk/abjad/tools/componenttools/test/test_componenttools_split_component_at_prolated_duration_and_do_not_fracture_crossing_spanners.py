@@ -317,8 +317,8 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
 
     assert componenttools.is_well_formed_component(t)
     assert len(halves) == 2
-    ## TODO: The tie at the split locus here is a (small) bug. ##
-    ##         Eventually should fix. ##
+    ### TODO: The tie at the split locus here is a (small) bug. ###
+    ###         Eventually should fix. ###
 
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_07( ):

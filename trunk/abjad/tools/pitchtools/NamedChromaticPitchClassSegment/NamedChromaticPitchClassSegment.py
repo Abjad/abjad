@@ -18,7 +18,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
         npcs = [pitchtools.NamedChromaticPitchClass(x) for x in named_chromatic_pitch_class_tokens]
         return tuple.__new__(self, npcs)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s([%s])' % (self.__class__.__name__, self._repr_string)
@@ -26,7 +26,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
     def __str__(self):
         return '<%s>' % self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -36,7 +36,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
     def _repr_string(self):
         return ', '.join([repr(str(x)) for x in self])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     #def diatonic_interval_class_segment(self):
@@ -72,7 +72,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
     def numbered_chromatic_pitch_classes(self):
         return self.pitch_class_segment.pitch_classes
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def is_equivalent_under_transposition(self, arg):
         from abjad.tools import pitchtools

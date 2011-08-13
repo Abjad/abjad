@@ -9,7 +9,7 @@ class _FlexEqualityComparator(_StrictComparator):
 
     __slots__ = ('_comparison_attribute', '_format_string')
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         arg = self._massage_comparison_arg(arg)
@@ -21,7 +21,7 @@ class _FlexEqualityComparator(_StrictComparator):
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _massage_comparison_arg(self, arg):
         if not isinstance(arg, type(self)):

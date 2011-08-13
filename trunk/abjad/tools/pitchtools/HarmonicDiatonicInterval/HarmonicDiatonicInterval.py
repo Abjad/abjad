@@ -34,7 +34,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
         object.__setattr__(self, '_number', _number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self.quality_string, self.number)
@@ -73,7 +73,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
     def __str__(self):
         return '%s%s' % (self._quality_abbreviation, self.number)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     #def counterpoint_interval(self):
@@ -96,7 +96,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
     def melodic_diatonic_interval_descending(self):
         return -self.melodic_diatonic_interval_ascending
 
-    ## TODO: this can be abstracted higher up the inheritence hierarchy
+    ### TODO: this can be abstracted higher up the inheritence hierarchy
     @property
     def semitones(self):
         result = 0

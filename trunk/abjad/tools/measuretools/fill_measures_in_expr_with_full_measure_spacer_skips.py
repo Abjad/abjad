@@ -14,7 +14,7 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
     for i, measure in enumerate(iterate_measures_forward_in_expr(expr)):
         if iterctrl(measure, i):
             skip = Skip(1)
-            ## allow zero-update iteration
+            ### allow zero-update iteration
             meter = contexttools.get_effective_time_signature(measure)
             skip.duration_multiplier = meter.duration / meter.multiplier
             measure[:] = [skip]

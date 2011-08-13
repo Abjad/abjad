@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFor
 
 class _StaffLinesSpannerFormatInterface(_SpannerFormatInterface):
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _after(self, leaf):
         result = [ ]

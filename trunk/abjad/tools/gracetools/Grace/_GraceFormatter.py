@@ -8,7 +8,7 @@ class _GraceFormatter(_ContainerFormatter):
         _ContainerFormatter.__init__(self, client)
         self._slots = _GraceFormatterSlotsInterface(self)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def grace(self):

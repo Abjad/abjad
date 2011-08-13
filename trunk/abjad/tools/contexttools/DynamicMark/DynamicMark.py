@@ -35,7 +35,7 @@ class DynamicMark(ContextMark):
             self._target_context = Staff
         self._dynamic_name_string = dynamic_name_string
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __call__(self, *args):
         from abjad.exceptions import WellFormednessError
@@ -58,7 +58,7 @@ class DynamicMark(ContextMark):
             return self._dynamic_name_string == arg._dynamic_name_string
         return False
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {
         'fp': 'p', 'sf': 'f', 'sff': 'ff',
@@ -92,7 +92,7 @@ class DynamicMark(ContextMark):
         2: 'f', 3: 'ff', 4: 'fff', 5: 'ffff', 6: 'fffff',
         }
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def dynamic_name_string( ):
@@ -131,7 +131,7 @@ class DynamicMark(ContextMark):
         '''
         return r'\%s' % self._dynamic_name_string
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     @staticmethod
     def composite_dynamic_name_to_steady_state_dynamic_name(dynamic_name):

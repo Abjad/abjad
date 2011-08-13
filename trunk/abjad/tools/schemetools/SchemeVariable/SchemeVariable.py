@@ -21,7 +21,7 @@ class SchemeVariable(_StrictComparator, _Immutable):
     def __getnewargs__(self):
         return (self._string, )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return "%s(%s)" % (self.__class__.__name__, repr(self._string))
@@ -29,7 +29,7 @@ class SchemeVariable(_StrictComparator, _Immutable):
     def __str__(self):
         return self.format
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

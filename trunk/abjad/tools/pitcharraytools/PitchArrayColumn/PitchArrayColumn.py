@@ -42,7 +42,7 @@ class PitchArrayColumn(_StrictComparator):
         self._parent_array = None
         self.extend(cells)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, PitchArrayColumn):
@@ -66,7 +66,7 @@ class PitchArrayColumn(_StrictComparator):
         result = '\n'.join(result)
         return result
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _column_format_max_string_width(self):
@@ -135,7 +135,7 @@ class PitchArrayColumn(_StrictComparator):
         return result
 
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _cells_starting_at_index(self, index):
         result = [ ]
@@ -146,7 +146,7 @@ class PitchArrayColumn(_StrictComparator):
         return result
 
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def cell_tokens(self):
@@ -240,7 +240,7 @@ class PitchArrayColumn(_StrictComparator):
         else:
             return 0
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def append(self, cell):
         if not isinstance(cell, PitchArrayCell):

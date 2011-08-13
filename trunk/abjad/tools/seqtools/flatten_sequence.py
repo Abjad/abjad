@@ -29,7 +29,7 @@ def flatten_sequence(sequence, klasses = None, depth = -1):
         ``seqtools.flatten_sequence( )``.
     '''
 
-    ## based on procedure by Mike C. Fletcher
+    ### based on procedure by Mike C. Fletcher
     if klasses is None:
         klasses = (list, tuple)
 

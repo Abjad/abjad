@@ -47,7 +47,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         self.lone = lone
         self.span = span
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _span_points(self):
@@ -58,7 +58,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 result.append(result[-1] + d)
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def durations( ):

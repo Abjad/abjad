@@ -31,7 +31,7 @@ class NumberedChromaticPitchClassVector(_Vector):
             pitch_class = pitchtools.NumberedChromaticPitchClass(token)
             dict.__setitem__(self, abs(pitch_class), self[abs(pitch_class)] + 1)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
@@ -42,7 +42,7 @@ class NumberedChromaticPitchClassVector(_Vector):
             string += '\n%s' % self._quartertone_format_string
         return string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _first_quartertone_sextet_string(self):
@@ -115,7 +115,7 @@ class NumberedChromaticPitchClassVector(_Vector):
         items.sort( )
         return items
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def chromatic_pitch_class_numbers(self):

@@ -58,23 +58,23 @@ def test__NavigationInterface_is_threadable_03( ):
     }
     '''
 
-## NONSTRUCTURAL in new parallel --> context model.
+### NONSTRUCTURAL in new parallel --> context model.
 #def test__NavigationInterface_is_threadable_04( ):
 #   '''A path does NOT exist between leaves with a parent parallel container
 #   not contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating a separate Staff for each
 #   leaf in this particular case. See the next test.'''
-#   ## [VA] None... i think.
-#   ## [Baca] I tend to agree. It certainly doesn't make sense to *span* more than one component within a parallel container. But it occurs to me that _threadale_ means something subtly different than _spannable_. Without thinking through all the cases yes, I'm pretty sure that 'threadability' is a necessary (but not sufficient) condition for 'spanability'. That is, 'spanability' is a special, rarer cases of 'threadability'; or, said the other way around, 'threadability' is a more general phenomenon and 'spanability' is a more specific phenomenon. We should discuss more soon.
-#   ## [VA] I think the behavior is as follows:
-#   ## -- No thread exists between leaves with a parallel parent NOT contained
-#   ## inside a sequential container (implicit thread) or a
-#   ## Voice (explicit thread). LilyPond interprets this as four
-#   ## separate Staves, thus four threads.
-#   ## -- A thread DOES exist between leaves with a parallel parent contained
-#   ## inside a Voices, because these are interpreted as chords by lilypond.
-#   ## this is the current implementation behavior as of Apr. 3, 2009.
-#   ## See the next test.
+#   ### [VA] None... i think.
+#   ### [Baca] I tend to agree. It certainly doesn't make sense to *span* more than one component within a parallel container. But it occurs to me that _threadale_ means something subtly different than _spannable_. Without thinking through all the cases yes, I'm pretty sure that 'threadability' is a necessary (but not sufficient) condition for 'spanability'. That is, 'spanability' is a special, rarer cases of 'threadability'; or, said the other way around, 'threadability' is a more general phenomenon and 'spanability' is a more specific phenomenon. We should discuss more soon.
+#   ### [VA] I think the behavior is as follows:
+#   ### -- No thread exists between leaves with a parallel parent NOT contained
+#   ### inside a sequential container (implicit thread) or a
+#   ### Voice (explicit thread). LilyPond interprets this as four
+#   ### separate Staves, thus four threads.
+#   ### -- A thread DOES exist between leaves with a parallel parent contained
+#   ### inside a Voices, because these are interpreted as chords by lilypond.
+#   ### this is the current implementation behavior as of Apr. 3, 2009.
+#   ### See the next test.
 #
 #   t = Container("c'8 d'8 e'8 f'8")
 #   t.is_parallel = True
@@ -91,7 +91,7 @@ def test__NavigationInterface_is_threadable_03( ):
 #   >>'''
 
 
-## NONSTRUCTURAL in new parallel --> context model.
+### NONSTRUCTURAL in new parallel --> context model.
 #def test__NavigationInterface_is_threadable_05( ):
 #   '''A path DOES exist between leaves with a parent parallel container
 #   contained inside a Voice (an explicit thread).

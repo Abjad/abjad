@@ -24,11 +24,11 @@ def _cycle_token_to_sieve(cycle_token):
     Return sieve.
     '''
 
-    ## sieves count as cycle tokens in themselves
+    ### sieves count as cycle tokens in themselves
     if isinstance(cycle_token, ResidueClassExpression):
         return ResidueClassExpression(cycle_token)
 
-    ## parse cycle token
+    ### parse cycle token
     modulo = cycle_token[0]
     residues = cycle_token[1]
     try:
@@ -36,7 +36,7 @@ def _cycle_token_to_sieve(cycle_token):
     except IndexError:
         offset = 0
 
-    ## create residue classes from cycle token
+    ### create residue classes from cycle token
     residue_classes = [ ]
     for residue in residues:
         adjusted_residue = (residue + offset) % modulo
@@ -45,6 +45,6 @@ def _cycle_token_to_sieve(cycle_token):
 
     residue_classes.sort(lambda x, y: cmp(x.residue, y.residue))
 
-    ## return sieve as residue class combination
+    ### return sieve as residue class combination
     sieve = ResidueClassExpression(residue_classes, operator = 'or')
     return sieve

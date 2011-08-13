@@ -35,7 +35,7 @@ class CyclicList(list):
     Cyclic lists otherwise behave exactly like built-in lists.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __getitem__(self, expr):
         return list.__getitem__(self, expr % len(self))

@@ -51,7 +51,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
         object.__setattr__(self, '_number', number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -66,13 +66,13 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
     def __str__(self):
         return '%s%s' % (self._quality_abbreviation, self.number)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _full_name(self):
         return '%s %s' % (self._quality_string, self._interval_string)
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def invert(self):
         '''Read-only inversion of harmonic diatonic interval-class::

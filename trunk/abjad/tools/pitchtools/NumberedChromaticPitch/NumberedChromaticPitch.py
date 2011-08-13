@@ -33,7 +33,7 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
     def __getnewargs__(self):
         return (self._chromatic_pitch_number, )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return self._chromatic_pitch_number
@@ -66,7 +66,7 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
         semitones = abs(self) - abs(arg)
         return type(self)(semitones)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def chromatic_pitch_number(self):
@@ -104,7 +104,7 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
         from abjad.tools import pitchtools
         return pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(self.chromatic_pitch_number)
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental = None):
         '''Apply `accidental`::

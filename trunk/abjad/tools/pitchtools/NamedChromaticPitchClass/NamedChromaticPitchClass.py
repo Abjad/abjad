@@ -41,7 +41,7 @@ class NamedChromaticPitchClass(_PitchClass):
         object.__setattr__(self, '_comparison_attribute', chromatic_pitch_class_name)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return abs(self.numbered_chromatic_pitch_class)
@@ -79,7 +79,7 @@ class NamedChromaticPitchClass(_PitchClass):
         dic = pitchtools.InversionEquivalentDiatonicIntervalClass(mdi.quality_string, mdi.number)
         return dic
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _accidental(self):
@@ -104,12 +104,12 @@ class NamedChromaticPitchClass(_PitchClass):
     def _symbolic_name(self):
         '''Read-only letter plus punctuation of pitch name.'''
         accidental_to_symbol = {
-            '': '', 's': '#', 'f': 'b', 'ss': '##', 'ff': 'bb',
+            '': '', 's': '#', 'f': 'b', 'ss': '###', 'ff': 'bb',
             'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}
         symbol = accidental_to_symbol[self._accidental.alphabetic_string]
         return self._diatonic_pitch_class_name + symbol
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _init_by_name_string(self, name):
         if not self._is_acceptable_name(name.lower( )):
@@ -126,7 +126,7 @@ class NamedChromaticPitchClass(_PitchClass):
             'a', 'af', 'as', 'aqf', 'aqs', 'atqf', 'atqs', 'aff', 'ass',
             'b', 'bf', 'bs', 'bqf', 'bqs', 'btqf', 'btqs', 'bff', 'bss')
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def numbered_chromatic_pitch_class(self):
@@ -141,7 +141,7 @@ class NamedChromaticPitchClass(_PitchClass):
         from abjad.tools import pitchtools
         return pitchtools.NumberedChromaticPitchClass(self._chromatic_pitch_class_name)
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental):
         '''Apply `accidental`::

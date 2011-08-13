@@ -7,7 +7,7 @@ class _Segment(tuple, _Immutable):
     Mix-in base class for ordered collections of pitch objects.
     '''
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __add__(self, arg):
         return type(self)(tuple(self) + tuple(arg))

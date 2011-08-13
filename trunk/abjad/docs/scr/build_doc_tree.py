@@ -8,13 +8,13 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
    '''Walk entire Abjad codebase and build corresponding Sphinx doc tree.
    '''
 
-   ## walk every toplevel directory that should document
+   ### walk every toplevel directory that should document
    print 'Building TOC tree ...'
    for documenting_directory in _get_documenting_directories( ):
       documenting_directory = os.path.join(ABJADPATH, documenting_directory)
       for current_root, directories, files in os.walk(documenting_directory):
          
-         ## remove directories that should not document
+         ### remove directories that should not document
          for directory in directories[:]:
             if directory in ('.svn', 'test'):
                directories.remove(directory)
@@ -24,7 +24,7 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
                directories.remove(directory)
          directories.sort( )
       
-         ## remove files that should not document
+         ### remove files that should not document
          for file in files[:]:
             if file.startswith('_'):
                files.remove(file)
@@ -32,10 +32,10 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
                files.remove(file)
          files.sort( )
 
-         ## make subdirectories in docs if needed
+         ### make subdirectories in docs if needed
          abjad_subdir = current_root.split('abjad')[-1].strip(os.path.sep)
          root_dir = os.path.join(api_doc_path, abjad_subdir)
          _create_subdirectories(root_dir, directories, interactive)
 
-         ## populate sphinx directory with sphinx files
+         ### populate sphinx directory with sphinx files
          populate_sphinx_directory(root_dir, abjad_subdir, files, interactive)

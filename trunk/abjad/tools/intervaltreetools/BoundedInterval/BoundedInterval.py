@@ -24,7 +24,7 @@ class BoundedInterval(dict, _Immutable):
         object.__setattr__(self, '_high', Offset(high))
         self.update(data)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, other):
         if type(other) == type(self):
@@ -47,7 +47,7 @@ class BoundedInterval(dict, _Immutable):
             repr(self.high), \
             dict.__repr__(self))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def centroid(self):
@@ -74,7 +74,7 @@ class BoundedInterval(dict, _Immutable):
         '''Tuple of low bound and high bound.'''
         return (self.low, self.high)
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def get_overlap_with_interval(self, interval):
         '''Return amount of overlap with `interval`.'''

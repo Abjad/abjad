@@ -7,7 +7,7 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
     def __init__(self, spanner):
         _BeamSpannerFormatInterface.__init__(self, spanner)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _get_left_right_for_exterior_leaf(self, leaf):
         '''Get left and right flag counts for exterior leaf in spanner.'''
@@ -83,7 +83,7 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
             raise ValueError("'lone' must be left, right, both.")
         return left, right
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def _before(self, leaf):
         '''Spanner format contribution to output before leaf.'''

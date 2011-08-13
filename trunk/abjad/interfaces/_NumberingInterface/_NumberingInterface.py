@@ -14,7 +14,7 @@ class _NumberingInterface(_Interface):
         self._leaf = 0
         self._measure = 1
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _update_component(self):
         '''Update number of any one node in score.'''

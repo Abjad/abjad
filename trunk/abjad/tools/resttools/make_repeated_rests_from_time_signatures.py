@@ -14,13 +14,13 @@ def make_repeated_rests_from_time_signatures(time_signatures):
     Use ``seqtools.flatten_sequence( )`` to flatten output if required.
     '''
 
-    ## init result
+    ### init result
     result = [ ]
 
-    ## iterate time signatures and make rests
+    ### iterate time signatures and make rests
     for time_signature in time_signatures:
         rests = make_repeated_rests_from_time_signature(time_signature)
         result.append(rests)
 
-    ## return result
+    ### return result
     return result

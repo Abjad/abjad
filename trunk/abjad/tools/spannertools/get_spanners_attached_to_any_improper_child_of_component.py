@@ -48,18 +48,18 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass = 
     from abjad.tools.componenttools._Component import _Component
     from abjad.tools import componenttools
 
-    ## note: externalization of (old) component spanner aggregator 'contained' property
+    ### note: externalization of (old) component spanner aggregator 'contained' property
     result = set([ ])
 
-    ## inspect component itself
+    ### inspect component itself
     result.update(get_spanners_attached_to_component(component, klass))
 
-    ## iterate proper children of component
+    ### iterate proper children of component
     children = componenttools.iterate_components_forward_in_expr(component, _Component)
     for child in children:
         result.update(get_spanners_attached_to_component(child, klass))
 
-    ## return result
+    ### return result
     return result
 
 

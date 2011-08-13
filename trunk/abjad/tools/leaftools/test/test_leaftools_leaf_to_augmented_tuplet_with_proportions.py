@@ -11,7 +11,7 @@ def test_leaftools_leaf_to_augmented_tuplet_with_proportions_01( ):
     t = leaftools.leaf_to_augmented_tuplet_with_proportions(note, [1, 2])
     assert t.format == "{\n\tc'16\n\tc'8\n}"
 
-    ## TODO: DECIDE ON DOTTED VALUES ##
+    ### TODO: DECIDE ON DOTTED VALUES ###
     #t = leaftools.leaf_to_augmented_tuplet_with_proportions(note, [1, 2, 2])
     #assert t.format == "\\fraction \\times 6/5 {\n\tc'32\n\tc'16\n\tc'16\n}"
 

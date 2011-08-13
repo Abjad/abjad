@@ -2,7 +2,7 @@ import re
 
 
 lilypond_duration_name_regex_body = r'''
-    (\\breve|\\longa|\\maxima)    ## exactly one of three duration names
+    (\\breve|\\longa|\\maxima)    ### exactly one of three duration names
     '''
 
 lilypond_duration_name_regex = re.compile('^%s$' %

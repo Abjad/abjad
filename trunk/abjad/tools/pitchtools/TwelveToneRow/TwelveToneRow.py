@@ -25,7 +25,7 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
         _validate_pitch_classes(pitch_classes)
         return pitchtools.NumberedChromaticPitchClassSegment.__new__(self, pitch_classes)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self)
@@ -47,7 +47,7 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
     def __rmul__(self, n):
         return NumberedChromaticPitchClassSegment(tuple.__rmul__(self, n))
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_string(self):

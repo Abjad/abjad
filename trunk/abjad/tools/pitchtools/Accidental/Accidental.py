@@ -19,7 +19,7 @@ class Accidental(_StrictComparator, _Immutable):
 
     def __new__(klass, arg = ''):
         self = object.__new__(klass)
-        ## initializer symbolic string from arg
+        ### initializer symbolic string from arg
         if arg in self._all_accidental_alphabetic_strings:
             _alphabetic_string = arg
         elif arg in self._all_accidental_symbolic_strings:
@@ -35,7 +35,7 @@ class Accidental(_StrictComparator, _Immutable):
         else:
             raise ValueError('can not initialize accidental from value: %s' % arg)
         object.__setattr__(self, '_alphabetic_string', _alphabetic_string)
-        ## initialize derived attributes
+        ### initialize derived attributes
         _semitones = self._alphabetic_string_to_semitones[self.alphabetic_string]
         object.__setattr__(self, '_semitones', _semitones)
         _name_string = self._alphabetic_string_to_name_string[self.alphabetic_string]
@@ -49,7 +49,7 @@ class Accidental(_StrictComparator, _Immutable):
     def __getnewargs__(self):
         return (self.alphabetic_string,)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __add__(self, arg):
         if not isinstance(arg, type(self)):
@@ -96,7 +96,7 @@ class Accidental(_StrictComparator, _Immutable):
         semitones = self.semitones - arg.semitones
         return type(self)(semitones)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _all_accidental_alphabetic_strings(self):
@@ -138,7 +138,7 @@ class Accidental(_StrictComparator, _Immutable):
         'qs': '#-',
         's': '#',
         'tqs': '#+',
-        'ss': '##',
+        'ss': '###',
     }
 
     _name_string_to_alphabetic_string = {
@@ -173,7 +173,7 @@ class Accidental(_StrictComparator, _Immutable):
         'b+' : 'tqf',
         'b'  : 'f',
         'b-' : 'qf',
-        '##' : 'ss',
+        '###' : 'ss',
         '#+' : 'tqs',
         '#'  : 's',
         '#-' : 'qs',
@@ -191,7 +191,7 @@ class Accidental(_StrictComparator, _Immutable):
     def _all_accidental_symbolic_strings(self):
         return self._symbolic_string_to_alphabetic_string.keys( )
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def alphabetic_string(self):

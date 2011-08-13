@@ -21,7 +21,7 @@ class SchemeVectorConstant(tuple, _Immutable):
     def __getnewargs__(self):
         return tuple(self)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
@@ -29,7 +29,7 @@ class SchemeVectorConstant(tuple, _Immutable):
     def __str__(self):
         return '(%s)' % self._output_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
@@ -47,7 +47,7 @@ class SchemeVectorConstant(tuple, _Immutable):
                 vals.append(x)
         return ' '.join([str(x) for x in vals])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

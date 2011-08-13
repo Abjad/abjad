@@ -32,7 +32,7 @@ class PianoPedalSpanner(Spanner):
         self.kind = 'sustain'
         self.style = 'mixed'
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _styles = ['text', 'bracket', 'mixed']
 
@@ -40,7 +40,7 @@ class PianoPedalSpanner(Spanner):
             'sostenuto':(r'\sostenutoOn', r'\sostenutoOff'),
             'corda': (r'\unaCorda', r'\treCorde')}
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def kind( ):

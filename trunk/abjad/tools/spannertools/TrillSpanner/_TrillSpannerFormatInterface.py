@@ -6,7 +6,7 @@ class _TrillSpannerFormatInterface(_SpannerFormatInterface):
     def __init__(self, spanner):
         _SpannerFormatInterface.__init__(self, spanner)
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     #def _left(self, leaf):
     def _before(self, leaf):

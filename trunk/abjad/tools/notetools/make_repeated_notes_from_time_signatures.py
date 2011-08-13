@@ -19,15 +19,15 @@ def make_repeated_notes_from_time_signatures(time_signatures, pitch = "c'"):
     Use ``seqtools.flatten_sequence( )`` to flatten output if required.
     '''
 
-    ## init result
+    ### init result
     result = [ ]
 
-    ## iterate time signatures and make notes
+    ### iterate time signatures and make notes
     for time_signature in time_signatures:
         notes = make_repeated_notes_from_time_signature(time_signature, pitch = pitch)
         result.append(notes)
 
-    ## return result
+    ### return result
     return result
 
 

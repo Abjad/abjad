@@ -21,7 +21,7 @@ class SchemeBoolean(_Immutable):
     def __getnewargs__(self):
         return (self.arg, )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, SchemeBoolean):
@@ -34,7 +34,7 @@ class SchemeBoolean(_Immutable):
     def __str__(self):
         return self.format
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

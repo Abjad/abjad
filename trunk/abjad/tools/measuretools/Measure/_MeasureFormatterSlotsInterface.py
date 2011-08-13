@@ -6,7 +6,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
     def __init__(self, client):
         _ContainerFormatterSlotsInterface.__init__(self, client)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def slot_3(self):

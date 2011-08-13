@@ -37,7 +37,7 @@ class QEvent(_Immutable):
     def __getnewargs__(self):
         return self.offset, self.value
 
-    ## OVERRIDES ##
+    ### OVERRIDES ###
 
     def __eq__(self, other):
         if type(self) == type(other):
@@ -49,14 +49,14 @@ class QEvent(_Immutable):
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return ', '.join([repr(x) for x in
             [self.offset, self.value]])
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def offset(self):

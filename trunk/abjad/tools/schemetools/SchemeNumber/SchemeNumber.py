@@ -22,7 +22,7 @@ class SchemeNumber(_Immutable):
     def __getnewargs__(self):
         return (self.number, )
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, SchemeNumber):
@@ -41,7 +41,7 @@ class SchemeNumber(_Immutable):
     def __str__(self):
         return self.format
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

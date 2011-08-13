@@ -34,7 +34,7 @@ class NumberedChromaticPitchClass(_PitchClass):
         object.__setattr__(self, '_comparison_attribute', number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __abs__(self):
         return self._chromatic_pitch_class_number
@@ -75,7 +75,7 @@ class NumberedChromaticPitchClass(_PitchClass):
         else:
             raise TypeError('must be pitch-class or interval-class.')
 
-    ## PUBLIC METHODS ##
+    ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental = None):
         '''Emit new numbered chromatic pitch-class as sum of self and accidental.'''

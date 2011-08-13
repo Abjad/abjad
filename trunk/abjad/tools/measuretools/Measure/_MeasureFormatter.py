@@ -11,13 +11,13 @@ class _MeasureFormatter(_ContainerFormatter):
         _ContainerFormatter.__init__(self, client)
         self._slots = _MeasureFormatterSlotsInterface(self)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents(self):
         result = [ ]
         client = self._client
-        ## the class name test here is exclude scaleDurations from Anonymous and Dynamic measures
+        ### the class name test here is exclude scaleDurations from Anonymous and Dynamic measures
         #if client.is_nonbinary and client.__class__.__name__ == 'Measure':
         if client.is_nonbinary and client.__class__.__name__ == 'Measure':
             result.append("\t\\scaleDurations #'(%s . %s) {" % (
@@ -31,7 +31,7 @@ class _MeasureFormatter(_ContainerFormatter):
             result.extend(_ContainerFormatter._contents.fget(self))
         return result
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

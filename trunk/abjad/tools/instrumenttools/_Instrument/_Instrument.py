@@ -13,12 +13,12 @@ class _Instrument(contexttools.InstrumentMark):
         contexttools.InstrumentMark.__init__(
             self, instrument_name, short_instrument_name, target_context)
 
-    ## PRIVATE METHODS ##
+    ### PRIVATE METHODS ###
 
     def _copy_primary_clefs_to_all_clefs(self):
         self.all_clefs = [contexttools.ClefMark(clef) for clef in self.primary_clefs]
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def all_clefs( ):

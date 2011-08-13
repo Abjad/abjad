@@ -24,18 +24,18 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
         object.__setattr__(self, '_number', number)
         return self
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __str__(self):
         return self._format_string
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
         return '%s%s' % (self._direction_symbol, abs(self.number))
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def direction_number(self):

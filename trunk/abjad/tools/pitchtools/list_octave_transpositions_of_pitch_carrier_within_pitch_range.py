@@ -5,9 +5,9 @@ from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_interval import t
 import copy
 
 
-## TODO: Reimplement pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range( ) to work on Abjad PitchSet, Note and Chord objects only. ##
+### TODO: Reimplement pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range( ) to work on Abjad PitchSet, Note and Chord objects only. ###
 
-## TODO: Reimplement pitchtools.octave_transposition( ) with diatonic transposition. ##
+### TODO: Reimplement pitchtools.octave_transposition( ) with diatonic transposition. ###
 
 def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier, pitch_range):
     r""".. versionadded:: 1.1.1

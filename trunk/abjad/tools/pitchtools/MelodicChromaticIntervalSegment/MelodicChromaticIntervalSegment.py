@@ -21,12 +21,12 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
             mcis.append(mci)
         return tuple.__new__(self, mcis)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self):
         return type(self)(self.intervals)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def harmonic_chromatic_interval_segment(self):

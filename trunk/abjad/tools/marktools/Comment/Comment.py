@@ -30,7 +30,7 @@ class Comment(Mark):
         self._comment_name_string = comment_name_string
         self._format_slot = format_slot
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self._comment_name_string)
@@ -42,13 +42,13 @@ class Comment(Mark):
             return self._comment_name_string == arg._comment_name_string
         return False
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
         return repr(self._comment_name_string)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def contents_string( ):

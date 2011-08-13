@@ -32,7 +32,7 @@ class StemTremolo(Mark):
         object.__setattr__(self, '_tremolo_flags', tremolo_flags)
         self._format_slot = 'right'
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self.tremolo_flags)
@@ -48,13 +48,13 @@ class StemTremolo(Mark):
     def __str__(self):
         return ':%s' % str(self.tremolo_flags)
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
         return '%s' % self.tremolo_flags
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):

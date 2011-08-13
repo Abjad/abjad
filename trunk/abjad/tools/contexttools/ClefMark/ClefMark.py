@@ -42,7 +42,7 @@ class ClefMark(ContextMark):
         else:
             raise TypeError('can not init clef from %s.' % arg)
 
-    ## OVERLOADS ##
+    ### OVERLOADS ###
 
     def __copy__(self, *args):
         return type(self)(self._clef_name_string, target_context = self.target_context)
@@ -54,7 +54,7 @@ class ClefMark(ContextMark):
             return self._clef_name_string == arg._clef_name_string
         return False
 
-    ## PRIVATE ATTRIBUTES ##
+    ### PRIVATE ATTRIBUTES ###
 
     _clef_name_to_middle_c_position = { 'treble': -6, 'alto': 0, 'tenor': 2, 'bass': 6, }
 
@@ -62,7 +62,7 @@ class ClefMark(ContextMark):
     def _contents_repr_string(self):
         return repr(self._clef_name_string)
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def clef_name_string( ):

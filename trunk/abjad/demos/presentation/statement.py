@@ -5,7 +5,7 @@ class Statement(object):
         self.text = text or ' '
         self.code = code
 
-    ## PUBLIC ATTRIBUTES ##
+    ### PUBLIC ATTRIBUTES ###
 
     @apply
     def text( ):
