@@ -121,7 +121,7 @@
 
    (abjad is now installed in site-packages directory)
    (you don't have to know where your site-packages directory is)
-   (your python 2.5 install knows where your site-packages directory is)
+   (your Python 2.5 install knows where your site-packages directory is)
 
    which abj
 

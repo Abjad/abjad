@@ -66,5 +66,5 @@ class inside themselves, it will also fail.  This is a quirk of how
 
 Three, if you're computing very large fragments in parallel, expect a wait
 after your fragment generating procedures complete while the results are
-returned to the main python process.  If the function never returns, then
+returned to the main Python process.  If the function never returns, then
 one of your processes failed, and you'll have to go find it.

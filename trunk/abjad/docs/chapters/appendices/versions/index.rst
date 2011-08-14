@@ -13,7 +13,7 @@ Abjad 1.1.1
 
 *  More complete and cleaner documentation!
 
-*  The configuration file ``config`` changed to pure python ``config.py``. 
+*  The configuration file ``config`` changed to pure Python ``config.py``. 
    The file now supports more settings previously read as environment 
    variables. All user setings are now found in this file. Users no longer 
    need to set environment variables. 
