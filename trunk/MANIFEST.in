@@ -1,7 +1,7 @@
 include abjad/.version
 include INSTALL
 include README
-include COPYING
+include LICENSE
 include ez_setup.py
 include setup.py
 include MANIFEST.in
