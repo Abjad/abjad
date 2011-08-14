@@ -1,79 +1,97 @@
 Install
 =======
 
+This INSTALL file refers to the 2.x releases of Abjad.
+
 
 Dependencies
 ------------
 
-* Python 2.5 or 2.6
-* LilyPond 2.12 or newer
+Abjad depends on the following programs:
+
+    * Python 2.5, 2.6 or 2.7
+    * LilyPond 2.12 or newer
 
 For Abjad to install and run properly, you must already have both Python 2.5 
-(or Python 2.6) and LilyPond installed in your computer. Also, make sure that 
-both LilyPond and Python are in your *PATH*. To test this simply type 
-``lilypond`` and then ``python`` in your command prompt. If both programs run 
-then you are good to go. Otherwise you'll have to add the location of the 
-executables to your *PATH*.
+(or Python 2.6 or Python 2.7) and LilyPond installed in your computer.
 
-You can find Python here:
-http://www.python.org
+Note that Abjad does not yet support the Python 3.0 or greater.
 
-and LilyPond here:
-http://www.lilypond.org
+Also, make sure that both LilyPond and Python are in your PATH.
 
+To test this simply type ...
 
-Installing the official source release
---------------------------------------
+    lilypond --version
 
-Via 'easy_install'
-^^^^^^^^^^^^^^^^^^^
+... and then ...
 
-If you have `setuptools` installed, simply type ``easy_install -U abjad`` in the command prompt of your terminal window. Otherwise...
+    python --version
 
-Manual install
-^^^^^^^^^^^^^^
+... at your command prompt. 
 
-1. Download the latest release from http://pypi.python.org/pypi/Abjad.
+If both programs run then you are good to go.
 
-2. Untar the downloaded file (e.g. ``tar xzvf Abjad-NNN.tar.gz``, where 
-   ``NNN`` is the version number of the latest release).
+Otherwise you'll have to add the location of the executables to your PATH.
 
-3. Change into the directory created in step 2 (e.g. ``cd Abjad-NNN``).
+You can find Python here: http://www.python.org
 
-4. If you're using Linux, Mac OS X or some other flavor of Unix, enter the 
-   command ``sudo python setup.py install`` at the shell prompt.
-   If you're using Windows, start up a command shell with administrator
-   privileges and run the command ``setup.py install``.
+You can find LilyPond here: http://www.lilypond.org
 
 
-These commands will install Abjad in your Python installation's 
-`site-packages` directory. Note that this requires a working internet 
-connection if you don't already have the Python utility 
-`setuptools <http://pypi.python.org/pypi/setuptools>`__ installed.
+Installing the latest prebuilt version of Abjad
+-----------------------------------------------
 
+If you have setuptools installed, simply type ...
 
-Note for OS X users
-"""""""""""""""""""
-In order to be able to run Abjad directly from the terminal via the ``abj`` 
-command, you may need to add the python binary installation directory to 
-your *PATH*. For example, if you have Python 2.6, ``abj`` would usually be 
-placed in `/Library/Frameworks/Python.framework/Versions/2.6/bin/abj`. Thus, 
-you would add `/Library/Frameworks/Python.framework/Versions/2.6/bin` to your 
-*PATH*.  
+    sudo easy_install -U abjad
+
+... in the command prompt of your terminal window.
+
+Python will install the latest prebuilt version of Abjad 
+in the site packages directory on your computer and 
+this will complete your installation of Abjad.
+
+Otherwise, follow these manual install instructions:
+
+1.  Download the latest release from http://pypi.python.org/pypi/Abjad.
+
+2.  Untar the downloaded file. For example ...
+
+        tar xzvf Abjad-NNN.tar.gz
+    
+    ... where NNN is the version number of the latest release.
+
+3.  Change into the directory created in step 2 with ...
+
+        cd Abjad-NNN
+
+    ... or equivalent.
+
+4.  If you're using Linux, Mac OS X or some other flavor of Unix, 
+    enter the command ...
+
+        sudo python setup.py install
+
+    ... at your command prompt.
+
+5.  If you're using Windows, start up a command shell with administrator
+    privileges and run the command ...
+
+        setup.py install
+
+    ... at your comamnd prompt.
+
+These commands will cause Python to install Abjad in your site packages directory.
+
 
 Note for Linux users
-""""""""""""""""""""
-Abjad makes use of ``xdg-open`` to display PDF files using your default PDF 
-viewer.
-Most Linux distributions now come with `xdg-utils` installed. If you do not 
-have `xdg-utils` installed, download it from 
-http://www.portland.freedsektop.org and install it. Alternatively you can 
-set the *pdfviewer* variable in the `$HOME/.abjad/config` file to your 
-favorite PDF viewer. 
+--------------------
 
- 
+Abjad defaults to xdg-open to display PDF files using your default PDF viewer.
+Most Linux distributions now come with xdg-utils installed.
 
-Installing the development version
-----------------------------------
+If you do not have xdg-utils installed, you can download it from 
+http://www.portland.freedsektop.org and install it.
 
-See the section on developer concerns in the docs.
+Alternatively you can set the pdfviewer variable in the $HOME/.abjad/config file 
+to your favorite PDF viewer. 
