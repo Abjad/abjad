@@ -4,16 +4,14 @@ Ferneyhough: Unsichtbare Farben
 Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare Farben` in
 `The OM Composer's Book 2`.
 
-Malt details Ferneyhough's use of OpenMusic:
-
-    The composer first created an exhaustive catalogue of rhythmic cells with
-    two characteristics:
+Malt explains that Ferneyhough used OpenMusic to create an "exhaustive catalogue
+of rhythmic cells" such that:
 
     1. They are subdivided into two pulses, with proportions from ``1/1`` to ``1/11``.
 
     2. The second pulse is subdivided successively by ``1``, ``2``, ``3``, ``4``, ``5`` and ``6``.
 
-Here we recreate Malt's results in Abjad.
+Let's recreate Malt's results in Abjad.
 
 The proportions
 ---------------
@@ -23,6 +21,10 @@ First we define proportions:
 ::
 
 	abjad> proportions = [(1, n) for n in range(1, 11 + 1)]
+
+
+::
+
 	abjad> proportions
 	[(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7), (1, 8), (1, 9), (1, 10), (1, 11)]
 
@@ -30,7 +32,7 @@ First we define proportions:
 The transforms
 --------------
 
-Then we make aliases:
+Then we make aliases to give shorter names to two functions with long names:
 
 ::
 
@@ -38,7 +40,7 @@ Then we make aliases:
 	abjad> tie_chain_to_tuplet = tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
 
 
-And create a helper:
+And then define a helper function:
 
 
 ::
@@ -52,14 +54,14 @@ And create a helper:
 The rhythms
 -----------
 
-We set tuplet duration:
+We set the duration of each tuplet equal to a quarter note:
 
 ::
 
 	abjad> duration = Fraction(1, 4)
 
 
-And make the rhythms:
+And then we make the rhythms:
 
 
 ::
