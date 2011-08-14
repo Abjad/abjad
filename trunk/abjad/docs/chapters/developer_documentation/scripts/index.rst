@@ -5,8 +5,29 @@ The ``abjad/scr/devel`` directory contains scripts for Abjad developers.
 Add ``abjad/scr/devel`` to your ``PATH`` to use the scripts described below. ::
 
     abjad$ ls scr/devel
-    abj-grep              abj-rmpycs            count-source-lines
-    abj-grp                abj-update            replace-in-files
+    abj-grep                                       find-multifunction-modules
+    abj-grp                                        find-multiline-import-statements
+    abj-rmpycs                                     find-nonalphabetized-module-headers
+    abj-src-grp                                    find-nontrivial-subdirectories
+    abj-test-grp                                   find-public-helpers-without-docstrings
+    abj-update                                     find-undocumented-tools
+    capitalize-test-file-names                     fix-nonalphabetized-module-headers
+    conjoin-multiline-import-statements            fix-test-case-block-comments
+    count-source-lines                             fix-test-case-names
+    count-tools                                    fix-test-case-numbers
+    duplicate-test-file                            format-lilypond-context-names-with-underscores
+    find-and-fix-manual-class-package-initializers list-private-modules
+    find-duplicate-module-names                    rebuild-docs
+    find-duplicate-tool-module-names               reindent-3-spaces-as-4
+    find-import-as-statements                      reindent-4-spaces-as-3
+    find-local-import-statements                   reindent-spaces-variably
+    find-lower-camel-case-definitions              remove-tmp-out-directories
+    find-lower-camel-case-modules                  rename-public-helper
+    find-manual-class-loads-in-initializers        replace-abjad-prompts-with-python-prompts
+    find-misnamed-private-modules                  replace-in-files
+    find-missing-test-modules                      replace-python-prompts-with-abjad-prompts
+    find-module-headers                            run-doctest-on-all-modules-in-tree
+    find-modules-with-chevrons
 
 
 Searching the Abjad codebase with ``abj-grep``
@@ -20,7 +41,6 @@ You can run ``abj-grep`` from any directory on your system; you needn't be
 in the Abjad source directories when you call ``abj-grep``. ::
 
     $ abj-grep 'is_assignable('
-
     leaf/duration.py:111:            if not durtools.is_assignable(rational):
     tempo/indication.py:67:            assert durtools.is_assignable(arg)
     tools/check/are_scalable.py:12:            if not durtools.is_assignable(candidate_duration):
@@ -77,14 +97,14 @@ source and test files. ::
 
     abjad$ count-source-lines
 
-    source_modules: 713
-    test_modules: 580
+    source_modules: 1703
+    test_modules:   1812
 
-    source_lines: 25899
-    test_lines: 46111
+    source_lines:   73942
+    test_lines:     76636
 
-    total lines: 72010
-    test-to-source ratio is 1.8 : 1
+    total lines:    150578
+    test-to-source ratio is 1 : 1
 
 The script is directory-dependent so you can run it any the entire Abjad
 codebase or any subdirectory of the codebase.
