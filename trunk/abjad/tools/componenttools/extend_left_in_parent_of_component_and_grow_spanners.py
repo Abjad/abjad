@@ -36,7 +36,7 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
 
     Return `new_components` and `component` together in newly created list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``splice_left( )`` to
         ``componenttools.extend_left_in_parent_of_component_and_grow_spanners( )``.
     '''

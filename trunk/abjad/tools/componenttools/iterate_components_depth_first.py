@@ -9,7 +9,7 @@ def iterate_components_depth_first(component, capped = True, unique = True,
 
     .. todo:: Add usage examples.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.depth_first( )`` to
         ``componenttools.iterate_components_depth_first( )``.
     '''

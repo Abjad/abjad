@@ -40,7 +40,7 @@ def list_time_signatures_of_measures_in_expr(components):
 
     Return list of zero or more time signatures.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.list_time_signatures_of_mesures_in_expr( )`` to
         ``measuretools.list_time_signatures_of_measures_in_expr( )``.
     '''

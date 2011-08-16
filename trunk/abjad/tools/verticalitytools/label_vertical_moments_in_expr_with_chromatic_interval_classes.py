@@ -42,7 +42,7 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
             }
         >>
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.vertical_moment_chromatic_interval_classes( )`` to
         ``verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes( )``.
     '''

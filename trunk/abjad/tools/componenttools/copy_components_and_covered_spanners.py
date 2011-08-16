@@ -85,11 +85,11 @@ def copy_components_and_covered_spanners(components, n = 1):
             d'8
         }
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``clone.covered( )`` to
         ``componenttools.copy_components_and_covered_spanners( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.clone_components_and_covered_spanners( )`` to
         ``componenttools.copy_components_and_covered_spanners( )``.
     '''

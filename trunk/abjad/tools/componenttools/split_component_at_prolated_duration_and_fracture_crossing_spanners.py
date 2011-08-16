@@ -50,7 +50,7 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
 
     Function works on both leaves and containers.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``split.fractured_at_duration( )`` to
         ``componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners( )``.
     '''

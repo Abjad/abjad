@@ -7,7 +7,7 @@ def underscore_delimited_lowercase_to_uppercamelcase(string):
         abjad> iotools.underscore_delimited_lowercase_to_uppercamelcase(string)
         'BassFigureAlignmentPositioning'
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``stringtools.underscore_delimited_lowercase_to_uppercamelcase( )`` to
         ``iotools.underscore_delimited_lowercase_to_uppercamelcase( )``.
     '''

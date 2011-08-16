@@ -15,7 +15,7 @@ def zip_sequences_without_truncation(*sequences):
 
     Return list of tuples.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.zip_nontruncating( )`` to
         ``seqtools.zip_sequences_without_truncation( )``.
     '''

@@ -69,7 +69,7 @@ def iterate_notes_forward_in_expr(expr, start = 0, stop = None):
 
     Return generator.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.notes_forward_in( )`` to
         ``notetools.iterate_notes_forward_in_expr( )``.
     '''

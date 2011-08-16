@@ -6,7 +6,7 @@ def get_spanners_contained_by_components(components):
         any component in list of thread-contiguous components.
         Getter for t.spanners.contained across thread-contiguous components.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.get_contained( )`` to
         ``spannertools.get_spanners_contained_by_components( )``.
     '''

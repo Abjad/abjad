@@ -31,7 +31,7 @@ def iterate_notes_and_chords_forward_in_expr(expr, start = 0, stop = None):
 
     Return generator.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.iterate_notes_and_chords_forward_in_expr( )`` to
         ``leaftools.iterate_notes_and_chords_forward_in_expr( )``.
     '''

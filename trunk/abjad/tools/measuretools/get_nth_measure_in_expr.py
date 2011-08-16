@@ -50,7 +50,7 @@ def get_nth_measure_in_expr(expr, n = 0):
         Measure(2/8, [e'8, f'8])
         Measure(2/8, [c'8, d'8])
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.get_nth_measure( )`` to
         ``measuretools.get_nth_measure_in_expr( )``.
     '''

@@ -23,7 +23,7 @@ def repeat_sequence_to_length(sequence, length, start = 0):
 
     Return newly constructed `sequence` object.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``listtools.repeat_list_to_length( )`` to
         ``seqtools.repeat_sequence_to_length( )``.
     '''

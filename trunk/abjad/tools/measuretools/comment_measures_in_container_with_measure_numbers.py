@@ -37,7 +37,7 @@ def comment_measures_in_container_with_measure_numbers(container):
             % stop measure 3
         }
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.measure_numbers( )`` to
         ``measuretools.comment_measures_in_container_with_measure_numbers( )``.
     '''

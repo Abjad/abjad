@@ -9,7 +9,7 @@ def chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidenta
 
     Return pair of strings.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.name_to_letter_accidental( )`` to
         ``pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair( )``.
     '''

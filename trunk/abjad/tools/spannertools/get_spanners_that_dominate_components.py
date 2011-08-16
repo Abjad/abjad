@@ -15,7 +15,7 @@ def get_spanners_that_dominate_components(components):
 
     This operation always leaves all expressions in tact.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.get_dominant( )`` to
         ``spannertools.get_spanners_that_dominate_components( )``.
     '''

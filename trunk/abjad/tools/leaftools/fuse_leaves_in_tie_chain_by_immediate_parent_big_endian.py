@@ -43,7 +43,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
 
     Return list of fused notes by parent.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``fuse.leaves_in_tie_chain( )`` to
         ``leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian( )``.
     '''

@@ -22,12 +22,12 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
             5  0
             6  0
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         works with quartertones.
 
     Return dictionary.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.get_interval_class_vector( )`` to
         ``pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary( )``.
     '''

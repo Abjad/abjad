@@ -56,7 +56,7 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
 
     Return split parts.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``split.fractured_at_index( )`` to
         ``containertools.split_container_at_index_and_fracture_crossing_spanners( )``.
     '''

@@ -29,7 +29,7 @@ def divide_number_by_ratio(number, ratio):
 
     Return list of fractions or list of floats.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``mathtools.divide_number_by_ratio( )`` to
         ``mathtools.divide_number_by_ratio( )``.
     '''

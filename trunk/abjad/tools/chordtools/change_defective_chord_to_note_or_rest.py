@@ -76,7 +76,7 @@ def change_defective_chord_to_note_or_rest(chord):
 
     Return note, rest, chord or none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``chordtools.cast_defective( )`` to
         ``chordtools.change_defective_chord_to_note_or_rest( )``.
     '''

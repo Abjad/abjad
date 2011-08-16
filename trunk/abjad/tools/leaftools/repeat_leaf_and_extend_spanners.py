@@ -40,7 +40,7 @@ def repeat_leaf_and_extend_spanners(leaf, total = 1):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``leaftools.clone_and_splice_leaf( )`` to
         ``leaftools.repeat_leaf_and_extend_spanners( )``.
     '''

@@ -43,7 +43,7 @@ def make_notes(pitches, durations, direction='big-endian'):
 
     Return list of newly constructed notes.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``construct.notes( )`` to
         ``notetools.make_notes( )``.
     '''

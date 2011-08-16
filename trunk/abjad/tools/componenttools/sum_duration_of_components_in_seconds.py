@@ -24,7 +24,7 @@ def sum_duration_of_components_in_seconds(components):
         abjad> componenttools.sum_duration_of_components_in_seconds(tuplet[:])
         Duration(5, 4)
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.sum_seconds( )`` to
         ``componenttools.sum_duration_of_components_in_seconds( )``.
     '''

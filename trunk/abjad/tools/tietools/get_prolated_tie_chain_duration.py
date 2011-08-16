@@ -7,11 +7,11 @@ def get_prolated_tie_chain_duration(tie_chain):
 
     .. todo:: Write tietools.get_prolated_tie_chain_duration( ) tests.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.get_duration_prolated( )`` to
         ``tietools.get_prolated_tie_chain_duration( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.get_tie_chain_prolated_duration( )`` to
         ``tietools.get_prolated_tie_chain_duration( )``.
     '''

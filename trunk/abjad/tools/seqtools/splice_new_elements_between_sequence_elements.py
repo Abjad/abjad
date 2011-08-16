@@ -35,7 +35,7 @@ def splice_new_elements_between_sequence_elements(sequence, new_elements, overha
 
     Return newly constructed list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.insert_slice_cyclic( )`` to
         ``seqtools.splice_new_elements_between_sequence_elements( )``.
     '''

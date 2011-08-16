@@ -13,7 +13,7 @@ def interpolate_cosine(y1, y2, mu):
 
     Return float.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``interpolate.cosine( )`` to
         ``mathtools.interpolate_cosine( )``.
     '''

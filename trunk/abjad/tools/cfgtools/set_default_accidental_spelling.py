@@ -41,7 +41,7 @@ def set_default_accidental_spelling(spelling = 'mixed'):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.change_default_accidental_spelling( )`` to
         ``cfgtools.set_default_accidental_spelling( )``.
     '''

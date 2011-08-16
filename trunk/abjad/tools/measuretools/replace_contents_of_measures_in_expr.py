@@ -59,7 +59,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
     Return measures iterated.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.overwrite_contents( )`` to
         ``measuretools.replace_contents_of_measures_in_expr( )``.
     '''

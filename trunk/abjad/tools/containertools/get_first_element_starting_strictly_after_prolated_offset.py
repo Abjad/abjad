@@ -17,7 +17,7 @@ def get_first_element_starting_strictly_after_prolated_offset(container, prolate
 
     Return none when no `container` element starts strictly after `prolated_offset`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.get_leftmost_element_starting_after_prolated_offset( )`` to
         ``containertools.get_first_element_starting_strictly_after_prolated_offset( )``.
     '''

@@ -24,7 +24,7 @@ def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.chromaticize( )`` to
         ``pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr( )``.
     '''

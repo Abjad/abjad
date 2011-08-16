@@ -18,7 +18,7 @@ def write_expr_to_ly_and_to_pdf_and_show(expr, name, template = None, write = Tr
 
     The purpose of this function is to save named ``.ly`` and PDF output.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``io.write_and_show( )`` to
         ``io.write_expr_to_ly_and_to_pdf_and_show( )``.
     '''

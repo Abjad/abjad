@@ -18,7 +18,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
     Returns None because processes potentially many measures.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.project( )`` to
         ``measuretools.move_measure_prolation_to_full_measure_tuplet( )``.
     '''

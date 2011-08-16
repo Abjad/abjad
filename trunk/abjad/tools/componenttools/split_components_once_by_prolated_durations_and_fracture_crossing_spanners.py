@@ -54,7 +54,7 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
             }
         }
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``partition.fractured_by_durations( )`` to
         ``componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners( )``.
     '''

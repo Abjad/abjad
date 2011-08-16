@@ -53,7 +53,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
 
     Return list of integers and / or floats.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.insert_transposed_pc_subruns( )`` to
         ``pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list( )``.
     '''

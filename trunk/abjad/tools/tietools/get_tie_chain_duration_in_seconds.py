@@ -7,7 +7,7 @@ def get_tie_chain_duration_in_seconds(tie_chain):
 
     .. todo:: Write tietools.get_tie_chain_duration_in_seconds( ) tests.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.get_duration_seconds( )`` to
         ``tietools.get_tie_chain_duration_in_seconds( )``.
     '''

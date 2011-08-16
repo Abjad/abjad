@@ -73,11 +73,11 @@ def iterate_thread_backward_from_component(component, klass = None):
     Compare with :func:`threadtools.iterate_thread_backward_in_expr( )
     <abjad.tools.threadtools.iterate_thread_backward_in_expr>`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.thread_backward_from( )`` to
         ``threadtools.iterate_thread_backward_from_component( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.thread_backward_from_component( )`` to
         ``threadtools.iterate_thread_backward_from_component( )``.
     '''

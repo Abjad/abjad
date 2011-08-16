@@ -3,7 +3,7 @@ def move_spanners_from_component_to_children_of_component(donor):
     Usual use is to give attached spanners from parent to children,
     which is a composer-safe operation.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.give_attached_to_children( )`` to
         ``spannertools.move_spanners_from_component_to_children_of_component( )``.
     '''

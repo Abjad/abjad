@@ -22,7 +22,7 @@ def is_component_with_beam_spanner_attached(expr):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``beamtools.is_component_with_beam_spanner_attached( )`` to
         ``spannertools.is_component_with_beam_spanner_attached( )``.
     '''

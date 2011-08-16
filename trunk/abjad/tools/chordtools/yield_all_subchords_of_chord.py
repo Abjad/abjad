@@ -35,7 +35,7 @@ def yield_all_subchords_of_chord(chord):
 
     Return generator of newly constructed leaves.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``chordtools.subchords( )`` to
         ``chordtools.yield_all_subchords_of_chord( )``.
     '''

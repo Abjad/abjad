@@ -14,7 +14,7 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
 
     Return list of skips.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``construct.skips_with_multipliers( )`` to
         ``skiptools.make_skips_with_multiplied_durations( )``.
     '''

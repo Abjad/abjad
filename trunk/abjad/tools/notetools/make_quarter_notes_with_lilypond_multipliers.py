@@ -27,7 +27,7 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
 
     Return list of zero or more newly constructed notes.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``construct.quarter_notes_with_multipliers( )`` to
         ``notetools.make_quarter_notes_with_lilypond_multipliers( )``.
     '''

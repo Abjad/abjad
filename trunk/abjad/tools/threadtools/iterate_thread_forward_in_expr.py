@@ -58,11 +58,11 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
     Compare with :func:`componenttools.iterate_components_forward_in_expr( )
     <abjad.tools.iterate.naive_forward>`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.thread_forward_in( )`` to
         ``threadtools.iterate_thread_forward_in_expr( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.thread_forward_in_expr( )`` to
         ``threadtools.iterate_thread_forward_in_expr( )``.
     '''

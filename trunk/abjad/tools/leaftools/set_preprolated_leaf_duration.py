@@ -84,7 +84,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
     Return list of `leaf` and leaves newly tied to `leaf`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``leaftools.change_leaf_preprolated_duration( )`` to
         ``leaftools.set_preprolated_leaf_duration( )``.
     '''

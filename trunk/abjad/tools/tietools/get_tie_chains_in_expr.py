@@ -11,7 +11,7 @@ def get_tie_chains_in_expr(components):
     intersection between all the leav es spanned by all tie spanners touching
     the components given and the leaves found in the given components list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.get_tie_chains( )`` to
         ``tietools.get_tie_chains_in_expr( )``.
     '''

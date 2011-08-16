@@ -29,7 +29,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
 
     Return `leaf`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         Renamed from ``leaftools.duration_rewrite( )``.
         ``leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration( )``.
     '''

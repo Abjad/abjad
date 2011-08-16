@@ -41,7 +41,7 @@ def repeat_last_n_elements_of_container(container, n = 1, total = 2):
 
     Return `container`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.extend_cyclic( )`` to
         ``containertools.repeat_last_n_elements_of_container( )``.
     '''

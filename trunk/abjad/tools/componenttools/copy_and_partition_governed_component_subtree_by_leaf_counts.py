@@ -68,7 +68,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     Return a list of parts equal in length to that of `leaf_counts`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``clonewp.by_leaf_counts_with_parentage( )`` to
         ``componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts( )``.
     '''

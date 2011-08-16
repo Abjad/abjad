@@ -43,11 +43,11 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
 
     Crossing ties raise :exc:`TieChainError`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.chained_contents( )`` to
         ``tietools.iterate_topmost_tie_chains_and_components_forward_in_expr( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.topmost_tie_chains_and_components_forward_in_expr( )`` to
         ``tietools.iterate_topmost_tie_chains_and_components_forward_in_expr( )``.
     '''

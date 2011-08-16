@@ -9,7 +9,7 @@ def move_parentage_and_spanners_from_components_to_components(donors, recipients
     Container setitem logic can not work with orphan donors.
     Return donors.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``scoretools.bequeath( )`` to
         ``componenttools.move_parentage_and_spanners_from_components_to_components( )``.
     '''

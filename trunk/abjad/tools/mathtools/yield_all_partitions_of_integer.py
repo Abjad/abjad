@@ -31,7 +31,7 @@ def yield_all_partitions_of_integer(n):
 
     Return generator of positive integer tuples of length at least ``1``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``mathtools.integer_partitions( )`` to
         ``mathtools.yield_all_partitions_of_integer( )``.
     '''

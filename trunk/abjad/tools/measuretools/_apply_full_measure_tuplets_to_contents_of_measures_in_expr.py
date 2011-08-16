@@ -12,7 +12,7 @@ def _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement
     Note that supplement should be a Python list of
     notes, rests, chords, tuplets or whatever.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.tupletize( )``
         to ``measuretools._apply_full_measure_tuplets_to_contents_of_measures_in_expr( )``.
     '''

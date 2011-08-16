@@ -22,7 +22,7 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
 
     Return newly constructed list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.join_sublists_by_sign( )`` to
         ``seqtools.join_subsequences_by_sign_of_subsequence_elements( )``.
     '''

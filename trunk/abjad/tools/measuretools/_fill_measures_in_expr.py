@@ -31,7 +31,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
     When mode is None:
         Empty the contents of each measure.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.populate( )``
         to ``measuretools._fill_measures_in_expr( )``.
     '''

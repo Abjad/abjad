@@ -31,7 +31,7 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
 
     Returns a list of floats.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``interpolate.divide_multiple( )`` to
         ``mathtools.interpolate_divide_multiple( )``.
     '''

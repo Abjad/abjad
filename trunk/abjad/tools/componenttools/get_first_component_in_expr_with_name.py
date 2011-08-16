@@ -20,15 +20,15 @@ def get_first_component_in_expr_with_name(expr, name):
         abjad> componenttools.get_first_component_in_expr_with_name(score, 'Violin')
         Staff-"Violin"{4}
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         Function returns first component found.
         Function previously returned tuple of all components found.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``scoretools.find( )`` to
         ``componenttools.get_first_component_in_expr_with_name( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         Removed `klass` and `context` keywords.
         Function operates only on component name.
     '''

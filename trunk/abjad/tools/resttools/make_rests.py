@@ -33,7 +33,7 @@ def make_rests(duration_tokens, direction = 'big-endian', tied = False):
 
     Return list of rests.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``construct.rests( )`` to
         ``resttools.make_rests( )``.
     '''

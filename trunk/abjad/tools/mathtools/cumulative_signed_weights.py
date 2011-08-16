@@ -18,7 +18,7 @@ def cumulative_signed_weights(sequence):
 
     Return list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.cumulative_weights_signed( )`` to
         ``mathtools.cumulative_signed_weights( )``.
     '''

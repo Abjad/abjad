@@ -26,7 +26,7 @@ def is_nonnegative_integer_power_of_two(expr):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``mathtools.is_power_of_two( )`` to
         ``mathtools.is_nonnegative_integer_power_of_two( )``.
     '''

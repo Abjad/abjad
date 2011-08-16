@@ -92,7 +92,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
 
     Return list of leaves.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``construct.leaves( )`` to
         ``leaftools.make_leaves( )``.
     '''

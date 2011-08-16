@@ -55,11 +55,11 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
 
     .. todo:: optimize without full-component traversal.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.get_vertical_moment_starting_with( )`` to
         ``verticalitytools.get_vertical_moment_starting_with_component( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.get_vertical_moment_starting_with_component( )`` to
         ``verticalitytools.get_vertical_moment_starting_with_component( )``.
     '''

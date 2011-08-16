@@ -42,7 +42,7 @@ def repeat_contents_of_container(container, total = 2):
 
     Return `container`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.contents_multiply( )`` to
         ``containertools.repeat_contents_of_container( )``.
     '''

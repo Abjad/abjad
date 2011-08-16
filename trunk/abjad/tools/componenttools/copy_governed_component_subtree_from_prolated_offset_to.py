@@ -94,7 +94,7 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start = 0
 
     Return (untrimmed_copy, first_dif, second_dif).
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.clone_governed_component_subtree_from_prolated_duration_to( )`` to
         ``componenttools.copy_governed_component_subtree_from_prolated_offset_to( )``.
     '''

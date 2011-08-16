@@ -30,7 +30,7 @@ def make_solid_text_spanner_below_with_nib_at_right(left_text, components = None
             \revert TextSpanner #'direction
         }
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spanners.solid_text_spanner_below_with_nib_at_right( )`` to
         ``spannertools.make_solid_text_spanner_below_with_nib_at_right( )``.
     '''

@@ -47,7 +47,7 @@ def remove_trivial_tuplets_in_expr(expr):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tuplettools.slip_trivial( )`` to
         ``tuplettools.remove_trivial_tuplets_in_expr( )``.
     '''

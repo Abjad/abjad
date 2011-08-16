@@ -12,7 +12,7 @@ def ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_num
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.are_in_octave_order( )`` to
         ``pitchtools.ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers( )``.
     '''

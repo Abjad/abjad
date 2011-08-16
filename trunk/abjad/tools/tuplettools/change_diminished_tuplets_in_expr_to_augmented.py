@@ -15,7 +15,7 @@ def change_diminished_tuplets_in_expr_to_augmented(tuplet):
 
     .. todo:: make work with nested tuplets.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tuplettools.diminution_to_augmentation( )`` to
         ``tuplettools.change_diminished_tuplets_in_expr_to_augmented( )``.
     '''

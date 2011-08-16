@@ -62,7 +62,7 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
 
     This function is thread-agnostic.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.backwards( )`` to
         ``componenttools.iterate_components_backward_in_expr( )``.
     '''

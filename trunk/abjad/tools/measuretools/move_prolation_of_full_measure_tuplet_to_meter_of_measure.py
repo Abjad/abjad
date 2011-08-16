@@ -27,7 +27,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.subsume( )`` to
         ``measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure( )``.
     '''

@@ -69,11 +69,11 @@ def copy_components_and_immediate_parent_of_first_component(components):
     .. todo:: this function should (but does not) copy marks that attach to `components` and
         to the immediate parent of the first component; extend function to do so.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``clonewp.with_parent( )`` to
         ``componenttools.copy_components_and_immediate_parent_of_first_component( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.clone_components_and_immediate_parent_of_first_component( )`` to
         ``componenttools.copy_components_and_immediate_parent_of_first_component( )``.
     '''

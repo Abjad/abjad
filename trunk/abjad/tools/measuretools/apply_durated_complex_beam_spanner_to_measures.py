@@ -59,7 +59,7 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
 
     Return beam spanner created.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.beam_together( )``.
     '''
     from abjad.tools import spannertools

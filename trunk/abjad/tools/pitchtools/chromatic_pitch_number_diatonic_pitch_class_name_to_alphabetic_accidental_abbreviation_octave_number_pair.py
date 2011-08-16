@@ -15,7 +15,7 @@ def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_ab
 
     Return pair.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.number_letter_to_accidental_octave( )`` to
         ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair( )``.
     '''

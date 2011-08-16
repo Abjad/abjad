@@ -71,7 +71,7 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(tie_chain, pr
             c'16 ]
         }
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``divide.tie_chain_into_arbitrary_diminution_undotted( )`` to
         ``tietools.tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots( )``.
     '''

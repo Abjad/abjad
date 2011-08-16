@@ -46,7 +46,7 @@ def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
        Python profilers, see `the Python docs
        <http://docs.python.org/library/profile.html>`_.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
        renamed ``check.profile( )`` to
        ``iotools.profile_expr( )``.
     '''

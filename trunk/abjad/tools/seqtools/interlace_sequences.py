@@ -20,7 +20,7 @@ def interlace_sequences(*sequences):
 
     Return list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.interlace( )`` to
         ``seqtools.interlace_sequences( )``.
     '''

@@ -37,7 +37,7 @@ def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration)
     Return list of leaves to left of `prolated_duration`
     together with list of leaves to right of `prolated_duration`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``leaftools.shorten( )`` to
         ``leaftools.split_leaf_at_prolated_duration_and_rest_right_half( )``.
     '''

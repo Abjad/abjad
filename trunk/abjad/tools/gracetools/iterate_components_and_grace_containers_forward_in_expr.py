@@ -54,7 +54,7 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
 
     Include grace leaves after main leaves.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.grace( )`` to
         ``componenttools.iterate_components_and_grace_containers_forward_in_expr( )``.
     '''

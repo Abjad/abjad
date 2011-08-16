@@ -15,7 +15,7 @@ def cumulative_sums_zero(sequence):
 
     Return list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``mathtools.cumulative_sums_zero( )`` to
         ``mathtools.cumulative_sums_zero( )``.
     '''

@@ -19,7 +19,7 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.leaf_pitch_numbers( )`` to
         ``leaftools.label_leaves_in_expr_with_pitch_numbers( )``.
     '''

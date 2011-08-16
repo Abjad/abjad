@@ -19,7 +19,7 @@ def fuse_leaves_big_endian(leaves):
 
     Return list of first leaf in `leaves`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``fuse.leaves_by_reference( )`` to
         ``leaftools.fuse_leaves_big_endian( )``.
     '''

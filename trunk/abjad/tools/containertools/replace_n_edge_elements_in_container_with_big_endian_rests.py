@@ -36,7 +36,7 @@ def replace_n_edge_elements_in_container_with_big_endian_rests(container, n):
 
     Return `container`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.replace_first_n_elements_in_container_with_big_endian_rests( )`` to
         ``containertools.replace_n_edge_elements_in_container_with_big_endian_rests( )``.
     '''

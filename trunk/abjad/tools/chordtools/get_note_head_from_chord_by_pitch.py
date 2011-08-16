@@ -23,7 +23,7 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
     Raise extra note head error when `chord` contains more than 
     one note head with pitch equal to `pitch`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``chordtools.get_note_head( )`` to
         ``chordtools.get_note_head_from_chord_by_pitch( )``.
     '''

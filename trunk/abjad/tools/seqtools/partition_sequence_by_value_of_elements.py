@@ -15,7 +15,7 @@ def partition_sequence_by_value_of_elements(sequence):
 
     Return list of tuples of `sequence` element references.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.group_by_equality( )`` to
         ``seqtools.partition_sequence_by_value_of_elements( )``.
     '''

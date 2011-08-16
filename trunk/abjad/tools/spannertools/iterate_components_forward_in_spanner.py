@@ -15,7 +15,7 @@ def iterate_components_forward_in_spanner(spanner, klass = _Component):
         Note("e'8")
         Note("f'8")
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.iterate_components_forward( )`` to
         ``spannertools.iterate_components_forward_in_spanner( )``.
     '''

@@ -20,7 +20,7 @@ def is_duration_pair(arg):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.is_pair( )`` to ``durtools.is_duration_pair( )``.
     '''
 

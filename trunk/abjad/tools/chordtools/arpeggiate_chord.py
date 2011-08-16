@@ -20,7 +20,7 @@ def arpeggiate_chord(chord):
 
     Return list of newly constructed notes.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``chordtools.arpeggiate( )`` to
         ``chordtools.arpeggiate_chord( )``.
     '''

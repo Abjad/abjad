@@ -31,7 +31,7 @@ def delete_contents_of_container(container):
 
     Return `container` contents.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.contents_delete( )`` to
         ``containertools.delete_contents_of_container( )``.
     '''

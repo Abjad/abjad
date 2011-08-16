@@ -35,7 +35,7 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length = None, max
 
     Return generator of newly created `sequence` objects.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.sublists( )`` to
         ``seqtools.yield_all_combinations_of_sequence_elements( )``.
     '''

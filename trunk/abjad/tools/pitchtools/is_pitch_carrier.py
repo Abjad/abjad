@@ -13,7 +13,7 @@ def is_pitch_carrier(expr):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.is_carrier( )`` to
         ``pitchtools.is_pitch_carrier( )``.
     '''

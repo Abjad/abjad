@@ -28,7 +28,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
 
     Return list of notes.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``construct.notes_curve( )`` to
         ``notetools.make_accelerating_notes_with_lilypond_multipliers( )``.
     '''

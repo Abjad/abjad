@@ -16,7 +16,7 @@ def partition_sequence_once_by_weights_exactly_with_overhang(sequence, weights):
 
     Return list sequence element reference lists.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.group_sequence_elements_once_by_weights_exactly_with_overhang( )`` to
         ``seqtools.partition_sequence_once_by_weights_exactly_with_overhang( )``.
     '''

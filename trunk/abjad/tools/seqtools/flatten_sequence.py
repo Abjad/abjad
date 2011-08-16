@@ -24,7 +24,7 @@ def flatten_sequence(sequence, klasses = None, depth = -1):
 
     Return newly constructed `sequence` object.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``listtools.flatten( )`` to
         ``seqtools.flatten_sequence( )``.
     '''

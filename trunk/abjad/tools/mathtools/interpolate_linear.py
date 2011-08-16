@@ -10,7 +10,7 @@ def interpolate_linear(y1, y2, mu):
 
     Return float.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``interpolate.linear( )`` to
         ``mathtools.interpolate_linear( )``.
     '''

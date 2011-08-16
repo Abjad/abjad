@@ -55,7 +55,7 @@ def iterate_thread_backward_in_expr(expr, klass, thread_signature):
     Compare with :func:`componenttools.iterate_components_backward_in_expr( )
     <abjad.tools.iterate.naive_backward>`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.thread_backward_in( )`` to
         ``threadtools.iterate_thread_backward_in_expr( )``.
     '''

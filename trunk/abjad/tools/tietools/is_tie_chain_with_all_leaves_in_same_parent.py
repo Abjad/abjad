@@ -32,7 +32,7 @@ def is_tie_chain_with_all_leaves_in_same_parent(expr):
         abjad> tie_chain = tietools.get_tie_chain(t.leaves[3])
         abjad> assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tie_chain)
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.is_in_same_parent( )`` to
         ``tietools.is_tie_chain_with_all_leaves_in_same_parent( )``.
     '''

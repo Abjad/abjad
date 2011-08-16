@@ -33,7 +33,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration = (1, 8)):
 
     Useful for percussion music where attack duration is negligible and tied notes undesirable.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``construct.percussion_note( )`` to
         ``notetools.make_percussion_note( )``.
     '''

@@ -25,7 +25,7 @@ def rotate_sequence(sequence, n):
 
     Return newly created `sequence` object.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.rotate( )`` to
         ``seqtools.rotate_sequence( )``.
     '''

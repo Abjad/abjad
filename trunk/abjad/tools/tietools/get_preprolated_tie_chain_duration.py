@@ -9,7 +9,7 @@ def get_preprolated_tie_chain_duration(tie_chain):
 
     .. todo:: write ``tietools.get_preprolated_tie_chain_duration( )`` tests.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.get_duration_preprolated( )`` to
         ``tietools.get_preprolated_tie_chain_duration( )``.
     '''

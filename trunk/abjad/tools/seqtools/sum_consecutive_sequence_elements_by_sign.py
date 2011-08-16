@@ -61,7 +61,7 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
 
     Return list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.sum_by_sign( )`` to
         ``seqtools.sum_consecutive_sequence_elements_by_sign( )``.
     '''

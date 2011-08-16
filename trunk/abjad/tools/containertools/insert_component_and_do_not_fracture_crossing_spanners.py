@@ -35,7 +35,7 @@ def insert_component_and_do_not_fracture_crossing_spanners(container, i, compone
 
     Return `container`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.insert_and_do_not_fracture( )`` to
         ``containertools.insert_component_and_do_not_fracture_crossing_spanners( )``.
     '''

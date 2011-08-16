@@ -13,7 +13,7 @@ def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(p
 
     Return list of zero or more chromatic pitch numbers.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.registrate( )`` to
         ``pitchtools.register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate( )``.
     '''

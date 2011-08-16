@@ -15,7 +15,7 @@ def iterate_components_backward_in_spanner(spanner, klass = _Component):
         Note("f'8")
         Note("e'8")
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.iterate_components_backward( )`` to
         ``spannertools.iterate_components_backward_in_spanner( )``.
     '''

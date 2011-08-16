@@ -53,7 +53,7 @@ def split_container_cyclically_by_counts_and_fracture_crossing_spanners(containe
 
     Return list of list-wrapped container pieces.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``partition.cyclic_fractured_by_counts( )`` to
         ``containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners( )``.
     '''

@@ -12,7 +12,7 @@ def get_indices_of_sequence_elements_equal_to_true(sequence):
 
     Return newly constructed tuple of zero or more nonnegative integers.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``listtools.true_indices( )`` to
         ``seqtools.get_indices_of_sequence_elements_equal_to_true( )``.
     '''

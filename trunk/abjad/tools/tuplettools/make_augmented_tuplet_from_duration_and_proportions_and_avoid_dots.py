@@ -31,7 +31,7 @@ def make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(
 
     Return fixed-duration tuplet.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``divide.duration_into_arbitrary_augmentation_undotted( )`` to
         ``tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots( )``.
     '''

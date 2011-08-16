@@ -14,7 +14,7 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
 
     Return dictionary.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.get_interval_vector( )`` to
         ``pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary( )``.
     '''

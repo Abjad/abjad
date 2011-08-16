@@ -10,7 +10,7 @@ def difference_series(sequence):
 
     Return list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.difference_series( )`` to
         ``mathtools.difference_series( )``.
     '''

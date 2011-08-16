@@ -55,7 +55,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
 
     Return list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.get_signed_interval_series( )`` to
         ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers( )``.
     '''

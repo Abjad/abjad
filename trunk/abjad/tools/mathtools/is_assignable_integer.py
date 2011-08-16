@@ -36,7 +36,7 @@ def is_assignable_integer(expr):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``mathtools.is_assignable( )`` to
         ``mathtools.is_assignable_integer( )``.
     '''

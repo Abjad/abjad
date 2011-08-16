@@ -20,7 +20,7 @@ def _repeat_sequence_to_weight(sequence, weight, remainder = 'chop'):
         abjad> _repeat_sequence_to_weight([5, 5, 5], 23, remainder = 'more')
         [5, 5, 5, 5, 5]
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``listtools.repeat_list_to_weight( )`` to
         ``seqtools.repeat_sequence_to_weight( )``.
     '''

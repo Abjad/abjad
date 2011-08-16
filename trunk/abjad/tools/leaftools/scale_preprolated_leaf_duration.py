@@ -72,7 +72,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
 
     Return `leaf`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed from ``leaftools.duration_scale( )``.
         ``leaftools.scale_preprolated_leaf_duration( )``.
     '''

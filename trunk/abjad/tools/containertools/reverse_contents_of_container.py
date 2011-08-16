@@ -39,7 +39,7 @@ def reverse_contents_of_container(container):
 
     Return `container`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.contents_reverse( )`` to
         ``containertools.reverse_contents_of_container( )``.
     '''

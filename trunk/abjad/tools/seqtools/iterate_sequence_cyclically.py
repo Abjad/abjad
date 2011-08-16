@@ -34,7 +34,7 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
         abjad> list(seqtools.iterate_sequence_cyclically(sequence, -2, 5, length = 20))
         [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         allows generator input.
 
     ::
@@ -50,7 +50,7 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
 
     Return generator.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.phasor( )`` to
         ``seqtools.iterate_sequence_cyclically( )``.
     '''

@@ -16,7 +16,7 @@ def write_expr_to_ly(expr, file_name, template = None, print_status = True):
 
     Retur none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``io.write_ly( )`` to
         ``io.write_expr_to_ly( )``.
     '''

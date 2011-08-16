@@ -26,7 +26,7 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch = NamedChromaticPitch('b'
 
     Return pair of newly constructed leaves.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``chordtools.split_by_altitude( )`` to
         ``chordtools.divide_chord_by_diatonic_pitch_number( )``.
     '''

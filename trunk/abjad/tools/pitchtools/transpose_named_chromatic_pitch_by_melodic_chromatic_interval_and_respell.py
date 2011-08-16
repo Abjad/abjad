@@ -14,7 +14,7 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
 
     Return new named chromatic pitch.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.staff_space_transpose( )`` to
         ``pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell( )``.
     '''

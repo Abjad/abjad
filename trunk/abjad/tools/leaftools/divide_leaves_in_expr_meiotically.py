@@ -50,7 +50,7 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``leaftools.meiose( )`` to
         ``leaftools.divide_leaves_in_expr_meiotically( )``.
     '''

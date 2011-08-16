@@ -42,7 +42,7 @@ def repeat_leaves_in_expr_and_extend_spanners(expr, total = 1):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``leaftools.multiply( )`` to
         ``leaftools.repeat_leaves_in_expr_and_extend_spanners( )``.
     '''

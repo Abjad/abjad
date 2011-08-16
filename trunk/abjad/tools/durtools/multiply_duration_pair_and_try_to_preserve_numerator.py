@@ -17,7 +17,7 @@ def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
 
     Return integer pair.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.pair_multiply_constant_numerator( )`` to
         ``durtools.multiply_duration_pair_and_try_to_preserve_numerator( )``.
     '''

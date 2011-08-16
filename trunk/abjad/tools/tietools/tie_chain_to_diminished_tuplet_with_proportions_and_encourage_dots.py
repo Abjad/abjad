@@ -72,7 +72,7 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(tie_chain
             c'16 ]
         }
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``divide.tie_chain_into_arbitrary_diminution_dotted( )`` to
         ``tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots( )``.
     '''

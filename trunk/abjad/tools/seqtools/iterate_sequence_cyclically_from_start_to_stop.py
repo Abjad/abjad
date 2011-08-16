@@ -12,7 +12,7 @@ def iterate_sequence_cyclically_from_start_to_stop(sequence, start, stop):
 
     Return generator of references to `sequence` elements.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.get_cyclic( )`` to
         ``seqtools.iterate_sequence_cyclically_from_start_to_stop( )``.
     '''

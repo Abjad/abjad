@@ -37,7 +37,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
 
     Return `measure`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.make_measures_with_full_measure_spacer_skips_underfull_spacer_skip( )`` to
         ``measuretools.append_spacer_skip_to_underfull_measure( )``.
     '''

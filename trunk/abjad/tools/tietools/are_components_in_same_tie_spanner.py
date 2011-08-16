@@ -8,7 +8,7 @@ def are_components_in_same_tie_spanner(components):
     '''True if all components in list share same tie spanner,
         otherwise False.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.are_in_same_spanner( )`` to
         ``tietools.are_components_in_same_tie_spanner( )``.
     '''

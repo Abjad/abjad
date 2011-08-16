@@ -80,11 +80,11 @@ def iterate_components_forward_in_expr(expr, klass = _Component, start = 0, stop
 
     This function is thread-agnostic.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.naive( )`` to
         ``componenttools.iterate_components_forward_in_expr( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         `klass` now defaults to ``_Component``.
     '''
 

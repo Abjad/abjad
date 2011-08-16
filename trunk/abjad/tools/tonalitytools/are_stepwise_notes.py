@@ -22,7 +22,7 @@ def are_stepwise_notes(*expr):
         abjad> tonalitytools.are_stepwise_notes(Note("c'4"), Note("c'4"))
         False
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tonalitytools.are_stepwise( )`` to
         ``tonalitytools.are_stepwise_notes( )``.
     '''

@@ -36,7 +36,7 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
         abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 1)])[0])
         |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.concentrate( )`` to
         ``measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators( )``.
     '''

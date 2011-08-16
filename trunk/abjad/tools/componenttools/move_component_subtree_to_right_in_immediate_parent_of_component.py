@@ -62,7 +62,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     Preserve spanners.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.flip( )`` to
         ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component( )``.
     '''

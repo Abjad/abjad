@@ -22,7 +22,7 @@ def all_are_unequal(expr):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.is_unique( )`` to
         ``seqtools.all_are_unequal( )``.
     '''

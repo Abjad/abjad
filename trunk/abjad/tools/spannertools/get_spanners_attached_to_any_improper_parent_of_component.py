@@ -22,7 +22,7 @@ def get_spanners_attached_to_any_improper_parent_of_component(component, klass =
 
     Return unordered set of zero or more spanners.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.get_all_spanners_attached_to_improper_parentage_of_component( )`` to
         ``spannertools.get_spanners_attached_to_any_improper_parent_of_component( )``.
     '''

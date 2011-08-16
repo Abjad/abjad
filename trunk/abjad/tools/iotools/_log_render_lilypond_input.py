@@ -16,7 +16,7 @@ def _log_render_lilypond_input(expr, template = None):
         New format_time keyword to message conditionally output
         Abjad format time of `expr`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         Returns triple of name of file created, Abjad format time,
         LilyPond render time.
     '''

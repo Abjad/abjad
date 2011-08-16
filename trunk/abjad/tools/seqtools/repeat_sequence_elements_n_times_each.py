@@ -17,7 +17,7 @@ def repeat_sequence_elements_n_times_each(sequence, n):
 
     Return newly constructed `sequence` object with copied `sequence` elements.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``listtools.repeat_elements_to_count( )`` to
         ``seqtools.repeat_sequence_elements_n_times_each( )``.
     '''

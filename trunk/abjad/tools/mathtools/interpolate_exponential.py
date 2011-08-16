@@ -12,7 +12,7 @@ def interpolate_exponential(y1, y2, mu, exp = 1):
 
     Return float.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``interpolate.exponential( )`` to
         ``mathtools.interpolate_exponential( )``.
     '''

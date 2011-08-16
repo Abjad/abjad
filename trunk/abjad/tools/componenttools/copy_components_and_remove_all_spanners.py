@@ -78,11 +78,11 @@ def copy_components_and_remove_all_spanners(components, n = 1):
         }
 
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``clone.unspan( )`` to
         ``componenttools.copy_components_and_remove_all_spanners( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.clone_components_and_remove_all_spanners( )`` to
         ``componenttools.copy_components_and_remove_all_spanners( )``.
     '''

@@ -62,7 +62,7 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
 
     Return `chord`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``chordtools.color_note_heads_by_pc( )`` to
         ``chordtools.color_chord_note_heads_by_pitch_class_color_map( )``.
     '''

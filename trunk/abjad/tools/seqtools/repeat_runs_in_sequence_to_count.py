@@ -67,7 +67,7 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     ``seqtools.repeat_subruns_to_weight( )``  and
     ``seqtools.repeat_subruns_to_sum( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.repeat_subruns_to_count( )`` to
         ``seqtools.repeat_runs_in_sequence_to_count( )``.
     '''

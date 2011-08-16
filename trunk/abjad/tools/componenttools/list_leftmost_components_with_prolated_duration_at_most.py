@@ -26,7 +26,7 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
     .. todo:: implement
         ``componenttools.list_rightmost_components_with_prolated_duration_at_least( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.get_le_duration_prolated( )`` to
         ``componenttools.list_leftmost_components_with_prolated_duration_at_most( )``.
     '''

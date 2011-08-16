@@ -47,7 +47,7 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fo
 
     Return artificial harmonic chord.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``harmonictools.add_artificial( )`` to
         ``notetools.add_artificial_harmonic_to_note( )``.
     '''

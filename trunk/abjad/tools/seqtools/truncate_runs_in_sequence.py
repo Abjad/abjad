@@ -22,7 +22,7 @@ def truncate_runs_in_sequence(sequence):
 
     Return new list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.truncate_subruns( )`` to
         ``seqtools.truncate_runs_in_sequence( )``.
     '''

@@ -44,7 +44,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
 
     Return `expr`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``fuse.containers_by_reference( )`` to
         ``containertools.fuse_like_named_contiguous_containers_in_expr( )``.
     '''

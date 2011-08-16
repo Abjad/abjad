@@ -30,7 +30,7 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components = None
             \revert TextSpanner #'direction
         }
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spanners.dynamic_spanner_below_with_nib_at_right( )`` to
         ``spannertools.make_dynamic_spanner_below_with_nib_at_right( )``.
     '''

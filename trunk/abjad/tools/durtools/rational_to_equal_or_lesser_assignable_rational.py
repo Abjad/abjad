@@ -39,11 +39,11 @@ def rational_to_equal_or_lesser_assignable_rational(rational):
 
     Function returns dotted and double dotted durations where possible.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         Fixed to produce monotonically increasing output
         in response to monotonically increasing input.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.prolated_to_written_not_greater_than( )`` to
         ``durtools.rational_to_equal_or_lesser_assignable_rational( )``.
     '''

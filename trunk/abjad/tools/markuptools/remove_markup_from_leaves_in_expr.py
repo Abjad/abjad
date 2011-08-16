@@ -29,7 +29,7 @@ def remove_markup_from_leaves_in_expr(expr):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.clear_leaves( )`` to
         ``markuptools.remove_markup_from_leaves_in_expr( )``.
     '''

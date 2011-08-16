@@ -14,7 +14,7 @@ def get_spanners_that_dominate_component_pair(left, right):
     This version is useful for finding spanners that dominant
     a zero-length 'crack' between components, as in t[2:2].
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.get_dominant_between( )`` to
         ``spannertools.get_spanners_that_dominate_component_pair( )``.
     '''

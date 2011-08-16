@@ -8,7 +8,7 @@ def get_spanners_covered_by_components(components):
         Compare 'covered' spanners with 'contained' spanners.
         Compare 'covered' spanners with 'dominant' spanners.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.get_covered( )`` to
         ``spannertools.get_spanners_covered_by_components( )``.
     '''

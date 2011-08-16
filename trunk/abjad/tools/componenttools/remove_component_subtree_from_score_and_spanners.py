@@ -93,7 +93,7 @@ def remove_component_subtree_from_score_and_spanners(components):
 
     .. note:: rename to ``componenttools.remove_components_from_score_deep( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.detach( )`` to
         ``componenttools.remove_component_subtree_from_score_and_spanners( )``.
     '''

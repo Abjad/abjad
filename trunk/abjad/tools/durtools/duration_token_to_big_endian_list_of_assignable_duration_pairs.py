@@ -28,7 +28,7 @@ def duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_toke
 
     Return tuple of integer pairs.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.token_decompose( )`` to
         ``durtools.duration_token_to_big_endian_list_of_assignable_duration_pairs( )``.
     '''

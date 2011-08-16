@@ -41,7 +41,7 @@ def label_vertical_moments_in_expr_with_counterpoint_intervals(expr, markup_dire
             }
         >>
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.vertical_moment_counterpoint_intervals( )`` to
         ``verticalitytools.label_vertical_moments_in_expr_with_counterpoint_intervals( )``.
     '''

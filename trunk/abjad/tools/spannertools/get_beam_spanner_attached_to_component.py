@@ -32,11 +32,11 @@ def get_beam_spanner_attached_to_component(component):
 
     Raise extra spanner error when more than one beam spanner attached to `component`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``beamtools.get_beam_spanner( )`` to
         ``spannertools.get_beam_spanner_attached_to_component( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``beamtools.get_beam_spanner_attached_to_component( )`` to
         ``spannertools.get_beam_spanner_attached_to_component( )``.
     '''

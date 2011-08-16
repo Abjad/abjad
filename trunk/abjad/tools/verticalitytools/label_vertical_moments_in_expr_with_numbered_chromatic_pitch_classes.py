@@ -40,7 +40,7 @@ def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(expr, m
             }
         >>
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.vertical_moment_pitch_classes( )`` to
         ``verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes( )``.
     '''

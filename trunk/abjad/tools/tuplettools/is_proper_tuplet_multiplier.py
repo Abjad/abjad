@@ -33,7 +33,7 @@ def is_proper_tuplet_multiplier(multiplier):
     ``4:7`` are valid tuplet multipliers while ``4:2`` and ``4:8``
     aren't.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.is_tuplet_multiplier( )`` to
         ``tuplettools.is_proper_tuplet_multiplier( )``.
     '''

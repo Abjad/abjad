@@ -6,7 +6,7 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down',
     r'''Label leaves in expr with written leaf duration, prolated leaf duration
     or both written and prolated leaf durations.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.leaf_durations( )`` to
         ``leaftools.label_leaves_in_expr_with_leaf_duration( )``.
     '''

@@ -12,7 +12,7 @@ def chromatic_pitch_number_and_accidental_semitones_to_octave_number(
 
     Return integer.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.pitch_number_and_accidental_semitones_to_octave( )`` to
         ``pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number( )``.
     '''

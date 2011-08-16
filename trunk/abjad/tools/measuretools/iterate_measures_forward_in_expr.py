@@ -57,7 +57,7 @@ def iterate_measures_forward_in_expr(expr, start = 0, stop = None):
         Measure(2/8, [c'8, d'8])
         Measure(2/8, [e'8, f'8])
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.measures_forward_in( )`` to
         ``measuretools.iterate_measures_forward_in_expr( )``.
     '''

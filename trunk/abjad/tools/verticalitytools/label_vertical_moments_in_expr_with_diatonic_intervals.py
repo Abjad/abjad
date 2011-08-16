@@ -41,7 +41,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
             }
         >>
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.vertical_moment_diatonic_intervals( )`` to
         ``verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals( )``.
     '''

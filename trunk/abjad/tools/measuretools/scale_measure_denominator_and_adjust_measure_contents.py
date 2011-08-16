@@ -51,7 +51,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
 
     Pick best new meter.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.change_binary_measure_to_nonbinary( )`` to
         ``measuretools.scale_measure_denominator_and_adjust_measure_contents( )``.
     '''

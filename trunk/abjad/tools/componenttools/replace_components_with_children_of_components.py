@@ -44,7 +44,7 @@ def replace_components_with_children_of_components(components):
     .. note:: should be renamed to
         ``componenttools.remove_components_from_score_shallow( )``
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.slip( )`` to
         ``componenttools.replace_components_with_children_of_components( )``.
     '''

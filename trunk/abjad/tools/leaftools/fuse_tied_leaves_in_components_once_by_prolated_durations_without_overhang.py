@@ -35,7 +35,7 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``fuse.tied_leaves_by_prolated_durations( )`` to
         ``leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang( )``.
     '''

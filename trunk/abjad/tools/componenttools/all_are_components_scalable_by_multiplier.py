@@ -18,7 +18,7 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.are_scalable( )`` to
         ``componenttools.all_are_components_scalable_by_multiplier( )``.
     '''

@@ -36,11 +36,11 @@ def iterate_tie_chains_forward_in_expr(expr):
 
     Note also that nested structures are no problem.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.tie_chains_forward_in( )`` to
         ``tietools.iterate_tie_chains_forward_in_expr( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``iterate.tie_chains_forward_in_expr( )`` to
         ``tietools.iterate_tie_chains_forward_in_expr( )``.
     '''

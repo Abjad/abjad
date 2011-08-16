@@ -12,7 +12,7 @@ def is_orphan_component(component):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.component_is_orphan( )`` to
         ``componenttools.is_orphan_component( )``.
     '''

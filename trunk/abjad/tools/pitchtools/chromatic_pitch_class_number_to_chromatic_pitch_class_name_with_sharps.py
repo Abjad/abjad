@@ -24,7 +24,7 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(chrom
 
     Return string.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.pc_to_pitch_name_sharps( )`` to
         ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps( )``.
     '''

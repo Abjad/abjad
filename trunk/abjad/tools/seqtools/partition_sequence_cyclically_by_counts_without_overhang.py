@@ -15,7 +15,7 @@ def partition_sequence_cyclically_by_counts_without_overhang(sequence, counts):
 
     Return list of `sequence` objects
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``listtools.partition_sequence_cyclically_by_counts_without_overhang( )`` to
         ``seqtools.partition_sequence_cyclically_by_counts_without_overhang( )``.
     '''

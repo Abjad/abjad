@@ -52,7 +52,7 @@ def remove_empty_containers_in_expr(expr):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.remove_empty( )`` to
         ``containertools.remove_empty_containers_in_expr( )``.
     '''

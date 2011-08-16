@@ -26,7 +26,7 @@ def zip_sequences_cyclically(*sequences):
 
     Return list of length equal to sequence of greatest length in `sequences`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.zip_cyclic( )`` to
         ``seqtools.zip_sequences_cyclically( )``.
     '''

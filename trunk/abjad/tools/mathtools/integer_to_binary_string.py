@@ -32,7 +32,7 @@ def integer_to_binary_string(n):
 
     Return string.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``mathtools.binary_string( )`` to
         ``mathtools.integer_to_binary_string( )``.
     '''

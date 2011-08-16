@@ -24,7 +24,7 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
 
     Return new meter.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``metertools.make_best( )`` to
         ``metertools.duration_and_possible_denominators_to_meter( )``.
     '''

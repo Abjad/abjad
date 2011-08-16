@@ -53,11 +53,11 @@ def copy_governed_component_subtree_by_leaf_range(component, start = 0, stop = N
 
     When `stop` is none copy all leaves from `start` forward.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``clonewp.by_leaf_range_with_parentage( )`` to
         ``componenttools.copy_governed_component_subtree_by_leaf_range( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``componenttools.clone_governed_component_subtree_by_leaf_range( )`` to
         ``componenttools.copy_governed_component_subtree_by_leaf_range( )``.
     '''

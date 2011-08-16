@@ -30,7 +30,7 @@ def group_leaves_in_tie_chain_by_immediate_parents(tie_chain):
 
     Return list of leaf group lists.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.group_by_parent( )`` to
         ``tietools.group_leaves_in_tie_chain_by_immediate_parents( )``.
     '''

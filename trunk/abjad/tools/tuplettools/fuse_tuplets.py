@@ -61,7 +61,7 @@ def fuse_tuplets(tuplets):
 
     All `tuplets` must be of the same type.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``fuse.tuplets_by_reference( )`` to
         ``tuplettools.fuse_tuplets( )``.
     '''

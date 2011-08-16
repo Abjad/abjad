@@ -71,7 +71,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
 
     Return chromatic pitch number.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.send_pitch_number_to_octave( )`` to
         ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping( )``.
     '''

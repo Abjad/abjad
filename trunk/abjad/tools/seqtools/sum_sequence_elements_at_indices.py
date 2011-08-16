@@ -32,7 +32,7 @@ def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = 
 
     Return new list.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.sum_slices_at( )`` to
         ``seqtools.sum_sequence_elements_at_indices( )``.
     '''

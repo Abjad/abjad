@@ -18,7 +18,7 @@ def multiply_duration_pair_and_reduce_factors(pair, multiplier):
 
     Return integer pair.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.pair_multiply_reduce_factors( )`` to
         ``durtools.multiply_duration_pair_and_reduce_factors( )``.
     '''

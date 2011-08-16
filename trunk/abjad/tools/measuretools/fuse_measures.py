@@ -72,7 +72,7 @@ def fuse_measures(measures):
 
     Leave `measures` empty, unspanned and outside-of-score.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``fuse.measures_by_reference( )`` to
         ``measuretools.fuse_measures( )``.
     '''

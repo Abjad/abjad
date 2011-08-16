@@ -24,7 +24,7 @@ def replace_leaves_in_expr_with_skips(expr):
 
     Return none.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``leaftools.replace_leaves_with_skips_in( )`` to
         ``skiptools.replace_leaves_in_expr_with_skips( )``.
     '''

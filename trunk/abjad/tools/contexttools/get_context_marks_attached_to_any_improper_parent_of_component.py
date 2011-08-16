@@ -32,7 +32,7 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
 
     Return unordered set of zero or more context marks.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``contexttools.get_all_context_marks_attached_to_any_improper_parent_of_component( )`` to
         ``contexttools.get_context_marks_attached_to_any_improper_parent_of_component( )``.
     '''

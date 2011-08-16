@@ -22,7 +22,7 @@ def map_sequence_elements_to_numbered_sublists(sequence):
 
     Return newly constructed list of lists.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.lengths_to_counts( )`` to
         ``seqtools.map_sequence_elements_to_numbered_sublists( )``.
     '''

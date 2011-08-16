@@ -9,7 +9,7 @@ def remove_all_leaves_in_tie_chain_except_first(tie_chain):
     '''Detach all leaves of tie chain after the first.
     Unspan and return length-1 tie chain.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``tietools.truncate( )`` to
         ``tietools.remove_all_leaves_in_tie_chain_except_first( )``.
     '''

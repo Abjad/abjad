@@ -18,7 +18,7 @@ def get_spanners_that_cross_components(components):
     Compare 'crossing' spanners with 'contained' spanners.
     Compare 'crossing' spanners with 'attached' spanners.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.get_crossing( )`` to
         ``spannertools.get_spanners_that_cross_components( )``.
     '''

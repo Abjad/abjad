@@ -44,7 +44,7 @@ def rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
 
     Return integer pair.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.in_terms_of_binary_multiple( )`` to
         ``durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator( )``.
     '''

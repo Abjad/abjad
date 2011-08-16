@@ -42,7 +42,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
     Return `measure`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``measuretools.set_measure_denominator_and_multiply_numerator( )`` to
         ``measuretools.set_measure_denominator_and_adjust_numerator( )``.
     '''

@@ -42,11 +42,11 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
             }
         >>
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``construct.scale_period( )`` to
         ``tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale( )``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``leaftools.make_all_notes_in_ascending_and_descending_diatonic_scale( )`` to
         ``tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale( )``.
     '''

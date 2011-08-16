@@ -24,7 +24,7 @@ def map_sequence_elements_to_canonic_tuples(sequence, direction = 'big-endian'):
 
     Return list of tuples.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``seqtools.partition_elements_into_canonic_parts( )`` to
         ``seqtools.map_sequence_elements_to_canonic_tuples( )``.
     '''

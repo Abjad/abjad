@@ -70,7 +70,7 @@ def set_line_breaks_cyclically_by_line_duration_ge(expr, line_duration, klass = 
     to move end-of-line LilyPond TimeSignature and BarLine grobs to
     the right.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``layout.line_break_every_prolated( )`` to
         ``layout.set_line_breaks_cyclically_by_line_duration_ge( )``.
     '''

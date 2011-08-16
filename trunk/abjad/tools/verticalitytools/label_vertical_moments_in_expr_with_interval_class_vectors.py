@@ -40,7 +40,7 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
             }
         >>
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``label.vertical_moment_interval_class_vectors( )`` to
         ``verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors( )``.
     '''

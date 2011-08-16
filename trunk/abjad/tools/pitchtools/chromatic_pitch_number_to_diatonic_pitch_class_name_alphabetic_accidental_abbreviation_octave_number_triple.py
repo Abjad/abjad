@@ -17,7 +17,7 @@ def chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_ab
 
     Return tuple.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.number_to_letter_accidental_octave( )`` to
         ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple( )``.
     '''

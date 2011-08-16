@@ -7,7 +7,7 @@ def withdraw_components_from_spanners_covered_by_components(components):
         Return 'components'.
         The operation always leaves all score trees in tact.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.withdraw_from_covered( )`` to
         ``spannertools.withdraw_components_from_spanners_covered_by_components( )``.
     '''

@@ -35,7 +35,7 @@ def positive_integer_to_implied_prolation_multipler(n):
 
     Return positive fraction less than or equal to ``1``.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.denominator_to_multiplier( )`` to
         ``durtools.positive_integer_to_implied_prolation_multipler( )``.
     '''

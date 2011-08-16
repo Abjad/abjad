@@ -3,7 +3,7 @@ def get_spanners_on_components_or_component_children(components):
     component in `components` or attaching to any of the children
     of any of the components in `components`.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.get_attached( )`` to
         ``spannertools.get_spanners_on_components_or_component_children( )``.
     '''

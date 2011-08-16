@@ -13,7 +13,7 @@ def sum_prolated_duration_of_components(components):
         abjad> componenttools.sum_prolated_duration_of_components(tuplet[:])
         Duration(1, 4)
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.sum_prolated( )`` to
         ``componenttools.sum_prolated_duration_of_components( )``.
     '''

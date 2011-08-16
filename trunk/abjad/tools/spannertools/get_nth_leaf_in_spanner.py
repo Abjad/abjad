@@ -9,7 +9,7 @@ def get_nth_leaf_in_spanner(spanner, idx):
     situation.
 
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``spannertools.get_nth_leaf( )`` to
         ``spannertools.get_nth_leaf_in_spanner( )``.
     '''

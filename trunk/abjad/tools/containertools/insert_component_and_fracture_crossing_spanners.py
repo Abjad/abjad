@@ -37,7 +37,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
 
     Return list of fractured spanners.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``containertools.insert_and_fracture( )`` to
         ``containertools.insert_component_and_fracture_crossing_spanners( )``.
     '''

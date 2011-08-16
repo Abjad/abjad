@@ -13,7 +13,7 @@ def is_named_chromatic_pitch_token(pitch_token):
 
     Return boolean.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``pitchtools.is_pitch_token( )`` to
         ``pitchtools.is_named_chromatic_pitch_token( )``.
     '''

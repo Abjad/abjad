@@ -15,7 +15,7 @@ def group_duration_tokens_by_implied_prolation(durations):
 
     Return list of integer pair lists.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``durtools.agglomerate_by_prolation( )`` to
         ``durtools.group_duration_tokens_by_implied_prolation( )``.
     '''

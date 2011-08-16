@@ -19,7 +19,7 @@ def make_big_centered_page_number_markup(text = None):
 
     Return markup.
 
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 2.0
         renamed ``markuptools.big_centered_page_number( )`` to
         ``markuptools.make_big_centered_page_number_markup( )``.
     '''
