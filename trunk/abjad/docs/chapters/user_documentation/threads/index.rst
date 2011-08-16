@@ -167,21 +167,21 @@ by printing it:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> vA_thread_signature
-	<        root: Staff-4357678704 (4357678704) *      score:  * staffgroup:  *      staff: Staff-4357678704 *      voice: Voice-4357677136 *         self: Voice-4357677136 >
+	<        root: Staff-8090096 (8090096) *      score:  * staffgroup:  *      staff: Staff-8090096 *      voice: Voice-8089760 *         self: Voice-8089760 >
 
 
 ::
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> vB_thread_signature
-	<        root: Staff-4542027376 (4542027376) *      score:  * staffgroup:  *      staff: Staff-4542027376 *      voice: Voice-4542026928 *         self: Voice-4542026928 >
+	<        root: Staff-8090096 (8090096) *      score:  * staffgroup:  *      staff: Staff-8090096 *      voice: Voice-8089872 *         self: Voice-8089872 >
 
 
 ::
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> vC_thread_signature
-	<        root: Staff-4446664304 (4446664304) *      score:  * staffgroup:  *      staff: Staff-4446664304 *      voice: Voice-4446664080 *         self: Voice-4446664080 >
+	<        root: Staff-8090096 (8090096) *      score:  * staffgroup:  *      staff: Staff-8090096 *      voice: Voice-8089984 *         self: Voice-8089984 >
 
 
 And by comparing them with the binary equality operator:
@@ -220,10 +220,10 @@ Note how the thread signatures have changed:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> print vA_thread_signature
-	        root: Staff-4403598960 (4403598960)
+	        root: Staff-8090096 (8090096)
 	     score:
 	staffgroup:
-	     staff: Staff-4403598960
+	     staff: Staff-8090096
 	     voice: Voice-piccolo
 	        self: Voice-piccolo
 
@@ -232,10 +232,10 @@ Note how the thread signatures have changed:
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> print vB_thread_signature
-	        root: Staff-4395996784 (4395996784)
+	        root: Staff-8090096 (8090096)
 	     score:
 	staffgroup:
-	     staff: Staff-4395996784
+	     staff: Staff-8090096
 	     voice: Voice-piccolo
 	        self: Voice-piccolo
 
@@ -244,12 +244,12 @@ Note how the thread signatures have changed:
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> print vC_thread_signature
-	        root: Staff-4551566960 (4551566960)
+	        root: Staff-8090096 (8090096)
 	     score:
 	staffgroup:
-	     staff: Staff-4551566960
-	     voice: Voice-4551566736
-	        self: Voice-4551566736
+	     staff: Staff-8090096
+	     voice: Voice-8089984
+	        self: Voice-8089984
 
 
 And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns
