@@ -96,8 +96,8 @@ class MarkupCommand(_Immutable):
             for markup in self.markup:
                 if '_format_pieces' in dir(markup) and not isinstance(markup, str):
                     parts.extend([indent_delimiter + x for x in markup._format_pieces])
-                else:
-                    parts.append(indent_delimiter + markup)
+                else: # markup is a string
+                    parts.append(indent_delimiter + self._escape_string(markup))
         if self.is_braced and self.markup and 1 < len(self.markup):
             parts[0] += ' {'
             parts.append('}')
@@ -117,12 +117,25 @@ class MarkupCommand(_Immutable):
             for markup in self.markup:
                 if '_report_pieces' in dir(markup) and not isinstance(markup, str):
                     parts.extend([indent_delimiter + x for x in markup._report_pieces])
-                else:
-                    parts.append(indent_delimiter + markup)
+                else: # markup is a string
+                    parts.append(indent_delimiter + self._escape_string(markup))
         if self.is_braced and self.markup and 1 < len(self.markup):
             parts[0] += ' {'
             parts.append('}')
         return parts
+
+    ### PRIVATE METHODS ###
+
+    def _escape_string(self, string):
+        if -1 == string.find(' '):
+            return string
+
+        string = repr(string)
+        if string.startswith("'") and string.endswith("'"):
+            string = string.replace('"', '\"')
+            string = '"' + string[1:]
+            string = string[:-1] + '"'
+        return string
 
     ### PUBLIC ATTRIBUTES ###
 

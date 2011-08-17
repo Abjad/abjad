@@ -406,6 +406,7 @@ markuptools
 
    tools/markuptools/Markup/Markup
    tools/markuptools/MarkupCommand/MarkupCommand
+   tools/markuptools/combine_markup_commands
    tools/markuptools/get_down_markup_attached_to_component
    tools/markuptools/get_markup_attached_to_component
    tools/markuptools/get_up_markup_attached_to_component

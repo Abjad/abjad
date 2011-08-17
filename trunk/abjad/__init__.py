@@ -21,7 +21,11 @@ import sys
 _exceptions_path = os.path.join(__path__[0], 'exceptions')
 _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 
-sys.ps1 = 'abjad> '
+### check for prompt preference
+from abjad.cfg._read_config_file import _read_config_file
+if _read_config_file( )['use_abjad_prompt']:
+    sys.ps1 = 'abjad> '
+del _read_config_file
 
 del cfg
 del cfgtools
