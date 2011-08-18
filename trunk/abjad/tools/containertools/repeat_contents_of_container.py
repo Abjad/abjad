@@ -3,7 +3,7 @@ from abjad.tools.containertools.repeat_last_n_elements_of_container import repea
 
 
 def repeat_contents_of_container(container, total = 2):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Repeat contents of `container`::
 

@@ -4,7 +4,7 @@ from abjad.tools.measuretools.append_spacer_skip_to_underfull_measure import app
 
 
 def append_spacer_skips_to_underfull_measures_in_expr(expr):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Append spacer skips to underfull measures in `expr`::
 

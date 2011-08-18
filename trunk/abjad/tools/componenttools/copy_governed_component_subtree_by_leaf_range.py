@@ -2,7 +2,7 @@ from abjad.exceptions import ContiguityError
 
 
 def copy_governed_component_subtree_by_leaf_range(component, start = 0, stop = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Clone governed `component` subtree by leaf range.
 

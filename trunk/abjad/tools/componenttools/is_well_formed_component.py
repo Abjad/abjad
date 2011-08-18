@@ -2,7 +2,7 @@ from abjad.tools.componenttools._Component import _Component
 
 
 def is_well_formed_component(expr, allow_empty_containers = True):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     True when `component` is well formed::
 

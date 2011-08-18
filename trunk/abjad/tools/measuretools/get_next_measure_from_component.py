@@ -2,7 +2,7 @@ from abjad.tools.measuretools._get_measure_from_component import _get_measure_fr
 
 
 def get_next_measure_from_component(component):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Get next measure from `component`.
 

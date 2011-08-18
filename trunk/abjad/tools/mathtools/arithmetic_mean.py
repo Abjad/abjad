@@ -2,7 +2,7 @@ from fractions import Fraction
 
 
 def arithmetic_mean(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Arithmetic means of `sequence` as an exact integer::
 

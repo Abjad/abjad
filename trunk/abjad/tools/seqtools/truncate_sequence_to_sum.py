@@ -1,5 +1,5 @@
 def truncate_sequence_to_sum(sequence, sum):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Truncate `sequence` to `sum`::
 

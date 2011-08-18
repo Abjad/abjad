@@ -6,7 +6,7 @@ from abjad.tools.measuretools.get_next_measure_from_component import get_next_me
 
 ### TODO: fix bug in function that causes tied notes to become untied
 def replace_contents_of_measures_in_expr(expr, new_contents):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Replace contents of measures in `expr` with `new_contents`::
 

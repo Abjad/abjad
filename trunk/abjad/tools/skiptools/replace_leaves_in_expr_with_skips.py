@@ -2,7 +2,7 @@ from abjad.tools.skiptools.Skip import Skip
 
 
 def replace_leaves_in_expr_with_skips(expr):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Replace leaves in `expr` with skips::
 

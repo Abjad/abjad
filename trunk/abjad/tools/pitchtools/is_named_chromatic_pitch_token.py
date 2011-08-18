@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.is_chromatic_pitch_class_name_octave_number_pair imp
 
 
 def is_named_chromatic_pitch_token(pitch_token):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     True when `pitch_token` has the form of an Abjad pitch token.
     Otherwise false::

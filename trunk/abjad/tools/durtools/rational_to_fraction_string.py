@@ -2,7 +2,7 @@ from fractions import Fraction
 
 
 def rational_to_fraction_string(rational):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `rational` to fraction string::
 

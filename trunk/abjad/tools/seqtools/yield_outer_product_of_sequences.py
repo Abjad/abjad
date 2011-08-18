@@ -1,5 +1,5 @@
 def yield_outer_product_of_sequences(sequences):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Yield outer product of `sequences`::
 

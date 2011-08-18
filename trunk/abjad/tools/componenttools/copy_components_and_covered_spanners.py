@@ -5,7 +5,7 @@ import copy
 
 
 def copy_components_and_covered_spanners(components, n = 1):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Clone `components` and covered spanners.
 

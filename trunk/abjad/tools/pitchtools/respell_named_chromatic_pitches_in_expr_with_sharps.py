@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.chromatic_pitch_number_to_octave_number import chrom
 
 
 def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Respell named chromatic pitches in `expr` with sharps::
 

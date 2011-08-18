@@ -2,7 +2,7 @@ from abjad.tools.componenttools.get_improper_parentage_of_component import get_i
 
 
 def get_proper_parentage_of_component(component):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Get proper parentage of `component`::
 

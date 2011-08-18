@@ -3,7 +3,7 @@ from abjad.tools.componenttools._split_component_at_duration import _split_compo
 
 def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
     component, prolated_duration, tie_after = False):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Split `component` at `prolated_duration` and do not fracture crossing spanners.
 

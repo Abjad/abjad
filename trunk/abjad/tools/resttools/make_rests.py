@@ -3,7 +3,7 @@ from numbers import Number
 
 
 def make_rests(duration_tokens, direction = 'big-endian', tied = False):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Make rests.
 

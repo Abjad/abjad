@@ -2,7 +2,7 @@ from abjad.tools.seqtools._partition_sequence_elements_by_weights_at_most import
 
 
 def partition_sequence_once_by_weights_at_most_without_overhang(sequence, weights):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Partition `sequence` elements once by `weights` at most without overhang::
 

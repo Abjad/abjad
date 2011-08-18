@@ -2,7 +2,7 @@ from fractions import Fraction
 
 
 def multiply_duration_pair(pair, multiplier):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Multiply duration `pair` by rational `multiplier`::
 

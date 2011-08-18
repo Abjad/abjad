@@ -3,7 +3,7 @@ from abjad.tools.seqtools.zip_sequences_without_truncation import zip_sequences_
 
 
 def interlace_sequences(*sequences):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Interlace `sequences`::
 

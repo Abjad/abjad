@@ -3,7 +3,7 @@ import math
 
 
 def is_binary_rational(rational):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     True when `rational` is of the form ``1/2**n``. Otherwise false::
 

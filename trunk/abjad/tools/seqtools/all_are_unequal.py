@@ -1,5 +1,5 @@
 def all_are_unequal(expr):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     True when `expr` is a sequence all elements in `expr` are unequal::
 

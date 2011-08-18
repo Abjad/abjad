@@ -2,7 +2,7 @@ from fractions import Fraction
 
 
 def is_duration_pair(arg):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     True when `arg` has the form of a pair of integers that initialize a positive rational::
 

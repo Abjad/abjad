@@ -3,7 +3,7 @@ import math
 
 
 def rational_to_equal_or_greater_binary_rational(rational):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `rational` to equal to greater binary rational::
 

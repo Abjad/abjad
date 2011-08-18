@@ -1,5 +1,5 @@
 def fracture_all_spanners_attached_to_component(component, direction = 'both', klass = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Fracture all spanners attached to `component` according to `direction`::
 

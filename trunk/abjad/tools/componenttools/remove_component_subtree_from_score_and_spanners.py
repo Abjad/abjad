@@ -1,5 +1,5 @@
 def remove_component_subtree_from_score_and_spanners(components):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Remove arbitrary `components` and children of `components` from score and spanners::
 

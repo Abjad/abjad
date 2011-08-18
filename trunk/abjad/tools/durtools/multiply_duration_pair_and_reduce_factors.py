@@ -3,7 +3,7 @@ from fractions import Fraction
 
 
 def multiply_duration_pair_and_reduce_factors(pair, multiplier):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Multiply `pair` by rational `multiplier` and reduce factors::
 

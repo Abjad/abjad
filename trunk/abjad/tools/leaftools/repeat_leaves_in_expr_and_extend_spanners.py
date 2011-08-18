@@ -3,7 +3,7 @@ from abjad.tools.leaftools.repeat_leaf_and_extend_spanners import repeat_leaf_an
 
 
 def repeat_leaves_in_expr_and_extend_spanners(expr, total = 1):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Repeat leaves in `expr` and extend spanners::
 

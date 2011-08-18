@@ -3,7 +3,7 @@ from fractions import Fraction
 
 
 def rational_to_duration_pair_with_specified_integer_denominator(duration, integer_denominator):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Change `duration` to duraiton pair with specified `integer_denominator`::
 

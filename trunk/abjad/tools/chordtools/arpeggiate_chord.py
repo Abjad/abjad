@@ -2,7 +2,7 @@ from abjad.tools.chordtools.Chord import Chord
 
 
 def arpeggiate_chord(chord):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Arpeggiate `chord`::
 

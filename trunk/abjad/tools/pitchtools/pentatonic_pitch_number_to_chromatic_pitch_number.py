@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 def pentatonic_pitch_number_to_chromatic_pitch_number(
     pentatonic_scale_degree, transpose=1, phase=0):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Changed `pentatonic_scale_degree` number to chromatic pitch number::
 

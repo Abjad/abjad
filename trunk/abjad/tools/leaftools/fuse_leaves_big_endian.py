@@ -1,6 +1,6 @@
 ### TODO: implement leaftools.fuse_leaves_little_endian( )
 def fuse_leaves_big_endian(leaves):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Fuse thread-contiguous `leaves`::
 

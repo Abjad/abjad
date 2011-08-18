@@ -1,5 +1,5 @@
 def iterate_sequence_cyclically_from_start_to_stop(sequence, start, stop):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Iterate `sequence` cyclically from `start` to `stop`::
 

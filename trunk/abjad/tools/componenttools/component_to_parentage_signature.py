@@ -2,7 +2,7 @@ from abjad.tools.componenttools._ContainmentSignature import _ContainmentSignatu
 
 
 def component_to_parentage_signature(component):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `component` to parentage signature::
 

@@ -1,5 +1,5 @@
 def chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair(  chromatic_pitch_class_name):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `chromatic_pitch_class_name` to diatonic pitch-class name / alphabetic
     accidental abbreviation pair::

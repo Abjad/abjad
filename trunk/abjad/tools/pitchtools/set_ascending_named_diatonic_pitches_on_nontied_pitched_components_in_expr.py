@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 
 def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
     expr, key_signature = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Set ascending named diatonic pitches on nontied pitched components in `expr`::
 

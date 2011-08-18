@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 
 
 def is_pitch_carrier(expr):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     True when `expr` is an Abjad pitch, note, note-head of chord instance.
     Otherwise false::

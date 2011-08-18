@@ -22,7 +22,7 @@ from numbers import Number
 ###       Only possible after the two extensions to leaftools.make_leaves( ), above.
 
 def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Construct a list of notes, rests or chords.
 

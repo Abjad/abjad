@@ -4,7 +4,7 @@ from abjad.tools.measuretools.Measure.Measure import Measure
 
 
 class DynamicMeasure(Measure):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Measure sets meter dynamically to exactly equal contents duration::
 

@@ -3,7 +3,7 @@ from abjad.tools.containertools.Cluster._ClusterFormatter import _ClusterFormatt
 
 
 class Cluster(Container):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Abjad model of a tone cluster container::
 

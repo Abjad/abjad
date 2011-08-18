@@ -1,6 +1,6 @@
 ### TODO: implement corresponding little-endian function
 def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Fuse leaves in `tie_chain` by immediate parent::
 

@@ -3,7 +3,7 @@ import itertools
 
 
 def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Sum consecutive `sequence` elements by `sign`::
 

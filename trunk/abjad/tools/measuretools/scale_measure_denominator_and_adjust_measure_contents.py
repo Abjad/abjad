@@ -6,7 +6,7 @@ from abjad.tools.measuretools.scale_contents_of_measures_in_expr import scale_co
 
 ### TODO: implement measuretools.change_nonbinary_measure_to_binary( ).
 def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominator_factor):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Change binary `measure` to nonbinary measure with `new_denominator_factor`::
 

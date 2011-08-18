@@ -3,7 +3,7 @@ from abjad.tools.spannertools.get_spanners_attached_to_any_improper_parent_of_co
 
 def report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component(
     component, klass = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Report as string format contributions of all spanners attached to improper
     parentage of `component`::

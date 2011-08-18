@@ -5,7 +5,7 @@ from abjad.tools import durtools
 
 
 def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, concentration_pairs):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Mutiply contents of measures in `expr` and scale meter denominators.
 

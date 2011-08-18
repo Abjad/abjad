@@ -3,7 +3,7 @@ from abjad.tools.durtools import Duration
 
 ### TODO: implement corresponding function to rest left half
 def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Split `leaf` at `prolated_duration` and rest right half::
 

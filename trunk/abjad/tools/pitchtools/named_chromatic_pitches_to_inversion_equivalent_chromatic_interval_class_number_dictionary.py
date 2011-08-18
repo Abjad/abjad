@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 
 def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(
     pitches):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Change named chromatic `pitches` to inversion-equivalent chromatic interval-class number
     dictionary::

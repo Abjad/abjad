@@ -1,5 +1,5 @@
 def flatten_sequence(sequence, klasses = None, depth = -1):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Flatten `sequence`::
 

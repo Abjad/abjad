@@ -6,7 +6,7 @@ import math
 
 
 def divide_leaf_meiotically(leaf, n = 2):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Divide `leaf` meiotically `n` times::
 

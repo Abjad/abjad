@@ -278,7 +278,7 @@ class Spanner(_StrictComparator):
             abjad> spanner.components
             (Note("c'8"), Note("d'8"))
 
-        .. versionchanged:: 1.1.1
+        .. versionchanged:: 1.1
             Now returns an (immutable) tuple instead of a (mutable) list.
         '''
         return tuple(self._components[:])
@@ -300,7 +300,7 @@ class Spanner(_StrictComparator):
             abjad> spanner.leaves
             (Note("c'8"), Note("d'8"))
 
-        .. versionchanged:: 1.1.1
+        .. versionchanged:: 1.1
             Now returns an (immutable) tuple instead of a (mutable) list.
 
         .. note:: When dealing with large, complex scores accessing
@@ -322,7 +322,7 @@ class Spanner(_StrictComparator):
 
     @property
     def offset(self):
-        '''.. versionadded:: 1.1.1
+        '''.. versionadded:: 1.1
 
         Return read-only reference to spanner offset interface.
 

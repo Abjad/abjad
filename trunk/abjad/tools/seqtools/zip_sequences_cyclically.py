@@ -3,7 +3,7 @@ import math
 
 
 def zip_sequences_cyclically(*sequences):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Zip `sequences` cyclically::
 
@@ -14,7 +14,7 @@ def zip_sequences_cyclically(*sequences):
         abjad> seqtools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
         [(1, 'a'), (2, 'b'), (3, 'a')]
 
-    .. versionadded:: 1.1.1
+    .. versionadded:: 1.1
         Arbitrary number of input sequences now allowed.
 
     ::

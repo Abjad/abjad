@@ -2,7 +2,7 @@ from abjad.tools.componenttools.get_improper_parentage_of_component import get_i
 
 
 def component_to_score_root(component):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `component` to score root::
 

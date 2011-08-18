@@ -1,5 +1,5 @@
 def chromatic_pitch_class_number_to_chromatic_pitch_class_name(chromatic_pitch_class_number):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `chromatic_pitch_class_number` to chromatic pitch-class name::
 

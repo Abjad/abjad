@@ -2,7 +2,7 @@ from abjad.tools import seqtools
 
 
 def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(pitch_class_numbers, aggregate):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Register chromatic `pitch_class_numbers` by chromatic pitch-number `aggregate`::
 

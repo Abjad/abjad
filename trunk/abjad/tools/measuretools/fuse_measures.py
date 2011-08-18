@@ -8,7 +8,7 @@ from abjad.tools import durtools
 
 
 def fuse_measures(measures):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Fuse `measures`::
 

@@ -2,7 +2,7 @@ from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_
 
 
 def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction = 'down'):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Label leaves in `expr` with tuplet depth::
 

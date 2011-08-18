@@ -3,7 +3,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 
 
 def get_nth_component_in_expr(expr, klasses, n = 0):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Get component `n` in the `klasses` of `expr`::
 

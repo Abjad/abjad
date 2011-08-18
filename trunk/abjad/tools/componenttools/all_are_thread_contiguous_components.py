@@ -6,7 +6,7 @@ import types
 
 
 def all_are_thread_contiguous_components(expr, klasses = None, allow_orphans = True):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     True when elements in `expr` are all thread-contiguous components::
 

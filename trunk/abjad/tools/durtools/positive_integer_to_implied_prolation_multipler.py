@@ -4,7 +4,7 @@ from fractions import Fraction
 
 ### TODO: respell function name correctly
 def positive_integer_to_implied_prolation_multipler(n):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change positive integer `n` to implied porlation multiplier::
 

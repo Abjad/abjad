@@ -5,7 +5,7 @@ from abjad.tools.scoretools.PianoStaff import PianoStaff
 
 
 def make_empty_piano_score( ):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Make empty piano score::
 

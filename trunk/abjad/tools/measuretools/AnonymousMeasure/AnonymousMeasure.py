@@ -2,7 +2,7 @@ from abjad.tools.measuretools.DynamicMeasure.DynamicMeasure import DynamicMeasur
 
 
 class AnonymousMeasure(DynamicMeasure):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Dynamic measure with no time signature::
 

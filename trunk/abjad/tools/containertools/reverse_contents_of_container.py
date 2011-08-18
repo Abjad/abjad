@@ -2,7 +2,7 @@ from abjad.tools.containertools.Container import Container
 
 
 def reverse_contents_of_container(container):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Reverse contents of `container`::
 

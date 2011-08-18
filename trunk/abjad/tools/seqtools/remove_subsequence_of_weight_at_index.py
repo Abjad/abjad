@@ -2,7 +2,7 @@ from fractions import Fraction
 
 
 def remove_subsequence_of_weight_at_index(sequence, weight, index):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Remove subsequence of `weight` at `index`::
 

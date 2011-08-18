@@ -1,5 +1,5 @@
 def iterate_namesakes_forward_from_component(component, start = 0, stop = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Iterate namesakes forward from `component`::
 

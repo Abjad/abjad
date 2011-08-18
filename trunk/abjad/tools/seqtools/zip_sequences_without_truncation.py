@@ -1,5 +1,5 @@
 def zip_sequences_without_truncation(*sequences):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Zip `sequences` nontruncating::
 

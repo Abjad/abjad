@@ -3,7 +3,7 @@ from abjad.tools.componenttools._partition_components_by_durations import _parti
 
 def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
     components, prolated_durations):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Partition `components` cyclically by `prolated_durations` greater than
     or equal, with overhang::

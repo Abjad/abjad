@@ -3,7 +3,7 @@ import itertools
 
 
 def yield_all_permutations_of_sequence(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Yield all permutations of `sequence` in lex order::
 

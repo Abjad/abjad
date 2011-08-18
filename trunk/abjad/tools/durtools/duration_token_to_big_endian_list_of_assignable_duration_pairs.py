@@ -3,7 +3,7 @@ from abjad.tools.durtools.duration_token_to_duration_pair import duration_token_
 
 
 def duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_token):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `duration_token` to big-endian tuple of assignable duration pairs::
 

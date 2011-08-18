@@ -1,5 +1,5 @@
 def is_beamable_component(expr):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     True when `expr` is a beamable component. Otherwise false::
 

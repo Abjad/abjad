@@ -1,5 +1,5 @@
 def negate_absolute_value_of_sequence_elements_at_indices(sequence, indices):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Negate the absolute value of `sequence` elements at `indices`::
 

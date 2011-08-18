@@ -1,5 +1,5 @@
 def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Set ascending named chromatic pitches on nontied pitched components in `expr`::
 

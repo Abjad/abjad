@@ -1,5 +1,5 @@
 def get_indices_of_sequence_elements_equal_to_true(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Get indices of `sequence` elements equal to true::
 

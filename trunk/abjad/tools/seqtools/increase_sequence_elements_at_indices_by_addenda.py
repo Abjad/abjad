@@ -2,7 +2,7 @@ from abjad.tools.seqtools.flatten_sequence import flatten_sequence
 
 
 def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Increase `sequence` by `addenda` at `indices`::
 

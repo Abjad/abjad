@@ -2,7 +2,7 @@ from abjad.tools.threadtools.component_to_thread_signature import component_to_t
 
 
 def iterate_thread_forward_in_expr(expr, klass, thread_signature):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Yield left-to-right instances of `klass` in `expr` with
     `thread_signature`::

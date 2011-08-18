@@ -1,5 +1,5 @@
 def iterate_sequence_pairwise_strict(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Iterate `sequence` pairwise strict::
 

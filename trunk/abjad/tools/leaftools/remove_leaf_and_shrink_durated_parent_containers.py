@@ -5,7 +5,7 @@ from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Remove `leaf` and shrink durated parent containers::
 

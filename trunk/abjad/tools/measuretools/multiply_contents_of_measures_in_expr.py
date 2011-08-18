@@ -5,7 +5,7 @@ from abjad.tools import durtools
 
 
 def multiply_contents_of_measures_in_expr(expr, n):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Multiply contents ``n - 1`` times and adjust meter of every measure in `expr`::
 

@@ -10,7 +10,7 @@ import copy
 ### TODO: Reimplement pitchtools.octave_transposition( ) with diatonic transposition. ###
 
 def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier, pitch_range):
-    r""".. versionadded:: 1.1.1
+    r""".. versionadded:: 1.1
 
     List octave transpositions of `pitch_carrier` in `pitch_range`::
 

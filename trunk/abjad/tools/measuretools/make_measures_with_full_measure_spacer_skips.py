@@ -4,7 +4,7 @@ from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_ski
 
 
 def make_measures_with_full_measure_spacer_skips(meters):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Make measures with full-measure spacer skips from `meters`::
 

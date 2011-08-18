@@ -1,5 +1,5 @@
 def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Pad measures in `expr` with rests.
 

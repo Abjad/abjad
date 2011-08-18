@@ -5,7 +5,7 @@ import types
 
 
 def all_are_components_in_same_thread(expr, klasses = None, allow_orphans = True):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     True when elements in `expr` are all components in same thread. Otherwise false::
 

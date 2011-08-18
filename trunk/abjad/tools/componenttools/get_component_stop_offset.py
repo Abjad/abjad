@@ -1,5 +1,5 @@
 def get_component_stop_offset(component):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Get `component` stop offset::
 

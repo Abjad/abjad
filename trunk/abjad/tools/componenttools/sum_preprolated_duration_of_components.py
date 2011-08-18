@@ -1,5 +1,5 @@
 def sum_preprolated_duration_of_components(components):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Sum preprolated duration of `components`::
 

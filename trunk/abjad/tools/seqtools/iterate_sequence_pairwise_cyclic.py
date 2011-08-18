@@ -1,5 +1,5 @@
 def iterate_sequence_pairwise_cyclic(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Iterate `sequence` pairwise cyclic::
 

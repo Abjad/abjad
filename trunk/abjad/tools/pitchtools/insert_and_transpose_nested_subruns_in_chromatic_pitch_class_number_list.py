@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 
 
 def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Insert and transpose nested subruns in `chromatic_pitch_class_number_list`
     according to `subrun_indicators`::

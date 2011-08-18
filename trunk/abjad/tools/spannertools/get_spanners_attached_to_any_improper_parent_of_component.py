@@ -1,5 +1,5 @@
 def get_spanners_attached_to_any_improper_parent_of_component(component, klass = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Get all spanners attached to improper parentage of `component`::
 

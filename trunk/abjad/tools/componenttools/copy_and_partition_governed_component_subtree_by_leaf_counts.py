@@ -6,7 +6,7 @@ from abjad.tools import seqtools
 ### that doesn't climb to governor ###
 
 def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf_counts):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Copy `container` and partition copy according to `leaf_counts`::
 

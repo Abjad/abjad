@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
     pitch_carriers, wrap = False):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     List melodic chromatic interval numbers pairwise between `pitch_carriers`::
 

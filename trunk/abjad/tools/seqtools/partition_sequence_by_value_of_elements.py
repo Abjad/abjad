@@ -2,7 +2,7 @@ import itertools
 
 
 def partition_sequence_by_value_of_elements(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Group `sequence` elements by equality::
 

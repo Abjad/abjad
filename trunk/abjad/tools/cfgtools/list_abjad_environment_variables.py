@@ -4,7 +4,7 @@ import types
 
 
 def list_abjad_environment_variables( ):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     List Abjad environment variables.
 

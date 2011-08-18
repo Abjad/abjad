@@ -3,7 +3,7 @@ from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components 
 
 
 def extend_in_parent_of_component_and_do_not_grow_spanners(component, components):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Extend `components` in parent of `component` and do not grow spanners::
 

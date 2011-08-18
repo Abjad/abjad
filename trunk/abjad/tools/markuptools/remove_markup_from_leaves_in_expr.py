@@ -2,7 +2,7 @@
 
 
 def remove_markup_from_leaves_in_expr(expr):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Remove markup from leaves in `expr`::
 

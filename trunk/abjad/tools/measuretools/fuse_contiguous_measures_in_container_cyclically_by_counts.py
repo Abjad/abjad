@@ -6,7 +6,7 @@ from abjad.tools.measuretools.get_next_measure_from_component import get_next_me
 
 
 def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts, mark = False):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Fuse contiguous measures in `container` cyclically by `counts`::
 

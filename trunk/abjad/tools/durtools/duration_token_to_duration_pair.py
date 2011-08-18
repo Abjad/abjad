@@ -3,7 +3,7 @@ from fractions import Fraction
 
 
 def duration_token_to_duration_pair(duration_token):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `duration_token` to duration pair::
 

@@ -2,7 +2,7 @@ from abjad.tools.chordtools.Chord import Chord
 
 
 def change_defective_chord_to_note_or_rest(chord):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change zero-length `chord` to rest::
 

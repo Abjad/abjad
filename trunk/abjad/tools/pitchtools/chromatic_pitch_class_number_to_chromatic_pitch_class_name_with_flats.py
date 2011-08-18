@@ -1,6 +1,6 @@
 def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
     chromatic_pitch_class_number):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change chromatic pitch-class number to chromatic pitch-class name with flats::
 

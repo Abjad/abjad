@@ -3,7 +3,7 @@ from fractions import Fraction
 
 
 def is_assignable_rational(expr):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     True when `expr` is assignable rational. Otherwise false::
 

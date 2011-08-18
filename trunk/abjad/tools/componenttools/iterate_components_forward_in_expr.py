@@ -2,7 +2,7 @@ from abjad.tools.componenttools._Component import _Component
 
 
 def iterate_components_forward_in_expr(expr, klass = _Component, start = 0, stop = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Iterate components forward in `expr`::
 

@@ -1,5 +1,5 @@
 def fuse_leaves_in_container_once_by_counts_into_big_endian_rests(container, counts):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Fuse leaves in `container` once by `counts` into big-endian rests.
     '''

@@ -3,7 +3,7 @@ from abjad.tools.componenttools._split_components_by_prolated_durations import _
 
 def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
     components, durations, tie_after = False):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Partition `components` cyclically by prolated `durations` and do not fracture spanners::
 

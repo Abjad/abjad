@@ -2,7 +2,7 @@ from abjad.tools.seqtools._partition_sequence_elements_by_weights_exactly import
 
 
 def partition_sequence_cyclically_by_weights_exactly_without_overhang(sequence, weights):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Partition `sequence` elements cyclically by `weights` exactly without overhang::
 

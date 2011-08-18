@@ -3,7 +3,7 @@ from abjad.tools import tietools
 
 
 def scale_contents_of_container(container, multiplier):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Scale contents of `container` by dot `multiplier`::
 

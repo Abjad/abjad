@@ -5,7 +5,7 @@ import types
 
 
 def all_are_contiguous_components_in_same_score(expr, klasses = None, allow_orphans = True):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     True when elements in `expr` are all contiguous components in same score.
     Otherwise false::

@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 
 
 def group_duration_tokens_by_implied_prolation(durations):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Group `durations` by implied prolation::
 

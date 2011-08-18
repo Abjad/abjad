@@ -6,7 +6,7 @@ import copy
 
 
 class Measure(Container):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Abjad model of a measure::
 
@@ -171,7 +171,7 @@ class Measure(Container):
 
     @property
     def is_overfull(self):
-        '''.. versionadded:: 1.1.1
+        '''.. versionadded:: 1.1
 
         True when prolated duration is greater than
         effective meter duration.
@@ -180,7 +180,7 @@ class Measure(Container):
 
     @property
     def is_underfull(self):
-        '''.. versionadded:: 1.1.1
+        '''.. versionadded:: 1.1
 
         True when prolated duration is less than
         effective meter duration.

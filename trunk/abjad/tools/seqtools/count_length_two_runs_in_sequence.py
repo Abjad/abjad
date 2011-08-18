@@ -2,7 +2,7 @@ from abjad.tools.seqtools.iterate_sequence_pairwise_strict import iterate_sequen
 
 
 def count_length_two_runs_in_sequence(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Count length-``2`` runs in `sequence`::
 

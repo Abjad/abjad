@@ -3,7 +3,7 @@ from abjad.tools import durtools
 
 
 def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, written_duration):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `leaf` written duration to `written_duration` and preserve preprolated `leaf` duration::
 

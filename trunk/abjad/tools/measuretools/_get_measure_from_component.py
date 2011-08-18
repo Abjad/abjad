@@ -10,7 +10,7 @@ from abjad.tools.measuretools._get_contemporaneous_measure import _get_contempor
 
 
 def _get_measure_from_component(component, direction):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     When `component` is voice, staff or other sequential context,
     and when `component` contains a measure, return first measure

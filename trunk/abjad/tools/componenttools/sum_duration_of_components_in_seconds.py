@@ -1,5 +1,5 @@
 def sum_duration_of_components_in_seconds(components):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Sum duration of `components` in seconds::
 

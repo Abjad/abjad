@@ -4,7 +4,7 @@ from abjad.tools.threadtools.component_to_thread_signature import component_to_t
 
 
 def iterate_thread_forward_from_component(component, klass = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Yield left-to-right components in the thread of `component`
     starting from `component`.

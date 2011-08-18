@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to
 
 
 def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(chromatic_pitch_number, diatonic_pitch_class_name):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Change `chromatic_pitch_number` and `diatonic_pitch_class_name` to
     alphabetic accidental abbreviation / octave number pair::

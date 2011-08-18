@@ -5,7 +5,7 @@ from abjad.tools.measuretools.Measure import Measure
 
 ### TODO: implement measuretools.set_measure_denominator_and_adjust_contents( ).
 def set_measure_denominator_and_adjust_numerator(measure, denominator):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Set `measure` meter `denominator` and multiply meter numerator accordingly::
 

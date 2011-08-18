@@ -4,7 +4,7 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 
 
 def get_first_component_in_expr_with_name(expr, name):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Get first component in `expr` with `name`::
 

@@ -3,7 +3,7 @@ from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners i
 
 
 def copy_components_and_immediate_parent_of_first_component(components):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Clone `components` and immediate parent of first component.
 

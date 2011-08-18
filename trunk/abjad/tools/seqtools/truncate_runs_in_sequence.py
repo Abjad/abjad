@@ -2,7 +2,7 @@ from fractions import Fraction
 
 
 def truncate_runs_in_sequence(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Truncate subruns of like elements in `sequence` to length ``1``::
 

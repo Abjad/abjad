@@ -1,6 +1,6 @@
 def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
     components, prolated_durations):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Fuse tied leaves in `components` once by `prolated_durations` without overhang::
 

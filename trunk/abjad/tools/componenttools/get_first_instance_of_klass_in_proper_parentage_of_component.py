@@ -2,7 +2,7 @@ from abjad.tools.componenttools.get_proper_parentage_of_component import get_pro
 
 
 def get_first_instance_of_klass_in_proper_parentage_of_component(component, klass):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Get first instance of `klass` in proper parentage of `component`::
 

@@ -3,7 +3,7 @@ from abjad.tools import durtools
 
 
 def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl = None):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Fill measures in `expr` with repeated notes.
     '''

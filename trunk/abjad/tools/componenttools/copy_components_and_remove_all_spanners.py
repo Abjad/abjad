@@ -5,7 +5,7 @@ import copy
 
 
 def copy_components_and_remove_all_spanners(components, n = 1):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Clone `components` and remove all spanners.
 

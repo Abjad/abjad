@@ -2,7 +2,7 @@ from abjad.tools.mathtools.get_shared_numeric_sign import get_shared_numeric_sig
 
 
 def join_subsequences_by_sign_of_subsequence_elements(sequence):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Join subsequences in `sequence` by sign::
 

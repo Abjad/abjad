@@ -4,7 +4,7 @@ from abjad.tools import durtools
 
 
 def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Move prolation of full-measure tuplet to meter of measure.
 

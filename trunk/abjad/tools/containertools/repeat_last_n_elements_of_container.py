@@ -2,7 +2,7 @@ from abjad.tools.componenttools.copy_components_and_immediate_parent_of_first_co
 
 
 def repeat_last_n_elements_of_container(container, n = 1, total = 2):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Repeat last `n` elements of `container`::
 

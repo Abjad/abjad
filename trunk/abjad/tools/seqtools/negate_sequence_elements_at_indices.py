@@ -1,5 +1,5 @@
 def negate_sequence_elements_at_indices(sequence, indices):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Negate `sequence` elements at `indices`::
 

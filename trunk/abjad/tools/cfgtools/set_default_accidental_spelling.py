@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 
 
 def set_default_accidental_spelling(spelling = 'mixed'):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Set default accidental spelling to sharps::
 

@@ -1,5 +1,5 @@
 def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_pitch_number, mapping):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Transpose `chromatic_pitch_number` by the some number of octaves up or down.
     Derive correct number of octaves from `mapping` where

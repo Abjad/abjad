@@ -2,7 +2,7 @@ from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_
 
 
 def scale_preprolated_leaf_duration(leaf, multiplier):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Scale preprolated `leaf` leaf duration by dotted `multiplier`::
 

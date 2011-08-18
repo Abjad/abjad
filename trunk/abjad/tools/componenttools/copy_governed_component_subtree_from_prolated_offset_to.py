@@ -3,7 +3,7 @@ from abjad.tools import durtools
 
 
 def copy_governed_component_subtree_from_prolated_offset_to(component, start = 0, stop = None):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Clone governed `component` subtree from `start` prolated duration
     to `stop` prolated duration.

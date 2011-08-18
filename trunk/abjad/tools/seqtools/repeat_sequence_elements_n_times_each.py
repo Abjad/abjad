@@ -4,7 +4,7 @@ import copy
 
 ### TODO: generalize count from a single integer count to a list to read cyclically ###
 def repeat_sequence_elements_n_times_each(sequence, n):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Repeat `sequence` elements `n` times each::
 

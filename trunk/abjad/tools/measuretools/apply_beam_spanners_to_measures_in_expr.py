@@ -4,7 +4,7 @@ from abjad.tools.spannertools import BeamSpanner
 
 
 def apply_beam_spanners_to_measures_in_expr(expr):
-    r'''.. versionadded:: 1.1.1
+    r'''.. versionadded:: 1.1
 
     Apply beam spanners to measures in `expr`::
 

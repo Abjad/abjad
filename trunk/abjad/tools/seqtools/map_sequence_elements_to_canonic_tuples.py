@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 
 
 def map_sequence_elements_to_canonic_tuples(sequence, direction = 'big-endian'):
-    '''.. versionadded:: 1.1.1
+    '''.. versionadded:: 1.1
 
     Partition `sequence` elements into canonic big-endian parts::
 
