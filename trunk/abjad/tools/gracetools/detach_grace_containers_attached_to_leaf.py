@@ -32,7 +32,7 @@ def detach_grace_containers_attached_to_leaf(leaf):
     ::
 
         abjad> gracetools.detach_grace_containers_attached_to_leaf(staff[1])
-        (Grace( ),)
+        (Grace(),)
 
     ::
 
@@ -55,6 +55,6 @@ def detach_grace_containers_attached_to_leaf(leaf):
     grace_containers = get_grace_containers_attached_to_leaf(leaf)
 
     for grace_container in grace_containers:
-        grace_container.detach( )
+        grace_container.detach()
 
     return grace_containers

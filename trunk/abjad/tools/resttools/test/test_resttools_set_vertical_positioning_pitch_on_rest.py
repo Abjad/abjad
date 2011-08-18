@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_resttools_set_vertical_positioning_pitch_on_rest_01( ):
+def test_resttools_set_vertical_positioning_pitch_on_rest_01():
     '''Set vertical positioning pitch to int.
     '''
 
@@ -12,7 +12,7 @@ def test_resttools_set_vertical_positioning_pitch_on_rest_01( ):
     assert r.format == "c'4 \\rest"
 
 
-def test_resttools_set_vertical_positioning_pitch_on_rest_02( ):
+def test_resttools_set_vertical_positioning_pitch_on_rest_02():
     '''Set vertical positioning pitch to named pitch.
     '''
 
@@ -23,7 +23,7 @@ def test_resttools_set_vertical_positioning_pitch_on_rest_02( ):
     assert r.format == "c'4 \\rest"
 
 
-def test_resttools_set_vertical_positioning_pitch_on_rest_03( ):
+def test_resttools_set_vertical_positioning_pitch_on_rest_03():
     '''Set vertical positioning pitch to none.
     '''
 

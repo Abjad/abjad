@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_Mode___ne___01( ):
+def test_Mode___ne___01():
 
     mode_1 = tonalitytools.Mode('dorian')
     mode_2 = tonalitytools.Mode('dorian')

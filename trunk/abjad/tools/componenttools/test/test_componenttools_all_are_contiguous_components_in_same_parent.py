@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_all_are_contiguous_components_in_same_parent_01( ):
+def test_componenttools_all_are_contiguous_components_in_same_parent_01():
     '''True for strictly contiguous leaves in voice.
         False for other time orderings of leaves in voice.'''
 
@@ -25,7 +25,7 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_01( ):
     assert not componenttools.all_are_contiguous_components_in_same_parent(components)
 
 
-def test_componenttools_all_are_contiguous_components_in_same_parent_02( ):
+def test_componenttools_all_are_contiguous_components_in_same_parent_02():
     '''True for unincorporated components when orphans allowed.
         False to unincorporated components when orphans not allowed.'''
 
@@ -57,7 +57,7 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_02( ):
     assert not componenttools.all_are_contiguous_components_in_same_parent(t.leaves)
 
 
-def test_componenttools_all_are_contiguous_components_in_same_parent_03( ):
+def test_componenttools_all_are_contiguous_components_in_same_parent_03():
     '''True for orphan leaves when allow_orphans is True.
         False for orphan leaves when allow_orphans is False.'''
 
@@ -67,7 +67,7 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_03( ):
     assert not componenttools.all_are_contiguous_components_in_same_parent(notes, allow_orphans = False)
 
 
-def test_componenttools_all_are_contiguous_components_in_same_parent_04( ):
+def test_componenttools_all_are_contiguous_components_in_same_parent_04():
     '''Empty list returns True.'''
 
     t = [ ]

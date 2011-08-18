@@ -40,7 +40,7 @@ def detach_stem_tremolos_attached_to_component(component):
 
     stem_tremolos = [ ]
     for stem_tremolo in get_stem_tremolos_attached_to_component(component):
-        stem_tremolo.detach_mark( )
+        stem_tremolo.detach_mark()
         stem_tremolos.append(stem_tremolo)
 
     return tuple(stem_tremolos)

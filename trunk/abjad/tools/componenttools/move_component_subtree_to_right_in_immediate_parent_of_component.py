@@ -34,7 +34,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     .. todo:: add ``n = 1`` keyword to generalize flipped distance.
 
-    .. todo:: make ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component( )`` work when spanners
+    .. todo:: make ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component()`` work when spanners
         attach to children of component:
 
     ::
@@ -63,8 +63,8 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
     Preserve spanners.
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.flip( )`` to
-        ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component( )``.
+        renamed ``componenttools.flip()`` to
+        ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component()``.
     '''
 
     # swap positions in parent
@@ -79,15 +79,15 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
         parent._music[parent_index + 1] = component
 
     # swap positions in spanners ... tricky!
-    component_spanners = { }
+    component_spanners = {}
     for spanner in component.spanners:
         component_spanners[spanner] = spanner.index(component)
         spanner._sever_component(component)
-    next_spanners = { }
+    next_spanners = {}
     for spanner in next.spanners:
         next_spanners[spanner] = spanner.index(next)
         spanner._sever_component(next)
-    for key, value in next_spanners.items( ):
+    for key, value in next_spanners.items():
         key._insert(value, component)
-    for key, value in component_spanners.items( ):
+    for key, value in component_spanners.items():
         key._insert(value, next)

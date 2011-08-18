@@ -1,7 +1,7 @@
 from abjad.cfg import cfg
 
 
-def get_abjad_version_string( ):
+def get_abjad_version_string():
     '''.. versionadded:: 2.0
 
     Get Abjad version string::
@@ -10,7 +10,7 @@ def get_abjad_version_string( ):
 
     ::
 
-        abjad> cfgtools.get_abjad_version_string( )
+        abjad> cfgtools.get_abjad_version_string()
         '1.1.2'
 
     Return string.

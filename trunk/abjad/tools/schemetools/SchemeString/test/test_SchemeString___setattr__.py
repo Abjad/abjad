@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemeString___setattr___01( ):
+def test_SchemeString___setattr___01():
     '''Scheme strings are immutable.
     '''
 

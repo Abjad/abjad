@@ -2,9 +2,9 @@ from abjad import *
 from abjad.checks import MisduratedMeasureCheck
 
 
-checker = MisduratedMeasureCheck( )
+checker = MisduratedMeasureCheck()
 
-def test_Measure_in_place_apply_01( ):
+def test_Measure_in_place_apply_01():
 
     t = Voice([Note(n, (1, 8)) for n in range(8)])
     leaves_before = t.leaves
@@ -21,7 +21,7 @@ def test_Measure_in_place_apply_01( ):
     assert checker.check(t)
 
 
-def test_Measure_in_place_apply_02( ):
+def test_Measure_in_place_apply_02():
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     leaves_before = t.leaves
@@ -38,7 +38,7 @@ def test_Measure_in_place_apply_02( ):
     assert checker.check(t)
 
 
-def test_Measure_in_place_apply_03( ):
+def test_Measure_in_place_apply_03():
 
     t = Staff([Note(n, (1, 1)) for n in range(4)])
     leaves_before = t.leaves
@@ -55,7 +55,7 @@ def test_Measure_in_place_apply_03( ):
     assert checker.check(t)
 
 
-def test_Measure_in_place_apply_04( ):
+def test_Measure_in_place_apply_04():
 
     t = Staff([Note(n, (1, 1)) for n in range(4)])
     Measure((1, 1), t[:1])

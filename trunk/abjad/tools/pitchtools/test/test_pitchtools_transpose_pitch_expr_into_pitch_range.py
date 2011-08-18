@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_transpose_pitch_expr_into_pitch_range_01( ):
+def test_pitchtools_transpose_pitch_expr_into_pitch_range_01():
 
     pitch_range = pitchtools.PitchRange(0, 12)
 
@@ -14,7 +14,7 @@ def test_pitchtools_transpose_pitch_expr_into_pitch_range_01( ):
     assert pitchtools.transpose_pitch_expr_into_pitch_range(13, pitch_range) == 1
 
 
-def test_pitchtools_transpose_pitch_expr_into_pitch_range_02( ):
+def test_pitchtools_transpose_pitch_expr_into_pitch_range_02():
 
     pitch_range = pitchtools.PitchRange(0, 12)
 

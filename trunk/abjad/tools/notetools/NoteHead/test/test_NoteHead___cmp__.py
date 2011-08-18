@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NoteHead___cmp___01( ):
+def test_NoteHead___cmp___01():
 
     p = notetools.NoteHead(12)
     q = notetools.NoteHead(12)
@@ -14,7 +14,7 @@ def test_NoteHead___cmp___01( ):
     assert      p >= q
 
 
-def test_NoteHead___cmp___02( ):
+def test_NoteHead___cmp___02():
 
     p = notetools.NoteHead(12)
     q = notetools.NoteHead(13)
@@ -27,7 +27,7 @@ def test_NoteHead___cmp___02( ):
     assert      q >= p
 
 
-def test_NoteHead___cmp___03( ):
+def test_NoteHead___cmp___03():
 
     p = notetools.NoteHead(12)
     q = 12
@@ -40,7 +40,7 @@ def test_NoteHead___cmp___03( ):
     assert      p >= q
 
 
-def test_NoteHead___cmp___04( ):
+def test_NoteHead___cmp___04():
 
     p = notetools.NoteHead(12)
     q = 13

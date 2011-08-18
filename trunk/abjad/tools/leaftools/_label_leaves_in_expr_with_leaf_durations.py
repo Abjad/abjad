@@ -7,8 +7,8 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down',
     or both written and prolated leaf durations.
 
     .. versionchanged:: 2.0
-        renamed ``label.leaf_durations( )`` to
-        ``leaftools.label_leaves_in_expr_with_leaf_duration( )``.
+        renamed ``label.leaf_durations()`` to
+        ``leaftools.label_leaves_in_expr_with_leaf_duration()``.
     '''
     from abjad.tools import markuptools
     from abjad.tools import spannertools
@@ -29,7 +29,7 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down',
                 if 'prolated' in show:
                     markuptools.Markup('\small %s' % leaf.prolated_duration, markup_direction)(leaf)
             elif tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
-                tie = tie_spanners.pop( )
+                tie = tie_spanners.pop()
                 if 'written' in show:
                     written = sum([x.written_duration for x in tie])
                     label = r'\small %s' % written

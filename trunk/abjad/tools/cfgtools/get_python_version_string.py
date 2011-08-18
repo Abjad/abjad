@@ -1,7 +1,7 @@
 import subprocess
 
 
-def get_python_version_string( ):
+def get_python_version_string():
     '''.. versionadded:: 2.0
 
     Get Python version string::
@@ -10,7 +10,7 @@ def get_python_version_string( ):
 
     ::
 
-        abjad> cfgtools.get_python_version_string( ) # doctest: +SKIP
+        abjad> cfgtools.get_python_version_string() # doctest: +SKIP
         '2.6.1'
 
     Return string.
@@ -19,11 +19,11 @@ def get_python_version_string( ):
     ### python prints to stderr on startup (instead of stdout)
     command = 'python --version'
     proc = subprocess.Popen(command, shell = True, stderr = subprocess.PIPE)
-    python_version_string = proc.stderr.readline( )
+    python_version_string = proc.stderr.readline()
 
     ### massage output string
     python_version_string = python_version_string.split(' ')[-1]
-    python_version_string = python_version_string.strip( )
+    python_version_string = python_version_string.strip()
 
     ### return trimmed string
     return python_version_string

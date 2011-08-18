@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedDiatonicPitch___abs___01( ):
+def test_NumberedDiatonicPitch___abs___01():
 
     assert abs(pitchtools.NumberedDiatonicPitch(-1)) == -1
     assert abs(pitchtools.NumberedDiatonicPitch(0)) == 0

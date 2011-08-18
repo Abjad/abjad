@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_NaturalHarmonic___setattr___01( ):
+def test_NaturalHarmonic___setattr___01():
     '''Natural harmonics are immutable.
     '''
 

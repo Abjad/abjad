@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_replace_components_with_children_of_components_01( ):
+def test_componenttools_replace_components_with_children_of_components_01():
     '''Containers can 'slip out' of score structure.'''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
@@ -40,7 +40,7 @@ def test_componenttools_replace_components_with_children_of_components_01( ):
     assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_componenttools_replace_components_with_children_of_components_02( ):
+def test_componenttools_replace_components_with_children_of_components_02():
     '''Slip leaf from parentage and spanners.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -62,7 +62,7 @@ def test_componenttools_replace_components_with_children_of_components_02( ):
     assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\te'8 \\glissando\n\tf'8 ]\n}"
 
 
-def test_componenttools_replace_components_with_children_of_components_03( ):
+def test_componenttools_replace_components_with_children_of_components_03():
     '''Slip multiple leaves.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -91,7 +91,7 @@ def test_componenttools_replace_components_with_children_of_components_03( ):
     assert t.format == "\\new Voice {\n\te'8 [ \\glissando\n\tf'8 ]\n}"
 
 
-def test_componenttools_replace_components_with_children_of_components_04( ):
+def test_componenttools_replace_components_with_children_of_components_04():
     '''Slip multiple containers.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)

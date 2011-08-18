@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Measure_special_prolation_01( ):
+def test_Measure_special_prolation_01():
     '''Binary measures contribute trivially to contents prolation;
         works on a flat list of notes.'''
     t = Measure((4, 4), Note("c'4") * 4)
@@ -9,7 +9,7 @@ def test_Measure_special_prolation_01( ):
     assert t[0].prolated_duration == Duration(1, 4)
 
 
-def test_Measure_special_prolation_02( ):
+def test_Measure_special_prolation_02():
     '''Binary measures contribute trivially to contents prolation;
         works on notes and tuplets together.'''
     t = Measure((4, 4), [
@@ -22,7 +22,7 @@ def test_Measure_special_prolation_02( ):
     assert t.leaves[1].prolated_duration == Duration(1, 6)
 
 
-def test_Measure_special_prolation_03( ):
+def test_Measure_special_prolation_03():
     '''Binary measures contribute trivially to contents prolation;
         works on notes and nested tuplets together.'''
     t = Measure((4, 4), [
@@ -37,7 +37,7 @@ def test_Measure_special_prolation_03( ):
     assert t.leaves[1].prolated_duration == Duration(1, 9)
 
 
-def test_Measure_special_prolation_04( ):
+def test_Measure_special_prolation_04():
     '''Nonbinary measures contribute nontrivially to contents prolation;
         works on a flat list of notes.'''
     t = Measure((4, 5), Note("c'4") * 4)
@@ -45,7 +45,7 @@ def test_Measure_special_prolation_04( ):
     assert t[0].prolated_duration == Duration(1, 5)
 
 
-def test_Measure_special_prolation_05( ):
+def test_Measure_special_prolation_05():
     '''Nonbinary measures contribute trivially to contents prolation;
         works on notes and tuplets together.'''
     t = Measure((4, 5), [
@@ -58,7 +58,7 @@ def test_Measure_special_prolation_05( ):
     assert t.leaves[1].prolated_duration == Duration(2, 15)
 
 
-def test_Measure_special_prolation_06( ):
+def test_Measure_special_prolation_06():
     '''Nonbinary measures contribute nontrivially to contents prolation;
         works on notes and nested tuplets together.'''
     t = Measure((4, 5), [

@@ -30,7 +30,7 @@ def _parse_note_entry_token(note_entry_token):
         message = 'incorrect note entry token: %s.\n' % note_entry_token
         raise InputSpecificationError(message)
 
-    name, ticks, duration_body, dots = match.groups( )
+    name, ticks, duration_body, dots = match.groups()
     duration_string = duration_body + dots
 
     if name == 'r':

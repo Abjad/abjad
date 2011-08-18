@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicChromaticInterval___add___01( ):
+def test_HarmonicChromaticInterval___add___01():
 
     i = pitchtools.HarmonicChromaticInterval(3)
     j = pitchtools.HarmonicChromaticInterval(14)
@@ -10,7 +10,7 @@ def test_HarmonicChromaticInterval___add___01( ):
     assert j + i == pitchtools.HarmonicChromaticInterval(17)
 
 
-def test_HarmonicChromaticInterval___add___02( ):
+def test_HarmonicChromaticInterval___add___02():
 
     i = pitchtools.HarmonicChromaticInterval(3)
     j = pitchtools.HarmonicChromaticInterval(14)

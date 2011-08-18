@@ -17,8 +17,8 @@ def partition_sequence_cyclically_by_weights_at_least_with_overhang(sequence, we
     Return list sequence element reference lists.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.group_sequence_elements_cyclically_by_weights_at_least_with_overhang( )`` to
-        ``seqtools.partition_sequence_cyclically_by_weights_at_least_with_overhang( )``.
+        renamed ``seqtools.group_sequence_elements_cyclically_by_weights_at_least_with_overhang()`` to
+        ``seqtools.partition_sequence_cyclically_by_weights_at_least_with_overhang()``.
     '''
 
     return _partition_sequence_elements_by_weights_at_least(

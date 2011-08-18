@@ -51,7 +51,7 @@ class Comment(Mark):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def contents_string( ):
+    def contents_string():
         def fget(self):
             r'''Get contents string of comment::
 
@@ -71,7 +71,7 @@ class Comment(Mark):
         def fset(self, contents_string):
             assert isinstance(contents_string, str)
             self._comment_name_string = contents_string
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def format(self):

@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Grace___copy___01( ):
+def test_Grace___copy___01():
     '''Grace containers copy kind.
     '''
 

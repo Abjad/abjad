@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_scoretools_make_empty_piano_score_01( ):
+def test_scoretools_make_empty_piano_score_01():
 
-    score, treble, bass = scoretools.make_empty_piano_score( )
+    score, treble, bass = scoretools.make_empty_piano_score()
 
     r'''
     \new Score <<

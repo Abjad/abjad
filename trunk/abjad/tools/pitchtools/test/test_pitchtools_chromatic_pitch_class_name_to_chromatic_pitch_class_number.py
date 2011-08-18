@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_chromatic_pitch_class_name_to_chromatic_pitch_class_number_01( ):
+def test_pitchtools_chromatic_pitch_class_name_to_chromatic_pitch_class_number_01():
 
     assert pitchtools.chromatic_pitch_class_name_to_chromatic_pitch_class_number('cff') == 10
     assert pitchtools.chromatic_pitch_class_name_to_chromatic_pitch_class_number('ctqf') == 10.5

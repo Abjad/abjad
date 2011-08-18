@@ -38,8 +38,8 @@ def comment_measures_in_container_with_measure_numbers(container):
         }
 
     .. versionchanged:: 2.0
-        renamed ``label.measure_numbers( )`` to
-        ``measuretools.comment_measures_in_container_with_measure_numbers( )``.
+        renamed ``label.measure_numbers()`` to
+        ``measuretools.comment_measures_in_container_with_measure_numbers()``.
     '''
     from abjad.tools import marktools
     from abjad.tools import measuretools

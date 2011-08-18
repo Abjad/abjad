@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.pitchtools import NamedChromaticPitch
 
 
-def test_NamedChromaticPitch___repr___01( ):
+def test_NamedChromaticPitch___repr___01():
     '''Named chromatic pitch repr is evaluable.
     '''
 

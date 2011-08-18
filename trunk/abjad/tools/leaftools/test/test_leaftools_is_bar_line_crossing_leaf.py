@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_is_bar_line_crossing_leaf_01( ):
+def test_leaftools_is_bar_line_crossing_leaf_01():
 
     t = Staff("c'8 d'8 e'8 f'8")
     t[2].written_duration *= 2

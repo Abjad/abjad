@@ -44,7 +44,7 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
             pair = (multiplier, new_tempo)
             if pair not in pairs:
                 pairs.append(pair)
-    pairs.sort( )
+    pairs.sort()
     return pairs
 
 

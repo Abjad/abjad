@@ -11,7 +11,7 @@ from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import rem
 from abjad.tools import durtools
 
 
-### TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( ) carefully. ###
+### TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration() carefully. ###
 ###       Determine whether behavior is correct with LilyPond multipliers. ###
 
 def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_written_duration):
@@ -21,8 +21,8 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
     Return newly modified tie chain.
 
     .. versionchanged:: 2.0
-        renamed ``tietools.duration_change( )`` to
-        ``tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( )``.
+        renamed ``tietools.duration_change()`` to
+        ``tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration()``.
     '''
     from abjad.tools.tuplettools.Tuplet import Tuplet
     from abjad.tools import notetools
@@ -44,7 +44,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
             for leaf in tie_chain[len(duration_tokens):]:
                 componenttools.remove_component_subtree_from_score_and_spanners([leaf])
         elif len(tie_chain) < len(duration_tokens):
-            #tie_chain[0].tie.unspan( )
+            #tie_chain[0].tie.unspan()
             spannertools.destroy_all_spanners_attached_to_component(tie_chain[0], TieSpanner)
             difference = len(duration_tokens) - len(tie_chain)
             extra_leaves = tie_chain[0] * difference

@@ -113,11 +113,11 @@ class ScaleDegree(_Immutable):
         return self._init_by_accidental_and_number(accidental, number)
 
     def _init_by_symbolic_string(self, symbolic_string):
-        groups = self._symbolic_string_regex.match(symbolic_string).groups( )
+        groups = self._symbolic_string_regex.match(symbolic_string).groups()
         accidental, roman_numeral = groups
         accidental = Accidental(accidental)
         #self._accidental = accidental
-        roman_numeral = roman_numeral.upper( )
+        roman_numeral = roman_numeral.upper()
         try:
             number = self._roman_numeral_string_to_scale_degree_number[roman_numeral]
         except KeyError:
@@ -162,7 +162,7 @@ class ScaleDegree(_Immutable):
         else:
             accidental = ''
         number = self._numeral_to_number_name_string[self.number]
-        return '%s%s' % (accidental.title( ), number.title( ))
+        return '%s%s' % (accidental.title(), number.title())
 
     ### PUBLIC METHODS ###
 

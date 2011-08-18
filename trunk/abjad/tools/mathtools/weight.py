@@ -16,8 +16,8 @@ def weight(sequence, start = 0):
     Return nonnegative integer.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.weight( )`` to
-        ``mathtools.weight( )``.
+        renamed ``seqtools.weight()`` to
+        ``mathtools.weight()``.
     '''
 
     return sum([abs(element) for element in sequence])

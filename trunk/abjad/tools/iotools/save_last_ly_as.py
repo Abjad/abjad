@@ -13,11 +13,11 @@ def save_last_ly_as(file_name):
     Return none.
     '''
 
-    ABJADOUTPUT = _read_config_file( )['abjad_output']
-    last_ly = get_last_output_file_name( )
+    ABJADOUTPUT = _read_config_file()['abjad_output']
+    last_ly = get_last_output_file_name()
     last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
     old = open(last_ly_full_name, 'r')
     new = open(file_name, 'w')
-    new.write(''.join(old.readlines( )))
-    old.close( )
-    new.close( )
+    new.write(''.join(old.readlines()))
+    old.close()
+    new.close()

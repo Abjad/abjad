@@ -1,4 +1,4 @@
-### TODO: implement leaftools.fuse_leaves_little_endian( )
+### TODO: implement leaftools.fuse_leaves_little_endian()
 def fuse_leaves_big_endian(leaves):
     r'''.. versionadded:: 1.1
 
@@ -20,8 +20,8 @@ def fuse_leaves_big_endian(leaves):
     Return list of first leaf in `leaves`.
 
     .. versionchanged:: 2.0
-        renamed ``fuse.leaves_by_reference( )`` to
-        ``leaftools.fuse_leaves_big_endian( )``.
+        renamed ``fuse.leaves_by_reference()`` to
+        ``leaftools.fuse_leaves_big_endian()``.
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools

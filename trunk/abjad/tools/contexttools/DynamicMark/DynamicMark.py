@@ -95,7 +95,7 @@ class DynamicMark(ContextMark):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def dynamic_name_string( ):
+    def dynamic_name_string():
         def fget(self):
             r'''Get dynamic name string::
 
@@ -115,7 +115,7 @@ class DynamicMark(ContextMark):
         def fset(self, dynamic_name_string):
             assert isinstance(dynamic_name_string, str)
             self._dynamic_name_string = dynamic_name_string
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def format(self):

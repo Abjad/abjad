@@ -2,7 +2,7 @@ from abjad import Fraction
 from abjad.tools.quantizationtools import is_valid_beatspan
 
 
-def test_quantizationtools_is_valid_beatspan_01( ):
+def test_quantizationtools_is_valid_beatspan_01():
 
     assert is_valid_beatspan(2)
     assert is_valid_beatspan(1)

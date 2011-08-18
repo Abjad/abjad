@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SchemePair___init___01( ):
+def test_SchemePair___init___01():
     '''Initialize Scheme pair from two values.
     '''
 
@@ -15,7 +15,7 @@ def test_SchemePair___init___01( ):
     assert str(scheme_pair) == '(spacing . 4)'
 
 
-def test_SchemePair___init___02( ):
+def test_SchemePair___init___02():
     '''Initialize Scheme pair from pair.
     '''
 
@@ -23,7 +23,7 @@ def test_SchemePair___init___02( ):
     assert str(scheme_pair) == '(1 . 2)'
 
 
-def test_SchemePair___init___03( ):
+def test_SchemePair___init___03():
     '''Initialize Scheme pair from other Scheme pair.
     '''
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MarkupCommand___eq___01( ):
+def test_MarkupCommand___eq___01():
 
     a = markuptools.MarkupCommand('box', None, None)
     b = markuptools.MarkupCommand('box', ['hello'], None)
@@ -11,7 +11,7 @@ def test_MarkupCommand___eq___01( ):
 
     assert a != b != c != d != e
 
-def test_MarkupCommand___eq___02( ):
+def test_MarkupCommand___eq___02():
 
     a = markuptools.MarkupCommand('box', None, None)
     b = markuptools.MarkupCommand('box', None, None)

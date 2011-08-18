@@ -39,7 +39,7 @@ class OctavationSpanner(Spanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def start( ):
+    def start():
         def fget(self):
             r'''Get octavation start::
 
@@ -61,10 +61,10 @@ class OctavationSpanner(Spanner):
         def fset(self, arg):
             assert isinstance(arg, (int, type(None)))
             self._start = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def stop( ):
+    def stop():
         def fget(self):
             r'''Get octavation stop::
 
@@ -87,7 +87,7 @@ class OctavationSpanner(Spanner):
         def fset(self, arg):
             assert isinstance(arg, (int, type(None)))
             self._stop = arg
-        return property(**locals( ))
+        return property(**locals())
 
 
 

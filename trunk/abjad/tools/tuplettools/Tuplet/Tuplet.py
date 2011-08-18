@@ -83,7 +83,7 @@ class Tuplet(Container):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def force_fraction( ):
+    def force_fraction():
         def fget(self):
             '''Read / write boolean to force ``n:m`` fraction.
             '''
@@ -93,7 +93,7 @@ class Tuplet(Container):
                 self._force_fraction = arg
             else:
                 raise TypeError('bad type for tuplet force fraction: "%s".' % arg)
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def is_augmentation(self):
@@ -136,7 +136,7 @@ class Tuplet(Container):
             return False
 
     @apply
-    def is_invisible( ):
+    def is_invisible():
         def fget(self):
             '''Read / write boolean to render tuplet invisible.
             '''
@@ -144,7 +144,7 @@ class Tuplet(Container):
         def fset(self, arg):
             assert isinstance(arg, (bool, type(None)))
             self._is_invisible = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def is_nonbinary(self):
@@ -161,7 +161,7 @@ class Tuplet(Container):
         return self.multiplier * self.contents_duration
 
     @apply
-    def multiplier( ):
+    def multiplier():
         def fget(self):
             return self._multiplier
         def fset(self, expr):
@@ -177,10 +177,10 @@ class Tuplet(Container):
                 self._multiplier = rational
             else:
                 raise ValueError('tuplet multiplier must be positive: "%s".' % rational)
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def preferred_denominator( ):
+    def preferred_denominator():
         def fget(self):
             '''.. versionadded:: 2.0
 
@@ -194,7 +194,7 @@ class Tuplet(Container):
             elif not isinstance(arg, type(None)):
                 raise TypeError('bad tuplet preferred denominator type: "%s".' % arg)
             self._preferred_denominator = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def preprolated_duration(self):

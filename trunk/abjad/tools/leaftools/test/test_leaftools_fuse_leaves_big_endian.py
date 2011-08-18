@@ -1,21 +1,21 @@
 from abjad import *
 
 
-def test_leaftools_fuse_leaves_big_endian_01( ):
+def test_leaftools_fuse_leaves_big_endian_01():
     '''Wokrs with list of leaves.'''
     fused = leaftools.fuse_leaves_big_endian(notetools.make_repeated_notes(8, Duration(1, 4)))
     assert len(fused) == 1
     assert fused[0].written_duration == Duration(2)
 
 
-def test_leaftools_fuse_leaves_big_endian_02( ):
+def test_leaftools_fuse_leaves_big_endian_02():
     '''Works with Leaf component.'''
     fused = leaftools.fuse_leaves_big_endian([Note("c'4")])
     assert len(fused) == 1
     assert fused[0].written_duration == Duration(1, 4)
 
 
-def test_leaftools_fuse_leaves_big_endian_03( ):
+def test_leaftools_fuse_leaves_big_endian_03():
     '''Works with containers.'''
     t = Voice(Note("c'4") * 8)
     fused = leaftools.fuse_leaves_big_endian(t[:])
@@ -24,7 +24,7 @@ def test_leaftools_fuse_leaves_big_endian_03( ):
     assert t[0] is fused[0]
 
 
-def test_leaftools_fuse_leaves_big_endian_04( ):
+def test_leaftools_fuse_leaves_big_endian_04():
     '''Fusion results in tied notes.'''
     t = Voice([Note(0, (2, 16)), Note(9, (3, 16))])
     fused = leaftools.fuse_leaves_big_endian(t[:])
@@ -41,7 +41,7 @@ def test_leaftools_fuse_leaves_big_endian_04( ):
     assert t[0].written_pitch.numbered_chromatic_pitch == t[1].written_pitch.numbered_chromatic_pitch
 
 
-def test_leaftools_fuse_leaves_big_endian_05( ):
+def test_leaftools_fuse_leaves_big_endian_05():
     '''Fuse leaves with differing LilyPond multipliers.'''
 
     t = Staff([skiptools.Skip((1, 1)), skiptools.Skip((1, 1))])

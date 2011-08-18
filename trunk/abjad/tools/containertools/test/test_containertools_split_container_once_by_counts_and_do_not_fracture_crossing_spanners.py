@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_split_container_once_by_counts_and_do_not_fracture_crossing_spanners_01( ):
+def test_containertools_split_container_once_by_counts_and_do_not_fracture_crossing_spanners_01():
     '''Partition container into parts of lengths equal to counts.
         Read list of counts only once; do not cycle.
         Fracture spanners attaching directly to container.

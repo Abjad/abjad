@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Rest___copy___01( ):
+def test_Rest___copy___01():
     '''Copy rest.
     '''
 
@@ -15,7 +15,7 @@ def test_Rest___copy___01( ):
     assert rest_1 is not rest_2
 
 
-def test_Rest___copy___02( ):
+def test_Rest___copy___02():
     '''Copy rest with LilyPond multiplier.
     '''
 
@@ -28,7 +28,7 @@ def test_Rest___copy___02( ):
     assert rest_1 is not rest_2
 
 
-def test_Rest___copy___03( ):
+def test_Rest___copy___03():
     '''Copy rest with LilyPond grob overrides and LilyPond context settings.
     '''
 

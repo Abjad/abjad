@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemeVector___setattr___01( ):
+def test_SchemeVector___setattr___01():
     '''Scheme vectors are immutable.
     '''
 

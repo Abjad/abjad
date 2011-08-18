@@ -42,8 +42,8 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass = No
     Return unordered set of zero or more spanners.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.get_all_spanners_attached_to_any_proper_children_of_component( )`` to
-        ``spannertools.get_spanners_attached_to_any_proper_child_of_component( )``.
+        renamed ``spannertools.get_all_spanners_attached_to_any_proper_children_of_component()`` to
+        ``spannertools.get_spanners_attached_to_any_proper_child_of_component()``.
     '''
     from abjad.tools import componenttools
 
@@ -52,7 +52,7 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass = No
     components = componenttools.iterate_components_forward_in_expr(component)
 
     ### remove component itself from iteration
-    components.next( )
+    components.next()
 
     ### iterate only proper children of component and save spanners
     for component in components:

@@ -44,7 +44,7 @@ def concatenate_pitch_arrays(pitch_arrays):
         raise TypeError('must be pitch arrays.')
 
     if not pitch_arrays:
-        return PitchArray( )
+        return PitchArray()
 
     merged_array = copy.copy(pitch_arrays[0])
     for pitch_array in pitch_arrays[1:]:

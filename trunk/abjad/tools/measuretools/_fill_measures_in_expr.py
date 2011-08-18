@@ -32,8 +32,8 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
         Empty the contents of each measure.
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.populate( )``
-        to ``measuretools._fill_measures_in_expr( )``.
+        renamed ``measuretools.populate()``
+        to ``measuretools._fill_measures_in_expr()``.
     '''
 
     if mode == 'big-endian':

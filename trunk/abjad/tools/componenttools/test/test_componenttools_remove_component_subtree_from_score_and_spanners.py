@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_remove_component_subtree_from_score_and_spanners_01( ):
+def test_componenttools_remove_component_subtree_from_score_and_spanners_01():
     '''Detach sequential from score tree.'''
 
     t = Voice(notetools.make_repeated_notes(2))
@@ -36,7 +36,7 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01( ):
     assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\tf'8 ]\n}"
 
 
-def test_componenttools_remove_component_subtree_from_score_and_spanners_02( ):
+def test_componenttools_remove_component_subtree_from_score_and_spanners_02():
     '''Detach leaf from score tree.'''
 
     t = Voice(notetools.make_repeated_notes(2))

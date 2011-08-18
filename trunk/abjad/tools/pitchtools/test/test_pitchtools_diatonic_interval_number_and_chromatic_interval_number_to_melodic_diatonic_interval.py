@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval_01( ):
+def test_pitchtools_diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval_01():
 
     diatonic_interval = pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(1, 0)
     assert diatonic_interval == pitchtools.MelodicDiatonicInterval('perfect', 1)
@@ -25,7 +25,7 @@ def test_pitchtools_diatonic_interval_number_and_chromatic_interval_number_to_me
 
 ### TODO: Refactor all diatonic stuff so unison is 0 instead of 1 ###
 
-def test_pitchtools_diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval_02( ):
+def test_pitchtools_diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval_02():
 
     diatonic_interval = pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(1, 0)
     assert diatonic_interval == pitchtools.MelodicDiatonicInterval('perfect', 1)

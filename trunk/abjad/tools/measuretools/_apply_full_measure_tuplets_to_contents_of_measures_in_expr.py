@@ -13,8 +13,8 @@ def _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement
     notes, rests, chords, tuplets or whatever.
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.tupletize( )``
-        to ``measuretools._apply_full_measure_tuplets_to_contents_of_measures_in_expr( )``.
+        renamed ``measuretools.tupletize()``
+        to ``measuretools._apply_full_measure_tuplets_to_contents_of_measures_in_expr()``.
     '''
     from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 

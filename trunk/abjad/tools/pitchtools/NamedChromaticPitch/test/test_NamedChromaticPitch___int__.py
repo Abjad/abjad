@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_NamedChromaticPitch___int___01( ):
+def test_NamedChromaticPitch___int___01():
     '''Return chromatic pitch number of 12-ET named chromatic pitch as int.
     '''
 
@@ -11,7 +11,7 @@ def test_NamedChromaticPitch___int___01( ):
     assert int(named_chromatic_pitch) == 13
 
 
-def test_NamedChromaticPitch___int___02( ):
+def test_NamedChromaticPitch___int___02():
     '''Raise type error on non-12-ET named chromatic pitch.
     '''
 

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_NamedChromaticPitchClass___cmp___01( ):
+def test_NamedChromaticPitchClass___cmp___01():
     '''Referentially equal named pitch-classes compare equally.'''
 
     npc = pitchtools.NamedChromaticPitchClass('fs')
@@ -14,7 +14,7 @@ def test_NamedChromaticPitchClass___cmp___01( ):
     assert py.test.raises(NotImplementedError, 'npc <=  npc')
 
 
-def test_NamedChromaticPitchClass___cmp___02( ):
+def test_NamedChromaticPitchClass___cmp___02():
     '''Different letter strings.'''
 
     npc_1 = pitchtools.NamedChromaticPitchClass('fs')
@@ -28,7 +28,7 @@ def test_NamedChromaticPitchClass___cmp___02( ):
     assert py.test.raises(NotImplementedError, 'npc_1 <=  npc_2')
 
 
-def test_NamedChromaticPitchClass___cmp___03( ):
+def test_NamedChromaticPitchClass___cmp___03():
     '''Same letter strings.'''
 
     npc_1 = pitchtools.NamedChromaticPitchClass('f')

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_Scale_named_pitch_class_to_scale_degree_01( ):
+def test_Scale_named_pitch_class_to_scale_degree_01():
 
     scale = tonalitytools.Scale('c', 'major')
 
@@ -22,7 +22,7 @@ def test_Scale_named_pitch_class_to_scale_degree_01( ):
         tonalitytools.ScaleDegree(7)
 
 
-def test_Scale_named_pitch_class_to_scale_degree_02( ):
+def test_Scale_named_pitch_class_to_scale_degree_02():
 
     scale = tonalitytools.Scale('c', 'major')
 
@@ -42,7 +42,7 @@ def test_Scale_named_pitch_class_to_scale_degree_02( ):
         tonalitytools.ScaleDegree('flat', 7)
 
 
-def test_Scale_named_pitch_class_to_scale_degree_03( ):
+def test_Scale_named_pitch_class_to_scale_degree_03():
 
     scale = tonalitytools.Scale('c', 'major')
 

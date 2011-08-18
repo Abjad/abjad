@@ -10,15 +10,15 @@ def _import_functions_in_package_to_namespace(package, namespace, skip_dirs=['te
         Example:
 
         A package structure like so:
-            package.mod1.mod1_func1( )
-            package.mod2.mod2_func1( )
-            package.mod2.mod2_func2( )
-            package.mod3.mod3_func1( )
+            package.mod1.mod1_func1()
+            package.mod2.mod2_func1()
+            package.mod2.mod2_func2()
+            package.mod3.mod3_func1()
         Ends up as
-            package.mod1_func1( )
-            package.mod2_func1( )
-            package.mod2_func2( )
-            package.mod3_func1( )
+            package.mod1_func1()
+            package.mod2_func1()
+            package.mod2_func2()
+            package.mod3_func1()
     '''
 
     functions = [ ]

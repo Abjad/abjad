@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import sievetools
 
 
-def test_ResidueClassexpression___init___01( ):
+def test_ResidueClassexpression___init___01():
     '''Init sieve from rc instances and operator keyword.'''
 
     rcs = [ ]
@@ -16,7 +16,7 @@ def test_ResidueClassexpression___init___01( ):
     assert sieve.operator == 'or'
 
 
-def test_ResidueClassexpression___init___02( ):
+def test_ResidueClassexpression___init___02():
     '''Init sieve from other sieve instance.'''
 
     rcs = [ ]

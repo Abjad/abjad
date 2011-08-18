@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_get_spanners_attached_to_any_improper_child_of_component_01( ):
+def test_spannertools_get_spanners_attached_to_any_improper_child_of_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner(staff.leaves)

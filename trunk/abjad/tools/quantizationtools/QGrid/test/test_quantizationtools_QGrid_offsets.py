@@ -2,7 +2,7 @@ from abjad.tools.durtools import Offset
 from abjad.tools.quantizationtools import QGrid
 
 
-def test_quantizationtools_QGrid_offsets_01( ):
+def test_quantizationtools_QGrid_offsets_01():
 
     assert QGrid([0], 0).offsets == (
         Offset(0), Offset(1)

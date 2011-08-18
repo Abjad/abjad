@@ -70,11 +70,11 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
     @property
     def _format_string(self):
-        return ', '.join([str(x) for x in self._sort_self( )])
+        return ', '.join([str(x) for x in self._sort_self()])
 
     @property
     def _repr_string(self):
-        return ', '.join([repr(str(x)) for x in self._sort_self( )])
+        return ', '.join([repr(str(x)) for x in self._sort_self()])
 
     ### PRIVATE METHODS ###
 
@@ -112,7 +112,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
         Return tuple.
         '''
         result = list(self)
-        return tuple(self._sort_self( ))
+        return tuple(self._sort_self())
 
     ### PUBLIC METHODS ###
 

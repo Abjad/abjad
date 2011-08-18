@@ -23,8 +23,8 @@ def all_are_unequal(expr):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.is_unique( )`` to
-        ``seqtools.all_are_unequal( )``.
+        renamed ``seqtools.is_unique()`` to
+        ``seqtools.all_are_unequal()``.
     '''
 
     try:

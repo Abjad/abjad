@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Measure_parallel_01( ):
+def test_Measure_parallel_01():
     '''Rigid measures may be hold parallel contents.
     '''
 

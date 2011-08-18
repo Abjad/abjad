@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedChromaticPitch___eq___01( ):
+def test_NumberedChromaticPitch___eq___01():
 
     p = pitchtools.NumberedChromaticPitch(12)
     q = pitchtools.NumberedChromaticPitch(12)

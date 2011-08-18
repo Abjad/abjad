@@ -17,8 +17,8 @@ def yield_all_permutations_of_sequence(sequence):
     Return generator of `sequence` objects.
 
     .. versionchanged:: 2.0
-        renamed ``listtools.permutations( )`` to
-        ``seqtools.yield_all_permutations_of_sequence( )``.
+        renamed ``listtools.permutations()`` to
+        ``seqtools.yield_all_permutations_of_sequence()``.
     '''
 
     for permutation in itertools.permutations(range(len(sequence))):

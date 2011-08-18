@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_lily_voice_resolution_01( ):
+def test_lily_voice_resolution_01():
     '''Anonymous voice with a sequence of leaves,
     in the middle of which there is a parallel,
     which in turn contains two anonymous voices.
@@ -43,7 +43,7 @@ def test_lily_voice_resolution_01( ):
     '''
 
 
-def test_lily_voice_resolution_02( ):
+def test_lily_voice_resolution_02():
     '''Named voice with  with a sequence of leaves,
     in the middle of which there is a parallel,
     which in turn contains one like-named and one differently named voice.
@@ -84,7 +84,7 @@ def test_lily_voice_resolution_02( ):
     '''
 
 
-def test_lily_voice_resolution_03( ):
+def test_lily_voice_resolution_03():
     '''Two like-named voices in two differently named staves.'''
 
     t = Container(Staff([Voice("c'8 d'8")]) * 2)
@@ -102,7 +102,7 @@ def test_lily_voice_resolution_03( ):
     '''
 
 
-def test_lily_voice_resolution_04( ):
+def test_lily_voice_resolution_04():
     '''Container containing a run of leaves.
     Two like-structured parallels in the middle of the run.
     '''

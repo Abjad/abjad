@@ -3,7 +3,7 @@ from abjad.tools import pitcharraytools
 from abjad.tools.pitcharraytools import PitchArrayCell
 
 
-def test_PitchArrayCell_is_last_in_row_01( ):
+def test_PitchArrayCell_is_last_in_row_01():
 
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
@@ -22,7 +22,7 @@ def test_PitchArrayCell_is_last_in_row_01( ):
 
 
 
-def test_PitchArrayCell_is_last_in_row_02( ):
+def test_PitchArrayCell_is_last_in_row_02():
 
     cell = PitchArrayCell([pitchtools.NamedChromaticPitch(1)])
 

@@ -47,8 +47,8 @@ def get_next_measure_from_component(component):
     of `component`, raise missing measure error.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.measure_next( )`` to
-        ``measuretools.get_next_measure_from_component( )``.
+        renamed ``iterate.measure_next()`` to
+        ``measuretools.get_next_measure_from_component()``.
     '''
 
     return _get_measure_from_component(component, '_next')

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet_01( ):
+def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet_01():
     '''Scale tuplet contents and then bequeath in-score position
         of tuplet to contents.'''
 
@@ -38,7 +38,7 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
     assert t.format == "\\new Staff {\n\tc'8. [\n\td'8.\n\t\\fraction \\times 3/2 {\n\t\tc'8\n\t\td'8 ]\n\t}\n}"
 
 
-def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet_02( ):
+def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet_02():
     '''Scale tuplet contents and then bequeath in-score position
         of tuplet to contents.'''
 

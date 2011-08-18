@@ -17,8 +17,8 @@ def negate_absolute_value_of_sequence_elements_at_indices(sequence, indices):
     Return newly constructed list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.negate_elements_at_indices_absolutely( )`` to
-        ``seqtools.negate_absolute_value_of_sequence_elements_at_indices( )``.
+        renamed ``seqtools.negate_elements_at_indices_absolutely()`` to
+        ``seqtools.negate_absolute_value_of_sequence_elements_at_indices()``.
     '''
 
     result = [ ]

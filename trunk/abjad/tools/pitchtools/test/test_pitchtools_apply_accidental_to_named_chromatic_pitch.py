@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_apply_accidental_to_named_chromatic_pitch_01( ):
+def test_pitchtools_apply_accidental_to_named_chromatic_pitch_01():
 
     assert pitchtools.apply_accidental_to_named_chromatic_pitch(
         pitchtools.NamedChromaticPitch('cs', 4), 'sharp') == pitchtools.NamedChromaticPitch('css', 4)

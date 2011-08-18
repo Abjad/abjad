@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Spanner_pop_01( ):
+def test_Spanner_pop_01():
     '''Remove and return rightmost component in spanner.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -25,7 +25,7 @@ def test_Spanner_pop_01( ):
     }
     '''
 
-    result = p.pop( )
+    result = p.pop()
 
     r'''
     \new Voice {

@@ -34,7 +34,7 @@ def _report_meter_distribution(expr, delivery = 'screen'):
     for measure in iterate_measures_forward_in_expr(expr):
         meters.append(contexttools.get_effective_time_signature(measure))
 
-    meters.sort( )
+    meters.sort()
 
     result = ''
     for key, values_generator in itertools.groupby(meters):

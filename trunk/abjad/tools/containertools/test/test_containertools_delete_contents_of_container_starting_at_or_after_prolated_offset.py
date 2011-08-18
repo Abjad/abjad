@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_delete_contents_of_container_starting_at_or_after_prolated_offset_01( ):
+def test_containertools_delete_contents_of_container_starting_at_or_after_prolated_offset_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(staff.leaves)
@@ -17,7 +17,7 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_prolat
     assert staff.format == "\\new Staff {\n\tc'8 [ ]\n}"
 
 
-def test_containertools_delete_contents_of_container_starting_at_or_after_prolated_offset_02( ):
+def test_containertools_delete_contents_of_container_starting_at_or_after_prolated_offset_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(staff.leaves)

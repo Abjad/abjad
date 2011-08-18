@@ -22,7 +22,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
     ::
 
         abjad> containertools.insert_component_and_fracture_crossing_spanners(staff, 1, Rest((1, 8)))
-        [(BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8), BeamSpanner(d'8, e'8, f'8)), (BeamSpanner(d'8, e'8, f'8), BeamSpanner( ), BeamSpanner(d'8, e'8, f'8))]
+        [(BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8), BeamSpanner(d'8, e'8, f'8)), (BeamSpanner(d'8, e'8, f'8), BeamSpanner(), BeamSpanner(d'8, e'8, f'8))]
 
     ::
 
@@ -38,8 +38,8 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
     Return list of fractured spanners.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.insert_and_fracture( )`` to
-        ``containertools.insert_component_and_fracture_crossing_spanners( )``.
+        renamed ``containertools.insert_and_fracture()`` to
+        ``containertools.insert_component_and_fracture_crossing_spanners()``.
     '''
     from abjad.tools import spannertools
 

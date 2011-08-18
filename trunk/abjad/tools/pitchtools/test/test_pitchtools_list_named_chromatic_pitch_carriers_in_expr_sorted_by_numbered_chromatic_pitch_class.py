@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class_01( ):
+def test_pitchtools_list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class_01():
     '''Works on notes.'''
 
     chord = Chord([-12, -10, -2, 4, 8, 11, 17, 19, 27, 30, 33, 37], (1, 4))

@@ -16,7 +16,7 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
         [19.4487, 18.5201, 16.2270, 13.7156, 11.7488, 10.4879,
         9.8515, 9.5130, 10.4213, 13.0736, 16.9918]
 
-    The operation is the same as ``mathtools.interpolate_divide( )``.
+    The operation is the same as ``mathtools.interpolate_divide()``.
     But this function takes multiple `totals` and `key_values` at once.
 
     Precondition: ``len(totals) == len(key_values) - 1``.
@@ -32,8 +32,8 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
     Returns a list of floats.
 
     .. versionchanged:: 2.0
-        renamed ``interpolate.divide_multiple( )`` to
-        ``mathtools.interpolate_divide_multiple( )``.
+        renamed ``interpolate.divide_multiple()`` to
+        ``mathtools.interpolate_divide_multiple()``.
     '''
 
     ### TODO: Here is the problematic example from the API entry.

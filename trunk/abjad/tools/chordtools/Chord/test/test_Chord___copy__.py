@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Chord___copy___01( ):
+def test_Chord___copy___01():
     '''Copy chord.
     '''
 
@@ -15,7 +15,7 @@ def test_Chord___copy___01( ):
     assert chord_1 is not chord_2
 
 
-def test_Chord___copy___02( ):
+def test_Chord___copy___02():
     '''Copy chord with LilyPond multiplier.
     '''
 
@@ -28,7 +28,7 @@ def test_Chord___copy___02( ):
     assert chord_1 is not chord_2
 
 
-def test_Chord___copy___03( ):
+def test_Chord___copy___03():
     '''Copy chord with LilyPond grob overrides and LilyPond context settings.
     '''
 
@@ -44,7 +44,7 @@ def test_Chord___copy___03( ):
     assert chord_1 is not chord_2
 
 
-def test_Chord___copy___04( ):
+def test_Chord___copy___04():
     '''Ensure deepcopied note heads attach correctly to chord.
     '''
 
@@ -71,7 +71,7 @@ def test_Chord___copy___04( ):
     assert chord_2.format == "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
 
 
-def test_Chord___copy___05( ):
+def test_Chord___copy___05():
     '''Copy chord with articulations and markup.
     '''
 

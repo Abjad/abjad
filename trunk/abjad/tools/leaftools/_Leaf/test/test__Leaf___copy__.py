@@ -3,7 +3,7 @@ from abjad import *
 
 ### TEST COPY ONE LEAF ###
 
-def test__Leaf___copy___01( ):
+def test__Leaf___copy___01():
     m = Note(0, (1, 8))
     n = componenttools.copy_components_and_fracture_crossing_spanners([m])[0]
     assert id(m) != id(n)
@@ -11,7 +11,7 @@ def test__Leaf___copy___01( ):
     assert n._parentage.parent is None
 
 
-def test__Leaf___copy___02( ):
+def test__Leaf___copy___02():
     r = Rest((1, 8))
     s = componenttools.copy_components_and_fracture_crossing_spanners([r])[0]
     assert id(r) != id(s)
@@ -19,7 +19,7 @@ def test__Leaf___copy___02( ):
     assert s._parentage.parent is None
 
 
-def test__Leaf___copy___03( ):
+def test__Leaf___copy___03():
     s = skiptools.Skip((1, 8))
     t = componenttools.copy_components_and_fracture_crossing_spanners([s])[0]
     assert id(s) != id(t)
@@ -27,7 +27,7 @@ def test__Leaf___copy___03( ):
     assert t._parentage.parent is None
 
 
-def test__Leaf___copy___04( ):
+def test__Leaf___copy___04():
     d = Chord([2, 3, 4], (1, 4))
     e = componenttools.copy_components_and_fracture_crossing_spanners([d])[0]
     assert id(d) != id(e)
@@ -35,7 +35,7 @@ def test__Leaf___copy___04( ):
     assert e._parentage.parent is None
 
 
-def test__Leaf___copy___05( ):
+def test__Leaf___copy___05():
     t = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     m = t[1]
     n = componenttools.copy_components_and_fracture_crossing_spanners([m])[0]
@@ -46,7 +46,7 @@ def test__Leaf___copy___05( ):
 
 ### TEST COPY ONE CONTAINER ###
 
-def test__Leaf___copy___06( ):
+def test__Leaf___copy___06():
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     u = componenttools.copy_components_and_fracture_crossing_spanners([t])[0]
     id(u) is not id(t)
@@ -56,7 +56,7 @@ def test__Leaf___copy___06( ):
 
 ### TEST COPY ONE TUPLETIZED NOTE ###
 
-def test__Leaf___copy___07( ):
+def test__Leaf___copy___07():
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 3)
     u = componenttools.copy_components_and_fracture_crossing_spanners(t.leaves[4:5])[0]
     assert isinstance(u, Note)
@@ -66,7 +66,7 @@ def test__Leaf___copy___07( ):
     assert u.prolated_duration != t.leaves[4].prolated_duration
 
 
-def test__Leaf___copy___08( ):
+def test__Leaf___copy___08():
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 3)
     u = componenttools.copy_components_and_fracture_crossing_spanners(t.leaves[5:6])[0]
     assert isinstance(u, Note)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MeasuredComplexBeamSpanner_01( ):
+def test_MeasuredComplexBeamSpanner_01():
 
     t = Staff(Measure((2, 16), notetools.make_repeated_notes(2, Duration(1, 16))) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)

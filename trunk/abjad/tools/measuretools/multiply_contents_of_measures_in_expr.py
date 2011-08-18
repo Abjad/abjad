@@ -44,8 +44,8 @@ def multiply_contents_of_measures_in_expr(expr, n):
         }
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.spin( )`` to
-        ``measuretools.multiply_contents_of_measures_in_expr( )``.
+        renamed ``measuretools.spin()`` to
+        ``measuretools.multiply_contents_of_measures_in_expr()``.
     '''
 
     from abjad.tools import containertools

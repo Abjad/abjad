@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_01( ):
+def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_01():
     '''Ascending intervals greater than an octave.'''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
@@ -17,7 +17,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromati
     assert hcpi == pitchtools.HarmonicCounterpointInterval(9)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_02( ):
+def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_02():
     '''Ascending octave.'''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
@@ -25,7 +25,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromati
     assert hcpi == pitchtools.HarmonicCounterpointInterval(8)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_03( ):
+def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_03():
     '''Ascending intervals less than an octave.'''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
@@ -41,7 +41,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromati
     assert hcpi == pitchtools.HarmonicCounterpointInterval(2)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_04( ):
+def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_04():
     '''Unison.'''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
@@ -49,7 +49,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromati
     assert hcpi == pitchtools.HarmonicCounterpointInterval(1)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_05( ):
+def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_05():
     '''Descending intervals greater than an octave.'''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
@@ -65,7 +65,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromati
     assert hcpi == pitchtools.HarmonicCounterpointInterval(9)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_06( ):
+def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_06():
     '''Descending octave.'''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
@@ -73,7 +73,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromati
     assert hcpi == pitchtools.HarmonicCounterpointInterval(8)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_07( ):
+def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch_07():
     '''Descending intervals less than an octave.'''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(

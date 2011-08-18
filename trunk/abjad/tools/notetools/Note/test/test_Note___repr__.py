@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Note___repr___01( ):
+def test_Note___repr___01():
     '''Note repr is evaluable.
     '''
 

@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_counts_01( ):
+def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_counts_01():
     '''Partition tuplet in voice.
-        The helper wraps lcopy( ).
+        The helper wraps lcopy().
         This means that the original structure remains unchanged.
         Also that resulting parts cut all the way up into voice.'''
 
@@ -35,7 +35,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
     assert right.format == "\\new Voice {\n\t\\times 2/3 {\n\t\td'8 [\n\t\te'8 ]\n\t}\n}"
 
 
-def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_counts_02( ):
+def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_counts_02():
     '''Partition voice.'''
 
     t = Voice("c'8 d'8 e'8")

@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 import py.test
 
 
-def test_mathtools_divisors_01( ):
+def test_mathtools_divisors_01():
     '''Positive divisors of integer n.
     '''
 
@@ -19,14 +19,14 @@ def test_mathtools_divisors_01( ):
     assert mathtools.divisors(10) == [1, 2, 5, 10]
 
 
-def test_mathtools_divisors_02( ):
+def test_mathtools_divisors_02():
     '''Raise not implemented error on zero.
     '''
 
     assert py.test.raises(NotImplementedError, 'mathtools.divisors(0)')
 
 
-def test_mathtools_divisors_03( ):
+def test_mathtools_divisors_03():
     '''Raise exception on noninteger n.
     '''
 

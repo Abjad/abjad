@@ -3,7 +3,7 @@ from abjad.tools import durtools
 from abjad.tools.measuretools.Measure import Measure
 
 
-### TODO: implement measuretools.set_measure_denominator_and_adjust_contents( ).
+### TODO: implement measuretools.set_measure_denominator_and_adjust_contents().
 def set_measure_denominator_and_adjust_numerator(measure, denominator):
     r'''.. versionadded:: 1.1
 
@@ -43,8 +43,8 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
     Return `measure`.
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.set_measure_denominator_and_multiply_numerator( )`` to
-        ``measuretools.set_measure_denominator_and_adjust_numerator( )``.
+        renamed ``measuretools.set_measure_denominator_and_multiply_numerator()`` to
+        ``measuretools.set_measure_denominator_and_adjust_numerator()``.
     '''
 
     if isinstance(measure, Measure):

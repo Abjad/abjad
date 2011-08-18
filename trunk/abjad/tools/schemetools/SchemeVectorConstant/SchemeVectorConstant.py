@@ -59,4 +59,4 @@ class SchemeVectorConstant(tuple, _Immutable):
 
         Return string.
         '''
-        return "#'#%s" % self.__str__( )
+        return "#'#%s" % self.__str__()

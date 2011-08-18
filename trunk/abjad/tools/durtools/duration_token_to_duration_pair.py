@@ -25,8 +25,8 @@ def duration_token_to_duration_pair(duration_token):
     Return pair.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.token_unpack( )`` to
-        ``durtools.duration_token_to_duration_pair( )``.
+        renamed ``durtools.token_unpack()`` to
+        ``durtools.duration_token_to_duration_pair()``.
     '''
 
     if isinstance(duration_token, (tuple, list)):

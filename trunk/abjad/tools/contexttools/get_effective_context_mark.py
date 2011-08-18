@@ -37,14 +37,14 @@ def get_effective_context_mark(component, klass):
     if klass == TimeSignatureMark:
         if isinstance(component, Measure):
             if not getattr(component, '_time_signature_is_current', True):
-                component._update_time_signature( )
+                component._update_time_signature()
             if contexttools.is_component_with_time_signature_mark_attached(component):
                 return contexttools.get_time_signature_mark_attached_to_component(component)
 
     #print 'getting effective context mark mark ...'
     ### following line was tested to be completely unnecessary; remove after statal bug fix:
-    #component._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
-    component._update_marks_of_entire_score_tree_if_necessary( )
+    #component._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+    component._update_marks_of_entire_score_tree_if_necessary()
 
     #print 'gathering candidate marks ...'
     candidate_marks = set([ ])

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_Measure_number_01( ):
+def test_Measure_number_01():
     '''Measures in staff number correctly starting from 1.
     '''
 
@@ -14,7 +14,7 @@ def test_Measure_number_01( ):
     assert t[2].measure_number == 3
 
 
-def test_Measure_number_02( ):
+def test_Measure_number_02():
     '''Orphan measures number correctly starting from 1.
     '''
 
@@ -22,7 +22,7 @@ def test_Measure_number_02( ):
     assert t.measure_number == 1
 
 
-def test_Measure_number_03( ):
+def test_Measure_number_03():
     '''Mesaure numbering works correctly after contents rotation.
     '''
 

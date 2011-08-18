@@ -1,12 +1,12 @@
 from abjad import *
 
 
-#def test_HairpinSpanner___copy___01( ):
+#def test_HairpinSpanner___copy___01():
 #   '''Do not copy incomplete hairpins.'''
 #   staff = Staff([Note(n, (1, 8)) for n in range(8)])
 #   spannertools.CrescendoSpanner(staff[:4])
 #   assert staff.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-#   staff.append(staff[0].copy( ))
+#   staff.append(staff[0].copy())
 #   assert staff.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\tc'8\n}"
 #   '''
 #   \new Staff {
@@ -23,7 +23,7 @@ from abjad import *
 #   '''
 
 
-def test_HairpinSpanner___copy___02( ):
+def test_HairpinSpanner___copy___02():
     '''Do copy complete hairpins.'''
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.CrescendoSpanner(staff[:4])

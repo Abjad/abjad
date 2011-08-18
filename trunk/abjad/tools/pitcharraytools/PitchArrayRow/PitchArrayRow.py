@@ -197,14 +197,14 @@ class PitchArrayRow(_StrictComparator):
         return self._parent_array
 
     @apply
-    def pitch_range( ):
+    def pitch_range():
         def fget(self):
             return self._pitch_range
         def fset(self, arg):
             if not isinstance(arg, PitchRange):
                 raise TypeError('must be pitch range.')
             self._pitch_range = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def pitches(self):
@@ -242,7 +242,7 @@ class PitchArrayRow(_StrictComparator):
                 if cell.pitches:
                     cell.pitches = [pitch_tokens.pop(0)]
         else:
-            self.empty_pitches( )
+            self.empty_pitches()
 
     def copy_subrow(self, start = None, stop = None):
         arg = slice(start, stop)
@@ -312,7 +312,7 @@ class PitchArrayRow(_StrictComparator):
             raise ValueError(message)
         missing_width = width - self_width
         for i in range(missing_width):
-            cell = PitchArrayCell( )
+            cell = PitchArrayCell()
             self.append(cell)
 
     def pop(self, cell_index):

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DynamicTextSpanner_01( ):
+def test_DynamicTextSpanner_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(t[:])

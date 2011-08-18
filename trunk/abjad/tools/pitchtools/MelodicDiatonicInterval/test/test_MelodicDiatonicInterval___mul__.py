@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicDiatonicInterval___mul___01( ):
+def test_MelodicDiatonicInterval___mul___01():
 
     major_second = pitchtools.MelodicDiatonicInterval('major', 2)
 
@@ -11,7 +11,7 @@ def test_MelodicDiatonicInterval___mul___01( ):
     assert major_second * 3 == pitchtools.MelodicDiatonicInterval('augmented', 4)
 
 
-def test_MelodicDiatonicInterval___mul___02( ):
+def test_MelodicDiatonicInterval___mul___02():
     '''Negative multiplicands work correctly.
     '''
 

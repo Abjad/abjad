@@ -65,8 +65,8 @@ def replace_n_edge_elements_in_container_with_rests(container, n):
     Return `container`.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.replace_first_n_elements_in_container_with_rests( )`` to
-        ``containertools.replace_n_edge_elements_in_container_with_rests( )``.
+        renamed ``containertools.replace_first_n_elements_in_container_with_rests()`` to
+        ``containertools.replace_n_edge_elements_in_container_with_rests()``.
     '''
 
     if 0 <= n:

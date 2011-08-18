@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_measuretools_fuse_measures_01( ):
+def test_measuretools_fuse_measures_01():
     '''Fuse unicorporated binary measures.'''
 
     t1 = Measure((1, 8), "c'16 d'16")
@@ -45,7 +45,7 @@ def test_measuretools_fuse_measures_01( ):
     assert new.format == "{\n\t\\time 2/8\n\tc'16 [\n\td'16 ]\n\tc'16 (\n\td'16 )\n}"
 
 
-def test_measuretools_fuse_measures_02( ):
+def test_measuretools_fuse_measures_02():
     '''Fuse binary measures with different denominators.
         Helpers selects minimum of two denominators.
         Beams are OK because they attach to leaves rather than containers.'''
@@ -88,7 +88,7 @@ def test_measuretools_fuse_measures_02( ):
     assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16 ]\n\t}\n}"
 
 
-def test_measuretools_fuse_measures_03( ):
+def test_measuretools_fuse_measures_03():
     '''Fuse binary measures with different denominators.
         Helpers selects minimum of two denominators.
         Beam attaches to container rather than leaves.'''
@@ -131,7 +131,7 @@ def test_measuretools_fuse_measures_03( ):
     assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t}\n}"
 
 
-def test_measuretools_fuse_measures_04( ):
+def test_measuretools_fuse_measures_04():
     '''Fuse binary and nonbinary measures.
         Helpers selects least common multiple of denominators.
         Beams are OK because they attach to leaves rather than containers.'''
@@ -175,14 +175,14 @@ def test_measuretools_fuse_measures_04( ):
     assert t.format == "\\new Voice {\n\t{\n\t\t\\time 5/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [\n\t\t\td'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_measuretools_fuse_measures_05( ):
+def test_measuretools_fuse_measures_05():
     '''Fusing empty list raises no excpetion but returns None.'''
 
     result = measuretools.fuse_measures([ ])
     assert result is None
 
 
-def test_measuretools_fuse_measures_06( ):
+def test_measuretools_fuse_measures_06():
     '''Fusing list of only one measure returns measure unaltered.'''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
@@ -191,7 +191,7 @@ def test_measuretools_fuse_measures_06( ):
     assert new is t
 
 
-def test_measuretools_fuse_measures_07( ):
+def test_measuretools_fuse_measures_07():
     '''Fuse three measures.'''
 
     t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
@@ -239,7 +239,7 @@ def test_measuretools_fuse_measures_07( ):
     assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16 ]\n\t}\n}"
 
 
-def test_measuretools_fuse_measures_08( ):
+def test_measuretools_fuse_measures_08():
     '''Measure fusion across intervening container boundaries is undefined.'''
 
     t = Voice(Container(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
@@ -277,7 +277,7 @@ def test_measuretools_fuse_measures_08( ):
     assert py.test.raises(AssertionError, 'measuretools.fuse_measures([t[0][1], t[1][0]])')
 
 
-def test_measuretools_fuse_measures_09( ):
+def test_measuretools_fuse_measures_09():
     '''Fusing binary and nonbinary measures.
         With change in number of note_heads because of nonbinary multiplier.'''
 

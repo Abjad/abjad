@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Rest___init___01( ):
+def test_Rest___init___01():
     '''Init rest from LilyPond input string.
     '''
 
@@ -10,7 +10,7 @@ def test_Rest___init___01( ):
     assert rest.written_duration == Duration(3, 16)
 
 
-def test_Rest___init___02( ):
+def test_Rest___init___02():
     '''Init rest from written duration and LilyPond multiplier.
     '''
 
@@ -19,7 +19,7 @@ def test_Rest___init___02( ):
     assert rest.format == 'r4 * 1/2'
 
 
-def test_Rest___init___03( ):
+def test_Rest___init___03():
     '''Init rest from other rest.
     '''
 
@@ -33,7 +33,7 @@ def test_Rest___init___03( ):
     assert rest_1 is not rest_2
 
 
-def test_Rest___init___04( ):
+def test_Rest___init___04():
     '''Init rest from containerized chord.
     '''
 
@@ -48,7 +48,7 @@ def test_Rest___init___04( ):
     assert r.written_duration == duration
 
 
-def test_Rest___init___05( ):
+def test_Rest___init___05():
     '''Init rest from tupletized chord.
     '''
 
@@ -61,7 +61,7 @@ def test_Rest___init___05( ):
     assert rest._parentage.parent is None
 
 
-def test_Rest___init___06( ):
+def test_Rest___init___06():
     '''Init rest from beamed chord.
     '''
 
@@ -74,7 +74,7 @@ def test_Rest___init___06( ):
     assert rest._parentage.parent is None
 
 
-def test_Rest___init___07( ):
+def test_Rest___init___07():
     '''Init rest from skip.
     '''
 
@@ -88,7 +88,7 @@ def test_Rest___init___07( ):
     assert r.written_duration == d
 
 
-def test_Rest___init___08( ):
+def test_Rest___init___08():
     '''Init rest from tupletted skip.
     '''
 
@@ -102,7 +102,7 @@ def test_Rest___init___08( ):
     assert rest._parentage.parent is None
 
 
-def test_Rest___init___09( ):
+def test_Rest___init___09():
     '''Init rest from beamed skip.
     '''
 
@@ -115,7 +115,7 @@ def test_Rest___init___09( ):
     assert rest not in t
 
 
-def test_Rest___init___10( ):
+def test_Rest___init___10():
     '''Init rest from unincorporated note.
     '''
 
@@ -131,7 +131,7 @@ def test_Rest___init___10( ):
     assert r.written_duration == d
 
 
-def test_Rest___init___11( ):
+def test_Rest___init___11():
     '''Init rest from tupletized note.
     '''
 
@@ -145,7 +145,7 @@ def test_Rest___init___11( ):
     assert rest._parentage.parent is None
 
 
-def test_Rest___init___12( ):
+def test_Rest___init___12():
     '''Init rest from beamed note.
     '''
 
@@ -158,7 +158,7 @@ def test_Rest___init___12( ):
     assert rest._parentage.parent is None
 
 
-def test_Rest___init___13( ):
+def test_Rest___init___13():
     '''Init rest from spanned note.
     '''
 
@@ -179,7 +179,7 @@ def test_Rest___init___13( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tr8 ]\n}"
 
 
-def test_Rest___init___14( ):
+def test_Rest___init___14():
     '''Init multiple rests from spanned notes.
     '''
 

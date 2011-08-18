@@ -2,21 +2,21 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_permute_sequence_01( ):
+def test_seqtools_permute_sequence_01():
     '''Permute list.
     '''
 
     assert seqtools.permute_sequence([11, 12, 13, 14], [1, 0, 3, 2]) == [12, 11, 14, 13]
 
 
-def test_seqtools_permute_sequence_02( ):
+def test_seqtools_permute_sequence_02():
     '''Permute tuple.
     '''
 
     assert seqtools.permute_sequence((11, 12, 13, 14), [1, 0, 3, 2]) == (12, 11, 14, 13)
 
 
-def test_seqtools_permute_sequence_03( ):
+def test_seqtools_permute_sequence_03():
     '''Permute Abjad container.
     '''
 
@@ -24,7 +24,7 @@ def test_seqtools_permute_sequence_03( ):
     assert seqtools.permute_sequence(container, [2, 0, 1]).format == Container("e'8 c'8 d'8").format
 
 
-def test_seqtools_permute_sequence_04( ):
+def test_seqtools_permute_sequence_04():
     '''Permute string.
     '''
 

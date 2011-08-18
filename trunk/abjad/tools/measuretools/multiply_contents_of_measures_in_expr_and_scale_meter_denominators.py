@@ -37,8 +37,8 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
         |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.concentrate( )`` to
-        ``measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators( )``.
+        renamed ``measuretools.concentrate()`` to
+        ``measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators()``.
     '''
 
     assert isinstance(concentration_pairs, list)

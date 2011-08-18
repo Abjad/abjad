@@ -10,6 +10,6 @@ def _cut_components_from_parentage(components):
     assert componenttools.all_are_components(components)
 
     for component in components:
-        component._parentage._cut( )
+        component._parentage._cut()
 
     return components

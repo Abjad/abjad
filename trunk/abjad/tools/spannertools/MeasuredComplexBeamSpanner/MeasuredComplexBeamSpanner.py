@@ -54,7 +54,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def span( ):
+    def span():
         def fget(self):
             '''Get top-level beam count::
 
@@ -77,7 +77,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         def fset(self, arg):
             assert isinstance(arg, (int, type(None)))
             self._span = arg
-        return property(**locals( ))
+        return property(**locals())
 
 
 

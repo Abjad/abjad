@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import threadtools
 
 
-def test_threadtools_iterate_thread_backward_from_component_01( ):
+def test_threadtools_iterate_thread_backward_from_component_01():
     '''Iterate only notes.'''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
@@ -49,7 +49,7 @@ def test_threadtools_iterate_thread_backward_from_component_01( ):
     assert notes[3] is voice_2_first_half[0]
 
 
-def test_threadtools_iterate_thread_backward_from_component_02( ):
+def test_threadtools_iterate_thread_backward_from_component_02():
     '''Iterate all components.'''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)

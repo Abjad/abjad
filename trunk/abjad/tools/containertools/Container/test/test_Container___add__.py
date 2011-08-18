@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container___add___01( ):
+def test_Container___add___01():
     '''Addition DOES NOT works on unnamed voices.'''
     t1 = Voice(Note("c'4")*2)
     t2 = Voice(Note("c'4")*2)
@@ -10,7 +10,7 @@ def test_Container___add___01( ):
     assert tadd is None
 
 
-def test_Container___add___02( ):
+def test_Container___add___02():
     '''Addition DOES NOT work on unnamed Staves.'''
     t1 = Staff(Note("c'4")*2)
     t2 = Staff(Note("c'4")*2)
@@ -18,7 +18,7 @@ def test_Container___add___02( ):
     assert tadd is None
 
 
-def test_Container___add___03( ):
+def test_Container___add___03():
     '''Addition works on simple Containers.'''
     t1 = Container(Note("c'4")*2)
     t2 = Container(Note("c'4")*2)
@@ -28,7 +28,7 @@ def test_Container___add___03( ):
     assert componenttools.is_well_formed_component(tadd)
 
 
-def test_Container___add___04( ):
+def test_Container___add___04():
     '''Addition works on equally named voices.'''
     t1 = Voice(Note("c'4")*2)
     t1.name = '1'
@@ -40,7 +40,7 @@ def test_Container___add___04( ):
     assert tadd.format == "\\context Voice = \"1\" {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 
 
-def test_Container___add___05( ):
+def test_Container___add___05():
     '''Addition raises exception on differently named voices.'''
     t1 = Voice(Note("c'4")*2)
     t1.name = '1'
@@ -49,7 +49,7 @@ def test_Container___add___05( ):
     assert t1 + t2 is None
 
 
-def test_Container___add___06( ):
+def test_Container___add___06():
     '''Addition works on sequentially nested equally named containers.'''
 
 
@@ -79,7 +79,7 @@ def test_Container___add___06( ):
 ### PARALLEL STRUCTURES ###
 
 ### NONSTRUCTURAL in new parallel --> context model.
-#def test_Container___add___07( ):
+#def test_Container___add___07():
 #   '''Addition raises exception on parallels of notes.'''
 #   t1 = Container(Note("c'4")*2)
 #   t1.is_parallel = True
@@ -88,7 +88,7 @@ def test_Container___add___06( ):
 #   assert t1 + t2 is None
 
 
-def test_Container___add___08( ):
+def test_Container___add___08():
     '''Addition works on two matching parallel containers each with
     a single threadable Voice child.'''
     t1 = Container([Voice(Note("c'4")*2)])
@@ -107,7 +107,7 @@ def test_Container___add___08( ):
     assert len(tadd[0]) == 4
 
 
-def test_Container___add___09( ):
+def test_Container___add___09():
     '''Addition works on matching parallel containers each
     with two named threadable Voice children.'''
 
@@ -139,7 +139,7 @@ def test_Container___add___09( ):
 
 ### iadd ###
 
-def test_Container___add___10( ):
+def test_Container___add___10():
     '''In place add makes a copy of right hand operand only.'''
     v1 = Voice(Note(1, (1, 4))*4)
     v2 = Voice(Note(2, (1, 4))*4)

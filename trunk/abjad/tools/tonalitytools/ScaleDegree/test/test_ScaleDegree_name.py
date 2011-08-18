@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_ScaleDegree_name_01( ):
+def test_ScaleDegree_name_01():
 
     assert tonalitytools.ScaleDegree(1).name == 'tonic'
     assert tonalitytools.ScaleDegree(2).name == 'superdominant'

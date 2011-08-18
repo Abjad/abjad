@@ -43,8 +43,8 @@ def rational_to_equal_or_lesser_binary_rational(rational):
     Function intended to find written duration of notes inside tuplet.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.naive_prolated_to_written_not_greater_than( )`` to
-        ``durtools.rational_to_equal_or_lesser_binary_rational( )``.
+        renamed ``durtools.naive_prolated_to_written_not_greater_than()`` to
+        ``durtools.rational_to_equal_or_lesser_binary_rational()``.
     '''
 
     ### find exponent of denominator

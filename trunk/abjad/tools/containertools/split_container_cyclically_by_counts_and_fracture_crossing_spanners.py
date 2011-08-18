@@ -34,7 +34,7 @@ def split_container_cyclically_by_counts_and_fracture_crossing_spanners(containe
         abjad> f(voice)
         \new Voice {
             {
-                c'8 ( ) [
+                c'8 () [
             }
             {
                 d'8 (
@@ -42,7 +42,7 @@ def split_container_cyclically_by_counts_and_fracture_crossing_spanners(containe
                 f'8 )
             }
             {
-                g'8 ( )
+                g'8 ()
             }
             {
                 a'8 (
@@ -54,8 +54,8 @@ def split_container_cyclically_by_counts_and_fracture_crossing_spanners(containe
     Return list of list-wrapped container pieces.
 
     .. versionchanged:: 2.0
-        renamed ``partition.cyclic_fractured_by_counts( )`` to
-        ``containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners( )``.
+        renamed ``partition.cyclic_fractured_by_counts()`` to
+        ``containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners()``.
     '''
     from abjad.tools.containertools._split_container_by_counts import _split_container_by_counts
 

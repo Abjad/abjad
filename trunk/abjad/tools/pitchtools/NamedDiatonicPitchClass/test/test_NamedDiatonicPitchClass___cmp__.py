@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_NamedDiatonicPitchClass___cmp___01( ):
+def test_NamedDiatonicPitchClass___cmp___01():
     '''Compare equal named diatonic pitch-classes.
     '''
 
@@ -22,7 +22,7 @@ def test_NamedDiatonicPitchClass___cmp___01( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_NamedDiatonicPitchClass___cmp___02( ):
+def test_NamedDiatonicPitchClass___cmp___02():
     '''Compare named diatonic pitch-class to equivalent diatonic pitch-class name.
     '''
 
@@ -42,7 +42,7 @@ def test_NamedDiatonicPitchClass___cmp___02( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_NamedDiatonicPitchClass___cmp___03( ):
+def test_NamedDiatonicPitchClass___cmp___03():
     '''Compare unequal named diatonic pitch-classes.
     '''
 
@@ -62,7 +62,7 @@ def test_NamedDiatonicPitchClass___cmp___03( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_NamedDiatonicPitchClass___cmp___04( ):
+def test_NamedDiatonicPitchClass___cmp___04():
     '''Compare named diatonic pitch-class to unequal diatonic pitch-class name.
     '''
 

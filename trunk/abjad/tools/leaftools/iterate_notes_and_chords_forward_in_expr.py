@@ -32,8 +32,8 @@ def iterate_notes_and_chords_forward_in_expr(expr, start = 0, stop = None):
     Return generator.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.iterate_notes_and_chords_forward_in_expr( )`` to
-        ``leaftools.iterate_notes_and_chords_forward_in_expr( )``.
+        renamed ``pitchtools.iterate_notes_and_chords_forward_in_expr()`` to
+        ``leaftools.iterate_notes_and_chords_forward_in_expr()``.
     '''
     from abjad.tools.chordtools.Chord import Chord
     from abjad.tools.notetools.Note import Note

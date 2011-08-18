@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_TonalFunction__init_by_symbolic_string_01( ):
+def test_TonalFunction__init_by_symbolic_string_01():
 
     tonal_function = tonalitytools.TonalFunction('bII')
     correct = tonalitytools.TonalFunction(('flat', 2), 'major', 5, 0)
@@ -17,7 +17,7 @@ def test_TonalFunction__init_by_symbolic_string_01( ):
     assert tonal_function == correct
 
 
-def test_TonalFunction__init_by_symbolic_string_02( ):
+def test_TonalFunction__init_by_symbolic_string_02():
 
     tonal_function = tonalitytools.TonalFunction('V7')
     correct = tonalitytools.TonalFunction(5, 'dominant', 7, 0)
@@ -36,7 +36,7 @@ def test_TonalFunction__init_by_symbolic_string_02( ):
     assert tonal_function == correct
 
 
-def test_TonalFunction__init_by_symbolic_string_03( ):
+def test_TonalFunction__init_by_symbolic_string_03():
 
     tonal_function = tonalitytools.TonalFunction('V7/4-3')
     correct = tonalitytools.TonalFunction(5, 'dominant', 7, 0, (4, 3))
@@ -47,7 +47,7 @@ def test_TonalFunction__init_by_symbolic_string_03( ):
     assert tonal_function == correct
 
 
-def test_TonalFunction__init_by_symbolic_string_04( ):
+def test_TonalFunction__init_by_symbolic_string_04():
 
     tonal_function = tonalitytools.TonalFunction('vi6/5')
     correct = tonalitytools.TonalFunction(6, 'minor', 7, 1)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_scoretools_get_first_score_in_improper_parentage_of_component_01( ):
+def test_scoretools_get_first_score_in_improper_parentage_of_component_01():
 
 
     staff = Staff("c'8 d'8 e'8 f'8")

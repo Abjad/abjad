@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemeNumber___setattr___01( ):
+def test_SchemeNumber___setattr___01():
     '''Scheme numbers are immutable.
     '''
 

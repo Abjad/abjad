@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_tuplettools_fuse_tuplets_01( ):
+def test_tuplettools_fuse_tuplets_01():
     '''Fuse two unincorporated fixed-duration tuplets with same multiplier.'''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -48,7 +48,7 @@ def test_tuplettools_fuse_tuplets_01( ):
 
 
 
-def test_tuplettools_fuse_tuplets_02( ):
+def test_tuplettools_fuse_tuplets_02():
     '''Fuse fixed-duration tuplets with same multiplier in score.'''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -91,7 +91,7 @@ def test_tuplettools_fuse_tuplets_02( ):
     assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
 
 
-def test_tuplettools_fuse_tuplets_03( ):
+def test_tuplettools_fuse_tuplets_03():
     '''Fuse fixed-multiplier tuplets with same multiplier in score.'''
 
     #t1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
@@ -140,7 +140,7 @@ def test_tuplettools_fuse_tuplets_03( ):
     assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'8 (\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8 )\n\t}\n}"
 
 
-def test_tuplettools_fuse_tuplets_04( ):
+def test_tuplettools_fuse_tuplets_04():
     '''Tuplets must carry same multiplier.'''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -149,7 +149,7 @@ def test_tuplettools_fuse_tuplets_04( ):
     assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
 
 
-def test_tuplettools_fuse_tuplets_05( ):
+def test_tuplettools_fuse_tuplets_05():
     '''Tuplets must be same type.'''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -159,7 +159,7 @@ def test_tuplettools_fuse_tuplets_05( ):
     assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
 
 
-def test_tuplettools_fuse_tuplets_06( ):
+def test_tuplettools_fuse_tuplets_06():
     '''Dominant spanners on contents are preserved.'''
 
     t = Voice([

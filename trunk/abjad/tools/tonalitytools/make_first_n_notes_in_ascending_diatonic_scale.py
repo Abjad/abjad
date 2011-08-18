@@ -30,8 +30,8 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = dur
         Optional `key_signature` keyword parameter.
 
     .. versionchanged:: 2.0
-        renamed ``leaftools.make_first_n_notes_in_ascending_diatonic_scale( )`` to
-        ``tonalitytools.make_first_n_notes_in_ascending_diatonic_scale( )``.
+        renamed ``leaftools.make_first_n_notes_in_ascending_diatonic_scale()`` to
+        ``tonalitytools.make_first_n_notes_in_ascending_diatonic_scale()``.
     '''
 
     result = make_notes([0] * count, [written_duration])

@@ -2,7 +2,7 @@ from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 from abjad.tools.durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely import yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
 
 
-def yield_all_assignable_rationals_in_cantor_diagonalized_order( ):
+def yield_all_assignable_rationals_in_cantor_diagonalized_order():
     '''.. versionadded:: 2.0
 
     Yield all assignable rationals in Cantor diagonalized order::
@@ -11,9 +11,9 @@ def yield_all_assignable_rationals_in_cantor_diagonalized_order( ):
 
     ::
 
-        abjad> generator = durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order( )
+        abjad> generator = durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order()
         abjad> for n in range(16):
-        ...     generator.next( )
+        ...     generator.next()
         ...
         Fraction(1, 1)
         Fraction(2, 1)
@@ -36,9 +36,9 @@ def yield_all_assignable_rationals_in_cantor_diagonalized_order( ):
     '''
 
 
-    generator = yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( )
+    generator = yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely()
     while True:
-        duration = generator.next( )
+        duration = generator.next()
         if is_assignable_rational(duration):
             yield duration
 

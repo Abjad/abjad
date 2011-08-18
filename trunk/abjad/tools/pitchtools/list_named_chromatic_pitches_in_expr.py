@@ -38,7 +38,7 @@ def list_named_chromatic_pitches_in_expr(expr):
                     result.extend(leaf.written_pitches)
         elif isinstance(expr, NamedChromaticPitchSet):
             pitches = list(expr)
-            pitches.sort( )
+            pitches.sort()
             pitches = tuple(pitches)
             return pitches
         elif isinstance(expr, (list, tuple, set)):

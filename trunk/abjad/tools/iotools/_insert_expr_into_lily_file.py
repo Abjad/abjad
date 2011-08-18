@@ -12,8 +12,8 @@ def _insert_expr_into_lily_file(expr, template = None, tagline = False):
         lily_file = lilyfiletools.make_basic_lily_file(expr)
         lily_file._is_temporary = True
     else:
-        lily_file = lilyfiletools.make_basic_lily_file( )
-        score_block = lilyfiletools.ScoreBlock( )
+        lily_file = lilyfiletools.make_basic_lily_file()
+        score_block = lilyfiletools.ScoreBlock()
         score_block.append(expr)
         ### NOTE: don't quite understand the logic here.
         ### why append a score_block and then set the score_block attribute

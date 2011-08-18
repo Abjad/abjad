@@ -58,7 +58,7 @@ def iterate_timeline_backward_in_expr(expr, klass = None):
                 component_to_score_index(component_1),
                 component_to_score_index(component_2))
         else:
-            ### note negative result of cmp( ) is returned
+            ### note negative result of cmp() is returned
             ### for backward time sort
             return -result
 

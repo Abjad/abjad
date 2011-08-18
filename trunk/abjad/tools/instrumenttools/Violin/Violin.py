@@ -12,7 +12,7 @@ class Violin(_StringInstrument):
 
     ::
 
-        abjad> instrumenttools.Violin( )(staff)
+        abjad> instrumenttools.Violin()(staff)
         Violin('Violin', 'Vn.')
 
     ::
@@ -35,5 +35,5 @@ class Violin(_StringInstrument):
         _StringInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
-        self._copy_primary_clefs_to_all_clefs( )
+        self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-5, 43)

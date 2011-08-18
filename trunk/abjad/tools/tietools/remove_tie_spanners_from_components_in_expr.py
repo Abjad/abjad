@@ -29,8 +29,8 @@ def remove_tie_spanners_from_components_in_expr(expr):
     Return `expr`.
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.untie_shallow( )`` to
-        ``tietools.remove_tie_spanners_from_components_in_expr( )``.
+        renamed ``componenttools.untie_shallow()`` to
+        ``tietools.remove_tie_spanners_from_components_in_expr()``.
     '''
     from abjad.tools import componenttools
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_iterate_leaf_pairs_forward_in_expr_01( ):
+def test_leaftools_iterate_leaf_pairs_forward_in_expr_01():
 
     score = Score([ ])
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]

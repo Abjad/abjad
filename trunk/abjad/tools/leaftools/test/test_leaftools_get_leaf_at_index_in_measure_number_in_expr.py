@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_get_leaf_at_index_in_measure_number_in_expr_01( ):
+def test_leaftools_get_leaf_at_index_in_measure_number_in_expr_01():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)

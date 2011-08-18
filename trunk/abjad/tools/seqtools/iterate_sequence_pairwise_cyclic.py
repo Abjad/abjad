@@ -11,21 +11,21 @@ def iterate_sequence_pairwise_cyclic(sequence):
 
     ::
 
-        abjad> generator.next( )
+        abjad> generator.next()
         (0, 1)
-        abjad> generator.next( )
+        abjad> generator.next()
         (1, 2)
-        abjad> generator.next( )
+        abjad> generator.next()
         (2, 3)
-        abjad> generator.next( )
+        abjad> generator.next()
         (3, 4)
-        abjad> generator.next( )
+        abjad> generator.next()
         (4, 5)
-        abjad> generator.next( )
+        abjad> generator.next()
         (5, 0)
-        abjad> generator.next( )
+        abjad> generator.next()
         (0, 1)
-        abjad> generator.next( )
+        abjad> generator.next()
         (1, 2)
 
     Return pair generator.

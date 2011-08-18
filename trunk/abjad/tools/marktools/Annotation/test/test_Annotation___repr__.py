@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.marktools import Annotation
 
 
-def test_Annotation___repr___01( ):
+def test_Annotation___repr___01():
     '''Repr of unattached annotation is evaluable.
     '''
 

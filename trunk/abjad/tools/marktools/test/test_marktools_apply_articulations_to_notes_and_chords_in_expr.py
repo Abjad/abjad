@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_marktools_apply_articulations_to_notes_and_chords_in_expr_01( ):
+def test_marktools_apply_articulations_to_notes_and_chords_in_expr_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     marktools.apply_articulations_to_notes_and_chords_in_expr(staff, list('^.'))

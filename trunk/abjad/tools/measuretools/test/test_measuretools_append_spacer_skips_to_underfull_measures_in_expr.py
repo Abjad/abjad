@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01( ):
+def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01():
 
     t = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
     contexttools.detach_time_signature_mark_attached_to_component(t[1])

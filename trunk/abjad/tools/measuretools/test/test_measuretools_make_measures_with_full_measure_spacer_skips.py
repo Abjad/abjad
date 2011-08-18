@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_make_measures_with_full_measure_spacer_skips_01( ):
+def test_measuretools_make_measures_with_full_measure_spacer_skips_01():
     '''Make list of skip-populated rigid measures.'''
 
     t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16), (1, 4)]))

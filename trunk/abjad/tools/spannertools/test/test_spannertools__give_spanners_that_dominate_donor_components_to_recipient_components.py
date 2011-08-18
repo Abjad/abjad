@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
 
 
-def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient_components_01( ):
+def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient_components_01():
     '''Find spanners that dominate donor_components.
     Apply dominant spanners to recipient_components.
     Withdraw donor_components from spanners.
@@ -68,7 +68,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
     assert recipient.format == "\\new Voice {\n\tc'16 [ (\n\tc'16\n\tc'16 ] )\n}"
 
 
-def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient_components_02( ):
+def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient_components_02():
     '''Not composer-safe.
     '''
 

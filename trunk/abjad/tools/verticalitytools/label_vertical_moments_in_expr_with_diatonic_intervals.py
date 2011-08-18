@@ -16,10 +16,10 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
         abjad> score[0].extend(notes)
         abjad> contexttools.ClefMark('alto')(score[1])
-        ClefMark('alto')(Staff{ })
+        ClefMark('alto')(Staff{})
         abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
         abjad> contexttools.ClefMark('bass')(score[2])
-        ClefMark('bass')(Staff{ })
+        ClefMark('bass')(Staff{})
         abjad> score[2].append(Note(-24, (1, 2)))
         abjad> verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals(score)
         abjad> f(score)
@@ -42,8 +42,8 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
         >>
 
     .. versionchanged:: 2.0
-        renamed ``label.vertical_moment_diatonic_intervals( )`` to
-        ``verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals( )``.
+        renamed ``label.vertical_moment_diatonic_intervals()`` to
+        ``verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals()``.
     '''
     from abjad.tools import pitchtools
 
@@ -54,7 +54,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
             continue
         notes.sort(lambda x, y: cmp(x.written_pitch.numbered_chromatic_pitch,
             y.written_pitch.numbered_chromatic_pitch))
-        notes.reverse( )
+        notes.reverse()
         bass_note = notes[-1]
         upper_notes = notes[:-1]
         diatonic_intervals = [ ]

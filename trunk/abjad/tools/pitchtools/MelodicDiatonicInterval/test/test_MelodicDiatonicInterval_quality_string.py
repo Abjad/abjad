@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicDiatonicInterval_quality_string_01( ):
+def test_MelodicDiatonicInterval_quality_string_01():
 
     assert pitchtools.MelodicDiatonicInterval('perfect', 1).quality_string == \
         'perfect'

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_notetools_make_repeated_notes_from_time_signature_01( ):
+def test_notetools_make_repeated_notes_from_time_signature_01():
     '''Make repeated notes from integer pair.
     '''
 
@@ -12,7 +12,7 @@ def test_notetools_make_repeated_notes_from_time_signature_01( ):
     assert staff.format == "\\new Staff {\n\td''32\n\td''32\n\td''32\n\td''32\n\td''32\n}"
 
 
-def test_notetools_make_repeated_notes_from_time_signature_02( ):
+def test_notetools_make_repeated_notes_from_time_signature_02():
     '''Make repeated notes from time signature.
     '''
 

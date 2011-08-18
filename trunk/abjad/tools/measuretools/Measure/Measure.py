@@ -59,7 +59,7 @@ class Measure(Container):
     def __copy__(self, *args):
         from abjad.tools import marktools
         from abjad.tools import markuptools
-        new = type(self)(*self.__getnewargs__( ))
+        new = type(self)(*self.__getnewargs__())
         ### only this line differs from Container.__copy__
         contexttools.detach_time_signature_mark_attached_to_component(new)
         if getattr(self, '_override', None) is not None:
@@ -109,7 +109,7 @@ class Measure(Container):
         elif length:
             return '%s([%s])' % (class_name, summary)
         else:
-            return '%s( )' % class_name
+            return '%s()' % class_name
 
     def __str__(self):
         '''String form of measure with pipes for single string display.
@@ -189,7 +189,7 @@ class Measure(Container):
 
     @property
     def measure_number(self):
-        self._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
+        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._measure_number
 
     @property

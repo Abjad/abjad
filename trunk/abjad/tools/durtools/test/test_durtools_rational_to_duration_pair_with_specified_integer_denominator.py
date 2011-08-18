@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_01( ):
+def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_01():
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((0, 6), 12) == (0, 12)
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((1, 6), 12) == (2, 12)
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((2, 6), 12) == (4, 12)
@@ -17,7 +17,7 @@ def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_0
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((11, 6), 12) == (22, 12)
 
 
-def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_02( ):
+def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_02():
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((0, 12), 6) == (0, 6)
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((1, 12), 6) == (1, 12)
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((2, 12), 6) == (1, 6)
@@ -32,7 +32,7 @@ def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_0
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((11, 12), 6) == (11, 12)
 
 
-def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_03( ):
+def test_durtools_rational_to_duration_pair_with_specified_integer_denominator_03():
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((0, 12), 8) == (0, 8)
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((1, 12), 8) == (1, 12)
     assert durtools.rational_to_duration_pair_with_specified_integer_denominator((2, 12), 8) == (2, 12)

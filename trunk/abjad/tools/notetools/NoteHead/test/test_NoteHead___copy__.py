@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_NoteHead___copy___01( ):
+def test_NoteHead___copy___01():
 
     note_head_1 = notetools.NoteHead("cs''")
     note_head_1.tweak.color = 'red'

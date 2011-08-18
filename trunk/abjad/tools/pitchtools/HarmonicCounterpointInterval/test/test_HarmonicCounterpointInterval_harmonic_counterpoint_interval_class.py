@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_01( ):
+def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_01():
     '''Unison.'''
 
     hcpi = pitchtools.HarmonicCounterpointInterval(1)
@@ -9,7 +9,7 @@ def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_01( )
     assert hcpic == pitchtools.HarmonicCounterpointIntervalClass(1)
 
 
-def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_02( ):
+def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_02():
     '''Intervals greater than a unison and less than an octave.'''
 
     hcpi = pitchtools.HarmonicCounterpointInterval(2)
@@ -21,7 +21,7 @@ def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_02( )
     assert hcpic == pitchtools.HarmonicCounterpointIntervalClass(7)
 
 
-def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_03( ):
+def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_03():
     '''Octave.'''
 
     hcpi = pitchtools.HarmonicCounterpointInterval(8)
@@ -29,7 +29,7 @@ def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_03( )
     assert hcpic == pitchtools.HarmonicCounterpointIntervalClass(8)
 
 
-def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_04( ):
+def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_04():
     '''Intervals greater than an octave.'''
 
     hcpi = pitchtools.HarmonicCounterpointInterval(9)

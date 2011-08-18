@@ -7,7 +7,7 @@ from abjad.tools.quantizationtools import tempo_scaled_rational_to_milliseconds
 from abjad.tools.quantizationtools import tempo_scaled_rationals_to_q_events
 
 
-def test_quantizationtools_tempo_scaled_rationals_to_q_events_01( ):
+def test_quantizationtools_tempo_scaled_rationals_to_q_events_01():
     '''Test basic functionality.'''
 
     durations = [Duration(x) for x in [(1, 4), (1, 3), (1, 7), (2, 5), (3, 4)]]
@@ -23,7 +23,7 @@ def test_quantizationtools_tempo_scaled_rationals_to_q_events_01( ):
         QEvent(Duration(630400, 77), None)]
 
 
-def test_quantizationtools_tempo_scaled_rationals_to_q_events_02( ):
+def test_quantizationtools_tempo_scaled_rationals_to_q_events_02():
     '''Silences are fused.'''
 
     durations = [Duration(x) for x in [(1, 4), (-1, 4), (1, 4), (1, 4), (-1, 4), (-1, 4), (1, 4)]]

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tempotools
 
 
-def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_01( ):
+def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_01():
 
     pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 8, 8)
 
@@ -12,7 +12,7 @@ def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_01( ):
         (Fraction(2, 1), Fraction(116, 1))]
 
 
-def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_02( ):
+def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_02():
 
     pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 30, 30)
 
@@ -37,7 +37,7 @@ def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_02( ):
         (Fraction(2, 1), Fraction(116, 1))]
 
 
-def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_03( ):
+def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_03():
 
     pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(52, 4, 4)
 
@@ -48,7 +48,7 @@ def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_03( ):
         (Fraction(2, 1), Fraction(104, 1))]
 
 
-def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_04( ):
+def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_04():
 
     pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(52, 8, 8)
 

@@ -15,8 +15,8 @@ def cumulative_sums(sequence):
     Return list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.cumulative_sums( )`` to
-        ``mathtools.cumulative_sums( )``.
+        renamed ``seqtools.cumulative_sums()`` to
+        ``mathtools.cumulative_sums()``.
     '''
 
 

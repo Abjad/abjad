@@ -33,8 +33,8 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.diatonicize( )`` to
-        ``pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr( )``.
+        renamed ``pitchtools.diatonicize()`` to
+        ``pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr()``.
     '''
     from abjad.tools import tietools
     from abjad.tools import tonalitytools

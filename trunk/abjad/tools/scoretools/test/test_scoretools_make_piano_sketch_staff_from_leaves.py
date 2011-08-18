@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_scoretools_make_piano_sketch_staff_from_leaves_01( ):
+def test_scoretools_make_piano_sketch_staff_from_leaves_01():
 
     notes = notetools.make_notes([-12, -10, -8, -7, -5, 0, 2, 4, 5, 7], [(1, 4)])
     score, treble_staff, bass_staff = scoretools.make_piano_sketch_score_from_leaves(notes)

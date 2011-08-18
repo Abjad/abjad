@@ -51,8 +51,8 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
     .. todo:: optimize without full-component traversal.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.get_vertical_moment_at_prolated_offset_in( )`` to
-        ``verticalitytools.get_vertical_moment_at_prolated_offset_in_expr( )``.
+        renamed ``iterate.get_vertical_moment_at_prolated_offset_in()`` to
+        ``verticalitytools.get_vertical_moment_at_prolated_offset_in_expr()``.
     '''
     from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 

@@ -31,8 +31,8 @@ def make_solid_text_spanner_above_with_nib_at_right(left_text, components = None
         }
 
     .. versionchanged:: 2.0
-        renamed ``spanners.solid_text_spanner_above_with_nib_at_right( )`` to
-        ``spannertools.make_solid_text_spanner_above_with_nib_at_right( )``.
+        renamed ``spanners.solid_text_spanner_above_with_nib_at_right()`` to
+        ``spannertools.make_solid_text_spanner_above_with_nib_at_right()``.
     '''
 
     text_spanner = TextSpanner(components)

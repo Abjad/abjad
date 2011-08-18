@@ -4,7 +4,7 @@ from abjad import Fraction
 import py.test
 
 
-def test_intervaltreetools_concatenate_trees_01( ):
+def test_intervaltreetools_concatenate_trees_01():
     a = BoundedInterval(0, 10)
     b = BoundedInterval(5, 15)
     c = BoundedInterval(10, 20)
@@ -21,7 +21,7 @@ def test_intervaltreetools_concatenate_trees_01( ):
     assert b.signature == (5, 15)
     assert c.signature == (10, 20)
 
-def test_intervaltreetools_concatenate_trees_02( ):
+def test_intervaltreetools_concatenate_trees_02():
     a = BoundedInterval(0, 10)
     b = BoundedInterval(5, 15)
     c = BoundedInterval(10, 20)

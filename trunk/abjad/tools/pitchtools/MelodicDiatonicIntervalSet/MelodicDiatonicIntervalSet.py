@@ -15,7 +15,7 @@ class MelodicDiatonicIntervalSet(_IntervalSet):
     def __new__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, str):
-            interval_tokens = arg.split( )
+            interval_tokens = arg.split()
         else:
             interval_tokens = arg
         mdis = [pitchtools.MelodicDiatonicInterval(x) for x in interval_tokens]

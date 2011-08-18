@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Chord___setattr___01( ):
+def test_Chord___setattr___01():
     '''Slots constrain chord attributes.
     '''
 

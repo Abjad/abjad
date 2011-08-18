@@ -29,8 +29,8 @@ def extend_left_in_parent_of_component_and_do_not_grow_spanners(component, compo
 
     Return `components` and `component` together in newly created list.
 
-    .. versionchanged:: 2.0 renamed ``extend_left_in_parent( )`` to
-        ``extend_left_in_parent_of_component_and_do_not_grow_spanners( )``.
+    .. versionchanged:: 2.0 renamed ``extend_left_in_parent()`` to
+        ``extend_left_in_parent_of_component_and_do_not_grow_spanners()``.
     '''
 
     assert all_are_components(components)

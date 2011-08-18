@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InversionEquivalentChromaticIntervalClass___eq___01( ):
+def test_InversionEquivalentChromaticIntervalClass___eq___01():
 
     ic1 = pitchtools.InversionEquivalentChromaticIntervalClass(1)
     ic2 = pitchtools.InversionEquivalentChromaticIntervalClass(1)

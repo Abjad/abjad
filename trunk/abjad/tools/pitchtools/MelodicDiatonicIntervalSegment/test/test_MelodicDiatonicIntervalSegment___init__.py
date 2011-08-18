@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicDiatonicIntervalSegment___init___01( ):
+def test_MelodicDiatonicIntervalSegment___init___01():
     '''Init with iterable of melodic diatonic interval instances.'''
 
     mdi_segment = pitchtools.MelodicDiatonicIntervalSegment([

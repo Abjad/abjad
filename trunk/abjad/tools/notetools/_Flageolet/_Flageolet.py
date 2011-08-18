@@ -3,7 +3,7 @@ class _Flageolet(object):
     Abstract base class.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     ### PUBLIC ATTRIBUTES ###
 

@@ -13,8 +13,8 @@ def is_chromatic_pitch_class_name_octave_number_pair(expr):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.is_pair( )`` to
-        ``pitchtools.is_chromatic_pitch_class_name_octave_number_pair( )``.
+        renamed ``pitchtools.is_pair()`` to
+        ``pitchtools.is_chromatic_pitch_class_name_octave_number_pair()``.
     '''
 
     if isinstance(expr, tuple):

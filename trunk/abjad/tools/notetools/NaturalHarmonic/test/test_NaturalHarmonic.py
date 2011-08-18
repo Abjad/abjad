@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NaturalHarmonic_01( ):
+def test_NaturalHarmonic_01():
 
     t = notetools.NaturalHarmonic(10, (1, 4))
 

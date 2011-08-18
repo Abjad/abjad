@@ -1,7 +1,7 @@
 from abjad.tools.quantizationtools import QGrid
 
 
-def test_quantizationtools_QGrid_find_parentage_of_index_01( ):
+def test_quantizationtools_QGrid_find_parentage_of_index_01():
 
     q = QGrid([0, [[0, 0], 0, 0], 0, 0, 0], 0)
     assert q.find_parentage_of_index(0) == (5,)

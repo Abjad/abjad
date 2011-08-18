@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_skiptools_iterate_skips_backward_in_expr_01( ):
+def test_skiptools_iterate_skips_backward_in_expr_01():
 
     staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
 

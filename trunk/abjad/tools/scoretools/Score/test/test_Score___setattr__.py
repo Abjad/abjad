@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Score___setattr___01( ):
+def test_Score___setattr___01():
     '''Slots constrain score attributes.
     '''
 

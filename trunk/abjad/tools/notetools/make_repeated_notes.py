@@ -33,8 +33,8 @@ def make_repeated_notes(count, duration = durtools.Duration(1, 8)):
     Return list of zero or more newly constructed notes or list of one newly constructed tuplet.
 
     .. versionchanged:: 2.0
-        renamed ``construct.run( )`` to
-        ``notetools.make_repeated_notes( )``.
+        renamed ``construct.run()`` to
+        ``notetools.make_repeated_notes()``.
     '''
 
     return make_notes([0] * count, [duration])

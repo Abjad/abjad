@@ -26,8 +26,8 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
     Return string.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.pc_to_pitch_name_flats( )`` to
-        ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats( )``.
+        renamed ``pitchtools.pc_to_pitch_name_flats()`` to
+        ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats()``.
     '''
 
     try:

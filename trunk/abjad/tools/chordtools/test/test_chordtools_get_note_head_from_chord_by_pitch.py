@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_chordtools_get_note_head_from_chord_by_pitch_01( ):
+def test_chordtools_get_note_head_from_chord_by_pitch_01():
     '''Return reference to note_head in chord with pitch equal to pitch.'''
 
     chord = Chord([0, 2, 11], Duration(1, 4))
@@ -17,7 +17,7 @@ def test_chordtools_get_note_head_from_chord_by_pitch_01( ):
     assert note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 11
 
 
-def test_chordtools_get_note_head_from_chord_by_pitch_02( ):
+def test_chordtools_get_note_head_from_chord_by_pitch_02():
     '''Raise MissingNoteHeadError and ExtraNoteHeadError as required.'''
 
     chord = Chord([0, 2, 2], Duration(1, 4))

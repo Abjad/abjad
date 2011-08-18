@@ -10,8 +10,8 @@ def get_spanners_that_dominate_container_components_from_to(container, start, st
         This exists for slices like t[2:2] that are empty lists.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.get_dominant_slice( )`` to
-        ``spannertools.get_spanners_that_dominate_container_components_from_to( )``.
+        renamed ``spannertools.get_dominant_slice()`` to
+        ``spannertools.get_spanners_that_dominate_container_components_from_to()``.
     '''
 
     from abjad.tools.containertools.Container import Container

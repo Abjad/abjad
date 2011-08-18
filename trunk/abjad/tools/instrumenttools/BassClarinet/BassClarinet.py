@@ -12,7 +12,7 @@ class BassClarinet(Clarinet):
 
     ::
 
-        abjad> instrumenttools.BassClarinet( )(staff)
+        abjad> instrumenttools.BassClarinet()(staff)
         BassClarinet('Bass Clarinet', 'Bass Cl.')
 
     ::

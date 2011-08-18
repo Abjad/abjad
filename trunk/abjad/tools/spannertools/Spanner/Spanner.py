@@ -40,8 +40,8 @@ class Spanner(_StrictComparator):
         self._contiguity_constraint = 'thread'
         self._format = _SpannerFormatInterface(self)
         self._offset = _SpannerOffsetInterface(self)
-        #self._override = LilyPondGrobOverrideComponentPlugIn( )
-        #self._set = LilyPondContextSettingComponentPlugIn( )
+        #self._override = LilyPondGrobOverrideComponentPlugIn()
+        #self._set = LilyPondContextSettingComponentPlugIn()
         self._initialize_components(components)
 
     ### OVERLOADS ###
@@ -55,7 +55,7 @@ class Spanner(_StrictComparator):
             return False
 
     def __copy__(self, *args):
-        new = type(self)(*self.__getnewargs__( ))
+        new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
@@ -69,10 +69,10 @@ class Spanner(_StrictComparator):
         return self._components.__getitem__(expr)
 
     def __getnewargs__(self):
-        return ( )
+        return ()
 
     def __len__(self):
-        return self._components.__len__( )
+        return self._components.__len__()
 
     def __repr__(self):
         return '%s(%s)' % (self.__class__.__name__, self._compact_summary)
@@ -124,7 +124,7 @@ class Spanner(_StrictComparator):
         ###right = self.copy(i, len(self))
         #right = self.copy(self[i:])
         right = self._copy(self[i:])
-        self._block_all_components( )
+        self._block_all_components()
         return self, left, right
 
     def _fracture_right(self, i):
@@ -134,16 +134,16 @@ class Spanner(_StrictComparator):
         ###right = self.copy(i + 1, len(self))
         #right = self.copy(self[i+1:])
         right = self._copy(self[i+1:])
-        self._block_all_components( )
+        self._block_all_components()
         return self, left, right
 
     def _fuse_by_reference(self, spanner):
-        ###result = self.copy( )
+        ###result = self.copy()
         #result = self.copy(self[:])
         result = self._copy(self[:])
         result.extend(spanner.components)
-        self._block_all_components( )
-        spanner._block_all_components( )
+        self._block_all_components()
+        spanner._block_all_components()
         return [(self, spanner, result)]
 
     def _initialize_components(self, components):
@@ -172,7 +172,7 @@ class Spanner(_StrictComparator):
         True if next leaf or prev leaf is None.
         False otherwise.
 
-        .. todo:: Write Spanner._is_exterior_leaf( ) tests.
+        .. todo:: Write Spanner._is_exterior_leaf() tests.
         '''
         if self._is_my_first_leaf(leaf):
             return True
@@ -353,7 +353,7 @@ class Spanner(_StrictComparator):
         '''LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = LilyPondGrobOverrideComponentPlugIn( )
+            self._override = LilyPondGrobOverrideComponentPlugIn()
         return self._override
 
     @property
@@ -371,7 +371,7 @@ class Spanner(_StrictComparator):
         '''LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = LilyPondContextSettingComponentPlugIn( )
+            self._set = LilyPondContextSettingComponentPlugIn()
         return self._set
 
     @property
@@ -444,14 +444,14 @@ class Spanner(_StrictComparator):
 
         ::
 
-            abjad> spanner.clear( )
+            abjad> spanner.clear()
             abjad> spanner
-            Spanner( )
+            Spanner()
 
         Return none.
         '''
 
-        self._sever_all_components( )
+        self._sever_all_components()
 
     ###def copy(self, start = None, stop = None):
     #def copy(self, components):
@@ -479,7 +479,7 @@ class Spanner(_StrictComparator):
         for component in components:
             result._components.append(component)
 
-        result._unblock_all_components( )
+        result._unblock_all_components()
         return result
 
     def extend(self, components):
@@ -576,7 +576,7 @@ class Spanner(_StrictComparator):
             ###center = self.copy(i, i)
             #center = self.copy(self[i:i+1])
             center = self._copy(self[i:i+1])
-            self._block_all_components( )
+            self._block_all_components()
             return self, left, center, right
         else:
             raise ValueError(
@@ -654,7 +654,7 @@ class Spanner(_StrictComparator):
 
         ::
 
-            abjad> spanner.pop( )
+            abjad> spanner.pop()
             Note("f'8")
 
         ::
@@ -679,7 +679,7 @@ class Spanner(_StrictComparator):
 
         ::
 
-            abjad> spanner.pop_left( )
+            abjad> spanner.pop_left()
             Note("c'8")
 
         ::

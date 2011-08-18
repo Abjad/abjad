@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Note_grace_01( ):
+def test_Note_grace_01():
     '''Attach one grace note.
     '''
 
@@ -18,7 +18,7 @@ def test_Note_grace_01( ):
     assert note.format == "\\grace {\n\td'16\n}\nc'4"
 
 
-def test_Note_grace_02( ):
+def test_Note_grace_02():
     '''Attach several grace notes.
     '''
 
@@ -37,7 +37,7 @@ def test_Note_grace_02( ):
     assert note.format == "\\grace {\n\tc'16\n\td'16\n\te'16\n}\nc'4"
 
 
-def test_Note_grace_03( ):
+def test_Note_grace_03():
     '''Attach one appoggiatura.
     '''
 
@@ -54,7 +54,7 @@ def test_Note_grace_03( ):
     assert note.format == "\\appoggiatura {\n\td'16\n}\nc'4"
 
 
-def test_Note_grace_04( ):
+def test_Note_grace_04():
     '''Attach one acciaccatura.
     '''
 
@@ -71,7 +71,7 @@ def test_Note_grace_04( ):
     assert note.format == "\\acciaccatura {\n\td'16\n}\nc'4"
 
 
-def test_Note_grace_05( ):
+def test_Note_grace_05():
     '''Attach one after grace note.
     '''
 
@@ -89,7 +89,7 @@ def test_Note_grace_05( ):
     assert note.format == "\\afterGrace\nc'4\n{\n\td'16\n}"
 
 
-def test_Note_grace_06( ):
+def test_Note_grace_06():
     '''Attach several after grace notes.
     '''
 

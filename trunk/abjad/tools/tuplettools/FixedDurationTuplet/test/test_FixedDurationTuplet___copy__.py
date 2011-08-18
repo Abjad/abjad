@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_FixedDurationTuplet___copy___01( ):
+def test_FixedDurationTuplet___copy___01():
 
 
     tuplet_1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")

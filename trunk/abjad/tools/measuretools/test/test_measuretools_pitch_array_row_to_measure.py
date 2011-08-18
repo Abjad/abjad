@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_measuretools_pitch_array_row_to_measure_01( ):
+def test_measuretools_pitch_array_row_to_measure_01():
 
     array = pitcharraytools.PitchArray([
         [1, (2, 1), ([-2, -1.5], 2)],

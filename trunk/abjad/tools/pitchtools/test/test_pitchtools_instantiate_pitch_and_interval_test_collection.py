@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_pitchtools_instantiate_pitch_and_interval_test_collection_01( ):
+def test_pitchtools_instantiate_pitch_and_interval_test_collection_01():
 
-    result = pitchtools.instantiate_pitch_and_interval_test_collection( )
+    result = pitchtools.instantiate_pitch_and_interval_test_collection()
 
     assert result == [
         pitchtools.HarmonicChromaticInterval(1),

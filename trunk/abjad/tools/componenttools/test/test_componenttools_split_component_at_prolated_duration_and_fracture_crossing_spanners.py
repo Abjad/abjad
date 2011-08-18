@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_01( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_01():
     '''Duration split leaf in score and fracture spanners.
     '''
 
@@ -51,7 +51,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 ( ) [\n\t\tc'16. (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_02( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_02():
     '''Duration split measure in score and fracture spanners.
     '''
 
@@ -104,7 +104,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16. [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_03( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_03():
     '''Duration split staff outside of score and fracture spanners.
     '''
 
@@ -164,7 +164,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert halves[1][0].format == "\\new Staff {\n\t{\n\t\t\\time 7/32\n\t\tc'16. [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_04( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_04():
     '''Duration fracture leaf in score at nonzero index.
     Fracture spanners.
     Test comes from a bug fix.
@@ -213,7 +213,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 )\n\t\td'16. ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_05( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_05():
     '''Duration fracture container over leaf at nonzero index.
     Fracture spanners.
     Test results from bug fix.
@@ -265,7 +265,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 7/32\n\t\tc'8 [ (\n\t\td'16. ] )\n\t}\n\t{\n\t\t\\time 1/32\n\t\td'32 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_06( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_06():
     '''Duration split container between leaves and fracture spanners.
     '''
 
@@ -317,7 +317,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] ( )\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_07( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_07():
     '''Duration split leaf outside of score and fracture spanners.
     '''
 
@@ -335,7 +335,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert componenttools.is_well_formed_component(halves[1][0])
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_08( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_08():
     '''Duration split leaf in score and fracture spanners.
     Tie leaves after split.
     '''
@@ -388,7 +388,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 ( ) [ ~\n\t\tc'16. (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_09( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_09():
     '''Duration split measure in score and fracture spanners.
     Tie leaves after split.
     '''
@@ -443,7 +443,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16. [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_10( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_10():
     '''Duration split binary measure in score at nonbinary split point.
     Do fracture spanners but do not tie leaves after split.
     '''
@@ -501,7 +501,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_11( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_11():
     '''Duration split binary measure in score at nonbinary split point.
     Do fracture spanners and do tie leaves after split.
     '''
@@ -559,7 +559,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ] ) ~\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_12( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_12():
     '''Split binary measure at nonbinary split point.
     Do fracture spanners but do not tie across split locus.
     This test results from a fix.
@@ -622,7 +622,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 14/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'8 ~\n\t\t\td'32\n\t\t\te'8 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\te'32 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_13( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_13():
     '''Duration split leaf with LilyPond multiplier.
     Split at binary split point.
     Halves carry original written duration.
@@ -644,7 +644,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert halves[1][0].format == "c'8 * 1/4"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_14( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_14():
     '''Duration split leaf with LilyPond multiplier.
     Split at nonbinary split point.
     Halves carry original written duration.
@@ -666,7 +666,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert halves[1][0].format == "c'8 * 1/3"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_15( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_15():
     '''Duration split binary measure with multiplied leaves.
     Split at binary split point between leaves.
     Leaves remain unaltered.'''
@@ -719,7 +719,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'8 * 1/2 [ ] ( )\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'8 * 1/2 [ ] (\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_16( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_16():
     '''Duration split binary measure with multiplied leaves.
     Split at binary split point through leaves.
     Leaf written durations stay the same but multipliers change.
@@ -774,7 +774,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'8 * 1/2 [ (\n\t\td'8 * 1/4 ] )\n\t}\n\t{\n\t\t\\time 1/32\n\t\td'8 * 1/4 [ ] (\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_17( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_17():
     '''Duration split binary measure with multiplied leaves.
     Split at nonbinary split point through leaves.
     Leaf written durations adjust for binary-to-nonbinary change.
@@ -834,7 +834,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. * 1/2 [ (\n\t\t\td'8. * 1/6 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. * 1/3 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_18( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_18():
     '''Duration split binary measure with multiplied leaves.
     Time signature carries numerator that necessitates ties.
     Split at nonbinary split point through leaves.
@@ -876,7 +876,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 16/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 1/4\n\t\t}\n\t}\n\t{\n\t\t\\time 9/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 9/64\n\t\t}\n\t}\n}"
 
 
-def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_19( ):
+def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_19():
     '''Duration split nonbinary measure at nonbinary split point.
     Measure multiplier and split point multiplier match.
     Split between leaves but do fracture spanners.

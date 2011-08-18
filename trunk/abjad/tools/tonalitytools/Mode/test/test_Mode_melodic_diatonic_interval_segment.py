@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_Mode_melodic_diatonic_interval_segment_01( ):
+def test_Mode_melodic_diatonic_interval_segment_01():
 
     m2 = pitchtools.MelodicDiatonicInterval('minor', 2)
     M2 = pitchtools.MelodicDiatonicInterval('major', 2)

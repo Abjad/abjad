@@ -49,7 +49,7 @@ class StaffLinesSpanner(Spanner):
         self._format = _StaffLinesSpannerFormatInterface(self)
 
     @apply
-    def lines( ):
+    def lines():
         def fget(self):
             r'''Get staff lines spanner line count::
 
@@ -78,7 +78,7 @@ class StaffLinesSpanner(Spanner):
             else:
                 raise ValueError('StaffLinesSpanner requires either an int, '
                     'or a list/tuple of ints and/or floats.')
-        return property(**locals( ))
+        return property(**locals())
 
 
 

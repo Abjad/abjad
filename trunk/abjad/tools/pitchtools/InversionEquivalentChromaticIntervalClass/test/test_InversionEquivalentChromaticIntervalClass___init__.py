@@ -1,14 +1,14 @@
 from abjad import *
 
 
-def test_InversionEquivalentChromaticIntervalClass___init___01( ):
+def test_InversionEquivalentChromaticIntervalClass___init___01():
     '''Init from zero.'''
 
     ic = pitchtools.InversionEquivalentChromaticIntervalClass(0)
     assert ic.number == 0
 
 
-def test_InversionEquivalentChromaticIntervalClass___init___02( ):
+def test_InversionEquivalentChromaticIntervalClass___init___02():
     '''Init from positive integer.'''
 
     ic = pitchtools.InversionEquivalentChromaticIntervalClass(1)
@@ -30,7 +30,7 @@ def test_InversionEquivalentChromaticIntervalClass___init___02( ):
     assert ic.number == 6
 
 
-def test_InversionEquivalentChromaticIntervalClass___init___03( ):
+def test_InversionEquivalentChromaticIntervalClass___init___03():
     '''Init from positive float.'''
 
     ic = pitchtools.InversionEquivalentChromaticIntervalClass(0.5)

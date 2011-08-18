@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row_01( ):
+def test_pitchtools_permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row_01():
 
     notes = notetools.make_notes([17, -10, -2, 11], [Duration(1, 4)])
     row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])

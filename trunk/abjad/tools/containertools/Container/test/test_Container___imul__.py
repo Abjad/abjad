@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Container___imul___01( ):
+def test_Container___imul___01():
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -20,7 +20,7 @@ def test_Container___imul___01( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_Container___imul___02( ):
+def test_Container___imul___02():
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -37,7 +37,7 @@ def test_Container___imul___02( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_Container___imul___03( ):
+def test_Container___imul___03():
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])

@@ -16,8 +16,8 @@ def get_element_starting_at_exactly_prolated_offset(container, prolated_offset):
     Raise missing component error when no `container` element starts at exactly `prolated_offset`.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.get_element_starting_at_prolated_offset( )`` to
-        ``containertools.get_element_starting_at_exactly_prolated_offset( )``.
+        renamed ``containertools.get_element_starting_at_prolated_offset()`` to
+        ``containertools.get_element_starting_at_exactly_prolated_offset()``.
     '''
 
     for element in container:

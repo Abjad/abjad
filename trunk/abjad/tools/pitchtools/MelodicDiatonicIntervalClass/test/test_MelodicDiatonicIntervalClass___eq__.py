@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicDiatonicIntervalClass___eq___01( ):
+def test_MelodicDiatonicIntervalClass___eq___01():
 
     mdic_1 = pitchtools.MelodicDiatonicIntervalClass('perfect', 1)
     mdic_2 = pitchtools.MelodicDiatonicIntervalClass('perfect', -1)
@@ -16,7 +16,7 @@ def test_MelodicDiatonicIntervalClass___eq___01( ):
     assert not mdic_2 is mdic_1
 
 
-def test_MelodicDiatonicIntervalClass___eq___02( ):
+def test_MelodicDiatonicIntervalClass___eq___02():
 
     mdic_1 = pitchtools.MelodicDiatonicIntervalClass('perfect', 2)
     mdic_2 = pitchtools.MelodicDiatonicIntervalClass('perfect', 9)
@@ -31,7 +31,7 @@ def test_MelodicDiatonicIntervalClass___eq___02( ):
     assert not mdic_2 is mdic_1
 
 
-def test_MelodicDiatonicIntervalClass___eq___03( ):
+def test_MelodicDiatonicIntervalClass___eq___03():
 
     mdic_1 = pitchtools.MelodicDiatonicIntervalClass('perfect', -2)
     mdic_2 = pitchtools.MelodicDiatonicIntervalClass('perfect', -9)

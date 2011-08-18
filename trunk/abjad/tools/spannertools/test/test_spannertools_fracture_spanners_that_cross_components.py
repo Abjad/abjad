@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_fracture_spanners_that_cross_components_01( ):
+def test_spannertools_fracture_spanners_that_cross_components_01():
     '''Fracture all spanners to the left of the leftmost component in list;
         fracture all spanners to the right of the rightmost component in list.
     '''
@@ -24,7 +24,7 @@ def test_spannertools_fracture_spanners_that_cross_components_01( ):
     assert t.format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [\n\te'8 ]\n\tf'8 [ ]\n}"
 
 
-def test_spannertools_fracture_spanners_that_cross_components_02( ):
+def test_spannertools_fracture_spanners_that_cross_components_02():
     '''Fracture to the left of leftmost component;
         fracture to the right of rightmost component.'''
 
@@ -45,14 +45,14 @@ def test_spannertools_fracture_spanners_that_cross_components_02( ):
     assert t.format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [ ]\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_spannertools_fracture_spanners_that_cross_components_03( ):
+def test_spannertools_fracture_spanners_that_cross_components_03():
     '''Empty list raises no exception.'''
 
     result = spannertools.fracture_spanners_that_cross_components([ ])
     assert result == [ ]
 
 
-def test_spannertools_fracture_spanners_that_cross_components_04( ):
+def test_spannertools_fracture_spanners_that_cross_components_04():
     '''Fractures around components at only top level of list.'''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
@@ -100,7 +100,7 @@ def test_spannertools_fracture_spanners_that_cross_components_04( ):
     assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [ \\<\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\!\n\t}\n}"
 
 
-def test_spannertools_fracture_spanners_that_cross_components_05( ):
+def test_spannertools_fracture_spanners_that_cross_components_05():
     '''Fractures around components at only top level of list.'''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)

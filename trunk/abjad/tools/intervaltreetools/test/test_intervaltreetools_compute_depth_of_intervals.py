@@ -3,8 +3,8 @@ from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools._make_test_intervals import _make_test_intervals
 
 
-def test_intervaltreetools_compute_depth_of_intervals_01( ):
-    tree = IntervalTree(_make_test_intervals( ))
+def test_intervaltreetools_compute_depth_of_intervals_01():
+    tree = IntervalTree(_make_test_intervals())
     depths = compute_depth_of_intervals(tree)
     target = [
         ((0, 3), 1),

@@ -7,7 +7,7 @@ class LilyPondVersionToken(_Immutable):
 
     LilyPond version token::
 
-        abjad> lilyfiletools.LilyPondVersionToken( )
+        abjad> lilyfiletools.LilyPondVersionToken()
         LilyPondVersionToken(\version "...")
 
     Return LilyPond version token.
@@ -24,9 +24,9 @@ class LilyPondVersionToken(_Immutable):
     def format(self):
         r'''Format contribution of LilyPond version token::
 
-            abjad> lilyfiletools.LilyPondVersionToken( ).format
+            abjad> lilyfiletools.LilyPondVersionToken().format
             '\\version "..."'
 
         Return string.
         '''
-        return r'\version "%s"' % get_lilypond_version_string( )
+        return r'\version "%s"' % get_lilypond_version_string()

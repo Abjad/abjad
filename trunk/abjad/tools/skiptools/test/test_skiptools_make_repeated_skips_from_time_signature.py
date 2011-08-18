@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_skiptools_make_repeated_skips_from_time_signature_01( ):
+def test_skiptools_make_repeated_skips_from_time_signature_01():
     '''Make repeated skips from integer pair.
     '''
 
@@ -12,7 +12,7 @@ def test_skiptools_make_repeated_skips_from_time_signature_01( ):
     assert staff.format == '\\new Staff {\n\ts32\n\ts32\n\ts32\n\ts32\n\ts32\n}'
 
 
-def test_skiptools_make_repeated_skips_from_time_signature_02( ):
+def test_skiptools_make_repeated_skips_from_time_signature_02():
     '''Make repeated skips from time signature.
     '''
 

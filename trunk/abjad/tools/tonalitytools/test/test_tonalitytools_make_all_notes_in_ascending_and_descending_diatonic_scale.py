@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_tonalitytools_make_all_notes_in_ascending_and_descending_diatonic_scale_01( ):
+def test_tonalitytools_make_all_notes_in_ascending_and_descending_diatonic_scale_01():
 
     score = tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale(
         contexttools.KeySignatureMark('E', 'major'))

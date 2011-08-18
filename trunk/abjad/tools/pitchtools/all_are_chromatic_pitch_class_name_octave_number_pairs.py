@@ -12,8 +12,8 @@ def all_are_chromatic_pitch_class_name_octave_number_pairs(expr):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.is_pitch_token_collection( )`` to
-        ``pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs( )``.
+        renamed ``pitchtools.is_pitch_token_collection()`` to
+        ``pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs()``.
     '''
 
     if isinstance(expr, (list, tuple, set)):

@@ -62,8 +62,8 @@ def partition_sequence_by_sign_of_elements(sequence, sign = [-1, 0, 1]):
     Return list of tuples of `sequence` element references.
 
     .. versionchanged:: 2.0
-        renamed ``listtools.group_by_sign( )`` to
-        ``seqtools.partition_sequence_by_sign_of_elements( )``.
+        renamed ``listtools.group_by_sign()`` to
+        ``seqtools.partition_sequence_by_sign_of_elements()``.
     '''
 
     result = [ ]

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_interlace_sequences_01( ):
+def test_seqtools_interlace_sequences_01():
 
     k = range(100, 103)
     l = range(200, 201)
@@ -13,7 +13,7 @@ def test_seqtools_interlace_sequences_01( ):
     assert t == [100, 200, 300, 400, 101, 301, 401, 102, 302, 402, 403, 404, 405, 406, 407]
 
 
-def test_seqtools_interlace_sequences_02( ):
+def test_seqtools_interlace_sequences_02():
 
     a = 'introductory'
     b = 'text'

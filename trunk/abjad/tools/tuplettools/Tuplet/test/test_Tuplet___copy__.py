@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Tuplet___copy___01( ):
+def test_Tuplet___copy___01():
 
 
     tuplet_1 = Tuplet((2, 3), "c'8 d'8 e'8")

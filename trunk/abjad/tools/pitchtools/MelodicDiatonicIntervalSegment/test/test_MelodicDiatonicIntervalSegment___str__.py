@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicDiatonicIntervalSegment___str___01( ):
+def test_MelodicDiatonicIntervalSegment___str___01():
 
     mdi_segment = pitchtools.MelodicDiatonicIntervalSegment([
         pitchtools.MelodicDiatonicInterval('major', 2),

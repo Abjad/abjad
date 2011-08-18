@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_ExtentIndicator___eq___01( ):
+def test_ExtentIndicator___eq___01():
 
     t = tonalitytools.ExtentIndicator(5)
     u = tonalitytools.ExtentIndicator(5)

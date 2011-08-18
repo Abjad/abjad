@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_01( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_01():
     '''Chord split by number only; empty bass.
     '''
 
@@ -17,7 +17,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_01( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_02( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_02():
     '''Chord split by number only; one-note bass.
     '''
 
@@ -33,7 +33,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_02( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_03( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_03():
     '''Chord split by number only; one-note treble.
     '''
 
@@ -49,7 +49,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_03( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_04( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_04():
     '''Chord split by number only; empty treble.
     '''
 
@@ -65,7 +65,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_04( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_05( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_05():
     '''Typographically crossed split by number only.
     '''
 
@@ -82,7 +82,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_05( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_06( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_06():
     '''Single note below pitch number split point.
     '''
 
@@ -98,7 +98,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_06( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_07( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_07():
     '''Single note at pitch number split point.
     '''
 
@@ -114,7 +114,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_07( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_08( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_08():
     '''Single note above pitch number split point.
     '''
 
@@ -130,7 +130,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_08( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_09( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_09():
     '''Rest splits into two new rests.
     '''
 
@@ -145,7 +145,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_09( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_10( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_10():
     '''Split copies over note head coloring.
     '''
 
@@ -195,7 +195,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_10( ):
     assert bass.format == "<\n\t\\tweak #'color #red\n\tc'\n\t\\tweak #'color #red\n\tcs'\n>4"
 
 
-def test_chordtools_divide_chord_by_chromatic_pitch_number_11( ):
+def test_chordtools_divide_chord_by_chromatic_pitch_number_11():
     '''Copy up-markup to treble and down-markup to bass.
     '''
 

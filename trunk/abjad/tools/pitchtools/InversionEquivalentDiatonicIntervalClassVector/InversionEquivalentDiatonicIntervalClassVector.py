@@ -18,7 +18,7 @@ class InversionEquivalentDiatonicIntervalClassVector(_Vector):
     '''
 
     def __init__(self, expr):
-        self.all_dics = inventory_inversion_equivalent_diatonic_interval_classes( )
+        self.all_dics = inventory_inversion_equivalent_diatonic_interval_classes()
         for dic in self.all_dics:
             #self[dic] = 0
             dict.__setitem__(self, dic, 0)

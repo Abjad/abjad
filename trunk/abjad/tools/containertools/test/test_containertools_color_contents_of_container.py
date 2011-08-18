@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_color_contents_of_container_01( ):
+def test_containertools_color_contents_of_container_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)

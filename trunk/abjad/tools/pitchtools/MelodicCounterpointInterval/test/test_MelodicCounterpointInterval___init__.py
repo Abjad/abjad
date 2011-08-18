@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicCounterpointInterval___init___01( ):
+def test_MelodicCounterpointInterval___init___01():
 
     mcpi = pitchtools.MelodicCounterpointInterval(15)
 

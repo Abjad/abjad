@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import cfgtools
 
 
-def test_cfgtools_set_default_accidental_spelling_01( ):
+def test_cfgtools_set_default_accidental_spelling_01():
 
     t = Staff([Note(n, (1, 8)) for n in range(12)])
 
@@ -26,7 +26,7 @@ def test_cfgtools_set_default_accidental_spelling_01( ):
     assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
 
 
-def test_cfgtools_set_default_accidental_spelling_02( ):
+def test_cfgtools_set_default_accidental_spelling_02():
 
     cfgtools.set_default_accidental_spelling('sharps')
     t = Staff([Note(n, (1, 8)) for n in range(12)])
@@ -51,7 +51,7 @@ def test_cfgtools_set_default_accidental_spelling_02( ):
     assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\tgs'8\n\ta'8\n\tas'8\n\tb'8\n}"
 
 
-def test_cfgtools_set_default_accidental_spelling_03( ):
+def test_cfgtools_set_default_accidental_spelling_03():
 
     cfgtools.set_default_accidental_spelling('flats')
     t = Staff([Note(n, (1, 8)) for n in range(12)])
@@ -76,7 +76,7 @@ def test_cfgtools_set_default_accidental_spelling_03( ):
     assert t.format == "\\new Staff {\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tgf'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
 
 
-def test_cfgtools_set_default_accidental_spelling_04( ):
+def test_cfgtools_set_default_accidental_spelling_04():
     '''Revert back to default mixed spelling.'''
 
     cfgtools.set_default_accidental_spelling('mixed')

@@ -2,7 +2,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_Note___init___01( ):
+def test_Note___init___01():
     '''Init note with pitch in octave zero.
     '''
 
@@ -10,14 +10,14 @@ def test_Note___init___01( ):
     assert t.format == 'b,,,4'
 
 
-def test_Note___init___02( ):
+def test_Note___init___02():
     '''Init note with non-assignable duration.
     '''
 
     raises(AssignabilityError, 'Note(0, (5, 8))')
 
 
-def test_Note___init___03( ):
+def test_Note___init___03():
     '''Init note with LilyPond-style pitch string.
     '''
 
@@ -25,7 +25,7 @@ def test_Note___init___03( ):
     assert t.format == 'c,,4'
 
 
-def test_Note___init___04( ):
+def test_Note___init___04():
     '''Init note with complete LilyPond-style note string.
     '''
 
@@ -33,7 +33,7 @@ def test_Note___init___04( ):
     assert t.format == 'cs8.'
 
 
-def test_Note___init___05( ):
+def test_Note___init___05():
     '''Init note with pitch, written duration and LilyPond multiplier.
     '''
 
@@ -41,7 +41,7 @@ def test_Note___init___05( ):
     assert isinstance(note, Note)
 
 
-def test_Note___init___06( ):
+def test_Note___init___06():
     '''Init note from chord.
     '''
 
@@ -56,7 +56,7 @@ def test_Note___init___06( ):
     assert n.written_duration == duration
 
 
-def test_Note___init___07( ):
+def test_Note___init___07():
     '''Init note from tupletized chord.
     '''
 
@@ -69,7 +69,7 @@ def test_Note___init___07( ):
     assert isinstance(note, Note)
 
 
-def test_Note___init___08( ):
+def test_Note___init___08():
     '''Init note from beamed chord.
     '''
 
@@ -81,7 +81,7 @@ def test_Note___init___08( ):
     assert isinstance(note, Note)
 
 
-def test_Note___init___09( ):
+def test_Note___init___09():
     '''Init note from rest.
     '''
 
@@ -97,7 +97,7 @@ def test_Note___init___09( ):
     assert isinstance(r, Rest)
 
 
-def test_Note___init___10( ):
+def test_Note___init___10():
     '''Init note from tupletized rest.
     '''
 
@@ -111,7 +111,7 @@ def test_Note___init___10( ):
     assert note._parentage.parent is None
 
 
-def test_Note___init___11( ):
+def test_Note___init___11():
     '''Init note from beamed rest.
     '''
 
@@ -124,7 +124,7 @@ def test_Note___init___11( ):
     assert note._parentage.parent is None
 
 
-def test_Note___init___12( ):
+def test_Note___init___12():
     '''Cast skip as note.'''
     s = skiptools.Skip((1, 8))
     d = s.written_duration
@@ -136,7 +136,7 @@ def test_Note___init___12( ):
     assert n.written_duration == d
 
 
-def test_Note___init___13( ):
+def test_Note___init___13():
     '''Init note from tupletized skip.
     '''
 
@@ -150,7 +150,7 @@ def test_Note___init___13( ):
     assert note._parentage.parent is None
 
 
-def test_Note___init___14( ):
+def test_Note___init___14():
     '''Init note from beamed skip.
     '''
 

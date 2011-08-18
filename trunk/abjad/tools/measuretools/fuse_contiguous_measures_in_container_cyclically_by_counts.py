@@ -79,16 +79,16 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
     Set `mark` to true to mark fused measures for later reference.
 
     .. versionchanged:: 2.0
-        renamed ``fuse.measures_by_counts_cyclic( )`` to
-        ``measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts( )``.
+        renamed ``fuse.measures_by_counts_cyclic()`` to
+        ``measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts()``.
     '''
 
     assert isinstance(container, containertools.Container)
     assert isinstance(counts, (tuple, list))
 
     try:
-        container._update_marks_of_entire_score_tree_if_necessary( )
-        container._forbid_component_update( )
+        container._update_marks_of_entire_score_tree_if_necessary()
+        container._forbid_component_update()
         len_parts = len(counts)
         part_index = 0
         cur_measure = get_next_measure_from_component(container)
@@ -114,7 +114,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
                 break
             part_index += 1
     finally:
-        container._allow_component_update( )
+        container._allow_component_update()
 
 
 

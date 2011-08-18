@@ -38,8 +38,8 @@ def apply_tie_spanner_to_leaf_pair(left, right):
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``tietools.span_leaf_pair( )`` to
-        ``tietools.apply_tie_spanner_to_leaf_pair( )``.
+        renamed ``tietools.span_leaf_pair()`` to
+        ``tietools.apply_tie_spanner_to_leaf_pair()``.
     '''
 
     assert isinstance(left, _Leaf)

@@ -52,12 +52,12 @@ def iterate_thread_backward_in_expr(expr, klass, thread_signature):
 
     The important thing to note is that the function yields only those leaves that sit in the same thread.
 
-    Compare with :func:`componenttools.iterate_components_backward_in_expr( )
+    Compare with :func:`componenttools.iterate_components_backward_in_expr()
     <abjad.tools.iterate.naive_backward>`.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.thread_backward_in( )`` to
-        ``threadtools.iterate_thread_backward_in_expr( )``.
+        renamed ``iterate.thread_backward_in()`` to
+        ``threadtools.iterate_thread_backward_in_expr()``.
     '''
 
     if isinstance(expr, klass) and component_to_thread_signature(expr) == thread_signature:

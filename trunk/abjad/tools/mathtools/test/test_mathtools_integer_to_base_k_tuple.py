@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import mathtools
 
 
-def test_mathtools_integer_to_base_k_tuple_01( ):
+def test_mathtools_integer_to_base_k_tuple_01():
 
     assert mathtools.integer_to_base_k_tuple(0, 2) == (0, )
     assert mathtools.integer_to_base_k_tuple(1, 2) == (1, )
@@ -15,7 +15,7 @@ def test_mathtools_integer_to_base_k_tuple_01( ):
     assert mathtools.integer_to_base_k_tuple(8, 2) == (1, 0, 0, 0)
 
 
-def test_mathtools_integer_to_base_k_tuple_02( ):
+def test_mathtools_integer_to_base_k_tuple_02():
 
     assert mathtools.integer_to_base_k_tuple(1066, 10) == (1, 0, 6, 6)
     assert mathtools.integer_to_base_k_tuple(1987, 10) == (1, 9, 8, 7)

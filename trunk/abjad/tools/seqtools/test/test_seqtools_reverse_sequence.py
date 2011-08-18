@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 import py.test
 
 
-def test_seqtools_reverse_sequence_01( ):
+def test_seqtools_reverse_sequence_01():
     '''Reverse sequence.
     '''
 
@@ -11,7 +11,7 @@ def test_seqtools_reverse_sequence_01( ):
     assert seqtools.reverse_sequence([1, 2, 3, 4, 5]) == [5, 4, 3, 2, 1]
 
 
-def test_seqtools_reverse_sequence_02( ):
+def test_seqtools_reverse_sequence_02():
     '''Reverse sequence.
     '''
 
@@ -21,7 +21,7 @@ def test_seqtools_reverse_sequence_02( ):
     assert seqtools.reverse_sequence(segment) == reversed_segment
 
 
-def test_seqtools_reverse_sequence_03( ):
+def test_seqtools_reverse_sequence_03():
     '''Raise exception on nonsequence.
     '''
 

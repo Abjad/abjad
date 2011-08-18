@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_componenttools_get_nth_namesake_from_component_01( ):
+def test_componenttools_get_nth_namesake_from_component_01():
 
     t = Staff("c'8 d'8 e'8 f'8")
 
@@ -17,7 +17,7 @@ def test_componenttools_get_nth_namesake_from_component_01( ):
     assert componenttools.get_nth_namesake_from_component(t[3], -3) is t[0]
 
 
-def test_componenttools_get_nth_namesake_from_component_02( ):
+def test_componenttools_get_nth_namesake_from_component_02():
 
     t = Staff("c'8 d'8 e'8 f'8")
 

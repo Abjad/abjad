@@ -57,7 +57,7 @@ def is_lilypond_duration_string(expr):
     if not isinstance(expr, str):
         return False
 
-    #groups = lilypond_duration_string_regex.match(expr).groups( )
+    #groups = lilypond_duration_string_regex.match(expr).groups()
     #print groups
     #base, dots, multiplier = groups[0], groups[1], groups[3]
     #print base, dots, multiplier

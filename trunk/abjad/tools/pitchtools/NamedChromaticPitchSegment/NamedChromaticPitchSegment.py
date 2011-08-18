@@ -16,7 +16,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
     def __new__(self, *args):
         from abjad.tools import pitchtools
         if len(args) == 1 and isinstance(args[0], str):
-                pitches = [pitchtools.NamedChromaticPitch(x) for x in args[0].split( )]
+                pitches = [pitchtools.NamedChromaticPitch(x) for x in args[0].split()]
         else:
             pitches = [pitchtools.NamedChromaticPitch(x) for x in args[0]]
         return tuple.__new__(self, pitches)

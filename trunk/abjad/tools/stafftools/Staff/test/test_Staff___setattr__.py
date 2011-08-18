@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Staff___setattr___01( ):
+def test_Staff___setattr___01():
     '''Slots constrain staff attributes.
     '''
 

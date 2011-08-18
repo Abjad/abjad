@@ -63,8 +63,8 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
     This function is thread-agnostic.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.backwards( )`` to
-        ``componenttools.iterate_components_backward_in_expr( )``.
+        renamed ``iterate.backwards()`` to
+        ``componenttools.iterate_components_backward_in_expr()``.
     '''
 
     return _subrange(_backward_generator(expr, klass), start, stop)
@@ -78,7 +78,7 @@ def _subrange(iter, start = 0, stop = None):
     try:
         ### Skip the first few elements, up to 'start' of them:
         for i in xrange(start):
-            iter.next( )  # no 'yield' to swallow the results
+            iter.next()  # no 'yield' to swallow the results
 
         ### Now generate (stop-start) elements (or all elements if stop is None)
         if stop is None:
@@ -86,7 +86,7 @@ def _subrange(iter, start = 0, stop = None):
                 yield x
         else:
             for i in xrange(stop-start):
-                yield iter.next( )
+                yield iter.next()
     except StopIteration:
         ### This happens if we exhaust the list before we generate a total of 'stop' elements
         pass

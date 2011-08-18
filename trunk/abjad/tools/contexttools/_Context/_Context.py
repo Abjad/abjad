@@ -35,7 +35,8 @@ class _Context(Container):
         if 0 < len(self):
             summary = str(len(self))
         else:
-            summary = ' '
+            #summary = ' '
+            summary = ''
         if self.is_parallel:
             open, close = '<<', '>>'
         else:
@@ -50,14 +51,14 @@ class _Context(Container):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def context( ):
+    def context():
         def fget(self):
             '''Read / write name of context as a string.'''
             return self._context
         def fset(self, arg):
             assert isinstance(arg, str)
             self._context = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def engraver_consists(self):
@@ -98,7 +99,7 @@ class _Context(Container):
         return self._engraver_removals
 
     @apply
-    def is_nonsemantic( ):
+    def is_nonsemantic():
         def fget(self):
             r'''Set indicator of nonsemantic voice::
 
@@ -154,20 +155,20 @@ class _Context(Container):
             if not isinstance(arg, type(True)):
                 raise TypeError
             self._is_nonsemantic = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def is_semantic(self):
         return not self.is_nonsemantic
 
     @apply
-    def name( ):
+    def name():
         def fget(self):
             '''Read-write name of component. Must be string or none.'''
             return self._name
         def fset(self, arg):
             assert isinstance(arg, (str, type(None)))
             self._name = arg
-        return property(**locals( ))
+        return property(**locals())
 
 

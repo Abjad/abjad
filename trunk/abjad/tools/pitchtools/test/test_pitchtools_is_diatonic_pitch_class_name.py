@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_is_diatonic_pitch_class_name_01( ):
+def test_pitchtools_is_diatonic_pitch_class_name_01():
 
     assert pitchtools.is_diatonic_pitch_class_name('c')
     assert pitchtools.is_diatonic_pitch_class_name('d')
@@ -12,7 +12,7 @@ def test_pitchtools_is_diatonic_pitch_class_name_01( ):
     assert pitchtools.is_diatonic_pitch_class_name('b')
 
 
-def test_pitchtools_is_diatonic_pitch_class_name_02( ):
+def test_pitchtools_is_diatonic_pitch_class_name_02():
 
     assert pitchtools.is_diatonic_pitch_class_name('C')
     assert pitchtools.is_diatonic_pitch_class_name('D')
@@ -23,7 +23,7 @@ def test_pitchtools_is_diatonic_pitch_class_name_02( ):
     assert pitchtools.is_diatonic_pitch_class_name('B')
 
 
-def test_pitchtools_is_diatonic_pitch_class_name_03( ):
+def test_pitchtools_is_diatonic_pitch_class_name_03():
 
     assert not pitchtools.is_diatonic_pitch_class_name(8)
 

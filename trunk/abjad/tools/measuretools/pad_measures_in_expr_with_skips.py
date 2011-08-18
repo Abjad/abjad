@@ -115,8 +115,8 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
     Raise value error when `back` is neither a positive rational nor none.
 
     .. versionchanged:: 2.0
-        renamed ``layout.insert_measure_padding_skip( )`` to
-        ``measuretools.pad_measures_in_expr_with_skips( )``.
+        renamed ``layout.insert_measure_padding_skip()`` to
+        ``measuretools.pad_measures_in_expr_with_skips()``.
     '''
     from abjad.tools.layouttools._insert_measure_padding import _insert_measure_padding
     from abjad.tools.skiptools.Skip import Skip

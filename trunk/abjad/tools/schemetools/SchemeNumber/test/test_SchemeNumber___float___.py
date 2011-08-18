@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SchemeNumber___float____01( ):
+def test_SchemeNumber___float____01():
 
     a = schemetools.SchemeNumber(-1)
 

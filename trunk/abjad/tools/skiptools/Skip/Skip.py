@@ -13,7 +13,7 @@ class Skip(_Leaf):
     Return skip.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     def __init__(self, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], _Leaf):

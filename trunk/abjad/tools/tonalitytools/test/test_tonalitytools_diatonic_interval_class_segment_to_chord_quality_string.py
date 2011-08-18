@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_tonalitytools_diatonic_interval_class_segment_to_chord_quality_string_01( ):
+def test_tonalitytools_diatonic_interval_class_segment_to_chord_quality_string_01():
 
     dic_seg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),

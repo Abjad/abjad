@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Chord___str___01( ):
+def test_Chord___str___01():
 
     chord = Chord([3, 13, 17], (1, 4))
 

@@ -2,7 +2,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_Chord_01( ):
+def test_Chord_01():
     t = Chord([2, 3, 4], (1, 4))
     assert str(t) == "<d' ef' e'>4"
     assert t.format == "<d' ef' e'>4"
@@ -12,7 +12,7 @@ def test_Chord_01( ):
     assert t.written_duration == t.prolated_duration == Duration(1, 4)
 
 
-def test_Chord_02( ):
+def test_Chord_02():
     '''Chord with tweaked note head.
     '''
 
@@ -20,13 +20,13 @@ def test_Chord_02( ):
     t[0].tweak.style = 'harmonic'
     assert t.format == "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
 
-def test_Chord_03( ):
+def test_Chord_03():
     t = Chord([2, 3, 4], (1, 4))
     t[0].tweak.transparent = True
     assert t.format == "<\n\t\\tweak #'transparent ##t\n\td'\n\tef'\n\te'\n>4"
 
 
-def test_Chord_04( ):
+def test_Chord_04():
     '''Format one-note chord as chord.
     '''
 
@@ -38,7 +38,7 @@ def test_Chord_04( ):
     assert len(t.written_pitches) == 1
 
 
-def test_Chord_05( ):
+def test_Chord_05():
     '''Format chord with LilyPond command mark on right.
     '''
 
@@ -52,7 +52,7 @@ def test_Chord_05( ):
     assert chord.format == "<d' ef' e'>4 \\glissando"
 
 
-def test_Chord_06( ):
+def test_Chord_06():
     '''Format tweaked chord with LilyPond command mark on right.
     '''
 
@@ -72,7 +72,7 @@ def test_Chord_06( ):
     assert chord.format == "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
 
 
-def test_Chord_07( ):
+def test_Chord_07():
     '''Set chord pitches to numbers.
     '''
 
@@ -86,7 +86,7 @@ def test_Chord_07( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord_08( ):
+def test_Chord_08():
     '''Set chord pitches to pitches.
     '''
 
@@ -97,7 +97,7 @@ def test_Chord_08( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord_09( ):
+def test_Chord_09():
     '''Set chord pitches to mixed numbers and pitches.
     '''
 
@@ -107,7 +107,7 @@ def test_Chord_09( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord_10( ):
+def test_Chord_10():
     '''Set chord note heads to numbers.
     '''
 
@@ -117,7 +117,7 @@ def test_Chord_10( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord_11( ):
+def test_Chord_11():
     '''Set chord note heads to pitches.
     '''
 
@@ -127,7 +127,7 @@ def test_Chord_11( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord_12( ):
+def test_Chord_12():
     '''Set chord note heads to mixed numbers and pitches.
     '''
 
@@ -137,7 +137,7 @@ def test_Chord_12( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord_13( ):
+def test_Chord_13():
     '''Set chord item to pitch or number.
     '''
 

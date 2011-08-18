@@ -61,7 +61,7 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
     componenttools.move_parentage_and_spanners_from_components_to_components(list(chain), [tuplet])
 
     # untie tuplet
-    #tuplet.tie.unspan( )
+    #tuplet.tie.unspan()
     spannertools.destroy_all_spanners_attached_to_component(tuplet, TieSpanner)
 
     # return tuplet

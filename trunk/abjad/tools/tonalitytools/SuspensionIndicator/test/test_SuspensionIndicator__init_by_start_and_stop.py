@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_SuspensionIndicator__init_by_start_and_stop_01( ):
+def test_SuspensionIndicator__init_by_start_and_stop_01():
 
     t = tonalitytools.SuspensionIndicator(4, 3)
 
@@ -10,7 +10,7 @@ def test_SuspensionIndicator__init_by_start_and_stop_01( ):
     assert t.stop == tonalitytools.ScaleDegree(3)
 
 
-def test_SuspensionIndicator__init_by_start_and_stop_02( ):
+def test_SuspensionIndicator__init_by_start_and_stop_02():
 
     t = tonalitytools.SuspensionIndicator(4, ('flat', 3))
 

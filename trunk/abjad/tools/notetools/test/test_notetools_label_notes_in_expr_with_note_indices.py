@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_notetools_label_notes_in_expr_with_note_indices_01( ):
+def test_notetools_label_notes_in_expr_with_note_indices_01():
 
     staff = Staff("c'8 d'8 r8 r8 g'8 a'8 r8 c''8")
     notetools.label_notes_in_expr_with_note_indices(staff)

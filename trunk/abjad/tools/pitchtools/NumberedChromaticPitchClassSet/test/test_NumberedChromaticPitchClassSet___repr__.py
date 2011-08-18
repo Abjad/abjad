@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.pitchtools import NumberedChromaticPitchClassSet
 
 
-def test_NumberedChromaticPitchClassSet___repr___01( ):
+def test_NumberedChromaticPitchClassSet___repr___01():
 
     numbered_chromatic_pitch_class_set_1 = pitchtools.NumberedChromaticPitchClassSet(
         [6, 7, 10, 10.5])

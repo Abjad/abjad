@@ -58,11 +58,11 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
     '''
     from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
 
-    generator = yield_all_assignable_rationals_in_cantor_diagonalized_order( )
+    generator = yield_all_assignable_rationals_in_cantor_diagonalized_order()
     pairs = [ ]
 
     while True:
-        written_duration = generator.next( )
+        written_duration = generator.next()
         if written_duration < minimum_written_duration:
             pairs = tuple(pairs)
             return pairs

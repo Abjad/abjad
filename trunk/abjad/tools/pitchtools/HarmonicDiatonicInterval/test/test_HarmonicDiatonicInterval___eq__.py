@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicDiatonicInterval___eq___01( ):
+def test_HarmonicDiatonicInterval___eq___01():
 
     diatonic_interval_1 = pitchtools.HarmonicDiatonicInterval('minor', 2)
     diatonic_interval_2 = pitchtools.HarmonicDiatonicInterval('minor', 2)
@@ -9,7 +9,7 @@ def test_HarmonicDiatonicInterval___eq___01( ):
     assert diatonic_interval_1 == diatonic_interval_2
 
 
-def test_HarmonicDiatonicInterval___eq___02( ):
+def test_HarmonicDiatonicInterval___eq___02():
 
     diatonic_interval_1 = pitchtools.HarmonicDiatonicInterval('minor', 2)
     diatonic_interval_2 = pitchtools.HarmonicDiatonicInterval('augmented', 1)

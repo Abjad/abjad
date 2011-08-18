@@ -2,11 +2,11 @@ from abjad import *
 import copy
 
 
-def test_Annotation___copy___01( ):
+def test_Annotation___copy___01():
     '''Annotation copy copies annotation contents.
     '''
 
-    dictionary = { }
+    dictionary = {}
     annotation_1 = marktools.Annotation('special dictionary', dictionary)
     annotation_2 = copy.copy(annotation_1)
     assert annotation_1 == annotation_2

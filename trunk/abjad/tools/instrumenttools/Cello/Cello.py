@@ -14,7 +14,7 @@ class Cello(_StringInstrument):
 
     ::
 
-        abjad> instrumenttools.Cello( )(staff)
+        abjad> instrumenttools.Cello()(staff)
         Cello('Cello', 'Vc.')
 
     ::

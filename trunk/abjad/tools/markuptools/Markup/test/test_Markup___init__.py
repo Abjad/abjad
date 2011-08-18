@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Markup___init___01( ):
+def test_Markup___init___01():
     '''Init markup with string.
     '''
 
@@ -9,7 +9,7 @@ def test_Markup___init___01( ):
     assert str(markup) == '\\markup { foo }'
 
 
-def test_Markup___init___02( ):
+def test_Markup___init___02():
     '''Init markup with other markup instance.
     '''
 
@@ -20,7 +20,7 @@ def test_Markup___init___02( ):
     assert str(markup_2) == '\\markup { foo }'
 
 
-def test_Markup___init___03( ):
+def test_Markup___init___03():
     '''Init markup with nonstring and nonmarkup instance.
     '''
 
@@ -29,7 +29,7 @@ def test_Markup___init___03( ):
 
 
 
-def test_Markup___init___04( ):
+def test_Markup___init___04():
     '''Init markup with scheme style string.
     '''
 

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Tuplet___cmp___01( ):
+def test_Tuplet___cmp___01():
     '''Compare tuplet to itself.
     '''
 
@@ -21,7 +21,7 @@ def test_Tuplet___cmp___01( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Tuplet___cmp___02( ):
+def test_Tuplet___cmp___02():
     '''Compare tuplets.
     '''
 
@@ -41,7 +41,7 @@ def test_Tuplet___cmp___02( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Tuplet___cmp___03( ):
+def test_Tuplet___cmp___03():
     '''Compare tuplet to foreign type.
     '''
 

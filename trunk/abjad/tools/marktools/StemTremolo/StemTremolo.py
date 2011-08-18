@@ -69,7 +69,7 @@ class StemTremolo(Mark):
         return str(self)
 
     @apply
-    def tremolo_flags( ):
+    def tremolo_flags():
         def fget(self):
             '''Get tremolo flags::
 
@@ -90,5 +90,5 @@ class StemTremolo(Mark):
             if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
                 raise ValueError
             self._tremolo_flags = tremolo_flags
-        return property(**locals( ))
+        return property(**locals())
 

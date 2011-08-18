@@ -58,7 +58,7 @@ class Container(_Component):
         return new
 
     def __deepcopy__(self, memo):
-        new = self.__copy__( )
+        new = self.__copy__()
         for component in self.music:
             new_component = copy.deepcopy(component)
             new.append(new_component)
@@ -180,7 +180,8 @@ class Container(_Component):
         if 0 < len(self):
             return ', '.join([str(x) for x in self._music])
         else:
-            return ' '
+            #return ' '
+            return ''
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -207,7 +208,7 @@ class Container(_Component):
             return duration
 
     @apply
-    def is_parallel( ):
+    def is_parallel():
         def fget(self):
             r'''Get parallel container::
 
@@ -264,7 +265,7 @@ class Container(_Component):
                 assert componenttools.all_are_components(self._music, klasses = (_Context, ))
             self._parallel = expr
             self._mark_entire_score_tree_for_later_update('prolated')
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def leaves(self):

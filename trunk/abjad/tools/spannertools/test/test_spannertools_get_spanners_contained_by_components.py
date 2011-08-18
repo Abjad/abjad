@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_spanners_contained_by_components_01( ):
+def test_spannertools_get_spanners_contained_by_components_01():
     '''Return unordered set of spanners contained
         within any of the list of thread-contiguous components.'''
 

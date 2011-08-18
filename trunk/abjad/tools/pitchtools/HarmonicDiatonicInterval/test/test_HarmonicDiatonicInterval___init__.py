@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicDiatonicInterval___init___01( ):
+def test_HarmonicDiatonicInterval___init___01():
     '''Init harmonic diatonic interval from abbreviation.
     '''
 
@@ -11,7 +11,7 @@ def test_HarmonicDiatonicInterval___init___01( ):
     assert hdi.number == 3
 
 
-def test_HarmonicDiatonicInterval___init___02( ):
+def test_HarmonicDiatonicInterval___init___02():
     '''Can init from quality string and interval number.'''
 
     hdi = pitchtools.HarmonicDiatonicInterval('major', 3)
@@ -20,7 +20,7 @@ def test_HarmonicDiatonicInterval___init___02( ):
     assert hdi.number == 3
 
 
-def test_HarmonicDiatonicInterval___init___03( ):
+def test_HarmonicDiatonicInterval___init___03():
     '''Can init from other harmonic diatonic interval.'''
 
     hdi = pitchtools.HarmonicDiatonicInterval('major', 3)
@@ -36,7 +36,7 @@ def test_HarmonicDiatonicInterval___init___03( ):
     assert new == hdi
 
 
-def test_HarmonicDiatonicInterval___init___04( ):
+def test_HarmonicDiatonicInterval___init___04():
     '''Can init from melodic diatonic interval.'''
 
     mdi = pitchtools.MelodicDiatonicInterval('major', -3)

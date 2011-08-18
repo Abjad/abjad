@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_InversionIndicator_extent_to_figured_bass_string_01( ):
+def test_InversionIndicator_extent_to_figured_bass_string_01():
 
     t = tonalitytools.InversionIndicator(0)
     assert t.extent_to_figured_bass_string(5) == ''

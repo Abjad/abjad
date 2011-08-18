@@ -34,9 +34,9 @@ def destroy_all_spanners_attached_to_component(component, klass = None):
 
     for spanner in get_spanners_attached_to_component(component):
         if klass is None:
-            spanner.clear( )
+            spanner.clear()
         elif isinstance(spanner, klass):
-            spanner.clear( )
+            spanner.clear()
 
 
 

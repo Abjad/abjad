@@ -6,8 +6,8 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
     '''General component index split algorithm.
     Works on leaves, tuplets, measures, contexts and unqualified containers.
     Keyword controls spanner behavior at split time.
-    Use containertools.split_container_at_index_and_fracture_crossing_spanners( ) to fracture spanners.
-    Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners( ) to leave spanners unchanged.
+    Use containertools.split_container_at_index_and_fracture_crossing_spanners() to fracture spanners.
+    Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners() to leave spanners unchanged.
     '''
     from abjad.tools import metertools
     from abjad.tools import spannertools

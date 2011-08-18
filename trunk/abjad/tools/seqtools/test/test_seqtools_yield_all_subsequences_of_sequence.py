@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_yield_all_subsequences_of_sequence_01( ):
+def test_seqtools_yield_all_subsequences_of_sequence_01():
 
     l = range(10)
     sublists = list(seqtools.yield_all_subsequences_of_sequence(l, 4, 5))
@@ -23,7 +23,7 @@ def test_seqtools_yield_all_subsequences_of_sequence_01( ):
     assert sublists[12] == [6, 7, 8, 9]
 
 
-def test_seqtools_yield_all_subsequences_of_sequence_02( ):
+def test_seqtools_yield_all_subsequences_of_sequence_02():
 
     assert list(seqtools.yield_all_subsequences_of_sequence([0, 1, 2])) == [
         [], [0], [0, 1], [0, 1, 2], [1], [1, 2], [2]]

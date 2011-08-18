@@ -8,8 +8,8 @@ def withdraw_components_from_spanners_covered_by_components(components):
         The operation always leaves all score trees in tact.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.withdraw_from_covered( )`` to
-        ``spannertools.withdraw_components_from_spanners_covered_by_components( )``.
+        renamed ``spannertools.withdraw_from_covered()`` to
+        ``spannertools.withdraw_components_from_spanners_covered_by_components()``.
     '''
     from abjad.tools import componenttools
 
@@ -18,7 +18,7 @@ def withdraw_components_from_spanners_covered_by_components(components):
 
     ### withdraw from covered spanners
     for spanner in get_spanners_covered_by_components(components):
-        spanner.clear( )
+        spanner.clear()
 
     ### return components
     return components

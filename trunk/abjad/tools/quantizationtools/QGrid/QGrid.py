@@ -59,7 +59,7 @@ class QGrid(_Immutable):
         assert self._is_valid_grid_value(next)
         object.__setattr__(self, '_definition', definition)
         object.__setattr__(self, '_next', next)
-        object.__setattr__(self, '_offsets', self._expand_offsets( ))
+        object.__setattr__(self, '_offsets', self._expand_offsets())
         return self
 
     def __getnewargs__(self):
@@ -312,7 +312,7 @@ class QGrid(_Immutable):
 
             abjad> from abjad.tools.quantizationtools import QGrid
             abjad> q = QGrid([0, [0, 0], 0], 0)
-            abjad> q.format_for_beatspan( )
+            abjad> q.format_for_beatspan()
             Tuplet(2/3, [c'8, c'16, c'16, c'8])
 
         Returns a :py:class:`~abjad.tools.tuplettools.Tuplet` or

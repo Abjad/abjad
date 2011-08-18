@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 import py.test
 
 
-def test_seqtools_divide_sequence_elements_by_greatest_common_divisor_01( ):
+def test_seqtools_divide_sequence_elements_by_greatest_common_divisor_01():
     '''Divide sequence elements by greatest common divisor.
     '''
 
@@ -17,7 +17,7 @@ def test_seqtools_divide_sequence_elements_by_greatest_common_divisor_01( ):
     assert result == [2, 2, 4, 17]
 
 
-def test_seqtools_divide_sequence_elements_by_greatest_common_divisor_02( ):
+def test_seqtools_divide_sequence_elements_by_greatest_common_divisor_02():
     '''Raise exception on noninteger input.
     '''
 
@@ -25,7 +25,7 @@ def test_seqtools_divide_sequence_elements_by_greatest_common_divisor_02( ):
         'seqtools.divide_sequence_elements_by_greatest_common_divisor([2, 2, 3.5])')
 
 
-def test_seqtools_divide_sequence_elements_by_greatest_common_divisor_03( ):
+def test_seqtools_divide_sequence_elements_by_greatest_common_divisor_03():
     '''Raise exception when zero in input.
     '''
 

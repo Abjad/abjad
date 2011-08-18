@@ -12,8 +12,8 @@ def get_tie_chains_in_expr(components):
     the components given and the leaves found in the given components list.
 
     .. versionchanged:: 2.0
-        renamed ``tietools.get_tie_chains( )`` to
-        ``tietools.get_tie_chains_in_expr( )``.
+        renamed ``tietools.get_tie_chains()`` to
+        ``tietools.get_tie_chains_in_expr()``.
     '''
     from abjad.tools import leaftools
 
@@ -26,7 +26,7 @@ def get_tie_chains_in_expr(components):
         #if component.tie.spanned:
         if spanners:
             #spanner = component.tie.spanner
-            spanner = spanners.pop( )
+            spanner = spanners.pop()
             if not spanner in tie_spanners:
                 #tie_spanners.append(component.tie.spanner)
                 tie_spanners.append(spanner)

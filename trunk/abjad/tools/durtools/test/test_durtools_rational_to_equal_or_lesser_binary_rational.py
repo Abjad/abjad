@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_rational_to_equal_or_lesser_binary_rational_01( ):
+def test_durtools_rational_to_equal_or_lesser_binary_rational_01():
     '''Return greatest written duration of the form 1 / 2 ** n, such that
     written duration is less than or equal to prolated duration.
     '''
@@ -33,7 +33,7 @@ def test_durtools_rational_to_equal_or_lesser_binary_rational_01( ):
         Fraction(12, 80)) == Fraction(1, 8)
 
 
-def test_durtools_rational_to_equal_or_lesser_binary_rational_02( ):
+def test_durtools_rational_to_equal_or_lesser_binary_rational_02():
     '''Return greatest written duration of the form 1 / 2 ** n, such that
     written duration is less than or equal to prolated duration.
     '''

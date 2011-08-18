@@ -48,8 +48,8 @@ def rational_to_equal_or_greater_binary_rational(rational):
     Return fraction.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.naive_prolated_to_written_not_less_than( )`` to
-        ``durtools.rational_to_equal_or_greater_binary_rational( )``.
+        renamed ``durtools.naive_prolated_to_written_not_less_than()`` to
+        ``durtools.rational_to_equal_or_greater_binary_rational()``.
     '''
 
     # find exponent of denominator

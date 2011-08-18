@@ -22,8 +22,8 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = fractions.Fract
     Return newly constructed meter.
 
     .. versionchanged:: 2.0
-        renamed ``metertools.make_binary( )`` to
-        ``metertools.meter_to_binary_meter( )``.
+        renamed ``metertools.make_binary()`` to
+        ``metertools.meter_to_binary_meter()``.
     '''
 
     ### check input

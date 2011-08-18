@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_rests_01( ):
+def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_rests_01():
     '''Glom voice into rests.'''
 
     t = Voice(notetools.make_repeated_notes(5))

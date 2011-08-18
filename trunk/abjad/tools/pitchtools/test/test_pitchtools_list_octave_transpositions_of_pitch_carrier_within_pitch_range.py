@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_range_01( ):
+def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_range_01():
     '''Works on chords.
     '''
 
@@ -24,7 +24,7 @@ def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_ran
     assert transpositions[3].format == "<c'''' d'''' e''''>4"
 
 
-def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_range_02( ):
+def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_range_02():
     '''Works on pitch numbers.
     '''
 

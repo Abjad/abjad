@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.pitchtools import NumberedDiatonicPitch
 
 
-def test_NumberedDiatonicPitch___repr___01( ):
+def test_NumberedDiatonicPitch___repr___01():
     '''Numbered diatonic pitch repr is evaluable.
     '''
 

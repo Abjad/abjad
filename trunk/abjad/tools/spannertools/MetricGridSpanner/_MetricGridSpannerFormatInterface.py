@@ -47,7 +47,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
             m = [triple for triple in m if not triple[-1]]
             if m:
                 ### set spanner._slicing_metersFound as temporary flag so that
-                ### spanner._after does not have to recompute _slicing_meters( )
+                ### spanner._after does not have to recompute _slicing_meters()
                 spanner._slicing_metersFound = True
                 result.append('<<')
                 for meter, moffset, temp_hide in m:

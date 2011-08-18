@@ -2,7 +2,7 @@ from abjad import *
 from abjad.core.LilyPondTweakReservoir import LilyPondTweakReservoir
 
 
-def test_NoteHead___init___01( ):
+def test_NoteHead___init___01():
     '''Init note head by number.
     '''
 
@@ -10,7 +10,7 @@ def test_NoteHead___init___01( ):
     assert t.written_pitch == pitchtools.NamedChromaticPitch(6)
 
 
-def test_NoteHead___init___02( ):
+def test_NoteHead___init___02():
     '''Init note head by LilyPond-style pitch string.
     '''
 
@@ -18,7 +18,7 @@ def test_NoteHead___init___02( ):
     assert t.written_pitch == pitchtools.NamedChromaticPitch('cs,,,')
 
 
-def test_NoteHead___init___03( ):
+def test_NoteHead___init___03():
     '''Init note head by other note head instance.
     '''
 
@@ -30,12 +30,12 @@ def test_NoteHead___init___03( ):
     assert new.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 6
 
 
-def test_NoteHead___init___04( ):
+def test_NoteHead___init___04():
     '''Init note head with tweak pairs.
     '''
 
     note_head = notetools.NoteHead("cs''", ('color', 'red'))
-    tweak = LilyPondTweakReservoir( )
+    tweak = LilyPondTweakReservoir()
     tweak.color = 'red'
 
     assert note_head.written_pitch == pitchtools.NamedChromaticPitch("cs''")

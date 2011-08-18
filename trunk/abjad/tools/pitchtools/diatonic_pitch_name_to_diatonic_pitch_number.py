@@ -18,7 +18,7 @@ def diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name):
     if match is None:
         raise TypeError
 
-    diatonic_pitch_class_name, octave_tick_string = match.groups( )
+    diatonic_pitch_class_name, octave_tick_string = match.groups()
     tmp = diatonic_pitch_class_name_to_diatonic_pitch_class_number
     diatonic_pitch_class_number = tmp(diatonic_pitch_class_name)
     octave_number = octave_tick_string_to_octave_number(octave_tick_string)

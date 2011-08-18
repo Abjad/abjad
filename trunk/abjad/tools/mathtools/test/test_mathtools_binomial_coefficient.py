@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import mathtools
 
 
-def test_mathtools_binomial_coefficient_01( ):
+def test_mathtools_binomial_coefficient_01():
 
     assert mathtools.binomial_coefficient(8, 0) == 1
     assert mathtools.binomial_coefficient(8, 1) == 8

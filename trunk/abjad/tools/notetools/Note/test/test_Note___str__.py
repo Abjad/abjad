@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Note___str___01( ):
+def test_Note___str___01():
 
     note = Note("c'4")
 

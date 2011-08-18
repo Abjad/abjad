@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InstrumentMark_format_01( ):
+def test_InstrumentMark_format_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     contexttools.InstrumentMark('Flute', 'Fl.')(staff)

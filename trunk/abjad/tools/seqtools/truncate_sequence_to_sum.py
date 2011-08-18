@@ -33,8 +33,8 @@ def truncate_sequence_to_sum(sequence, sum):
     Return new list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.truncate_to_sum( )`` to
-        ``seqtools.truncate_sequence_to_sum( )``.
+        renamed ``seqtools.truncate_to_sum()`` to
+        ``seqtools.truncate_sequence_to_sum()``.
     '''
 
     if not isinstance(sequence, list):

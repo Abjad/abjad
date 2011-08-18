@@ -8,7 +8,7 @@ import os
 def ly(target = -1):
     r'''Open the last LilyPond output file in ``vi``::
 
-        abjad> iotools.ly( ) # doctest: +SKIP
+        abjad> iotools.ly() # doctest: +SKIP
 
     ::
 
@@ -32,9 +32,9 @@ def ly(target = -1):
     Return none.
     '''
 
-    ABJADOUTPUT = _read_config_file( )['abjad_output']
+    ABJADOUTPUT = _read_config_file()['abjad_output']
     if isinstance(target, int) and target < 0:
-        last_lilypond = get_last_output_file_name( )
+        last_lilypond = get_last_output_file_name()
         if last_lilypond:
             last_number = last_lilypond.replace('.ly', '')
             target_number = int(last_number) + (target + 1)

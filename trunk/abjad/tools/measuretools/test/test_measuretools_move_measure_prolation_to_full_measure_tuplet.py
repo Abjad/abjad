@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
+def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     '''Project 3/12 meter onto measure contents.'''
 
     inner = tuplettools.FixedDurationTuplet(Duration(2, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
@@ -50,7 +50,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01( ):
     assert t.format == "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
 
 
-def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02( ):
+def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     '''Project nonbinary meter onto measure with tied note values.'''
 
     t = Measure((5, 8), [tuplettools.FixedDurationTuplet(Duration(5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])

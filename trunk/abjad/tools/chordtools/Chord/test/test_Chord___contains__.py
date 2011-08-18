@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Chord___contains___01( ):
+def test_Chord___contains___01():
 
     chord = Chord([3, 13, 17], (1, 4))
 
@@ -13,7 +13,7 @@ def test_Chord___contains___01( ):
     assert notetools.NoteHead("f''") in chord
 
 
-def test_Chord___contains___02( ):
+def test_Chord___contains___02():
 
     chord = Chord([3, 13, 17], (1, 4))
 

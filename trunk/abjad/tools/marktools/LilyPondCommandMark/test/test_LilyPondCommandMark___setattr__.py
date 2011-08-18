@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_LilyPondCommandMark___setattr___01( ):
+def test_LilyPondCommandMark___setattr___01():
     '''Slots constrain LilyPond command marks.
     '''
 

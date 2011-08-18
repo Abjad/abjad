@@ -63,10 +63,10 @@ Name bound methods in underscore-delimited lowercase::
 
 Name module-level functions in underscore-delimited lowercase::
 
-    def foo_bar( ):
+    def foo_bar():
         ...
 
-    def foo_blah( ):
+    def foo_blah():
         ...
 
 Separate bound method definitions with a single empty line::
@@ -133,12 +133,6 @@ Preceed private class attributes with a single underscore::
 
         def _blah(self, x, y):
             ...
-
-Include a single space in between empty parentheses::
-
-    def foo( ):
-        ...
-        ...
 
 Use ``<`` less-than signs in preference to greater-than signs::
 

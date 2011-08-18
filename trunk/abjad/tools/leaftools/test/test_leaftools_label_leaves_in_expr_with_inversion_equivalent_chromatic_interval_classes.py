@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes_01( ):
+def test_leaftools_label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes_01():
 
     staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
     leaftools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(staff)

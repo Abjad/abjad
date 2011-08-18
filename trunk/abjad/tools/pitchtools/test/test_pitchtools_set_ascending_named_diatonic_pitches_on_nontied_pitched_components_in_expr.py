@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr_01( ):
+def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr_01():
     '''Diatonicize notes in staff.'''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -20,7 +20,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_comp
     assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr_02( ):
+def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr_02():
     '''Diatonicize tie chains in staff.'''
 
     t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
@@ -43,7 +43,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_comp
     assert t.format == "\\new Staff {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
 
 
-def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr_03( ):
+def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr_03():
     '''Diatonicize tie chains in staff according to key signature.'''
 
     t = Staff(notetools.make_notes(0, [(5, 32)] * 4))

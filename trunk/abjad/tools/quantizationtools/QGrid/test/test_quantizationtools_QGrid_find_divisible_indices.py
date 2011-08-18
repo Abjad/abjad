@@ -1,7 +1,7 @@
 from abjad.tools.quantizationtools import QGrid
 
 
-def test_quantizationtools_QGrid_find_divisible_indices_01( ):
+def test_quantizationtools_QGrid_find_divisible_indices_01():
     q = QGrid([0, [0, [0, [0, 0]]]], 0)
     assert q.find_divisible_indices([ ]) == [ ]
     assert q.find_divisible_indices([0]) == [ ]

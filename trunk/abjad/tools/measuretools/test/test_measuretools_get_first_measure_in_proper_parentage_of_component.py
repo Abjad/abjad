@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_get_first_measure_in_proper_parentage_of_component_01( ):
+def test_measuretools_get_first_measure_in_proper_parentage_of_component_01():
 
     measure = Measure((2, 4), "c'8 d'8 e'8 f'8")
     staff = Staff([measure])

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicDiatonicInterval_diatonic_interval_class_01( ):
+def test_HarmonicDiatonicInterval_diatonic_interval_class_01():
 
     hdi = pitchtools.HarmonicDiatonicInterval('perfect', 1)
     dic = hdi.diatonic_interval_class
@@ -24,7 +24,7 @@ def test_HarmonicDiatonicInterval_diatonic_interval_class_01( ):
     assert dic == pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3)
 
 
-def test_HarmonicDiatonicInterval_diatonic_interval_class_02( ):
+def test_HarmonicDiatonicInterval_diatonic_interval_class_02():
 
     hdi = pitchtools.HarmonicDiatonicInterval('perfect', 5)
     dic = hdi.diatonic_interval_class
@@ -47,7 +47,7 @@ def test_HarmonicDiatonicInterval_diatonic_interval_class_02( ):
     assert dic == pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 2)
 
 
-def test_HarmonicDiatonicInterval_diatonic_interval_class_03( ):
+def test_HarmonicDiatonicInterval_diatonic_interval_class_03():
 
     #hdi = pitchtools.HarmonicDiatonicInterval('perfect', 8)
     #dic = hdi.diatonic_interval_class
@@ -70,7 +70,7 @@ def test_HarmonicDiatonicInterval_diatonic_interval_class_03( ):
     assert dic == pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3)
 
 
-def test_HarmonicDiatonicInterval_diatonic_interval_class_04( ):
+def test_HarmonicDiatonicInterval_diatonic_interval_class_04():
 
     #hdi = pitchtools.HarmonicDiatonicInterval('perfect', -8)
     #dic = hdi.diatonic_interval_class
@@ -93,7 +93,7 @@ def test_HarmonicDiatonicInterval_diatonic_interval_class_04( ):
     assert dic == pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3)
 
 
-def test_HarmonicDiatonicInterval_diatonic_interval_class_05( ):
+def test_HarmonicDiatonicInterval_diatonic_interval_class_05():
 
     hdi = pitchtools.HarmonicDiatonicInterval('perfect', 12)
     dic = hdi.diatonic_interval_class

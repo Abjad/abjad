@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_get_sequence_element_at_cyclic_index_01( ):
+def test_seqtools_get_sequence_element_at_cyclic_index_01():
     '''Get element at nonnegative cyclic index.
     '''
 
@@ -20,7 +20,7 @@ def test_seqtools_get_sequence_element_at_cyclic_index_01( ):
     assert seqtools.get_sequence_element_at_cyclic_index(iterable, 9) == 'i'
 
 
-def test_seqtools_get_sequence_element_at_cyclic_index_02( ):
+def test_seqtools_get_sequence_element_at_cyclic_index_02():
     '''Get element at negative cyclic index.
     '''
 

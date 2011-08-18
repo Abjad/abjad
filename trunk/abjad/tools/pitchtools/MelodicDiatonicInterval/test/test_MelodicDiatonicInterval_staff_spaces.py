@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicDiatonicInterval_staff_spaces_01( ):
+def test_MelodicDiatonicInterval_staff_spaces_01():
 
     assert pitchtools.MelodicDiatonicInterval('perfect', 1).staff_spaces == 0
     assert pitchtools.MelodicDiatonicInterval('minor', 2).staff_spaces == 1
@@ -19,7 +19,7 @@ def test_MelodicDiatonicInterval_staff_spaces_01( ):
     assert pitchtools.MelodicDiatonicInterval('perfect', 8).staff_spaces == 7
 
 
-def test_MelodicDiatonicInterval_staff_spaces_02( ):
+def test_MelodicDiatonicInterval_staff_spaces_02():
 
     assert pitchtools.MelodicDiatonicInterval('perfect', -1).staff_spaces == 0
     assert pitchtools.MelodicDiatonicInterval('minor', -2).staff_spaces == -1

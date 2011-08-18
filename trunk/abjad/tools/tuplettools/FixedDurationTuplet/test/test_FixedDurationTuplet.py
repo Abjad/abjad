@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_FixedDurationTuplet_01( ):
+def test_FixedDurationTuplet_01():
     '''Nest typical fdtuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
@@ -22,7 +22,7 @@ def test_FixedDurationTuplet_01( ):
     assert t[0].prolated_duration == Fraction(1, 5)
 
 
-def test_FixedDurationTuplet_02( ):
+def test_FixedDurationTuplet_02():
     '''Nest empty fdtuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
@@ -43,7 +43,7 @@ def test_FixedDurationTuplet_02( ):
     assert t[0].prolated_duration == Fraction(1, 5)
 
 
-def test_FixedDurationTuplet_03( ):
+def test_FixedDurationTuplet_03():
     '''Test 1-multiplier fdtuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 2)
@@ -52,17 +52,17 @@ def test_FixedDurationTuplet_03( ):
     assert t.format == "{\n\tc'8\n\tc'8\n}"
 
 
-def test_FixedDurationTuplet_04( ):
+def test_FixedDurationTuplet_04():
     '''Test 1-multiplier fdtuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-    t.pop( )
+    t.pop()
     assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
     assert str(t) == "{@ 1:1 c'8, c'8 @}"
     assert t.format == "{\n\tc'8\n\tc'8\n}"
 
 
-def test_FixedDurationTuplet_05( ):
+def test_FixedDurationTuplet_05():
     '''Tuplet.is_invisible formats compressed music.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)

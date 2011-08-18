@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSet___init___01( ):
+def test_NamedChromaticPitchClassSet___init___01():
     '''Init with named pitch-classes.'''
 
     npc_set = pitchtools.NamedChromaticPitchClassSet([
@@ -12,7 +12,7 @@ def test_NamedChromaticPitchClassSet___init___01( ):
     assert len(npc_set) == 3
 
 
-def test_NamedChromaticPitchClassSet___init___02( ):
+def test_NamedChromaticPitchClassSet___init___02():
     '''Works with chords.'''
 
     chord = Chord([12, 14, 16], (1, 4))
@@ -26,7 +26,7 @@ def test_NamedChromaticPitchClassSet___init___02( ):
     assert npc_set_1 == npc_set_2
 
 
-def test_NamedChromaticPitchClassSet___init___03( ):
+def test_NamedChromaticPitchClassSet___init___03():
     '''Works with notes.'''
 
     note = Note(13, (1, 4))

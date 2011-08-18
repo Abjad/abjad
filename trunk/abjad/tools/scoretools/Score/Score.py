@@ -28,7 +28,7 @@ class Score(_Context):
     Return score object.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     def __init__(self, music = None, **kwargs):
         _Context.__init__(self, music)

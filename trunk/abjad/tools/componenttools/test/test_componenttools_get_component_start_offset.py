@@ -1,40 +1,40 @@
 from abjad import *
 
 
-def test_componenttools_get_component_start_offset_01( ):
+def test_componenttools_get_component_start_offset_01():
     t = Voice(notetools.make_repeated_notes(16))
     for i, x in enumerate(t):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_02( ):
+def test_componenttools_get_component_start_offset_02():
     t = Staff(notetools.make_repeated_notes(16))
     for i, x in enumerate(t):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_03( ):
+def test_componenttools_get_component_start_offset_03():
     t = Staff(notetools.make_repeated_notes(16))
     t[10] = Rest((1, 8))
     for i, x in enumerate(t):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_04( ):
+def test_componenttools_get_component_start_offset_04():
     t = Staff(notetools.make_repeated_notes(16))
     t[10:10] = [Rest((1, 8))]
     for i, x in enumerate(t):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_05( ):
+def test_componenttools_get_component_start_offset_05():
     t = Staff(notetools.make_repeated_notes(16))
     t[10:12] = [Rest((1, 8))]
     for i, x in enumerate(t):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_06( ):
+def test_componenttools_get_component_start_offset_06():
     '''Offset works with explicit voice threads.'''
 
     v1 = Voice(notetools.make_repeated_notes(16))
@@ -45,13 +45,13 @@ def test_componenttools_get_component_start_offset_06( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_07( ):
+def test_componenttools_get_component_start_offset_07():
     t = tuplettools.FixedDurationTuplet(Duration(1,4), notetools.make_repeated_notes(3))
     for i, x in enumerate(t):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 12)
 
 
-def test_componenttools_get_component_start_offset_08( ):
+def test_componenttools_get_component_start_offset_08():
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
     t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
     offset = 0
@@ -60,7 +60,7 @@ def test_componenttools_get_component_start_offset_08( ):
         offset += Duration(*d)
 
 
-def test_componenttools_get_component_start_offset_09( ):
+def test_componenttools_get_component_start_offset_09():
     '''Offset works on nested tuplets.'''
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
@@ -71,7 +71,7 @@ def test_componenttools_get_component_start_offset_09( ):
         offset += Duration(*d)
 
 
-def test_componenttools_get_component_start_offset_10( ):
+def test_componenttools_get_component_start_offset_10():
     '''Offset works with parallel structures.'''
 
     v1 = Voice(notetools.make_repeated_notes(16))
@@ -84,7 +84,7 @@ def test_componenttools_get_component_start_offset_10( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_11( ):
+def test_componenttools_get_component_start_offset_11():
     '''Offset on leaves works in nested contexts.'''
 
     v = Voice(notetools.make_repeated_notes(4))
@@ -95,7 +95,7 @@ def test_componenttools_get_component_start_offset_11( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8) + Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_12( ):
+def test_componenttools_get_component_start_offset_12():
     '''Offset on leaves works in sequential contexts.'''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -107,7 +107,7 @@ def test_componenttools_get_component_start_offset_12( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8) + Duration(1, 2)
 
 
-def test_componenttools_get_component_start_offset_13( ):
+def test_componenttools_get_component_start_offset_13():
     '''Offset on leaves works in nested parallel contexts.'''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -120,7 +120,7 @@ def test_componenttools_get_component_start_offset_13( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_14( ):
+def test_componenttools_get_component_start_offset_14():
     '''Offset on leaves works in nested parallel and sequential contexts.'''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -132,7 +132,7 @@ def test_componenttools_get_component_start_offset_14( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8) + Duration(1, 2)
 
 
-def test_componenttools_get_component_start_offset_15( ):
+def test_componenttools_get_component_start_offset_15():
     '''Offset on leaves works in nested parallel and sequential contexts.'''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -146,7 +146,7 @@ def test_componenttools_get_component_start_offset_15( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(1, 8) + Duration(1, 2)
 
 
-def test_componenttools_get_component_start_offset_16( ):
+def test_componenttools_get_component_start_offset_16():
     '''Prolated offsets works on threaded sequential voices.'''
 
     t = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
@@ -155,7 +155,7 @@ def test_componenttools_get_component_start_offset_16( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(4, 8)
 
 
-def test_componenttools_get_component_start_offset_17( ):
+def test_componenttools_get_component_start_offset_17():
     '''Prolated offset does NOT go across sequential staves.'''
 
     t = Container([Staff(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
@@ -164,7 +164,7 @@ def test_componenttools_get_component_start_offset_17( ):
     assert componenttools.get_component_start_offset(t[1]) == Duration(1, 2)
 
 
-def test_componenttools_get_component_start_offset_18( ):
+def test_componenttools_get_component_start_offset_18():
     '''Prolated offsets follows strict threads.'''
 
     t = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
@@ -172,7 +172,7 @@ def test_componenttools_get_component_start_offset_18( ):
         assert componenttools.get_component_start_offset(x) == i * Duration(4, 8)
 
 
-def test_componenttools_get_component_start_offset_19( ):
+def test_componenttools_get_component_start_offset_19():
     '''Prolated offsets works on sequential tuplets.'''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3)) * 3)
@@ -181,7 +181,7 @@ def test_componenttools_get_component_start_offset_19( ):
     assert componenttools.get_component_start_offset(t[2]) == 2 * Duration(1, 4)
 
 
-def test_componenttools_get_component_start_offset_20( ):
+def test_componenttools_get_component_start_offset_20():
     '''Prolated offsets work on tuplets between notes.'''
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
@@ -191,7 +191,7 @@ def test_componenttools_get_component_start_offset_20( ):
     assert componenttools.get_component_start_offset(t[2]) == 3 * Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_21( ):
+def test_componenttools_get_component_start_offset_21():
     '''Prolated offsets work on nested tuplets.'''
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
@@ -201,7 +201,7 @@ def test_componenttools_get_component_start_offset_21( ):
     assert componenttools.get_component_start_offset(t[2]) == 2 * Duration(1, 6)
 
 
-def test_componenttools_get_component_start_offset_22( ):
+def test_componenttools_get_component_start_offset_22():
     '''Prolated offsets work on nested contexts.'''
 
     vin = Voice(notetools.make_repeated_notes(4))
@@ -212,7 +212,7 @@ def test_componenttools_get_component_start_offset_22( ):
     assert componenttools.get_component_start_offset(vout) == Duration(1, 8)
 
 
-def test_componenttools_get_component_start_offset_23( ):
+def test_componenttools_get_component_start_offset_23():
     '''Prolated offsets work on nested parallel contexts.'''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -223,7 +223,7 @@ def test_componenttools_get_component_start_offset_23( ):
     assert componenttools.get_component_start_offset(t[1]) == 0
 
 
-def test_componenttools_get_component_start_offset_24( ):
+def test_componenttools_get_component_start_offset_24():
     '''Prolated offsets works in nested parallel and sequential contexts.'''
 
     v1 = Voice(notetools.make_repeated_notes(4))

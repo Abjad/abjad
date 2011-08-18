@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import metertools
 
 
-def test_metertools_meter_to_binary_meter_01( ):
+def test_metertools_meter_to_binary_meter_01():
     '''Make n/12 meters into n/8 meters, where possible.'''
 
     assert metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(1, 12)) == contexttools.TimeSignatureMark(1, 12)
@@ -13,7 +13,7 @@ def test_metertools_meter_to_binary_meter_01( ):
     assert metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(6, 12)) == contexttools.TimeSignatureMark(4, 8)
 
 
-def test_metertools_meter_to_binary_meter_02( ):
+def test_metertools_meter_to_binary_meter_02():
     '''Make n/14 meters into n/8 meters, where possible.'''
 
     assert metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(1, 14)) == contexttools.TimeSignatureMark(1, 14)
@@ -25,7 +25,7 @@ def test_metertools_meter_to_binary_meter_02( ):
     assert metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(7, 14)) == contexttools.TimeSignatureMark(4, 8)
 
 
-def test_metertools_meter_to_binary_meter_03( ):
+def test_metertools_meter_to_binary_meter_03():
     '''Make n/24 meters into n/16 meters, where possible.'''
 
     assert metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(1, 24)) == contexttools.TimeSignatureMark(1, 24)
@@ -38,7 +38,7 @@ def test_metertools_meter_to_binary_meter_03( ):
     assert metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(8, 24)) == contexttools.TimeSignatureMark(8, 24)
 
 
-def test_metertools_meter_to_binary_meter_04( ):
+def test_metertools_meter_to_binary_meter_04():
     '''Make n/24 meters into n/8 meters, where possible.'''
 
     assert metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(1, 24), Duration(99)) == contexttools.TimeSignatureMark(1, 24)

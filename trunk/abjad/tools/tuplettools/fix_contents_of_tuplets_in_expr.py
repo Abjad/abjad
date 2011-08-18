@@ -19,8 +19,8 @@ def fix_contents_of_tuplets_in_expr(tuplet):
         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
     .. versionchanged:: 2.0
-        renamed ``tuplettools.contents_fix( )`` to
-        ``tuplettools.fix_contents_of_tuplets_in_expr( )``.
+        renamed ``tuplettools.contents_fix()`` to
+        ``tuplettools.fix_contents_of_tuplets_in_expr()``.
     '''
 
     # check input

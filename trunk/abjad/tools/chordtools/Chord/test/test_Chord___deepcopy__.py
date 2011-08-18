@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Chord___deepcopy___01( ):
+def test_Chord___deepcopy___01():
     '''Ensure deepcopied note heads attach correctly to chord.
     '''
 

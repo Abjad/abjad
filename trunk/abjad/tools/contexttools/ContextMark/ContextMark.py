@@ -12,8 +12,8 @@ class ContextMark(Mark):
 
     ::
 
-        abjad> contexttools.ContextMark( )(note)
-        ContextMark( )(c'4)
+        abjad> contexttools.ContextMark()(note)
+        ContextMark()(c'4)
 
     Context marks override ``__call__`` to attach to Abjad components.
 
@@ -40,7 +40,7 @@ class ContextMark(Mark):
     ### MANGLED METHODS ###
 
     def __bind_correct_effective_context(self, correct_effective_context):
-        self.__unbind_effective_context( )
+        self.__unbind_effective_context()
         if correct_effective_context is not None:
             correct_effective_context._marks_for_which_component_functions_as_effective_context.append(
                 self)
@@ -96,7 +96,7 @@ class ContextMark(Mark):
         '''
         #print '\tupdating effective context of %s ...' % self.__class__.__name__
         current_effective_context = self._effective_context
-        correct_effective_context = self._find_correct_effective_context( )
+        correct_effective_context = self._find_correct_effective_context()
         if current_effective_context is not correct_effective_context:
             self.__bind_correct_effective_context(correct_effective_context)
 
@@ -109,7 +109,7 @@ class ContextMark(Mark):
         ::
 
             abjad> note = Note("c'4")
-            abjad> context_mark = contexttools.ContextMark( )(note)
+            abjad> context_mark = contexttools.ContextMark()(note)
 
         ::
 
@@ -119,7 +119,7 @@ class ContextMark(Mark):
         Return context mark or none.
         '''
         if self.start_component is not None:
-            self.start_component._update_marks_of_entire_score_tree_if_necessary( )
+            self.start_component._update_marks_of_entire_score_tree_if_necessary()
         return self._effective_context
 
     @property
@@ -129,7 +129,7 @@ class ContextMark(Mark):
         ::
 
             abjad> note = Note("c'4")
-            abjad> context_mark = contexttools.ContextMark( )(note)
+            abjad> context_mark = contexttools.ContextMark()(note)
 
         ::
 
@@ -157,7 +157,7 @@ class ContextMark(Mark):
         ::
 
             abjad> note = Note("c'4")
-            abjad> context_mark = contexttools.ContextMark( )(note)
+            abjad> context_mark = contexttools.ContextMark()(note)
 
         ::
 
@@ -166,8 +166,8 @@ class ContextMark(Mark):
 
         ::
 
-            abjad> context_mark.detach_mark( )
-            ContextMark( )
+            abjad> context_mark.detach_mark()
+            ContextMark()
 
         ::
 
@@ -177,7 +177,7 @@ class ContextMark(Mark):
         Return context mark.
         '''
         Mark.detach_mark(self)
-        self.__unbind_effective_context( )
+        self.__unbind_effective_context()
         return self
 
 

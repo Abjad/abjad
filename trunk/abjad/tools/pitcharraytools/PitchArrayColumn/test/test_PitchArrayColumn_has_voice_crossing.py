@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_PitchArrayColumn_has_voice_crossing_01( ):
+def test_PitchArrayColumn_has_voice_crossing_01():
 
     array = pitcharraytools.PitchArray([
         [1, (2, 1), (-1.5, 2)],

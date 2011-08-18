@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_KeySignatureMark_tonic_01( ):
+def test_KeySignatureMark_tonic_01():
     '''Key signature tonic is read / write.
     '''
 

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_CyclicTuple___getitem___01( ):
+def test_seqtools_CyclicTuple___getitem___01():
 
     cyclic_tuple = seqtools.CyclicTuple(range(3))
 
@@ -14,7 +14,7 @@ def test_seqtools_CyclicTuple___getitem___01( ):
     assert cyclic_tuple[5] == 2
 
 
-def test_seqtools_CyclicTuple___getitem___02( ):
+def test_seqtools_CyclicTuple___getitem___02():
 
     cyclic_tuple = seqtools.CyclicTuple(range(3))
 

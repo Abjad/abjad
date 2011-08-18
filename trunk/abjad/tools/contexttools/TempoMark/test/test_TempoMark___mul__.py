@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TempoMark___mul___01( ):
+def test_TempoMark___mul___01():
 
     tempo_indication = contexttools.TempoMark(Duration(1, 4), 60)
     result = tempo_indication * Duration(1, 2)
@@ -24,7 +24,7 @@ def test_TempoMark___mul___01( ):
         Duration(1, 4), Duration(360, 7))
 
 
-def test_TempoMark___mul___02( ):
+def test_TempoMark___mul___02():
 
     tempo_indication = contexttools.TempoMark(Duration(1, 4), 60)
     result = tempo_indication * 1

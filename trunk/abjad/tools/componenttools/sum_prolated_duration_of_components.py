@@ -14,8 +14,8 @@ def sum_prolated_duration_of_components(components):
         Duration(1, 4)
 
     .. versionchanged:: 2.0
-        renamed ``durtools.sum_prolated( )`` to
-        ``componenttools.sum_prolated_duration_of_components( )``.
+        renamed ``durtools.sum_prolated()`` to
+        ``componenttools.sum_prolated_duration_of_components()``.
     '''
 
     return sum([component.prolated_duration for component in components])

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_01( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_01():
     '''Index split tuplet in score and do not fracture spanners.'''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -47,7 +47,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t}\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_02( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_02():
     '''Index split binary measure in score and do not fracture spanners.'''
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
@@ -98,7 +98,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_03( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_03():
     '''Index split nonbinary measure in score and do not frature spanners.'''
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
@@ -159,7 +159,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     #assert t.format == "\\new Voice {\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 3/9\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 1/9\n\t\t\tf'8\n\t\t}\n\t}\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 2/9\n\t\t\tg'8\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_04( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_04():
     '''A single container can be index split in two by the middle;
         no parent.'''
 
@@ -183,7 +183,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     assert t2.format == "\\new Voice {\n\te'8\n\tf'8\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_05( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_05():
     '''A single container 'split' at index 0 gives
         an empty lefthand part and a complete righthand part.
         Original container empties contents.'''
@@ -210,7 +210,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_06( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_06():
     '''Split container at index greater than len(container).
         Lefthand part instantiates with all contents.
         Righthand part instantiates empty.
@@ -227,7 +227,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_07( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_07():
     '''Voice can be index split.'''
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
@@ -242,7 +242,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_08( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_08():
     '''Index split container in score and do not fracture spanners.'''
 
     t = Staff([Container("c'8 d'8 e'8 f'8")])
@@ -270,7 +270,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_09( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_09():
     '''Index split tuplet in score and do not fracture spanners.'''
 
     #t = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
@@ -304,7 +304,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\t\\times 4/5 {\n\t\t\tc'8 [\n\t\t\tc'8\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_10( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_10():
     '''Index split left of leaf in score and do not fracture spanners.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -354,7 +354,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_11( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_11():
     '''Index split right of leaf in score and do not fracture spanners.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)

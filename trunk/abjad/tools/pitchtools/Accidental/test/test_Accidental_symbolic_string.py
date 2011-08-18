@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Accidental_symbolic_string_01( ):
+def test_Accidental_symbolic_string_01():
 
     assert pitchtools.Accidental('s').symbolic_string == '#'
     assert pitchtools.Accidental('ss').symbolic_string == '###'

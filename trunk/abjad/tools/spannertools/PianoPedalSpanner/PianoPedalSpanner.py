@@ -43,7 +43,7 @@ class PianoPedalSpanner(Spanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def kind( ):
+    def kind():
         def fget(self):
             r'''Get piano pedal spanner kind::
 
@@ -64,13 +64,13 @@ class PianoPedalSpanner(Spanner):
             '''
             return self._kind
         def fset(self, arg):
-            if not arg in self._kinds.keys( ):
-                raise ValueError("Type must be in %s" % self._kinds.keys( ))
+            if not arg in self._kinds.keys():
+                raise ValueError("Type must be in %s" % self._kinds.keys())
             self._kind = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def style( ):
+    def style():
         def fget(self):
             r'''Get piano pedal spanner style::
 
@@ -94,7 +94,7 @@ class PianoPedalSpanner(Spanner):
             if not arg in self._styles:
                 raise ValueError("Style must be in %s" % self._styles)
             self._style = arg
-        return property(**locals( ))
+        return property(**locals())
 
 
 

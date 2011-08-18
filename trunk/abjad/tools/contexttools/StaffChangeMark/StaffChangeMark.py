@@ -98,7 +98,7 @@ class StaffChangeMark(ContextMark):
         return r'\change Staff = %s' % self.staff.name
 
     @apply
-    def staff( ):
+    def staff():
         def fget(self):
             r'''Get staff of staff change mark::
 
@@ -123,6 +123,6 @@ class StaffChangeMark(ContextMark):
             from abjad.tools.stafftools.Staff import Staff
             assert isinstance(staff, Staff)
             self._staff = staff
-        return property(**locals( ))
+        return property(**locals())
 
 

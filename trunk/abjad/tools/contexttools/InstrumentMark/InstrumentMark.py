@@ -84,7 +84,7 @@ class InstrumentMark(ContextMark):
         return result
 
     @apply
-    def instrument_name( ):
+    def instrument_name():
         def fget(self):
             r'''Get instrument name::
 
@@ -105,10 +105,10 @@ class InstrumentMark(ContextMark):
             from abjad.tools.markuptools import Markup
             assert isinstance(instrument_name, str)
             self._instrument_name = Markup(instrument_name)
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def short_instrument_name( ):
+    def short_instrument_name():
         def fget(self):
             r'''Get short instrument name::
 
@@ -129,6 +129,6 @@ class InstrumentMark(ContextMark):
             from abjad.tools.markuptools import Markup
             assert isinstance(short_instrument_name, str)
             self._short_instrument_name = Markup(short_instrument_name)
-        return property(**locals( ))
+        return property(**locals())
 
 

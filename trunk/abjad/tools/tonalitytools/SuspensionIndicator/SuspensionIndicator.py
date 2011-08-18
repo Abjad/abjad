@@ -14,9 +14,9 @@ class SuspensionIndicator(_Immutable):
 
     def __init__(self, *args):
         if len(args) == 0:
-            start, stop = self._init_empty( )
+            start, stop = self._init_empty()
         elif len(args) == 1 and args[0] in (None, ''):
-            start, stop = self._init_empty( )
+            start, stop = self._init_empty()
         elif len(args) == 1 and isinstance(args[0], type(self)):
             start, stop = self._init_by_reference(*args)
         elif len(args) == 1 and isinstance(args[0], str):
@@ -46,7 +46,7 @@ class SuspensionIndicator(_Immutable):
         if self.start is not None and self.stop is not None:
             return '%s(%s, %s)' % (type(self).__name__, self.start, self.stop)
         else:
-            return '%s( )' % type(self).__name__
+            return '%s()' % type(self).__name__
 
     def __str__(self):
         if self.start is not None and self.stop is not None:
@@ -76,7 +76,7 @@ class SuspensionIndicator(_Immutable):
         return start, stop
 
     def _init_by_symbolic_string(self, symbolic_string):
-        groups = self._symbolic_string_regex.match(symbolic_string).groups( )
+        groups = self._symbolic_string_regex.match(symbolic_string).groups()
         start, stop = groups
         start = ScaleDegree(start)
         #self._start = start

@@ -51,7 +51,7 @@ class ComplexBeamSpanner(BeamSpanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def lone( ):
+    def lone():
         def fget(self):
             r'''Beam lone leaf and force beam nibs to left::
 
@@ -134,7 +134,7 @@ class ComplexBeamSpanner(BeamSpanner):
         def fset(self, arg):
             assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
             self._lone = arg
-        return property(**locals( ))
+        return property(**locals())
 
 
 

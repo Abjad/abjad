@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClass___init___01( ):
+def test_NamedChromaticPitchClass___init___01():
     '''Init from name string.'''
 
     assert pitchtools.NamedChromaticPitchClass('c') == 'c'
@@ -11,7 +11,7 @@ def test_NamedChromaticPitchClass___init___01( ):
     assert pitchtools.NamedChromaticPitchClass('cqf') == 'cqf'
 
 
-def test_NamedChromaticPitchClass___init___02( ):
+def test_NamedChromaticPitchClass___init___02():
     '''Init from other named pitch-class instance.'''
 
     npc = pitchtools.NamedChromaticPitchClass('c')
@@ -21,7 +21,7 @@ def test_NamedChromaticPitchClass___init___02( ):
     assert new is not npc
 
 
-def test_NamedChromaticPitchClass___init___03( ):
+def test_NamedChromaticPitchClass___init___03():
     '''Init from note head instance.'''
 
     chord = Chord([0, 2, 3], (1, 4))

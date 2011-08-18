@@ -3,7 +3,7 @@ from abjad.tools.contexttools._Context import _Context
 import py.test
 
 
-def test_Context___setattr___01( ):
+def test_Context___setattr___01():
     '''Slots constrain context attributes.
     '''
 

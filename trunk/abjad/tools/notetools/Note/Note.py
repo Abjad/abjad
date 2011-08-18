@@ -30,7 +30,7 @@ class Note(_Leaf):
             self._copy_override_and_set_from_leaf(leaf)
         elif len(args) == 1 and isinstance(args[0], str):
             match = re.match(_lilypond_leaf_regex, args[0])
-            chromatic_pitch_class_name, octave_tick_string, duration_body, dots = match.groups( )
+            chromatic_pitch_class_name, octave_tick_string, duration_body, dots = match.groups()
             pitch = chromatic_pitch_class_name + octave_tick_string
             written_duration = duration_body + dots
             lilypond_multiplier = None
@@ -77,7 +77,7 @@ class Note(_Leaf):
         r'''Read-only fingered pitch of note::
 
             abjad> staff = Staff("d''8 e''8 f''8 g''8")
-            abjad> piccolo = instrumenttools.Piccolo( )(staff)
+            abjad> piccolo = instrumenttools.Piccolo()(staff)
             abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
         ::
@@ -113,7 +113,7 @@ class Note(_Leaf):
             return self.written_pitch
 
     @apply
-    def note_head( ):
+    def note_head():
         def fget(self):
             '''Get note head of note::
 
@@ -139,10 +139,10 @@ class Note(_Leaf):
             else:
                 note_head = NoteHead(self, arg)
                 self._note_head = note_head
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def written_pitch( ):
+    def written_pitch():
         def fget(self):
             '''Get named pitch of note::
 
@@ -174,14 +174,14 @@ class Note(_Leaf):
                 else:
                     pitch = pitchtools.NamedChromaticPitch(arg)
                     self.note_head.written_pitch = pitch
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def sounding_pitch(self):
         r'''Read-only sounding pitch of note::
 
             abjad> staff = Staff("d''8 e''8 f''8 g''8")
-            abjad> piccolo = instrumenttools.Piccolo( )(staff)
+            abjad> piccolo = instrumenttools.Piccolo()(staff)
 
         ::
 
@@ -216,7 +216,7 @@ class Note(_Leaf):
             return sounding_pitch
 
 #   @apply
-#   def written_pitch( ):
+#   def written_pitch():
 #      def fget(self):
 #         if self.note_head is not None and hasattr(self.note_head, 'written_pitch'):
 #            return self._note_head.written_pitch
@@ -234,6 +234,6 @@ class Note(_Leaf):
 #            else:
 #               pitch = pitchtools.NamedChromaticPitch(arg)
 #               self.note_head.written_pitch = pitch
-#      return property(**locals( ))
+#      return property(**locals())
 
 

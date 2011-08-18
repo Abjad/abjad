@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromticPitchSegment___init___01( ):
+def test_NamedChromticPitchSegment___init___01():
     '''Init named chromatic pitch segment from string.
     '''
 
@@ -10,7 +10,7 @@ def test_NamedChromticPitchSegment___init___01( ):
     assert isinstance(named_chromatic_pitch_segment, pitchtools.NamedChromaticPitchSegment)
 
 
-def test_NamedChromticPitchSegment___init___02( ):
+def test_NamedChromticPitchSegment___init___02():
     '''Init named chromatic pitch segment from named chromatic pitches.
     '''
 

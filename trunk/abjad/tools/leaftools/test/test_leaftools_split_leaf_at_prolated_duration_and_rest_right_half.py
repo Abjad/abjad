@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_split_leaf_at_prolated_duration_and_rest_right_half_01( ):
+def test_leaftools_split_leaf_at_prolated_duration_and_rest_right_half_01():
 
     t = Staff("c'8 d'8 e'8 f'8")
     spannertools.SlurSpanner(t[:])

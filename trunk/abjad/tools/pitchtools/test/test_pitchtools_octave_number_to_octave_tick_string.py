@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_octave_number_to_octave_tick_string_01( ):
+def test_pitchtools_octave_number_to_octave_tick_string_01():
 
 
     assert pitchtools.octave_number_to_octave_tick_string(-1) == ',,,,'

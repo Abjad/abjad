@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners import _withdraw_components_in_expr_from_attached_spanners
 
 
-def test_spannertools__withdraw_components_in_expr_from_attached_spanners_01( ):
+def test_spannertools__withdraw_components_in_expr_from_attached_spanners_01():
     '''Unspan every component in components.
         Navigate down into components and traverse deeply.'''
 
@@ -25,7 +25,7 @@ def test_spannertools__withdraw_components_in_expr_from_attached_spanners_01( ):
     assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_spannertools__withdraw_components_in_expr_from_attached_spanners_02( ):
+def test_spannertools__withdraw_components_in_expr_from_attached_spanners_02():
     '''Docs.'''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)

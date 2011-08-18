@@ -6,7 +6,7 @@ class _BlockNonattributed(list):
 
     def __repr__(self):
         if not len(self):
-            return '%s( )' % self.__class__.__name__
+            return '%s()' % self.__class__.__name__
         else:
             return '%s(%s)' % (self.__class__.__name__, len(self))
 
@@ -16,7 +16,7 @@ class _BlockNonattributed(list):
     def _format_pieces(self):
         result = [ ]
         if not len(self):
-            result.append(r'%s { }' % self._escaped_name)
+            result.append(r'%s {}' % self._escaped_name)
         else:
             result.append(r'%s {' % self._escaped_name)
             for x in self:

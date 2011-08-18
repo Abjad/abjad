@@ -71,7 +71,7 @@ class Grace(Container):
 
     Grace containers override the special ``__call__`` method.
 
-    Use ``Grace( )`` to attach grace containers to nongrace notes, rests and chords.
+    Use ``Grace()`` to attach grace containers to nongrace notes, rests and chords.
     '''
 
     def __init__(self, music = None, kind = 'grace', **kwargs):
@@ -108,7 +108,7 @@ class Grace(Container):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def kind( ):
+    def kind():
         def fget(self):
             r'''Get `kind` of grace container::
 
@@ -139,7 +139,7 @@ class Grace(Container):
         def fset(self, arg):
             assert arg in ('after', 'grace', 'acciaccatura', 'appoggiatura')
             self._kind = arg
-        return property(**locals( ))
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 
@@ -163,8 +163,8 @@ class Grace(Container):
 
         ::
 
-            abjad> grace_container.detach( )
-            Grace( )
+            abjad> grace_container.detach()
+            Grace()
             abjad> f(staff)
             \new Staff {
                 c'8

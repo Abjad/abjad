@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_SuspensionIndicator__init_by_pair_01( ):
+def test_SuspensionIndicator__init_by_pair_01():
 
     t = tonalitytools.SuspensionIndicator((4, 3))
 

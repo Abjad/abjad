@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Accidental___add___01( ):
+def test_Accidental___add___01():
 
     m = pitchtools.Accidental('quarter sharp')
 

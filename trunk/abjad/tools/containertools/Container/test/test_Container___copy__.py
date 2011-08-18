@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Container___copy___01( ):
+def test_Container___copy___01():
     '''Containes copy parallel indicator.
     '''
 

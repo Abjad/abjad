@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_spanners_covered_by_components_01( ):
+def test_spannertools_get_spanners_covered_by_components_01():
     '''Return unordered set of spanners completely covered
         by the time bounds of thread-contiguous components.'''
 

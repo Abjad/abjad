@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DynamicMeasure_extend_01( ):
+def test_DynamicMeasure_extend_01():
     '''Dynamic measures adjust their signatures after being extended.
     '''
 

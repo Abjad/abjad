@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test__SpannerOffsetInterface_stop_01( ):
+def test__SpannerOffsetInterface_stop_01():
     '''Return stop time of spanner in score.'''
 
     t = Voice("c'8 d'8 e'8 f'8")

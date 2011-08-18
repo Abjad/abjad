@@ -37,8 +37,8 @@ def truncate_sequence_to_weight(sequence, weight):
     Return new list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.truncate_to_weight( )`` to
-        ``seqtools.truncate_sequence_to_weight( )``.
+        renamed ``seqtools.truncate_to_weight()`` to
+        ``seqtools.truncate_sequence_to_weight()``.
     '''
 
     if not isinstance(sequence, list):

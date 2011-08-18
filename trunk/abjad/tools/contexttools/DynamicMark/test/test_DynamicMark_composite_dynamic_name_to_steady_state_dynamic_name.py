@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DynamicMark_composite_dynamic_name_to_steady_state_dynamic_name_01( ):
+def test_DynamicMark_composite_dynamic_name_to_steady_state_dynamic_name_01():
 
     dynamic = contexttools.DynamicMark
     assert dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp') == 'p'

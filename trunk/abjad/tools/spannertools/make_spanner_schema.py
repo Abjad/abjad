@@ -47,7 +47,7 @@ def make_spanner_schema(components):
     Return dictionary.
     '''
 
-    schema = { }
+    schema = {}
     spanners_contained_by_components = get_spanners_contained_by_components(components)
     for spanner in spanners_contained_by_components:
         schema[spanner] = [ ]

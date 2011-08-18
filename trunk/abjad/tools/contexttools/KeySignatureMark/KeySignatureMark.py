@@ -81,7 +81,7 @@ class KeySignatureMark(ContextMark):
         return r'\key %s \%s' % (self.tonic, self.mode)
 
     @apply
-    def mode( ):
+    def mode():
         def fget(self):
             r'''Get mode of key signature::
 
@@ -102,7 +102,7 @@ class KeySignatureMark(ContextMark):
             from abjad.tools import tonalitytools
             mode = tonalitytools.Mode(mode)
             self._mode = mode
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def name(self):
@@ -117,13 +117,13 @@ class KeySignatureMark(ContextMark):
         Return string.
         '''
         if self.mode.mode_name_string == 'major':
-            tonic = str(self.tonic).upper( )
+            tonic = str(self.tonic).upper()
         else:
             tonic = str(self.tonic)
         return '%s %s' % (tonic, self.mode.mode_name_string)
 
     @apply
-    def tonic( ):
+    def tonic():
         def fget(self):
             r'''Get tonic of key signature::
 
@@ -144,6 +144,6 @@ class KeySignatureMark(ContextMark):
             from abjad.tools import pitchtools
             tonic = pitchtools.NamedChromaticPitchClass(tonic)
             self._tonic = tonic
-        return property(**locals( ))
+        return property(**locals())
 
 

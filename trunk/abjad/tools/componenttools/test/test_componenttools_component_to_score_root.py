@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_component_to_score_root_01( ):
+def test_componenttools_component_to_score_root_01():
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     staff = Staff([tuplet])

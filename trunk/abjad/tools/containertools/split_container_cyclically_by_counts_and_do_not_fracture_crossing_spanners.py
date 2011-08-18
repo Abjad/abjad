@@ -54,8 +54,8 @@ def split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners(c
     Return list of list-wrapped container pieces.
 
     .. versionchanged:: 2.0
-        renamed ``partition.cyclic_unfractured_by_counts( )`` to
-        ``containertools.split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners( )``.
+        renamed ``partition.cyclic_unfractured_by_counts()`` to
+        ``containertools.split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners()``.
     '''
     from abjad.tools.containertools._split_container_by_counts import _split_container_by_counts
 

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_yield_all_permutations_of_sequence_01( ):
+def test_seqtools_yield_all_permutations_of_sequence_01():
     '''Yield all permtuations of tuple.
     '''
 
@@ -12,7 +12,7 @@ def test_seqtools_yield_all_permutations_of_sequence_01( ):
     assert permutations == [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
 
 
-def test_seqtools_yield_all_permutations_of_sequence_02( ):
+def test_seqtools_yield_all_permutations_of_sequence_02():
     '''Yield all permtuations of Abjad container.
     '''
 

@@ -16,8 +16,8 @@ def iterate_components_backward_in_spanner(spanner, klass = _Component):
         Note("e'8")
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.iterate_components_backward( )`` to
-        ``spannertools.iterate_components_backward_in_spanner( )``.
+        renamed ``spannertools.iterate_components_backward()`` to
+        ``spannertools.iterate_components_backward_in_spanner()``.
     '''
     from abjad.tools import componenttools
 

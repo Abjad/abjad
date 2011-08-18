@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_is_component_with_spanner_attached_01( ):
+def test_spannertools_is_component_with_spanner_attached_01():
     '''True when expr is a component with spanner attached.
     '''
 
@@ -22,7 +22,7 @@ def test_spannertools_is_component_with_spanner_attached_01( ):
     assert not spannertools.is_component_with_spanner_attached(staff)
 
 
-def test_spannertools_is_component_with_spanner_attached_02( ):
+def test_spannertools_is_component_with_spanner_attached_02():
     '''True when expr is a component with spanner of klass attached.
     '''
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_make_leaves_01( ):
+def test_leaftools_make_leaves_01():
     '''Leaves constructor can create chords, notes and rests simultaneously.
     '''
 
@@ -13,7 +13,7 @@ def test_leaftools_make_leaves_01( ):
       assert l.written_duration == Duration(1, 4)
 
 
-def test_leaftools_make_leaves_02( ):
+def test_leaftools_make_leaves_02():
     '''Leaves constructor can create prolated chords, notes and rests
     simultaneously. Contiguous leaves with the same prolation are
     put together inside a Tuplet.
@@ -39,7 +39,7 @@ def test_leaftools_make_leaves_02( ):
     assert tuplet2[0].written_duration == Duration(1, 4)
 
 
-def test_leaftools_make_leaves_03( ):
+def test_leaftools_make_leaves_03():
     '''Leaves constructor can create prolated and unprolated chords,
     notes and rests simultaneously.
     '''
@@ -60,7 +60,7 @@ def test_leaftools_make_leaves_03( ):
     assert isinstance(tuplet2[0], Rest)
 
 
-def test_leaftools_make_leaves_04( ):
+def test_leaftools_make_leaves_04():
     '''Leaves constructor can take an optional 'tied_rests' keyword argument.
     '''
 
@@ -78,7 +78,7 @@ def test_leaftools_make_leaves_04( ):
       leaves[3], tietools.TieSpanner)
 
 
-def test_leaftools_make_leaves_05( ):
+def test_leaftools_make_leaves_05():
     ''''tied_rests' is False by default.'''
 
     leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)])
@@ -89,14 +89,14 @@ def test_leaftools_make_leaves_05( ):
       assert not tietools.is_component_with_tie_spanner_attached(l)
 
 
-def test_leaftools_make_leaves_06( ):
+def test_leaftools_make_leaves_06():
     '''Works with quarter-tone pitch numbers.'''
 
     leaves = leaftools.make_leaves([12, 12.5, 13, 13.5], [(1, 4)])
     assert [leaf.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number for leaf in leaves] == [12, 12.5, 13, 13.5]
 
 
-def test_leaftools_make_leaves_07( ):
+def test_leaftools_make_leaves_07():
     '''Works with pitch instances.'''
 
     leaves = leaftools.make_leaves([pitchtools.NamedChromaticPitch(0)], [(1, 8), (1, 8), (1, 4)])

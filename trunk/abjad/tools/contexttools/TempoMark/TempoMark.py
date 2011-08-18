@@ -125,7 +125,7 @@ class TempoMark(ContextMark):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def duration( ):
+    def duration():
         def fget(self):
             '''Get duration of tempo mark::
 
@@ -148,7 +148,7 @@ class TempoMark(ContextMark):
             except TypeError:
                 duration = durtools.Duration(*duration)
             self._duration = duration
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def format(self):
@@ -177,7 +177,7 @@ class TempoMark(ContextMark):
         return durtools.Duration(1, 4) / self.duration * self.units_per_minute
 
     @apply
-    def units_per_minute( ):
+    def units_per_minute():
         def fget(self):
             r'''Get units per minute of tempo mark::
 
@@ -197,6 +197,6 @@ class TempoMark(ContextMark):
         def fset(self, units_per_minute):
             assert isinstance(units_per_minute, numbers.Number)
             self._units_per_minute = units_per_minute
-        return property(**locals( ))
+        return property(**locals())
 
 

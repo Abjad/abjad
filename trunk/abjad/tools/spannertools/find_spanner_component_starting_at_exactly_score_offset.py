@@ -24,8 +24,8 @@ def find_spanner_component_starting_at_exactly_score_offset(spanner, score_offse
     Return `spanner` component or none.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.find_component_at_score_offset( )`` to
-        ``spannertools.find_spanner_component_starting_at_exactly_score_offset( )``.
+        renamed ``spannertools.find_component_at_score_offset()`` to
+        ``spannertools.find_spanner_component_starting_at_exactly_score_offset()``.
     '''
 
     for component in spanner:

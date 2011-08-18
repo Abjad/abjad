@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_reverse_contents_of_container_01( ):
+def test_containertools_reverse_contents_of_container_01():
     '''Retrograde works on a depth-0 Container with no spanners and no parent.
     '''
 
@@ -14,7 +14,7 @@ def test_containertools_reverse_contents_of_container_01( ):
     assert componenttools.is_well_formed_component(t)
 
 
-def test_containertools_reverse_contents_of_container_02( ):
+def test_containertools_reverse_contents_of_container_02():
     '''Retrograde works on a depth-0 Container with one spanner attached and no parent.
     '''
 
@@ -28,7 +28,7 @@ def test_containertools_reverse_contents_of_container_02( ):
     assert componenttools.is_well_formed_component(t)
 
 
-def test_containertools_reverse_contents_of_container_03( ):
+def test_containertools_reverse_contents_of_container_03():
     '''Retrograde works on a depth-0 Container with one spanner attached
     to its leaves and with no parent.
     '''
@@ -43,7 +43,7 @@ def test_containertools_reverse_contents_of_container_03( ):
     assert componenttools.is_well_formed_component(t)
 
 
-def test_containertools_reverse_contents_of_container_04( ):
+def test_containertools_reverse_contents_of_container_04():
     '''Retrograde works on a depth-0 Container with one spanner
     attached to itself and with a parent.
     '''
@@ -57,7 +57,7 @@ def test_containertools_reverse_contents_of_container_04( ):
     assert componenttools.is_well_formed_component(t)
 
 
-def test_containertools_reverse_contents_of_container_05( ):
+def test_containertools_reverse_contents_of_container_05():
     '''Retrograde works on a depth-0 Container with one spanner
     attached to its leaves and with a parent.
     '''
@@ -71,7 +71,7 @@ def test_containertools_reverse_contents_of_container_05( ):
     assert componenttools.is_well_formed_component(t)
 
 
-def test_containertools_reverse_contents_of_container_06( ):
+def test_containertools_reverse_contents_of_container_06():
     '''Retrograde works on a depth-0 Container with one spanner attached to its parent.
     '''
 
@@ -85,7 +85,7 @@ def test_containertools_reverse_contents_of_container_06( ):
     assert componenttools.is_well_formed_component(t)
 
 
-def test_containertools_reverse_contents_of_container_07( ):
+def test_containertools_reverse_contents_of_container_07():
     '''Retrograde works on a depth-0 Container with one spanner
     attached to its parent's contents.
     '''
@@ -101,9 +101,9 @@ def test_containertools_reverse_contents_of_container_07( ):
     assert componenttools.is_well_formed_component(t)
 
 
-### TODO: Added componenttools.is_well_formed_component( ) check for measure contiguity. ###
+### TODO: Added componenttools.is_well_formed_component() check for measure contiguity. ###
 
-def test_containertools_reverse_contents_of_container_08( ):
+def test_containertools_reverse_contents_of_container_08():
     '''Retrograde unable to apply because of measure contiguity.
     '''
 
@@ -134,7 +134,7 @@ def test_containertools_reverse_contents_of_container_08( ):
 #      'containertools.reverse_contents_of_container(t)')
 
 
-def test_containertools_reverse_contents_of_container_09( ):
+def test_containertools_reverse_contents_of_container_09():
     '''Retrograde works on a depth-2 Container with no parent and with spanners at all levels.
     '''
 

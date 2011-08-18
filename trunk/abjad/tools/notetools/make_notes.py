@@ -44,8 +44,8 @@ def make_notes(pitches, durations, direction='big-endian'):
     Return list of newly constructed notes.
 
     .. versionchanged:: 2.0
-        renamed ``construct.notes( )`` to
-        ``notetools.make_notes( )``.
+        renamed ``construct.notes()`` to
+        ``notetools.make_notes()``.
     '''
     from abjad.tools.leaftools._construct_unprolated_notes import _construct_unprolated_notes
     from abjad.tools.tuplettools.Tuplet import Tuplet

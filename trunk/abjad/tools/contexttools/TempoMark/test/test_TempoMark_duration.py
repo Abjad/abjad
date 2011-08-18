@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TempoMark_duration_01( ):
+def test_TempoMark_duration_01():
     '''Duration of tempo mark is read / write.
     '''
 

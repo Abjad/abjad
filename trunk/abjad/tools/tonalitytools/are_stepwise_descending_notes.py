@@ -24,8 +24,8 @@ def are_stepwise_descending_notes(*expr):
         False
 
     .. versionchanged:: 2.0
-        renamed ``tonalitytools.are_stepwise_descending( )`` to
-        ``tonalitytools.are_stepwise_descending_notes( )``.
+        renamed ``tonalitytools.are_stepwise_descending()`` to
+        ``tonalitytools.are_stepwise_descending_notes()``.
     '''
 
     for left, right in seqtools.iterate_sequence_pairwise_strict(

@@ -4,7 +4,7 @@ from abjad.tools import metertools
 from abjad.tools.measuretools.scale_contents_of_measures_in_expr import scale_contents_of_measures_in_expr
 
 
-### TODO: implement measuretools.change_nonbinary_measure_to_binary( ).
+### TODO: implement measuretools.change_nonbinary_measure_to_binary().
 def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominator_factor):
     r'''.. versionadded:: 1.1
 
@@ -52,8 +52,8 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
     Pick best new meter.
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.change_binary_measure_to_nonbinary( )`` to
-        ``measuretools.scale_measure_denominator_and_adjust_measure_contents( )``.
+        renamed ``measuretools.change_binary_measure_to_nonbinary()`` to
+        ``measuretools.scale_measure_denominator_and_adjust_measure_contents()``.
     '''
 
     ### save old meter duration

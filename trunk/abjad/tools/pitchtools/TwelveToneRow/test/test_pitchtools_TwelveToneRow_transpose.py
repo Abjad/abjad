@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_TwelveToneRow_transpose_01( ):
+def test_pitchtools_TwelveToneRow_transpose_01():
 
     row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
     assert row.transpose(0) == row

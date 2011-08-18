@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicDiatonicIntervalSet_harmonic_chromatic_interval_set_01( ):
+def test_MelodicDiatonicIntervalSet_harmonic_chromatic_interval_set_01():
 
     mdiset = pitchtools.MelodicDiatonicIntervalSet([
         pitchtools.MelodicDiatonicInterval('minor', -2),

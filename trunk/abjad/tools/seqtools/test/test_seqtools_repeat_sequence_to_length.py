@@ -3,20 +3,20 @@ from abjad.tools import seqtools
 import py.test
 
 
-def test_seqtools_repeat_sequence_to_length_01( ):
+def test_seqtools_repeat_sequence_to_length_01():
     '''Repeat list to length.'''
 
     assert seqtools.repeat_sequence_to_length(range(5), 11) == [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
 
-def test_seqtools_repeat_sequence_to_length_02( ):
+def test_seqtools_repeat_sequence_to_length_02():
     '''Repeat list to length.'''
 
     t = seqtools.repeat_sequence_to_length([0, -1, -2, -3, -4], 11)
     assert t == [0, -1, -2, -3, -4, 0, -1, -2, -3, -4, 0]
 
 
-def test_seqtools_repeat_sequence_to_length_03( ):
+def test_seqtools_repeat_sequence_to_length_03():
     '''When length is less than length of list
     return only the first length elements of list.
     '''
@@ -25,20 +25,20 @@ def test_seqtools_repeat_sequence_to_length_03( ):
     assert t == [0, 1, 2]
 
 
-def test_seqtools_repeat_sequence_to_length_04( ):
+def test_seqtools_repeat_sequence_to_length_04():
     '''When length is zero, return an empty list.'''
 
     t = seqtools.repeat_sequence_to_length(range(5), 0)
     assert t == [ ]
 
 
-def test_seqtools_repeat_sequence_to_length_05( ):
+def test_seqtools_repeat_sequence_to_length_05():
     '''List must not be empty.'''
 
     assert py.test.raises(ValueError, 'seqtools.repeat_sequence_to_length([ ], 2)')
 
 
-def test_seqtools_repeat_sequence_to_length_06( ):
+def test_seqtools_repeat_sequence_to_length_06():
     '''Optional start index less than length of list.'''
 
     t = seqtools.repeat_sequence_to_length([1, 2, 3], 10, 2)
@@ -46,7 +46,7 @@ def test_seqtools_repeat_sequence_to_length_06( ):
     assert t == [3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
 
 
-def test_seqtools_repeat_sequence_to_length_07( ):
+def test_seqtools_repeat_sequence_to_length_07():
     '''Optional start index greater than length of list is OK.'''
 
     t = seqtools.repeat_sequence_to_length([1, 2, 3], 10, 100)
@@ -54,7 +54,7 @@ def test_seqtools_repeat_sequence_to_length_07( ):
     assert t == [2, 3, 1, 2, 3, 1, 2, 3, 1, 2]
 
 
-def test_seqtools_repeat_sequence_to_length_08( ):
+def test_seqtools_repeat_sequence_to_length_08():
     '''Repeat Abjad container to length.
     '''
 

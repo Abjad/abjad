@@ -14,7 +14,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = 1):
     meter by `multiplier` and then scale measure contents to fit
     the new meter.
 
-    Extend ``containertools.scale_contents_of_container( )``.
+    Extend ``containertools.scale_contents_of_container()``.
 
     Return none.
     '''

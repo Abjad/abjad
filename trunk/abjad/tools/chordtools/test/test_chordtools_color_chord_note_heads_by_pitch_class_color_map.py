@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chordtools_color_chord_note_heads_by_pitch_class_color_map_01( ):
+def test_chordtools_color_chord_note_heads_by_pitch_class_color_map_01():
 
     chord = Chord([12, 14, 18, 21, 23], (1, 4))
 

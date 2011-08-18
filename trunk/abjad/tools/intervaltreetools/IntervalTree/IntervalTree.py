@@ -95,12 +95,12 @@ class IntervalTree(_RedBlackTree):
     def _inorder(self):
         if self:
             intervals = [ ]
-            nodes = tuple(self._sort_nodes_inorder( ))
+            nodes = tuple(self._sort_nodes_inorder())
             for node in nodes:
                 intervals.extend(sorted(node.payload, key=lambda x: x.signature))
             return tuple(intervals)
         else:
-            return ( )
+            return ()
 
     ### PRIVATE METHODS ###
 
@@ -126,7 +126,7 @@ class IntervalTree(_RedBlackTree):
                 node.parent = self._sentinel
                 self._insert_node(node)
 #            self._intervals.append(interval)
-        self._update_high_extrema( )
+        self._update_high_extrema()
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -318,7 +318,7 @@ class IntervalTree(_RedBlackTree):
         if node is not None and node != self._sentinel:
             return tuple(sorted(node.payload, key=lambda x: x.signature))
         else:
-            return ( )
+            return ()
 
     def find_intervals_starting_before_offset(self, offset):
         def recurse(node, offset):

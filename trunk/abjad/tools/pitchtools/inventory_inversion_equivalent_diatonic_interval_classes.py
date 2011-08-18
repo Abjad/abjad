@@ -1,12 +1,12 @@
 from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import InversionEquivalentDiatonicIntervalClass
 
 
-def inventory_inversion_equivalent_diatonic_interval_classes( ):
+def inventory_inversion_equivalent_diatonic_interval_classes():
     '''.. versionadded:: 2.0
 
     Inventory inversion-equivalent diatonic interval-classes::
 
-        abjad> for dic in pitchtools.inventory_inversion_equivalent_diatonic_interval_classes( ):
+        abjad> for dic in pitchtools.inventory_inversion_equivalent_diatonic_interval_classes():
         ...     dic
         ...
         InversionEquivalentDiatonicIntervalClass('P1')

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_01( ):
+def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_01():
 
     score = Score([ ])
     score.append(Staff("c'8 d'8 e'8 f'8 g'8 a'8"))
@@ -48,7 +48,7 @@ def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_01(
     assert pitch_array[2].pitches == pitchtools.list_named_chromatic_pitches_in_expr(score[2])
 
 
-def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_02( ):
+def test_pitcharraytools_make_populated_pitch_array_from_list_of_pitch_lists_02():
 
     score = Score([ ])
     score.append(Staff("c'8 d'8 e'8 f'8"))

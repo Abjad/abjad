@@ -3,7 +3,7 @@ from abjad.tools.componenttools._give_music_from_donor_components_to_recipient_c
 import py.test
 
 
-def test_componenttools__give_music_from_donor_components_to_recipient_components_01( ):
+def test_componenttools__give_music_from_donor_components_to_recipient_components_01():
     '''Give spanned music from donor to recipient.
     Helper is not composer-safe and results here in bad spanners.
     '''
@@ -62,7 +62,7 @@ def test_componenttools__give_music_from_donor_components_to_recipient_component
     assert recipient.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
 
 
-def test_componenttools__give_music_from_donor_components_to_recipient_components_02( ):
+def test_componenttools__give_music_from_donor_components_to_recipient_components_02():
     '''When donor is leaf do nothing.
     '''
 
@@ -78,7 +78,7 @@ def test_componenttools__give_music_from_donor_components_to_recipient_component
     assert recipient.format == '\\new Voice {\n}'
 
 
-def test_componenttools__give_music_from_donor_components_to_recipient_components_03( ):
+def test_componenttools__give_music_from_donor_components_to_recipient_components_03():
     '''When recipient is unable to accept donated music raise music contents error.
     '''
 

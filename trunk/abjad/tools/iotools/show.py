@@ -35,7 +35,7 @@ def show(expr, template = None, return_timing = False, suppress_pdf = False):
 
     ### do not open PDF if we're running py.test regression battery
     if not suppress_pdf:
-        config = _read_config_file( )
+        config = _read_config_file()
         pdf_viewer = config['pdf_viewer']
         ABJADOUTPUT = config['abjad_output']
         name = os.path.join(ABJADOUTPUT, name)

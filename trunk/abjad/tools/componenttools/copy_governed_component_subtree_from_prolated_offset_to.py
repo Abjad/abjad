@@ -95,8 +95,8 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start = 0
     Return (untrimmed_copy, first_dif, second_dif).
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.clone_governed_component_subtree_from_prolated_duration_to( )`` to
-        ``componenttools.copy_governed_component_subtree_from_prolated_offset_to( )``.
+        renamed ``componenttools.clone_governed_component_subtree_from_prolated_duration_to()`` to
+        ``componenttools.copy_governed_component_subtree_from_prolated_offset_to()``.
     '''
     from abjad.tools.leaftools._Leaf import _Leaf
     from abjad.tools.containertools.Container import Container

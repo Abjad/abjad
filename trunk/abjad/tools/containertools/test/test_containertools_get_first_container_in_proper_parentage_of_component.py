@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_get_first_container_in_proper_parentage_of_component_01( ):
+def test_containertools_get_first_container_in_proper_parentage_of_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 

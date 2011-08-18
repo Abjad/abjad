@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_copy_components_and_immediate_parent_of_first_component_01( ):
+def test_componenttools_copy_components_and_immediate_parent_of_first_component_01():
     '''Copy adjacent notes in staff.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -19,7 +19,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert u.format == "\\new Staff {\n\tc'8\n\td'8\n}"
 
 
-def test_componenttools_copy_components_and_immediate_parent_of_first_component_02( ):
+def test_componenttools_copy_components_and_immediate_parent_of_first_component_02():
     '''Copy adjacent notes in staff.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -38,7 +38,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
 
 
-def test_componenttools_copy_components_and_immediate_parent_of_first_component_03( ):
+def test_componenttools_copy_components_and_immediate_parent_of_first_component_03():
     '''Copy notes from tuplet and adjust tuplet target duration
     in order to preserve tuplet multiplier.'''
 
@@ -60,7 +60,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert u.format == "\\times 4/5 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_componenttools_copy_components_and_immediate_parent_of_first_component_04( ):
+def test_componenttools_copy_components_and_immediate_parent_of_first_component_04():
     '''Copy adjacent, whole tuplets from staff.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)
@@ -87,7 +87,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert u.format == "\\new Staff {\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n\t\\times 2/3 {\n\t\tb'8\n\t\tc''8\n\t\td''8\n\t}\n}"
 
 
-def test_componenttools_copy_components_and_immediate_parent_of_first_component_05( ):
+def test_componenttools_copy_components_and_immediate_parent_of_first_component_05():
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.BeamSpanner(t[:4])
@@ -96,7 +96,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert spannertools.get_beam_spanner_attached_to_component(u[0])._is_my_only_leaf(u[0])
 
 
-def test_componenttools_copy_components_and_immediate_parent_of_first_component_06( ):
+def test_componenttools_copy_components_and_immediate_parent_of_first_component_06():
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.BeamSpanner(t[:4])
@@ -106,7 +106,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert spannertools.get_beam_spanner_attached_to_component(u[1])._is_my_last_leaf(u[1])
 
 
-def test_componenttools_copy_components_and_immediate_parent_of_first_component_07( ):
+def test_componenttools_copy_components_and_immediate_parent_of_first_component_07():
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.BeamSpanner(t[:4])

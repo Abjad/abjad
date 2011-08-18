@@ -8,5 +8,5 @@ class _NumberedPitch(_Pitch, _Numbered):
     Numbered pitch base class from which concrete classes inherit.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 

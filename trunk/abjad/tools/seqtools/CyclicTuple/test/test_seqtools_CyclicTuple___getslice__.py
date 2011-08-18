@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 import py.test
 
 
-def test_seqtools_CyclicTuple___getslice___01( ):
+def test_seqtools_CyclicTuple___getslice___01():
 
     cyclic_tuple = seqtools.CyclicTuple(range(3))
 

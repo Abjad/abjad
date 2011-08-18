@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_all_are_contiguous_components_in_same_score_01( ):
+def test_componenttools_all_are_contiguous_components_in_same_score_01():
     '''True for strictly contiguous leaves in voice.
         False for other time orderings of leaves in voice.'''
 
@@ -31,7 +31,7 @@ def test_componenttools_all_are_contiguous_components_in_same_score_01( ):
         )
 
 
-def test_componenttools_all_are_contiguous_components_in_same_score_02( ):
+def test_componenttools_all_are_contiguous_components_in_same_score_02():
     '''True for unincorporated components.
         True across container boundaries.'''
 
@@ -61,7 +61,7 @@ def test_componenttools_all_are_contiguous_components_in_same_score_02( ):
         t.leaves)
 
 
-def test_componenttools_all_are_contiguous_components_in_same_score_03( ):
+def test_componenttools_all_are_contiguous_components_in_same_score_03():
     '''True for orphan components when allow_orphans is True.
         False for orphan components when allow_orphans is False.'''
 
@@ -71,7 +71,7 @@ def test_componenttools_all_are_contiguous_components_in_same_score_03( ):
     assert not componenttools.all_are_contiguous_components_in_same_score(notes, allow_orphans = False)
 
 
-def test_componenttools_all_are_contiguous_components_in_same_score_04( ):
+def test_componenttools_all_are_contiguous_components_in_same_score_04():
     '''Empty list returns True.'''
 
     t = [ ]

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_LilyPondCommandMark__format_slot_01( ):
+def test_LilyPondCommandMark__format_slot_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     marktools.LilyPondCommandMark('break', format_slot = 'closing')(staff[0])

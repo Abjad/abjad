@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_01( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_01():
     '''Index split triplet, and fracture spanners.'''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -51,7 +51,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8 ]\n\t}\n\t\\times 2/3 {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_02( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_02():
     '''Index split binary measure, and fracture spanners.'''
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
@@ -105,7 +105,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_03( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_03():
     '''Index split nonbinary measure, and fracture spanners.'''
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
@@ -169,7 +169,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8 [\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_04( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_04():
     '''Index split voice outside of score.
         Fracture spanners.'''
 
@@ -206,7 +206,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == '\\new Voice {\n}'
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_05( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_05():
     '''A single container 'split' at index 0 gives
         an empty lefthand part and a complete righthand part.
         Original container empties contents.'''
@@ -245,7 +245,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_06( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_06():
     '''Split container at index greater than len(container).
         Lefthand part instantiates with all contents.
         Righthand part instantiates empty.
@@ -274,7 +274,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_07( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_07():
     '''Index split measure in score and fracture spanners.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -322,7 +322,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_08( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_08():
     '''Index split left of leaf in score and fracture spanners.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -370,7 +370,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_09( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_09():
     '''Index split right of leaf in score and fracture spanners.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -418,7 +418,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_10( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_10():
     '''Index split nonbinary measure in score.
         Fractured spanners but do not tie over split locus.
         Measure contents necessitate denominator change.'''
@@ -463,7 +463,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n\t}\n}"
 
 
-def test_containertools_split_container_at_index_and_fracture_crossing_spanners_11( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_11():
     '''Index split binary measure in score.
         Fractured spanners but do not tie over split locus.
         Measure contents necessitate denominator change.'''

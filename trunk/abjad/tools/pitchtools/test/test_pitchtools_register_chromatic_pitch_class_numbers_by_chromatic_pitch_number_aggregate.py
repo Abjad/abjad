@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate_01( ):
+def test_pitchtools_register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate_01():
     '''Turn pitch-classes into pitches.'''
 
     pcs = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]

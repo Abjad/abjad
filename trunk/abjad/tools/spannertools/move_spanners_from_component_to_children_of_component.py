@@ -4,8 +4,8 @@ def move_spanners_from_component_to_children_of_component(donor):
     which is a composer-safe operation.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.give_attached_to_children( )`` to
-        ``spannertools.move_spanners_from_component_to_children_of_component( )``.
+        renamed ``spannertools.give_attached_to_children()`` to
+        ``spannertools.move_spanners_from_component_to_children_of_component()``.
     '''
 
     children = donor[:]

@@ -35,7 +35,7 @@ class DynamicTextSpanner(Spanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def mark( ):
+    def mark():
         def fget(self):
             '''Get dynamic string::
 
@@ -58,7 +58,7 @@ class DynamicTextSpanner(Spanner):
         def fset(self, arg):
             assert isinstance(arg, str)
             self._mark = arg
-        return property(**locals( ))
+        return property(**locals())
 
 
 

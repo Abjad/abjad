@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_extend_left_in_parent_of_component_and_do_not_grow_spanners_01( ):
+def test_componenttools_extend_left_in_parent_of_component_and_do_not_grow_spanners_01():
     '''Extend leaves leftwards of leaf. Do not extend edge spanners.'''
 
     t = Voice("c'8 d'8 e'8")
@@ -25,7 +25,7 @@ def test_componenttools_extend_left_in_parent_of_component_and_do_not_grow_spann
     assert t.format == "\\new Voice {\n\tc'16\n\td'16\n\te'16\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
 
-def test_componenttools_extend_left_in_parent_of_component_and_do_not_grow_spanners_02( ):
+def test_componenttools_extend_left_in_parent_of_component_and_do_not_grow_spanners_02():
     '''Extend leaf leftwards of interior leaf. Do extend interior spanners.'''
 
     t = Voice("c'8 d'8 e'8")

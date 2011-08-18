@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 from abjad.tools import iotools
 
 
-def test_seqtools_rotate_sequence_01( ):
+def test_seqtools_rotate_sequence_01():
     '''Rotate sequence by distance less than or equal to sequence length.
     '''
 
@@ -12,7 +12,7 @@ def test_seqtools_rotate_sequence_01( ):
     assert seqtools.rotate_sequence(range(10), 0) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
-def test_seqtools_rotate_sequence_02( ):
+def test_seqtools_rotate_sequence_02():
     '''Rotate sequence by distance greatern than sequence length.
     '''
 
@@ -20,7 +20,7 @@ def test_seqtools_rotate_sequence_02( ):
     assert seqtools.rotate_sequence(range(10), 24) == [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
 
 
-def test_seqtools_rotate_sequence_03( ):
+def test_seqtools_rotate_sequence_03():
     '''Return sequence type.
     '''
 
@@ -33,7 +33,7 @@ def test_seqtools_rotate_sequence_03( ):
     assert isinstance(new, type(sequence))
 
 
-def test_seqtools_rotate_sequence_04( ):
+def test_seqtools_rotate_sequence_04():
     '''Rotate Abjad container.
     '''
 
@@ -56,7 +56,7 @@ def test_seqtools_rotate_sequence_04( ):
     assert container_1[0] is not container_2[-1]
 
 
-def test_seqtools_rotate_sequence_05( ):
+def test_seqtools_rotate_sequence_05():
     '''Rotate notes.
     '''
 
@@ -67,7 +67,7 @@ def test_seqtools_rotate_sequence_05( ):
         assert note not in notes_1
 
 
-def test_seqtools_rotate_sequence_06( ):
+def test_seqtools_rotate_sequence_06():
     '''Rotate named chromatic pitch segment.
     '''
 

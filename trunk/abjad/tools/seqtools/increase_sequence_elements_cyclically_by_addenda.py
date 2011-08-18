@@ -18,8 +18,8 @@ def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield =
     Return list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.increase_cyclic( )`` to
-        ``seqtools.increase_sequence_elements_cyclically_by_addenda( )``.
+        renamed ``seqtools.increase_cyclic()`` to
+        ``seqtools.increase_sequence_elements_cyclically_by_addenda()``.
     '''
 
     if not isinstance(sequence, (list, tuple)):

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_sum_consecutive_sequence_elements_by_sign_01( ):
+def test_seqtools_sum_consecutive_sequence_elements_by_sign_01():
 
     l = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 

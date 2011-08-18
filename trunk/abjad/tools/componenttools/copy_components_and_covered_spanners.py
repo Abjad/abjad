@@ -86,12 +86,12 @@ def copy_components_and_covered_spanners(components, n = 1):
         }
 
     .. versionchanged:: 2.0
-        renamed ``clone.covered( )`` to
-        ``componenttools.copy_components_and_covered_spanners( )``.
+        renamed ``clone.covered()`` to
+        ``componenttools.copy_components_and_covered_spanners()``.
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.clone_components_and_covered_spanners( )`` to
-        ``componenttools.copy_components_and_covered_spanners( )``.
+        renamed ``componenttools.clone_components_and_covered_spanners()`` to
+        ``componenttools.copy_components_and_covered_spanners()``.
     '''
     from abjad.tools import spannertools
     from abjad.tools import componenttools
@@ -103,19 +103,19 @@ def copy_components_and_covered_spanners(components, n = 1):
 
 #   spanners = spannertools.get_spanners_that_cross_components(components)
 #   for spanner in spanners:
-#      spanner._block_all_components( )
+#      spanner._block_all_components()
 #
 #   receipt = _ignore_parentage_of_components(components)
 #
 #   result = copy.deepcopy(components)
 #   for component in result:
-#      #component._update._mark_all_improper_parents_for_update( )
+#      #component._update._mark_all_improper_parents_for_update()
 #      component._mark_entire_score_tree_for_later_update('prolated')
 #
 #   _restore_parentage_to_components_by_receipt(receipt)
 #
 #   for spanner in spanners:
-#      spanner._unblock_all_components( )
+#      spanner._unblock_all_components()
 #
 #   for i in range(n - 1):
 #      result += copy_components_and_covered_spanners(components)
@@ -131,14 +131,14 @@ def copy_components_and_covered_spanners(components, n = 1):
     schema = spannertools.make_covered_spanner_schema(components)
 
     ### copy spanners covered by components
-    for covered_spanner, component_indices in schema.items( ):
+    for covered_spanner, component_indices in schema.items():
         new_covered_spanner = copy.copy(covered_spanner)
         del(schema[covered_spanner])
         schema[new_covered_spanner] = component_indices
 
     ### reverse schema
-    reversed_schema = { }
-    for new_covered_spanner, component_indices in schema.items( ):
+    reversed_schema = {}
+    for new_covered_spanner, component_indices in schema.items():
         for component_index in component_indices:
             try:
                 reversed_schema[component_index].append(new_covered_spanner)

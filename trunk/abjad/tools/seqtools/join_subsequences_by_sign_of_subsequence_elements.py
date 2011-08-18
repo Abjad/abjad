@@ -23,8 +23,8 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
     Return newly constructed list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.join_sublists_by_sign( )`` to
-        ``seqtools.join_subsequences_by_sign_of_subsequence_elements( )``.
+        renamed ``seqtools.join_sublists_by_sign()`` to
+        ``seqtools.join_subsequences_by_sign_of_subsequence_elements()``.
     '''
 
     if not isinstance(sequence, list):

@@ -56,8 +56,8 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(dono
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``scoretools.donate( )`` to
-        ``containertools.move_parentage_children_and_spanners_from_components_to_empty_container( )``.
+        renamed ``scoretools.donate()`` to
+        ``containertools.move_parentage_children_and_spanners_from_components_to_empty_container()``.
     '''
     from abjad.tools import componenttools
 

@@ -11,15 +11,15 @@ from abjad.tools import durtools
 from numbers import Number
 
 
-### TODO: Change leaftools.make_leaves( ) signature to allow ('c', 4) named pairs
+### TODO: Change leaftools.make_leaves() signature to allow ('c', 4) named pairs
 ###       This will allow the creation of enharmonic equivalents.
 ###       Examples: leaftools.make_leaves([('c', 4), ('cs', 4)], [(1, 4)])
 
-### TODO: Extend leaftools.make_leaves( ) to accept Abjad Pitch instances. Ex:
+### TODO: Extend leaftools.make_leaves() to accept Abjad Pitch instances. Ex:
 ###       Example: leaftools.make_leaves([NamedChromaticPitch('cs', 4)], [(1, 4)])
 
-### TODO: Deprecate construct.engender( ) in favor of leaftools.make_leaves( );
-###       Only possible after the two extensions to leaftools.make_leaves( ), above.
+### TODO: Deprecate construct.engender() in favor of leaftools.make_leaves();
+###       Only possible after the two extensions to leaftools.make_leaves(), above.
 
 def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     r'''.. versionadded:: 1.1
@@ -93,8 +93,8 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     Return list of leaves.
 
     .. versionchanged:: 2.0
-        renamed ``construct.leaves( )`` to
-        ``leaftools.make_leaves( )``.
+        renamed ``construct.leaves()`` to
+        ``leaftools.make_leaves()``.
     '''
     from abjad.tools.tuplettools.Tuplet import Tuplet
 

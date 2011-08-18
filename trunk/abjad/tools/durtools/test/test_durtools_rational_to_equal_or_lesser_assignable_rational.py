@@ -2,8 +2,8 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_rational_to_equal_or_lesser_assignable_rational_01( ):
-    '''Wrapper around _naivedurtools.rational_to_equal_or_lesser_assignable_rational( )
+def test_durtools_rational_to_equal_or_lesser_assignable_rational_01():
+    '''Wrapper around _naivedurtools.rational_to_equal_or_lesser_assignable_rational()
     that returns dotted and double dotted durations where appropriate.'''
 
     assert durtools.rational_to_equal_or_lesser_assignable_rational(

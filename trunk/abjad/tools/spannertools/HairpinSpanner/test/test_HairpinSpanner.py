@@ -4,7 +4,7 @@ from abjad.checks import ShortHairpinCheck
 import py.test
 
 
-def test_HairpinSpanner_01( ):
+def test_HairpinSpanner_01():
     '''Hairpins span adjacent leaves.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -27,12 +27,12 @@ def test_HairpinSpanner_01( ):
     assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
-def test_HairpinSpanner_02( ):
+def test_HairpinSpanner_02():
     '''Hairpins spanning a single leaf are allowed but not well-formed.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.CrescendoSpanner(t[0:1])
-    checker = ShortHairpinCheck( )
+    checker = ShortHairpinCheck()
 
     r'''
     \new Staff {
@@ -51,7 +51,7 @@ def test_HairpinSpanner_02( ):
     assert t.format == "\\new Staff {\n\tc'8 \\< \\!\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
-def test_HairpinSpanner_03( ):
+def test_HairpinSpanner_03():
     '''Hairpins and dynamics apply separately.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -76,7 +76,7 @@ def test_HairpinSpanner_03( ):
     assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
-def test_HairpinSpanner_04( ):
+def test_HairpinSpanner_04():
     '''Internal marks raise well-formedness error.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -84,7 +84,7 @@ def test_HairpinSpanner_04( ):
     assert py.test.raises(WellFormednessError, "contexttools.DynamicMark('p')(t[2])")
 
 
-def test_HairpinSpanner_05( ):
+def test_HairpinSpanner_05():
     '''Apply back-to-back hairpins separately.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -113,7 +113,7 @@ def test_HairpinSpanner_05( ):
     assert componenttools.is_well_formed_component(t)
 
 
-def test_HairpinSpanner_06( ):
+def test_HairpinSpanner_06():
     '''Hairpins format rests.'''
 
     t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
@@ -137,7 +137,7 @@ def test_HairpinSpanner_06( ):
     assert componenttools.is_well_formed_component(t)
 
 
-def test_HairpinSpanner_07( ):
+def test_HairpinSpanner_07():
     '''Trim hairpins with dynamic marks behave as expected.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -151,7 +151,7 @@ def test_HairpinSpanner_07( ):
         t[0], spannertools.HairpinSpanner)
     assert len(spanner.components) == len(t)
     assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\p\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\f\n\tr8\n}"
-    checker = IntermarkedHairpinCheck( )
+    checker = IntermarkedHairpinCheck()
     assert checker.check(t)
 
     r'''

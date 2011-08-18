@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_ChordClass___init___01( ):
+def test_ChordClass___init___01():
 
     cc = tonalitytools.ChordClass('g', 'dominant', 7, 'root')
     assert repr(cc) == 'GDominantSeventhInRootPosition'

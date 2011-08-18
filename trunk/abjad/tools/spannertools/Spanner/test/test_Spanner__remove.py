@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Spanner__remove_01( ):
+def test_Spanner__remove_01():
     '''Remove interior component from spanner.
     Remove spanner from component's aggregator.
     Spanner is left discontiguous and score no longer checks.
@@ -40,13 +40,13 @@ def test_Spanner__remove_01( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_Spanner__remove_02( ):
+def test_Spanner__remove_02():
     '''Remove last component from spanner.
     Remove spanner from component's aggregator.
     Here an end element removes from spanner.
     So spanner is not left discontiguous and score checks.
     Still not composer-safe.
-    Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.
+    Note spanner.pop() and spanner.pop_left() are composer-safe.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -93,7 +93,7 @@ def test_Spanner__remove_02( ):
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
-def test_Spanner__remove_03( ):
+def test_Spanner__remove_03():
     '''Remove works only on references and not on equality.
     '''
 

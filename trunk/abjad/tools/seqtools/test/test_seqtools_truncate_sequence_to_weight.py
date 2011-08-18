@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 import py.test
 
 
-def test_seqtools_truncate_sequence_to_weight_01( ):
+def test_seqtools_truncate_sequence_to_weight_01():
     '''Truncate list l such that mathtools.weight(l) == total.'''
 
     l = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
@@ -20,13 +20,13 @@ def test_seqtools_truncate_sequence_to_weight_01( ):
     assert seqtools.truncate_sequence_to_weight(l, 10) == [-1, 2, -3, 4]
 
 
-def test_seqtools_truncate_sequence_to_weight_02( ):
+def test_seqtools_truncate_sequence_to_weight_02():
     '''Return empty list when total is zero.'''
 
     assert seqtools.truncate_sequence_to_weight([1, 2, 3, 4, 5], 0) == [ ]
 
 
-def test_seqtools_truncate_sequence_to_weight_03( ):
+def test_seqtools_truncate_sequence_to_weight_03():
     '''Raise TypeError when l is not a list.
         Raise ValueError on negative weight.'''
 

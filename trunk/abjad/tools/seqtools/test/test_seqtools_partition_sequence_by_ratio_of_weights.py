@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_partition_sequence_by_ratio_of_weights_01( ):
+def test_seqtools_partition_sequence_by_ratio_of_weights_01():
     '''Common cases.'''
 
     l = [1] * 10
@@ -20,7 +20,7 @@ def test_seqtools_partition_sequence_by_ratio_of_weights_01( ):
     assert result == [[1, 1, 1, 1], [1, 1, 1], [1, 1, 1]]
 
 
-def test_seqtools_partition_sequence_by_ratio_of_weights_02( ):
+def test_seqtools_partition_sequence_by_ratio_of_weights_02():
     '''Unusual cases.'''
 
     l = [5, 5]
@@ -38,7 +38,7 @@ def test_seqtools_partition_sequence_by_ratio_of_weights_02( ):
     assert result == [[5], [5], [ ]]
 
 
-def test_seqtools_partition_sequence_by_ratio_of_weights_03( ):
+def test_seqtools_partition_sequence_by_ratio_of_weights_03():
     '''More unusual cases.'''
 
     l = [7, 3]

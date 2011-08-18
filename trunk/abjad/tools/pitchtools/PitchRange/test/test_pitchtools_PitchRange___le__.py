@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_PitchRange___le___01( ):
+def test_pitchtools_PitchRange___le___01():
 
     pitch_range = pitchtools.PitchRange(-39, 48)
 
@@ -12,7 +12,7 @@ def test_pitchtools_PitchRange___le___01( ):
     assert pitch_range <= 99
 
 
-def test_pitchtools_PitchRange___le___02( ):
+def test_pitchtools_PitchRange___le___02():
 
     pitch_range = pitchtools.PitchRange(-39, 48)
 

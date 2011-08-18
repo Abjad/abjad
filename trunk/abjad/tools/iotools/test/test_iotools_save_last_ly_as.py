@@ -3,7 +3,7 @@ from abjad.tools import iotools
 import os
 
 
-def test_iotools_save_last_ly_as_01( ):
+def test_iotools_save_last_ly_as_01():
 
     iotools.save_last_ly_as('tmp_foo.ly')
     assert os.path.exists('tmp_foo.ly')

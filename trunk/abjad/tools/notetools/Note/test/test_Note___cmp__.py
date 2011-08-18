@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Note___cmp___01( ):
+def test_Note___cmp___01():
     '''Compare equal notes.
     '''
 
@@ -22,7 +22,7 @@ def test_Note___cmp___01( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Note___cmp___02( ):
+def test_Note___cmp___02():
     '''Compare note to equivalent pitch, duration pair.
     '''
 
@@ -42,7 +42,7 @@ def test_Note___cmp___02( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Note___cmp___03( ):
+def test_Note___cmp___03():
     '''Compare unequal notes.
     '''
 
@@ -62,7 +62,7 @@ def test_Note___cmp___03( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Note___cmp___04( ):
+def test_Note___cmp___04():
     '''Compare note to unequal note / pitch pair.
     '''
 

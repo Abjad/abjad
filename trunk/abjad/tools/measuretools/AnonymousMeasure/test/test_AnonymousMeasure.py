@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_AnonymousMeasure_01( ):
+def test_AnonymousMeasure_01():
     '''Anonymous measures dynamically adjust to the size of contents.
     Anonymous measures print no meter.
     '''
@@ -25,7 +25,7 @@ def test_AnonymousMeasure_01( ):
     assert t.format == "{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 1/2\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'stencil\n}"
 
 
-def test_AnonymousMeasure_02( ):
+def test_AnonymousMeasure_02():
     ''' Anonymous measures dynamically adjust to contents size.
     Anonymous measures print no meter.
     '''

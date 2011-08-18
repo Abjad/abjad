@@ -27,8 +27,8 @@ def is_nonnegative_integer_power_of_two(expr):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``mathtools.is_power_of_two( )`` to
-        ``mathtools.is_nonnegative_integer_power_of_two( )``.
+        renamed ``mathtools.is_power_of_two()`` to
+        ``mathtools.is_nonnegative_integer_power_of_two()``.
     '''
 
     if isinstance(expr, (int, long)):

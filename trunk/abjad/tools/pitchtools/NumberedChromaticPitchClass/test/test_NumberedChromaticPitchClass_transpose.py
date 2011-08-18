@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedChromaticPitchClass_transpose_01( ):
+def test_NumberedChromaticPitchClass_transpose_01():
 
     pc = pitchtools.NumberedChromaticPitchClass(1)
     assert pc.transpose(0) == pitchtools.NumberedChromaticPitchClass(1)

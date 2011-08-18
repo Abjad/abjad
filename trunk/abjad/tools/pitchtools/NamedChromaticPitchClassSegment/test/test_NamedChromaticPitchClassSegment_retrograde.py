@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSegment_retrograde_01( ):
+def test_NamedChromaticPitchClassSegment_retrograde_01():
 
     npc_segment_1 = pitchtools.NamedChromaticPitchClassSegment([
         pitchtools.NamedChromaticPitchClass('c'),
@@ -17,6 +17,6 @@ def test_NamedChromaticPitchClassSegment_retrograde_01( ):
         pitchtools.NamedChromaticPitchClass('d'),
         pitchtools.NamedChromaticPitchClass('c'),])
 
-    assert npc_segment_1.retrograde( ) == npc_segment_2
-    assert npc_segment_2.retrograde( ) == npc_segment_1
+    assert npc_segment_1.retrograde() == npc_segment_2
+    assert npc_segment_2.retrograde() == npc_segment_1
 

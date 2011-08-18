@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicChromaticIntervalClass___init___01( ):
+def test_HarmonicChromaticIntervalClass___init___01():
 
     hcic = pitchtools.HarmonicChromaticIntervalClass(0)
     assert repr(hcic) == 'HarmonicChromaticIntervalClass(0)'
@@ -21,7 +21,7 @@ def test_HarmonicChromaticIntervalClass___init___01( ):
     assert hcic.number == 12
 
 
-def test_HarmonicChromaticIntervalClass___init___02( ):
+def test_HarmonicChromaticIntervalClass___init___02():
 
     hcic = pitchtools.HarmonicChromaticIntervalClass(-25)
     assert hcic.number == 1
@@ -42,7 +42,7 @@ def test_HarmonicChromaticIntervalClass___init___02( ):
     assert hcic.number == 1
 
 
-def test_HarmonicChromaticIntervalClass___init___03( ):
+def test_HarmonicChromaticIntervalClass___init___03():
     '''Works on harmonic chromatic interval instances.'''
 
     hci = pitchtools.HarmonicChromaticInterval(-14)

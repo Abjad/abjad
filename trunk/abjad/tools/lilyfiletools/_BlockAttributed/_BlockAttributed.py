@@ -9,7 +9,7 @@ class _BlockAttributed(object):
 
     def __repr__(self):
         if not len(self._user_attributes):
-            return '%s( )' % self.__class__.__name__
+            return '%s()' % self.__class__.__name__
         else:
             return '%s(%s)' % (self.__class__.__name__, len(self._user_attributes))
 
@@ -20,7 +20,7 @@ class _BlockAttributed(object):
         result = [ ]
         if not self._formatted_user_attributes and not getattr(self, 'contexts', None):
             if self.is_formatted_when_empty:
-                result.append('%s { }' % self._escaped_name)
+                result.append('%s {}' % self._escaped_name)
                 return result
             else:
                 return result
@@ -38,7 +38,7 @@ class _BlockAttributed(object):
     def _formatted_user_attributes(self):
         from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
         result = [ ]
-        for key, value in sorted(vars(self).items( )):
+        for key, value in sorted(vars(self).items()):
             if not key.startswith('_'):
                 formatted_key = key.replace('_', '-')
                 formatted_value = _format_lilypond_value(value)
@@ -48,9 +48,9 @@ class _BlockAttributed(object):
 
     @property
     def _user_attributes(self):
-        all_attributes = vars(self).keys( )
+        all_attributes = vars(self).keys()
         user_attributes = [x for x in all_attributes if not x.startswith('_')]
-        user_attributes.sort( )
+        user_attributes.sort()
         return user_attributes
 
     ### PUBLIC ATTRIBUTES ###
@@ -60,7 +60,7 @@ class _BlockAttributed(object):
         return '\n'.join(self._format_pieces)
 
     @apply
-    def is_formatted_when_empty( ):
+    def is_formatted_when_empty():
         def fget(self):
             return self._is_formatted_when_empty
         def fset(self, arg):
@@ -68,4 +68,4 @@ class _BlockAttributed(object):
                 self._is_formatted_when_empty = arg
             else:
                 raise TypeError
-        return property(**locals( ))
+        return property(**locals())

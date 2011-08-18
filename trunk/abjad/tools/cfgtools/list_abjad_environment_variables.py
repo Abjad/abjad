@@ -3,7 +3,7 @@ import pprint
 import types
 
 
-def list_abjad_environment_variables( ):
+def list_abjad_environment_variables():
     '''.. versionadded:: 1.1
 
     List Abjad environment variables.
@@ -13,12 +13,12 @@ def list_abjad_environment_variables( ):
     Abjad environment variables are defined in ``abjad/cfg/cfg.py``.
 
     .. versionchanged:: 2.0
-        renamed ``cfgtools.list_settings( )`` to
-        ``cfgtools.list_abjad_environment_variables( )``.
+        renamed ``cfgtools.list_settings()`` to
+        ``cfgtools.list_abjad_environment_variables()``.
     '''
 
     result = [ ]
-    for key, value in sorted(vars(cfg).items( )):
+    for key, value in sorted(vars(cfg).items()):
         if not isinstance(value, types.ModuleType):
             if not key.startswith('_'):
                 if not key == 'abjad_version_string':

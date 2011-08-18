@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_multiply_contents_of_measures_in_expr_01( ):
+def test_measuretools_multiply_contents_of_measures_in_expr_01():
     '''Spin one measure out three times.'''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
@@ -26,7 +26,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01( ):
     assert t.format == "{\n\t\\time 9/8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_measuretools_multiply_contents_of_measures_in_expr_02( ):
+def test_measuretools_multiply_contents_of_measures_in_expr_02():
     '''Spin multiples measures out twice each.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

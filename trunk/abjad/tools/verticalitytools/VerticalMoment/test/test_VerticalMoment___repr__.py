@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import verticalitytools
 
 
-def test_VerticalMoment___repr___01( ):
+def test_VerticalMoment___repr___01():
     '''Vertical moment repr returns a nonempty string.
     '''
 

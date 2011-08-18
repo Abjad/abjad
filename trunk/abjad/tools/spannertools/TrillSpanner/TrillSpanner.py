@@ -35,7 +35,7 @@ class TrillSpanner(Spanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def pitch( ):
+    def pitch():
         def fget(self):
             r'''Optional read / write pitch for pitched trills.
 
@@ -65,15 +65,15 @@ class TrillSpanner(Spanner):
             else:
                 pitch = pitchtools.NamedChromaticPitch(expr)
                 self._pitch = pitch
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def written_pitch( ):
+    def written_pitch():
         def fget(self):
             return self.pitch
         def fset(self, arg):
             self.pitch = arg
-        return property(**locals( ))
+        return property(**locals())
 
 
 

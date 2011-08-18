@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_skiptools_yield_groups_of_skips_in_sequence_01( ):
+def test_skiptools_yield_groups_of_skips_in_sequence_01():
 
     staff = Staff("c'8 d'8 s8 s8 <e' g'>8 <f' a'>8 g'8 a'8 s8 s8 <b' d''>8 <c'' e''>8")
     skip_groups = skiptools.yield_groups_of_skips_in_sequence(staff)

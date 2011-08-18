@@ -5,9 +5,9 @@ from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_interval import t
 import copy
 
 
-### TODO: Reimplement pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range( ) to work on Abjad PitchSet, Note and Chord objects only. ###
+### TODO: Reimplement pitchtools.list_octave_transpositions_of_pitch_carrier_within_pitch_range() to work on Abjad PitchSet, Note and Chord objects only. ###
 
-### TODO: Reimplement pitchtools.octave_transposition( ) with diatonic transposition. ###
+### TODO: Reimplement pitchtools.octave_transposition() with diatonic transposition. ###
 
 def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier, pitch_range):
     r""".. versionadded:: 1.1
@@ -44,7 +44,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
         else:
             break
 
-    result.reverse( )
+    result.reverse()
 
     interval = MelodicChromaticInterval(0)
     while True:
@@ -67,17 +67,17 @@ def _pitch_number_list_octave_transpositions(pitch_number_list, pitch_range):
     R = set(range(start_pitch_number, stop_pitch_number + 1))
     while ps.issubset(R):
         next = list(ps)
-        next.sort( )
+        next.sort()
         result.extend([next])
         ps = set([p + 12 for p in ps])
 
     ps = set([p - 12 for p in pitch_number_list])
     while ps.issubset(R):
         next = list(ps)
-        next.sort( )
+        next.sort()
         result.extend([next])
         ps = set([p - 12 for p in ps])
 
-    result.sort( )
+    result.sort()
     return result
 

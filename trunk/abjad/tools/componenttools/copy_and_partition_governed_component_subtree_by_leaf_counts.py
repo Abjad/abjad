@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 from abjad.tools import seqtools
 
 
-### TODO: Implement in-place containertools.partition_components_by_counts( ) ###
+### TODO: Implement in-place containertools.partition_components_by_counts() ###
 ### that doesn't climb to governor ###
 
 def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf_counts):
@@ -69,8 +69,8 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
     Return a list of parts equal in length to that of `leaf_counts`.
 
     .. versionchanged:: 2.0
-        renamed ``clonewp.by_leaf_counts_with_parentage( )`` to
-        ``componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts( )``.
+        renamed ``clonewp.by_leaf_counts_with_parentage()`` to
+        ``componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts()``.
     '''
     from abjad.tools.containertools.Container import Container
     from abjad.tools.componenttools.copy_governed_component_subtree_by_leaf_range import copy_governed_component_subtree_by_leaf_range

@@ -54,8 +54,8 @@ class MetricGridSpanner(Spanner):
 #      from abjad.tools import tietools
 #      ### fuse tied notes
 #      meters = self.meters
-#      #meter = meters.next( )
-#      meter, moffset, temp_hide = meters.next( )
+#      #meter = meters.next()
+#      meter, moffset, temp_hide = meters.next()
 #      leaves_in_meter = [[ ]]
 #      leaf = self.leaves[0]
 #      ### group leaves by measure.
@@ -67,8 +67,8 @@ class MetricGridSpanner(Spanner):
 #            leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
 #         else:
 #            try:
-#               #meter = meters.next( )
-#               meter, moffset, temp_hide = meters.next( )
+#               #meter = meters.next()
+#               meter, moffset, temp_hide = meters.next()
 #               leaves_in_meter.append([ ])
 #            except StopIteration:
 #               break
@@ -133,7 +133,7 @@ class MetricGridSpanner(Spanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def meters( ):
+    def meters():
         def fget(self):
             '''Get metric grid meters::
 
@@ -176,7 +176,7 @@ class MetricGridSpanner(Spanner):
         def fset(self, meters):
             assert isinstance(meters, list)
             self._meters = meters
-        return property(**locals( ))
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 
@@ -204,7 +204,7 @@ class MetricGridSpanner(Spanner):
 
         ::
 
-            abjad> metric_grid_spanner.split_on_bar( )
+            abjad> metric_grid_spanner.split_on_bar()
 
         ::
 
@@ -229,7 +229,7 @@ class MetricGridSpanner(Spanner):
         leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
         componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
             leaves, [x[0].duration for x in self.meters], tie_after = True)
-        #self._fuse_tied_leaves_within_measures( )
+        #self._fuse_tied_leaves_within_measures()
 
 
 

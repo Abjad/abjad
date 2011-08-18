@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import verticalitytools
 
 
-def test_verticalitytools_iterate_vertical_moments_forward_in_expr_01( ):
+def test_verticalitytools_iterate_vertical_moments_forward_in_expr_01():
 
     score = Score([ ])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -62,7 +62,7 @@ def test_verticalitytools_iterate_vertical_moments_forward_in_expr_01( ):
     assert set(moments[5].leaves) == set((tuplet[2], treble[1], bass[3]))
 
 
-def test_verticalitytools_iterate_vertical_moments_forward_in_expr_02( ):
+def test_verticalitytools_iterate_vertical_moments_forward_in_expr_02():
 
     score = Score([ ])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))

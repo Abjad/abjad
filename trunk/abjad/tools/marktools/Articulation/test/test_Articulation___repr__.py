@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.marktools import Articulation
 
 
-def test_Articulation___repr___01( ):
+def test_Articulation___repr___01():
     '''Repr of unattached articulation is evaluable.
     '''
 

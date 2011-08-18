@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Container___init___01( ):
+def test_Container___init___01():
     '''Init empty container.
     '''
 
@@ -16,7 +16,7 @@ def test_Container___init___01( ):
     assert container.format == '{\n}'
 
 
-def test_Container___init___02( ):
+def test_Container___init___02():
     '''Init container with LilyPond note-entry string.
     '''
 

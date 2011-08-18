@@ -70,12 +70,12 @@ def copy_components_and_immediate_parent_of_first_component(components):
         to the immediate parent of the first component; extend function to do so.
 
     .. versionchanged:: 2.0
-        renamed ``clonewp.with_parent( )`` to
-        ``componenttools.copy_components_and_immediate_parent_of_first_component( )``.
+        renamed ``clonewp.with_parent()`` to
+        ``componenttools.copy_components_and_immediate_parent_of_first_component()``.
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.clone_components_and_immediate_parent_of_first_component( )`` to
-        ``componenttools.copy_components_and_immediate_parent_of_first_component( )``.
+        renamed ``componenttools.clone_components_and_immediate_parent_of_first_component()`` to
+        ``componenttools.copy_components_and_immediate_parent_of_first_component()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import componenttools

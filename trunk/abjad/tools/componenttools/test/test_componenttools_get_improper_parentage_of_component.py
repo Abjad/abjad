@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_get_improper_parentage_of_component_01( ):
+def test_componenttools_get_improper_parentage_of_component_01():
     '''t._parentage.improper_parentage returns a list of the elements
     in the parentage of t, including t.
     '''
@@ -35,7 +35,7 @@ def test_componenttools_get_improper_parentage_of_component_01( ):
     assert improper_parentage[3] is t
 
 
-def test_componenttools_get_improper_parentage_of_component_02( ):
+def test_componenttools_get_improper_parentage_of_component_02():
     '''t._parentage.improper_parentage returns a list of the elements
         in the parentage of container t, including t.'''
 

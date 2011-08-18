@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container___cmp___01( ):
+def test_Container___cmp___01():
     '''Compare container to itself.
     '''
 
@@ -21,7 +21,7 @@ def test_Container___cmp___01( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Container___cmp___02( ):
+def test_Container___cmp___02():
     '''Compare containers.
     '''
 
@@ -41,7 +41,7 @@ def test_Container___cmp___02( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Container___cmp___03( ):
+def test_Container___cmp___03():
     '''Compare container to foreign type.
     '''
 
@@ -60,7 +60,7 @@ def test_Container___cmp___03( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Container___cmp___04( ):
+def test_Container___cmp___04():
     '''Compare nonempty containers.
     '''
 
@@ -80,7 +80,7 @@ def test_Container___cmp___04( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Container___cmp___05( ):
+def test_Container___cmp___05():
     '''Compare nonempty containers.
     '''
 

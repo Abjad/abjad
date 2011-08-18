@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_spanners_that_dominate_components_01( ):
+def test_spannertools_get_spanners_that_dominate_components_01():
     '''Return Python list of (spanner, index) pairs.
         Each (spanner, index) pair gives a spanner which dominates
         all components in list, together with the start-index
@@ -41,7 +41,7 @@ def test_spannertools_get_spanners_that_dominate_components_01( ):
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_02( ):
+def test_spannertools_get_spanners_that_dominate_components_02():
     '''Beam, glissando and trill all dominante second container.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -58,7 +58,7 @@ def test_spannertools_get_spanners_that_dominate_components_02( ):
     assert (trill, 2) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_03( ):
+def test_spannertools_get_spanners_that_dominate_components_03():
     '''Glissando and trill dominate last container.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -74,7 +74,7 @@ def test_spannertools_get_spanners_that_dominate_components_03( ):
     assert (trill, 4) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_04( ):
+def test_spannertools_get_spanners_that_dominate_components_04():
     '''Beam and trill dominate first two containers.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -90,7 +90,7 @@ def test_spannertools_get_spanners_that_dominate_components_04( ):
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_05( ):
+def test_spannertools_get_spanners_that_dominate_components_05():
     '''Glissando and trill dominate last two containers.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -106,7 +106,7 @@ def test_spannertools_get_spanners_that_dominate_components_05( ):
     assert (trill, 2) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_06( ):
+def test_spannertools_get_spanners_that_dominate_components_06():
     '''Only trill dominates all three containers.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -121,7 +121,7 @@ def test_spannertools_get_spanners_that_dominate_components_06( ):
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_07( ):
+def test_spannertools_get_spanners_that_dominate_components_07():
     '''Only trill dominates voice.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -136,7 +136,7 @@ def test_spannertools_get_spanners_that_dominate_components_07( ):
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_08( ):
+def test_spannertools_get_spanners_that_dominate_components_08():
     '''Only trill dominates first two notes.
         Note that trill attaches to notes.
         Note that beam and glissando attach to containers.'''
@@ -153,7 +153,7 @@ def test_spannertools_get_spanners_that_dominate_components_08( ):
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_09( ):
+def test_spannertools_get_spanners_that_dominate_components_09():
     '''Works on empty containers.
         Implementation does not depend on component duration.'''
 

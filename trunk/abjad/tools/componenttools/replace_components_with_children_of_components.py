@@ -25,7 +25,7 @@ def replace_components_with_children_of_components(components):
     ::
 
         abjad> componenttools.replace_components_with_children_of_components(staff[0:1])
-        [{ }]
+        [{}]
 
     ::
 
@@ -42,11 +42,11 @@ def replace_components_with_children_of_components(components):
     Return `components`.
 
     .. note:: should be renamed to
-        ``componenttools.remove_components_from_score_shallow( )``
+        ``componenttools.remove_components_from_score_shallow()``
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.slip( )`` to
-        ``componenttools.replace_components_with_children_of_components( )``.
+        renamed ``componenttools.slip()`` to
+        ``componenttools.replace_components_with_children_of_components()``.
     '''
     from abjad.tools import componenttools
 
@@ -55,5 +55,5 @@ def replace_components_with_children_of_components(components):
     for component in components:
         parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(
             [component])
-        result = parent[start:stop+1] = list(getattr(component, 'music', ( )))
+        result = parent[start:stop+1] = list(getattr(component, 'music', ()))
     return components

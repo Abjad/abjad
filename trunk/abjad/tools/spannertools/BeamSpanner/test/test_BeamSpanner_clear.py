@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_BeamSpanner_clear_01( ):
+def test_BeamSpanner_clear_01():
     '''Clear length-one spanner.'''
 
     t = Staff(notetools.make_repeated_notes(8))
@@ -40,7 +40,7 @@ def test_BeamSpanner_clear_01( ):
     assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
-def test_BeamSpanner_clear_02( ):
+def test_BeamSpanner_clear_02():
     '''Clear length-four spanner.'''
 
     t = Staff(notetools.make_repeated_notes(8))

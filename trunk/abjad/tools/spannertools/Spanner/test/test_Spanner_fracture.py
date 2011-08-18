@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Spanner_fracture_01( ):
+def test_Spanner_fracture_01():
     '''Fracture container spanner to the right of index 1.'''
 
     t = Staff(Container(notetools.make_repeated_notes(4)) * 3)

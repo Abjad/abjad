@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_FixedDurationTuplet_fraction_01( ):
+def test_FixedDurationTuplet_fraction_01():
     '''Fraction format nonbinary tuplets.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 f'8")
@@ -19,7 +19,7 @@ def test_FixedDurationTuplet_fraction_01( ):
     assert t.format == "\\fraction \\times 3/4 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_FixedDurationTuplet_fraction_02( ):
+def test_FixedDurationTuplet_fraction_02():
     '''Fraction format all augmentations, even binary ones.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8")
@@ -37,7 +37,7 @@ def test_FixedDurationTuplet_fraction_02( ):
     assert t.format == "\\fraction \\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_FixedDurationTuplet_fraction_03( ):
+def test_FixedDurationTuplet_fraction_03():
     '''Do not fraction format trivial tuplets.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")

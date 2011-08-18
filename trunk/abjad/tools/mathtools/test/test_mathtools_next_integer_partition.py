@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import mathtools
 
 
-def test_mathtools_next_integer_partition_01( ):
+def test_mathtools_next_integer_partition_01():
 
     assert mathtools.next_integer_partition((8, )) == (7, 1)
     assert mathtools.next_integer_partition((7, 1)) == (6, 2)
@@ -14,7 +14,7 @@ def test_mathtools_next_integer_partition_01( ):
     assert mathtools.next_integer_partition((4, 4)) == (4, 3, 1)
 
 
-def test_mathtools_next_integer_partition_02( ):
+def test_mathtools_next_integer_partition_02():
 
     assert mathtools.next_integer_partition((4, 3, 1)) == (4, 2, 2)
     assert mathtools.next_integer_partition((4, 2, 2)) == (4, 2, 1, 1)

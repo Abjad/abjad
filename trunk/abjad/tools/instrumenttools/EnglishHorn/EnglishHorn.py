@@ -12,7 +12,7 @@ class EnglishHorn(Oboe):
 
     ::
 
-        abjad> instrumenttools.EnglishHorn( )(staff)
+        abjad> instrumenttools.EnglishHorn()(staff)
         EnglishHorn('English Horn', 'Eng. hn.')
 
     ::
@@ -35,5 +35,5 @@ class EnglishHorn(Oboe):
         Oboe.__init__(self, instrument_name, short_instrument_name, target_context)
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('f')
         self.primary_clefs = [contexttools.ClefMark('treble')]
-        self._copy_primary_clefs_to_all_clefs( )
+        self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-8, 24)

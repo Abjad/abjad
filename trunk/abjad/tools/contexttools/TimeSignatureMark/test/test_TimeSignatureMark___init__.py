@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TimeSignatureMark___init___01( ):
+def test_TimeSignatureMark___init___01():
     '''Initialize time signature mark from integer pair.
     '''
 
@@ -10,7 +10,7 @@ def test_TimeSignatureMark___init___01( ):
     assert time_signature.format == '\\time 9/32'
 
 
-def test_TimeSignatureMark___init___02( ):
+def test_TimeSignatureMark___init___02():
     '''Initialize time signature mark from other time signature instance.
     '''
 

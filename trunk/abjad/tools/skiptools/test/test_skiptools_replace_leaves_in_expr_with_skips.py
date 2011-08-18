@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_skiptools_replace_leaves_in_expr_with_skips_01( ):
+def test_skiptools_replace_leaves_in_expr_with_skips_01():
     '''Works on Abjad components.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -20,7 +20,7 @@ def test_skiptools_replace_leaves_in_expr_with_skips_01( ):
     assert t.format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'
 
 
-def test_skiptools_replace_leaves_in_expr_with_skips_02( ):
+def test_skiptools_replace_leaves_in_expr_with_skips_02():
     '''Works on Python lists of Abjad components.'''
 
     t = Staff("c'8 d'8 e'8 f'8")

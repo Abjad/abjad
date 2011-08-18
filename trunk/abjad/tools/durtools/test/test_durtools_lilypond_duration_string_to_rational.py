@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_lilypond_duration_string_to_rational_01( ):
+def test_durtools_lilypond_duration_string_to_rational_01():
 
     assert durtools.lilypond_duration_string_to_rational('8') == Fraction(1, 8)
     assert durtools.lilypond_duration_string_to_rational('8.') == Fraction(3, 16)
@@ -10,7 +10,7 @@ def test_durtools_lilypond_duration_string_to_rational_01( ):
     assert durtools.lilypond_duration_string_to_rational('8...') == Fraction(15, 64)
 
 
-def test_durtools_lilypond_duration_string_to_rational_02( ):
+def test_durtools_lilypond_duration_string_to_rational_02():
 
     assert durtools.lilypond_duration_string_to_rational(r'\breve') == Fraction(2, 1)
     assert durtools.lilypond_duration_string_to_rational(r'\breve.') == Fraction(3, 1)

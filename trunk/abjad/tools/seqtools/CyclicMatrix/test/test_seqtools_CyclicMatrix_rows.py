@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_CyclicMatrix_rows_01( ):
+def test_seqtools_CyclicMatrix_rows_01():
 
     cyclic_matrix = seqtools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
@@ -11,7 +11,7 @@ def test_seqtools_CyclicMatrix_rows_01( ):
     assert cyclic_matrix.rows[2][0] == 20
 
 
-def test_seqtools_CyclicMatrix_rows_02( ):
+def test_seqtools_CyclicMatrix_rows_02():
 
     cyclic_matrix = seqtools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 

@@ -42,8 +42,8 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.make_flat( )`` to
-        ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats( )``.
+        renamed ``pitchtools.make_flat()`` to
+        ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats()``.
     '''
     from abjad.tools.chordtools.Chord import Chord
     from abjad.tools import leaftools

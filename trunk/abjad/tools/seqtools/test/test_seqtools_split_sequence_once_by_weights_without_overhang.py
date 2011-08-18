@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_split_sequence_once_by_weights_without_overhang_01( ):
+def test_seqtools_split_sequence_once_by_weights_without_overhang_01():
 
     sequence = (10, -10, 10, -10)
     pieces = seqtools.split_sequence_once_by_weights_without_overhang(sequence, [3, 15, 3])

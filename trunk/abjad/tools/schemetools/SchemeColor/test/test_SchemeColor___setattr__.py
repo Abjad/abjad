@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemeColor___setattr___01( ):
+def test_SchemeColor___setattr___01():
     '''Scheme colors are immutable.
     '''
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Cluster___init___01( ):
+def test_Cluster___init___01():
     '''Cluster can be empty.'''
     t = containertools.Cluster([ ])
     assert not t.is_parallel
@@ -9,7 +9,7 @@ def test_Cluster___init___01( ):
     assert t.format == '\\makeClusters {\n}'
 
 
-def test_Cluster___init___02( ):
+def test_Cluster___init___02():
     t = containertools.Cluster(Note(1, (1, 4)) * 4)
     assert isinstance(t, containertools.Cluster)
     assert not t.is_parallel

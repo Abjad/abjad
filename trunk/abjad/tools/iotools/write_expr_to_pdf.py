@@ -28,7 +28,7 @@ def write_expr_to_pdf(expr, file_name, template = None, print_status = True):
 
     ### copy PDF file to file_name
     pdf_name = name[:-3] + '.pdf'
-    ABJADOUTPUT = _read_config_file( )['abjad_output']
+    ABJADOUTPUT = _read_config_file()['abjad_output']
     full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
     shutil.move(full_path_pdf_name, file_name)
 

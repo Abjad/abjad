@@ -4,12 +4,12 @@ from abjad.tools import contexttools
 from abjad.tools.scoretools.PianoStaff import PianoStaff
 
 
-def make_empty_piano_score( ):
+def make_empty_piano_score():
     r'''.. versionadded:: 1.1
 
     Make empty piano score::
 
-        abjad> score, treble, bass = scoretools.make_empty_piano_score( )
+        abjad> score, treble, bass = scoretools.make_empty_piano_score()
 
     ::
 
@@ -29,8 +29,8 @@ def make_empty_piano_score( ):
     Return score, treble staff, bass staff.
 
     .. versionchanged:: 2.0
-        renamed ``scoretools.make_piano_staff( )`` to
-        ``scoretools.make_empty_piano_score( )``.
+        renamed ``scoretools.make_piano_staff()`` to
+        ``scoretools.make_empty_piano_score()``.
     '''
 
     ### make treble staff

@@ -2,12 +2,12 @@ from abjad.tools import mathtools
 from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 
 
-def inventory_aggregate_subsets( ):
+def inventory_aggregate_subsets():
     '''.. versionadded:: 2.0
 
     Inventory aggregate subsets::
 
-        abjad> U_star = pitchtools.inventory_aggregate_subsets( )
+        abjad> U_star = pitchtools.inventory_aggregate_subsets()
         abjad> len(U_star)
         4096
         abjad> for pcset in U_star[:20]:

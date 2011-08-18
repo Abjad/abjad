@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TempoMark_units_per_minute_01( ):
+def test_TempoMark_units_per_minute_01():
     '''Tempo mark units per minute is read / write.
     '''
 

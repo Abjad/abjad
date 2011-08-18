@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_QualityIndicator___eq___01( ):
+def test_QualityIndicator___eq___01():
 
     t = tonalitytools.QualityIndicator('major')
     u = tonalitytools.QualityIndicator('major')

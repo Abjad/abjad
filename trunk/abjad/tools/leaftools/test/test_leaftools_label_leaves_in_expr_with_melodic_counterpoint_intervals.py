@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_label_leaves_in_expr_with_melodic_counterpoint_intervals_01( ):
+def test_leaftools_label_leaves_in_expr_with_melodic_counterpoint_intervals_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     leaftools.label_leaves_in_expr_with_melodic_counterpoint_intervals(staff)
@@ -23,7 +23,7 @@ def test_leaftools_label_leaves_in_expr_with_melodic_counterpoint_intervals_01( 
     assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +2 }\n\td'8 ^ \\markup { +2 }\n\te'8 ^ \\markup { +2 }\n\tf'8 ^ \\markup { +2 }\n\tg'8 ^ \\markup { +2 }\n\ta'8 ^ \\markup { +2 }\n\tb'8 ^ \\markup { +2 }\n\tc''8\n}"
 
 
-def test_leaftools_label_leaves_in_expr_with_melodic_counterpoint_intervals_02( ):
+def test_leaftools_label_leaves_in_expr_with_melodic_counterpoint_intervals_02():
 
     staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
     leaftools.label_leaves_in_expr_with_melodic_counterpoint_intervals(staff)

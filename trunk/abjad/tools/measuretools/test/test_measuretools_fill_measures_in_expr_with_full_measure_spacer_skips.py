@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01( ):
+def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
     '''Populate nonbinary measure with time-scaled skip.'''
 
     t = Measure((5, 18), [ ])
@@ -20,7 +20,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01( )
     assert t.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\ts1 * 5/16\n\t}\n}"
 
 
-def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02( ):
+def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     '''Populate measures conditionally.
         Iteration control tests index of iteration.'''
 
@@ -84,7 +84,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02( )
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/4\n\t}\n}"
 
 
-def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03( ):
+def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
     '''Populate measures conditionally.
         Iteration control tests measure length.'''
 

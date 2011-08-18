@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ClefMark___copy___01( ):
+def test_ClefMark___copy___01():
     '''Clef marks copy.
     '''
 
@@ -44,7 +44,7 @@ def test_ClefMark___copy___01( ):
     assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef "treble"\n\tc'8\n\tcs'8\n}'''
 
 
-def test_ClefMark___copy___02( ):
+def test_ClefMark___copy___02():
     '''Implicit clefs do not copy.
     '''
 

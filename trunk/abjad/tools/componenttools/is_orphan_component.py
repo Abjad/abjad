@@ -13,8 +13,8 @@ def is_orphan_component(component):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.component_is_orphan( )`` to
-        ``componenttools.is_orphan_component( )``.
+        renamed ``componenttools.component_is_orphan()`` to
+        ``componenttools.is_orphan_component()``.
     '''
 
     return not get_proper_parentage_of_component(component)

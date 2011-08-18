@@ -1,15 +1,15 @@
 from abjad import *
 
 
-def test_PhrasingSlurSpanner___init___01( ):
+def test_PhrasingSlurSpanner___init___01():
     '''Init empty phrasing slur.
     '''
 
-    phrasing_slur = spannertools.PhrasingSlurSpanner( )
+    phrasing_slur = spannertools.PhrasingSlurSpanner()
     assert isinstance(phrasing_slur, spannertools.PhrasingSlurSpanner)
 
 
-def test_PhrasingSlurSpanner___init___02( ):
+def test_PhrasingSlurSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     spannertools.PhrasingSlurSpanner(staff.leaves)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_set_preprolated_leaf_duration_01( ):
+def test_leaftools_set_preprolated_leaf_duration_01():
     '''Change leaf to tied duration.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -32,7 +32,7 @@ def test_leaftools_set_preprolated_leaf_duration_01( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ~\n\td'32 ]\n\te'8\n\tf'8\n}"
 
 
-def test_leaftools_set_preprolated_leaf_duration_02( ):
+def test_leaftools_set_preprolated_leaf_duration_02():
     '''Change tied leaf to tied value.
       Duplicate ties are not created.'''
 
@@ -65,7 +65,7 @@ def test_leaftools_set_preprolated_leaf_duration_02( ):
     assert "\\new Voice {\n\tc'8 [ ~\n\tc'8 ~\n\tc'32 ]\n\tc'8\n\tc'8\n}"
 
 
-def test_leaftools_set_preprolated_leaf_duration_03( ):
+def test_leaftools_set_preprolated_leaf_duration_03():
     '''Change leaf to nontied duration.
       Same as t.written_duration = Duration(3, 16).'''
 
@@ -96,7 +96,7 @@ def test_leaftools_set_preprolated_leaf_duration_03( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8. ]\n\te'8\n\tf'8\n}"
 
 
-def test_leaftools_set_preprolated_leaf_duration_04( ):
+def test_leaftools_set_preprolated_leaf_duration_04():
     '''Change leaf to tied, nonbinary duration.
       Tuplet inserted over new tied notes.'''
 
@@ -130,7 +130,7 @@ def test_leaftools_set_preprolated_leaf_duration_04( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32 ]\n\t}\n\te'8\n\tf'8\n}"
 
 
-def test_leaftools_set_preprolated_leaf_duration_05( ):
+def test_leaftools_set_preprolated_leaf_duration_05():
     '''Change leaf to untied, nonbinary duration.
       Tuplet inserted over input leaf.'''
 
@@ -163,7 +163,7 @@ def test_leaftools_set_preprolated_leaf_duration_05( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ]\n\t}\n\te'8\n\tf'8\n}"
 
 
-def test_leaftools_set_preprolated_leaf_duration_06( ):
+def test_leaftools_set_preprolated_leaf_duration_06():
     '''Change leaf with LilyPond multiplier to untied, binary duration.
       LilyPond multiplier changes but leaf written duration does not.'''
 
@@ -178,7 +178,7 @@ def test_leaftools_set_preprolated_leaf_duration_06( ):
     assert t.format == "c'8 * 1/4"
 
 
-def test_leaftools_set_preprolated_leaf_duration_07( ):
+def test_leaftools_set_preprolated_leaf_duration_07():
     '''Change leaf with LilyPond multiplier to untied, binary duration.
       LilyPond multiplier changes but leaf written duration does not.'''
 
@@ -193,7 +193,7 @@ def test_leaftools_set_preprolated_leaf_duration_07( ):
     assert t.format == "c'8 * 3/4"
 
 
-def test_leaftools_set_preprolated_leaf_duration_08( ):
+def test_leaftools_set_preprolated_leaf_duration_08():
     '''Change leaf with LilyPond multiplier to tied, binary duration.
       LilyPond multiplier changes but leaf written duration does not.'''
 
@@ -208,7 +208,7 @@ def test_leaftools_set_preprolated_leaf_duration_08( ):
     assert t.format == "c'8 * 5/4"
 
 
-def test_leaftools_set_preprolated_leaf_duration_09( ):
+def test_leaftools_set_preprolated_leaf_duration_09():
     '''Change leaf with LilyPond multiplier to nonbinary duration.
       LilyPond multiplier changes but leaf written duration does not.'''
 
@@ -223,7 +223,7 @@ def test_leaftools_set_preprolated_leaf_duration_09( ):
     assert t.format == "c'8 * 1/3"
 
 
-def test_leaftools_set_preprolated_leaf_duration_10( ):
+def test_leaftools_set_preprolated_leaf_duration_10():
     '''Change leaf with LilyPond multiplier.
       Change to nonbinary duration necessitating ties.
       LilyPond multiplier changes but leaf written duration does not.'''

@@ -25,8 +25,8 @@ def sum_duration_of_components_in_seconds(components):
         Duration(5, 4)
 
     .. versionchanged:: 2.0
-        renamed ``durtools.sum_seconds( )`` to
-        ``componenttools.sum_duration_of_components_in_seconds( )``.
+        renamed ``durtools.sum_seconds()`` to
+        ``componenttools.sum_duration_of_components_in_seconds()``.
     '''
 
     assert isinstance(components, list)

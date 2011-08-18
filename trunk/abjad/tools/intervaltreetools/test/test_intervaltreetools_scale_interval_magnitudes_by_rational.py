@@ -4,7 +4,7 @@ from abjad import Fraction
 import py.test
 
 
-def test_intervaltreetools_scale_interval_magnitudes_by_rational_01( ):
+def test_intervaltreetools_scale_interval_magnitudes_by_rational_01():
     a = BoundedInterval(0, 10, {'a': 1})
     b = BoundedInterval(Fraction(5, 3), 10, {'b': 2})
     c = BoundedInterval(5, 10, {'c': 3})
@@ -17,7 +17,7 @@ def test_intervaltreetools_scale_interval_magnitudes_by_rational_01( ):
     assert scaled.magnitude == (scalar * tree.magnitude)
 
 
-def test_intervaltreetools_scale_interval_magnitudes_by_rational_02( ):
+def test_intervaltreetools_scale_interval_magnitudes_by_rational_02():
     tree = IntervalTree([ ])
     scalar = Fraction(5, 2)
     scaled = scale_interval_magnitudes_by_rational(tree, scalar)

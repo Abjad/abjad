@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_01( ):
+def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_01():
     '''Group leaves in tie chain by immediate parent.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -26,7 +26,7 @@ def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_01( ):
     assert parts[1] == list(t.leaves[2:])
 
 
-def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_02( ):
+def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_02():
     '''Group leaves in tie chain by immediate parent.'''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -48,7 +48,7 @@ def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_02( ):
     assert parts[0] == list(t.leaves)
 
 
-def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_03( ):
+def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_03():
     '''Group leaves in tie chain by immediate parent.'''
 
     t = Note("c'4")

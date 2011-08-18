@@ -9,8 +9,8 @@ def are_components_in_same_tie_spanner(components):
         otherwise False.
 
     .. versionchanged:: 2.0
-        renamed ``tietools.are_in_same_spanner( )`` to
-        ``tietools.are_components_in_same_tie_spanner( )``.
+        renamed ``tietools.are_in_same_spanner()`` to
+        ``tietools.are_components_in_same_tie_spanner()``.
     '''
 
     assert componenttools.all_are_components(components)

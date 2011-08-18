@@ -18,8 +18,8 @@ def get_first_element_starting_before_or_at_prolated_offset(container, prolated_
     Return none when no `container` element starts before or at `prolated_offset`.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.get_rightmost_element_starting_not_after_prolated_offset( )`` to
-        ``containertools.get_first_element_starting_before_or_at_prolated_offset( )``.
+        renamed ``containertools.get_rightmost_element_starting_not_after_prolated_offset()`` to
+        ``containertools.get_first_element_starting_before_or_at_prolated_offset()``.
     '''
 
     prolated_offset = durtools.Duration(prolated_offset)

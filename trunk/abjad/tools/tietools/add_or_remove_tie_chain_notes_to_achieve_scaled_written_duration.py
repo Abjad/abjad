@@ -10,14 +10,14 @@ def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, 
         Returns tie chain.
 
     .. versionchanged:: 2.0
-        renamed ``tietools.duration_scale( )`` to
-        ``tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration( )``.
+        renamed ``tietools.duration_scale()`` to
+        ``tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration()``.
     '''
 
-    ### TODO: Find out why get_preprolated_tie_chain_duration( )
+    ### TODO: Find out why get_preprolated_tie_chain_duration()
     ###         fails split!
-    ###         This can only be changed in tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( ). ###
-    ###         Check tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration( ). ###
+    ###         This can only be changed in tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(). ###
+    ###         Check tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(). ###
 
     ### find new tie chain written duration
     new_written_duration = \

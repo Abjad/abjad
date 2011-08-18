@@ -36,8 +36,8 @@ def is_assignable_rational(expr):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.is_assignable( )`` to
-        ``durtools.is_assignable_rational( )``.
+        renamed ``durtools.is_assignable()`` to
+        ``durtools.is_assignable_rational()``.
     '''
 
     try:

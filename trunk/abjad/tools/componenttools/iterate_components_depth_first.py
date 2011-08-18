@@ -10,8 +10,8 @@ def iterate_components_depth_first(component, capped = True, unique = True,
     .. todo:: Add usage examples.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.depth_first( )`` to
-        ``componenttools.iterate_components_depth_first( )``.
+        renamed ``iterate.depth_first()`` to
+        ``componenttools.iterate_components_depth_first()``.
     '''
 
     client_parent, node, rank = component._parentage.parent, component, 0
@@ -24,7 +24,7 @@ def iterate_components_depth_first(component, capped = True, unique = True,
             node, rank = _handle_forbidden_node(node, queue)
         else:
             node, rank = _advance_node_depth_first(node, rank, direction)
-    queue.clear( )
+    queue.clear()
 
 def _next_node_depth_first(component, total):
     '''If client has unvisited music, return next unvisited node in client's music.
@@ -69,7 +69,7 @@ def _handle_forbidden_node(node, queue):
         node = node_parent
     else:
         node, rank = None, None
-    queue.pop( )
+    queue.pop()
     return node, rank
 
 def _advance_node_depth_first(node, rank, direction):
@@ -97,7 +97,7 @@ def _find_yield(node, rank, queue, unique):
             queue.append(node)
             return node
         elif rank == len(node):
-            queue.pop( )
+            queue.pop()
             return None
     else:
         return node

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Spanner_duration_in_seconds_01( ):
+def test_Spanner_duration_in_seconds_01():
     '''Spanner duration in seconds equals sum of duration
     of all leaves in spanner, in seconds.
     '''

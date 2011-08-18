@@ -29,8 +29,8 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
     Return list of notes.
 
     .. versionchanged:: 2.0
-        renamed ``construct.notes_curve( )`` to
-        ``notetools.make_accelerating_notes_with_lilypond_multipliers( )``.
+        renamed ``construct.notes_curve()`` to
+        ``notetools.make_accelerating_notes_with_lilypond_multipliers()``.
     '''
 
     total = fractions.Fraction(*durtools.duration_token_to_duration_pair(total))

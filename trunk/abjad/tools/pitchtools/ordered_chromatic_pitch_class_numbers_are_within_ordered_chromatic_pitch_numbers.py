@@ -13,8 +13,8 @@ def ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_num
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.are_in_octave_order( )`` to
-        ``pitchtools.ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers( )``.
+        renamed ``pitchtools.are_in_octave_order()`` to
+        ``pitchtools.ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers()``.
     '''
 
     pcs_start_index = [p % 12 for p in chromatic_pitch_numbers].index(

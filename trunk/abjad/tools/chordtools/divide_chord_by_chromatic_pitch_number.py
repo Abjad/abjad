@@ -27,8 +27,8 @@ def divide_chord_by_chromatic_pitch_number(chord, pitch = NamedChromaticPitch('b
     Return pair of newly constructed leaves.
 
     .. versionchanged:: 2.0
-        renamed ``chordtools.split_by_pitch_number( )`` to
-        ``chordtools.divide_chord_by_chromatic_pitch_number( )``.
+        renamed ``chordtools.split_by_pitch_number()`` to
+        ``chordtools.divide_chord_by_chromatic_pitch_number()``.
     '''
 
     treble_chord, bass_chord = _divide_chord(chord, pitch = pitch, attr = 'numbered_chromatic_pitch')

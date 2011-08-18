@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_ChordQualityIndicator___init___01( ):
+def test_ChordQualityIndicator___init___01():
     '''Init root position triad.'''
 
     cqi = tonalitytools.ChordQualityIndicator('major', 'triad')
@@ -18,7 +18,7 @@ def test_ChordQualityIndicator___init___01( ):
     assert str(cqi) == '<P1, M3, aug5>'
 
 
-def test_ChordQualityIndicator___init___02( ):
+def test_ChordQualityIndicator___init___02():
     '''Init seventh and ninth.'''
 
     cqi = tonalitytools.ChordQualityIndicator('dominant', 7, 'root')
@@ -28,7 +28,7 @@ def test_ChordQualityIndicator___init___02( ):
     assert str(cqi) == '<P1, M3, P5, m7, M9>'
 
 
-def test_ChordQualityIndicator___init___03( ):
+def test_ChordQualityIndicator___init___03():
     '''Init with quality string and integer cardinality indicator.'''
 
     cqi = tonalitytools.ChordQualityIndicator('dominant', 7)

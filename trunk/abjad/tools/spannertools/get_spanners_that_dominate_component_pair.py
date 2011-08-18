@@ -10,13 +10,13 @@ def get_spanners_that_dominate_component_pair(left, right):
     If both 'left' and 'right' are components,
     then 'left' and 'right' must be thread-contiguous.
 
-    This is a special version of spannertools.get_spanners_that_dominate_components( ).
+    This is a special version of spannertools.get_spanners_that_dominate_components().
     This version is useful for finding spanners that dominant
     a zero-length 'crack' between components, as in t[2:2].
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.get_dominant_between( )`` to
-        ``spannertools.get_spanners_that_dominate_component_pair( )``.
+        renamed ``spannertools.get_dominant_between()`` to
+        ``spannertools.get_spanners_that_dominate_component_pair()``.
     '''
     from abjad.tools import componenttools
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_StemTremolo_format_01( ):
+def test_StemTremolo_format_01():
     '''Tremolo formats correctly on notes.
     '''
 
@@ -12,7 +12,7 @@ def test_StemTremolo_format_01( ):
     assert t.format == "cs'4"
 
 
-def test_StemTremolo_format_02( ):
+def test_StemTremolo_format_02():
     '''Tremolo formats correctly on chords.
     '''
 
@@ -23,7 +23,7 @@ def test_StemTremolo_format_02( ):
     assert t.format == "<cs' d' ef'>4"
 
 
-def test_StemTremolo_format_03( ):
+def test_StemTremolo_format_03():
     '''Tremolo formats correctly on rests.
     '''
 

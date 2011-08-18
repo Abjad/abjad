@@ -29,8 +29,8 @@ def get_context_marks_attached_to_component(start_component, klasses = (ContextM
     Return tuple of zero or more context marks.
 
     .. versionchanged:: 2.0
-        renamed ``contexttools.get_context_marks_attached_to_start_component( )`` to
-        ``contexttools.get_context_marks_attached_to_component( )``.
+        renamed ``contexttools.get_context_marks_attached_to_start_component()`` to
+        ``contexttools.get_context_marks_attached_to_component()``.
     '''
 
     result = [ ]

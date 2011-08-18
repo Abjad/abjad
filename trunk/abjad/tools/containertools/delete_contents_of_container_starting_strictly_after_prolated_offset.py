@@ -36,8 +36,8 @@ def delete_contents_of_container_starting_strictly_after_prolated_offset(contain
     Return `container`.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.contents_delete_starting_after_prolated_offset( )`` to
-        ``containertools.delete_contents_of_container_starting_strictly_after_prolated_offset( )``.
+        renamed ``containertools.contents_delete_starting_after_prolated_offset()`` to
+        ``containertools.delete_contents_of_container_starting_strictly_after_prolated_offset()``.
     '''
 
     ### get index

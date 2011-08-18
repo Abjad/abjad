@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_01( ):
+def test_chordtools_divide_chord_by_diatonic_pitch_number_01():
     '''Chord split by diatonic pitch number only; empty bass.'''
     t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
     treble, bass = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('d', 4))
@@ -14,7 +14,7 @@ def test_chordtools_divide_chord_by_diatonic_pitch_number_01( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_02( ):
+def test_chordtools_divide_chord_by_diatonic_pitch_number_02():
     '''Chord split by diatonic pitch number only; one-note bass.'''
     t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
     treble, bass = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('e', 4))
@@ -27,7 +27,7 @@ def test_chordtools_divide_chord_by_diatonic_pitch_number_02( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_03( ):
+def test_chordtools_divide_chord_by_diatonic_pitch_number_03():
     '''Chord split by diatonic pitch number is accidental agnostic.'''
     t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
     treble1, bass1 = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('e', 4))
@@ -36,7 +36,7 @@ def test_chordtools_divide_chord_by_diatonic_pitch_number_03( ):
     assert bass1.format == bass2.format
 
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_04( ):
+def test_chordtools_divide_chord_by_diatonic_pitch_number_04():
     '''Typographically crossed split by diatonic pitch number only.'''
     t = Chord([('d', 4), ('es', 4), ('ff', 4), ('g', 4)], (1, 4))
     treble, bass = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('f', 4))
@@ -49,7 +49,7 @@ def test_chordtools_divide_chord_by_diatonic_pitch_number_04( ):
     assert treble is not bass
 
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_05( ):
+def test_chordtools_divide_chord_by_diatonic_pitch_number_05():
     '''Spanned chord DOES NOT copy spanner to resultant split parts.'''
     staff = Staff(Chord([2, 4, 5], (1, 4)) * 3)
     spannertools.BeamSpanner(staff)

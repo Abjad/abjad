@@ -2,7 +2,7 @@ from abjad import Fraction
 from abjad.tools.intervaltreetools import *
 
 
-def test_intervaltreetools_make_monophonic_percussion_score_from_nonoverlapping_intervals_01( ):
+def test_intervaltreetools_make_monophonic_percussion_score_from_nonoverlapping_intervals_01():
     a = BoundedInterval(0, Fraction(3, 4), {})
     b = BoundedInterval(Fraction(5, 4), Fraction(7, 4), {})
     tree = IntervalTree([a, b])

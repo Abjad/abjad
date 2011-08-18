@@ -19,8 +19,8 @@ def write_expr_to_ly_and_to_pdf_and_show(expr, name, template = None, write = Tr
     The purpose of this function is to save named ``.ly`` and PDF output.
 
     .. versionchanged:: 2.0
-        renamed ``io.write_and_show( )`` to
-        ``io.write_expr_to_ly_and_to_pdf_and_show( )``.
+        renamed ``io.write_and_show()`` to
+        ``io.write_expr_to_ly_and_to_pdf_and_show()``.
     '''
 
     lily_time = 10
@@ -28,7 +28,7 @@ def write_expr_to_ly_and_to_pdf_and_show(expr, name, template = None, write = Tr
     if write:
         write_expr_to_ly(expr, name + '.ly', template = template)
         write_expr_to_pdf(expr, name + '.pdf', template = template)
-        pdf_viewer = _read_config_file( )['pdf_viewer']
+        pdf_viewer = _read_config_file()['pdf_viewer']
         _open_file(name + '.pdf', pdf_viewer)
     else:
         show(expr, template = template)

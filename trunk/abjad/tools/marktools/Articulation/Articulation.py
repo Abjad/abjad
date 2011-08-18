@@ -115,7 +115,7 @@ class Articulation(Mark):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def direction_string( ):
+    def direction_string():
         def fget(self):
             '''Get direction string of articulation::
 
@@ -135,7 +135,7 @@ class Articulation(Mark):
         def fset(self, direction_string):
             assert isinstance(direction_string, str)
             self._direction = direction_string
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def format(self):
@@ -150,7 +150,7 @@ class Articulation(Mark):
         return str(self)
 
     @apply
-    def name_string( ):
+    def name_string():
         def fget(self):
             '''Get name string of articulation::
 
@@ -170,5 +170,5 @@ class Articulation(Mark):
         def fset(self, name_string):
             assert isinstance(name_string, str)
             self._string = name_string
-        return property(**locals( ))
+        return property(**locals())
 

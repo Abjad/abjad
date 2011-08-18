@@ -55,7 +55,7 @@ def _get_measure_from_component(component, direction):
         else:
             raise ValueError('direction must be _next or _prev.')
         try:
-            measure = measure_generator.next( )
+            measure = measure_generator.next()
             return measure
         except StopIteration:
             raise MissingMeasureError

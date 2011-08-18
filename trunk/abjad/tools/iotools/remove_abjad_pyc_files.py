@@ -2,10 +2,10 @@ from abjad.cfg.cfg import ABJADPATH
 import os
 
 
-def remove_abjad_pyc_files( ):
+def remove_abjad_pyc_files():
     '''Remove ``.pyc`` files from Abjad source tree::
 
-        abjad> iotools.remove_abjad_pyc_files( ) # doctest: +SKIP
+        abjad> iotools.remove_abjad_pyc_files() # doctest: +SKIP
 
     Return none.
     '''

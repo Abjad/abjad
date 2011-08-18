@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_duration_token_to_big_endian_list_of_assignable_duration_pairs_01( ):
+def test_durtools_duration_token_to_big_endian_list_of_assignable_duration_pairs_01():
     '''Return big-endian list of note_head-assignable duration tokens.'''
 
     assert durtools.duration_token_to_big_endian_list_of_assignable_duration_pairs((10, 16)) == ((8, 16), (2, 16))

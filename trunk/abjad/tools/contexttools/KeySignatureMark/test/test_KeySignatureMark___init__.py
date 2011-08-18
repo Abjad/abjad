@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_KeySignatureMark___init___01( ):
+def test_KeySignatureMark___init___01():
     '''Initialize with pitch-class letter string and mode string.
     '''
 

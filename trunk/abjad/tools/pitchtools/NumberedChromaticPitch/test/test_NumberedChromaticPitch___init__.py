@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedChromaticPitch___init___01( ):
+def test_NumberedChromaticPitch___init___01():
     '''Init with number.'''
 
     assert isinstance(pitchtools.NumberedChromaticPitch(0), pitchtools.NumberedChromaticPitch)
@@ -12,7 +12,7 @@ def test_NumberedChromaticPitch___init___01( ):
     assert isinstance(pitchtools.NumberedChromaticPitch(-12.5), pitchtools.NumberedChromaticPitch)
 
 
-def test_NumberedChromaticPitch___init___02( ):
+def test_NumberedChromaticPitch___init___02():
     '''Init with other numbered chromatic pitch instance.'''
 
     numbered_chromatic_pitch_1 = pitchtools.NumberedChromaticPitch(13)

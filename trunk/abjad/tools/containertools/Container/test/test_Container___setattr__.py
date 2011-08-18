@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container___setattr___01( ):
+def test_Container___setattr___01():
     '''Slots constrain container attributes.
     '''
 

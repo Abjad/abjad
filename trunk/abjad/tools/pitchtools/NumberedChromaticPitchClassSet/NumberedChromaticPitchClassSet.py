@@ -137,12 +137,12 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
         '''Invert numbered chromatic pitch-class set::
 
             abjad> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
-            abjad> numbered_chromatic_pitch_class_set.invert( )
+            abjad> numbered_chromatic_pitch_class_set.invert()
             NumberedChromaticPitchClassSet([1.5, 2, 5, 6])
 
         Return numbered chromatic pitch-class set.
         '''
-        return type(self)([pc.invert( ) for pc in self])
+        return type(self)([pc.invert() for pc in self])
 
     def is_transposed_subset(self, pcset):
         '''True when self is transposed subset of `pcset`.

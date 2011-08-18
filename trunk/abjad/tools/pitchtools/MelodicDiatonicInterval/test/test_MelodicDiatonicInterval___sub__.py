@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicDiatonicInterval___sub___01( ):
+def test_MelodicDiatonicInterval___sub___01():
 
     major_second_ascending = pitchtools.MelodicDiatonicInterval('major', 2)
     major_third_ascending = pitchtools.MelodicDiatonicInterval('major', 3)

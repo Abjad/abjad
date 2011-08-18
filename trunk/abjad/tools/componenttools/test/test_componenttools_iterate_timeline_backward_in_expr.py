@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_iterate_timeline_backward_in_expr_01( ):
+def test_componenttools_iterate_timeline_backward_in_expr_01():
     '''Yield klass instances in expr sorted backward
     by score offset stop time.
     '''
@@ -41,7 +41,7 @@ def test_componenttools_iterate_timeline_backward_in_expr_01( ):
     assert leaves[7] is staff_2[0] # g'8
 
 
-def test_componenttools_iterate_timeline_backward_in_expr_02( ):
+def test_componenttools_iterate_timeline_backward_in_expr_02():
     '''Yield klass instances in expr sorted by score offset
     and score index.
     '''

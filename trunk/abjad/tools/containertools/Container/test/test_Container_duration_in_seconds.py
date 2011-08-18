@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container_duration_in_seconds_01( ):
+def test_Container_duration_in_seconds_01():
     '''Container duration in seconds equals
     sum of leaf durations in seconds.
     '''
@@ -28,7 +28,7 @@ def test_Container_duration_in_seconds_01( ):
     assert score.duration_in_seconds == Duration(400, 133)
 
 
-def test_Container_duration_in_seconds_02( ):
+def test_Container_duration_in_seconds_02():
     '''Container can not calculate duration in seconds
         without tempo indication.'''
 

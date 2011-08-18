@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplettools_is_proper_tuplet_multiplier_01( ):
+def test_tuplettools_is_proper_tuplet_multiplier_01():
     '''True when multiplier is a rational strictly greater than 1/2
         and strictly less than 2.'''
 
@@ -17,7 +17,7 @@ def test_tuplettools_is_proper_tuplet_multiplier_01( ):
     assert tuplettools.is_proper_tuplet_multiplier(Fraction(10, 10))
 
 
-def test_tuplettools_is_proper_tuplet_multiplier_02( ):
+def test_tuplettools_is_proper_tuplet_multiplier_02():
     '''True when multiplier is a rational strictly greater than 1/2
         and strictly less than 2.'''
 

@@ -64,12 +64,12 @@ def iterate_vertical_moments_forward_in_expr(governor):
     .. todo:: optimize without multiple full-component traversal.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.vertical_moments_forward_in( )`` to
-        ``verticalitytools.iterate_vertical_moments_forward_in_expr( )``.
+        renamed ``iterate.vertical_moments_forward_in()`` to
+        ``verticalitytools.iterate_vertical_moments_forward_in_expr()``.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.vertical_moments_forward_in_expr( )`` to
-        ``verticalitytools.iterate_vertical_moments_forward_in_expr( )``.
+        renamed ``iterate.vertical_moments_forward_in_expr()`` to
+        ``verticalitytools.iterate_vertical_moments_forward_in_expr()``.
     '''
     from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 

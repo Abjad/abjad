@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners_01( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners_01():
     '''Duration partition one container in score
         Do no fracture spanners.'''
 
@@ -51,7 +51,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_do_not_f
     assert t.format == "\\new Staff {\n\t{\n\t\tc'32 [ (\n\t}\n\t{\n\t\tc'16.\n\t}\n\t{\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners_02( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners_02():
     '''Duration partition multiple containers in score.
         Do not fracture spanners.'''
 

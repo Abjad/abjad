@@ -35,12 +35,12 @@ class DynamicMeasure(Measure):
         self._denominator = None
         self._time_signature_is_current = False
         self._suppress_meter = False
-        self._update_time_signature( )
+        self._update_time_signature()
 
     ### OVERLOADS ###
 
     def __getnewargs__(self):
-        return ( )
+        return ()
 
     ### PRIVATE METHODS ###
 
@@ -59,7 +59,7 @@ class DynamicMeasure(Measure):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def denominator( ):
+    def denominator():
         def fget(self):
             r'''Get explicit denominator of dynamic measure::
 
@@ -91,15 +91,15 @@ class DynamicMeasure(Measure):
         def fset(self, arg):
             assert isinstance(arg, (int, long, type(None)))
             self._denominator = arg
-            self._update_time_signature( )
-        return property(**locals( ))
+            self._update_time_signature()
+        return property(**locals())
 
     @property
     def preprolated_duration(self):
         return self.contents_duration
 
     @apply
-    def suppress_meter( ):
+    def suppress_meter():
         def fget(self):
             r'''Get meter suppression indicator::
 
@@ -146,8 +146,8 @@ class DynamicMeasure(Measure):
         def fset(self, arg):
             assert isinstance(arg, (type(True), type(None)))
             self._suppress_meter = arg
-            self._update_time_signature( )
-        return property(**locals( ))
+            self._update_time_signature()
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 
@@ -185,7 +185,7 @@ class DynamicMeasure(Measure):
         Return none.
         '''
         Measure.extend(self, expr)
-        self._update_time_signature( )
+        self._update_time_signature()
 
 
 

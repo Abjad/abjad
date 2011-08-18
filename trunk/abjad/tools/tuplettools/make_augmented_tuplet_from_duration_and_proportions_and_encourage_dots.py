@@ -24,8 +24,8 @@ def make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
     Return fixed-duration tuplet.
 
     .. versionchanged:: 2.0
-        renamed ``divide.duration_into_arbitrary_augmentation_dotted( )`` to
-        ``tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots( )``.
+        renamed ``divide.duration_into_arbitrary_augmentation_dotted()`` to
+        ``tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots()``.
     '''
 
     return _make_tuplet_from_duration_with_proportions_and_encourage_dots(

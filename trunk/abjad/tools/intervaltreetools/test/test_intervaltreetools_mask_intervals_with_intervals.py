@@ -4,7 +4,7 @@ from abjad import Fraction
 import py.test
 
 
-def test_intervaltreetools_mask_intervals_with_intervals_01( ):
+def test_intervaltreetools_mask_intervals_with_intervals_01():
     a = BoundedInterval(0, 9, {'a': 1})
     b = BoundedInterval(6, 10, {'b': 2})
     c = BoundedInterval(5, 10, {'c': 3})
@@ -19,7 +19,7 @@ def test_intervaltreetools_mask_intervals_with_intervals_01( ):
 #   assert result[0] == a
 #   assert result[1] == b
 
-def test_intervaltreetools_mask_intervals_with_intervals_02( ):
+def test_intervaltreetools_mask_intervals_with_intervals_02():
     a = BoundedInterval(0, 9, {'a': 1})
     b = BoundedInterval(6, 10, {'b': 2})
     c = BoundedInterval(5, 6, {'c': 3})
@@ -31,7 +31,7 @@ def test_intervaltreetools_mask_intervals_with_intervals_02( ):
     actual_signatures = [interval.signature for interval in result]
     assert target_signatures == actual_signatures
 
-def test_intervaltreetools_mask_intervals_with_intervals_03( ):
+def test_intervaltreetools_mask_intervals_with_intervals_03():
     a = BoundedInterval(0, 9, {'a': 1})
     b = BoundedInterval(6, 10, {'b': 2})
     c = BoundedInterval(11, 12, {'c': 3})
@@ -42,7 +42,7 @@ def test_intervaltreetools_mask_intervals_with_intervals_03( ):
     actual_signatures = [interval.signature for interval in result]
     assert target_signatures == actual_signatures
 
-def test_intervaltreetools_mask_intervals_with_intervals_04( ):
+def test_intervaltreetools_mask_intervals_with_intervals_04():
     a = BoundedInterval(0, 9, {'a': 1})
     b = BoundedInterval(6, 10, {'b': 2})
     c = BoundedInterval(7, 8, {'c': 3})

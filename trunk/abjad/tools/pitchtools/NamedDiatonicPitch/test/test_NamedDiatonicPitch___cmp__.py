@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedDiatonicPitch___cmp___01( ):
+def test_NamedDiatonicPitch___cmp___01():
     '''Compare equal named diatonic pitches.
     '''
 
@@ -16,7 +16,7 @@ def test_NamedDiatonicPitch___cmp___01( ):
     assert      named_diatonic_pitch_1 >= named_diatonic_pitch_2
 
 
-def test_NamedDiatonicPitch___cmp___02( ):
+def test_NamedDiatonicPitch___cmp___02():
     '''Compare named diatonic pitch to equivalent diatonic pitch name.
     '''
 
@@ -31,7 +31,7 @@ def test_NamedDiatonicPitch___cmp___02( ):
     assert      named_diatonic_pitch_1 >= diatonic_pitch_name
 
 
-def test_NamedDiatonicPitch___cmp___03( ):
+def test_NamedDiatonicPitch___cmp___03():
     '''Compare unequal numbered diatonic pitches.
     '''
 
@@ -46,7 +46,7 @@ def test_NamedDiatonicPitch___cmp___03( ):
     assert not named_diatonic_pitch_1 >= named_diatonic_pitch_2
 
 
-def test_NamedDiatonicPitch___cmp___04( ):
+def test_NamedDiatonicPitch___cmp___04():
     '''Compare numbered diatonic pitches to inequivalent diatonic pitch name.
     '''
 

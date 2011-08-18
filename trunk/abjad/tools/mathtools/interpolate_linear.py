@@ -11,8 +11,8 @@ def interpolate_linear(y1, y2, mu):
     Return float.
 
     .. versionchanged:: 2.0
-        renamed ``interpolate.linear( )`` to
-        ``mathtools.interpolate_linear( )``.
+        renamed ``interpolate.linear()`` to
+        ``mathtools.interpolate_linear()``.
     '''
 
     return (y1 * (1 - mu) + y2 * mu)

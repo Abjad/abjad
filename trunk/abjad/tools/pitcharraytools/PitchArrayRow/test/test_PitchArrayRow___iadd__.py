@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_PitchArrayRow___iadd___01( ):
+def test_PitchArrayRow___iadd___01():
 
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
     array[0].cells[0].pitches.append(0)
@@ -14,7 +14,7 @@ def test_PitchArrayRow___iadd___01( ):
     [         ] [ ] [e']
     '''
 
-    row = array[0].withdraw( )
+    row = array[0].withdraw()
     row += row
 
     '''

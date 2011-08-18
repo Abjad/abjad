@@ -21,8 +21,8 @@ def arpeggiate_chord(chord):
     Return list of newly constructed notes.
 
     .. versionchanged:: 2.0
-        renamed ``chordtools.arpeggiate( )`` to
-        ``chordtools.arpeggiate_chord( )``.
+        renamed ``chordtools.arpeggiate()`` to
+        ``chordtools.arpeggiate_chord()``.
     '''
     from abjad.tools.notetools.Note import Note
 

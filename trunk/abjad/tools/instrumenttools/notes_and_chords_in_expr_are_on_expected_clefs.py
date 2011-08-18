@@ -10,7 +10,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.ClefMark('treble')(staff)
         ClefMark('treble')(Staff{4})
-        abjad> instrumenttools.Violin( )(staff)
+        abjad> instrumenttools.Violin()(staff)
         Violin('Violin', 'Vn.')
 
     ::
@@ -23,7 +23,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.ClefMark('alto')(staff)
         ClefMark('alto')(Staff{4})
-        abjad> instrumenttools.Violin( )(staff)
+        abjad> instrumenttools.Violin()(staff)
         Violin('Violin', 'Vn.')
 
     ::
@@ -36,7 +36,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.ClefMark('percussion')(staff)
         ClefMark('percussion')(Staff{4})
-        abjad> instrumenttools.Violin( )(staff)
+        abjad> instrumenttools.Violin()(staff)
         Violin('Violin', 'Vn.')
 
     ::

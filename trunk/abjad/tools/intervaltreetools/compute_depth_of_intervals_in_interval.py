@@ -56,7 +56,7 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
     intervals = [ ]
 #   for i in range(len(bounds) - 1):
     for pair in iterate_sequence_pairwise_strict(bounds):
-        target = BoundedInterval(pair[0], pair[1], { })
+        target = BoundedInterval(pair[0], pair[1], {})
         found = tree.find_intervals_intersecting_or_tangent_to_interval(target)
         if found:
             target['depth'] = len(filter( \

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_01( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_01():
     '''Container.'''
 
     t = Container("c'8 d'8 e'8")
@@ -17,7 +17,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert new.format == "{\n\tc'8\n\td'16\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to002( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to002():
     '''Container with rest.'''
 
     t = Container("c'8 d'8 e'8")
@@ -35,7 +35,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to0
     assert new.format == "{\n\tc'8\n\tr16\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_03( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_03():
     '''Clone measure.
     '''
 
@@ -53,7 +53,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert new.format == "{\n\t\\time 3/16\n\tc'8\n\td'16\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_04( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_04():
     '''Fixed duration tuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
@@ -69,7 +69,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert new.format == "\\times 2/3 {\n\tc'8\n\td'16\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_05( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_05():
     '''Fixed multiplier tuplet.'''
 
     t = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
@@ -85,7 +85,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert new.format == "\\times 2/3 {\n\tc'8\n\td'16\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_06( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_06():
     '''Voice.'''
 
     t = Voice("c'8 d'8 e'8")
@@ -101,7 +101,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert new.format == "\\new Voice {\n\tc'8\n\td'16\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_07( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_07():
     '''Staff.'''
 
     t = Staff("c'8 d'8 e'8")
@@ -126,7 +126,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 ###     5. 'after', ie some value z such that t.prolated_duration < z
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_08( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_08():
     '''Start-to-mid clean cut.'''
 
     t = Note("c'4")
@@ -134,7 +134,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert new.format == "c'8"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_09( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_09():
     '''Start-to-mid jagged cut.'''
 
     t = Note("c'4")
@@ -150,7 +150,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert parent.format == "\\times 2/3 {\n\tc'8\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_10( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_10():
     '''Mid-mid jagged cut.'''
 
     t = Note("c'4")
@@ -166,7 +166,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert parent.format == "\\times 2/3 {\n\tc'8\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_11( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_11():
     '''Mid-to-stop jagged cut.'''
 
     t = Note("c'4")
@@ -182,14 +182,14 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert parent.format == "\\times 2/3 {\n\tc'8\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_12( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_12():
     '''Start-to-after clean cut.'''
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, 0, (1, 2))
     assert new.format == "c'4"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_13( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_13():
     '''Mid-to-after clean cut.'''
 
     t = Note("c'4")
@@ -197,7 +197,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert new.format == "c'8"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_14( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_14():
     '''Mid-to-after jagged cut.'''
 
     t = Note("c'4")
@@ -213,7 +213,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert parent.format == "\\times 2/3 {\n\tc'8\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_15( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_15():
     '''Before-to-after.'''
 
     t = Note("c'4")
@@ -221,7 +221,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert new.format == "c'4"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_16( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_16():
     '''Start-to-mid jagged.'''
 
     t = Note("c'4")
@@ -238,7 +238,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     assert parent.format == "\\times 2/3 {\n\tc'4 ~\n\tc'16\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_17( ):
+def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_17():
     '''Start-to-mid jagged. '''
 
     t = Note("c'4")

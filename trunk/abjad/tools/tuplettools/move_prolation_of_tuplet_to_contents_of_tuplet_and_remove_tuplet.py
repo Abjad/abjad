@@ -38,8 +38,8 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
         }
 
     .. versionchanged:: 2.0
-        renamed ``tuplettools.subsume( )`` to
-        ``tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet( )``.
+        renamed ``tuplettools.subsume()`` to
+        ``tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet()``.
     '''
 
     assert isinstance(tuplet, Tuplet)

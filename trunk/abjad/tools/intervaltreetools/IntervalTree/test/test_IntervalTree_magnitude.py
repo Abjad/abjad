@@ -2,7 +2,7 @@ from abjad.tools.intervaltreetools import *
 import py.test
 
 
-def test_IntervalTree_magnitude_01( ):
+def test_IntervalTree_magnitude_01():
     a = BoundedInterval(-1, 2)
     b = BoundedInterval(0, 1)
     c = BoundedInterval(1, 3)

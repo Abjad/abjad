@@ -9,5 +9,5 @@ class _NumberedPitchClass(_PitchClass, _Numbered):
     Numbered pitch-class base class.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 

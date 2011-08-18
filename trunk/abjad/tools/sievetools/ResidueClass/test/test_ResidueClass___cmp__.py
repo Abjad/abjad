@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import sievetools
 
 
-def test_ResidueClass___cmp___01( ):
+def test_ResidueClass___cmp___01():
 
     rc1 = sievetools.ResidueClass(6, 0)
     rc2 = sievetools.ResidueClass(6, 1)
@@ -15,7 +15,7 @@ def test_ResidueClass___cmp___01( ):
     assert not rc1 >= rc2
 
 
-def test_ResidueClass___cmp___02( ):
+def test_ResidueClass___cmp___02():
 
     rc1 = sievetools.ResidueClass(6, 0)
     rc2 = sievetools.ResidueClass(7, 0)
@@ -28,7 +28,7 @@ def test_ResidueClass___cmp___02( ):
     assert not rc1 >= rc2
 
 
-def test_ResidueClass___cmp___03( ):
+def test_ResidueClass___cmp___03():
 
     rc1 = sievetools.ResidueClass(6, 0)
     rc2 = sievetools.ResidueClass(6, 0)

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.marktools import Comment
 
 
-def test_Comment___repr___01( ):
+def test_Comment___repr___01():
     '''Repr of unattached comment is evaluable.
     '''
 

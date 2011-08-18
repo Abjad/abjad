@@ -13,7 +13,7 @@ class BoundedInterval(dict, _Immutable):
         if len(args) == 1 and isinstance(args[0], BoundedInterval):
             low, high, data = args[0].low, args[0].high, args[0]
         elif len(args) == 2:
-            low, high, data = args[0], args[1], { }
+            low, high, data = args[0], args[1], {}
         elif len(args) == 3:
             low, high, data = args[0], args[1], args[2]
         assert isinstance(low, (int, Fraction))

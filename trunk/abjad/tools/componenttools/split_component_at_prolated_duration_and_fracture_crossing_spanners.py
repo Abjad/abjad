@@ -37,7 +37,7 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
         \new Staff {
             {
                 \time 2/8
-                c'32 ( ) [
+                c'32 () [
                 c'16. (
                 d'8 ]
             }
@@ -51,8 +51,8 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
     Function works on both leaves and containers.
 
     .. versionchanged:: 2.0
-        renamed ``split.fractured_at_duration( )`` to
-        ``componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners( )``.
+        renamed ``split.fractured_at_duration()`` to
+        ``componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners()``.
     '''
 
     return _split_component_at_duration(component, prolated_duration,

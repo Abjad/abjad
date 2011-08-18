@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitch_accidental_spelling_01( ):
+def test_NamedChromaticPitch_accidental_spelling_01():
     '''Accidentals spell mixed with sharps and flats by default.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(12)])
@@ -26,7 +26,7 @@ def test_NamedChromaticPitch_accidental_spelling_01( ):
     assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
 
 
-def test_NamedChromaticPitch_accidental_spelling_02( ):
+def test_NamedChromaticPitch_accidental_spelling_02():
     '''
     Accidentals can spell as all sharps by changing the
     accidental_class attribute on the Abjad NamedChromaticPitch class.
@@ -57,7 +57,7 @@ def test_NamedChromaticPitch_accidental_spelling_02( ):
     pitchtools.NamedChromaticPitch.accidental_spelling = 'mixed'
 
 
-def test_NamedChromaticPitch_accidental_spelling_03( ):
+def test_NamedChromaticPitch_accidental_spelling_03():
     '''
     Accidentals can spell all as flats by changing the
     accidental_spelling attribute on the Abjad NamedChromaticPitch class.
@@ -88,13 +88,13 @@ def test_NamedChromaticPitch_accidental_spelling_03( ):
     pitchtools.NamedChromaticPitch.accidental_spelling = 'mixed'
 
 
-def test_NamedChromaticPitch_accidental_spelling_04( ):
+def test_NamedChromaticPitch_accidental_spelling_04():
     '''
     You can change accidental spelling modes as many times as you
     like in a single interpreter session or script.
     '''
 
-    t = Staff( )
+    t = Staff()
 
     pitchtools.NamedChromaticPitch.accidental_spelling = 'sharps'
     t.extend([Note(n, (1, 8)) for n in range(6)])

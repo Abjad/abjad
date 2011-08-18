@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_
 
 
 ### TODO: remove ###
-_accidental_spelling = _read_config_file( )['accidental_spelling']
+_accidental_spelling = _read_config_file()['accidental_spelling']
 
 class NamedChromaticPitch(_Pitch):
     '''.. versionadded:: 1.1
@@ -59,7 +59,7 @@ class NamedChromaticPitch(_Pitch):
         assert hasattr(self, '_chromatic_pitch_name')
         diatonic_pitch_number = pitchtools.chromatic_pitch_name_to_diatonic_pitch_number(self._chromatic_pitch_name)
         object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)
-        groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups( )
+        groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups()
         alphabetic_accidental_abbreviation = groups[1]
         accidental_semitones = Accidental._alphabetic_string_to_semitones[alphabetic_accidental_abbreviation]
         object.__setattr__(self, '_accidental_semitones', accidental_semitones)
@@ -171,7 +171,7 @@ class NamedChromaticPitch(_Pitch):
                 return '%s(%s, deviation = %s)' % (self.__class__.__name__,
                     repr(str(self)), self.deviation_in_cents)
         else:
-            return '%s( )' % self.__class__.__name__
+            return '%s()' % self.__class__.__name__
 
     def __str__(self):
         if self.chromatic_pitch_class_name and not self.octave_number is None:
@@ -194,7 +194,7 @@ class NamedChromaticPitch(_Pitch):
     def _accidental(self):
         from abjad.tools.pitchtools.Accidental import Accidental
         from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
-        groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups( )
+        groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups()
         alphabetic_accidental_abbreviation = groups[1]
         return Accidental(alphabetic_accidental_abbreviation)
 
@@ -450,7 +450,7 @@ class NamedChromaticPitch(_Pitch):
         '''
         from abjad.tools import pitchtools
         from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
-        groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups( )
+        groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups()
         octave_tick_string = groups[-1]
         return pitchtools.octave_tick_string_to_octave_number(octave_tick_string)
 

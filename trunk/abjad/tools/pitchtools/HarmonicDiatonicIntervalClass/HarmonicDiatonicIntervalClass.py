@@ -25,7 +25,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
                 match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
                 if match is None:
                     raise ValueError('"%s" does not have the form of an hdic abbreviation.' % args[0])
-                direction_string, quality_abbreviation, number_string = match.groups( )
+                direction_string, quality_abbreviation, number_string = match.groups()
                 quality_string = _DiatonicIntervalClass._quality_abbreviation_to_quality_string[quality_abbreviation]
                 number = int(number_string)
             elif isinstance(args[0], tuple) and len(args[0]) == 2:
@@ -78,7 +78,7 @@ class HarmonicDiatonicIntervalClass(_DiatonicIntervalClass, _HarmonicIntervalCla
         '''Read-only inversion of harmonic diatonic interval-class::
 
             abjad> hdic = pitchtools.HarmonicDiatonicIntervalClass('major', -9)
-            abjad> hdic.invert( )
+            abjad> hdic.invert()
             HarmonicDiatonicIntervalClass('m7')
 
         Return harmonic diatonic interval-class.

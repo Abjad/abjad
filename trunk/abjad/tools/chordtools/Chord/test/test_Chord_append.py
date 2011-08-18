@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Chord_append_01( ):
+def test_Chord_append_01():
     '''Append tweaked note head.
     '''
 

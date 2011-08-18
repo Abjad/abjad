@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 import py.test
 
 
-def test_mathtools_divide_number_by_ratio_01( ):
+def test_mathtools_divide_number_by_ratio_01():
     '''Divide int by ratio.
     '''
 
@@ -15,7 +15,7 @@ def test_mathtools_divide_number_by_ratio_01( ):
     assert t[2] == Duration(1, 2)
 
 
-def test_mathtools_divide_number_by_ratio_02( ):
+def test_mathtools_divide_number_by_ratio_02():
     '''Divide fraction by ratio.
     '''
 
@@ -27,7 +27,7 @@ def test_mathtools_divide_number_by_ratio_02( ):
     assert t[2] == Duration(1, 4)
 
 
-def test_mathtools_divide_number_by_ratio_03( ):
+def test_mathtools_divide_number_by_ratio_03():
     '''Raise type error on nonnumber.
     '''
 

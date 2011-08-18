@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSet___contains___01( ):
+def test_NamedChromaticPitchClassSet___contains___01():
     '''NamedChromaticPitchClassSet containment works as expected.'''
 
     npc_set = pitchtools.NamedChromaticPitchClassSet([

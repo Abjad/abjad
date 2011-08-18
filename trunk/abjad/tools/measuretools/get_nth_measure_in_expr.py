@@ -51,8 +51,8 @@ def get_nth_measure_in_expr(expr, n = 0):
         Measure(2/8, [c'8, d'8])
 
     .. versionchanged:: 2.0
-        renamed ``iterate.get_nth_measure( )`` to
-        ``measuretools.get_nth_measure_in_expr( )``.
+        renamed ``iterate.get_nth_measure()`` to
+        ``measuretools.get_nth_measure_in_expr()``.
     '''
 
     return get_nth_component_in_expr(expr, Measure, n)

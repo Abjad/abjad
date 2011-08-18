@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple_01( ):
+def test_pitchtools_chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple_01():
 
     t = pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(12, 'mixed')
     assert t == ('c', '', 5)
@@ -17,7 +17,7 @@ def test_pitchtools_chromatic_pitch_number_to_diatonic_pitch_class_name_alphabet
     assert t == ('f', '', 5)
 
 
-def test_pitchtools_chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple_02( ):
+def test_pitchtools_chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple_02():
 
     t = pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(12, 'sharps')
     assert t == ('c', '', 5)
@@ -33,7 +33,7 @@ def test_pitchtools_chromatic_pitch_number_to_diatonic_pitch_class_name_alphabet
     assert t == ('f', '', 5)
 
 
-def test_pitchtools_chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple_03( ):
+def test_pitchtools_chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple_03():
 
     t = pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_octave_number_triple(12, 'flats')
     assert t == ('c', '', 5)

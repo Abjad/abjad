@@ -26,7 +26,7 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
                 match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
                 if match is None:
                     raise ValueError('"%s" does not have the form of an abbreviation.' % args[0])
-                direction_string, quality_abbreviation, number_string = match.groups( )
+                direction_string, quality_abbreviation, number_string = match.groups()
                 quality_string = _DiatonicIntervalClass._quality_abbreviation_to_quality_string[quality_abbreviation]
                 number = int(direction_string + number_string)
             else:

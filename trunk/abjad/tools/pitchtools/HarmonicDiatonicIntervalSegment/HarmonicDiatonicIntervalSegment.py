@@ -15,7 +15,7 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
     def __new__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, str):
-            harmonic_diatonic_interval_tokens = arg.split( )
+            harmonic_diatonic_interval_tokens = arg.split()
         else:
             harmonic_diatonic_interval_tokens = arg
         hdis = [ ]

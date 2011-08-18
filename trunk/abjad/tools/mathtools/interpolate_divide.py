@@ -33,8 +33,8 @@ def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
     Return a list of floats.
 
     .. versionchanged:: 2.0
-        renamed ``interpolate.divide( )`` to
-        ``mathtools.interpolate_divide( )``.
+        renamed ``interpolate.divide()`` to
+        ``mathtools.interpolate_divide()``.
     '''
 
     if total <=0 :

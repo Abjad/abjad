@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_scoretools_add_double_bar_to_end_of_score_01( ):
+def test_scoretools_add_double_bar_to_end_of_score_01():
 
     staff = Staff("c'4 d'4 e'4 f'4")
     scoretools.add_double_bar_to_end_of_score(staff)

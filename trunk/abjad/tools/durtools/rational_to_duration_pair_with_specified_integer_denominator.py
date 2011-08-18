@@ -36,8 +36,8 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, integ
     Return integer pair.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.in_terms_of( )`` to
-        ``durtools.rational_to_duration_pair_with_specified_integer_denominator( )``.
+        renamed ``durtools.in_terms_of()`` to
+        ``durtools.rational_to_duration_pair_with_specified_integer_denominator()``.
     '''
 
     assert isinstance(duration, (Fraction, int, long, tuple))

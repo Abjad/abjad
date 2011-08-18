@@ -157,7 +157,7 @@ class TimeSignatureMark(ContextMark):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def denominator( ):
+    def denominator():
         def fget(self):
             r'''Get denominator of time signature mark::
 
@@ -179,7 +179,7 @@ class TimeSignatureMark(ContextMark):
         def fset(self, denominator):
             assert isinstance(denominator, int)
             self._denominator = denominator
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def duration(self):
@@ -228,7 +228,7 @@ class TimeSignatureMark(ContextMark):
         return self._multiplier
 
     @apply
-    def numerator( ):
+    def numerator():
         def fget(self):
             '''Get numerator of time signature mark::
 
@@ -248,7 +248,7 @@ class TimeSignatureMark(ContextMark):
         def fset(self, numerator):
             assert isinstance(numerator, int)
             self._numerator = numerator
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def is_nonbinary(self):
@@ -263,7 +263,7 @@ class TimeSignatureMark(ContextMark):
         return self._is_nonbinary
 
     @apply
-    def partial( ):
+    def partial():
         def fget(self):
             '''Get partial measure pick-up of time signature mark::
 
@@ -283,6 +283,6 @@ class TimeSignatureMark(ContextMark):
         def fset(self, partial):
             assert isinstance(partial, (numbers.Number, type(None)))
             self._partial = partial
-        return property(**locals( ))
+        return property(**locals())
 
 

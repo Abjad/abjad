@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_InversionIndicator___eq___01( ):
+def test_InversionIndicator___eq___01():
 
     t = tonalitytools.InversionIndicator(0)
     u = tonalitytools.InversionIndicator(0)

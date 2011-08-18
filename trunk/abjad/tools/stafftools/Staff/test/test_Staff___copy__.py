@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Staff___copy___01( ):
+def test_Staff___copy___01():
     '''Staves (shallow) copy grob overrides and context settings but not musical content.
     '''
 

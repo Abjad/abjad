@@ -6,7 +6,7 @@ import py.test
 
 RC = ResidueClass
 
-def test_ResidueClass_operator_or_01( ):
+def test_ResidueClass_operator_or_01():
     '''RC OR RC returns a ResidueClassExpression.'''
 
     rc1 = RC(4, 0)
@@ -18,7 +18,7 @@ def test_ResidueClass_operator_or_01( ):
     assert t.rcs == [rc1, rc2]
 
 
-def test_ResidueClass_operator_or_02( ):
+def test_ResidueClass_operator_or_02():
     '''or-ResidueClassExpression OR RC returns a flat or-ResidueClassExpression.'''
 
     rcexpression = RC(4, 0) | RC(4, 1)
@@ -33,7 +33,7 @@ def test_ResidueClass_operator_or_02( ):
     assert rc in t.rcs
 
 
-def test_ResidueClass_operator_or_03( ):
+def test_ResidueClass_operator_or_03():
     '''RC OR or-ResidueClassExpression returns a flat or-ResidueClassExpression.'''
 
     rcexpression = RC(4, 0) | RC(4, 1)
@@ -48,7 +48,7 @@ def test_ResidueClass_operator_or_03( ):
     assert rc in t.rcs
 
 
-def test_ResidueClass_operator_or_04( ):
+def test_ResidueClass_operator_or_04():
     '''or-ResidueClassExpression OR or-ResidueClassExpression returns a flat or-ResidueClassExpression.'''
 
     rc1 = RC(4, 0)
@@ -68,7 +68,7 @@ def test_ResidueClass_operator_or_04( ):
     assert rc4 in t.rcs
 
 
-def test_ResidueClass_operator_or_05( ):
+def test_ResidueClass_operator_or_05():
     '''OR'''
 
     t = RC(2, 0) | RC(3, 0)
@@ -79,7 +79,7 @@ def test_ResidueClass_operator_or_05( ):
     assert t.get_congruent_bases(6) == [0,2,3,4,6]
 
 
-def test_ResidueClass_operator_or_06( ):
+def test_ResidueClass_operator_or_06():
     '''OR'''
 
     t = RC(2, 1) | RC(3, 0)

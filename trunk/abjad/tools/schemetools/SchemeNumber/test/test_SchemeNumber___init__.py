@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SchemeNumber___init___01( ):
+def test_SchemeNumber___init___01():
 
     t = Staff([ ])
     t.override.staff_symbol.thickness = schemetools.SchemeNumber(4)

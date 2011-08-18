@@ -115,7 +115,7 @@ class PitchArray(_StrictComparator):
         for i in range(row_count):
             row = PitchArrayRow([ ])
             for j in range(column_count):
-                cell = PitchArrayCell( )
+                cell = PitchArrayCell()
                 row.append(cell)
             self.append_row(row)
 
@@ -285,7 +285,7 @@ class PitchArray(_StrictComparator):
         column = self.columns[column_index]
         column._parent_array = None
         for cell in column.cells:
-            cell.withdraw( )
+            cell.withdraw()
         return column
 
     def pop_row(self, row_index = -1):

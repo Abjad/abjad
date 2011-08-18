@@ -3,7 +3,7 @@ from abjad.tools.intervaltreetools._make_test_intervals import _make_test_interv
 import py.test
 
 
-def test_intervaltreetools_compute_logical_xor_of_intervals_in_interval_01( ):
+def test_intervaltreetools_compute_logical_xor_of_intervals_in_interval_01():
     a = BoundedInterval(0, 3)
     b = BoundedInterval(6, 12)
     c = BoundedInterval(9, 15)
@@ -12,7 +12,7 @@ def test_intervaltreetools_compute_logical_xor_of_intervals_in_interval_01( ):
     logic = compute_logical_xor_of_intervals_in_interval(tree, d)
     assert [x.signature for x in logic] == [(1, 3), (6, 9), (12, 14)]
 
-def test_intervaltreetools_compute_logical_xor_of_intervals_in_interval_02( ):
+def test_intervaltreetools_compute_logical_xor_of_intervals_in_interval_02():
     a = BoundedInterval(0, 3)
     b = BoundedInterval(6, 12)
     c = BoundedInterval(9, 15)
@@ -21,7 +21,7 @@ def test_intervaltreetools_compute_logical_xor_of_intervals_in_interval_02( ):
     logic = compute_logical_xor_of_intervals_in_interval(tree, d)
     assert [x.signature for x in logic] == [(0, 3), (6, 9), (12, 15)]
 
-def test_intervaltreetools_compute_logical_xor_of_intervals_in_interval_03( ):
+def test_intervaltreetools_compute_logical_xor_of_intervals_in_interval_03():
     a = BoundedInterval(0, 3)
     b = BoundedInterval(6, 12)
     c = BoundedInterval(9, 15)

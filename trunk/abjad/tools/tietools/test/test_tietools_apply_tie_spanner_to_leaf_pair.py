@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tietools_apply_tie_spanner_to_leaf_pair_01( ):
+def test_tietools_apply_tie_spanner_to_leaf_pair_01():
     '''Span left leaf with spanner and right leaf without spanner.'''
 
     t = Voice(notetools.make_repeated_notes(4))
@@ -31,7 +31,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_01( ):
     assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8\n\tc'8\n}"
 
 
-def test_tietools_apply_tie_spanner_to_leaf_pair_02( ):
+def test_tietools_apply_tie_spanner_to_leaf_pair_02():
     '''Span left leaf with spanner and right leaf with spanner.'''
 
     t = Voice(notetools.make_repeated_notes(4))
@@ -62,7 +62,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_02( ):
     assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
 
 
-def test_tietools_apply_tie_spanner_to_leaf_pair_03( ):
+def test_tietools_apply_tie_spanner_to_leaf_pair_03():
     '''Span left leaves with no spanner.'''
 
     t = Voice(notetools.make_repeated_notes(4))

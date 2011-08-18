@@ -71,8 +71,8 @@ def set_line_breaks_cyclically_by_line_duration_ge(expr, line_duration, klass = 
     the right.
 
     .. versionchanged:: 2.0
-        renamed ``layout.line_break_every_prolated( )`` to
-        ``layout.set_line_breaks_cyclically_by_line_duration_ge( )``.
+        renamed ``layout.line_break_every_prolated()`` to
+        ``layout.set_line_breaks_cyclically_by_line_duration_ge()``.
     '''
 
     _line_break_every(

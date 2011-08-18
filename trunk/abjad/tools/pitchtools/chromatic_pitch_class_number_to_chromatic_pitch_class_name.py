@@ -25,8 +25,8 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name(chromatic_pitch_c
     Return string.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.pc_to_pitch_name( )`` to
-        ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name( )``.
+        renamed ``pitchtools.pc_to_pitch_name()`` to
+        ``pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name()``.
     '''
 
     return _pitch_class_number_to_pitch_class_name[chromatic_pitch_class_number]

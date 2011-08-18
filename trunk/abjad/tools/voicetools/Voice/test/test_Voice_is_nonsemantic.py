@@ -2,13 +2,13 @@ from abjad import *
 import py.test
 
 
-def test_Voice_is_nonsemantic_01( ):
+def test_Voice_is_nonsemantic_01():
 
     voice = Voice([ ])
     assert not voice.is_nonsemantic
 
 
-def test_Voice_is_nonsemantic_02( ):
+def test_Voice_is_nonsemantic_02():
 
     voice = Voice([ ])
     voice.is_nonsemantic = True
@@ -16,7 +16,7 @@ def test_Voice_is_nonsemantic_02( ):
     assert voice.is_nonsemantic
 
 
-def test_Voice_is_nonsemantic_03( ):
+def test_Voice_is_nonsemantic_03():
 
     voice = Voice([ ])
 

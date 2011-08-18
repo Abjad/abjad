@@ -45,7 +45,7 @@ class FixedDurationTuplet(Tuplet):
         return self.target_duration
 
     @apply
-    def multiplier( ):
+    def multiplier():
         def fget(self):
             if 0 < len(self):
                 return self.target_duration / self.contents_duration
@@ -53,10 +53,10 @@ class FixedDurationTuplet(Tuplet):
                 return None
         def fset(self, expr):
             pass
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def target_duration( ):
+    def target_duration():
         def fget(self):
             return self._target_duration
         def fset(self, expr):
@@ -72,7 +72,7 @@ class FixedDurationTuplet(Tuplet):
                 self._target_duration = rational
             else:
                 raise ValueError('Tuplet rational %s must be positive.' % rational)
-        return property(**locals( ))
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 

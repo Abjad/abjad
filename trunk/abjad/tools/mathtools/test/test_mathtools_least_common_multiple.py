@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import mathtools
 
 
-def test_mathtools_least_common_multiple_01( ):
+def test_mathtools_least_common_multiple_01():
     '''Works with two positive integers.'''
 
     assert mathtools.least_common_multiple(4, 4) == 4
@@ -15,14 +15,14 @@ def test_mathtools_least_common_multiple_01( ):
     assert mathtools.least_common_multiple(4, 11) == 44
 
 
-def test_mathtools_least_common_multiple_02( ):
+def test_mathtools_least_common_multiple_02():
     '''Works with one positive integer.'''
 
     assert mathtools.least_common_multiple(1) == 1
     assert mathtools.least_common_multiple(2) == 2
 
 
-def test_mathtools_least_common_multiple_03( ):
+def test_mathtools_least_common_multiple_03():
     '''Works with more than two positive integers.'''
 
     assert mathtools.least_common_multiple(2, 3, 4) == 12

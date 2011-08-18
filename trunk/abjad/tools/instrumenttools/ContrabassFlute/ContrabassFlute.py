@@ -11,7 +11,7 @@ class ContrabassFlute(Flute):
 
     ::
 
-        abjad> instrumenttools.ContrabassFlute( )(staff)
+        abjad> instrumenttools.ContrabassFlute()(staff)
         ContrabassFlute('Contrabass Flute', 'Cbass Fl.')
 
     ::

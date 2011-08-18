@@ -65,7 +65,7 @@ class ClefMark(ContextMark):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def clef_name_string( ):
+    def clef_name_string():
         def fget(self):
             r'''Get clef name string::
 
@@ -85,7 +85,7 @@ class ClefMark(ContextMark):
         def fset(self, clef_name_string):
             assert isinstance(clef_name_string, str)
             self._clef_name_string = clef_name_string
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def format(self):

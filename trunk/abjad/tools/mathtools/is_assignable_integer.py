@@ -37,8 +37,8 @@ def is_assignable_integer(expr):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``mathtools.is_assignable( )`` to
-        ``mathtools.is_assignable_integer( )``.
+        renamed ``mathtools.is_assignable()`` to
+        ``mathtools.is_assignable_integer()``.
     '''
 
     if isinstance(expr, int):

@@ -47,7 +47,7 @@ def remove_markup_attached_to_component(component):
 
     ### remove markup attached to component
     for mark in result:
-        mark( )
+        mark()
 
     ### return removed markup
     result = tuple(result)

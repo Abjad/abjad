@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DuratedComplexBeamSpanner_lone_01( ):
+def test_DuratedComplexBeamSpanner_lone_01():
     '''Span lone note when lone is set to true.
     '''
 
@@ -20,7 +20,7 @@ def test_DuratedComplexBeamSpanner_lone_01( ):
     assert voice.format == "\\new Voice {\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #1\n\tc'8 [ ]\n}"
 
 
-def test_DuratedComplexBeamSpanner_lone_02( ):
+def test_DuratedComplexBeamSpanner_lone_02():
     '''Do not span lone note when lone is set to false.
     '''
 
@@ -37,7 +37,7 @@ def test_DuratedComplexBeamSpanner_lone_02( ):
     assert t.format == "\\new Voice {\n\tc'8\n}"
 
 
-def test_DuratedComplexBeamSpanner_lone_03( ):
+def test_DuratedComplexBeamSpanner_lone_03():
     '''Ignore lone when spanner spans more than one leaf.
     '''
 

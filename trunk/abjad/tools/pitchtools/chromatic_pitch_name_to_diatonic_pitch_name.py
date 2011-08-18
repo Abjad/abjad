@@ -18,7 +18,7 @@ def chromatic_pitch_name_to_diatonic_pitch_name(chromatic_pitch_name):
     if match is None:
         raise ValueError('\n\tNot chromatic pitch name: "%s".' % chromatic_pitch_name)
 
-    groups = match.groups( )
+    groups = match.groups()
     diatonic_pitch_class_name, alphabetic_accidental_abbreviation, octave_tick_string = groups
     diatonic_pitch_name = diatonic_pitch_class_name + octave_tick_string
 

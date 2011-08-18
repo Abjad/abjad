@@ -44,8 +44,8 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
     Return list of fused notes by parent.
 
     .. versionchanged:: 2.0
-        renamed ``fuse.leaves_in_tie_chain( )`` to
-        ``leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian( )``.
+        renamed ``fuse.leaves_in_tie_chain()`` to
+        ``leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian()``.
     '''
     from abjad.tools import tietools
     from abjad.tools.leaftools.fuse_leaves_big_endian import fuse_leaves_big_endian

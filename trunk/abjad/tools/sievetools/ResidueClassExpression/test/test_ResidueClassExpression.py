@@ -6,7 +6,7 @@ import py.test
 RC = ResidueClass
 ### OR ###
 
-def test_ResidueClassExpression_01( ):
+def test_ResidueClassExpression_01():
     '''boolean operator defaults to OR.'''
 
     t = ResidueClassExpression([RC(2, 0), RC(3, 0)])
@@ -14,7 +14,7 @@ def test_ResidueClassExpression_01( ):
     assert t.operator == 'or'
 
 
-def test_ResidueClassExpression_02( ):
+def test_ResidueClassExpression_02():
 
     t = ResidueClassExpression([RC(2, 0), RC(3, 0)])
 
@@ -22,7 +22,7 @@ def test_ResidueClassExpression_02( ):
     assert t.get_congruent_bases(6) == [0,2,3,4,6]
 
 
-def test_ResidueClassExpression_03( ):
+def test_ResidueClassExpression_03():
 
     t = ResidueClassExpression([RC(2, 1), RC(3, 0)])
 
@@ -32,7 +32,7 @@ def test_ResidueClassExpression_03( ):
 
 ### AND ###
 
-def test_ResidueClassExpression_04( ):
+def test_ResidueClassExpression_04():
 
     t = ResidueClassExpression([RC(2, 0), RC(3, 0)], 'and')
 
@@ -41,7 +41,7 @@ def test_ResidueClassExpression_04( ):
     assert t.get_congruent_bases(6) == [0, 6]
 
 
-def test_ResidueClassExpression_05( ):
+def test_ResidueClassExpression_05():
 
     t = ResidueClassExpression([RC(2, 1), RC(3, 0)], 'and')
 
@@ -51,7 +51,7 @@ def test_ResidueClassExpression_05( ):
 
 ### XOR ###
 
-def test_ResidueClassExpression_06( ):
+def test_ResidueClassExpression_06():
 
     t = ResidueClassExpression([RC(2, 0), RC(3, 0)], 'xor')
 
@@ -60,7 +60,7 @@ def test_ResidueClassExpression_06( ):
     assert t.get_congruent_bases(6) == [2,3,4]
 
 
-def test_ResidueClassExpression_07( ):
+def test_ResidueClassExpression_07():
 
     t = ResidueClassExpression([RC(2, 1), RC(3, 0)], 'xor')
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_report_meter_distribution_as_string_01( ):
+def test_measuretools_report_meter_distribution_as_string_01():
 
     meters = [(1, 8), (3, 16), (5, 16), (5, 16)]
     t = Staff(measuretools.make_measures_with_full_measure_spacer_skips(meters))

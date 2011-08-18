@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_append_spacer_skip_to_underfull_measure_01( ):
+def test_measuretools_append_spacer_skip_to_underfull_measure_01():
     '''Handles measure prolation from nonbinary meter.'''
 
     t = Measure((4, 12), "c'8 d'8 e'8 f'8")
@@ -29,7 +29,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01( ):
     assert t.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\ts1 * 1/8\n\t}\n}"
 
 
-def test_measuretools_append_spacer_skip_to_underfull_measure_02( ):
+def test_measuretools_append_spacer_skip_to_underfull_measure_02():
     '''Handles regular measure with no meter prolation.'''
 
     t = Measure((4, 8), "c'8 d'8 e'8 f'8")

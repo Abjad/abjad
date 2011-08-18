@@ -81,8 +81,8 @@ class NumberedChromaticPitchClassVector(_Vector):
 
     @property
     def _quartertone_items(self):
-        items = [item for item in self.items( ) if isinstance(item[0], float)]
-        items.sort( )
+        items = [item for item in self.items() if isinstance(item[0], float)]
+        items.sort()
         return items
 
     @property
@@ -111,8 +111,8 @@ class NumberedChromaticPitchClassVector(_Vector):
 
     @property
     def _twelve_tone_items(self):
-        items = [item for item in self.items( ) if isinstance(item[0], int)]
-        items.sort( )
+        items = [item for item in self.items() if isinstance(item[0], int)]
+        items.sort()
         return items
 
     ### PUBLIC ATTRIBUTES ###
@@ -128,7 +128,7 @@ class NumberedChromaticPitchClassVector(_Vector):
         Return list.
         '''
         numbers = [abs(pitch_class) for pitch_class in self.numbered_chromatic_pitch_classes]
-        numbers.sort( )
+        numbers.sort()
         return numbers
 
     @property
@@ -143,7 +143,7 @@ class NumberedChromaticPitchClassVector(_Vector):
         '''
         from abjad.tools import pitchtools
         pitch_classes = [ ]
-        for pitch_class_number, count in self.items( ):
+        for pitch_class_number, count in self.items():
             if 0 < count:
                 pitch_class = pitchtools.NumberedChromaticPitchClass(pitch_class_number)
                 pitch_classes.append(pitch_class)

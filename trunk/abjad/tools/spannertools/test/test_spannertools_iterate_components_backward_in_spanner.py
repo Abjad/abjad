@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_iterate_components_backward_in_spanner_01( ):
+def test_spannertools_iterate_components_backward_in_spanner_01():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)

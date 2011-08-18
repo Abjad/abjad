@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DynamicMark_dynamic_ordinal_to_dynamic_name_01( ):
+def test_DynamicMark_dynamic_ordinal_to_dynamic_name_01():
 
     assert contexttools.DynamicMark.dynamic_ordinal_to_dynamic_name(-3) == 'pp'
     assert contexttools.DynamicMark.dynamic_ordinal_to_dynamic_name(-2) == 'p'

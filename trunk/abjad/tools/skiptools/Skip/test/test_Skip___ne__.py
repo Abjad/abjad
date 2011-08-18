@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Skip___ne___01( ):
+def test_Skip___ne___01():
 
     skip_1 = skiptools.Skip((1, 4))
     skip_2 = skiptools.Skip((1, 4))

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_number_is_between_start_and_stop_offsets_of_component_in_seconds_01( ):
+def test_componenttools_number_is_between_start_and_stop_offsets_of_component_in_seconds_01():
     '''True when split point is within duration of component, in seconds.'''
 
     staff = Staff([Note("c'4")])

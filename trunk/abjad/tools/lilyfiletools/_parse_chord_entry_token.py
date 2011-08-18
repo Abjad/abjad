@@ -17,8 +17,8 @@ def _parse_chord_entry_token(chord_entry_token):
         message = 'incorrect chord entry token %s.' % chord_entry_token
         raise InputSpecificationError(message)
 
-    pitch_string, duration_string = match.groups( )
-    pitch_list = pitch_string.split( )
+    pitch_string, duration_string = match.groups()
+    pitch_list = pitch_string.split()
     duration = durtools.lilypond_duration_string_to_rational(duration_string)
     chord = Chord(pitch_list, duration)
 

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_TonalFunction___repr___01( ):
+def test_TonalFunction___repr___01():
 
     harmony = tonalitytools.TonalFunction(1, 'major', 5, 0)
     assert repr(harmony) == 'IMajorTriadInRootPosition'

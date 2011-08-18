@@ -34,8 +34,8 @@ def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(
     for note in componenttools.iterate_components_forward_in_expr(expr, Note):
         thread_iterator = threadtools.iterate_thread_forward_from_component(note, _Leaf)
         try:
-            thread_iterator.next( )
-            next_leaf = thread_iterator.next( )
+            thread_iterator.next()
+            next_leaf = thread_iterator.next()
             if isinstance(next_leaf, Note):
                 mdi = note.written_pitch - next_leaf.written_pitch
                 iecic = mdi.inversion_equivalent_chromatic_interval_class

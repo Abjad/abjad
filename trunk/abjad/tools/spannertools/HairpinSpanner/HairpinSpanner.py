@@ -94,7 +94,7 @@ class HairpinSpanner(Spanner):
             'p < f'
         '''
         assert isinstance(descriptor, str)
-        parts = descriptor.split( )
+        parts = descriptor.split()
         num_parts = len(parts)
         start, shape, stop = None, None, None
         if parts[0] in ('<', '>'):
@@ -119,7 +119,7 @@ class HairpinSpanner(Spanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def include_rests( ):
+    def include_rests():
         def fget(self):
             r'''Get boolean hairpin rests setting::
 
@@ -141,10 +141,10 @@ class HairpinSpanner(Spanner):
             return self._include_rests
         def fset(self, arg):
             self._include_rests = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def shape_string( ):
+    def shape_string():
         def fget(self):
             r'''Get hairpin shape string::
 
@@ -167,10 +167,10 @@ class HairpinSpanner(Spanner):
         def fset(self, arg):
             assert arg in ('<', '>')
             self._shape = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def start_dynamic_string( ):
+    def start_dynamic_string():
         def fget(self):
             r'''Get hairpin start dynamic string::
 
@@ -192,10 +192,10 @@ class HairpinSpanner(Spanner):
             return self._start
         def fset(self, arg):
             self._start = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def stop_dynamic_string( ):
+    def stop_dynamic_string():
         def fget(self):
             r'''Get hairpin stop dynamic string::
 
@@ -217,7 +217,7 @@ class HairpinSpanner(Spanner):
             return self._stop
         def fset(self, arg):
             self._stop = arg
-        return property(**locals( ))
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 

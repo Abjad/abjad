@@ -3,7 +3,7 @@ from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_p
 from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import _restore_parentage_to_components_by_receipt
 
 
-def test_componenttools__restore_parentage_to_components_by_receipt_01( ):
+def test_componenttools__restore_parentage_to_components_by_receipt_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(t[:])

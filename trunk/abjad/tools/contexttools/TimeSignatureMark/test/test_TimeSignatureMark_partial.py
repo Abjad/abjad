@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TimeSignatureMark_partial_01( ):
+def test_TimeSignatureMark_partial_01():
 
     t = Staff("c'8 d'8 e'8 f'8")
     contexttools.TimeSignatureMark(2, 8, partial = Duration(1, 8))(t)
@@ -21,7 +21,7 @@ def test_TimeSignatureMark_partial_01( ):
     assert t.format == "\\new Staff {\n\t\\partial 8\n\t\\time 2/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_TimeSignatureMark_partial_02( ):
+def test_TimeSignatureMark_partial_02():
     '''Time signature partial is read / write.
     '''
 
@@ -32,7 +32,7 @@ def test_TimeSignatureMark_partial_02( ):
     assert meter.partial == Duration(2, 8)
 
 
-def test_TimeSignatureMark_partial_03( ):
+def test_TimeSignatureMark_partial_03():
     '''Time signature partial can be cleared with none.
     '''
 

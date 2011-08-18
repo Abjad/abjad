@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.pitchtools import NumberedChromaticPitchClassSegment
 
 
-def test_NumberedChromaticPitchClassSegment___repr___01( ):
+def test_NumberedChromaticPitchClassSegment___repr___01():
     '''Numbered chromatic pitch-class segment repr is evaluable.
     '''
 

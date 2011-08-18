@@ -23,8 +23,8 @@ def are_stepwise_notes(*expr):
         False
 
     .. versionchanged:: 2.0
-        renamed ``tonalitytools.are_stepwise( )`` to
-        ``tonalitytools.are_stepwise_notes( )``.
+        renamed ``tonalitytools.are_stepwise()`` to
+        ``tonalitytools.are_stepwise_notes()``.
     '''
 
     for left, right in seqtools.iterate_sequence_pairwise_strict(

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_named_chromatic_pitch_and_clef_to_staff_position_number_01( ):
+def test_pitchtools_named_chromatic_pitch_and_clef_to_staff_position_number_01():
 
     clef = contexttools.ClefMark('treble')
 
@@ -18,7 +18,7 @@ def test_pitchtools_named_chromatic_pitch_and_clef_to_staff_position_number_01( 
     assert number == -4
 
 
-def test_pitchtools_named_chromatic_pitch_and_clef_to_staff_position_number_02( ):
+def test_pitchtools_named_chromatic_pitch_and_clef_to_staff_position_number_02():
 
     clef = contexttools.ClefMark('alto')
 

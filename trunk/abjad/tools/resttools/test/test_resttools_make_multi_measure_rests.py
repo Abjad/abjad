@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_resttools_make_multi_measure_rests_01( ):
+def test_resttools_make_multi_measure_rests_01():
 
     mmrs = resttools.make_multi_measure_rests([(4, 8), (6, 8), (7, 8)])
     staff = Staff(mmrs)

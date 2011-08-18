@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MarkupCommand_format_01( ):
+def test_MarkupCommand_format_01():
 
     a = markuptools.MarkupCommand('draw-circle', ['#1', '#0.1', '##f'], None)
     b = markuptools.MarkupCommand('line', None, ['one', 'two', 'three'])

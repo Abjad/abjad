@@ -37,13 +37,13 @@ def yield_groups_of_mixed_klasses_in_sequence(sequence, klasses):
     Return generator.
     '''
 
-    cur_group = ( )
+    cur_group = ()
     for group in yield_topmost_components_grouped_by_type(sequence):
         if type(group[0]) in klasses:
             cur_group = cur_group + group
         elif cur_group:
             yield cur_group
-            cur_group = ( )
+            cur_group = ()
 
     if cur_group:
         yield cur_group

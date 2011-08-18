@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_Mode___eq___01( ):
+def test_Mode___eq___01():
 
     mode_1 = tonalitytools.Mode('dorian')
     mode_2 = tonalitytools.Mode('dorian')
@@ -19,7 +19,7 @@ def test_Mode___eq___01( ):
     assert      mode_3 == mode_3
 
 
-def test_Mode___eq___02( ):
+def test_Mode___eq___02():
     '''Synonym modes do not compare equal, by definition.'''
 
     major = tonalitytools.Mode('major')

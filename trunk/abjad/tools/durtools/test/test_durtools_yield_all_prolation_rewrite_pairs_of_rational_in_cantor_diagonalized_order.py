@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_01( ):
+def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_01():
 
     pairs = durtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(1, 8))
 
@@ -17,7 +17,7 @@ def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagon
         (Fraction(16, 31), Fraction(31, 128)))
 
 
-def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_02( ):
+def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_02():
 
 
     pairs = durtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(1, 12))
@@ -32,7 +32,7 @@ def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagon
         (Fraction(32, 45), Fraction(15, 128)))
 
 
-def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_03( ):
+def test_durtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_03():
 
 
     pairs = durtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(5, 48))

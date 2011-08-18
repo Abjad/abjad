@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_contexttools_get_effective_tempo_01( ):
+def test_contexttools_get_effective_tempo_01():
     '''Tempo interface works on staves.
     '''
 
@@ -30,7 +30,7 @@ def test_contexttools_get_effective_tempo_01( ):
 
 
 
-def test_contexttools_get_effective_tempo_02( ):
+def test_contexttools_get_effective_tempo_02():
     '''Tempo interface works on chords.
     '''
 
@@ -47,7 +47,7 @@ def test_contexttools_get_effective_tempo_02( ):
     assert t.format == "\\new Staff {\n\t\\tempo 8=38\n\t<d' ef' e'>4\n}"
 
 
-def test_contexttools_get_effective_tempo_03( ):
+def test_contexttools_get_effective_tempo_03():
     '''Tempo interface accepts durations.'''
 
     staff = Staff([Note("c'4")])
@@ -63,13 +63,13 @@ def test_contexttools_get_effective_tempo_03( ):
     assert staff.format == "\\new Staff {\n\t\\tempo 8=38\n\tc'4\n}"
 
 
-def test_contexttools_get_effective_tempo_04( ):
+def test_contexttools_get_effective_tempo_04():
     '''Detach tempo mark.
     '''
 
     staff = Staff([Note("c'4")])
     tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff[0])
-    tempo.detach_mark( )
+    tempo.detach_mark()
 
 
     r'''

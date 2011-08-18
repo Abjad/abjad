@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicDiatonicInterval_semitones_01( ):
+def test_HarmonicDiatonicInterval_semitones_01():
 
     assert pitchtools.HarmonicDiatonicInterval('perfect', 1).semitones == 0
     assert pitchtools.HarmonicDiatonicInterval('minor', 2).semitones == 1
@@ -19,7 +19,7 @@ def test_HarmonicDiatonicInterval_semitones_01( ):
     assert pitchtools.HarmonicDiatonicInterval('perfect', 8).semitones == 12
 
 
-def test_HarmonicDiatonicInterval_semitones_02( ):
+def test_HarmonicDiatonicInterval_semitones_02():
 
     assert pitchtools.HarmonicDiatonicInterval('major', 23).semitones == 38
     assert pitchtools.HarmonicDiatonicInterval('major', -23).semitones == 38

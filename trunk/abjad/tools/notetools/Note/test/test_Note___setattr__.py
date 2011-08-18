@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Note___setattr___01( ):
+def test_Note___setattr___01():
     '''Slots constrain note attributes.
     '''
 

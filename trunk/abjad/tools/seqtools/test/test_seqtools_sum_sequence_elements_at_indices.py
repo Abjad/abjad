@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 import py.test
 
 
-def test_seqtools_sum_sequence_elements_at_indices_01( ):
+def test_seqtools_sum_sequence_elements_at_indices_01():
     '''Sum slices cyclically at every fourth index.'''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -21,7 +21,7 @@ def test_seqtools_sum_sequence_elements_at_indices_01( ):
     assert result == [6, 22, 38]
 
 
-def test_seqtools_sum_sequence_elements_at_indices_02( ):
+def test_seqtools_sum_sequence_elements_at_indices_02():
     '''Sum slice at only the zeroth index.
         Append overhang elements.'''
 
@@ -40,7 +40,7 @@ def test_seqtools_sum_sequence_elements_at_indices_02( ):
     assert result == [6, 4, 5, 6, 7, 8, 9, 10, 11]
 
 
-def test_seqtools_sum_sequence_elements_at_indices_03( ):
+def test_seqtools_sum_sequence_elements_at_indices_03():
     '''Sum every 5, 6, 7 or 8 elements together.
         Do append incomplete final sums.'''
 
@@ -59,7 +59,7 @@ def test_seqtools_sum_sequence_elements_at_indices_03( ):
     assert result == [28, 38]
 
 
-def test_seqtools_sum_sequence_elements_at_indices_04( ):
+def test_seqtools_sum_sequence_elements_at_indices_04():
     '''Sum every 5, 6, 7 or 8 elements together.
         Do not append incomplete final sums.'''
 
@@ -78,7 +78,7 @@ def test_seqtools_sum_sequence_elements_at_indices_04( ):
     assert result == [28]
 
 
-def test_seqtools_sum_sequence_elements_at_indices_05( ):
+def test_seqtools_sum_sequence_elements_at_indices_05():
     '''Sum at multiple points in each period.'''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -87,7 +87,7 @@ def test_seqtools_sum_sequence_elements_at_indices_05( ):
     assert result == [1, 5, 4, 11, 15, 9, 21]
 
 
-def test_seqtools_sum_sequence_elements_at_indices_06( ):
+def test_seqtools_sum_sequence_elements_at_indices_06():
     '''Affected indices must be less than period.'''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]

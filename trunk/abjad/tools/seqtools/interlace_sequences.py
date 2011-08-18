@@ -21,8 +21,8 @@ def interlace_sequences(*sequences):
     Return list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.interlace( )`` to
-        ``seqtools.interlace_sequences( )``.
+        renamed ``seqtools.interlace()`` to
+        ``seqtools.interlace_sequences()``.
     '''
 
     zipped_sequences = zip_sequences_without_truncation(*sequences)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedChromaticPitch___cmp___01( ):
+def test_NumberedChromaticPitch___cmp___01():
 
     p = pitchtools.NumberedChromaticPitch(12)
     q = pitchtools.NumberedChromaticPitch(12)
@@ -14,7 +14,7 @@ def test_NumberedChromaticPitch___cmp___01( ):
     assert      p >= q
 
 
-def test_NumberedChromaticPitch___cmp___02( ):
+def test_NumberedChromaticPitch___cmp___02():
 
     p = pitchtools.NumberedChromaticPitch(12)
     q = pitchtools.NumberedChromaticPitch(13)
@@ -27,7 +27,7 @@ def test_NumberedChromaticPitch___cmp___02( ):
     assert      q >= p
 
 
-def test_NumberedChromaticPitch___cmp___03( ):
+def test_NumberedChromaticPitch___cmp___03():
 
     p = pitchtools.NumberedChromaticPitch(12)
     q = 12
@@ -40,7 +40,7 @@ def test_NumberedChromaticPitch___cmp___03( ):
     assert      p >= q
 
 
-def test_NumberedChromaticPitch___cmp___04( ):
+def test_NumberedChromaticPitch___cmp___04():
 
     p = pitchtools.NumberedChromaticPitch(12)
     q = 13

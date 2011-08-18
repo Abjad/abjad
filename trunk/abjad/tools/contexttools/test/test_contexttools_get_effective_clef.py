@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_contexttools_get_effective_clef_01( ):
+def test_contexttools_get_effective_clef_01():
     '''Clef defaults to none.
     '''
 
@@ -11,7 +11,7 @@ def test_contexttools_get_effective_clef_01( ):
         assert contexttools.get_effective_clef(note) is None
 
 
-def test_contexttools_get_effective_clef_02( ):
+def test_contexttools_get_effective_clef_02():
     '''Clefs carry over to notes following.
     '''
 
@@ -21,7 +21,7 @@ def test_contexttools_get_effective_clef_02( ):
         assert contexttools.get_effective_clef(note) == contexttools.ClefMark('treble')
 
 
-def test_contexttools_get_effective_clef_03( ):
+def test_contexttools_get_effective_clef_03():
     '''Clef defaults to none.
     Clefs carry over to notes following.
     '''
@@ -35,7 +35,7 @@ def test_contexttools_get_effective_clef_03( ):
             assert contexttools.get_effective_clef(note) == contexttools.ClefMark('bass')
 
 
-def test_contexttools_get_effective_clef_04( ):
+def test_contexttools_get_effective_clef_04():
     '''Clefs carry over to notes following.
     '''
 
@@ -47,7 +47,7 @@ def test_contexttools_get_effective_clef_04( ):
         'bass', 'bass', 'bass', 'bass']]
 
 
-def test_contexttools_get_effective_clef_05( ):
+def test_contexttools_get_effective_clef_05():
     '''None cancels an explicit clef.
     '''
 
@@ -55,12 +55,12 @@ def test_contexttools_get_effective_clef_05( ):
     contexttools.ClefMark('treble')(t[0])
     contexttools.ClefMark('bass')(t[4])
     clef = contexttools.get_effective_clef(t[4])
-    clef.detach_mark( )
+    clef.detach_mark()
     for note in t:
         assert contexttools.get_effective_clef(note) == contexttools.ClefMark('treble')
 
 
-def test_contexttools_get_effective_clef_06( ):
+def test_contexttools_get_effective_clef_06():
     '''Redudant clefs are allowed.'''
 
     t = Staff(notetools.make_repeated_notes(8))
@@ -87,7 +87,7 @@ def test_contexttools_get_effective_clef_06( ):
     assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "treble"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}'''
 
 
-def test_contexttools_get_effective_clef_07( ):
+def test_contexttools_get_effective_clef_07():
     '''Clefs with transposition are allowed and work as expected.'''
 
     t = Staff(notetools.make_repeated_notes(8))
@@ -114,13 +114,13 @@ def test_contexttools_get_effective_clef_07( ):
     assert t.format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
 
 
-def test_contexttools_get_effective_clef_08( ):
+def test_contexttools_get_effective_clef_08():
     '''Setting and then clearing works as expected.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
     contexttools.ClefMark('alto')(t[0])
     clef = contexttools.get_effective_clef(t[0])
-    clef.detach_mark( )
+    clef.detach_mark()
 
     for leaf in t:
         assert contexttools.get_effective_clef(leaf) is None

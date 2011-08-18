@@ -47,8 +47,8 @@ def get_prev_measure_from_component(component):
     of `component`, raise missing measure error.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.measure_prev( )`` to
-        ``measuretools.get_prev_measure_from_component( )``.
+        renamed ``iterate.measure_prev()`` to
+        ``measuretools.get_prev_measure_from_component()``.
     '''
 
     return _get_measure_from_component(component, '_prev')

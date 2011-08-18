@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_insert_component_and_fracture_crossing_spanners_01( ):
+def test_containertools_insert_component_and_fracture_crossing_spanners_01():
     '''Insert component into container at index i.
         Fracture spanners to the left of index i.
         Fracture spanners to the right of index i.
@@ -26,7 +26,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_01( ):
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
 
-def test_containertools_insert_component_and_fracture_crossing_spanners_02( ):
+def test_containertools_insert_component_and_fracture_crossing_spanners_02():
     '''Insert works inside a spanner.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
@@ -47,7 +47,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_02( ):
     assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
 
 
-def test_containertools_insert_component_and_fracture_crossing_spanners_03( ):
+def test_containertools_insert_component_and_fracture_crossing_spanners_03():
     '''Insert works just after a spanner.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
@@ -68,7 +68,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_03( ):
     assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
-def test_containertools_insert_component_and_fracture_crossing_spanners_04( ):
+def test_containertools_insert_component_and_fracture_crossing_spanners_04():
     '''Insert works with really big positive values.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
@@ -89,7 +89,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_04( ):
     assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
-def test_containertools_insert_component_and_fracture_crossing_spanners_05( ):
+def test_containertools_insert_component_and_fracture_crossing_spanners_05():
     '''Insert works with negative values.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
@@ -110,7 +110,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_05( ):
     assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
 
 
-def test_containertools_insert_component_and_fracture_crossing_spanners_06( ):
+def test_containertools_insert_component_and_fracture_crossing_spanners_06():
     '''Insert works with really big negative values.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
@@ -131,7 +131,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_06( ):
     assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
 
 
-def test_containertools_insert_component_and_fracture_crossing_spanners_07( ):
+def test_containertools_insert_component_and_fracture_crossing_spanners_07():
     '''Inserting a note from one container into another container
         switches note parent from first container to second.'''
 

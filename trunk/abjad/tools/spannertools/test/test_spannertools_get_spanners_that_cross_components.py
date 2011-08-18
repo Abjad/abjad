@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_spanners_that_cross_components_01( ):
+def test_spannertools_get_spanners_that_cross_components_01():
     '''Return unordered set of spanners crossing
         over the begin- or end-bounds of thread-contiguous components.'''
 
@@ -41,7 +41,7 @@ def test_spannertools_get_spanners_that_cross_components_01( ):
     assert trill in spanners
 
 
-def test_spannertools_get_spanners_that_cross_components_02( ):
+def test_spannertools_get_spanners_that_cross_components_02():
     '''Helper gets spanners that cross in from above.'''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

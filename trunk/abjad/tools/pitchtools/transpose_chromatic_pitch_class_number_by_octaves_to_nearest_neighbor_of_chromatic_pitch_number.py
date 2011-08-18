@@ -13,8 +13,8 @@ def transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chr
     Return integer or float.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.nearest_neighbor( )`` to
-        ``pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number( )``.
+        renamed ``pitchtools.nearest_neighbor()`` to
+        ``pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number()``.
     '''
 
     target_pc = chromatic_pitch_number % 12

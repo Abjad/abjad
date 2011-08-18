@@ -25,8 +25,8 @@ def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
     Raise spanner population error when no component in `spanner` begins at exactly `score_offset`.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.find_index_at_score_offset( )`` to
-        ``spannertools.find_index_of_spanner_component_at_score_offset( )``.
+        renamed ``spannertools.find_index_at_score_offset()`` to
+        ``spannertools.find_index_of_spanner_component_at_score_offset()``.
     '''
 
     for component in spanner:

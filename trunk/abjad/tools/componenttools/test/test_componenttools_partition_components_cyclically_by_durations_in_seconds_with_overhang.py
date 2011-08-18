@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_partition_components_cyclically_by_durations_in_seconds_with_overhang_01( ):
+def test_componenttools_partition_components_cyclically_by_durations_in_seconds_with_overhang_01():
     '''Read durations cyclically.
     If components remain, do append final part.'''
 

@@ -73,8 +73,8 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
     the right.
 
     .. versionchanged:: 2.0
-        renamed ``layout.line_break_every_seconds( )`` to
-        ``layout.set_line_breaks_cyclically_by_line_duration_in_seconds_ge( )``.
+        renamed ``layout.line_break_every_seconds()`` to
+        ``layout.set_line_breaks_cyclically_by_line_duration_in_seconds_ge()``.
     '''
 
     _line_break_every(

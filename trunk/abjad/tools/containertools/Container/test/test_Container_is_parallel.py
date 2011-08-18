@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container_is_parallel_01( ):
+def test_Container_is_parallel_01():
     '''True when container encloses contents in LilyPond << >> brackets,
         otherwise False.'''
 
@@ -20,7 +20,7 @@ def test_Container_is_parallel_01( ):
     assert not Voice([ ]).is_parallel
 
 
-def test_Container_is_parallel_02( ):
+def test_Container_is_parallel_02():
     '''True when container encloses contents in LilyPond << >> brackets,
         otherwise False.'''
 
@@ -29,7 +29,7 @@ def test_Container_is_parallel_02( ):
     assert t.is_parallel
 
 
-def test_Container_is_parallel_03( ):
+def test_Container_is_parallel_03():
     '''Container 'parallel' is settable.'''
 
     t = Container([ ])
@@ -39,7 +39,7 @@ def test_Container_is_parallel_03( ):
     assert t.is_parallel
 
 
-def test_Container_is_parallel_04( ):
+def test_Container_is_parallel_04():
     '''A parallel container can hold Contexts.'''
     t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -62,7 +62,7 @@ def test_Container_is_parallel_04( ):
 
 ### Parallel Errors ###
 
-def test_Container_is_parallel_05( ):
+def test_Container_is_parallel_05():
     '''Parallel containers must contain only Contexts.
     It cannot take leaves.'''
 
@@ -70,7 +70,7 @@ def test_Container_is_parallel_05( ):
     py.test.raises(AssertionError, 't.is_parallel = True')
 
 
-def test_Container_is_parallel_06( ):
+def test_Container_is_parallel_06():
     '''Parallel containers must contain only Contexts.
     It cannot take Containers.'''
 

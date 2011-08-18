@@ -43,18 +43,18 @@ class NoteHead(_UnaryComparator):
     ### OVERLOADS ###
 
     def __copy__(self, *args):
-        return type(self)(*self.__getnewargs__( ))
+        return type(self)(*self.__getnewargs__())
 
     __deepcopy__ = __copy__
 
     def __getnewargs__(self):
         args = [self.written_pitch]
-        args.extend(self.tweak._get_attribute_pairs( ))
+        args.extend(self.tweak._get_attribute_pairs())
         return args
 
     def __repr__(self):
         args = [repr(self._format_string)]
-        args.extend(self.tweak._get_attribute_pairs( ))
+        args.extend(self.tweak._get_attribute_pairs())
         args = ', '.join([str(x) for x in args])
         return '%s(%s)' % (self.__class__.__name__, args)
 
@@ -100,7 +100,7 @@ class NoteHead(_UnaryComparator):
         return self.written_pitch
 
     @apply
-    def written_pitch( ):
+    def written_pitch():
         def fget(self):
             '''Get named pitch of note head::
 
@@ -122,7 +122,7 @@ class NoteHead(_UnaryComparator):
             from abjad.tools import pitchtools
             written_pitch = pitchtools.NamedChromaticPitch(arg)
             self._written_pitch = written_pitch
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def tweak(self):
@@ -130,12 +130,12 @@ class NoteHead(_UnaryComparator):
 
             abjad> note_head = notetools.NoteHead("cs''")
             abjad> note_head.tweak
-            LilyPondTweakReservoir( )
+            LilyPondTweakReservoir()
 
         Return LilyPond tweak reservoir.
         '''
         if not hasattr(self, '_tweak'):
-            self._tweak = LilyPondTweakReservoir( )
+            self._tweak = LilyPondTweakReservoir()
         return self._tweak
 
 

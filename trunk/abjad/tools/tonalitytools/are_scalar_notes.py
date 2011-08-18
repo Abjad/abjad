@@ -23,8 +23,8 @@ def are_scalar_notes(*expr):
         False
 
     .. versionchanged:: 2.0
-        renamed ``tonalitytools.are_scalar( )`` to
-        ``tonalitytools.are_scalar_notes( )``.
+        renamed ``tonalitytools.are_scalar()`` to
+        ``tonalitytools.are_scalar_notes()``.
     '''
 
     direction_string = None

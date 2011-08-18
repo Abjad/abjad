@@ -43,7 +43,7 @@ def get_the_only_spanner_attached_to_component(component, klass = None):
     if count == 0:
         raise MissingSpannerError
     elif count == 1:
-        return spanners_attached_to_component.pop( )
+        return spanners_attached_to_component.pop()
     else:
         raise ExtraSpannerError
 

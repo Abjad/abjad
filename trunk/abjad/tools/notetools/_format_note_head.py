@@ -9,7 +9,7 @@ def _format_note_head(note_head):
 
     ### format chord note head with optional tweaks
     if isinstance(note_head._client, Chord):
-        for key, value in vars(note_head.tweak).iteritems( ):
+        for key, value in vars(note_head.tweak).iteritems():
             if not key.startswith('_'):
                 result.append(r'\tweak %s %s' % (
                     _format_lilypond_attribute(key),

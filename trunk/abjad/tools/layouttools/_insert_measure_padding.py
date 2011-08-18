@@ -7,8 +7,8 @@ from abjad.tools.skiptools.Skip import Skip
 def _insert_measure_padding(expr, front, back, klass, splice = False):
     r'''.. versionadded:: 2.0
 
-    Generalizes measuretools.pad_measures_in_expr_with_rests( ) and
-    measuretools.pad_measures_in_expr_with_skips( ).
+    Generalizes measuretools.pad_measures_in_expr_with_rests() and
+    measuretools.pad_measures_in_expr_with_skips().
     '''
     from abjad.tools import componenttools
     from abjad.tools import measuretools
@@ -26,12 +26,12 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
     root = componenttools.component_to_score_root(expr[0])
 
     ### forbid updates because
-    ### componenttools.extend_in_parent_of_component_and_grow_spanners( ) and
-    ### componenttools.extend_left_in_parent_of_component_and_grow_spanners( )
+    ### componenttools.extend_in_parent_of_component_and_grow_spanners() and
+    ### componenttools.extend_left_in_parent_of_component_and_grow_spanners()
     ### call self._offset.stop  ###
-    #root._update._forbid_component_update( )
-    root._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
-    root._forbid_component_update( )
+    #root._update._forbid_component_update()
+    root._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+    root._forbid_component_update()
 
     for measure in measuretools.iterate_measures_forward_in_expr(expr):
         if front is not None:
@@ -56,6 +56,6 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
                         stop_leaf, [klass.__class__(back)])
 
     ### allow updates after all calls to spanner-growing functions are done ###
-    #root._update._allow_component_update( )
+    #root._update._allow_component_update()
     root._mark_entire_score_tree_for_later_update('prolated')
-    root._allow_component_update( )
+    root._allow_component_update()

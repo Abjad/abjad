@@ -33,8 +33,8 @@ def is_tie_chain_with_all_leaves_in_same_parent(expr):
         abjad> assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tie_chain)
 
     .. versionchanged:: 2.0
-        renamed ``tietools.is_in_same_parent( )`` to
-        ``tietools.is_tie_chain_with_all_leaves_in_same_parent( )``.
+        renamed ``tietools.is_in_same_parent()`` to
+        ``tietools.is_tie_chain_with_all_leaves_in_same_parent()``.
     '''
 
     return is_tie_chain(expr) and componenttools.all_are_components_in_same_parent(list(expr))

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Measure___setattr___01( ):
+def test_Measure___setattr___01():
     '''Slots constraint measure attributes.
     '''
 

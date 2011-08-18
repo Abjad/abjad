@@ -22,7 +22,7 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
             match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
             if match is None:
                 raise ValueError('"%s" does not have the form of a hdi abbreviation.' % args[0])
-            direction_string, quality_abbreviation, number_string = match.groups( )
+            direction_string, quality_abbreviation, number_string = match.groups()
             quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
             number = int(number_string)
             self._init_by_quality_string_and_number(quality_string, number)

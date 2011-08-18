@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_instrumenttools_transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch_01( ):
+def test_instrumenttools_transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch_01():
 
     staff = Staff("<c' e' g'>4 d'4 r4 e'4")
-    instrumenttools.Clarinet( )(staff)
+    instrumenttools.Clarinet()(staff)
 
     for leaf in staff.leaves:
         if isinstance(leaf, (Note, Chord)):

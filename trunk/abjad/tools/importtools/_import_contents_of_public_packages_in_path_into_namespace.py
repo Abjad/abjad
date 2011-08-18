@@ -16,7 +16,7 @@ def _import_contents_of_public_packages_in_path_into_namespace(
 
     for name in os.listdir(path):
         if os.path.isdir(os.path.join(path, name)):
-            if name[0].isupper( ):
+            if name[0].isupper():
                 class_package = '.'.join([parent_package, name])
                 class_module = '.'.join([class_package, name])
                 public_names = _get_public_names_in_module(class_module)

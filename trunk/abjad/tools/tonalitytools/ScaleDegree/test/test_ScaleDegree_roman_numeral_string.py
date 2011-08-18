@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_ScaleDegree_roman_numeral_string_01( ):
+def test_ScaleDegree_roman_numeral_string_01():
 
     assert tonalitytools.ScaleDegree(1).roman_numeral_string == 'I'
     assert tonalitytools.ScaleDegree(2).roman_numeral_string == 'II'

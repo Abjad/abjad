@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSet_inversion_equivalent_diatonic_interval_class_vector_01( ):
+def test_NamedChromaticPitchClassSet_inversion_equivalent_diatonic_interval_class_vector_01():
 
     npcset = pitchtools.NamedChromaticPitchClassSet(['c', 'e', 'g', 'b'])
     dicv = npcset.inversion_equivalent_diatonic_interval_class_vector

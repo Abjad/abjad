@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_componenttools_get_nth_component_in_expr_01( ):
+def test_componenttools_get_nth_component_in_expr_01():
 
     staff = Staff([ ])
     durations = [Duration(n, 16) for n in range(1, 5)]
@@ -37,7 +37,7 @@ def test_componenttools_get_nth_component_in_expr_01( ):
     assert componenttools.get_nth_component_in_expr(staff, Staff, 0) is staff
 
 
-def test_componenttools_get_nth_component_in_expr_02( ):
+def test_componenttools_get_nth_component_in_expr_02():
     '''Iterates backwards with negative values of n.'''
 
     staff = Staff([ ])

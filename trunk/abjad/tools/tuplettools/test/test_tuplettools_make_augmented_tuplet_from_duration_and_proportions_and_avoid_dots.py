@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_01( ):
+def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_01():
 
     duration = Fraction(3, 16)
 
@@ -26,7 +26,7 @@ def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avo
     assert t.format == "\\fraction \\times 6/5 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
 
 
-def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_02( ):
+def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_02():
 
     duration = Fraction(3, 16)
 
@@ -51,7 +51,7 @@ def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avo
     assert t.format == "\\fraction \\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
 
 
-def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_03( ):
+def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_03():
     '''Interpret negative proportions as rests.
     '''
 
@@ -62,7 +62,7 @@ def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avo
     assert t.format == "\\fraction \\times 12/11 {\n\tc'64\n\tr32\n\tr32\n\tc'32.\n\tc'32.\n}"
 
 
-def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_04( ):
+def test_tuplettools_make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots_04():
     '''Reduce proportions relative to each other.
     '''
 

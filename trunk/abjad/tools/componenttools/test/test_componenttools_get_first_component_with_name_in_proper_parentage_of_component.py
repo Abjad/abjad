@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_get_first_component_with_name_in_proper_parentage_of_component_01( ):
+def test_componenttools_get_first_component_with_name_in_proper_parentage_of_component_01():
     '''Get first component with name in proper parentage of component.
     '''
 
@@ -13,7 +13,7 @@ def test_componenttools_get_first_component_with_name_in_proper_parentage_of_com
     assert root is score
 
 
-def test_componenttools_get_first_component_with_name_in_proper_parentage_of_component_02( ):
+def test_componenttools_get_first_component_with_name_in_proper_parentage_of_component_02():
     '''Return none when no component with name is found in proper parentage of component.
     '''
 

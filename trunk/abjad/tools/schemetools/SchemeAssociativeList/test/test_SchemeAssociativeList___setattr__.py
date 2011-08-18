@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemeAssociativeList___setattr___01( ):
+def test_SchemeAssociativeList___setattr___01():
     '''Scheme associative lists are immutable.
     '''
 

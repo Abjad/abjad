@@ -4,13 +4,13 @@ from abjad.tools.intervaltreetools._make_test_intervals import _make_test_interv
 from abjad import Fraction
 
 
-def test_intervaltreetools_calculate_min_mean_and_max_depth_of_intervals_01( ):
+def test_intervaltreetools_calculate_min_mean_and_max_depth_of_intervals_01():
     tree = IntervalTree([ ])
     result = calculate_min_mean_and_max_depth_of_intervals(tree)
     assert result is None
 
 
-def test_intervaltreetools_calculate_min_mean_and_max_depth_of_intervals_02( ):
-    tree = IntervalTree(_make_test_intervals( ))
+def test_intervaltreetools_calculate_min_mean_and_max_depth_of_intervals_02():
+    tree = IntervalTree(_make_test_intervals())
     result = calculate_min_mean_and_max_depth_of_intervals(tree)
     assert result == (0, Fraction(45, 37), 3)

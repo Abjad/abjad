@@ -43,7 +43,7 @@ def detach_articulations_attached_to_component(component):
 
     articulations = [ ]
     for articulation in get_articulations_attached_to_component(component):
-        articulation.detach_mark( )
+        articulation.detach_mark()
         articulations.append(articulation)
 
     return tuple(articulations)

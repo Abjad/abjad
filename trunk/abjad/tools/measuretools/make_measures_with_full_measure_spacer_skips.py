@@ -35,8 +35,8 @@ def make_measures_with_full_measure_spacer_skips(meters):
     Return list of rigid measures.
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.make( )`` to
-        ``measuretools.make_measures_with_full_measure_spacer_skips( )``.
+        renamed ``measuretools.make()`` to
+        ``measuretools.make_measures_with_full_measure_spacer_skips()``.
     '''
     from abjad.tools.skiptools.Skip import Skip
 

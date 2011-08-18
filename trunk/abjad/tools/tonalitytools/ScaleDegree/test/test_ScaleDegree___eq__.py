@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_ScaleDegree___eq___01( ):
+def test_ScaleDegree___eq___01():
 
     t = tonalitytools.ScaleDegree(2)
     u = tonalitytools.ScaleDegree(2)

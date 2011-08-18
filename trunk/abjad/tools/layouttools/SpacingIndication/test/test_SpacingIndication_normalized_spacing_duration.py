@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import layouttools
 
 
-def test_SpacingIndication_normalized_spacing_duration_01( ):
+def test_SpacingIndication_normalized_spacing_duration_01():
     '''LilyPond proportionalNotationDuration setting required
     for this spacing indication at quarter equals 60.'''
 
@@ -11,7 +11,7 @@ def test_SpacingIndication_normalized_spacing_duration_01( ):
     assert spacing_indication.normalized_spacing_duration == Duration(1, 32)
 
 
-def test_SpacingIndication_normalized_spacing_duration_02( ):
+def test_SpacingIndication_normalized_spacing_duration_02():
     '''LilyPond proportionalNotationDuration setting required
     for this spacing indication at quarter equals 60
     is the same as the proportional notation duration set

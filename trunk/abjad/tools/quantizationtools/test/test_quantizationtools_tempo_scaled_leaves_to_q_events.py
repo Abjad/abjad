@@ -11,7 +11,7 @@ from abjad.tools.skiptools import Skip
 from abjad.tools.tietools import TieSpanner
 
 
-def test_quantizationtools_tempo_scaled_leaves_to_q_events_01( ):
+def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
 
     staff = Staff([ ])
 
@@ -48,7 +48,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01( ):
         QEvent(Offset(102000, 11), None)]
 
 
-def test_quantizationtools_tempo_scaled_leaves_to_q_events_02( ):
+def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
 
     staff = Staff([ ])
 

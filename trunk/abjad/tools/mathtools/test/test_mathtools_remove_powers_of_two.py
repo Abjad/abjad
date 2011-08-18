@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 import py.test
 
 
-def test_mathtools_remove_powers_of_two_01( ):
+def test_mathtools_remove_powers_of_two_01():
     '''Remove powers of two from integer n.'''
 
     assert mathtools.remove_powers_of_two(10) == 5
@@ -17,7 +17,7 @@ def test_mathtools_remove_powers_of_two_01( ):
     assert mathtools.remove_powers_of_two(90) == 45
 
 
-def test_mathtools_remove_powers_of_two_02( ):
+def test_mathtools_remove_powers_of_two_02():
     '''Raise TypeError on noninteger n.
         Raise ValueError on nonpositive n.'''
 

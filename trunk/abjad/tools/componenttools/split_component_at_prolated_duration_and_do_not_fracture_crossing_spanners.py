@@ -54,8 +54,8 @@ def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
     Works on both leaves and containers.
 
     .. versionchanged:: 2.0
-        renamed ``split.unfractured_at_duration( )`` to
-        ``componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners( )``.
+        renamed ``split.unfractured_at_duration()`` to
+        ``componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners()``.
     '''
 
     return _split_component_at_duration(component, prolated_duration,

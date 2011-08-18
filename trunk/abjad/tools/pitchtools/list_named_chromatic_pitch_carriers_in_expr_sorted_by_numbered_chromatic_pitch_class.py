@@ -17,8 +17,8 @@ def list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pit
     Return list.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class( )`` to
-        ``pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class( )``.
+        renamed ``pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numeric_chromatic_pitch_class()`` to
+        ``pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class()``.
     '''
 
     result = list(pitch_carriers[:])

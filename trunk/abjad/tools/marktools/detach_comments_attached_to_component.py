@@ -50,7 +50,7 @@ def detach_comments_attached_to_component(component):
 
     comments = [ ]
     for comment in get_comments_attached_to_component(component):
-        comment.detach_mark( )
+        comment.detach_mark()
         comments.append(comment)
 
     return tuple(comments)

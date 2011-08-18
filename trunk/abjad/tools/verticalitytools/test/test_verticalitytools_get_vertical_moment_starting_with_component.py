@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import verticalitytools
 
 
-def test_verticalitytools_get_vertical_moment_starting_with_component_01( ):
+def test_verticalitytools_get_vertical_moment_starting_with_component_01():
 
     score = Score([ ])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -54,7 +54,7 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_01( ):
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
 
 
-def test_verticalitytools_get_vertical_moment_starting_with_component_02( ):
+def test_verticalitytools_get_vertical_moment_starting_with_component_02():
 
     score = Score([ ])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))

@@ -18,17 +18,17 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
     Input `components` must be thread-contiguous.
 
     .. todo:: implement
-        ``componenttools.list_leftmost_components_with_prolated_duration_at_least( )``.
+        ``componenttools.list_leftmost_components_with_prolated_duration_at_least()``.
 
     .. todo:: implement
-        ``componenttools.list_rightmost_components_with_prolated_duration_at_most( )``.
+        ``componenttools.list_rightmost_components_with_prolated_duration_at_most()``.
 
     .. todo:: implement
-        ``componenttools.list_rightmost_components_with_prolated_duration_at_least( )``.
+        ``componenttools.list_rightmost_components_with_prolated_duration_at_least()``.
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.get_le_duration_prolated( )`` to
-        ``componenttools.list_leftmost_components_with_prolated_duration_at_most( )``.
+        renamed ``componenttools.get_le_duration_prolated()`` to
+        ``componenttools.list_leftmost_components_with_prolated_duration_at_most()``.
     '''
     from abjad.tools import componenttools
 

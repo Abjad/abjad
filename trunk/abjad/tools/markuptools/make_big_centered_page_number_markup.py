@@ -6,7 +6,7 @@ def make_big_centered_page_number_markup(text = None):
 
     Make big centered page number markup::
 
-        abjad> markup = markuptools.make_big_centered_page_number_markup( )
+        abjad> markup = markuptools.make_big_centered_page_number_markup()
 
     ::
 
@@ -20,8 +20,8 @@ def make_big_centered_page_number_markup(text = None):
     Return markup.
 
     .. versionchanged:: 2.0
-        renamed ``markuptools.big_centered_page_number( )`` to
-        ``markuptools.make_big_centered_page_number_markup( )``.
+        renamed ``markuptools.big_centered_page_number()`` to
+        ``markuptools.make_big_centered_page_number_markup()``.
     '''
 
     assert isinstance(text, (str, type(None)))

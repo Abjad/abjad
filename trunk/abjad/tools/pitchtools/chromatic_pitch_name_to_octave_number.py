@@ -21,7 +21,7 @@ def chromatic_pitch_name_to_octave_number(chromatic_pitch_name):
     if match is None:
         raise PitchError('incorrect pitch string format.')
 
-    name, tick_string = match.groups( )
+    name, tick_string = match.groups()
     octave_number = octave_tick_string_to_octave_number(tick_string)
 
     return octave_number

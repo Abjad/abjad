@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_notetools_add_artificial_harmonic_to_note_01( ):
+def test_notetools_add_artificial_harmonic_to_note_01():
     '''Adds a perfect fourth by default.'''
 
     t = Note("c'4")
@@ -17,7 +17,7 @@ def test_notetools_add_artificial_harmonic_to_note_01( ):
     '''
 
 
-def test_notetools_add_artificial_harmonic_to_note_02( ):
+def test_notetools_add_artificial_harmonic_to_note_02():
     '''Specify other diatonic intervals explicitly.'''
 
     t = Note("c'4")
@@ -34,7 +34,7 @@ def test_notetools_add_artificial_harmonic_to_note_02( ):
     '''
 
 
-def test_notetools_add_artificial_harmonic_to_note_03( ):
+def test_notetools_add_artificial_harmonic_to_note_03():
     '''Works in staves.'''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])

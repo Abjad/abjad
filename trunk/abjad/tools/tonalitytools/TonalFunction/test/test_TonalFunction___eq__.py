@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_TonalFunction___eq___01( ):
+def test_TonalFunction___eq___01():
 
     t = tonalitytools.TonalFunction(5, 'dominant', 7, 0)
     u = tonalitytools.TonalFunction(5, 'dominant', 7, 0, (4, 3))

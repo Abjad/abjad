@@ -48,8 +48,8 @@ def remove_trivial_tuplets_in_expr(expr):
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``tuplettools.slip_trivial( )`` to
-        ``tuplettools.remove_trivial_tuplets_in_expr( )``.
+        renamed ``tuplettools.slip_trivial()`` to
+        ``tuplettools.remove_trivial_tuplets_in_expr()``.
     '''
 
     for tuplet in list(componenttools.iterate_components_forward_in_expr(expr, Tuplet)):

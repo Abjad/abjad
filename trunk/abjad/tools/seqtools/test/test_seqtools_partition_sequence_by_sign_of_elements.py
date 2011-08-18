@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_partition_sequence_by_sign_of_elements_01( ):
+def test_seqtools_partition_sequence_by_sign_of_elements_01():
 
     sequence = (0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6)
 

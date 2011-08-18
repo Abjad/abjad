@@ -2,8 +2,8 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_rational_to_equal_or_greater_assignable_rational_01( ):
-    '''Wrapper around durtools.rational_to_equal_or_greater_binary_rational( )
+def test_durtools_rational_to_equal_or_greater_assignable_rational_01():
+    '''Wrapper around durtools.rational_to_equal_or_greater_binary_rational()
     that returns dotted and double dotted durations where appropriate.
     Note that output *does not* increase monotonically.'''
 

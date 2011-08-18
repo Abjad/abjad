@@ -32,7 +32,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
 
     def __len__(self):
         total_intervals = 0
-        for mcic, count in self.items( ):
+        for mcic, count in self.items():
             total_intervals += count
         return total_intervals
 

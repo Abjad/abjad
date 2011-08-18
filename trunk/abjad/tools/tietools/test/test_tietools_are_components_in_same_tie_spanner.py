@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tietools_are_components_in_same_tie_spanner_01( ):
+def test_tietools_are_components_in_same_tie_spanner_01():
     '''True if all components in list share same tie spanner.'''
 
     t = Voice(notetools.make_repeated_notes(4))

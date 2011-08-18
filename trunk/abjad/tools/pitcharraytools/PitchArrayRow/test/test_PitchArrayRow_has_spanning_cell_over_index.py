@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_PitchArrayRow_has_spanning_cell_over_index_01( ):
+def test_PitchArrayRow_has_spanning_cell_over_index_01():
 
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
     array[0].cells[0].pitches.append(0)

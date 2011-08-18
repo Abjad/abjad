@@ -28,8 +28,8 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
     Return dictionary.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.get_interval_class_vector( )`` to
-        ``pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary( )``.
+        renamed ``pitchtools.get_interval_class_vector()`` to
+        ``pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary()``.
     '''
 
     numbers = [ ]
@@ -50,7 +50,7 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
             interval = 12 - interval
         intervals.append(interval)
 
-    vector = { }
+    vector = {}
 
     ### 12-ET pitches only
     if all([isinstance(interval, int) for interval in intervals]):

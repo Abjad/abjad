@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_KeySignatureMark_mode_01( ):
+def test_KeySignatureMark_mode_01():
     '''Key signature mode is read / write.
     '''
 

@@ -38,8 +38,8 @@ def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration)
     together with list of leaves to right of `prolated_duration`.
 
     .. versionchanged:: 2.0
-        renamed ``leaftools.shorten( )`` to
-        ``leaftools.split_leaf_at_prolated_duration_and_rest_right_half( )``.
+        renamed ``leaftools.shorten()`` to
+        ``leaftools.split_leaf_at_prolated_duration_and_rest_right_half()``.
     '''
     from abjad.tools.resttools.Rest import Rest
     from abjad.tools.componenttools.move_parentage_and_spanners_from_components_to_components import move_parentage_and_spanners_from_components_to_components

@@ -2,11 +2,11 @@ from abjad import *
 from abjad.tools.lilyfiletools.LayoutBlock import LayoutBlock
 
 
-def test_LayoutBlock_contexts_01( ):
+def test_LayoutBlock_contexts_01():
     '''Read-only layout block contexts list accepts line-literal iterables.
     '''
 
-    layout_block = LayoutBlock( )
+    layout_block = LayoutBlock()
     layout_block.contexts.append([r'\Voice', r'\remove Forbid_line_break_engraver'])
 
     r'''

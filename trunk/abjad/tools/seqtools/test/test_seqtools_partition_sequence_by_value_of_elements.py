@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_partition_sequence_by_value_of_elements_01( ):
+def test_seqtools_partition_sequence_by_value_of_elements_01():
 
     l = [ ]
 
@@ -10,7 +10,7 @@ def test_seqtools_partition_sequence_by_value_of_elements_01( ):
     assert t == [ ]
 
 
-def test_seqtools_partition_sequence_by_value_of_elements_02( ):
+def test_seqtools_partition_sequence_by_value_of_elements_02():
 
     l = [1, 1, 1, 'a', 'a']
 
@@ -18,7 +18,7 @@ def test_seqtools_partition_sequence_by_value_of_elements_02( ):
     assert t == [(1, 1, 1), ('a', 'a')]
 
 
-def test_seqtools_partition_sequence_by_value_of_elements_03( ):
+def test_seqtools_partition_sequence_by_value_of_elements_03():
 
     l = [0, 0, -1, -1, 2, 3, -5, 1, 1, 5, -5]
 

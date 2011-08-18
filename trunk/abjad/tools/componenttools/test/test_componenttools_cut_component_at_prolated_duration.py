@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_cut_component_at_prolated_duration_01( ):
+def test_componenttools_cut_component_at_prolated_duration_01():
     '''Cut component by prolated duration.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -23,7 +23,7 @@ def test_componenttools_cut_component_at_prolated_duration_01( ):
     assert t.format == "\\new Voice {\n\t\\times 4/5 {\n\t\td'16. [\n\t}\n\te'8\n\tf'8 ]\n}"
 
 
-def test_componenttools_cut_component_at_prolated_duration_02( ):
+def test_componenttools_cut_component_at_prolated_duration_02():
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(t[:])

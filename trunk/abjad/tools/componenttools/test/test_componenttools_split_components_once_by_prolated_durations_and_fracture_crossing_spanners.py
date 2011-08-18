@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_01( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_01():
     '''Duration partition one container in score, and fracture spanners.
     '''
 
@@ -57,7 +57,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_02( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_02():
     '''Duration partition multiple containers in score, and fracture spanners.
     '''
 
@@ -117,7 +117,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_03( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_03():
     '''Duration partition container outside of score.
     This example includes no spanners.
     Spanners do not apply outside of score.
@@ -136,7 +136,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
     assert len(parts) == 4
 
 
-def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_04( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_04():
     '''Duration partition one leaf outside of score.
     '''
 
@@ -153,7 +153,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_05( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_05():
     '''Duration partition leaf in score and fracture spanners.
     '''
 

@@ -7,11 +7,11 @@ from abjad.tools.tietools.is_tie_chain import is_tie_chain
 def get_preprolated_tie_chain_duration(tie_chain):
     '''Get sum of preprolated duration of all leaves in `tie_chain`.
 
-    .. todo:: write ``tietools.get_preprolated_tie_chain_duration( )`` tests.
+    .. todo:: write ``tietools.get_preprolated_tie_chain_duration()`` tests.
 
     .. versionchanged:: 2.0
-        renamed ``tietools.get_duration_preprolated( )`` to
-        ``tietools.get_preprolated_tie_chain_duration( )``.
+        renamed ``tietools.get_duration_preprolated()`` to
+        ``tietools.get_preprolated_tie_chain_duration()``.
     '''
 
     assert is_tie_chain(tie_chain)

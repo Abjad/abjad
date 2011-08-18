@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InversionEquivalentDiatonicIntervalClassVector___init___01( ):
+def test_InversionEquivalentDiatonicIntervalClassVector___init___01():
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     dicv = pitchtools.InversionEquivalentDiatonicIntervalClassVector(notes)

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.pitchtools import NumberedChromaticPitchClassSegment
 
 
-def test_NumberedChromaticPitchClassSegment___getslice___01( ):
+def test_NumberedChromaticPitchClassSegment___getslice___01():
     '''Return new numbered chromatic pitch-class segment.
     '''
 
@@ -14,7 +14,7 @@ def test_NumberedChromaticPitchClassSegment___getslice___01( ):
     assert numbered_chromatic_pitch_class_segment_2 == NumberedChromaticPitchClassSegment(cpns[:2])
 
 
-def test_NumberedChromaticPitchClassSegment___getslice___02( ):
+def test_NumberedChromaticPitchClassSegment___getslice___02():
     '''Return new numbered chromatic pitch-class segment.
     '''
 

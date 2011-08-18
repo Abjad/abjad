@@ -17,8 +17,8 @@ def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices)
     Return list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.increase_at_indices( )`` to
-        ``seqtools.increase_sequence_elements_at_indices_by_addenda( )``.
+        renamed ``seqtools.increase_at_indices()`` to
+        ``seqtools.increase_sequence_elements_at_indices_by_addenda()``.
     '''
 
     # assert no overlaps

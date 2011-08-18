@@ -42,7 +42,7 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
         \new Staff {
             {
                 \time 2/8
-                c'16. ( ) [
+                c'16. () [
                 c'32 (
                 d'16 )
                 d'16 ] (
@@ -52,15 +52,15 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
                 e'32 ) [
                 e'16. (
                 f'16. )
-                f'32 ] ( )
+                f'32 ] ()
             }
         }
 
     Return list of partitioned components.
 
     .. versionchanged:: 2.0
-        renamed ``partition.cyclic_fractured_by_durations( )`` to
-        ``componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners( )``.
+        renamed ``partition.cyclic_fractured_by_durations()`` to
+        ``componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners()``.
     '''
 
     return _split_components_by_prolated_durations(components, durations,

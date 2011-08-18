@@ -19,8 +19,8 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.are_scalable( )`` to
-        ``componenttools.all_are_components_scalable_by_multiplier( )``.
+        renamed ``durtools.are_scalable()`` to
+        ``componenttools.all_are_components_scalable_by_multiplier()``.
     '''
 
     from abjad.tools.leaftools._Leaf import _Leaf

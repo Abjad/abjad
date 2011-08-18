@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemeMoment___setattr___01( ):
+def test_SchemeMoment___setattr___01():
     '''Scheme moments are immutable.
     '''
 

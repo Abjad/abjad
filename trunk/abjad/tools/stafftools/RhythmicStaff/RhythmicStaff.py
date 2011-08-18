@@ -5,7 +5,7 @@ class RhythmicStaff(Staff):
     '''Abjad model of a rhythmic staff.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     def __init__(self, music = [ ], **kwargs):
         Staff.__init__(self, music, **kwargs)

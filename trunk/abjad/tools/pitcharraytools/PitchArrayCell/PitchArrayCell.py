@@ -278,7 +278,7 @@ class PitchArrayCell(_StrictComparator):
         return self._parent_row
 
     @apply
-    def pitches( ):
+    def pitches():
         def fget(self):
             for i, pitch in enumerate(self._pitches):
                 if not isinstance(pitch, NamedChromaticPitch):
@@ -288,7 +288,7 @@ class PitchArrayCell(_StrictComparator):
             if not isinstance(arg, (list, tuple)):
                 raise TypeError('must be list or tuple of pitches.')
             self._pitches = arg
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def prev(self):

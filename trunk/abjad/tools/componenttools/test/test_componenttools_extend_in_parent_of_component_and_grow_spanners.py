@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_extend_in_parent_of_component_and_grow_spanners_01( ):
+def test_componenttools_extend_in_parent_of_component_and_grow_spanners_01():
     '''Splice leaves after leaf.'''
 
     t = Voice("c'8 d'8 e'8")
@@ -25,7 +25,7 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_01( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8 ]\n}"
 
 
-def test_componenttools_extend_in_parent_of_component_and_grow_spanners_02( ):
+def test_componenttools_extend_in_parent_of_component_and_grow_spanners_02():
     '''Splice leaf after interior leaf.'''
 
     t = Voice("c'8 d'8 e'8")
@@ -47,7 +47,7 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_02( ):
     assert result == t[1:3]
 
 
-def test_componenttools_extend_in_parent_of_component_and_grow_spanners_03( ):
+def test_componenttools_extend_in_parent_of_component_and_grow_spanners_03():
     '''Splice tuplet after tuplet.'''
 
     t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
@@ -75,7 +75,7 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_03( ):
     assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8 ]\n\t}\n}"
 
 
-def test_componenttools_extend_in_parent_of_component_and_grow_spanners_04( ):
+def test_componenttools_extend_in_parent_of_component_and_grow_spanners_04():
     '''Splice after container with underspanners.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_pitchtools_NumberedChromaticPitchClassColorMap___slots___01( ):
+def test_pitchtools_NumberedChromaticPitchClassColorMap___slots___01():
     '''Numbered chromatic pitch-class color maps are immutable.
     '''
 

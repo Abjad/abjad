@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_01( ):
+def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_01():
     '''Fuse leaves in tie chain with same immediate parent.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -43,7 +43,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_01( )
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'4 ~\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'4\n\t}\n}"
 
 
-def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02( ):
+def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02():
     '''Fuse leaves in tie chain with same immediate parent.'''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -66,7 +66,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02( )
     assert t.format == "\\new Staff {\n\tc'2\n}"
 
 
-def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_03( ):
+def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_03():
     '''Fuse leaves in tie chain with same immediate parent.'''
 
     t = Note("c'4")

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_duration_01( ):
+def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_duration_01():
 
     n = Note("c'4")
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
@@ -9,7 +9,7 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
     assert n.format == "c'8. * 4/3"
 
 
-def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_duration_02( ):
+def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_duration_02():
 
     n = Note("c'4")
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
@@ -17,7 +17,7 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
     assert n.format == "c'2.. * 2/7"
 
 
-def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_duration_03( ):
+def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_duration_03():
 
     n = Note("c'4")
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_TwelveToneRow___mul___01( ):
+def test_pitchtools_TwelveToneRow___mul___01():
     '''Return numbered chromatic pitch-class segment on calls to mul.
     '''
 

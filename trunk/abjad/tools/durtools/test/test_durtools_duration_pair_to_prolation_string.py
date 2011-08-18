@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_duration_pair_to_prolation_string_01( ):
+def test_durtools_duration_pair_to_prolation_string_01():
 
     assert durtools.duration_pair_to_prolation_string((1, 1)) == '1:1'
     assert durtools.duration_pair_to_prolation_string((1, 2)) == '2:1'

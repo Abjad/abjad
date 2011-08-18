@@ -31,8 +31,8 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components = None
         }
 
     .. versionchanged:: 2.0
-        renamed ``spanners.dynamic_spanner_below_with_nib_at_right( )`` to
-        ``spannertools.make_dynamic_spanner_below_with_nib_at_right( )``.
+        renamed ``spanners.dynamic_spanner_below_with_nib_at_right()`` to
+        ``spannertools.make_dynamic_spanner_below_with_nib_at_right()``.
     '''
 
     text_spanner = TextSpanner(components)

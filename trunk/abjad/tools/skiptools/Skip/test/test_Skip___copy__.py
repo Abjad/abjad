@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Skip___copy___01( ):
+def test_Skip___copy___01():
     '''Copy skip.
     '''
 
@@ -15,7 +15,7 @@ def test_Skip___copy___01( ):
     assert skip_1 is not skip_2
 
 
-def test_Skip___copy___02( ):
+def test_Skip___copy___02():
     '''Copy skip with LilyPond multiplier.
     '''
 
@@ -28,7 +28,7 @@ def test_Skip___copy___02( ):
     assert skip_1 is not skip_2
 
 
-def test_Skip___copy___03( ):
+def test_Skip___copy___03():
     '''Copy skip with LilyPond grob overrides and LilyPond context settings.
     '''
 

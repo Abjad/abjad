@@ -27,36 +27,36 @@ def _log_render_lilypond_input(expr, template = None):
 
     ### log score
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = _read_config_file( )['abjad_output']
+    ABJADOUTPUT = _read_config_file()['abjad_output']
     _verify_output_directory(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
-    name = get_next_output_file_name( )
+    name = get_next_output_file_name()
     outfile = open(name, 'w')
 
     ### catch Abjad tight loops that result in excessive format time
-    start_format_time = time.time( )
+    start_format_time = time.time()
     lily_file = _insert_expr_into_lily_file(expr, template = template)
     formatted_lily_file = lily_file.format
-    stop_format_time = time.time( )
+    stop_format_time = time.time()
     actual_format_time = int(stop_format_time - start_format_time)
     if format_time <= actual_format_time:
         print 'Abjad format time equal to %s sec.' % actual_format_time
     outfile.write(formatted_lily_file)
-    outfile.close( )
+    outfile.close()
 
     if getattr(lily_file, '_is_temporary', False):
         ### TODO: eliminate this exception handler? ###
         try:
-            music = lily_file.score_block.pop( )
+            music = lily_file.score_block.pop()
             delattr(music, '_lily_file')
         except (IndexError, AttributeError):
             pass
         del(lily_file)
 
     ### render
-    start_time = time.time( )
-    _run_lilypond(name, _read_config_file( )['lilypond_path'])
-    stop_time = time.time( )
+    start_time = time.time()
+    _run_lilypond(name, _read_config_file()['lilypond_path'])
+    stop_time = time.time()
     actual_lily_time = int(stop_time - start_time)
 
     os.chdir(current_directory)

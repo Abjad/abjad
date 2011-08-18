@@ -73,8 +73,8 @@ def fuse_measures(measures):
     Leave `measures` empty, unspanned and outside-of-score.
 
     .. versionchanged:: 2.0
-        renamed ``fuse.measures_by_reference( )`` to
-        ``measuretools.fuse_measures( )``.
+        renamed ``fuse.measures_by_reference()`` to
+        ``measuretools.fuse_measures()``.
     '''
     from abjad.tools.measuretools.Measure import Measure
     from abjad.tools import componenttools

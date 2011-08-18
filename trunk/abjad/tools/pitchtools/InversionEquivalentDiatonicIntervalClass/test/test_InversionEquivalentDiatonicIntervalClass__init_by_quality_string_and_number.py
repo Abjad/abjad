@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_01( ):
+def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_01():
     '''Init unison.'''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('perfect', 1)) == 'P1'
@@ -12,7 +12,7 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('diminished', -1)) == 'dim1'
 
 
-def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_02( ):
+def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_02():
     '''Init usual cases.'''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 2)) == 'm2'
@@ -23,7 +23,7 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('augmented', 4)) == 'aug4'
 
 
-def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_03( ):
+def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_03():
     '''Init inverted cases less than one octave.'''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('major', 7)) == 'm2'
@@ -34,7 +34,7 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('diminished', 5)) == 'aug4'
 
 
-def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_04( ):
+def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_04():
     '''Init noninverted cases greater than one octave.'''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 9)) == 'm2'
@@ -45,7 +45,7 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('augmented', 11)) == 'aug4'
 
 
-def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_05( ):
+def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_05():
     '''Init inverted cases greater than one octave.'''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('major', 14)) == 'm2'

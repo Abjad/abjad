@@ -12,7 +12,7 @@ class Guitar(_StringInstrument):
 
     ::
 
-        abjad> instrumenttools.Guitar( )(staff)
+        abjad> instrumenttools.Guitar()(staff)
         Guitar('Guitar', 'Gt.')
 
     ::
@@ -35,5 +35,5 @@ class Guitar(_StringInstrument):
         _StringInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('c')
         self.primary_clefs = [contexttools.ClefMark('treble')]
-        self._copy_primary_clefs_to_all_clefs( )
+        self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-20, 16)

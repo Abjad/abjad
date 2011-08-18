@@ -63,13 +63,13 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
 
     Generalizations of this function would include functions to repeat subruns
     in `sequence` to not only a certain count, as implemented here, but to a certain
-    length, weight or sum. That is, ``seqtools.repeat_subruns_to_length( )``,
-    ``seqtools.repeat_subruns_to_weight( )``  and
-    ``seqtools.repeat_subruns_to_sum( )``.
+    length, weight or sum. That is, ``seqtools.repeat_subruns_to_length()``,
+    ``seqtools.repeat_subruns_to_weight()``  and
+    ``seqtools.repeat_subruns_to_sum()``.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.repeat_subruns_to_count( )`` to
-        ``seqtools.repeat_runs_in_sequence_to_count( )``.
+        renamed ``seqtools.repeat_subruns_to_count()`` to
+        ``seqtools.repeat_runs_in_sequence_to_count()``.
     '''
 
     assert isinstance(sequence, list)

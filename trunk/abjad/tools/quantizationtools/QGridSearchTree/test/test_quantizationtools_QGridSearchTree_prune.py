@@ -3,7 +3,7 @@ from abjad.tools.contexttools import TempoMark
 from abjad.tools.quantizationtools import QGridSearchTree
 
 
-def test_quantizationtools_QGridSearchTree_prune_01( ):
+def test_quantizationtools_QGridSearchTree_prune_01():
 
     beatspan = Fraction(1, 4)
     tempo = TempoMark((1, 4), 60)

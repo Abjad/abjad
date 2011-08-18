@@ -46,7 +46,7 @@ def detach_lilypond_command_marks_attached_to_component(component, command_name_
     marks = [ ]
     for mark in get_lilypond_command_marks_attached_to_component(
         component, command_name_string = command_name_string):
-        mark.detach_mark( )
+        mark.detach_mark()
         marks.append(mark)
     return tuple(marks)
 

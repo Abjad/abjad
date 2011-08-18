@@ -17,10 +17,10 @@ def _get_markup_format_contributions(component):
         if not markup_list:
             pass
         elif 1 < len(markup_list):
-            #markup_list.sort( )
+            #markup_list.sort()
             #contents = ' '.join([m._contents_string for m in markup_list])
             contents = [m._contents_string for m in markup_list]
-#         contents.sort( )
+#         contents.sort()
             contents = ' '.join(contents)
             direction_symbol = m._direction_string_to_direction_symbol[m._direction_string]
             column = r'%s \markup { \column { %s } }' % (direction_symbol, contents)

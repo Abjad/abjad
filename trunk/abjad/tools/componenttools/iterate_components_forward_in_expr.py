@@ -81,8 +81,8 @@ def iterate_components_forward_in_expr(expr, klass = _Component, start = 0, stop
     This function is thread-agnostic.
 
     .. versionchanged:: 2.0
-        renamed ``iterate.naive( )`` to
-        ``componenttools.iterate_components_forward_in_expr( )``.
+        renamed ``iterate.naive()`` to
+        ``componenttools.iterate_components_forward_in_expr()``.
 
     .. versionchanged:: 2.0
         `klass` now defaults to ``_Component``.
@@ -99,7 +99,7 @@ def _subrange(iter, start = 0, stop = None):
     try:
         ### Skip the first few elements, up to 'start' of them:
         for i in xrange(start):
-            iter.next( )  # no 'yield' to swallow the results
+            iter.next()  # no 'yield' to swallow the results
 
         ### Now generate (stop-start) elements (or all elements if stop is None)
         if stop is None:
@@ -107,7 +107,7 @@ def _subrange(iter, start = 0, stop = None):
                 yield x
         else:
             for i in xrange(stop-start):
-                yield iter.next( )
+                yield iter.next()
     except StopIteration:
         ### This happens if we exhaust the list before
         ### we generate a total of 'stop' elements

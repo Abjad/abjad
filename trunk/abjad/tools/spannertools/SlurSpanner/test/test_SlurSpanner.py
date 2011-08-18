@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SlurSpanner_01( ):
+def test_SlurSpanner_01():
     '''Slur spanner can attach to a container.
     '''
 
@@ -21,7 +21,7 @@ def test_SlurSpanner_01( ):
     assert t.format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
-def test_SlurSpanner_02( ):
+def test_SlurSpanner_02():
     '''Slur spanner can attach to leaves.
     '''
 

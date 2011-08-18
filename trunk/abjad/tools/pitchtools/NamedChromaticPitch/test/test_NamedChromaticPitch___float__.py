@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitch___float___01( ):
+def test_NamedChromaticPitch___float___01():
     '''Return chromatic pitch number of 12-ET named chromatic pitch as float.
     '''
 
@@ -10,7 +10,7 @@ def test_NamedChromaticPitch___float___01( ):
     assert float(named_chromatic_pitch) == 13.0
 
 
-def test_NamedChromaticPitch___float___02( ):
+def test_NamedChromaticPitch___float___02():
     '''Return chromatic pitch number of 24-ET named chromatic pitch as float.
     '''
 

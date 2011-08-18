@@ -17,7 +17,7 @@ def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
     if match is None:
         raise ValueError('\n\tNot a diatonic pitch name: "%s".' % diatonic_pitch_name)
 
-    diatonic_pitch_class_name, octave_tick_string = match.groups( )
+    diatonic_pitch_class_name, octave_tick_string = match.groups()
 
     return diatonic_pitch_class_name
 

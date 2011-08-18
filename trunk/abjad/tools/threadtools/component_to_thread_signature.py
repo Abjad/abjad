@@ -12,7 +12,7 @@ def component_to_thread_signature(component):
     from abjad.tools import componenttools
     from abjad.tools.scoretools import StaffGroup
 
-    signature = _ContainmentSignature( )
+    signature = _ContainmentSignature()
     signature._self = component._ID
     for component in componenttools.get_improper_parentage_of_component(component):
         if isinstance(component, Voice) and not signature._voice:

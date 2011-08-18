@@ -9,7 +9,7 @@ def iterate_sequence_nwise_cyclic(sequence, n):
 
         abjad> g = seqtools.iterate_sequence_nwise_cyclic(range(6), 3)
         abjad> for n in range(10):
-        ...   print g.next( )
+        ...   print g.next()
         (0, 1, 2)
         (1, 2, 3)
         (2, 3, 4)

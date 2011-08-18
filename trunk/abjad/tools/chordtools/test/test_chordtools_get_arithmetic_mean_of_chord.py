@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chordtools_get_arithmetic_mean_of_chord_01( ):
+def test_chordtools_get_arithmetic_mean_of_chord_01():
     '''Chord mean equals the arithmetic mean of all pitch numbers in chord.
     '''
 
@@ -9,7 +9,7 @@ def test_chordtools_get_arithmetic_mean_of_chord_01( ):
     assert chordtools.get_arithmetic_mean_of_chord(chord) == 5.25
 
 
-def test_chordtools_get_arithmetic_mean_of_chord_02( ):
+def test_chordtools_get_arithmetic_mean_of_chord_02():
     '''Chord mean of one-note chord equals the pitch of the chord.
     '''
 
@@ -17,7 +17,7 @@ def test_chordtools_get_arithmetic_mean_of_chord_02( ):
     assert chordtools.get_arithmetic_mean_of_chord(chord) == 8
 
 
-def test_chordtools_get_arithmetic_mean_of_chord_03( ):
+def test_chordtools_get_arithmetic_mean_of_chord_03():
     '''Chord mean of empty chord returns none.
     '''
 

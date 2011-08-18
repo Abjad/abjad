@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_01( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_01():
     '''Scale binary to nonbinary.
         No note_head rewriting necessary.'''
 
@@ -25,7 +25,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_01( ):
 
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_02( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_02():
     '''Scale nonbinary meter to binary.
         No note_head rewriting necessary.'''
 
@@ -45,7 +45,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_02( ):
     assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_03( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_03():
     '''Scale binary meter to binary meter.
         Noteheads rewrite with dots.'''
 
@@ -65,7 +65,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_03( ):
     assert t.format == "{\n\t\\time 9/16\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_04( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_04():
     '''Scale binary meter to binary meter.
         Noteheads rewrite without dots.'''
 
@@ -85,7 +85,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_04( ):
     assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_05( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_05():
     '''Scale binary meter to nonbinary meter.
         No note_head rewriting necessary.'''
 
@@ -113,7 +113,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_05( ):
     assert t.format == "{\n\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16\n\t\tb'16\n\t\tc''16\n\t\td''16\n\t}\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_06( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_06():
     '''Scale nonbinary meter to binary meter.
         Noteheads rewrite with double duration.'''
 
@@ -133,7 +133,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_06( ):
     assert t.format == "{\n\t\\time 3/4\n\tc'4\n\td'4\n\te'4\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_07( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_07():
     '''Scale binary meter by one half.
         Noteheads rewrite with half duration.
         Time signature rewrites with double denominator.'''
@@ -157,7 +157,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_07( ):
     assert t.format == "{\n\t\\time 6/32\n\tc'32\n\td'32\n\te'32\n\tf'32\n\tg'32\n\ta'32\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_08( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_08():
     '''Scale binary meter by one quarter.
         Noteheads rewrite with quarter duration.
         Time signature rewrites with quadruple denominator.'''
@@ -181,7 +181,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_08( ):
     assert t.format == "{\n\t\\time 6/64\n\tc'64\n\td'64\n\te'64\n\tf'64\n\tg'64\n\ta'64\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_09( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_09():
     '''Scale binary meter by two.
         Noteheads rewrite with double duration.
         Time signature rewrites with half denominator.'''
@@ -205,7 +205,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_09( ):
     assert t.format == "{\n\t\\time 6/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_10( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_10():
     '''Scale binary meter by four.
         Noteheads rewrite with quadruple duration.
         Time signature rewrites with quarter denominator.'''
@@ -229,7 +229,7 @@ def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_10( ):
     assert t.format == "{\n\t\\time 6/4\n\tc'4\n\td'4\n\te'4\n\tf'4\n\tg'4\n\ta'4\n}"
 
 
-def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_11( ):
+def test_measuretools_scale_measure_by_multiplier_and_adjust_meter_11():
     '''Raise ZeroDivisionError when multiplier equals zero.'''
 
     t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")

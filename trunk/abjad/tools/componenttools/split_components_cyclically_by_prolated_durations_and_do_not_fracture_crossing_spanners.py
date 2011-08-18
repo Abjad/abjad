@@ -59,8 +59,8 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
     Return list of partitioned components.
 
     .. versionchanged:: 2.0
-        renamed ``partition.cyclic_unfractured_by_durations( )`` to
-        ``componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners( )``.
+        renamed ``partition.cyclic_unfractured_by_durations()`` to
+        ``componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners()``.
     '''
 
     return _split_components_by_prolated_durations(components, durations,

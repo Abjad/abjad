@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_get_nth_leaf_in_expr_01( ):
+def test_leaftools_get_nth_leaf_in_expr_01():
     '''Read forwards for positive n.'''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
@@ -35,7 +35,7 @@ def test_leaftools_get_nth_leaf_in_expr_01( ):
     assert leaftools.get_nth_leaf_in_expr(staff, 5) is staff[2][1]
 
 
-def test_leaftools_get_nth_leaf_in_expr_02( ):
+def test_leaftools_get_nth_leaf_in_expr_02():
     '''Read backwards for negative n.'''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

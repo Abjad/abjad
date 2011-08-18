@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_repeat_contents_of_container_01( ):
+def test_containertools_repeat_contents_of_container_01():
     '''Multiply notes in voice.'''
 
     t = Voice("c'8 d'8")
@@ -23,7 +23,7 @@ def test_containertools_repeat_contents_of_container_01( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_containertools_repeat_contents_of_container_02( ):
+def test_containertools_repeat_contents_of_container_02():
     '''Multiplication by one leaves contents unchanged.'''
 
     t = Voice("c'8 d'8")
@@ -41,7 +41,7 @@ def test_containertools_repeat_contents_of_container_02( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_containertools_repeat_contents_of_container_03( ):
+def test_containertools_repeat_contents_of_container_03():
     '''Multiplication by zero empties container.'''
 
     t = Voice("c'8 d'8")

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_01( ):
+def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_01():
     '''Defaults to black keys on the piano.
         Interval sequence 2,3,2,2,3'''
 
@@ -17,7 +17,7 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_01( ):
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(-2) == -4
 
 
-def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_02( ):
+def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_02():
     '''Pentatonic scale can be transposed.'''
 
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(0, 0) == 0
@@ -41,7 +41,7 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_02( ):
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(-2, -1) == -6
 
 
-def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_03( ):
+def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_03():
     '''Pentatonic scale can be rotated.'''
 
     ### Interval sequence 3,2,2,3,2
@@ -67,7 +67,7 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_03( ):
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(-2, 2, 2) == -3
 
 
-def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_04( ):
+def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_04():
     '''Phase must be positive.'''
 
     assert py.test.raises(AssertionError, 'pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(0, 1, -3)')

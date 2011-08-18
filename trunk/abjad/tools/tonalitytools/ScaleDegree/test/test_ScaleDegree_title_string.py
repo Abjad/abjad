@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_ScaleDegree_title_string_01( ):
+def test_ScaleDegree_title_string_01():
 
     assert tonalitytools.ScaleDegree(1).title_string == 'One'
     assert tonalitytools.ScaleDegree(2).title_string == 'Two'
@@ -13,7 +13,7 @@ def test_ScaleDegree_title_string_01( ):
     assert tonalitytools.ScaleDegree(7).title_string == 'Seven'
 
 
-def test_ScaleDegree_title_string_02( ):
+def test_ScaleDegree_title_string_02():
 
     assert tonalitytools.ScaleDegree('sharp', 4).title_string == 'SharpFour'
     assert tonalitytools.ScaleDegree('flat', 6).title_string == 'FlatSix'

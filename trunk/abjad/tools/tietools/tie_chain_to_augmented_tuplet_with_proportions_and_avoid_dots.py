@@ -72,8 +72,8 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots(tie_chain, pro
         }
 
     .. versionchanged:: 2.0
-        renamed ``divide.tie_chain_into_arbitrary_augmentation_undotted( )`` to
-        ``tietools.tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots( )``.
+        renamed ``divide.tie_chain_into_arbitrary_augmentation_undotted()`` to
+        ``tietools.tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots()``.
     '''
 
     prolation, dotted = 'augmentation', False

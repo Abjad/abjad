@@ -61,7 +61,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def durations( ):
+    def durations():
         def fget(self):
             '''Get spanner leaf group durations::
 
@@ -95,10 +95,10 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 self._durations = arg
             else:
                 raise ValueError('durations must be list of Durations, or None.')
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def span( ):
+    def span():
         def fget(self):
             r'''Get top-level beam count::
 
@@ -123,7 +123,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         def fset(self, arg):
             assert isinstance(arg, (int, type(None)))
             self._span = arg
-        return property(**locals( ))
+        return property(**locals())
 
 
 

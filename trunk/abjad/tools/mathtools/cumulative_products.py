@@ -20,8 +20,8 @@ def cumulative_products(sequence):
     Return list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.cumulative_products( )`` to
-        ``mathtools.cumulative_products( )``.
+        renamed ``seqtools.cumulative_products()`` to
+        ``mathtools.cumulative_products()``.
     '''
 
     if not isinstance(sequence, (list, tuple)):

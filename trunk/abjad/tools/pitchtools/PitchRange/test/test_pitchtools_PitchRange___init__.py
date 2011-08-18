@@ -1,15 +1,15 @@
 from abjad import *
 
 
-def test_pitchtools_PitchRange___init___01( ):
+def test_pitchtools_PitchRange___init___01():
     '''Init infinite pitch range.'''
 
-    pr = pitchtools.PitchRange( )
+    pr = pitchtools.PitchRange()
     assert pr._start is None
     assert pr._stop is None
 
 
-def test_pitchtools_PitchRange___init___02( ):
+def test_pitchtools_PitchRange___init___02():
     '''Init stop-specified pitch range.'''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), None)
@@ -21,7 +21,7 @@ def test_pitchtools_PitchRange___init___02( ):
     assert pr._stop is None
 
 
-def test_pitchtools_PitchRange___init___03( ):
+def test_pitchtools_PitchRange___init___03():
     '''Init start-specified pitch range.'''
 
     pr = pitchtools.PitchRange(None, (48, 'inclusive'))
@@ -33,7 +33,7 @@ def test_pitchtools_PitchRange___init___03( ):
     assert pr._stop == (pitchtools.NamedChromaticPitch(48), 'exclusive')
 
 
-def test_pitchtools_PitchRange___init___04( ):
+def test_pitchtools_PitchRange___init___04():
     '''Init start- and stop-specified pitch range.'''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
@@ -41,7 +41,7 @@ def test_pitchtools_PitchRange___init___04( ):
     assert pr._stop == (pitchtools.NamedChromaticPitch(48), 'inclusive')
 
 
-def test_pitchtools_PitchRange___init___05( ):
+def test_pitchtools_PitchRange___init___05():
     '''Short-form init with only integers.'''
 
     pr = pitchtools.PitchRange(-39, 48)
@@ -49,7 +49,7 @@ def test_pitchtools_PitchRange___init___05( ):
     assert pr._stop == (pitchtools.NamedChromaticPitch(48), 'inclusive')
 
 
-def test_pitchtools_PitchRange___init___06( ):
+def test_pitchtools_PitchRange___init___06():
     '''Init pitch range from other pitch range.
     '''
 
@@ -62,7 +62,7 @@ def test_pitchtools_PitchRange___init___06( ):
     assert pitch_range_1 is not pitch_range_2
 
 
-def test_pitchtools_PitchRange___init___07( ):
+def test_pitchtools_PitchRange___init___07():
     '''Init pitch range from pair.
     '''
 

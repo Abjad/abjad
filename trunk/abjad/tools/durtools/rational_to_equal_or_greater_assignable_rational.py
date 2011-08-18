@@ -45,8 +45,8 @@ def rational_to_equal_or_greater_assignable_rational(rational):
         to monotonically increasing input.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.prolated_to_written_not_less_than( )`` to
-        ``durtools.rational_to_equal_or_greater_assignable_rational( )``.
+        renamed ``durtools.prolated_to_written_not_less_than()`` to
+        ``durtools.rational_to_equal_or_greater_assignable_rational()``.
     '''
 
     good_denominator = mathtools.greatest_power_of_two_less_equal(rational.denominator)

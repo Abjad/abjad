@@ -33,8 +33,8 @@ def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = 
     Return new list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.sum_slices_at( )`` to
-        ``seqtools.sum_sequence_elements_at_indices( )``.
+        renamed ``seqtools.sum_slices_at()`` to
+        ``seqtools.sum_sequence_elements_at_indices()``.
     '''
 
     assert isinstance(sequence, list)

@@ -77,8 +77,8 @@ def change_defective_chord_to_note_or_rest(chord):
     Return note, rest, chord or none.
 
     .. versionchanged:: 2.0
-        renamed ``chordtools.cast_defective( )`` to
-        ``chordtools.change_defective_chord_to_note_or_rest( )``.
+        renamed ``chordtools.cast_defective()`` to
+        ``chordtools.change_defective_chord_to_note_or_rest()``.
     '''
     from abjad.tools import resttools
     from abjad.tools import notetools

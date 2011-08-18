@@ -29,7 +29,7 @@ r'''
 '''
 
 
-def test_componenttools_iterate_components_depth_first_01( ):
+def test_componenttools_iterate_components_depth_first_01():
     '''
     Default depth-first search:
         * capped iteration returns no elements above self._client
@@ -41,14 +41,14 @@ def test_componenttools_iterate_components_depth_first_01( ):
 
     g = componenttools.iterate_components_depth_first(t[2])
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][0]
-    assert g.next( ) is t[2][0][1]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][0]
-    assert g.next( ) is t[2][1][1]
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][0]
+    assert g.next() is t[2][0][1]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][0]
+    assert g.next() is t[2][1][1]
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -64,14 +64,14 @@ def test_componenttools_iterate_components_depth_first_01( ):
 
     g = componenttools.iterate_components_depth_first(t[2], direction = 'right')
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][1]
-    assert g.next( ) is t[2][1][0]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][1]
-    assert g.next( ) is t[2][0][0]
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][1]
+    assert g.next() is t[2][1][0]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][1]
+    assert g.next() is t[2][0][0]
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -84,7 +84,7 @@ def test_componenttools_iterate_components_depth_first_01( ):
     '''
 
 
-def test_componenttools_iterate_components_depth_first_02( ):
+def test_componenttools_iterate_components_depth_first_02():
     '''Uncapped depth-first search: uncapped iteration returns
     all elements above self._client
     '''
@@ -93,17 +93,17 @@ def test_componenttools_iterate_components_depth_first_02( ):
 
     g = componenttools.iterate_components_depth_first(t[2], capped = False)
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][0]
-    assert g.next( ) is t[2][0][1]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][0]
-    assert g.next( ) is t[2][1][1]
-    assert g.next( ) is t
-    assert g.next( ) is t[3]
-    assert g.next( ) is t[4]
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][0]
+    assert g.next() is t[2][0][1]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][0]
+    assert g.next() is t[2][1][1]
+    assert g.next() is t
+    assert g.next() is t[3]
+    assert g.next() is t[4]
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -122,17 +122,17 @@ def test_componenttools_iterate_components_depth_first_02( ):
 
     g = componenttools.iterate_components_depth_first(t[2], capped = False, direction = 'right')
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][1]
-    assert g.next( ) is t[2][1][0]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][1]
-    assert g.next( ) is t[2][0][0]
-    assert g.next( ) is t
-    assert g.next( ) is t[1]
-    assert g.next( ) is t[0]
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][1]
+    assert g.next() is t[2][1][0]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][1]
+    assert g.next() is t[2][0][0]
+    assert g.next() is t
+    assert g.next() is t[1]
+    assert g.next() is t[0]
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -148,7 +148,7 @@ def test_componenttools_iterate_components_depth_first_02( ):
     '''
 
 
-def test_componenttools_iterate_components_depth_first_03( ):
+def test_componenttools_iterate_components_depth_first_03():
     '''Duplicates-allowed depth-first search: nodes yield every time they are traversed.
     '''
 
@@ -156,20 +156,20 @@ def test_componenttools_iterate_components_depth_first_03( ):
 
     g = componenttools.iterate_components_depth_first(t[2], unique = False)
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][0]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][1]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][0]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][1]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2]
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][0]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][1]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][0]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][1]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2]
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -191,20 +191,20 @@ def test_componenttools_iterate_components_depth_first_03( ):
 
     g = componenttools.iterate_components_depth_first(t[2], unique = False, direction = 'right')
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][1]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][0]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][1]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][0]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2]
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][1]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][0]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][1]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][0]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2]
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -223,7 +223,7 @@ def test_componenttools_iterate_components_depth_first_03( ):
     '''
 
 
-def test_componenttools_iterate_components_depth_first_04( ):
+def test_componenttools_iterate_components_depth_first_04():
     '''Restricted depth-first search: iteration will yield -- but will not
     enter -- forbidden classes.
     '''
@@ -232,13 +232,13 @@ def test_componenttools_iterate_components_depth_first_04( ):
 
     g = componenttools.iterate_components_depth_first(t, forbid = 'parallel')
 
-    assert g.next( ) is t
-    assert g.next( ) is t[0]
-    assert g.next( ) is t[1]
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[3]
-    assert g.next( ) is t[4]
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t
+    assert g.next() is t[0]
+    assert g.next() is t[1]
+    assert g.next() is t[2]
+    assert g.next() is t[3]
+    assert g.next() is t[4]
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Staff{5}
@@ -253,13 +253,13 @@ def test_componenttools_iterate_components_depth_first_04( ):
 
     g = componenttools.iterate_components_depth_first(t, forbid = 'parallel', direction = 'right')
 
-    assert g.next( ) is t
-    assert g.next( ) is t[4]
-    assert g.next( ) is t[3]
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[1]
-    assert g.next( ) is t[0]
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t
+    assert g.next() is t[4]
+    assert g.next() is t[3]
+    assert g.next() is t[2]
+    assert g.next() is t[1]
+    assert g.next() is t[0]
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Staff{5}
@@ -271,7 +271,7 @@ def test_componenttools_iterate_components_depth_first_04( ):
     '''
 
 
-def test_componenttools_iterate_components_depth_first_05( ):
+def test_componenttools_iterate_components_depth_first_05():
     '''Uncapped depth-first search with duplicates allowed.
     '''
 
@@ -279,25 +279,25 @@ def test_componenttools_iterate_components_depth_first_05( ):
 
     g = componenttools.iterate_components_depth_first(t[2], capped = False, unique = False)
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][0]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][1]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][0]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][1]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2]
-    assert g.next( ) is t
-    assert g.next( ) is t[3]
-    assert g.next( ) is t
-    assert g.next( ) is t[4]
-    assert g.next( ) is t
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][0]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][1]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][0]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][1]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2]
+    assert g.next() is t
+    assert g.next() is t[3]
+    assert g.next() is t
+    assert g.next() is t[4]
+    assert g.next() is t
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -325,25 +325,25 @@ def test_componenttools_iterate_components_depth_first_05( ):
     g = componenttools.iterate_components_depth_first(
         t[2], capped = False, unique = False, direction = 'right')
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][1]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2][1][0]
-    assert g.next( ) is t[2][1]
-    assert g.next( ) is t[2]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][1]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2][0][0]
-    assert g.next( ) is t[2][0]
-    assert g.next( ) is t[2]
-    assert g.next( ) is t
-    assert g.next( ) is t[1]
-    assert g.next( ) is t
-    assert g.next( ) is t[0]
-    assert g.next( ) is t
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][1]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2][1][0]
+    assert g.next() is t[2][1]
+    assert g.next() is t[2]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][1]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2][0][0]
+    assert g.next() is t[2][0]
+    assert g.next() is t[2]
+    assert g.next() is t
+    assert g.next() is t[1]
+    assert g.next() is t
+    assert g.next() is t[0]
+    assert g.next() is t
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -367,7 +367,7 @@ def test_componenttools_iterate_components_depth_first_05( ):
     '''
 
 
-def test_componenttools_iterate_components_depth_first_06( ):
+def test_componenttools_iterate_components_depth_first_06():
     '''Uncapped and restricted depth-first search.
     '''
 
@@ -375,10 +375,10 @@ def test_componenttools_iterate_components_depth_first_06( ):
 
     g = componenttools.iterate_components_depth_first(t[2], capped = False, forbid = 'parallel')
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t
-    assert g.next( ) is t[3]
-    assert g.next( ) is t[4]
+    assert g.next() is t[2]
+    assert g.next() is t
+    assert g.next() is t[3]
+    assert g.next() is t[4]
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -392,10 +392,10 @@ def test_componenttools_iterate_components_depth_first_06( ):
     g = componenttools.iterate_components_depth_first(
         t[2], capped = False, forbid = 'parallel', direction = 'right')
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t
-    assert g.next( ) is t[1]
-    assert g.next( ) is t[0]
+    assert g.next() is t[2]
+    assert g.next() is t
+    assert g.next() is t[1]
+    assert g.next() is t[0]
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -405,7 +405,7 @@ def test_componenttools_iterate_components_depth_first_06( ):
     '''
 
 
-def test_componenttools_iterate_components_depth_first_07( ):
+def test_componenttools_iterate_components_depth_first_07():
     '''Restricted depth-first search with duplicates allowed.
     '''
 
@@ -413,18 +413,18 @@ def test_componenttools_iterate_components_depth_first_07( ):
 
     g = componenttools.iterate_components_depth_first(t, forbid = 'parallel', unique = False)
 
-    assert g.next( ) is t
-    assert g.next( ) is t[0]
-    assert g.next( ) is t
-    assert g.next( ) is t[1]
-    assert g.next( ) is t
-    assert g.next( ) is t[2]
-    assert g.next( ) is t
-    assert g.next( ) is t[3]
-    assert g.next( ) is t
-    assert g.next( ) is t[4]
-    assert g.next( ) is t
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t
+    assert g.next() is t[0]
+    assert g.next() is t
+    assert g.next() is t[1]
+    assert g.next() is t
+    assert g.next() is t[2]
+    assert g.next() is t
+    assert g.next() is t[3]
+    assert g.next() is t
+    assert g.next() is t[4]
+    assert g.next() is t
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Staff{5}
@@ -445,18 +445,18 @@ def test_componenttools_iterate_components_depth_first_07( ):
     g = componenttools.iterate_components_depth_first(
         t, forbid = 'parallel', unique = False, direction = 'right')
 
-    assert g.next( ) is t
-    assert g.next( ) is t[4]
-    assert g.next( ) is t
-    assert g.next( ) is t[3]
-    assert g.next( ) is t
-    assert g.next( ) is t[2]
-    assert g.next( ) is t
-    assert g.next( ) is t[1]
-    assert g.next( ) is t
-    assert g.next( ) is t[0]
-    assert g.next( ) is t
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t
+    assert g.next() is t[4]
+    assert g.next() is t
+    assert g.next() is t[3]
+    assert g.next() is t
+    assert g.next() is t[2]
+    assert g.next() is t
+    assert g.next() is t[1]
+    assert g.next() is t
+    assert g.next() is t[0]
+    assert g.next() is t
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Staff{5}
@@ -473,7 +473,7 @@ def test_componenttools_iterate_components_depth_first_07( ):
     '''
 
 
-def test_componenttools_iterate_components_depth_first_08( ):
+def test_componenttools_iterate_components_depth_first_08():
     '''Uncapped but restricted depth-first serach with duplicates allowed.
     '''
 
@@ -482,13 +482,13 @@ def test_componenttools_iterate_components_depth_first_08( ):
     g = componenttools.iterate_components_depth_first(
         t[2], capped = False, forbid = 'parallel', unique = False)
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t
-    assert g.next( ) is t[3]
-    assert g.next( ) is t
-    assert g.next( ) is t[4]
-    assert g.next( ) is t
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t
+    assert g.next() is t[3]
+    assert g.next() is t
+    assert g.next() is t[4]
+    assert g.next() is t
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -504,13 +504,13 @@ def test_componenttools_iterate_components_depth_first_08( ):
     g = componenttools.iterate_components_depth_first(
         t[2], capped = False, forbid = 'parallel', unique = False, direction = 'right')
 
-    assert g.next( ) is t[2]
-    assert g.next( ) is t
-    assert g.next( ) is t[1]
-    assert g.next( ) is t
-    assert g.next( ) is t[0]
-    assert g.next( ) is t
-    assert py.test.raises(StopIteration, 'g.next( )')
+    assert g.next() is t[2]
+    assert g.next() is t
+    assert g.next() is t[1]
+    assert g.next() is t
+    assert g.next() is t[0]
+    assert g.next() is t
+    assert py.test.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))

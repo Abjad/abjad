@@ -35,8 +35,8 @@ def delete_contents_of_container_starting_at_or_after_prolated_offset(container,
     Return `container`.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.contents_delete_starting_not_before_prolated_offset( )`` to
-        ``containertools.delete_contents_of_container_starting_at_or_after_prolated_offset( )``.
+        renamed ``containertools.contents_delete_starting_not_before_prolated_offset()`` to
+        ``containertools.delete_contents_of_container_starting_at_or_after_prolated_offset()``.
     '''
 
     ### get start element

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DynamicMeasure_denominator_01( ):
+def test_DynamicMeasure_denominator_01():
     '''You can control the denominator of dynamic measures.
     '''
 
@@ -23,7 +23,7 @@ def test_DynamicMeasure_denominator_01( ):
     assert t.format == "{\n\t\\time 16/32\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_DynamicMeasure_denominator_02( ):
+def test_DynamicMeasure_denominator_02():
     '''Bad denominator values have no effect.
     '''
 

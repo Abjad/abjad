@@ -30,8 +30,8 @@ def extend_in_parent_of_component_and_do_not_grow_spanners(component, components
     Return list of `component` and `components`.
 
     .. versionchanged:: 2.0
-        renamed ``extend_in_parent( )`` to
-        ``extend_in_parent_of_component_and_do_not_grow_spanners( )``.
+        renamed ``extend_in_parent()`` to
+        ``extend_in_parent_of_component_and_do_not_grow_spanners()``.
     '''
 
     assert all_are_components(components)

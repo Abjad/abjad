@@ -4,8 +4,8 @@ from abjad import Fraction
 import py.test
 
 
-def test_intervaltreetools_fuse_overlapping_intervals_01( ):
-    tree = IntervalTree(_make_test_intervals( ))
+def test_intervaltreetools_fuse_overlapping_intervals_01():
+    tree = IntervalTree(_make_test_intervals())
     fused_tree = fuse_overlapping_intervals(tree)
     target_signatures = [(0, 3), (5, 13), (15, 23), (25, 30), (32, 34), (34, 37)]
     actual_signatures = [interval.signature for interval in fused_tree]

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SchemeMoment___init___01( ):
+def test_SchemeMoment___init___01():
     '''Initialize scheme moment from fraction.
     '''
 
@@ -9,7 +9,7 @@ def test_SchemeMoment___init___01( ):
     assert scheme_moment.format == '#(ly:make-moment 1 68)'
 
 
-def test_SchemeMoment___init___02( ):
+def test_SchemeMoment___init___02():
     '''Initialize scheme moment from integer.
     '''
 
@@ -17,7 +17,7 @@ def test_SchemeMoment___init___02( ):
     assert scheme_moment.format == '#(ly:make-moment 1 1)'
 
 
-def test_SchemeMoment___init___03( ):
+def test_SchemeMoment___init___03():
     '''Initialize scheme moment from integer pair.
     '''
 
@@ -25,7 +25,7 @@ def test_SchemeMoment___init___03( ):
     assert scheme_moment.format == '#(ly:make-moment 1 68)'
 
 
-def test_SchemeMoment___init___04( ):
+def test_SchemeMoment___init___04():
     '''Initialize scheme moment from two positive integers.
     '''
 
@@ -33,7 +33,7 @@ def test_SchemeMoment___init___04( ):
     assert scheme_moment.format == '#(ly:make-moment 1 68)'
 
 
-def test_SchemeMoment___init___05( ):
+def test_SchemeMoment___init___05():
     '''Initialize scheme moment from other scheme moment.
     '''
 

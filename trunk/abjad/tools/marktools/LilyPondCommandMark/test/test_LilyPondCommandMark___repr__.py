@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.marktools import LilyPondCommandMark
 
 
-def test_LilyPondCommandMark___repr___01( ):
+def test_LilyPondCommandMark___repr___01():
     '''Repr of unattached LilyPond command mark is evaluable.
     '''
 

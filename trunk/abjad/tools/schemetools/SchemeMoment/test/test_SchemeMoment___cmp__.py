@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SchemeMoment___cmp___01( ):
+def test_SchemeMoment___cmp___01():
 
     scheme_moment_1 = schemetools.SchemeMoment(1, 68)
     scheme_moment_2 = schemetools.SchemeMoment(1, 68)

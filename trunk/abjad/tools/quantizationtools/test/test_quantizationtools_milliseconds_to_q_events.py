@@ -5,7 +5,7 @@ from abjad.tools.quantizationtools import milliseconds_to_q_events
 from abjad.tools.quantizationtools._time_segments import _time_segments
 
 
-def test_quantizationtools_milliseconds_to_q_events_01( ):
+def test_quantizationtools_milliseconds_to_q_events_01():
     '''Test basic functionality.'''
 
     durations = difference_series([x[0] for x in _time_segments])
@@ -59,7 +59,7 @@ def test_quantizationtools_milliseconds_to_q_events_01( ):
         QEvent(Offset(17276, 1), 0),
         QEvent(Offset(18483, 1), None)]
 
-def test_quantizationtools_milliseconds_to_q_events_02( ):
+def test_quantizationtools_milliseconds_to_q_events_02():
     '''Silences are fused.'''
 
     durations = [100, -100, 100, -100, -100, 100]

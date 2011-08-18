@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicChromaticIntervalClassVector_has_none_of_01( ):
+def test_HarmonicChromaticIntervalClassVector_has_none_of_01():
 
     civ = pitchtools.HarmonicChromaticIntervalClassVector(Staff("c'8 d'8 e'8 f'8 g'8"))
 

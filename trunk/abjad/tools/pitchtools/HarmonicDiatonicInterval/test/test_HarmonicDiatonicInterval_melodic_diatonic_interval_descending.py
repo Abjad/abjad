@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicDiatonicInterval_melodic_diatonic_interval_descending_01( ):
+def test_HarmonicDiatonicInterval_melodic_diatonic_interval_descending_01():
 
     hdi = pitchtools.HarmonicDiatonicInterval('major', 2)
     mdi = pitchtools.MelodicDiatonicInterval('major', -2)

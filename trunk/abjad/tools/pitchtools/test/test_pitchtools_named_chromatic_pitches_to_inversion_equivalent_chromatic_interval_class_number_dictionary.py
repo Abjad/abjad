@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary_01( ):
+def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary_01():
 
     chord = Chord([0, 2, 11], (1, 4))
     vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(chord.written_pitches)
@@ -16,7 +16,7 @@ def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_in
         6: 0}
 
 
-def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary_02( ):
+def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary_02():
 
     t = Staff("c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8")
     pitches = pitchtools.list_named_chromatic_pitches_in_expr(t)
@@ -32,7 +32,7 @@ def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_in
         6: 0}
 
 
-def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary_03( ):
+def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary_03():
 
     chord = Chord([-2, -1.5, 9], (1, 4))
     vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(chord.written_pitches)

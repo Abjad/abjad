@@ -37,7 +37,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
     def __new__(klass, definition = None):
         self = dict.__new__(klass)
         if definition is None:
-            definition = self._make_standard_search_tree( )
+            definition = self._make_standard_search_tree()
         elif not self._is_valid_search_tree_definition(definition):
             raise ValueError('Search tree definition is invalid: check for primes, malformed subtrees.')
         self._init_immutable_dictionary_recursively(definition)
@@ -51,11 +51,11 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
 
     def _init_immutable_dictionary_recursively(self, definition):
         def recurse(node, i_node):
-            for k, v in node.iteritems( ):
+            for k, v in node.iteritems():
                 if v is None:
                     dict.__setitem__(i_node, k, v)
                 else:
-                    dict.__setitem__(i_node, k, _ImmutableDictionary( ))
+                    dict.__setitem__(i_node, k, _ImmutableDictionary())
                     recurse(node[k], i_node[k])
         recurse(definition, self)
 
@@ -172,7 +172,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
                 return tuple([ ])
         if node is None:
             return tuple([ ])
-        return tuple(sorted(node.keys( )))
+        return tuple(sorted(node.keys()))
 
     def prune(self, beatspan, tempo, threshold):
         '''Prune those subtrees of a `QGridSearchTree` whose divisions in milliseconds,
@@ -202,7 +202,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
         assert 0 < threshold
 
         def recurse(old_node, prev_div):
-            new_node = { }
+            new_node = {}
             for key in old_node:
                 div = Fraction(1, key) * prev_div
                 dur = tempo_scaled_rational_to_milliseconds(div, tempo)

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_pitcharraytools_concatenate_pitch_arrays_01( ):
+def test_pitcharraytools_concatenate_pitch_arrays_01():
 
     array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
@@ -35,4 +35,4 @@ def test_pitcharraytools_concatenate_pitch_arrays_01( ):
     assert merged_array.dimensions == (2, 13)
     assert merged_array.cell_widths_by_row == (
         (1, 2, 1, 3, 4, 1, 1), (2, 1, 1, 4, 3, 1, 1))
-    assert merged_array.pitches_by_row == (( ), ( ))
+    assert merged_array.pitches_by_row == ((), ())

@@ -6,7 +6,7 @@ class _RedBlackTree(object):
     __slots__ = ('_root', '_sentinel')
 
     def __init__(self):
-        self._sentinel = _RedBlackNode( )
+        self._sentinel = _RedBlackNode()
         self._sentinel.red = True
         self._sentinel.left = self._sentinel
         self._sentinel.right = self._sentinel
@@ -16,7 +16,7 @@ class _RedBlackTree(object):
     ### OVERLOADS ###
 
     def __repr__(self):
-        return '%s( )' % (self.__class__.__name__)
+        return '%s()' % (self.__class__.__name__)
 
     def __str__(self):
         if self._root == self._sentinel: return '<empty tree>'

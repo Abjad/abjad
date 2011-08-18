@@ -15,7 +15,7 @@ def get_tie_chain(component):
     if count == 0:
         return (component, )
     elif count == 1:
-        return tuple(tie_spanners.pop( ).leaves)
+        return tuple(tie_spanners.pop().leaves)
     else:
         raise ExtraSpannerError
 

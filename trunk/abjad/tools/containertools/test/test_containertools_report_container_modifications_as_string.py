@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_report_container_modifications_as_string_01( ):
+def test_containertools_report_container_modifications_as_string_01():
     '''Context formatter report_container_modifications_as_string.
     '''
 
@@ -45,7 +45,7 @@ def test_containertools_report_container_modifications_as_string_01( ):
     assert result == "% Example voice\n\\new Voice \\with {\n\t\\override NoteHead #'color = #red\n} {\n\t#(set-accidental-style 'forget)\n\n\t%%% 4 components omitted %%%\n\n}"
 
 
-def test_containertools_report_container_modifications_as_string_02( ):
+def test_containertools_report_container_modifications_as_string_02():
     '''Tuplet formatter report_container_modifications_as_string.
     '''
 

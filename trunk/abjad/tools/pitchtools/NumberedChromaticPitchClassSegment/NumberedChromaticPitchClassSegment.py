@@ -72,7 +72,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
         '''Morris alpha transform of numbered chromatic pitch-class segment::
 
             numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.alpha( )
+            numbered_chromatic_pitch_class_segment.alpha()
             NumberedChromaticPitchClassSegment([11, 11.5, 7, 6, 11.5, 6])
 
         Return numbered chromatic pitch-class segment.
@@ -99,12 +99,12 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
         '''Invert numbered chromatic pitch-class segment::
 
             numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.invert( )
+            numbered_chromatic_pitch_class_segment.invert()
             NumberedChromaticPitchClassSegment([2, 1.5, 6, 5, 1.5, 5])
 
         Return numbered chromatic pitch-class segment.
         '''
-        return type(self)([pc.invert( ) for pc in self])
+        return type(self)([pc.invert() for pc in self])
 
     def multiply(self, n):
         '''Multiply numbered chromatic pitch-class segment by `n`::
@@ -121,7 +121,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
         '''Retrograde of numbered chromatic pitch-class segment::
 
             numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.retrograde( )
+            numbered_chromatic_pitch_class_segment.retrograde()
             NumberedChromaticPitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
 
         Return numbered chromatic pitch-class segment.

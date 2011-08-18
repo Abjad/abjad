@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSet_transpose_01( ):
+def test_NamedChromaticPitchClassSet_transpose_01():
 
     npc_set_1 = pitchtools.NamedChromaticPitchClassSet([
         pitchtools.NamedChromaticPitchClass('c'),

@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 import py.test
 
 
-def test_seqtools_yield_all_rotations_of_sequence_01( ):
+def test_seqtools_yield_all_rotations_of_sequence_01():
     '''Yield all rotations of list.
     '''
 
@@ -11,7 +11,7 @@ def test_seqtools_yield_all_rotations_of_sequence_01( ):
     assert rotations == [[1, 2, 3, 4], [2, 3, 4, 1], [3, 4, 1, 2], [4, 1, 2, 3]]
 
 
-def test_seqtools_yield_all_rotations_of_sequence_02( ):
+def test_seqtools_yield_all_rotations_of_sequence_02():
     '''Yield all rotations of tuple.
     '''
 
@@ -19,7 +19,7 @@ def test_seqtools_yield_all_rotations_of_sequence_02( ):
     assert rotations == [(1, 2, 3, 4), (2, 3, 4, 1), (3, 4, 1, 2), (4, 1, 2, 3)]
 
 
-def test_seqtools_yield_all_rotations_of_sequence_03( ):
+def test_seqtools_yield_all_rotations_of_sequence_03():
     '''Yield all rotations of Abjad container.
     '''
 

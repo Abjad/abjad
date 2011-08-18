@@ -17,8 +17,8 @@ def overwrite_sequence_elements_at_indices(sequence, pairs):
     Return new list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.overwrite_slices_at( )`` to
-        ``seqtools.overwrite_sequence_elements_at_indices( )``.
+        renamed ``seqtools.overwrite_slices_at()`` to
+        ``seqtools.overwrite_sequence_elements_at_indices()``.
     '''
 
     result = sequence[:]

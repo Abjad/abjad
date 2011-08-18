@@ -28,10 +28,10 @@ def iterate_staves_backward_in_expr(expr, start = 0, stop = None):
         abjad> for staff in stafftools.iterate_staves_backward_in_expr(score):
         ...     staff
         ...
-        Staff{ }
-        Staff{ }
-        Staff{ }
-        Staff{ }
+        Staff{}
+        Staff{}
+        Staff{}
+        Staff{}
 
     Return generator.
     '''

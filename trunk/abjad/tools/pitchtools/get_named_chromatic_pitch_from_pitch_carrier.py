@@ -51,8 +51,8 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
     Return named chromatic pitch.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.get_pitch( )`` to
-        ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier( )``.
+        renamed ``pitchtools.get_pitch()`` to
+        ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier()``.
     '''
     from abjad.tools.chordtools.Chord import Chord
     from abjad.tools.notetools.Note import Note

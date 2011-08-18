@@ -43,18 +43,18 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
         >>
 
     .. versionchanged:: 2.0
-        renamed ``construct.scale_period( )`` to
-        ``tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale( )``.
+        renamed ``construct.scale_period()`` to
+        ``tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale()``.
 
     .. versionchanged:: 2.0
-        renamed ``leaftools.make_all_notes_in_ascending_and_descending_diatonic_scale( )`` to
-        ``tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale( )``.
+        renamed ``leaftools.make_all_notes_in_ascending_and_descending_diatonic_scale()`` to
+        ``tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale()``.
     '''
 
     ascending_notes = make_first_n_notes_in_ascending_diatonic_scale(
         8, durtools.Duration(1, 8), key_signature)
     descending_notes = componenttools.copy_components_and_remove_all_spanners(ascending_notes[:-1])
-    descending_notes.reverse( )
+    descending_notes.reverse()
     notes = ascending_notes + descending_notes
     notes[-1].written_duration = durtools.Duration(1, 4)
     staff = Staff(notes)

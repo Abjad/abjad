@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Comment___init___01( ):
+def test_Comment___init___01():
     '''Initialize LilyPond \slurDotted command.
     '''
 

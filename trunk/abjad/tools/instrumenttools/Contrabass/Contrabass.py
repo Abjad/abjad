@@ -14,7 +14,7 @@ class Contrabass(_StringInstrument):
 
     ::
 
-        abjad> instrumenttools.Contrabass( )(staff)
+        abjad> instrumenttools.Contrabass()(staff)
         Contrabass('Contrabass', 'Vb.')
 
     ::

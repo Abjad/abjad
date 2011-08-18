@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_ScaleDegree_symbolic_string_01( ):
+def test_ScaleDegree_symbolic_string_01():
 
     assert tonalitytools.ScaleDegree(1).symbolic_string == 'I'
     assert tonalitytools.ScaleDegree('flat', 2).symbolic_string == 'bII'

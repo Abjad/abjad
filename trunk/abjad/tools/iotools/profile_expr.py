@@ -47,8 +47,8 @@ def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
        <http://docs.python.org/library/profile.html>`_.
 
     .. versionchanged:: 2.0
-       renamed ``check.profile( )`` to
-       ``iotools.profile_expr( )``.
+       renamed ``check.profile()`` to
+       ``iotools.profile_expr()``.
     '''
 
     ### NOTE: this try block was added because, for some strange reason,
@@ -60,7 +60,7 @@ def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
         cProfile.run(expr, '_tmp_abj_profile')
         p = pstats.Stats('_tmp_abj_profile')
         if strip_dirs:
-            p.strip_dirs( ).sort_stats(sort_by).print_stats(num_lines)
+            p.strip_dirs().sort_stats(sort_by).print_stats(num_lines)
         else:
             p.sort_stats(sort_by).print_stats(num_lines)
 

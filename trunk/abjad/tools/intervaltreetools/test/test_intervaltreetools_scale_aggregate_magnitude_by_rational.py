@@ -4,7 +4,7 @@ from abjad import Fraction
 import py.test
 
 
-def test_intervaltreetools_scale_aggregate_magnitude_by_rational_01( ):
+def test_intervaltreetools_scale_aggregate_magnitude_by_rational_01():
     a = BoundedInterval(Fraction(-1, 2), 1)
     b = BoundedInterval(2, Fraction(7, 3))
     tree = IntervalTree([a, b])
@@ -14,7 +14,7 @@ def test_intervaltreetools_scale_aggregate_magnitude_by_rational_01( ):
     assert [x.signature for x in result] == \
         [(Fraction(-1, 2), Fraction(5, 2)), (Fraction(9, 2), Fraction(31, 6))]
 
-def test_intervaltreetools_scale_aggregate_magnitude_by_rational_02( ):
+def test_intervaltreetools_scale_aggregate_magnitude_by_rational_02():
     a = BoundedInterval(Fraction(-1, 2), 1)
     b = BoundedInterval(2, Fraction(7, 3))
     tree = IntervalTree([a, b])
@@ -22,7 +22,7 @@ def test_intervaltreetools_scale_aggregate_magnitude_by_rational_02( ):
     py.test.raises(AssertionError,
         "result = scale_aggregate_magnitude_by_rational(tree, rational)")
 
-def test_intervaltreetools_scale_aggregate_magnitude_by_rational_03( ):
+def test_intervaltreetools_scale_aggregate_magnitude_by_rational_03():
     a = BoundedInterval(Fraction(-1, 2), 1)
     b = BoundedInterval(2, Fraction(7, 3))
     tree = IntervalTree([a, b])

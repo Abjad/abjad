@@ -25,8 +25,8 @@ def replace_leaves_in_expr_with_skips(expr):
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``leaftools.replace_leaves_with_skips_in( )`` to
-        ``skiptools.replace_leaves_in_expr_with_skips( )``.
+        renamed ``leaftools.replace_leaves_with_skips_in()`` to
+        ``skiptools.replace_leaves_in_expr_with_skips()``.
     '''
     from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
     from abjad.tools import componenttools

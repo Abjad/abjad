@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Score___cmp___01( ):
+def test_Score___cmp___01():
     '''Compare score to itself.
     '''
 
@@ -21,7 +21,7 @@ def test_Score___cmp___01( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Score___cmp___02( ):
+def test_Score___cmp___02():
     '''Compare scores.
     '''
 
@@ -41,7 +41,7 @@ def test_Score___cmp___02( ):
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def test_Score___cmp___03( ):
+def test_Score___cmp___03():
     '''Compare score to foreign type.
     '''
 

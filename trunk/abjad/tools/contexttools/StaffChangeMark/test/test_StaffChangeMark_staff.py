@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_StaffChangeMark_staff_01( ):
+def test_StaffChangeMark_staff_01():
     '''Staff of staff change mark is read / write.
     '''
 

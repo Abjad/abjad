@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_iterate_containers_backward_in_expr_01( ):
+def test_containertools_iterate_containers_backward_in_expr_01():
 
     staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
     tuplet = Tuplet(Fraction(2, 3), staff[1][:])

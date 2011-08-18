@@ -34,8 +34,8 @@ def make_rests(duration_tokens, direction = 'big-endian', tied = False):
     Return list of rests.
 
     .. versionchanged:: 2.0
-        renamed ``construct.rests( )`` to
-        ``resttools.make_rests( )``.
+        renamed ``construct.rests()`` to
+        ``resttools.make_rests()``.
     '''
     from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
 

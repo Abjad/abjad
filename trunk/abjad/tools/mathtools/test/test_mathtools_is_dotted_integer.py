@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import mathtools
 
 
-def test_mathtools_is_dotted_integer_01( ):
+def test_mathtools_is_dotted_integer_01():
 
     assert not mathtools.is_dotted_integer(0)
     assert not mathtools.is_dotted_integer(1)

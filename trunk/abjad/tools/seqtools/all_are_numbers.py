@@ -26,8 +26,8 @@ def all_are_numbers(expr):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.is_numeric( )`` to
-        ``seqtools.all_are_numbers( )``.
+        renamed ``seqtools.is_numeric()`` to
+        ``seqtools.all_are_numbers()``.
     '''
 
     try:

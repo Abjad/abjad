@@ -29,8 +29,8 @@ def set_container_multiplier(container, multiplier):
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.multiplier_set( )`` to
-        ``containertools.set_container_multiplier( )``.
+        renamed ``containertools.multiplier_set()`` to
+        ``containertools.set_container_multiplier()``.
     '''
     from abjad.tools import contexttools
     from abjad.tools import tuplettools

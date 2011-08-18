@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Measure___del___01( ):
+def test_Measure___del___01():
     '''Nonnegative indices work.'''
 
     t = Measure((4, 8), Note(0, (1, 8)) * 4)
@@ -11,7 +11,7 @@ def test_Measure___del___01( ):
     assert t.format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_Measure___del___02( ):
+def test_Measure___del___02():
     '''Negative indices work.'''
 
     t = Measure((4, 8), Note(0, (1, 8)) * 4)
@@ -21,7 +21,7 @@ def test_Measure___del___02( ):
     assert t.format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_Measure___del___03( ):
+def test_Measure___del___03():
     '''Denominator preservation in meter.'''
 
     t = Measure((4, 8), Note(0, (1, 8)) * 4)
@@ -31,7 +31,7 @@ def test_Measure___del___03( ):
     assert t.format == "{\n\t\\time 2/8\n\tc'8\n\tc'8\n}"
 
 
-def test_Measure___del___04( ):
+def test_Measure___del___04():
     '''Denominator changes from 8 to 16.'''
 
     t = Measure((4, 8), Note(0, (1, 16)) * 2 + Note(0, (1, 8)) * 3)
@@ -41,7 +41,7 @@ def test_Measure___del___04( ):
     assert t.format == "{\n\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
-def test_Measure___del___05( ):
+def test_Measure___del___05():
     '''Trim nonbinary measure.'''
 
     t = Measure((4, 9), "c'8 d'8 e'8 f'8")
@@ -63,7 +63,7 @@ def test_Measure___del___05( ):
     #assert t.format == "{\n\t\\scaleDurations #'(8 . 9) {\n\t\t\\time 3/9\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-def tet_rigid_measure_trim_06( ):
+def tet_rigid_measure_trim_06():
     '''Trim nonbinary measure, with denominator change.'''
 
     notes = "c'8 d'8 e'8 f'8"

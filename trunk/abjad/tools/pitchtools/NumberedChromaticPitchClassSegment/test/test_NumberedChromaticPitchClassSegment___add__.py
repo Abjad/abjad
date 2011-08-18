@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedChromaticPitchClassSegment___add___01( ):
+def test_NumberedChromaticPitchClassSegment___add___01():
     '''Adding numbered chromatic pitch-class segments returns
     a new numbered chromatic pitch-class segment.
     '''

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_iterate_notes_and_chords_backward_in_expr_01( ):
+def test_leaftools_iterate_notes_and_chords_backward_in_expr_01():
 
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
 

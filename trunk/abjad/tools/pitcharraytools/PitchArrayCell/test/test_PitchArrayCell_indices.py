@@ -4,7 +4,7 @@ from abjad.tools.pitcharraytools import PitchArrayCell
 import py.test
 
 
-def test_PitchArrayCell_indices_01( ):
+def test_PitchArrayCell_indices_01():
 
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
@@ -22,7 +22,7 @@ def test_PitchArrayCell_indices_01( ):
     assert array[1].cells[2].indices == (1, (3,))
 
 
-def test_PitchArrayCell_indices_02( ):
+def test_PitchArrayCell_indices_02():
 
     cell = PitchArrayCell([pitchtools.NamedChromaticPitch(1)])
 

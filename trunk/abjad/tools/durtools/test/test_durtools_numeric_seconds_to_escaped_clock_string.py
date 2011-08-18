@@ -3,7 +3,7 @@ from abjad.tools import durtools
 import py.test
 
 
-def test_durtools_numeric_seconds_to_escaped_clock_string_01( ):
+def test_durtools_numeric_seconds_to_escaped_clock_string_01():
 
     assert durtools.numeric_seconds_to_escaped_clock_string(0) == "0'00\\\""
     assert durtools.numeric_seconds_to_escaped_clock_string(4) == "0'04\\\""

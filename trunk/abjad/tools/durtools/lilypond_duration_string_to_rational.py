@@ -31,7 +31,7 @@ def lilypond_duration_string_to_rational(duration_string):
     if match is None:
         raise DurationError('incorrect duration string format: %s.' %
             duration_string)
-    body_string, dots_string = match.groups( )
+    body_string, dots_string = match.groups()
 
     try:
         body_denominator = int(body_string)

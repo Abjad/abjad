@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_pitchtools_PitchRange___setattr___01( ):
+def test_pitchtools_PitchRange___setattr___01():
     '''Pitch ranges are immutable.
     '''
 

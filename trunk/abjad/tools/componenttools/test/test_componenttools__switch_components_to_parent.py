@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 
 
-def test_componenttools__switch_components_to_parent_01( ):
+def test_componenttools__switch_components_to_parent_01():
 
     t = Voice([ ])
     u = Voice("c'8 d'8 e'8 f'8")

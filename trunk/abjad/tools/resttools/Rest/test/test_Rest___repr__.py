@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Rest___repr___01( ):
+def test_Rest___repr___01():
     '''Rest repr is evaluable.
     '''
 

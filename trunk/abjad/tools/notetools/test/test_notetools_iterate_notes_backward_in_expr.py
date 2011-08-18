@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_notetools_iterate_notes_backward_in_expr_01( ):
+def test_notetools_iterate_notes_backward_in_expr_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
@@ -37,7 +37,7 @@ def test_notetools_iterate_notes_backward_in_expr_01( ):
     assert notes[5] is staff[0][0]
 
 
-def test_notetools_iterate_notes_backward_in_expr_02( ):
+def test_notetools_iterate_notes_backward_in_expr_02():
     '''Optional start and stop keyword parameters.'''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

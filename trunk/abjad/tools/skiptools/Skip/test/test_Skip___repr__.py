@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.skiptools import Skip
 
 
-def test_Skip___repr___01( ):
+def test_Skip___repr___01():
     '''Skip repr is evaluable.
     '''
 

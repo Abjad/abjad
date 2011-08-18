@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_get_composite_offset_series_from_leaves_in_expr_01( ):
+def test_leaftools_get_composite_offset_series_from_leaves_in_expr_01():
 
     staff_1 = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     staff_2 = Staff(notetools.make_repeated_notes(4))

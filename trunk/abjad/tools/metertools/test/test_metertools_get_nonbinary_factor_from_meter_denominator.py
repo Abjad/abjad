@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import metertools
 
 
-def test_metertools_get_nonbinary_factor_from_meter_denominator_01( ):
+def test_metertools_get_nonbinary_factor_from_meter_denominator_01():
     '''Return nonbinary factor in denominator of meter, else 1.'''
 
     assert metertools.get_nonbinary_factor_from_meter_denominator(contexttools.TimeSignatureMark(3, 12)) == 3
@@ -14,7 +14,7 @@ def test_metertools_get_nonbinary_factor_from_meter_denominator_01( ):
     assert metertools.get_nonbinary_factor_from_meter_denominator(contexttools.TimeSignatureMark(3, 28)) == 7
 
 
-def test_metertools_get_nonbinary_factor_from_meter_denominator_02( ):
+def test_metertools_get_nonbinary_factor_from_meter_denominator_02():
     '''Return nonbinary factor in denominator of meter, else 1.'''
 
     assert metertools.get_nonbinary_factor_from_meter_denominator(contexttools.TimeSignatureMark(3, 8)) == 1

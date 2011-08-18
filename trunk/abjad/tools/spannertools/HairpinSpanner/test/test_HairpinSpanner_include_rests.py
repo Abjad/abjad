@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HairpinSpanner_include_rests_01( ):
+def test_HairpinSpanner_include_rests_01():
     '''Hairpin spanner avoids rests.
     '''
 
@@ -25,7 +25,7 @@ def test_HairpinSpanner_include_rests_01( ):
     assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
 
 
-def test_HairpinSpanner_include_rests_02( ):
+def test_HairpinSpanner_include_rests_02():
     '''Hairpin spanner avoids rests.
     '''
 

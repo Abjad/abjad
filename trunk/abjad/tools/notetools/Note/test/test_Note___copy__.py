@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_Note___copy___01( ):
+def test_Note___copy___01():
     '''Copy note.
     '''
 
@@ -15,7 +15,7 @@ def test_Note___copy___01( ):
     assert note_1 is not note_2
 
 
-def test_Note___copy___02( ):
+def test_Note___copy___02():
     '''Copy note with LilyPond multiplier.
     '''
 
@@ -28,7 +28,7 @@ def test_Note___copy___02( ):
     assert note_1 is not note_2
 
 
-def test_Note___copy___03( ):
+def test_Note___copy___03():
     '''Copy note with LilyPond grob overrides and LilyPond context settings.
     '''
 
@@ -44,7 +44,7 @@ def test_Note___copy___03( ):
     assert note_1 is not note_2
 
 
-def test_Note___copy___04( ):
+def test_Note___copy___04():
     '''Copy note with grace container.
     '''
 

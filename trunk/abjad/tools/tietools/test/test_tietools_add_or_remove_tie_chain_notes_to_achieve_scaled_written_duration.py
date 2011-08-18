@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration_01( ):
+def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration_01():
     '''Scale trivial tie chain to nontrivial tie chain.'''
 
     t = Staff(notetools.make_repeated_notes(1))
@@ -20,7 +20,7 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_durati
     assert t.format == "\\new Staff {\n\tc'8 [ ~\n\tc'32 ]\n}"
 
 
-def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration_02( ):
+def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration_02():
     '''Scale nontrivial tie chain to trivial tie chain.'''
 
     t = Staff(notetools.make_notes(0, [(5, 32)]))

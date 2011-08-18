@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemeVectorConstant___setattr___01( ):
+def test_SchemeVectorConstant___setattr___01():
     '''Scheme vector constants are immutable.
     '''
 

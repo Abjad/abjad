@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 import py.test
 
 
-def test_seqtools_map_sequence_elements_to_canonic_tuples_01( ):
+def test_seqtools_map_sequence_elements_to_canonic_tuples_01():
 
     l = range(10)
     t = seqtools.map_sequence_elements_to_canonic_tuples(l)
@@ -11,7 +11,7 @@ def test_seqtools_map_sequence_elements_to_canonic_tuples_01( ):
     assert t == [(0,), (1,), (2,), (3,), (4,), (4, 1), (6,), (7,), (8,), (8, 1)]
 
 
-def test_seqtools_map_sequence_elements_to_canonic_tuples_02( ):
+def test_seqtools_map_sequence_elements_to_canonic_tuples_02():
 
     l = range(10)
     t = seqtools.map_sequence_elements_to_canonic_tuples(
@@ -20,7 +20,7 @@ def test_seqtools_map_sequence_elements_to_canonic_tuples_02( ):
     assert t == [(0,), (1,), (2,), (3,), (4,), (1, 4), (6,), (7,), (8,), (1, 8)]
 
 
-def test_seqtools_map_sequence_elements_to_canonic_tuples_03( ):
+def test_seqtools_map_sequence_elements_to_canonic_tuples_03():
     '''Raise TypeError when l is not a list.
         Raise ValueError on noninteger elements in l.'''
 

@@ -2,7 +2,7 @@ from abjad.tools.quantizationtools import QEvent
 from abjad.tools.quantizationtools import QGrid
 
 
-def test_quantizationtools_QGrid___setitem___01( ):
+def test_quantizationtools_QGrid___setitem___01():
     '''Items can be set as though the QGrid was flattened,
     and the "next" value is included.
     '''
@@ -18,7 +18,7 @@ def test_quantizationtools_QGrid___setitem___01( ):
     assert q == QGrid([1, [2, 3], 4], 5)
 
 
-def test_quantizationtools_QGrid___setitem___02( ):
+def test_quantizationtools_QGrid___setitem___02():
     '''Items in a QGrid may be set to a Number, None, a QEvent,
     an empty tuple, a tuple of Numbers or a tuple of QEvents.
     '''

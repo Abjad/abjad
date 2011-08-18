@@ -17,8 +17,8 @@ def suggest_clef_for_named_chromatic_pitches(pitches, clefs = ['treble', 'bass']
     Return clef mark.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.suggest_clef( )`` to
-        ``pitchtools.suggest_clef_for_named_chromatic_pitches( )``.
+        renamed ``pitchtools.suggest_clef()`` to
+        ``pitchtools.suggest_clef_for_named_chromatic_pitches()``.
     '''
     from abjad.tools import contexttools
 

@@ -57,8 +57,8 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
     Return list of newly constructed components.
 
     .. versionchanged:: 2.0
-        renamed ``construct.note_train( )`` to
-        ``notetools.make_repeated_notes_with_shorter_notes_at_end( )``.
+        renamed ``construct.note_train()`` to
+        ``notetools.make_repeated_notes_with_shorter_notes_at_end()``.
     '''
 
     prolated_duration = prolation * written_duration

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitch_numbered_diatonic_pitch_01( ):
+def test_NamedChromaticPitch_numbered_diatonic_pitch_01():
     '''Pitches referentially equal.
     '''
 
@@ -15,7 +15,7 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_01( ):
     assert      p1.numbered_diatonic_pitch <= p1.numbered_diatonic_pitch
 
 
-def test_NamedChromaticPitch_numbered_diatonic_pitch_02( ):
+def test_NamedChromaticPitch_numbered_diatonic_pitch_02():
     '''Pitches by name, accidental and octave.
     '''
 
@@ -29,7 +29,7 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_02( ):
     assert      p1.numbered_diatonic_pitch <= p2.numbered_diatonic_pitch
 
 
-def test_NamedChromaticPitch_numbered_diatonic_pitch_03( ):
+def test_NamedChromaticPitch_numbered_diatonic_pitch_03():
     '''Pitches enharmonically equal.
     '''
 
@@ -43,7 +43,7 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_03( ):
     assert      p1.numbered_diatonic_pitch <= p2.numbered_diatonic_pitch
 
 
-def test_NamedChromaticPitch_numbered_diatonic_pitch_04( ):
+def test_NamedChromaticPitch_numbered_diatonic_pitch_04():
     '''Pitches manifestly different.
     '''
 
@@ -57,7 +57,7 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_04( ):
     assert      p1.numbered_diatonic_pitch <= p2.numbered_diatonic_pitch
 
 
-def test_NamedChromaticPitch_numbered_diatonic_pitch_05( ):
+def test_NamedChromaticPitch_numbered_diatonic_pitch_05():
     '''Pitches typographically crossed.
     '''
 

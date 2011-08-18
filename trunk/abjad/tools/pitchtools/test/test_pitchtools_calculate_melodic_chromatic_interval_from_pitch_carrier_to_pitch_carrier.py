@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier_01( ):
+def test_pitchtools_calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier_01():
 
     pitch_1 = pitchtools.NamedChromaticPitch(10)
     pitch_2 = pitchtools.NamedChromaticPitch(12)
@@ -23,7 +23,7 @@ def test_pitchtools_calculate_melodic_chromatic_interval_from_pitch_carrier_to_p
     assert mci == pitchtools.MelodicChromaticInterval(0)
 
 
-def test_pitchtools_calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier_02( ):
+def test_pitchtools_calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier_02():
     '''Works with quartertones.'''
 
     mci = pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(

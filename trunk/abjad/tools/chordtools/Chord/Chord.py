@@ -31,7 +31,7 @@ class Chord(_Leaf):
         elif len(args) == 1 and isinstance(args[0], str):
             pattern = '^<(.*)>\s*(.+)'
             match = re.match(pattern, args[0])
-            written_pitches, written_duration = match.groups( )
+            written_pitches, written_duration = match.groups()
             lilypond_multiplier = None
         elif len(args) == 2:
             written_pitches, written_duration = args
@@ -53,7 +53,7 @@ class Chord(_Leaf):
 
     def __copy__(self, *args):
         new = _Leaf.__copy__(self)
-        new.clear( )
+        new.clear()
         for note_head in self.note_heads:
             new_note_head = copy.copy(note_head)
             new.append(new_note_head)
@@ -84,7 +84,7 @@ class Chord(_Leaf):
             note_head = NoteHead(arg)
         note_head._client = self
         self._note_heads[i] = note_head
-        self._note_heads.sort( )
+        self._note_heads.sort()
 
     ### PRIVATE ATTRIBUTES ###
 
@@ -105,7 +105,7 @@ class Chord(_Leaf):
         r"""Read-only fingered pitches::
 
             abjad> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-            abjad> glockenspiel = instrumenttools.Glockenspiel( )(staff)
+            abjad> glockenspiel = instrumenttools.Glockenspiel()(staff)
             abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
         ::
@@ -140,7 +140,7 @@ class Chord(_Leaf):
             return self.written_pitches
 
     @apply
-    def note_heads( ):
+    def note_heads():
         def fget(self):
             '''Get read-only tuple of note heads in chord::
 
@@ -160,12 +160,12 @@ class Chord(_Leaf):
         def fset(self, note_head_tokens):
             self._note_heads = [ ]
             if isinstance(note_head_tokens, str):
-                note_head_tokens = note_head_tokens.split( )
+                note_head_tokens = note_head_tokens.split()
             self.extend(note_head_tokens)
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def written_pitches( ):
+    def written_pitches():
         def fget(self):
             '''Get read-only tuple of pitches in chord::
 
@@ -184,14 +184,14 @@ class Chord(_Leaf):
             return tuple([note_head.written_pitch for note_head in self])
         def fset(self, pitch_tokens):
             self.note_heads = pitch_tokens
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def sounding_pitches(self):
         r"""Read-only sounding pitches::
 
             abjad> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-            abjad> glockenspiel = instrumenttools.Glockenspiel( )(staff)
+            abjad> glockenspiel = instrumenttools.Glockenspiel()(staff)
             abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
         ::
@@ -248,7 +248,7 @@ class Chord(_Leaf):
             note_head = NoteHead(note_head_token)
         note_head._client = self
         self._note_heads.append(note_head)
-        self._note_heads.sort( )
+        self._note_heads.sort()
 
     def clear(self):
         '''Clear chord::
@@ -259,7 +259,7 @@ class Chord(_Leaf):
 
         ::
 
-            abjad> chord.clear( )
+            abjad> chord.clear()
             abjad> chord
             Chord('<>4')
 

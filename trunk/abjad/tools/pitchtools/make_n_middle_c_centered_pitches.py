@@ -29,7 +29,7 @@ def make_n_middle_c_centered_pitches(n):
         return [ ]
     indices = range(0, 2 * abs(n), 2)
     if n < 0:
-        indices.reverse( )
+        indices.reverse()
     average = int(sum(indices) / float(abs(n)))
     centered = [x - average for x in indices]
     letters = ['c', 'd', 'e', 'f', 'g', 'a', 'b']

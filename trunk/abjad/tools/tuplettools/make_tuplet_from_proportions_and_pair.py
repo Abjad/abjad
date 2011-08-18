@@ -46,8 +46,8 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
     .. note:: function interprets `d` as tuplet denominator.
 
     .. versionchanged:: 2.0
-        renamed ``divide.pair( )`` to
-        ``tuplettools.make_tuplet_from_proportions_and_pair( )``.
+        renamed ``divide.pair()`` to
+        ``tuplettools.make_tuplet_from_proportions_and_pair()``.
     '''
 
 

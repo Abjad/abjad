@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_lilyfiletools_make_basic_lily_file_01( ):
+def test_lilyfiletools_make_basic_lily_file_01():
 
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])

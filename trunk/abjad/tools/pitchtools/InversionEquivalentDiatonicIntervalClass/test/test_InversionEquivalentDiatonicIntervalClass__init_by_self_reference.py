@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InversionEquivalentDiatonicIntervalClass__init_by_self_reference_01( ):
+def test_InversionEquivalentDiatonicIntervalClass__init_by_self_reference_01():
 
     dic_1 = pitchtools.InversionEquivalentDiatonicIntervalClass('major', 2)
     dic_2 = pitchtools.InversionEquivalentDiatonicIntervalClass(dic_1)

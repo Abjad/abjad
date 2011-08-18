@@ -2,9 +2,9 @@ from abjad import *
 import py.test
 
 
-def test_Articulation_01( ):
+def test_Articulation_01():
     '''Articulations can be initialized from zero, one or two arguments.'''
-    a = marktools.Articulation( )
+    a = marktools.Articulation()
     assert a.name_string == None
     assert a.direction_string == '-'
     a = marktools.Articulation('^\\marcato')
@@ -15,7 +15,7 @@ def test_Articulation_01( ):
     assert a.direction_string == '_'
 
 
-def test_Articulation_02( ):
+def test_Articulation_02():
     '''Articulations have string and direction.'''
 
     t = Note("c'4")
@@ -24,16 +24,16 @@ def test_Articulation_02( ):
     assert a.direction_string == '-'
 
 
-def test_Articulation_03( ):
+def test_Articulation_03():
     '''String can be set to None'''
 
     t = Note("c'4")
-    a = marktools.Articulation( )(t)
+    a = marktools.Articulation()(t)
     assert a.name_string is None
     assert str(a) == ''
 
 
-def test_Articulation_04( ):
+def test_Articulation_04():
     '''Direction can be set to None.'''
 
     t = Note("c'4")
@@ -42,7 +42,7 @@ def test_Articulation_04( ):
     assert str(a) == r'-\staccato'
 
 
-def test_Articulation_05( ):
+def test_Articulation_05():
     '''Direction can be set to up.'''
 
     t = Note("c'4")
@@ -55,7 +55,7 @@ def test_Articulation_05( ):
     assert str(a) == r'^\staccato'
 
 
-def test_Articulation_06( ):
+def test_Articulation_06():
     '''Direction can be set to down.'''
 
     t = Note("c'4")
@@ -68,7 +68,7 @@ def test_Articulation_06( ):
     assert str(a) == r'_\staccato'
 
 
-def test_Articulation_07( ):
+def test_Articulation_07():
     '''Direction can be set to default.'''
 
     t = Note("c'4")
@@ -82,7 +82,7 @@ def test_Articulation_07( ):
 
 
 
-def test_Articulation_08( ):
+def test_Articulation_08():
     '''Shortcut strings are replaced with full word.'''
 
     t = Note("c'4")

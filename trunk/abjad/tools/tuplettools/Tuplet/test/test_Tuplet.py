@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Tuplet_01( ):
+def test_Tuplet_01():
     '''Init typical fmtuplet.'''
 
     u = Tuplet(Fraction(2, 3), Note(0, (1, 8)) * 3)
@@ -13,7 +13,7 @@ def test_Tuplet_01( ):
     assert u.prolated_duration == Duration(1, 4)
 
 
-def test_Tuplet_02( ):
+def test_Tuplet_02():
     '''Init empty fmtuplet.'''
 
     u = Tuplet(Fraction(2, 3), [ ])
@@ -25,7 +25,7 @@ def test_Tuplet_02( ):
     assert u.prolated_duration == 0
 
 
-def test_Tuplet_03( ):
+def test_Tuplet_03():
     '''Nest fmtuplet.'''
 
     u = Tuplet(Fraction(2, 3), [
@@ -46,7 +46,7 @@ def test_Tuplet_03( ):
     assert u[0].prolated_duration == Duration(1, 6)
 
 
-def test_Tuplet_04( ):
+def test_Tuplet_04():
     '''Nest empty fmtuplet.'''
 
     u = Tuplet(Fraction(2, 3), [

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container_remove_01( ):
+def test_Container_remove_01():
     '''Containers remove leaves correctly.
     Leaf detaches from parentage.
     Leaf withdraws from crossing spanners.
@@ -46,7 +46,7 @@ def test_Container_remove_01( ):
     assert note.format == "d'8 [ ]"
 
 
-def test_Container_remove_02( ):
+def test_Container_remove_02():
     '''Containers remove nested containers correctly.
     Container detaches from parentage.
     Container withdraws from crossing spanners.
@@ -97,7 +97,7 @@ def test_Container_remove_02( ):
     assert sequential.format == "{\n\tc'8\n\td'8\n}"
 
 
-def test_Container_remove_03( ):
+def test_Container_remove_03():
     '''Container remove works on identity and not equality.
     '''
 

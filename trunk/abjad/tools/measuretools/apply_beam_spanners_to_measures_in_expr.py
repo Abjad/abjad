@@ -51,8 +51,8 @@ def apply_beam_spanners_to_measures_in_expr(expr):
     Return list of beams created.
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.beam( )`` to
-        ``measuretools.apply_beam_spanners_to_measures_in_expr( )``.
+        renamed ``measuretools.beam()`` to
+        ``measuretools.apply_beam_spanners_to_measures_in_expr()``.
     '''
 
     ### init beams created

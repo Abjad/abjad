@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_apply_beam_spanner_to_measure_01( ):
+def test_measuretools_apply_beam_spanner_to_measure_01():
 
     measure = Measure((2, 8), notetools.make_repeated_notes(2))
 

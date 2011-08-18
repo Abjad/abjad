@@ -44,7 +44,7 @@ class AnonymousMeasure(DynamicMeasure):
     Return anonymous measure.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     def __init__(self, music = None, **kwargs):
         DynamicMeasure.__init__(self, music = music, **kwargs)

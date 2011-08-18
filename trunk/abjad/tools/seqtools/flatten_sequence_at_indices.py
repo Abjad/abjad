@@ -27,7 +27,7 @@ def flatten_sequence_at_indices(sequence, indices, klasses = None, depth = -1):
         klasses = (list, tuple)
 
     if not isinstance(sequence, klasses):
-        raise TypeError( )
+        raise TypeError()
     ltype = type(sequence)
 
     len_l = len(sequence)

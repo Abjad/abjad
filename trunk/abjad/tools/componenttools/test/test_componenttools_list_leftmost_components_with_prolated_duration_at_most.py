@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_01( ):
+def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_01():
     '''Accumulate maximum number of components from list
     such that prolated duration of components is no greater
     than prolated duration at input.
@@ -15,7 +15,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
     assert duration == Duration(2, 8)
 
 
-def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_02( ):
+def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_02():
 
     t = Voice("c'8 d'8 e'8 f'8")
     components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
@@ -25,7 +25,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
     assert duration == Duration(4, 8)
 
 
-def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_03( ):
+def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_03():
 
     t = Voice("c'8 d'8 e'8 f'8")
     components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
@@ -35,7 +35,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
     assert duration == Duration(0)
 
 
-def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_04( ):
+def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_04():
 
     t = Voice("c'8 d'8 e'8 f'8")
     components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(

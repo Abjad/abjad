@@ -17,8 +17,8 @@ def write_expr_to_ly(expr, file_name, template = None, print_status = True):
     Retur none.
 
     .. versionchanged:: 2.0
-        renamed ``io.write_ly( )`` to
-        ``io.write_expr_to_ly( )``.
+        renamed ``io.write_ly()`` to
+        ``io.write_expr_to_ly()``.
     '''
 
     file_name = os.path.expanduser(file_name)
@@ -28,7 +28,7 @@ def write_expr_to_ly(expr, file_name, template = None, print_status = True):
         outfile = open(file_name, 'w')
         lily_file = _insert_expr_into_lily_file(expr, template = template)
         outfile.write(lily_file.format)
-        outfile.close( )
+        outfile.close()
     except IOError:
         print 'ERROR: cound not open file %s' % file_name
         dirname = os.path.dirname(file_name)

@@ -4,8 +4,8 @@ def get_spanners_on_components_or_component_children(components):
     of any of the components in `components`.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.get_attached( )`` to
-        ``spannertools.get_spanners_on_components_or_component_children( )``.
+        renamed ``spannertools.get_attached()`` to
+        ``spannertools.get_spanners_on_components_or_component_children()``.
     '''
     from abjad.tools import componenttools
 

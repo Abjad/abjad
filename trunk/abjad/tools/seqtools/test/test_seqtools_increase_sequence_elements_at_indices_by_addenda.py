@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_increase_sequence_elements_at_indices_by_addenda_01( ):
+def test_seqtools_increase_sequence_elements_at_indices_by_addenda_01():
     '''Increase elements of list l by the elements of addenda
         at indices in l.'''
 

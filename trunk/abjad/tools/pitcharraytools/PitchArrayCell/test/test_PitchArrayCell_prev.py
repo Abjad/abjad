@@ -4,7 +4,7 @@ from abjad.tools.pitcharraytools import PitchArrayCell
 import py.test
 
 
-def test_PitchArrayCell_prev_01( ):
+def test_PitchArrayCell_prev_01():
 
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
@@ -16,7 +16,7 @@ def test_PitchArrayCell_prev_01( ):
     assert array[0][1].prev is array[0][0]
 
 
-def test_PitchArrayCell_prev_02( ):
+def test_PitchArrayCell_prev_02():
 
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
@@ -28,7 +28,7 @@ def test_PitchArrayCell_prev_02( ):
     assert py.test.raises(IndexError, 'array[0][0].prev')
 
 
-def test_PitchArrayCell_prev_03( ):
+def test_PitchArrayCell_prev_03():
 
     cell = PitchArrayCell([pitchtools.NamedChromaticPitch(1)])
 

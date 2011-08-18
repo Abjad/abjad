@@ -3,7 +3,7 @@ from abjad.tools import seqtools
 from abjad.tools import durtools
 
 
-### TODO: Maybe move get_likely_multiplier_of_components( ) from durtools to measuretools? ###
+### TODO: Maybe move get_likely_multiplier_of_components() from durtools to measuretools? ###
 
 def get_likely_multiplier_of_components(components):
     r'''.. versionadded:: 2.0

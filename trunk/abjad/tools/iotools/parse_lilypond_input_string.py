@@ -31,7 +31,7 @@ def parse_lilypond_input_string(note_entry_string):
     from abjad.tools import spannertools
 
     container = Container([ ])
-    tokens = note_entry_string.split( )
+    tokens = note_entry_string.split()
 
     in_chord = False
     chord_tokens = [ ]

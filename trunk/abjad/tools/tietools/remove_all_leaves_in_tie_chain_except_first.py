@@ -10,8 +10,8 @@ def remove_all_leaves_in_tie_chain_except_first(tie_chain):
     Unspan and return length-1 tie chain.
 
     .. versionchanged:: 2.0
-        renamed ``tietools.truncate( )`` to
-        ``tietools.remove_all_leaves_in_tie_chain_except_first( )``.
+        renamed ``tietools.truncate()`` to
+        ``tietools.remove_all_leaves_in_tie_chain_except_first()``.
     '''
 
     assert is_tie_chain(tie_chain)

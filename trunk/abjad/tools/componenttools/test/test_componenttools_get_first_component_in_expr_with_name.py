@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_componenttools_get_first_component_in_expr_with_name_01( ):
+def test_componenttools_get_first_component_in_expr_with_name_01():
     '''Find by name.'''
 
     v1 = Voice([Note(i, (1, 4)) for i in range(2)])
@@ -13,7 +13,7 @@ def test_componenttools_get_first_component_in_expr_with_name_01( ):
     assert componenttools.get_first_component_in_expr_with_name(t, name = 'voiceOne') == v1
 
 
-def test_componenttools_get_first_component_in_expr_with_name_02( ):
+def test_componenttools_get_first_component_in_expr_with_name_02():
     '''Raise missing component error on no match.'''
 
     v = Voice("c'8 d'8 e'8 f'8")
@@ -26,7 +26,7 @@ def test_componenttools_get_first_component_in_expr_with_name_02( ):
         "componenttools.get_first_component_in_expr_with_name(t, name = 'voice_200')")
 
 
-def test_componenttools_get_first_component_in_expr_with_name_03( ):
+def test_componenttools_get_first_component_in_expr_with_name_03():
     '''Full test.'''
 
     vl1 = Voice([Note(i, (1, 8)) for i in range(4)])

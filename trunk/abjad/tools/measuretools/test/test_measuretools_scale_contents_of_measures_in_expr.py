@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_scale_contents_of_measures_in_expr_01( ):
+def test_measuretools_scale_contents_of_measures_in_expr_01():
     '''Quadruple binary meter.
     Time siganture denominator adjust appropriately.'''
 
@@ -23,7 +23,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_01( ):
     assert t.format == "{\n\t\\time 3/8\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
 
-def test_measuretools_scale_contents_of_measures_in_expr_02( ):
+def test_measuretools_scale_contents_of_measures_in_expr_02():
     '''Triple binary meter.'''
 
     t = Measure((3, 32), "c'32 d'32 e'32")
@@ -44,7 +44,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_02( ):
     assert t.format == "{\n\t\\time 9/32\n\tc'16. [\n\td'16.\n\te'16. ]\n}"
 
 
-def test_measuretools_scale_contents_of_measures_in_expr_03( ):
+def test_measuretools_scale_contents_of_measures_in_expr_03():
     '''Multiply binary measure by 2/3.'''
 
     t = Measure((3, 8), "c'8 d'8 e'8")

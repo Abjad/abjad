@@ -10,8 +10,8 @@ class Mark(object):
 
     ::
 
-        abjad> marktools.Mark( )(note)
-        Mark( )(c'4)
+        abjad> marktools.Mark()(note)
+        Mark()(c'4)
 
     Marks override ``___call__`` to attach to a note, rest or chord.
 
@@ -27,14 +27,14 @@ class Mark(object):
 
     def __call__(self, *args):
         if len(args) == 0:
-            return self.detach_mark( )
+            return self.detach_mark()
         elif len(args) == 1:
             return self.attach_mark(args[0])
         else:
             raise ValueError('must call mark with at most 1 argument.')
 
     def __copy__(self, *args):
-        return type(self)( )
+        return type(self)()
 
     __deepcopy__ = __copy__
 
@@ -75,7 +75,7 @@ class Mark(object):
     def _bind_start_component(self, start_component):
         #print 'binding MARK to start component ...'
         assert isinstance(start_component, _Component)
-        self.__unbind_start_component( )
+        self.__unbind_start_component()
         start_component._marks_for_which_component_functions_as_start_component.append(self)
         self._start_component = start_component
 
@@ -95,7 +95,7 @@ class Mark(object):
         '''Read-only reference to mark start component::
 
             abjad> note = Note("c'4")
-            abjad> mark = marktools.Mark( )(note)
+            abjad> mark = marktools.Mark()(note)
 
         ::
 
@@ -112,12 +112,12 @@ class Mark(object):
         '''Attach mark to `start_component`::
 
             abjad> note = Note("c'4")
-            abjad> mark = marktools.Mark( )
+            abjad> mark = marktools.Mark()
 
         ::
 
             abjad> mark.attach_mark(note)
-            Mark( )(c'4)
+            Mark()(c'4)
 
         ::
 
@@ -133,7 +133,7 @@ class Mark(object):
         '''Detach mark::
 
             abjad> note = Note("c'4")
-            abjad> mark = marktools.Mark( )(note)
+            abjad> mark = marktools.Mark()(note)
 
         ::
 
@@ -142,8 +142,8 @@ class Mark(object):
 
         ::
 
-            abjad> mark.detach_mark( )
-            Mark( )
+            abjad> mark.detach_mark()
+            Mark()
 
         ::
 
@@ -152,6 +152,6 @@ class Mark(object):
 
         Return mark.
         '''
-        self.__unbind_start_component( )
+        self.__unbind_start_component()
         return self
 

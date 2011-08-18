@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_contexttools_get_effective_dynamic_01( ):
+def test_contexttools_get_effective_dynamic_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     contexttools.DynamicMark('f')(staff[2])

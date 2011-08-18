@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitch___abs___01( ):
+def test_NamedChromaticPitch___abs___01():
 
     assert abs(pitchtools.NamedChromaticPitch(11)) == 11
     assert abs(pitchtools.NamedChromaticPitch(11.5)) == 11.5

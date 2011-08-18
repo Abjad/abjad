@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_marktools_get_comments_attached_to_component_01( ):
+def test_marktools_get_comments_attached_to_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     comment_mark_1 = marktools.Comment('comment 1')(staff[0])

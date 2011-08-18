@@ -5,7 +5,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     Derive correct number of octaves from `mapping` where
     `mapping` is a list of ``(range_spec, octave)`` pairs
     and ``range_spec`` is, in turn, a ``(start, stop)`` pair
-    suitable to pass to the built-in Python ``range( )`` function::
+    suitable to pass to the built-in Python ``range()`` function::
 
         abjad> mapping = [((-39, -13), 0), ((-12, 23), 12), ((24, 48), 24)]
 
@@ -72,8 +72,8 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     Return chromatic pitch number.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.send_pitch_number_to_octave( )`` to
-        ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping( )``.
+        renamed ``pitchtools.send_pitch_number_to_octave()`` to
+        ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping()``.
     '''
 
     target_pitch_class = chromatic_pitch_number % 12

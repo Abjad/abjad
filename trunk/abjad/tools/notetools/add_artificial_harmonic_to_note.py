@@ -48,8 +48,8 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fo
     Return artificial harmonic chord.
 
     .. versionchanged:: 2.0
-        renamed ``harmonictools.add_artificial( )`` to
-        ``notetools.add_artificial_harmonic_to_note( )``.
+        renamed ``harmonictools.add_artificial()`` to
+        ``notetools.add_artificial_harmonic_to_note()``.
     '''
     from abjad.tools import componenttools
     from abjad.tools.chordtools.Chord import Chord

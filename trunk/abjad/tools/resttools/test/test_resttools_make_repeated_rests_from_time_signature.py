@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_resttools_make_repeated_rests_from_time_signature_01( ):
+def test_resttools_make_repeated_rests_from_time_signature_01():
     '''Make repeated rests from integer pair.
     '''
 
@@ -12,7 +12,7 @@ def test_resttools_make_repeated_rests_from_time_signature_01( ):
     assert staff.format == '\\new Staff {\n\tr32\n\tr32\n\tr32\n\tr32\n\tr32\n}'
 
 
-def test_resttools_make_repeated_rests_from_time_signature_02( ):
+def test_resttools_make_repeated_rests_from_time_signature_02():
     '''Make repeated rests from time signature.
     '''
 

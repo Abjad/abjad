@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container___setitem___integer_01( ):
+def test_Container___setitem___integer_01():
     '''Spanned leaves exchange correctly.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -33,7 +33,7 @@ def test_Container___setitem___integer_01( ):
     assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\tc''8 ] \\glissando\n\te'8 \\glissando\n\tf'8\n}"
 
 
-def test_Container___setitem___integer_02( ):
+def test_Container___setitem___integer_02():
     '''Spanned leaf hands position over to container correctly.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -68,7 +68,7 @@ def test_Container___setitem___integer_02( ):
     assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\t{\n\t\tc'16 \\glissando\n\t\tc'16 \\glissando\n\t\tc'16 ] \\glissando\n\t}\n\te'8 \\glissando\n\tf'8\n}"
 
 
-def test_Container___setitem___integer_03( ):
+def test_Container___setitem___integer_03():
     '''Directly spanned contains hand over correctly to a single leaf.
         Note here that only the sequentials are initially spanned.'''
 
@@ -106,7 +106,7 @@ def test_Container___setitem___integer_03( ):
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
 
 
-def test_Container___setitem___integer_04( ):
+def test_Container___setitem___integer_04():
     '''Indirectly spanned containers hand over correctly to a single leaf.
         Notice here that only LEAVES are initially spanned.'''
 
@@ -144,7 +144,7 @@ def test_Container___setitem___integer_04( ):
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
 
 
-def test_Container___setitem___integer_05( ):
+def test_Container___setitem___integer_05():
     '''Directly spanned containers hand over to other containers correctly.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -185,7 +185,7 @@ def test_Container___setitem___integer_05( ):
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t\\times 2/3 {\n\t\tc'8 \\glissando\n\t\td'8 \\glissando\n\t\te'8 ]\n\t}\n}"
 
 
-def test_Container___setitem___integer_06( ):
+def test_Container___setitem___integer_06():
     '''Indirectly spanned containers hand over correctly to a single leaf.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -222,7 +222,7 @@ def test_Container___setitem___integer_06( ):
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
 
 
-def test_Container___setitem___integer_07( ):
+def test_Container___setitem___integer_07():
     '''Indirectly HALF-spanned containers hand over correctly to a
     single leaf. WOW!'''
 
@@ -264,7 +264,7 @@ def test_Container___setitem___integer_07( ):
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n\tr2\n}"
 
 
-def test_Container___setitem___integer_08( ):
+def test_Container___setitem___integer_08():
     '''Take spanned leaf from donor container
         and insert into recipient container.
         Both donor and recipient check after set item.'''
@@ -321,7 +321,7 @@ def test_Container___setitem___integer_08( ):
     assert u.format == "\\new Voice {\n\tf'8 [\n\ta'8 ]\n}"
 
 
-def test_Container___setitem___integer_09( ):
+def test_Container___setitem___integer_09():
     '''Take down-spanned container with completely covered spanner
         from donor container and insert into recipient container.
         Both donor and recipient check after set item.'''

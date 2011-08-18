@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import metertools
 
 
-def test_metertools_is_meter_with_equivalent_binary_representation_01( ):
+def test_metertools_is_meter_with_equivalent_binary_representation_01():
     '''True when meter is binary or when meter is nonbinary
         but mathematically equivalent to some binary meter.'''
 
@@ -20,7 +20,7 @@ def test_metertools_is_meter_with_equivalent_binary_representation_01( ):
     assert metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark(12, 12))
 
 
-def test_metertools_is_meter_with_equivalent_binary_representation_02( ):
+def test_metertools_is_meter_with_equivalent_binary_representation_02():
     '''True when meter is binary or when meter is nonbinary
         but mathematically equivalent to some binary meter.'''
 
@@ -40,7 +40,7 @@ def test_metertools_is_meter_with_equivalent_binary_representation_02( ):
     assert metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark(14, 14))
 
 
-def test_metertools_is_meter_with_equivalent_binary_representation_03( ):
+def test_metertools_is_meter_with_equivalent_binary_representation_03():
     '''True for binary meters.'''
 
     assert metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark(1, 8))

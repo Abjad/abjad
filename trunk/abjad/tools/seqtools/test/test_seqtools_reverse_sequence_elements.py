@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_reverse_sequence_elements_01( ):
+def test_seqtools_reverse_sequence_elements_01():
     '''Reverse sequence elements.
     '''
 

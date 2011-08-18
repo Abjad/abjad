@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Container_pop_01( ):
+def test_Container_pop_01():
     '''Containers pop leaves correctly.
         Popped leaves detach from parent.
         Popped leaves withdraw from crossing spanners.
@@ -39,7 +39,7 @@ def test_Container_pop_01( ):
     assert result.format == "d'8 [ ]"
 
 
-def test_Container_pop_02( ):
+def test_Container_pop_02():
     '''Containers pop nested containers correctly.
         Popped containers detach from both parent and spanners.'''
 
@@ -60,7 +60,7 @@ def test_Container_pop_02( ):
     }
     '''
 
-    sequential = t.pop( )
+    sequential = t.pop()
 
     r'''
     \new Staff {

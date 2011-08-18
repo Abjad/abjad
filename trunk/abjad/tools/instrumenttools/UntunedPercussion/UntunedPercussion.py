@@ -12,7 +12,7 @@ class UntunedPercussion(_PercussionInstrument):
 
     ::
 
-        abjad> instrumenttools.UntunedPercussion( )(staff)
+        abjad> instrumenttools.UntunedPercussion()(staff)
         UntunedPercussion('Percussion', 'Perc.')
 
     ::
@@ -35,5 +35,5 @@ class UntunedPercussion(_PercussionInstrument):
         _PercussionInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('percussion')]
-        self._copy_primary_clefs_to_all_clefs( )
+        self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-48, 39)

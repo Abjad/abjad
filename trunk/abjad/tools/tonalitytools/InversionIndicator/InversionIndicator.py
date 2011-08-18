@@ -71,7 +71,7 @@ class InversionIndicator(_Immutable):
         name = self._inversion_number_to_inversion_name[self.number]
         if name == 'root position':
             return 'RootPosition'
-        return '%sInversion' % name.title( )
+        return '%sInversion' % name.title()
 
     ### PUBLIC METHODS ###
 

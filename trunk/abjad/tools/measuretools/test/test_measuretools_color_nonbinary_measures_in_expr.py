@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_color_nonbinary_measures_in_expr_01( ):
+def test_measuretools_color_nonbinary_measures_in_expr_01():
 
     staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
     measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)

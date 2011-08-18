@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicChromaticInterval_01( ):
+def test_MelodicChromaticInterval_01():
 
     i = pitchtools.MelodicChromaticInterval(3)
 

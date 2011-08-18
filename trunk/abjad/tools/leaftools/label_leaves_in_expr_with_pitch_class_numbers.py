@@ -38,8 +38,8 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
     You can set `number` and `color` at the same time.
 
     .. versionchanged:: 2.0
-        renamed ``label.leaf_pcs( )`` to
-        ``leaftools.label_leaves_in_expr_with_pitch_class_numbers( )``.
+        renamed ``label.leaf_pcs()`` to
+        ``leaftools.label_leaves_in_expr_with_pitch_class_numbers()``.
 
     Return none.
     '''

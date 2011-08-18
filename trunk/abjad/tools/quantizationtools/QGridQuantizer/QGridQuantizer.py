@@ -40,7 +40,7 @@ class QGridQuantizer(_Quantizer):
     ::
 
         abjad> from abjad.tools.quantizationtools import QGridQuantizer
-        abjad> q = QGridQuantizer( )
+        abjad> q = QGridQuantizer()
 
     `QGridQuantizer` is immutable, but cheap to instantiate.  Various attributes
     can be defined on instantiation.  Please consult the documentation for each
@@ -60,14 +60,14 @@ class QGridQuantizer(_Quantizer):
 
     ::
 
-        abjad> q = QGridQuantizer( )
+        abjad> q = QGridQuantizer()
         abjad> source = Staff("c'4 d'4 e'4. r'8 <c' e' g'>2. <d' g' b'>4")
         abjad> source_tempo = contexttools.TempoMark((1, 4), 54)
         abjad> result = q(source[:], tempo = source_tempo)
 
     ::
 
-        abjad> q = QGridQuantizer( )
+        abjad> q = QGridQuantizer()
         abjad> source = Staff("c'4 d'4 e'4. r'8 <c' e' g'>2. <d' g' b'>4")
         abjad> t = contexttools.TempoMark((1, 8), 34, target_context = Staff)(source)
         abjad> t = contexttools.TempoMark((1, 4), 135, target_context = Staff)(source[3])
@@ -78,7 +78,7 @@ class QGridQuantizer(_Quantizer):
 
     ::
 
-        abjad> q = QGridQuantizer( )
+        abjad> q = QGridQuantizer()
         abjad> milliseconds = [100, 120, -133, 500, -1003, 125]
         abjad> result = q(milliseconds)
 
@@ -87,7 +87,7 @@ class QGridQuantizer(_Quantizer):
 
     ::
 
-        abjad> q = QGridQuantizer( )
+        abjad> q = QGridQuantizer()
         abjad> rationals = [1, Fraction(1, 2), Fraction(-1, 4), 3, Fraction(-1, 3), 2]
         abjad> tempo = contexttools.TempoMark((1, 4), 45)
         abjad> result = q(rationals, tempo = tempo)
@@ -99,7 +99,7 @@ class QGridQuantizer(_Quantizer):
 
     ::
 
-        abjad> q = QGridQuantizer( )
+        abjad> q = QGridQuantizer()
         abjad> pairs = [(130, 0), (250, 2), (500, None), (1303, [0, 1, 4])]
         abjad> result = q(pairs)
 
@@ -117,7 +117,7 @@ class QGridQuantizer(_Quantizer):
 
         assert isinstance(search_tree, (type(None), QGridSearchTree))
         if search_tree is None:
-            search_tree = QGridSearchTree( )
+            search_tree = QGridSearchTree()
         assert is_valid_beatspan(beatspan)
         assert isinstance(tempo, TempoMark)
         if threshold is not None:
@@ -181,9 +181,9 @@ class QGridQuantizer(_Quantizer):
         return recurse(grid, offsets)
 
     def _find_best_q_grid_foreach_q_event_group(self, q_event_groups):
-        best_q_grids = { }
+        best_q_grids = {}
 
-        for beatspan_number, group in q_event_groups.iteritems( ):
+        for beatspan_number, group in q_event_groups.iteritems():
 
             errors = [ ]
             q_grids = [ ]
@@ -207,7 +207,7 @@ class QGridQuantizer(_Quantizer):
         return best_q_grids
 
     def _format_all_q_grids(self, best_q_grids):
-        beatspan_numbers = sorted(best_q_grids.keys( ))
+        beatspan_numbers = sorted(best_q_grids.keys())
 
         # store indices of tie-chain starts
         indices = [ ]
@@ -232,7 +232,7 @@ class QGridQuantizer(_Quantizer):
                 beatspan_numbers.pop(-1)
 
         # make bare notation
-        container = Container( )
+        container = Container()
         for beatspan_number in beatspan_numbers:
             q_grid = best_q_grids[beatspan_number]
             formatted = q_grid.format_for_beatspan(self.beatspan)
@@ -268,7 +268,7 @@ class QGridQuantizer(_Quantizer):
             last_tie = TieSpanner(container.leaves[indices[-1]:])
             last_tie_chain = get_tie_chain(last_tie[0])
             last_tie_chain = fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(last_tie_chain)
-            last_tie.clear( ) # detach
+            last_tie.clear() # detach
             for note in flatten_sequence(last_tie_chain):
                 parent = note._parentage.parent
                 parent[parent.index(note)] = Rest(note.written_duration)
@@ -293,7 +293,7 @@ class QGridQuantizer(_Quantizer):
 
     def _group_q_events_by_beatspan(self, q_events):
         g = groupby(q_events, lambda x: x.offset // self.beatspan_ms)
-        grouped_q_events = { }
+        grouped_q_events = {}
         for value, group in g:
             grouped_q_events[value] = list(group)
         return grouped_q_events
@@ -307,7 +307,7 @@ class QGridQuantizer(_Quantizer):
         carried = None
 
         # cache keys, as the dictionary may be modified
-        beatspan_numbers = sorted(best_q_grids.keys( ))
+        beatspan_numbers = sorted(best_q_grids.keys())
         for beatspan_number in beatspan_numbers:
             q_grid = best_q_grids[beatspan_number]
 
@@ -331,7 +331,7 @@ class QGridQuantizer(_Quantizer):
                     carried = q_grid.next
                 q_grid[-1] = 0
 
-        for i in range(sorted(best_q_grids.keys( ))[-1]):
+        for i in range(sorted(best_q_grids.keys())[-1]):
             if i not in best_q_grids:
                 best_q_grids[i] = QGrid([0], 0)
 
@@ -371,7 +371,7 @@ class QGridQuantizer(_Quantizer):
         :py:class:`~abjad.tools.quantizationtools.QGrid` comprising a quantization
         attempt.
 
-        Read-only, defaults to `QGridSearchTree( )`.
+        Read-only, defaults to `QGridSearchTree()`.
 
         Please consult the documentation for
         :py:class:`~abjad.tools.quantizationtools.QGrid` and

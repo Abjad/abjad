@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_contexttools_get_effective_staff_01( ):
+def test_contexttools_get_effective_staff_01():
     '''Staff changes work on the first note of a staff.'''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
@@ -41,7 +41,7 @@ def test_contexttools_get_effective_staff_01( ):
     assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_contexttools_get_effective_staff_02( ):
+def test_contexttools_get_effective_staff_02():
     '''Staff changes work on middle notes of a staff.'''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
@@ -83,7 +83,7 @@ def test_contexttools_get_effective_staff_02( ):
     assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\td\'8\n\t\t\\change Staff = RH\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_contexttools_get_effective_staff_03( ):
+def test_contexttools_get_effective_staff_03():
     '''Staff changes work on the last note of a staff.'''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
@@ -114,7 +114,7 @@ def test_contexttools_get_effective_staff_03( ):
     assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\t\\change Staff = LH\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_contexttools_get_effective_staff_04( ):
+def test_contexttools_get_effective_staff_04():
     '''Redudant staff changes are allowed.'''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)

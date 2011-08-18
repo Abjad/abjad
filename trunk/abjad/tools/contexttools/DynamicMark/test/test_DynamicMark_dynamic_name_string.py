@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DynamicMark_dynamic_name_string_01( ):
+def test_DynamicMark_dynamic_name_string_01():
     '''Dynamic name string is read / write.
     '''
 

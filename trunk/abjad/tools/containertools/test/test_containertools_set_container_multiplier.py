@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_set_container_multiplier_01( ):
+def test_containertools_set_container_multiplier_01():
     '''Set multiplier on fixed-duration tuplet
         by adjusting target duration.'''
 
@@ -15,7 +15,7 @@ def test_containertools_set_container_multiplier_01( ):
     assert t.multiplier == Duration(5, 8)
 
 
-def test_containertools_set_container_multiplier_02( ):
+def test_containertools_set_container_multiplier_02():
     '''Set multiplier on rigid measure by adjusting meter.'''
 
     t = Measure((3, 8), "c'8 d'8 e'8")

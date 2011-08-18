@@ -38,6 +38,6 @@ def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = T
     '''
     from abjad import checks as _checks
 
-    for key, value in sorted(vars(_checks).items( )):
-        checker = value( )
+    for key, value in sorted(vars(_checks).items()):
+        checker = value()
         checker.report(expr)

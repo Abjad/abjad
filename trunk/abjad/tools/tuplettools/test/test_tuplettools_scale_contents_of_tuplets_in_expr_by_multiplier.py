@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01():
     '''Double tuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -19,7 +19,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01( ):
     assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02():
     '''Halve tuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -37,7 +37,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02( ):
     assert t.format == "\\times 2/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03():
     '''Quadruple tuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -55,7 +55,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03( ):
     assert t.format == "\\times 2/3 {\n\tc'2\n\td'2\n\te'2\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04():
     '''Quarter tuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -73,7 +73,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04( ):
     assert t.format == "\\times 2/3 {\n\tc'32\n\td'32\n\te'32\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05():
     '''Multiply tuplet by 3/2.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -91,7 +91,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05( ):
     assert t.format == "\\times 2/3 {\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06():
     '''Multiply tuplet by 2/3.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -109,7 +109,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06( ):
     assert t.format == "\\times 8/9 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07():
     '''Multiply tuplet by 3/5.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -127,7 +127,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07( ):
     assert t.format == "\\times 4/5 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08():
     '''Multiply undotted, unbracketted notes by 3/2;
         ie, add a single dot.'''
 
@@ -146,7 +146,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08( ):
     assert t.format == "{\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09():
     '''Binary target duration.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
@@ -171,7 +171,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09( ):
     assert t.format == "\\times 4/5 {\n\tc'8\n\tc'8.\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_10( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_10():
     '''Nonbinary target duration.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(4, 8), [Note(0, (2, 8)), Note(0, (3, 8))])

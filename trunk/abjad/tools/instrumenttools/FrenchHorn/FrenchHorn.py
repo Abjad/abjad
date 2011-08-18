@@ -13,7 +13,7 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
 
     ::
 
-        abjad> instrumenttools.FrenchHorn( )(staff)
+        abjad> instrumenttools.FrenchHorn()(staff)
         FrenchHorn('French Horn', 'Fr. hn.')
 
     ::
@@ -36,5 +36,5 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
         _BrassInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('f')
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
-        self._copy_primary_clefs_to_all_clefs( )
+        self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-25, 17)

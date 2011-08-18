@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container_append_01( ):
+def test_Container_append_01():
     '''Append sequential to voice.'''
 
     t = Voice(notetools.make_repeated_notes(2))
@@ -25,7 +25,7 @@ def test_Container_append_01( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\t{\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-def test_Container_append_02( ):
+def test_Container_append_02():
     '''Append leaf to tuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -45,7 +45,7 @@ def test_Container_append_02( ):
     assert t.format == "\\times 4/7 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'16\n}"
 
 
-def test_Container_append_03( ):
+def test_Container_append_03():
     '''Trying to append noncomponent to container
         raises TypeError.'''
 
@@ -58,7 +58,7 @@ def test_Container_append_03( ):
     assert py.test.raises(AssertionError, "t.append([Note(0, (1, 8))])")
 
 
-def test_Container_append_04( ):
+def test_Container_append_04():
     '''Append spanned leaf from donor container to recipient container.'''
 
     t = Voice("c'8 d'8 e'8")
@@ -114,7 +114,7 @@ def test_Container_append_04( ):
     assert u.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
 
-def test_Container_append_05( ):
+def test_Container_append_05():
     '''Append spanned leaf from donor container to recipient container.
         Donor and recipient containers are the same.'''
 

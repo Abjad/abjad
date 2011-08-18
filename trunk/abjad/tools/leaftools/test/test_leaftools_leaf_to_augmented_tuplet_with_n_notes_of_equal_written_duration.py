@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration_01( ):
+def test_leaftools_leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration_01():
     '''Divide a leaf of 3/16 into 1, ..., 5 parts.'''
 
     t = leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(Note(0, (3, 16)), 1)

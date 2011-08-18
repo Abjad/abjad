@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_voicetools_get_first_voice_in_improper_parentage_of_component_01( ):
+def test_voicetools_get_first_voice_in_improper_parentage_of_component_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     staff = Staff([voice])

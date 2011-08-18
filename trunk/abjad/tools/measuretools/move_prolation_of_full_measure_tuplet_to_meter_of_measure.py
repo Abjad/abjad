@@ -28,8 +28,8 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``measuretools.subsume( )`` to
-        ``measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure( )``.
+        renamed ``measuretools.subsume()`` to
+        ``measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure()``.
     '''
     from abjad.tools.tuplettools.Tuplet import Tuplet
     from abjad.tools import componenttools

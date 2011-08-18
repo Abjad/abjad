@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import mathtools
 
 
-def test_mathtools_partition_integer_into_thirds_01( ):
+def test_mathtools_partition_integer_into_thirds_01():
     '''Partition n into left, middle, right parts.'''
 
     #assert mathtools.partition_integer_into_thirds(0) == (0, 0, 0)
@@ -17,7 +17,7 @@ def test_mathtools_partition_integer_into_thirds_01( ):
     assert mathtools.partition_integer_into_thirds(9) == (3, 3, 3)
 
 
-def test_mathtools_partition_integer_into_thirds_02( ):
+def test_mathtools_partition_integer_into_thirds_02():
     '''Smallest part on left.'''
 
     #assert mathtools.partition_integer_into_thirds(
@@ -42,7 +42,7 @@ def test_mathtools_partition_integer_into_thirds_02( ):
         9, smallest = 'left') == (3, 3, 3)
 
 
-def test_mathtools_partition_integer_into_thirds_03( ):
+def test_mathtools_partition_integer_into_thirds_03():
     '''Smallest part on right.'''
 
     #assert mathtools.partition_integer_into_thirds(0, smallest = 'right') == (0, 0, 0)
@@ -57,7 +57,7 @@ def test_mathtools_partition_integer_into_thirds_03( ):
     assert mathtools.partition_integer_into_thirds(9, smallest = 'right') == (3, 3, 3)
 
 
-def test_mathtools_partition_integer_into_thirds_04( ):
+def test_mathtools_partition_integer_into_thirds_04():
     '''Biggest part on left.'''
 
     #assert mathtools.partition_integer_into_thirds(0, biggest = 'left') == (0, 0, 0)
@@ -72,7 +72,7 @@ def test_mathtools_partition_integer_into_thirds_04( ):
     assert mathtools.partition_integer_into_thirds(9, biggest = 'left') == (3, 3, 3)
 
 
-def test_mathtools_partition_integer_into_thirds_05( ):
+def test_mathtools_partition_integer_into_thirds_05():
     '''Biggest part on right.'''
 
     #assert mathtools.partition_integer_into_thirds(0, biggest = 'right') == (0, 0, 0)

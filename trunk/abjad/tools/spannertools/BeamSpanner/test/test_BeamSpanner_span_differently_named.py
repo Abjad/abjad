@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_BeamSpanner_span_differently_named_01( ):
+def test_BeamSpanner_span_differently_named_01():
     '''Abjad does NOT let you span across differently named Voices.'''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -54,7 +54,7 @@ def test_BeamSpanner_span_differently_named_01( ):
     assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
 
 
-def test_BeamSpanner_span_differently_named_02( ):
+def test_BeamSpanner_span_differently_named_02():
     '''Abjad does NOT let you span across Staves, even if they and
     all its sub-contexts are equally named.'''
 

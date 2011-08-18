@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_positive_integer_to_implied_prolation_multipler_01( ):
+def test_durtools_positive_integer_to_implied_prolation_multipler_01():
     '''Return the prolation that positive integer denominator carries.'''
 
     assert durtools.positive_integer_to_implied_prolation_multipler(1) == Fraction(1)

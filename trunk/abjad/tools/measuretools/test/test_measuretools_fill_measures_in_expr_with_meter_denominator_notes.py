@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_fill_measures_in_expr_with_meter_denominator_notes_01( ):
+def test_measuretools_fill_measures_in_expr_with_meter_denominator_notes_01():
     '''Populate nonbinary measure with meter series.'''
 
     t = Measure((5, 18), [ ])

@@ -34,8 +34,8 @@ def replace_sequence_elements_cyclically_with_new_material(sequence, indices, ne
     Return newly constructed list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.replace_elements_cyclic( )`` to
-        ``seqtools.replace_sequence_elements_cyclically_with_new_material( )``.
+        renamed ``seqtools.replace_elements_cyclic()`` to
+        ``seqtools.replace_sequence_elements_cyclically_with_new_material()``.
     '''
 
     if not isinstance(sequence, list):

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_insert_component_and_do_not_fracture_crossing_spanners_01( ):
+def test_containertools_insert_component_and_do_not_fracture_crossing_spanners_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(staff.leaves)

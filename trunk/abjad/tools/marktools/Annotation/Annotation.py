@@ -80,7 +80,7 @@ class Annotation(Mark):
     ### PUBLIC ATTRIBUTES ###
 
 #   @apply
-#   def contents_string( ):
+#   def contents_string():
 #      def fget(self):
 #         '''Get contents string of annotation::
 #
@@ -98,10 +98,10 @@ class Annotation(Mark):
 #      def fset(self, contents_string):
 #         assert isinstance(contents_string, str)
 #         self._contents = contents_string
-#      return property(**locals( ))
+#      return property(**locals())
 
     @apply
-    def name( ):
+    def name():
         def fget(self):
             '''Get name of annotation::
 
@@ -121,10 +121,10 @@ class Annotation(Mark):
         def fset(self, name):
             assert isinstance(name, str)
             self._name = name
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def value( ):
+    def value():
         def fget(self):
             '''Get value of annotation::
 
@@ -143,5 +143,5 @@ class Annotation(Mark):
             return self._value
         def fset(self, value):
             self._value = value
-        return property(**locals( ))
+        return property(**locals())
 

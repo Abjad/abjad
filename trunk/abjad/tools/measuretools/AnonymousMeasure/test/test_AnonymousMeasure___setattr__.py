@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_AnonymousMeasure___setattr___01( ):
+def test_AnonymousMeasure___setattr___01():
     '''Slots constraint anonymous measure attributes.
     '''
 

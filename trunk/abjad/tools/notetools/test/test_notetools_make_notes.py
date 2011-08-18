@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_notetools_make_notes_01( ):
+def test_notetools_make_notes_01():
     '''
     notetools.make_notes can take a single pitch and a single duration.
     '''
@@ -13,7 +13,7 @@ def test_notetools_make_notes_01( ):
     assert not tietools.is_component_with_tie_spanner_attached(t[0])
 
 
-def test_notetools_make_notes_02( ):
+def test_notetools_make_notes_02():
     '''Tied durations result in more than one tied Note.'''
     t = notetools.make_notes(1, (5, 8))
     assert len(t) == 2
@@ -24,7 +24,7 @@ def test_notetools_make_notes_02( ):
     assert tietools.is_component_with_tie_spanner_attached(t[0])
     assert tietools.is_component_with_tie_spanner_attached(t[1])
 
-def test_notetools_make_notes_03( ):
+def test_notetools_make_notes_03():
     '''
     notetools.make_notes may take a list of pitches and a single duration.
     '''
@@ -33,7 +33,7 @@ def test_notetools_make_notes_03( ):
     assert t[0].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
     assert t[1].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
-def test_notetools_make_notes_04( ):
+def test_notetools_make_notes_04():
     '''
     notetools.make_notes may take a single pitch and a list of duration.
     '''
@@ -44,7 +44,7 @@ def test_notetools_make_notes_04( ):
     assert t[0].written_duration == Duration(1, 8)
     assert t[1].written_duration == Duration(1, 4)
 
-def test_notetools_make_notes_05( ):
+def test_notetools_make_notes_05():
     '''
     notetools.make_notes may take a list of pitches and list of durations.
     '''
@@ -56,7 +56,7 @@ def test_notetools_make_notes_05( ):
     assert t[1].written_duration == Duration(1, 4)
 
 
-def test_notetools_make_notes_06( ):
+def test_notetools_make_notes_06():
     '''
     Durations can be Durations.
     '''
@@ -64,7 +64,7 @@ def test_notetools_make_notes_06( ):
     assert len(t) == 1
     assert t[0].written_duration == Duration(1, 4)
 
-def test_notetools_make_notes_07( ):
+def test_notetools_make_notes_07():
     '''
     Durations can be a list of Durations.
     '''
@@ -72,7 +72,7 @@ def test_notetools_make_notes_07( ):
     assert len(t) == 1
     assert t[0].written_duration == Duration(1, 4)
 
-def test_notetools_make_notes_08( ):
+def test_notetools_make_notes_08():
     '''
     Key word 'direction' == 'big_endian' returns note durations in descending
     order. This is the default.
@@ -82,7 +82,7 @@ def test_notetools_make_notes_08( ):
     assert t[0].written_duration == Duration(4, 16)
     assert t[1].written_duration == Duration(1, 16)
 
-def test_notetools_make_notes_09( ):
+def test_notetools_make_notes_09():
     '''
     Key word 'direction' == 'little_endian' returns note durations in ascending
     order.
@@ -95,9 +95,9 @@ def test_notetools_make_notes_09( ):
 
 ### PROLATED NOTES ###
 
-def test_notetools_make_notes_10( ):
+def test_notetools_make_notes_10():
     '''
-    make_notes( ) can take parameters for a single prolated note.
+    make_notes() can take parameters for a single prolated note.
     '''
     t = notetools.make_notes(1, (1, 36))
     assert len(t) == 1
@@ -108,9 +108,9 @@ def test_notetools_make_notes_10( ):
     assert t[0][0].written_duration == Duration(1, 32)
 
 
-def test_notetools_make_notes_11( ):
+def test_notetools_make_notes_11():
     '''
-    make_notes( ) can take a single pitch and a list of prolated durations.
+    make_notes() can take a single pitch and a list of prolated durations.
     '''
     t = notetools.make_notes(1, [(1, 12), (1, 6), (1, 8)])
     assert len(t) == 2
@@ -132,9 +132,9 @@ def test_notetools_make_notes_11( ):
     '''
 
 
-def test_notetools_make_notes_12( ):
+def test_notetools_make_notes_12():
     '''
-    make_notes( ) may take a direction attribute.
+    make_notes() may take a direction attribute.
     '''
     t = notetools.make_notes(1, [(5, 12), (1, 6), (1, 8)], \
         direction='little-endian')

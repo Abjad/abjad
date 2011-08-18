@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplettools_get_first_tuplet_in_improper_parentage_of_component_01( ):
+def test_tuplettools_get_first_tuplet_in_improper_parentage_of_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     tuplet = Tuplet(Fraction(2, 3), staff[:3])

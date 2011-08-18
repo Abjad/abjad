@@ -18,7 +18,7 @@ def combine_markup_commands(*commands):
         abjad> markup_a = MarkupCommand('draw-circle', ["#4", '#0.4', '##f'], None)
         abjad> markup_b = MarkupCommand('filled-box', ["#'(-4 . 4)", "#'(-0.5 . 0.5)", '#1'], None)
         abjad> markup_c = "some text"
-        abjad> combine_markup_commands(markup_a, markup_b, markup_c).report( )
+        abjad> combine_markup_commands(markup_a, markup_b, markup_c).report()
         \combine
             \combine
                 \draw-circle #4 #0.4 ##f

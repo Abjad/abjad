@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_clef_and_staff_position_number_to_named_chromatic_pitch_01( ):
+def test_pitchtools_clef_and_staff_position_number_to_named_chromatic_pitch_01():
 
     clef = contexttools.ClefMark('treble')
 
@@ -15,7 +15,7 @@ def test_pitchtools_clef_and_staff_position_number_to_named_chromatic_pitch_01( 
     assert pitch == pitchtools.NamedChromaticPitch('c', 5)
 
 
-def test_pitchtools_clef_and_staff_position_number_to_named_chromatic_pitch_02( ):
+def test_pitchtools_clef_and_staff_position_number_to_named_chromatic_pitch_02():
 
     clef = contexttools.ClefMark('alto')
 
@@ -29,7 +29,7 @@ def test_pitchtools_clef_and_staff_position_number_to_named_chromatic_pitch_02( 
     assert pitch == pitchtools.NamedChromaticPitch('d', 4)
 
 
-def test_pitchtools_clef_and_staff_position_number_to_named_chromatic_pitch_03( ):
+def test_pitchtools_clef_and_staff_position_number_to_named_chromatic_pitch_03():
 
     clef = contexttools.ClefMark('bass')
 

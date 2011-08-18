@@ -125,7 +125,7 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
 
     ### crawl above will kill any tie applied to leaves
     ### reapply tie here if necessary
-    ### TODO: Possibly replace this with tietools.apply_tie_spanner_to_leaf_pair( )? ###
+    ### TODO: Possibly replace this with tietools.apply_tie_spanner_to_leaf_pair()? ###
     if did_split_leaf:
         if tie_after:
             leaves_at_split = [leaf_left_of_split, leaf_right_of_split]

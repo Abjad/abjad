@@ -3,7 +3,7 @@ from abjad.tools import durtools
 from abjad.tools import verticalitytools
 
 
-def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_01( ):
+def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_01():
 
     score = Score([ ])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -56,10 +56,10 @@ def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_01( ):
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
 
     vm = piano_staff_moment(durtools.Offset(99, 8))
-    assert vm.leaves == ( )
+    assert vm.leaves == ()
 
 
-def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_02( ):
+def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_02():
 
     score = Score([ ])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -112,4 +112,4 @@ def test_verticalitytools_get_vertical_moment_at_prolated_offset_in_expr_02( ):
     assert vm.leaves == (score[0][0][2], piano_staff[0][1], piano_staff[1][3])
 
     vm = scorewide_vertical_moment(durtools.Offset(99, 8))
-    assert vm.leaves == ( )
+    assert vm.leaves == ()

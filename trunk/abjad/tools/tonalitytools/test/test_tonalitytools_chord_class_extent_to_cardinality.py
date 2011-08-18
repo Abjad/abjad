@@ -3,7 +3,7 @@ from abjad.tools import tonalitytools
 import py.test
 
 
-def test_tonalitytools_chord_class_extent_to_cardinality_01( ):
+def test_tonalitytools_chord_class_extent_to_cardinality_01():
 
     assert tonalitytools.chord_class_extent_to_cardinality(5) == 3
     assert tonalitytools.chord_class_extent_to_cardinality(7) == 4
@@ -12,7 +12,7 @@ def test_tonalitytools_chord_class_extent_to_cardinality_01( ):
     assert tonalitytools.chord_class_extent_to_cardinality(13) == 7
 
 
-def test_tonalitytools_chord_class_extent_to_cardinality_02( ):
+def test_tonalitytools_chord_class_extent_to_cardinality_02():
 
     assert py.test.raises(TonalHarmonyError,
         'tonalitytools.chord_class_extent_to_cardinality(1)')

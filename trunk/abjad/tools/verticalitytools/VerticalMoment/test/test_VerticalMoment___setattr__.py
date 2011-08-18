@@ -3,7 +3,7 @@ from abjad.tools import verticalitytools
 import py.test
 
 
-def test_VerticalMoment___setattr___01( ):
+def test_VerticalMoment___setattr___01():
     '''Vertical moments are immutable.
     '''
 

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_BeamSpanner_span_like_named_01( ):
+def test_BeamSpanner_span_like_named_01():
     '''Abjad lets you span liked named voices.'''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -15,7 +15,7 @@ def test_BeamSpanner_span_like_named_01( ):
     assert isinstance(p.components[0], Staff)
     assert len(p.leaves) == 8
     assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
-    p.clear( )
+    p.clear()
 
     p = spannertools.BeamSpanner(t[:])
     assert len(p.components) == 2
@@ -42,7 +42,7 @@ def test_BeamSpanner_span_like_named_01( ):
     '''
 
 
-def test_BeamSpanner_span_like_named_02( ):
+def test_BeamSpanner_span_like_named_02():
     '''
     Abjad does NOT lets you span over liked named staves.
     '''
@@ -59,7 +59,7 @@ def test_BeamSpanner_span_like_named_02( ):
     assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([t[0][0], t[1][0]])')
 
 
-def test_BeamSpanner_span_like_named_03( ):
+def test_BeamSpanner_span_like_named_03():
     '''
     Like-named containers need not be lexically contiguous.
     '''
@@ -76,7 +76,7 @@ def test_BeamSpanner_span_like_named_03( ):
     assert isinstance(p.components[0], Voice)
     assert isinstance(p.components[1], Voice)
     assert len(p.leaves) == 8
-    p.clear( )
+    p.clear()
 
     r'''
     {
@@ -112,7 +112,7 @@ def test_BeamSpanner_span_like_named_03( ):
     '''
 
 
-def test_BeamSpanner_span_like_named_04( ):
+def test_BeamSpanner_span_like_named_04():
     '''
     Asymmetric structures are no problem.
     '''

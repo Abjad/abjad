@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Accidental_semitones_01( ):
+def test_Accidental_semitones_01():
 
     assert pitchtools.Accidental('ss').semitones == 2
     assert pitchtools.Accidental('tqs').semitones == 1.5

@@ -25,8 +25,8 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
     Return new meter.
 
     .. versionchanged:: 2.0
-        renamed ``metertools.make_best( )`` to
-        ``metertools.duration_and_possible_denominators_to_meter( )``.
+        renamed ``metertools.make_best()`` to
+        ``metertools.duration_and_possible_denominators_to_meter()``.
     '''
     from abjad.tools import contexttools
 

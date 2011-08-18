@@ -14,7 +14,7 @@ class Harp(_StringInstrument):
 
     ::
 
-        abjad> instrumenttools.Harp( )(piano_staff)
+        abjad> instrumenttools.Harp()(piano_staff)
         Harp('Harp', 'Hp.')
 
     ::
@@ -45,5 +45,5 @@ class Harp(_StringInstrument):
         _StringInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
-        self._copy_primary_clefs_to_all_clefs( )
+        self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-37, 44)

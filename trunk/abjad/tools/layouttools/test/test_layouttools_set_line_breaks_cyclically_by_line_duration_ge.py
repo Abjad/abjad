@@ -3,7 +3,7 @@ from abjad.tools import layouttools
 from abjad.tools.leaftools._Leaf import _Leaf
 
 
-def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01( ):
+def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
     '''Iterate klasses in expr and accumulate prolated duration.
         Add line break after every total le line duration.'''
 
@@ -42,7 +42,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01( ):
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t\t\\break\n\t}\n}"
 
 
-def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02( ):
+def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02():
     '''Iterate klasses in expr and accumulate prolated duration.
         Add line break after every total le line duration.'''
 

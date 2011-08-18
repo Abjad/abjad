@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumberedDiatonicPitchClass___init___01( ):
+def test_NumberedDiatonicPitchClass___init___01():
     '''Init numbered diatonic pitch-class from diatonic pitch-class number.
     '''
 
@@ -15,7 +15,7 @@ def test_NumberedDiatonicPitchClass___init___01( ):
     assert isinstance(numbered_diatonic_pitch_class, pitchtools.NumberedDiatonicPitchClass)
 
 
-def test_NumberedDiatonicPitchClass___init___02( ):
+def test_NumberedDiatonicPitchClass___init___02():
     '''Init numbered diatonic pitch-class from diatonic pitch-class name.
     '''
 
@@ -23,7 +23,7 @@ def test_NumberedDiatonicPitchClass___init___02( ):
     assert isinstance(diatonic_pitch_class, pitchtools.NumberedDiatonicPitchClass)
 
 
-def test_NumberedDiatonicPitchClass___init___03( ):
+def test_NumberedDiatonicPitchClass___init___03():
     '''Init numbered diatonic pitch-class from diatonic pitch-class.
     '''
 

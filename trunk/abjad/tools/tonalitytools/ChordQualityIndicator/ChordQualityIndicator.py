@@ -51,12 +51,12 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 
     @property
     def _chord_position_string(self):
-        return self.position.title( ).replace(' ', '')
+        return self.position.title().replace(' ', '')
 
     @property
     def _title_case_name(self):
-        return '%s%sIn%s' % (self._quality_string.title( ),
-            self.extent_name.title( ), self._chord_position_string)
+        return '%s%sIn%s' % (self._quality_string.title(),
+            self.extent_name.title(), self._chord_position_string)
 
     ### PRIVATE METHODS ###
 

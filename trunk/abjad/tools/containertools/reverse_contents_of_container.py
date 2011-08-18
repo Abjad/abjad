@@ -40,8 +40,8 @@ def reverse_contents_of_container(container):
     Return `container`.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.contents_reverse( )`` to
-        ``containertools.reverse_contents_of_container( )``.
+        renamed ``containertools.contents_reverse()`` to
+        ``containertools.reverse_contents_of_container()``.
     '''
     from abjad.tools import spannertools
 
@@ -54,9 +54,9 @@ def reverse_contents_of_container(container):
             return 0
 
     if isinstance(container, list):
-        container.reverse( )
+        container.reverse()
     elif isinstance(container, Container):
-        container._music.reverse( )
+        container._music.reverse()
         #spanners = container.spanners.contained
         spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(container)
         for s in spanners:

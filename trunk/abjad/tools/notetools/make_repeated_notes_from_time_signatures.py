@@ -16,7 +16,7 @@ def make_repeated_notes_from_time_signatures(time_signatures, pitch = "c'"):
 
     Return two-dimensional list of note lists.
 
-    Use ``seqtools.flatten_sequence( )`` to flatten output if required.
+    Use ``seqtools.flatten_sequence()`` to flatten output if required.
     '''
 
     ### init result

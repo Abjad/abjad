@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemeBoolean___setattr___01( ):
+def test_SchemeBoolean___setattr___01():
     '''Scheme booleans are immutable.
     '''
 

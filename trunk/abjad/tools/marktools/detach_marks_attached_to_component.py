@@ -47,7 +47,7 @@ def detach_marks_attached_to_component(component):
 
     marks = [ ]
     for mark in get_marks_attached_to_component(component):
-        mark.detach_mark( )
+        mark.detach_mark()
         marks.append(mark)
 
     return tuple(marks)

@@ -21,8 +21,8 @@ class _Component(_StrictComparator):
     def __init__(self):
         self._is_forbidden_to_update = False
         self._marks_are_current = False
-        self._marks_for_which_component_functions_as_effective_context = list( )
-        self._marks_for_which_component_functions_as_start_component = list( )
+        self._marks_for_which_component_functions_as_effective_context = list()
+        self._marks_for_which_component_functions_as_start_component = list()
         self._navigator = _NavigationInterface(self)
         self._offset = _OffsetInterface(self)
         self._offset_values_in_seconds_are_current = False
@@ -35,7 +35,7 @@ class _Component(_StrictComparator):
     def __copy__(self, *args):
         from abjad.tools import marktools
         from abjad.tools import markuptools
-        new = type(self)(*self.__getnewargs__( ))
+        new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
@@ -46,7 +46,7 @@ class _Component(_StrictComparator):
         return new
 
     def __getnewargs__(self):
-        return ( )
+        return ()
 
     def __mul__(self, n):
         from abjad.tools import componenttools
@@ -92,7 +92,7 @@ class _Component(_StrictComparator):
     def format(self):
         '''Read-only LilyPond input format of component.
         '''
-        self._update_marks_of_entire_score_tree_if_necessary( )
+        self._update_marks_of_entire_score_tree_if_necessary()
         return self._formatter.format
 
     @property
@@ -108,7 +108,7 @@ class _Component(_StrictComparator):
         '''Read-only reference to LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = LilyPondGrobOverrideComponentPlugIn( )
+            self._override = LilyPondGrobOverrideComponentPlugIn()
         return self._override
 
     @property
@@ -126,7 +126,7 @@ class _Component(_StrictComparator):
         '''Read-only reference LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = LilyPondContextSettingComponentPlugIn( )
+            self._set = LilyPondContextSettingComponentPlugIn()
         return self._set
 
     @property
@@ -138,7 +138,7 @@ class _Component(_StrictComparator):
     ### PRIVATE METHODS ###
 
     def _initialize_keyword_values(self, **kwargs):
-        for key, value in kwargs.iteritems( ):
+        for key, value in kwargs.iteritems():
             self._set_keyword_value(key, value)
 
     def _set_keyword_value(self, key, value):
@@ -207,26 +207,26 @@ class _Component(_StrictComparator):
         On the other hand, getting effective mark causes prolated offset values
         to update when at least one mark of appropriate type attaches to score.
         '''
-        components = self._iterate_score_components_depth_first( )
+        components = self._iterate_score_components_depth_first()
         for component in components:
             for mark in component._marks_for_which_component_functions_as_start_component:
                 if hasattr(mark, '_update_effective_context'):
-                    mark._update_effective_context( )
+                    mark._update_effective_context()
             component._marks_are_current = True
 
     def __update_offset_values_in_seconds_of_entire_score_tree(self):
-        components = self._iterate_score_components_depth_first( )
+        components = self._iterate_score_components_depth_first()
         for component in components:
-            component._offset._update_offset_values_of_component_in_seconds( )
+            component._offset._update_offset_values_of_component_in_seconds()
             component._offset_values_in_seconds_are_current = True
 
     def __update_prolated_offset_values_of_entire_score_tree(self):
         '''Updating prolated offset values does NOT update marks.
         Updating prolated offset values does NOT update offset values in seconds.
         '''
-        components = self._iterate_score_components_depth_first( )
+        components = self._iterate_score_components_depth_first()
         for component in components:
-            component._offset._update_prolated_offset_values_of_component( )
+            component._offset._update_prolated_offset_values_of_component()
             component._prolated_offset_values_are_current = True
 
     ### PRIVATE UPDATE METHODS ###
@@ -285,17 +285,17 @@ class _Component(_StrictComparator):
         '''
         if self._is_forbidden_to_update:
             return
-        state_flags = self._get_score_tree_state_flags( )
+        state_flags = self._get_score_tree_state_flags()
         marks_are_current = state_flags[1]
         if not marks_are_current:
-            self.__update_marks_of_entire_score_tree( )
-            self.__update_offset_values_in_seconds_of_entire_score_tree( )
+            self.__update_marks_of_entire_score_tree()
+            self.__update_offset_values_in_seconds_of_entire_score_tree()
 
     def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
         if self._is_forbidden_to_update:
             return
-        state_flags = self._get_score_tree_state_flags( )
+        state_flags = self._get_score_tree_state_flags()
         prolated_offset_values_are_current = state_flags[0]
         if not prolated_offset_values_are_current:
-            self.__update_prolated_offset_values_of_entire_score_tree( )
-            self.__update_leaf_indices_and_measure_numbers_in_score_tree( )
+            self.__update_prolated_offset_values_of_entire_score_tree()
+            self.__update_leaf_indices_and_measure_numbers_in_score_tree()

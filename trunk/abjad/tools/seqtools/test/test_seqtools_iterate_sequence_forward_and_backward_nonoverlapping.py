@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_iterate_sequence_forward_and_backward_nonoverlapping_01( ):
+def test_seqtools_iterate_sequence_forward_and_backward_nonoverlapping_01():
 
     t = list(seqtools.iterate_sequence_forward_and_backward_nonoverlapping(xrange(1, 6)))
 

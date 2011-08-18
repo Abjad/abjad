@@ -26,7 +26,7 @@ def eject_contents_of_container(container):
     ::
 
         abjad> container
-        { }
+        {}
 
     ::
 

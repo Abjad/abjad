@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 import py
 
 
-def test_mathtools_greatest_common_divisor_01( ):
+def test_mathtools_greatest_common_divisor_01():
     '''Greatest common integer divisor of integers.
     '''
 
@@ -15,7 +15,7 @@ def test_mathtools_greatest_common_divisor_01( ):
     assert mathtools.greatest_common_divisor(11, 12) == 1
 
 
-def test_mathtools_greatest_common_divisor_02( ):
+def test_mathtools_greatest_common_divisor_02():
     '''Raise exception on noninteger input.
     '''
 

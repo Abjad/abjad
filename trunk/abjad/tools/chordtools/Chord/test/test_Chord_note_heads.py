@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Chord_note_heads_01( ):
+def test_Chord_note_heads_01():
     '''Returns immutable tuple of note_heads in chord.
     '''
 
@@ -11,11 +11,11 @@ def test_Chord_note_heads_01( ):
 
     assert isinstance(note_heads, tuple)
     assert len(note_heads) == 3
-    assert py.test.raises(AttributeError, 'note_heads.pop( )')
+    assert py.test.raises(AttributeError, 'note_heads.pop()')
     assert py.test.raises(AttributeError, 'note_heads.remove(note_heads[0])')
 
 
-def test_Chord_note_heads_02( ):
+def test_Chord_note_heads_02():
     '''Chords with equivalent pitch numbers *do* carry equivalent note_head instances.
     '''
 
@@ -25,7 +25,7 @@ def test_Chord_note_heads_02( ):
     assert t1.note_heads == t2.note_heads
 
 
-def test_Chord_note_heads_03( ):
+def test_Chord_note_heads_03():
     '''Note head can be assigned with a LilyPond-style note name string.
     '''
 
@@ -35,7 +35,7 @@ def test_Chord_note_heads_03( ):
     assert t.format == "<c' d' e'>4"
 
 
-def test_Chord_note_heads_04( ):
+def test_Chord_note_heads_04():
     '''Set chord with tweaked note heads.
     '''
 

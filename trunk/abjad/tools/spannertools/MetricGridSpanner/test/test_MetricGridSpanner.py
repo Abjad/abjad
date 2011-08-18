@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_MetricGridSpanner_01( ):
+def test_MetricGridSpanner_01():
     t = Staff(Note(0, (1, 8)) * 8)
     m = spannertools.MetricGridSpanner(t.leaves, [(2, 8)])
 
@@ -23,7 +23,7 @@ def test_MetricGridSpanner_01( ):
     '''
 
 
-def test_MetricGridSpanner_02( ):
+def test_MetricGridSpanner_02():
     t = Staff(Note(0, (1,8)) * 8)
     m = spannertools.MetricGridSpanner(t.leaves, [(3, 16)])
 
@@ -44,7 +44,7 @@ def test_MetricGridSpanner_02( ):
     '''
 
 
-def test_MetricGridSpanner_03( ):
+def test_MetricGridSpanner_03():
     '''MetricGrid cycles throught given meters to cover spanner's duration.'''
 
     t = Staff(Note(0, (1,8)) * 8)
@@ -72,7 +72,7 @@ def test_MetricGridSpanner_03( ):
     '''
 
 
-def test_MetricGridSpanner_04( ):
+def test_MetricGridSpanner_04():
     '''MetricGrid knows how to draw itself in the middle of a note. '''
 
     t = Staff(notetools.make_repeated_notes(8))
@@ -109,7 +109,7 @@ def test_MetricGridSpanner_04( ):
     assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\t<<\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t<<\n\t{\n\t\t\\time 3/16\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
 
 
-def test_MetricGridSpanner_05( ):
+def test_MetricGridSpanner_05():
     '''MetricGrid knows how to draw itself in the middle of a note. '''
 
     t = Staff(Note(0, (1,2)) * 2)

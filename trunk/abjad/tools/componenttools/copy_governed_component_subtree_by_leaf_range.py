@@ -54,12 +54,12 @@ def copy_governed_component_subtree_by_leaf_range(component, start = 0, stop = N
     When `stop` is none copy all leaves from `start` forward.
 
     .. versionchanged:: 2.0
-        renamed ``clonewp.by_leaf_range_with_parentage( )`` to
-        ``componenttools.copy_governed_component_subtree_by_leaf_range( )``.
+        renamed ``clonewp.by_leaf_range_with_parentage()`` to
+        ``componenttools.copy_governed_component_subtree_by_leaf_range()``.
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.clone_governed_component_subtree_by_leaf_range( )`` to
-        ``componenttools.copy_governed_component_subtree_by_leaf_range( )``.
+        renamed ``componenttools.clone_governed_component_subtree_by_leaf_range()`` to
+        ``componenttools.copy_governed_component_subtree_by_leaf_range()``.
     '''
     from abjad.tools.containertools.Container import Container
     from abjad.tools.leaftools._Leaf import _Leaf
@@ -111,7 +111,7 @@ def copy_governed_component_subtree_by_leaf_range(component, start = 0, stop = N
     _found_start_leaf = False
 
     while not _found_start_leaf:
-        leaf = leaftools.iterate_leaves_forward_in_expr(governor_copy).next( )
+        leaf = leaftools.iterate_leaves_forward_in_expr(governor_copy).next()
         #if leaf == start_leaf:
         if leaf is start_leaf:
             _found_start_leaf = True
@@ -124,7 +124,7 @@ def copy_governed_component_subtree_by_leaf_range(component, start = 0, stop = N
     _found_stop_leaf = False
 
     while not _found_stop_leaf:
-        leaf = leaftools.iterate_leaves_backward_in_expr(governor_copy).next( )
+        leaf = leaftools.iterate_leaves_backward_in_expr(governor_copy).next()
         #if leaf == stop_leaf:
         if leaf is stop_leaf:
             _found_stop_leaf = True

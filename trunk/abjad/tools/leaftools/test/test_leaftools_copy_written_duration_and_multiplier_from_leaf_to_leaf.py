@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_copy_written_duration_and_multiplier_from_leaf_to_leaf_01( ):
+def test_leaftools_copy_written_duration_and_multiplier_from_leaf_to_leaf_01():
 
     note = Note("c'4")
     note.duration_multiplier = Duration(1, 2)

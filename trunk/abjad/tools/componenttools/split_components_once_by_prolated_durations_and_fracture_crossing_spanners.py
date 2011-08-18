@@ -37,11 +37,11 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
         \new Staff {
             {
                 \time 1/32
-                c'32 [ ] ( )
+                c'32 [ ] ()
             }
             {
                 \time 3/32
-                c'16. [ ] ( )
+                c'16. [ ] ()
             }
             {
                 \time 4/32
@@ -55,8 +55,8 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
         }
 
     .. versionchanged:: 2.0
-        renamed ``partition.fractured_by_durations( )`` to
-        ``componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners( )``.
+        renamed ``partition.fractured_by_durations()`` to
+        ``componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners()``.
     '''
 
     return _split_components_by_prolated_durations(components, durations,

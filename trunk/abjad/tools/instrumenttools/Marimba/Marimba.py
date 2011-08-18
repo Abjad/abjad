@@ -12,7 +12,7 @@ class Marimba(_PercussionInstrument):
 
     ::
 
-        abjad> instrumenttools.Marimba( )(staff)
+        abjad> instrumenttools.Marimba()(staff)
         Marimba('Marimba', 'Mb.')
 
     ::
@@ -35,5 +35,5 @@ class Marimba(_PercussionInstrument):
         _PercussionInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
-        self._copy_primary_clefs_to_all_clefs( )
+        self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-19, 36)

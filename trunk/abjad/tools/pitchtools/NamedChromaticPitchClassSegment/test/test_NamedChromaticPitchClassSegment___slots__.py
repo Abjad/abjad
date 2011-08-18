@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_NamedChromaticPitchClassSegment___slots___01( ):
+def test_NamedChromaticPitchClassSegment___slots___01():
 
     named_chromatic_pitch_class_segment = pitchtools.NamedChromaticPitchClassSegment([
         'gs', 'a', 'as', 'c', 'cs'])

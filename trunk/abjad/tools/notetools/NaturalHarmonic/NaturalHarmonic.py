@@ -22,7 +22,7 @@ class NaturalHarmonic(Note, _Flageolet):
     Natural harmonics are immutable.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     def __init__(self, *args):
         Note.__init__(self, *args)

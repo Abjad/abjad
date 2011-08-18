@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test__Leaf_number_01( ):
+def test__Leaf_number_01():
     '''Leaves in staff number correctly.'''
 
     t = Staff("c'8 d'8 e'8")
@@ -11,7 +11,7 @@ def test__Leaf_number_01( ):
     assert t[2].leaf_index == 2
 
 
-def test__Leaf_number_02( ):
+def test__Leaf_number_02():
     '''Leaves in measure in staff number correctly.'''
 
     t = Staff([Measure((3, 8), "c'8 d'8 e'8")])
@@ -21,7 +21,7 @@ def test__Leaf_number_02( ):
     assert leaves[2].leaf_index == 2
 
 
-def test__Leaf_number_03( ):
+def test__Leaf_number_03():
     '''Leaves in multiple measures in staff number corretly.'''
 
     t = Staff(Measure((2, 8), "c'8 d'8") * 3)
@@ -34,14 +34,14 @@ def test__Leaf_number_03( ):
     assert leaves[5].leaf_index == 5
 
 
-def test__Leaf_number_04( ):
+def test__Leaf_number_04():
     '''Orphan leaves number correctly.'''
 
     t = Note("c'4")
     assert t.leaf_index == 0
 
 
-def test__Leaf_number_05( ):
+def test__Leaf_number_05():
     '''Leaves number correctly after contents rotation.'''
 
     t = Staff("c'8 d'8 e'8 f'8")

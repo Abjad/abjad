@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_componenttools_sum_duration_of_components_in_seconds_01( ):
+def test_componenttools_sum_duration_of_components_in_seconds_01():
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     score = Score([Staff([tuplet])])

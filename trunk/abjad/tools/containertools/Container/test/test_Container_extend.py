@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Container_extend_01( ):
+def test_Container_extend_01():
     '''Extend container with list of leaves.'''
 
     t = Voice("c'8 d'8")
@@ -30,7 +30,7 @@ def test_Container_extend_01( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8\n\td'8\n}"
 
 
-def test_Container_extend_02( ):
+def test_Container_extend_02():
     '''Extend container with contents of other container.'''
 
     t = Voice("c'8 d'8")
@@ -60,7 +60,7 @@ def test_Container_extend_02( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_Container_extend_03( ):
+def test_Container_extend_03():
     '''Extending container with empty list leaves container unchanged.'''
 
     t = Voice("c'8 d'8")
@@ -78,7 +78,7 @@ def test_Container_extend_03( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_Container_extend_04( ):
+def test_Container_extend_04():
     '''Extending one container with empty second container
         leaves both containers unchanged.'''
 
@@ -97,7 +97,7 @@ def test_Container_extend_04( ):
     assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_Container_extend_05( ):
+def test_Container_extend_05():
     '''Trying to extend container with noncomponent raises TypeError.'''
 
     t = Voice("c'8 d'8")
@@ -107,7 +107,7 @@ def test_Container_extend_05( ):
     assert py.test.raises(Exception, "t.extend('foo')")
 
 
-def test_Container_extend_06( ):
+def test_Container_extend_06():
     '''Trying to extend container with noncontainer raises TypeError.'''
 
     t = Voice("c'8 d'8")
@@ -117,7 +117,7 @@ def test_Container_extend_06( ):
     assert py.test.raises(AssertionError, "t.extend(Chord([2, 3, 5], (1, 4)))")
 
 
-def test_Container_extend_07( ):
+def test_Container_extend_07():
     '''Extend container with partial and
         spanned contents of other container.'''
 
@@ -172,7 +172,7 @@ def test_Container_extend_07( ):
     assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_Container_extend_08( ):
+def test_Container_extend_08():
     '''Extend container with partial and
         spanned contents of other container.
         Covered span comes with components from donor container.'''

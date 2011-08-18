@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_leaf_to_diminished_tuplet_with_proportions_01( ):
+def test_leaftools_leaf_to_diminished_tuplet_with_proportions_01():
 
     note = Note(0, (3, 16))
 

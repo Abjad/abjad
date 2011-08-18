@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_all_are_contiguous_components_01( ):
+def test_componenttools_all_are_contiguous_components_01():
     '''True for strictly contiguous leaves in voice.
         False for other time orderings of leaves in voice.'''
 
@@ -27,7 +27,7 @@ def test_componenttools_all_are_contiguous_components_01( ):
     assert not componenttools.all_are_contiguous_components(components)
 
 
-def test_componenttools_all_are_contiguous_components_02( ):
+def test_componenttools_all_are_contiguous_components_02():
     '''True for strictly contiguous components.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -55,7 +55,7 @@ def test_componenttools_all_are_contiguous_components_02( ):
     assert componenttools.all_are_contiguous_components(t.leaves)
 
 
-def test_componenttools_all_are_contiguous_components_03( ):
+def test_componenttools_all_are_contiguous_components_03():
     '''Unicorporated leaves can not be evaluated for contiguity.'''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -64,7 +64,7 @@ def test_componenttools_all_are_contiguous_components_03( ):
     assert not componenttools.all_are_contiguous_components(notes, allow_orphans = False)
 
 
-def test_componenttools_all_are_contiguous_components_04( ):
+def test_componenttools_all_are_contiguous_components_04():
     '''Empty list returns True.'''
 
     t = [ ]

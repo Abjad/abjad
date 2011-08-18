@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tietools_iterate_tie_chains_forward_in_expr_01( ):
+def test_tietools_iterate_tie_chains_forward_in_expr_01():
     '''Yield successive tie chains.'''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -23,7 +23,7 @@ def test_tietools_iterate_tie_chains_forward_in_expr_01( ):
     assert chains[1] == (t[2], t[3])
 
 
-def test_tietools_iterate_tie_chains_forward_in_expr_02( ):
+def test_tietools_iterate_tie_chains_forward_in_expr_02():
     '''Yield successive tie chains.'''
 
     t = Staff(notetools.make_repeated_notes(4))

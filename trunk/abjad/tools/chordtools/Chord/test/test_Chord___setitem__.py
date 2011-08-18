@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Chord___setitem___01( ):
+def test_Chord___setitem___01():
     '''Set chord item with tweaked note head.
     '''
 

@@ -10,8 +10,8 @@ def get_nth_leaf_in_spanner(spanner, idx):
 
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.get_nth_leaf( )`` to
-        ``spannertools.get_nth_leaf_in_spanner( )``.
+        renamed ``spannertools.get_nth_leaf()`` to
+        ``spannertools.get_nth_leaf_in_spanner()``.
     '''
 
     if not isinstance(idx, (int, long)):

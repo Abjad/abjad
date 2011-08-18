@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InversionEquivalentDiatonicIntervalClassSegment_is_tertian_01( ):
+def test_InversionEquivalentDiatonicIntervalClassSegment_is_tertian_01():
 
     dicseg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
@@ -11,7 +11,7 @@ def test_InversionEquivalentDiatonicIntervalClassSegment_is_tertian_01( ):
     assert dicseg.is_tertian
 
 
-def test_InversionEquivalentDiatonicIntervalClassSegment_is_tertian_02( ):
+def test_InversionEquivalentDiatonicIntervalClassSegment_is_tertian_02():
 
     dicseg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 2),

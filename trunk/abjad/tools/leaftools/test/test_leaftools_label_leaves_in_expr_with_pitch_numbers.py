@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_label_leaves_in_expr_with_pitch_numbers_01( ):
+def test_leaftools_label_leaves_in_expr_with_pitch_numbers_01():
     '''Works on notes, rests and chords.
     '''
 

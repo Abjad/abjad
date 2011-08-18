@@ -27,8 +27,8 @@ def yield_outer_product_of_sequences(sequences):
     Return generator.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.outer_product( )`` to
-        ``seqtools.yield_outer_product_of_sequences( )``.
+        renamed ``seqtools.outer_product()`` to
+        ``seqtools.yield_outer_product_of_sequences()``.
     '''
 
     def _helper(list1, list2):

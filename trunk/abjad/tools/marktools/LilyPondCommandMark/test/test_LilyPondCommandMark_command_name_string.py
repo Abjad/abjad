@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_LilyPondCommandMark_command_name_string_01( ):
+def test_LilyPondCommandMark_command_name_string_01():
     '''LilyPondCommandMark command name string is read / write.
     '''
 

@@ -43,8 +43,8 @@ def repeat_contents_of_container(container, total = 2):
     Return `container`.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.contents_multiply( )`` to
-        ``containertools.repeat_contents_of_container( )``.
+        renamed ``containertools.contents_multiply()`` to
+        ``containertools.repeat_contents_of_container()``.
     '''
 
     if not isinstance(container, Container):

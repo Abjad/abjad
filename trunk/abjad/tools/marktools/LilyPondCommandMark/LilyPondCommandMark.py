@@ -56,7 +56,7 @@ class LilyPondCommandMark(Mark):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def command_name_string( ):
+    def command_name_string():
         def fget(self):
             '''Get command name string of LilyPond command mark::
 
@@ -76,7 +76,7 @@ class LilyPondCommandMark(Mark):
         def fset(self, command_name_string):
             assert isinstance(command_name_string, str)
             self._command_name_string = command_name_string
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def format(self):

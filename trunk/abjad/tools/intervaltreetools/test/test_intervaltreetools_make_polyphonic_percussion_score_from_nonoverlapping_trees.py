@@ -2,7 +2,7 @@ from abjad.tools.intervaltreetools import *
 from abjad.tools.intervaltreetools._make_test_intervals import _make_test_intervals
 
 
-def test_intervaltreetools_make_polyphonic_percussion_score_from_nonoverlapping_trees_01( ):
+def test_intervaltreetools_make_polyphonic_percussion_score_from_nonoverlapping_trees_01():
     a = BoundedInterval(0, 3, {})
     b = BoundedInterval(6, 12, {})
     c = BoundedInterval(9, 15, {})

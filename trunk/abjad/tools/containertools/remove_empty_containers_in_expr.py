@@ -53,8 +53,8 @@ def remove_empty_containers_in_expr(expr):
     Return none.
 
     .. versionchanged:: 2.0
-        renamed ``containertools.remove_empty( )`` to
-        ``containertools.remove_empty_containers_in_expr( )``.
+        renamed ``containertools.remove_empty()`` to
+        ``containertools.remove_empty_containers_in_expr()``.
     '''
 
     class Visitor(object):
@@ -62,5 +62,5 @@ def remove_empty_containers_in_expr(expr):
             if isinstance(node, Container) and len(node.leaves) == 0:
                 remove_component_subtree_from_score_and_spanners([node])
 
-    v = Visitor( )
+    v = Visitor()
     expr._navigator._traverse(v, depthFirst = False)

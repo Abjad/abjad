@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import mathtools
 
 
-def test_mathtools_is_assignable_integer_01( ):
+def test_mathtools_is_assignable_integer_01():
     '''True when integer n can be written without
     recourse to ties. Otherwise false.
     '''
@@ -18,7 +18,7 @@ def test_mathtools_is_assignable_integer_01( ):
     assert mathtools.is_assignable_integer(8)
 
 
-def test_mathtools_is_assignable_integer_02( ):
+def test_mathtools_is_assignable_integer_02():
 
     assert not mathtools.is_assignable_integer(9)
     assert not mathtools.is_assignable_integer(10)

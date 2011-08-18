@@ -15,8 +15,8 @@ def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.expr_has_duplicate_numeric_chromatic_pitch_class( )`` to
-        ``pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class( )``.
+        renamed ``pitchtools.expr_has_duplicate_numeric_chromatic_pitch_class()`` to
+        ``pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class()``.
     '''
 
     pitch_classes = list_numbered_chromatic_pitch_classes_in_expr(expr)

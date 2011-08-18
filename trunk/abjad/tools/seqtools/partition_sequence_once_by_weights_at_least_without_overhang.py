@@ -17,8 +17,8 @@ def partition_sequence_once_by_weights_at_least_without_overhang(sequence, weigh
     Return list sequence element reference lists.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.group_sequence_elements_once_by_weights_at_least_without_overhang( )`` to
-        ``seqtools.partition_sequence_once_by_weights_at_least_without_overhang( )``.
+        renamed ``seqtools.group_sequence_elements_once_by_weights_at_least_without_overhang()`` to
+        ``seqtools.partition_sequence_once_by_weights_at_least_without_overhang()``.
     '''
 
     return _partition_sequence_elements_by_weights_at_least(

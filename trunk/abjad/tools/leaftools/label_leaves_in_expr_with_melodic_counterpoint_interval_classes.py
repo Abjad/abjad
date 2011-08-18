@@ -33,8 +33,8 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup
     for note in componenttools.iterate_components_forward_in_expr(expr, Note):
         thread_iterator = threadtools.iterate_thread_forward_from_component(note, _Leaf)
         try:
-            thread_iterator.next( )
-            next_leaf = thread_iterator.next( )
+            thread_iterator.next()
+            next_leaf = thread_iterator.next()
             if isinstance(next_leaf, Note):
                 cpi = \
                     pitchtools.calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(

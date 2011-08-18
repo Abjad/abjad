@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_pitchtools_inventory_inversion_equivalent_diatonic_interval_classes_01( ):
+def test_pitchtools_inventory_inversion_equivalent_diatonic_interval_classes_01():
 
-    all_dics = pitchtools.inventory_inversion_equivalent_diatonic_interval_classes( )
+    all_dics = pitchtools.inventory_inversion_equivalent_diatonic_interval_classes()
 
     assert all_dics == [
         pitchtools.InversionEquivalentDiatonicIntervalClass('perfect', 1),

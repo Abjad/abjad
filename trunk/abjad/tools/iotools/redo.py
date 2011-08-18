@@ -14,7 +14,7 @@ import time
 def redo(target = -1, lily_time = 10):
     r'''Rerender the last ``.ly`` file created in Abjad and then show the resulting PDF::
 
-        abjad> iotools.redo( ) # doctest: +SKIP
+        abjad> iotools.redo() # doctest: +SKIP
 
     Rerender the next-to-last ``.ly`` file created in Abjad and then show the resulting PDF::
 
@@ -24,14 +24,14 @@ def redo(target = -1, lily_time = 10):
     '''
 
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = _read_config_file( )['abjad_output']
+    ABJADOUTPUT = _read_config_file()['abjad_output']
     _verify_output_directory(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
 
-    ### TODO: Encapsulate as a single function called cfg._find_target( )
+    ### TODO: Encapsulate as a single function called cfg._find_target()
     ### find target
     if isinstance(target, int) and target < 0:
-        last_lilypond = get_last_output_file_name( )
+        last_lilypond = get_last_output_file_name()
         if last_lilypond:
             last_number = last_lilypond.replace('.ly', '')
             target_number = int(last_number) + (target + 1)
@@ -48,9 +48,9 @@ def redo(target = -1, lily_time = 10):
         raise ValueError('can not get target LilyPond input from %s.' % target)
 
     ### render
-    start_time = time.time( )
-    _run_lilypond(target_ly, _read_config_file( )['lilypond_path'])
-    stop_time = time.time( )
+    start_time = time.time()
+    _run_lilypond(target_ly, _read_config_file()['lilypond_path'])
+    stop_time = time.time()
     actual_lily_time = int(stop_time - start_time)
 
     os.chdir(current_directory)
@@ -58,9 +58,9 @@ def redo(target = -1, lily_time = 10):
     if lily_time <= actual_lily_time:
         print 'LilyPond processing time equal to %s seconds ...' % actual_lily_time
 
-    ### TODO: Encapsulate as cfg._open_pdf( )
+    ### TODO: Encapsulate as cfg._open_pdf()
     ### open pdf
-    config = _read_config_file( )
+    config = _read_config_file()
     pdf_viewer = config['pdf_viewer']
     ABJADOUTPUT = config['abjad_output']
     #name = os.path.join(ABJADOUTPUT, name)

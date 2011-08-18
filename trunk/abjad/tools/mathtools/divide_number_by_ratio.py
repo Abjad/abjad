@@ -30,8 +30,8 @@ def divide_number_by_ratio(number, ratio):
     Return list of fractions or list of floats.
 
     .. versionchanged:: 2.0
-        renamed ``mathtools.divide_number_by_ratio( )`` to
-        ``mathtools.divide_number_by_ratio( )``.
+        renamed ``mathtools.divide_number_by_ratio()`` to
+        ``mathtools.divide_number_by_ratio()``.
     '''
 
     if not isinstance(number, Number):

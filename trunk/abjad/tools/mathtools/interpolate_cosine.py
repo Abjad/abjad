@@ -14,8 +14,8 @@ def interpolate_cosine(y1, y2, mu):
     Return float.
 
     .. versionchanged:: 2.0
-        renamed ``interpolate.cosine( )`` to
-        ``mathtools.interpolate_cosine( )``.
+        renamed ``interpolate.cosine()`` to
+        ``mathtools.interpolate_cosine()``.
     '''
 
     mu2 = (1 - math.cos(mu * math.pi)) / 2

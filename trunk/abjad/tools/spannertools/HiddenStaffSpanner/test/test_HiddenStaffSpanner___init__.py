@@ -1,15 +1,15 @@
 from abjad import *
 
 
-def test_HiddenStaffSpanner___init___01( ):
+def test_HiddenStaffSpanner___init___01():
     '''Init empty hidden staff spanner.
     '''
 
-    spanner = spannertools.HiddenStaffSpanner( )
+    spanner = spannertools.HiddenStaffSpanner()
     assert isinstance(spanner, spannertools.HiddenStaffSpanner)
 
 
-def test_HiddenStaffSpanner___init___02( ):
+def test_HiddenStaffSpanner___init___02():
     '''Hide staff around one measure.'''
 
     t = Staff(Measure((2, 8), "c'8 d'8") * 3)
@@ -63,7 +63,7 @@ def test_HiddenStaffSpanner___init___02( ):
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\t\\stopStaff\n\t\te'8\n\t\tf'8\n\t\t\\startStaff\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
-def test_HiddenStaffSpanner___init___03( ):
+def test_HiddenStaffSpanner___init___03():
     '''Hide staff around one leaf.'''
 
     t = Note(0, (1, 8))

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Chord___init___01( ):
+def test_Chord___init___01():
     '''Init empty chord.
     '''
 
@@ -9,7 +9,7 @@ def test_Chord___init___01( ):
     assert t.format == "<>4"
 
 
-def test_Chord___init___02( ):
+def test_Chord___init___02():
     '''Init chord with numbers.
     '''
 
@@ -17,7 +17,7 @@ def test_Chord___init___02( ):
     assert t.format == "<d' e' f'>4"
 
 
-def test_Chord___init___03( ):
+def test_Chord___init___03():
     '''Init chord with pitch tokens.
     '''
 
@@ -25,7 +25,7 @@ def test_Chord___init___03( ):
     assert t.format == "<ds' ef'>4"
 
 
-def test_Chord___init___04( ):
+def test_Chord___init___04():
     '''Init chord with pitches.
     '''
 
@@ -33,7 +33,7 @@ def test_Chord___init___04( ):
     assert t.format == "<ds' ef'>4"
 
 
-def test_Chord___init___05( ):
+def test_Chord___init___05():
     '''Init chord with pitch token and pitch together.
     '''
 
@@ -41,7 +41,7 @@ def test_Chord___init___05( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord___init___06( ):
+def test_Chord___init___06():
     '''Init chord with list of pitch names.
     '''
 
@@ -49,7 +49,7 @@ def test_Chord___init___06( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord___init___07( ):
+def test_Chord___init___07():
     '''Init chord with LilyPond input string.
     '''
 
@@ -57,7 +57,7 @@ def test_Chord___init___07( ):
     assert t.format == "<d' ef' e'>4"
 
 
-def test_Chord___init___08( ):
+def test_Chord___init___08():
     '''Init chord from skip.
     '''
 
@@ -71,7 +71,7 @@ def test_Chord___init___08( ):
     assert c.written_duration == d
 
 
-def test_Chord___init___09( ):
+def test_Chord___init___09():
     '''Init chord from skip.
     '''
 
@@ -85,7 +85,7 @@ def test_Chord___init___09( ):
     assert chord._parentage.parent is None
 
 
-def test_Chord___init___10( ):
+def test_Chord___init___10():
     '''Init chord from containerized skip.
     '''
 
@@ -99,7 +99,7 @@ def test_Chord___init___10( ):
     assert chord._parentage.parent is None
 
 
-def test_Chord___init___11( ):
+def test_Chord___init___11():
     '''Init chord from beamed skip.
     '''
 
@@ -111,7 +111,7 @@ def test_Chord___init___11( ):
     assert t[1]._parentage.parent is t
 
 
-def test_Chord___init___12( ):
+def test_Chord___init___12():
     '''Init chord from rest.
     '''
 
@@ -125,7 +125,7 @@ def test_Chord___init___12( ):
     assert c.written_duration == d
 
 
-def test_Chord___init___13( ):
+def test_Chord___init___13():
     '''Init chord from tupletized rest.
     '''
 
@@ -139,7 +139,7 @@ def test_Chord___init___13( ):
     assert chord._parentage.parent is None
 
 
-def test_Chord___init___14( ):
+def test_Chord___init___14():
     '''Init chord from rest.
     '''
 
@@ -152,7 +152,7 @@ def test_Chord___init___14( ):
     assert chord._parentage.parent is None
 
 
-def test_Chord___init___15( ):
+def test_Chord___init___15():
     '''Init chord from note.
     '''
 
@@ -169,7 +169,7 @@ def test_Chord___init___15( ):
     assert c.written_duration == d
 
 
-def test_Chord___init___16( ):
+def test_Chord___init___16():
     '''Init chord from tupletized note.
     '''
 
@@ -185,7 +185,7 @@ def test_Chord___init___16( ):
     assert chord.written_duration == d
 
 
-def test_Chord___init___17( ):
+def test_Chord___init___17():
     '''Init chord from beamed note.
     '''
 
@@ -197,7 +197,7 @@ def test_Chord___init___17( ):
     assert t[0]._parentage.parent is t
 
 
-def test_Chord___init___18( ):
+def test_Chord___init___18():
     '''Init empty chord from LilyPond input string.
     '''
 

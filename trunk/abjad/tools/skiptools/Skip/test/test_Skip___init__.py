@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Skip___init___01( ):
+def test_Skip___init___01():
     '''Init skip from LilyPond input string.
     '''
 
@@ -9,7 +9,7 @@ def test_Skip___init___01( ):
     assert isinstance(skip, skiptools.Skip)
 
 
-def test_Skip___init___02( ):
+def test_Skip___init___02():
     '''Init skip from written duration and LilyPond multiplier.
     '''
 
@@ -18,7 +18,7 @@ def test_Skip___init___02( ):
     assert isinstance(skip, skiptools.Skip)
 
 
-def test_Skip___init___03( ):
+def test_Skip___init___03():
     '''Init skip from containerize note.
     '''
 
@@ -33,7 +33,7 @@ def test_Skip___init___03( ):
     assert s.written_duration == duration
 
 
-def test_Skip___init___04( ):
+def test_Skip___init___04():
     '''Init skip from tupletized note.
     '''
 
@@ -47,7 +47,7 @@ def test_Skip___init___04( ):
     assert skip._parentage.parent is None
 
 
-def test_Skip___init___05( ):
+def test_Skip___init___05():
     '''Init skip from beamed chord.
     '''
 
@@ -60,7 +60,7 @@ def test_Skip___init___05( ):
     assert skip._parentage.parent is None
 
 
-def test_Skip___init___06( ):
+def test_Skip___init___06():
     n = Note(2, (1, 8))
     d = n.written_duration
     s = skiptools.Skip(n)
@@ -73,7 +73,7 @@ def test_Skip___init___06( ):
     assert s.written_duration == d
 
 
-def test_Skip___init___07( ):
+def test_Skip___init___07():
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
     d = t[0].written_duration
     skip = skiptools.Skip(t[0])
@@ -83,7 +83,7 @@ def test_Skip___init___07( ):
     assert t[0].written_duration == d
 
 
-def test_Skip___init___08( ):
+def test_Skip___init___08():
     '''Init skip from beamed note.
     '''
 
@@ -95,7 +95,7 @@ def test_Skip___init___08( ):
     assert t[0]._parentage.parent is t
 
 
-def test_Skip___init___09( ):
+def test_Skip___init___09():
     '''Init skip from unincorporaed rest.
     '''
 
@@ -110,7 +110,7 @@ def test_Skip___init___09( ):
     assert s.written_duration == d
 
 
-def test_Skip___init___10( ):
+def test_Skip___init___10():
     '''Init skip from tupletized rest.
     '''
 
@@ -124,7 +124,7 @@ def test_Skip___init___10( ):
     assert skip._parentage.parent is None
 
 
-def test_Skip___init___11( ):
+def test_Skip___init___11():
     '''Init skip from spanned rest.
     '''
 

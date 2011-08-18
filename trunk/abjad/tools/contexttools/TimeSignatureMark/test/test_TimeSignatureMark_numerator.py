@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TimeSignatureMark_numerator_01( ):
+def test_TimeSignatureMark_numerator_01():
     '''Time signature numerator is read / write.
     '''
 
@@ -13,7 +13,7 @@ def test_TimeSignatureMark_numerator_01( ):
 
 
 
-def test_TimeSignatureMark_numerator_02( ):
+def test_TimeSignatureMark_numerator_02():
     '''Time signature formats correctly after numerator change.
     '''
 

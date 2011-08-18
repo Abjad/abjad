@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_01( ):
+def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_01():
     '''Flip leaf under continuous spanner.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -31,7 +31,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\td'8\n\tf'8 ]\n}"
 
 
-def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_02( ):
+def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_02():
     '''Flip leaf across spanner boundaries.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -62,7 +62,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert t.format == "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8 [\n\tf'8 ]\n}"
 
 
-def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_03( ):
+def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_03():
     '''Flip leaf from within to without spanner.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -92,7 +92,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert t.format == "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8\n\tf'8\n}"
 
 
-def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_04( ):
+def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_04():
     '''Donate from empty container to leaf.'''
 
     t = Voice([Container("c'8 d'8"), Container([ ])])
@@ -128,7 +128,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\te'8 ]\n}"
 
 
-def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_05( ):
+def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_05():
     '''Donate from empty container to nonempty container.'''
 
     t = Voice([Container("c'8 d'8"), Container([ ])])
@@ -168,7 +168,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t{\n\t\te'8 \\glissando\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_06( ):
+def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_06():
     '''Donate from note to rest.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -218,7 +218,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\tr8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_07( ):
+def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_07():
     '''Donate from note to tuplet.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
+def test_componenttools_component_to_pitch_and_rhythm_skeleton_01():
     '''Pitch and rhythm skeleton preserves pitch, written duration and multiplier.
     '''
 
@@ -26,7 +26,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_01( ):
     assert skeleton == "Skip(Duration(1, 4))"
 
 
-def test_componenttools_component_to_pitch_and_rhythm_skeleton_02( ):
+def test_componenttools_component_to_pitch_and_rhythm_skeleton_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(staff)
@@ -48,7 +48,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_02( ):
     assert new.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_componenttools_component_to_pitch_and_rhythm_skeleton_03( ):
+def test_componenttools_component_to_pitch_and_rhythm_skeleton_03():
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 f'8")
     measure = Measure((6, 16), [tuplet])

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_stafftools_iterate_staves_backward_in_expr_01( ):
+def test_stafftools_iterate_staves_backward_in_expr_01():
 
     score = Score(4 * Staff([ ]))
     score[0].name = '1'

@@ -9,8 +9,8 @@ def get_spanners_covered_by_components(components):
         Compare 'covered' spanners with 'dominant' spanners.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.get_covered( )`` to
-        ``spannertools.get_spanners_covered_by_components( )``.
+        renamed ``spannertools.get_covered()`` to
+        ``spannertools.get_spanners_covered_by_components()``.
     '''
     from abjad.tools import componenttools
 

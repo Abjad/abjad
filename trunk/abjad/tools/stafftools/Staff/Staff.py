@@ -18,7 +18,7 @@ class Staff(_Context):
     Return staff object.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     def __init__(self, music = None, **kwargs):
         _Context.__init__(self, music)

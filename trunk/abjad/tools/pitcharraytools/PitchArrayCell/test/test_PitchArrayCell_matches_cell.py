@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_PitchArrayCell_matches_cell_01( ):
+def test_PitchArrayCell_matches_cell_01():
 
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
     array[0].cells[0].pitches.append(pitchtools.NamedChromaticPitch(0))

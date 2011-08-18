@@ -100,7 +100,7 @@ class NamedChromaticPitchSet(_PitchSet):
 
     #def invert(self):
     #    '''Transpose all pcs in self by n.'''
-    #    return PCSet([pc.invert( ) for pc in self])
+    #    return PCSet([pc.invert() for pc in self])
 
     def transpose(self, n):
         '''Transpose all pcs in self by n.'''

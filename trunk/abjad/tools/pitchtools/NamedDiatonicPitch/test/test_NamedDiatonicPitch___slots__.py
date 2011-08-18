@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_NamedDiatonicPitch___slots___01( ):
+def test_NamedDiatonicPitch___slots___01():
     '''Named diatonic pitches are immutable.
     '''
 

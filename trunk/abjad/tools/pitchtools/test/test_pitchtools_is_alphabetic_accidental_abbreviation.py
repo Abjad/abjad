@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_is_alphabetic_accidental_abbreviation_01( ):
+def test_pitchtools_is_alphabetic_accidental_abbreviation_01():
 
     assert pitchtools.is_alphabetic_accidental_abbreviation('')
     assert pitchtools.is_alphabetic_accidental_abbreviation('s')
@@ -14,7 +14,7 @@ def test_pitchtools_is_alphabetic_accidental_abbreviation_01( ):
     assert pitchtools.is_alphabetic_accidental_abbreviation('tqf')
 
 
-def test_pitchtools_is_alphabetic_accidental_abbreviation_02( ):
+def test_pitchtools_is_alphabetic_accidental_abbreviation_02():
 
     assert pitchtools.is_alphabetic_accidental_abbreviation('!')
     assert pitchtools.is_alphabetic_accidental_abbreviation('s!')
@@ -27,7 +27,7 @@ def test_pitchtools_is_alphabetic_accidental_abbreviation_02( ):
     assert pitchtools.is_alphabetic_accidental_abbreviation('tqf!')
 
 
-def test_pitchtools_is_alphabetic_accidental_abbreviation_03( ):
+def test_pitchtools_is_alphabetic_accidental_abbreviation_03():
 
     assert not pitchtools.is_alphabetic_accidental_abbreviation(8)
 

@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_BookpartBlock_01( ):
+def test_BookpartBlock_01():
 
-    bookpart_block = lilyfiletools.BookpartBlock( )
+    bookpart_block = lilyfiletools.BookpartBlock()
 
     r'''
-    \bookpart { }
+    \bookpart {}
     '''
 
-    assert bookpart_block.format == '\\bookpart { }'
+    assert bookpart_block.format == '\\bookpart {}'

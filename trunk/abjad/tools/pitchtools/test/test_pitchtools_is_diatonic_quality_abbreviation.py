@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_is_diatonic_quality_abbreviation_01( ):
+def test_pitchtools_is_diatonic_quality_abbreviation_01():
 
     assert pitchtools.is_diatonic_quality_abbreviation('M')
     assert pitchtools.is_diatonic_quality_abbreviation('m')
@@ -10,7 +10,7 @@ def test_pitchtools_is_diatonic_quality_abbreviation_01( ):
     assert pitchtools.is_diatonic_quality_abbreviation('dim')
 
 
-def test_pitchtools_is_diatonic_quality_abbreviation_02( ):
+def test_pitchtools_is_diatonic_quality_abbreviation_02():
 
     assert not pitchtools.is_diatonic_quality_abbreviation('x')
     assert not pitchtools.is_diatonic_quality_abbreviation(17)

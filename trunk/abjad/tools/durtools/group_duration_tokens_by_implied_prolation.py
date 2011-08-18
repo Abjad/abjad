@@ -16,8 +16,8 @@ def group_duration_tokens_by_implied_prolation(durations):
     Return list of integer pair lists.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.agglomerate_by_prolation( )`` to
-        ``durtools.group_duration_tokens_by_implied_prolation( )``.
+        renamed ``durtools.agglomerate_by_prolation()`` to
+        ``durtools.group_duration_tokens_by_implied_prolation()``.
     '''
 
     assert isinstance(durations, list)

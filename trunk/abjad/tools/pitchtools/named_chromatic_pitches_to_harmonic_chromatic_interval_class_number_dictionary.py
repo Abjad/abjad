@@ -15,8 +15,8 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
     Return dictionary.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.get_interval_vector( )`` to
-        ``pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary( )``.
+        renamed ``pitchtools.get_interval_vector()`` to
+        ``pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary()``.
     '''
 
     numbers = [ ]
@@ -35,7 +35,7 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
         interval %= 12
         intervals.append(interval)
 
-    vector = { }
+    vector = {}
 
     for i in range(12):
         vector[i] = intervals.count(i)

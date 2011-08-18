@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Markup___eq___01( ):
+def test_Markup___eq___01():
     '''Markup compare equal when they format the same.
     '''
 
@@ -19,7 +19,7 @@ def test_Markup___eq___01( ):
     assert not markup_3 == markup_2
 
 
-def test_Markup___eq___02( ):
+def test_Markup___eq___02():
     '''Markup compare equal when they format the same.
     '''
 

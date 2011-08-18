@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 import py.test
 
 
-def test_mathtools_least_power_of_two_greater_equal_01( ):
+def test_mathtools_least_power_of_two_greater_equal_01():
     '''Return least integer power of two
         greater than or equal to n.'''
 
@@ -22,7 +22,7 @@ def test_mathtools_least_power_of_two_greater_equal_01( ):
 
 
 
-def test_mathtools_least_power_of_two_greater_equal_02( ):
+def test_mathtools_least_power_of_two_greater_equal_02():
     '''Raise TypeError on nonnumeric n.
         Raise ValueError on nonpositive n.'''
 
@@ -34,7 +34,7 @@ def test_mathtools_least_power_of_two_greater_equal_02( ):
         ValueError, 'mathtools.least_power_of_two_greater_equal(-1)')
 
 
-def test_mathtools_least_power_of_two_greater_equal_03( ):
+def test_mathtools_least_power_of_two_greater_equal_03():
     '''Optional offset keyword allows for the next to greatest
         integer power of two, etc.'''
 

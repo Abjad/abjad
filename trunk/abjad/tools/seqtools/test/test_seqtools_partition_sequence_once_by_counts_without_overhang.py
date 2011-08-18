@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_partition_sequence_once_by_counts_without_overhang_01( ):
+def test_seqtools_partition_sequence_once_by_counts_without_overhang_01():
     '''Partition list by positive counts.
     '''
 
@@ -10,7 +10,7 @@ def test_seqtools_partition_sequence_once_by_counts_without_overhang_01( ):
     assert parts == [[0, 1, 2, 3], [4, 5, 6, 7, 8, 9]]
 
 
-def test_seqtools_partition_sequence_once_by_counts_without_overhang_02( ):
+def test_seqtools_partition_sequence_once_by_counts_without_overhang_02():
     '''Partition list by nonnegative counts.
     '''
 
@@ -19,7 +19,7 @@ def test_seqtools_partition_sequence_once_by_counts_without_overhang_02( ):
     assert parts == [[], [0, 1], [], [], [2, 3, 4, 5]]
 
 
-def test_seqtools_partition_sequence_once_by_counts_without_overhang_03( ):
+def test_seqtools_partition_sequence_once_by_counts_without_overhang_03():
     '''Partition Abjad container.
     '''
 

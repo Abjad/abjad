@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_BeamSpanner_fracture_01( ):
+def test_BeamSpanner_fracture_01():
     '''This test shows that fracurting beyond the *first* leaf
         effectively does nothing except to replace an existing
         spanner with an identical new spanner.'''
@@ -14,7 +14,7 @@ def test_BeamSpanner_fracture_01( ):
     assert len(spannertools.get_spanners_attached_to_any_improper_child_of_component(t)) == 1
 
 
-def test_BeamSpanner_fracture_02( ):
+def test_BeamSpanner_fracture_02():
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.BeamSpanner(t[:4])
     assert len(spannertools.get_spanners_attached_to_any_improper_child_of_component(t)) == 1
@@ -24,7 +24,7 @@ def test_BeamSpanner_fracture_02( ):
     assert len(spannertools.get_spanners_attached_to_any_improper_child_of_component(t)) == 2
 
 
-def test_BeamSpanner_fracture_03( ):
+def test_BeamSpanner_fracture_03():
     '''
     This test shows that fracurting beyond the *last* leaf
     effectively does nothing except to replace an existing
@@ -39,7 +39,7 @@ def test_BeamSpanner_fracture_03( ):
     assert len(spannertools.get_spanners_attached_to_any_improper_child_of_component(t)) == 1
 
 
-def test_BeamSpanner_fracture_04( ):
+def test_BeamSpanner_fracture_04():
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.BeamSpanner(t[:4])
     assert len(spannertools.get_spanners_attached_to_any_improper_child_of_component(t)) == 1
@@ -49,7 +49,7 @@ def test_BeamSpanner_fracture_04( ):
     assert len(spannertools.get_spanners_attached_to_any_improper_child_of_component(t)) == 2
 
 
-def test_BeamSpanner_fracture_05( ):
+def test_BeamSpanner_fracture_05():
     '''Fracture "both" fractures around leaf.
     '''
 
@@ -87,7 +87,7 @@ def test_BeamSpanner_fracture_05( ):
     '''
 
 
-def test_BeamSpanner_fracture_06( ):
+def test_BeamSpanner_fracture_06():
     '''
     Fracture "both" works of first spanned leaf.
     '''
@@ -118,7 +118,7 @@ def test_BeamSpanner_fracture_06( ):
     '''
 
 
-def test_BeamSpanner_fracture_07( ):
+def test_BeamSpanner_fracture_07():
     '''Fracture "both" works of last spanned leaf.'''
     t = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.BeamSpanner(t[:5])
@@ -148,7 +148,7 @@ def test_BeamSpanner_fracture_07( ):
     '''
 
 
-def test_BeamSpanner_fracture_08( ):
+def test_BeamSpanner_fracture_08():
     '''
     Fracture "both" works with negative indeces.
     '''

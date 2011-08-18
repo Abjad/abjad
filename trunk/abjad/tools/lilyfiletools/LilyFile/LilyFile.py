@@ -71,12 +71,12 @@ class LilyFile(list):
     def __init__(self):
         list.__init__(self)
         self._file_initial_system_comments = [ ]
-        self._file_initial_system_comments.append(AbjadRevisionToken( ))
-        self._file_initial_system_comments.append(DateTimeToken( ))
+        self._file_initial_system_comments.append(AbjadRevisionToken())
+        self._file_initial_system_comments.append(DateTimeToken())
         self._file_initial_user_comments = [ ]
         self._file_initial_system_includes = [ ]
-        self._file_initial_system_includes.append(LilyPondVersionToken( ))
-        self._file_initial_system_includes.append(LilyPondLanguageToken( ))
+        self._file_initial_system_includes.append(LilyPondVersionToken())
+        self._file_initial_system_includes.append(LilyPondLanguageToken())
         self._file_initial_system_includes.append(os.path.join(ABJADPATH, 'cfg', 'abjad.scm'))
         self._file_initial_user_includes = [ ]
         self.default_paper_size = None
@@ -88,7 +88,7 @@ class LilyFile(list):
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
             return '%s(%s)' % (self.__class__.__name__, self.score_block[0])
         else:
-            return '%s( )' % self.__class__.__name__
+            return '%s()' % self.__class__.__name__
 
     ### PRIVATE ATTRIBUTES ###
 
@@ -184,7 +184,7 @@ class LilyFile(list):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def default_paper_size( ):
+    def default_paper_size():
         def fget(self):
             '''LilyPond default paper size.'''
             return self._default_paper_size
@@ -192,10 +192,10 @@ class LilyFile(list):
             ### #(set-default-paper-size "11x17" 'landscape)
             assert args is None or len(args) == 2
             self._default_paper_size = args
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def file_initial_system_comments( ):
+    def file_initial_system_comments():
         def fget(self):
             '''Read-only list of file-initial system comments.
             '''
@@ -205,10 +205,10 @@ class LilyFile(list):
                 self._file_initial_system_comments = arg
             else:
                 raise TypeError
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def file_initial_system_includes( ):
+    def file_initial_system_includes():
         def fget(self):
             '''List of file-initial system include commands.
             '''
@@ -218,10 +218,10 @@ class LilyFile(list):
                 self._file_initial_system_includes = arg
             else:
                 raise TypeError
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def file_initial_user_comments( ):
+    def file_initial_user_comments():
         def fget(self):
             '''Read-only list of file-initial user comments.
             '''
@@ -231,10 +231,10 @@ class LilyFile(list):
                 self._file_initial_user_comments = arg
             else:
                 raise TypeError
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def file_initial_user_includes( ):
+    def file_initial_user_includes():
         def fget(self):
             '''List of file-initial user include commands.
             '''
@@ -244,7 +244,7 @@ class LilyFile(list):
                 self._file_initial_user_includes = arg
             else:
                 raise TypeError
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def format(self):
@@ -253,11 +253,11 @@ class LilyFile(list):
         return '\n\n'.join(self._format_pieces)
 
     @apply
-    def global_staff_size( ):
+    def global_staff_size():
         def fget(self):
             '''LilyPond global staff size.'''
             return self._global_staff_size
         def fset(self, arg):
             assert isinstance(arg, (int, float, long, type(None)))
             self._global_staff_size = arg
-        return property(**locals( ))
+        return property(**locals())

@@ -39,8 +39,8 @@ def get_spanners_attached_to_component(component, klass = None):
     Return unordered set of zero or more spanners.
 
     .. versionchanged:: 2.0
-        renamed ``spannertools.get_all_spanners_attached_to_component( )`` to
-        ``spannertools.get_spanners_attached_to_component( )``.
+        renamed ``spannertools.get_all_spanners_attached_to_component()`` to
+        ``spannertools.get_spanners_attached_to_component()``.
     '''
 
     ### note: externalization of (old) component spanner aggregator 'spanners' property

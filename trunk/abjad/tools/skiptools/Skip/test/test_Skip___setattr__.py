@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Skip___setattr___01( ):
+def test_Skip___setattr___01():
     '''Slots constrain skip attributes.
     '''
 

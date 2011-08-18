@@ -4,9 +4,9 @@ from abjad import Fraction
 import py.test
 
 
-def test_intervaltreetools_shift_aggregate_offset_to_rational_01( ):
+def test_intervaltreetools_shift_aggregate_offset_to_rational_01():
     rational = 0
-    tree = IntervalTree(_make_test_intervals( ))
+    tree = IntervalTree(_make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -14,9 +14,9 @@ def test_intervaltreetools_shift_aggregate_offset_to_rational_01( ):
     assert tree.magnitude == shifted.magnitude
     assert tree.low == shifted.low
 
-def test_intervaltreetools_shift_aggregate_offset_to_rational_02( ):
+def test_intervaltreetools_shift_aggregate_offset_to_rational_02():
     rational = Fraction(1, 2)
-    tree = IntervalTree(_make_test_intervals( ))
+    tree = IntervalTree(_make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -24,9 +24,9 @@ def test_intervaltreetools_shift_aggregate_offset_to_rational_02( ):
     assert tree.low != shifted.low
     assert shifted.low == rational
 
-def test_intervaltreetools_shift_aggregate_offset_to_rational_03( ):
+def test_intervaltreetools_shift_aggregate_offset_to_rational_03():
     rational = Fraction(-1, 2)
-    tree = IntervalTree(_make_test_intervals( ))
+    tree = IntervalTree(_make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -34,9 +34,9 @@ def test_intervaltreetools_shift_aggregate_offset_to_rational_03( ):
     assert tree.low != shifted.low
     assert shifted.low == rational
 
-def test_intervaltreetools_shift_aggregate_offset_to_rational_04( ):
+def test_intervaltreetools_shift_aggregate_offset_to_rational_04():
     rational = Fraction(-1, 2)
-    tree = IntervalTree(_make_test_intervals( ))
+    tree = IntervalTree(_make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
     shifted = shift_aggregate_offset_by_rational(shifted, -1 * rational)

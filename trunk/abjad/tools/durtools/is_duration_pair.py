@@ -21,7 +21,7 @@ def is_duration_pair(arg):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.is_pair( )`` to ``durtools.is_duration_pair( )``.
+        renamed ``durtools.is_pair()`` to ``durtools.is_duration_pair()``.
     '''
 
     if isinstance(arg, (list, tuple)) and len(arg) != 2:

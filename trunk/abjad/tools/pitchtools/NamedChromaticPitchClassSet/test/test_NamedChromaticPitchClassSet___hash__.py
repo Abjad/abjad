@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClassSet___hash___01( ):
+def test_NamedChromaticPitchClassSet___hash___01():
     '''Named pitch-class sets are hashable.'''
 
     npc_set = pitchtools.NamedChromaticPitchClassSet([

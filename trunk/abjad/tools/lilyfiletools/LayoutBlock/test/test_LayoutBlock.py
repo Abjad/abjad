@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_LayoutBlock_01( ):
+def test_LayoutBlock_01():
 
-    lb = lilyfiletools.LayoutBlock( )
+    lb = lilyfiletools.LayoutBlock()
     lb.indent = 0
     lb.ragged_right = True
 

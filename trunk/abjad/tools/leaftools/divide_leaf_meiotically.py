@@ -52,7 +52,7 @@ def divide_leaf_meiotically(leaf, n = 2):
     '''
 
     ### TODO: find a way to optimize this; either reimplement
-    ### componenttools.extend_in_parent_of_component_and_grow_spanners( )
+    ### componenttools.extend_in_parent_of_component_and_grow_spanners()
     ### or come up with something else.
 
     assert isinstance(leaf, _Leaf)

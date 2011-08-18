@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_SuspensionIndicator_figured_bass_pair_01( ):
+def test_SuspensionIndicator_figured_bass_pair_01():
 
     #assert tonalitytools.SuspensionIndicator(9, 8).figured_bass_pair == (9, 8)
     assert tonalitytools.SuspensionIndicator(7, 6).figured_bass_pair == (7, 6)

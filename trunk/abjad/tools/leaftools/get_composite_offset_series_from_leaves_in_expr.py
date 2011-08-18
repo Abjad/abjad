@@ -44,7 +44,7 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
         if stop_offset not in offsets:
             offsets.append(stop_offset)
 
-    offsets.sort( )
+    offsets.sort()
 
     return offsets
 

@@ -30,7 +30,7 @@ class InversionEquivalentChromaticIntervalClassVector(_Vector):
                     pitchtools.InversionEquivalentChromaticIntervalClass(token).number
                 current_tally = self[interval_class_number]
                 dict.__setitem__(self, interval_class_number, current_tally + 1)
-        elif 'counts' in kwargs.keys( ):
+        elif 'counts' in kwargs.keys():
             counts = kwargs['counts']
             assert len(counts) in (6, 7)
             if len(counts) == 6:
@@ -63,11 +63,11 @@ class InversionEquivalentChromaticIntervalClassVector(_Vector):
 
     @property
     def _nonunison_twelve_tone_string(self):
-        return ' '.join(self._twelve_tone_string.split( )[1:])
+        return ' '.join(self._twelve_tone_string.split()[1:])
 
     @property
     def _quartertone_items(self):
-        return [item for item in self.items( ) if isinstance(item[0], float)]
+        return [item for item in self.items() if isinstance(item[0], float)]
 
     @property
     def _quartertone_string(self):
@@ -76,7 +76,7 @@ class InversionEquivalentChromaticIntervalClassVector(_Vector):
 
     @property
     def _twelve_tone_items(self):
-        return [item for item in self.items( ) if isinstance(item[0], int)]
+        return [item for item in self.items() if isinstance(item[0], int)]
 
     @property
     def _twelve_tone_string(self):
@@ -85,5 +85,5 @@ class InversionEquivalentChromaticIntervalClassVector(_Vector):
 
     @property
     def _unison_string(self):
-        return self._twelve_tone_string.split( )[0]
+        return self._twelve_tone_string.split()[0]
 

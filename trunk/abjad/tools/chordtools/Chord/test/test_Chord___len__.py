@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Chord___len___01( ):
+def test_Chord___len___01():
 
     assert len(Chord([ ], (1, 4))) == 0
     assert len(Chord([3], (1, 4))) == 1

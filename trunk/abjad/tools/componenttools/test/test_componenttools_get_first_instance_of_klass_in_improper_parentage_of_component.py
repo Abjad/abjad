@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_01( ):
+def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_01():
 
     t = Staff("c'8 d'8 e'8 f'8")
 
@@ -12,7 +12,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
     assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
         t[0], Score) is None
 
-def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_02( ):
+def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_02():
     '''Return first explicit Abjad ``Staff`` in parentage of client.
         Otherwise ``None``.'''
 
@@ -37,7 +37,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
         t, Staff) is None
 
 
-def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_03( ):
+def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_03():
     '''Return first explicit Abjad staff in parentage of client.
     '''
 
@@ -47,7 +47,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
         t, Staff) is None
 
 
-def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_04( ):
+def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_04():
     '''Get first instance of score in improper parentage.
     '''
 
@@ -77,7 +77,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
         t, Score) is t
 
 
-def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_05( ):
+def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_05():
     '''First explicit Abjad ``Score`` in parentage of client.
         If no explicit ``Score`` in parentage, return ``None``.'''
 
@@ -102,7 +102,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
         t, Score) is None
 
 
-def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_06( ):
+def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_06():
     '''Get first instance of voice in improper parentage of component.
     '''
 
@@ -137,7 +137,7 @@ def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_com
         t, Voice) is None
 
 
-def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_07( ):
+def test_componenttools_get_first_instance_of_klass_in_improper_parentage_of_component_07():
     '''Return first explicit Abjad ``Voice`` in parentage of client.
     Otherwise ``None``.
     '''

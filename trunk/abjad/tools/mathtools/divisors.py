@@ -59,11 +59,11 @@ def divisors(n):
 
     ### remove duplciate divisor if n is perfect square
     if divisors[-1] == codivisors[0]:
-        divisors.pop( )
+        divisors.pop()
 
     ### extend and sort divisors
     divisors.extend(codivisors)
-    divisors.sort( )
+    divisors.sort()
 
     ### return divisors
     return divisors

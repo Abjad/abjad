@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_notetools_make_accelerating_notes_with_lilypond_multipliers_01( ):
+def test_notetools_make_accelerating_notes_with_lilypond_multipliers_01():
     '''Pitches can be a list of any length greater than 1.'''
 
     t = notetools.make_accelerating_notes_with_lilypond_multipliers(
@@ -12,7 +12,7 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_01( ):
         assert n.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
 
 
-def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02( ):
+def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02():
     '''Pitches can be a list of any length greater than 1.'''
 
     t = notetools.make_accelerating_notes_with_lilypond_multipliers(
@@ -25,13 +25,13 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02( ):
             assert n.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
 
 
-def test_notetools_make_accelerating_notes_with_lilypond_multipliers_03( ):
+def test_notetools_make_accelerating_notes_with_lilypond_multipliers_03():
     '''Start and stop fractions must be smaller than durations.'''
     code = 't = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(4), Duration(1, 2))'
     assert py.test.raises(ValueError, code)
 
 
-def test_notetools_make_accelerating_notes_with_lilypond_multipliers_04( ):
+def test_notetools_make_accelerating_notes_with_lilypond_multipliers_04():
     '''
     The default written duration of notes returned is 1/8.
     '''
@@ -40,7 +40,7 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_04( ):
         assert n.written_duration == Duration(1, 8)
 
 
-def test_notetools_make_accelerating_notes_with_lilypond_multipliers_05( ):
+def test_notetools_make_accelerating_notes_with_lilypond_multipliers_05():
     '''
     The written duration can be set.
     '''
@@ -50,9 +50,9 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_05( ):
         assert n.written_duration == Duration(1)
 
 
-def test_notetools_make_accelerating_notes_with_lilypond_multipliers_06( ):
+def test_notetools_make_accelerating_notes_with_lilypond_multipliers_06():
     '''
-    note_curve( ) can take an exp argument to set the exponent in
+    note_curve() can take an exp argument to set the exponent in
     exponential interpolation.
     '''
     t_line = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 32), Duration(1, 8), 1)

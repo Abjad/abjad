@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_CyclicList___getitem___01( ):
+def test_seqtools_CyclicList___getitem___01():
 
     cyclic_list = seqtools.CyclicList(range(3))
     assert cyclic_list[0] == 0
@@ -13,7 +13,7 @@ def test_seqtools_CyclicList___getitem___01( ):
     assert cyclic_list[5] == 2
 
 
-def test_seqtools_CyclicList___getitem___02( ):
+def test_seqtools_CyclicList___getitem___02():
 
     cyclic_list = seqtools.CyclicList(range(3))
     assert cyclic_list[-0] == 0

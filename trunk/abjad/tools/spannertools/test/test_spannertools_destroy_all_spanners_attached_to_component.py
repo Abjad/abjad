@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_destroy_all_spanners_attached_to_component_01( ):
+def test_spannertools_destroy_all_spanners_attached_to_component_01():
     '''Destory all spanners attached to component.
     '''
 
@@ -34,7 +34,7 @@ def test_spannertools_destroy_all_spanners_attached_to_component_01( ):
     assert staff.format == "\\new Staff {\n\tc'8 \\startTrillSpan\n\td'8\n\te'8\n\tf'8 \\stopTrillSpan\n}"
 
 
-def test_spannertools_destroy_all_spanners_attached_to_component_02( ):
+def test_spannertools_destroy_all_spanners_attached_to_component_02():
     '''Destroy all spanners of klass attached to component.
     '''
 

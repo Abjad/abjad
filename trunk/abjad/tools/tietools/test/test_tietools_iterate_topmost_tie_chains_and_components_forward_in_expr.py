@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tietools_iterate_topmost_tie_chains_and_components_forward_in_expr_01( ):
+def test_tietools_iterate_topmost_tie_chains_and_components_forward_in_expr_01():
     '''Iterate toplevel contents with tie chains in place of leaves.'''
 
     t = Staff(notetools.make_notes(0, [(5, 32)] * 4))

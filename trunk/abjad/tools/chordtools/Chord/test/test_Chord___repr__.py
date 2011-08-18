@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Chord___repr___01( ):
+def test_Chord___repr___01():
     '''Chord repr is evaluable.
     '''
 

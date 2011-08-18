@@ -47,12 +47,12 @@ def make_basic_lily_file(music = None):
     Return LilyPond file.
     '''
 
-    lily_file = LilyFile( )
+    lily_file = LilyFile()
 
-    header_block = HeaderBlock( )
-    layout_block = LayoutBlock( )
-    paper_block = PaperBlock( )
-    score_block = ScoreBlock( )
+    header_block = HeaderBlock()
+    layout_block = LayoutBlock()
+    paper_block = PaperBlock()
+    score_block = ScoreBlock()
 
     lily_file.extend([header_block, layout_block, paper_block, score_block])
 

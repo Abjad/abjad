@@ -3,7 +3,7 @@ from abjad.tools import durtools
 from abjad.tools import verticalitytools
 
 
-def test_VerticalMoment_prev_vertical_moment_01( ):
+def test_VerticalMoment_prev_vertical_moment_01():
 
     score = Score([ ])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))

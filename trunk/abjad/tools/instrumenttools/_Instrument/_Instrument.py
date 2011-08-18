@@ -21,7 +21,7 @@ class _Instrument(contexttools.InstrumentMark):
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def all_clefs( ):
+    def all_clefs():
         def fset(self, clefs):
             r'''Read / write all clefs.
 
@@ -31,7 +31,7 @@ class _Instrument(contexttools.InstrumentMark):
             self._all_clefs = clefs
         def fget(self):
             return self._all_clefs
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def interval_of_transposition(self):
@@ -51,7 +51,7 @@ class _Instrument(contexttools.InstrumentMark):
         return not self.sounding_pitch_of_fingered_middle_c == pitchtools.NamedChromaticPitch("c'")
 
     @apply
-    def primary_clefs( ):
+    def primary_clefs():
         def fset(self, clefs):
             r'''Read / write primary clefs.
 
@@ -61,10 +61,10 @@ class _Instrument(contexttools.InstrumentMark):
             self._primary_clefs = clefs
         def fget(self):
             return self._primary_clefs
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def sounding_pitch_of_fingered_middle_c( ):
+    def sounding_pitch_of_fingered_middle_c():
         def fset(self, pitch):
             r'''Read / write sounding pitch of fingered middle C.
 
@@ -74,10 +74,10 @@ class _Instrument(contexttools.InstrumentMark):
             self._sounding_pitch_of_fingered_middle_c = pitch
         def fget(self):
             return self._sounding_pitch_of_fingered_middle_c
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def traditional_range( ):
+    def traditional_range():
         def fset(self, range):
             r'''Read / write traditional range.
 
@@ -87,4 +87,4 @@ class _Instrument(contexttools.InstrumentMark):
             self._traditional_range = range
         def fget(self):
             return self._traditional_range
-        return property(**locals( ))
+        return property(**locals())

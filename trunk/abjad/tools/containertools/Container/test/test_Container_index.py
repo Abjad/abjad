@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Container_index_01( ):
+def test_Container_index_01():
     '''Elements that compare equal return different indices in container.
     '''
 

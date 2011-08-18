@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_01( ):
+def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_01():
     '''Move parentage, children and spanners from multiple containers to empty tuplet.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -48,7 +48,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     assert t.format == "\\new Voice {\n\t\\fraction \\times 3/4 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_02( ):
+def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_02():
     '''Move parentage, children and spanners from container to empty voice.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -74,7 +74,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     }
     '''
 
-    new = Voice( )
+    new = Voice()
     new.name = 'foo'
     containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], new)
 
@@ -99,7 +99,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     assert t.format == '\\context Voice = "foo" {\n\t{\n\t\tc\'8 [ \\glissando\n\t\td\'8 \\glissando\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8 \\glissando\n\t\tf\'8 \\glissando\n\t}\n\t{\n\t\tg\'8 \\glissando\n\t\ta\'8 ]\n\t}\n}'
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_03( ):
+def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_03():
     '''Move parentage, children and spanners from container to empty tuplet.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -149,7 +149,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     assert componenttools.is_well_formed_component(t)
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04( ):
+def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04():
     '''Trying to move parentage, children and spanners to noncontainer raises type error.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -160,7 +160,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], Note(4, (1, 4)))')
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_05( ):
+def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_05():
     '''Trying to move parentage, children and spanners from nonempty container
     to nonempty container raises music contents error.'''
 
@@ -173,7 +173,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], tuplet)')
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_06( ):
+def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_06():
     '''Trying to move parentage, children and spanners from components that are not parent-contiguous
     raises exception.'''
 
@@ -203,7 +203,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         'containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t[0], t[2]], tuplet)')
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07( ):
+def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07():
     '''Move parentage, children and spanners from multiple dynamic measure to empty measure.'''
 
     t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")

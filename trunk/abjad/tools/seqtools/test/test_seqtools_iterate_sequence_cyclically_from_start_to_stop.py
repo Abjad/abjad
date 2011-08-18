@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import seqtools
 
 
-def test_seqtools_iterate_sequence_cyclically_from_start_to_stop_01( ):
+def test_seqtools_iterate_sequence_cyclically_from_start_to_stop_01():
 
     l = range(20)
     t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 18, 10)
@@ -10,7 +10,7 @@ def test_seqtools_iterate_sequence_cyclically_from_start_to_stop_01( ):
     assert list(t) == [18, 19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
-def test_seqtools_iterate_sequence_cyclically_from_start_to_stop_02( ):
+def test_seqtools_iterate_sequence_cyclically_from_start_to_stop_02():
 
     l = range(20)
     t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 10, 18)

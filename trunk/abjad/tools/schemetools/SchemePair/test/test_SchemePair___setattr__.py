@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_SchemePair___setattr___01( ):
+def test_SchemePair___setattr___01():
     '''Scehem pairs are immutable.
     '''
 

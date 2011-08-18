@@ -47,12 +47,12 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
     Return `pitch_carrier`.
 
     .. versionchanged:: 2.0
-        renamed ``pitchtools.color_by_pc( )`` to
-        ``notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map( )``.
+        renamed ``pitchtools.color_by_pc()`` to
+        ``notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()``.
 
     .. versionchanged:: 2.0
-        renamed ``notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map( )`` to
-        ``notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map( )``.
+        renamed ``notetools.color_note_head_by_numeric_chromatic_pitch_class_color_map()`` to
+        ``notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()``.
     '''
 
     pitch = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier)

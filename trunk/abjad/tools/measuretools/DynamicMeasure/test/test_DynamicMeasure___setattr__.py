@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_DynamicMeasure___setattr___01( ):
+def test_DynamicMeasure___setattr___01():
     '''Slots constraint dynamic measure attributes.
     '''
 

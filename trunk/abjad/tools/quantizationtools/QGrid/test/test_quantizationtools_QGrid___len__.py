@@ -1,7 +1,7 @@
 from abjad.tools.quantizationtools import QGrid
 
 
-def test_quantizationtools_QGrid___len___01( ):
+def test_quantizationtools_QGrid___len___01():
 
     assert len(QGrid([0], 0)) == 2
     assert len(QGrid([0, 0], 0)) == 3

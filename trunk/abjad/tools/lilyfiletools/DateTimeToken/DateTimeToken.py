@@ -7,7 +7,7 @@ class DateTimeToken(_Immutable):
 
     Date time token::
 
-        abjad> lilyfiletools.DateTimeToken( )
+        abjad> lilyfiletools.DateTimeToken()
         DateTimeToken(...)
 
     Return date / time token.
@@ -24,7 +24,7 @@ class DateTimeToken(_Immutable):
     def format(self):
         '''Format contribution of date time token::
 
-            abjad> lilyfiletools.DateTimeToken( ).format
+            abjad> lilyfiletools.DateTimeToken().format
             '...'
 
         Return string.

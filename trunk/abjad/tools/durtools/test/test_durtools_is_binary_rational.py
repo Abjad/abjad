@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_is_binary_rational_01( ):
+def test_durtools_is_binary_rational_01():
     '''True when expr is int or fraction with denominator of the form 2**n.
     '''
 
@@ -26,7 +26,7 @@ def test_durtools_is_binary_rational_01( ):
     assert durtools.is_binary_rational(5)
 
 
-def test_durtools_is_binary_rational_02( ):
+def test_durtools_is_binary_rational_02():
     '''False when expr is nonint / nonfraction.
     '''
 

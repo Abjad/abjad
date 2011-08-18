@@ -100,7 +100,7 @@ class Accidental(_StrictComparator, _Immutable):
 
     @property
     def _all_accidental_alphabetic_strings(self):
-        return self._alphabetic_string_to_symbolic_string.keys( )
+        return self._alphabetic_string_to_symbolic_string.keys()
 
     _alphabetic_string_to_name_string = {
         'ss'  : 'double sharp',
@@ -181,15 +181,15 @@ class Accidental(_StrictComparator, _Immutable):
 
     @property
     def _all_accidental_name_strings(self):
-        return self._name_string_to_alphabetic_string.keys( )
+        return self._name_string_to_alphabetic_string.keys()
 
     @property
     def _all_accidental_semitone_values(self):
-        return self._semitones_to_alphabetic_string.keys( )
+        return self._semitones_to_alphabetic_string.keys()
 
     @property
     def _all_accidental_symbolic_strings(self):
-        return self._symbolic_string_to_alphabetic_string.keys( )
+        return self._symbolic_string_to_alphabetic_string.keys()
 
     ### PUBLIC ATTRIBUTES ###
 

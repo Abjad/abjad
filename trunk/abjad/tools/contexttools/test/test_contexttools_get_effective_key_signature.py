@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_contexttools_get_effective_key_signature_01( ):
+def test_contexttools_get_effective_key_signature_01():
     '''Apply key signature mark.
     '''
 
@@ -23,7 +23,7 @@ def test_contexttools_get_effective_key_signature_01( ):
     assert t.format == "\\new Staff {\n\t\\key c \\major\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_contexttools_get_effective_key_signature_02( ):
+def test_contexttools_get_effective_key_signature_02():
     '''There is no default key signature.
     '''
 

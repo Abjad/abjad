@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_fill_measures_in_expr_with_little_endian_notes_01( ):
+def test_measuretools_fill_measures_in_expr_with_little_endian_notes_01():
     '''Populate nonbinary measure with little-endian tie chain.'''
 
     t = Measure((5, 18), [ ])

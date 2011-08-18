@@ -1,7 +1,7 @@
 import itertools
 
 
-### TODO: merge with seqtools.repeat_to_length( ) ###
+### TODO: merge with seqtools.repeat_to_length() ###
 
 def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
     '''.. versionadded:: 1.1
@@ -51,8 +51,8 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
     Return generator.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.phasor( )`` to
-        ``seqtools.iterate_sequence_cyclically( )``.
+        renamed ``seqtools.phasor()`` to
+        ``seqtools.iterate_sequence_cyclically()``.
     '''
 
     #assert isinstance(iterable, list)
@@ -63,7 +63,7 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
     else:
         assert isinstance(length, int)
 
-    ### itertools.islice( ) does not handle negative step.
+    ### itertools.islice() does not handle negative step.
     ### so we divided iterable into two halves from start index.
     ### then we reverse those two halves.
     ### then we recombined the halves and pass positive step.

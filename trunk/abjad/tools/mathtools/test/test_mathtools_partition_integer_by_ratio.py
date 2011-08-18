@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 import py.test
 
 
-def test_mathtools_partition_integer_by_ratio_01( ):
+def test_mathtools_partition_integer_by_ratio_01():
     '''Partition integer n according to ratio.'''
 
     t = mathtools.partition_integer_by_ratio(10, [1])
@@ -22,7 +22,7 @@ def test_mathtools_partition_integer_by_ratio_01( ):
     assert t == [-2, -2, -2, -2, -2]
 
 
-def test_mathtools_partition_integer_by_ratio_02( ):
+def test_mathtools_partition_integer_by_ratio_02():
     '''Partition integer n according to ratio.'''
 
     t = mathtools.partition_integer_by_ratio(10, [1, 2])
@@ -35,7 +35,7 @@ def test_mathtools_partition_integer_by_ratio_02( ):
     assert t == [6, -4]
 
 
-def test_mathtools_partition_integer_by_ratio_03( ):
+def test_mathtools_partition_integer_by_ratio_03():
     '''Raise type error on noninteger n.
     '''
 

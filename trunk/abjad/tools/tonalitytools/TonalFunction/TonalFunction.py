@@ -62,7 +62,7 @@ class TonalFunction(_Immutable):
     def _accidental_name_string(self):
         accidental = self.scale_degree.accidental
         if accidental.is_adjusted:
-            return accidental.name_string.title( )
+            return accidental.name_string.title()
         return ''
 
     @property
@@ -72,7 +72,7 @@ class TonalFunction(_Immutable):
             characters = characters.split('/')
             digits = [int(x) for x in characters]
             return tuple(digits)
-        return ( )
+        return ()
 
     @property
     def _figured_bass_string(self):
@@ -93,8 +93,8 @@ class TonalFunction(_Immutable):
         result = [ ]
         result.append(self._accidental_name_string)
         result.append(self._roman_numeral_string)
-        result.append(self.quality.quality_string.title( ))
-        result.append(self.extent.name.title( ))
+        result.append(self.quality.quality_string.title())
+        result.append(self.extent.name.title())
         result.append('In')
         result.append(self.inversion.title)
         if not self.suspension.is_empty:
@@ -133,7 +133,7 @@ class TonalFunction(_Immutable):
     def _roman_numeral_string(self):
         roman_numeral_string = self.scale_degree.roman_numeral_string
         if not self.quality.is_uppercase:
-            roman_numeral_string = roman_numeral_string.lower( )
+            roman_numeral_string = roman_numeral_string.lower()
         return roman_numeral_string
 
     #_symbolic_string_regex = re.compile(
@@ -162,12 +162,12 @@ class TonalFunction(_Immutable):
         #self._extent = extent
         inversion = InversionIndicator(inversion)
         #self._inversion = inversion
-        #self._suspension = SuspensionIndicator( )
-        suspension = SuspensionIndicator( )
+        #self._suspension = SuspensionIndicator()
+        suspension = SuspensionIndicator()
         return scale_degree, quality, extent, inversion, suspension
 
     def _init_by_symbolic_string(self, symbolic_string):
-        groups = self._symbolic_string_regex.match(symbolic_string).groups( )
+        groups = self._symbolic_string_regex.match(symbolic_string).groups()
         #print groups
         accidental, roman_numeral, quality, figured_bass = groups
         scale_degree = ScaleDegree(accidental + roman_numeral)
@@ -178,7 +178,7 @@ class TonalFunction(_Immutable):
         extent = self._figured_bass_string_to_extent[naive_figured_bass]
         extent = ExtentIndicator(extent)
         #self._extent = extent
-        uppercase = roman_numeral == roman_numeral.upper( )
+        uppercase = roman_numeral == roman_numeral.upper()
         quality = self._get_quality_name(uppercase, quality, extent.number)
         quality = QualityIndicator(quality)
         #self._quality = quality
@@ -187,7 +187,7 @@ class TonalFunction(_Immutable):
         #self._inversion = inversion
         suspension = [x for x in figured_bass_parts if '-' in x]
         if not suspension:
-            suspension = SuspensionIndicator( )
+            suspension = SuspensionIndicator()
         elif 1 < len(suspension):
             raise NotImplementedError('no multiple suspensions yet.')
         else:

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InstrumentMark_instrument_name_01( ):
+def test_InstrumentMark_instrument_name_01():
     '''Instrument name is read / write.
     '''
 

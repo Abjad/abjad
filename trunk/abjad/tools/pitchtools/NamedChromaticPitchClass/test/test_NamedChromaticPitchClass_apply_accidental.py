@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NamedChromaticPitchClass_apply_accidental_01( ):
+def test_NamedChromaticPitchClass_apply_accidental_01():
 
     pc = pitchtools.NamedChromaticPitchClass('cs')
 

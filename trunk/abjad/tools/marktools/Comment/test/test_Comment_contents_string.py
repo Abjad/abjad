@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Comment_contents_string_01( ):
+def test_Comment_contents_string_01():
     '''Comment contents string is read / write.
     '''
 

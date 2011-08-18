@@ -111,7 +111,7 @@ class _Leaf(_Component, _StrictComparator):
         raise MissingTempoError
 
     @apply
-    def duration_multiplier( ):
+    def duration_multiplier():
         def fget(self):
             return self._duration_multiplier
         def fset(self, expr):
@@ -121,7 +121,7 @@ class _Leaf(_Component, _StrictComparator):
                 duration_multiplier = fractions.Fraction(expr)
                 assert 0 <= duration_multiplier
                 self._duration_multiplier = duration_multiplier
-        return property(**locals( ))
+        return property(**locals())
 
     @property
     def format(self):
@@ -130,7 +130,7 @@ class _Leaf(_Component, _StrictComparator):
 
     @property
     def leaf_index(self):
-        self._update_prolated_offset_values_of_entire_score_tree_if_necessary( )
+        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._leaf_index
 
     @property
@@ -148,7 +148,7 @@ class _Leaf(_Component, _StrictComparator):
         return self.multiplied_duration
 
     @apply
-    def written_duration( ):
+    def written_duration():
         def fget(self):
             return self._written_duration
         def fset(self, expr):
@@ -156,10 +156,10 @@ class _Leaf(_Component, _StrictComparator):
             if not durtools.is_assignable_rational(rational):
                 raise AssignabilityError('not assignable duration: "%s".' % str(rational))
             self._written_duration = rational
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def written_pitch_indication_is_nonsemantic( ):
+    def written_pitch_indication_is_nonsemantic():
         def fset(self, arg):
             '''Read / write flag to be set when using leaves only graphically.
 
@@ -172,10 +172,10 @@ class _Leaf(_Component, _StrictComparator):
                 self.written_pitch_indication_is_at_sounding_pitch = False
         def fget(self):
             return self._written_pitch_indication_is_nonsemantic
-        return property(**locals( ))
+        return property(**locals())
 
     @apply
-    def written_pitch_indication_is_at_sounding_pitch( ):
+    def written_pitch_indication_is_at_sounding_pitch():
         def fset(self, arg):
             '''Read / write flag to be set to false when pitch indication is transposed.
             '''
@@ -184,6 +184,6 @@ class _Leaf(_Component, _StrictComparator):
             self._written_pitch_indication_is_at_sounding_pitch = arg
         def fget(self):
             return self._written_pitch_indication_is_at_sounding_pitch
-        return property(**locals( ))
+        return property(**locals())
 
 

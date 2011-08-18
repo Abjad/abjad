@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import durtools
 
 
-def test_durtools_is_assignable_rational_01( ):
+def test_durtools_is_assignable_rational_01():
     '''True expr is assignable rational. Otherwise false.
     '''
 
@@ -14,7 +14,7 @@ def test_durtools_is_assignable_rational_01( ):
     assert not durtools.is_assignable_rational(Fraction(5, 16))
 
 
-def test_durtools_is_assignable_rational_02( ):
+def test_durtools_is_assignable_rational_02():
     '''False when expr is greater than value of 8 whole notes.
     '''
 
@@ -25,7 +25,7 @@ def test_durtools_is_assignable_rational_02( ):
     assert not durtools.is_assignable_rational(16)
 
 
-def test_durtools_is_assignable_rational_03( ):
+def test_durtools_is_assignable_rational_03():
     '''False when expr is nonrational type.
     '''
 

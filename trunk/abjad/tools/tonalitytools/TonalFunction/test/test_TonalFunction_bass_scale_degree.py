@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import tonalitytools
 
 
-def test_TonalFunction_bass_scale_degree_01( ):
+def test_TonalFunction_bass_scale_degree_01():
 
     t = tonalitytools.TonalFunction(5, 'major', 5, 0)
     assert t.bass_scale_degree == tonalitytools.ScaleDegree(5)
@@ -14,7 +14,7 @@ def test_TonalFunction_bass_scale_degree_01( ):
     assert t.bass_scale_degree == tonalitytools.ScaleDegree(2)
 
 
-def test_TonalFunction_bass_scale_degree_02( ):
+def test_TonalFunction_bass_scale_degree_02():
 
     t = tonalitytools.TonalFunction(5, 'major', 7, 0)
     assert t.bass_scale_degree == tonalitytools.ScaleDegree(5)

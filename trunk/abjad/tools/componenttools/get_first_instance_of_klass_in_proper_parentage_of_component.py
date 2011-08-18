@@ -13,8 +13,8 @@ def get_first_instance_of_klass_in_proper_parentage_of_component(component, klas
     Return component or none.
 
     .. versionchanged:: 2.0
-        renamed ``componenttools.get_first( )`` to
-        ``componenttools.get_first_instance_of_klass_in_proper_parentage_of_component( )``.
+        renamed ``componenttools.get_first()`` to
+        ``componenttools.get_first_instance_of_klass_in_proper_parentage_of_component()``.
     '''
 
     for parent in get_proper_parentage_of_component(component):

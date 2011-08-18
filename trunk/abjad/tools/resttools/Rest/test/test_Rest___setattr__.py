@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_Rest___setattr___01( ):
+def test_Rest___setattr___01():
     '''Slots constrain rest attributes.
     '''
 

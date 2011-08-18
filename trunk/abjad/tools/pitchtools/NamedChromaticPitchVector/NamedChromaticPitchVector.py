@@ -58,13 +58,13 @@ class NamedChromaticPitchVector(_Vector):
             number = pitch.chromatic_pitch_number
             if number not in numbers:
                 numbers.append(number)
-        numbers.sort( )
+        numbers.sort()
         return numbers
 
     @property
     def named_chromatic_pitches(self):
         from abjad.tools import pitchtools
-        pitches = [pitchtools.NamedChromaticPitch(key) for key, value in self.items( )]
-        pitches.sort( )
+        pitches = [pitchtools.NamedChromaticPitch(key) for key, value in self.items()]
+        pitches.sort()
         return pitches
 
