@@ -36,21 +36,21 @@ Reference manual
 .. toctree::
     :numbered:
 
-    chapters/user_documentation/annotations/index
-    chapters/user_documentation/chords/index
-    chapters/user_documentation/comments/index
-    chapters/user_documentation/containers/index
-    chapters/user_documentation/instrument_marks/index
-    chapters/user_documentation/lily_files/index
-    chapters/user_documentation/measures/index
-    chapters/user_documentation/notes/index
-    chapters/user_documentation/pitch/named_chromatic_pitch/index
-    chapters/user_documentation/rests/index
-    chapters/user_documentation/scores/index
-    chapters/user_documentation/spanners/index
-    chapters/user_documentation/staves/index
-    chapters/user_documentation/tuplets/index
-    chapters/user_documentation/voices/index
+    chapters/reference_manual/annotations/index
+    chapters/reference_manual/chords/index
+    chapters/reference_manual/comments/index
+    chapters/reference_manual/containers/index
+    chapters/reference_manual/instrument_marks/index
+    chapters/reference_manual/lily_files/index
+    chapters/reference_manual/measures/index
+    chapters/reference_manual/notes/index
+    chapters/reference_manual/pitch/named_chromatic_pitch/index
+    chapters/reference_manual/rests/index
+    chapters/reference_manual/scores/index
+    chapters/reference_manual/spanners/index
+    chapters/reference_manual/staves/index
+    chapters/reference_manual/tuplets/index
+    chapters/reference_manual/voices/index
 
 Tutorials
 
@@ -58,11 +58,11 @@ Tutorials
     :numbered:
 
     chapters/tutorials/time_signature_marks/index
-    chapters/user_documentation/lcs/index
-    chapters/user_documentation/parentage/index
-    chapters/user_documentation/threads/index
-    chapters/user_documentation/grobs/index
-    chapters/user_documentation/understanding_overrides/index
+    chapters/reference_manual/lcs/index
+    chapters/reference_manual/parentage/index
+    chapters/reference_manual/threads/index
+    chapters/reference_manual/grobs/index
+    chapters/reference_manual/understanding_overrides/index
 
 Developer documentation
 
