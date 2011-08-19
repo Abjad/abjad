@@ -34,7 +34,7 @@ def split_container_once_by_counts_and_fracture_crossing_spanners(container, cou
         abjad> f(voice)
         \new Voice {
             {
-                c'8 () [
+                c'8 ( ) [
             }
             {
                 d'8 (

@@ -67,7 +67,8 @@ class Mark(object):
         if hasattr(self, 'contents'):
             return repr(self.contents)
         else:
-            return ' '
+            #return ' '
+            return ''
 
     ### MANGLED METHODS ###
 

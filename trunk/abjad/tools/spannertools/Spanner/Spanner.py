@@ -83,7 +83,8 @@ class Spanner(_StrictComparator):
     def _compact_summary(self):
         len_self = len(self)
         if not len_self:
-            return ' '
+            #return ' '
+            return ''
         elif 0 < len_self <= 8:
             return ', '.join([x._compact_representation for x in self])
         else:

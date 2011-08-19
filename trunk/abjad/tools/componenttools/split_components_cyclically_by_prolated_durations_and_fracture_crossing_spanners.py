@@ -42,7 +42,7 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
         \new Staff {
             {
                 \time 2/8
-                c'16. () [
+                c'16. ( ) [
                 c'32 (
                 d'16 )
                 d'16 ] (
@@ -52,7 +52,7 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
                 e'32 ) [
                 e'16. (
                 f'16. )
-                f'32 ] ()
+                f'32 ] ( )
             }
         }
 

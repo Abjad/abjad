@@ -34,7 +34,7 @@ def split_container_cyclically_by_counts_and_fracture_crossing_spanners(containe
         abjad> f(voice)
         \new Voice {
             {
-                c'8 () [
+                c'8 ( ) [
             }
             {
                 d'8 (
@@ -42,7 +42,7 @@ def split_container_cyclically_by_counts_and_fracture_crossing_spanners(containe
                 f'8 )
             }
             {
-                g'8 ()
+                g'8 ( )
             }
             {
                 a'8 (

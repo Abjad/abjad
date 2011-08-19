@@ -22,7 +22,8 @@ class _LilyPondObjectProxy(object):
         return not self == arg
 
     def __repr__(self):
-        body_string = ' '
+        #body_string = ' '
+        body_string = ''
         skeleton_strings = self._get_skeleton_strings( )
         if skeleton_strings:
             body_string = ', '.join(skeleton_strings)
