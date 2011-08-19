@@ -44,5 +44,3 @@ def get_time_signature_mark_attached_to_component(component):
     result = result[0]
 
     return result
-
-
