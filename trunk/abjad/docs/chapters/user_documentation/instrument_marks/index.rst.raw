@@ -1,8 +1,43 @@
 Instrument marks
 ================
 
+Instrument marks appear as instrument names in the left margin of your score.
+
 Creating instrument marks
 -------------------------
+
+Use context tools to create instrument marks:
+
+<abjad>
+violin = contexttools.InstrumentMark('Violin ', 'Vn. ')
+</abjad>
+
+<abjad>
+violin
+print repr(violin) <hide
+</abjad>
+
+Attaching instrument marks
+--------------------------
+
+Attach instrument marks like this:
+
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4")
+</abjad>
+
+<abjad>
+violin.attach_mark(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'instrument-marks-1')
+</abjad>
+
+
+Example
+-------
 
 Use context tools to add instrument marks:
 
@@ -25,5 +60,5 @@ Instrument marks appear as instrument names in notational output:
 
 <abjad>
 show(score)
-iotools.write_expr_to_ly(score, 'example-1') <hide
+iotools.write_expr_to_ly(score, 'instrument-marks-2') <hide
 </abjad>

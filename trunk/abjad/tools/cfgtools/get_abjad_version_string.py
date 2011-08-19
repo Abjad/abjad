@@ -11,7 +11,7 @@ def get_abjad_version_string():
     ::
 
         abjad> cfgtools.get_abjad_version_string()
-        '1.1.2'
+        '2.0'
 
     Return string.
     '''
