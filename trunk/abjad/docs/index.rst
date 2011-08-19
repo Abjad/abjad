@@ -58,11 +58,11 @@ Tutorials
     :numbered:
 
     chapters/tutorials/time_signature_marks/index
-    chapters/reference_manual/lcs/index
-    chapters/reference_manual/parentage/index
-    chapters/reference_manual/threads/index
-    chapters/reference_manual/grobs/index
-    chapters/reference_manual/understanding_overrides/index
+    chapters/tutorials/lcs/index
+    chapters/tutorials/parentage/index
+    chapters/tutorials/threads/index
+    chapters/tutorials/grobs/index
+    chapters/tutorials/understanding_overrides/index
 
 Developer documentation
 
@@ -114,4 +114,3 @@ Abjad API
     :maxdepth: 2
 
     chapters/api/index
-
