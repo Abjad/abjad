@@ -10,12 +10,12 @@ class InstrumentMark(ContextMark):
 
     ::
 
-        abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff) # doctest: +SKIP
+        abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
         InstrumentMark('Flute', 'Fl.')(Staff{4})
 
     ::
 
-        abjad> f(staff) # doctest: +SKIP
+        abjad> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Flute }
             \set Staff.shortInstrumentName = \markup { Fl. }
@@ -39,11 +39,6 @@ class InstrumentMark(ContextMark):
         self._instrument_name = Markup(instrument_name)
         self._short_instrument_name = Markup(short_instrument_name)
 
-    def __repr__(self):
-        markups = (self.instrument_name, self.short_instrument_name)
-        contents_string = ', '.join([repr(markup._contents_string) for markup in markups])
-        return '%s(%s)' % (self.__class__.__name__, contents_string)
-
     ### OVERLOADS ###
 
     def __copy__(self, *args):
@@ -58,6 +53,12 @@ class InstrumentMark(ContextMark):
         return False
 
     ### PRIVATE ATTRIBUTES ###
+
+    @property
+    def _contents_repr_string(self):
+        markups = (self.instrument_name, self.short_instrument_name)
+        contents_string = ', '.join([repr(markup._contents_string) for markup in markups])
+        return contents_string
 
     ### will probably need to change definition at some point ###
     @property
