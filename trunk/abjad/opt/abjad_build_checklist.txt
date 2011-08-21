@@ -1,0 +1,42 @@
+Abjad build checklist:
+
+ 1. Edit cfg/cfg.py and increment 'abjad_version_number'.
+
+ 2. Edit docs/conf.py and increment 'version' and 'release'.
+
+ 3. Run pytest. If any tests break, fix and repeat this step.
+
+ 4. Change to abjad/tools and run doctest. 
+    If any tests break, fix and go back to (3.)
+
+ 5. Change to abjad/docs and run 'make clean'.
+
+ 6. Run make-abjad-api. If any errors, fix and go back to (3.)
+
+ 7. Run 'make latex'. If any errors, fix and go back to (3.)
+
+ 8. Change to docs/_build/latex and run 'make all-pdf'.
+    If any errors, fix and go back to (3.)
+
+ 9. Copy docs/_build/latex/Abjad.pdf to docs/pdf/Abjad-x.y.pdf.
+
+10. Commit.
+
+11. Change to abjad/trunk and run 'python setup.py sdist'.
+    If any errors, fix and go back to (3.)
+
+12. Run 'python setup.py register sdist upload'
+    Follow the login instructions provided by PyPI.
+
+13. Remove 'dist' and 'Abjad-egginfo-x.y'.
+
+14. Change to docs/_build/html and archive all 9 or 10 files and subdirectories therein.
+    You must create a single archive of all 9 or 10 files.
+    You must not simply archive the docs/_build/html folder.
+    Name the archive Abjad-docs.tar.gz.
+
+14. Log in to pypi.python.org with Abjad owner credentials and click on Abjad to edit.
+
+15. etc.
+
+    Remove docs/_build/html/Abjad-docs.tar.gz.

@@ -2,7 +2,7 @@ from abjad.tools.markuptools.MarkupCommand import MarkupCommand
 
 
 def combine_markup_commands(*commands):
-    '''Combine MarkupCommand and/or string objects.
+    r'''Combine MarkupCommand and/or string objects.
 
     LilyPond's '\combine' markup command can only take two arguments, so in order
     to combine more than two stencils, a cascade of '\combine' commands must be
