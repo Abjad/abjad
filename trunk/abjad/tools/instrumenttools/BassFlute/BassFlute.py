@@ -12,7 +12,7 @@ class BassFlute(Flute):
     ::
 
         abjad> instrumenttools.BassFlute()(staff)
-        BassFlute('Bass Flute', 'Bass Fl.')
+        BassFlute('Bass Flute', 'Bass Fl.')(Staff{4})
 
     ::
 

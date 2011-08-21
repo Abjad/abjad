@@ -13,7 +13,7 @@ class Flute(_WindInstrument):
     ::
 
         abjad> instrumenttools.Flute()(staff)
-        Flute('Flute', 'Fl.')
+        Flute('Flute', 'Fl.')(Staff{4})
 
     ::
 

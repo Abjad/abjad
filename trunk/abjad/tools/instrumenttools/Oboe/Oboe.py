@@ -13,7 +13,7 @@ class Oboe(_DoubleReedInstrument):
     ::
 
         abjad> instrumenttools.Oboe()(staff)
-        Oboe('Oboe', 'Ob.')
+        Oboe('Oboe', 'Ob.')(Staff{4})
 
     ::
 

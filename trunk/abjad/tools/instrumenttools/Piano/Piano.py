@@ -14,7 +14,7 @@ class Piano(_KeyboardInstrument):
     ::
 
         abjad> instrumenttools.Piano()(piano_staff)
-        Piano('Piano', 'Pf.')
+        Piano('Piano', 'Pf.')(PianoStaff<<2>>)
 
     ::
 

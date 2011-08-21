@@ -13,7 +13,7 @@ class Vibraphone(_PercussionInstrument):
     ::
 
         abjad> instrumenttools.Vibraphone()(staff)
-        Vibraphone('Vibraphone', 'Vibr.')
+        Vibraphone('Vibraphone', 'Vibr.')(Staff{4})
 
     ::
 

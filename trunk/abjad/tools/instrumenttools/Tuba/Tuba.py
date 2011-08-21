@@ -15,7 +15,7 @@ class Tuba(_BrassInstrument):
     ::
 
         abjad> instrumenttools.Tuba()(staff)
-        Tuba('Tuba', 'Tb.')
+        Tuba('Tuba', 'Tb.')(Staff{4})
 
     ::
 

@@ -13,7 +13,7 @@ class Glockenspiel(_PercussionInstrument):
     ::
 
         abjad> instrumenttools.Glockenspiel()(staff)
-        Glockenspiel('Glockenspiel', 'Gkspl.')
+        Glockenspiel('Glockenspiel', 'Gkspl.')(Staff{4})
 
     ::
 

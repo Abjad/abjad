@@ -13,7 +13,7 @@ class EFlatClarinet(Clarinet):
     ::
 
         abjad> instrumenttools.EFlatClarinet()(staff)
-        EFlatClarinet('Clarinet in E-flat', 'Cl. E-flat')
+        EFlatClarinet('Clarinet in E-flat', 'Cl. E-flat')(Staff{4})
 
     ::
 

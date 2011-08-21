@@ -12,7 +12,7 @@ class Piccolo(Flute):
     ::
 
         abjad> instrumenttools.Piccolo()(staff)
-        Piccolo('Piccolo', 'Picc.')
+        Piccolo('Piccolo', 'Picc.')(Staff{4})
 
     ::
 

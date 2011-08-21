@@ -14,7 +14,7 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
     ::
 
         abjad> instrumenttools.FrenchHorn()(staff)
-        FrenchHorn('French Horn', 'Fr. hn.')
+        FrenchHorn('French Horn', 'Fr. hn.')(Staff{4})
 
     ::
 

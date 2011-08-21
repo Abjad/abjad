@@ -12,7 +12,7 @@ class AltoFlute(Flute):
     ::
 
         abjad> instrumenttools.AltoFlute()(staff)
-        AltoFlute('Alto Flute', 'Alt. Fl.')
+        AltoFlute('Alto Flute', 'Alt. Fl.')(Staff{4})
 
     ::
 

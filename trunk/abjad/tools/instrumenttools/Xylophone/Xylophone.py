@@ -13,7 +13,7 @@ class Xylophone(_PercussionInstrument):
     ::
 
         abjad> instrumenttools.Xylophone()(staff)
-        Xylophone('Xylophone', 'Xyl.')
+        Xylophone('Xylophone', 'Xyl.')(Staff{4})
 
     ::
 

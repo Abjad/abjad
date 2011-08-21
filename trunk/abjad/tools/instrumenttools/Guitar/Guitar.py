@@ -13,7 +13,7 @@ class Guitar(_StringInstrument):
     ::
 
         abjad> instrumenttools.Guitar()(staff)
-        Guitar('Guitar', 'Gt.')
+        Guitar('Guitar', 'Gt.')(Staff{4})
 
     ::
 

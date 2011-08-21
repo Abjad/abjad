@@ -15,7 +15,7 @@ class Viola(_StringInstrument):
     ::
 
         abjad> instrumenttools.Viola()(staff)
-        Viola('Viola', 'Va.')
+        Viola('Viola', 'Va.')(Staff{4})
 
     ::
 

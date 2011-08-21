@@ -13,7 +13,7 @@ class Marimba(_PercussionInstrument):
     ::
 
         abjad> instrumenttools.Marimba()(staff)
-        Marimba('Marimba', 'Mb.')
+        Marimba('Marimba', 'Mb.')(Staff{4})
 
     ::
 

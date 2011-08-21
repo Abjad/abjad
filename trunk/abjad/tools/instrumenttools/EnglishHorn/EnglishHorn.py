@@ -13,7 +13,7 @@ class EnglishHorn(Oboe):
     ::
 
         abjad> instrumenttools.EnglishHorn()(staff)
-        EnglishHorn('English Horn', 'Eng. hn.')
+        EnglishHorn('English Horn', 'Eng. hn.')(Staff{4})
 
     ::
 

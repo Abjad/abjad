@@ -14,7 +14,7 @@ class Bassoon(_DoubleReedInstrument):
     ::
 
         abjad> instrumenttools.Bassoon()(staff)
-        Bassoon('Bassoon', 'Bsn.')
+        Bassoon('Bassoon', 'Bsn.')(Staff{4})
 
     ::
 

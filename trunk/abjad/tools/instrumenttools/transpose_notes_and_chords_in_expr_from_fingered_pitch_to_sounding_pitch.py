@@ -9,7 +9,7 @@ def transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch(exp
 
         abjad> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
         abjad> instrumenttools.Clarinet()(staff)
-        Clarinet('Clarinet', 'Cl.')
+        Clarinet('Clarinet', 'Cl.')(Staff{4})
 
     ::
 

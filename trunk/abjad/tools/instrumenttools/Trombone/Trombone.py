@@ -15,7 +15,7 @@ class Trombone(_BrassInstrument):
     ::
 
         abjad> instrumenttools.Trombone()(staff)
-        Trombone('Trombone', 'Trb.')
+        Trombone('Trombone', 'Trb.')(Staff{4})
 
     ::
 

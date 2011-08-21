@@ -15,7 +15,7 @@ class Contrabassoon(Bassoon):
     ::
 
         abjad> instrumenttools.Contrabassoon()(staff)
-        Contrabassoon('Contrabassoon', 'Contrabsn.')
+        Contrabassoon('Contrabassoon', 'Contrabsn.')(Staff{4})
 
     ::
 

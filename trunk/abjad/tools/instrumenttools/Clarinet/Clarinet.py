@@ -13,7 +13,7 @@ class Clarinet(_SingleReedInstrument):
     ::
 
         abjad> instrumenttools.Clarinet()(staff)
-        Clarinet('Clarinet', 'Cl.')
+        Clarinet('Clarinet', 'Cl.')(Staff{4})
 
     ::
 

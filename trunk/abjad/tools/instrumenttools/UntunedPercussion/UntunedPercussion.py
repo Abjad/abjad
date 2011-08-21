@@ -13,7 +13,7 @@ class UntunedPercussion(_PercussionInstrument):
     ::
 
         abjad> instrumenttools.UntunedPercussion()(staff)
-        UntunedPercussion('Percussion', 'Perc.')
+        UntunedPercussion('Percussion', 'Perc.')(Staff{4})
 
     ::
 

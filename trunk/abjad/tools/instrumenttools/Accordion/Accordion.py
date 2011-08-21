@@ -16,7 +16,7 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
     ::
 
         abjad> instrumenttools.Accordion(target_context = Staff)(staff)
-        Accordion('Accordion', 'Acc.')
+        Accordion('Accordion', 'Acc.')(Staff{4})
 
     ::
 

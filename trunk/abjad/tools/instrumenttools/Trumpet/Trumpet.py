@@ -13,7 +13,7 @@ class Trumpet(_BrassInstrument):
     ::
 
         abjad> instrumenttools.Trumpet()(staff)
-        Trumpet('Trumpet', 'Tp.')
+        Trumpet('Trumpet', 'Tp.')(Staff{4})
 
     ::
 

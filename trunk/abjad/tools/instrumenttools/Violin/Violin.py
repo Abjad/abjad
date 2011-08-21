@@ -13,7 +13,7 @@ class Violin(_StringInstrument):
     ::
 
         abjad> instrumenttools.Violin()(staff)
-        Violin('Violin', 'Vn.')
+        Violin('Violin', 'Vn.')(Staff{4})
 
     ::
 

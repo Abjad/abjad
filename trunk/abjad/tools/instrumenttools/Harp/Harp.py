@@ -15,7 +15,7 @@ class Harp(_StringInstrument):
     ::
 
         abjad> instrumenttools.Harp()(piano_staff)
-        Harp('Harp', 'Hp.')
+        Harp('Harp', 'Hp.')(PianoStaff<<2>>)
 
     ::
 
