@@ -5,6 +5,7 @@ Annotate components with user-specific information for future use.
 
 Annotations do not impact formatting.
 
+
 Creating annotations
 --------------------
 
@@ -21,15 +22,16 @@ Use mark tools to create annotations:
 	Annotation('special pitch', NamedChromaticPitch('bs'))
 
 
-Attaching annotations
----------------------
 
-Attach annotations by calling them:
+Attaching annotations to a component
+------------------------------------
+
+Attach annotations to any component with ``attach_mark()``:
 
 ::
 
 	abjad> note = Note("c'4")
-	abjad> annotation(note)
+	abjad> annotation.attach_mark(note)
 
 
 ::
@@ -38,14 +40,10 @@ Attach annotations by calling them:
 	Annotation('special pitch', NamedChromaticPitch('bs'))(c'4)
 
 
-Creating and attaching annotations in one step
-----------------------------------------------
-
-Create and attach annotations in one step like this:
-
 ::
 
-	abjad> another_annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))(note)
+	abjad> another_annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
+	abjad> another_annotation.attach_mark(note)
 
 
 ::
@@ -54,10 +52,11 @@ Create and attach annotations in one step like this:
 	Annotation('special pitch', NamedChromaticPitch('bs'))(c'4)
 
 
-Getting annotations
--------------------
 
-Use mark tools to get annotations:
+Getting the annotations attached to a component
+-----------------------------------------------
+
+Use mark tools to get all the annotations attached to a component:
 
 ::
 
@@ -65,14 +64,15 @@ Use mark tools to get annotations:
 	(Annotation('special pitch', NamedChromaticPitch('bs'))(c'4), Annotation('special pitch', NamedChromaticPitch('bs'))(c'4))
 
 
-Detaching annotations by hand
------------------------------
 
-Detach annotations by hand:
+Detaching annotations from a component one at a time
+----------------------------------------------------
+
+Use ``detach_mark()`` to detach annotations from a component one at a time:
 
 ::
 
-	abjad> annotation.detach_mark( )
+	abjad> annotation.detach_mark()
 
 
 ::
@@ -81,10 +81,11 @@ Detach annotations by hand:
 	Annotation('special pitch', NamedChromaticPitch('bs'))
 
 
-Detaching annotations automatically
------------------------------------
 
-Or use mark tools to detach all annotations at once:
+Detaching all annotations attached to a component at once
+---------------------------------------------------------
+
+Or use mark tools to detach all annotations attachd to a component at once:
 
 ::
 
@@ -98,14 +99,15 @@ Or use mark tools to detach all annotations at once:
 	()
 
 
-Inspecting attachment
----------------------
 
-Use ``start_component`` to inspect attachment:
+Inspecting the component to which an annotation is attached
+-----------------------------------------------------------
+
+Use ``start_component`` to inspect the component to which an annotation is attached:
 
 ::
 
-	abjad> annotation(note)
+	abjad> annotation.attach_mark(note)
 
 
 ::
@@ -114,8 +116,9 @@ Use ``start_component`` to inspect attachment:
 	Note("c'4")
 
 
-Inspecting name
----------------
+
+Inspecting annotation name
+--------------------------
 
 Use ``name`` to get the name of any annotation:
 
@@ -125,8 +128,9 @@ Use ``name`` to get the name of any annotation:
 	'special pitch'
 
 
-Inspecting value
-----------------
+
+Inspecting annotation value
+---------------------------
 
 And use ``value`` to get the value of any annotation:
 
