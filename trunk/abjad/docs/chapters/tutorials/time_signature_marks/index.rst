@@ -250,7 +250,7 @@ Detaching a time signature mark is easy:
 
 ::
 
-    abjad> time_signature_mark.detach_mark( )
+    abjad> time_signature_mark.detach_mark()
     TimeSignatureMark(3, 4)
 
 The Abjad returns the mark we have just detached. And, observing the repr of the time signature mark, we see that the time signature mark has again changed state: the time signature mark has transitioned from attached to unattached. We confirm this like so:
@@ -311,12 +311,12 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 ::
 
-	abjad> duple_time_signature_mark.detach_mark( )
+	abjad> duple_time_signature_mark.detach_mark()
 
 
 ::
 
-    abjad> duple_time_signature_mark.detach_mark( )
+    abjad> duple_time_signature_mark.detach_mark()
     TimeSignatureMark(2, 4)
 
 ... confirm that our staff is now time signatureless ...
@@ -628,7 +628,7 @@ So to recreate our ``3/4`` time signature we can do this ...
 	abjad> time_signature_mark = contexttools.TimeSignatureMark(3, 4)
 
 
-... and then use a short-cut to avoid calling ``time_signature_mark.attach_mark( )`` like this:
+... and then use a short-cut to avoid calling ``time_signature_mark.attach_mark()`` like this:
 
 
 ::
@@ -650,22 +650,22 @@ So to recreate our ``3/4`` time signature we can do this ...
 
 
 What's going on here is that all context marks implement
-the special ``__call__( )`` method as a short-cut for ``attach_mark( )``.
-What is the special ``__call__( )`` method?
-The ``__call__( )`` method is what makes a function, class
+the special ``__call__()`` method as a short-cut for ``attach_mark()``.
+What is the special ``__call__()`` method?
+The ``__call__()`` method is what makes a function, class
 or any other Python object callable.
 The statement ``time_signature_mark(staff)`` has has parentheses in it
 because the time signature mark is callable;
 and the time signature mark is callable because all context marks
-implement the special ``__call__( )`` method.
+implement the special ``__call__()`` method.
 
 Note too that all context marks understand an *empty call* as a short-cut
-for ``detach_mark( )``. Like this:
+for ``detach_mark()``. Like this:
 
 
 ::
 
-    abjad> time_signature_mark( )
+    abjad> time_signature_mark()
     TimeSignatureMark(3, 4)
 
 ::
@@ -683,8 +683,8 @@ for ``detach_mark( )``. Like this:
 The empty call made against the time signature mark causes
 the time signature mark to detach from its start component.
 
-The fact that context marks implement the special ``__call__( )`` method
-as a short-cut for attach_mark( ) means that context marks
+The fact that context marks implement the special ``__call__()`` method
+as a short-cut for attach_mark() means that context marks
 can be created and attached in a single line:
 
 

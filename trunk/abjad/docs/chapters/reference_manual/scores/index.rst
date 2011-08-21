@@ -37,7 +37,7 @@ Return score components with ``music``:
 Inspecting score length
 -----------------------
 
-Get score length with ``len( )``:
+Get score length with ``len()``:
 
 ::
 

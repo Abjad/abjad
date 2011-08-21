@@ -2,8 +2,8 @@ def _get_module_members(module_path, klass='class'):
    '''Get members in module.'''
 
    f = open(module_path, 'r')
-   lines = f.readlines( )
-   f.close( )
+   lines = f.readlines()
+   f.close()
    result = [ ]
    for line in lines:
       if line.startswith(klass):

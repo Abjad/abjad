@@ -5,8 +5,8 @@ Abjad provides a number of score templates in the ``abjad/templates`` directory:
 
 <abjad>
 from abjad.tools import cfgtools
-cfgtools.list_abjad_templates( )
-print repr(cfgtools.list_abjad_templates( )) <hide
+cfgtools.list_abjad_templates()
+print repr(cfgtools.list_abjad_templates()) <hide
 </abjad>
 
 Templates provide header, layout, paper and grob settings for different types of score.

@@ -86,7 +86,7 @@ Get the LilyPond input format of any Abjad object with ``format``:
 	"\\times 2/3 {\n\tfs'8\n\tg'8\n\tr8\n}"
 
 
-Use ``f( )`` as a short-cut to print the LilyPond format of any Abjad object:
+Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 ::
 
@@ -127,7 +127,7 @@ Abjad returns a read-only tuple of leaves.
 Getting the length of a tuplet
 ------------------------------
 
-Get the length of any Abjad container with ``len( )``:
+Get the length of any Abjad container with ``len()``:
 
 ::
 
@@ -252,7 +252,7 @@ Add many components to the end of a tuplet with ``extend``:
 Finding the index of a component in a tuplet
 --------------------------------------------
 
-Find the index of a component in a tuplet with ``index( )``:
+Find the index of a component in a tuplet with ``index()``:
 
 ::
 
@@ -269,7 +269,7 @@ Find the index of a component in a tuplet with ``index( )``:
 Removing a tuplet component by index
 ------------------------------------
 
-Use ``pop( )`` to remove a tuplet component by index:
+Use ``pop()`` to remove a tuplet component by index:
 
 ::
 
@@ -291,7 +291,7 @@ Use ``pop( )`` to remove a tuplet component by index:
 Removing a tuplet component by reference
 ----------------------------------------
 
-Remove tuplet components by reference with ``remove( )``:
+Remove tuplet components by reference with ``remove()``:
 
 ::
 

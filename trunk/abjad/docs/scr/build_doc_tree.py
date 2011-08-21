@@ -10,7 +10,7 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
 
    ### walk every toplevel directory that should document
    print 'Building TOC tree ...'
-   for documenting_directory in _get_documenting_directories( ):
+   for documenting_directory in _get_documenting_directories():
       documenting_directory = os.path.join(ABJADPATH, documenting_directory)
       for current_root, directories, files in os.walk(documenting_directory):
          
@@ -22,7 +22,7 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
                directories.remove(directory)
             elif 'ParentageInterface' in directory:
                directories.remove(directory)
-         directories.sort( )
+         directories.sort()
       
          ### remove files that should not document
          for file in files[:]:
@@ -30,7 +30,7 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
                files.remove(file)
             elif not file.endswith('.py'):
                files.remove(file)
-         files.sort( )
+         files.sort()
 
          ### make subdirectories in docs if needed
          abjad_subdir = current_root.split('abjad')[-1].strip(os.path.sep)

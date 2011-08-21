@@ -52,7 +52,7 @@ You can add comments before, after or to the right of any leaf.
 Attaching comments to containers
 --------------------------------
 
-Use ``attach_mark()`` to attach comments to any container:
+Use ``attach_mark()`` to attach comments to a container:
 
 ::
 
@@ -124,7 +124,7 @@ Use ``detach_mark()`` to detach comments from a component one at a time:
 
 ::
 
-	abjad> comment_1.detach_mark( )
+	abjad> comment_1.detach_mark()
 	Comment('This is a comment before a note.')
 
 

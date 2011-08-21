@@ -11,27 +11,27 @@ Create a list with square brackets. ::
     abjad> my_list
     [23, 7, 10, 18, 13, 20, 3, 2, 18, 9, 14, 3]
 
-Use ``len( )`` to find the number of elements in any list. ::
+Use ``len()`` to find the number of elements in any list. ::
 
     abjad> len(my_list)
     12
 
-Use ``append( )`` to add one element to a list. ::
+Use ``append()`` to add one element to a list. ::
 
     abjad> my_list.append(5)
     abjad> my_list
     [23, 7, 10, 18, 13, 20, 3, 2, 18, 9, 14, 3, 5]
 
-Use ``extend( )`` to extend one list with the contents of another. ::
+Use ``extend()`` to extend one list with the contents of another. ::
 
     abjad> my_other_list = [19, 11, 4, 10, 12]
     abjad> my_list.extend(my_other_list)
     abjad> my_list
     [23, 7, 10, 18, 13, 20, 3, 2, 18, 9, 14, 3, 5, 19, 11, 4, 10, 12]
 
-Use ``reverse( )`` to reverse the elements in a list. ::
+Use ``reverse()`` to reverse the elements in a list. ::
 
-    abjad> my_list.reverse( )
+    abjad> my_list.reverse()
     abjad> my_list
     [12, 10, 4, 11, 19, 5, 3, 14, 9, 18, 2, 3, 20, 13, 18, 10, 7, 23]
 

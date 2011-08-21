@@ -29,7 +29,7 @@ Abjad numbers chromatic pitches by semitone with middle C set equal to 0:
 
 The code to generate this table is as follows::
 
-    score, treble_staff, bass_staff = scoretools.make_empty_piano_score( )
+    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
     duration = Fraction(1, 32)
 
     treble = measuretools.AnonymousMeasure([ ])
@@ -69,16 +69,16 @@ Abjad numbers diatonic pitches by staff space with middle C set equal to 0:
 
 The code to generate this table is as follows::
 
-    score, treble_staff, bass_staff = scoretools.make_empty_piano_score( )
+    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
     duration = Fraction(1, 32)
 
-    treble = measuretools.AnonymousMeasure([ ])
-    bass = measuretools.AnonymousMeasure([ ])
+    treble = measuretools.AnonymousMeasure([])
+    bass = measuretools.AnonymousMeasure([])
 
     treble_staff.append(treble)
     bass_staff.append(bass)
 
-    pitches =[ ]
+    pitches = []
     diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
 
     pitches.extend([-24 + x for x in diatonic_pitches])

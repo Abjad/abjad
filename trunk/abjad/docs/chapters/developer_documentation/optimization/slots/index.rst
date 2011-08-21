@@ -14,10 +14,10 @@ Consider the definition of this class::
 1000 objects consume 176k::
 
    from guppy import hpy
-   hp = hpy( )
-   hp.setrelheap( )
+   hp = hpy()
+   hp.setrelheap()
    objects = [Foo(1, 2, 3) for x in range(1000)]
-   h = hp.heap( )
+   h = hp.heap()
    print h
 
 ::
@@ -44,10 +44,10 @@ But consider the definition of this class::
 1000 objects consume only 40k::
 
    from guppy import hpy
-   hp = hpy( )
-   hp.setrelheap( )
+   hp = hpy()
+   hp.setrelheap()
    objects = [FooWithSlots(1, 2, 3) for x in range(1000)]
-   h = hp.heap( )
+   h = hp.heap()
    print h
 
 ::

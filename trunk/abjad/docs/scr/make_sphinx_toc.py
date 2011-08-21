@@ -3,14 +3,14 @@ from _module_path_to_doc_path import _module_path_to_doc_path
 import os
 
 
-def make_sphinx_toc( ):
+def make_sphinx_toc():
    '''Make table of contents for Abjad API.
    Divide TOC into classes, interfaces, spanners and tools.
    Divide tools into classes and functions.
    '''
 
    print 'Now making Sphinx TOC ...'
-   names = _get_documenting_names( )
+   names = _get_documenting_names()
    klasses, interfaces, spanners, exceptions, tools = [ ], [ ], [ ], [ ], [ ]
    for name in names:
       if name['kind'] == 'class':

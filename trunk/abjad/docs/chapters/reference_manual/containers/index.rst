@@ -54,7 +54,7 @@ Or with a special call to ``__getslice__``:
 Inspecting length
 -----------------
 
-Get the length of a container with ``len( )``:
+Get the length of a container with ``len()``:
 
 ::
 

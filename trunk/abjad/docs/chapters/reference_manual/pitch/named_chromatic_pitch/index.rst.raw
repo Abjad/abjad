@@ -29,7 +29,7 @@ print repr(named_chromatic_pitch) <hide
 Name inspection
 ---------------
 
-Use ``str( )`` to get the name of named chromatic pitches:
+Use ``str()`` to get the name of named chromatic pitches:
 
 <abjad>
 str(named_chromatic_pitch)
@@ -155,7 +155,7 @@ print repr(named_chromatic_pitch.numbered_diatonic_pitch_class) <hide
 Copying
 -------
 
-Use ``copy.copy( )`` to copy named chromatic pitches:
+Use ``copy.copy()`` to copy named chromatic pitches:
 
 <abjad>
 import copy
@@ -166,7 +166,7 @@ copy.copy(named_chromatic_pitch)
 print repr(copy.copy(named_chromatic_pitch)) <hide
 </abjad>
 
-Or use ``copy.deepcopy( )`` to do the same thing:
+Or use ``copy.deepcopy()`` to do the same thing:
 
 <abjad>
 copy.deepcopy(named_chromatic_pitch)

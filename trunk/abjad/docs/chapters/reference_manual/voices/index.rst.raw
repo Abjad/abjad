@@ -61,7 +61,7 @@ voice.format
 print repr(voice.format) <hide
 </abjad>
 
-Use ``f( )`` as a short-cut to print the LilyPond format of any Abjad object:
+Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 <abjad>
 f(voice)
@@ -94,7 +94,7 @@ Abjad returns a read-only tuple of leaves.
 Getting the length of a voice
 -----------------------------
 
-Get voice length with ``len( )``:
+Get voice length with ``len()``:
 
 <abjad>
 len(voice)
@@ -172,7 +172,7 @@ iotools.write_expr_to_ly(voice, 'example-4') <hide
 Finding the index of a component in a voice
 -------------------------------------------
 
-Find the index of a component in a voice with ``index( )``:
+Find the index of a component in a voice with ``index()``:
 
 <abjad>
 notes[0]
@@ -187,7 +187,7 @@ print repr(voice.index(notes[0])) <hide
 Removing a voice component by index
 -----------------------------------
 
-Use ``pop( )`` to remove a voice component by index:
+Use ``pop()`` to remove a voice component by index:
 
 <abjad>
 voice[5]
@@ -206,7 +206,7 @@ iotools.write_expr_to_ly(voice, 'example-5') <hide
 Removing a voice component by reference
 ---------------------------------------
 
-Remove voice components by reference with ``remove( )``:
+Remove voice components by reference with ``remove()``:
 
 <abjad>
 voice.remove(voice[-1])

@@ -6,4 +6,4 @@ from make_html_docs import make_html_docs
 
 if __name__ == '__main__':
    make_sphinx_tocs(interactive = False)
-   make_html_docs( )
+   make_html_docs()

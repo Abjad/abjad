@@ -11,7 +11,7 @@ Threads may be explicitly defined via voice instances:
 
 ::
 
-	abjad> v = Voice( )
+	abjad> v = Voice()
 
 
 Or they may exist implicitly in certain score constructs in the absence of voice containers:
@@ -167,21 +167,21 @@ by printing it:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> vA_thread_signature
-	<        root: Staff-8090096 (8090096) *      score:  * staffgroup:  *      staff: Staff-8090096 *      voice: Voice-8089760 *         self: Voice-8089760 >
+	<        root: Staff-8086224 (8086224) *      score:  * staffgroup:  *      staff: Staff-8086224 *      voice: Voice-8085888 *         self: Voice-8085888 >
 
 
 ::
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> vB_thread_signature
-	<        root: Staff-8090096 (8090096) *      score:  * staffgroup:  *      staff: Staff-8090096 *      voice: Voice-8089872 *         self: Voice-8089872 >
+	<        root: Staff-8086224 (8086224) *      score:  * staffgroup:  *      staff: Staff-8086224 *      voice: Voice-8086000 *         self: Voice-8086000 >
 
 
 ::
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> vC_thread_signature
-	<        root: Staff-8090096 (8090096) *      score:  * staffgroup:  *      staff: Staff-8090096 *      voice: Voice-8089984 *         self: Voice-8089984 >
+	<        root: Staff-8086224 (8086224) *      score:  * staffgroup:  *      staff: Staff-8086224 *      voice: Voice-8086112 *         self: Voice-8086112 >
 
 
 And by comparing them with the binary equality operator:
@@ -220,10 +220,10 @@ Note how the thread signatures have changed:
 
 	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
 	abjad> print vA_thread_signature
-	        root: Staff-8090096 (8090096)
+	        root: Staff-8090320 (8090320)
 	     score:
 	staffgroup:
-	     staff: Staff-8090096
+	     staff: Staff-8090320
 	     voice: Voice-piccolo
 	        self: Voice-piccolo
 
@@ -232,10 +232,10 @@ Note how the thread signatures have changed:
 
 	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
 	abjad> print vB_thread_signature
-	        root: Staff-8090096 (8090096)
+	        root: Staff-8090320 (8090320)
 	     score:
 	staffgroup:
-	     staff: Staff-8090096
+	     staff: Staff-8090320
 	     voice: Voice-piccolo
 	        self: Voice-piccolo
 
@@ -244,15 +244,15 @@ Note how the thread signatures have changed:
 
 	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
 	abjad> print vC_thread_signature
-	        root: Staff-8090096 (8090096)
+	        root: Staff-8094416 (8094416)
 	     score:
 	staffgroup:
-	     staff: Staff-8090096
-	     voice: Voice-8089984
-	        self: Voice-8089984
+	     staff: Staff-8094416
+	     voice: Voice-8094304
+	        self: Voice-8094304
 
 
-And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns
+And how the ``threadtools.iterate_thread_forward_in_expr()`` function returns
 all the notes belonging to both `vA` and `vB` when passing it the full staff
 and the thread signature of `vA`:
 

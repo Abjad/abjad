@@ -79,7 +79,7 @@ tuplet.format
 print repr(tuplet.format) <hide
 </abjad>
 
-Use ``f( )`` as a short-cut to print the LilyPond format of any Abjad object:
+Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 <abjad>
 f(tuplet)
@@ -112,7 +112,7 @@ Abjad returns a read-only tuple of leaves.
 Getting the length of a tuplet
 ------------------------------
 
-Get the length of any Abjad container with ``len( )``:
+Get the length of any Abjad container with ``len()``:
 
 <abjad>
 len(tuplet)
@@ -227,7 +227,7 @@ iotools.write_expr_to_ly(measure, 'example-4') <hide
 Finding the index of a component in a tuplet
 --------------------------------------------
 
-Find the index of a component in a tuplet with ``index( )``:
+Find the index of a component in a tuplet with ``index()``:
 
 <abjad>
 notes[1]
@@ -242,7 +242,7 @@ print repr(tuplet.index(notes[1])) <hide
 Removing a tuplet component by index
 ------------------------------------
 
-Use ``pop( )`` to remove a tuplet component by index:
+Use ``pop()`` to remove a tuplet component by index:
 
 <abjad>
 tuplet[7]
@@ -262,7 +262,7 @@ iotools.write_expr_to_ly(measure, 'example-5') <hide
 Removing a tuplet component by reference
 ----------------------------------------
 
-Remove tuplet components by reference with ``remove( )``:
+Remove tuplet components by reference with ``remove()``:
 
 <abjad>
 tuplet.remove(tuplet[3])

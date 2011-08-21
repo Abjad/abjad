@@ -29,7 +29,7 @@ def _get_title_type_members(source_full_path):
       page_title = parts[12:]
       #print 'PAGE TITLE is %s' % page_title
       ### if source file in tools package implements public helper function
-      if name[0].islower( ):
+      if name[0].islower():
          auto_type = 'autofunction'
          functions = _get_module_members(source_full_path, 'def')
       ### if source file in tools package implements public class
@@ -42,7 +42,7 @@ def _get_title_type_members(source_full_path):
          functions = _get_module_members(source_full_path, 'class')
       public_functions = [x for x in functions if not x.startswith('_')]
       members = public_functions
-      ### check if file defines only private _get_measure_from_component( ), for example
+      ### check if file defines only private _get_measure_from_component(), for example
       if not members:
          #print 'NOT rendering %s ...' % page_title
          page_title = None
@@ -62,7 +62,7 @@ def _get_title_type_members(source_full_path):
       page_title = members[0]
       auto_type = 'autoclass'
 
-   ### or contains public functions, like dfs( ), outside of tools packages
+   ### or contains public functions, like dfs(), outside of tools packages
    elif _get_module_members(source_full_path, 'def'):
       raise ValueError('no public helpers outside of tools packages!')
 

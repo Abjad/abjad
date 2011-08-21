@@ -21,7 +21,7 @@ Abjad 1.1.1
         Think of the _HistoryInterface as a private user namespace.
     *   ``_NoteColumnInterface`` to handle the LilyPond NoteColumn grob. 
     *   ``_SpanBarInterface``. See API for details.
-    *   ``InvisibleStaff( )`` staff.
+    *   ``InvisibleStaff()`` staff.
     *   ``Moment`` utility class to model the Abjad representation of the LilyPond moment.
 
 *   New Spanners

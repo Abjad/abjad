@@ -2,7 +2,7 @@ from abjad.cfg.cfg import ABJADPATH
 import os
 
 
-def make_html_docs( ):
+def make_html_docs():
 
    ### print greeting
    print 'Now building the HTML docs ...'

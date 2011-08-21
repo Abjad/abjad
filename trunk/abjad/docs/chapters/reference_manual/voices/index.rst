@@ -68,7 +68,7 @@ Get the LilyPond input format of any Abjad object with ``format``:
 	"\\new Voice {\n\t\\times 2/3 {\n\t\tc'4\n\t\td'4\n\t\te'4\n\t}\n\tf'2\n\tg'1\n}"
 
 
-Use ``f( )`` as a short-cut to print the LilyPond format of any Abjad object:
+Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 ::
 
@@ -113,7 +113,7 @@ Abjad returns a read-only tuple of leaves.
 Getting the length of a voice
 -----------------------------
 
-Get voice length with ``len( )``:
+Get voice length with ``len()``:
 
 ::
 
@@ -200,7 +200,7 @@ Add many components to the end of a voice with ``extend``:
 Finding the index of a component in a voice
 -------------------------------------------
 
-Find the index of a component in a voice with ``index( )``:
+Find the index of a component in a voice with ``index()``:
 
 ::
 
@@ -217,7 +217,7 @@ Find the index of a component in a voice with ``index( )``:
 Removing a voice component by index
 -----------------------------------
 
-Use ``pop( )`` to remove a voice component by index:
+Use ``pop()`` to remove a voice component by index:
 
 ::
 
@@ -239,7 +239,7 @@ Use ``pop( )`` to remove a voice component by index:
 Removing a voice component by reference
 ---------------------------------------
 
-Remove voice components by reference with ``remove( )``:
+Remove voice components by reference with ``remove()``:
 
 ::
 

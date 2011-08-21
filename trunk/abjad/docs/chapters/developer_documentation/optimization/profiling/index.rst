@@ -2,7 +2,7 @@ Profiling code
 ==============
 
 
-Profile code with ``profile_expr( )`` in the ``iotools`` package::
+Profile code with ``profile_expr()`` in the ``iotools`` package::
 
     abjad> iotools.profile_expr('Note(0, (1, 4))')
     Sun Aug 14 16:50:36 2011    _tmp_abj_profile
@@ -28,4 +28,4 @@ Profile code with ``profile_expr( )`` in the ``iotools`` package::
 
 These results show 327 function calls to create a note.
 
-The ``profile_expr( )`` function wraps the Python ``cProfile`` and ``pstats`` modules.
+The ``profile_expr()`` function wraps the Python ``cProfile`` and ``pstats`` modules.

@@ -33,7 +33,7 @@ print repr(score.music) <hide
 Inspecting score length
 -----------------------
 
-Get score length with ``len( )``:
+Get score length with ``len()``:
 
 <abjad>
 len(score)

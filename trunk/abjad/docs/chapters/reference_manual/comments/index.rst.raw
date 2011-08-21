@@ -99,8 +99,8 @@ comment_1 = marktools.get_comments_attached_to_component(note)[0]
 </abjad>
 
 <abjad>
-comment_1.detach_mark( )
-print repr(comment_1.detach_mark( )) <hide
+comment_1.detach_mark()
+print repr(comment_1.detach_mark()) <hide
 </abjad>
 
 <abjad>

@@ -64,7 +64,7 @@ Detaching instrument marks by hand
 Detach instrument marks by hand:
 
 <abjad>
-instrument_mark.detach_mark( )
+instrument_mark.detach_mark()
 </abjad>
 
 <abjad>

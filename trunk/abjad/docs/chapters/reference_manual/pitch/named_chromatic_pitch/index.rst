@@ -33,7 +33,7 @@ Use pitch tools to create named chromatic pitches:
 Name inspection
 ---------------
 
-Use ``str( )`` to get the name of named chromatic pitches:
+Use ``str()`` to get the name of named chromatic pitches:
 
 ::
 
@@ -176,7 +176,7 @@ Or to a numbered diatonic pitch-class:
 Copying
 -------
 
-Use ``copy.copy( )`` to copy named chromatic pitches:
+Use ``copy.copy()`` to copy named chromatic pitches:
 
 ::
 
@@ -189,7 +189,7 @@ Use ``copy.copy( )`` to copy named chromatic pitches:
 	NamedChromaticPitch("cs''")
 
 
-Or use ``copy.deepcopy( )`` to do the same thing:
+Or use ``copy.deepcopy()`` to do the same thing:
 
 ::
 

@@ -31,7 +31,7 @@ Return staff components with ``music``:
 Inspecting staff length
 -----------------------
 
-Get staff length with ``len( )``:
+Get staff length with ``len()``:
 
 ::
 

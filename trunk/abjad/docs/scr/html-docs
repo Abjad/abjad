@@ -6,4 +6,4 @@ import os
 
 if __name__ == '__main__':
    os.system('clear')
-   make_html_docs( )
+   make_html_docs()

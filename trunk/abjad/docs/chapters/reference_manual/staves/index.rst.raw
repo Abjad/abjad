@@ -28,7 +28,7 @@ print repr(staff.music) <hide
 Inspecting staff length
 -----------------------
 
-Get staff length with ``len( )``:
+Get staff length with ``len()``:
 
 <abjad>
 len(staff)

@@ -102,7 +102,6 @@ Appendices
     chapters/appendices/text_alignment/index
     chapters/appendices/abjad_book/index
     chapters/appendices/colors/index
-    chapters/appendices/glossary/index
     chapters/appendices/bibliography/index
     chapters/appendices/versions/index
     chapters/appendices/whatnext/index

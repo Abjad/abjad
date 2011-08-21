@@ -50,7 +50,7 @@ print container[:] <hide
 Inspecting length
 -----------------
 
-Get the length of a container with ``len( )``:
+Get the length of a container with ``len()``:
 
 <abjad>
 len(container)

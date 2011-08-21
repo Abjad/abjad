@@ -1,7 +1,7 @@
 from _get_documenting_modules import _get_documenting_modules
 
 
-def _get_documenting_names( ):
+def _get_documenting_names():
    '''Return a list of Abjad classes and functions to document in public API.
    Sort list alphabetically by name.
    Each list entry has the form of a dictionary with three items.
@@ -9,10 +9,10 @@ def _get_documenting_names( ):
    '''
 
    names = [ ]
-   for module in _get_documenting_modules( ):
+   for module in _get_documenting_modules():
       f = open(module, 'r')
-      lines = f.readlines( )
-      f.close( )
+      lines = f.readlines()
+      f.close()
       for line in lines:
          if line.startswith('def'):
             name = line.split(' ')[1].split('(')[0]
@@ -27,6 +27,6 @@ def _get_documenting_names( ):
    return names
 
 if __name__ == '__main__':
-   names = _get_documenting_names( )
+   names = _get_documenting_names()
    for name in names:
       print name

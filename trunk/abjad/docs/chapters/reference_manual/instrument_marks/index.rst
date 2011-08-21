@@ -72,7 +72,7 @@ Detach instrument marks by hand:
 
 ::
 
-	abjad> instrument_mark.detach_mark( )
+	abjad> instrument_mark.detach_mark()
 
 
 ::

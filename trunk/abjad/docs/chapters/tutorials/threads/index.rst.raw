@@ -10,7 +10,7 @@ A thread is a structural relationship binding a set of strictly sequential voice
 Threads may be explicitly defined via voice instances:
 
 <abjad>
-v = Voice( )
+v = Voice()
 </abjad>
 
 Or they may exist implicitly in certain score constructs in the absence of voice containers:
@@ -190,7 +190,7 @@ vC_thread_signature = threadtools.component_to_thread_signature(vC)
 print vC_thread_signature
 </abjad>
 
-And how the ``threadtools.iterate_thread_forward_in_expr( )`` function returns
+And how the ``threadtools.iterate_thread_forward_in_expr()`` function returns
 all the notes belonging to both `vA` and `vB` when passing it the full staff
 and the thread signature of `vA`:
 

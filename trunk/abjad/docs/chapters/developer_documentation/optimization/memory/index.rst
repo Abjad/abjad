@@ -4,10 +4,10 @@ Memory consumption
 You can examine memory consumption with tools included in the ``guppy`` module::
 
     from guppy import hpy
-    hp = hpy( )
-    hp.setrelheap( )
+    hp = hpy()
+    hp.setrelheap()
     notes = [Note(0, (1, 4)) for x in range(1000)]
-    h = hp.heap( )
+    h = hp.heap()
     print h
 
 ::
